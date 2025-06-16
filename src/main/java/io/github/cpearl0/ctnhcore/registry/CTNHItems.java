@@ -203,6 +203,10 @@ public class CTNHItems {
             .item("nuclear_waste", Item::new)
             .lang("Nuclear Waste")
             .register();
+    public static ItemEntry<Item> LEVEL_ITEM=REGISTRATE
+            .item("level",Item::new)
+            .lang("level")
+            .register();
     public static ItemEntry<ProgramItem> PROGRAM_EMPTY = registerProgramItem("empty");
     public static ItemEntry<ProgramItem> PROGRAM_ROCKET_CORE_1 = registerProgramItem("rocket_core_1", "Tier 1 Rocket Core");
     public static ItemEntry<ProgramItem> PROGRAM_ROCKET_1 = registerProgramItem("rocket_1", "Tier 1 Rocket Control");

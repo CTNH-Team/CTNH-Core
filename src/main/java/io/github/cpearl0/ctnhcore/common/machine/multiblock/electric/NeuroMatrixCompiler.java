@@ -376,7 +376,7 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
     }
     @Override
     public void addDisplayText(List<Component> textList) {
-        //super.addDisplayText(textList);
+        super.addDisplayText(textList);
         MultiblockDisplayText.builder(textList, this.isFormed())
                 .setWorkingStatus(this.recipeLogic.isWorkingEnabled(), this.recipeLogic.isActive())
                 .addMachineModeLine(this.getRecipeType(), this.getRecipeTypes().length > 1)

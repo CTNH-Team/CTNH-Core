@@ -780,8 +780,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.nuclear_reactor.safe", "反应堆不会过热爆炸");
         provider.add("ctnh.mana.waring","§c魔力机器不再拥有任何并行");
         provider.add("ctnh.cryotheum.0","§b泪水如凛冰般落下");
-        provider.add("ctnh.cryotheum.1","每次运行配方消耗10mb极寒之凛冰，电压每高于§9IV§r一级，这个消耗就翻4倍");
-        provider.add("ctnh.cryotheum.2","具有16并行，能耗-25%，运行速度+25%");
+        provider.add("ctnh.cryotheum.1","每次运行配方消耗5*并行mb极寒之凛冰，电压每高于§9IV§r一级，这个消耗就翻4倍");
+        provider.add("ctnh.cryotheum.2","初始具有4并行和3泪之晶点数，可以在升级界面加点。每消耗10000mb凛冰，就获得一点点数，随后将目标翻四倍");
         provider.add("ctnh.compiler.part_states","片区%d状态:%s");
         provider.add("ctnh.compiler.state.idle","§6待机");
         provider.add("ctnh.compiler.state.error","§c错误,类型：%s");
@@ -823,6 +823,13 @@ public class ChineseLangHandler {
         provider.add("ctnhcore.machine.high_performance_computer.tooltip.1", "§r能量充足时,提供%d算力");
         provider.add("ctnh.compiler.error.0","§c未知错误");
         provider.add("ctnh.compiler.error.1","§c舱室等级与片区1不匹配");
+        provider.add("ctnh.testui.0","当前泪之晶点数:%d");
+        provider.add("ctnh.freezeui.1","当前冷冻机加速：%.2f / %.2f");
+        provider.add("ctnh.freezeui.2","打开升级面板");
+        provider.add("ctnh.freezeui.3","当前能量利用效率：%.2f / %.2f");
+        provider.add("ctnh.freezeui.4","当前并行：%d / %d");
+        provider.add("ctnh.freezeui.5","§b当前消耗的凛冰:%d / %d");
+
 
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip0","§a精密计算§f与§e等离子体§f的§5终极艺术");
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1","提供%d算力以达到基础功率，每提供%d算力，输出功率翻一倍");
