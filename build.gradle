@@ -264,6 +264,10 @@ dependencies {
 
     // Twilight forest
     implementation fg.deobf("curse.maven:twilight_forest-227639:5468648")
+
+    //JAVD
+//    runtimeOnly fg.deobf("curse.maven:javd-370890:4803995")
+//    runtimeOnly fg.deobf("curse.maven:trenzalore-870210:4848244")
 }
 
 mixin {
