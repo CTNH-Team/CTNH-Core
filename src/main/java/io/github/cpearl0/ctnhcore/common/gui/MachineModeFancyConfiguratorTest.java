@@ -157,7 +157,7 @@ public class  MachineModeFancyConfiguratorTest implements IFancyUIProvider {
         var button_plus3=(new ButtonWidget(175, 160, 15, 15, new GuiTextureGroup(new IGuiTexture[]{ResourceBorderTexture.BUTTON_COMMON, new TextTexture("+")}), clickData ->
         {
             if (clickData.button == 0) {
-                if(machine.a>0&&machine.energy_muti<=3.5)
+                if(machine.a>0&&machine.parallel_muti<=10)
                 {
                     machine.a -= 1;
                     machine.parallel_muti+=1;

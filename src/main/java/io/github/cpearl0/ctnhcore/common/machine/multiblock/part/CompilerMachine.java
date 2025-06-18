@@ -13,6 +13,7 @@ import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.jei.IngredientIO;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
+import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import lombok.Getter;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
@@ -27,6 +28,8 @@ public class CompilerMachine extends TieredIOPartMachine implements IDistinctPar
     @Getter
     @Persisted
     private final NotifiableItemStackHandler inventory;
+    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(CompilerMachine.class,
+            TieredIOPartMachine.MANAGED_FIELD_HOLDER);
     @Persisted
     public int ids=-1;
     public CompilerMachine(IMachineBlockEntity holder, int tier) {
@@ -56,14 +59,6 @@ public class CompilerMachine extends TieredIOPartMachine implements IDistinctPar
     public Widget createUIWidget() {
         var group = new WidgetGroup(0, 0, 34, 34);
         var container = new WidgetGroup(4, 4, 26, 26);
-        var label=(new LabelWidget(-32, 30, Component.translatable("ctnh.compiler.noid")));
-        if(ids!=-1) {
-            label = (new LabelWidget(-32, 30, Component.translatable("ctnh.compiler.id", String.format("%d", ids))));
-        }
-        else
-        {
-            label = (new LabelWidget(-32, 30, Component.translatable("ctnh.compiler.noid")));
-        }
         int index = 0;
         container.addWidget(
                 new SlotWidget(getInventory().storage, index++, 4, 4, true, io.support(IO.IN))
@@ -72,8 +67,33 @@ public class CompilerMachine extends TieredIOPartMachine implements IDistinctPar
 
         container.setBackground(GuiTextures.BACKGROUND_INVERSE);
         group.addWidget(container);
-        group.addWidget(label);
 
         return group;
     }
+
+//    @Override
+//    public Widget createUIWidget() {
+//        super.createUIWidget();
+//        var group = new WidgetGroup(0, 0, 34, 34);
+//        var container = new WidgetGroup(4, 4, 26, 26);
+//        var label=(new LabelWidget(-32, 30, Component.translatable("ctnh.compiler.noid")));
+//        if(ids!=-1) {
+//            label = (new LabelWidget(-32, 30, Component.translatable("ctnh.compiler.id", String.format("%d", ids))));
+//        }
+//        else
+//        {
+//            label = (new LabelWidget(-32, 30, Component.translatable("ctnh.compiler.noid")));
+//        }
+//        int index = 0;
+//        container.addWidget(
+//                new SlotWidget(getInventory().storage, index++, 4, 4, true, io.support(IO.IN))
+//                        .setBackgroundTexture(GuiTextures.SLOT)
+//                        .setIngredientIO(IngredientIO.INPUT));
+//
+//        container.setBackground(GuiTextures.BACKGROUND_INVERSE);
+//        group.addWidget(container);
+//        group.addWidget(label);
+//
+//        return group;
+//    }
 }

@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
+import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
@@ -69,7 +70,9 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         List<Long>Equation=new ArrayList<Long>();
         for(int i=1;i<=4;i++)
         {
-            Equation.add((long)(Math.random()*(range-Math.sqrt(range))+Math.sqrt(range)));
+            var ranger=Math.sqrt(range)*(Math.random());
+            var defaulter=range-Math.sqrt(range);
+            Equation.add((long)(defaulter+2*ranger));
         }
         return Equation;
     }
@@ -80,11 +83,15 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         for(int i=0;i<3;i++)
         {
             var num=recipe.data.getLong(String.valueOf(i));
+
+
             num=(long)((num/2)+Math.random()*num);
-            true_answer=num+RawEquation.get(i);
+            if(num<1)num=1;
+            if(num>64)num=64;
+            true_answer=num*RawEquation.get(i);
         }
     }
-    public double CaculateEquationNoise(long Noise)
+    public double CalculateEquationNoise(long Noise)
     {
         //计算方程式，但带噪声
         var noise=(long)(Noise*Math.random()*Noise_Muti);
@@ -95,10 +102,10 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         }
         answer+=RawEquation.get(3);
         var fake_answer=(long)(answer+noise*Math.random());
-        return((double) Math.abs(true_answer - fake_answer) /true_answer);
+        return((double) fake_answer/true_answer);
 
     }
-    public double CaculateEquation(long Noise)
+    public double CalculateEquation(long Noise)
     {
         //计算方程式
         var noise=(long)(Noise*Math.random()*Noise_Muti);
@@ -109,7 +116,7 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         }
         answer+=RawEquation.get(3);
         var fake_answer=(long)(answer+noise*Math.random());
-        return((double) Math.abs(true_answer - answer) /true_answer);
+        return((double) answer/true_answer);
 
     }
     public void getNoise()
@@ -137,7 +144,7 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
     public void reload_recipe(GTRecipe recipe)
     {
         range=recipe.data.getInt("range");
-        noisea=recipe.data.getInt("noiseb");
+        noisea=recipe.data.getInt("noisea");
         noiseb=recipe.data.getInt("noiseb");
         RawEquation=getRawEquation(range);
         getTrueAnswer(recipe);
@@ -202,8 +209,8 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         {
              getRecipeLogic().setProgress(getRecipeLogic().getDuration()-100);
              getNoise();
-             eff_fake=CaculateEquationNoise(range);
-             eff=CaculateEquation(range);
+             eff_fake=CalculateEquationNoise(range);
+             eff=CalculateEquation(range);
              turn=10;
         }else if(turn<=4)states.set(turn,1);
         if (getRecipeLogic().getProgress()>100&&turn<=4) {
@@ -347,36 +354,38 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         {
             lastrecipe=recipe;
             reload_recipe(recipe);
+
+        }
+        CheckRecipeValid(recipe,itemsR);
+        ticks=getOffsetTimer();
+
+        return super.beforeWorking(recipe);
+    }
+    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
+        if (machine instanceof NeuroMatrixCompiler nmachine) {
+            for (int i = 0; i <= 4; i++) {
+                nmachine.states.set(i, 4);
+            }
             var itemsX = recipe.getOutputContents(ItemRecipeCapability.CAP).stream()
                     .map(num -> (SizedIngredient) num.getContent()) // 转换为 SizedIngredient
                     .map(SizedIngredient::getItems) // 获取 ItemStack 数组
                     .filter(itemStacks -> itemStacks.length > 0) // 确保至少有一个 ItemStack
                     .map(itemStacks -> itemStacks[0].getItem()) // 获取第一个 ItemStack 的 Item
                     .collect(Collectors.toList()); // 收集到一个 List<Item>
-            items=itemsX.get(0).asItem();
-        }
-        CheckRecipeValid(recipe,itemsR);
-        ticks=getOffsetTimer();
-        return super.beforeWorking(recipe);
-    }
-    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
-        if(machine instanceof NeuroMatrixCompiler nmachine) {
-            for(int i=0;i<=4;i++)
-            {
-                nmachine.states.set(i,4);
-            }
+            if(!itemsX.isEmpty()) nmachine.items=itemsX.get(0).asItem();
             SizedIngredient ingredient=SizedIngredient.create(ItemStack.EMPTY);
             List<Content> itemList = new ArrayList<>();
             var new_recipe=recipe.copy();
             itemList.add(new Content(ingredient, 0, 0, 0, null, null));
             new_recipe.outputs.put(ItemRecipeCapability.CAP,itemList);
-            return recipe1->new_recipe;
+                return recipe1->new_recipe;
+            }
+            return ModifierFunction.NULL;
         }
-        return ModifierFunction.NULL;
-    }
+
     @Override
     public void addDisplayText(List<Component> textList) {
-        super.addDisplayText(textList);
+        //super.addDisplayText(textList);
         MultiblockDisplayText.builder(textList, this.isFormed())
                 .setWorkingStatus(this.recipeLogic.isWorkingEnabled(), this.recipeLogic.isActive())
                 .addMachineModeLine(this.getRecipeType(), this.getRecipeTypes().length > 1)

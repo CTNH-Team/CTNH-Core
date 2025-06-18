@@ -3,9 +3,7 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 import com.gregtechceu.gtceu.api.capability.*;
 import com.gregtechceu.gtceu.api.capability.forge.GTCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.*;
-import com.gregtechceu.gtceu.api.gui.fancy.TabsWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
-import com.gregtechceu.gtceu.api.machine.fancyconfigurator.CombinedDirectionalFancyConfigurator;
 import com.gregtechceu.gtceu.api.machine.feature.IExplosionMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
@@ -16,9 +14,6 @@ import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.utils.GTUtil;
-import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import io.github.cpearl0.ctnhcore.common.gui.MachineModeFancyConfiguratorTest;
-import io.github.cpearl0.ctnhcore.common.gui.WPAAcceleratorGui;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.Arc_Generator;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import lombok.Getter;
@@ -54,7 +49,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class WideParticleAccelerator extends WorkableElectricMultiblockMachine implements ITieredMachine, IExplosionMachine {
+public class WPA_old extends WorkableElectricMultiblockMachine implements ITieredMachine, IExplosionMachine {
 
     public double nu_speed=0;
     public double proton_speed=0;
@@ -75,17 +70,7 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
     public int anti_nu=0;
     public int anti_proton=0;
     public int anti_electirc=0;
-    public double consume_mutiple=1.0;
-    @Persisted
-    @Getter
-    public int reverse=1;
-    @Persisted
-    public int nu_value=1;
-    @Persisted
-    public int proton_value=1;
-    @Persisted
-    public int electric_value=1;
-    public WideParticleAccelerator(IMachineBlockEntity holder)
+    public WPA_old(IMachineBlockEntity holder)
     {
         super(holder);
     }
@@ -93,11 +78,8 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
     public void onStructureFormed() {
         super.onStructureFormed();
     }
-    public int GetParallel(MetaMachine machine, GTRecipe recipe, int parallelLimit)
-    {
-        int parallel= ParallelLogic.getParallelAmount(machine,recipe,(int) (parallelLimit/consume_mutiple));
-        return parallel;
-    }
+
+
 
     //初始化
     @Override
@@ -139,7 +121,7 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
             doExplosion(3f);
         }
         super.afterWorking();
-        }
+    }
 
     public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         var hatchs=0;
@@ -271,7 +253,7 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
                     {
                         gmachine.anti_electron+= (int) (1000*parallel*(1-random*Math.sqrt(0.05*parallel)));
                     }
-                else{
+                    else{
                         wmachine.warring=true;
                     }
                 }
@@ -283,11 +265,11 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
             //暗物质结束
             var muti=1.0;
             if(wmachine.nu_speed+wmachine.element_speed+ wmachine.proton_speed>10000) {
-                 muti = 0.1;
+                muti = 0.1;
             }
             else
             {
-                 muti=1-(recipe.data.getDouble("speed")-(wmachine.nu_speed+ wmachine.proton_speed+ wmachine.element_speed)/2000);
+                muti=1-(recipe.data.getDouble("speed")-(wmachine.nu_speed+ wmachine.proton_speed+ wmachine.element_speed)/2000);
             }
 
 
@@ -316,23 +298,12 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
         textList.add(textList.size(),Component.translatable("ctnh.accelerator.consume",String.format("%.2f",(nu_speed+proton_speed+element_speed)/2000+1)));
     }
     @Override
-    public void attachSideTabs(TabsWidget sideTabs) {
-        sideTabs.setMainTab(this);
-
-        if (this.getRecipeTypes().length > 0) {
-            sideTabs.attachSubTab(new WPAAcceleratorGui(this));
-        }
-        var directionalConfigurator = CombinedDirectionalFancyConfigurator.of(self(), self());
-        if (directionalConfigurator != null)
-            sideTabs.attachSubTab(directionalConfigurator);
-    }
-    @Override
     public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {
         super.saveCustomPersistedData(tag, forDrop);
         if (!forDrop) {
-        tag.putDouble(NU_SPEED,nu_speed);
-        tag.putDouble(PROTON_SPEED,proton_speed);
-        tag.putDouble(ELEMENT_SPEED,element_speed);
+            tag.putDouble(NU_SPEED,nu_speed);
+            tag.putDouble(PROTON_SPEED,proton_speed);
+            tag.putDouble(ELEMENT_SPEED,element_speed);
         }
     }
 

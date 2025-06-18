@@ -65,8 +65,8 @@ public class CryotheumFreezer extends WorkableElectricMultiblockMachine implemen
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
         var tier = getTier();
-        if (MachineUtils.inputFluid(CTNHMaterials.Cryotheum.getFluid((int) (Math.pow(4, Math.max((tier - 4),0)) * 5)*recipe.parallels), this)) {
-            used_energy+= (long) (Math.pow(4, Math.max((tier - 4),0)) )* 5*recipe.parallels;
+        if (MachineUtils.inputFluid(CTNHMaterials.Cryotheum.getFluid((int) (Math.pow(4, Math.max((tier - 4),0)) * 10)), this)) {
+            used_energy+= (long) (Math.pow(4, Math.max((tier - 4),0)) )* 10;
             if(used_energy>=target)
             {
                 a+=1;

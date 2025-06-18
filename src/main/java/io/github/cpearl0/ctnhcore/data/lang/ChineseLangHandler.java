@@ -839,6 +839,11 @@ public class ChineseLangHandler {
         provider.add("zenith_extruder.1","允许使用§5天顶灵压塑形§r，其以每个形态1mb§5天顶源质§5r的代价来一次性塑造大部分锭的各种形态");
         provider.add("zenith_extruder.2","允许塑形的形态包括：§7板，杆，小型齿轮，齿轮，转子，环，螺栓，§4不允许塑形南瓜派！");
 
+
+        provider.add("ctnh.wpa.mode.1","模式：减速模式");
+        provider.add("ctnh.wpa.mode.2","模式：加速模式");
+        provider.add("ctnh.wpa.wide.1","轨道：中子轨道");
+        provider.add("ctnh.wpa.value","此值决定了加速/减速时给各个轨道加速的权重。最终每个轨道分配到的比例按（自身权重）/权重之和来获取权重");
         provider.add("ctnh.multiblock.wind_array.tooltip0", "§7§o风力狼群:真正的自然之力");
         provider.add("ctnh.multiblock.wind_array.tooltip1", "§8---------------§a基础数据§8-----------------");
         provider.add("ctnh.multiblock.wind_array.tooltip2", "§f- 基础发电功率: §e%d EU/t  §7(地球)");
