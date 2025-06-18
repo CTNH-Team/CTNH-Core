@@ -34,7 +34,7 @@ public class TurbineRecipes {
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder("neutronium_reinforced_turbine_casing")
                 .inputItems(GTBlocks.CASING_TUNGSTENSTEEL_TURBINE)
-                .inputItems(TagPrefix.plateDense,Osmiridium,6)
+                .inputItems(TagPrefix.plate,Osmiridium,6)
                 .inputFluids(Neutronium.getFluid(144*16))
                 .outputItems(NEUTRONIUM_REINFORCED_TURBINE_CASING,4)
                 .stationResearch(b->b

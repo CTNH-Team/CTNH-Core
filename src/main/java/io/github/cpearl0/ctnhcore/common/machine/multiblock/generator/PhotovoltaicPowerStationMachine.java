@@ -100,7 +100,9 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
         updateEnergyContainer();
         //计算发电效率
         var dimension = getLevel().dimension();
-        if (dimension == Level.OVERWORLD || dimension.location().getPath().equals("twilightforest:twilight_forest") || dimension.location().getPath().equals("mythicbotany:alfheim")) {
+        var str = dimension.location().toString();
+        if (dimension == Level.OVERWORLD || str.equals("twilightforest:twilight_forest") || str.equals("mythicbotany:alfheim")
+            || str.equals("javd:void")) {
             rate_mul = 1;
         } else if (dimension == AetherDimensions.AETHER_LEVEL) {
             rate_mul = 2;
@@ -115,8 +117,7 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
         } else if (dimension == Planet.GLACIO || dimension == Planet.GLACIO_ORBIT) {
             rate_mul = 32;
         }
-
-        if (getLevel() instanceof ServerLevel serverLevel) {
+        if (getLevel() instanceof ServerLevel serverLevel && rate_mul>0) {
             serverLevel.getServer().tell(new TickTask(0, this::updateTickSubscription));
         }
     }
