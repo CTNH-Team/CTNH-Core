@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-18T11:28:24.2350493	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn), Lang (zh_cn)]
+// 1.20.1	2025-06-27T23:42:02.5511063	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn), Lang (zh_cn)]
 9efa2dcaaaa0ee63297ded8b4093cd857e0f2a66 assets/ctnhcore/blockstates/abyssalalloy_coil_block.json
 2472318a4ef3d41e0f3a7bcd262b594486fb5028 assets/ctnhcore/blockstates/advanced_bio_reactor_casing.json
 7b02265b4325b6d5a42a23c8e7866adfc07bc0ae assets/ctnhcore/blockstates/advanced_hyper_casing.json
@@ -80,7 +80,7 @@ f17c7b2d8495b9535bc4c92a544ea0c2bcc5e595 assets/ctnhcore/blockstates/zenith_casi
 71fb0f01bd60854473495a9b97cef4eac5c59ac2 assets/ctnhcore/blockstates/zenith_eye.json
 eb33fe7ad8b5a4ffe9d5c54ac529280576fa089e assets/ctnhcore/lang/en_ud.json
 6eb51dab11be07523968fd3f1c4cf8a5f3c56319 assets/ctnhcore/lang/en_us.json
-5ba63cce9cca73b17a582192a9122a8b52be807d assets/ctnhcore/lang/zh_cn.json
+38df27351ec928392f57cb3a87a18b942ccc542f assets/ctnhcore/lang/zh_cn.json
 df65321a1742a74b662d28389e11b0a2406960b1 assets/ctnhcore/models/block/abyssalalloy_coil_block.json
 13db5d9c835eeecee9dc13bee7a130e73a4bc89e assets/ctnhcore/models/block/abyssalalloy_coil_block_active.json
 14d9cbb950f41d793cc7c86563f0fa3020b0c2b6 assets/ctnhcore/models/block/advanced_bio_reactor_casing.json
