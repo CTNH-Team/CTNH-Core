@@ -281,7 +281,7 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
         return 2 + 0.5 * Sacrifice_rune;
     }
     public GTRecipe getBloodRecipe() {
-        return GTRecipeBuilder.ofRaw().inputFluids(FluidIngredient.of(100,BloodMagicFluids.LIFE_ESSENCE_FLUID_FLOWING.get())).buildRawRecipe();
+        return GTRecipeBuilder.ofRaw().inputFluids(FluidIngredient.of(100,BloodMagicFluids.LIFE_ESSENCE_FLUID.get())).buildRawRecipe();
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         if (machine instanceof DemonWillMachine dmachine) {
