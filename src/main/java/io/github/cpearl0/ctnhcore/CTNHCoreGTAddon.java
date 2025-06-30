@@ -75,5 +75,6 @@ public class CTNHCoreGTAddon implements IGTAddon {
         ScalableReservoirComputingRecipes.init(provider);
         TurbineRecipes.init(provider);
         HighPerformanceComputerRecipes.init(provider);
+        ManaCondenserRecipes.init(provider);
     }
 }
