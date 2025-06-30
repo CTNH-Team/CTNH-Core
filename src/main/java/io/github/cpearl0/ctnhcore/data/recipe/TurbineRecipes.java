@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import io.github.cpearl0.ctnhcore.registry.CTNHMultiblockMachines;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
@@ -23,7 +24,7 @@ public class TurbineRecipes {
                 .inputItems(GTBlocks.SUPERCONDUCTING_COIL,4)
                 .inputItems(TagPrefix.plateDense,Darmstadtium,4)
                 .inputItems(NEUTRONIUM_REINFORCED_TURBINE_CASING)
-                .outputItems(CTNHMultiblockMachines.HYPER_PLASMA_TURBINE)
+                .outputItems(MultiblocksB.HYPER_PLASMA_TURBINE)
                 .stationResearch(b->b
                         .researchStack(GTMultiMachines.LARGE_PLASMA_TURBINE.asStack())
                         .CWUt(128)
@@ -34,7 +35,7 @@ public class TurbineRecipes {
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder("neutronium_reinforced_turbine_casing")
                 .inputItems(GTBlocks.CASING_TUNGSTENSTEEL_TURBINE)
-                .inputItems(TagPrefix.plateDense,Osmiridium,6)
+                .inputItems(TagPrefix.plate,Osmiridium,6)
                 .inputFluids(Neutronium.getFluid(144*16))
                 .outputItems(NEUTRONIUM_REINFORCED_TURBINE_CASING,4)
                 .stationResearch(b->b
