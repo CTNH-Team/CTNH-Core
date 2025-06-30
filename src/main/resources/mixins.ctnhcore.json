@@ -20,6 +20,8 @@
     "gtceu.WorkableElectricMultiblockMachineMixin",
     "gtmthings.AdvancedBlockPatternMixin",
     "gtmthings.AutoBuildSettingMixin",
+    "jei.GTRecipeWidgetMixin",
+    "jei.RecipeGuiLogicMixin",
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MobMixin",
     "mc.MonsterMixin"
