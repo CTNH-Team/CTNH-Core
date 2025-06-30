@@ -385,7 +385,7 @@ public class CTNHMaterials {
             .ore()
             .buildAndRegister();
     public static final Material ImpureOil = new Material.Builder(GTCEu.id("impure_oil"))
-            .liquid()
+            .liquid(new FluidBuilder().block())
             .color(0x171717)
             .buildAndRegister();
     public static final Material SimpleGrowthMedium = new Material.Builder(GTCEu.id("simple_growth_medium"))
