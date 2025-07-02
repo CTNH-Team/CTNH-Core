@@ -156,7 +156,7 @@ public class CTNHMaterials {
             .buildAndRegister();
     public static final Material Starmetal = new Material.Builder(GTCEu.id("starmetal"))
             .ingot()
-            .liquid()
+            .liquid(new FluidBuilder().textures(true,true).block())
             .plasma()
             .addOreByproducts(GTMaterials.Sapphire, GTMaterials.Polonium)
             .radioactiveHazard(6)
