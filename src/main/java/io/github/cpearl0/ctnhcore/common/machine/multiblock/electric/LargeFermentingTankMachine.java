@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.common.machine.multiblock.electric.MultiblockTankMa
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHMultiblockMachines;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import net.minecraft.world.level.material.Fluids;
 
 public class LargeFermentingTankMachine extends FermentingTankMachine{
@@ -19,7 +20,7 @@ public class LargeFermentingTankMachine extends FermentingTankMachine{
         if(getOffsetTimer() % 20 == 0){
             var level = getLevel();
             var pos1 = MachineUtils.getOffset(this,13,0,1);
-            if(!level.getBlockState(pos1).getBlock().equals(CTNHMultiblockMachines.LARGE_BOTTLE.getBlock())){
+            if(!level.getBlockState(pos1).getBlock().equals(MultiblocksA.LARGE_BOTTLE.getBlock())){
                 return true;
             }
             var machine1 = MetaMachine.getMachine(level,pos1);

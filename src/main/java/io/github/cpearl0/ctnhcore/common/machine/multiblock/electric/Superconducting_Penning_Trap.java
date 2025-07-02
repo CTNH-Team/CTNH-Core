@@ -13,6 +13,7 @@ import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.misc.EnergyContainerList;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.Arc_Generator;
@@ -45,6 +46,7 @@ public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMac
     private IEnergyContainer energyContainer;
     private int energy=0;
     public boolean no_energy_waring=false;
+    public double consume_mutiple=1.0;
     @Nullable
     protected TickableSubscription tickSubs;
 
@@ -52,6 +54,10 @@ public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMac
     {
         super(holder);
     }
+
+
+
+    //初始化
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
