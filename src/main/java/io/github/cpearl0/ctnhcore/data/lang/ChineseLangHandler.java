@@ -332,7 +332,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.demon_will_generator.tooltips.2","利用机器两侧的区块内的恶魔意志浓度差发电，浓度差与发电量呈指数关系");
         provider.add("ctnh.demon_will_generator.tooltips.3","以机器两侧的恶魔合金方块处的意志浓度为基准进行计算");
         provider.add("ctnh.demon_will_generator.tooltips.4","两侧区块中的各种恶魔意志的多样性会影响发电效率");
-        provider.add("ctnh.demon_will_generator.tooltips.5","机器内可以放入意志核心，将机器转化为对于某种意志专精的模式");
+        provider.add("ctnh.demon_will_generator.tooltips.5","机器内可以放入意志核心，将机器转化为对于某种意志专精的模式，该模式下每秒会有5%的概率消耗一个核心");
         provider.add("ctnh.demon_will_generator.tooltips.6","机器内的符文方块可替换，从而起到不同的增益效果:\n§4献祭符文和牺牲符文----提高生命源质强化模式的发电倍率§r\n§3速度符文----提升一次配方运行的时长（节省恶魔意志消耗）§r\n§e增容符文----每一个符文增加2点恶魔意志浓度差§r\n§c超容符文----每一个符文增加百分之2的恶魔意志浓度差（叠乘）§r\n==============================");
         provider.add("ctnh.demon_will_generator.tooltips.7","输入§4生命源质§r开启血祭模式，发电量翻倍，每秒消耗§a100mb§r的生命源质");
         provider.add("ctnh.multiblock.sweat_shop.villager_count","员工数量：%s");
@@ -857,6 +857,9 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.wind_array.tooltip9", "§f所有结构对齐且间距<=1的风力发电机阵列会组成风力网络");
         provider.add("ctnh.multiblock.wind_array.tooltip10", "§f润滑油会从风力网络中抽取.");
         provider.add("ctnh.multiblock.wind_array.tooltip11", "§5顺应风力网络的工作规律,以抵挡自然之力的摧残");
+        provider.add("ctnh.multiblock.mana_condenser.tooltips.1", "反熵物质转化！");
+        provider.add("ctnh.multiblock.mana_condenser.tooltips.2", "可以将魔力转化为液态魔力，或者将液态魔力转化为魔力，后者所需的能量更多");
+        provider.add("ctnh.multiblock.mana_condenser.tooltips.3", "所有魔力输入输出均通过结构中心的魔力池进行");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
@@ -1013,6 +1016,8 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.SUPERCOOLED_BLOCK,"超级冷冻机械线圈");
         provider.addBlock(CTNHBlocks.HYPER_PLASMA_TURBINE_ROTOR,"超極等离子涡轮转子");
         provider.addBlock(CTNHBlocks.NEUTRONIUM_REINFORCED_TURBINE_CASING,"中子素强化涡轮外壳");
+        provider.addBlock(CTNHBlocks.DEMON_FLYTRAP, "恶魔捕蝇草");
+        provider.addBlock(CTNHBlocks.BLOOD_ANTIARIS, "见血封喉");
         provider.add(MultiblocksA.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(MultiblocksA.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(MultiblocksA.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
