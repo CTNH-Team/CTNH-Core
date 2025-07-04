@@ -84,13 +84,13 @@ public class ManaCondenserRender extends WorkableCasingMachineRenderer {
                 if (reverse) {
                     poseStack.pushPose();
                     poseStack.translate(xoff, 4, zoff);
-                    EnderDragonRenderer.renderCrystalBeams(-x, -y, -z, gameTime, 200, poseStack, buffer, 15);
+                    EnderDragonRenderer.renderCrystalBeams(-x, -y, -z, blockEntity.getLevel().getGameTime() + gameTime, 2000, poseStack, buffer, 15);
                     poseStack.popPose();
                 }
                 else {
                     poseStack.pushPose();
                     poseStack.translate(xoff, 4, zoff);
-                    EnderDragonRenderer.renderCrystalBeams(x, y, z, gameTime, 200, poseStack, buffer, 15);
+                    EnderDragonRenderer.renderCrystalBeams(x, y, z, blockEntity.getLevel().getGameTime() + gameTime, 2000, poseStack, buffer, 15);
                     poseStack.popPose();
                 }
 
