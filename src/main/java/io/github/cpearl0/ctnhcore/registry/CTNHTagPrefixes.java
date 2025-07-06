@@ -86,8 +86,8 @@ public class CTNHTagPrefixes {
             .maxStackSize(8)
             .materialIconType(new MaterialIconType("hyper_rotor"))
             .unificationEnabled(true)
-            .generateItem(false)
-            .generateBlock(false)
+            .generateItem(true)
+            .generateBlock(true)
             .generationCondition(mat -> mat.hasAnyOfFlags(MaterialFlags.GENERATE_ROTOR, GENERATE_HYPER_ROTOR));
 
 
