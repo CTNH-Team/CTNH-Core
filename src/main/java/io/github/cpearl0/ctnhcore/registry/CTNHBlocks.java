@@ -188,7 +188,7 @@ public class CTNHBlocks {
             .block("demon_flytrap", properties -> new ForgeSpecialFlowerBlock(MobEffects.HARM, 20, BlockBehaviour.Properties.copy(Blocks.POPPY), () -> CTNHBlockEntities.DEMON_FLYTRAP.get()))
             .initialProperties(() -> Blocks.POPPY)
             .lang("Demon Flytrap")
-//            .blockstate(GTModels::createCrossBlockState)
+            .blockstate(GTModels::createCrossBlockState)
             .addLayer(() -> RenderType::cutoutMipped)
             .item()
 //            .model(GTModels::rubberTreeSaplingModel)
