@@ -5,6 +5,7 @@ import com.aetherteam.aether.block.AetherBlockStateProperties;
 import com.aetherteam.aether.block.AetherBlocks;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconType;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
@@ -21,6 +22,7 @@ import vazkii.botania.common.block.BotaniaBlocks;
 import java.util.List;
 
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.Plutonium;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.Uranium;
 
@@ -75,6 +77,19 @@ public class CTNHTagPrefixes {
             .unificationEnabled(true)
             .generateItem(true)
             .generationCondition(material -> material.hasFlag(CTNHMaterialFlags.GENERATE_WASTE) || material.equals(Uranium) || material.equals(Plutonium));
+    public static final TagPrefix hyperRotor = new TagPrefix("hyper_rotor")
+            .itemTable(() -> CTNHMaterialBlocks.HYPER_ROTOR_BLOCKS)
+            .defaultTagPath("hyper_rotors/%s")
+            .unformattedTagPath("hyper_rotors")
+            .idPattern("%s_hyper_rotor")
+            .materialAmount(GTValues.M * 36)
+            .maxStackSize(8)
+            .materialIconType(new MaterialIconType("hyper_rotor"))
+            .unificationEnabled(true)
+            .generateItem(false)
+            .generateBlock(false)
+            .generationCondition(mat -> mat.hasAnyOfFlags(MaterialFlags.GENERATE_ROTOR, GENERATE_HYPER_ROTOR));
+
 
     public static void init() {
         oreHolystone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Holystone, TagPrefix.dust.materialAmount()));
