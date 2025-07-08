@@ -191,17 +191,17 @@ public class CTNHBlocks {
             .blockstate(GTModels::createCrossBlockState)
             .addLayer(() -> RenderType::cutoutMipped)
             .item()
-//            .model(GTModels::rubberTreeSaplingModel)
+            .model(GTModels::rubberTreeSaplingModel)
             .build()
             .register();
     public static final BlockEntry<ForgeSpecialFlowerBlock> BLOOD_ANTIARIS = REGISTRATE
             .block("blood_antiaris", properties -> new ForgeSpecialFlowerBlock(MobEffects.HARM, 20, BlockBehaviour.Properties.copy(Blocks.POPPY), () -> CTNHBlockEntities.BLOOD_ANTIARIS.get()))
             .initialProperties(() -> Blocks.POPPY)
             .lang("Blood Antiaris")
-//            .blockstate(GTModels::createCrossBlockState)
+            .blockstate(GTModels::createCrossBlockState)
             .addLayer(() -> RenderType::cutoutMipped)
             .item()
-//            .model(GTModels::rubberTreeSaplingModel)
+            .model(GTModels::rubberTreeSaplingModel)
             .build()
             .register();
     @SuppressWarnings("removal")

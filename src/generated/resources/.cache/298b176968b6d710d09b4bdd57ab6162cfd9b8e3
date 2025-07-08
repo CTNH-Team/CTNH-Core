@@ -1,4 +1,4 @@
-// 1.20.1	2025-07-03T17:04:52.4358387	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn), Lang (zh_cn)]
+// 1.20.1	2025-07-08T17:31:52.2672673	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn), Lang (zh_cn)]
 9efa2dcaaaa0ee63297ded8b4093cd857e0f2a66 assets/ctnhcore/blockstates/abyssalalloy_coil_block.json
 2472318a4ef3d41e0f3a7bcd262b594486fb5028 assets/ctnhcore/blockstates/advanced_bio_reactor_casing.json
 7b02265b4325b6d5a42a23c8e7866adfc07bc0ae assets/ctnhcore/blockstates/advanced_hyper_casing.json
@@ -82,7 +82,7 @@ f17c7b2d8495b9535bc4c92a544ea0c2bcc5e595 assets/ctnhcore/blockstates/zenith_casi
 71fb0f01bd60854473495a9b97cef4eac5c59ac2 assets/ctnhcore/blockstates/zenith_eye.json
 0dc359dfa93ea02545ca363353da238b3356dc59 assets/ctnhcore/lang/en_ud.json
 1a1bfd15db8ee9a38e9cfc1453b8aa487e128fa6 assets/ctnhcore/lang/en_us.json
-95d47457f0df2b68e6f9d0bbf8afe0cfe2f5f211 assets/ctnhcore/lang/zh_cn.json
+1d98fe39d686b2a6441178efccbe0f81c04d34f1 assets/ctnhcore/lang/zh_cn.json
 df65321a1742a74b662d28389e11b0a2406960b1 assets/ctnhcore/models/block/abyssalalloy_coil_block.json
 13db5d9c835eeecee9dc13bee7a130e73a4bc89e assets/ctnhcore/models/block/abyssalalloy_coil_block_active.json
 14d9cbb950f41d793cc7c86563f0fa3020b0c2b6 assets/ctnhcore/models/block/advanced_bio_reactor_casing.json
@@ -110,12 +110,12 @@ bce102df9cab6f6288b763aa030c52d22a917ce4 assets/ctnhcore/models/block/astral_sto
 37f115a6ac3352b47c8b45d703f86ae2c3c4fffb assets/ctnhcore/models/block/black_titanium_coil_block.json
 ba3f90d89ceb0aa39fba6a5f24a3862d3b41ab28 assets/ctnhcore/models/block/black_titanium_coil_block_active.json
 82199ed26f0a31fe31bf6a9d06dbb15b7fe24608 assets/ctnhcore/models/block/blaze_blast_furnace_casing.json
-30f77767845c37c56a645e853ecddf8c4e001c11 assets/ctnhcore/models/block/blood_antiaris.json
+6f486e48545a977c1d0b7f78526ce8c6d94edd5c assets/ctnhcore/models/block/blood_antiaris.json
 c2e4dc86700e125f2cfbff53e995644642270778 assets/ctnhcore/models/block/blue_flower.json
 c3cebf81b7614ad00434d44cb5c734522bb58b57 assets/ctnhcore/models/block/bronze_framed_glass.json
 d3c99e6516bef3b3440a47890f6ad8baaa965cd7 assets/ctnhcore/models/block/cassava_crate.json
 63a5220d14f6e91f12968b3d520cfc2320490451 assets/ctnhcore/models/block/cassava_crate_horizontal.json
-8d5926d114014c8fcf5dca3f6dc40780a5d055b1 assets/ctnhcore/models/block/demon_flytrap.json
+1eb7cc5ac6df0a246db3944d965ad311a87043a5 assets/ctnhcore/models/block/demon_flytrap.json
 7594709bdd0847b4c6deda2d33412177b2eae576 assets/ctnhcore/models/block/depth_force_field_stabilizing_casing.json
 9ebfeefa4535f78825671a0465b95716e31ce62c assets/ctnhcore/models/block/elementium_casing.json
 e9a3f3b71c50fd12ce6bd7556b5ab3491ba550ba assets/ctnhcore/models/block/elementium_normal_fluid_pipe.json
@@ -201,13 +201,13 @@ d3c8f948fbfa25f701e9557cc90abba6dc2e41cd assets/ctnhcore/models/item/atoms_split
 0e657fe141d1b7aad65ec172fd58cc299eb32053 assets/ctnhcore/models/item/bio_reactor_casing.json
 5353b05bb6eefc63cb1928b5881fedbc0c92e356 assets/ctnhcore/models/item/black_titanium_coil_block.json
 194c386763df46122d0f3ef95b2d809da26cedc6 assets/ctnhcore/models/item/blaze_blast_furnace_casing.json
-79a9fae03e792a4e3126a1da055c7b263ed93dbe assets/ctnhcore/models/item/blood_antiaris.json
+fa29be9b17dde5193c2b1624fd39a1364e9b7250 assets/ctnhcore/models/item/blood_antiaris.json
 e5f4d05966463011835a1dfef5a3b03656a25d6a assets/ctnhcore/models/item/blue_flower.json
 61aebaca6b7371a1ddf6f94e942adf97d9d5d56f assets/ctnhcore/models/item/boss_summoner.json
 ce8333166fd59bbb5b41a9e878532e7e8c0b75bb assets/ctnhcore/models/item/bronze_framed_glass.json
 6b5840f86a40510c9d259ff5323cda5c318b7a18 assets/ctnhcore/models/item/cassava_crate.json
 52ecf06c15b3a6647b891005242852751eaf3e44 assets/ctnhcore/models/item/corrosive_core.json
-b65dd5f6786d577c623b69eb844a582e467db091 assets/ctnhcore/models/item/demon_flytrap.json
+8b4d52cb237e5f133a392656ed7191817f35f448 assets/ctnhcore/models/item/demon_flytrap.json
 1b06d7816465e05fe5c3ccad71768b4fc352cff3 assets/ctnhcore/models/item/depth_force_field_stabilizing_casing.json
 7f4e5920a3468dd8783f217ece9092d0309c5d23 assets/ctnhcore/models/item/destructive_core.json
 e9165df23c3c2df976c8e95dcfc028dfe1c9337b assets/ctnhcore/models/item/ecological_star.json

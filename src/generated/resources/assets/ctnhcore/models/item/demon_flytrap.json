@@ -1,3 +1,6 @@
 {
-  "parent": "ctnhcore:block/demon_flytrap"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ctnhcore:block/demon_flytrap"
+  }
 }

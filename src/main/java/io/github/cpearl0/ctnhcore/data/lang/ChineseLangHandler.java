@@ -434,7 +434,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.super_ebf.recipe_type","电力高炉");
         provider.add("ctnh.slaughter_house.mechanism", "输入总线放入电动刷怪笼后，机器会自动输出对应怪物的战利品，可放入多个电动刷怪笼");
         provider.add("ctnh.slaughter_house.parallel", "电压每升高1级，虚拟刷怪量会增加4（HV为4）");
-        provider.add("ctnh.slaughter_house.health", "§a怪物血量和护甲值越高，配方运行所需时间越长§r");
+        provider.add("ctnh.slaughter_house.health", "怪物血量和护甲值越高，配方运行所需时间越长");
         provider.add("slaughter_house", "无情的杀戮机器");
         provider.add("ctnh.industrial_primitive_blast_furnace.parallel_count", "并行数：%d");
         provider.add("industrial_primitive_blast_furnace_introduction", "更强大的土高炉，你的炼钢好帮手");
@@ -860,6 +860,9 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.mana_condenser.tooltips.1", "反熵物质转化！");
         provider.add("ctnh.multiblock.mana_condenser.tooltips.2", "可以将魔力转化为液态魔力，或者将液态魔力转化为魔力，后者所需的能量更多");
         provider.add("ctnh.multiblock.mana_condenser.tooltips.3", "所有魔力输入输出均通过结构中心的魔力池进行");
+        provider.add("ctnh.slaughter_house.tooltips.4", "武器的伤害和附魔会减少配方运行的时间");
+        provider.add("ctnh.slaughter_house.tooltips.5", "时运等附魔也能生效");
+        provider.add("ritual.ctnh.chargerRitual", "充能仪式");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
@@ -997,9 +1000,13 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.ARC_CELL,"电弧发生器");
         provider.addBlock(CTNHBlocks.ASTRAL_LOG, "星辉木");
         provider.addBlock(CTNHBlocks.ASTRAL_STONE, "星辉石");
+        provider.addBlock(CTNHBlocks.ASTRAL_COBBLESTONE, "星辉圆石");
         provider.addBlock(CTNHBlocks.ASTRAL_SAND, "星辉沙");
         provider.addBlock(CTNHBlocks.ASTRAL_DIRT, "星辉泥土");
+        provider.addBlock(CTNHBlocks.ASTRAL_GRASS_BLOCK, "星辉草方块");
         provider.addBlock(CTNHBlocks.ASTRAL_SAPLING, "星辉树苗");
+        provider.addBlock(CTNHBlocks.ASTRAL_GRASS, "星辉草");
+        provider.addBlock(CTNHBlocks.ASTRAL_TALL_GRASS, "星辉高草丛");
         provider.addBlock(CTNHBlocks.PEPPER_CRATE, "箱装辣椒");
         provider.addBlock(CTNHBlocks.GARLIC_CRATE, "箱装大蒜");
         provider.addBlock(CTNHBlocks.CASSAVA_CRATE, "箱装木薯");
@@ -1128,6 +1135,7 @@ public class ChineseLangHandler {
         provider.add(MultiblocksB.NERUOMATRIXCOMPILER.getBlock(),"神经矩阵编译器");
         provider.add(MultiblocksB.HYBRID_POWER_MIXER.getBlock(),"混合动力搅拌机");
         provider.add(MultiblocksB.ZENITH_EXTRUDER.getBlock(),"§5天顶灵能塑形者");
+        provider.add(MultiblocksB.MANA_CONDENSER.getBlock(), "魔力凝缩器");
 
 
 

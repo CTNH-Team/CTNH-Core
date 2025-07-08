@@ -233,7 +233,9 @@ public class MultiblocksA {
             .tooltips(Component.translatable("slaughter_house").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.slaughter_house.mechanism"),
                     Component.translatable("ctnh.slaughter_house.parallel"),
-                    Component.translatable("ctnh.slaughter_house.health"))
+                    Component.translatable("ctnh.slaughter_house.health").withStyle(ChatFormatting.RED),
+                    Component.translatable("ctnh.slaughter_house.tooltips.4").withStyle(ChatFormatting.GREEN),
+                    Component.translatable("ctnh.slaughter_house.tooltips.5"))
             .recipeModifier(SlaughterHouseMachine::recipeModifier)
             .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
