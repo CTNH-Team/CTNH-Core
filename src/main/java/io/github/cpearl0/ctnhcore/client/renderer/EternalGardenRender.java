@@ -18,8 +18,6 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
@@ -27,7 +25,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Vector3f;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.sql.Array;
 
 public class EternalGardenRender extends WorkableCasingMachineRenderer {
 

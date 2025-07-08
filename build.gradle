@@ -221,7 +221,7 @@ dependencies {
     implementation fg.deobf("curse.maven:ftb-library-forge-404465:5567591")
     implementation fg.deobf("curse.maven:ftb-ultimine-forge-386134:5363345")
 
-    implementation fg.deobf("curse.maven:gt-985872:6089123")
+    implementation fg.deobf("curse.maven:gt-985872:6743037")
 
     implementation fg.deobf("curse.maven:patchouli-306770:4966125")
     implementation fg.deobf("curse.maven:botania-225643:5594997")
@@ -246,7 +246,7 @@ dependencies {
     // Blood Magic
     implementation fg.deobf("maven.modrinth:blood-magic:${bloodmagic_version}")
 
-    implementation fg.deobf("curse.maven:gtmthings-1104310:6539394")
+    implementation fg.deobf("curse.maven:gtmthings-1104310:6725533")
 
     implementation fg.deobf("curse.maven:mythicbotany-400058:5101899")
     annotationProcessor fg.deobf("org.moddingx:LibX:${minecraft_version}-${libx_version}")

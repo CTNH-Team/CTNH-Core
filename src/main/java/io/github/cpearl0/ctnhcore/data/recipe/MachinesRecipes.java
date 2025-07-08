@@ -15,13 +15,6 @@ import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
-import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
-import static com.gregtechceu.gtceu.common.data.GTItems.*;
-import static com.gregtechceu.gtceu.common.data.GTMachines.HULL;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-
-import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import net.minecraft.world.level.material.Fluids;
 
 import java.util.function.Consumer;
@@ -30,11 +23,13 @@ import java.util.stream.Stream;
 
 import static com.gregtechceu.gtceu.api.GTValues.VA;
 import static com.gregtechceu.gtceu.api.GTValues.ZPM;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Osmiridium;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+import static com.gregtechceu.gtceu.common.data.GTItems.*;
+import static com.gregtechceu.gtceu.common.data.GTMachines.HULL;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
-import static com.gregtechceu.gtceu.data.recipe.misc.MetaTileEntityLoader.*;
-import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.*;
-import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER;
+import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR;
 import static twilightforest.init.TFItems.STEELEAF_INGOT;
 
 public class MachinesRecipes {

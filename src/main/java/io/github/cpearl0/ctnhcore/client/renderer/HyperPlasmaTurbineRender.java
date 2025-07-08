@@ -1,34 +1,13 @@
 package io.github.cpearl0.ctnhcore.client.renderer;
 
-import com.gregtechceu.gtceu.api.blockentity.MetaMachineBlockEntity;
-import com.gregtechceu.gtceu.api.machine.MachineDefinition;
-import com.gregtechceu.gtceu.api.machine.MetaMachine;
-import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
 import com.gregtechceu.gtceu.client.renderer.block.FluidBlockRenderer;
 import com.gregtechceu.gtceu.client.renderer.machine.WorkableCasingMachineRenderer;
-import com.gregtechceu.gtceu.client.util.RenderUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
-import io.github.cpearl0.ctnhcore.client.renderer.utils.RenderUtils;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.HyperPlasmaTurbineMachine;
-import io.github.cpearl0.ctnhcore.registry.machines.multiblock.HyperPlasmaTurbineRegister;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.resources.model.ModelState;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.client.RenderTypeHelper;
-import org.jetbrains.annotations.*;
-import org.joml.Matrix4f;
-
-import javax.annotation.*;
-import java.util.List;
 
 public class HyperPlasmaTurbineRender extends WorkableCasingMachineRenderer {
 
