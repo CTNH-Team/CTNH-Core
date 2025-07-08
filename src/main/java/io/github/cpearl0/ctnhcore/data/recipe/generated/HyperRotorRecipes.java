@@ -22,7 +22,7 @@ public class HyperRotorRecipes {
     }
     private static void registerSingle(@NotNull Consumer<FinishedRecipe> provider, Material material){
         FORMING_PRESS_RECIPES.recipeBuilder("press_" + material.getName() + "_hyper_rotor")
-                .inputItems(TagPrefix.turbineBlade,material,1)
+                .inputItems(TagPrefix.rotor,material,1)
                 .inputItems(AllBlocks.SHAFT.get(), 1)
                 .inputItems(TagPrefix.plateDense, material, 4*4)
                 .inputItems(TagPrefix.screw, material, 9)
