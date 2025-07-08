@@ -23,6 +23,11 @@ public class MaterialTurbineRotorBlock extends TurbineRotorBlock {
     }
 
     @Override @NotNull
+    public String getDescriptionId() {
+        return hyperRotor.getUnlocalizedName(material);
+    }
+
+    @Override @NotNull
     public MutableComponent getName() {
         return hyperRotor.getLocalizedName(material);
     }
