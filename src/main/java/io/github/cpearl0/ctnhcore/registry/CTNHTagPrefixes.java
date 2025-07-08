@@ -82,12 +82,13 @@ public class CTNHTagPrefixes {
             .defaultTagPath("hyper_rotors/%s")
             .unformattedTagPath("hyper_rotors")
             .idPattern("%s_hyper_rotor")
+            .langValue("%s Hyper Rotor")
             .materialAmount(GTValues.M * 36)
             .maxStackSize(8)
             .materialIconType(new MaterialIconType("hyper_rotor"))
             .unificationEnabled(true)
-            .generateItem(true)
-            .generateBlock(true)
+            .generateItem(false)
+            .generateBlock(false)
             .generationCondition(mat -> mat.hasAnyOfFlags(MaterialFlags.GENERATE_ROTOR, GENERATE_HYPER_ROTOR));
 
 

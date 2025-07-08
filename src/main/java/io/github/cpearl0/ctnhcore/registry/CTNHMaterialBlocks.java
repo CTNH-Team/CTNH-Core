@@ -11,6 +11,7 @@ import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.common.block.CableBlock;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.common.block.MaterialTurbineRotorBlock;
 import io.github.cpearl0.ctnhcore.common.block.TurbineRotorBlock;
 import io.github.cpearl0.ctnhcore.common.item.TurbineRotorItem;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -24,32 +25,31 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes.*;
 public class CTNHMaterialBlocks {
 
     public static Table<TagPrefix, Material, BlockEntry<? extends TurbineRotorBlock>> HYPER_ROTOR_BLOCKS;
-    //Temporary
-    private static ImmutableTable.Builder<TagPrefix, Material, BlockEntry<? extends TurbineRotorBlock>> HYPER_ROTOR_BLOCKS_TEMP =
-            ImmutableTable.builder();
 
     public static void generateHyperRotorBlocks(){
+        ImmutableTable.Builder<TagPrefix, Material, BlockEntry<? extends TurbineRotorBlock>> builder =
+                ImmutableTable.builder();
         for (MaterialRegistry registry : GTCEuAPI.materialManager.getRegistries()) {
-            GTRegistrate registrate = registry.getRegistrate();
             for (Material material : registry.getAllMaterials()) {
                 var condition = hyperRotor.generationCondition();
                 if (condition == null || condition.test(material)) {
-                    registerHyperRotorBlock(hyperRotor, material, registrate);
+                    registerHyperRotorBlock(hyperRotor, material, CTNHRegistration.REGISTRATE,builder);
                 }
             }
         }
-        HYPER_ROTOR_BLOCKS = HYPER_ROTOR_BLOCKS_TEMP.build();
-        HYPER_ROTOR_BLOCKS_TEMP = null;
+        HYPER_ROTOR_BLOCKS = builder.build();
     }
 
-    private static void registerHyperRotorBlock(TagPrefix tagPrefix, Material material, GTRegistrate registrate) {
-        HYPER_ROTOR_BLOCKS_TEMP.put(tagPrefix, material, registrate
-                .block(material.getName(), TurbineRotorBlock.create(material.getMaterialARGB()))
+    private static void registerHyperRotorBlock(TagPrefix tagPrefix, Material material, GTRegistrate registrate,ImmutableTable.Builder<TagPrefix, Material, BlockEntry<? extends TurbineRotorBlock>> builder) {
+        builder.put(tagPrefix, material, registrate
+                .block(tagPrefix.idPattern().formatted(material.getName()), MaterialTurbineRotorBlock.create(material))
                 .initialProperties(() -> Blocks.OBSIDIAN)
                 .tag(TagKey.create(BuiltInRegistries.BLOCK.key(), new ResourceLocation("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+                .tag(tagPrefix.getBlockTags(material))
                 .blockstate((ctx, prov) ->
                         prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(material.getName(), new ResourceLocation("minecraft:block/iron_block"))))
                 .item(TurbineRotorItem::new)
+                .tag(tagPrefix.getItemTags(material))
                 .build()
                 .register()
         );
