@@ -3,10 +3,12 @@ package io.github.cpearl0.ctnhcore.registry;
 import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.item.AetherItems;
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty;
+import com.gregtechceu.gtceu.api.data.chemical.material.registry.MaterialRegistry;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
@@ -25,6 +27,7 @@ import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlag
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes.hyperRotor;
 
 public class CTNHMaterials {
     // Ad Astra
@@ -577,6 +580,16 @@ public class CTNHMaterials {
         TagPrefix.block.setIgnored(Stratus, DABlocks.STRATUS_BLOCK);
 
         TagPrefix.block.setIgnored(Livingrock, BotaniaBlocks.livingrock);
+
+        hyperRotor.setIgnored(Neutronium);
+
+        //Enable Dense Plate for Hyper Rotor
+        for (MaterialRegistry registry : GTCEuAPI.materialManager.getRegistries())
+            for (Material material : registry.getAllMaterials())
+                if (hyperRotor.generationCondition().test(material)
+                        && !material.hasFlag(GENERATE_DENSE))
+                    material.addFlags(GENERATE_DENSE);
+
     }
 
     public static class MaterialIcons {

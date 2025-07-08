@@ -3,14 +3,11 @@ package io.github.cpearl0.ctnhcore.registry;
 import com.google.common.collect.ImmutableTable;
 import com.google.common.collect.Table;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
-import com.gregtechceu.gtceu.api.block.MaterialBlock;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.registry.MaterialRegistry;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
-import com.gregtechceu.gtceu.common.block.CableBlock;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.block.MaterialTurbineRotorBlock;
 import io.github.cpearl0.ctnhcore.common.block.TurbineRotorBlock;
 import io.github.cpearl0.ctnhcore.common.item.TurbineRotorItem;
@@ -31,9 +28,8 @@ public class CTNHMaterialBlocks {
                 ImmutableTable.builder();
         for (MaterialRegistry registry : GTCEuAPI.materialManager.getRegistries()) {
             for (Material material : registry.getAllMaterials()) {
-                var condition = hyperRotor.generationCondition();
-                if (condition == null || condition.test(material)) {
-                    registerHyperRotorBlock(hyperRotor, material, CTNHRegistration.REGISTRATE,builder);
+                if (hyperRotor.generationCondition().test(material)) {
+                    registerHyperRotorBlock(hyperRotor, material, registry.getRegistrate(),builder);
                 }
             }
         }
@@ -44,6 +40,7 @@ public class CTNHMaterialBlocks {
         builder.put(tagPrefix, material, registrate
                 .block(tagPrefix.idPattern().formatted(material.getName()), MaterialTurbineRotorBlock.create(material))
                 .initialProperties(() -> Blocks.OBSIDIAN)
+//                .lang(tagPrefix.langValue().formatted(toEnglishName(material.getName())))
                 .tag(TagKey.create(BuiltInRegistries.BLOCK.key(), new ResourceLocation("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
                 .tag(tagPrefix.getBlockTags(material))
                 .blockstate((ctx, prov) ->

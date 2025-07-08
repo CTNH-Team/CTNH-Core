@@ -181,6 +181,7 @@ public class ChineseLangHandler {
         provider.add("tagprefix.waste", "%s废料");
         provider.add("tagprefix.icestone", "冰石%s矿石");
         provider.add("tagprefix.livingrock", "活石%s矿石");
+        provider.add("tagprefix.hyper_rotor", "超级%s转子");
         //Recipe Type
         provider.add("gtceu.phase_inversion","反相蚀刻");
         provider.add("gtceu.underfloor_heating_system", "地暖");

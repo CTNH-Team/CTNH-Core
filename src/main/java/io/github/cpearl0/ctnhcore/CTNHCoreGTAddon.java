@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import io.github.cpearl0.ctnhcore.data.recipe.*;
+import io.github.cpearl0.ctnhcore.data.recipe.generated.HyperRotorRecipes;
 import io.github.cpearl0.ctnhcore.registry.*;
 import net.minecraft.data.recipes.FinishedRecipe;
 
@@ -75,5 +76,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         TurbineRecipes.init(provider);
         HighPerformanceComputerRecipes.init(provider);
         ManaCondenserRecipes.init(provider);
+
+        HyperRotorRecipes.registerAll(provider);
     }
 }

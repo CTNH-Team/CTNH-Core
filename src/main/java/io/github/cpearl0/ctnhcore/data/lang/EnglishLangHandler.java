@@ -33,6 +33,7 @@ public class EnglishLangHandler {
         provider.add("tagprefix.waste", "%s Waste");
         provider.add("tagprefix.icestone", "Icestone %s Ore");
         provider.add("tagprefix.livingrock", "Livingrock %s Ore");
+        provider.add("tagprefix.hyper_rotor", "%s Hyper Rotor");
 
         provider.add("gtceu.underfloor_heating_system", "Underfloor Heating");
         provider.add("gtceu.astronomical_observatory", "Astronomical Observatory");
