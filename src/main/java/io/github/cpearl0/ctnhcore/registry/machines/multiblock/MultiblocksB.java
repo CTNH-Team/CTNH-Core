@@ -28,6 +28,7 @@ import fr.lucreeper74.createmetallurgy.registries.CMBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHPredicates;
 import io.github.cpearl0.ctnhcore.client.renderer.EternalGardenRender;
+import io.github.cpearl0.ctnhcore.client.renderer.ManaCondenserRender;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.KineticElectricMutiblockMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.*;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.Arc_Generator;
@@ -2136,7 +2137,9 @@ public class MultiblocksB {
     public static final MultiblockMachineDefinition MANA_CONDENSER = REGISTRATE.multiblock("mana_condenser", ManaCondenserMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.MANA_CONDENSER_RECIPES)
-            .tooltips()
+            .tooltips(Component.translatable("ctnh.multiblock.mana_condenser.tooltips.1").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.multiblock.mana_condenser.tooltips.2"),
+                    Component.translatable("ctnh.multiblock.mana_condenser.tooltips.3"))
             .recipeModifier(ManaCondenserMachine::recipeModifier)
             .appearanceBlock(CASING_TITANIUM_STABLE)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -2194,7 +2197,8 @@ public class MultiblocksB {
                             .or(Predicates.blocks(BotaniaBlocks.manaPool))
                             .or(Predicates.blocks(BotaniaBlocks.dilutedPool)))
                     .build())
-            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .hasTESR(true)
+            .renderer(ManaCondenserRender::new)
             .register();
     public final static MultiblockMachineDefinition  NERUOMATRIXCOMPILER = REGISTRATE.multiblock("neruo_martix_compiler", NeuroMatrixCompiler::new)
             .rotationState(RotationState.NON_Y_AXIS)
