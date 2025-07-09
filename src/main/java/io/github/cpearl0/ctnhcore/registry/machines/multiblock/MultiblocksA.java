@@ -35,10 +35,7 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.LargeBottleMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.SlaughterHouseMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.UnderfloorHeatingMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.*;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.ChemicalGeneratorMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.NaqReactorMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotovoltaicPowerStationMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.WaterPowerStationMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.*;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.IndustrialPrimitiveBlastFurnaceMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.MeadowMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.DemonWillMachine;
@@ -2087,5 +2084,26 @@ public class MultiblocksA {
                 .build()
             )
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .register();
+    public static final MultiblockMachineDefinition ETERNAL_COMBUSTION_ENGINE = REGISTRATE.multiblock("eternal_combustion_engine", Eternal_Combustion_engine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(DUMMY_RECIPES)
+            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+            .appearanceBlock(CASING_STEEL_SOLID)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAAAAAA", "AAABBBA", "AAABBBA")
+                    .aisle("AAAAAAA", "ACADDDA", "AAABBBA")
+                    .aisle("AAAAAAA", "A@ABBBA", "AAABBBA")
+                    .where("A", Predicates.blocks(CASING_STEEL_SOLID.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(abilities(PartAbility.OUTPUT_ENERGY).setMinGlobalLimited(1))
+                            .or(abilities(PartAbility.IMPORT_FLUIDS)))
+                    .where("B", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
+                    .where("C", Predicates.blocks(GCYMBlocks.MOLYBDENUM_DISILICIDE_COIL_BLOCK.get()))
+                    .where("D", Predicates.blocks(CASING_PTFE_INERT.get()))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build()
+            )
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"), false)
             .register();
 }

@@ -621,7 +621,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.wideaccelerator.10","可以与约束器链接传递部分粒子。§c警告：如果没有链接约束器，不要随意尝试某些危险的配方§r (目前还是饼)");
         provider.add("ctnh.accelerator.nu_speed","中子速度:%.2fMev");
         provider.add("ctnh.accelerator.proton_speed","质子速度:%.2fMev");
-        provider.add("ctnh.accelerator.element_speed","电子速度:%.2fMev");
+        provider.add("ctnh.accelerator.electric_speed","电子速度:%.2fMev");
         provider.add("ctnh.accelerator.consume","电量消耗倍率:%.2f");
         provider.add("ctnh.accelerator.mode.nu","模式：加速中子");
         provider.add("ctnh.accelerator.mode.proton","模式：加速质子");
@@ -830,7 +830,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.freezeui.3","当前能量利用效率：%.2f / %.2f");
         provider.add("ctnh.freezeui.4","当前并行：%d / %d");
         provider.add("ctnh.freezeui.5","§b当前消耗的凛冰:%d / %d");
-
+        provider.add("ctnh.machine.fluid_drilling_rig.description.inf","§6钻取来自无尽之中的流体之海");
+        provider.add("ctnh.machine.fluid_drilling_rig.depletion.inf","§6永§b不§d损§a耗，你在担心什么？");
 
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip0","§a精密计算§f与§e等离子体§f的§5终极艺术");
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1","提供%d算力以达到基础功率，每提供%d算力，输出功率翻一倍");
@@ -839,12 +840,16 @@ public class ChineseLangHandler {
         provider.add("zenith_extruder","配方类型：压膜机/§5天顶灵压塑形");
         provider.add("zenith_extruder.1","允许使用§5天顶灵压塑形§r，其以每个形态1mb§5天顶源质§5r的代价来一次性塑造大部分锭的各种形态");
         provider.add("zenith_extruder.2","允许塑形的形态包括：§7板，杆，小型齿轮，齿轮，转子，环，螺栓，§4不允许塑形南瓜派！");
-
-
-        provider.add("ctnh.wpa.mode.1","模式：减速模式");
-        provider.add("ctnh.wpa.mode.2","模式：加速模式");
-        provider.add("ctnh.wpa.wide.1","轨道：中子轨道");
-        provider.add("ctnh.wpa.value","此值决定了加速/减速时给各个轨道加速的权重。最终每个轨道分配到的比例按（自身权重）/权重之和来获取权重");
+        provider.add("ctnh.wpa.wide.electric","电子轨道");
+        provider.add("ctnh.wpa.wide.nu","中子轨道");
+        provider.add("ctnh.wpa.wide.proton","原子轨道");
+        provider.add("ctnh.wpa.electric","电子速度:%.2f M");
+        provider.add("ctnh.wpa.nu","中子速度:%.2f M");
+        provider.add("ctnh.wpa.proton","质子速度:%.2f M");
+        provider.add("ctnh.wpagui.name","访问轨道");
+        provider.add("ctnh.wpa.power","存储的电量：%.2f E/%.2f E");
+        provider.add("ctnh.eternal_engine.1","当前发电量:%d EU /tick");
+        provider.add("ctnh.eternal_engine.2","累计的工作时间:%.2f s/36000 s");
         provider.add("ctnh.multiblock.wind_array.tooltip0", "§7§o风力狼群:真正的自然之力");
         provider.add("ctnh.multiblock.wind_array.tooltip1", "§8---------------§a基础数据§8-----------------");
         provider.add("ctnh.multiblock.wind_array.tooltip2", "§f- 基础发电功率: §e%d EU/t  §7(地球)");
@@ -1123,6 +1128,7 @@ public class ChineseLangHandler {
         provider.add(MultiblocksB.NERUOMATRIXCOMPILER.getBlock(),"神经矩阵编译器");
         provider.add(MultiblocksB.HYBRID_POWER_MIXER.getBlock(),"混合动力搅拌机");
         provider.add(MultiblocksB.ZENITH_EXTRUDER.getBlock(),"§5天顶灵能塑形者");
+        provider.add(MultiblocksB.FLUID_DRILLING_INF[UHV].getBlock(),"无尽流体钻机");
 
 
 
