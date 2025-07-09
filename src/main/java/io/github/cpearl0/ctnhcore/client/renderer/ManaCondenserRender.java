@@ -2,6 +2,9 @@ package io.github.cpearl0.ctnhcore.client.renderer;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
+import com.gregtechceu.gtceu.api.machine.feature.IMachineFeature;
+import com.gregtechceu.gtceu.client.renderer.machine.DynamicRender;
+import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderType;
 import com.gregtechceu.gtceu.client.renderer.machine.WorkableCasingMachineRenderer;
 import com.lowdragmc.lowdraglib.utils.TrackedDummyWorld;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -16,28 +19,24 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
-public class ManaCondenserRender extends WorkableCasingMachineRenderer {
+public class ManaCondenserRender extends DynamicRender<IMachineFeature, ManaCondenserRender> {
     public ManaCondenserRender() {
-        super(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false);
     }
 
     @Override
-    public boolean hasTESR(BlockEntity blockEntity) {
-        return true;
+    public DynamicRenderType<IMachineFeature, ManaCondenserRender> getType() {
+        return new ManaCondenserRender();
     }
     @Override
     public int getViewDistance() {
         return 48;
     }
-    @Override
-    public boolean isGlobalRenderer(BlockEntity blockEntity) {
-        return true;
-    }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void render(BlockEntity blockEntity, float gameTime, PoseStack poseStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
-        if (blockEntity instanceof IMachineBlockEntity machineBlockEntity && machineBlockEntity.getMetaMachine() instanceof ManaCondenserMachine machine && machine.isFormed() && (machine.isActive() || blockEntity.getLevel() instanceof TrackedDummyWorld)) {
+    public void render(IMachineFeature feature, float gameTime, PoseStack poseStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
+        var metaMachine = feature.self();
+        if (metaMachine instanceof ManaCondenserMachine machine && machine.isFormed() && (machine.isActive() || machine.getLevel() instanceof TrackedDummyWorld)) {
             List<BlockPos> target = List.of(
                     MachineUtils.getOffset(machine, 0, 11, 13),
                     MachineUtils.getOffset(machine, 0, 11, -13),
@@ -84,13 +83,13 @@ public class ManaCondenserRender extends WorkableCasingMachineRenderer {
                 if (reverse) {
                     poseStack.pushPose();
                     poseStack.translate(xoff, 4, zoff);
-                    EnderDragonRenderer.renderCrystalBeams(-x, -y, -z, blockEntity.getLevel().getGameTime() + gameTime, 2000, poseStack, buffer, 15);
+                    EnderDragonRenderer.renderCrystalBeams(-x, -y, -z, machine.getLevel().getGameTime() + gameTime, 2000, poseStack, buffer, 15);
                     poseStack.popPose();
                 }
                 else {
                     poseStack.pushPose();
                     poseStack.translate(xoff, 4, zoff);
-                    EnderDragonRenderer.renderCrystalBeams(x, y, z, blockEntity.getLevel().getGameTime() + gameTime, 2000, poseStack, buffer, 15);
+                    EnderDragonRenderer.renderCrystalBeams(x, y, z, machine.getLevel().getGameTime() + gameTime, 2000, poseStack, buffer, 15);
                     poseStack.popPose();
                 }
 

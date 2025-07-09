@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
+import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderHelper;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.AssemblyLineMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.generator.LargeTurbineMachine;
@@ -60,6 +61,7 @@ import static com.gregtechceu.gtceu.common.data.GTMaterialBlocks.MATERIAL_BLOCKS
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Naquadria;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.DUMMY_RECIPES;
+import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
 import static com.hollingsworth.arsnouveau.setup.registry.BlockRegistry.*;
 import static com.hollingsworth.arsnouveau.setup.registry.BlockRegistry.VEXING_LOG;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
@@ -2193,6 +2195,9 @@ public class MultiblocksB {
                             .or(Predicates.blocks(BotaniaBlocks.manaPool))
                             .or(Predicates.blocks(BotaniaBlocks.dilutedPool)))
                     .build())
+            .model(createWorkableCasingMachineModel(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"),
+                    GTCEu.id("block/multiblock/generator/large_steam_turbine"))
+                    .andThen(b -> b.addDynamicRenderer(() -> new ManaCondenserRender())))
             .renderer(ManaCondenserRender::new)
             .register();
     public final static MultiblockMachineDefinition  NERUOMATRIXCOMPILER = REGISTRATE.multiblock("neruo_martix_compiler", NeuroMatrixCompiler::new)
