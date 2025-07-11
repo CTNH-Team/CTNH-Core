@@ -1311,7 +1311,7 @@ public class MultiblocksA {
                             .where("#", Predicates.air())
                             .where("C", Predicates.blocks(CASING_PTFE_INERT.get()).setMinGlobalLimited(100)
                                     .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                                    .or(Predicates.autoAbilities(true, true)))
+                                    .or(Predicates.autoAbilities(true, true, true)))
                             .build()
             )
             .workableCasingModel(
