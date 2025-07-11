@@ -46,6 +46,8 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
     public int Speed_rune = 0;
     public int Capacity_rune = 0;
     public int Augmented_rune = 0;
+    public BlockPos pos1 = BlockPos.ZERO;
+    public BlockPos pos2 = BlockPos.ZERO;
     public BlockPos[] Runes = new BlockPos[]{
             MachineUtils.getOffset(this,0,34,-5),
             MachineUtils.getOffset(this,1,34,-5),
@@ -162,8 +164,6 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
         return machineStorage.getStackInSlot(0);
     }
     public double getTotalWillDifference() {
-        var pos1 = MachineUtils.getOffset(this,10,0,-10);
-        var pos2 = MachineUtils.getOffset(this,-10,0,10);
         double difference = 0;
         if (type == EnumDemonWillType.DEFAULT) {
             for (EnumDemonWillType type1 : EnumDemonWillType.values()) {
@@ -203,8 +203,6 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
         }
     }
     public void calculateDiversity() {
-        var pos1 = MachineUtils.getOffset(this,10,0,2);
-        var pos2 = MachineUtils.getOffset(this,-10,0,2);
         double total1 = 0;
         double total2 = 0;
         double diversity1 = 1.2;
@@ -301,6 +299,13 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
     @Override
     public boolean onWorking() {
         boolean value = super.onWorking();
+        if (getOffsetTimer() % 20 == 0) {
+            if (!type.equals(EnumDemonWillType.DEFAULT)) {
+                double random = Math.random();
+                if (random < 0.05)
+                    getMachineStorageItem().shrink(1);
+            }
+        }
         long totalContinuousRunningTime = recipeLogic.getTotalContinuousRunningTime();
         // check boost fluid
         if ((totalContinuousRunningTime == 1 || totalContinuousRunningTime % 20 == 0)) {
@@ -325,6 +330,8 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
 
     @Override
     public void onStructureFormed() {
+        pos1 = MachineUtils.getOffset(this,10,0,-10);
+        pos2 = MachineUtils.getOffset(this,-10,0,10);
         resetMode();
         calculateRune();
         super.onStructureFormed();

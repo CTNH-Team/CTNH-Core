@@ -332,7 +332,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.demon_will_generator.tooltips.2","利用机器两侧的区块内的恶魔意志浓度差发电，浓度差与发电量呈指数关系");
         provider.add("ctnh.demon_will_generator.tooltips.3","以机器两侧的恶魔合金方块处的意志浓度为基准进行计算");
         provider.add("ctnh.demon_will_generator.tooltips.4","两侧区块中的各种恶魔意志的多样性会影响发电效率");
-        provider.add("ctnh.demon_will_generator.tooltips.5","机器内可以放入意志核心，将机器转化为对于某种意志专精的模式");
+        provider.add("ctnh.demon_will_generator.tooltips.5","机器内可以放入意志核心，将机器转化为对于某种意志专精的模式，该模式下每秒会有5%的概率消耗一个核心");
         provider.add("ctnh.demon_will_generator.tooltips.6","机器内的符文方块可替换，从而起到不同的增益效果:\n§4献祭符文和牺牲符文----提高生命源质强化模式的发电倍率§r\n§3速度符文----提升一次配方运行的时长（节省恶魔意志消耗）§r\n§e增容符文----每一个符文增加2点恶魔意志浓度差§r\n§c超容符文----每一个符文增加百分之2的恶魔意志浓度差（叠乘）§r\n==============================");
         provider.add("ctnh.demon_will_generator.tooltips.7","输入§4生命源质§r开启血祭模式，发电量翻倍，每秒消耗§a100mb§r的生命源质");
         provider.add("ctnh.multiblock.sweat_shop.villager_count","员工数量：%s");
@@ -434,7 +434,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.super_ebf.recipe_type","电力高炉");
         provider.add("ctnh.slaughter_house.mechanism", "输入总线放入电动刷怪笼后，机器会自动输出对应怪物的战利品，可放入多个电动刷怪笼");
         provider.add("ctnh.slaughter_house.parallel", "电压每升高1级，虚拟刷怪量会增加4（HV为4）");
-        provider.add("ctnh.slaughter_house.health", "§a怪物血量和护甲值越高，配方运行所需时间越长§r");
+        provider.add("ctnh.slaughter_house.health", "怪物血量和护甲值越高，配方运行所需时间越长");
         provider.add("slaughter_house", "无情的杀戮机器");
         provider.add("ctnh.industrial_primitive_blast_furnace.parallel_count", "并行数：%d");
         provider.add("industrial_primitive_blast_furnace_introduction", "更强大的土高炉，你的炼钢好帮手");
@@ -621,7 +621,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.wideaccelerator.10","可以与约束器链接传递部分粒子。§c警告：如果没有链接约束器，不要随意尝试某些危险的配方§r (目前还是饼)");
         provider.add("ctnh.accelerator.nu_speed","中子速度:%.2fMev");
         provider.add("ctnh.accelerator.proton_speed","质子速度:%.2fMev");
-        provider.add("ctnh.accelerator.element_speed","电子速度:%.2fMev");
+        provider.add("ctnh.accelerator.electric_speed","电子速度:%.2fMev");
         provider.add("ctnh.accelerator.consume","电量消耗倍率:%.2f");
         provider.add("ctnh.accelerator.mode.nu","模式：加速中子");
         provider.add("ctnh.accelerator.mode.proton","模式：加速质子");
@@ -830,7 +830,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.freezeui.3","当前能量利用效率：%.2f / %.2f");
         provider.add("ctnh.freezeui.4","当前并行：%d / %d");
         provider.add("ctnh.freezeui.5","§b当前消耗的凛冰:%d / %d");
-
+        provider.add("ctnh.machine.fluid_drilling_rig.description.inf","§6钻取来自无尽之中的流体之海");
+        provider.add("ctnh.machine.fluid_drilling_rig.depletion.inf","§6永§b不§d损§a耗，你在担心什么？");
 
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip0","§a精密计算§f与§e等离子体§f的§5终极艺术");
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1","提供%d算力以达到基础功率，每提供%d算力，输出功率翻一倍");
@@ -839,12 +840,16 @@ public class ChineseLangHandler {
         provider.add("zenith_extruder","配方类型：压膜机/§5天顶灵压塑形");
         provider.add("zenith_extruder.1","允许使用§5天顶灵压塑形§r，其以每个形态1mb§5天顶源质§5r的代价来一次性塑造大部分锭的各种形态");
         provider.add("zenith_extruder.2","允许塑形的形态包括：§7板，杆，小型齿轮，齿轮，转子，环，螺栓，§4不允许塑形南瓜派！");
-
-
-        provider.add("ctnh.wpa.mode.1","模式：减速模式");
-        provider.add("ctnh.wpa.mode.2","模式：加速模式");
-        provider.add("ctnh.wpa.wide.1","轨道：中子轨道");
-        provider.add("ctnh.wpa.value","此值决定了加速/减速时给各个轨道加速的权重。最终每个轨道分配到的比例按（自身权重）/权重之和来获取权重");
+        provider.add("ctnh.wpa.wide.electric","电子轨道");
+        provider.add("ctnh.wpa.wide.nu","中子轨道");
+        provider.add("ctnh.wpa.wide.proton","原子轨道");
+        provider.add("ctnh.wpa.electric","电子速度:%.2f M");
+        provider.add("ctnh.wpa.nu","中子速度:%.2f M");
+        provider.add("ctnh.wpa.proton","质子速度:%.2f M");
+        provider.add("ctnh.wpagui.name","访问轨道");
+        provider.add("ctnh.wpa.power","存储的电量：%.2f E/%.2f E");
+        provider.add("ctnh.eternal_engine.1","当前发电量:%d EU /tick");
+        provider.add("ctnh.eternal_engine.2","累计的工作时间:%.2f s/36000 s");
         provider.add("ctnh.multiblock.wind_array.tooltip0", "§7§o风力狼群:真正的自然之力");
         provider.add("ctnh.multiblock.wind_array.tooltip1", "§8---------------§a基础数据§8-----------------");
         provider.add("ctnh.multiblock.wind_array.tooltip2", "§f- 基础发电功率: §e%d EU/t  §7(地球)");
@@ -857,6 +862,12 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.wind_array.tooltip9", "§f所有结构对齐且间距<=1的风力发电机阵列会组成风力网络");
         provider.add("ctnh.multiblock.wind_array.tooltip10", "§f润滑油会从风力网络中抽取.");
         provider.add("ctnh.multiblock.wind_array.tooltip11", "§5顺应风力网络的工作规律,以抵挡自然之力的摧残");
+        provider.add("ctnh.multiblock.mana_condenser.tooltips.1", "反熵物质转化！");
+        provider.add("ctnh.multiblock.mana_condenser.tooltips.2", "可以将魔力转化为液态魔力，或者将液态魔力转化为魔力，后者所需的能量更多");
+        provider.add("ctnh.multiblock.mana_condenser.tooltips.3", "所有魔力输入输出均通过结构中心的魔力池进行");
+        provider.add("ctnh.slaughter_house.tooltips.4", "武器的伤害和附魔会减少配方运行的时间");
+        provider.add("ctnh.slaughter_house.tooltips.5", "时运等附魔也能生效");
+        provider.add("ritual.ctnh.chargerRitual", "充能仪式");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
@@ -994,9 +1005,13 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.ARC_CELL,"电弧发生器");
         provider.addBlock(CTNHBlocks.ASTRAL_LOG, "星辉木");
         provider.addBlock(CTNHBlocks.ASTRAL_STONE, "星辉石");
+        provider.addBlock(CTNHBlocks.ASTRAL_COBBLESTONE, "星辉圆石");
         provider.addBlock(CTNHBlocks.ASTRAL_SAND, "星辉沙");
         provider.addBlock(CTNHBlocks.ASTRAL_DIRT, "星辉泥土");
+        provider.addBlock(CTNHBlocks.ASTRAL_GRASS_BLOCK, "星辉草方块");
         provider.addBlock(CTNHBlocks.ASTRAL_SAPLING, "星辉树苗");
+        provider.addBlock(CTNHBlocks.ASTRAL_GRASS, "星辉草");
+        provider.addBlock(CTNHBlocks.ASTRAL_TALL_GRASS, "星辉高草丛");
         provider.addBlock(CTNHBlocks.PEPPER_CRATE, "箱装辣椒");
         provider.addBlock(CTNHBlocks.GARLIC_CRATE, "箱装大蒜");
         provider.addBlock(CTNHBlocks.CASSAVA_CRATE, "箱装木薯");
@@ -1013,6 +1028,8 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.SUPERCOOLED_BLOCK,"超级冷冻机械线圈");
         provider.addBlock(CTNHBlocks.HYPER_PLASMA_TURBINE_ROTOR,"超極等离子涡轮转子");
         provider.addBlock(CTNHBlocks.NEUTRONIUM_REINFORCED_TURBINE_CASING,"中子素强化涡轮外壳");
+        provider.addBlock(CTNHBlocks.DEMON_FLYTRAP, "恶魔捕蝇草");
+        provider.addBlock(CTNHBlocks.BLOOD_ANTIARIS, "见血封喉");
         provider.add(MultiblocksA.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(MultiblocksA.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(MultiblocksA.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -1123,6 +1140,8 @@ public class ChineseLangHandler {
         provider.add(MultiblocksB.NERUOMATRIXCOMPILER.getBlock(),"神经矩阵编译器");
         provider.add(MultiblocksB.HYBRID_POWER_MIXER.getBlock(),"混合动力搅拌机");
         provider.add(MultiblocksB.ZENITH_EXTRUDER.getBlock(),"§5天顶灵能塑形者");
+        provider.add(MultiblocksB.MANA_CONDENSER.getBlock(), "魔力凝缩器");
+        provider.add(MultiblocksB.FLUID_DRILLING_INF[UHV].getBlock(),"无尽流体钻机");
 
 
 

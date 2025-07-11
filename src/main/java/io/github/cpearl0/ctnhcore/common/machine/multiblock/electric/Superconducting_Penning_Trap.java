@@ -56,7 +56,6 @@ public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMac
     }
 
 
-
     //初始化
     @Override
     public void onStructureFormed() {
@@ -139,6 +138,7 @@ public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMac
             getRecipeLogic().setWaiting(Component.translatable("gtceu.recipe_logic.insufficient_in"));
         }
     }
+
     public void tick() {
         if (isWorkingEnabled()) consumeEnergy();
         var level=getLevel();
@@ -190,7 +190,7 @@ public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMac
                         "ctnh.restore_danger")
                 .addEnergyUsageExactLine(energy)
                 .addWorkingStatusLine();
-            textList.add(textList.size(),Component.translatable("ctnh.trap_electric_max",String.format("%d",max_eu)));
+            textList.add(textList.size(),Component.translatable("ctnh.trap_electric_max",String.format("%d",anti_nu)));
             textList.add(textList.size(),Component.translatable("ctnh.anti_electric",String.format("%d",anti_electron)));
             textList.add(textList.size(),Component.translatable("ctnh.anti_nu",String.format("%d",anti_nu)));
             textList.add(textList.size(),Component.translatable("ctnh.anti_proton",String.format("%d",anti_proton)));

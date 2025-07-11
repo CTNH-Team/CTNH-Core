@@ -55,9 +55,12 @@ public class CryotheumFreezer extends WorkableElectricMultiblockMachine implemen
     public DoubleSupplier JEIProgress = () -> (double) Math.abs(speed_up-1) / (double) 2.5F;
     public DoubleSupplier JEIProgress2 = () -> (double) Math.abs(energy_muti-1) / (double) 2.5F;
     public DoubleSupplier JEIProgress3 = () -> (double) Math.abs(parallel_muti) / (double) 10F;
+    @Persisted
     public long used_energy=0;
+
     public long store_energy_now=0;
-    public long target=10000L;
+    @Persisted
+    public long target=100000L;
     public MutableComponent provider_a() {
         return Component.translatable("ctnh.testui.0", a);
     }

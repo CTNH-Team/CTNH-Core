@@ -12,9 +12,12 @@ import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.AssemblyLineMachine;
+import com.gregtechceu.gtceu.common.machine.multiblock.electric.FluidDrillMachine;
+import com.gregtechceu.gtceu.common.machine.multiblock.electric.LargeMinerMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.generator.LargeTurbineMachine;
 import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.config.ConfigHolder;
+import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.mo_guang.ctpp.CTPP;
 import com.mo_guang.ctpp.api.CTPPPartAbility;
 import com.mo_guang.ctpp.common.data.CTPPRecipeModifiers;
@@ -25,6 +28,7 @@ import fr.lucreeper74.createmetallurgy.registries.CMBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHPredicates;
 import io.github.cpearl0.ctnhcore.client.renderer.EternalGardenRender;
+import io.github.cpearl0.ctnhcore.client.renderer.ManaCondenserRender;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.KineticElectricMutiblockMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.*;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.Arc_Generator;
@@ -49,7 +53,7 @@ import wayoftime.bloodmagic.BloodMagic;
 import wayoftime.bloodmagic.common.block.BloodMagicBlocks;
 import wayoftime.bloodmagic.common.fluid.BloodMagicFluids;
 
-import static com.gregtechceu.gtceu.api.GTValues.EV;
+import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.autoAbilities;
 import static com.gregtechceu.gtceu.api.pattern.util.RelativeDirection.*;
@@ -59,6 +63,7 @@ import static com.gregtechceu.gtceu.common.data.GTMaterialBlocks.MATERIAL_BLOCKS
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Naquadria;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.DUMMY_RECIPES;
+import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.registerTieredMultis;
 import static com.hollingsworth.arsnouveau.setup.registry.BlockRegistry.*;
 import static com.hollingsworth.arsnouveau.setup.registry.BlockRegistry.VEXING_LOG;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
@@ -2132,7 +2137,9 @@ public class MultiblocksB {
     public static final MultiblockMachineDefinition MANA_CONDENSER = REGISTRATE.multiblock("mana_condenser", ManaCondenserMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.MANA_CONDENSER_RECIPES)
-            .tooltips()
+            .tooltips(Component.translatable("ctnh.multiblock.mana_condenser.tooltips.1").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.multiblock.mana_condenser.tooltips.2"),
+                    Component.translatable("ctnh.multiblock.mana_condenser.tooltips.3"))
             .recipeModifier(ManaCondenserMachine::recipeModifier)
             .appearanceBlock(CASING_TITANIUM_STABLE)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -2190,7 +2197,8 @@ public class MultiblocksB {
                             .or(Predicates.blocks(BotaniaBlocks.manaPool))
                             .or(Predicates.blocks(BotaniaBlocks.dilutedPool)))
                     .build())
-            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .hasTESR(true)
+            .renderer(ManaCondenserRender::new)
             .register();
     public final static MultiblockMachineDefinition  NERUOMATRIXCOMPILER = REGISTRATE.multiblock("neruo_martix_compiler", NeuroMatrixCompiler::new)
             .rotationState(RotationState.NON_Y_AXIS)
@@ -2385,5 +2393,70 @@ public class MultiblocksB {
 //            )
 //            .workableCasingRenderer(CTNHCore.id("block/casings/super_machine_casing_frost_proof"), GTCEu.id("block/multiblock/vacuum_freezer"), false)
 //            .register();
+public static final MultiblockMachineDefinition[] FLUID_DRILLING_INF = registerTieredMultis(
+        "fluid_drilling_inf", INFFluidDrillMachine::new, (tier, builder) -> builder
+                .rotationState(RotationState.ALL)
+                .langValue("%s Fluid Drilling Rig %s".formatted(VLVH[tier], VLVT[tier]))
+                .recipeType(DUMMY_RECIPES)
+                .tooltips(
+                        Component.translatable("ctnh.machine.fluid_drilling_rig.description.inf"),
+                        Component.translatable("ctnh.machine.fluid_drilling_rig.depletion.inf"
+                                ),
+                        Component.translatable("gtceu.universal.tooltip.energy_tier_range", GTValues.VNF[tier],
+                                GTValues.VNF[tier + 1]),
+                        Component.translatable("gtceu.machine.fluid_drilling_rig.production",
+                                INFFluidDrillMachine.getRigMultiplier(tier),
+                                FormattingUtil.formatNumbers(INFFluidDrillMachine.getRigMultiplier(tier) * 2)))
+                .appearanceBlock(() -> INFFluidDrillMachine.getCasingState(tier))
+                .pattern((definition) -> FactoryBlockPattern.start()
+                        .aisle("XXX", "#F#", "#F#", "#F#", "###", "###", "###")
+                        .aisle("XXX", "FCF", "FCF", "FCF", "#F#", "#F#", "#F#")
+                        .aisle("XSX", "#F#", "#F#", "#F#", "###", "###", "###")
+                        .where('S', controller(blocks(definition.get())))
+                        .where('X', blocks(INFFluidDrillMachine.getCasingState(tier)).setMinGlobalLimited(3)
+                                .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1)
+                                        .setMaxGlobalLimited(2))
+                                .or(abilities(PartAbility.EXPORT_FLUIDS).setMaxGlobalLimited(1)))
+                        .where('C', blocks(INFFluidDrillMachine.getCasingState(tier)))
+                        .where('F', blocks(INFFluidDrillMachine.getFrameState(tier)))
+                        .where('#', any())
+                        .build())
+                .workableCasingRenderer(INFFluidDrillMachine.getBaseTexture(tier),
+                        GTCEu.id("block/multiblock/fluid_drilling_rig"))
+                .register(),
+        UHV);
+    public static final MultiblockMachineDefinition INF_LARGE_MINER = REGISTRATE.multiblock("inf_large_miner", holder -> new LargeMinerMachine(holder, GTValues.UHV, 1, 99, 7, 9))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(GTRecipeTypes.MACERATOR_RECIPES)
+            .tooltips(
+                    Component.translatable("ctnh.machine.large_miner.zpm.tooltip"),
+                    Component.translatable("gtceu.machine.miner.multi.description"))
+            .tooltipBuilder((stack, tooltip) -> {
+                int workingAreaChunks =99;
+                tooltip.add(Component.translatable("gtceu.machine.miner.multi.modes"));
+                tooltip.add(Component.translatable("gtceu.machine.miner.multi.production"));
+                tooltip.add(Component.translatable("gtceu.machine.miner.fluid_usage", 9,
+                        DrillingFluid.getLocalizedName()));
+                tooltip.add(Component.translatable("gtceu.universal.tooltip.working_area_chunks",
+                        workingAreaChunks, workingAreaChunks));
+                tooltip.add(Component.translatable("gtceu.universal.tooltip.energy_tier_range",
+                        GTValues.VNF[UHV], GTValues.VNF[UHV + 1]));
+            })
+            .pattern((definition) -> FactoryBlockPattern.start()
+                    .aisle("XXX", "#F#", "#F#", "#F#", "###", "###", "###")
+                    .aisle("XXX", "FCF", "FCF", "FCF", "#F#", "#F#", "#F#")
+                    .aisle("XSX", "#F#", "#F#", "#F#", "###", "###", "###")
+                    .where("S", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("X", Predicates.blocks(CTNHBlocks.CASING_NEUTRONIUM_ALLOY_BLOCK.get())
+                            .or(abilities(PartAbility.EXPORT_ITEMS).setMaxGlobalLimited(1).setPreviewCount(1))
+                            .or(abilities(PartAbility.IMPORT_FLUIDS).setExactLimit(1).setPreviewCount(1))
+                            .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1)
+                                    .setMaxGlobalLimited(2).setPreviewCount(1)))
+                    .where("C", Predicates.blocks(CTNHBlocks.CASING_NEUTRONIUM_ALLOY_BLOCK.get()))
+                    .where("F", Predicates.frames(Neutronium))
+                    .where("#", Predicates.any())
+                    .build())
+            .workableCasingRenderer(CTNHCore.id("block/casings/nq_neutronium_casing"), GTCEu.id("block/multiblock/large_miner"), false)
+            .register();
     public static void init() {}
 }

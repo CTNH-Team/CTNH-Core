@@ -25,7 +25,7 @@ public class  MachineModeFancyConfiguratorTest implements IFancyUIProvider {
 
     public MachineModeFancyConfiguratorTest(IRecipeLogicMachine machine) {
         if(machine instanceof CryotheumFreezer cmachine)
-        this.machine = cmachine;
+            this.machine = cmachine;
     }
 
     @Override

@@ -156,7 +156,7 @@ public class CTNHMaterials {
             .buildAndRegister();
     public static final Material Starmetal = new Material.Builder(GTCEu.id("starmetal"))
             .ingot()
-            .liquid()
+            .liquid(new FluidBuilder().textures(true,true).block())
             .plasma()
             .addOreByproducts(GTMaterials.Sapphire, GTMaterials.Polonium)
             .radioactiveHazard(6)
@@ -385,7 +385,7 @@ public class CTNHMaterials {
             .ore()
             .buildAndRegister();
     public static final Material ImpureOil = new Material.Builder(GTCEu.id("impure_oil"))
-            .liquid()
+            .liquid(new FluidBuilder().block())
             .color(0x171717)
             .buildAndRegister();
     public static final Material SimpleGrowthMedium = new Material.Builder(GTCEu.id("simple_growth_medium"))
