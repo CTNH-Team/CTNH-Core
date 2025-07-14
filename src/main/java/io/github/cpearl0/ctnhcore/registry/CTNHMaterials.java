@@ -549,9 +549,58 @@ public class CTNHMaterials {
     public static  final Material COLORFUL_GEM=new Material.Builder(GTCEu.id("colorful_gem"))
             .gem()
             .element(CTNHElements.COLORFUL_GEM)
-            .color(0xFF0000) // 主颜色设为红色
+            .color(0xFF0000)
             .secondaryColor(0x0000FF)
             .buildAndRegister();
+    public static final Material RhodiumSulfurCrystal = new Material.Builder(GTCEu.id("rhodium_sulfur_crystal"))
+            .gem().ore()
+            .color(0xFFD700).secondaryColor(0xC0C0C0)
+            .iconSet(GEM_VERTICAL)
+            .flags(GENERATE_LENS, PHOSPHORESCENT, NO_SMASHING)
+            .components(Rhodium, 1, Sulfur, 3)
+            .addOreByproducts(Sulfur, Rhodium, Pyrite)
+            .buildAndRegister();
+    public static final Material RutheniumAmalgam = new Material.Builder(GTCEu.id("ruthenium_amalgam"))
+            .ingot().ore()
+            .liquid(new FluidBuilder().temperature(350))
+            .color(0x2E8B57).secondaryColor(0x228B22)
+            .iconSet(SHINY)
+            .flags(GENERATE_FOIL, GENERATE_FINE_WIRE, STICKY)
+            .components(Ruthenium, 1, Mercury, 2)
+            .addOreByproducts(Mercury, Ruthenium, Cinnabar)
+            .buildAndRegister();
+    public static final Material OsmiumIronSpinel = new Material.Builder(GTCEu.id("osmium_iron_spinel"))
+            .gem().ore()
+            .color(0x000080).secondaryColor(0x000000)
+            .iconSet(DIAMOND)
+            .flags(GENERATE_PLATE, GENERATE_ROD, CRYSTALLIZABLE)
+            .components(Osmium, 1, Iron, 2, Oxygen, 4)
+            .addOreByproducts(Osmium, Iron, Cinnabar)
+            .buildAndRegister();
+    public static final Material MeteoricTroilite = new Material.Builder(GTCEu.id("meteoric_troilite"))
+            .ore()
+            .color(0x696969).secondaryColor(0x2F4F4F)
+            .iconSet(METALLIC)
+            .flags(DECOMPOSITION_BY_ELECTROLYZING)
+            .components(Iron, 1, Nickel, 1, Sulfur, 1)
+            .addOreByproducts(Nickel, Platinum, Iridium)
+            .buildAndRegister();
+    public static final Material PalladiumSulfide = new Material.Builder(GTCEu.id("palladium_sulfide"))
+            .gem().ore()
+            .color(0xE6E6FA).secondaryColor(0xD8BFD8)
+            .iconSet(GEM_HORIZONTAL)
+            .flags(GENERATE_LENS, GENERATE_PLATE)
+            .components(Palladium, 1, Sulfur, 1)
+            .addOreByproducts(Palladium, Sulfur, Platinum)
+            .buildAndRegister();
+    public static final Material SolarFlareBlackDiamond = new Material.Builder(GTCEu.id("solar_flare_black_diamond"))
+            .gem().ore()
+            .color(0x000000).secondaryColor(0xFF4500)
+            .iconSet(RUBY)
+            .flags(GENERATE_LENS, PHOSPHORESCENT, NO_WORKING)
+            .addOreByproducts(Diamond, NetherQuartz, Glowstone)
+            .buildAndRegister();
+
 
     public static void init() {
         CombustibleIce.setFormula("(CH4)(H2O)", true);
