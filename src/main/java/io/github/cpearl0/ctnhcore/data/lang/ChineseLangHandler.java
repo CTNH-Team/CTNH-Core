@@ -87,6 +87,12 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.Livingrock.getUnlocalizedName(), "活石");
         replace(provider, CTNHMaterials.icestone.getUnlocalizedName(), "冰石");
         replace(provider,CTNHMaterials.COLORFUL_GEM.getUnlocalizedName(), "异彩（无材质版）");
+        replace(provider, CTNHMaterials.RhodiumSulfurCrystal.getUnlocalizedName(), "铑硫晶");
+        replace(provider, CTNHMaterials.RutheniumAmalgam.getUnlocalizedName(), "钌汞齐");
+        replace(provider, CTNHMaterials.OsmiumIronSpinel.getUnlocalizedName(), "锇铁尖晶石");
+        replace(provider, CTNHMaterials.MeteoricTroilite.getUnlocalizedName(), "陨硫铁镍");
+        replace(provider, CTNHMaterials.PalladiumSulfide.getUnlocalizedName(), "硫晶钯矿");
+        replace(provider, CTNHMaterials.SolarFlareBlackDiamond.getUnlocalizedName(), "太阳耀斑黑钻");
 
         replace(provider, NuclearMaterials.ThoriumHexafluoride.getUnlocalizedName(), "六氟化钍");
         replace(provider, NuclearMaterials.ProtactiniumHexafluoride.getUnlocalizedName(), "六氟化镤");
@@ -148,6 +154,7 @@ public class ChineseLangHandler {
         replace(provider, NuclearMaterials.ZirconiumAlloyUranium238.getUnlocalizedName(), "锆合金铀238");
         nuclearTranslation2(provider, GTMaterials.Plutonium239, "钚239");
         nuclearTranslation2(provider, GTMaterials.Plutonium241, "钚241");
+
 
         //Config
         provider.add("config.ctnhcore.option.ftbPlugin", "FTB相关");
