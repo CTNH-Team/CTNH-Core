@@ -93,6 +93,19 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.MeteoricTroilite.getUnlocalizedName(), "陨硫铁镍");
         replace(provider, CTNHMaterials.PalladiumSulfide.getUnlocalizedName(), "硫晶钯矿");
         replace(provider, CTNHMaterials.SolarFlareBlackDiamond.getUnlocalizedName(), "太阳耀斑黑钻");
+        replace(provider, CTNHMaterials.Cerite.getUnlocalizedName(), "铈硅石");
+        replace(provider, CTNHMaterials.EuropiumFluorite.getUnlocalizedName(), "铕萤石");
+        replace(provider, CTNHMaterials.GadoliniteSm.getUnlocalizedName(), "钐硅铍钇");
+        replace(provider, CTNHMaterials.Sperrylite.getUnlocalizedName(), "砷铂");
+        replace(provider, CTNHMaterials.Wolframite.getUnlocalizedName(), "黑钨");
+        replace(provider, CTNHMaterials.Germanite.getUnlocalizedName(), "锗镓");
+        replace(provider, CTNHMaterials.Bismuthinite.getUnlocalizedName(), "辉铋");
+        replace(provider, CTNHMaterials.Yttrofluorite.getUnlocalizedName(), "钇萤石");
+        replace(provider, CTNHMaterials.Rheniite.getUnlocalizedName(), "辉铼");
+        replace(provider, CTNHMaterials.Tarkianite.getUnlocalizedName(), "铼钼");
+        replace(provider, CTNHMaterials.Crocoite.getUnlocalizedName(), "红铬铅");
+        replace(provider, CTNHMaterials.Roquesite.getUnlocalizedName(), "铜铟");
+        replace(provider, CTNHMaterials.Smithsonite.getUnlocalizedName(), "菱锌");
 
         replace(provider, NuclearMaterials.ThoriumHexafluoride.getUnlocalizedName(), "六氟化钍");
         replace(provider, NuclearMaterials.ProtactiniumHexafluoride.getUnlocalizedName(), "六氟化镤");
