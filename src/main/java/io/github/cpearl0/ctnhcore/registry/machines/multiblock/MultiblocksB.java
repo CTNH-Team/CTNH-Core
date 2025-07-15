@@ -182,33 +182,6 @@ public class MultiblocksB {
                     .build())
             .workableCasingRenderer((CTNHCore.id("block/casings/zenith_casing")), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
-    public static MultiblockMachineDefinition SEASON_REACTOR = REGISTRATE.multiblock("season_reactor", season_reactor::new)
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(CTNHRecipeTypes.SEASON_STEAM_RECIPES)
-            // .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
-            .tooltips(Component.translatable("ctnh.season.a1"),
-                    Component.translatable("ctnh.season.a2"),
-                    Component.translatable("ctnh.season.a3"))
-            .recipeModifiers(season_reactor::recipeModifier, CTPPRecipeModifiers.KINETIC_ADJUST)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("YXY", "XWX", "KKK")
-                    .aisle("XVX", "WUW", "KOK")
-                    .aisle("Y@Y", "XWX", "KKK")
-                    .where("Y", Predicates.blocks(BotaniaBlocks.livingwood))
-                    .where("#", Predicates.any())
-                    .where("W", Predicates.blocks(BotaniaBlocks.manaGlass))
-                    .where("V", Predicates.blocks(DIRT))
-                    .where("O", Predicates.blocks((BotaniaBlocks.manaPylon)))
-                    .where("K", Predicates.blocks(BotaniaBlocks.livingrockBrickStairs))
-                    .where("U", Predicates.blocks(BotaniaFlowerBlocks.pureDaisy))
-                    .where("X", abilities(CTPPPartAbility.OUTPUT_KINETIC).setExactLimit(1)
-                            .or(Predicates.blocks(BotaniaBlocks.livingrockBrick))
-                            .or(abilities(PartAbility.IMPORT_ITEMS))
-                    )
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build())
-            .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
-            .register();
 
     public final static MultiblockMachineDefinition SILICA_ROCK_FUEL_REFINERY = REGISTRATE.multiblock("silica_rock_fuel_refinery", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)

@@ -2042,12 +2042,12 @@ public class MultiblocksA {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.CENTRIFUGE_RECIPES, CTNHRecipeTypes.DIFFERENTIAL_CENTRIFUGE_RECIPES)
             .appearanceBlock(CASING_TITANIUM_STABLE)
-            .recipeModifier((metaMachine, gtRecipe) -> {
+            .recipeModifiers((metaMachine, gtRecipe) -> {
                 if (gtRecipe.getType().equals(GTRecipeTypes.CENTRIFUGE_RECIPES)) {
                     return CTNHRecipeModifiers.accurateParallel(metaMachine, gtRecipe, 8);
                 }
                 return ModifierFunction.IDENTITY;
-            })
+            }, GTRecipeModifiers.OC_NON_PERFECT_SUBTICK)
             .tooltips(Component.translatable("super_centrifuge").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.super_centrifuge.parallel"))
             .pattern(definition -> FactoryBlockPattern.start()
