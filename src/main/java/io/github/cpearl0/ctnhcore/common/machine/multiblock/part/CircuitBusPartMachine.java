@@ -64,4 +64,9 @@ public class CircuitBusPartMachine extends TieredIOPartMachine implements IDisti
 
         return group;
     }
+
+    @Override
+    public ManagedFieldHolder getFieldHolder() {
+        return MANAGED_FIELD_HOLDER;
+    }
 }
