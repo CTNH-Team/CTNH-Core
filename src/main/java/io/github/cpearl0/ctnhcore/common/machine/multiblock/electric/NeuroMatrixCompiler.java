@@ -70,9 +70,9 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         List<Long>Equation=new ArrayList<Long>();
         for(int i=1;i<=4;i++)
         {
-            var ranger=Math.sqrt(range)*(Math.random());
-            var defaulter=range-Math.sqrt(range);
-            Equation.add((long)(defaulter+2*ranger));
+            var ranger=(range)*(Math.random());
+            var defaulter=range-ranger;
+            Equation.add((long)(defaulter+ranger*ranger*2));
         }
         return Equation;
     }

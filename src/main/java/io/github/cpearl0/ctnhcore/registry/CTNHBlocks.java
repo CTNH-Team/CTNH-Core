@@ -41,6 +41,9 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import org.jetbrains.annotations.NotNull;
+import vazkii.botania.forge.block.ForgeSpecialFlowerBlock;
+import vazkii.botania.forge.xplat.ForgeXplatImpl;
+import vazkii.botania.xplat.XplatAbstractions;
 
 import java.util.function.Supplier;
 
@@ -180,7 +183,27 @@ public class CTNHBlocks {
     public static final BlockEntry<PhotovoltaicBlock> PULSATING_PHOTOVOLTAIC_BLOCK = createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.PULSATING_PHOTOVOLTAIC_BLOCK,
             ("block/pulsating_photovoltaic_block"));
     public static final BlockEntry<ActiveBlock> PV_COIL =createActiveCasing("pv_coil","block/flux/pv_coil");
-    public  static final BlockEntry<PhotovoltaicBlock>PHOTON_PRESS_COND_BLOCK=createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.PHOTON_PRESS_COND_BLOCK,"block/photon_press_cond_block");
+    public static final BlockEntry<PhotovoltaicBlock> PHOTON_PRESS_COND_BLOCK = createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.PHOTON_PRESS_COND_BLOCK,"block/photon_press_cond_block");
+    public static final BlockEntry<ForgeSpecialFlowerBlock> DEMON_FLYTRAP = REGISTRATE
+            .block("demon_flytrap", properties -> new ForgeSpecialFlowerBlock(MobEffects.HARM, 20, BlockBehaviour.Properties.copy(Blocks.POPPY), () -> CTNHBlockEntities.DEMON_FLYTRAP.get()))
+            .initialProperties(() -> Blocks.POPPY)
+            .lang("Demon Flytrap")
+            .blockstate(GTModels::createCrossBlockState)
+            .addLayer(() -> RenderType::cutoutMipped)
+            .item()
+            .model(GTModels::rubberTreeSaplingModel)
+            .build()
+            .register();
+    public static final BlockEntry<ForgeSpecialFlowerBlock> BLOOD_ANTIARIS = REGISTRATE
+            .block("blood_antiaris", properties -> new ForgeSpecialFlowerBlock(MobEffects.HARM, 20, BlockBehaviour.Properties.copy(Blocks.POPPY), () -> CTNHBlockEntities.BLOOD_ANTIARIS.get()))
+            .initialProperties(() -> Blocks.POPPY)
+            .lang("Blood Antiaris")
+            .blockstate(GTModels::createCrossBlockState)
+            .addLayer(() -> RenderType::cutoutMipped)
+            .item()
+            .model(GTModels::rubberTreeSaplingModel)
+            .build()
+            .register();
     @SuppressWarnings("removal")
     public static BlockEntry<Block> ASTRAL_DIRT;
     @SuppressWarnings("removal")
