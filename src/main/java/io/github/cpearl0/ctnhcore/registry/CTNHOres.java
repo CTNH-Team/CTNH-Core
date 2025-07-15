@@ -745,7 +745,7 @@ public class CTNHOres {
                     .density(0.25F)
                     .discardChanceOnAirExposure(0)
                     .layer(GTNNWorld.GTNNWorldGenLayers.AD)
-                    .dimensions(MERCURY)
+                    .dimensions(GLACIO)
                     .heightRangeUniform(30, 80)
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
