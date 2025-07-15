@@ -22,54 +22,54 @@ import oshi.util.tuples.Triplet;
 
 import java.util.List;
 
-import static io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalBehavior.ACCESS_POINT_CONTEXT;
-import static io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalBehavior.USE_ON_CONTEXT;
+//import static io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalBehavior.ACCESS_POINT_CONTEXT;
+// static io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalBehavior.USE_ON_CONTEXT;
 
 @Mixin(AdvancedBlockPattern.class)
 public class AdvancedBlockPatternMixin {
 
-    @Inject(
-            method = "foundItem",
-            at = @At("TAIL"),
-            cancellable = true,
-            remap = false
-    )
-    private void foundItemMixin(Player player, List<ItemStack> candidates, CallbackInfoReturnable<Triplet<ItemStack, IItemHandler, Integer>> cir) {
-
-        if(cir.getReturnValue().getA() != null) return;
-
-        if (ACCESS_POINT_CONTEXT.get() != null && USE_ON_CONTEXT.get() != null) {
-            //player.sendSystemMessage(Component.literal("search in ae"));
-            IGrid grid = ACCESS_POINT_CONTEXT.get().getGrid();
-
-            for (ItemStack candidate : candidates){
-                if (candidate.isEmpty()) continue;
-                MEStorage inventory = grid.getStorageService().getInventory();
-                for(var entry : inventory.getAvailableStacks().findFuzzy(AEItemKey.of(candidate), FuzzyMode.IGNORE_ALL)){
-                    var key = entry.getKey();
-                    if(inventory.extract(key, 1L, Actionable.SIMULATE, IActionSource.ofMachine(ACCESS_POINT_CONTEXT.get())) == 1)
-                    {
-                        cir.setReturnValue(new Triplet(((AEItemKey)key).toStack(), new SingleItemHandler((AEItemKey) key, grid), 0));
-                    }
-
-                }
-            }
-        }
-    }
-
-    @ModifyVariable(
-            method = "getMatchStackWithHandler",
-            at = @At("STORE"),
-            ordinal = 0,
-            remap = false
-    )
-    private static IGrid modifyIGrid(IGrid original) {
-        if (ACCESS_POINT_CONTEXT.get() != null) {
-            return null;
-        } else {
-            return original;
-        }
-    }
+//    @Inject(
+//            method = "foundItem",
+//            at = @At("TAIL"),
+//            cancellable = true,
+//            remap = false
+//    )
+//    private void foundItemMixin(Player player, List<ItemStack> candidates, CallbackInfoReturnable<Triplet<ItemStack, IItemHandler, Integer>> cir) {
+//
+//        if(cir.getReturnValue().getA() != null) return;
+//
+//        if (ACCESS_POINT_CONTEXT.get() != null && USE_ON_CONTEXT.get() != null) {
+//            //player.sendSystemMessage(Component.literal("search in ae"));
+//            IGrid grid = ACCESS_POINT_CONTEXT.get().getGrid();
+//
+//            for (ItemStack candidate : candidates){
+//                if (candidate.isEmpty()) continue;
+//                MEStorage inventory = grid.getStorageService().getInventory();
+//                for(var entry : inventory.getAvailableStacks().findFuzzy(AEItemKey.of(candidate), FuzzyMode.IGNORE_ALL)){
+//                    var key = entry.getKey();
+//                    if(inventory.extract(key, 1L, Actionable.SIMULATE, IActionSource.ofMachine(ACCESS_POINT_CONTEXT.get())) == 1)
+//                    {
+//                        cir.setReturnValue(new Triplet(((AEItemKey)key).toStack(), new SingleItemHandler((AEItemKey) key, grid), 0));
+//                    }
+//
+//                }
+//            }
+//        }
+//    }
+//
+//    @ModifyVariable(
+//            method = "getMatchStackWithHandler",
+//            at = @At("STORE"),
+//            ordinal = 0,
+//            remap = false
+//    )
+//    private static IGrid modifyIGrid(IGrid original) {
+//        if (ACCESS_POINT_CONTEXT.get() != null) {
+//            return null;
+//        } else {
+//            return original;
+//        }
+//    }
 }
 
 
