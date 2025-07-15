@@ -1113,7 +1113,6 @@ public class ChineseLangHandler {
         provider.add(MultiblocksB.ZENITH_CIRCUIT_ASSEMBLER.getBlock(), "§5天顶电路组装机§r");
         provider.add(MultiblocksB.ZENITH_DISTILLATION_TOWER.getBlock(),"§5天顶聚焦蒸馏塔");
         provider.add(MultiblocksB.SCALABLE_RESERVOIR_COMPUTING.getBlock(), "§j突触凝练机");
-        provider.add(MultiblocksB.SEASON_REACTOR.getBlock(), "§b季节共振器");
         provider.add(MultiblocksB.SILICA_ROCK_FUEL_REFINERY.getBlock(),"硅岩燃料精炼厂");
         provider.add(MultiblocksB.ALTER.getBlock(), "§b工业血之祭坛");
         provider.add(MultiblocksB.EYE_OF_QUASAR.getBlock(), "§5类星体§r§1之§c眼");

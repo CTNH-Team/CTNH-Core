@@ -33,6 +33,7 @@ public class CTNHPlacements {
     public static final ResourceKey<PlacedFeature> ASTRAL_LAKE = ResourceKey.create(Registries.PLACED_FEATURE, CTNHCore.id("astral_lake"));
     public static final ResourceKey<PlacedFeature> ASTRAL_LAKE_UNDERGROUND = ResourceKey.create(Registries.PLACED_FEATURE, CTNHCore.id("astral_lake_underground"));
     public static final ResourceKey<PlacedFeature> VENUS_OCHRUM = ResourceKey.create(Registries.PLACED_FEATURE, CTNHCore.id("venus_ochrum"));
+    public static final ResourceKey<PlacedFeature> GAS_SPROUT = ResourceKey.create(Registries.PLACED_FEATURE, CTNHCore.id("gas_sprout"));
 
     public static void bootstrap(BootstapContext<PlacedFeature> ctx) {
         HolderGetter<ConfiguredFeature<?, ?>> featureLookup = ctx.lookup(Registries.CONFIGURED_FEATURE);
@@ -81,5 +82,10 @@ public class CTNHPlacements {
                 InSquarePlacement.spread(),
                 CountPlacement.of(UniformInt.of(15, 40)),
                 BiomeFilter.biome());
+        PlacementUtils.register(ctx, GAS_SPROUT, featureLookup.getOrThrow(CTNHConfiguredFeatures.GAS_SPROUT),
+                RarityFilter.onAverageOnceEvery(32),
+                InSquarePlacement.spread(),
+                BiomeFilter.biome(),
+                HeightRangePlacement.uniform(VerticalAnchor.absolute(10), VerticalAnchor.absolute(40)));
     }
 }
