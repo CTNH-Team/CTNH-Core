@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
 import com.gregtechceu.gtceu.api.data.worldgen.WorldGenLayers;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import dev.arbor.gtnn.data.GTNNMaterials;
 import dev.arbor.gtnn.data.GTNNOres;
 import dev.arbor.gtnn.data.GTNNWorld;
 import io.github.cpearl0.ctnhcore.CTNHCore;
@@ -36,6 +37,51 @@ public class CTNHOres {
                 .layer(l -> l.weight(2).mat(GTMaterials.VanadiumMagnetite).size(1, 1))
                 .layer(l -> l.weight(1).mat(CTNHMaterials.PreciousAlloy).size(1, 1))
             )
+        );
+        GTNNOres.INSTANCE.getARSENIC_VEIN_AD().layeredVeinGenerator(generator -> generator
+                .buildLayerPattern(pattern -> pattern
+                        .layer(l -> l.weight(1).mat(CTNHMaterials.Sperrylite).size(1, 2))
+                        .layer(l -> l.weight(1).mat(CTNHMaterials.Bismuthinite).size(1, 2))
+                        .layer(l -> l.weight(1).mat(GTMaterials.Stibnite).size(1, 2))
+                )
+        );
+        GTNNOres.INSTANCE.getIRIDIUM_VEIN_AD().layeredVeinGenerator(generator -> generator
+                .buildLayerPattern(pattern -> pattern
+                        .layer(l -> l.weight(1).mat(GTMaterials.Nickel).size(2, 3))
+                        .layer(l -> l.weight(1).mat(CTNHMaterials.MeteoricTroilite).size(1, 2))
+                        .layer(l -> l.weight(1).mat(CTNHMaterials.PalladiumSulfide).size(1, 2))
+                )
+        );
+        GTNNOres.INSTANCE.getCHROMIUM_VEIN_AD().layeredVeinGenerator(generator -> generator
+                .buildLayerPattern(pattern -> pattern
+                        .layer(l -> l.weight(1).mat(GTMaterials.Chromite).size(2, 3))
+                        .layer(l -> l.weight(1).mat(CTNHMaterials.Wolframite).size(1, 2))
+                        .layer(l -> l.weight(1).mat(CTNHMaterials.Tarkianite).size(1, 2))
+                        .layer(l -> l.weight(1).mat(GTMaterials.Pyrolusite).size(1, 2))
+                )
+        );
+        GTNNOres.INSTANCE.getNIOBIUM_VEIN_AD().layeredVeinGenerator(generator -> generator
+                .buildLayerPattern(pattern -> pattern
+                        .layer(l -> l.weight(1).mat(GTMaterials.Niobium).size(2, 3))
+                        .layer(l -> l.weight(1).mat(CTNHMaterials.MeteoricTroilite).size(1, 2))
+                        .layer(l -> l.weight(1).mat(CTNHMaterials.Germanite).size(1, 2))
+                )
+        );
+        GTNNOres.INSTANCE.getOSMIUM_VEIN_AD().layeredVeinGenerator(generator -> generator
+                .buildLayerPattern(pattern -> pattern
+                        .layer(l -> l.weight(1).mat(GTMaterials.Nickel).size(2, 3))
+                        .layer(l -> l.weight(1).mat(CTNHMaterials.OsmiumIronSpinel).size(1, 1))
+                        .layer(l -> l.weight(1).mat(CTNHMaterials.MeteoricTroilite).size(1, 1))
+                        .layer(l -> l.weight(1).mat(CTNHMaterials.Crocoite).size(2, 3))
+                )
+        );
+        GTNNOres.INSTANCE.getNEUTRONIUM_VEIN_AD().layeredVeinGenerator(generator -> generator
+                .buildLayerPattern(pattern -> pattern
+                        .layer(l -> l.weight(1).mat(GTMaterials.Neutronium).size(2, 3))
+                        .layer(l -> l.weight(1).mat(CTNHMaterials.OsmiumIronSpinel).size(1, 1))
+                        .layer(l -> l.weight(1).mat(GTMaterials.Naquadria).size(1, 1))
+                        .layer(l -> l.weight(1).mat(CTNHMaterials.Rheniite).size(1, 1))
+                )
         );
         GTRegistries.ORE_VEINS.remove(GTCEu.id("nether_quartz_vein"));
         GTRegistries.ORE_VEINS.remove(GTCEu.id("nickel_vein"));
@@ -649,6 +695,72 @@ public class CTNHOres {
             .density(0.4F)
             .radius(5)
     ));
+    public static GTOreDefinition RHODIUMSULFURCRYSTAL_VEIN = create(CTNHCore.id("rhodiumsulfurcrystal_vein"), vein ->
+            vein.weight(40)
+                    .clusterSize(40)
+                    .density(0.25F)
+                    .discardChanceOnAirExposure(0)
+                    .layer(GTNNWorld.GTNNWorldGenLayers.AD)
+                    .dimensions(VENUS)
+                    .heightRangeUniform(30, 80)
+                    .layeredVeinGenerator(generator -> generator
+                            .buildLayerPattern(pattern -> pattern
+                                    .layer(l -> l.weight(3).mat(CTNHMaterials.RhodiumSulfurCrystal).size(1, 1))
+                                    .layer(l -> l.weight(2).mat(CTNHMaterials.PalladiumSulfide).size(1, 1))
+                                    .layer(l -> l.weight(2).mat(CTNHMaterials.Cerite).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.GadoliniteSm).size(1, 1))
+                            )
+                    )
+                    .surfaceIndicatorGenerator(indicator -> indicator
+                            .surfaceRock(CTNHMaterials.RhodiumSulfurCrystal)
+                            .placement(ABOVE)
+                            .density(0.4F)
+                            .radius(5)
+                    ));
+    public static GTOreDefinition RUTHENIUMAMALGAM_VEIN = create(CTNHCore.id("rutheniumamalgam_vein"), vein ->
+            vein.weight(50)
+                    .clusterSize(40)
+                    .density(0.25F)
+                    .discardChanceOnAirExposure(0)
+                    .layer(GTNNWorld.GTNNWorldGenLayers.AD)
+                    .dimensions(MERCURY)
+                    .heightRangeUniform(30, 80)
+                    .layeredVeinGenerator(generator -> generator
+                            .buildLayerPattern(pattern -> pattern
+                                    .layer(l -> l.weight(3).mat(CTNHMaterials.RutheniumAmalgam).size(1, 1))
+                                    .layer(l -> l.weight(2).mat(CTNHMaterials.Smithsonite).size(1, 1))
+                                    .layer(l -> l.weight(2).mat(CTNHMaterials.Tarkianite).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.SolarFlareBlackDiamond).size(1, 1))
+                            )
+                    )
+                    .surfaceIndicatorGenerator(indicator -> indicator
+                            .surfaceRock(CTNHMaterials.RutheniumAmalgam)
+                            .placement(ABOVE)
+                            .density(0.4F)
+                            .radius(5)
+                    ));
+    public static GTOreDefinition EUROPIUM_VEIN = create(CTNHCore.id("europium_vein"), vein ->
+            vein.weight(30)
+                    .clusterSize(40)
+                    .density(0.25F)
+                    .discardChanceOnAirExposure(0)
+                    .layer(GTNNWorld.GTNNWorldGenLayers.AD)
+                    .dimensions(MERCURY)
+                    .heightRangeUniform(30, 80)
+                    .layeredVeinGenerator(generator -> generator
+                            .buildLayerPattern(pattern -> pattern
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.Germanite).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.Roquesite).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.Yttrofluorite).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.EuropiumFluorite).size(1, 1))
+                            )
+                    )
+                    .surfaceIndicatorGenerator(indicator -> indicator
+                            .surfaceRock(CTNHMaterials.EuropiumFluorite)
+                            .placement(ABOVE)
+                            .density(0.4F)
+                            .radius(5)
+                    ));
     public static GTOreDefinition COMBUSTIBLE_ICE_VEIN_AETHER = create(CTNHCore.id("combustible_ice_vein_aether"), vein ->
         vein.weight(80)
             .clusterSize(30)
