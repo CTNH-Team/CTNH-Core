@@ -49,6 +49,8 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
     private static final String NO_HATCH_MODE_KEY = "NoHatchMode";
     private static final String REPLACE_COIL_MODE_KEY = "ReplaceCoilMode";
     private static final String USE_AE_KEY = "UseAEStorage";
+    private static final String PLACE_FLUID_KEY = "PlaceFluid";
+    private static final String PLACE_IN_FLUID_KEY = "PlaceInFluid";
 
     public MEAdvancedTerminalBehavior() {}
 
@@ -97,7 +99,8 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
                 tag.getInt(NO_HATCH_MODE_KEY),
                 tag.getInt(REPLACE_COIL_MODE_KEY),
                 tag.getInt(USE_AE_KEY),
-                1
+                tag.getInt(PLACE_FLUID_KEY),
+                tag.getInt(PLACE_IN_FLUID_KEY)
         );
     }
 
@@ -114,13 +117,13 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
                 .setBackground(GuiTextures.DISPLAY)
                 .setYScrollBarWidth(2)
                 .setYBarStyle(null, ColorPattern.T_WHITE.rectTexture().setRadius(1))
-//                .addWidget(new AlignLabelWidget(89, 5, "item.gtmthings.advanced_terminal.setting.title")
+//                .addWidget(new AlignLabelWidget(89, 5, "item.ctnh.me_advanced_terminal.setting.title")
 //                        .setTextAlign(ALIGN_CENTER));
-                .addWidget(new LabelWidget(40, 5, Component.translatable("item.gtmthings.advanced_terminal.setting.title").getString()));
+                .addWidget(new LabelWidget(40, 5, Component.translatable("item.ctnh.me_advanced_terminal.setting.title").getString()));
 
         List<SettingConfig> settings = Arrays.asList(
                 new SettingConfig(
-                        "item.gtmthings.advanced_terminal.setting.1",
+                        "item.ctnh.me_advanced_terminal.setting.1",
                         getCoilTooltip(),
                         COIL_TIER_KEY,
                         () -> getTagValue(handItem, COIL_TIER_KEY, 0),
@@ -128,39 +131,57 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
                         0, GTCEuAPI.HEATING_COILS.size()
                 ),
                 new SettingConfig(
-                        "item.gtmthings.advanced_terminal.setting.2",
+                        "item.ctnh.me_advanced_terminal.setting.2",
                         new ArrayList<>(Collections.singletonList(
-                                Component.translatable("item.gtmthings.advanced_terminal.setting.2.tooltip"))),
+                                Component.translatable("item.ctnh.me_advanced_terminal.setting.2.tooltip"))),
                         REPEAT_COUNT_KEY,
                         () -> getTagValue(handItem, REPEAT_COUNT_KEY, 0),
                         value -> setTagValue(handItem, REPEAT_COUNT_KEY, value),
                         0, 99
                 ),
                 new SettingConfig(
-                        "item.gtmthings.advanced_terminal.setting.3",
+                        "item.ctnh.me_advanced_terminal.setting.3",
                         new ArrayList<>(Collections.singletonList(
-                                Component.translatable("item.gtmthings.advanced_terminal.setting.3.tooltip"))),
+                                Component.translatable("item.ctnh.me_advanced_terminal.setting.3.tooltip"))),
                         NO_HATCH_MODE_KEY,
                         () -> getTagValue(handItem, NO_HATCH_MODE_KEY, 1),
                         value -> setTagValue(handItem, NO_HATCH_MODE_KEY, value),
                         0, 1
                 ),
                 new SettingConfig(
-                        "item.gtmthings.advanced_terminal.setting.4",
+                        "item.ctnh.me_advanced_terminal.setting.4",
                         new ArrayList<>(Collections.singletonList(
-                                Component.translatable("item.gtmthings.advanced_terminal.setting.4.tooltip"))),
+                                Component.translatable("item.ctnh.me_advanced_terminal.setting.4.tooltip"))),
                         REPLACE_COIL_MODE_KEY,
                         () -> getTagValue(handItem, REPLACE_COIL_MODE_KEY, 0),
                         value -> setTagValue(handItem, REPLACE_COIL_MODE_KEY, value),
                         0, 1
                 ),
                 new SettingConfig(
-                        "item.gtmthings.advanced_terminal.setting.5",
+                        "item.ctnh.me_advanced_terminal.setting.5",
                         new ArrayList<>(Collections.singletonList(
-                                Component.translatable("item.gtmthings.advanced_terminal.setting.5.tooltip"))),
+                                Component.translatable("item.ctnh.me_advanced_terminal.setting.5.tooltip"))),
                         USE_AE_KEY,
                         () -> getTagValue(handItem, USE_AE_KEY, 0),
                         value -> setTagValue(handItem, USE_AE_KEY, value),
+                        0, 1
+                ),
+                new SettingConfig(
+                        "item.ctnh.me_advanced_terminal.setting.6",
+                        new ArrayList<>(Collections.singletonList(
+                                Component.translatable("item.ctnh.me_advanced_terminal.setting.6.tooltip"))),
+                        PLACE_FLUID_KEY,
+                        () -> getTagValue(handItem, PLACE_FLUID_KEY, 0),
+                        value -> setTagValue(handItem, PLACE_FLUID_KEY, value),
+                        0, 1
+                ),
+                new SettingConfig(
+                        "item.ctnh.me_advanced_terminal.setting.7",
+                        new ArrayList<>(Collections.singletonList(
+                                Component.translatable("item.ctnh.me_advanced_terminal.setting.7.tooltip"))),
+                        PLACE_IN_FLUID_KEY,
+                        () -> getTagValue(handItem, PLACE_IN_FLUID_KEY, 0),
+                        value -> setTagValue(handItem, PLACE_IN_FLUID_KEY, value),
                         0, 1
                 )
         );
@@ -183,7 +204,7 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
 
     private List<Component> getCoilTooltip() {
         List<Component> lines = new ArrayList<>();
-        lines.add(Component.translatable("item.gtmthings.advanced_terminal.setting.1.tooltip"));
+        lines.add(Component.translatable("item.ctnh.me_advanced_terminal.setting.1.tooltip"));
         GTCEuAPI.HEATING_COILS.entrySet().stream()
                 .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
                 .forEach(entry -> lines.add(Component.literal(String.valueOf(entry.getKey().getTier() + 1))
@@ -209,23 +230,26 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
         private final int replaceCoilMode;
         private final int useAEStorage;
         private final int placeFluid;
+        private final int placeInFluid;
 
         private IWirelessAccessPoint accessPoint;
 
         public static final TagKey<Item> HATCH_TAG = ItemTags.create(new ResourceLocation("forge", "hatch"));
 
         public AutoBuildSetting(int coilTier, int repeatCount, int noHatchMode,
-                                int replaceCoilMode, int useAEStorage, int placeFluid) {
+                                int replaceCoilMode, int useAEStorage, int placeFluid, int placeInFluid) {
             this.coilTier = coilTier;
             this.repeatCount = repeatCount;
             this.noHatchMode = noHatchMode;
             this.replaceCoilMode = replaceCoilMode;
             this.useAEStorage = useAEStorage;
             this.placeFluid = placeFluid;
+            this.placeInFluid = placeInFluid;
+
         }
 
         public AutoBuildSetting() {
-            this(0, 0, 1, 0, 0, 1);
+            this(0, 0, 1, 0, 0, 1, 0);
         }
 
         public List<OrientedItem> apply(BlockInfo[] blockInfos) {

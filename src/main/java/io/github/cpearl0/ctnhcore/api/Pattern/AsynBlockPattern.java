@@ -308,6 +308,7 @@ public class AsynBlockPattern extends BlockPattern {
 
     private boolean handleExistingBlock(BuildContext context, BlockPos pos, TraceabilityPredicate predicate) {
         context.replacingCoil = false;
+        context.inFluid = false;
         if (!context.world.isEmptyBlock(pos)) {
             BlockState existingState = context.world.getBlockState(pos);
 
@@ -317,7 +318,10 @@ public class AsynBlockPattern extends BlockPattern {
                 context.replacingCoil = true;
                 return false; // 继续处理替换逻辑
             }
-            if(existingState.liquid()) return false;
+            if(existingState.liquid()){
+                context.inFluid = true;
+                if(context.settings.getPlaceInFluid()==1) return false;
+            }
 
             // 其他情况直接记录现有方块并跳过
             context.blocks.put(pos, existingState);
@@ -456,7 +460,7 @@ public class AsynBlockPattern extends BlockPattern {
         if(context.fluid)
         {
 
-            return context.world.setBlock(pos, context.fluidState.createLegacyBlock(), UPDATE_CLIENTS);
+            return !context.inFluid && context.world.setBlock(pos, context.fluidState.createLegacyBlock(), UPDATE_CLIENTS);
         }
         else
         {
@@ -538,6 +542,7 @@ public class AsynBlockPattern extends BlockPattern {
         IFluidHandler foundFluidHandler;
 
         MEStorage meStorage;
+        boolean inFluid;
 
         Map<BlockPos, Object> blocks = new HashMap<>();
         Set<BlockPos> placeBlockPos = new HashSet<>();
