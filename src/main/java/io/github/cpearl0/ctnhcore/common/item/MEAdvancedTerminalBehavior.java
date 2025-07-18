@@ -1,55 +1,33 @@
 package io.github.cpearl0.ctnhcore.common.item;
 
 import appeng.api.implementations.blockentities.IWirelessAccessPoint;
-import appeng.api.networking.IGridNode;
-import appeng.api.networking.security.IActionHost;
-import com.gregtechceu.gtceu.api.item.component.IInteractionItem;
-import com.gregtechceu.gtceu.api.machine.MetaMachine;
-import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
-import com.hepdd.gtmthings.api.pattern.AdvancedBlockPattern;
-import com.hepdd.gtmthings.common.item.AdvancedTerminalBehavior;
-import io.github.cpearl0.ctnhcore.utils.CoilTierHelper;
-import io.github.cpearl0.ctnhcore.utils.OrientedItem;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import com.gregtechceu.gtceu.api.GTCEuAPI;
-import com.gregtechceu.gtceu.api.block.MetaMachineBlock;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.item.component.IItemUIFactory;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
-
+//import com.hepdd.gtmthings.api.gui.widget.AlignLabelWidget;
+import com.hepdd.gtmthings.api.gui.widget.TerminalInputWidget;
+//import com.hepdd.gtmthings.api.misc.Hatch;
 import com.lowdragmc.lowdraglib.gui.editor.ColorPattern;
 import com.lowdragmc.lowdraglib.gui.factory.HeldItemUIFactory;
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
-import com.lowdragmc.lowdraglib.gui.widget.DraggableScrollableWidgetGroup;
-import com.lowdragmc.lowdraglib.gui.widget.LabelWidget;
-import com.lowdragmc.lowdraglib.gui.widget.Widget;
-import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
+import com.lowdragmc.lowdraglib.gui.widget.*;
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
-
+import io.github.cpearl0.ctnhcore.event.BuildTaskManager;
+import io.github.cpearl0.ctnhcore.utils.CoilTierHelper;
+import io.github.cpearl0.ctnhcore.utils.OrientedItem;
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -57,164 +35,197 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 
-import com.hepdd.gtmthings.api.gui.widget.TerminalInputWidget;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
-import static com.gregtechceu.gtceu.api.GTCEuAPI.HEATING_COILS;
+//import static com.hepdd.gtmthings.api.gui.widget.AlignLabelWidget.ALIGN_CENTER;
 import static io.github.cpearl0.ctnhcore.api.Pattern.AsynBlockPattern.getAdvancedBlockPattern;
 
+public class MEAdvancedTerminalBehavior implements IItemUIFactory {
+    // 配置键常量
+    private static final String COIL_TIER_KEY = "CoilTier";
+    private static final String REPEAT_COUNT_KEY = "RepeatCount";
+    private static final String NO_HATCH_MODE_KEY = "NoHatchMode";
+    private static final String REPLACE_COIL_MODE_KEY = "ReplaceCoilMode";
+    private static final String USE_AE_KEY = "UseAEStorage";
 
-public class MEAdvancedTerminalBehavior implements IItemUIFactory
-{
-    private AutoBuildSetting autoBuildSetting = null;
-    private ItemStack itemStack;
-
-    public MEAdvancedTerminalBehavior() {
-        autoBuildSetting = new AutoBuildSetting();
-    }
+    public MEAdvancedTerminalBehavior() {}
 
     @Override
     public InteractionResult useOn(UseOnContext context) {
-        if (context.getPlayer() != null && context.getPlayer().isShiftKeyDown()) {
-            Level level = context.getLevel();
-            BlockPos blockPos = context.getClickedPos();
-            if (context.getPlayer() != null &&
-                    MetaMachine.getMachine(level, blockPos) instanceof IMultiController controller) {
-                if (!controller.isFormed()) {
-                    if (!level.isClientSide) {
-                        getAdvancedBlockPattern(controller.getPattern()).autoBuild(context.getPlayer(), controller.getMultiblockState(), autoBuildSetting);
-                    }
-                    return InteractionResult.sidedSuccess(level.isClientSide);
-                } else if (MetaMachine.getMachine(level, blockPos) instanceof WorkableMultiblockMachine workableMultiblockMachine && autoBuildSetting.isReplaceCoilMode()) {
-                    if (!level.isClientSide) {
-                        getAdvancedBlockPattern(controller.getPattern()).autoBuild(context.getPlayer(), controller.getMultiblockState(), autoBuildSetting);
-                        workableMultiblockMachine.onPartUnload();
-                    }
-                    return InteractionResult.sidedSuccess(level.isClientSide);
-                }
+        Player player = context.getPlayer();
+        if (player == null || !player.isShiftKeyDown()) {
+            return InteractionResult.PASS;
+        }
+
+        Level level = context.getLevel();
+        BlockPos blockPos = context.getClickedPos();
+        if (level.isClientSide()) {
+            return InteractionResult.sidedSuccess(true);
+        }
+
+        MetaMachine machine = MetaMachine.getMachine(level, blockPos);
+        if (!(machine instanceof IMultiController controller)) {
+            return InteractionResult.PASS;
+        }
+
+        AutoBuildSetting settings = getAutoBuildSetting(player.getMainHandItem());
+        if(context.getItemInHand().getItem() instanceof MEAdvancedTerminalItem terminal)
+        {
+            settings.accessPoint = terminal.getAccessPoint(context.getItemInHand(), context.getLevel());
+        }
+
+        if (!controller.isFormed() || (machine instanceof WorkableMultiblockMachine workableMachine &&
+                settings.isReplaceCoilMode())) {
+            var pattern = getAdvancedBlockPattern(controller.getPattern());
+            if (pattern != null)
+            {
+                pattern.startAutoBuild(player, controller.getMultiblockState(), settings);
+                BuildTaskManager.getInstance().registerTask(player, pattern);
             }
         }
-        return InteractionResult.PASS;
+
+        return InteractionResult.sidedSuccess(false);
+    }
+
+    private AutoBuildSetting getAutoBuildSetting(ItemStack itemStack) {
+        CompoundTag tag = itemStack.getOrCreateTag();
+        return new AutoBuildSetting(
+                tag.getInt(COIL_TIER_KEY),
+                tag.getInt(REPEAT_COUNT_KEY),
+                tag.getInt(NO_HATCH_MODE_KEY),
+                tag.getInt(REPLACE_COIL_MODE_KEY),
+                tag.getInt(USE_AE_KEY),
+                1
+        );
     }
 
     @Override
-    public ModularUI createUI(HeldItemUIFactory.HeldItemHolder holder, Player entityPlayer) {
-        return new ModularUI(176, 166, holder, entityPlayer).widget(createWidget());
+    public ModularUI createUI(HeldItemUIFactory.HeldItemHolder holder, Player player) {
+        return new ModularUI(176, 166, holder, player)
+                .widget(createSettingsWidget(player));
     }
 
-    private Widget createWidget() {
-        var group = new WidgetGroup(0, 0, 182 + 8, 117 + 8);
+    private Widget createSettingsWidget(Player player) {
+        ItemStack handItem = player.getMainHandItem();
+        WidgetGroup group = new WidgetGroup(0, 0, 182 + 8, 117 + 8);
+        var scrollGroup = new DraggableScrollableWidgetGroup(4, 4, 182, 117)
+                .setBackground(GuiTextures.DISPLAY)
+                .setYScrollBarWidth(2)
+                .setYBarStyle(null, ColorPattern.T_WHITE.rectTexture().setRadius(1))
+//                .addWidget(new AlignLabelWidget(89, 5, "item.gtmthings.advanced_terminal.setting.title")
+//                        .setTextAlign(ALIGN_CENTER));
+                .addWidget(new LabelWidget(40, 5, Component.translatable("item.gtmthings.advanced_terminal.setting.title").getString()));
+
+        List<SettingConfig> settings = Arrays.asList(
+                new SettingConfig(
+                        "item.gtmthings.advanced_terminal.setting.1",
+                        getCoilTooltip(),
+                        COIL_TIER_KEY,
+                        () -> getTagValue(handItem, COIL_TIER_KEY, 0),
+                        value -> setTagValue(handItem, COIL_TIER_KEY, value),
+                        0, GTCEuAPI.HEATING_COILS.size()
+                ),
+                new SettingConfig(
+                        "item.gtmthings.advanced_terminal.setting.2",
+                        new ArrayList<>(Collections.singletonList(
+                                Component.translatable("item.gtmthings.advanced_terminal.setting.2.tooltip"))),
+                        REPEAT_COUNT_KEY,
+                        () -> getTagValue(handItem, REPEAT_COUNT_KEY, 0),
+                        value -> setTagValue(handItem, REPEAT_COUNT_KEY, value),
+                        0, 99
+                ),
+                new SettingConfig(
+                        "item.gtmthings.advanced_terminal.setting.3",
+                        new ArrayList<>(Collections.singletonList(
+                                Component.translatable("item.gtmthings.advanced_terminal.setting.3.tooltip"))),
+                        NO_HATCH_MODE_KEY,
+                        () -> getTagValue(handItem, NO_HATCH_MODE_KEY, 1),
+                        value -> setTagValue(handItem, NO_HATCH_MODE_KEY, value),
+                        0, 1
+                ),
+                new SettingConfig(
+                        "item.gtmthings.advanced_terminal.setting.4",
+                        new ArrayList<>(Collections.singletonList(
+                                Component.translatable("item.gtmthings.advanced_terminal.setting.4.tooltip"))),
+                        REPLACE_COIL_MODE_KEY,
+                        () -> getTagValue(handItem, REPLACE_COIL_MODE_KEY, 0),
+                        value -> setTagValue(handItem, REPLACE_COIL_MODE_KEY, value),
+                        0, 1
+                ),
+                new SettingConfig(
+                        "item.gtmthings.advanced_terminal.setting.5",
+                        new ArrayList<>(Collections.singletonList(
+                                Component.translatable("item.gtmthings.advanced_terminal.setting.5.tooltip"))),
+                        USE_AE_KEY,
+                        () -> getTagValue(handItem, USE_AE_KEY, 0),
+                        value -> setTagValue(handItem, USE_AE_KEY, value),
+                        0, 1
+                )
+        );
+
         int rowIndex = 1;
-        List<Component> lines = new ArrayList<>(List.of());
-        lines.add(Component.translatable("item.gtmthings.advanced_terminal.setting.1.tooltip"));
-        HEATING_COILS.entrySet().stream()
-                .sorted(Comparator.comparingInt(value -> value.getKey().getTier()))
-                .forEach(coil -> lines.add(Component.literal(String.valueOf(coil.getKey().getTier() + 1)).append(":").append(coil.getValue().get().getName())));
+        for (SettingConfig config : settings) {
+            scrollGroup.addWidget(new LabelWidget(4, 5 + 16 * rowIndex, config.labelKey)
+                    .setHoverTooltips(config.tooltipKey));
+            scrollGroup.addWidget(new TerminalInputWidget(140, 5 + 16 * rowIndex, 20, 16,
+                    config.getValue, config.setValue)
+                    .setMin(config.minValue)
+                    .setMax(config.maxValue));
+            rowIndex++;
+        }
 
-        group.addWidget(
-                new DraggableScrollableWidgetGroup(4, 4, 182, 117)
-                        .setBackground(GuiTextures.DISPLAY)
-                        .setYScrollBarWidth(2)
-                        .setYBarStyle(null, ColorPattern.T_WHITE.rectTexture().setRadius(1))
-                        .addWidget(new LabelWidget(40, 5, Component.translatable("item.gtmthings.advanced_terminal.setting.title").getString()))
-                        .addWidget(new LabelWidget(4, 5 + 16 * rowIndex, Component.translatable("item.gtmthings.advanced_terminal.setting.1").getString())
-                                .setHoverTooltips(lines))
-                        .addWidget(new TerminalInputWidget(140, 5 + 16 * rowIndex++, 20, 16, autoBuildSetting::getCoilTier,
-                                this::setCoilTier)
-                                .setMin(0).setMax(HEATING_COILS.size()))
-                        .addWidget(new LabelWidget(4, 5 + 16 * rowIndex, Component.translatable("item.gtmthings.advanced_terminal.setting.2").getString())
-                                .setHoverTooltips(Component.translatable("item.gtmthings.advanced_terminal.setting.2.tooltip")))
-                        .addWidget(new TerminalInputWidget(140, 5 + 16 * rowIndex++, 20, 16, autoBuildSetting::getRepeatCount,
-                                this::setRepeatCount)
-                                .setMin(0).setMax(99))
-                        .addWidget(new LabelWidget(4, 5 + 16 * rowIndex, Component.translatable("item.gtmthings.advanced_terminal.setting.3").getString())
-                                .setHoverTooltips("item.gtmthings.advanced_terminal.setting.3.tooltip"))
-                        .addWidget(new TerminalInputWidget(140, 5 + 16 * rowIndex++, 20, 16, autoBuildSetting::getNoHatchMode,
-                                this::setIsBuildHatches).setMin(0).setMax(1))
-                        .addWidget(new LabelWidget(4, 5 + 16 * rowIndex, Component.translatable("item.gtmthings.advanced_terminal.setting.4").getString())
-                                .setHoverTooltips("item.gtmthings.advanced_terminal.setting.4.tooltip"))
-                        .addWidget(new TerminalInputWidget(140, 5 + 16 * rowIndex++, 20, 16, autoBuildSetting::getReplaceCoilMode,
-                                this::setReplaceCoilMode).setMin(0).setMax(1)));
-
+        group.addWidget(scrollGroup);
         group.setBackground(GuiTextures.BACKGROUND_INVERSE);
         return group;
     }
 
-    @Override
-    public InteractionResultHolder<ItemStack> use(Item item, Level level, Player player, InteractionHand usedHand) {
-        this.itemStack = player.getItemInHand(usedHand);
-        var tag = this.itemStack.getTag();
-        if (tag != null && !tag.isEmpty()) {
-            this.autoBuildSetting.setCoilTier(tag.getInt("CoilTier"));
-            this.autoBuildSetting.setRepeatCount(tag.getInt("RepeatCount"));
-            this.autoBuildSetting.setNoHatchMode(tag.getInt("NoHatchMode"));
-            this.autoBuildSetting.setReplaceCoilMode(tag.getInt("ReplaceCoilMode"));
-        } else {
-            tag = new CompoundTag();
-            tag.putInt("CoilTier", 0);
-            tag.putInt("RepeatCount", 0);
-            tag.putInt("NoHatchMode", 1);
-            tag.putInt("ReplaceCoilMode", 0);
-            this.itemStack.setTag(tag);
-            this.autoBuildSetting.setCoilTier(0);
-            this.autoBuildSetting.setRepeatCount(0);
-            this.autoBuildSetting.setNoHatchMode(1);
-            this.autoBuildSetting.setReplaceCoilMode(0);
-        }
-        return IItemUIFactory.super.use(item, level, player, usedHand);
+    private List<Component> getCoilTooltip() {
+        List<Component> lines = new ArrayList<>();
+        lines.add(Component.translatable("item.gtmthings.advanced_terminal.setting.1.tooltip"));
+        GTCEuAPI.HEATING_COILS.entrySet().stream()
+                .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
+                .forEach(entry -> lines.add(Component.literal(String.valueOf(entry.getKey().getTier() + 1))
+                        .append(":")
+                        .append(entry.getValue().get().getName())));
+        return lines;
     }
 
-    private void setCoilTier(int coilTier) {
-        autoBuildSetting.setCoilTier(coilTier);
-        var tag = this.itemStack.getTag();
-        if (tag == null) tag = new CompoundTag();
-        tag.putInt("CoilTier", coilTier);
-        this.itemStack.setTag(tag);
+    private int getTagValue(ItemStack stack, String key, int defaultValue) {
+        return stack.getOrCreateTag().getInt(key);
     }
 
-    private void setRepeatCount(int repeatCount) {
-        autoBuildSetting.setRepeatCount(repeatCount);
-        var tag = this.itemStack.getTag();
-        if (tag == null) tag = new CompoundTag();
-        tag.putInt("RepeatCount", repeatCount);
-        this.itemStack.setTag(tag);
+    private void setTagValue(ItemStack stack, String key, int value) {
+        stack.getOrCreateTag().putInt(key, value);
     }
 
-    private void setIsBuildHatches(int isBuildHatches) {
-        autoBuildSetting.setNoHatchMode(isBuildHatches);
-        var tag = this.itemStack.getTag();
-        if (tag == null) tag = new CompoundTag();
-        tag.putInt("NoHatchMode", isBuildHatches);
-        this.itemStack.setTag(tag);
-    }
-
-    private void setReplaceCoilMode(int isReplaceCoil) {
-        autoBuildSetting.setReplaceCoilMode(isReplaceCoil);
-        var tag = this.itemStack.getTag();
-        if (tag == null) tag = new CompoundTag();
-        tag.putInt("ReplaceCoilMode", isReplaceCoil);
-        this.itemStack.setTag(tag);
-    }
-
-    @Setter
     @Getter
+    @Setter
     public static class AutoBuildSetting {
+        private final int coilTier;
+        private final int repeatCount;
+        private final int noHatchMode;
+        private final int replaceCoilMode;
+        private final int useAEStorage;
+        private final int placeFluid;
 
-        public static final Set<String> HATCH_NAMES = new HashSet<>(Set.of("input_hatch", "output_hatch", "input_bus", "output_bus", "laser_target", "laser_source",
-                "transmitter_hatch", "receiver_hatch", "maintenance_hatch", "parallel_hatch", "import_bus", "export_bus"));
+        private IWirelessAccessPoint accessPoint;
 
-        private int coilTier, repeatCount, noHatchMode, replaceCoilMode, useAEStorage, placeFluid;
+        public static final TagKey<Item> HATCH_TAG = ItemTags.create(new ResourceLocation("forge", "hatch"));
+
+        public AutoBuildSetting(int coilTier, int repeatCount, int noHatchMode,
+                                int replaceCoilMode, int useAEStorage, int placeFluid) {
+            this.coilTier = coilTier;
+            this.repeatCount = repeatCount;
+            this.noHatchMode = noHatchMode;
+            this.replaceCoilMode = replaceCoilMode;
+            this.useAEStorage = useAEStorage;
+            this.placeFluid = placeFluid;
+        }
 
         public AutoBuildSetting() {
-            this.coilTier = 0;
-            this.repeatCount = 0;
-            this.noHatchMode = 1;
-            this.replaceCoilMode = 0;
-            this.useAEStorage = 0;
-            this.placeFluid = 0;
+            this(0, 0, 1, 0, 0, 1);
         }
 
         public List<OrientedItem> apply(BlockInfo[] blockInfos) {
@@ -234,7 +245,7 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory
                         Arrays.stream(CoilTierHelper.getCoilBlocks(tier))
                                 .map(BlockInfo::new)
                                 .map(OrientedItem::createOrientedItem)
-                                .map(candidates::add);
+                                .forEach(candidates::add);
                         //candidates.add(OrientedItem.createOrientedItem(coilBlockInfos));
                     }
                     return candidates;
@@ -242,7 +253,8 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory
 
                 // 处理普通方块
                 for (BlockInfo info : blockInfos) {
-                    if (info.getBlockState().getBlock() != Blocks.AIR) {
+                    if (info.getBlockState().getBlock() != Blocks.AIR
+                            &&(this.noHatchMode == 0 || !info.getItemStackForm().is(HATCH_TAG))) {
                         candidates.add(OrientedItem.createOrientedItem(info));
                     }
                 }
@@ -253,14 +265,14 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory
         public boolean isPlaceHatch(BlockInfo[] blockInfos) {
             if (this.noHatchMode == 0) return true;
             if (blockInfos != null && blockInfos.length > 0) {
-                var blockInfo = blockInfos[0];
-                if (blockInfo.getBlockState().getBlock() instanceof MetaMachineBlock machineBlock) {
-                    var id = machineBlock.getDefinition().getName();
-                    for (String hatchName : HATCH_NAMES) {
-                        if (id.contains(hatchName)) return false;
-                    }
-                }
-                return true;
+                return Arrays.stream(blockInfos).noneMatch(b -> b.getItemStackForm().is(HATCH_TAG));
+//                var blockInfo = blockInfos[0];
+//                if (blockInfo.getBlockState().getBlock() instanceof MetaMachineBlock machineBlock) {
+//                    var id = machineBlock.getDefinition().getName();
+//                    for (String hatchName : HATCH_NAMES) {
+//                        if (id.contains(hatchName)) return false;
+//                    }
+//                }
             }
             return true;
         }
@@ -269,15 +281,26 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory
             return replaceCoilMode == 1;
         }
     }
-}
 
-//class MEBuildHelper extends AsynBlockPattern {
-//    public MEBuildHelper(TraceabilityPredicate[][][] predicatesIn, RelativeDirection[] structureDir, int[][] aisleRepetitions, int[] centerOffset) {
-//        super(predicatesIn, structureDir, aisleRepetitions, centerOffset);
-//    }
-//
-//
-//    private static Pair<Integer, IItemHandler> getMatchStackWithHandler(List<ItemStack> candidates, LazyOptional<IItemHandler> cap) {
-//
-//    }
-//}
+    private static class SettingConfig {
+        final String labelKey;
+        final List<Component> tooltipKey;
+        final String tagKey;
+        final Supplier<Integer> getValue;
+        final Consumer<Integer> setValue;
+        final int minValue;
+        final int maxValue;
+
+        SettingConfig(String labelKey, List<Component> tooltipKey, String tagKey,
+                      Supplier<Integer> getValue, Consumer<Integer> setValue,
+                      int minValue, int maxValue) {
+            this.labelKey = labelKey;
+            this.tooltipKey = tooltipKey;
+            this.tagKey = tagKey;
+            this.getValue = getValue;
+            this.setValue = setValue;
+            this.minValue = minValue;
+            this.maxValue = maxValue;
+        }
+    }
+}

@@ -17,6 +17,7 @@ import com.gregtechceu.gtceu.api.item.component.IItemComponent;
 import com.hepdd.gtmthings.common.item.AdvancedTerminalBehavior;
 import com.lowdragmc.lowdraglib.gui.factory.HeldItemUIFactory;
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
+import io.github.cpearl0.ctnhcore.api.Pattern.AsynBlockPattern;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.chat.Component;
@@ -46,6 +47,7 @@ public class MEAdvancedTerminalItem extends ComponentItem {
     public static final IGridLinkableHandler LINKABLE_HANDLER = new MEAdvancedTerminalItem.LinkableHandler();
 
     private static final String TAG_ACCESS_POINT_POS = "accessPoint";
+    //private static final String TAG_BLOCK_PATTERN = "blockPattern";
 
 
     public MEAdvancedTerminalItem(Properties properties) {
