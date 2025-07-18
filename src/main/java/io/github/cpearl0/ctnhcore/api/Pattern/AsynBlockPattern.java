@@ -57,7 +57,13 @@ import static net.minecraft.world.level.block.Block.UPDATE_CLIENTS;
 public class AsynBlockPattern extends BlockPattern {
 
     private static final int BLOCKS_PER_TICK = 40; // 每tick放置的方块数量
-    private final Queue<BuildTask> buildQueue = new ConcurrentLinkedQueue<>();
+    //优先队列，按照y由低到高放置
+    private final Queue<BuildTask> buildQueue = new PriorityQueue<>(
+            Comparator.comparingInt((BuildTask task) -> task.pos.getY())
+            .thenComparingInt(task -> task.pos.getX())
+            .thenComparingInt(task -> task.pos.getZ())
+            );
+    //private final Queue<BuildTask> buildQueue = new ConcurrentLinkedQueue<>();
     @Getter
     private boolean completed = false;
 
@@ -184,7 +190,7 @@ public class AsynBlockPattern extends BlockPattern {
 
     private class BuildTask {
         private final BuildContext context;
-        private final BlockPos pos;
+        public final BlockPos pos;
         private final TraceabilityPredicate predicate;
         private final int layerIndex;
         private final int yIndex;
