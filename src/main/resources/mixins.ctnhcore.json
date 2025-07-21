@@ -18,8 +18,6 @@
     "gtceu.GTUtilMixin",
     "gtceu.TagPrefixMixin",
     "gtceu.WorkableElectricMultiblockMachineMixin",
-    "gtmthings.AdvancedBlockPatternMixin",
-    "gtmthings.AutoBuildSettingMixin",
     "jei.GTRecipeWidgetMixin",
     "jei.RecipeGuiLogicMixin",
     "legendarysurvival.AltitudeModifierMixin",

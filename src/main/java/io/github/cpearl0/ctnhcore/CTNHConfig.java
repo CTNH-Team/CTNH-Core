@@ -18,6 +18,21 @@ public class CTNHConfig {
         }
     }
     @Configurable
+    @Configurable.Comment("Terminal AutoBuild")
+    public Terminal terminal = new Terminal();
+    public static class Terminal{
+        @Configurable
+        @Configurable.Comment({"How many blocks GT-MBST-A will put per tick when AE storage is not available", "Default: 64"})
+        @Configurable.Range(min = 8, max = 256)
+        public int blocksPerTick = 64;
+
+        @Configurable
+        @Configurable.Comment({"How many blocks GT-MBST-A will put per tick when AE storage is available", "Default: 8"})
+        @Configurable.Range(min = 1, max = 64)
+        public int blocksPerTickWithAE = 8;
+    }
+
+    @Configurable
     @Configurable.Comment("FTB's plugins")
     public FTBPlugin ftbPlugin = new FTBPlugin();
     @Configurable

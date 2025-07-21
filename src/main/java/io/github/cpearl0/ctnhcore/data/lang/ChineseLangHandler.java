@@ -303,7 +303,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.test_terminal.success","一切正常！");
         provider.add("ctnh.testing_terminal.tooltip.1","用于检测多方块搭建时产生的错误");
         provider.add("ctnh.testing_terminal.tooltip.2","右键多方块的主方块以显示错误信息");
-        provider.add("ctnh.me_advanced_terminal.tooltip.1","格雷科技-多方块结构终端-异步成型模式");
+        provider.add("ctnh.me_advanced_terminal.tooltip.1","§l格雷科技-多方块结构终端-异步成型模式");
         provider.add("ctnh.me_advanced_terminal.tooltip.2","复刻了曾经的旗舰款，终端屏幕上闪烁着久违的画面");
         provider.add("ctnh.me_advanced_terminal.tooltip.3","通过ME无线访问点链接到网络");
 
@@ -326,7 +326,7 @@ public class ChineseLangHandler {
         provider.add("item.ctnh.me_advanced_terminal.setting.3","无仓室模式");
         provider.add("item.ctnh.me_advanced_terminal.setting.3.tooltip","是否启用无仓室模式(0:不启用,1:启用)\n启用无仓室模式后不会放置任何仓室");
         provider.add("item.ctnh.me_advanced_terminal.setting.4","线圈替换模式");
-        provider.add("item.ctnh.me_advanced_terminal.setting.4.tooltip","是否启用线圈替换模式(0:不启用,1:启用)\n启用线圈替换模式会将所有线圈替换为指定等级的线圈\\n请确保物品栏中有空间存放替换下来的线圈");
+        provider.add("item.ctnh.me_advanced_terminal.setting.4.tooltip","是否启用线圈替换模式(0:不启用,1:启用)\n启用线圈替换模式会将所有线圈替换为指定等级的线圈\n请确保物品栏中有空间存放替换下来的线圈");
         provider.add("item.ctnh.me_advanced_terminal.setting.5","使用AE存储");
         provider.add("item.ctnh.me_advanced_terminal.setting.5.tooltip","是否启用AE库存(0:不启用,1:启用)\n启用后将优先在AE库存中检索\n通过ME无线访问点链接到网络");
         provider.add("item.ctnh.me_advanced_terminal.setting.6","放置流体");

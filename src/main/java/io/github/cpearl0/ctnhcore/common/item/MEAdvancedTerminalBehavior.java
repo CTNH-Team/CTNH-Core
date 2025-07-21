@@ -14,6 +14,7 @@ import com.hepdd.gtmthings.api.gui.widget.TerminalInputWidget;
 import com.lowdragmc.lowdraglib.gui.editor.ColorPattern;
 import com.lowdragmc.lowdraglib.gui.factory.HeldItemUIFactory;
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
+import com.lowdragmc.lowdraglib.gui.texture.ResourceBorderTexture;
 import com.lowdragmc.lowdraglib.gui.widget.*;
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
 import io.github.cpearl0.ctnhcore.event.BuildTaskManager;
@@ -112,8 +113,8 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
 
     private Widget createSettingsWidget(Player player) {
         ItemStack handItem = player.getMainHandItem();
-        WidgetGroup group = new WidgetGroup(0, 0, 182 + 8, 117 + 8);
-        var scrollGroup = new DraggableScrollableWidgetGroup(4, 4, 182, 117)
+        WidgetGroup group = new WidgetGroup(0, 0, 182 + 8, 137 + 8);
+        var scrollGroup = new DraggableScrollableWidgetGroup(4, 4, 182, 137)
                 .setBackground(GuiTextures.DISPLAY)
                 .setYScrollBarWidth(2)
                 .setYBarStyle(null, ColorPattern.T_WHITE.rectTexture().setRadius(1))
@@ -198,7 +199,8 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
         }
 
         group.addWidget(scrollGroup);
-        group.setBackground(GuiTextures.BACKGROUND_INVERSE);
+        group.setBackground(new ResourceBorderTexture(
+                "ae2:textures/guis/background.png", 256, 256, 4, 4));
         return group;
     }
 

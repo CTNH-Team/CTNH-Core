@@ -16,6 +16,7 @@ import com.gregtechceu.gtceu.common.block.CoilBlock;
 
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
 
+import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalBehavior;
 import io.github.cpearl0.ctnhcore.utils.OrientedItem;
 import lombok.Getter;
@@ -56,7 +57,8 @@ import static net.minecraft.world.level.block.Block.UPDATE_CLIENTS;
 
 public class AsynBlockPattern extends BlockPattern {
 
-    private static final int BLOCKS_PER_TICK = 40; // 每tick放置的方块数量
+    private static final int BLOCKS_PER_TICK = CTNHConfig.INSTANCE.terminal.blocksPerTick; // 每tick放置的方块数量
+    private static final int BLOCKS_PER_TICK_WITH_AE = CTNHConfig.INSTANCE.terminal.blocksPerTickWithAE;
     //优先队列，按照y由低到高放置
     private final Queue<BuildTask> buildQueue = new PriorityQueue<>(
             Comparator.comparingInt((BuildTask task) -> task.pos.getY())
@@ -78,6 +80,8 @@ public class AsynBlockPattern extends BlockPattern {
     protected final int thumbLength; // y size
     protected final int palmLength; // x size
     protected final int[] centerOffset; // x, y, z, minZ, maxZ
+
+    protected MEAdvancedTerminalBehavior.AutoBuildSetting setting;
 
     public AsynBlockPattern(TraceabilityPredicate[][][] predicatesIn, RelativeDirection[] structureDir, int[][] aisleRepetitions, int[] centerOffset) {
         super(predicatesIn, structureDir, aisleRepetitions, centerOffset);
@@ -132,9 +136,10 @@ public class AsynBlockPattern extends BlockPattern {
     public void tick() {
         if (completed || buildQueue.isEmpty()) return;
 
+        int num = setting.getUseAEStorage() == 0 ? BLOCKS_PER_TICK : BLOCKS_PER_TICK_WITH_AE;
         // 每tick处理一定数量的方块
         try {
-            for (int i = 0; i < BLOCKS_PER_TICK && !buildQueue.isEmpty(); i++) {
+            for (int i = 0; i < num && !buildQueue.isEmpty(); i++) {
                 BuildTask task = buildQueue.poll();
                 if (task != null) {
                     task.execute();
@@ -155,6 +160,7 @@ public class AsynBlockPattern extends BlockPattern {
     public void startAutoBuild(Player player, MultiblockState worldState,
                                MEAdvancedTerminalBehavior.AutoBuildSetting autoBuildSetting) {
         // 初始化阶段
+        this.setting = autoBuildSetting;
         BuildContext context = initializeBuildContext(player, worldState, autoBuildSetting);
 
         // 计算每层的重复次数
