@@ -86,6 +86,10 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.CombustibleIce.getUnlocalizedName(), "可燃冰");
         replace(provider, CTNHMaterials.Livingrock.getUnlocalizedName(), "活石");
         replace(provider, CTNHMaterials.icestone.getUnlocalizedName(), "冰石");
+        replace(provider, CTNHMaterials.AERIALITE.getUnlocalizedName(), "天空");
+        replace(provider, CTNHMaterials.SHADOWIUM.getUnlocalizedName(), "暗影");
+        replace(provider, CTNHMaterials.ORICHALCOS.getUnlocalizedName(), "奥利哈刚");
+        replace(provider, CTNHMaterials.PHOTONIUM.getUnlocalizedName(), "         光子");
         replace(provider,CTNHMaterials.COLORFUL_GEM.getUnlocalizedName(), "异彩（无材质版）");
         replace(provider, CTNHMaterials.RhodiumSulfurCrystal.getUnlocalizedName(), "铑硫晶");
         replace(provider, CTNHMaterials.RutheniumAmalgam.getUnlocalizedName(), "钌汞齐");
