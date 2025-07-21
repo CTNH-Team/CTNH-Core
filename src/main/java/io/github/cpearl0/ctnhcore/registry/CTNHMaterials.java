@@ -585,8 +585,8 @@ public class CTNHMaterials {
             .color(0xFFD700).secondaryColor(0xC0C0C0)
             .iconSet(GEM_VERTICAL)
             .flags(GENERATE_LENS, PHOSPHORESCENT, NO_SMASHING)
-            .components(Rhodium, 1, Sulfur, 3)
-            .addOreByproducts(Sulfur, Rhodium, Pyrite)
+            .components(RhodiumSulfate, 1, Sulfur, 3)
+            .addOreByproducts(Sulfur, RhodiumSulfate, Pyrite)
             .buildAndRegister();
     public static final Material RutheniumAmalgam = new Material.Builder(GTCEu.id("ruthenium_amalgam"))
             .ingot().ore()
@@ -595,7 +595,7 @@ public class CTNHMaterials {
             .iconSet(SHINY)
             .flags(GENERATE_FOIL, GENERATE_FINE_WIRE, STICKY)
             .components(Ruthenium, 1, Mercury, 2)
-            .addOreByproducts(Mercury, Ruthenium, Cinnabar)
+            .addOreByproducts(Mercury, RutheniumTetroxide, Cinnabar)
             .buildAndRegister();
     public static final Material OsmiumIronSpinel = new Material.Builder(GTCEu.id("osmium_iron_spinel"))
             .gem().ore()
@@ -603,7 +603,7 @@ public class CTNHMaterials {
             .iconSet(DIAMOND)
             .flags(GENERATE_PLATE, GENERATE_ROD, CRYSTALLIZABLE)
             .components(Osmium, 1, Iron, 2, Oxygen, 4)
-            .addOreByproducts(Osmium, Iron, Cinnabar)
+            .addOreByproducts(RarestMetalMixture, Iron, Cinnabar)
             .buildAndRegister();
     public static final Material MeteoricTroilite = new Material.Builder(GTCEu.id("meteoric_troilite"))
             .ore()
