@@ -182,5 +182,7 @@ public class GTMaterialAddon {
         Tennessine.setProperty(PropertyKey.HAZARD, radioactive(1.5F));
         ReinforcedEpoxyResin.addFlags(GENERATE_ROD);
         Phosphorus.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+
+        RefineryGas.getProperty(PropertyKey.FLUID).getQueuedBuilder(FluidStorageKeys.GAS).density(-10).block();
     }
 }

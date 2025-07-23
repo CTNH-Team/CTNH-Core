@@ -86,7 +86,30 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.CombustibleIce.getUnlocalizedName(), "可燃冰");
         replace(provider, CTNHMaterials.Livingrock.getUnlocalizedName(), "活石");
         replace(provider, CTNHMaterials.icestone.getUnlocalizedName(), "冰石");
+        replace(provider, CTNHMaterials.AERIALITE.getUnlocalizedName(), "天空");
+        replace(provider, CTNHMaterials.SHADOWIUM.getUnlocalizedName(), "暗影");
+        replace(provider, CTNHMaterials.ORICHALCOS.getUnlocalizedName(), "奥利哈刚");
+        replace(provider, CTNHMaterials.PHOTONIUM.getUnlocalizedName(), "         光子");
         replace(provider,CTNHMaterials.COLORFUL_GEM.getUnlocalizedName(), "异彩（无材质版）");
+        replace(provider, CTNHMaterials.RhodiumSulfurCrystal.getUnlocalizedName(), "铑硫晶");
+        replace(provider, CTNHMaterials.RutheniumAmalgam.getUnlocalizedName(), "钌汞齐");
+        replace(provider, CTNHMaterials.OsmiumIronSpinel.getUnlocalizedName(), "锇铁尖晶石");
+        replace(provider, CTNHMaterials.MeteoricTroilite.getUnlocalizedName(), "陨硫铁镍");
+        replace(provider, CTNHMaterials.PalladiumSulfide.getUnlocalizedName(), "硫晶钯矿");
+        replace(provider, CTNHMaterials.SolarFlareBlackDiamond.getUnlocalizedName(), "太阳耀斑黑钻");
+        replace(provider, CTNHMaterials.Cerite.getUnlocalizedName(), "铈硅石");
+        replace(provider, CTNHMaterials.EuropiumFluorite.getUnlocalizedName(), "铕萤石");
+        replace(provider, CTNHMaterials.GadoliniteSm.getUnlocalizedName(), "钐硅铍钇");
+        replace(provider, CTNHMaterials.Sperrylite.getUnlocalizedName(), "砷铂");
+        replace(provider, CTNHMaterials.Wolframite.getUnlocalizedName(), "黑钨");
+        replace(provider, CTNHMaterials.Germanite.getUnlocalizedName(), "锗镓");
+        replace(provider, CTNHMaterials.Bismuthinite.getUnlocalizedName(), "辉铋");
+        replace(provider, CTNHMaterials.Yttrofluorite.getUnlocalizedName(), "钇萤石");
+        replace(provider, CTNHMaterials.Rheniite.getUnlocalizedName(), "辉铼");
+        replace(provider, CTNHMaterials.Tarkianite.getUnlocalizedName(), "铼钼");
+        replace(provider, CTNHMaterials.Crocoite.getUnlocalizedName(), "红铬铅");
+        replace(provider, CTNHMaterials.Roquesite.getUnlocalizedName(), "铜铟");
+        replace(provider, CTNHMaterials.Smithsonite.getUnlocalizedName(), "菱锌");
 
         replace(provider, NuclearMaterials.ThoriumHexafluoride.getUnlocalizedName(), "六氟化钍");
         replace(provider, NuclearMaterials.ProtactiniumHexafluoride.getUnlocalizedName(), "六氟化镤");
@@ -148,6 +171,7 @@ public class ChineseLangHandler {
         replace(provider, NuclearMaterials.ZirconiumAlloyUranium238.getUnlocalizedName(), "锆合金铀238");
         nuclearTranslation2(provider, GTMaterials.Plutonium239, "钚239");
         nuclearTranslation2(provider, GTMaterials.Plutonium241, "钚241");
+
 
         //Config
         provider.add("config.ctnhcore.option.ftbPlugin", "FTB相关");
@@ -1125,7 +1149,6 @@ public class ChineseLangHandler {
         provider.add(MultiblocksB.ZENITH_CIRCUIT_ASSEMBLER.getBlock(), "§5天顶电路组装机§r");
         provider.add(MultiblocksB.ZENITH_DISTILLATION_TOWER.getBlock(),"§5天顶聚焦蒸馏塔");
         provider.add(MultiblocksB.SCALABLE_RESERVOIR_COMPUTING.getBlock(), "§j突触凝练机");
-        provider.add(MultiblocksB.SEASON_REACTOR.getBlock(), "§b季节共振器");
         provider.add(MultiblocksB.SILICA_ROCK_FUEL_REFINERY.getBlock(),"硅岩燃料精炼厂");
         provider.add(MultiblocksB.ALTER.getBlock(), "§b工业血之祭坛");
         provider.add(MultiblocksB.EYE_OF_QUASAR.getBlock(), "§5类星体§r§1之§c眼");

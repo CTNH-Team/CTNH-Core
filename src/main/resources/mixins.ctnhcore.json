@@ -15,7 +15,6 @@
     "apotheosis.EarthsBoonEnchantMixin",
     "gtceu.GTItemMixin",
     "gtceu.GTMaterialMixin",
-    "gtceu.GTUtilMixin",
     "gtceu.TagPrefixMixin",
     "gtceu.WorkableElectricMultiblockMachineMixin",
     "jei.GTRecipeWidgetMixin",
