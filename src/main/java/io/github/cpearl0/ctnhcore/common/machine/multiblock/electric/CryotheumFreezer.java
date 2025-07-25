@@ -24,6 +24,7 @@ import com.lowdragmc.lowdraglib.gui.editor.ColorPattern;
 import com.lowdragmc.lowdraglib.gui.texture.*;
 import com.lowdragmc.lowdraglib.gui.widget.*;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
+import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import com.lowdragmc.lowdraglib.syncdata.managed.IManagedVar;
 import io.github.cpearl0.ctnhcore.common.gui.MachineModeFancyConfiguratorTest;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
@@ -46,7 +47,8 @@ public class CryotheumFreezer extends WorkableElectricMultiblockMachine implemen
     public CryotheumFreezer(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
     }
-
+    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
+            CryotheumFreezer.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     @Persisted
     public int a = 3;
     @Persisted public double speed_up=1.0;

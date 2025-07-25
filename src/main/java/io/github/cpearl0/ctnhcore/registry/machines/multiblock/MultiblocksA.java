@@ -925,8 +925,9 @@ public class MultiblocksA {
                     .where("E", Predicates.blocks(BotaniaBlocks.livingrockPolished)
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
                             .or(abilities(PartAbility.IMPORT_FLUIDS)))
-                    .where("F", Predicates.blocks(CASING_STEEL_GEARBOX.get()))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("F", Predicates.blocks(CASING_STEEL_GEARBOX.get()))
+
                     .build()
             )
             .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
