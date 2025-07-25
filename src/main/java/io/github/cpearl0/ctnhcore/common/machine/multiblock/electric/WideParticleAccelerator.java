@@ -19,6 +19,7 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
+import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import io.github.cpearl0.ctnhcore.common.gui.MachineModeFancyConfiguratorTest;
 import io.github.cpearl0.ctnhcore.common.gui.WPAAcceleratorGui;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.Arc_Generator;
@@ -103,6 +104,8 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
     {
         super(holder);
     }
+    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
+            WideParticleAccelerator.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     public DoubleSupplier get_nu = () ->(double)this.nu_speed/5000;
     public DoubleSupplier get_electric = () ->(double)this.electric_speed/5000;
     public DoubleSupplier get_proton = () ->(double)this.proton_speed/5000;
