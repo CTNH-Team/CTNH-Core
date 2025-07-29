@@ -1,25 +1,18 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
-import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
-import net.minecraft.data.recipes.FinishedRecipe;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ScalableReservoirComputingMachine;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 
-import java.util.function.Consumer;
-
-import static com.gregtechceu.gtceu.api.GTValues.*;
-import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.SCALABLE_RESERVOIR_COMPUTING;
+import static io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ScalableReservoirComputingMachine.recipes;
 
 public class ScalableReservoirComputingRecipes {
-    public static void init(Consumer<FinishedRecipe> provider){
-
-        SCALABLE_RESERVOIR_COMPUTING.recipeBuilder("player")
-                .duration(20)
-                .EUt(V[ZPM]*4)
-                .circuitMeta(1)
-                .addData("maxCWUt",512)
-                .addData("wetwareDuration",200)
-                .addData("sacrifice","minecraft:player")
-                .save(provider);
+    public static void init(){
+        register(EntityType.PLAYER,256,1000);
+        register(EntityType.SHEEP,128,500);
     }
-
+    @SuppressWarnings("SameParameterValue")
+    static void register(EntityType<? extends LivingEntity> entity, int computation, int duration){
+        recipes.put(entity, new ScalableReservoirComputingMachine.SacrificeValue(computation, duration));
+    }
 }

@@ -811,9 +811,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.compiler.10","如果运算失败，则定义噪声结果函数f(x1,x2,x3)=ax1+bx2+cx3+d+ϵ,根据噪声决定片区，噪声波动最多翻倍5倍，片区误差项为0.9-1.1间，则噪声变为0.5倍率");
         provider.add("ctnh.compiler.11","最终编译数据集将获得三个信息，信息1代表本次的方程，信息2代表噪声结果函数获得的结果值对于y的倍率，信息3代表误差项的比率");
         provider.add("ctnh.compiler.12","在执行相同配方时方程不会重置，在执行配方或者结构重新成型时，重置y和方程");
-        provider.add("ctnhcore.src.sacrifice_empty","无牺牲者");
-        provider.add("ctnhcore.src.sacrifice_locked","已锁定牺牲者！");
-        provider.add("ctnhcore.src.sacrifice_unlocked","无法锁定牺牲者");
+        provider.add("ctnhcore.src.sacrifice_locked","已锁定牺牲者: %s");
         provider.add("ctnhcore.src.wetware_duration", "湿件剩余存活时间: %s ticks");
         provider.add("ctnhcore.src.sacrifice", "牺牲者: %s");
         provider.add("ctnh.data.noise","当前噪声值：%s");
