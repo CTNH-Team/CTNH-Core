@@ -134,9 +134,9 @@ public class CTNHItems {
             .onRegister(attach(new MEAdvancedTerminalBehavior()))
 //            .model((ctx, prov) -> prov.generated(ctx))
             .onRegister(attach(new TooltipBehavior(list -> {
-                list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.1").withStyle(ChatFormatting.GRAY));
+                list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.1"));
                 list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.2").withStyle(ChatFormatting.GRAY));
-                list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.3").withStyle(ChatFormatting.GRAY));
+                //list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.3"));
             })))
             .register();
 
@@ -190,6 +190,10 @@ public class CTNHItems {
     public static ItemEntry<ConnectTerminalItem> PV_TERMINAL=REGISTRATE
             .item("pv_terminal",holder->new ConnectTerminalItem(holder))
             .lang("pv_terminal")
+            .register();
+    public static ItemEntry<MutiblockHelper> MutiBlockHelper=REGISTRATE
+            .item("mutiblock_helper",holder->new MutiblockHelper(holder))
+            .lang("mutiblock_helper")
             .register();
     public static ItemEntry<IDataItem> RESEARCH_DATASET=REGISTRATE
             .item("research_dataset",holder->new IDataItem(holder))

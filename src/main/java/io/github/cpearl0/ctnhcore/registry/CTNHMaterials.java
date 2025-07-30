@@ -432,6 +432,34 @@ public class CTNHMaterials {
             .iconSet(METALLIC)
             .cableProperties(GTValues.V[GTValues.EV], 6, 1, false)
             .buildAndRegister();
+    public static final Material AERIALITE = new Material.Builder(GTCEu.id("aerialite"))
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+            .ingot()
+            .color(0x4D66B3)
+            .iconSet(METALLIC)
+            .cableProperties(GTValues.V[HV], 6, 2, false)
+            .buildAndRegister();
+    public static final Material SHADOWIUM = new Material.Builder(GTCEu.id("shadowium"))
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+            .ingot()
+            .color(0x666666)
+            .iconSet(METALLIC)
+            .cableProperties(GTValues.V[HV], 6, 7, false)
+            .buildAndRegister();
+    public static final Material ORICHALCOS = new Material.Builder(GTCEu.id("orichalcos"))
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+            .ingot()
+            .color(0X8000FF)
+            .iconSet(METALLIC)
+            .cableProperties(GTValues.V[IV], 12, 1, false)
+            .buildAndRegister();
+    public static final Material PHOTONIUM = new Material.Builder(GTCEu.id("photonium"))
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+            .ingot()
+            .color(0XCCCCCC)
+            .iconSet(METALLIC)
+            .cableProperties(GTValues.V[HV], 6, 7, false)
+            .buildAndRegister();
 
     public static final Material Ignitium = new Material.Builder(GTCEu.id("ignitium"))
             .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)

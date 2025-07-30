@@ -22,5 +22,7 @@ public abstract class MobMixin extends LivingEntity {
             this.heal((float)(healValue * 0.5 * this.level().getDifficulty().getId()));
         }
 
+
+
     }
 }
