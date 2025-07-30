@@ -33,7 +33,7 @@ public class HellForgeMachine extends WorkableElectricMultiblockMachine {
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
         if(isFormed()) {
-            textList.add(Component.translatable("ctnh.gtceu.hellforge.will", String.format("%.1f",will)));
+            textList.add(Component.translatable("ctnh.multiblock.hellforge.info.will", String.format("%.1f",will)));
         }
     }
 

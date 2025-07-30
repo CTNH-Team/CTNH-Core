@@ -317,8 +317,8 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
                 } else {
                     textList.add(Component.translatable("gtceu.multiblock.turbine.rotor_durability", rotorDurability).setStyle(Style.EMPTY.withColor(ChatFormatting.RED)));
                 }
-                textList.add(Component.translatable("ctnh.manaturbine.efficiency",efficiency*100));
-                textList.add(Component.translatable("ctnh.manaturbine.consumption_rate",mana_consumption));
+                textList.add(Component.translatable("ctnh.multiblock.mana_turbine.info.efficiency",efficiency*100));
+                textList.add(Component.translatable("ctnh.multiblock.mana_turbine.info.consumption_rate",mana_consumption));
             }
         }
     }

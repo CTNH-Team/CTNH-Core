@@ -36,8 +36,8 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
         textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component
                 .translatable(FormattingUtil.formatNumbers(getCoilType().getCoilTemperature() + 100L * Math.max(0, getTier() - GTValues.MV)) + "K")
                 .setStyle(Style.EMPTY.withColor(ChatFormatting.RED))));
-        textList.add(textList.size(), Component.translatable("ctnh.fermenting_tank.growing_temperature", String.format("%.1f",Machine_Temperature)).setStyle(Style.EMPTY.withColor(ChatFormatting.GREEN)));
-        textList.add(textList.size(), Component.translatable("ctnh.fermenting_tank.growth_efficiency", String.format("%.1f", Efficiency * 100)));
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.fermenting_tank.info.growing_temperature", String.format("%.1f",Machine_Temperature)).setStyle(Style.EMPTY.withColor(ChatFormatting.GREEN)));
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.fermenting_tank.info.growth_efficiency", String.format("%.1f", Efficiency * 100)));
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe){
         if(machine instanceof FermentingTankMachine fmachine){

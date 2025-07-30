@@ -68,7 +68,7 @@ public class IndustrialPrimitiveBlastFurnaceMachine extends NoEnergyMachine {
     public void addDisplayText(List<Component> textList) {
         if (isFormed()) {
             textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(currentTemperature + "K").withStyle(ChatFormatting.RED)));
-            textList.add(Component.translatable("ctnh.industrial_primitive_blast_furnace.parallel_count", getParallelCount()));
+            textList.add(Component.translatable("ctnh.multiblock.industrial_primitive_blast_furnace.info.parallel_count", getParallelCount()));
         }
         super.addDisplayText(textList);
     }
