@@ -924,6 +924,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.slaughter_house.tooltips.4", "武器的伤害和附魔会减少配方运行的时间");
         provider.add("ctnh.slaughter_house.tooltips.5", "时运等附魔也能生效");
         provider.add("ritual.ctnh.chargerRitual", "充能仪式");
+        provider.add("ctnh.terminal.mutiblockhelper.tips","第一次右键选择第一个方块，第二次右键选择第二个方块，使用shift+右键启用多方块构建\nshift+右键后将清除原坐标\n选择的方块请按照：底部西北角出发，前往顶部东南角来选择不然无法输出完整结构");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");

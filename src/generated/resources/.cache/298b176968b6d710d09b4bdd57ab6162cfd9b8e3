@@ -1,3 +1,4 @@
+// 1.20.1	2025-07-25T16:33:45.7550105	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn), Lang (zh_cn)]
 9efa2dcaaaa0ee63297ded8b4093cd857e0f2a66 assets/ctnhcore/blockstates/abyssalalloy_coil_block.json
 2472318a4ef3d41e0f3a7bcd262b594486fb5028 assets/ctnhcore/blockstates/advanced_bio_reactor_casing.json
 7b02265b4325b6d5a42a23c8e7866adfc07bc0ae assets/ctnhcore/blockstates/advanced_hyper_casing.json
@@ -228,6 +229,7 @@ ec358c383981d29af5d3158a9c9b204d9d05fda5 assets/ctnhcore/models/item/hyper_plasm
 5e9471a4b0c0b80406c42e40dea8375b4db00c2a assets/ctnhcore/models/item/me_advanced_terminal.json
 619f146fbb5a84ddcc8e1887d8cbe331e8986356 assets/ctnhcore/models/item/modular_dyson_swarm_tier1.json
 1103a869ebc77e039f5c2cc051be9a9689dd8179 assets/ctnhcore/models/item/modular_dyson_swarm_tier2.json
+0b082cefc87ec02fb20cef7f1c62d0a2ced9ea90 assets/ctnhcore/models/item/mutiblock_helper.json
 47698d8c3abe098a18541f9d40e22c47e0efee58 assets/ctnhcore/models/item/naquadah_alloy_casing_block.json
 b348a74615004941f1a97de64f4e5fe3be44de69 assets/ctnhcore/models/item/naquadah_casing_block.json
 13f33dff2d7bd932ed29217569c7f76ec9b2f900 assets/ctnhcore/models/item/naquadah_gearbox.json
