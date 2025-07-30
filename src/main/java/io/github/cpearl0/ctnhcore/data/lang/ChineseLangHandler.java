@@ -327,9 +327,41 @@ public class ChineseLangHandler {
         provider.add("ctnh.test_terminal.success","一切正常！");
         provider.add("ctnh.testing_terminal.tooltip.1","用于检测多方块搭建时产生的错误");
         provider.add("ctnh.testing_terminal.tooltip.2","右键多方块的主方块以显示错误信息");
-        provider.add("ctnh.me_advanced_terminal.tooltip.1","可使用ME网络中的物品搭建多方块结构");
-        provider.add("ctnh.me_advanced_terminal.tooltip.2","通过ME无线访问点链接到网络");
-        provider.add("ctnh.me_advanced_terminal.tooltip.3","优先使用玩家物品栏中物品");
+        provider.add("ctnh.me_advanced_terminal.tooltip.1","§l格雷科技-多方块结构终端-异步成型模式");
+        provider.add("ctnh.me_advanced_terminal.tooltip.2","复刻了曾经的旗舰款，终端屏幕上闪烁着久违的画面");
+        provider.add("ctnh.me_advanced_terminal.tooltip.3","通过ME无线访问点链接到网络");
+
+//        "item.gtmthings.advanced_terminal": "§b高级终端",
+//                "item.gtmthings.advanced_terminal.setting.title": "高级终端设置",
+//                "item.gtmthings.advanced_terminal.setting.1": "线圈等级",
+//                "item.gtmthings.advanced_terminal.setting.1.tooltip": "设置优先自动放置的线圈等级。",
+//                "item.gtmthings.advanced_terminal.setting.2": "重复结构次数",
+//                "item.gtmthings.advanced_terminal.setting.2.tooltip": "用于设置可重复结构(蒸馏塔、装配线等)的重复部分放置次数",
+//                "item.gtmthings.advanced_terminal.setting.3": "无仓室模式",
+//                "item.gtmthings.advanced_terminal.setting.3.tooltip": "是否启用无仓室模式(0:不启用,1:启用)\n启用无仓室模式后不会在非唯一时放置各种仓室。",
+//                "item.gtmthings.advanced_terminal.setting.4": "线圈替换模式",
+//                "item.gtmthings.advanced_terminal.setting.4.tooltip": "是否启用线圈替换模式(0:不启用,1:启用)\n启用线圈替换模式会将所有线圈替换为线圈等级中指定的线圈。",
+
+        provider.add("item.ctnh.me_advanced_terminal.setting.title","多方块结构成型配置");
+        provider.add("item.ctnh.me_advanced_terminal.setting.1","线圈等级");
+        provider.add("item.ctnh.me_advanced_terminal.setting.1.tooltip","设置自动放置的线圈等级(0:不指定等级)\n设置后会忽略结构本身的要求");
+        provider.add("item.ctnh.me_advanced_terminal.setting.2","重复结构次数");
+        provider.add("item.ctnh.me_advanced_terminal.setting.2.tooltip","设置可重复结构(蒸馏塔、装配线等)的重复部分放置次数\n对超净间无效");
+        provider.add("item.ctnh.me_advanced_terminal.setting.3","无仓室模式");
+        provider.add("item.ctnh.me_advanced_terminal.setting.3.tooltip","是否启用无仓室模式(0:不启用,1:启用)\n启用无仓室模式后不会放置任何仓室");
+        provider.add("item.ctnh.me_advanced_terminal.setting.4","线圈替换模式");
+        provider.add("item.ctnh.me_advanced_terminal.setting.4.tooltip","是否启用线圈替换模式(0:不启用,1:启用)\n启用线圈替换模式会将所有线圈替换为指定等级的线圈\n请确保物品栏中有空间存放替换下来的线圈");
+        provider.add("item.ctnh.me_advanced_terminal.setting.5","使用AE存储");
+        provider.add("item.ctnh.me_advanced_terminal.setting.5.tooltip","是否启用AE库存(0:不启用,1:启用)\n启用后将优先在AE库存中检索\n通过ME无线访问点链接到网络");
+        provider.add("item.ctnh.me_advanced_terminal.setting.6","放置流体");
+        provider.add("item.ctnh.me_advanced_terminal.setting.6.tooltip","是否启用流体放置(0:不启用,1:启用)\n启用后将检索并消耗物品栏/背包流体容器中的或AE库存中的流体\n可堆叠的流体容器须保证堆叠数为1");
+        provider.add("item.ctnh.me_advanced_terminal.setting.7","在流体中放置");
+        provider.add("item.ctnh.me_advanced_terminal.setting.7.tooltip","是否在流体中放置方块(0:不启用,1:启用)\n启用后会将空间中的流体视为空位\n与“放置流体”同时启用时，不会在流体中放置流体");
+        provider.add("item.ctnh.me_advanced_terminal.setting.8","拆除模式");
+        provider.add("item.ctnh.me_advanced_terminal.setting.8.tooltip","是否启用拆除模式(0:不启用,1:启用)\n请确保物品栏中有空间存放拆除的方块\n与“使用AE存储”同时启用时，拆除的方块会自动存入AE存储");
+        provider.add("item.ctnh.me_advanced_terminal.setting.9","多方块成型配置");
+        provider.add("item.ctnh.me_advanced_terminal.setting.9.tooltip","多方块成型配置");
+
         provider.add("ctnh.simple_nutritious_meal.tooltip.1","能维持机体基本的生理功能");
         provider.add("item.ctnh.ecological_star.desc", "蕴含生态圈的所有精华");
         provider.add("item.sculk_cell.desc", "分化....");
@@ -950,7 +982,7 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.PROGRAM_ROCKET_CORE_1, "一阶火箭核心代码");
         provider.addItem(CTNHItems.PROGRAM_ROCKET_1, "一阶火箭控制代码");
         provider.addItem(CTNHItems.TESTING_TERMINAL, "检测终端");
-        provider.addItem(CTNHItems.ME_ADVANCED_TERMINAL, "ME高级终端");
+        provider.addItem(CTNHItems.ME_ADVANCED_TERMINAL, "GT-MBST-A v7.0.1");
         provider.addItem(CTNHItems.SIMPLE_NUTRITIOUS_MEAL, "简易营养餐");
         provider.addItem(CTNHItems.ECOLOGICAL_STAR, "生态之星");
         provider.addItem(CTNHItems.ANIMAL_EXCRETA, "动物排泄物");
