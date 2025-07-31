@@ -313,27 +313,23 @@ public class MultiblocksB {
             .recipeType(CTNHRecipeTypes.BEAMS)
             // .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
             .recipeModifiers(Nicoll_Dyson_Beams::recipeModifier)
-            .tooltips(Component.translatable("ctnh.beams.story0"),
-                    Component.translatable("ctnh.beams.story1"),
-                    Component.translatable("ctnh.beams.story2"),
-                    Component.translatable("ctnh.beams.tips12"),
-                    Component.translatable("ctnh.beams.tips1"),
-                    Component.translatable("ctnh.beams.tips13"),
-                    Component.translatable("ctnh.beams.tips2"),
-                    Component.translatable("ctnh.beams.tips3"),
-                    Component.translatable("ctnh.beams.tips4"),
-                    Component.translatable("ctnh.beams.tips5"),
-                    Component.translatable("ctnh.beams.tips6"),
-                    Component.translatable("ctnh.beams.tips8"),
-                    Component.translatable("ctnh.beams.tips9"),
-                    Component.translatable("ctnh.beams.tips7"),
-                    Component.translatable("ctnh.beams.tips10"),
-                    Component.translatable("ctnh.beams.tips11"),
-                    Component.translatable("ctnh.beams.tips11.1"),
-                    Component.translatable("ctnh.beams.tips13"),
-                    Component.translatable("ctnh.beams.tips14")
-
-
+            .tooltips(Component.translatable("ctnh.multiblock.nicoll_dyson_beams.tooltip.0"),
+                    Component.translatable("ctnh.multiblock.nicoll_dyson_beams.tooltip.1"),
+                    Component.translatable("ctnh.multiblock.nicoll_dyson_beams.tooltip.2"),
+                    Component.translatable("ctnh.multiblock.nicoll_dyson_beams.tooltip.3"),
+                    Component.translatable("ctnh.multiblock.nicoll_dyson_beams.tooltip.4"),
+                    Component.translatable("ctnh.multiblock.nicoll_dyson_beams.tooltip.5"),
+                    Component.translatable("ctnh.multiblock.nicoll_dyson_beams.tooltip.6"),
+                    Component.translatable("ctnh.multiblock.nicoll_dyson_beams.tooltip.7"),
+                    Component.translatable("ctnh.multiblock.nicoll_dyson_beams.tooltip.8"),
+                    Component.translatable("ctnh.multiblock.nicoll_dyson_beams.tooltip.9"),
+                    Component.translatable("ctnh.multiblock.nicoll_dyson_beams.tooltip.10"),
+                    Component.translatable("ctnh.multiblock.nicoll_dyson_beams.tooltip.11"),
+                    Component.translatable("ctnh.multiblock.nicoll_dyson_beams.tooltip.12"),
+                    Component.translatable("ctnh.multiblock.nicoll_dyson_beams.tooltip.13"),
+                    Component.translatable("ctnh.multiblock.nicoll_dyson_beams.tooltip.14"),
+                    Component.translatable("ctnh.multiblock.nicoll_dyson_beams.tooltip.15"),
+                    Component.translatable("ctnh.multiblock.nicoll_dyson_beams.tooltip.16")
             )
             .pattern(definition -> FactoryBlockPattern.start()
 
@@ -636,11 +632,10 @@ public class MultiblocksB {
             .recipeTypes(GTRecipeTypes.FUSION_RECIPES, CTNHRecipeTypes.TWISTED_FUSION)
             .recipeModifiers(TwistedFusionMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
             .workableCasingRenderer(CTNHCore.id("block/casings/twisted_fusion_casing"), GTCEu.id("block/multiblock/fusion_reactor"), false)
-            .tooltips(Component.translatable("ctnh.gtceu.tfmkinfinity.1"),
-                    Component.translatable("ctnh.gtceu.tfmkinfinity.1.1"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.0"),
-                    Component.translatable("ctnh.gtceu.tfmkinfinity.2"),
-                    Component.translatable("ctnh.gtceu.tfmkinfinity.3")
+            .tooltips(Component.translatable("ctnh.multiblock.twisted_fusion_mk_infinity.tooltip.0"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk_infinity.tooltip.1"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk_infinity.tooltip.2"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk_infinity.tooltip.3")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("###############", "###############", "###############", "######AAA######", "###############", "###############", "###############")
@@ -826,25 +821,23 @@ public class MultiblocksB {
                     .build())
             .workableCasingRenderer((GTCEu.id("block/casings/mechanic/machine_casing_assembly_control")), GTCEu.id("block/multiblock/fusion_reactor"), false)
             .register();
-    public final static MultiblockMachineDefinition WIDEPARTICLEACCELERATOR = REGISTRATE.multiblock("wideparticleaccelerator", WideParticleAccelerator::new)
+    public final static MultiblockMachineDefinition WIDE_PARTICLE_ACCELERATOR = REGISTRATE.multiblock("wide_particle_accelerator", WideParticleAccelerator::new)
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.ACCELERATOR_UP, CTNHRecipeTypes.ACCELERATOR_DOWN)
 
             .recipeModifiers(WideParticleAccelerator::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(Component.translatable("ctnh.wideaccelerator.1"),
-                    Component.translatable("ctnh.wideaccelerator.2"),
-                    Component.translatable("ctnh.wideaccelerator.3"),
-                    Component.translatable("ctnh.wideaccelerator.4"),
-                    Component.translatable("ctnh.wideaccelerator.control"),
-                    Component.translatable("ctnh.wideaccelerator.pa"),
-                    Component.translatable("ctnh.wideaccelerator.5"),
-                    Component.translatable("ctnh.wideaccelerator.6"),
-                    Component.translatable("ctnh.wideaccelerator.7"),
-                    Component.translatable("ctnh.wideaccelerator.8"),
-                    Component.translatable("ctnh.wideaccelerator.9"),
-                    Component.translatable("ctnh.wideaccelerator.10")
-
-
+            .tooltips(Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.0"),
+                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.1"),
+                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.2"),
+                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.3"),
+                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.4"),
+                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.5"),
+                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.6"),
+                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.7"),
+                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.8"),
+                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.9"),
+                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.10"),
+                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.11")
             )
 
             .pattern(definition -> FactoryBlockPattern.start()
@@ -898,8 +891,8 @@ public class MultiblocksB {
             .recipeType(CTNHRecipeTypes.MANAREACTOR)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH,
                     GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(Component.translatable("ctnh.manareactor.1"),
-                    Component.translatable("ctnh.manareactor.2")
+            .tooltips(Component.translatable("ctnh.multiblock.mana_reactor.tooltip.0"),
+                    Component.translatable("ctnh.multiblock.mana_reactor.tooltip.1")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAAAAAAAAAAAA", "###BB#######BB###", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################")
@@ -1358,9 +1351,9 @@ public class MultiblocksB {
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "BCCCB", "B###B", "B###B", "B###B", "BBBBB", "AAAAA")
-                    .aisle("AAAAA", "CDDDC", "#EEE#", "#EEE#", "#EEE#", "BF#FB", "AAAAA")
-                    .aisle("AAAAA", "CDDDC", "#EGE#", "#EGE#", "#EGE#", "B#H#B", "AAAAA")
-                    .aisle("AAAAA", "CDDDC", "#EEE#", "#EEE#", "#EEE#", "BF#FB", "AAAAA")
+                    .aisle("AAAAA", "CDDDC", "#EEE#", "#EEE#", "#####", "BF#FB", "AAAAA")
+                    .aisle("AAAAA", "CDDDC", "#EGE#", "#EGE#", "##G##", "B#H#B", "AAAAA")
+                    .aisle("AAAAA", "CDDDC", "#EEE#", "#EEE#", "#####", "BF#FB", "AAAAA")
                     .aisle("AA@AA", "BCCCB", "B###B", "B###B", "B###B", "BBBBB", "AAAAA")
                     .where("A", Predicates.blocks(AllBlocks.RAILWAY_CASING.get())
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
@@ -1369,7 +1362,6 @@ public class MultiblocksB {
                     .where("C", Predicates.blocks(AllBlocks.BRASS_CASING.get()))
                     .where("#", Predicates.any())
                     .where("D", Predicates.blocks(AllBlocks.BASIN.get()))
-                    .where("E", Predicates.blocks(VintageBlocks.CENTRIFUGE_STRUCTURAL.get()))
                     .where("F", Predicates.blocks(AllBlocks.BRASS_ENCASED_COGWHEEL.get()))
                     .where("G", Predicates.blocks(VintageBlocks.CENTRIFUGE.get()))
                     .where("H", Predicates.blocks(AllBlocks.BRASS_ENCASED_LARGE_COGWHEEL.get()))
@@ -2083,9 +2075,9 @@ public class MultiblocksB {
     public static final MultiblockMachineDefinition MANA_CONDENSER = REGISTRATE.multiblock("mana_condenser", ManaCondenserMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.MANA_CONDENSER_RECIPES)
-            .tooltips(Component.translatable("ctnh.multiblock.mana_condenser.tooltips.1").withStyle(ChatFormatting.GRAY),
-                    Component.translatable("ctnh.multiblock.mana_condenser.tooltips.2"),
-                    Component.translatable("ctnh.multiblock.mana_condenser.tooltips.3"))
+            .tooltips(Component.translatable("ctnh.multiblock.mana_condenser.tooltips.0").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.multiblock.mana_condenser.tooltips.1"),
+                    Component.translatable("ctnh.multiblock.mana_condenser.tooltips.2"))
             .recipeModifier(ManaCondenserMachine::recipeModifier)
             .appearanceBlock(CASING_TITANIUM_STABLE)
             .pattern(definition -> FactoryBlockPattern.start()

@@ -28,16 +28,16 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
             this.machine = cmachine;
     }
     public MutableComponent get_mode() {
-        return(Component.translatable("ctnh.wpa.power",(double)machine.store_energy/100000000,(double)machine.max_energy/100000000));
+        return(Component.translatable("ctnh.multiblock.wide_accelerator.info.power",(double)machine.store_energy/100000000,(double)machine.max_energy/100000000));
     }
     public MutableComponent target() {
-        return Component.translatable("ctnh.accelerator.electric_speed",machine.electric_speed);
+        return Component.translatable("ctnh.multiblock.wide_accelerator.info.electric_speed",machine.electric_speed);
     }
     public MutableComponent target2() {
-        return Component.translatable("ctnh.accelerator.nu_speed", machine.nu_speed);
+        return Component.translatable("ctnh.multiblock.wide_accelerator.info.nu_speed", machine.nu_speed);
     }
     public MutableComponent target3() {
-        return Component.translatable("ctnh.accelerator.proton_speed", machine.proton_speed);
+        return Component.translatable("ctnh.multiblock.wide_accelerator.info.proton_speed", machine.proton_speed);
     }
     public void change_electric(int add,boolean reverse)
     {
@@ -120,7 +120,7 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
         /// /        电子轨道逻辑/       ////
         /// //////////////////////////
         group.addWidget(new TextTextureWidget(10, 40, 40, 15)
-                .setText(Component.translatable("ctnh.wpa.wide.electric")));
+                .setText(Component.translatable("ctnh.multiblock.wide_accelerator.gui.electric")));
         var speed_progress=(new ProgressWidget(machine.get_electric, 50, 60, 100, 15, new ProgressTexture(CTNHGuiTextures.TEST_BAR,CTNHGuiTextures.TEST_BAR_FULL).setFillDirection(ProgressTexture.FillDirection.LEFT_TO_RIGHT)
         )
                 .setHoverTooltips(target())
@@ -174,7 +174,7 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
         /// //////////////////////////
         ///
         group.addWidget(new TextTextureWidget(10, 120-35, 40, 15)
-                .setText(Component.translatable("ctnh.wpa.wide.nu")));
+                .setText(Component.translatable("ctnh.multiblock.wide_accelerator.gui.nu")));
         var speed_progress2=(new ProgressWidget(machine.get_nu, 50, 120-10, 100, 15, new ProgressTexture(CTNHGuiTextures.TEST_BAR,CTNHGuiTextures.TEST_BAR_FULL).setFillDirection(ProgressTexture.FillDirection.LEFT_TO_RIGHT)
         )
                 .setHoverTooltips(target2())
@@ -225,7 +225,7 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
         /// /        原子轨道逻辑/       ////
         /// //////////////////////////
         group.addWidget(new TextTextureWidget(10, 140, 40, 15)
-                .setText(Component.translatable("ctnh.wpa.wide.proton")));
+                .setText(Component.translatable("ctnh.multiblock.wide_accelerator.gui.proton")));
         var speed_progress3=(new ProgressWidget(machine.get_proton, 50, 160, 100, 15, new ProgressTexture(CTNHGuiTextures.TEST_BAR,CTNHGuiTextures.TEST_BAR_FULL).setFillDirection(ProgressTexture.FillDirection.LEFT_TO_RIGHT)
         )
                 .setHoverTooltips(target3())
@@ -296,7 +296,7 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
     @Override
     public List<Component> getTabTooltips() {
         List<Component> tooltip = new ArrayList<>();
-        tooltip.add(Component.translatable("ctnh.wpagui.name"));
+        tooltip.add(Component.translatable("ctnh.multiblock.wide_accelerator.gui.name"));
         return tooltip;
     }
     @Override

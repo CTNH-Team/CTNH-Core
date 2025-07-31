@@ -54,7 +54,7 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING)
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.stress_output", String.format("%.1f", data.getFloat("output_stress"))));
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_output", String.format("%.1f", data.getFloat("output_stress"))));
 
     public static final  GTRecipeType FERMENTING = GTRecipeTypes.register("fermenting", "multiblock")
             .setEUIO(IO.IN)
@@ -127,7 +127,7 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.BATH)
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.stress_input", String.format("%.1f",data.getFloat("input_stress"))));
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f",data.getFloat("input_stress"))));
     public static final GTRecipeType MANA_GENERATOR = GTRecipeTypes.register("mana_generator",GENERATOR)
             .setEUIO(IO.OUT)
             .setMaxIOSize(2, 1, 2, 2)
