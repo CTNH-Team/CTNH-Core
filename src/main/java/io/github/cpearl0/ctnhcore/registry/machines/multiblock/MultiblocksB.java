@@ -14,7 +14,6 @@ import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderHelper;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.AssemblyLineMachine;
-import com.gregtechceu.gtceu.common.machine.multiblock.electric.FluidDrillMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.LargeMinerMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.generator.LargeTurbineMachine;
 import com.gregtechceu.gtceu.common.registry.GTRegistration;
@@ -24,6 +23,7 @@ import com.mo_guang.ctpp.CTPP;
 import com.mo_guang.ctpp.api.CTPPPartAbility;
 import com.mo_guang.ctpp.common.data.CTPPRecipeModifiers;
 import com.mo_guang.ctpp.common.machine.multiblock.KineticWorkableMultiblockMachine;
+import com.mo_guang.ctpp.util.CommonTooltips;
 import com.negodya1.vintageimprovements.VintageBlocks;
 import com.simibubi.create.AllBlocks;
 import fr.lucreeper74.createmetallurgy.registries.CMBlocks;
@@ -45,6 +45,7 @@ import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -79,15 +80,8 @@ public class MultiblocksB {
             .recipeTypes(GTRecipeTypes.CIRCUIT_ASSEMBLER_RECIPES, CTNHRecipeTypes.RESONANT_MAGICAL_ASSEMBLY)
             .appearanceBlock(CTNHBlocks.ZENITH_CASING_BLOCK)
             .recipeModifiers(ZenithMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(Component.translatable("ctnh.zenith_circut_assember"),
-                    Component.translatable("zenith_machine").withStyle(ChatFormatting.DARK_PURPLE),
-                    Component.translatable("ctnh.super_mana_machine.mana_consume"),
-                    Component.translatable("ctnh.zenith_circut_assember_sp"),
-                    Component.translatable("ctnh.zenith_machine_tip"),
-                    Component.translatable("ctnh.zenith_waring"),
-                    Component.translatable("ctnh.perfect_overclock"),
-                    Component.translatable("ctnh.mana.waring"),
-                    Component.translatable("ctnh.manamachine.parallel"))
+            .tooltips(Component.translatable("ctnh.multiblock.zenith_circuit_assember.tooltip.0"))
+            .tooltips(CTNHCommonTooltips.ZENITH_MACHINE)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("####PPP####", "####PHP####", "####PPP####", "###########")
                     .aisle("###B#C#B###", "###D###D###", "###D###D###", "####BEB####")
@@ -122,14 +116,7 @@ public class MultiblocksB {
             .recipeTypes(GTRecipeTypes.DISTILLATION_RECIPES)
             .appearanceBlock(CTNHBlocks.ZENITH_CASING_BLOCK)
             .recipeModifiers(ZenithMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(Component.translatable("ctnh.zenith_tower"),
-                    Component.translatable("zenith_machine").withStyle(ChatFormatting.DARK_PURPLE),
-                    Component.translatable("ctnh.super_mana_machine.mana_consume"),
-                    Component.translatable("ctnh.zenith_machine_tip"),
-                    Component.translatable("ctnh.zenith_waring"),
-                    Component.translatable("ctnh.perfect_overclock"),
-                    Component.translatable("ctnh.mana.waring"),
-                    Component.translatable("ctnh.manamachine.parallel"))
+            .tooltips(CTNHCommonTooltips.ZENITH_MACHINE)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "BBBBB", "BBEBB", "BEEEB", "BEEEB", "BEEEB", "BDDDB")
                     .aisle("#PPP#", "#PPP#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "BDDDB", "B###B", "E###E", "E###E", "E###E", "DEEED")
@@ -214,15 +201,15 @@ public class MultiblocksB {
                     .build())
             .workableCasingModel((CTNHCore.id("block/casings/nq_casing")), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
-    public static MultiblockMachineDefinition ALTER = REGISTRATE.multiblock("alter", AlterLogic::new)
+    public static MultiblockMachineDefinition INDUSTRIAL_ALTAR = REGISTRATE.multiblock("industrial_altar", IndustrialAltarMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(CTNHRecipeTypes.ALTER)
-            // .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
-            .recipeModifiers(AlterLogic::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(Component.translatable("ctnh.alter.tips1"),
-                    Component.translatable("ctnh.alter.tips2"),
-                    Component.translatable("ctnh.alter.tips3"),
-                    Component.translatable("ctnh.alter.tips4"))
+            .recipeType(CTNHRecipeTypes.INDUSTRIAL_ALTAR_RECIPES)
+            .appearanceBlock(() -> BloodMagicBlocks.BLANK_RUNE.get())
+            .recipeModifiers(IndustrialAltarMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.multiblock.industrial_altar.tooltip.0"),
+                    Component.translatable("ctnh.multiblock.industrial_altar.tooltip.1"),
+                    Component.translatable("ctnh.multiblock.industrial_altar.tooltip.2"),
+                    Component.translatable("ctnh.multiblock.industrial_altar.tooltip.3"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAA", "B#####B", "B#####B", "B#####B", "C#####C", "OEEEEEO", "#######", "#######", "#######")
                     .aisle("A#####A", "#ACCCA#", "#######", "#######", "#######", "E#####E", "##EEE##", "#######", "#######")
@@ -255,21 +242,18 @@ public class MultiblocksB {
             .recipeTypes(CTNHRecipeTypes.QUASAR_EYE,CTNHRecipeTypes.QUASAR_CREATE)
             .generator(true)
             .recipeModifier(Quasar_Eye::recipeModifier, true)
-            .tooltips(Component.translatable("ctnh.quarsar.tips1"),
-                    Component.translatable("ctnh.quarsar.tips2"),
-                    Component.translatable("ctnh.quarsar.tips6"),
-                    Component.translatable("ctnh.quarsar.tips3"),
-                    Component.translatable("ctnh.quarsar.tips7"),
-                    Component.translatable("ctnh.quarsar.tips4"),
-                    Component.translatable("ctnh.quarsar.tips8"),
-                    Component.translatable("ctnh.quarsar.tips9"),
-                    Component.translatable("ctnh.quarsar.tips10"),
-                    Component.translatable("ctnh.quarsar.tips11"),
-                    Component.translatable("ctnh.quasar.tip.4"),
-                    Component.translatable("ctnh.quasar.tip.5"),
-                    Component.translatable("ctnh.quarsar.tips5")
-
-
+            .tooltips(Component.translatable("ctnh.multiblock.quasar_eye.tooltip.0"),
+                    Component.translatable("ctnh.multiblock.quasar_eye.tooltip.1"),
+                    Component.translatable("ctnh.multiblock.quasar_eye.tooltip.2"),
+                    Component.translatable("ctnh.multiblock.quasar_eye.tooltip.3"),
+                    Component.translatable("ctnh.multiblock.quasar_eye.tooltip.4"),
+                    Component.translatable("ctnh.multiblock.quasar_eye.tooltip.5"),
+                    Component.translatable("ctnh.multiblock.quasar_eye.tooltip.6"),
+                    Component.translatable("ctnh.multiblock.quasar_eye.tooltip.7"),
+                    Component.translatable("ctnh.multiblock.quasar_eye.tooltip.8"),
+                    Component.translatable("ctnh.multiblock.quasar_eye.tooltip.9"),
+                    Component.translatable("ctnh.multiblock.quasar_eye.tooltip.10"),
+                    Component.translatable("ctnh.multiblock.quasar_eye.tooltip.11")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################")
@@ -440,15 +424,14 @@ public class MultiblocksB {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.DIGITAL_WELL_OF_SUFFER)
             .recipeModifier(EternalWosMachine::recipeModifier)
-            .tooltips(Component.translatable("ctnh.gtceu:eternal_well_of_suffer.0"),
-                    Component.translatable("ctnh.gtceu:eternal_well_of_suffer.1"),
-                    Component.translatable("ctnh.gtceu:eternal_well_of_suffer.2"),
-                    Component.translatable("ctnh.gtceu:eternal_well_of_suffer.3"),
-                    Component.translatable("ctnh.gtceu:eternal_well_of_suffer.4"),
-                    Component.translatable("ctnh.gtceu:eternal_well_of_suffer.5"),
-                    Component.translatable("ctnh.gtceu:eternal_well_of_suffer.6"),
-                    Component.translatable("ctnh.gtceu:eternal_well_of_suffer.7"),
-                    Component.translatable("ctnh.gtceu:eternal_well_of_suffer.8"))
+            .tooltips(Component.translatable("ctnh.multiblock.eternal_well_of_suffer.tooltip.0"),
+                    Component.translatable("ctnh.multiblock.eternal_well_of_suffer.tooltip.1"),
+                    Component.translatable("ctnh.multiblock.eternal_well_of_suffer.tooltip.2"),
+                    Component.translatable("ctnh.multiblock.eternal_well_of_suffer.tooltip.3"),
+                    Component.translatable("ctnh.multiblock.eternal_well_of_suffer.tooltip.4"),
+                    Component.translatable("ctnh.multiblock.eternal_well_of_suffer.tooltip.5"),
+                    Component.translatable("ctnh.multiblock.eternal_well_of_suffer.tooltip.6"),
+                    Component.translatable("ctnh.multiblock.eternal_well_of_suffer.tooltip.7"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#########", "#########", "#########", "#########", "#########", "####A####", "####A####", "####A####", "####A####", "####A####", "####A####", "####A####", "####A####", "###AAA###", "#########", "#########")
                     .aisle("#########", "#########", "##B#B#B##", "#ABABABA#", "#ABABABA#", "#A#BBB#A#", "#A#CCC#A#", "#A#DDD#A#", "#A#DDD#A#", "#A#####A#", "#A#####A#", "#A#####A#", "#A#####A#", "#AA###AA#", "###AAA###", "#########")
@@ -475,15 +458,13 @@ public class MultiblocksB {
     public static MultiblockMachineDefinition HELLFORGE = REGISTRATE.multiblock("hellforge", HellForgeMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.HELLFORGE)
-
-            .tooltips(Component.translatable("ctnh.gtceu:hellforge.0"),
-                    Component.translatable("ctnh.gtceu:hellforge.1"),
-                    Component.translatable("ctnh.gtceu:hellforge.2"),
-                    Component.translatable("ctnh.gtceu:hellforge.3"),
-                    Component.translatable("ctnh.gtceu:hellforge.4"),
-                    Component.translatable("ctnh.gtceu:hellforge.5"),
-                    Component.translatable("ctnh.gtceu:hellforge.6"),
-                    Component.translatable("ctnh.gtceu:hellforge.7"))
+            .tooltips(Component.translatable("ctnh.multiblock.hellforge.tooltip.0"),
+                    Component.translatable("ctnh.multiblock.hellforge.tooltip.1"),
+                    Component.translatable("ctnh.multiblock.hellforge.tooltip.2"),
+                    Component.translatable("ctnh.multiblock.hellforge.tooltip.3"),
+                    Component.translatable("ctnh.multiblock.hellforge.tooltip.4"),
+                    Component.translatable("ctnh.multiblock.hellforge.tooltip.5"),
+                    Component.translatable("ctnh.multiblock.hellforge.tooltip.6"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAA", "B#####B", "B#####B", "B#####B", "B#####B", "B#####B", "B#####B", "B#####B", "AAAAAAA", "AAAAAAA", "A#A#A#A")
                     .aisle("AAAAAAA", "#A###A#", "#A###A#", "#A###A#", "#A###A#", "#A###A#", "#A###A#", "#A###A#", "AAAAAAA", "A#####A", "#######")
@@ -509,16 +490,15 @@ public class MultiblocksB {
             .recipeTypes(GTRecipeTypes.FUSION_RECIPES, CTNHRecipeTypes.TWISTED_FUSION)
             .recipeModifiers(TwistedFusionMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
             .workableCasingModel(CTNHCore.id("block/casings/twisted_fusion_casing"), GTCEu.id("block/multiblock/fusion_reactor"))
-            .tooltips(Component.translatable("ctnh.gtceu:twisted_fusion_mk1.0"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.1"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.2"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.3"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.4"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.5"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.6"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.7"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.8"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.9"))
+            .tooltips(Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.0"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.1"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.2"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.3"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.4"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.5"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.6"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.7"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.8"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("###############", "###############", "###############", "######AAA######", "###############", "###############", "###############")
                     .aisle("###############", "###############", "######AAA######", "####AA###AA####", "######AAA######", "###############", "###############")
@@ -748,10 +728,10 @@ public class MultiblocksB {
             .recipeType(CTNHRecipeTypes.NANO_GENERATOR)
             .generator(true)
             .recipeModifier(NanoscaleTriboelectricGenerator::recipeModifier, true)
-            .tooltips(Component.translatable("ctnh.nano.1"),
-                    Component.translatable("ctnh.nano.2"),
-                    Component.translatable("ctnh.nano.3"),
-                    Component.translatable("ctnh.nano.4")
+            .tooltips(Component.translatable("ctnh.multiblock.nano_generator.tooltip.0"),
+                    Component.translatable("ctnh.multiblock.nano_generator.tooltip.1"),
+                    Component.translatable("ctnh.multiblock.nano_generator.tooltip.2"),
+                    Component.translatable("ctnh.multiblock.nano_generator.tooltip.3")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("###B###", "###C###", "###C###", "###C###", "###C###", "###C###", "###D###", "###D###", "###D###", "###D###", "###E###", "###F###", "###F###", "###D###")
@@ -787,13 +767,13 @@ public class MultiblocksB {
             .recipeTypes(CTNHRecipeTypes.WOOD_BIONICS)
             .appearanceBlock(CTNHBlocks.NATURAL_ECOLOGICAL_SHELL_CASING)
             .recipeModifiers(ForestMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
-            .tooltips(Component.translatable("ctnh.forest.1").withStyle(ChatFormatting.GRAY),
-                    Component.translatable("ctnh.forest.2"),
-                    Component.translatable("ctnh.forest.3"),
-                    Component.translatable("ctnh.forest.4"),
-                    Component.translatable("ctnh.forest.5"),
-                    Component.translatable("ctnh.forest.6"),
-                    Component.translatable("ctnh.forest.7"))
+            .tooltips(Component.translatable("ctnh.multiblock.forest_sea.tooltip.1").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.multiblock.forest_sea.tooltip.2"),
+                    Component.translatable("ctnh.multiblock.forest_sea.tooltip.3"),
+                    Component.translatable("ctnh.multiblock.forest_sea.tooltip.4"),
+                    Component.translatable("ctnh.multiblock.forest_sea.tooltip.5"),
+                    Component.translatable("ctnh.multiblock.forest_sea.tooltip.6"),
+                    Component.translatable("ctnh.multiblock.forest_sea.tooltip.7"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAA", "AAA", "AAA")
                     .aisle("AAA", "A#A", "AAA")
@@ -810,17 +790,16 @@ public class MultiblocksB {
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.SINOPE, GTRecipeTypes.CRACKING_RECIPES)
             .recipeModifiers(Sinope_Chemical::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(Component.translatable("ctnh.sinope.1"),
-                    Component.translatable("ctnh.sinope.2"),
-                    Component.translatable("ctnh.sinope.3"),
-                    Component.translatable("ctnh.sinope.4"),
-                    Component.translatable("ctnh.sinope.4.1"),
-                    Component.translatable("ctnh.sinope.4.2"),
-                    Component.translatable("ctnh.sinope.4.3"),
-                    Component.translatable("ctnh.sinope.5"),
-                    Component.translatable("ctnh.sinope.5.1"),
-                    Component.translatable("ctnh.sinope.6"))
-
+            .tooltips(Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.0"),
+                    Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.1"),
+                    Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.2"),
+                    Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.3"),
+                    Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.4"),
+                    Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.5"),
+                    Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.6"),
+                    Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.7"),
+                    Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.8"),
+                    Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.9"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAAAA", "A#######A", "A#######A", "A#######A", "A#######A", "A#######A", "A#######A", "A#######A", "AAAAAAAAA")
                     .aisle("AAAAAAAAA", "#BBBBBBB#", "#########", "#########", "#########", "#########", "#########", "#BBBBBBB#", "AAAAAAAAA")
@@ -1325,8 +1304,7 @@ public class MultiblocksB {
             .recipeType(CreateRecipeTypes.MECHANICAL_PRESSOR_RECIPES)
             .appearanceBlock(() -> AllBlocks.RAILWAY_CASING.get())
             .recipeModifier(CTPPRecipeModifiers.KINETIC_OVERCLOCK)
-            .tooltips(Component.translatable("kinetic_overclock"),
-                    Component.translatable("actual_speed").withStyle(ChatFormatting.YELLOW))
+            .tooltips(CommonTooltips.KINETIC_OVERCLOCK)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "BCCCB", "B###B", "BBBBB", "B###B", "BCCCB", "AAAAA")
                     .aisle("AAAAA", "CDDDC", "#####", "B###B", "#####", "CEEEC", "AAAAA")
@@ -1351,8 +1329,7 @@ public class MultiblocksB {
             .recipeType(CreateRecipeTypes.MECHANICAL_MIXER_RECIPES)
             .appearanceBlock(() -> AllBlocks.RAILWAY_CASING.get())
             .recipeModifier(CTPPRecipeModifiers.KINETIC_OVERCLOCK)
-            .tooltips(Component.translatable("kinetic_overclock"),
-                    Component.translatable("actual_speed").withStyle(ChatFormatting.YELLOW))
+            .tooltips(CommonTooltips.KINETIC_OVERCLOCK)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "BCCCB", "BDDDB", "B###B", "B###B", "BDDDB", "AAAAA")
                     .aisle("AAAAA", "CEEEC", "DFFFD", "#####", "#####", "DGGGD", "AAAAA")
@@ -1379,8 +1356,7 @@ public class MultiblocksB {
             .recipeType(CreateRecipeTypes.MECHANICAL_CENTRIFUGE_RECIPES)
             .appearanceBlock(() -> AllBlocks.RAILWAY_CASING.get())
             .recipeModifier(CTPPRecipeModifiers.KINETIC_OVERCLOCK)
-            .tooltips(Component.translatable("kinetic_overclock"),
-                    Component.translatable("actual_speed").withStyle(ChatFormatting.YELLOW))
+            .tooltips(CommonTooltips.KINETIC_OVERCLOCK)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "BCCCB", "B###B", "B###B", "B###B", "BBBBB", "AAAAA")
                     .aisle("AAAAA", "CDDDC", "#EEE#", "#EEE#", "#EEE#", "BF#FB", "AAAAA")
@@ -1408,8 +1384,7 @@ public class MultiblocksB {
             .recipeType(CreateRecipeTypes.MECHANICAL_SIFTER_RECIPES)
             .appearanceBlock(() -> AllBlocks.RAILWAY_CASING.get())
             .recipeModifier(CTPPRecipeModifiers.KINETIC_OVERCLOCK)
-            .tooltips(Component.translatable("kinetic_overclock"),
-                    Component.translatable("actual_speed").withStyle(ChatFormatting.YELLOW))
+            .tooltips(CommonTooltips.KINETIC_OVERCLOCK)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "BCCCB", "B###B", "AAAAA", "B###B", "BCCCB", "AAAAA")
                     .aisle("AAAAA", "CDDDC", "#EEE#", "ADDDA", "#####", "CFFFC", "AAAAA")
@@ -1435,8 +1410,7 @@ public class MultiblocksB {
             .recipeType(CreateRecipeTypes.MECHANICAL_EXTRACTOR_RECIPES)
             .appearanceBlock(() -> AllBlocks.RAILWAY_CASING.get())
             .recipeModifier(CTPPRecipeModifiers.KINETIC_OVERCLOCK)
-            .tooltips(Component.translatable("kinetic_overclock"),
-                    Component.translatable("actual_speed").withStyle(ChatFormatting.YELLOW))
+            .tooltips(CommonTooltips.KINETIC_OVERCLOCK)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "BCCCB", "BDDDB", "B###B", "B###B", "BDDDB", "AAAAA")
                     .aisle("AAAAA", "CEEEC", "DFFFD", "#GGG#", "#HHH#", "DIIID", "AAAAA")
@@ -1453,7 +1427,7 @@ public class MultiblocksB {
                     .where("E", Predicates.blocks(AllBlocks.BLAZE_BURNER.get()))
                     .where("F", Predicates.blocks(CMBlocks.FOUNDRY_BASIN_BLOCK.get()))
                     .where("G", Predicates.blocks(AllBlocks.COPPER_CASING.get()))
-                    .where("H", Predicates.blocks(CMBlocks.GLASSED_FOUNDRY_LID_BLOCK.get()))
+                    .where("H", Predicates.blocks(CMBlocks.FOUNDRY_LID_BLOCK.get()))
                     .where("I", Predicates.blocks(CMBlocks.FOUNDRY_MIXER_BLOCK.get()))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
@@ -1465,9 +1439,8 @@ public class MultiblocksB {
             .recipeType(CreateRecipeTypes.MECHANICAL_LATHE_RECIPES)
             .appearanceBlock(() -> AllBlocks.RAILWAY_CASING.get())
             .recipeModifier(CTPPRecipeModifiers.KINETIC_OVERCLOCK)
-            .tooltips(Component.translatable("kinetic_overclock"),
-                    Component.translatable("actual_speed").withStyle(ChatFormatting.YELLOW),
-                    Component.translatable("ctnh.mechanical_lathe.structure"))
+            .tooltips(CommonTooltips.KINETIC_OVERCLOCK)
+            .tooltips(Component.translatable("ctnh.mechanical_lathe.structure"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAAA", "AAAAAAAB", "AAACCCCB", "BBBBBBBB", "B######B", "BDDDDDDB", "AAAAAAAA")
                     .aisle("AAAAAAAA", "A#AEFFEA", "ADAGGGGC", "B######B", "########", "D######D", "AAAAAAAA")
@@ -1494,8 +1467,7 @@ public class MultiblocksB {
             .recipeType(CreateRecipeTypes.MECHANICAL_LASER_RECIPES)
             .appearanceBlock(() -> AllBlocks.RAILWAY_CASING.get())
             .recipeModifier(CTPPRecipeModifiers.KINETIC_OVERCLOCK)
-            .tooltips(Component.translatable("kinetic_overclock"),
-                    Component.translatable("actual_speed").withStyle(ChatFormatting.YELLOW))
+            .tooltips(CommonTooltips.KINETIC_OVERCLOCK)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "BCCCB", "B###B", "B###B", "B###B", "BCCCB", "AAAAA")
                     .aisle("AAAAA", "CDDDC", "#EEE#", "#EEE#", "#EEE#", "CFFFC", "AAAAA")

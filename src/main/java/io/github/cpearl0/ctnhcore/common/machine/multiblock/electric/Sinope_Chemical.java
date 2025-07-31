@@ -77,8 +77,8 @@ public  int machine_tier=0;
         super.addDisplayText(textList);
         var tier = getTier();
 
-        textList.add(textList.size(), Component.translatable("ctnh.sinope.level",String.format("%d",machine_tier*2)));
-        textList.add(textList.size(), Component.translatable("ctnh.sinope.parallel",String.format("%d",parallel)));
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.sinope_chemical.info.level",String.format("%d",machine_tier*2)));
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.sinope_chemical.info.parallel",String.format("%d",parallel)));
     }
 
 }

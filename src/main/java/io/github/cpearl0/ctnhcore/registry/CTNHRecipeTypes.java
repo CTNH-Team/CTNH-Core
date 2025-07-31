@@ -308,7 +308,7 @@ public class CTNHRecipeTypes {
                         group.getSize().height - 30, false, false));
             })
             .addDataInfo(data -> LocalizationUtils.format("ctpp.stress_output",String.format("%.1f",data.getFloat("stress"))));
-    public static final GTRecipeType ALTER = GTRecipeTypes.register("alter", ELECTRIC)
+    public static final GTRecipeType INDUSTRIAL_ALTAR_RECIPES = GTRecipeTypes.register("industrial_altar", ELECTRIC)
             .setEUIO(IO.IN)
             .setMaxIOSize(4, 4, 2, 2)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
@@ -319,16 +319,16 @@ public class CTNHRecipeTypes {
                 group.addWidget(new com.gregtechceu.gtceu.api.gui.widget.SlotWidget(handler, 0, group.getSize().width - 30,
                         group.getSize().height - 30, false, false));
             })
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.lp_consumption",String.format("%.1f",data.getFloat("addlp"))));
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.industrial_altar.info.0",String.format("%.1f",data.getFloat("addlp"))));
     public static final GTRecipeType QUASAR_EYE = GTRecipeTypes.register("quasar_eye", GTRecipeTypes.ELECTRIC)
             .setEUIO(IO.OUT)
             .setMaxIOSize(1, 0, 2, 1)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.TURBINE)
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.eye_consumption",String.format("%.1f",data.getFloat("consumption"))))
-      .addDataInfo(data -> LocalizationUtils.format("ctnh.quasar.tip.1",String.format("%d",data.getInt("tier"))))
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.quasar.tip.2",String.format("%d",data.getInt("active"))));
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.quasar_eye.info.0",String.format("%.1f",data.getFloat("consumption"))))
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.quasar_eye.info.1",String.format("%d",data.getInt("tier"))))
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.quasar_eye.info.2",String.format("%d",data.getInt("active"))));
     public static final GTRecipeType DIGITAL_WELL_OF_SUFFER = GTRecipeTypes.register("digital_well_of_suffer", ELECTRIC)
             .setEUIO(IO.IN)
             .setMaxIOSize(1,0,0,1)
@@ -339,8 +339,8 @@ public class CTNHRecipeTypes {
             .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.TURBINE)
-            .addDataInfo(data -> Component.translatable("ctnh.gtceu.hellforge.minimumdrain",data.getInt("minimumDrain")).getString())
-            .addDataInfo(data -> Component.translatable("ctnh.gtceu.hellforge.drain",data.getInt("drain")).getString());
+            .addDataInfo(data -> Component.translatable("ctnh.recipe.hellforge.info.minimum_drain",data.getInt("minimumDrain")).getString())
+            .addDataInfo(data -> Component.translatable("ctnh.recipe.hellforge.info.drain",data.getInt("drain")).getString());
     public static final GTRecipeType BEAMS = GTRecipeTypes.register("beams", GTRecipeTypes.ELECTRIC)
             .setEUIO(IO.IN)
             .setMaxIOSize(9, 2, 1, 2)

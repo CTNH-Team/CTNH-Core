@@ -89,14 +89,14 @@ public class UnderfloorHeatingMachine extends WorkableMultiblockMachine implemen
                 textList.add(Component.translatable("gtceu.multiblock.waiting")
                         .setStyle(Style.EMPTY.withColor(ChatFormatting.RED)));
             }
-            textList.add(Component.translatable("ctnh.multiblock.underfloor_heating_system.steam_consumption", String.format("%.1f", steam_consumption_default * rate / 100)));
-            var rateText = Component.translatable("ctnh.multiblock.underfloor_heating_system.rate",
+            textList.add(Component.translatable("ctnh.multiblock.underfloor_heating_system.info.steam_consumption", String.format("%.1f", steam_consumption_default * rate / 100)));
+            var rateText = Component.translatable("ctnh.multiblock.underfloor_heating_system.info.rate",
                             ChatFormatting.AQUA.toString() + getRate() + "%")
                     .withStyle(Style.EMPTY.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-                            Component.translatable("ctnh.multiblock.underfloor_heating_system.rate.tooltip"))));
+                            Component.translatable("ctnh.multiblock.underfloor_heating_system.info.rate.tooltip"))));
             textList.add(rateText);
 
-            var buttonText = Component.translatable("ctnh.multiblock.underfloor_heating_system.rate_modify");
+            var buttonText = Component.translatable("ctnh.multiblock.underfloor_heating_system.info.rate_modify");
             buttonText.append(" ");
             buttonText.append(ComponentPanelWidget.withButton(Component.literal("[-]"), "sub"));
             buttonText.append(" ");
@@ -106,7 +106,7 @@ public class UnderfloorHeatingMachine extends WorkableMultiblockMachine implemen
             if (efficiency == 0) {
                 efficiency = getEfficiency();
             }
-            textList.add(Component.translatable("ctnh.multiblock.underfloor_heating_system.efficiency", String.format("%.1f", efficiency * 100)));
+            textList.add(Component.translatable("ctnh.multiblock.underfloor_heating_system.info.efficiency", String.format("%.1f", efficiency * 100)));
         }
     }
 
