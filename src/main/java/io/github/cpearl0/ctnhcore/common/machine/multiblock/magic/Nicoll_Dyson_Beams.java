@@ -228,21 +228,21 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
     public void addDisplayText(List<Component> textList) {
         if(overload>0&&overload<overload_crash/2)
         {
-            textList.add(Component.translatable("ctnh.beams_overload"));
-            textList.add(Component.translatable("ctnh.beams_overload_1", FormattingUtil.formatNumbers(overload), overload_crash));
+            textList.add(Component.translatable("ctnh.multiblock.nicoll_dyson_beams.info.overload"));
+            textList.add(Component.translatable("ctnh.multiblock.nicoll_dyson_beams.info.overload_1", FormattingUtil.formatNumbers(overload), overload_crash));
         }
         if(overload_crash/2<=overload) {
-            textList.add(Component.translatable("ctnh.beams_overload_2"));
-            textList.add(Component.translatable("ctnh.beams_overload_1", FormattingUtil.formatNumbers(overload), overload_crash));
+            textList.add(Component.translatable("ctnh.multiblock.nicoll_dyson_beams.info.overload_2"));
+            textList.add(Component.translatable("ctnh.multiblock.nicoll_dyson_beams.info.overload_1", FormattingUtil.formatNumbers(overload), overload_crash));
         }
-        if(broken>0)textList.add(Component.translatable("ctnh.beams_crash"));
-        textList.add(Component.translatable("ctnh.beams_max_mana",String.format("%.4f",max_mana/1000000)));
-        textList.add(Component.translatable("ctnh.beams_mana",String.format("%.4f",mana/1000000)));
-        textList.add(Component.translatable("ctnh.twist_consumption",String.format("%.2f",consume_twist())));
-        textList.add(Component.translatable("ctnh.beams_stable",String.format("%.2f",-((twist_power /3)+((mana/100000)*(Math.max(twist_power/(horizen_power+1),1))))+starlight_power*4+5+tier)));
-        textList.add(Component.translatable("ctnh.starlight_consumption",String.format("%.2f",consume_starlight())));
-        textList.add(Component.translatable("ctnh.beams_time",String.format("%.2f",1-Math.min(0.01* twist_power,0.9))));
-        textList.add(Component.translatable("ctnh.beams_eut_consumption",String.format("%.2f",Math.max(1-0.003* starlight_power,0.25))));
+        if(broken>0)textList.add(Component.translatable("ctnh.multiblock.nicoll_dyson_beams.info.crash"));
+        textList.add(Component.translatable("ctnh.multiblock.nicoll_dyson_beams.info.max_mana",String.format("%.4f",max_mana/1000000)));
+        textList.add(Component.translatable("ctnh.multiblock.nicoll_dyson_beams.info.mana",String.format("%.4f",mana/1000000)));
+        textList.add(Component.translatable("ctnh.multiblock.nicoll_dyson_beams.info.twist_consumption",String.format("%.2f",consume_twist())));
+        textList.add(Component.translatable("ctnh.multiblock.nicoll_dyson_beams.info.stable",String.format("%.2f",-((twist_power /3)+((mana/100000)*(Math.max(twist_power/(horizen_power+1),1))))+starlight_power*4+5+tier)));
+        textList.add(Component.translatable("ctnh.multiblock.nicoll_dyson_beams.info.starlight_consumption",String.format("%.2f",consume_starlight())));
+        textList.add(Component.translatable("ctnh.multiblock.nicoll_dyson_beams.info.time",String.format("%.2f",1-Math.min(0.01* twist_power,0.9))));
+        textList.add(Component.translatable("ctnh.multiblock.nicoll_dyson_beams.info.eut_consumption",String.format("%.2f",Math.max(1-0.003* starlight_power,0.25))));
     }
 
 

@@ -16,7 +16,6 @@
     "gtceu.GTItemMixin",
     "gtceu.GTMaterialMixin",
     "gtceu.TagPrefixMixin",
-    "gtceu.WorkableElectricMultiblockMachineMixin",
     "jei.GTRecipeWidgetMixin",
     "jei.RecipeGuiLogicMixin",
     "legendarysurvival.AltitudeModifierMixin",
