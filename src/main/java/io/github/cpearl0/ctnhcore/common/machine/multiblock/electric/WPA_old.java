@@ -292,10 +292,10 @@
 //            textList.add(textList.size(),Component.translatable("ctnh.connect"));
 //        }
 //
-//        textList.add(textList.size(),Component.translatable("ctnh.accelerator.nu_speed",String.format("%.2f",nu_speed)));
-//        textList.add(textList.size(),Component.translatable("ctnh.accelerator.proton_speed",String.format("%.2f",proton_speed)));
+//        textList.add(textList.size(),Component.translatable("ctnh.multiblock.wide_accelerator.info.nu_speed",String.format("%.2f",nu_speed)));
+//        textList.add(textList.size(),Component.translatable("ctnh.multiblock.wide_accelerator.info.proton_speed",String.format("%.2f",proton_speed)));
 //        textList.add(textList.size(),Component.translatable("ctnh.accelerator.element_speed",String.format("%.2f",element_speed)));
-//        textList.add(textList.size(),Component.translatable("ctnh.accelerator.consume",String.format("%.2f",(nu_speed+proton_speed+element_speed)/2000+1)));
+//        textList.add(textList.size(),Component.translatable("ctnh.multiblock.wide_accelerator.info.consume",String.format("%.2f",(nu_speed+proton_speed+element_speed)/2000+1)));
 //    }
 //    @Override
 //    public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {

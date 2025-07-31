@@ -314,12 +314,11 @@ public class MultiblocksA {
             .workableCasingModel(new ResourceLocation("block/stone_bricks"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
 
-    public final static MultiblockMachineDefinition COKE_OVEN = REGISTRATE.multiblock("coke_oven", CoilWorkableElectricMultiblockMachine::new)
+    public final static MultiblockMachineDefinition COKE_TOWER = REGISTRATE.multiblock("coke_tower", CoilWorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.PYROLYSE_RECIPES)
-            .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip"),
-                    Component.translatable("gtceu.pyrolyse_oven"),
-                    Component.translatable("ctnh.pyrolyse_oven.1"))
+            .tooltips(Component.translatable("ctnh.multiblock.coke_tower.tooltip.0").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.multiblock.coke_tower.tooltip.1"))
             .recipeModifiers(GTRecipeModifiers::multiSmelterParallel)
             .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -1095,9 +1094,9 @@ public class MultiblocksA {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.MANA_GENERATOR)
             .generator(true)
-            .tooltips(Component.translatable("ctnh.multiblock.mana_generator_turbine_tier2.tooltip.0").withStyle(ChatFormatting.GRAY),
-                    Component.translatable("ctnh.multiblock.mana_generator_turbine_tier2.tooltip.1"),
-                    Component.translatable("ctnh.multiblock.mana_generator_turbine_tier2.tooltip.2"))
+            .tooltips(Component.translatable("ctnh.multiblock.mana_generator_turbine_tier3.tooltip.0").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.multiblock.mana_generator_turbine_tier3.tooltip.1"),
+                    Component.translatable("ctnh.multiblock.mana_generator_turbine_tier3.tooltip.2"))
             .tooltips(CTNHCommonTooltips.MANA_GENERATOR)
             .recipeModifier(ManaLargeTurbineMachine::recipeModifier)
             .appearanceBlock(CTNHBlocks.TERRA_STEEL_CASING)
@@ -1123,10 +1122,9 @@ public class MultiblocksA {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.MANA_GENERATOR)
             .generator(true)
-            .tooltips(Component.translatable(
-                            "ctnh.multiblock.mana_generator_turbine_tier2.tooltip.0").withStyle(ChatFormatting.GRAY),
-                    Component.translatable("ctnh.multiblock.mana_generator_turbine_tier2.tooltip.1"),
-                    Component.translatable("ctnh.multiblock.mana_generator_turbine_tier2.tooltip.2"),
+            .tooltips(Component.translatable("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.0").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.1"),
+                    Component.translatable("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.2"),
                     Component.translatable("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.3").withStyle(ChatFormatting.RED))
             .tooltips(CTNHCommonTooltips.MANA_GENERATOR)
             .recipeModifier(ManaLargeTurbineMachine::recipeModifier)

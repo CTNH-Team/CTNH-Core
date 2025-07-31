@@ -124,7 +124,7 @@ public class CreateRecipeTypes {
                 group.addWidget(new SlotWidget(handler, 0, group.getSize().width - 30,
                         group.getSize().height - 30, false, false));
             })
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
     public static final GTRecipeType MECHANICAL_MIXER_RECIPES = GTRecipeTypes.register("mechanical_mixer_recipes", KINETIC)
             .setMaxIOSize(6,6,3,3)
             .setSlotOverlay(false, false, GuiTextures.DUST_OVERLAY)
@@ -136,7 +136,7 @@ public class CreateRecipeTypes {
                 group.addWidget(new SlotWidget(handler, 0, group.getSize().width - 30,
                         group.getSize().height - 30, false, false));
             })
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
     public static final GTRecipeType MECHANICAL_CENTRIFUGE_RECIPES = GTRecipeTypes.register("mechanical_centrifuge_recipes", KINETIC)
             .setMaxIOSize(2,6,1,6)
             .setSlotOverlay(false, false, false, GuiTextures.EXTRACTOR_OVERLAY)
@@ -149,7 +149,7 @@ public class CreateRecipeTypes {
                 group.addWidget(new SlotWidget(handler, 0, group.getSize().width - 30,
                         group.getSize().height - 30, false, false));
             })
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
     public static final GTRecipeType MECHANICAL_SIFTER_RECIPES = GTRecipeTypes.register("mechanical_sifter_recipes", KINETIC)
             .setMaxIOSize(1,6,0,0)
             .setProgressBar(GuiTextures.PROGRESS_BAR_SIFT, UP_TO_DOWN)
@@ -159,7 +159,7 @@ public class CreateRecipeTypes {
                 group.addWidget(new SlotWidget(handler, 0, group.getSize().width - 30,
                         group.getSize().height - 30, false, false));
             })
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
     public static final GTRecipeType MECHANICAL_EXTRACTOR_RECIPES = GTRecipeTypes.register("mechanical_extractor_recipes", KINETIC)
             .setMaxIOSize(1,1,0,1)
             .setSlotOverlay(false, false, GuiTextures.EXTRACTOR_OVERLAY)
@@ -169,7 +169,7 @@ public class CreateRecipeTypes {
                 group.addWidget(new SlotWidget(handler, 0, group.getSize().width - 30,
                         group.getSize().height - 30, false, false));
             })
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
     public static final GTRecipeType MECHANICAL_LATHE_RECIPES = GTRecipeTypes.register("mechanical_lathe_recipes", KINETIC)
             .setMaxIOSize(1,2,0,0)
             .setSlotOverlay(false, false, GuiTextures.PIPE_OVERLAY_1)
@@ -181,7 +181,7 @@ public class CreateRecipeTypes {
                 group.addWidget(new SlotWidget(handler, 0, group.getSize().width - 30,
                         group.getSize().height - 30, false, false));
             })
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
     public static final GTRecipeType MECHANICAL_LASER_RECIPES = GTRecipeTypes.register("mechanical_laser_recipes", KINETIC)
             .setMaxIOSize(2,1,0,0)
             .setSlotOverlay(false, false, true, GuiTextures.LENS_OVERLAY)
@@ -191,5 +191,5 @@ public class CreateRecipeTypes {
                 group.addWidget(new SlotWidget(handler, 0, group.getSize().width - 30,
                         group.getSize().height - 30, false, false));
             })
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
 }

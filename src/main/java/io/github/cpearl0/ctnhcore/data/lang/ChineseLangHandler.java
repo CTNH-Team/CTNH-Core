@@ -335,6 +335,18 @@ public class ChineseLangHandler {
         provider.add("ctnh.recipe.hellforge.info.minimum_drain", "最少：%s意志");
         provider.add("ctnh.recipe.hellforge.info.drain", "消耗：%s意志");
 
+        provider.add("ctnh.recipe.kinetic.info.stress_output", "输出应力: %d");
+        provider.add("ctnh.recipe.kinetic.info.stress_input", "输入应力: %d");
+
+        provider.add("ctnh.recipe.accelerator.mode.nu","模式：加速中子");
+        provider.add("ctnh.recipe.accelerator.mode.proton","模式：加速质子");
+        provider.add("ctnh.recipe.accelerator.mode.element","模式：加速电子");
+        provider.add("ctnh.recipe.accelerator.mode.element.consume","加速类型：电子");
+        provider.add("ctnh.recipe.accelerator.mode.proton.consume","加速类型：质子");
+        provider.add("ctnh.recipe.accelerator.mode.nu.consume","加速类型：中子");
+        provider.add("ctnh.recipe.accelerator.mode.speed.m","需求速度：%.2fMev");
+        provider.add("ctnh.recipe.accelerator.mode.speed.g","需求速度:%.2fGev");
+
         //Common Tooltips
         provider.add("ctnh.common_tooltip.parallel_hatch", "·允许使用并行控制仓");
         provider.add("ctnh.common_tooltip.subtick_overclock", "当配方运行时间小于1t时,会自动计算并行");
@@ -444,6 +456,35 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.sinope_chemical.info.level","线圈加速倍率:%d");
         provider.add("ctnh.multiblock.sinope_chemical.info.parallel","并行数:%d");
 
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.overload","§c警告：机器过载！！！");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.overload_1","§c机器过载度:%d/%d");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.crash","§c机器已损坏");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.mana","当前魔力量:%.4fM");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.twist_consumption","扭曲符文消耗概率:%.2f");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.starlight_consumption","星光符文消耗概率:%.2f");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.overload_2","§c！！！警告：能量溢出！！！");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.max_mana","魔力上限:%.4fM");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.mana_required","魔力需求:%.2fM");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.mana_consumption","消耗魔力:%.2fM");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.time","运行时间倍率:%.2f");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.eut_consumption","消耗能源倍率:%.2f");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.stable","魔力稳定值:%.2f");
+
+        provider.add("ctnh.multiblock.wide_accelerator.info.nu_speed","中子速度:%.2fMev");
+        provider.add("ctnh.multiblock.wide_accelerator.info.proton_speed","质子速度:%.2fMev");
+        provider.add("ctnh.multiblock.wide_accelerator.info.electric_speed","电子速度:%.2fMev");
+        provider.add("ctnh.multiblock.wide_accelerator.info.consume","电量消耗倍率:%.2f");
+
+        provider.add("ctnh.multiblock.wide_accelerator.gui.electric","电子轨道");
+        provider.add("ctnh.multiblock.wide_accelerator.gui.nu","中子轨道");
+        provider.add("ctnh.multiblock.wide_accelerator.gui.proton","原子轨道");
+        provider.add("ctnh.multiblock.wide_accelerator.gui.name","访问轨道");
+
+        provider.add("ctnh.multiblock.arcgenerator.info.0","电弧最大强度:%d");
+        provider.add("ctnh.multiblock.arcgenerator.info.1","电弧强度:%d");
+        provider.add("ctnh.multiblock.arcgenerator.info.2","支持最大效率:%.2f%%");
+        provider.add("ctnh.multiblock.arcgenerator.info.3","当前效率:%.2f%%");
+
         //Machine tooltip
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
@@ -552,8 +593,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.mana_generator_turbine_tier1.tooltip.1", "转子支架等级不能超过§bMV§r");
 
         provider.add("ctnh.multiblock.mana_generator_turbine_tier2.tooltip.0", "进阶魔力转换器");
-        provider.add("ctnh.multiblock.mana_generator_turbine_tier2.toolitp.1", "转子支架等级不能超过§5EV§r");
-        provider.add("ctnh.multiblock.mana_generator_turbine_tier2.toolitp.2","运行时消耗2.25倍燃料，获得4倍的发电量");
+        provider.add("ctnh.multiblock.mana_generator_turbine_tier2.tooltip.1", "转子支架等级不能超过§5EV§r");
+        provider.add("ctnh.multiblock.mana_generator_turbine_tier2.tooltip.2","运行时消耗2.25倍燃料，获得4倍的发电量");
 
         provider.add("ctnh.multiblock.mana_generator_turbine_tier3.tooltip.0", "精密魔力转换器");
         provider.add("ctnh.mutliblock.mana_generator_turbine_tier3.tooltip.1", "转子支架等级不能超过§dLuV§r");
@@ -704,91 +745,55 @@ public class ChineseLangHandler {
 
         provider.add("ctnh.multiblock.ion_exchanger.tooltip.0", "离子交换");
 
-        provider.add("ctnh.connect","连接已搭建");
-        provider.add("ctnh.anti_nu","反中子量:%d");
-        provider.add("ctnh.anti_proton","反质子量:%d");
-        provider.add("ctnh.anti_electric","反电子量:%d");
-        provider.add("ctnh.trap_electric","当前存储电量:%deu");
-        provider.add("ctnh.trap_electric_max","允许存储电量上限:%deu");
-        provider.add("ctnh.restore_danger","约束危险物质");
-        provider.add("ctnh.no_energy_waring","§c警告：供电不足，约束场即将失效！");
-        provider.add("ctnh.pyrolyse_oven.1","拥有强大的焦化产能来支撑你的木化产线！");
-        provider.add("ctnh.beams_overload","§c警告：机器过载！！！");
-        provider.add("ctnh.beams_crash","§c机器已损坏");
-        provider.add("ctnh.beams_mana","当前魔力量:%.4fM");
-        provider.add("ctnh.twist_consumption","扭曲符文消耗概率:%.2f");
-        provider.add("ctnh.starlight_consumption","星光符文消耗概率:%.2f");
-        provider.add("ctnh.beams_overload_1","§c机器过载度:%d/%d");
-        provider.add("ctnh.beams_overload_2","§c！！！警告：能量溢出！！！");
-        provider.add("ctnh.beams_max_mana","魔力上限:%.4fM");
-        provider.add("ctnh.beams_mana_required","魔力需求:%.2fM");
-        provider.add("ctnh.beams_mana_consumption","消耗魔力:%.2fM");
-        provider.add("ctnh.beams_time","运行时间倍率:%.2f");
-        provider.add("ctnh.beams_eut_consumption","消耗能源倍率:%.2f");
-        provider.add("ctnh.beams_stable","魔力稳定值:%.2f");
-        provider.add("ctnh.beams.story1","§9魔枢巨星，重构万物尺度");
-        provider.add("ctnh.beams.story0","配方类型：§9高能魔力扭曲聚变§r");
-        provider.add("ctnh.beams.story2","允许使用并行控制仓，§c其不会为配方提供并行§r，只修改每秒输入魔力量");
-        provider.add("ctnh.beams.tips1","插入机器的几种§9五级符文§r决定了该机器的各种能力");
-        provider.add("ctnh.beams.tips2","§9星空符文§r的能量降低了能源消耗并增强了机器稳定性");
-        provider.add("ctnh.beams.tips3","§c扭曲符文§r的能量降低了所用时间并增大了机器魔力注入频率，§c但会让机器更加不稳定");
-        provider.add("ctnh.beams.tips4","§d视域符文§r的能量极大增大了魔力上限和魔力使用效率");
-        provider.add("ctnh.beams.tips5","§5类星体符文§r的能量太过强大，它会直接让机器进入§c不稳定状态，但是同样使配方的消耗，产出，电压需求翻10倍");
-        provider.add("ctnh.beams.tips6","§c扭曲§r与§9星空§r的对抗决定了机器的稳定性");
-        provider.add("ctnh.beams.tips7","稳定性公式:-((twist_power /3)+((mana/100000)*(Math.max(twist_power/9,1))))+starlight_power*4+5+tier,当稳定性低于0时机器会开始过载！");
-        provider.add("ctnh.beams.tips8","§c过载度§r每秒提升1且在机器拥有过载度时下§c配方时间会翻1倍§r");
-        provider.add("ctnh.beams.tips9","在不处于过载状态下每3秒减少1过载度，§c过载度积累满时机器将会爆炸§r");
-        provider.add("ctnh.beams.tips10","§c扭曲符文§r消耗概率公式:每次运行有Math.max((twist_power-3)/3,1)*0.01+(Math.max(starlight_power-twist_power,0)*0.01)+(Math.max((100-mana/100000)*0.0005,0))概率消耗");
-        provider.add("ctnh.beams.tips11","§9星空符文§r消耗概率公式:每次运行有Math.max((starlight_power-3)/3,1)*0.01+(Math.max(twist_power-starlight_power,0)*0.01)+(mana/100000*0.005)概率消耗");
-        provider.add("ctnh.beams.tips11.1","§d视域符文§r消耗概率公式：每次运行有0.0025*(horizen_power)概率消耗");
-        provider.add("ctnh.beams.tips12","该机器无法超频");
-        provider.add("ctnh.beams.tips13","运行时每运行1秒，固定消耗100*并行Kmb(B)液态魔力来为光束注能，可以使用只消耗冷却液的非需求魔力配方来为机器注能");
-        provider.add("ctnh.beams.tips14","注意：如果你在输入魔力时超过了魔力上限，则超过上限的魔力不会被返还。如果你的魔力量超过了上限，则运行时不会减少多出于魔力上限的魔力");
-        provider.add("ctnh.magic.parallel","当前并行数:%.2f");
+        provider.add("ctnh.multiblock.coke_tower.tooltip.0", "拥有强大的焦化产能来支撑你的木化产线！");
+        provider.add("ctnh.multiblock.coke_tower.tooltip.1", "有着如同工业熔炉一般的速度");
+
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.0","§9魔枢巨星，重构万物尺度");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.1","允许使用并行控制仓，§c其不会为配方提供并行§r，只修改每秒输入魔力量");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.2","插入机器的几种§9五级符文§r决定了该机器的各种能力");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.3","§9星空符文§r的能量降低了能源消耗并增强了机器稳定性");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.4","§c扭曲符文§r的能量降低了所用时间并增大了机器魔力注入频率，§c但会让机器更加不稳定");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.5","§d视域符文§r的能量极大增大了魔力上限和魔力使用效率");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.6","§5类星体符文§r的能量太过强大，它会直接让机器进入§c不稳定状态，但是同样使配方的消耗，产出，电压需求翻10倍");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.7","§c扭曲§r与§9星空§r的对抗决定了机器的稳定性");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.8","稳定性公式:-((twist_power /3)+((mana/100000)*(Math.max(twist_power/9,1))))+starlight_power*4+5+tier,当稳定性低于0时机器会开始过载！");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.9","§c过载度§r每秒提升1且在机器拥有过载度时下§c配方时间会翻1倍§r");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.10","在不处于过载状态下每3秒减少1过载度，§c过载度积累满时机器将会爆炸§r");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.11","§c扭曲符文§r消耗概率公式:每次运行有Math.max((twist_power-3)/3,1)*0.01+(Math.max(starlight_power-twist_power,0)*0.01)+(Math.max((100-mana/100000)*0.0005,0))概率消耗");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.12","§9星空符文§r消耗概率公式:每次运行有Math.max((starlight_power-3)/3,1)*0.01+(Math.max(twist_power-starlight_power,0)*0.01)+(mana/100000*0.005)概率消耗");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.13","§d视域符文§r消耗概率公式：每次运行有0.0025*(horizen_power)概率消耗");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.14","该机器无法超频");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.15","运行时每运行1秒，固定消耗100*并行Kmb(B)液态魔力来为光束注能，可以使用只消耗冷却液的非需求魔力配方来为机器注能");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.16","注意：如果你在输入魔力时超过了魔力上限，则超过上限的魔力不会被返还。如果你的魔力量超过了上限，则运行时不会减少多出于魔力上限的魔力");
+
+        provider.add("ctnh.multiblock.twisted_fusion_mk_infinity.tooltip.0","§8无穷无尽的扭曲之力§r");
+        provider.add("ctnh.multiblock.twisted_fusion_mk_infinity.tooltip.1","可以使用激光仓");
+        provider.add("ctnh.multiblock.twisted_fusion_mk_infinity.tooltip.2","对所有配方都有§8无法理喻§r的并行数,所有配方能耗和运行时间减少75%");
+        provider.add("ctnh.multiblock.twisted_fusion_mk_infinity.tooltip.3","§5想制作这台机器的你疯的不轻，当然这台机器也同样疯狂至极§r");
+
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.0","粒子加速集成者");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.1","允许§9使用激光仓§r和§a变电仓§r，无法超频");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.2","通过三个轨道加速三种粒子");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.3","本机器只要求粒子速度大于配方需求，粒子速度不得大于50Gev");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.4","允许使用§b并行控制仓§r，使用§b并行控制仓§r可以自由控制配方并行和粒子加速减速并行，否则使用默认值");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.5","在运行一般配方时如无§b并行控制仓§r,默认使用16并行");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.6","如果粒子速度过慢，则什么都不会产生");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.7","本机器在运行时根据运行配方模式来决定之后逻辑");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.8","加速模式:使用加速配方时如无§b并行控制仓§r将试图以1024并行来运行，运行配方时需要大量能源来维持。运行配方时三种粒子速度之和每有100Mev，能源消耗提升10%，此状态下粒子速度§9不会§r减少");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.9","减速模式:使用加速配方时如无§b并行控制仓§r将试图以1并行来减少粒子速度，运行配方时需要少量能源来维持。运行配方时三种粒子速度之和每有100Mev，能源消耗提升2.5%。此状态下粒子速度在运行完配方后减少sqrt(配方所需速度)的对应粒子速度");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.10","注意:本机器用电量极高，且暂时无法做到只能计算正确并行，使用低电压可能导致§c配方无法运行§r或者§c跳电§r,建议搭配§9激光仓§r使用，如遇配方不工作，请降低该机器并行");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.11","可以与约束器链接传递部分粒子。§c警告：如果没有链接约束器，不要随意尝试某些危险的配方§r (目前还是饼)");
+
+        provider.add("ctnh.multiblock.mana_reactor.tooltip.0","工业魔力奠基者");
+        provider.add("ctnh.multiblock.mana_reactor.tooltip.1","允许使用并行控制仓");
 
 
 
-        provider.add("ctnh.gtceu.tfmkinfinity.1","§8无穷无尽的扭曲之力§r");
-        provider.add("ctnh.gtceu.tfmkinfinity.1.1","可以使用激光仓");
-        provider.add("ctnh.gtceu.tfmkinfinity.2","对所有配方都有§8无法理喻§r的并行数,所有配方能耗和运行时间减少75%");
-        provider.add("ctnh.gtceu.tfmkinfinity.3","§5想制作这台机器的你疯的不轻，当然这台机器也同样疯狂至极§r");
-
-        provider.add("ctnh.wideaccelerator.1","粒子加速集成者");
-        provider.add("ctnh.wideaccelerator.2","允许§9使用激光仓§r和§a变电仓§r，无法超频");
-        provider.add("ctnh.wideaccelerator.3","通过三个轨道加速三种粒子");
-        provider.add("ctnh.wideaccelerator.control","允许使用§b并行控制仓§r，使用§b并行控制仓§r可以自由控制配方并行和粒子加速减速并行，否则使用默认值");
-        provider.add("ctnh.wideaccelerator.pa","在运行一般配方时如无§b并行控制仓§r,默认使用16并行");
-        provider.add("ctnh.wideaccelerator.4","本机器只要求粒子速度大于配方需求，粒子速度不得大于50Gev");
-        provider.add("ctnh.wideaccelerator.5","如果粒子速度过慢，则什么都不会产生");
-        provider.add("ctnh.wideaccelerator.6","本机器在运行时根据运行配方模式来决定之后逻辑");
-        provider.add("ctnh.wideaccelerator.7","加速模式:使用加速配方时如无§b并行控制仓§r将试图以1024并行来运行，运行配方时需要大量能源来维持。运行配方时三种粒子速度之和每有100Mev，能源消耗提升10%，此状态下粒子速度§9不会§r减少");
-        provider.add("ctnh.wideaccelerator.8","减速模式:使用加速配方时如无§b并行控制仓§r将试图以1并行来减少粒子速度，运行配方时需要少量能源来维持。运行配方时三种粒子速度之和每有100Mev，能源消耗提升2.5%。此状态下粒子速度在运行完配方后减少sqrt(配方所需速度)的对应粒子速度");
-        provider.add("ctnh.wideaccelerator.9","注意:本机器用电量极高，且暂时无法做到只能计算正确并行，使用低电压可能导致§c配方无法运行§r或者§c跳电§r,建议搭配§9激光仓§r使用，如遇配方不工作，请降低该机器并行");
-        provider.add("ctnh.wideaccelerator.10","可以与约束器链接传递部分粒子。§c警告：如果没有链接约束器，不要随意尝试某些危险的配方§r (目前还是饼)");
-        provider.add("ctnh.accelerator.nu_speed","中子速度:%.2fMev");
-        provider.add("ctnh.accelerator.proton_speed","质子速度:%.2fMev");
-        provider.add("ctnh.accelerator.electric_speed","电子速度:%.2fMev");
-        provider.add("ctnh.accelerator.consume","电量消耗倍率:%.2f");
-        provider.add("ctnh.accelerator.mode.nu","模式：加速中子");
-        provider.add("ctnh.accelerator.mode.proton","模式：加速质子");
-        provider.add("ctnh.accelerator.mode.element","模式：加速电子");
-        provider.add("ctnh.accelerator.mode.element.consume","加速类型：电子");
-        provider.add("ctnh.accelerator.mode.proton.consume","加速类型：质子");
-        provider.add("ctnh.accelerator.mode.nu.consume","加速类型：中子");
-        provider.add("ctnh.accelerator.mode.speed.m","需求速度：%.2fMev");
-        provider.add("ctnh.accelerator.mode.speed.g","需求速度:%.2fGev");
-
-        provider.add("ctnh.multiblock.lcr.duration_reduction", "线圈温度超过3600K时，每1800K使运行速度+25%");
-        provider.add("ctnh.manareactor.1","工业魔力奠基者");
-        provider.add("ctnh.manareactor.2","允许使用并行控制仓");
-        provider.add("ctnh.arcgenerator.arc.1","电弧最大强度:%d");
-        provider.add("ctnh.arcgenerator.arc.2","电弧强度:%d");
-        provider.add("ctnh.arcgenerator.arc.3","支持最大效率:%.2f%%");
-        provider.add("ctnh.arcgenerator.arc.4","当前效率:%.2f%%");
         provider.add("ctnh.arc.require","需求电弧强度:%d");
         provider.add("ctnh.arc.max","满功率需求电弧强度:%d");
         provider.add("ctnh.arc.r.arc","可输出的电弧强度:%d");
         provider.add("ctnh.arc.r.connect","§b桥接已启用§r");
+
         provider.add("ctnh.arcgenerator.1","物质撕裂器");
         provider.add("ctnh.arcgenerator.t2.1","分子撕裂器");
         provider.add("ctnh.arcgenerator.t3.1","原子撕裂器");
@@ -801,6 +806,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.arcgenerator.arc.t2.2","§c最大发电效率:125%");
         provider.add("ctnh.arcgenerator.arc.t3.1","§b最大支持电弧强度:50000");
         provider.add("ctnh.arcgenerator.arc.t3.2","§c最大发电效率:225%");
+
         provider.add("ctnh.arcgenerator.2","该机器必须配合电弧生成器使用，要求电弧生成器必须在该机器主方块上方5格，当完成链接时，电弧生成器会显示已完成连接");
         provider.add("ctnh.arcgenerator.3","当电弧强度小于配方最小电弧强度时，配方将无法运行");
         provider.add("ctnh.arcgenerator.4","当电弧强度大于配方最大电弧强度时，配方将以(机器电弧强度-配方需求电弧强度)/(满功率需求电弧强度-需求电弧强度)的效率运行。效率允许超过100%，但不能超过机器最大发电效率");
@@ -934,6 +940,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.compiler.10","如果运算失败，则定义噪声结果函数f(x1,x2,x3)=ax1+bx2+cx3+d+ϵ,根据噪声决定片区，噪声波动最多翻倍5倍，片区误差项为0.9-1.1间，则噪声变为0.5倍率");
         provider.add("ctnh.compiler.11","最终编译数据集将获得三个信息，信息1代表本次的方程，信息2代表噪声结果函数获得的结果值对于y的倍率，信息3代表误差项的比率");
         provider.add("ctnh.compiler.12","在执行相同配方时方程不会重置，在执行配方或者结构重新成型时，重置y和方程");
+        
         provider.add("ctnhcore.src.sacrifice_empty","无牺牲者");
         provider.add("ctnhcore.src.sacrifice_locked","已锁定牺牲者！");
         provider.add("ctnhcore.src.sacrifice_unlocked","无法锁定牺牲者");
@@ -963,16 +970,20 @@ public class ChineseLangHandler {
         provider.add("zenith_extruder","配方类型：压膜机/§5天顶灵压塑形");
         provider.add("zenith_extruder.1","允许使用§5天顶灵压塑形§r，其以每个形态1mb§5天顶源质§5r的代价来一次性塑造大部分锭的各种形态");
         provider.add("zenith_extruder.2","允许塑形的形态包括：§7板，杆，小型齿轮，齿轮，转子，环，螺栓，§4不允许塑形南瓜派！");
-        provider.add("ctnh.wpa.wide.electric","电子轨道");
-        provider.add("ctnh.wpa.wide.nu","中子轨道");
-        provider.add("ctnh.wpa.wide.proton","原子轨道");
-        provider.add("ctnh.wpa.electric","电子速度:%.2f M");
-        provider.add("ctnh.wpa.nu","中子速度:%.2f M");
-        provider.add("ctnh.wpa.proton","质子速度:%.2f M");
-        provider.add("ctnh.wpagui.name","访问轨道");
-        provider.add("ctnh.wpa.power","存储的电量：%.2f E/%.2f E");
+
+        
+        provider.add("ctnh.multiblock.wide_accelerator.info.power","存储的电量：%.2f E/%.2f E");
         provider.add("ctnh.eternal_engine.1","当前发电量:%d EU /tick");
         provider.add("ctnh.eternal_engine.2","累计的工作时间:%.2f s/36000 s");
+
+        provider.add("ctnh.connect","连接已搭建");
+        provider.add("ctnh.anti_nu","反中子量:%d");
+        provider.add("ctnh.anti_proton","反质子量:%d");
+        provider.add("ctnh.anti_electric","反电子量:%d");
+        provider.add("ctnh.trap_electric","当前存储电量:%deu");
+        provider.add("ctnh.trap_electric_max","允许存储电量上限:%deu");
+        provider.add("ctnh.restore_danger","约束危险物质");
+        provider.add("ctnh.no_energy_waring","§c警告：供电不足，约束场即将失效！");
 
         provider.add("ctnh.multiblock.wind_array.tooltip0", "§7§o风力狼群:真正的自然之力");
         provider.add("ctnh.multiblock.wind_array.tooltip1", "§8---------------§a基础数据§8-----------------");
@@ -987,9 +998,9 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.wind_array.tooltip10", "§f润滑油会从风力网络中抽取.");
         provider.add("ctnh.multiblock.wind_array.tooltip11", "§5顺应风力网络的工作规律,以抵挡自然之力的摧残");
 
-        provider.add("ctnh.multiblock.mana_condenser.tooltips.1", "反熵物质转化！");
-        provider.add("ctnh.multiblock.mana_condenser.tooltips.2", "可以将魔力转化为液态魔力，或者将液态魔力转化为魔力，后者所需的能量更多");
-        provider.add("ctnh.multiblock.mana_condenser.tooltips.3", "所有魔力输入输出均通过结构中心的魔力池进行");
+        provider.add("ctnh.multiblock.mana_condenser.tooltips.0", "反熵物质转化！");
+        provider.add("ctnh.multiblock.mana_condenser.tooltips.1", "可以将魔力转化为液态魔力，或者将液态魔力转化为魔力，后者所需的能量更多");
+        provider.add("ctnh.multiblock.mana_condenser.tooltips.2", "所有魔力输入输出均通过结构中心的魔力池进行");
 
         provider.add("ritual.ctnh.chargerRitual", "充能仪式");
         provider.add("ctnh.terminal.mutiblockhelper.tips","第一次右键选择第一个方块，第二次右键选择第二个方块，使用shift+右键启用多方块构建\nshift+右键后将清除原坐标\n选择的方块请按照：底部西北角出发，前往顶部东南角来选择不然无法输出完整结构");
@@ -1177,7 +1188,7 @@ public class ChineseLangHandler {
         provider.add(MultiblocksA.SUPER_WIND_POWER_ARRAY.getBlock(), "超级风力发电阵列");
         provider.add(MultiblocksA.SLAUGHTER_HOUSE.getBlock(), "屠宰场");
         provider.add(MultiblocksA.BIG_DAM.getBlock(), "三峡大坝");
-        provider.add(MultiblocksA.COKE_OVEN.getBlock(), "焦化塔");
+        provider.add(MultiblocksA.COKE_TOWER.getBlock(), "焦化塔");
         provider.add(MultiblocksA.PLASMA_CONDENSER.getBlock(),"等离子冷凝器");
         provider.add(MultiblocksA.ZENITH_LASER.getBlock(), "§5天顶激光蚀刻机");
         provider.add(MultiblocksA.BEDROCK_DRILLING_RIGS.getBlock(), "基岩钻机");
@@ -1245,7 +1256,7 @@ public class ChineseLangHandler {
         provider.add(MultiblocksB.MAGIC_FUEL_GENERATOR.getBlock(),"魔导燃料精炼场");
         provider.add(MultiblocksB.FOREST_SEA_TREE_FARM.getBlock(), "林海树场");
         provider.add(MultiblocksB.SINOPE_CHEMICAL.getBlock(), "SINOPE化工厂");
-        provider.add(MultiblocksB.WIDEPARTICLEACCELERATOR.getBlock(), "广粒子加速器");
+        provider.add(MultiblocksB.WIDE_PARTICLE_ACCELERATOR.getBlock(), "广粒子加速器");
         provider.add(MultiblocksB.MANA_REACTOR.getBlock(),"魔力反应器");
         provider.add(MultiblocksB.ARC_GENERATOR.getBlock(),"电弧撕裂者");
         provider.add(MultiblocksB.ARC_REACTOR.getBlock(),"电弧发生器");

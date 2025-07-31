@@ -68,9 +68,22 @@ public class EnglishLangHandler {
         provider.add("ctnh.recipe.hellforge.info.minimum_drain", "MinimumDrain: %s Will");
         provider.add("ctnh.recipe.hellforge.info.drain", "Drain: %s Will");
 
+        provider.add("ctnh.recipe.kinetic.info.stress_output", "Output Stress: %d");
+        provider.add("ctnh.recipe.kinetic.info.stress_input", "Input Stress: %d");
+
+        provider.add("ctnh.recipe.accelerator.mode.nu", "Mode: Neutron Acceleration");
+        provider.add("ctnh.recipe.accelerator.mode.proton", "Mode: Proton Acceleration");
+        provider.add("ctnh.recipe.accelerator.mode.element", "Mode: Electron Acceleration");
+        provider.add("ctnh.recipe.accelerator.mode.element.consume", "Accelerated Particle: Electron");
+        provider.add("ctnh.recipe.accelerator.mode.proton.consume", "Accelerated Particle: Proton");
+        provider.add("ctnh.recipe.accelerator.mode.nu.consume", "Accelerated Particle: Neutron");
+        provider.add("ctnh.recipe.accelerator.mode.speed.m", "Required Velocity: %.2f MeV");
+        provider.add("ctnh.recipe.accelerator.mode.speed.g", "Required Velocity: %.2f GeV");
+
         // Common Tooltips
         provider.add("ctnh.common_tooltip.parallel_hatch", "Voltage levels increase the number of parallels");
         provider.add("ctnh.common_tooltip.subtick_overclock", "When recipe runtime is less than 1 tick, parallel calculations will be performed automatically.");
+        provider.add("ctnh.common_tooltip.perfect_overclock", "Perfect Overclock！");
         provider.add("ctnh.common_tooltip.steel_machine.0", "Can only use HV-grade energy hatches and below");
         provider.add("ctnh.common_tooltip.steel_machine.1", "Maximum parallelism: 32");
 
@@ -173,6 +186,35 @@ public class EnglishLangHandler {
 
         provider.add("ctnh.multiblock.sinope_chemical.info.level","Coil Accelerating Rate: %d");
         provider.add("ctnh.multiblock.sinope_chemical.info.parallel","Parallel Count: %d");
+
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.overload", "§cWarning: Machine Overloaded!!!");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.crash", "§cMachine has been damaged");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.mana", "Current mana: %.2f");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.twist_consumption", "Twisted rune consumption probability: %.2f");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.starlight_consumption", "Starlight rune consumption probability: %.2f");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.overload_1", "§cMachine overload degree: %d/%d");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.overload_2", "§c!!! Warning: Energy overflow!!!");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.max_mana", "Maximum mana: %.2f");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.mana_required", "Mana required: %.2f");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.mana_consumption", "Mana consumption: %.2f");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.time", "Operation time multiplier: %.2f");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.eut_consumption", "Energy consumption multiplier: %.2f");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.stable", "Mana stability value: %.2f");
+
+        provider.add("ctnh.multiblock.wide_accelerator.info.nu_speed", "Neutron Velocity: %.2f MeV");
+        provider.add("ctnh.multiblock.wide_accelerator.info.proton_speed", "Proton Velocity: %.2f MeV");
+        provider.add("ctnh.multiblock.wide_accelerator.info.electric_speed", "Electron Velocity: %.2f MeV");
+        provider.add("ctnh.multiblock.wide_accelerator.info.consume", "Power Consumption Multiplier: %.2f");
+
+        provider.add("ctnh.multiblock.wide_accelerator.gui.electric", "Electron Beamline");
+        provider.add("ctnh.multiblock.wide_accelerator.gui.nu", "Neutron Beamline");
+        provider.add("ctnh.multiblock.wide_accelerator.gui.proton", "Proton Beamline");
+        provider.add("ctnh.multiblock.wide_accelerator.gui.name", "Access Beamline");
+
+        provider.add("ctnh.multiblock.arcgenerator.info.0", "Max Arc Intensity: %d");
+        provider.add("ctnh.multiblock.arcgenerator.info.1", "Current Arc Intensity: %d");
+        provider.add("ctnh.multiblock.arcgenerator.info.2", "Max Supported Efficiency: %.2f%%");
+        provider.add("ctnh.multiblock.arcgenerator.info.3", "Current Efficiency: %.2f%%");
 
         // Machine Tooltips
         provider.add("ctnh.copyright.info", "Added by CTNH");
@@ -435,56 +477,48 @@ public class EnglishLangHandler {
 
         provider.add("ctnh.multiblock.ion_exchanger.tooltip.0", "Ion Exchange");
 
-        provider.add("ctnhcore.machine.high_performance_computer.tooltip.0", "§3Fetal OVERCLOCKING?");
-        provider.add("ctnhcore.machine.high_performance_computer.tooltip.1", "§rProvider %d computation when energy is sufficient.");
+        provider.add("ctnh.multiblock.coke_tower.tooltip.0", "Boasts formidable coking capacity to fuel your petrochemical production line!");
+        provider.add("ctnh.multiblock.coke_tower.tooltip.1", "Delivers blistering speeds rivaling industrial furnaces");
 
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.0", "§9Arcane Pivot Colossus - Reshaping the Fabric of Scale§r");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.1", "Supports parallel control pods, §cwhich don't provide recipe parallelism§r, only modifying mana input per second");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.2", "Inserted §9Tier V Runes§r determine various machine capabilities");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.3", "§9Starlight Rune§r energy reduces power consumption and enhances machine stability");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.4", "§cDistortion Rune§r energy decreases processing time and increases mana injection frequency, §cat the cost of reduced stability§r");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.5", "§dHorizon Rune§r energy significantly increases mana capacity and utilization efficiency");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.6", "§5Quasar Rune§r energy forces the machine into §coverload state§r while decupling recipe requirements, output, and voltage");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.7", "The interplay between §cDistortion§r and §9Starlight§r determines machine stability");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.8", "Stability formula: -((twist_power/3)+((mana/100000)*(Math.max(twist_power/9,1))))+starlight_power*4+5+tier. Machine overloads when stability <0!");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.9", "§cOverload§r increases by 1/sec; §crecipe duration doubles§r during overload");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.10", "Overload decreases by 1 every 3 sec when stable. §cMachine explodes at maximum overload!§r");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.11", "§cDistortion Rune§r consumption probability: Math.max((twist_power-3)/3,1)*0.01+(Math.max(starlight_power-twist_power,0)*0.01)+(Math.max((100-mana/100000)*0.0005,0)) per operation");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.12", "§9Starlight Rune§r consumption probability: Math.max((starlight_power-3)/3,1)*0.01+(Math.max(twist_power-starlight_power,0)*0.01)+(mana/100000*0.005) per operation");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.13", "§dHorizon Rune§r consumption probability: 0.0025*(horizen_power) per operation");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.14", "This machine cannot be overclocked");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.15", "Consumes 100*parallelism Kmb(B) liquid mana/sec for beam energization. Non-mana coolant recipes can power the machine");
+        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.16", "Warning: Excess mana beyond capacity won't be refunded. Surplus mana above capacity won't be consumed during operation");
 
-        provider.add("ctnh.beams_overload", "§cWarning: Machine Overloaded!!!");
-        provider.add("ctnh.beams_crash", "§cMachine has been damaged");
-        provider.add("ctnh.beams_mana", "Current mana: %.2f");
-        provider.add("ctnh.twist_consumption", "Twisted rune consumption probability: %.2f");
-        provider.add("ctnh.starlight_consumption", "Starlight rune consumption probability: %.2f");
-        provider.add("ctnh.beams_overload_1", "§cMachine overload degree: %d/%d");
-        provider.add("ctnh.beams_overload_2", "§c!!! Warning: Energy overflow!!!");
-        provider.add("ctnh.beams_max_mana", "Maximum mana: %.2f");
-        provider.add("ctnh.beams_mana_required", "Mana required: %.2f");
-        provider.add("ctnh.beams_mana_consumption", "Mana consumption: %.2f");
-        provider.add("ctnh.beams_time", "Operation time multiplier: %.2f");
-        provider.add("ctnh.beams_eut_consumption", "Energy consumption multiplier: %.2f");
-        provider.add("ctnh.beams_stable", "Mana stability value: %.2f");
-        provider.add("ctnh.beams.story1", "Past research on mana indicates that this special element has mechanisms different from previous physical systems. Mana and §aSilicon rock§r together contain enormous energy, but the energy of mana is difficult to fully release, disappearing due to a certain effect.");
-        provider.add("ctnh.beams.story2", "At the same time, the spatial distortion ability of mana increases with its concentration. §lIf large amounts of mana can be gathered§r, extremely high energy and special spatial distortion abilities can simulate another special §c\"fusion\"§r.");
-        provider.add("ctnh.beams.story3", "The superweapon Dyson beam from the three-body civilization war inspired you. While mana cannot reach §6stellar§r levels of energy, simulating the focusing of a Dyson beam can still allow mana's energy to reach §6unimaginable§r levels.");
-        provider.add("ctnh.beams.story4", "The §5quantum tunneling effect§r of the Ender Pearl could serve as the wormhole for this mega-structure, bypassing the §6Tianxu Holy Shield§r of the Three-Body Fleet and delivering a strike without needing the super energy of a Dyson beam to overload the shield.");
-        provider.add("ctnh.beams.story5", "§9Those foolish elves are still playing house on the Rainbow Bridge, while the true grand magicians have long surpassed the shallow understanding of physics and magic.");
-        provider.add("ctnh.beams.story0", "Recipe type: §9High-energy mana distortion fusion§r, §cInterdimensional strike superweapon");
-        provider.add("ctnh.beams.tips1", "The types of §9level 5 runes§r inserted into the machine determine its various abilities.");
-        provider.add("ctnh.beams.tips2", "§9Starlight rune§r energy reduces energy consumption and enhances machine stability.");
-        provider.add("ctnh.beams.tips3", "§cTwisted rune§r energy reduces operation time but makes the machine more unstable.");
-        provider.add("ctnh.beams.tips4", "§dSight rune§r energy increases mana limit and mana usage efficiency.");
-        provider.add("ctnh.beams.tips5", "§5Quasar rune§r energy is too powerful and will cause the machine to explode!");
-        provider.add("ctnh.beams.tips6", "The interaction between §cTwisted§r and §9Starlight§r determines the stability of the machine.");
-        provider.add("ctnh.beams.tips7", "Stability formula: -((twist_power / 3) + ((mana / 100000) * (Math.max(twist_power / 3, 1)))) + starlight_power * 2 + 10 + tier * 2), if stability falls below 0, the machine will start to overload!");
-        provider.add("ctnh.beams.tips8", "§cOverload degree§r increases by 1 per second, and when the machine has overload, the recipe time will be multiplied by 4. When the overload degree exceeds half, §cenergy leakage§r will occur, and you can only use mana stabilizers to stabilize the overload.");
-        provider.add("ctnh.beams.tips9", "When not in an overload state, the overload degree decreases by 1 every 3 seconds. §cWhen the overload degree is full, the machine will explode§r.");
-        provider.add("ctnh.beams.tips10", "§cTwisted rune§r consumption probability formula: Each operation has a Math.max((twist_power-3)/3,1)*0.01 + (Math.max(starlight_power-twist_power,0)*0.01) + (Math.max((100-mana/100000)*0.0005,0)) chance of consumption.");
-        provider.add("ctnh.beams.tips11", "§9Starlight rune§r consumption probability formula: Each operation has a Math.max((starlight_power-3)/3,1)*0.01 + (Math.max(twist_power-starlight_power,0)*0.01) + (mana/100000*0.005) chance of consumption.");
-        provider.add("ctnh.beams.tips12", "This machine cannot be overclocked, §cThis machine is unfinished, I am not responsible for bugs (lol)§r.");
-        provider.add("ctnh.magic.parallel", "Current parallel count: %.2f");
+        provider.add("ctnh.multiblock.twisted_fusion_mk_infinity.tooltip.0", "§8Endless Twisted Power§r");
+        provider.add("ctnh.multiblock.twisted_fusion_mk_infinity.tooltip.1", "Can use laser warehouse.");
+        provider.add("ctnh.multiblock.twisted_fusion_mk_infinity.tooltip.2", "Applies §8incomprehensible§r parallel to all recipes, reducing energy consumption and operation time by 75%");
+        provider.add("ctnh.multiblock.twisted_fusion_mk_infinity.tooltip.3", "§5You must be crazy to make this machine, and indeed this machine is equally crazy§r.");
 
-        provider.add("ctnh.gtceu.tfmkinfinity.1", "§8Endless Twisted Power§r");
-        provider.add("ctnh.gtceu.tfmkinfinity.1.1", "Can use laser warehouse.");
-        provider.add("ctnh.gtceu.tfmkinfinity.2", "Applies §8incomprehensible§r parallel to all recipes, reducing energy consumption and operation time by 75%");
-        provider.add("ctnh.gtceu.tfmkinfinity.3", "§5You must be crazy to make this machine, and indeed this machine is equally crazy§r.");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.0", "Particle Accelerator Integrator");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.1", "Supports §9laser pods§r and §avoltage converter pods§r, cannot be overclocked");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.2", "Accelerates three particle types simultaneously through triple beamlines");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.3", "Requires particle velocity exceeding recipe specifications, with maximum threshold of 50GeV");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.4", "§bParallel control pods§r enable customized recipe/acceleration parallelism, otherwise uses default values");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.5", "Default parallelism: 16 (standard recipes without §bcontrol pods§r)");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.6", "Insufficient particle velocity yields no products");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.7", "Operational logic varies by selected recipe mode");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.8", "ACCELERATION MODE: Default 1024-parallelism. Energy cost increases 10% per 100MeV combined velocity. §9Particle velocity remains constant§r during operation");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.9", "DECELERATION MODE: Default single-parallelism. Energy cost increases 2.5% per 100MeV. Reduces particle velocity by sqrt(required velocity) post-operation");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.10", "WARNING: Extreme power consumption. Improper voltage may cause §crecipe failure§r or §ccircuit tripping§r. Recommended with §9laser pods§r. Reduce parallelism if malfunction occurs");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.11", "Particle transfer available via containment links. §cCAUTION: Hazardous recipes require pre-installed containment systems§r (Currently conceptual)");
 
+        provider.add("ctnh.multiblock.mana_reactor.tooltip.0","工业魔力奠基者");
+        provider.add("ctnh.multiblock.mana_reactor.tooltip.1","允许使用并行控制仓");
 
-
-
-
-
-
-
-        provider.add("ctnh.multiblock.lcr.duration_reduction", "Can reduce the duration as pyrolyse oven");
         provider.add("ctnhcore.src.sacrifice_empty","No sacrifices found");
         provider.add("ctnhcore.src.sacrifice_locked","Sacrifice LOCKED");
         provider.add("ctnhcore.src.sacrifice_unlocked","Sacrifice UNLOCKED");
@@ -493,6 +527,7 @@ public class EnglishLangHandler {
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip0","§5FINAL FANTASY §fof §a Precise Computation §f and §e Plasma Energy");
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1","Provide %d computation to reach the Base Production. For every %d computation provided, the Output Production DOUBLES.");
         provider.add("ctnhcore.recipe_logic.insufficient_cwut", "Insufficient Computation");
+
         provider.add("ctnh.multiblock.wind_array.tooltip0", "§7§oWind Wolf: The TRUE POWER of NATURE");
         provider.add("ctnh.multiblock.wind_array.tooltip1", "§8-----------------§aBasic Data§8--------------------");
         provider.add("ctnh.multiblock.wind_array.tooltip2", "§f- Basic Production: §e%d EU/t  §7(on earth)");
@@ -506,5 +541,11 @@ public class EnglishLangHandler {
         provider.add("ctnh.multiblock.wind_array.tooltip10", "§fLubricant will be extracted from the network.");
         provider.add("ctnh.multiblock.wind_array.tooltip11", "§5DO OBEY the rules to resist the DESTRUCTION from nature force.");
 
+        provider.add("ctnh.multiblock.mana_condenser.tooltips.0", "Entropy-reversal matter conversion!");
+        provider.add("ctnh.multiblock.mana_condenser.tooltips.1", "Converts mana into liquid mana or vice versa - the latter requiring significantly more energy");
+        provider.add("ctnh.multiblock.mana_condenser.tooltips.2", "All mana I/O operations are processed through the central mana pool in the structure");
+
+        provider.add("ctnhcore.machine.high_performance_computer.tooltip.0", "§3Fetal OVERCLOCKING?");
+        provider.add("ctnhcore.machine.high_performance_computer.tooltip.1", "§rProvider %d computation when energy is sufficient.");
     }
 }
