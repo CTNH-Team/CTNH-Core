@@ -33,8 +33,8 @@ public class ZenithMachine extends WorkableElectricMultiblockMachine {
     public void addDisplayText(List<Component> textList) {
         var tier = getTier();
         super.addDisplayText(textList);
-        textList.add(textList.size(), Component.translatable("ctnh.zenith_now_parallel",String.format("%d",parallel)));
-        textList.add(textList.size(), Component.translatable("ctnh.zenith_max_parallel",String.format("%d",basic_parallel+(maxparallel*(Math.max(tier-6,0))))));
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.zenith_machine.info.now_parallel",String.format("%d",parallel)));
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.zenith_machine.info.max_parallel",String.format("%d",basic_parallel+(maxparallel*(Math.max(tier-6,0))))));
     }
     @Override
     public boolean onWorking() {

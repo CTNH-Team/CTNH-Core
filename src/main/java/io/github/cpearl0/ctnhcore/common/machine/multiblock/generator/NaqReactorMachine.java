@@ -125,9 +125,9 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
         super.addDisplayText(textList);
         int parallelCount = getParallelCount();  // 获取当前并行数
         int fluidConsumption = FLUID_AMOUNT * parallelCount;  // 计算实际消耗量
-        textList.add(Component.translatable("powergenerator.temperature", currentTemperature + "K"));
-        textList.add(Component.translatable("powergenerator.nickel_consumption", fluidConsumption + "mb"));
-        textList.add(Component.translatable("powergenerator.parallel_count", getParallelCount()));
+        textList.add(Component.translatable("ctnh.multiblock.naq_reactor.info.temperature", currentTemperature + "K"));
+        textList.add(Component.translatable("ctnh.multiblock.naq_reactor.info.nickel_consumption", fluidConsumption + "mb"));
+        textList.add(Component.translatable("ctnh.multiblock.naq_reactor.info.parallel_count", getParallelCount()));
     }
 
     @Override

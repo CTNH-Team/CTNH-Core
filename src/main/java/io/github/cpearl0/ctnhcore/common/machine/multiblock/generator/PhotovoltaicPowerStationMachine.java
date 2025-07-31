@@ -243,11 +243,11 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
 
             if(valid == Status.VALID) {
                 //gtceu.multiblock.generation_eu
-                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station1", String.format("%.1f", (lastOutputEnergy * 100f / BASIC_RATE))));
-                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station2", FormattingUtil.formatNumbers(lastOutputEnergy), voltageName));
+                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station.info.1", String.format("%.1f", (lastOutputEnergy * 100f / BASIC_RATE))));
+                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station.info.2", FormattingUtil.formatNumbers(lastOutputEnergy), voltageName));
             }
             else{
-                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station_"+valid.name().toLowerCase()).withStyle(ChatFormatting.RED));
+                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station.info."+valid.name().toLowerCase()).withStyle(ChatFormatting.RED));
             }
         }
     }

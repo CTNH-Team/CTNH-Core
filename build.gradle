@@ -265,7 +265,7 @@ dependencies {
     implementation fg.deobf("curse.maven:placebo-283644:5414631")
 
     // Create Metallurgy & Create Vintage
-    implementation fg.deobf("curse.maven:createmetallurgy-1007404:6441695")
+    implementation fg.deobf("curse.maven:createmetallurgy-1007404:6741785")
     implementation fg.deobf("curse.maven:createvintage-1255448:6635459")
 
     // Twilight forest

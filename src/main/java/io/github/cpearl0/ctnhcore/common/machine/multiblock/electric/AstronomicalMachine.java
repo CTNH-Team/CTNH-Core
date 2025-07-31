@@ -54,7 +54,7 @@ public class AstronomicalMachine extends WorkableElectricMultiblockMachine {
     public void addDisplayText(@NotNull List<Component> textList) {
         if (isFormed()) {
             if (!isValidPhotovoltaicPower()) {
-                textList.add(Component.translatable("ctnh.multiblock.astronomical.invalid").withStyle(ChatFormatting.RED));
+                textList.add(Component.translatable("ctnh.multiblock.astronomical.info.invalid").withStyle(ChatFormatting.RED));
             }
             else {
                 super.addDisplayText(textList);
