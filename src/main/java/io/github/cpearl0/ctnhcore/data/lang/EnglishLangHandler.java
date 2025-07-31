@@ -71,6 +71,7 @@ public class EnglishLangHandler {
         // Common Tooltips
         provider.add("ctnh.common_tooltip.parallel_hatch", "Voltage levels increase the number of parallels");
         provider.add("ctnh.common_tooltip.subtick_overclock", "When recipe runtime is less than 1 tick, parallel calculations will be performed automatically.");
+        provider.add("ctnh.common_tooltip.perfect_overclock", "Perfect Overclock！");
         provider.add("ctnh.common_tooltip.steel_machine.0", "Can only use HV-grade energy hatches and below");
         provider.add("ctnh.common_tooltip.steel_machine.1", "Maximum parallelism: 32");
 
