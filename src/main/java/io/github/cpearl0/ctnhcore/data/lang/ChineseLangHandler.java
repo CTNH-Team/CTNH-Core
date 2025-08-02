@@ -11,6 +11,7 @@ import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
+import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
 import net.minecraftforge.common.data.LanguageProvider;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,8 +22,16 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 
 public class ChineseLangHandler {
     public static void init(RegistrateCNLangProvider provider) {
+        //Tagprefix
         replace(provider, CTNHTagPrefixes.oreHolystone.getUnlocalizedName(), "圣石%s矿石");
         replace(provider, CTNHTagPrefixes.oreMossyHolystone.getUnlocalizedName(), "覆苔圣石%s矿石");
+        replace(provider, CTNHTagPrefixes.oreAstralStone.getUnlocalizedName(), "星辉%s矿石");
+        replace(provider, CTNHTagPrefixes.oreIcestone.getUnlocalizedName(), "冰石%s矿石");
+        replace(provider, CTNHTagPrefixes.oreLivingrock.getUnlocalizedName(), "活石%s矿石");
+        replace(provider, CTNHTagPrefixes.nuclear.getUnlocalizedName(), "%s");
+        replace(provider, CTNHTagPrefixes.fuel.getUnlocalizedName(), "%s燃料");
+        replace(provider, CTNHTagPrefixes.DepletedFuel.getUnlocalizedName(), "%s枯竭燃料");
+        replace(provider, CTNHTagPrefixes.waste.getUnlocalizedName(), "%s废料");
 
         replace(provider, CTNHMaterials.Moonstone.getUnlocalizedName(), "月石");
         replace(provider, CTNHMaterials.Marsstone.getUnlocalizedName(), "火星石");
@@ -196,13 +205,7 @@ public class ChineseLangHandler {
         provider.add("config.ctnhcore.option.laserRpmRequirement", "机械激光厂最低转速需求");
         provider.add("config.ctnhcore.option.laserSpeedMultiplier", "机械激光厂加速倍率");
         provider.add("config.ctnhcore.option.laserStressRequirement", "机械激光厂应力消耗");
-        //Tagprefix
-        provider.add("tagprefix.nuclear", "%s");
-        provider.add("tagprefix.fuel", "%s燃料");
-        provider.add("tagprefix.depleted_fuel", "%s枯竭燃料");
-        provider.add("tagprefix.waste", "%s废料");
-        provider.add("tagprefix.icestone", "冰石%s矿石");
-        provider.add("tagprefix.livingrock", "活石%s矿石");
+
         //Recipe Type
         provider.add("gtceu.phase_inversion","反相蚀刻");
         provider.add("gtceu.underfloor_heating_system", "地暖");
@@ -1169,23 +1172,23 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.QUASAR_ENERGY_STABILIZATION_CASING,"类星体能量稳定机械外壳");
         provider.addBlock(CTNHBlocks.WIDESPEEDINGPIPE,"广粒子加速器通道");
         provider.addBlock(CTNHBlocks.ARC_CELL,"电弧发生器");
-        provider.addBlock(CTNHBlocks.ASTRAL_LOG, "星辉木");
-        provider.addBlock(CTNHBlocks.ASTRAL_STONE, "星辉石");
-        provider.addBlock(CTNHBlocks.ASTRAL_COBBLESTONE, "星辉圆石");
-        provider.addBlock(CTNHBlocks.ASTRAL_SAND, "星辉沙");
-        provider.addBlock(CTNHBlocks.ASTRAL_DIRT, "星辉泥土");
-        provider.addBlock(CTNHBlocks.ASTRAL_GRASS_BLOCK, "星辉草方块");
-        provider.addBlock(CTNHBlocks.ASTRAL_SAPLING, "星辉树苗");
-        provider.addBlock(CTNHBlocks.ASTRAL_GRASS, "星辉草");
-        provider.addBlock(CTNHBlocks.ASTRAL_TALL_GRASS, "星辉高草丛");
-        provider.addBlock(CTNHBlocks.PEPPER_CRATE, "箱装辣椒");
-        provider.addBlock(CTNHBlocks.GARLIC_CRATE, "箱装大蒜");
-        provider.addBlock(CTNHBlocks.CASSAVA_CRATE, "箱装木薯");
-        provider.addBlock(CTNHBlocks.FRUIT_CAFE_CRATE, "箱装水果");
-        provider.addBlock(CTNHBlocks.ASPARAGUS_CRATE, "箱装芦荟");
+        provider.addBlock(AstralBlocks.ASTRAL_LOG, "星辉木");
+        provider.addBlock(AstralBlocks.ASTRAL_STONE, "星辉石");
+        provider.addBlock(AstralBlocks.ASTRAL_COBBLESTONE, "星辉圆石");
+        provider.addBlock(AstralBlocks.ASTRAL_SAND, "星辉沙");
+        provider.addBlock(AstralBlocks.ASTRAL_DIRT, "星辉泥土");
+        provider.addBlock(AstralBlocks.ASTRAL_GRASS_BLOCK, "星辉草方块");
+        provider.addBlock(AstralBlocks.ASTRAL_SAPLING, "星辉树苗");
+        provider.addBlock(AstralBlocks.ASTRAL_GRASS, "星辉草");
+        provider.addBlock(AstralBlocks.ASTRAL_TALL_GRASS, "星辉高草丛");
+        provider.addBlock(AstralBlocks.PEPPER_CRATE, "箱装辣椒");
+        provider.addBlock(AstralBlocks.GARLIC_CRATE, "箱装大蒜");
+        provider.addBlock(AstralBlocks.CASSAVA_CRATE, "箱装木薯");
+        provider.addBlock(AstralBlocks.FRUIT_CAFE_CRATE, "箱装水果");
+        provider.addBlock(AstralBlocks.ASPARAGUS_CRATE, "箱装芦荟");
         provider.addBlock(CTNHBlocks.CASING_NEUTRONIUM_ALLOY_BLOCK,"以太强化超能中子基岩合金钅达智能机械方块");
-        provider.addBlock(CTNHBlocks.BLUE_FLOWER, "蓝焰花");
-        provider.addBlock(CTNHBlocks.PINK_FLOWER, "粉球花");
+        provider.addBlock(AstralBlocks.BLUE_FLOWER, "蓝焰花");
+        provider.addBlock(AstralBlocks.PINK_FLOWER, "粉球花");
         provider.addBlock(CTNHBlocks.PHOTON_PRESS_COND_BLOCK,"光压传导光伏方块");
         provider.addBlock(CTNHBlocks.STELLAR_RADIATION_ROUTER_CASING,"恒星辐射分流方块");
         provider.addBlock(CTNHBlocks.PV_COIL,"光伏线圈方块");
@@ -1305,6 +1308,7 @@ public class ChineseLangHandler {
         provider.add(MultiblocksB.NERUOMATRIXCOMPILER.getBlock(),"神经矩阵编译器");
         provider.add(MultiblocksB.HYBRID_POWER_MIXER.getBlock(),"混合动力搅拌机");
         provider.add(MultiblocksB.ZENITH_EXTRUDER.getBlock(),"§5天顶灵能塑形者");
+        provider.add(MultiblocksB.FLUID_DRILLING_INF[UHV].getBlock(),"无尽流体钻机");
         provider.add(MultiblocksB.MANA_CONDENSER.getBlock(), "魔力凝缩器");
         provider.add(MultiblocksB.FLUID_DRILLING_INF[UHV].getBlock(),"无尽流体钻机");
 

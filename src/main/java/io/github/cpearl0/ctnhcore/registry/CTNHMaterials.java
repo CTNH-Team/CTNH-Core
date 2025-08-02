@@ -57,6 +57,12 @@ public class CTNHMaterials {
             .flags(DECOMPOSITION_BY_CENTRIFUGING)
             .buildAndRegister();
 
+    public static final Material AstralStone = new Material.Builder(CTNHCore.id("astral_stone"))
+            .dust()
+            .color(0xc6b2e8)
+            .iconSet(ROUGH)
+            .buildAndRegister();
+
     // Aether
     public static final Material Holystone = new Material.Builder(CTNHCore.id("holystone"))
             .dust()

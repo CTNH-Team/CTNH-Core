@@ -34,7 +34,7 @@ public class WindPowerArrayRegister {
                         .build())
                 .allowFlip(false)
                 .allowExtendedFacing(false)
-                .workableCasingRenderer(GTCEu.id("block/casings/solid/"+renderCasing), GTCEu.id("block/multiblock/implosion_compressor"), false)
+                .workableCasingModel(GTCEu.id("block/casings/solid/"+renderCasing), GTCEu.id("block/multiblock/implosion_compressor"))
                 .tooltips(Component.translatable("ctnh.multiblock.wind_array.tooltip0")
                         , Component.translatable("ctnh.multiblock.wind_array.tooltip1")
                         , Component.translatable("ctnh.multiblock.wind_array.tooltip2", GTValues.V[tier])

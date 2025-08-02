@@ -709,6 +709,7 @@
   "material.ctnhcore.stratus": "Stratus",
   "material.ctnhcore.venus_stone": "Venus Stone",
   "material.ctnhcore.zanite": "Zanite",
+  "tagprefix.astral_stone": "Astral %s Ore",
   "tagprefix.depleted_fuel": "%s Depleted Fuel",
   "tagprefix.fuel": "%s Fuel",
   "tagprefix.holystone": "Holystone %s Ore",

@@ -124,12 +124,11 @@ public class CTNHMultiblockBuilder extends MultiblockMachineBuilder {
     public CTNHMultiblockBuilder recipeTypes(GTRecipeType... recipeTypes) {
         String typeName = "";
         for (int i = 0; i < recipeTypes.length; i++) {
-            var translationKey = recipeTypes[i].registryName.getNamespace() + "." + recipeTypes[i].registryName.getPath();
             if (i != 0) {
-                typeName += ", " + Component.translatable(translationKey).getString();
+                typeName += ", " + Component.translatable(recipeTypes[i].registryName.toLanguageKey()).getString();
             }
             else {
-                typeName += Component.translatable(translationKey).getString();
+                typeName += Component.translatable(recipeTypes[i].registryName.toLanguageKey()).getString();
             }
         }
         this.tooltips(Component.translatable("ctnh.recipe_type.info", typeName));

@@ -40,8 +40,9 @@ public class EventHandler {
         CTNHBlocks.init();
         CTNHMultiblockMachines.init();
         GTMachineModify.init();
-        CTNHBlockInfo.init();
         CTNHBlockEntities.init();
+        AstralBlocks.init();
+        CTNHBlockInfo.init();
     }
 
     public static void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation, GTRecipeType> event) {
