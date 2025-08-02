@@ -174,7 +174,7 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
                             .build();
                 }
                 if (recipe.recipeType.equals(CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR)) {
-                    var true_eut=EUt+ pmachine.muti*16384* pmachine.heat;
+                    var true_eut=EUt+ pmachine.muti*16384* pmachine.heat*2;
                     recipe.tickOutputs.put(EURecipeCapability.CAP, EURecipeCapability.makeEUContent((long) true_eut));
                     return ModifierFunction.builder()
                             .build();
@@ -184,10 +184,10 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
         }
 
     public void addDisplayText(List<Component> textList) {
-        textList.add(textList.size(),Component.translatable("ctnh.pvc_tier.0",String.format("%d",heat)));
-        textList.add(textList.size(),Component.translatable("ctnh.pvc_tier.1",String.format("%d",heat)));
-        textList.add(textList.size(),Component.translatable("ctnh.pvc_tier.2",String.format("%.2f",muti*16384*heat)));
-        textList.add(textList.size(),Component.translatable("ctnh.pvc_tier.3",String.format("%.1f",muti)));
+        textList.add(textList.size(),Component.translatable("ctnh.spacephotovoltaicbasestation.info.pvc_tier.0",String.format("%d",heat)));
+        textList.add(textList.size(),Component.translatable("ctnh.spacephotovoltaicbasestation.info.pvc_tier.1",String.format("%d",heat)));
+        textList.add(textList.size(),Component.translatable("ctnh.spacephotovoltaicbasestation.info.pvc_tier.2",String.format("%.2f",muti*16384*heat*2)));
+        textList.add(textList.size(),Component.translatable("ctnh.spacephotovoltaicbasestation.info.pvc_tier.3",String.format("%.1f",muti)));
         super.addDisplayText(textList);
     }
     @Override
