@@ -9,9 +9,12 @@ import com.mojang.logging.LogUtils;
 import io.github.cpearl0.ctnhcore.client.ClientProxy;
 import io.github.cpearl0.ctnhcore.common.CommonProxy;
 import io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalItem;
+import io.github.cpearl0.ctnhcore.data.CTNHBlockInfo;
 import io.github.cpearl0.ctnhcore.event.EventHandler;
+import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundEvents;
+import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
 import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHOverworldRegion;
 import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHSurfaceRuleData;
 import net.minecraft.resources.ResourceLocation;
@@ -52,8 +55,8 @@ public class CTNHCore
     {
         event.enqueueWork(() ->
         {
-//            Regions.register(new CTNHOverworldRegion(2));
-//            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, CTNHCore.MODID, CTNHSurfaceRuleData.customSurface());
+            Regions.register(new CTNHOverworldRegion(2));
+            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, CTNHCore.MODID, CTNHSurfaceRuleData.customSurface());
         });
         GridLinkables.register(ME_ADVANCED_TERMINAL, MEAdvancedTerminalItem.LINKABLE_HANDLER);
     }

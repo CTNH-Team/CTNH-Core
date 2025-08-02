@@ -10,6 +10,13 @@ public class EnglishLangHandler {
     public static void init(RegistrateLangProvider provider) {
         LangHandler.replace(provider, CTNHTagPrefixes.oreHolystone.getUnlocalizedName(), "Holystone %s Ore");
         LangHandler.replace(provider, CTNHTagPrefixes.oreMossyHolystone.getUnlocalizedName(), "Mossy Holystone %s Ore");
+        LangHandler.replace(provider, CTNHTagPrefixes.oreAstralStone.getUnlocalizedName(), "Astral %s Ore");
+        LangHandler.replace(provider, CTNHTagPrefixes.oreIcestone.getUnlocalizedName(), "Icestone %s Ore");
+        LangHandler.replace(provider, CTNHTagPrefixes.oreLivingrock.getUnlocalizedName(), "Livingrock %s Ore");
+        LangHandler.replace(provider, CTNHTagPrefixes.nuclear.getUnlocalizedName(), "%s");
+        LangHandler.replace(provider, CTNHTagPrefixes.fuel.getUnlocalizedName(), "%s Fuel");
+        LangHandler.replace(provider, CTNHTagPrefixes.DepletedFuel.getUnlocalizedName(), "%s Depleted Fuel");
+        LangHandler.replace(provider, CTNHTagPrefixes.waste.getUnlocalizedName(), "%s Waste");
 
         LangHandler.replace(provider, CTNHMaterials.Moonstone.getUnlocalizedName(), "Moon Stone");
         LangHandler.replace(provider, CTNHMaterials.Marsstone.getUnlocalizedName(), "Mars Stone");
@@ -26,13 +33,6 @@ public class EnglishLangHandler {
         provider.add("enchantment.kubejs.vacuum_seal.desc", "Protects you from vacuum damage. Note: All equipped items must have this enchantment to take effect");
         provider.add("enchantment.kubejs.warming.desc", "Enhance your hot defending ability");
         provider.add("enchantment.kubejs.cooling.desc", "Enhance your cold defending ability");
-
-        provider.add("tagprefix.nuclear", "%s");
-        provider.add("tagprefix.fuel", "%s Fuel");
-        provider.add("tagprefix.depleted_fuel", "%s Depleted Fuel");
-        provider.add("tagprefix.waste", "%s Waste");
-        provider.add("tagprefix.icestone", "Icestone %s Ore");
-        provider.add("tagprefix.livingrock", "Livingrock %s Ore");
 
         //Recipe Types
         provider.add("gtceu.underfloor_heating_system", "Underfloor Heating");

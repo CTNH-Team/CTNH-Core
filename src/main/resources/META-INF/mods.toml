@@ -67,7 +67,7 @@ description='''${mod_description}'''
     modId="gtceu"
     mandatory=true
     versionRange="[1.6,)"
-    ordering="AFTER"
+    ordering="NONE"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
