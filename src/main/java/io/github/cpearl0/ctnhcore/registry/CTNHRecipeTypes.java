@@ -347,8 +347,8 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_CRYSTALLIZATION, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL)
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.beams_mana_required",String.format("%.2f",data.getFloat("required_mana")/1000000)))
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.beams_mana_consumption",String.format("%.2f",data.getFloat("mana")/1000000)));
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.beams.info.mana_required",String.format("%.2f",data.getFloat("required_mana")/1000000)))
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.beams.info.mana_consumption",String.format("%.2f",data.getFloat("mana")/1000000)));
     public static final GTRecipeType TWISTED_FUSION = GTRecipeTypes.register("twisted_fusion",ELECTRIC)
                 .setMaxIOSize(0, 0, 2, 2)
                 .setEUIO(IO.IN)
@@ -497,8 +497,8 @@ public class CTNHRecipeTypes {
             .setEUIO(IO.OUT)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.arc.require",String.format("%d",data.getInt("requirearc"))))
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.arc.max",String.format("%d",data.getInt("maxarc"))))
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.arc_generator.require",String.format("%d",data.getInt("requirearc"))))
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.arc_generator.require",String.format("%d",data.getInt("maxarc"))))
             .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType ARC_REACTOR = GTRecipeTypes.register("arc_reactor",ELECTRIC)
             .setMaxIOSize(6, 6, 3, 3)
