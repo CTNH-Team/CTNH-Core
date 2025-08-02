@@ -926,6 +926,7 @@ public class MultiblocksB {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
+            .addUnderTooltip("ctnh.copyright.magic.info")
             .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
     public final static MultiblockMachineDefinition ARC_GENERATOR = REGISTRATE.multiblock("arc_generator", holder -> new Arc_Generator(holder, 0.75, 1000))
@@ -1923,7 +1924,6 @@ public class MultiblocksB {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
-
             .workableCasingRenderer(CTNHCore.id("block/casings/depth_force_field_stabilizing_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
     public final static MultiblockMachineDefinition HYPER_PLASMA_TURBINE = HyperPlasmaTurbineRegister.register();
@@ -2137,6 +2137,7 @@ public class MultiblocksB {
                     .build())
             .hasTESR(true)
             .renderer(ManaCondenserRender::new)
+            .addUnderTooltip("ctnh.copyright.magic.info")
             .register();
     public final static MultiblockMachineDefinition  NERUOMATRIXCOMPILER = REGISTRATE.multiblock("neruo_martix_compiler", NeuroMatrixCompiler::new)
             .rotationState(RotationState.NON_Y_AXIS)
@@ -2254,6 +2255,7 @@ public class MultiblocksB {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
+            .addUnderTooltip("ctnh.copyright.magic.info")
             .workableCasingRenderer((CTNHCore.id("block/casings/zenith_casing")), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
 //    public final static MultiblockMachineDefinition  QUANTUM_MANAGEMENT_CENTER = REGISTRATE.multiblock("quantum_management_center", CryotheumFreezer::new)
