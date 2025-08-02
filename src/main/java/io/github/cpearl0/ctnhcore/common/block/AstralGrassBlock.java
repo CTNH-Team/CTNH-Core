@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.block;
 
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
+import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -15,12 +16,12 @@ public class AstralGrassBlock extends TallGrassBlock {
     }
     @Override
     protected boolean mayPlaceOn(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
-        return pState.is(CTNHBlocks.ASTRAL_DIRT.get()) || pState.is(CTNHBlocks.ASTRAL_GRASS_BLOCK.get());
+        return pState.is(AstralBlocks.ASTRAL_DIRT.get()) || pState.is(AstralBlocks.ASTRAL_GRASS_BLOCK.get());
     }
     @Override
     public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
-        if ((CTNHBlocks.ASTRAL_TALL_GRASS.get()).defaultBlockState().canSurvive(level, pos) && level.isEmptyBlock(pos.above())) {
-            DoublePlantBlock.placeAt(level, (CTNHBlocks.ASTRAL_TALL_GRASS.get()).defaultBlockState(), pos, 2);
+        if ((AstralBlocks.ASTRAL_TALL_GRASS.get()).defaultBlockState().canSurvive(level, pos) && level.isEmptyBlock(pos.above())) {
+            DoublePlantBlock.placeAt(level, (AstralBlocks.ASTRAL_TALL_GRASS.get()).defaultBlockState(), pos, 2);
         }
     }
 }

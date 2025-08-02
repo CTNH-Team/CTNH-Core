@@ -3,8 +3,10 @@ package io.github.cpearl0.ctnhcore;
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
+import io.github.cpearl0.ctnhcore.data.CTNHBlockInfo;
 import io.github.cpearl0.ctnhcore.data.recipe.*;
 import io.github.cpearl0.ctnhcore.registry.*;
+import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
