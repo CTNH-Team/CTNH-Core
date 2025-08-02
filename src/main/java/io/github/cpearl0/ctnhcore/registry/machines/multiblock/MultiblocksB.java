@@ -535,16 +535,15 @@ public class MultiblocksB {
 
             .recipeModifiers(TwistedFusionMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
             .workableCasingModel(CTNHCore.id("block/casings/twisted_fusion_casing"), GTCEu.id("block/multiblock/fusion_reactor"))
-            .tooltips(Component.translatable("ctnh.gtceu:twisted_fusion_mk1.0"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.1"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.2"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.3"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.4"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.5"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.6"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.7"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.8"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.9"))
+            .tooltips(Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.0"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.1"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.2"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.3"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.4"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.5"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.6"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.7"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.8"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("###############", "###############", "###############", "######AAA######", "###############", "###############", "###############")
                     .aisle("###############", "###############", "######AAA######", "####AA###AA####", "######AAA######", "###############", "###############")
@@ -584,16 +583,15 @@ public class MultiblocksB {
             .recipeTypes(GTRecipeTypes.FUSION_RECIPES, CTNHRecipeTypes.TWISTED_FUSION)
             .recipeModifiers(TwistedFusionMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
             .workableCasingModel(CTNHCore.id("block/casings/twisted_fusion_casing"), GTCEu.id("block/multiblock/fusion_reactor"))
-            .tooltips(Component.translatable("ctnh.gtceu:twisted_fusion_mk1.0"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.1"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.2"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.3"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.4"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.5"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.6"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.7"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.8"),
-                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.9"))
+            .tooltips(Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.0"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.1"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.2"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.3"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.4"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.5"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.6"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.7"),
+                    Component.translatable("ctnh.multiblock.twisted_fusion_mk1.tooltip.8"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("###############", "###############", "###############", "######AAA######", "###############", "###############", "###############")
                     .aisle("###############", "###############", "######AAA######", "####AA###AA####", "######AAA######", "###############", "###############")
@@ -1266,9 +1264,9 @@ public class MultiblocksB {
             .recipeType(CTNHRecipeTypes.CULTIVATION_ROOM)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH,
                     GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
-            .tooltips(Component.translatable("ctnh.cultivationroom.1").withStyle(ChatFormatting.GREEN),
-                    Component.translatable("ctnh.cultivationroom.2"),
-                    Component.translatable("ctnh.multiblock.parallelize.tooltip"),
+            .tooltips(Component.translatable("ctnh.multiblock.cultivation_room.tooltip.1").withStyle(ChatFormatting.GREEN),
+                    Component.translatable("ctnh.multiblock.cultivation_room.tooltip.2"),
+                    CTNHCommonTooltips.PARALLEL_HATCH,
                     Component.translatable("gtceu.multiblock.laser.tooltip")
             )
             .appearanceBlock(CASING_STAINLESS_CLEAN)
@@ -2221,7 +2219,7 @@ public class MultiblocksB {
             .recipeModifiers(ZenithMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
             .tooltips(Component.translatable("ctnh.zenith_laser"),
                     Component.translatable("zenith_machine_sp").withStyle(ChatFormatting.DARK_PURPLE),
-                    Component.translatable("ctnh.super_mana_machine.mana_consume"),
+                    CTNHCommonTooltips.SUPER_MANA_CONSUME,
                     Component.translatable("zenith_extruder"),
                     Component.translatable("zenith_extruder.1"),
                     Component.translatable("zenith_extruder.2"),

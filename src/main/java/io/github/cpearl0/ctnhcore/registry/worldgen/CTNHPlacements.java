@@ -42,12 +42,12 @@ public class CTNHPlacements {
         PlacementUtils.register(ctx, ASTRAL_TREE, featureLookup.getOrThrow(CTNHConfiguredFeatures.ASTRAL_TREE),
                 new BiomePlacement(List.of(
                         new BiomeWeightModifier(() -> HolderSet.direct(biomeLookup.getOrThrow(CTNHBiomes.PLAGUE_WASTELAND)), 50))),
-                CountPlacement.of(12),
+                CountPlacement.of(3),
                 InSquarePlacement.spread(),
                 SurfaceWaterDepthFilter.forMaxDepth(0),
                 PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                 BiomeFilter.biome(),
-                PlacementUtils.filteredByBlockSurvival(CTNHBlocks.ASTRAL_SAPLING.get()));
+                PlacementUtils.filteredByBlockSurvival(AstralBlocks.ASTRAL_SAPLING.get()));
         PlacementUtils.register(ctx, ASTRAL_FLOWER, featureLookup.getOrThrow(CTNHConfiguredFeatures.ASTRAL_FLOWER),
                 new BiomePlacement(List.of(
                         new BiomeWeightModifier(() -> HolderSet.direct(biomeLookup.getOrThrow(CTNHBiomes.PLAGUE_WASTELAND)), 50))),
@@ -56,7 +56,7 @@ public class CTNHPlacements {
                 SurfaceWaterDepthFilter.forMaxDepth(0),
                 PlacementUtils.HEIGHTMAP,
                 BiomeFilter.biome(),
-                PlacementUtils.filteredByBlockSurvival(CTNHBlocks.BLUE_FLOWER.get()));
+                PlacementUtils.filteredByBlockSurvival(AstralBlocks.BLUE_FLOWER.get()));
         PlacementUtils.register(ctx, ASTRAL_GRASS, featureLookup.getOrThrow(CTNHConfiguredFeatures.ASTRAL_GRASS),
                 new BiomePlacement(List.of(
                         new BiomeWeightModifier(() -> HolderSet.direct(biomeLookup.getOrThrow(CTNHBiomes.PLAGUE_WASTELAND)), 50))),
@@ -65,7 +65,7 @@ public class CTNHPlacements {
                 SurfaceWaterDepthFilter.forMaxDepth(0),
                 PlacementUtils.HEIGHTMAP,
                 BiomeFilter.biome(),
-                PlacementUtils.filteredByBlockSurvival(CTNHBlocks.ASTRAL_GRASS.get()));
+                PlacementUtils.filteredByBlockSurvival(AstralBlocks.ASTRAL_GRASS.get()));
         PlacementUtils.register(ctx, ASTRAL_LAKE_UNDERGROUND, featureLookup.getOrThrow(CTNHConfiguredFeatures.ASTRAL_LAKE),
                 RarityFilter.onAverageOnceEvery(9),
                 InSquarePlacement.spread(),

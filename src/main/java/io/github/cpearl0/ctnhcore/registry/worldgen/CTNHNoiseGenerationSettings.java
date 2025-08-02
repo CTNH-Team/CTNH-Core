@@ -29,13 +29,13 @@ public class CTNHNoiseGenerationSettings {
         public static final ResourceKey<NoiseGeneratorSettings> ABYSS = ResourceKey.create(Registries.NOISE_SETTINGS,
                         CTNHCore.id("abyss"));
         public static final SurfaceRules.RuleSource ASTRAL_GRASS_BLOCK = SurfaceRules
-                        .state(CTNHBlocks.ASTRAL_GRASS_BLOCK.getDefaultState());
+                        .state(AstralBlocks.ASTRAL_GRASS_BLOCK.getDefaultState());
         public static final SurfaceRules.RuleSource ASTRAL_DIRT = SurfaceRules
-                        .state(CTNHBlocks.ASTRAL_DIRT.getDefaultState());
+                        .state(AstralBlocks.ASTRAL_DIRT.getDefaultState());
         public static final SurfaceRules.RuleSource ASTRAL_STONE = SurfaceRules
-                        .state(CTNHBlocks.ASTRAL_STONE.getDefaultState());
+                        .state(AstralBlocks.ASTRAL_STONE.getDefaultState());
         public static final SurfaceRules.RuleSource ASTRAL_SAND = SurfaceRules
-                        .state(CTNHBlocks.ASTRAL_SAND.getDefaultState());
+                        .state(AstralBlocks.ASTRAL_SAND.getDefaultState());
 
         public static void bootstrap(BootstapContext<NoiseGeneratorSettings> ctx) {
                 var holderGetter = ctx.lookup(Registries.DENSITY_FUNCTION);
@@ -67,7 +67,7 @@ public class CTNHNoiseGenerationSettings {
                                 false,
                                 false));
                 ctx.register(ASTRAL_PLANET, new NoiseGeneratorSettings(NoiseSettings.create(-64, 384, 1, 2),
-                                CTNHBlocks.ASTRAL_STONE.getDefaultState(),
+                        AstralBlocks.ASTRAL_STONE.getDefaultState(),
                                 Blocks.AIR.defaultBlockState(),
                                 new NoiseRouter(DensityFunctions.noise(holderGetter2.getOrThrow(Noises.AQUIFER_BARRIER),
                                                 0.5),
