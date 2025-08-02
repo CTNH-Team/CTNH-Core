@@ -789,10 +789,10 @@ public class ChineseLangHandler {
 
 
 
-        provider.add("ctnh.arc.require","需求电弧强度:%d");
-        provider.add("ctnh.arc.max","满功率需求电弧强度:%d");
-        provider.add("ctnh.arc.r.arc","可输出的电弧强度:%d");
-        provider.add("ctnh.arc.r.connect","§b桥接已启用§r");
+        provider.add("ctnh.recipe.arc_generator.require","需求电弧强度:%d");
+        provider.add("ctnh.recipe.arc_generator.require","满功率需求电弧强度:%d");
+        provider.add("ctnh.mutiblock.arcreactor.arc","可输出的电弧强度:%d");
+        provider.add("ctnh.mutiblock.arcreactor.connect","§b桥接已启用§r");
 
         provider.add("ctnh.arcgenerator.1","物质撕裂器");
         provider.add("ctnh.arcgenerator.t2.1","分子撕裂器");
@@ -822,31 +822,34 @@ public class ChineseLangHandler {
         provider.add("ctnh.gcym.reduction","配方耗时x0.8，配方耗能x0.6");
         provider.add("ctnh.boss_summoner.use", "右键长按蓄力掷出，在落点处召唤一只神化boss，每次使用有五分之一的概率消耗");
         provider.add("ctnh.mechanical_lathe.structure", "结构须知：车床必须放满6个，且动力侧朝外，移动侧朝中心");
-        provider.add("ctnh.gtceu.tfmkalephzero.1","§4不，这不可能，你到底是怎么做出来这个东西的？§r");
-        provider.add("ctnh.gtceu.tfmkalephzero.2","§c你到底是无聊到什么地步能凑到这么多材料和算力，只为了这点并行和速度？§r");
-        provider.add("ctnh.gtceu.tfmkalephzero.3","§8好吧，我不管你是开创还是怎么回事的，你确实和你的AE征服我了§r");
-        provider.add("ctnh.gtceu.tfmkalephzero.4","§7并行数为2147483637，配方时间乘以0.0001，无损超频，满意了吧？§r");
-        provider.add("ctnh.eternalgarden.1","§b万物在这世间绽放的永恒的一瞥§r");
-        provider.add("ctnh.eternalgarden.2","无法超频，但是机器自身电压每比配方电压高一级就使最终产出乘以1.25,通过在输入总线内加入五级符文来增大这个系数");
-        provider.add("ctnh.eternalgarden.3","每朵花都有自己独特的机制，机制太复杂了！请参阅§5魔力飞升§r章节来获取各种花的机制");
-        provider.add("ctnh.eternalgarden.unknown","§5......等待着永恒的紫罗兰如今在何方？");
 
+        provider.add("ctnh.gtceu.tooltip.tfmkalephzero.1","§4不，这不可能，你到底是怎么做出来这个东西的？§r");
+        provider.add("ctnh.gtceu.tooltip.tfmkalephzero.2","§c你到底是无聊到什么地步能凑到这么多材料和算力，只为了这点并行和速度？§r");
+        provider.add("ctnh.gtceu.tooltip.tfmkalephzero.3","§8好吧，我不管你是开创还是怎么回事的，你确实和你的AE征服我了§r");
+        provider.add("ctnh.gtceu.tooltip.tfmkalephzero.4","§7并行数为2147483637，配方时间乘以0.0001，无损超频，满意了吧？§r");
+
+        provider.add("ctnh.eternalgarden.tooltip.1","§b万物在这世间绽放的永恒的一瞥§r");
+        provider.add("ctnh.eternalgarden.tooltip.2","无法超频，但是机器自身电压每比配方电压高一级就使最终产出乘以1.25,通过在输入总线内加入五级符文来增大这个系数");
+        provider.add("ctnh.eternalgarden.tooltip.3","每朵花都有自己独特的机制，机制太复杂了！请参阅§5魔力飞升§r章节来获取各种花的机制");
+        provider.add("ctnh.eternalgarden.tooltip.unknown","§5......等待着永恒的紫罗兰如今在何方？");
+        //
         provider.add("ctnh.anti_inf_matter.1","-∞");
         provider.add("ctnh.anti_inf_matter.2","它到底是怎么在现实世界存在的......");
-        provider.add("ctnh.plasma_alloy.1","§4转底炉的复仇");
-        provider.add("ctnh.plasma_alloy.11","允许使用§b激光仓§r，使用激光仓时最终速度将除以4，速度低于原速度时拒绝运行");
-        provider.add("ctnh.plasma_alloy.2","线圈温度每有1800K，获得4点并行，线圈温度超过10000K时，获得(线圈温度-10000)/10000的额外加速");
-        provider.add("ctnh.plasma_alloy.3","运行前消耗(并行数*对应等离子体消耗)的等离子体，获得额外加速");
-        provider.add("ctnh.plasma_alloy.4","氦等离子体：消耗500*并行的等离子体，速度+100%");
-        provider.add("ctnh.plasma_alloy.5","氧，氮等离子体：消耗300*并行的等离子体，速度+200%");
-        provider.add("ctnh.plasma_alloy.6","镍，铁等离子体：消耗200*并行的等离子体，速度+300%");
-        provider.add("ctnh.plasma_alloy.7","消耗特殊的冶炼等离子体可以获得额外的速度加成，§c但是同样会将增加你冶炼的风险");
-        provider.add("ctnh.plasma_alloy.8","压缩精金等离子：消耗固定100等离子体，使速度*5,使消耗电压翻倍（§c这可能导致配方不运行，请使用多安能源仓）");
-        provider.add("ctnh.plasma_alloy.9","精炼超能以太等离子体：消耗50*并行等离子体，使速度*10,§c使最终产物在80%-100%中浮动");
-        provider.add("ctnh.plasma_alloy.10","§c速度增幅超过5000%时，最终产物量将会在0%-50%中浮动！");
+        //
+        provider.add("ctnh.plasma_alloy.tooltip.1","§4转底炉的复仇");
+        provider.add("ctnh.plasma_alloy.tooltip.11","允许使用§b激光仓§r，使用激光仓时最终速度将除以4，速度低于原速度时拒绝运行");
+        provider.add("ctnh.plasma_alloy.tooltip.2","线圈温度每有1800K，获得4点并行，线圈温度超过10000K时，获得(线圈温度-10000)/10000的额外加速");
+        provider.add("ctnh.plasma_alloy.tooltip.3","运行前消耗(并行数*对应等离子体消耗)的等离子体，获得额外加速");
+        provider.add("ctnh.plasma_alloy.tooltip.4","氦等离子体：消耗500*并行的等离子体，速度+100%");
+        provider.add("ctnh.plasma_alloy.tooltip.5","氧，氮等离子体：消耗300*并行的等离子体，速度+200%");
+        provider.add("ctnh.plasma_alloy.tooltip.6","镍，铁等离子体：消耗200*并行的等离子体，速度+300%");
+        provider.add("ctnh.plasma_alloy.tooltip.7","消耗特殊的冶炼等离子体可以获得额外的速度加成，§c但是同样会将增加你冶炼的风险");
+        provider.add("ctnh.plasma_alloy.tooltip.8","压缩精金等离子：消耗固定100等离子体，使速度*5,使消耗电压翻倍（§c这可能导致配方不运行，请使用多安能源仓）");
+        provider.add("ctnh.plasma_alloy.tooltip.9","精炼超能以太等离子体：消耗50*并行等离子体，使速度*10,§c使最终产物在80%-100%中浮动");
+        provider.add("ctnh.plasma_alloy.tooltip.10","§c速度增幅超过5000%时，最终产物量将会在0%-50%中浮动！");
 
 
-        provider.add("ctnh.pab","配方类型：“合金冶炼炉“");
+        provider.add("ctnh.plasma_alloy.tooltip.recipe","配方类型：合金冶炼炉");
         provider.add("ctnh.acc.danger","§c危险粒子实验");
         provider.add("ctnh.garden.fire","当前烧煤花温度:%.1f");
         provider.add("ctnh.garden.eat","当前彼方兰营养值:%d");

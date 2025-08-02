@@ -677,10 +677,10 @@ public class MultiblocksB {
             .recipeModifiers(TwistedFusionMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
             .workableCasingRenderer(CTNHCore.id("block/casings/twisted_fusion_casing"), GTCEu.id("block/multiblock/fusion_reactor"), false)
 
-            .tooltips(Component.translatable("ctnh.gtceu.tfmkalephzero.1"),
-                    Component.translatable("ctnh.gtceu.tfmkalephzero.2"),
-                    Component.translatable("ctnh.gtceu.tfmkalephzero.3"),
-                    Component.translatable("ctnh.gtceu.tfmkalephzero.4")
+            .tooltips(Component.translatable("ctnh.gtceu.tooltip.tfmkalephzero.1"),
+                    Component.translatable("ctnh.gtceu.tooltip.tfmkalephzero.2"),
+                    Component.translatable("ctnh.gtceu.tooltip.tfmkalephzero.3"),
+                    Component.translatable("ctnh.gtceu.tooltip.tfmkalephzero.4")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("###############", "###############", "###############", "######AAA######", "###############", "###############", "###############")
@@ -1483,10 +1483,10 @@ public class MultiblocksB {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ETERNAL_GARDEN)
             .recipeModifiers(EternalGarden::recipeModifier)
-            .tooltips(Component.translatable("ctnh.eternalgarden.1"),
-                    Component.translatable("ctnh.eternalgarden.2"),
-                    Component.translatable("ctnh.eternalgarden.3"),
-                    Component.translatable("ctnh.eternalgarden.unknown")
+            .tooltips(Component.translatable("ctnh.eternalgarden.tooltip.1"),
+                    Component.translatable("ctnh.eternalgarden.tooltip.2"),
+                    Component.translatable("ctnh.eternalgarden.tooltip.3"),
+                    Component.translatable("ctnh.eternalgarden.tooltip.unknown")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("A###################BBBBBBB###################A", "####################BBBBBBB####################", "####################BBBBBBB####################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "A#############################################A")
@@ -1594,18 +1594,18 @@ public class MultiblocksB {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GCYMRecipeTypes.ALLOY_BLAST_RECIPES)
             .recipeModifiers(Plasma_alloy_blast::recipeModifier, GTRecipeModifiers::ebfOverclock)
-            .tooltips(Component.translatable("ctnh.plasma_alloy.1"),
-                    Component.translatable("ctnh.plasma_alloy.11"),
-                    Component.translatable("ctnh.pab"),
-                    Component.translatable("ctnh.plasma_alloy.2"),
-                    Component.translatable("ctnh.plasma_alloy.3"),
-                    Component.translatable("ctnh.plasma_alloy.4"),
-                    Component.translatable("ctnh.plasma_alloy.5"),
-                    Component.translatable("ctnh.plasma_alloy.6"),
-                    Component.translatable("ctnh.plasma_alloy.7"),
-                    Component.translatable("ctnh.plasma_alloy.8"),
-                    Component.translatable("ctnh.plasma_alloy.9"),
-                    Component.translatable("ctnh.plasma_alloy.10")
+            .tooltips(Component.translatable("ctnh.plasma_alloy.tooltip.1"),
+                    Component.translatable("ctnh.plasma_alloy.tooltip.11"),
+                    Component.translatable("ctnh.plasma_alloy.tooltip.recipe"),
+                    Component.translatable("ctnh.plasma_alloy.tooltip.2"),
+                    Component.translatable("ctnh.plasma_alloy.tooltip.3"),
+                    Component.translatable("ctnh.plasma_alloy.tooltip.4"),
+                    Component.translatable("ctnh.plasma_alloy.tooltip.5"),
+                    Component.translatable("ctnh.plasma_alloy.tooltip.6"),
+                    Component.translatable("ctnh.plasma_alloy.tooltip.7"),
+                    Component.translatable("ctnh.plasma_alloy.tooltip.8"),
+                    Component.translatable("ctnh.plasma_alloy.tooltip.9"),
+                    Component.translatable("ctnh.plasma_alloy.tooltip.10")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("A####BBBBBBB####A", "#####BBBBBBB#####", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################")
