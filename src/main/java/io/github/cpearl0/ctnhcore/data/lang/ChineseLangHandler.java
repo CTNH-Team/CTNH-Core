@@ -485,6 +485,19 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.arcgenerator.info.2","支持最大效率:%.2f%%");
         provider.add("ctnh.multiblock.arcgenerator.info.3","当前效率:%.2f%%");
 
+        provider.add("ctnh.eternalgarden.info.fire","当前烧煤花温度:%.1f");
+        provider.add("ctnh.eternalgarden.info.eat","当前彼方兰营养值:%d");
+
+        provider.add("ctnh.spacephotovoltaicbasestation.jei.error.pv_block","§c必须使用同种光伏方块");
+
+        provider.add("ctnh.spacephotovoltaicbasestation.recipe.pvc_tier","需求光伏方块等级: %d");
+        provider.add("ctnh.spacephotovoltaicbasestation.recipe.eut_model","模拟电压消耗: %d EUt");
+
+        provider.add("ctnh.spacephotovoltaicbasestation.info.pvc_tier.0","当前光伏方块等级:%d");
+        provider.add("ctnh.spacephotovoltaicbasestation.info.pvc_tier.1","当前结构耐热等级:%d");
+        provider.add("ctnh.spacephotovoltaicbasestation.info.pvc_tier.2","当前结构发电量:%.2f");
+        provider.add("ctnh.spacephotovoltaicbasestation.info.pvc_tier.3","当前维度光倍率:%d");
+
         //Machine tooltip
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
@@ -498,6 +511,8 @@ public class ChineseLangHandler {
         provider.add("gtceu.multiblock.laser.tooltip", "允许使用激光仓");
         provider.add("ctnh.copyright.info", "由CTNH添加");
         provider.add("ctnh.recipe_type.info", "配方类型：%s");
+
+
 
         provider.add("ctnh.multiblock.plasma_condenser.tooltip.1", "氤氲之气，凝为霜露");
 
@@ -850,40 +865,38 @@ public class ChineseLangHandler {
 
 
         provider.add("ctnh.plasma_alloy.tooltip.recipe","配方类型：合金冶炼炉");
+
         provider.add("ctnh.acc.danger","§c危险粒子实验");
-        provider.add("ctnh.garden.fire","当前烧煤花温度:%.1f");
-        provider.add("ctnh.garden.eat","当前彼方兰营养值:%d");
-        provider.add("ctnh.hybrid_mixer.0","动力学的电力复兴");
-        provider.add("ctnh.hybrid_mixer.1","执行特殊的电压-应力驱动机制");
-        provider.add("ctnh.hybrid_mixer.2","机器真实电压等级为配方电压等级和应力等级的较小值。应力输入仓要求转速至少为64，应力输入仓转速为256时，应力等级+1");
-        provider.add("ctnh.hybrid_mixer.3","混合动力超频：应力等级和配方电压等级每同时提升一级，运行速度*4");
-        provider.add("ctnh.hybrid_mixer.4","当转速超过64时，使配方时间*0.8。转速超过128时配方时间和电压速度将随着转速提升进一步减少");
-        provider.add("ctnh.error.pv","§c必须使用同种光伏方块");
-        provider.add("ctnh.pvc_tier","需求光伏方块等级: %d");
-        provider.add("ctnh.eut_model","模拟电压消耗: %d EUt");
-        provider.add("ctnh.pvc_tier.0","当前光伏方块等级:%d");
-        provider.add("ctnh.pvc_tier.1","当前结构耐热等级:%d");
-        provider.add("ctnh.pvc_tier.2","当前结构发电量:%.2f");
-        provider.add("ctnh.pvc_tier.3","当前维度光倍率:%d");
-        provider.add("ctnh.spvb.0","§6光辉灿烂的太空之路");
-        provider.add("ctnh.spvb.1","可执行配方类型：太空光伏发电，太空光伏组装");
-        provider.add("ctnh.spvb.2","在太空发电模式下，星球类型和光伏方块的等级都会提升发电量，在空间站被视为无重力环境，且发电量*4,消耗特定材料以进一步提升发电量");
-        provider.add("ctnh.spvb.3","在太空光伏组装模式下，不消耗EUt，发电量将锁定为1，根据配方的模拟F功率来计算速度和并行量");
-        provider.add("ctnh.spvb.4","光伏等级，光照强度共同决定了是否可以执行太空组装配方，光伏方块耐热性和耐热结构方块决定了可以获得的光照最大倍率，太空结构方块决定了可以使用的光伏方块等级和是否可以使用附属结构");
-        provider.add("ctnh.spvb.5","在太空光伏组装模式下，最终并行为(太空发电模式下发电量/模拟功率),最终时间倍率为(模拟功率/太空发电模式下发电量)，当太空发电模式下发电量小于模拟功率时，最终时间倍率将变为平方");
-        provider.add("ctnh.spvb.ex","§6该结构将持续拓展，这还不是它的完全体状态！");
-        provider.add("ctnh.ls.0","持续调整激光频率");
-        provider.add("ctnh.ls.1","配方类型：激光分配/激光蚀刻");
-        provider.add("ctnh.ls.2","本机器需要消耗算力才能运行");
-        provider.add("ctnh.ls.3","————————激光蚀刻模式————————");
-        provider.add("ctnh.ls.4","LUV及以下的电压固定基础请求8算力，电压每高于LUV一级，请求的基础算力翻倍");
-        provider.add("ctnh.ls.5","输入的算力如果为基础请求算力的整数倍，则最终输出*1.25，并行等同于⌊(输入的算力/基础请求算力)⌋的三次方");
-        provider.add("ctnh.ls.6","输入的算力每比基础算力多一倍，将一次超频转化为无损超频（即运行速度*2），该效果转化的次数不超过你能超频的等级（即上限为将你所有的有损超频转化为无损）");
-        provider.add("ctnh.ls.7","————————激光分配模式————————");
-        provider.add("ctnh.ls.8","配方给出请求算力，如果配方没有给出则按照激光蚀刻模式的公式计算");
-        provider.add("ctnh.ls.9","输入的算力如果为基础请求算力的整数倍，则并行等同于⌊(输入的算力/基础请求算力)⌋的三次方");
-        provider.add("ctnh.ls.10","输入的算力每比基础算力多一倍，将一次超频转化为无损超频（即运行速度*2），该效果转化的次数不超过你能超频的等级（即上限为将你所有的有损超频转化为无损）");
-        provider.add("ctnh.ls.11","§c如果输入的算力不为整数倍，则以上所有的增益全部无效且最终所需时间*4");
+
+
+
+        provider.add("ctnh.hybrid_mixer.tooltip.0","动力学的电力复兴");
+        provider.add("ctnh.hybrid_mixer.tooltip.1","执行特殊的电压-应力驱动机制");
+        provider.add("ctnh.hybrid_mixer.tooltip.2","机器真实电压等级为配方电压等级和应力等级的较小值。应力输入仓要求转速至少为64，应力输入仓转速为256时，应力等级+1");
+        provider.add("ctnh.hybrid_mixer.tooltip.3","混合动力超频：应力等级和配方电压等级每同时提升一级，运行速度*4");
+        provider.add("ctnh.hybrid_mixer.tooltip.4","当转速超过64时，使配方时间*0.8。转速超过128时配方时间和电压速度将随着转速提升进一步减少");
+
+
+        provider.add("ctnh.spacephotovoltaicbasestation.tooltip.0","§6光辉灿烂的太空之路");
+        provider.add("ctnh.spacephotovoltaicbasestation.tooltip.1","可执行配方类型：太空光伏发电，太空光伏组装");
+        provider.add("ctnh.spacephotovoltaicbasestation.tooltip.2","在太空发电模式下，星球类型和光伏方块的等级都会提升发电量，在空间站被视为无重力环境，且发电量*4,消耗特定材料以进一步提升发电量");
+        provider.add("ctnh.spacephotovoltaicbasestation.tooltip.3","在太空光伏组装模式下，不消耗EUt，发电量将锁定为1，根据配方的模拟F功率来计算速度和并行量");
+        provider.add("ctnh.spacephotovoltaicbasestation.tooltip.4","光伏等级，光照强度共同决定了是否可以执行太空组装配方，光伏方块耐热性和耐热结构方块决定了可以获得的光照最大倍率，太空结构方块决定了可以使用的光伏方块等级和是否可以使用附属结构");
+        provider.add("ctnh.spacephotovoltaicbasestation.tooltip.5","在太空光伏组装模式下，最终并行为(太空发电模式下发电量/模拟功率),最终时间倍率为(模拟功率/太空发电模式下发电量)，当太空发电模式下发电量小于模拟功率时，最终时间倍率将变为平方");
+        provider.add("ctnh.spacephotovoltaicbasestation.tooltip.ex","§6该结构将持续拓展，这还不是它的完全体状态！");
+
+        provider.add("ctnh.lasersorter.tooltip.0","持续调整激光频率");
+        provider.add("ctnh.lasersorter.tooltip.1","配方类型：激光分配/激光蚀刻");
+        provider.add("ctnh.lasersorter.tooltip.2","本机器需要消耗算力才能运行");
+        provider.add("ctnh.lasersorter.tooltip.3","————————激光蚀刻模式————————");
+        provider.add("ctnh.lasersorter.tooltip.4","LUV及以下的电压固定基础请求8算力，电压每高于LUV一级，请求的基础算力翻倍");
+        provider.add("ctnh.lasersorter.tooltip.5","输入的算力如果为基础请求算力的整数倍，则最终输出*1.25，并行等同于⌊(输入的算力/基础请求算力)⌋的三次方");
+        provider.add("ctnh.lasersorter.tooltip.6","输入的算力每比基础算力多一倍，将一次超频转化为无损超频（即运行速度*2），该效果转化的次数不超过你能超频的等级（即上限为将你所有的有损超频转化为无损）");
+        provider.add("ctnh.lasersorter.tooltip.7","————————激光分配模式————————");
+        provider.add("ctnh.lasersorter.tooltip.8","配方给出请求算力，如果配方没有给出则按照激光蚀刻模式的公式计算");
+        provider.add("ctnh.lasersorter.tooltip.9","输入的算力如果为基础请求算力的整数倍，则并行等同于⌊(输入的算力/基础请求算力)⌋的三次方");
+        provider.add("ctnh.lasersorter.tooltip.10","输入的算力每比基础算力多一倍，将一次超频转化为无损超频（即运行速度*2），该效果转化的次数不超过你能超频的等级（即上限为将你所有的有损超频转化为无损）");
+        provider.add("ctnh.lasersorter.tooltip.11","§c如果输入的算力不为整数倍，则以上所有的增益全部无效且最终所需时间*4");
         provider.add("ctnh.ls.cwut","所需的基础算力：%d");
         provider.add("ctnh.drone_tier","无人机等级：%d");
         provider.add("ctnh.drone_eut","单个无人机产生的电压: %dEU/t");

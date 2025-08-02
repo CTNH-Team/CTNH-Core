@@ -1824,18 +1824,18 @@ public class MultiblocksB {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.LS_RECIPE,GTRecipeTypes.LASER_ENGRAVER_RECIPES)
             .recipeModifiers(LaserSorter::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(Component.translatable("ctnh.ls.0"),
-                    Component.translatable("ctnh.ls.1"),
-                    Component.translatable("ctnh.ls.2"),
-                    Component.translatable("ctnh.ls.3"),
-                    Component.translatable("ctnh.ls.4"),
-                    Component.translatable("ctnh.ls.5"),
-                    Component.translatable("ctnh.ls.6"),
-                    Component.translatable("ctnh.ls.7"),
-                    Component.translatable("ctnh.ls.8"),
-                    Component.translatable("ctnh.ls.9"),
-                    Component.translatable("ctnh.ls.10"),
-                    Component.translatable("ctnh.ls.11")
+            .tooltips(Component.translatable("ctnh.lasersorter.tooltip.0"),
+                    Component.translatable("ctnh.lasersorter.tooltip.1"),
+                    Component.translatable("ctnh.lasersorter.tooltip.2"),
+                    Component.translatable("ctnh.lasersorter.tooltip.3"),
+                    Component.translatable("ctnh.lasersorter.tooltip.4"),
+                    Component.translatable("ctnh.lasersorter.tooltip.5"),
+                    Component.translatable("ctnh.lasersorter.tooltip.6"),
+                    Component.translatable("ctnh.lasersorter.tooltip.7"),
+                    Component.translatable("ctnh.lasersorter.tooltip.8"),
+                    Component.translatable("ctnh.lasersorter.tooltip.9"),
+                    Component.translatable("ctnh.lasersorter.tooltip.10"),
+                    Component.translatable("ctnh.lasersorter.tooltip.11")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAA", "AABBBAA", "AABBBAA", "AABBBAA", "AAAAAAA")
@@ -1864,13 +1864,13 @@ public class MultiblocksB {
             .generator(true)
             .recipeTypes(CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR, CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER)
             .recipeModifier(SpacePhotovoltaicBaseStation::recipeModifier,true)
-            .tooltips(Component.translatable("ctnh.spvb.0"),
-                    Component.translatable("ctnh.spvb.1"),
-                    Component.translatable("ctnh.spvb.2"),
-                    Component.translatable("ctnh.spvb.3"),
-                    Component.translatable("ctnh.spvb.4"),
-                    Component.translatable("ctnh.spvb.5"),
-                    Component.translatable("ctnh.spvb.ex")
+            .tooltips(Component.translatable("ctnh.spacephotovoltaicbasestation.tooltip.0"),
+                    Component.translatable("ctnh.spacephotovoltaicbasestation.tooltip.1"),
+                    Component.translatable("ctnh.spacephotovoltaicbasestation.tooltip.2"),
+                    Component.translatable("ctnh.spacephotovoltaicbasestation.tooltip.3"),
+                    Component.translatable("ctnh.spacephotovoltaicbasestation.tooltip.4"),
+                    Component.translatable("ctnh.spacephotovoltaicbasestation.tooltip.5"),
+                    Component.translatable("ctnh.spacephotovoltaicbasestation.tooltip.ex")
 
             )
             .pattern(definition -> FactoryBlockPattern.start()

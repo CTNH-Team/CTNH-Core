@@ -578,7 +578,7 @@ public class CTNHRecipeTypes {
             {
                 if(data.contains("tier"))
                 {
-                    return LocalizationUtils.format("ctnh.pvc_tier",String.format("%d",data.getInt("tier")));
+                    return LocalizationUtils.format("ctnh.spacephotovoltaicbasestation.recipe.pvc_tier",String.format("%d",data.getInt("tier")));
                 }
                 return "";
             })
@@ -586,7 +586,7 @@ public class CTNHRecipeTypes {
             {
                 if(data.contains("input"))
                 {
-                    return LocalizationUtils.format("ctnh.eut_model",String.format("%d",data.getInt("input")));
+                    return LocalizationUtils.format("ctnh.spacephotovoltaicbasestation.recipe.eut_model",String.format("%d",data.getInt("input")));
                 }
                 return "";
             })
