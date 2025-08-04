@@ -11,15 +11,10 @@ import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterialsInfo;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 
-import java.util.List;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Mendelevium;
-import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.CIRCUIT;
 import static dev.arbor.gtnn.data.GTNNMaterials.Thorium232;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.*;
 

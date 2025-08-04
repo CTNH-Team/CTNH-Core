@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -35,30 +36,24 @@ public class NuclearReactorMachine extends WorkableElectricMultiblockMachine {
     @Override
     public boolean onWorking() {
         if (getOffsetTimer() % 20 == 0) {
-            for (var part : getParts()) {
-                for (var trait : part.getRecipeHandlers()) {
-                    if (trait.getHandlerIO() == IO.IN) {
-                        for (var contents : trait.getContents()) {
-                            if (contents instanceof FluidStack fluidStack) {
-                                for (var coolant : Coolant) {
-                                    if (fluidStack.getFluid().equals(coolant.inputMaterial.getFluid())) {
-                                        if (MachineUtils.canInputFluid(coolant.inputMaterial.getFluid((int) ((heat + baseHeat) * coolant.consume_count)), this)
-                                                && MachineUtils.canOutputFluid(coolant.outputMaterial.getFluid((int) ((heat + baseHeat) * coolant.consume_count)), this)) {
-                                            current_coolant = coolant.inputMaterial;
-                                            coolant_amount = fluidStack.getAmount();
-                                            consume_amount = (int) ((heat + baseHeat) * coolant.consume_count);
-                                            MachineUtils.inputFluid(coolant.inputMaterial.getFluid(consume_amount), this);
-                                            MachineUtils.outputFluid(coolant.outputMaterial.getFluid(consume_amount), this);
-                                            recipeLogic.setProgress(Math.min(getProgress() + 20, getMaxProgress()));
-                                            return super.onWorking();
-                                        }
-                                    }
-                                }
+            MachineUtils.applyContents(this, content -> {
+                if (content instanceof FluidStack fluidStack) {
+                    for (var coolant : Coolant) {
+                        if (fluidStack.getFluid().equals(coolant.inputMaterial.getFluid())) {
+                            if (MachineUtils.canInputFluid(coolant.inputMaterial.getFluid((int) ((heat + baseHeat) * coolant.consume_count)), this)
+                                    && MachineUtils.canOutputFluid(coolant.outputMaterial.getFluid((int) ((heat + baseHeat) * coolant.consume_count)), this)) {
+                                current_coolant = coolant.inputMaterial;
+                                coolant_amount = fluidStack.getAmount();
+                                consume_amount = (int) ((heat + baseHeat) * coolant.consume_count);
+                                MachineUtils.inputFluid(coolant.inputMaterial.getFluid(consume_amount), this);
+                                MachineUtils.outputFluid(coolant.outputMaterial.getFluid(consume_amount), this);
+                                recipeLogic.setProgress(Math.min(getProgress() + 20, getMaxProgress()));
+                                return;
                             }
                         }
                     }
                 }
-            }
+            }, FluidRecipeCapability.CAP, IO.IN);
         }
         return super.onWorking();
     }

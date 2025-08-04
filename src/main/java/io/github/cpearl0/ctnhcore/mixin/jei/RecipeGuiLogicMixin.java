@@ -79,7 +79,7 @@ public abstract class RecipeGuiLogicMixin {
             Set<String> relatedPrefixes = TAG_RELATIONS.getRelatedTags(prefix);
 
             relatedPrefixes.forEach(relatedPrefix -> {
-                ResourceLocation relatedTagLoc = new ResourceLocation(
+                ResourceLocation relatedTagLoc = ResourceLocation.tryBuild(
                         tag.location().getNamespace(),
                         relatedPrefix + suffix
                 );

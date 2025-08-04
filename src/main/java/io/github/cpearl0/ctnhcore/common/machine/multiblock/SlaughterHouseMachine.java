@@ -169,22 +169,16 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
     }
     public void resetMobList() {
         mobList.clear();
-        getParts().forEach(part -> {
-            part.getRecipeHandlers().forEach(trait -> {
-                if (trait.getHandlerIO().equals(IO.IN) && trait.getCapability() == ItemRecipeCapability.CAP) {
-                    trait.getContents().forEach(contents -> {
-                        if (contents instanceof ItemStack item) {
-                            if (item.is(MachineBlocks.POWERED_SPAWNER.asItem()) && item.hasTag()) {
-                                var mob = item.getTag().getCompound("BlockEntityTag").getCompound("EntityStorage").getCompound("Entity").getString("id");
-                                if(!mobList.contains(mob)){
-                                    mobList.add(mob);
-                                }
-                            }
-                        }
-                    });
+        MachineUtils.applyContents(this, contents -> {
+            if (contents instanceof ItemStack item) {
+                if (item.is(MachineBlocks.POWERED_SPAWNER.asItem()) && item.hasTag()) {
+                    var mob = item.getTag().getCompound("BlockEntityTag").getCompound("EntityStorage").getCompound("Entity").getString("id");
+                    if(!mobList.contains(mob)){
+                        mobList.add(mob);
+                    }
                 }
-            });
-        });
+            }
+        }, ItemRecipeCapability.CAP, IO.IN);
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe){
         ServerLevel level = (ServerLevel) machine.getLevel();
@@ -214,11 +208,11 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
                     totalExperience += livingEntity.getExperienceReward() * 20;
 
                     if (mob.equals("minecraft:wither")){
-                        itemList.add(new Content(SizedIngredient.create(Items.NETHER_STAR.getDefaultInstance()), 1, 1, 0, null, null));
+                        itemList.add(new Content(SizedIngredient.create(Items.NETHER_STAR.getDefaultInstance()), 1, 1, 0));
                         continue;
                     }
                     var fakePlayer = smachine.getFakePlayer(level);
-                    var loottable = Objects.requireNonNull(level.getServer()).getLootData().getLootTable(new ResourceLocation(mob.split(":")[0] + ":entities/" + mob.split(":")[1]));
+                    var loottable = Objects.requireNonNull(level.getServer()).getLootData().getLootTable(ResourceLocation.tryParse(mob.split(":")[0] + ":entities/" + mob.split(":")[1]));
                     var lootparams = new LootParams.Builder((ServerLevel) machine.getLevel())
                             .withParameter(LootContextParams.LAST_DAMAGE_PLAYER, fakePlayer)
                             .withParameter(LootContextParams.TOOL,smachine.hostWeapon)
@@ -234,14 +228,14 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
                     var loots = loottable.getRandomItems(lootparams);
                     loots.forEach(itemStack -> {
                         if (!itemStack.isEmpty()){
-                            itemList.add(new Content(SizedIngredient.create(itemStack), 1, 1, 0, null, null));
+                            itemList.add(new Content(SizedIngredient.create(itemStack), 1, 1, 0));
                         }
                     });
                 }
             }
             var modifier = ContentModifier.multiplier(repeatTimes);
             newrecipe.outputs.put(ItemRecipeCapability.CAP,itemList);
-            newrecipe.outputs.put(FluidRecipeCapability.CAP, List.of(new Content(FluidIngredient.of(new FluidStack(EIOFluids.XP_JUICE.get().getSource(), totalExperience)), 1, 1, 0, null, null)));
+            newrecipe.outputs.put(FluidRecipeCapability.CAP, List.of(new Content(FluidIngredient.of(new FluidStack(EIOFluids.XP_JUICE.get().getSource(), totalExperience)), 1, 1, 0)));
             newrecipe.duration = (int) totaltime * repeatTimes;
             modifier.applyContents(newrecipe.outputs);
         }

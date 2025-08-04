@@ -130,7 +130,7 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine impl
         }
 
 
-        long EUt = RecipeHelper.getOutputEUt(recipe);
+        long EUt = RecipeHelper.getRealEUtWithIO(recipe).voltage();
         long turbineMaxVoltage = hptm.getOverclockVoltage();
 
         if (EUt <= 0 || turbineMaxVoltage <= EUt) return ModifierFunction.NULL;
@@ -151,7 +151,7 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine impl
 
 
     @Override
-    public boolean dampingWhenWaiting() {
+    public boolean regressWhenWaiting() {
         return false;
     }
 
@@ -175,7 +175,7 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine impl
 
             long maxProduction = getOverclockVoltage();
             long currentProduction = isActive() && recipeLogic.getLastRecipe() != null ?
-                    RecipeHelper.getOutputEUt(recipeLogic.getLastRecipe()) : 0;
+                    RecipeHelper.getRealEUtWithIO(recipeLogic.getLastRecipe()).voltage() : 0;
 
             if (isActive()) {
                 textList.add(Component.translatable("gtceu.multiblock.turbine.energy_per_tick",
@@ -201,7 +201,7 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine impl
 
         @Override
         public int getCWUtToRequest(GTRecipe recipe) {
-            var EUt = RecipeHelper.getOutputEUt(recipe);
+            var EUt = RecipeHelper.getRealEUtWithIO(recipe).voltage();
             if (EUt > DEFAULT_EU_OUTPUT && EUt <= BASE_EU_OUTPUT) return CWUtStair;
             return CWUtStair * (fastLogBased2(EUt, BASE_EU_OUTPUT-1) + 2);
         }

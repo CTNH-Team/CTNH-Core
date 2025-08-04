@@ -32,6 +32,7 @@ public enum CoilType implements StringRepresentable, ICoilType {
     @NotNull
     private final Material material;
     @NotNull
+    @Getter
     private final ResourceLocation texture;
 
     CoilType(String name, int coilTemperature, int level, int tier, int energyDiscount, Material material,

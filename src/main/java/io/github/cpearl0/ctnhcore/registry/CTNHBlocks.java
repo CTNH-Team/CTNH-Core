@@ -235,7 +235,7 @@ public class CTNHBlocks {
                 .blockstate((ctx, prov) -> {
                     prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, texture));
                 })
-                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(), new ResourceLocation("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
                 .item(BlockItem::new)
                 .build()
                 .register();
@@ -314,9 +314,9 @@ public class CTNHBlocks {
     public static BlockEntry<TurbineRotorBlock> createTurbineRotorBlock(String name,int R,int G,int B,int A) {
         return REGISTRATE.block(name, TurbineRotorBlock.create(R,G,B,A))
                 .initialProperties(() -> Blocks.OBSIDIAN)
-                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(), new ResourceLocation("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
                 .blockstate((ctx, prov) ->
-                        prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, new ResourceLocation("minecraft:block/iron_block"))))
+                        prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, ResourceLocation.tryParse("minecraft:block/iron_block"))))
                 .item(TurbineRotorItem::new)
                 .build()
                 .register();

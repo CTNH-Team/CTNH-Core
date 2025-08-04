@@ -15,6 +15,7 @@ import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.misc.EnergyContainerList;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.api.recipe.ingredient.EnergyStack;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.utils.GTUtil;
@@ -259,12 +260,13 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
             var random = Math.random()*0.25;
             var eut_consume=recipe.getTickInputContents(EURecipeCapability.CAP).stream()
                     .map(Content::getContent)
-                    .mapToLong(EURecipeCapability.CAP::of)
+                    .map(EURecipeCapability.CAP::of)
+                    .mapToLong(EnergyStack::voltage)
                     .sum();
             double total_eut= (wmachine.nu_speed+ wmachine.proton_speed+ wmachine.electric_speed)/1000;
             //计算能耗，减速模式根本没写笑死
             var true_eut=eut_consume*(1+total_eut);
-            recipe.tickInputs.put(EURecipeCapability.CAP, EURecipeCapability.makeEUContent((long) true_eut));
+            recipe.tickInputs.put(EURecipeCapability.CAP, EURecipeCapability.makeEUContent(new EnergyStack((long) true_eut)));
             parallel = ParallelLogic.getParallelAmount(machine,recipe,16);
             if(hatchs>0)parallel=ParallelLogic.getParallelAmount(machine,recipe,hatchs);
 

@@ -28,6 +28,7 @@ import com.simibubi.create.foundation.block.CopperBlockSet;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import dev.arbor.gtnn.data.GTNNMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.client.renderer.HyperPlasmaTurbineRender;
 import io.github.cpearl0.ctnhcore.client.renderer.LargeBottleRender;
 import io.github.cpearl0.ctnhcore.client.renderer.MartialMoralityEyeRender;
 import io.github.cpearl0.ctnhcore.common.block.CTNHFusionCasingType;
@@ -73,6 +74,7 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.DrillingFluid;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.TungstenSteel;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.DUMMY_RECIPES;
 import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.registerLargeCombustionEngine;
+import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.MANA_STEEL_CASING;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
@@ -311,7 +313,7 @@ public class MultiblocksA {
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
-            .workableCasingModel(new ResourceLocation("block/stone_bricks"), GTCEu.id("block/multiblock/implosion_compressor"))
+            .workableCasingModel(ResourceLocation.tryParse("minecraft:block/stone_bricks"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
 
     public final static MultiblockMachineDefinition COKE_TOWER = REGISTRATE.multiblock("coke_tower", CoilWorkableElectricMultiblockMachine::new)
@@ -711,7 +713,7 @@ public class MultiblocksA {
                     .where("J", Predicates.blocks(Blocks.OAK_LOG))
                     .build()
             )
-            .workableCasingModel(new ResourceLocation("block/dirt"), GTCEu.id("block/multiblock/implosion_compressor"))
+            .workableCasingModel(ResourceLocation.tryParse("minecraft:block/dirt"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
 
     public final static MultiblockMachineDefinition LARGE_BOTTLE = REGISTRATE.multiblock("large_bottle", holder -> new LargeBottleMachine(holder, 10000 * 1000, null))
@@ -740,7 +742,7 @@ public class MultiblocksA {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
-            .renderer(() -> new LargeBottleRender(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor")))
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
     public final static MultiblockMachineDefinition FERMENTING_TANK = REGISTRATE.multiblock("fermenting_tank", FermentingTankMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
@@ -845,7 +847,7 @@ public class MultiblocksA {
                     .where("W", Predicates.blocks(Blocks.WATER))
                     .build()
             )
-            .workableCasingModel(new ResourceLocation("block/bricks"), GTCEu.id("block/multiblock/implosion_compressor"))
+            .workableCasingModel(ResourceLocation.tryParse("minecraft:block/bricks"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
     public final static MultiblockMachineDefinition BLAZE_BLAST_FURNACE = REGISTRATE.multiblock("blaze_blast_furnace", BlazeBlastFurnaceMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
@@ -1280,9 +1282,7 @@ public class MultiblocksA {
             )
             .workableCasingModel(
                     GTCEu.id("block/casings/solid/machine_casing_inert_ptfe"),
-                    CTNHCore.id("block/overlay/super_ebf/"),
-                    true
-            )
+                    CTNHCore.id("block/overlay/super_ebf/"))
             .tooltips(
                     CTNHCommonTooltips.PARALLEL_HATCH,
                     CTNHCommonTooltips.PERFECT_OVERCLOCK,
@@ -1539,8 +1539,8 @@ public class MultiblocksA {
                             .or(abilities(PartAbility.IMPORT_FLUIDS)))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
-            .renderer(MartialMoralityEyeRender::new)
-            .hasTESR(true)
+            .model(createWorkableCasingMachineModel(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), GTCEu.id("block/multiblock/fusion_reactor"))
+                    .andThen(b -> b.addDynamicRenderer(MartialMoralityEyeRender::new)))
             //.workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), GTCEu.id("block/multiblock/fusion_reactor"))
             .register();
 

@@ -3,8 +3,10 @@ package io.github.cpearl0.ctnhcore.common.machine.trait;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
+import com.gregtechceu.gtceu.api.recipe.ActionResult;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
+import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ScalableReservoirComputingMachine;
 import io.github.cpearl0.ctnhcore.registry.CTNHDamageTypes;
 import net.minecraft.resources.ResourceLocation;
@@ -37,11 +39,11 @@ public class ScalableReservoirComputingLogic extends RecipeLogic {
     @Override
     public Iterator<GTRecipe> searchRecipe() {
         GTRecipeType recipeType = machine.getRecipeType();
-        if (!machine.hasProxies()) return null;
+        if (!machine.hasCapabilityProxies()) return null;
         var iterator = recipeType.getLookup()
                 .getRecipeIterator(machine,
-                        recipe -> !recipe.isFuel && recipe.matchRecipe(machine).isSuccess()
-                                && recipe.matchTickRecipe(machine).isSuccess()
+                        recipe -> RecipeHelper.matchRecipe(machine, recipe).isSuccess()
+                                && RecipeHelper.matchTickRecipe(machine, recipe).isSuccess()
                                 && matchSacrifice(recipe)
                 );
         boolean any = false;
@@ -63,7 +65,7 @@ public class ScalableReservoirComputingLogic extends RecipeLogic {
     }
 
     @Override
-    protected boolean handleRecipeIO(GTRecipe recipe, IO io) {
+    protected ActionResult handleRecipeIO(GTRecipe recipe, IO io) {
         if(io == IO.OUT){
             var t = getRecipeOutputCWUt(recipe);
             if(t==machine.maxCWUt){
@@ -114,7 +116,7 @@ public class ScalableReservoirComputingLogic extends RecipeLogic {
     }
     @Nullable
     public static EntityType<?> getRecipeInputSacrifice(GTRecipe recipe) {
-        var loc = new ResourceLocation( recipe.data.getString("sacrifice") );
+        var loc = ResourceLocation.tryParse( recipe.data.getString("sacrifice") );
         return ForgeRegistries.ENTITY_TYPES.getValue(loc);
     }
     public boolean matchSacrifice(GTRecipe recipe) {

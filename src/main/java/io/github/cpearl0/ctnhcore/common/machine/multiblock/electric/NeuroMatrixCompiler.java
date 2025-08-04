@@ -379,7 +379,7 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
             SizedIngredient ingredient=SizedIngredient.create(ItemStack.EMPTY);
             List<Content> itemList = new ArrayList<>();
             var new_recipe=recipe.copy();
-            itemList.add(new Content(ingredient, 0, 0, 0, null, null));
+            itemList.add(new Content(ingredient, 0, 0, 0));
             new_recipe.outputs.put(ItemRecipeCapability.CAP,itemList);
                 return recipe1->new_recipe;
             }

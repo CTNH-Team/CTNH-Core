@@ -57,7 +57,7 @@ public class LaserSorter extends MultiblockComputationMachine implements ITiered
             var maxcwut=getMaxCWUt();
             return (int)maxcwut/base;
         }
-        var base=Math.max(8*(GTUtil.getTierByVoltage(RecipeHelper.getInputEUt(recipe))-IV),8);
+        var base=Math.max(8*(GTUtil.getTierByVoltage(RecipeHelper.getRealEUtWithIO(recipe).voltage())-IV),8);
         var maxcwut=getMaxCWUt();
         return (int)maxcwut/base;
     }
@@ -70,7 +70,7 @@ public class LaserSorter extends MultiblockComputationMachine implements ITiered
             var truecwut=((int)(maxcwut/base))*base;
             return maxcwut==truecwut;
         }
-        var base=Math.max(8*(GTUtil.getTierByVoltage(RecipeHelper.getInputEUt(recipe))-IV),8);
+        var base=Math.max(8*(GTUtil.getTierByVoltage(RecipeHelper.getRealEUtWithIO(recipe).voltage())-IV),8);
         var maxcwut=getMaxCWUt();
         var truecwut=((int)(maxcwut/base))*base;
         return maxcwut==truecwut;
@@ -130,7 +130,7 @@ public class LaserSorter extends MultiblockComputationMachine implements ITiered
                 var truecwut=((int)maxcwut/base)*base;
                 return truecwut;
             }
-            var base=Math.max(8*(GTUtil.getTierByVoltage(RecipeHelper.getInputEUt(recipe))-IV),8);
+            var base=Math.max(8*(GTUtil.getTierByVoltage(RecipeHelper.getRealEUtWithIO(recipe).voltage())-IV),8);
             var maxcwut=computationContainer.getMaxCWUt();
             var truecwut=((int)maxcwut/base)*base;
             return truecwut;

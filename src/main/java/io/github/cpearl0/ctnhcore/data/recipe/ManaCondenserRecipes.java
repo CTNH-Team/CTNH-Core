@@ -28,7 +28,7 @@ public class ManaCondenserRecipes {
                 .save(provider);
         CTNHRecipeTypes.MANA_CONDENSER_RECIPES.recipeBuilder("mana_steam")
                 .circuitMeta(2)
-                .inputFluids(FluidIngredient.of(4000, Fluids.WATER.getFlowing()))
+                .inputFluids(FluidIngredient.of(Fluids.WATER.getFlowing(), 4000))
                 .outputFluids(GTMaterials.Steam.getFluid(4000))
                 .inputFluids(CTNHMaterials.Mana.getFluid(200))
                 .EUt(1920)

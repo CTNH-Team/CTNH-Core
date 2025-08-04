@@ -17,6 +17,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.api.recipe.ingredient.EnergyStack;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.common.data.GTItems;
@@ -98,7 +99,8 @@ public class CryotheumFreezer extends WorkableElectricMultiblockMachine implemen
                 return ModifierFunction.NULL;
             var eut_consume=recipe.getTickInputContents(EURecipeCapability.CAP).stream()
                     .map(Content::getContent)
-                    .mapToLong(EURecipeCapability.CAP::of)
+                    .map(EURecipeCapability.CAP::of)
+                    .mapToLong(EnergyStack::voltage)
                     .sum();
 
             return ModifierFunction.builder()

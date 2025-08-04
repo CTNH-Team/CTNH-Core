@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
@@ -288,7 +289,7 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
         return 2 + 0.5 * Sacrifice_rune;
     }
     public GTRecipe getBloodRecipe() {
-        return GTRecipeBuilder.ofRaw().inputFluids(FluidIngredient.of(100,BloodMagicFluids.LIFE_ESSENCE_FLUID.get())).buildRawRecipe();
+        return GTRecipeBuilder.ofRaw().inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 100)).buildRawRecipe();
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         if (machine instanceof DemonWillMachine dmachine) {
@@ -319,8 +320,8 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
         // check boost fluid
         if ((totalContinuousRunningTime == 1 || totalContinuousRunningTime % 20 == 0)) {
             var boosterRecipe = getBloodRecipe();
-            this.isBoosted = boosterRecipe.matchRecipe(this).isSuccess() &&
-                    boosterRecipe.handleRecipeIO(IO.IN, this, this.recipeLogic.getChanceCaches());
+            this.isBoosted = RecipeHelper.matchRecipe(this, boosterRecipe).isSuccess() &&
+                    RecipeHelper.handleRecipeIO(this, boosterRecipe, IO.IN, this.recipeLogic.getChanceCaches()).isSuccess();
         }
         return value;
     }
@@ -369,7 +370,7 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
         return MANAGED_FIELD_HOLDER;
     }
     @Override
-    public boolean dampingWhenWaiting() {
+    public boolean regressWhenWaiting() {
         return false;
     }
 }

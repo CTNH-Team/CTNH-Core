@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -8,6 +9,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
+import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import net.minecraft.ChatFormatting;
@@ -52,17 +54,20 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
         super.addDisplayText(textList);
         AtomicInteger current = new AtomicInteger();
         getParts().forEach((part) -> {
-                part.getRecipeHandlers().forEach((trait) -> {
-                    if (trait.getHandlerIO() == IO.IN) {
-                        trait.getContents().forEach((contents) -> {
-                        if (contents instanceof FluidStack FluidContents) {
-                            if (FluidContents.getFluid().equals(CTNHMaterials.Pyrotheum.getFluid())) {
-                                current.addAndGet(FluidContents.getAmount());
-                            }
-                        }
-                        });
+            if (part instanceof FluidHatchPartMachine) {
+                part.getRecipeHandlers().forEach((handlerList) -> {
+                    if (handlerList.getHandlerIO() == IO.IN) {
+                        handlerList.getCapability(FluidRecipeCapability.CAP).forEach((iRecipeHandler) ->
+                            iRecipeHandler.getContents().forEach((contents) -> {
+                                if (contents instanceof FluidStack FluidContents) {
+                                    if (FluidContents.getFluid().equals(CTNHMaterials.Pyrotheum.getFluid())) {
+                                        current.addAndGet(FluidContents.getAmount());
+                                    }
+                                }
+                            }));
                     }
                 });
+            }
         });
         if (isFormed()) {
             textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));

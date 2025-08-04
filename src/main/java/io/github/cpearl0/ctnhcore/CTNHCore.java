@@ -61,7 +61,7 @@ public class CTNHCore
         GridLinkables.register(ME_ADVANCED_TERMINAL, MEAdvancedTerminalItem.LINKABLE_HANDLER);
     }
     public static ResourceLocation id(String name) {
-        return new ResourceLocation(MODID, name);
+        return ResourceLocation.tryBuild(MODID, name);
     }
 
 }

@@ -110,9 +110,9 @@ public class Quasar_Eye extends WorkableElectricMultiblockMachine implements ITi
                         .outputModifier(ContentModifier.multiplier(outputmuti))
                         .build();
             }
-            var EUt = RecipeHelper.getOutputEUt(recipe);
+            var EUt = RecipeHelper.getRealEUtWithIO(recipe).voltage();
             var tier=recipe.data.getInt("tier");
-            var power=(long)(qmachine.energy_caculate(qmachine.rune_energy,tier)*RecipeHelper.getOutputEUt(recipe)*(qmachine.energy_caculate(qmachine.rune_energy,tier)*5)*recipe.duration*0.2*(qmachine.rune_energy/25));
+            var power=(long)(qmachine.energy_caculate(qmachine.rune_energy,tier)*RecipeHelper.getRealEUtWithIO(recipe).voltage()*(qmachine.energy_caculate(qmachine.rune_energy,tier)*5)*recipe.duration*0.2*(qmachine.rune_energy/25));
             qmachine.power+=power/200;
             return ModifierFunction.builder()
                     .eutMultiplier(qmachine.energy_caculate(qmachine.rune_energy,tier))
@@ -141,7 +141,7 @@ public class Quasar_Eye extends WorkableElectricMultiblockMachine implements ITi
         rune_energy=tag.contains(RUNE_ENERGY)?tag.getDouble(RUNE_ENERGY):0;
     }
     @Override
-    public boolean dampingWhenWaiting() {
+    public boolean regressWhenWaiting() {
         return false;
     }
 }

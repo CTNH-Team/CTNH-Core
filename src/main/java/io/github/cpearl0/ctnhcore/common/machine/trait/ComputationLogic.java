@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.api.capability.IOpticalComputationProvider;
 import com.gregtechceu.gtceu.api.capability.recipe.CWURecipeCapability;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
+import com.gregtechceu.gtceu.api.recipe.ActionResult;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
@@ -25,11 +26,11 @@ public class ComputationLogic extends RecipeLogic {
 
 
     @Override
-    public GTRecipe.ActionResult handleTickRecipe(GTRecipe recipe) {
-        GTRecipe.ActionResult ret;
+    public ActionResult handleTickRecipe(GTRecipe recipe) {
+        ActionResult ret;
         if(!checkCWUt(recipe,false))
-            ret=GTRecipe.ActionResult.fail(() -> Component.translatable("ctnhcore.recipe_logic.insufficient_cwut"));
-        else ret=super.handleTickRecipe(recipe);
+            ret = ActionResult.fail(Component.translatable("ctnhcore.recipe_logic.insufficient_cwut"));
+        else ret = super.handleTickRecipe(recipe);
         return ret;
     }
 
@@ -59,7 +60,7 @@ public class ComputationLogic extends RecipeLogic {
     public int getCWUtToRequest(GTRecipe recipe) {
         /*这是默认的算力计算方式，初始算力为0，HV为1,每超过HV一级就翻倍一次*/
         int ret=0;
-        int tier= GTUtil.getTierByVoltage(RecipeHelper.getInputEUt(recipe));
+        int tier= GTUtil.getTierByVoltage(RecipeHelper.getRealEUtWithIO(recipe).voltage());
         if(tier>=HV)
         {
             ret=1<<(tier-HV);

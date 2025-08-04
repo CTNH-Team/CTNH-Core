@@ -1,16 +1,16 @@
 package io.github.cpearl0.ctnhcore.client.renderer;
 
-import com.gregtechceu.gtceu.GTCEu;
-import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
-import com.gregtechceu.gtceu.client.renderer.machine.WorkableCasingMachineRenderer;
+import com.gregtechceu.gtceu.api.machine.feature.IMachineFeature;
+import com.gregtechceu.gtceu.client.renderer.machine.DynamicRender;
+import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderType;
 import com.lowdragmc.lowdraglib.utils.TrackedDummyWorld;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.serialization.Codec;
 import com.simibubi.create.AllBlocks;
 import io.github.cpearl0.ctnhcore.client.ClientUtil;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.MartialMoralityEyeMachine;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
-import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -20,32 +20,36 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 import java.util.List;
-import java.util.function.Consumer;
 
-public class MartialMoralityEyeRender extends WorkableCasingMachineRenderer {
+public class MartialMoralityEyeRender extends DynamicRender<IMachineFeature, MartialMoralityEyeRender> {
+    public static Codec<MartialMoralityEyeRender> CODEC = Codec.unit(MartialMoralityEyeRender::new);
 
     public MartialMoralityEyeRender() {
-        super(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), GTCEu.id("block/multiblock/fusion_reactor"));
     }
-    Vector3f rotationAxisY = new Vector3f(0, 1, 0);//局部Y轴
+
     @Override
-    @OnlyIn(Dist.CLIENT)
-    public void render(BlockEntity blockEntity, float gameTime, PoseStack poseStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
+    public DynamicRenderType<IMachineFeature, MartialMoralityEyeRender> getType() {
+        return new DynamicRenderType<>(CODEC);
+    }
+
+    Vector3f rotationAxisY = new Vector3f(0, 1, 0);//局部Y轴
+
+    @Override
+    public void render(IMachineFeature feature, float v, PoseStack poseStack, MultiBufferSource buffer, int i, int i1) {
         Celestial COGWHEEL = new Celestial(AllBlocks.COGWHEEL.asStack(), 0.35, 3.87, 0, true, 0.3, 0.1, null);
         Celestial LARGE_COGWHEEL = new Celestial(AllBlocks.LARGE_COGWHEEL.asStack(), 2.4, 1.4, 2.6, false, 1.8, 0.34, List.of(COGWHEEL));
         Celestial GEARBOX = new Celestial(AllBlocks.GEARBOX.asItem().getDefaultInstance(), 3.7, 1.32, 0.8, false, 1.7, -0.23, null);
         Celestial MANA_STEEL_GEARBOX_CASING = new Celestial(CTNHBlocks.CASING_MANASTEEL_GEARBOX.asItem().getDefaultInstance(), 0.35, 2.5, 3.0, false, 0.3, 0.1, null);
         Celestial ZENITH_CASING_GEARBOX = new Celestial(CTNHBlocks.ZENITH_CASING_GEARBOX.asItem().getDefaultInstance(), 6.5, 0.8, 1.0, false, 4.0, -0.13, List.of(MANA_STEEL_GEARBOX_CASING));
         List<Celestial> planets = List.of(LARGE_COGWHEEL, GEARBOX, ZENITH_CASING_GEARBOX);
-        if (blockEntity instanceof IMachineBlockEntity machineBlockEntity && machineBlockEntity.getMetaMachine() instanceof MartialMoralityEyeMachine machine && machine.isFormed() && (machine.isActive() || blockEntity.getLevel() instanceof TrackedDummyWorld)) {
-            Level level = blockEntity.getLevel();
+        var metaMachine = feature.self();
+        if (metaMachine instanceof MartialMoralityEyeMachine machine && machine.isFormed() && (machine.isActive() || machine.getLevel() instanceof TrackedDummyWorld)) {
+            Level level = machine.getLevel();
             float time = level.getGameTime();
             BlockPos blockPos = MachineUtils.getOffset(machine, 0, 0, 16);//获取方块位置
             int lightLevel = LevelRenderer.getLightColor(level, blockPos);//获取亮度
@@ -81,27 +85,20 @@ public class MartialMoralityEyeRender extends WorkableCasingMachineRenderer {
             ClientUtil.renderStatic(AllBlocks.BRASS_CASING.asStack(), ItemDisplayContext.GROUND, 15728880, OverlayTexture.NO_OVERLAY, poseStack, buffer, level, 0);
             poseStack.popPose();
             //渲染行星及其卫星
-            planets.forEach((planet) -> renderCelestial(planet, null, poseStack, time, tiltRad, blockEntity, buffer));
+            planets.forEach((planet) -> renderCelestial(planet, null, poseStack, time, tiltRad, metaMachine.getHolder().self(), buffer));
             poseStack.popPose();
         }
     }
+
     @Override
     public int getViewDistance() {
         return 128;
     }
-    @Override
-    public boolean isGlobalRenderer(BlockEntity blockEntity) {
-        return true;
-    }
-    @Override
-    public boolean hasTESR(BlockEntity blockEntity) {
-        return true;
-    }
 
-    @Override
-    public void onAdditionalModel(Consumer<ResourceLocation> registry) {
-        registry.accept(ResourceLocation.tryParse("ctnhcore:space_layer"));
-    }
+//    @Override
+//    public void onAdditionalModel(Consumer<ResourceLocation> registry) {
+//        registry.accept(ResourceLocation.tryParse("ctnhcore:space_layer"));
+//    }
 
     public void renderCelestial(Celestial celestial, @Nullable BlockPos parentWorldPos, PoseStack poseStack, float time, double tiltRad, BlockEntity blockEntity, MultiBufferSource buffer) {
         double sinTilt = Math.sin(tiltRad);
