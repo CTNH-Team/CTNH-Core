@@ -107,15 +107,15 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
         } else if (dimension == AetherDimensions.AETHER_LEVEL) {
             rate_mul = 2;
         } else if (dimension == Planet.MOON || dimension == Planet.MOON_ORBIT) {
-            rate_mul = 4;
+            rate_mul = 3;
         } else if (dimension == Planet.VENUS || dimension == Planet.VENUS_ORBIT) {
-            rate_mul = 6;
+            rate_mul = 3;
         } else if (dimension == Planet.MERCURY || dimension == Planet.MERCURY_ORBIT) {
-            rate_mul = 6;
+            rate_mul = 5;
         } else if (dimension == Planet.MARS || dimension == Planet.MARS_ORBIT) {
-            rate_mul = 2;
+            rate_mul = 5;
         } else if (dimension == Planet.GLACIO || dimension == Planet.GLACIO_ORBIT) {
-            rate_mul = 12;
+            rate_mul = 7;
         }
         if (getLevel() instanceof ServerLevel serverLevel && rate_mul>0) {
             serverLevel.getServer().tell(new TickTask(0, this::updateTickSubscription));

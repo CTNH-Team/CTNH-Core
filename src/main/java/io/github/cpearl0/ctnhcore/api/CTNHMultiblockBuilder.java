@@ -52,6 +52,7 @@ public class CTNHMultiblockBuilder extends MultiblockMachineBuilder {
     protected CTNHMultiblockBuilder(Registrate registrate, String name, Function<IMachineBlockEntity, ? extends MultiblockControllerMachine> metaMachine, BiFunction<BlockBehaviour.Properties, MultiblockMachineDefinition, IMachineBlock> blockFactory, BiFunction<IMachineBlock, Item.Properties, MetaMachineItem> itemFactory, TriFunction<BlockEntityType<?>, BlockPos, BlockState, IMachineBlockEntity> blockEntityFactory) {
         super(registrate, name, metaMachine, blockFactory, itemFactory, blockEntityFactory);
     }
+    private String under_component="ctnh.copyright.info";
     public static CTNHMultiblockBuilder createMulti(Registrate registrate, String name, Function<IMachineBlockEntity, ? extends MultiblockControllerMachine> metaMachine, BiFunction<BlockBehaviour.Properties, MultiblockMachineDefinition, IMachineBlock> blockFactory, BiFunction<IMachineBlock, Item.Properties, MetaMachineItem> itemFactory, TriFunction<BlockEntityType<?>, BlockPos, BlockState, IMachineBlockEntity> blockEntityFactory) {
         return new CTNHMultiblockBuilder(registrate, name, metaMachine, blockFactory, itemFactory, blockEntityFactory);
     }
@@ -308,6 +309,11 @@ public class CTNHMultiblockBuilder extends MultiblockMachineBuilder {
         super.allowExtendedFacing(allowExtendedFacing);
         return this;
     }
+    @Generated
+    public CTNHMultiblockBuilder addUnderTooltip(String tooltip) {
+        this.under_component=tooltip;
+        return this;
+    }
 
     @Generated
     public CTNHMultiblockBuilder allowFlip(boolean allowFlip) {
@@ -341,7 +347,7 @@ public class CTNHMultiblockBuilder extends MultiblockMachineBuilder {
     @Override
     public MultiblockMachineDefinition register() {
         this.tooltips(Component.literal("————————————————————————"),
-                Component.translatable("ctnh.copyright.info").withStyle(ChatFormatting.GOLD));
+                Component.translatable(under_component));
         return super.register();
     }
 }

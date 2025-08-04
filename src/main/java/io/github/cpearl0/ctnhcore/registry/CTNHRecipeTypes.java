@@ -498,7 +498,7 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.arc_generator.require",String.format("%d",data.getInt("requirearc"))))
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.arc_generator.require",String.format("%d",data.getInt("maxarc"))))
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.arc_generator.max_require",String.format("%d",data.getInt("maxarc"))))
             .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType ARC_REACTOR = GTRecipeTypes.register("arc_reactor",ELECTRIC)
             .setMaxIOSize(6, 6, 3, 3)

@@ -895,6 +895,8 @@ public class MultiblocksA {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
+            .addUnderTooltip("ctnh.copyright.magic.info")
+            .workableCasingRenderer(BotaniaRL("block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .workableCasingModel(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
 
@@ -923,6 +925,8 @@ public class MultiblocksA {
 
                     .build()
             )
+            .addUnderTooltip("ctnh.copyright.magic.info")
+            .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .workableCasingModel(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public final static MultiblockMachineDefinition ZENITH_LASER = REGISTRATE.multiblock("zenith_laser", holder -> new ZenithMachine(holder, 24, 12, 60, 20))
@@ -974,6 +978,8 @@ public class MultiblocksA {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
+            .addUnderTooltip("ctnh.copyright.magic.info")
+            .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .workableCasingModel(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public final static MultiblockMachineDefinition MANA_LATHE = REGISTRATE.multiblock("mana_lathe", holder -> new ManaMachine(holder, 8, 2))
@@ -998,6 +1004,8 @@ public class MultiblocksA {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
+            .addUnderTooltip("ctnh.copyright.magic.info")
+            .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .workableCasingModel(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public final static MultiblockMachineDefinition MANA_ASSEMBLER = REGISTRATE.multiblock("mana_assembler", holder -> new ManaMachine(holder, 8, 5))
@@ -1033,6 +1041,8 @@ public class MultiblocksA {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
+            .addUnderTooltip("ctnh.copyright.magic.info")
+            .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .workableCasingModel(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
 
@@ -1061,6 +1071,8 @@ public class MultiblocksA {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
+            .addUnderTooltip("ctnh.copyright.magic.info")
+            .workableCasingRenderer(CTNHCore.id("block/casings/mana_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .workableCasingModel(CTNHCore.id("block/casings/mana_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public static final MultiblockMachineDefinition MANA_GENERATOR_TIER2 = REGISTRATE.multiblock("mana_generator_turbine_tier2", holder -> new ManaLargeTurbineMachine(holder, GTValues.EV, 2.25, 4))
@@ -1090,6 +1102,8 @@ public class MultiblocksA {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
+            .addUnderTooltip("ctnh.copyright.magic.info")
+            .workableCasingRenderer(CTNHCore.id("block/casings/elementium_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .workableCasingModel(CTNHCore.id("block/casings/elementium_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public static final MultiblockMachineDefinition MANA_GENERATOR_TIER3 = REGISTRATE.multiblock("mana_generator_turbine_tier3", holder -> new ManaLargeTurbineMachine(holder, GTValues.LuV, 3, 12))
@@ -1118,6 +1132,8 @@ public class MultiblocksA {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
+            .addUnderTooltip("ctnh.copyright.magic.info")
+            .workableCasingRenderer(CTNHCore.id("block/casings/terra_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .workableCasingModel(CTNHCore.id("block/casings/terra_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public static final MultiblockMachineDefinition MANA_GENERATOR_TIER4 = REGISTRATE.multiblock("mana_generator_turbine_tier4", holder -> new ManaLargeTurbineMachine(holder, GTValues.ZPM, 4, 24))
@@ -1147,7 +1163,8 @@ public class MultiblocksA {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
-            .workableCasingModel(CTNHCore.id("block/casings/alfsteel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
+            .addUnderTooltip("ctnh.copyright.magic.info")
+            .workableCasingRenderer(CTNHCore.id("block/casings/alfsteel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
     // Come from GTCA
     public static final MultiblockMachineDefinition SUPER_EBF = REGISTRATE
@@ -1970,6 +1987,8 @@ public class MultiblocksA {
                     .where("F", Predicates.blocks(CASING_STEEL_GEARBOX.get()))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
+            .addUnderTooltip("ctnh.copyright.magic.info")
+            .workableCasingRenderer(CTNHCore.id("block/casings/mana_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .workableCasingModel(CTNHCore.id("block/casings/mana_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
 
