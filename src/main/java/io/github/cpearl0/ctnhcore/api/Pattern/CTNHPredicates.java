@@ -43,7 +43,7 @@ public class CTNHPredicates {
             }
 
             return false;
-        }, () -> (BlockInfo[])CTNHAPI.PhotovoltaicBlock.entrySet().stream().sorted(Comparator.comparingInt((value) -> ((IPBData)value.getKey()).getTier())).map((pb) -> BlockInfo.fromBlockState(((PhotovoltaicBlock)((Supplier)pb.getValue()).get()).defaultBlockState())).toArray((x$0) -> new BlockInfo[x$0]))).addTooltips(new Component[]{Component.translatable("ctnh.error.pv")});
+        }, () -> (BlockInfo[])CTNHAPI.PhotovoltaicBlock.entrySet().stream().sorted(Comparator.comparingInt((value) -> ((IPBData)value.getKey()).getTier())).map((pb) -> BlockInfo.fromBlockState(((PhotovoltaicBlock)((Supplier)pb.getValue()).get()).defaultBlockState())).toArray((x$0) -> new BlockInfo[x$0]))).addTooltips(new Component[]{Component.translatable("ctnh.spacephotovoltaicbasestation.jei.error.pv_block")});
     }
     public static TraceabilityPredicate SpaceStructuralFrameworkBlock() {
         return (new TraceabilityPredicate((blockWorldState) -> {
@@ -63,7 +63,7 @@ public class CTNHPredicates {
             }
 
             return false;
-        }, () -> (BlockInfo[])CTNHAPI.SpaceStructuralFramework.entrySet().stream().sorted(Comparator.comparingInt((value) -> ((ISSFData)value.getKey()).getTier())).map((pb) -> BlockInfo.fromBlockState(((SpaceStructuralFramework)((Supplier)pb.getValue()).get()).defaultBlockState())).toArray((x$0) -> new BlockInfo[x$0]))).addTooltips(new Component[]{Component.translatable("ctnh.error.pv")});
+        }, () -> (BlockInfo[])CTNHAPI.SpaceStructuralFramework.entrySet().stream().sorted(Comparator.comparingInt((value) -> ((ISSFData)value.getKey()).getTier())).map((pb) -> BlockInfo.fromBlockState(((SpaceStructuralFramework)((Supplier)pb.getValue()).get()).defaultBlockState())).toArray((x$0) -> new BlockInfo[x$0]))).addTooltips(new Component[]{Component.translatable("ctnh.spacephotovoltaicbasestation.jei.error.pv_block")});
     }
     static TraceabilityPredicate autoLaserAbilities(GTRecipeType... recipeType) {
         TraceabilityPredicate predicate = Predicates.autoAbilities(recipeType, false, false, true, true, true, true);

@@ -14,6 +14,7 @@ import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
+import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CompilerMachine;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
@@ -57,7 +58,8 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
     @Persisted public List<Integer> error_message=new ArrayList<>();
 
 
-
+    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
+            NeuroMatrixCompiler.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
 
 
 
@@ -70,9 +72,9 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         List<Long>Equation=new ArrayList<Long>();
         for(int i=1;i<=4;i++)
         {
-            var ranger=Math.sqrt(range)*(Math.random());
-            var defaulter=range-Math.sqrt(range);
-            Equation.add((long)(defaulter+2*ranger));
+            var ranger=(range)*(Math.random());
+            var defaulter=range-ranger;
+            Equation.add((long)(defaulter+ranger*ranger*2));
         }
         return Equation;
     }
@@ -256,6 +258,7 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         var pos=getPos();
         var m1=getMachine(this.getLevel(), MachineUtils.getOffset(this,11 ,0, -6));
         states.clear();
+        var mx=getBlockState();
         if(m1 instanceof CompilerMachine)
         {
             part1=(CompilerMachine) m1;

@@ -71,7 +71,7 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
         });
         if (isFormed()) {
             textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
-            textList.add(Component.translatable("ctnh.blaze_blast_furnace.pyrotheum", current));
+            textList.add(Component.translatable("ctnh.multiblock.blaze_blast_furnace.info.pyrotheum", current));
         }
     }
 

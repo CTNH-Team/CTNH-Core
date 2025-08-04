@@ -258,10 +258,10 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
                     .addWorkingStatusLine()
                     .addCurrentEnergyProductionLine(needFluid?(long) (basicRate * getEfficiency()):0)
                     .addEnergyProductionLine(basicRate,(long) (basicRate * getEfficiency()));
-            textList.add(Component.translatable("info.ctnhcore.network_machine", netHandler.getNetSize()));
-            textList.add(Component.translatable("info.ctnhcore.network_machine_efficiency", String.format("%.1f",getEfficiency())));
+            textList.add(Component.translatable("ctnh.mutliblock.wind_power_array.info.network_machine", netHandler.getNetSize()));
+            textList.add(Component.translatable("ctnh.mutliblock.wind_power_array.info.network_machine_efficiency", String.format("%.1f",getEfficiency())));
             if(netHandler.getDeadTime()!=-1)
-                textList.add(Component.translatable("info.ctnhcore.network_dirty", (netHandler.getDeadTime() - getLevel().getGameTime())/ 20 ));
+                textList.add(Component.translatable("ctnh.mutliblock.wind_power_array.info.network_dirty", (netHandler.getDeadTime() - getLevel().getGameTime())/ 20 ));
         }
     }
     @Override

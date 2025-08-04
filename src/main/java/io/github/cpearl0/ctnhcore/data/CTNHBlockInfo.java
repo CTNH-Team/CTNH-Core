@@ -1,22 +1,16 @@
 package io.github.cpearl0.ctnhcore.data;
 
-import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.loot.LootBuilder;
-import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.GrassBlock;
-import net.minecraft.world.level.storage.loot.LootTable;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
-import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
+import static io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks.*;
 
 @SuppressWarnings("removal")
 public class CTNHBlockInfo {

@@ -282,7 +282,7 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
         updateVillagerCount();
         updateBasicRate();
         super.addDisplayText(textList);
-        textList.add(Component.translatable("ctnh.multiblock.sweat_shop.villager_count",VILLAGER_COUNT));
-        textList.add(Component.translatable("ctnh.multiblock.sweat_shop.basic_rate",String.format("%.2f",basicRate)));
+        textList.add(Component.translatable("ctnh.multiblock.sweat_shop.info.villager_count",VILLAGER_COUNT));
+        textList.add(Component.translatable("ctnh.multiblock.sweat_shop.info.basic_rate",String.format("%.2f",basicRate)));
     }
 }

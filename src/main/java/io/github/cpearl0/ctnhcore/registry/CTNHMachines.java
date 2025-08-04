@@ -297,14 +297,6 @@ public class CTNHMachines {
         return tooltipComponents.toArray(Component[]::new);
     }
 
-    public static final BiConsumer<IMultiController, List<Component>> CHEMICAL_PLANT_DISPLAY = (controller, components) -> {
-        if (controller.isFormed()) {
-            double value = 1 - ((CoilWorkableElectricMultiblockMachine) controller).getCoilTier() * 0.05;
-            components.add(Component.translatable("ctnh.machine.eut_multiplier.tooltip", FormattingUtil.formatNumbers(value * 0.6)));
-            components.add(Component.translatable("ctnh.machine.duration_multiplier.tooltip", FormattingUtil.formatNumbers(value * 0.5)));
-        }
-    };
-
     public static final MachineDefinition STERILE_CLEANROOM_MAINTENANCE_HATCH = GTRegistration.REGISTRATE
             .machine("sterile_cleanroom_maintenance_hatch",
                     holder -> new CleaningMaintenanceHatchPartMachine(holder, CleanroomType.STERILE_CLEANROOM))

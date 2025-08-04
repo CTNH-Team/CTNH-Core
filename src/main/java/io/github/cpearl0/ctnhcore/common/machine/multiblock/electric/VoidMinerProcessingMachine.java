@@ -149,11 +149,11 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
         super.addDisplayText(textList);
 
         if (isOverheated) {
-            textList.add(Component.translatable("ctnh.multiblock.blast_furnace.overheat").withStyle(ChatFormatting.RED));
+            textList.add(Component.translatable("ctnh.multiblock.void_miner.info.overheat").withStyle(ChatFormatting.RED));
         }
         textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(currentTemperature + "K").withStyle(ChatFormatting.RED)));
-        textList.add(Component.translatable("ctnh.void_miner.pyrotheum", nextPyrotheumAmount + " mB").withStyle(ChatFormatting.GOLD));
-        textList.add(Component.translatable("ctnh.void_miner.cryotheum", nextCryotheumAmount + " mB").withStyle(ChatFormatting.AQUA));
+        textList.add(Component.translatable("ctnh.multiblock.void_miner.info.pyrotheum", nextPyrotheumAmount + " mB").withStyle(ChatFormatting.GOLD));
+        textList.add(Component.translatable("ctnh.multiblock.void_miner.info.cryotheum", nextCryotheumAmount + " mB").withStyle(ChatFormatting.AQUA));
     }
 
 

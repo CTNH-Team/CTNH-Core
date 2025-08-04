@@ -111,11 +111,11 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
         } else if (dimension == Planet.VENUS || dimension == Planet.VENUS_ORBIT) {
             rate_mul = 6;
         } else if (dimension == Planet.MERCURY || dimension == Planet.MERCURY_ORBIT) {
-            rate_mul = 16;
+            rate_mul = 6;
         } else if (dimension == Planet.MARS || dimension == Planet.MARS_ORBIT) {
             rate_mul = 2;
         } else if (dimension == Planet.GLACIO || dimension == Planet.GLACIO_ORBIT) {
-            rate_mul = 32;
+            rate_mul = 12;
         }
         if (getLevel() instanceof ServerLevel serverLevel && rate_mul>0) {
             serverLevel.getServer().tell(new TickTask(0, this::updateTickSubscription));
@@ -243,11 +243,11 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
 
             if(valid == Status.VALID) {
                 //gtceu.multiblock.generation_eu
-                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station1", String.format("%.1f", (lastOutputEnergy * 100f / BASIC_RATE))));
-                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station2", FormattingUtil.formatNumbers(lastOutputEnergy), voltageName));
+                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station.info.1", String.format("%.1f", (lastOutputEnergy * 100f / BASIC_RATE))));
+                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station.info.2", FormattingUtil.formatNumbers(lastOutputEnergy), voltageName));
             }
             else{
-                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station_"+valid.name().toLowerCase()).withStyle(ChatFormatting.RED));
+                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station.info."+valid.name().toLowerCase()).withStyle(ChatFormatting.RED));
             }
         }
     }

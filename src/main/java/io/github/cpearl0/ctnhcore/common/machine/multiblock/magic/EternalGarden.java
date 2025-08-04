@@ -462,11 +462,11 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
         var tier = getTier();
         if(nutrition>1)
         {
-            textList.add(textList.size(),Component.translatable("ctnh.garden.eat",String.format("%.1f",nutrition)));
+            textList.add(textList.size(),Component.translatable("ctnh.eternalgarden.info.eat",String.format("%.1f",nutrition)));
         }
         if(Temperature>0)
         {
-            textList.add(textList.size(),Component.translatable("ctnh.garden.fire",String.format("%d",Temperature)));
+            textList.add(textList.size(),Component.translatable("ctnh.eternalgarden.info.fire",String.format("%d",Temperature)));
         }
     }
 }

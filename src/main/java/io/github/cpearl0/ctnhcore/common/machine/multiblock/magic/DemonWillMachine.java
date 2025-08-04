@@ -276,6 +276,15 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
             }
         }
     }
+    public double difference_caculate(double difference)
+    {
+        var num=0.0;
+        if(difference<500)
+            num=Math.pow(difference,2);
+        else
+            num=Math.pow(500,2)+(difference-500);
+        return num;
+    }
     public double getBoostRate() {
         return 2 + 0.5 * Sacrifice_rune;
     }
@@ -288,10 +297,10 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
             var diversity = dmachine.diversity;
             var modifierFunction = ModifierFunction.builder().durationMultiplier(1 + dmachine.Speed_rune * 0.2);
             if (dmachine.isBoosted) {
-                modifierFunction.eutMultiplier(diversity*Math.pow(difference,2)* dmachine.getBoostRate());
+                modifierFunction.eutMultiplier(diversity*dmachine.difference_caculate(difference)* dmachine.getBoostRate());
             }
             else {
-                modifierFunction.eutMultiplier(diversity*Math.pow(difference,2));
+                modifierFunction.eutMultiplier(diversity*dmachine.difference_caculate(difference));
             }
             return modifierFunction.build();
         }

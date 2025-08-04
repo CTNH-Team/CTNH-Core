@@ -14,6 +14,7 @@ import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
+import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
@@ -189,8 +190,8 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
             double totaltime = 0;
             int totalExperience = 0;
             List<Content> itemList = new ArrayList<>();
-            int repeatTimes = (smachine.getTier() - 2) * 4;
-            for (int i = 0; i < repeatTimes; i++) {
+            int repeatTimes = smachine.getTier() - 2;
+            for (int i = 0; i < 4; i++) {
                 int index = level.getRandom().nextInt(smachine.mobList.size());
                 String mob = smachine.mobList.get(index);
                 var mobentity = EntityType.byString(mob).get().create(machine.getLevel());
@@ -232,9 +233,11 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
                     });
                 }
             }
+            var modifier = ContentModifier.multiplier(repeatTimes);
             newrecipe.outputs.put(ItemRecipeCapability.CAP,itemList);
             newrecipe.outputs.put(FluidRecipeCapability.CAP, List.of(new Content(FluidIngredient.of(new FluidStack(EIOFluids.XP_JUICE.get().getSource(), totalExperience)), 1, 1, 0)));
-            newrecipe.duration = (int) totaltime;
+            newrecipe.duration = (int) totaltime * repeatTimes;
+            modifier.applyContents(newrecipe.outputs);
         }
         return recipe1 -> newrecipe;
     }
@@ -242,7 +245,7 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
     public void addDisplayText(@NotNull List<Component> textList) {
         super.addDisplayText(textList);
         var mobName = mobList.stream().map(mob -> EntityType.byString(mob).get().getDescription().getString()).toList();
-        textList.add(textList.size(), Component.translatable("ctnh.multiblock.slaughter_house.mobcount", mobList.size(),mobName));
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.slaughter_house.info.mobcount", mobList.size(),mobName));
     }
     @Override
     public ManagedFieldHolder getFieldHolder() {

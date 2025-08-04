@@ -88,13 +88,13 @@ public class Quasar_Eye extends WorkableElectricMultiblockMachine implements ITi
     }
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
-        textList.add(textList.size(),Component.translatable("ctnh.mana_model",String.format("%d",energy_tier)));
-        textList.add(textList.size(), Component.translatable("ctnh.rune_energy",String.format("%.2f",rune_energy)));
-        textList.add(textList.size(), Component.translatable("ctnh.mana_production",String.format("%.2f",energy_caculate(rune_energy,energy_tier))));
-        textList.add(textList.size(), Component.translatable("ctnh.rune_consumption",String.format("%.2f",(rune_energy/50)*Math.log(rune_energy/50+1))));
-        textList.add(textList.size(), Component.translatable("ctnh.quasar_parallel",String.format("%.2f",energy_caculate(rune_energy,energy_tier)*5)));
-        textList.add(textList.size(), Component.translatable("ctnh.consumption_parallel",String.format("%.2f",(1-0.05*Math.max((rune_energy-50)/50,10)))));
-        textList.add(textList.size(),Component.translatable("ctnh.quasar.tip.3",(double)power/100000000+"E EU"));
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.quasar_eye.info.mana_model",String.format("%d",energy_tier)));
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.quasar_eye.info.rune_energy",String.format("%.2f",rune_energy)));
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.quasar_eye.info.mana_production",String.format("%.2f",energy_caculate(rune_energy,energy_tier))));
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.quasar_eye.info.rune_consumption",String.format("%.2f",(rune_energy/50)*Math.log(rune_energy/50+1))));
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.quasar_eye.info.quasar_parallel",String.format("%.2f",energy_caculate(rune_energy,energy_tier)*5)));
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.quasar_eye.info.consumption_parallel",String.format("%.2f",(1-0.05*Math.max((rune_energy-50)/50,10)))));
+        textList.add(textList.size(),Component.translatable("ctnh.multiblock.quasar_eye.info.0",(double)power/100000000+"E EU"));
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         if(machine instanceof Quasar_Eye qmachine){

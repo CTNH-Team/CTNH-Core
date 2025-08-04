@@ -10,14 +10,13 @@ import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.Nicoll_Dyson_Beams;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class OverclockParallelMachine extends CoilWorkableElectricMultiblockMachine implements ITieredMachine {
-    public OverclockParallelMachine(IMachineBlockEntity holder) {
+public class MegaLCRMachine extends CoilWorkableElectricMultiblockMachine implements ITieredMachine {
+    public MegaLCRMachine(IMachineBlockEntity holder) {
         super(holder);
     }
     @Persisted public int temperature=0;
@@ -38,7 +37,7 @@ public class OverclockParallelMachine extends CoilWorkableElectricMultiblockMach
 
             }
         }
-        if(machine instanceof OverclockParallelMachine pmachine) {
+        if(machine instanceof MegaLCRMachine pmachine) {
             var speed=1;
             int parallel= ParallelLogic.getParallelAmount(machine,recipe,pa);
             var eut=Math.max(0.25,1.01-0.02*parallel);
@@ -59,8 +58,8 @@ public class OverclockParallelMachine extends CoilWorkableElectricMultiblockMach
     @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
-        textList.add(Component.translatable("ctnh.lcr.coil", temperature + "K"));
-        textList.add(Component.translatable("ctnh.lcr.speed", eff));
+        textList.add(Component.translatable("ctnh.multiblock.mega_lcr.info.coil", temperature + "K"));
+        textList.add(Component.translatable("ctnh.multiblock.mega_lcr.info.speed", eff));
     }
 
 }
