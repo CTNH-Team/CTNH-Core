@@ -82,7 +82,7 @@ public class MegaTurbineMachine extends WorkableElectricMultiblockMachine implem
         var rotorHolder = turbineMachine.getRotorHolder();
         if (rotorHolder == null) return ModifierFunction.NULL;
 
-        long EUt = RecipeHelper.getOutputEUt(recipe);
+        long EUt = RecipeHelper.getRealEUtWithIO(recipe).voltage();
         long turbineMaxVoltage = turbineMachine.getOverclockVoltage();
         double holderEfficiency = rotorHolder.getTotalEfficiency() / 100.0;
 
@@ -103,7 +103,7 @@ public class MegaTurbineMachine extends WorkableElectricMultiblockMachine implem
     }
 
     @Override
-    public boolean dampingWhenWaiting() {
+    public boolean regressWhenWaiting() {
         return false;
     }
 
@@ -131,7 +131,7 @@ public class MegaTurbineMachine extends WorkableElectricMultiblockMachine implem
 
                 long maxProduction = getOverclockVoltage();
                 long currentProduction = isActive() && recipeLogic.getLastRecipe() != null ?
-                        RecipeHelper.getOutputEUt(recipeLogic.getLastRecipe()) : 0;
+                        RecipeHelper.getRealEUtWithIO(recipeLogic.getLastRecipe()).voltage() : 0;
                 String voltageName = GTValues.VNF[GTUtil.getTierByVoltage(currentProduction)];
 
                 if (isActive()) {

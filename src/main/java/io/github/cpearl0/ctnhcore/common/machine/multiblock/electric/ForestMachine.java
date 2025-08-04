@@ -41,7 +41,7 @@ public class ForestMachine extends WorkableElectricMultiblockMachine {
             // 检查输入仓是否有水
             FluidStack waterFluid = new FluidStack(
                     Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(
-                            new ResourceLocation("minecraft:water"))),
+                            ResourceLocation.tryParse("minecraft:water"))),
                     FLUID_AMOUNT
             );
 

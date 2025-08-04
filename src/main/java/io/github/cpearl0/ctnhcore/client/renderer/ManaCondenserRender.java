@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.client.renderer.machine.DynamicRender;
 import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderType;
 import com.lowdragmc.lowdraglib.utils.TrackedDummyWorld;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.serialization.Codec;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.ManaCondenserMachine;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -16,12 +17,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.List;
 
 public class ManaCondenserRender extends DynamicRender<IMachineFeature, ManaCondenserRender> {
+    public static Codec<ManaCondenserRender> CODEC = Codec.unit(ManaCondenserRender::new);
     public ManaCondenserRender() {
     }
 
     @Override
     public DynamicRenderType<IMachineFeature, ManaCondenserRender> getType() {
-        return new ManaCondenserRender();
+        return new DynamicRenderType<>(CODEC);
     }
     @Override
     public int getViewDistance() {

@@ -32,7 +32,7 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.PHOTOVOLTAIC_G
 import static twilightforest.init.TFItems.STEELEAF_INGOT;
 
 public class MachinesRecipes {
-    public static CraftingComponent MONITOR = CraftingComponent.of("monitor", CraftingComponent.EMPTY)
+    public static CraftingComponent MONITOR = CraftingComponent.of("monitor", COVER_SCREEN.asStack())
             .add(LV, COVER_SCREEN.asStack())
             .add(MV, COVER_SCREEN.asStack())
             .add(HV, COVER_SCREEN.asStack())
@@ -178,7 +178,7 @@ public class MachinesRecipes {
         ASSEMBLER_RECIPES.recipeBuilder("empty_program")
                 .inputItems(wireFine,RedAlloy,8)
                 .inputItems(plate,Steel,2)
-                .inputFluids(FluidIngredient.of(1000, Fluids.WATER))
+                .inputFluids(FluidIngredient.of(Fluids.WATER, 1000))
                 .outputItems(CTNHItems.PROGRAM_EMPTY.asStack())
                 .EUt(30)
                 .duration(200)

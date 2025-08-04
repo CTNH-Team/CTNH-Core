@@ -30,12 +30,12 @@ public class CTNHTagPrefixes {
             .registerOre(() -> AetherBlocks.HOLYSTONE.get().defaultBlockState().setValue(AetherBlockStateProperties.DOUBLE_DROPS, true),
                     () -> CTNHMaterials.Holystone,
                     BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(3.0F, 3.0F),
-                    new ResourceLocation(Aether.MODID, "block/holystone"), true, false, true);
+                    ResourceLocation.tryBuild(Aether.MODID, "block/holystone"), true, false, true);
     public static final TagPrefix oreMossyHolystone = TagPrefix.oreTagPrefix("mossy_holystone", BlockTags.MINEABLE_WITH_PICKAXE)
             .registerOre(() -> AetherBlocks.MOSSY_HOLYSTONE.get().defaultBlockState().setValue(AetherBlockStateProperties.DOUBLE_DROPS, true),
                     () -> CTNHMaterials.Holystone,
                     BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(3.0F, 3.0F),
-                    new ResourceLocation(Aether.MODID, "block/mossy_holystone"), true, false, true);
+                    ResourceLocation.tryBuild(Aether.MODID, "block/mossy_holystone"), true, false, true);
     public static final TagPrefix oreLivingrock = TagPrefix.oreTagPrefix("livingrock", BlockTags.MINEABLE_WITH_PICKAXE)
             .registerOre(() -> BotaniaBlocks.livingrock.defaultBlockState(),
                     () -> CTNHMaterials.Livingrock,

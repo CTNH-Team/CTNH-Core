@@ -48,7 +48,7 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
 
             FluidStack nickelPlasmaFluid = new FluidStack(
                     Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(
-                            new ResourceLocation("gtceu:nickel_plasma"))),
+                            ResourceLocation.tryParse("gtceu:nickel_plasma"))),
                     fluidConsumption  // 动态调整流体消耗量
             );
 
@@ -150,7 +150,7 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
     }
 
     @Override
-    public boolean dampingWhenWaiting() {
+    public boolean regressWhenWaiting() {
         return false;
     }
 }

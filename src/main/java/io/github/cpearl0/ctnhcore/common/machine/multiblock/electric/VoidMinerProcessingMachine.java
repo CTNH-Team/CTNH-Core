@@ -93,7 +93,7 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
 
             // 创建 Pyrotheum 流体
             FluidStack pyrotheumFluid = new FluidStack(
-                    Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("gtceu:pyrotheum"))),
+                    Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(ResourceLocation.tryParse("gtceu:pyrotheum"))),
                     currentFluidAmount
             );
 
@@ -118,7 +118,7 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
 
             // 创建 Cryotheum 流体
             FluidStack cryotheumFluid = new FluidStack(
-                    Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("gtceu:cryotheum"))),
+                    Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(ResourceLocation.tryParse("gtceu:cryotheum"))),
                     currentFluidAmount
             );
 
@@ -213,7 +213,7 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
                     SizedIngredient ingredient = SizedIngredient.create(Ingredient.of(rawOreItem), adjustedAmount);
 
                     // 使用 SizedIngredient 创建 Content，并确保数量正确
-                    itemList.add(new Content(ingredient, adjustedAmount, adjustedAmount, 0, null, null));
+                    itemList.add(new Content(ingredient, adjustedAmount, adjustedAmount, 0));
                 }
             }
 
@@ -234,7 +234,7 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
         List<ItemStack> rawOreItems = new ArrayList<>();
 
         // 创建 '#c:raw_ores' 标签的 TagKey
-        TagKey<Item> rawOresTag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), new ResourceLocation("c", "raw_ores"));
+        TagKey<Item> rawOresTag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), ResourceLocation.tryBuild("c", "raw_ores"));
 
         // 黑名单物品列表（需要排除的物品）
         Set<Item> blacklist = getBlacklistedItems();
@@ -258,16 +258,16 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
         Set<Item> blacklist = new HashSet<>();
 
         // 黑名单物品添加
-        blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_space_neutronium")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_infinity")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_infinity_catalyst")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_starmetal")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_jasper")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_flowing_amber_gold")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_special_composite_steel_m77")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_hidden_alloy")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_iridium")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_osmium")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_space_neutronium")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_infinity")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_infinity_catalyst")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_starmetal")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_jasper")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_flowing_amber_gold")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_special_composite_steel_m77")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_hidden_alloy")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_iridium")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_osmium")));
 
         return blacklist;
     }

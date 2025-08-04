@@ -180,6 +180,13 @@ repositories {
             includeGroup "com.github.rtyley"
         }
     }
+    maven {
+        name = 'GuideME Snapshots'
+        url = 'https://central.sonatype.com/repository/maven-snapshots/'
+        content {
+            includeModule('org.appliedenergistics', 'guideme')
+        }
+    }
     maven { url = "https://maven.createmod.net" }
  }
 
@@ -221,7 +228,7 @@ dependencies {
     implementation fg.deobf("curse.maven:ftb-library-forge-404465:5567591")
     implementation fg.deobf("curse.maven:ftb-ultimine-forge-386134:5363345")
 
-    implementation fg.deobf("curse.maven:gt-985872:6743037")
+    implementation fg.deobf("curse.maven:gt-985872:6816503")
 
     implementation fg.deobf("curse.maven:patchouli-306770:4966125")
     implementation fg.deobf("curse.maven:botania-225643:5594997")
@@ -236,7 +243,8 @@ dependencies {
     implementation fg.deobf("com.enderio:EnderIO:${enderio_version}")
     runtimeOnly "dev.gigaherz.graph:GraphLib3:$graphlib_version"
 
-    implementation fg.deobf("curse.maven:applied-energistics-2-223794:5641282")
+    implementation fg.deobf("curse.maven:applied-energistics-2-223794:6501484")
+    implementation fg.deobf("curse.maven:guideme-1173950:6679102")
     implementation fg.deobf("curse.maven:legendary_survival_overhaul-840254:5825918")
 
     // Curios
@@ -246,14 +254,14 @@ dependencies {
     // Blood Magic
     implementation fg.deobf("maven.modrinth:blood-magic:${bloodmagic_version}")
 
-    implementation fg.deobf("curse.maven:gtmthings-1104310:6725533")
+    implementation fg.deobf("curse.maven:gtmthings-1104310:6764930")
 
     implementation fg.deobf("curse.maven:mythicbotany-400058:5101899")
     annotationProcessor fg.deobf("org.moddingx:LibX:${minecraft_version}-${libx_version}")
     implementation fg.deobf("org.moddingx:LibX:${minecraft_version}-${libx_version}")
 
     // CTPP
-    implementation fg.deobf("curse.maven:ctpp-1163715:6635605")
+    implementation fg.deobf("curse.maven:ctpp-1163715:6845795")
 
     // Apotheosis
     implementation fg.deobf("curse.maven:apotheosis-313970:6147871")

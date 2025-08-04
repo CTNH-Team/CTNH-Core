@@ -26,6 +26,7 @@ import fr.lucreeper74.createmetallurgy.registries.CMBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHPredicates;
 import io.github.cpearl0.ctnhcore.client.renderer.EternalGardenRender;
+import io.github.cpearl0.ctnhcore.client.renderer.HyperPlasmaTurbineRender;
 import io.github.cpearl0.ctnhcore.client.renderer.ManaCondenserRender;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.KineticElectricMutiblockMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.*;
@@ -1635,7 +1636,7 @@ public class MultiblocksB {
                     .where("f", Predicates.blocks(BotaniaFlowerBlocks.heiseiDreamFloating))
                     .where("g", Predicates.blocks(DIRT))
                     .where("h", Predicates.blocks(BotaniaBlocks.whiteFlower))
-                    .where("i", Predicates.blocks(CASING_STAINLESS_EVAPORATION.get()))
+                    .where("i", Predicates.blocks(CASING_STAINLESS_CLEAN.get()))
                     .where("j", Predicates.blocks(BotaniaBlocks.blackFlower))
                     .where("k", Predicates.blocks(BotaniaBlocks.gaiaPylon))
                     .where("l", Predicates.blocks(WATER))
@@ -1647,8 +1648,8 @@ public class MultiblocksB {
                     .where("r", Predicates.blocks(BotaniaFlowerBlocks.rosaArcana))
                     .build()
             )
-            .renderer(EternalGardenRender::new)
-            .hasTESR(true)
+            .model(createWorkableCasingMachineModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/implosion_compressor"))
+                    .andThen(b -> b.addDynamicRenderer(EternalGardenRender::new)))
             .register();
     public final static MultiblockMachineDefinition PLASMA_ALLOY_BLAST_SMELTER = REGISTRATE.multiblock("plasma_alloy_blast_smelter", Plasma_alloy_blast::new)
             .rotationState(RotationState.NON_Y_AXIS)
@@ -2197,8 +2198,7 @@ public class MultiblocksB {
                     .build())
             .model(createWorkableCasingMachineModel(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"),
                     GTCEu.id("block/multiblock/generator/large_steam_turbine"))
-                    .andThen(b -> b.addDynamicRenderer(() -> new ManaCondenserRender())))
-            .renderer(ManaCondenserRender::new)
+                    .andThen(b -> b.addDynamicRenderer(ManaCondenserRender::new)))
             .register();
     public final static MultiblockMachineDefinition  NERUOMATRIXCOMPILER = REGISTRATE.multiblock("neruo_martix_compiler", NeuroMatrixCompiler::new)
             .rotationState(RotationState.NON_Y_AXIS)

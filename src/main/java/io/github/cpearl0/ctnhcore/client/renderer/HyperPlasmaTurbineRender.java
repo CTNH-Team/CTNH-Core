@@ -1,22 +1,24 @@
 package io.github.cpearl0.ctnhcore.client.renderer;
 
+import com.gregtechceu.gtceu.api.machine.feature.IMachineFeature;
 import com.gregtechceu.gtceu.client.renderer.block.FluidBlockRenderer;
-import com.gregtechceu.gtceu.client.renderer.machine.WorkableCasingMachineRenderer;
+import com.gregtechceu.gtceu.client.renderer.machine.DynamicRender;
+import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderType;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.serialization.Codec;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.material.Fluid;
 
-public class HyperPlasmaTurbineRender extends WorkableCasingMachineRenderer {
+public class HyperPlasmaTurbineRender extends DynamicRender<IMachineFeature, HyperPlasmaTurbineRender> {
+    public static Codec<HyperPlasmaTurbineRender> CODEC = Codec.unit(HyperPlasmaTurbineRender::new);
 
     private final FluidBlockRenderer fluidBlockRenderer;
     private Fluid cachedFluid;
     private ResourceLocation cachedRecipe;
 
-    public HyperPlasmaTurbineRender(ResourceLocation baseCasing, ResourceLocation workableModel) {
-        super(baseCasing, workableModel);
+    public HyperPlasmaTurbineRender() {
         fluidBlockRenderer = FluidBlockRenderer.Builder.create()
 //                .setFaceOffset(-0.125f)
                 .setForcedLight(LightTexture.FULL_BRIGHT)
@@ -24,14 +26,13 @@ public class HyperPlasmaTurbineRender extends WorkableCasingMachineRenderer {
     }
 
     @Override
-    public boolean hasTESR(BlockEntity blockEntity) {
-        return true;
+    public DynamicRenderType<IMachineFeature, HyperPlasmaTurbineRender> getType() {
+        return new DynamicRenderType<>(CODEC);
     }
 
     @Override
-    public void render(BlockEntity blockEntity, float partialTicks, PoseStack stack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
-        super.render(blockEntity, partialTicks, stack, buffer, combinedLight, combinedOverlay);
-//        if(blockEntity instanceof MetaMachineBlockEntity mm){
+    public void render(IMachineFeature feature, float v, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int i1) {
+        //        if(blockEntity instanceof MetaMachineBlockEntity mm){
 //            if(mm.metaMachine instanceof HyperPlasmaTurbineMachine hptm && hptm.recipeLogic.isWorking()){
 //                var lastRecipe = hptm.recipeLogic.getLastRecipe();
 //                if (lastRecipe == null) {

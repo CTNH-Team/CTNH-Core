@@ -28,7 +28,7 @@ public abstract class GTRecipeWidgetMixin {
     @Inject(method = "initializeRecipeTextWidget", at = @At("TAIL"))
     private void injectVoltageBorder(CallbackInfo ci) {
         GTRecipeWidget self = (GTRecipeWidget) (Object) this;
-        if(RecipeHelper.getInputEUt(getRecipe()) > 0 &&
+        if(RecipeHelper.getRealEUt(getRecipe()).voltage() > 0 &&
                 self.widgets.stream().noneMatch(w -> w instanceof VoltageBorderWidget)
         ){
              //获取颜色（ARGB）

@@ -83,7 +83,7 @@ public class PetalRecipeBuilder {
 
             @Override
             public ResourceLocation getId() {
-                return new ResourceLocation(id.getNamespace(), "petal_apothecary" + "/" + id.getPath());
+                return ResourceLocation.tryBuild(id.getNamespace(), "petal_apothecary" + "/" + id.getPath());
             }
 
             @Override
