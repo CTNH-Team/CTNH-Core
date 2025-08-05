@@ -23,6 +23,7 @@ import org.joml.Vector3f;
 
 public class EternalGardenRender extends DynamicRender<IMachineFeature, EternalGardenRender> {
     public static Codec<EternalGardenRender> CODEC = Codec.unit(EternalGardenRender::new);
+    public static final DynamicRenderType<IMachineFeature, EternalGardenRender> TYPE = new DynamicRenderType<>(CODEC);
 
     private static final ResourceLocation TEXTURE =
             CTNHCore.id("textures/block/magic_cube/texture.png");
@@ -34,7 +35,7 @@ public class EternalGardenRender extends DynamicRender<IMachineFeature, EternalG
 
     @Override
     public DynamicRenderType<IMachineFeature, EternalGardenRender> getType() {
-        return new DynamicRenderType<>(CODEC);
+        return TYPE;
     }
 
     @Override

@@ -1,0 +1,82 @@
+{
+  "parent": "minecraft:block/block",
+  "loader": "gtceu:machine",
+  "machine": "ctnhcore:mega_lcr",
+  "texture_overrides": {
+    "all": "gtceu:block/casings/solid/machine_casing_inert_ptfe"
+  },
+  "variants": {
+    "is_formed=false,recipe_logic_status=idle": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/solid/machine_casing_inert_ptfe",
+          "overlay_front": "ctnhcore:block/overlay/super_ebf/overlay_front"
+        }
+      }
+    },
+    "is_formed=false,recipe_logic_status=suspend": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/solid/machine_casing_inert_ptfe",
+          "overlay_front": "ctnhcore:block/overlay/super_ebf/overlay_front_paused"
+        }
+      }
+    },
+    "is_formed=false,recipe_logic_status=waiting": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/solid/machine_casing_inert_ptfe",
+          "overlay_front": "ctnhcore:block/overlay/super_ebf/overlay_front_active"
+        }
+      }
+    },
+    "is_formed=false,recipe_logic_status=working": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/solid/machine_casing_inert_ptfe",
+          "overlay_front": "ctnhcore:block/overlay/super_ebf/overlay_front_active"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=idle": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/solid/machine_casing_inert_ptfe",
+          "overlay_front": "ctnhcore:block/overlay/super_ebf/overlay_front"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=suspend": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/solid/machine_casing_inert_ptfe",
+          "overlay_front": "ctnhcore:block/overlay/super_ebf/overlay_front_paused"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=waiting": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/solid/machine_casing_inert_ptfe",
+          "overlay_front": "ctnhcore:block/overlay/super_ebf/overlay_front_active"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=working": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/solid/machine_casing_inert_ptfe",
+          "overlay_front": "ctnhcore:block/overlay/super_ebf/overlay_front_active"
+        }
+      }
+    }
+  }
+}

@@ -18,12 +18,13 @@ import java.util.List;
 
 public class ManaCondenserRender extends DynamicRender<IMachineFeature, ManaCondenserRender> {
     public static Codec<ManaCondenserRender> CODEC = Codec.unit(ManaCondenserRender::new);
+    public static final DynamicRenderType<IMachineFeature, ManaCondenserRender> TYPE = new DynamicRenderType<>(ManaCondenserRender.CODEC);
     public ManaCondenserRender() {
     }
 
     @Override
     public DynamicRenderType<IMachineFeature, ManaCondenserRender> getType() {
-        return new DynamicRenderType<>(CODEC);
+        return TYPE;
     }
     @Override
     public int getViewDistance() {

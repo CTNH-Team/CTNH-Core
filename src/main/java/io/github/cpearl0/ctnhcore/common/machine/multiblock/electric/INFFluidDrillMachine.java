@@ -54,7 +54,7 @@ public class INFFluidDrillMachine extends WorkableElectricMultiblockMachine impl
     }
 
     public int getEnergyTier() {
-        var energyContainer = (List)this.getCapabilitiesProxy().get(IO.IN, EURecipeCapability.CAP);
+        var energyContainer = (List)this.getCapabilitiesFlat(IO.IN, EURecipeCapability.CAP);
         if (energyContainer == null) return this.tier;
         var energyCont = new EnergyContainerList(energyContainer.stream().filter(IEnergyContainer.class::isInstance)
                 .map(IEnergyContainer.class::cast).toList());

@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "ctnhcore:block/machine/ulv_rotor_holder",
+      "x": 90
+    },
+    "facing=east": {
+      "model": "ctnhcore:block/machine/ulv_rotor_holder",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "ctnhcore:block/machine/ulv_rotor_holder"
+    },
+    "facing=south": {
+      "model": "ctnhcore:block/machine/ulv_rotor_holder",
+      "y": 180
+    },
+    "facing=up": {
+      "gtceu:z": 180,
+      "model": "ctnhcore:block/machine/ulv_rotor_holder",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "ctnhcore:block/machine/ulv_rotor_holder",
+      "y": 270
+    }
+  }
+}
