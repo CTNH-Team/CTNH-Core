@@ -28,13 +28,14 @@ import java.util.List;
 
 public class MartialMoralityEyeRender extends DynamicRender<IMachineFeature, MartialMoralityEyeRender> {
     public static Codec<MartialMoralityEyeRender> CODEC = Codec.unit(MartialMoralityEyeRender::new);
+    public static DynamicRenderType<IMachineFeature, MartialMoralityEyeRender> TYPE = new DynamicRenderType<>(CODEC);
 
     public MartialMoralityEyeRender() {
     }
 
     @Override
     public DynamicRenderType<IMachineFeature, MartialMoralityEyeRender> getType() {
-        return new DynamicRenderType<>(CODEC);
+        return TYPE;
     }
 
     Vector3f rotationAxisY = new Vector3f(0, 1, 0);//局部Y轴

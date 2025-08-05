@@ -59,7 +59,7 @@ public class CTNHMachines {
                     .langValue(GTValues.VNF[tier] + " Circuit Bus")
                     .rotationState(RotationState.ALL)
                     .abilities(CTNHPartAbility.CIRCUIT)
-                    .colorOverlayTieredHullModel("overlay_pipe_in", null, OVERLAY_ITEM_HATCH)
+                    .colorOverlayTieredHullModel(GTCEu.id("block/overlay/machine/overlay_pipe_in"), null, GTCEu.id("block/overlay/machine/" + OVERLAY_ITEM_HATCH))
                     .register(),
             GTMachineUtils.ALL_TIERS);
     public static final MachineDefinition DRONEHOLDER = REGISTRATE.machine("drone_holder", DroneHolderMachine::new)
@@ -74,7 +74,7 @@ public class CTNHMachines {
                     .langValue(GTValues.VNF[tier] + " Neuro Compiler")
                     .rotationState(RotationState.ALL)
                     .abilities(CTNHPartAbility.COMPILER)
-                    .colorOverlayTieredHullModel("overlay_pipe_in", null, OVERLAY_ITEM_HATCH)
+                    .colorOverlayTieredHullModel(GTCEu.id("block/overlay/machine/overlay_pipe_in"), null, GTCEu.id("block/overlay/machine/" + OVERLAY_ITEM_HATCH))
                     .register(),
             GTMachineUtils.ALL_TIERS);
 
@@ -117,7 +117,7 @@ public class CTNHMachines {
                                     FormattingUtil
                                             .formatNumbers(EnergyHatchPartMachine.getHatchEnergyCapacity(tier, 4))),
                             Component.translatable("gtceu.machine.energy_hatch.output_hi_amp.tooltip"))
-                    .overlayTieredHullModel("energy_hatch.output_4a")
+                    .overlayTieredHullModel(GTCEu.id( "block/machine/part/energy_output_hatch_4a"))
                     .register(),
             GTValues.tiersBetween(LV, HV));
     public static final MachineDefinition[] ROTOR_HOLDER_EXTEND = registerTieredMachines("rotor_holder",
@@ -297,21 +297,21 @@ public class CTNHMachines {
         return tooltipComponents.toArray(Component[]::new);
     }
 
-    public static final MachineDefinition STERILE_CLEANROOM_MAINTENANCE_HATCH = REGISTRATE
-            .machine("sterile_cleanroom_maintenance_hatch",
-                    holder -> new CleaningMaintenanceHatchPartMachine(holder, CleanroomType.STERILE_CLEANROOM))
-            .rotationState(RotationState.ALL)
-            .abilities(PartAbility.MAINTENANCE)
-            .tooltips(Component.translatable("gtceu.universal.disabled"),
-                    Component.translatable("gtceu.machine.maintenance_hatch_cleanroom_auto.tooltip.0"),
-                    Component.translatable("gtceu.machine.maintenance_hatch_cleanroom_auto.tooltip.1"))
-            .tooltipBuilder((stack, tooltips) -> {
-                tooltips.add(Component.literal("  ").append(Component
-                        .translatable(CleanroomType.STERILE_CLEANROOM.getTranslationKey()).withStyle(ChatFormatting.LIGHT_PURPLE)));
-            })
-            .modelProperty(MaintenanceHatchPartMachine.MAINTENANCE_TAPED_PROPERTY, false)
-            .model(createMaintenanceModel(CTNHCore.id("block/machine/part/maintenance.sterilecleaning")))
-            .register();
+//    public static final MachineDefinition STERILE_CLEANROOM_MAINTENANCE_HATCH = REGISTRATE
+//            .machine("sterile_cleanroom_maintenance_hatch",
+//                    holder -> new CleaningMaintenanceHatchPartMachine(holder, CleanroomType.STERILE_CLEANROOM))
+//            .rotationState(RotationState.ALL)
+//            .abilities(PartAbility.MAINTENANCE)
+//            .tooltips(Component.translatable("gtceu.universal.disabled"),
+//                    Component.translatable("gtceu.machine.maintenance_hatch_cleanroom_auto.tooltip.0"),
+//                    Component.translatable("gtceu.machine.maintenance_hatch_cleanroom_auto.tooltip.1"))
+//            .tooltipBuilder((stack, tooltips) -> {
+//                tooltips.add(Component.literal("  ").append(Component
+//                        .translatable(CleanroomType.STERILE_CLEANROOM.getTranslationKey()).withStyle(ChatFormatting.LIGHT_PURPLE)));
+//            })
+//            .modelProperty(MaintenanceHatchPartMachine.MAINTENANCE_TAPED_PROPERTY, false)
+//            .model(createMaintenanceModel(CTNHCore.id("block/machine/part/maintenance.sterilecleaning")))
+//            .register();
 
     public static final MachineDefinition[] HIGH_PERFORMANCE_COMPUTER = registerTieredMachines("high_performance_computer",
             HighPerformanceComputerMachine::new,

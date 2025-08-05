@@ -1274,7 +1274,7 @@ public class MultiblocksA {
             )
             .workableCasingModel(
                     GTCEu.id("block/casings/solid/machine_casing_inert_ptfe"),
-                    CTNHCore.id("block/overlay/super_ebf/"))
+                    CTNHCore.id("block/overlay/super_ebf"))
             .tooltips(
                     CTNHCommonTooltips.PARALLEL_HATCH,
                     CTNHCommonTooltips.PERFECT_OVERCLOCK,

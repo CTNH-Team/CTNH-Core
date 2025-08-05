@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "ctnhcore:block/machine/lv_personal_computer",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "ctnhcore:block/machine/lv_personal_computer"
+    },
+    "facing=south": {
+      "model": "ctnhcore:block/machine/lv_personal_computer",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "ctnhcore:block/machine/lv_personal_computer",
+      "y": 270
+    }
+  }
+}

@@ -14,6 +14,7 @@ import net.minecraft.world.level.material.Fluid;
 public class HyperPlasmaTurbineRender extends DynamicRender<IMachineFeature, HyperPlasmaTurbineRender> {
     public static Codec<HyperPlasmaTurbineRender> CODEC = Codec.unit(HyperPlasmaTurbineRender::new);
 
+    public static final DynamicRenderType<IMachineFeature, HyperPlasmaTurbineRender> TYPE = new DynamicRenderType<>(CODEC);
     private final FluidBlockRenderer fluidBlockRenderer;
     private Fluid cachedFluid;
     private ResourceLocation cachedRecipe;
@@ -27,7 +28,7 @@ public class HyperPlasmaTurbineRender extends DynamicRender<IMachineFeature, Hyp
 
     @Override
     public DynamicRenderType<IMachineFeature, HyperPlasmaTurbineRender> getType() {
-        return new DynamicRenderType<>(CODEC);
+        return TYPE;
     }
 
     @Override
