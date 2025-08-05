@@ -62,7 +62,7 @@ public class CTNHMachines {
                     .colorOverlayTieredHullModel("overlay_pipe_in", null, OVERLAY_ITEM_HATCH)
                     .register(),
             GTMachineUtils.ALL_TIERS);
-    public static final MachineDefinition DRONEHOLDER = GTRegistration.REGISTRATE.machine("drone_holder", DroneHolderMachine::new)
+    public static final MachineDefinition DRONEHOLDER = REGISTRATE.machine("drone_holder", DroneHolderMachine::new)
                 .langValue("drone Holder")
             .tier(UV)
             .rotationState(RotationState.ALL)
@@ -297,7 +297,7 @@ public class CTNHMachines {
         return tooltipComponents.toArray(Component[]::new);
     }
 
-    public static final MachineDefinition STERILE_CLEANROOM_MAINTENANCE_HATCH = GTRegistration.REGISTRATE
+    public static final MachineDefinition STERILE_CLEANROOM_MAINTENANCE_HATCH = REGISTRATE
             .machine("sterile_cleanroom_maintenance_hatch",
                     holder -> new CleaningMaintenanceHatchPartMachine(holder, CleanroomType.STERILE_CLEANROOM))
             .rotationState(RotationState.ALL)

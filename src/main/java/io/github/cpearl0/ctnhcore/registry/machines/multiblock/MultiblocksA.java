@@ -896,8 +896,7 @@ public class MultiblocksA {
                     .build()
             )
             .addUnderTooltip("ctnh.copyright.magic.info")
-            .workableCasingRenderer(BotaniaRL("block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
-            .workableCasingModel(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
+            .workableCasingModel(BotaniaRL("block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
 
     public final static MultiblockMachineDefinition MANA_BENDER = REGISTRATE.multiblock("mana_bender", holder -> new ManaMachine(holder, 8, 2))
@@ -926,8 +925,7 @@ public class MultiblocksA {
                     .build()
             )
             .addUnderTooltip("ctnh.copyright.magic.info")
-            .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
-            .workableCasingModel(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
+            .workableCasingModel(BotaniaRL("block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public final static MultiblockMachineDefinition ZENITH_LASER = REGISTRATE.multiblock("zenith_laser", holder -> new ZenithMachine(holder, 24, 12, 60, 20))
             .rotationState(RotationState.NON_Y_AXIS)
@@ -979,8 +977,7 @@ public class MultiblocksA {
                     .build()
             )
             .addUnderTooltip("ctnh.copyright.magic.info")
-            .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
-            .workableCasingModel(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
+            .workableCasingModel(BotaniaRL("block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public final static MultiblockMachineDefinition MANA_LATHE = REGISTRATE.multiblock("mana_lathe", holder -> new ManaMachine(holder, 8, 2))
             .rotationState(RotationState.NON_Y_AXIS)
@@ -1005,8 +1002,7 @@ public class MultiblocksA {
                     .build()
             )
             .addUnderTooltip("ctnh.copyright.magic.info")
-            .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
-            .workableCasingModel(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
+            .workableCasingModel(BotaniaRL("block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public final static MultiblockMachineDefinition MANA_ASSEMBLER = REGISTRATE.multiblock("mana_assembler", holder -> new ManaMachine(holder, 8, 5))
             .rotationState(RotationState.NON_Y_AXIS)
@@ -1042,8 +1038,7 @@ public class MultiblocksA {
                     .build()
             )
             .addUnderTooltip("ctnh.copyright.magic.info")
-            .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
-            .workableCasingModel(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
+            .workableCasingModel(BotaniaRL("block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
 
     public static final MultiblockMachineDefinition MANA_GENERATOR_TIER1 = REGISTRATE.multiblock("mana_generator_turbine_tier1", holder -> new ManaLargeTurbineMachine(holder, MV, 1, 1))
@@ -1072,7 +1067,6 @@ public class MultiblocksA {
                     .build()
             )
             .addUnderTooltip("ctnh.copyright.magic.info")
-            .workableCasingRenderer(CTNHCore.id("block/casings/mana_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .workableCasingModel(CTNHCore.id("block/casings/mana_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public static final MultiblockMachineDefinition MANA_GENERATOR_TIER2 = REGISTRATE.multiblock("mana_generator_turbine_tier2", holder -> new ManaLargeTurbineMachine(holder, GTValues.EV, 2.25, 4))
@@ -1103,7 +1097,6 @@ public class MultiblocksA {
                     .build()
             )
             .addUnderTooltip("ctnh.copyright.magic.info")
-            .workableCasingRenderer(CTNHCore.id("block/casings/elementium_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .workableCasingModel(CTNHCore.id("block/casings/elementium_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public static final MultiblockMachineDefinition MANA_GENERATOR_TIER3 = REGISTRATE.multiblock("mana_generator_turbine_tier3", holder -> new ManaLargeTurbineMachine(holder, GTValues.LuV, 3, 12))
@@ -1133,7 +1126,6 @@ public class MultiblocksA {
                     .build()
             )
             .addUnderTooltip("ctnh.copyright.magic.info")
-            .workableCasingRenderer(CTNHCore.id("block/casings/terra_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .workableCasingModel(CTNHCore.id("block/casings/terra_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public static final MultiblockMachineDefinition MANA_GENERATOR_TIER4 = REGISTRATE.multiblock("mana_generator_turbine_tier4", holder -> new ManaLargeTurbineMachine(holder, GTValues.ZPM, 4, 24))
@@ -1164,7 +1156,7 @@ public class MultiblocksA {
                     .build()
             )
             .addUnderTooltip("ctnh.copyright.magic.info")
-            .workableCasingRenderer(CTNHCore.id("block/casings/alfsteel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .workableCasingModel(CTNHCore.id("block/casings/alfsteel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     // Come from GTCA
     public static final MultiblockMachineDefinition SUPER_EBF = REGISTRATE
@@ -1988,7 +1980,6 @@ public class MultiblocksA {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
             .addUnderTooltip("ctnh.copyright.magic.info")
-            .workableCasingRenderer(CTNHCore.id("block/casings/mana_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .workableCasingModel(CTNHCore.id("block/casings/mana_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
 
@@ -2061,27 +2052,6 @@ public class MultiblocksA {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
-            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"), false)
-            .register();
-    public static final MultiblockMachineDefinition ETERNAL_COMBUSTION_ENGINE = REGISTRATE.multiblock("eternal_combustion_engine", Eternal_Combustion_engine::new)
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(DUMMY_RECIPES)
-            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
-            .appearanceBlock(CASING_STEEL_SOLID)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("AAAAAAA", "AAABBBA", "AAABBBA")
-                    .aisle("AAAAAAA", "ACADDDA", "AAABBBA")
-                    .aisle("AAAAAAA", "A@ABBBA", "AAABBBA")
-                    .where("A", Predicates.blocks(CASING_STEEL_SOLID.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(abilities(PartAbility.OUTPUT_ENERGY).setMinGlobalLimited(1))
-                            .or(abilities(PartAbility.IMPORT_FLUIDS)))
-                    .where("B", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
-                    .where("C", Predicates.blocks(GCYMBlocks.MOLYBDENUM_DISILICIDE_COIL_BLOCK.get()))
-                    .where("D", Predicates.blocks(CASING_PTFE_INERT.get()))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build()
-            )
-            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
 }

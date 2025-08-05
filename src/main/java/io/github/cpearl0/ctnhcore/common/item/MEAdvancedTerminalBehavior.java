@@ -236,7 +236,7 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
 
         private IWirelessAccessPoint accessPoint;
 
-        public static final TagKey<Item> HATCH_TAG = ItemTags.create(new ResourceLocation("forge", "hatch"));
+        public static final TagKey<Item> HATCH_TAG = ItemTags.create(ResourceLocation.tryBuild("forge", "hatch"));
 
         public AutoBuildSetting(int coilTier, int repeatCount, int noHatchMode,
                                 int replaceCoilMode, int useAEStorage, int placeFluid, int placeInFluid) {

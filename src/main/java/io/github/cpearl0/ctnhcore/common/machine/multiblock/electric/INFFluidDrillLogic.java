@@ -52,7 +52,7 @@ public class INFFluidDrillLogic extends RecipeLogic {
             }
 
             GTRecipe match = this.getFluidDrillRecipe();
-            if (match != null && match.matchRecipe(this.machine).isSuccess() && match.matchTickRecipe(this.machine).isSuccess()) {
+            if (match != null && RecipeHelper.matchRecipe(this.machine, match).isSuccess() && RecipeHelper.matchTickRecipe(this.machine, match).isSuccess()) {
                 this.setupRecipe(match);
             }
         }
@@ -65,7 +65,7 @@ public class INFFluidDrillLogic extends RecipeLogic {
             if (this.veinFluid != null) {
                 BedrockFluidVeinSavedData data = BedrockFluidVeinSavedData.getOrCreate(serverLevel);
                 GTRecipe recipe = GTRecipeBuilder.ofRaw().duration(20).EUt((long)GTValues.VA[this.getMachine().getEnergyTier()]).outputFluids(new FluidStack(this.veinFluid, this.getFluidToProduce(data.getFluidVeinWorldEntry(this.getChunkX(), this.getChunkZ())))).buildRawRecipe();
-                if (recipe.matchRecipe(this.getMachine()).isSuccess() && recipe.matchTickRecipe(this.getMachine()).isSuccess()) {
+                if (RecipeHelper.matchRecipe(this.getMachine(), recipe).isSuccess() && RecipeHelper.matchTickRecipe(this.getMachine(), recipe).isSuccess()) {
                     return recipe;
                 }
             }
@@ -106,13 +106,13 @@ public class INFFluidDrillLogic extends RecipeLogic {
     public void onRecipeFinish() {
         this.machine.afterWorking();
         if (this.lastRecipe != null) {
-            this.lastRecipe.postWorking(this.machine);
-            this.lastRecipe.handleRecipeIO(IO.OUT, this.machine, this.chanceCaches);
+//            this.lastRecipe.postWorking(this.machine);
+            RecipeHelper.handleRecipeIO(this.machine, this.lastRecipe, IO.OUT, this.chanceCaches);
         }
 
         this.depleteVein();
         GTRecipe match = this.getFluidDrillRecipe();
-        if (match != null && match.matchRecipe(this.machine).isSuccess() && match.matchTickRecipe(this.machine).isSuccess()) {
+        if (match != null && RecipeHelper.matchRecipe(this.machine, match).isSuccess() && RecipeHelper.matchTickRecipe(this.machine, match).isSuccess()) {
             this.setupRecipe(match);
         } else {
             if (this.suspendAfterFinish) {

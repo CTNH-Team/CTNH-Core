@@ -53,6 +53,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
+import static net.minecraft.core.Direction.*;
 import static net.minecraft.world.level.block.Block.UPDATE_CLIENTS;
 
 public class AsynBlockPattern extends BlockPattern {
@@ -69,7 +70,7 @@ public class AsynBlockPattern extends BlockPattern {
     @Getter
     private boolean completed = false;
 
-    static Direction[] FACINGS = { Direction.SOUTH, Direction.NORTH, Direction.WEST, Direction.EAST, Direction.UP,
+    static Direction[] FACINGS = { Direction.SOUTH, Direction.NORTH, Direction.WEST, Direction.EAST, UP,
             Direction.DOWN };
     static Direction[] FACINGS_H = { Direction.SOUTH, Direction.NORTH, Direction.WEST, Direction.EAST };
 
@@ -680,10 +681,10 @@ public class AsynBlockPattern extends BlockPattern {
     private BlockPos setActualRelativeOffset(int x, int y, int z, Direction facing, Direction upwardsFacing,
                                              boolean isFlipped) {
         int[] c0 = new int[] { x, y, z }, c1 = new int[3];
-        if (facing == Direction.UP || facing == Direction.DOWN) {
+        if (facing == UP || facing == Direction.DOWN) {
             Direction of = facing == Direction.DOWN ? upwardsFacing : upwardsFacing.getOpposite();
             for (int i = 0; i < 3; i++) {
-                switch (structureDir[i].getActualFacing(of)) {
+                switch (structureDir[i].getActualDirection(of)) {
                     case UP -> c1[1] = c0[i];
                     case DOWN -> c1[1] = -c0[i];
                     case WEST -> c1[0] = -c0[i];
@@ -713,7 +714,7 @@ public class AsynBlockPattern extends BlockPattern {
             }
         } else {
             for (int i = 0; i < 3; i++) {
-                switch (structureDir[i].getActualFacing(facing)) {
+                switch (structureDir[i].getActualDirection(facing)) {
                     case UP -> c1[1] = c0[i];
                     case DOWN -> c1[1] = -c0[i];
                     case WEST -> c1[0] = -c0[i];

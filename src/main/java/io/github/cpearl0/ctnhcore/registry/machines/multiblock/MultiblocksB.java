@@ -72,7 +72,9 @@ import static com.hollingsworth.arsnouveau.setup.registry.BlockRegistry.*;
 import static com.hollingsworth.arsnouveau.setup.registry.BlockRegistry.VEXING_LOG;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.TERRA_STEEL_CASING;
+import static io.github.cpearl0.ctnhcore.registry.CTNHMachines.registerTieredMultis;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
+import static io.github.cpearl0.ctnhcore.utils.ModUtils.BotaniaRL;
 import static net.minecraft.world.level.block.Blocks.*;
 
 public class MultiblocksB {
@@ -927,8 +929,7 @@ public class MultiblocksB {
                     .build()
             )
             .addUnderTooltip("ctnh.copyright.magic.info")
-            .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
-            .workableCasingModel(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
+            .workableCasingModel(BotaniaRL("block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public final static MultiblockMachineDefinition ARC_GENERATOR = REGISTRATE.multiblock("arc_generator", holder -> new Arc_Generator(holder, 0.75, 1000))
             .rotationState(RotationState.NON_Y_AXIS)
@@ -1925,8 +1926,6 @@ public class MultiblocksB {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
-            .workableCasingRenderer(CTNHCore.id("block/casings/depth_force_field_stabilizing_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
-
             .workableCasingModel(CTNHCore.id("block/casings/depth_force_field_stabilizing_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public final static MultiblockMachineDefinition HYPER_PLASMA_TURBINE = HyperPlasmaTurbineRegister.register();
@@ -2141,10 +2140,9 @@ public class MultiblocksB {
             .model(createWorkableCasingMachineModel(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"),
                     GTCEu.id("block/multiblock/generator/large_steam_turbine"))
                     .andThen(b -> b.addDynamicRenderer(() -> new ManaCondenserRender())))
-            .renderer(ManaCondenserRender::new)
-            .addUnderTooltip("ctnh.copyright.magic.info")
+//            .addUnderTooltip("ctnh.copyright.magic.info")
             .register();
-    public final static MultiblockMachineDefinition  NERUOMATRIXCOMPILER = REGISTRATE.multiblock("neruo_martix_compiler", NeuroMatrixCompiler::new)
+    public final static MultiblockMachineDefinition NERUOMATRIXCOMPILER = REGISTRATE.multiblock("neruo_martix_compiler", NeuroMatrixCompiler::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.COMPILER_RECIPE)
             .appearanceBlock(CASING_ANTIFREEZE_HEATPROOF_MACHINE)
@@ -2261,7 +2259,6 @@ public class MultiblocksB {
                     .build()
             )
             .addUnderTooltip("ctnh.copyright.magic.info")
-            .workableCasingRenderer((CTNHCore.id("block/casings/zenith_casing")), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .workableCasingModel((CTNHCore.id("block/casings/zenith_casing")), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
 //    public final static MultiblockMachineDefinition  QUANTUM_MANAGEMENT_CENTER = REGISTRATE.multiblock("quantum_management_center", CryotheumFreezer::new)
@@ -2367,7 +2364,7 @@ public static final MultiblockMachineDefinition[] FLUID_DRILLING_INF = registerT
                         .where('F', blocks(INFFluidDrillMachine.getFrameState(tier)))
                         .where('#', any())
                         .build())
-                .workableCasingRenderer(INFFluidDrillMachine.getBaseTexture(tier),
+                .workableCasingModel(INFFluidDrillMachine.getBaseTexture(tier),
                         GTCEu.id("block/multiblock/fluid_drilling_rig"))
                 .register(),
         UHV);
@@ -2402,7 +2399,7 @@ public static final MultiblockMachineDefinition[] FLUID_DRILLING_INF = registerT
                     .where("F", Predicates.frames(Neutronium))
                     .where("#", Predicates.any())
                     .build())
-            .workableCasingRenderer(CTNHCore.id("block/casings/nq_neutronium_casing"), GTCEu.id("block/multiblock/large_miner"), false)
+            .workableCasingModel(CTNHCore.id("block/casings/nq_neutronium_casing"), GTCEu.id("block/multiblock/large_miner"))
             .register();
     public static void init() {}
 }

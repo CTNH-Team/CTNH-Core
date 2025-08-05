@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.common.machine.trait;
 
 import com.gregtechceu.gtceu.api.capability.IOpticalComputationProvider;
 import com.gregtechceu.gtceu.api.capability.recipe.CWURecipeCapability;
+import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.ActionResult;
@@ -29,7 +30,7 @@ public class ComputationLogic extends RecipeLogic {
     public ActionResult handleTickRecipe(GTRecipe recipe) {
         ActionResult ret;
         if(!checkCWUt(recipe,false))
-            ret = ActionResult.fail(Component.translatable("ctnhcore.recipe_logic.insufficient_cwut"));
+            ret = ActionResult.fail(Component.translatable("ctnhcore.recipe_logic.insufficient_cwut"), CWURecipeCapability.CAP, IO.IN);
         else ret = super.handleTickRecipe(recipe);
         return ret;
     }
