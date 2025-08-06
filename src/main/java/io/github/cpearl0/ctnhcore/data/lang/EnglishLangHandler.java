@@ -17,6 +17,7 @@ public class EnglishLangHandler {
         LangHandler.replace(provider, CTNHTagPrefixes.fuel.getUnlocalizedName(), "%s Fuel");
         LangHandler.replace(provider, CTNHTagPrefixes.DepletedFuel.getUnlocalizedName(), "%s Depleted Fuel");
         LangHandler.replace(provider, CTNHTagPrefixes.waste.getUnlocalizedName(), "%s Waste");
+        LangHandler.replace(provider, CTNHTagPrefixes.hyperRotor.getUnlocalizedName(), "%s Hyper Rotor");
 
         LangHandler.replace(provider, CTNHMaterials.Moonstone.getUnlocalizedName(), "Moon Stone");
         LangHandler.replace(provider, CTNHMaterials.Marsstone.getUnlocalizedName(), "Mars Stone");

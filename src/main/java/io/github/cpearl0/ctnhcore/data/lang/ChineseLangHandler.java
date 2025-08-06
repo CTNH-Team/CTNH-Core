@@ -32,6 +32,7 @@ public class ChineseLangHandler {
         replace(provider, CTNHTagPrefixes.fuel.getUnlocalizedName(), "%s燃料");
         replace(provider, CTNHTagPrefixes.DepletedFuel.getUnlocalizedName(), "%s枯竭燃料");
         replace(provider, CTNHTagPrefixes.waste.getUnlocalizedName(), "%s废料");
+        replace(provider, CTNHTagPrefixes.hyperRotor.getUnlocalizedName(), "超级%s转子");
 
         replace(provider, CTNHMaterials.Moonstone.getUnlocalizedName(), "月石");
         replace(provider, CTNHMaterials.Marsstone.getUnlocalizedName(), "火星石");
@@ -961,7 +962,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.compiler.10","如果运算失败，则定义噪声结果函数f(x1,x2,x3)=ax1+bx2+cx3+d+ϵ,根据噪声决定片区，噪声波动最多翻倍5倍，片区误差项为0.9-1.1间，则噪声变为0.5倍率");
         provider.add("ctnh.compiler.11","最终编译数据集将获得三个信息，信息1代表本次的方程，信息2代表噪声结果函数获得的结果值对于y的倍率，信息3代表误差项的比率");
         provider.add("ctnh.compiler.12","在执行相同配方时方程不会重置，在执行配方或者结构重新成型时，重置y和方程");
-        
+
         provider.add("ctnhcore.src.sacrifice_empty","无牺牲者");
         provider.add("ctnhcore.src.sacrifice_locked","已锁定牺牲者！");
         provider.add("ctnhcore.src.sacrifice_unlocked","无法锁定牺牲者");
@@ -992,7 +993,7 @@ public class ChineseLangHandler {
         provider.add("zenith_extruder.1","允许使用§5天顶灵压塑形§r，其以每个形态1mb§5天顶源质§5r的代价来一次性塑造大部分锭的各种形态");
         provider.add("zenith_extruder.2","允许塑形的形态包括：§7板，杆，小型齿轮，齿轮，转子，环，螺栓，§4不允许塑形南瓜派！");
 
-        
+
         provider.add("ctnh.multiblock.wide_accelerator.info.power","存储的电量：%.2f E/%.2f E");
         provider.add("ctnh.eternal_engine.1","当前发电量:%d EU /tick");
         provider.add("ctnh.eternal_engine.2","累计的工作时间:%.2f s/36000 s");
