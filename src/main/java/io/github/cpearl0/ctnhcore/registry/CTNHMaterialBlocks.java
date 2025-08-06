@@ -10,7 +10,7 @@ import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.cpearl0.ctnhcore.common.block.MaterialTurbineRotorBlock;
 import io.github.cpearl0.ctnhcore.common.block.TurbineRotorBlock;
-import io.github.cpearl0.ctnhcore.common.item.TurbineRotorItem;
+import io.github.cpearl0.ctnhcore.common.item.MaterialTurbineRotorItem;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -45,7 +45,7 @@ public class CTNHMaterialBlocks {
                 .tag(tagPrefix.getBlockTags(material))
                 .blockstate((ctx, prov) ->
                         prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(material.getName(), new ResourceLocation("minecraft:block/iron_block"))))
-                .item(TurbineRotorItem::new)
+                .item(MaterialTurbineRotorItem::new)
                 .tag(tagPrefix.getItemTags(material))
                 .build()
                 .register()
