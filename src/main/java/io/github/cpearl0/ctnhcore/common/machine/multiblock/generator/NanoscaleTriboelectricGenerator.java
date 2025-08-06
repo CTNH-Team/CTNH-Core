@@ -82,7 +82,7 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
         for (RecipeCapability<?> cap : recipe.inputs.keySet()) {
             if (cap.doMatchInRecipe()) {
                 // Find the maximum number of recipes that can be performed from the contents of the input inventories
-                multipliers.add(cap.getMaxParallelRatio(holder, recipe, parallelLimit));
+                multipliers.add(cap.getMaxParallelByInput(holder, recipe, parallelLimit, false));
             }
         }
 
@@ -90,7 +90,7 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
         for (RecipeCapability<?> cap : recipe.tickInputs.keySet()) {
             if (cap.doMatchInRecipe()) {
                 // Find the maximum number of recipes that can be performed from the contents of the input inventories
-                multipliers.add(cap.getMaxParallelRatio(holder, recipe, parallelLimit));
+                multipliers.add(cap.getMaxParallelByInput(holder, recipe, parallelLimit, true));
             }
         }
         if (multipliers.intStream().allMatch(value -> value == Integer.MAX_VALUE)) {
@@ -137,7 +137,7 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
                     .inputModifier(ContentModifier.multiplier(maxParallel))
                     .outputModifier(ContentModifier.multiplier(maxParallel))
                     .durationMultiplier(2*Math.sqrt(maxParallel))
-                    .eutMultiplier(maxParallel*(1+maxParallel*0.002)*effencicy)
+                    .eutMultiplier(maxParallel*(1+maxParallel*0.02)*effencicy)
                     .build();
         }
         return ModifierFunction.NULL;
@@ -147,7 +147,7 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
         return MANAGED_FIELD_HOLDER;
     }
     @Override
-    public boolean dampingWhenWaiting() {
+    public boolean regressWhenWaiting() {
         return false;
     }
 }

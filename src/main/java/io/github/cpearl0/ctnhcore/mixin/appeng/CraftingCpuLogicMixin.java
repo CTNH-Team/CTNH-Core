@@ -27,22 +27,22 @@ public class CraftingCpuLogicMixin {
 
     @Inject(method = "tickCraftingLogic", at = @At(value = "INVOKE", target = "Lappeng/me/cluster/implementations/CraftingCPUCluster;getCoProcessors()I"), cancellable = true)
     private void tick(IEnergyService eg, CraftingService cc, CallbackInfo ci){
-        CTNHCore$tickCount = this.cluster.getLevel().getGameTime();
-
-        long stored = 0;
-
-        try {
-            Class<?> clazz = job.getClass();
-            Field field = clazz.getDeclaredField("timeTracker");
-            field.setAccessible(true);
-            ElapsedTimeTracker timeTracker = (ElapsedTimeTracker) field.get(job);
-            stored = timeTracker.getRemainingItemCount();
-        }catch (NoSuchFieldException | IllegalAccessException ignored) {
-        }
-
-        if(CTNHCore$tickCount % 20 != 0 && stored > 1000000000)
-        {
-            ci.cancel();
-        }
+//        CTNHCore$tickCount = this.cluster.getLevel().getGameTime();
+//
+//        long stored = 0;
+//
+//        try {
+//            Class<?> clazz = job.getClass();
+//            Field field = clazz.getDeclaredField("timeTracker");
+//            field.setAccessible(true);
+//            ElapsedTimeTracker timeTracker = (ElapsedTimeTracker) field.get(job);
+//            stored = timeTracker.getRemainingItemCount();
+//        }catch (NoSuchFieldException | IllegalAccessException ignored) {
+//        }
+//
+//        if(CTNHCore$tickCount % 20 != 0 && stored > 1000000000)
+//        {
+//            ci.cancel();
+//        }
     }
 }

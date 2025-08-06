@@ -14,6 +14,7 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
@@ -40,8 +41,7 @@ public class ForestMachine extends WorkableElectricMultiblockMachine {
 
             // 检查输入仓是否有水
             FluidStack waterFluid = new FluidStack(
-                    Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(
-                            new ResourceLocation("minecraft:water"))),
+                    Fluids.WATER,
                     FLUID_AMOUNT
             );
 
@@ -53,12 +53,9 @@ public class ForestMachine extends WorkableElectricMultiblockMachine {
             } else {
                 decreaseHumidity(10);  // 流体不足时减少湿度10%
             }
-
-            // 继续执行配方
             return super.onWorking();
         }
-
-        return super.onWorking();  // 调用父类的 onWorking 方法
+        return super.onWorking();
     }
 
     // 增加湿度
@@ -96,8 +93,8 @@ public class ForestMachine extends WorkableElectricMultiblockMachine {
     @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
-        textList.add(Component.translatable("forestmachine.humidity", humidity + "%"));
-        textList.add(Component.translatable("forestmachine.parallel_count", getParallelCount()));
+        textList.add(Component.translatable("ctnh.multiblock.forest_machine.info.humidity", humidity + "%"));
+        textList.add(Component.translatable("ctnh.multiblock.forest_machine.info.parallel_count", getParallelCount()));
     }
 
     @Override

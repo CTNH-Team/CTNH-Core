@@ -64,7 +64,7 @@ public class ChemicalGeneratorMachine extends WorkableElectricMultiblockMachine 
         if (!(machine instanceof ChemicalGeneratorMachine engineMachine)) {
             return RecipeModifier.nullWrongType(LargeCombustionEngineMachine.class, machine);
         }
-        long EUt = RecipeHelper.getOutputEUt(recipe);
+        long EUt = RecipeHelper.getRealEUtWithIO(recipe).voltage();
         // has lubricant
         if (EUt > 0) {
             int maxParallel = (int) (engineMachine.getOverclockVoltage() / EUt); // get maximum parallel
@@ -91,14 +91,14 @@ public class ChemicalGeneratorMachine extends WorkableElectricMultiblockMachine 
         var totalContinuousRunningTime = recipeLogic.getTotalContinuousRunningTime();
         if ((totalContinuousRunningTime == 1 || totalContinuousRunningTime % 20 == 0) && isBoostAllowed()) {
             var boosterRecipe = getBoostRecipe();
-            this.isOxygenBoosted = boosterRecipe.matchRecipe(this).isSuccess() &&
-                    boosterRecipe.handleRecipeIO(IO.IN, this, this.recipeLogic.getChanceCaches());
+            this.isOxygenBoosted = RecipeHelper.matchRecipe(this, boosterRecipe).isSuccess() &&
+                    RecipeHelper.handleRecipeIO(this, boosterRecipe, IO.IN, this.recipeLogic.getChanceCaches()).isSuccess();
         }
         return value;
     }
 
     @Override
-    public boolean dampingWhenWaiting() {
+    public boolean regressWhenWaiting() {
         return false;
     }
 

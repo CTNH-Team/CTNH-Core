@@ -54,10 +54,10 @@ public class CTNHFluidBuilder extends FluidBuilder {
     private int burnTime = -1;
 
     @Getter
-    @Setter(onMethod_ = @ApiStatus.Internal)
+    @Setter
     private ResourceLocation still = null;
     @Getter
-    @Setter(onMethod_ = @ApiStatus.Internal)
+    @Setter
     private ResourceLocation flowing = null;
     private boolean hasCustomStill = false;
     private boolean hasCustomFlowing = false;
@@ -102,16 +102,16 @@ public class CTNHFluidBuilder extends FluidBuilder {
     private void determineTextures(@NotNull Material material, @Nullable FluidStorageKey key, @NotNull String modid) {
         if (key != null) {
             if (hasCustomStill) {
-                still = new ResourceLocation(modid, "block/fluids/fluid." + name);
+                still = ResourceLocation.tryBuild(modid, "block/fluids/fluid." + name);
             } else {
                 still = key.getIconType().getBlockTexturePath(material.getMaterialIconSet(), true);
             }
         } else {
-            still = new ResourceLocation(modid, "block/fluids/fluid." + name);
+            still = ResourceLocation.tryBuild(modid, "block/fluids/fluid." + name);
         }
 
         if (hasCustomFlowing) {
-            flowing = new ResourceLocation(modid, "block/fluids/fluid." + name + "_flow");
+            flowing = ResourceLocation.tryBuild(modid, "block/fluids/fluid." + name + "_flow");
         } else {
             flowing = still;
         }

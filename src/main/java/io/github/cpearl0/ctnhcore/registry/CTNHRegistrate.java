@@ -1,13 +1,24 @@
 package io.github.cpearl0.ctnhcore.registry;
 
 import com.google.common.collect.Lists;
+import com.gregtechceu.gtceu.api.block.MetaMachineBlock;
+import com.gregtechceu.gtceu.api.blockentity.MetaMachineBlockEntity;
+import com.gregtechceu.gtceu.api.item.MetaMachineItem;
+import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
+import com.gregtechceu.gtceu.api.machine.MachineDefinition;
+import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
+import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.CTNHMachineBuilder;
+import io.github.cpearl0.ctnhcore.api.CTNHMultiblockBuilder;
 import io.github.cpearl0.ctnhcore.client.model.ModelDefinition;
 import lombok.Getter;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Supplier;
 //REGISTRATE之力!!!REGISTRATE之力!!!REGISTRATE之力!!!REGISTRATE之力!!!REGISTRATE之力!!!REGISTRATE之力!!!REGISTRATE之力!!!
 public final class CTNHRegistrate extends GTRegistrate {
@@ -17,6 +28,15 @@ public final class CTNHRegistrate extends GTRegistrate {
     }
     public static CTNHRegistrate create() {
         return new CTNHRegistrate();
+    }
+    @Override
+    public CTNHMultiblockBuilder multiblock(String name, Function<IMachineBlockEntity, ? extends MultiblockControllerMachine> metaMachine) {
+        return CTNHMultiblockBuilder.createMulti(this, name, metaMachine, MetaMachineBlock::new, MetaMachineItem::new, MetaMachineBlockEntity::new);
+    }
+
+    @Override
+    public CTNHMachineBuilder<MachineDefinition> machine(String name, Function<IMachineBlockEntity, MetaMachine> metaMachine) {
+        return new CTNHMachineBuilder<>(this, name, MachineDefinition::new, metaMachine, MetaMachineBlock::new, MetaMachineItem::new, MetaMachineBlockEntity::new);
     }
 
     @Deprecated

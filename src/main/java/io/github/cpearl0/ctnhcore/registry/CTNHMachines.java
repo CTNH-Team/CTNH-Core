@@ -11,6 +11,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
+import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
@@ -43,6 +44,7 @@ import java.util.function.BiFunction;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.capability.recipe.IO.OUT;
+import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
@@ -57,23 +59,22 @@ public class CTNHMachines {
                     .langValue(GTValues.VNF[tier] + " Circuit Bus")
                     .rotationState(RotationState.ALL)
                     .abilities(CTNHPartAbility.CIRCUIT)
-                    .renderer(() -> new OverlayTieredMachineRenderer(tier, GTCEu.id("block/machine/part/item_bus.import")))
+                    .colorOverlayTieredHullModel(GTCEu.id("block/overlay/machine/overlay_pipe_in"), null, GTCEu.id("block/overlay/machine/" + OVERLAY_ITEM_HATCH))
                     .register(),
             GTMachineUtils.ALL_TIERS);
-    public static final MachineDefinition DRONEHOLDER = GTRegistration.REGISTRATE.machine("drone_holder", DroneHolderMachine::new)
+    public static final MachineDefinition DRONEHOLDER = REGISTRATE.machine("drone_holder", DroneHolderMachine::new)
                 .langValue("drone Holder")
             .tier(UV)
             .rotationState(RotationState.ALL)
             .abilities(CTNHPartAbility.Drone)
-            .renderer(() -> new OverlayTieredActiveMachineRenderer(UV, GTCEu.id("block/machine/part/object_holder"),
-                    GTCEu.id("block/machine/part/object_holder_active")))
+            .workableTieredHullModel(GTCEu.id("block/machine/part/object_holder"))
             .register();
     public static final MachineDefinition[] COMPILERMACHINE = registerTieredMachines("neuro_compiler", CompilerMachine::new,
             (tier, builder) -> builder
                     .langValue(GTValues.VNF[tier] + " Neuro Compiler")
                     .rotationState(RotationState.ALL)
                     .abilities(CTNHPartAbility.COMPILER)
-                    .renderer(() -> new OverlayTieredMachineRenderer(tier, GTCEu.id("block/machine/part/item_bus.import")))
+                    .colorOverlayTieredHullModel(GTCEu.id("block/overlay/machine/overlay_pipe_in"), null, GTCEu.id("block/overlay/machine/" + OVERLAY_ITEM_HATCH))
                     .register(),
             GTMachineUtils.ALL_TIERS);
 
@@ -94,7 +95,12 @@ public class CTNHMachines {
                     } + " Parallel Control Hatch")
                     .rotationState(RotationState.ALL)
                     .abilities(PartAbility.PARALLEL_HATCH)
-                    .workableTieredHullRenderer(GTCEu.id("block/machines/parallel_hatch_mk" + (tier - 4)))
+                    .modelProperty(RecipeLogic.STATUS_PROPERTY, RecipeLogic.Status.IDLE)
+                    .model(createWorkableTieredHullMachineModel(
+                            GTCEu.id("block/machines/parallel_hatch_mk" + (tier - 4)))
+                            .andThen((ctx, prov, model) -> {
+                                model.addReplaceableTextures("bottom", "top", "side");
+                            }))
                     .tooltips(Component.translatable("gtceu.machine.parallel_hatch_mk" + tier + ".tooltip"))
                     .register(),
             UHV, UEV, UIV, UXV, OpV, MAX);
@@ -111,7 +117,7 @@ public class CTNHMachines {
                                     FormattingUtil
                                             .formatNumbers(EnergyHatchPartMachine.getHatchEnergyCapacity(tier, 4))),
                             Component.translatable("gtceu.machine.energy_hatch.output_hi_amp.tooltip"))
-                    .overlayTieredHullRenderer("energy_hatch.output_4a")
+                    .overlayTieredHullModel(GTCEu.id( "block/machine/part/energy_output_hatch_4a"))
                     .register(),
             GTValues.tiersBetween(LV, HV));
     public static final MachineDefinition[] ROTOR_HOLDER_EXTEND = registerTieredMachines("rotor_holder",
@@ -120,7 +126,11 @@ public class CTNHMachines {
                     .langValue("%s Rotor Holder".formatted(VNF[tier]))
                     .rotationState(RotationState.ALL)
                     .abilities(PartAbility.ROTOR_HOLDER)
-                    .renderer(() -> new RotorHolderMachineRenderer(tier))
+                    .modelProperty(IMultiController.IS_FORMED_PROPERTY, false)
+                    .modelProperty(RotorHolderPartMachine.HAS_ROTOR_PROPERTY, false)
+                    .modelProperty(RotorHolderPartMachine.ROTOR_SPINNING_PROPERTY, false)
+                    .modelProperty(RotorHolderPartMachine.EMISSIVE_ROTOR_PROPERTY, false)
+                    .model(createRotorHolderModel())
                     .tooltips(LangHandler.getFromMultiLang("gtceu.machine.rotor_holder.tooltip", 0),
                             LangHandler.getFromMultiLang("gtceu.machine.rotor_holder.tooltip", 1),
                             Component.translatable("gtceu.universal.disabled"))
@@ -134,7 +144,7 @@ public class CTNHMachines {
                     .editableUI(SimpleTieredMachine.EDITABLE_UI_CREATOR.apply(GTCEu.id("digital_well_of_suffer"),CTNHRecipeTypes.DIGITAL_WELL_OF_SUFFER))
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeModifier(DigitalWosMachine::recipeModifier)
-                    .workableTieredHullRenderer(GTCEu.id("block/machines/digital_well_of_suffer"))
+                    .workableTieredHullModel(GTCEu.id("block/machines/digital_well_of_suffer"))
                     .register(),
             GTValues.tiersBetween(LV,UV));
     public static MachineDefinition[] registerTieredMachines(String name,
@@ -185,7 +195,7 @@ public class CTNHMachines {
                             .editableUI(SimpleTieredMachine.EDITABLE_UI_CREATOR.apply(CTNHCore.id(name), recipeType))
                             .rotationState(RotationState.NON_Y_AXIS)
                             .recipeType(recipeType)
-                            .workableTieredHullRenderer(CTNHCore.id("block/machines/" + name))
+                            .workableTieredHullModel(CTNHCore.id("block/machines/" + name))
                             .tooltips(workableTiered(tier, GTValues.V[tier], GTValues.V[tier] * 64, recipeType,
                                     tankScalingFunction.apply(tier), true))
                             .register();
@@ -232,7 +242,7 @@ public class CTNHMachines {
                             .editableUI(SimpleComputationMachine.EDITABLE_UI_CREATOR.apply(CTNHCore.id(name), recipeType))
                             .rotationState(RotationState.NON_Y_AXIS)
                             .recipeType(recipeType)
-                            .workableTieredHullRenderer(CTNHCore.id("block/machines/" + name))
+                            .workableTieredHullModel(CTNHCore.id("block/machines/" + name))
                             .tooltips(workableTiered(tier, GTValues.V[tier], GTValues.V[tier] * 64, recipeType,
                                     tankScalingFunction.apply(tier), true))
                             .tooltips(Component.translatable("ctnh.tooltips.simplecomputationmachine"))
@@ -287,35 +297,28 @@ public class CTNHMachines {
         return tooltipComponents.toArray(Component[]::new);
     }
 
-    public static final BiConsumer<IMultiController, List<Component>> CHEMICAL_PLANT_DISPLAY = (controller, components) -> {
-        if (controller.isFormed()) {
-            double value = 1 - ((CoilWorkableElectricMultiblockMachine) controller).getCoilTier() * 0.05;
-            components.add(Component.translatable("ctnh.machine.eut_multiplier.tooltip", FormattingUtil.formatNumbers(value * 0.6)));
-            components.add(Component.translatable("ctnh.machine.duration_multiplier.tooltip", FormattingUtil.formatNumbers(value * 0.5)));
-        }
-    };
-
-    public static final MachineDefinition STERILE_CLEANROOM_MAINTENANCE_HATCH = GTRegistration.REGISTRATE
-            .machine("sterile_cleanroom_maintenance_hatch",
-                    holder -> new CleaningMaintenanceHatchPartMachine(holder, CleanroomType.STERILE_CLEANROOM))
-            .rotationState(RotationState.ALL)
-            .abilities(PartAbility.MAINTENANCE)
-            .tooltips(Component.translatable("gtceu.universal.disabled"),
-                    Component.translatable("gtceu.machine.maintenance_hatch_cleanroom_auto.tooltip.0"),
-                    Component.translatable("gtceu.machine.maintenance_hatch_cleanroom_auto.tooltip.1"))
-            .tooltipBuilder((stack, tooltips) -> {
-                tooltips.add(Component.literal("  ").append(Component
-                        .translatable(CleanroomType.STERILE_CLEANROOM.getTranslationKey()).withStyle(ChatFormatting.LIGHT_PURPLE)));
-            })
-            .renderer(() -> new MaintenanceHatchPartRenderer(6, CTNHCore.id("block/machine/part/maintenance.sterilecleaning")))
-            .register();
+//    public static final MachineDefinition STERILE_CLEANROOM_MAINTENANCE_HATCH = REGISTRATE
+//            .machine("sterile_cleanroom_maintenance_hatch",
+//                    holder -> new CleaningMaintenanceHatchPartMachine(holder, CleanroomType.STERILE_CLEANROOM))
+//            .rotationState(RotationState.ALL)
+//            .abilities(PartAbility.MAINTENANCE)
+//            .tooltips(Component.translatable("gtceu.universal.disabled"),
+//                    Component.translatable("gtceu.machine.maintenance_hatch_cleanroom_auto.tooltip.0"),
+//                    Component.translatable("gtceu.machine.maintenance_hatch_cleanroom_auto.tooltip.1"))
+//            .tooltipBuilder((stack, tooltips) -> {
+//                tooltips.add(Component.literal("  ").append(Component
+//                        .translatable(CleanroomType.STERILE_CLEANROOM.getTranslationKey()).withStyle(ChatFormatting.LIGHT_PURPLE)));
+//            })
+//            .modelProperty(MaintenanceHatchPartMachine.MAINTENANCE_TAPED_PROPERTY, false)
+//            .model(createMaintenanceModel(CTNHCore.id("block/machine/part/maintenance.sterilecleaning")))
+//            .register();
 
     public static final MachineDefinition[] HIGH_PERFORMANCE_COMPUTER = registerTieredMachines("high_performance_computer",
             HighPerformanceComputerMachine::new,
             (tier,builder)-> builder.langValue("%s High Performance Computer".formatted(VNF[tier]))
                     .langValue("%s %s %s".formatted(VLVH[tier], toEnglishName("high_performance_computer"), VLVT[tier]))
                     .rotationState(RotationState.NON_Y_AXIS)
-                    .renderer(()->new WorkableTieredHullMachineRenderer(tier,GTCEu.id("block/machines/high_performance_computer/" + VN[tier].toLowerCase(Locale.ROOT))))
+                    .workableTieredHullModel(GTCEu.id("block/machines/high_performance_computer/" + VN[tier].toLowerCase(Locale.ROOT)))
                     .tooltips(Component.translatable("ctnhcore.machine.high_performance_computer.tooltip.0"),
                               Component.translatable("ctnhcore.machine.high_performance_computer.tooltip.1",(tier>=GTValues.HV?1<<(tier-GTValues.HV):0)),
                               Component.translatable("gtceu.universal.tooltip.voltage_in",FormattingUtil.formatNumbers(VA[tier]*HighPerformanceComputerMachine.getMaxInputOutputAmperageStatic()), VNF[tier]))   //输入电流16A

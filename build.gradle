@@ -106,7 +106,7 @@ minecraft {
 
         data {
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'), '--existing-mod', 'gtceu'
         }
     }
 }
@@ -180,6 +180,13 @@ repositories {
             includeGroup "com.github.rtyley"
         }
     }
+    maven {
+        name = 'GuideME Snapshots'
+        url = 'https://central.sonatype.com/repository/maven-snapshots/'
+        content {
+            includeModule('org.appliedenergistics', 'guideme')
+        }
+    }
     maven { url = "https://maven.createmod.net" }
  }
 
@@ -188,6 +195,8 @@ dependencies {
 
     // Apply Mixin AP
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
+//    implementation fileTree(dir: 'lib', includes: ['*.jar'])
 
     implementation fg.deobf("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
     implementation fg.deobf("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}")
@@ -200,7 +209,7 @@ dependencies {
 
     implementation fg.deobf("curse.maven:jade-324717:5640610")
     implementation fg.deobf("curse.maven:glitchcore-955399:5787839")
-    implementation fg.deobf("curse.maven:serene-seasons-291874:5790653")
+    implementation fg.deobf("curse.maven:ecliptic_season-1118306:6752783")
     implementation fg.deobf("curse.maven:ars_nouveau-401955:5894609")
     implementation fg.deobf("com.lowdragmc.ldlib:ldlib-forge-${minecraft_version}:${ldlib_version}") { transitive = false }
     implementation fg.deobf("com.gregtechceu.gtceu:gtceu-${minecraft_version}:${gregtech_version}:slim") { transitive = false }
@@ -221,10 +230,12 @@ dependencies {
     implementation fg.deobf("curse.maven:ftb-library-forge-404465:5567591")
     implementation fg.deobf("curse.maven:ftb-ultimine-forge-386134:5363345")
 
-    implementation fg.deobf("curse.maven:gt-985872:6089123")
+    implementation fg.deobf("curse.maven:gt-985872:6851587")
 
     implementation fg.deobf("curse.maven:patchouli-306770:4966125")
     implementation fg.deobf("curse.maven:botania-225643:5594997")
+
+    implementation fg.deobf("curse.maven:modernfix-790626:6719008")
 
     // KubeJS
     implementation fg.deobf("dev.latvian.mods:kubejs-forge:${kubejs_version}")
@@ -236,8 +247,9 @@ dependencies {
     implementation fg.deobf("com.enderio:EnderIO:${enderio_version}")
     runtimeOnly "dev.gigaherz.graph:GraphLib3:$graphlib_version"
 
-    implementation fg.deobf("curse.maven:applied-energistics-2-223794:5641282")
-    implementation fg.deobf("curse.maven:legendary_survival_overhaul-840254:5825918")
+    implementation fg.deobf("curse.maven:applied-energistics-2-223794:6501484")
+    implementation fg.deobf("curse.maven:guideme-1173950:6679102")
+    implementation fg.deobf("curse.maven:legendary_survival_overhaul-840254:6750561")
 
     // Curios
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
@@ -246,14 +258,14 @@ dependencies {
     // Blood Magic
     implementation fg.deobf("maven.modrinth:blood-magic:${bloodmagic_version}")
 
-    implementation fg.deobf("curse.maven:gtmthings-1104310:6539394")
+    implementation fg.deobf("curse.maven:gtmthings-1104310:6764930")
 
     implementation fg.deobf("curse.maven:mythicbotany-400058:5101899")
     annotationProcessor fg.deobf("org.moddingx:LibX:${minecraft_version}-${libx_version}")
     implementation fg.deobf("org.moddingx:LibX:${minecraft_version}-${libx_version}")
 
     // CTPP
-    implementation fg.deobf("curse.maven:ctpp-1163715:6635605")
+    implementation fg.deobf("curse.maven:ctpp-1163715:6845795")
 
     // Apotheosis
     implementation fg.deobf("curse.maven:apotheosis-313970:6147871")
@@ -261,7 +273,7 @@ dependencies {
     implementation fg.deobf("curse.maven:placebo-283644:5414631")
 
     // Create Metallurgy & Create Vintage
-    implementation fg.deobf("curse.maven:createmetallurgy-1007404:6441695")
+    implementation fg.deobf("curse.maven:createmetallurgy-1007404:6741785")
     implementation fg.deobf("curse.maven:createvintage-1255448:6635459")
 
     // Twilight forest

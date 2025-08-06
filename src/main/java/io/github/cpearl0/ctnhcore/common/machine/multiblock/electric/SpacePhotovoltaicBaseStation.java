@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.api.recipe.ingredient.EnergyStack;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
@@ -119,7 +120,7 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
             return false;
         }
 //        FluidStack pyrotheumFluid = new FluidStack(
-//                Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("gtceu:pyrotheum"))),
+//                Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(ResourceLocation.tryBuild("gtceu:pyrotheum"))),
 //                1000
 //        );
 //            boolean isFluidSufficient = MachineUtils.inputFluid(pyrotheumFluid, this);
@@ -163,7 +164,7 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
                     }
                     var new_recipe = recipe;
 
-                    new_recipe.tickOutputs.put(EURecipeCapability.CAP, EURecipeCapability.makeEUContent((long) 1));
+                    new_recipe.tickOutputs.put(EURecipeCapability.CAP, EURecipeCapability.makeEUContent(new EnergyStack(1)));
                     recipe = new_recipe;
                     var maxparallel = ParallelLogic.getParallelAmount(machine, recipe, (int) parallel);
                     return ModifierFunction.builder()
@@ -174,8 +175,8 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
                             .build();
                 }
                 if (recipe.recipeType.equals(CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR)) {
-                    var true_eut=EUt+ pmachine.muti*16384* pmachine.heat;
-                    recipe.tickOutputs.put(EURecipeCapability.CAP, EURecipeCapability.makeEUContent((long) true_eut));
+                    var true_eut=EUt+ pmachine.muti*16384* pmachine.heat * 2;
+                    recipe.tickOutputs.put(EURecipeCapability.CAP, EURecipeCapability.makeEUContent(new EnergyStack((long) true_eut)));
                     return ModifierFunction.builder()
                             .build();
                 }
@@ -184,14 +185,14 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
         }
 
     public void addDisplayText(List<Component> textList) {
-        textList.add(textList.size(),Component.translatable("ctnh.pvc_tier.0",String.format("%d",heat)));
-        textList.add(textList.size(),Component.translatable("ctnh.pvc_tier.1",String.format("%d",heat)));
-        textList.add(textList.size(),Component.translatable("ctnh.pvc_tier.2",String.format("%.2f",muti*16384*heat)));
-        textList.add(textList.size(),Component.translatable("ctnh.pvc_tier.3",String.format("%.1f",muti)));
+        textList.add(textList.size(),Component.translatable("ctnh.spacephotovoltaicbasestation.info.pvc_tier.0",String.format("%d",heat)));
+        textList.add(textList.size(),Component.translatable("ctnh.spacephotovoltaicbasestation.info.pvc_tier.1",String.format("%d",heat)));
+        textList.add(textList.size(),Component.translatable("ctnh.spacephotovoltaicbasestation.info.pvc_tier.2",String.format("%.2f",muti*16384*heat*2)));
+        textList.add(textList.size(),Component.translatable("ctnh.spacephotovoltaicbasestation.info.pvc_tier.3",String.format("%.1f",muti)));
         super.addDisplayText(textList);
     }
     @Override
-    public boolean dampingWhenWaiting() {
+    public boolean regressWhenWaiting() {
         return false;
     }
 }

@@ -8,7 +8,6 @@ import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterialItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
-import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import dev.arbor.gtnn.data.GTNNMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;

@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "ctnhcore:block/machine/lv_energy_output_hatch_4a",
+      "x": 90
+    },
+    "facing=east": {
+      "model": "ctnhcore:block/machine/lv_energy_output_hatch_4a",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "ctnhcore:block/machine/lv_energy_output_hatch_4a"
+    },
+    "facing=south": {
+      "model": "ctnhcore:block/machine/lv_energy_output_hatch_4a",
+      "y": 180
+    },
+    "facing=up": {
+      "gtceu:z": 180,
+      "model": "ctnhcore:block/machine/lv_energy_output_hatch_4a",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "ctnhcore:block/machine/lv_energy_output_hatch_4a",
+      "y": 270
+    }
+  }
+}

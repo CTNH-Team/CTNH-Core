@@ -17,6 +17,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.api.recipe.ingredient.EnergyStack;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.common.data.GTItems;
@@ -24,6 +25,7 @@ import com.lowdragmc.lowdraglib.gui.editor.ColorPattern;
 import com.lowdragmc.lowdraglib.gui.texture.*;
 import com.lowdragmc.lowdraglib.gui.widget.*;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
+import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import com.lowdragmc.lowdraglib.syncdata.managed.IManagedVar;
 import io.github.cpearl0.ctnhcore.common.gui.MachineModeFancyConfiguratorTest;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
@@ -46,7 +48,8 @@ public class CryotheumFreezer extends WorkableElectricMultiblockMachine implemen
     public CryotheumFreezer(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
     }
-
+    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
+            CryotheumFreezer.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     @Persisted
     public int a = 3;
     @Persisted public double speed_up=1.0;
@@ -55,9 +58,12 @@ public class CryotheumFreezer extends WorkableElectricMultiblockMachine implemen
     public DoubleSupplier JEIProgress = () -> (double) Math.abs(speed_up-1) / (double) 2.5F;
     public DoubleSupplier JEIProgress2 = () -> (double) Math.abs(energy_muti-1) / (double) 2.5F;
     public DoubleSupplier JEIProgress3 = () -> (double) Math.abs(parallel_muti) / (double) 10F;
+    @Persisted
     public long used_energy=0;
+
     public long store_energy_now=0;
-    public long target=10000L;
+    @Persisted
+    public long target=100000L;
     public MutableComponent provider_a() {
         return Component.translatable("ctnh.testui.0", a);
     }
@@ -93,7 +99,8 @@ public class CryotheumFreezer extends WorkableElectricMultiblockMachine implemen
                 return ModifierFunction.NULL;
             var eut_consume=recipe.getTickInputContents(EURecipeCapability.CAP).stream()
                     .map(Content::getContent)
-                    .mapToLong(EURecipeCapability.CAP::of)
+                    .map(EURecipeCapability.CAP::of)
+                    .mapToLong(EnergyStack::voltage)
                     .sum();
 
             return ModifierFunction.builder()

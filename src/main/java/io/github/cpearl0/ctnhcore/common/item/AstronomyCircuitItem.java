@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 public class AstronomyCircuitItem extends Item {
     public static final ResourceLocation[][] DIMENSIONS = new ResourceLocation[][] {
             { CTNHWorlds.THE_AETHER },
-            { CTNHWorlds.THE_AETHER , new ResourceLocation("ad_astra:moon") },
+            { CTNHWorlds.THE_AETHER , ResourceLocation.tryParse("ad_astra:moon") },
     };
 
     private final int tier;

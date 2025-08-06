@@ -8,7 +8,7 @@ import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.common.data.GTModels;
+import com.gregtechceu.gtceu.common.data.models.GTModels;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.cpearl0.ctnhcore.CTNHCore;
@@ -41,6 +41,9 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import org.jetbrains.annotations.NotNull;
+import vazkii.botania.forge.block.ForgeSpecialFlowerBlock;
+import vazkii.botania.forge.xplat.ForgeXplatImpl;
+import vazkii.botania.xplat.XplatAbstractions;
 
 import java.util.function.Supplier;
 
@@ -164,16 +167,6 @@ public class CTNHBlocks {
 
     public static final BlockEntry<RotatedPillarBlock> TEST_CASING = createRotateCasing("test_machine_casing", "t1");
     public static final BlockEntry<RotatedPillarBlock> ATOMS_SPLIT_BLOCKS = createRotateCasing("atoms_split_blocks", "atomssplit");
-
-    public static final BlockEntry<RotatedPillarBlock> ASTRAL_LOG = createLogLikeBlock("astral_log");
-    public static final BlockEntry<RotatedPillarBlock> PEPPER_CRATE = createLogLikeBlock("pepper_crate");
-    public static final BlockEntry<RotatedPillarBlock> GARLIC_CRATE = createLogLikeBlock("garlic_crate");
-    public static final BlockEntry<RotatedPillarBlock> CASSAVA_CRATE = createLogLikeBlock("cassava_crate");
-    public static final BlockEntry<RotatedPillarBlock> FRUIT_CAFE_CRATE = createLogLikeBlock("fruit_cafe_crate");
-    public static final BlockEntry<RotatedPillarBlock> ASPARAGUS_CRATE = createLogLikeBlock("asparagus_crate");
-    public static final BlockEntry<Block> ASTRAL_COBBLESTONE = createStoneLikeBlock("astral_cobblestone", CTNHCore.id("block/stones/astral_cobblestone"));
-    public static BlockEntry<Block> ASTRAL_STONE;
-    public static final BlockEntry<FallingBlock> ASTRAL_SAND = createSandLikeBlock("astral_sand", CTNHCore.id("block/sands/astral_sand"));
     public static final BlockEntry<PhotovoltaicBlock> VIBRANT_PHOTOVOLTAIC_BLOCK = createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.VIBRANT_PHOTOVOLTAIC_BLOCK,
             ("block/vibrant_photovoltaic_block"));
     public static final BlockEntry<PhotovoltaicBlock> ENERGETIC_PHOTOVOLTAIC_BLOCK = createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.ENERGETIC_PHOTOVOLTAIC_BLOCK,
@@ -181,33 +174,28 @@ public class CTNHBlocks {
     public static final BlockEntry<PhotovoltaicBlock> PULSATING_PHOTOVOLTAIC_BLOCK = createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.PULSATING_PHOTOVOLTAIC_BLOCK,
             ("block/pulsating_photovoltaic_block"));
     public static final BlockEntry<ActiveBlock> PV_COIL =createActiveCasing("pv_coil","block/flux/pv_coil");
-    public  static final BlockEntry<PhotovoltaicBlock>PHOTON_PRESS_COND_BLOCK=createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.PHOTON_PRESS_COND_BLOCK,"block/photon_press_cond_block");
-    @SuppressWarnings("removal")
-    public static BlockEntry<Block> ASTRAL_DIRT;
-    @SuppressWarnings("removal")
-    public static final BlockEntry<AstralSaplingBlock> ASTRAL_SAPLING = REGISTRATE
-            .block("astral_sapling", properties -> new AstralSaplingBlock(new AbstractTreeGrower() {
-
-                protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(@NotNull RandomSource random,
-                                                                                    boolean largeHive) {
-                    return CTNHConfiguredFeatures.ASTRAL_TREE;
-                }
-            }, properties))
-            .initialProperties(() -> Blocks.OAK_SAPLING)
-            .lang("Astral Sapling")
+    public static final BlockEntry<PhotovoltaicBlock> PHOTON_PRESS_COND_BLOCK = createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.PHOTON_PRESS_COND_BLOCK,"block/photon_press_cond_block");
+    public static final BlockEntry<ForgeSpecialFlowerBlock> DEMON_FLYTRAP = REGISTRATE
+            .block("demon_flytrap", properties -> new ForgeSpecialFlowerBlock(MobEffects.HARM, 20, BlockBehaviour.Properties.copy(Blocks.POPPY), () -> CTNHBlockEntities.DEMON_FLYTRAP.get()))
+            .initialProperties(() -> Blocks.POPPY)
+            .lang("Demon Flytrap")
             .blockstate(GTModels::createCrossBlockState)
             .addLayer(() -> RenderType::cutoutMipped)
-            .tag(BlockTags.SAPLINGS)
             .item()
             .model(GTModels::rubberTreeSaplingModel)
-            .tag(ItemTags.SAPLINGS)
             .build()
             .register();
-    public static BlockEntry<GrassBlock> ASTRAL_GRASS_BLOCK;
-    public static BlockEntry<AstralFlowerBlock> BLUE_FLOWER = createFlowerBlock("blue_flower", MobEffects.ABSORPTION);
-    public static BlockEntry<AstralFlowerBlock> PINK_FLOWER = createFlowerBlock("pink_flower", MobEffects.DAMAGE_BOOST);
-    public static BlockEntry<AstralGrassBlock> ASTRAL_GRASS = createTallGrassBlock("astral_grass");
-    public static BlockEntry<AstralTallGrassBlock> ASTRAL_TALL_GRASS = createDoublePlantBlock("astral_tall_grass");
+    public static final BlockEntry<ForgeSpecialFlowerBlock> BLOOD_ANTIARIS = REGISTRATE
+            .block("blood_antiaris", properties -> new ForgeSpecialFlowerBlock(MobEffects.HARM, 20, BlockBehaviour.Properties.copy(Blocks.POPPY), () -> CTNHBlockEntities.BLOOD_ANTIARIS.get()))
+            .initialProperties(() -> Blocks.POPPY)
+            .lang("Blood Antiaris")
+            .blockstate(GTModels::createCrossBlockState)
+            .addLayer(() -> RenderType::cutoutMipped)
+            .item()
+            .model(GTModels::rubberTreeSaplingModel)
+            .build()
+            .register();
+
 
     public static BlockEntry<TurbineRotorBlock> HYPER_PLASMA_TURBINE_ROTOR = createTurbineRotorBlock("hyper_plasma_turbine_rotor",1,1,1,1);
 
@@ -250,7 +238,7 @@ public class CTNHBlocks {
                 .blockstate((ctx, prov) -> {
                     prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, texture));
                 })
-                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(), new ResourceLocation("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
                 .item(BlockItem::new)
                 .build()
                 .register();
@@ -326,83 +314,12 @@ public class CTNHBlocks {
                 .build()
                 .register();
     }
-    @SuppressWarnings("removal")
-    public static BlockEntry<Block> createStoneLikeBlock(String name, ResourceLocation texture) {
-        var builder = REGISTRATE.block(name, Block::new)
-                .initialProperties(() -> Blocks.STONE)
-                .blockstate((ctx, prov) -> {
-                    prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, texture));
-                })
-                .loot(RegistrateBlockLootTables::dropSelf)
-                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
-                .tag(BlockTags.MINEABLE_WITH_PICKAXE);
-        return builder.item(BlockItem::new)
-                .build()
-                .register();
-    }
-    @SuppressWarnings("removal")
-    private static BlockEntry<RotatedPillarBlock> createLogLikeBlock(String name) {
-        return REGISTRATE.block(name, RotatedPillarBlock::new)
-                .initialProperties(() -> Blocks.OAK_WOOD)
-                .addLayer(() -> RenderType::cutoutMipped)
-                .blockstate((ctx,prov)->prov.logBlock(ctx.getEntry()))
-                .tag(BlockTags.MINEABLE_WITH_AXE)
-                .item(BlockItem::new)
-                .build()
-                .register();
-    }
-    @SuppressWarnings("removal")
-    public static BlockEntry<FallingBlock> createSandLikeBlock(String name, ResourceLocation texture) {
-        return REGISTRATE.block(name, FallingBlock::new)
-                .initialProperties(() -> Blocks.SAND)
-                .blockstate((ctx, prov) -> {
-                    prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, texture));
-                })
-                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
-                .tag(BlockTags.MINEABLE_WITH_SHOVEL)
-                .item(BlockItem::new)
-                .build()
-                .register();
-    }
-    @SuppressWarnings("removal")
-    public static BlockEntry<AstralFlowerBlock> createFlowerBlock(String name, MobEffect effect) {
-        return REGISTRATE.block(name, (properties) -> new AstralFlowerBlock(() -> effect, 5, properties))
-                .properties(p -> BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY))
-                .blockstate(GTModels::createCrossBlockState)
-                .addLayer(() -> RenderType::cutoutMipped)
-                .item(BlockItem::new)
-                .model(GTModels::rubberTreeSaplingModel)
-                .build()
-                .register();
-    }
-    @SuppressWarnings("removal")
-    public static BlockEntry<AstralGrassBlock> createTallGrassBlock(String name) {
-        return REGISTRATE.block(name, AstralGrassBlock::new)
-                .initialProperties(() -> Blocks.GRASS)
-                .blockstate(GTModels::createCrossBlockState)
-                .addLayer(() -> RenderType::cutoutMipped)
-                .item(BlockItem::new)
-                .model(GTModels::rubberTreeSaplingModel)
-                .build()
-                .register();
-    }
-    @SuppressWarnings("removal")
-    public static BlockEntry<AstralTallGrassBlock> createDoublePlantBlock(String name) {
-        return REGISTRATE.block(name, AstralTallGrassBlock::new)
-                .initialProperties(() -> Blocks.TALL_GRASS)
-                .blockstate(GTModels::createCrossBlockState)
-                .addLayer(() -> RenderType::cutoutMipped)
-                .item(BlockItem::new)
-                .model(GTModels::rubberTreeSaplingModel)
-                .build()
-                .register();
-    }
     public static BlockEntry<TurbineRotorBlock> createTurbineRotorBlock(String name,int R,int G,int B,int A) {
         return REGISTRATE.block(name, TurbineRotorBlock.create(R,G,B,A))
                 .initialProperties(() -> Blocks.OBSIDIAN)
-                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(), new ResourceLocation("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
                 .blockstate((ctx, prov) ->
-                        prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, new ResourceLocation("minecraft:block/iron_block"))))
+                        prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, ResourceLocation.tryParse("minecraft:block/iron_block"))))
                 .item(TurbineRotorItem::new)
                 .build()
                 .register();

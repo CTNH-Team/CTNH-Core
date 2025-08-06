@@ -31,7 +31,7 @@ public abstract class ChunkSerializerMixin {
             if (name != null && !ForgeRegistries.BLOCKS.containsKey(name)) {
                 var new_name = name;
                 if (name.getNamespace().equals("kubejs") || name.getNamespace().equals("gtceu"))
-                    new_name = new ResourceLocation("ctnhcore", name.getPath());
+                    new_name = ResourceLocation.tryBuild("ctnhcore", name.getPath());
                 tag.putString("Name", new_name.toString());
             }
         }

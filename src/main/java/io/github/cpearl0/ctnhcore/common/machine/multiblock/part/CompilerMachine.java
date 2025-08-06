@@ -28,6 +28,7 @@ public class CompilerMachine extends TieredIOPartMachine implements IDistinctPar
     @Getter
     @Persisted
     private final NotifiableItemStackHandler inventory;
+    @Persisted
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(CompilerMachine.class,
             TieredIOPartMachine.MANAGED_FIELD_HOLDER);
     @Persisted

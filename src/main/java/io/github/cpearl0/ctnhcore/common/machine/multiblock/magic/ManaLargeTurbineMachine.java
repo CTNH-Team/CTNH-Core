@@ -117,7 +117,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
             turbineMachine.consumpution_rate = 1;
         }
         var rotorHolder = turbineMachine.getRotorHolder();
-        var EUt = RecipeHelper.getOutputEUt(recipe);
+        var EUt = RecipeHelper.getRealEUtWithIO(recipe).voltage();
         turbineMachine.BASE_EU_OUTPUT=EUt;
         if (rotorHolder == null || EUt <= 0) return ModifierFunction.NULL;
 
@@ -254,7 +254,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
     }
 
     @Override
-    public boolean dampingWhenWaiting() {
+    public boolean regressWhenWaiting() {
         return false;
     }
 
@@ -304,7 +304,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
                 textList.add(Component.translatable("gtceu.multiblock.turbine.efficiency", rotorHolder.getTotalEfficiency()));
                 long maxProduction = getOverclockVoltage();
                 long currentProduction = isActive() && recipeLogic.getLastRecipe() != null ?
-                        RecipeHelper.getOutputEUt(recipeLogic.getLastRecipe()) : 0;
+                        RecipeHelper.getRealEUtWithIO(recipeLogic.getLastRecipe()).voltage() : 0;
                 String voltageName = GTValues.VNF[GTUtil.getTierByVoltage(currentProduction)];
 
                 if (isActive()) {
@@ -317,8 +317,8 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
                 } else {
                     textList.add(Component.translatable("gtceu.multiblock.turbine.rotor_durability", rotorDurability).setStyle(Style.EMPTY.withColor(ChatFormatting.RED)));
                 }
-                textList.add(Component.translatable("ctnh.manaturbine.efficiency",efficiency*100));
-                textList.add(Component.translatable("ctnh.manaturbine.consumption_rate",mana_consumption));
+                textList.add(Component.translatable("ctnh.multiblock.mana_turbine.info.efficiency",efficiency*100));
+                textList.add(Component.translatable("ctnh.multiblock.mana_turbine.info.consumption_rate",mana_consumption));
             }
         }
     }

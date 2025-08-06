@@ -10,9 +10,11 @@ import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconType;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialIconType;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.data.CTNHMaterialFlags;
+import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -32,12 +34,12 @@ public class CTNHTagPrefixes {
             .registerOre(() -> AetherBlocks.HOLYSTONE.get().defaultBlockState().setValue(AetherBlockStateProperties.DOUBLE_DROPS, true),
                     () -> CTNHMaterials.Holystone,
                     BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(3.0F, 3.0F),
-                    new ResourceLocation(Aether.MODID, "block/holystone"), true, false, true);
+                    ResourceLocation.tryBuild(Aether.MODID, "block/holystone"), true, false, true);
     public static final TagPrefix oreMossyHolystone = TagPrefix.oreTagPrefix("mossy_holystone", BlockTags.MINEABLE_WITH_PICKAXE)
             .registerOre(() -> AetherBlocks.MOSSY_HOLYSTONE.get().defaultBlockState().setValue(AetherBlockStateProperties.DOUBLE_DROPS, true),
                     () -> CTNHMaterials.Holystone,
                     BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(3.0F, 3.0F),
-                    new ResourceLocation(Aether.MODID, "block/mossy_holystone"), true, false, true);
+                    ResourceLocation.tryBuild(Aether.MODID, "block/mossy_holystone"), true, false, true);
     public static final TagPrefix oreLivingrock = TagPrefix.oreTagPrefix("livingrock", BlockTags.MINEABLE_WITH_PICKAXE)
             .registerOre(() -> BotaniaBlocks.livingrock.defaultBlockState(),
                     () -> CTNHMaterials.Livingrock,
@@ -48,6 +50,11 @@ public class CTNHTagPrefixes {
                     () -> CTNHMaterials.icestone,
                     BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(2.0F, 2.0F),
                     ResourceLocation.tryParse("aether:block/icestone"), false, false, true);
+    public static final TagPrefix oreAstralStone = TagPrefix.oreTagPrefix("astral_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+            .registerOre(() -> AstralBlocks.ASTRAL_STONE.get().defaultBlockState(),
+                    () -> CTNHMaterials.AstralStone,
+                    BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(2.0F, 2.0F),
+                    CTNHCore.id("block/astral_stone"), false, false, true);
 
     public static final TagPrefix nuclear = new TagPrefix("nuclear")
             .idPattern("%s")
@@ -96,5 +103,6 @@ public class CTNHTagPrefixes {
         oreMossyHolystone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Holystone, TagPrefix.dust.materialAmount()));
         oreLivingrock.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Livingrock, TagPrefix.dust.materialAmount()));
         oreIcestone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.icestone, TagPrefix.dust.materialAmount()));
+        oreAstralStone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.AstralStone, TagPrefix.dust.materialAmount()));
     }
 }

@@ -1,13 +1,14 @@
 package io.github.cpearl0.ctnhcore.client.renderer;
 
-import com.gregtechceu.gtceu.GTCEu;
-import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
+import com.gregtechceu.gtceu.api.machine.feature.IMachineFeature;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import com.gregtechceu.gtceu.client.renderer.machine.WorkableCasingMachineRenderer;
+import com.gregtechceu.gtceu.client.renderer.machine.DynamicRender;
+import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderType;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
+import com.mojang.serialization.Codec;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.model.MagicCubeModel;
 import io.github.cpearl0.ctnhcore.client.renderer.utils.RenderUtils;
@@ -18,18 +19,11 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Vector3f;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.sql.Array;
-
-public class EternalGardenRender extends WorkableCasingMachineRenderer {
+public class EternalGardenRender extends DynamicRender<IMachineFeature, EternalGardenRender> {
+    public static Codec<EternalGardenRender> CODEC = Codec.unit(EternalGardenRender::new);
+    public static final DynamicRenderType<IMachineFeature, EternalGardenRender> TYPE = new DynamicRenderType<>(CODEC);
 
     private static final ResourceLocation TEXTURE =
             CTNHCore.id("textures/block/magic_cube/texture.png");
@@ -37,39 +31,18 @@ public class EternalGardenRender extends WorkableCasingMachineRenderer {
 
 
     public EternalGardenRender() {
-        super(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/implosion_compressor"), false);
     }
 
     @Override
-    public boolean shouldRender(BlockEntity blockEntity, Vec3 cameraPos) {
-        return true;
+    public DynamicRenderType<IMachineFeature, EternalGardenRender> getType() {
+        return TYPE;
     }
 
     @Override
-    public int getViewDistance() {
-        return 32;
-    }
-
-    @Override
-    public boolean isGlobalRenderer(BlockEntity blockEntity) {
-        return true;
-    }
-
-    @Override
-    public boolean hasTESR(BlockEntity blockEntity) {
-        return true;
-    }
-
-
-    @ParametersAreNonnullByDefault
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public void render(BlockEntity blockEntity, float partialTicks, PoseStack stack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
-        super.render(blockEntity, partialTicks, stack, buffer, combinedLight, combinedOverlay);
-        if (blockEntity instanceof IMachineBlockEntity machineBlockEntity
-                && machineBlockEntity.getMetaMachine() instanceof WorkableElectricMultiblockMachine machine
-                && machine.isFormed()) {
-            var level = blockEntity.getLevel();
+    public void render(IMachineFeature feature, float v, PoseStack stack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
+        var metaMachine = feature.self();
+        if (metaMachine instanceof WorkableElectricMultiblockMachine machine && machine.isFormed()) {
+            var level = metaMachine.getLevel();
             if (level == null) return;
             float time = RenderUtils.getTime();
 
@@ -120,6 +93,10 @@ public class EternalGardenRender extends WorkableCasingMachineRenderer {
 
             stack.popPose();
         }
+    }
 
+    @Override
+    public int getViewDistance() {
+        return 32;
     }
 }
