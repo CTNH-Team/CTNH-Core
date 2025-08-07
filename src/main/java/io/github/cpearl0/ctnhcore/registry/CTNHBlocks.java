@@ -48,6 +48,7 @@ import vazkii.botania.xplat.XplatAbstractions;
 import java.util.function.Supplier;
 
 import static io.github.cpearl0.ctnhcore.api.CTNHAPI.ReactorCoreBlock;
+import static io.github.cpearl0.ctnhcore.registry.CTNHMaterialBlocks.generateHyperRotorBlocks;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 @SuppressWarnings("removal")
@@ -219,6 +220,8 @@ public class CTNHBlocks {
         ReactorCoreBlock.put(75, () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Einsteinium).get());
         ReactorCoreBlock.put(100, () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Fermium).get());
         ReactorCoreBlock.put(200, () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Mendelevium).get());
+
+        generateHyperRotorBlocks();
     }
     // Utils
     public static BlockEntry<Block> createCasingBlock(String name, ResourceLocation texture) {
