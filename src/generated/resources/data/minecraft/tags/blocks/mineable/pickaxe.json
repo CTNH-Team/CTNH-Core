@@ -38,6 +38,8 @@
     "ctnhcore:stellar_radiation_router_casing",
     "ctnhcore:shielded_reactor_casing",
     "ctnhcore:neutronium_reinforced_turbine_casing",
+    "ctnhcore:blood_casing",
+    "ctnhcore:force_field_casing",
     "ctnhcore:supercooled_bloock",
     "ctnhcore:reservoir_computing_casing",
     "ctnhcore:space_elevator_power_core",

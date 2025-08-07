@@ -663,6 +663,28 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.MACERATOR);
+    public static final GTRecipeType MANA_SEPERATOR_RECIPES = GTRecipeTypes.register("mana_seperator", MULTIBLOCK)
+            .setMaxIOSize(3, 6, 3, 2)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CENTRIFUGE);
+    public static final GTRecipeType GAIA_REACTOR_RECIPES = GTRecipeTypes.register("gaia_reactor", MULTIBLOCK)
+            .setMaxIOSize(2, 24, 2, 2)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CUT);
+    public static final GTRecipeType GREENHOUSE_RECIPES = GTRecipeTypes.register("greenhouse", MULTIBLOCK)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(4, 4, 1, 0)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.BATH);
+    public static final GTRecipeType METEOR_CAPTURER_RECIPES = GTRecipeTypes.register("meteor_capturer", MULTIBLOCK)
+            .setMaxIOSize(1, 32, 1, 0)
+            .setEUIO(IO.IN)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.MINER);
 
 
     public static void init() {

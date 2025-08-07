@@ -1222,7 +1222,7 @@ public class MultiblocksB {
             .workableCasingModel((CTNHCore.id("block/casings/nq_alloy_casing")), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
 
-    public static final MultiblockMachineDefinition ADVANCED_ASSEMBLY_LINE = GTRegistration.REGISTRATE
+    public static final MultiblockMachineDefinition ADVANCED_ASSEMBLY_LINE = REGISTRATE
             .multiblock("advance_assembly_line", AssemblyLineMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.ASSEMBLY_LINE_RECIPES)
@@ -1354,9 +1354,9 @@ public class MultiblocksB {
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "BCCCB", "B###B", "B###B", "B###B", "BBBBB", "AAAAA")
-                    .aisle("AAAAA", "CDDDC", "#EEE#", "#EEE#", "#####", "BF#FB", "AAAAA")
-                    .aisle("AAAAA", "CDDDC", "#EGE#", "#EGE#", "##G##", "B#H#B", "AAAAA")
-                    .aisle("AAAAA", "CDDDC", "#EEE#", "#EEE#", "#####", "BF#FB", "AAAAA")
+                    .aisle("AAAAA", "CDDDC", "#####", "#####", "#####", "BF#FB", "AAAAA")
+                    .aisle("AAAAA", "CDDDC", "##G##", "##G##", "##G##", "B#H#B", "AAAAA")
+                    .aisle("AAAAA", "CDDDC", "#####", "#####", "#####", "BF#FB", "AAAAA")
                     .aisle("AA@AA", "BCCCB", "B###B", "B###B", "B###B", "BBBBB", "AAAAA")
                     .where("A", Predicates.blocks(AllBlocks.RAILWAY_CASING.get())
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))

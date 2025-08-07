@@ -10,6 +10,7 @@ import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksC;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
 import net.minecraftforge.common.data.LanguageProvider;
@@ -280,6 +281,10 @@ public class ChineseLangHandler {
         provider.add("gtceu.ultrasonication", "超声破碎");
         provider.add("gtceu.eye_of_quasar","§5类星体§r§1之§c眼");
         provider.add("gtceu.industrial_altar", "§4工业血之祭坛§r");
+        provider.add("gtceu.mana_seperator", "魔力分选");
+        provider.add("gtceu.gaia_reactor", "盖亚反应");
+        provider.add("gtceu.greenhouse", "温室");
+        provider.add("gtceu.meteor_capturer", "集成式坠星位标");
 
         provider.add("ctnh.test_terminal.lack_error","在%s处缺少");
         provider.add("ctnh.test_terminal.wrong_error","在%s处应为");
@@ -806,6 +811,13 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.mana_reactor.tooltip.0","工业魔力奠基者");
         provider.add("ctnh.multiblock.mana_reactor.tooltip.1","允许使用并行控制仓");
 
+        provider.add("ctnh.multiblock.greenhouse.tooltip.0", "室内种植");
+
+        provider.add("ctnh.multiblock.meteor_capturer.tooltip.0", "§8为什么陨石总能落在陨石坑里？§r\n该机器无法超频");
+        provider.add("ctnh.multiblock.meteor_capturer.tooltip.1", "消耗少量引物和大量的生命源质，从外太空拉取满是矿石的陨石。");
+        provider.add("ctnh.multiblock.meteor_capturer.tooltip.2", "配方需要大量的输入输出空间，建议使用高级输入总成。");
+        provider.add("ctnh.multiblock.meteor_capturer.tooltip.3", "陨石会在多方块结构上方的空腔内生成（真的）。不要在里面放置人或设备。");
+        provider.add("ctnh.multiblock.meteor_capturer.tooltip.4", "半径大于13的配方会破坏多方块结构（不存在这种配方）。");
 
 
         provider.add("ctnh.recipe.arc_generator.require","需求电弧强度:%d");
@@ -1172,6 +1184,8 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.QUASAR_ENERGY_STABILIZATION_CASING,"类星体能量稳定机械外壳");
         provider.addBlock(CTNHBlocks.WIDESPEEDINGPIPE,"广粒子加速器通道");
         provider.addBlock(CTNHBlocks.ARC_CELL,"电弧发生器");
+        provider.addBlock(CTNHBlocks.CASING_BLOOD, "血染机械方块");
+        provider.addBlock(CTNHBlocks.CASING_FORCE_FILED, "力场领域机械方块");
         provider.addBlock(AstralBlocks.ASTRAL_LOG, "星辉木");
         provider.addBlock(AstralBlocks.ASTRAL_STONE, "星辉石");
         provider.addBlock(AstralBlocks.ASTRAL_COBBLESTONE, "星辉圆石");
@@ -1310,6 +1324,11 @@ public class ChineseLangHandler {
         provider.add(MultiblocksB.ZENITH_EXTRUDER.getBlock(),"§5天顶灵能塑形者");
         provider.add(MultiblocksB.FLUID_DRILLING_INF[UHV].getBlock(),"无尽流体钻机");
         provider.add(MultiblocksB.MANA_CONDENSER.getBlock(), "魔力凝缩器");
+
+        provider.add(MultiblocksC.MANA_SEPERATOR.getBlock(), "魔力分选器");
+        provider.add(MultiblocksC.GAIA_REACTOR.getBlock(), "盖亚反应器");
+        provider.add(MultiblocksC.GREENHOUSE.getBlock(), "温室");
+        provider.add(MultiblocksC.METEOR_CAPTURER.getBlock(), "§4坠星操纵者§r");
 
 
 

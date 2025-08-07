@@ -519,6 +519,8 @@ public class EnglishLangHandler {
         provider.add("ctnh.multiblock.mana_reactor.tooltip.0","工业魔力奠基者");
         provider.add("ctnh.multiblock.mana_reactor.tooltip.1","允许使用并行控制仓");
 
+        provider.add("ctnh.multiblock.greenhouse.tooltip.0", "Plant In Room");
+
         provider.add("ctnhcore.src.sacrifice_empty","No sacrifices found");
         provider.add("ctnhcore.src.sacrifice_locked","Sacrifice LOCKED");
         provider.add("ctnhcore.src.sacrifice_unlocked","Sacrifice UNLOCKED");

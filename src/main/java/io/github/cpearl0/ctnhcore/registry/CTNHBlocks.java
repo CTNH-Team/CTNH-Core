@@ -137,6 +137,12 @@ public class CTNHBlocks {
     public static final BlockEntry<Block> CASING_SHIELDED_REACTOR = createCasingBlock("shielded_reactor_casing",
             CTNHCore.id("block/casings/shielded_reactor_casing"));
     public static final BlockEntry<Block> NEUTRONIUM_REINFORCED_TURBINE_CASING = createCasingBlock("neutronium_reinforced_turbine_casing",CTNHCore.id("block/casings/neutronium_reinforced_turbine_casing"));
+    public static final BlockEntry<Block> CASING_BLOOD = createCasingBlock("blood_casing",
+            CTNHCore.id("block/casings/blood_casing"));
+    public static final BlockEntry<Block> CASING_FORCE_FILED = createCasingBlock("force_field_casing",
+            CTNHCore.id("block/casings/force_field_casing"));
+
+
     public static final BlockEntry<ActiveBlock> SUPERCOOLED_BLOCK = createActiveCasing("supercooled_bloock",
             "block/flux/plasma_cooled_core");
     public static final BlockEntry<ActiveBlock> RESERVOIR_COMPUTING_CASING = createActiveCasing("reservoir_computing_casing",

@@ -144,60 +144,60 @@ public class CTNHMultiblockBuilder extends MultiblockMachineBuilder {
         return (CTNHMultiblockBuilder)super.itemColor(itemColor);
     }
 
-    public MultiblockMachineBuilder simpleModel(ResourceLocation model) {
-        return (MultiblockMachineBuilder)super.simpleModel(model);
+    public CTNHMultiblockBuilder simpleModel(ResourceLocation model) {
+        return (CTNHMultiblockBuilder)super.simpleModel(model);
     }
 
-    public MultiblockMachineBuilder defaultModel() {
-        return (MultiblockMachineBuilder)super.defaultModel();
+    public CTNHMultiblockBuilder defaultModel() {
+        return (CTNHMultiblockBuilder)super.defaultModel();
     }
 
-    public MultiblockMachineBuilder tieredHullModel(ResourceLocation model) {
-        return (MultiblockMachineBuilder)super.tieredHullModel(model);
+    public CTNHMultiblockBuilder tieredHullModel(ResourceLocation model) {
+        return (CTNHMultiblockBuilder)super.tieredHullModel(model);
     }
 
-    public MultiblockMachineBuilder overlayTieredHullModel(String name) {
-        return (MultiblockMachineBuilder)super.overlayTieredHullModel(name);
+    public CTNHMultiblockBuilder overlayTieredHullModel(String name) {
+        return (CTNHMultiblockBuilder)super.overlayTieredHullModel(name);
     }
 
-    public MultiblockMachineBuilder overlayTieredHullModel(ResourceLocation overlayModel) {
-        return (MultiblockMachineBuilder)super.overlayTieredHullModel(overlayModel);
+    public CTNHMultiblockBuilder overlayTieredHullModel(ResourceLocation overlayModel) {
+        return (CTNHMultiblockBuilder)super.overlayTieredHullModel(overlayModel);
     }
 
-    public MultiblockMachineBuilder colorOverlayTieredHullModel(String overlay) {
-        return (MultiblockMachineBuilder)super.colorOverlayTieredHullModel(overlay);
+    public CTNHMultiblockBuilder colorOverlayTieredHullModel(String overlay) {
+        return (CTNHMultiblockBuilder)super.colorOverlayTieredHullModel(overlay);
     }
 
-    public MultiblockMachineBuilder colorOverlayTieredHullModel(String overlay, @Nullable String pipeOverlay, @Nullable String emissiveOverlay) {
-        return (MultiblockMachineBuilder)super.colorOverlayTieredHullModel(overlay, pipeOverlay, emissiveOverlay);
+    public CTNHMultiblockBuilder colorOverlayTieredHullModel(String overlay, @Nullable String pipeOverlay, @Nullable String emissiveOverlay) {
+        return (CTNHMultiblockBuilder)super.colorOverlayTieredHullModel(overlay, pipeOverlay, emissiveOverlay);
     }
 
-    public MultiblockMachineBuilder colorOverlayTieredHullModel(ResourceLocation overlay) {
-        return (MultiblockMachineBuilder)super.colorOverlayTieredHullModel(overlay);
+    public CTNHMultiblockBuilder colorOverlayTieredHullModel(ResourceLocation overlay) {
+        return (CTNHMultiblockBuilder)super.colorOverlayTieredHullModel(overlay);
     }
 
-    public MultiblockMachineBuilder colorOverlayTieredHullModel(ResourceLocation overlay, @Nullable ResourceLocation pipeOverlay, @Nullable ResourceLocation emissiveOverlay) {
-        return (MultiblockMachineBuilder)super.colorOverlayTieredHullModel(overlay, pipeOverlay, emissiveOverlay);
+    public CTNHMultiblockBuilder colorOverlayTieredHullModel(ResourceLocation overlay, @Nullable ResourceLocation pipeOverlay, @Nullable ResourceLocation emissiveOverlay) {
+        return (CTNHMultiblockBuilder)super.colorOverlayTieredHullModel(overlay, pipeOverlay, emissiveOverlay);
     }
 
-    public MultiblockMachineBuilder workableTieredHullModel(ResourceLocation workableModel) {
-        return (MultiblockMachineBuilder)super.workableTieredHullModel(workableModel);
+    public CTNHMultiblockBuilder workableTieredHullModel(ResourceLocation workableModel) {
+        return (CTNHMultiblockBuilder)super.workableTieredHullModel(workableModel);
     }
 
-    public MultiblockMachineBuilder simpleGeneratorModel(ResourceLocation workableModel) {
-        return (MultiblockMachineBuilder)super.simpleGeneratorModel(workableModel);
+    public CTNHMultiblockBuilder simpleGeneratorModel(ResourceLocation workableModel) {
+        return (CTNHMultiblockBuilder)super.simpleGeneratorModel(workableModel);
     }
 
-    public MultiblockMachineBuilder workableCasingModel(ResourceLocation baseCasing, ResourceLocation overlayModel) {
-        return (MultiblockMachineBuilder)super.workableCasingModel(baseCasing, overlayModel);
+    public CTNHMultiblockBuilder workableCasingModel(ResourceLocation baseCasing, ResourceLocation overlayModel) {
+        return (CTNHMultiblockBuilder)super.workableCasingModel(baseCasing, overlayModel);
     }
 
-    public MultiblockMachineBuilder sidedOverlayCasingModel(ResourceLocation baseCasing, ResourceLocation workableModel) {
-        return (MultiblockMachineBuilder)super.sidedOverlayCasingModel(baseCasing, workableModel);
+    public CTNHMultiblockBuilder sidedOverlayCasingModel(ResourceLocation baseCasing, ResourceLocation workableModel) {
+        return (CTNHMultiblockBuilder)super.sidedOverlayCasingModel(baseCasing, workableModel);
     }
 
-    public MultiblockMachineBuilder sidedWorkableCasingModel(ResourceLocation baseCasing, ResourceLocation workableModel) {
-        return (MultiblockMachineBuilder)super.sidedWorkableCasingModel(baseCasing, workableModel);
+    public CTNHMultiblockBuilder sidedWorkableCasingModel(ResourceLocation baseCasing, ResourceLocation workableModel) {
+        return (CTNHMultiblockBuilder)super.sidedWorkableCasingModel(baseCasing, workableModel);
     }
 
     public CTNHMultiblockBuilder tooltipBuilder(BiConsumer<ItemStack, List<Component>> tooltipBuilder) {
