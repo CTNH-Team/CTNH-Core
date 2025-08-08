@@ -595,6 +595,7 @@ public class MultiblocksA {
             .generator(true)
             .recipeModifiers(DemonWillMachine::recipeModifier)
             .tooltips(Component.translatable("ctnh.multiblock.demon_will_generator.tooltip.0").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.multiblock.demon_will_generator.tooltip.01"),
                     Component.translatable("ctnh.multiblock.demon_will_generator.tooltip.1"),
                     Component.translatable("ctnh.multiblock.demon_will_generator.tooltip.2"),
                     Component.translatable("ctnh.multiblock.demon_will_generator.tooltip.3"),
@@ -662,7 +663,9 @@ public class MultiblocksA {
                             .or(Predicates.blocks(BloodMagicBlocks.AUGMENTED_CAPACITY_RUNE.get()))
                             .or(Predicates.blocks(BloodMagicBlocks.AUGMENTED_CAPACITY_RUNE_2.get())))
                     .where("O", Predicates.blocks(BloodMagicBlocks.OBSIDIAN_TILE_PATH.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.SUBSTATION_OUTPUT_ENERGY))
+                    )
                     .where("P", Predicates.blocks(Blocks.POLISHED_BLACKSTONE_BRICK_STAIRS))
                     .where("Q", Predicates.blocks(Blocks.RED_STAINED_GLASS_PANE))
                     .where("R", Predicates.blocks(Blocks.BLUE_STAINED_GLASS_PANE))
