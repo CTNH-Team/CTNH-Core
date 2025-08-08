@@ -41,10 +41,10 @@ public class CTNHMaterialBlocks {
                 .block(tagPrefix.idPattern().formatted(material.getName()), MaterialTurbineRotorBlock.create(material))
                 .initialProperties(() -> Blocks.OBSIDIAN)
 //                .lang(tagPrefix.langValue().formatted(toEnglishName(material.getName())))
-                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(), new ResourceLocation("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
                 .tag(tagPrefix.getBlockTags(material))
                 .blockstate((ctx, prov) ->
-                        prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(material.getName(), new ResourceLocation("minecraft:block/iron_block"))))
+                        prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(material.getName(), ResourceLocation.tryParse("minecraft:block/iron_block"))))
                 .item(MaterialTurbineRotorItem::new)
                 .tag(tagPrefix.getItemTags(material))
                 .build()

@@ -563,6 +563,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.meadow.tooltip.0", "自动化放牧");
         provider.add("ctnh.multiblock.meadow.tooltip.1", "只能养鸡牛羊猪，牛会产生皮革，羊会产生羊毛，鸡会产生鸡蛋，猪会产生猪肉");
         provider.add("ctnh.multiblock.meadow.tooltip.2", "牧场里每多一只动物，产生的排泄物数量就会提升，养的动物越多，产物越多");
+        provider.add("ctnh.multiblock.meadow.tooltip.3", "只有动物跑出去时，你才知道你不是在种菜！");
 
         provider.add("ctnh.multiblock.fermenting_tank.tooltip.0", "一个专为微生物提供的生长罐，注意时刻关注他！");
         provider.add("ctnh.multiblock.fermenting_tank.tooltip.1", "发酵罐的生物生长机制：");
