@@ -271,6 +271,7 @@ public class EnglishLangHandler {
         provider.add("ctnh.multiblock.meadow.tooltip.0", "Automated Pasture");
         provider.add("ctnh.multiblock.meadow.tooltip.1", "Can only raise chickens, cows, pigs and sheep. Cows produce leather, sheep produce wool, pigs produce pork and chickens produce eggs.");
         provider.add("ctnh.multiblock.meadow.tooltip.2", "The more animals in the pasture, the more waste they generate. The more animals you have, the more byproducts are produced.");
+        provider.add("ctnh.multiblock.meadow.tooltip.3", "Only when the animals run away can you know that you are not farming!");
 
         provider.add("ctnh.multiblock.fermenting_tank.tooltip.0", "A tank designed specifically for microbial growth. Always keep an eye on it!");
         provider.add("ctnh.multiblock.fermenting_tank.tooltip.1", "Biological Growth Mechanism of the Fermenting Tank:");

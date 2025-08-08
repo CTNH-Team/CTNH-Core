@@ -9,14 +9,11 @@ import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
-import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
-import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderHelper;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.AssemblyLineMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.LargeMinerMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.generator.LargeTurbineMachine;
-import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.mo_guang.ctpp.CTPP;
@@ -30,7 +27,6 @@ import fr.lucreeper74.createmetallurgy.registries.CMBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHPredicates;
 import io.github.cpearl0.ctnhcore.client.renderer.EternalGardenRender;
-import io.github.cpearl0.ctnhcore.client.renderer.HyperPlasmaTurbineRender;
 import io.github.cpearl0.ctnhcore.client.renderer.ManaCondenserRender;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.KineticElectricMutiblockMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.*;
@@ -47,9 +43,9 @@ import io.github.cpearl0.ctnhcore.registry.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
+import io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
 import vazkii.botania.common.block.BotaniaBlocks;
 import vazkii.botania.common.block.BotaniaFlowerBlocks;
@@ -59,20 +55,15 @@ import wayoftime.bloodmagic.common.fluid.BloodMagicFluids;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
-import static com.gregtechceu.gtceu.api.pattern.Predicates.autoAbilities;
 import static com.gregtechceu.gtceu.api.pattern.util.RelativeDirection.*;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterialBlocks.MATERIAL_BLOCKS;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Naquadria;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.DUMMY_RECIPES;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
 import static com.hollingsworth.arsnouveau.setup.registry.BlockRegistry.*;
-import static com.hollingsworth.arsnouveau.setup.registry.BlockRegistry.VEXING_LOG;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
-import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.TERRA_STEEL_CASING;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMachines.registerTieredMultis;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static io.github.cpearl0.ctnhcore.utils.ModUtils.BotaniaRL;
 import static net.minecraft.world.level.block.Blocks.*;
@@ -2336,7 +2327,7 @@ public class MultiblocksB {
 //            )
 //            .workableCasingModel(CTNHCore.id("block/casings/super_machine_casing_frost_proof"), GTCEu.id("block/multiblock/vacuum_freezer"))
 //            .register();
-public static final MultiblockMachineDefinition[] FLUID_DRILLING_INF = registerTieredMultis(
+public static final MultiblockMachineDefinition[] FLUID_DRILLING_INF = CTNHMachineUtils.registerTieredMultis(
         "fluid_drilling_inf", INFFluidDrillMachine::new, (tier, builder) -> builder
                 .rotationState(RotationState.ALL)
                 .langValue("%s Fluid Drilling Rig %s".formatted(VLVH[tier], VLVT[tier]))

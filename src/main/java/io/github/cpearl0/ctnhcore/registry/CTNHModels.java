@@ -5,6 +5,8 @@ import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.block.IFilterType;
 import com.gregtechceu.gtceu.api.block.property.GTBlockStateProperties;
+import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
+import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
@@ -16,8 +18,12 @@ import io.github.cpearl0.ctnhcore.common.block.TurbineRotorBlock;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.MAINTENANCE_TAPED_OVERLAY;
+import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.tieredHullTextures;
 
 public class CTNHModels {
     public static NonNullBiConsumer<DataGenContext<Block, CoilBlock>, RegistrateBlockstateProvider> createCoilModel(String name, ICoilType coilType) {
@@ -52,7 +58,20 @@ public class CTNHModels {
             prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, CTNHCore.id(location)));
         };
     }
+    public static MachineBuilder.ModelInitializer createMaintenanceModel(ResourceLocation overlayModel) {
+        return (ctx, prov, builder) -> {
+            builder.forAllStatesModels((state) -> {
+                BlockModelBuilder baseModel = (BlockModelBuilder)((BlockModelBuilder)prov.models().nested()).parent(prov.models().getExistingFile(overlayModel));
+                tieredHullTextures(baseModel, builder.getOwner().getTier());
+                if ((Boolean)state.getValue(GTMachineModelProperties.IS_TAPED)) {
+                    baseModel.texture("overlay_2", MAINTENANCE_TAPED_OVERLAY);
+                }
 
+                return baseModel;
+            });
+            builder.addReplaceableTextures(new String[]{"bottom", "top", "side"});
+        };
+    }
 
 
 }

@@ -47,6 +47,7 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility
 import io.github.cpearl0.ctnhcore.legendary.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
+import io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -433,7 +434,7 @@ public class MultiblocksA {
             .workableCasingModel(CTNHCore.id("block/casings/nq_alloy_casing"), GTCEu.id("block/multiblock/fusion_reactor"))
             .register();
 
-    public static final MultiblockMachineDefinition[] COMPRESSED_FUSION_REACTOR = CTNHMachines.registerTieredMultis("compressed_fusion_reactor",
+    public static final MultiblockMachineDefinition[] COMPRESSED_FUSION_REACTOR = CTNHMachineUtils.registerTieredMultis("compressed_fusion_reactor",
             (holder, tier) -> new FusionReactorMachine(holder, tier) {
 
                 @Override
@@ -1442,7 +1443,7 @@ public class MultiblocksA {
             )
             .workableCasingModel(CTNHCore.id("block/high_grade_coke_oven_bricks"), GTCEu.id("block/machines/alloy_smelter"))
             .register();
-    public static final MultiblockMachineDefinition ULTIMATE_COMBUSTION_ENGINE = registerLargeCombustionEngine(
+    public static final MultiblockMachineDefinition ULTIMATE_COMBUSTION_ENGINE = CTNHMachineUtils.registerLargeCombustionEngine(
             "ultimate_combustion_engine", UV,
             CASING_NAQUADAH_BLOCK, CASING_NAQUADAH_GEARBOX, CASING_ULTIMATE_ENGINE_INTAKE,
             CTNHCore.id("block/casings/nq_casing"),
