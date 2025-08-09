@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
+import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.data.recipe.CraftingComponent;
@@ -22,7 +23,6 @@ import java.util.function.Consumer;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
-import static com.gregtechceu.gtceu.common.data.GTMachines.HULL;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.*;
@@ -54,13 +54,13 @@ public class MachinesRecipes {
                 'S', new ItemStack(AllBlocks.COPPER_SHINGLES.getStandard().get()),
                 'P', GTBlocks.CASING_BRONZE_PIPE.asStack(),
                 'I', new MaterialEntry(TagPrefix.plate, GTMaterials.Iron));
-        VanillaRecipeHelper.addShapedRecipe(provider, true, "extreme_engine_intake_casing",
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "ultimate_engine_intake_casing",
                 CTNHBlocks.CASING_ULTIMATE_ENGINE_INTAKE.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft), "PhP",
                 "RFR", "PwP", 'R', new MaterialEntry(TagPrefix.rotor, GTMaterials.NaquadahAlloy), 'F',
                 CTNHBlocks.CASING_NAQUADAH_BLOCK.asStack(), 'P',
                 new MaterialEntry(TagPrefix.pipeNormalFluid, GTMaterials.NaquadahAlloy));
         ASSEMBLER_RECIPES.recipeBuilder("zpm_large_miner")
-                .inputItems(HULL[ZPM])
+                .inputItems(GTMachines.HULL[ZPM])
                 .inputItems(frameGt, Osmiridium, 4)
                 .inputItems(CustomTags.ZPM_CIRCUITS, 4)
                 .inputItems(ELECTRIC_MOTOR_ZPM, 4)
@@ -151,22 +151,6 @@ public class MachinesRecipes {
                 "PwP", 'P', new MaterialEntry(TagPrefix.plate, GTMaterials.NaquadahAlloy), 'F',
                 new MaterialEntry(frameGt, GTMaterials.NaquadahAlloy), 'G',
                 new MaterialEntry(gear, GTMaterials.NaquadahAlloy));
-        VanillaRecipeHelper.addShapedRecipe(provider, true, "extreme_engine_intake_casing",
-                CTNHBlocks.CASING_ULTIMATE_ENGINE_INTAKE.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft), "PhP",
-                "RFR", "PwP", 'R', new MaterialEntry(TagPrefix.rotor, GTMaterials.NaquadahAlloy), 'F',
-                CTNHBlocks.CASING_NAQUADAH_BLOCK.asStack(), 'P',
-                new MaterialEntry(TagPrefix.pipeNormalFluid, GTMaterials.NaquadahAlloy));
-        ASSEMBLER_RECIPES.recipeBuilder("zpm_large_miner")
-                .inputItems(HULL[ZPM])
-                .inputItems(frameGt, Osmiridium, 4)
-                .inputItems(CustomTags.ZPM_CIRCUITS, 4)
-                .inputItems(ELECTRIC_MOTOR_ZPM, 4)
-                .inputItems(ELECTRIC_PUMP_ZPM, 4)
-                .inputItems(CONVEYOR_MODULE_ZPM, 4)
-                .inputItems(gear, Osmiridium, 4)
-                .circuitMeta(2)
-                .outputItems(MultiblocksA.ZPM_LARGE_MINER)
-                .duration(400).EUt(VA[ZPM]).save(provider);
         CTNHRecipeTypes.BEAMS.recipeBuilder("test")
                 .circuitMeta(24)
                 .inputFluids(PCBCoolant.getFluid(100))
