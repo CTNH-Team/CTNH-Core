@@ -928,13 +928,13 @@ public class MultiblocksB {
             .recipeType(CTNHRecipeTypes.ARC_GENERATOR)
             .generator(true)
             .recipeModifier(Arc_Generator::recipeModifier, true)
-            .tooltips(Component.translatable("ctnh.mutiblock.arcgenerator.1"),
-                    Component.translatable("ctnh.mutiblock.arcgenerator.arc.t1.1"),
-                    Component.translatable("ctnh.mutiblock.arcgenerator.arc.t1.2"),
-                    Component.translatable("ctnh.mutiblock.arcgenerator.2"),
-                    Component.translatable("ctnh.mutiblock.arcgenerator.3"),
-                    Component.translatable("ctnh.mutiblock.arcgenerator.4"),
-                    Component.translatable("ctnh.mutiblock.arcgenerator.5")
+            .tooltips(Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.1"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.arc.t1.1"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.arc.t1.2"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.2"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.3"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.4"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.5")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "###B#############B###", "#####################", "#####################", "#####################").aisle("#####################", "#####################", "#####################", "#####################", "#####################", "###B#############B###", "##BCB###########BCB##", "###B#############B###", "#####################", "#####################")
