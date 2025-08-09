@@ -42,7 +42,7 @@ public class ConnectTerminalItem extends ComponentItem implements IInteractionIt
         if (context.getPlayer() != null && context.getPlayer().isShiftKeyDown()) {
             CompoundTag newTag = new CompoundTag();
             stack.setTag(newTag);
-            player.displayClientMessage(Component.translatable("ctnh.terminal.success_clear"), true);
+            player.displayClientMessage(Component.translatable("ctnh.item.terminal.success_clear"), true);
 
             // 也可以在这里处理右键点击方块的逻辑
             return InteractionResult.PASS;
@@ -59,7 +59,7 @@ public class ConnectTerminalItem extends ComponentItem implements IInteractionIt
             nbt.putInt("block_x", blockPos.getX());
             nbt.putInt("block_y", blockPos.getY());
             nbt.putInt("block_z", blockPos.getZ());
-            player.displayClientMessage(Component.translatable("ctnh.terminal.success_get"), true);
+            player.displayClientMessage(Component.translatable("ctnh.item.terminal.success_get"), true);
         }
         if(machine instanceof SpacePhotovoltaicBaseStation spb)
         {
@@ -68,7 +68,7 @@ public class ConnectTerminalItem extends ComponentItem implements IInteractionIt
 
                 var pos=new BlockPos(nbt.getInt("block_x"),nbt.getInt("block_y"),nbt.getInt("block_z"));
                 spb.Drone_location=pos;
-                player.displayClientMessage(Component.translatable("ctnh.terminal.success_write"), true);
+                player.displayClientMessage(Component.translatable("ctnh.item.terminal.success_write"), true);
             }
         }
         return InteractionResult.SUCCESS;
@@ -91,11 +91,11 @@ public class ConnectTerminalItem extends ComponentItem implements IInteractionIt
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
         CompoundTag nbt = stack.getOrCreateTag();
-        tooltipComponents.add(Component.translatable("ctnh.terminal.tips"));
+        tooltipComponents.add(Component.translatable("ctnh.item.terminal.tips"));
         if(nbt.contains("block_x"))
         {
 
-            tooltipComponents.add(Component.translatable("ctnh.terminal.location",String.format("%d",nbt.getInt("block_x")),String.format("%d",nbt.getInt("block_y")),String.format("%d",nbt.getInt("block_y"))));
+            tooltipComponents.add(Component.translatable("ctnh.item.terminal.location",String.format("%d",nbt.getInt("block_x")),String.format("%d",nbt.getInt("block_y")),String.format("%d",nbt.getInt("block_y"))));
         }
         super.appendHoverText(stack, level, tooltipComponents, isAdvanced); // 调用父类方法以处理原版提示信息
 
