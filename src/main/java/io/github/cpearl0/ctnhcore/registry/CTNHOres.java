@@ -695,7 +695,7 @@ public class CTNHOres {
             .density(0.4F)
             .radius(5)
     ));
-    public static GTOreDefinition RHODIUMSULFURCRYSTAL_VEIN = create(CTNHCore.id("rhodiumsulfurcrystal_vein"), vein ->
+    public static GTOreDefinition RHODIUM_SULFUR_CRYSTAL_VEIN = create(CTNHCore.id("rhodium_sulfur_crystal_vein"), vein ->
             vein.weight(40)
                     .clusterSize(40)
                     .density(0.25F)
@@ -717,7 +717,7 @@ public class CTNHOres {
                             .density(0.4F)
                             .radius(5)
                     ));
-    public static GTOreDefinition RUTHENIUMAMALGAM_VEIN = create(CTNHCore.id("rutheniumamalgam_vein"), vein ->
+    public static GTOreDefinition RUTHENIUM_AMALGAM_VEIN = create(CTNHCore.id("ruthenium_amalgam_vein"), vein ->
             vein.weight(50)
                     .clusterSize(40)
                     .density(0.25F)

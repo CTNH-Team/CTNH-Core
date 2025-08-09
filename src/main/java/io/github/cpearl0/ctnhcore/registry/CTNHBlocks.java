@@ -155,7 +155,7 @@ public class CTNHBlocks {
     public static final BlockEntry<ActiveBlock> ADVANCE_MACHINE_CASING_ASSEMBLY_LINE = createActiveCasing("advance_machine_casing_assembly_line",
             "block/flux/advance_machine_casing_assembly_line");
 
-    public static  final BlockEntry<ActiveBlock> ARC_CELL =createActiveCasing("arc_cell","block/flux/arc_cell");
+    public static  final BlockEntry<ActiveBlock> ARC_CELL = createActiveCasing("arc_cell","block/flux/arc_cell");
     public static final BlockEntry<ActiveBlock> PLASMA_COOLED_CORE = createActiveCasing("plasma_cooled_core",
             "block/flux/plasma_cooled_core");
     public static final BlockEntry<ActiveBlock> CASING_ULTIMATE_ENGINE_INTAKE = createActiveCasing(

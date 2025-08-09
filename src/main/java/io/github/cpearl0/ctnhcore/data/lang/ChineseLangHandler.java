@@ -4,8 +4,10 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
+import com.tterrag.registrate.providers.RegistrateLangProvider;
 import dev.arbor.gtnn.data.GTNNMaterials;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
+import io.github.cpearl0.ctnhcore.data.lang.Chinese.OreLang;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
@@ -23,6 +25,7 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 
 public class ChineseLangHandler {
     public static void init(RegistrateCNLangProvider provider) {
+        OreLang.init(provider);
         //Tagprefix
         replace(provider, CTNHTagPrefixes.oreHolystone.getUnlocalizedName(), "圣石%s矿石");
         replace(provider, CTNHTagPrefixes.oreMossyHolystone.getUnlocalizedName(), "覆苔圣石%s矿石");
@@ -89,6 +92,7 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.BlackTitanium.getUnlocalizedName(), "黑钛");
         replace(provider, CTNHMaterials.Zircon.getUnlocalizedName(), "锆石");
         replace(provider, CTNHMaterials.Zirkelite.getUnlocalizedName(), "钛锆钍石");
+        replace(provider, CTNHMaterials.Nickeline.getUnlocalizedName(), "红砷镍");
         replace(provider, CTNHMaterials.Alumina.getUnlocalizedName(), "氧化铝");
         replace(provider, CTNHMaterials.PreciousAlloy.getUnlocalizedName(), "贵金属");
         replace(provider, CTNHMaterials.ManaFused.getUnlocalizedName(), "蕴魔");
@@ -253,7 +257,6 @@ public class ChineseLangHandler {
         provider.add("gtceu.decay_pools", "衰变罐");
         provider.add("gtceu.fermenting", "发酵罐");
         provider.add("gtceu.beams", "戴森光束");
-        provider.add("gtceu.altar", "血之祭坛");
         provider.add("gtceu.wood_bionics", "§e林海树场");
         provider.add("gtceu.sinope", "规模化化工");
         provider.add("gtceu:quasar_eye","类星体发电");
@@ -655,8 +658,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.mana_generator_turbine_tier2.tooltip.2","运行时消耗2.25倍燃料，获得4倍的发电量");
 
         provider.add("ctnh.multiblock.mana_generator_turbine_tier3.tooltip.0", "精密魔力转换器");
-        provider.add("ctnh.mutliblock.mana_generator_turbine_tier3.tooltip.1", "转子支架等级不能超过§dLuV§r");
-        provider.add("ctnh.mutliblock.mana_generator_turbine_tier3.tooltip.2","运行时消耗3倍燃料，获得16倍的发电量");
+        provider.add("ctnh.multiblock.mana_generator_turbine_tier3.tooltip.1", "转子支架等级不能超过§dLuV§r");
+        provider.add("ctnh.multiblock.mana_generator_turbine_tier3.tooltip.2","运行时消耗3倍燃料，获得16倍的发电量");
 
         provider.add("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.0", "神奇的能量守恒");
         provider.add("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.1", "转子支架等级不能超过§cZPM§r");

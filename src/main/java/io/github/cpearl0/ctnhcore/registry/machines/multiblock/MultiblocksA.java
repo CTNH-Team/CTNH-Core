@@ -1918,9 +1918,9 @@ public class MultiblocksA {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.WATER_POWER)
             .recipeModifier(WaterPowerStationMachine::recipeModifier)
-            .tooltips(Component.translatable("ctnh.multiblock.water_power_station.info.0").withStyle(ChatFormatting.GRAY),
-                    Component.translatable("ctnh.multiblock.water_power_station.info.1"),
-                    Component.translatable("ctnh.multiblock.water_power_station.info.2").withStyle(ChatFormatting.GREEN))
+            .tooltips(Component.translatable("ctnh.multiblock.water_power_station.tooltip.0").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.multiblock.water_power_station.tooltip.1"),
+                    Component.translatable("ctnh.multiblock.water_power_station.tooltip.2").withStyle(ChatFormatting.GREEN))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#BCB#", "#BCB#", "BBBBB", "#BBB#")
                     .aisle("#B#B#", "#BDB#", "BEFEB", "#BGB#").setRepeatable(1, 15)
