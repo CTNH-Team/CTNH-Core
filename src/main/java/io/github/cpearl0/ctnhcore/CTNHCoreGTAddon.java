@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import io.github.cpearl0.ctnhcore.data.CTNHBlockInfo;
 import io.github.cpearl0.ctnhcore.data.recipe.*;
+import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
 import io.github.cpearl0.ctnhcore.data.recipe.generated.HyperRotorRecipes;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
@@ -80,5 +81,6 @@ public class CTNHCoreGTAddon implements IGTAddon {
         ManaCondenserRecipes.init(provider);
         BotaniaRecipes.init(provider);
         HyperRotorRecipes.registerAll(provider);
+        BrineChain.init(provider);
     }
 }

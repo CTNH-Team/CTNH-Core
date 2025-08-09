@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.registry;
 
 import com.gregtechceu.gtceu.api.data.chemical.Element;
+import com.gregtechceu.gtceu.common.data.GTElements;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearElements;
 
 public class CTNHElements {
@@ -33,4 +34,10 @@ public class CTNHElements {
     public static final Element END_OF_OIL=new Element(1000,1000,-1,null,"end_of_oil","END",false);
     public static final Element Living_Metal=new Element(1000,1000,-1,null,"living_metal","*Sn?Pb?&LM*Ω",false);
     public static final Element COLORFUL_GEM=new Element(1000,1000,-1,null,"colorful_gem","§cC§eO§aL§9O§dR",false);
+    public static final Element IF = GTElements.createAndRegister(166, 213, -1, null, "Infinity Catalyst", "If", false);
+    public static final Element SpNt = GTElements.createAndRegister(167, 233, -1, null, "Space Neutronium", "SpNt", false);
+    public static final Element IF2 = GTElements.createAndRegister(168, 316, -1, null, "Infinity", "∞", false);
+    public static final Element Ds = GTElements.createAndRegister(150, 144, -1, null, "Desh", "Ds", false);
+    public static final Element Ot = GTElements.createAndRegister(151, 156, -1, null, "Ostrum", "Os", false);
+    public static final Element Ct = GTElements.createAndRegister(152, 162, -1, null, "Calorite", "Ct", false);
 }

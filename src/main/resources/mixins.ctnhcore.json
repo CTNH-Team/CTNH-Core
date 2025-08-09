@@ -13,7 +13,6 @@
     "adastra.TemperatureApilmplMixin",
     "apotheosis.EarthsBoonEnchantMixin",
     "gtceu.GTItemMixin",
-    "gtceu.GTMaterialMixin",
     "gtceu.TagPrefixMixin",
     "gtnn.GTNNComponentAssemblyLineMixin",
     "jei.GTRecipeWidgetMixin",

@@ -5,19 +5,55 @@ import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
 import dev.arbor.gtnn.data.GTNNMaterials;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
+import io.github.cpearl0.ctnhcore.api.data.material.CatalystProperty;
 import io.github.cpearl0.ctnhcore.data.CTNHMaterialFlags;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys.CATALYST;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
 
 public class GTMaterialAddon {
     public static HazardProperty radioactive(float multiplier) {
         return new HazardProperty(HazardProperty.HazardTrigger.ANY,
                 GTMedicalConditions.CARCINOGEN, multiplier, true);
+    }
+    public static void adjustAluminium(Material raw) {
+        var ores = raw.getProperty(PropertyKey.ORE).getOreByProducts();
+        var newOre = ores.stream().map(ore -> {
+            if (ore.equals(Aluminium)) {
+                return Alumina;
+            }
+            else return ore;
+        }).toList();
+        raw.getProperty(PropertyKey.ORE).getOreByProducts().clear();
+        raw.getProperty(PropertyKey.ORE).setOreByProducts(newOre);
+    }
+    public static void adjustPlatinum(Material raw) {
+        var ores = raw.getProperty(PropertyKey.ORE).getOreByProducts();
+        var newOre = ores.stream().map(ore -> {
+            if (ore.equals(Platinum)) {
+                return PlatinumMetal;
+            }
+            else return ore;
+        }).toList();
+        raw.getProperty(PropertyKey.ORE).getOreByProducts().clear();
+        raw.getProperty(PropertyKey.ORE).setOreByProducts(newOre);
+    }
+    public static void adjustPalladium(Material raw) {
+        var ores = raw.getProperty(PropertyKey.ORE).getOreByProducts();
+        var newOre = ores.stream().map(ore -> {
+            if (ore.equals(Palladium)) {
+                return PalladiumMetal;
+            }
+            else return ore;
+        }).toList();
+        raw.getProperty(PropertyKey.ORE).getOreByProducts().clear();
+        raw.getProperty(PropertyKey.ORE).setOreByProducts(newOre);
     }
     public static void init() {
         Duranium.addFlags(GENERATE_FRAME);
@@ -184,5 +220,63 @@ public class GTMaterialAddon {
         Phosphorus.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
 
         RefineryGas.getProperty(PropertyKey.FLUID).getQueuedBuilder(FluidStorageKeys.GAS).density(-10).block();
+
+        Neutronium.setProperty(
+                PropertyKey.BLAST,
+                new BlastProperty(9000, BlastProperty.GasTier.HIGHEST, 491250, 144 * 20, -1, -1)
+        );
+        NaquadahEnriched.addFlags(GENERATE_BOLT_SCREW);
+        Europium.addFlags(GENERATE_BOLT_SCREW);
+        Brass.addFlags(GENERATE_DENSE);
+        Aluminium.addFlags(GENERATE_DENSE);
+        Steel.addFlags(GENERATE_DENSE);
+        Lanthanum.addFlags(GENERATE_DENSE);
+        Iridium.addFlags(GENERATE_DENSE);
+        Lead.addFlags(GENERATE_DENSE);
+        SteelMagnetic.addFlags(GENERATE_PLATE);
+        NeodymiumMagnetic.addFlags(GENERATE_PLATE);
+        NaquadahEnriched.addFlags(GENERATE_LONG_ROD);
+        NickelZincFerrite.addFlags(GENERATE_LONG_ROD);
+        BlueAlloy.addFlags(GENERATE_FRAME);
+        Polybenzimidazole.addFlags(GENERATE_FRAME);
+        Nichrome.addFlags(GENERATE_GEAR);
+        Zeron100.addFlags(GENERATE_GEAR);
+        Aluminium.addFlags(GENERATE_ROTOR);
+        Iridium.addFlags(GENERATE_ROTOR);
+        Iridium.addFlags(GENERATE_SMALL_GEAR);
+        addGas(Oganesson);
+        addGas(Calcium);
+        addFluid(Californium);
+        addFluid(Caesium);
+        addFluid(AmmoniumChloride);
+        addDust(Praseodymium);
+
+        OrangeMetal.setProperty(CATALYST, new CatalystProperty(100));
+
+        adjustAluminium(Almandine);
+        adjustAluminium(Emerald);
+        adjustAluminium(GreenSapphire);
+        adjustAluminium(Sapphire);
+        adjustAluminium(Spodumene);
+        adjustAluminium(GlauconiteSand);
+        adjustAluminium(Pollucite);
+        adjustAluminium(Bentonite);
+        adjustAluminium(FullersEarth);
+        adjustAluminium(Kyanite);
+        adjustAluminium(Mica);
+        adjustAluminium(Zeolite);
+
+        adjustPlatinum(Nickel);
+
+        adjustPalladium(Cooperite);
+        adjustPalladium(Platinum);
+        var oreProp = Platinum.getProperty(PropertyKey.ORE);
+        oreProp.setDirectSmeltResult(PlatinumMetal);
+
+        oreProp = Naquadah.getProperty(PropertyKey.ORE);
+        oreProp.getOreByProducts().clear();
+        oreProp.setOreByProducts(Sulfur, Barite, EnrichedNaquadahOxideMixture);
+        oreProp.getSeparatedInto().clear();
+        oreProp.setSeparatedInto(EnrichedNaquadahOxideMixture);
     }
 }

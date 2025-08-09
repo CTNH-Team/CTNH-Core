@@ -286,6 +286,14 @@ public class ChineseLangHandler {
         provider.add("gtceu.gaia_reactor", "盖亚反应");
         provider.add("gtceu.greenhouse", "温室");
         provider.add("gtceu.meteor_capturer", "集成式坠星位标");
+        provider.add("gtceu.component_assembly_line", "部件装配线");
+        provider.add("gtceu.circuit_assembly_line", "电路装配线");
+        provider.add("gtceu.chemical_plant", "化工厂");
+        provider.add("gtceu.neutron_activator", "中子活化");
+        provider.add("gtceu.large_naquadah_reactor", "大型硅岩反应");
+        provider.add("gtceu.dehydrator", "脱水");
+        provider.add("gtceu.naquadah_reactor", "硅岩反应");
+        provider.add("gtceu.rocket_engine", "火箭引擎");
 
         provider.add("ctnh.test_terminal.lack_error","在%s处缺少");
         provider.add("ctnh.test_terminal.wrong_error","在%s处应为");
