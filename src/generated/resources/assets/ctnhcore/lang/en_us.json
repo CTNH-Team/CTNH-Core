@@ -434,6 +434,7 @@
   "ctnh.multiblock.meadow.tooltip.0": "Automated Pasture",
   "ctnh.multiblock.meadow.tooltip.1": "Can only raise chickens, cows, pigs and sheep. Cows produce leather, sheep produce wool, pigs produce pork and chickens produce eggs.",
   "ctnh.multiblock.meadow.tooltip.2": "The more animals in the pasture, the more waste they generate. The more animals you have, the more byproducts are produced.",
+  "ctnh.multiblock.meadow.tooltip.3": "Only when the animals run away can you know that you are not farming!",
   "ctnh.multiblock.mega_lcr.info.coil": "Current Coil Temperature: %s",
   "ctnh.multiblock.mega_lcr.info.speed": "Current Recipe Time Multiplier: %s",
   "ctnh.multiblock.mega_lcr.tooltip.0": "For each actual parallel operation, reduces energy consumption by 2% (up to 75% max) and processing time by 2% (up to 75% max) while the machine is running",

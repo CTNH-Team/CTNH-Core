@@ -25,11 +25,11 @@ public class IDataItem extends ComponentItem implements IInteractionItem {
         if(nbt.contains("formula"))
         {
             var formula=nbt.getLongArray("formula");
-            tooltipComponents.add(Component.translatable("ctnh.data.tip1",String.format("%d",formula[0]),String.format("%d",formula[1]),String.format("%d",formula[2])));
+            tooltipComponents.add(Component.translatable("ctnh.item.data.tip1",String.format("%d",formula[0]),String.format("%d",formula[1]),String.format("%d",formula[2])));
         }
         if(nbt.contains("muti"))
         {
-            tooltipComponents.add(Component.translatable("ctnh.data.muti",String.format("%.2f",nbt.getDouble("muti"))));
+            tooltipComponents.add(Component.translatable("ctnh.item.data.tip2",String.format("%.2f",nbt.getDouble("muti"))));
         }
         if(nbt.contains("noise"))
         {

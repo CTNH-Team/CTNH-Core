@@ -56,6 +56,9 @@ public class GTMaterialAddon {
         raw.getProperty(PropertyKey.ORE).setOreByProducts(newOre);
     }
     public static void init() {
+        var ore = new OreProperty();
+        ore.addOreByProducts(Arsenic);
+        ArsenicTrioxide.setProperty(PropertyKey.ORE, ore);
         Duranium.addFlags(GENERATE_FRAME);
         Naquadria.addFlags(GENERATE_FRAME);
         NaquadahEnriched.addFlags(GENERATE_FRAME);
