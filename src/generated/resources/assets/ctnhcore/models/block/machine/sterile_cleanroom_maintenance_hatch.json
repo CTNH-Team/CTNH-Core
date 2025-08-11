@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:block/block",
+  "loader": "gtceu:machine",
+  "machine": "ctnhcore:sterile_cleanroom_maintenance_hatch",
+  "replaceable_textures": [
+    "bottom",
+    "top",
+    "side"
+  ],
+  "variants": {
+    "taped=false": {
+      "model": {
+        "parent": "ctnhcore:block/machine/part/sterile_cleanroom_maintenance_hatch",
+        "textures": {
+          "bottom": "gtceu:block/casings/voltage/uhv/bottom",
+          "side": "gtceu:block/casings/voltage/uhv/side",
+          "top": "gtceu:block/casings/voltage/uhv/top"
+        }
+      }
+    },
+    "taped=true": {
+      "model": {
+        "parent": "ctnhcore:block/machine/part/sterile_cleanroom_maintenance_hatch",
+        "textures": {
+          "bottom": "gtceu:block/casings/voltage/uhv/bottom",
+          "side": "gtceu:block/casings/voltage/uhv/side",
+          "top": "gtceu:block/casings/voltage/uhv/top"
+        }
+      }
+    }
+  }
+}

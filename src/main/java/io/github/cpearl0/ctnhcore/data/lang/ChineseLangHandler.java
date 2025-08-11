@@ -1126,7 +1126,7 @@ public class ChineseLangHandler {
             provider.add(CTNHMachines.HIGH_PERFORMANCE_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + "§r高性能计算机");
         }
 
-//        provider.add(CTNHMachines.STERILE_CLEANROOM_MAINTENANCE_HATCH.getBlock(), "无菌超净间维护仓");
+        provider.add(CTNHMachines.STERILE_CLEANROOM_MAINTENANCE_HATCH.getBlock(), "无菌超净间维护仓");
 
         provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[LV].getBlock(), "基础数字化苦难之井");
         provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[MV].getBlock(), "§b进阶数字化苦难之井§r");
