@@ -9,6 +9,7 @@ import io.github.cpearl0.ctnhcore.data.recipe.generated.HyperRotorRecipes;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.Consumer;
 
@@ -59,6 +60,11 @@ public class CTNHCoreGTAddon implements IGTAddon {
     }
 
     @Override
+    public void removeRecipes(Consumer<ResourceLocation> consumer) {
+        RecipeRemoval.init(consumer);
+    }
+
+    @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
         UnderfloorHeatingSystemRecipes.init(provider);
         AstronomicalObservatoryRecipes.init(provider);
@@ -80,5 +86,6 @@ public class CTNHCoreGTAddon implements IGTAddon {
         ManaCondenserRecipes.init(provider);
         BotaniaRecipes.init(provider);
         HyperRotorRecipes.registerAll(provider);
+        PlatinumRefiningRecipes.init(provider);
     }
 }
