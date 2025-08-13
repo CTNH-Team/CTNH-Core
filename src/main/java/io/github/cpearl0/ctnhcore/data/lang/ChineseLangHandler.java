@@ -916,7 +916,6 @@ public class ChineseLangHandler {
         provider.add("ctnh.lasersorter.tooltip.10","输入的算力每比基础算力多一倍，将一次超频转化为无损超频（即运行速度*2），该效果转化的次数不超过你能超频的等级（即上限为将你所有的有损超频转化为无损）");
         provider.add("ctnh.lasersorter.tooltip.11","§c如果输入的算力不为整数倍，则以上所有的增益全部无效且最终所需时间*4");
 
-        provider.add("ctnh.ls.cwut","所需的基础算力：%d");
         provider.add("ctnh.drone_tier","无人机等级：%d");
         provider.add("ctnh.drone_eut","单个无人机产生的电压: %dEU/t");
         provider.add("ctnh.drone_durability","无人机最大耐久:%d");
