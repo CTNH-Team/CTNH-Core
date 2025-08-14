@@ -65,6 +65,7 @@ import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWor
 import static com.hollingsworth.arsnouveau.setup.registry.BlockRegistry.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
+import static io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips.MANA_MACHINE;
 import static io.github.cpearl0.ctnhcore.utils.ModUtils.BotaniaRL;
 import static net.minecraft.world.level.block.Blocks.*;
 
@@ -927,13 +928,13 @@ public class MultiblocksB {
             .recipeType(CTNHRecipeTypes.ARC_GENERATOR)
             .generator(true)
             .recipeModifier(Arc_Generator::recipeModifier, true)
-            .tooltips(Component.translatable("ctnh.arcgenerator.1"),
-                    Component.translatable("ctnh.arcgenerator.arc.t1.1"),
-                    Component.translatable("ctnh.arcgenerator.arc.t1.2"),
-                    Component.translatable("ctnh.arcgenerator.2"),
-                    Component.translatable("ctnh.arcgenerator.3"),
-                    Component.translatable("ctnh.arcgenerator.4"),
-                    Component.translatable("ctnh.arcgenerator.5")
+            .tooltips(Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.1"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.arc.t1.1"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.arc.t1.2"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.2"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.3"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.4"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.5")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "###B#############B###", "#####################", "#####################", "#####################").aisle("#####################", "#####################", "#####################", "#####################", "#####################", "###B#############B###", "##BCB###########BCB##", "###B#############B###", "#####################", "#####################")
@@ -978,13 +979,13 @@ public class MultiblocksB {
             .recipeType(CTNHRecipeTypes.ARC_GENERATOR)
             .generator(true)
             .recipeModifier(Arc_Generator::recipeModifier, true)
-            .tooltips(Component.translatable("ctnh.arcgenerator.t2.1"),
-                    Component.translatable("ctnh.arcgenerator.arc.t2.1"),
-                    Component.translatable("ctnh.arcgenerator.arc.t2.2"),
-                    Component.translatable("ctnh.arcgenerator.2"),
-                    Component.translatable("ctnh.arcgenerator.3"),
-                    Component.translatable("ctnh.arcgenerator.4"),
-                    Component.translatable("ctnh.arcgenerator.5")
+            .tooltips(Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.t2.1"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.arc.t2.1"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.arc.t2.2"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.2"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.3"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.4"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.5")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "###B#############B###", "#####################", "#####################", "#####################").aisle("#####################", "#####################", "#####################", "#####################", "#####################", "###B#############B###", "##BCB###########BCB##", "###B#############B###", "#####################", "#####################")
@@ -1029,13 +1030,13 @@ public class MultiblocksB {
             .recipeType(CTNHRecipeTypes.ARC_GENERATOR)
             .generator(true)
             .recipeModifier(Arc_Generator::recipeModifier, true)
-            .tooltips(Component.translatable("ctnh.arcgenerator.t3.1"),
-                    Component.translatable("ctnh.arcgenerator.arc.t3.1"),
-                    Component.translatable("ctnh.arcgenerator.arc.t3.2"),
-                    Component.translatable("ctnh.arcgenerator.2"),
-                    Component.translatable("ctnh.arcgenerator.3"),
-                    Component.translatable("ctnh.arcgenerator.4"),
-                    Component.translatable("ctnh.arcgenerator.5")
+            .tooltips(Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.t3.1"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.arc.t3.1"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.arc.t3.2"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.2"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.3"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.4"),
+                    Component.translatable("ctnh.mutiblock.arcgenerator.tooltip.5")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "###B#############B###", "#####################", "#####################", "#####################").aisle("#####################", "#####################", "#####################", "#####################", "#####################", "###B#############B###", "##BCB###########BCB##", "###B#############B###", "#####################", "#####################")
@@ -1079,9 +1080,9 @@ public class MultiblocksB {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ARC_REACTOR)
             .recipeModifier(Arc_Reactor::recipeModifier)
-            .tooltips(Component.translatable("ctnh.arcreactor.1"),
-                    Component.translatable("ctnh.arcreactor.2"),
-                    Component.translatable("ctnh.arcreactor.t1")
+            .tooltips(Component.translatable("ctnh.mutiblock.tooltip.arcreactor.1"),
+                    Component.translatable("ctnh.mutiblock.tooltip.arcreactor.2"),
+                    Component.translatable("ctnh.mutiblock.tooltip.arcreactor.t1")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#########B########", "#########B########", "#########B########", "#########B########", "#########B########", "#########B########", "##################", "##################")
@@ -1114,11 +1115,8 @@ public class MultiblocksB {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.MAGIC_FUEL_GENERATOR)
             .recipeModifiers(ManaMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(Component.translatable("ctnh.magic.generator"),
-                    Component.translatable("ctnh.magic.generator.1"),
-                    Component.translatable("ctnh.perfect_overclock"),
-                    Component.translatable("ctnh.manamachine.parallel")
-            )
+            .tooltips(Component.translatable("ctnh.mutiblock.magic_fuel_generator.tip"))
+            .tooltips(CTNHCommonTooltips.MANA_MACHINE)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("##BBB##", "##BBB##", "##BBB##", "###D###", "###D###", "###B###")
                     .aisle("##BEB##", "##FGF##", "##FHF##", "##FHF##", "##FGF##", "##BIB##")
@@ -1477,10 +1475,10 @@ public class MultiblocksB {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ETERNAL_GARDEN)
             .recipeModifiers(EternalGarden::recipeModifier)
-            .tooltips(Component.translatable("ctnh.eternalgarden.tooltip.1"),
-                    Component.translatable("ctnh.eternalgarden.tooltip.2"),
-                    Component.translatable("ctnh.eternalgarden.tooltip.3"),
-                    Component.translatable("ctnh.eternalgarden.tooltip.unknown")
+            .tooltips(Component.translatable("ctnh.mutiblock.eternalgarden.tooltip.1"),
+                    Component.translatable("ctnh.mutiblock.eternalgarden.tooltip.2"),
+                    Component.translatable("ctnh.mutiblock.eternalgarden.tooltip.3"),
+                    Component.translatable("ctnh.mutiblock.eternalgarden.tooltip.unknown")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("A###################BBBBBBB###################A", "####################BBBBBBB####################", "####################BBBBBBB####################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "A#############################################A")
@@ -1588,18 +1586,18 @@ public class MultiblocksB {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GCYMRecipeTypes.ALLOY_BLAST_RECIPES)
             .recipeModifiers(Plasma_alloy_blast::recipeModifier, GTRecipeModifiers::ebfOverclock)
-            .tooltips(Component.translatable("ctnh.plasma_alloy.tooltip.1"),
-                    Component.translatable("ctnh.plasma_alloy.tooltip.11"),
-                    Component.translatable("ctnh.plasma_alloy.tooltip.recipe"),
-                    Component.translatable("ctnh.plasma_alloy.tooltip.2"),
-                    Component.translatable("ctnh.plasma_alloy.tooltip.3"),
-                    Component.translatable("ctnh.plasma_alloy.tooltip.4"),
-                    Component.translatable("ctnh.plasma_alloy.tooltip.5"),
-                    Component.translatable("ctnh.plasma_alloy.tooltip.6"),
-                    Component.translatable("ctnh.plasma_alloy.tooltip.7"),
-                    Component.translatable("ctnh.plasma_alloy.tooltip.8"),
-                    Component.translatable("ctnh.plasma_alloy.tooltip.9"),
-                    Component.translatable("ctnh.plasma_alloy.tooltip.10")
+            .tooltips(Component.translatable("ctnh.mutiblock.plasma_alloy.tooltip.1"),
+                    Component.translatable("ctnh.mutiblock.plasma_alloy.tooltip.11"),
+                    Component.translatable("ctnh.mutiblock.plasma_alloy.tooltip.recipe"),
+                    Component.translatable("ctnh.mutiblock.plasma_alloy.tooltip.2"),
+                    Component.translatable("ctnh.mutiblock.plasma_alloy.tooltip.3"),
+                    Component.translatable("ctnh.mutiblock.plasma_alloy.tooltip.4"),
+                    Component.translatable("ctnh.mutiblock.plasma_alloy.tooltip.5"),
+                    Component.translatable("ctnh.mutiblock.plasma_alloy.tooltip.6"),
+                    Component.translatable("ctnh.mutiblock.plasma_alloy.tooltip.7"),
+                    Component.translatable("ctnh.mutiblock.plasma_alloy.tooltip.8"),
+                    Component.translatable("ctnh.mutiblock.plasma_alloy.tooltip.9"),
+                    Component.translatable("ctnh.mutiblock.plasma_alloy.tooltip.10")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("A####BBBBBBB####A", "#####BBBBBBB#####", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################")
@@ -1760,32 +1758,33 @@ public class MultiblocksB {
                     .build())
             .workableCasingModel(CTNHCore.id("block/casings/osmiridium_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
-    //    public final static MultiblockMachineDefinition COMPONENT_ASSEMBLY_LINE_CT = REGISTRATE.multiblock("component_assembly_line_ct", Hybrid_Power_Mixer::new)
-//            .rotationState(RotationState.NON_Y_AXIS)
-//            .recipeModifiers(Hybrid_Power_Mixer::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
-//            .tooltips(Component.translatable("ctnh.hybrid_mixer.0"),
-//                    Component.translatable("ctnh.hybrid_mixer.1"),
-//                    Component.translatable("ctnh.hybrid_mixer.2"),
-//                    Component.translatable("ctnh.hybrid_mixer.3"),
-//                    Component.translatable("ctnh.hybrid_mixer.4")
-//            )
-//            .pattern(definition -> FactoryBlockPattern.start()
-//                    .aisle("ABBBBBBBBBA", "ACCCCCCCCCA", "@AAAAAAAAAA", "A#########A")
-//                    .aisle("ADDDDDDDDDA", "B#########B", "AEEEEEEEEEA", "AAAAAAAAAAA")
-//                    .aisle("ABBBBBBBBBA", "ACCCCCCCCCA", "AAAAAAAAAAA", "A#########A")
-//                    .where("A", Predicates.blocks(AllBlocks.RAILWAY_CASING.get())
-//                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-//                            .or(Predicates.abilities(CTPPPartAbility.INPUT_KINETIC)))
-//                    .where("B", Predicates.blocks(CASING_OSMIRIDIUM.get()))
-//                    .where("C", Predicates.blocks(FUSION_GLASS.get()))
-//                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-//                    .where("#", Predicates.any())
-//                    .where("D", Predicates.blocks(AllBlocks.RAILWAY_CASING.get()))
-//                    .where("E", Predicates.blocks(AllBlocks.DEPLOYER.get()))
-//                    .build())
-//
-//            .workableCasingModel(CTPP.id("block/create/railway_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
-//            .register();
+        public final static MultiblockMachineDefinition COMPONENT_ASSEMBLY_LINE_CT = REGISTRATE.multiblock("component_assembly_line_ct", Hybrid_Power_Mixer::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+                .recipeTypes(CTNHRecipeTypes.PVB_RECIPE, CTNHRecipeTypes.CHEMICAL_VAPOR_DEPOSITION)
+            .recipeModifiers(Hybrid_Power_Mixer::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.mutiblock.hybrid_mixer.tooltip.0"),
+                    Component.translatable("ctnh.mutiblock.hybrid_mixer.tooltip.1"),
+                    Component.translatable("ctnh.mutiblock.hybrid_mixer.tooltip.2"),
+                    Component.translatable("ctnh.mutiblock.hybrid_mixer.tooltip.3"),
+                    Component.translatable("ctnh.mutiblock.hybrid_mixer.tooltip.4")
+            )
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("ABBBBBBBBBA", "ACCCCCCCCCA", "@AAAAAAAAAA", "A#########A")
+                    .aisle("ADDDDDDDDDA", "B#########B", "AEEEEEEEEEA", "AAAAAAAAAAA")
+                    .aisle("ABBBBBBBBBA", "ACCCCCCCCCA", "AAAAAAAAAAA", "A#########A")
+                    .where("A", Predicates.blocks(AllBlocks.RAILWAY_CASING.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(CTPPPartAbility.INPUT_KINETIC)))
+                    .where("B", Predicates.blocks(CASING_OSMIRIDIUM.get()))
+                    .where("C", Predicates.blocks(FUSION_GLASS.get()))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("#", Predicates.any())
+                    .where("D", Predicates.blocks(AllBlocks.RAILWAY_CASING.get()))
+                    .where("E", Predicates.blocks(AllBlocks.DEPLOYER.get()))
+                    .build())
+
+            .workableCasingModel(CTPP.id("block/create/railway_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
+            .register();
     public final static MultiblockMachineDefinition COMBINED_VAPOR_DEPOSITION_FACILITY = REGISTRATE.multiblock("combined_vapor_deposition_facility", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.PVB_RECIPE, CTNHRecipeTypes.CHEMICAL_VAPOR_DEPOSITION)
@@ -1818,18 +1817,18 @@ public class MultiblocksB {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.LS_RECIPE,GTRecipeTypes.LASER_ENGRAVER_RECIPES)
             .recipeModifiers(LaserSorter::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(Component.translatable("ctnh.lasersorter.tooltip.0"),
-                    Component.translatable("ctnh.lasersorter.tooltip.1"),
-                    Component.translatable("ctnh.lasersorter.tooltip.2"),
-                    Component.translatable("ctnh.lasersorter.tooltip.3"),
-                    Component.translatable("ctnh.lasersorter.tooltip.4"),
-                    Component.translatable("ctnh.lasersorter.tooltip.5"),
-                    Component.translatable("ctnh.lasersorter.tooltip.6"),
-                    Component.translatable("ctnh.lasersorter.tooltip.7"),
-                    Component.translatable("ctnh.lasersorter.tooltip.8"),
-                    Component.translatable("ctnh.lasersorter.tooltip.9"),
-                    Component.translatable("ctnh.lasersorter.tooltip.10"),
-                    Component.translatable("ctnh.lasersorter.tooltip.11")
+            .tooltips(Component.translatable("ctnh.mutiblock.lasersorter.tooltip.0"),
+                    Component.translatable("ctnh.mutiblock.lasersorter.tooltip.1"),
+                    Component.translatable("ctnh.mutiblock.lasersorter.tooltip.2"),
+                    Component.translatable("ctnh.mutiblock.lasersorter.tooltip.3"),
+                    Component.translatable("ctnh.mutiblock.lasersorter.tooltip.4"),
+                    Component.translatable("ctnh.mutiblock.lasersorter.tooltip.5"),
+                    Component.translatable("ctnh.mutiblock.lasersorter.tooltip.6"),
+                    Component.translatable("ctnh.mutiblock.lasersorter.tooltip.7"),
+                    Component.translatable("ctnh.mutiblock.lasersorter.tooltip.8"),
+                    Component.translatable("ctnh.mutiblock.lasersorter.tooltip.9"),
+                    Component.translatable("ctnh.mutiblock.lasersorter.tooltip.10"),
+                    Component.translatable("ctnh.mutiblock.lasersorter.tooltip.11")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAA", "AABBBAA", "AABBBAA", "AABBBAA", "AAAAAAA")
@@ -1858,13 +1857,13 @@ public class MultiblocksB {
             .generator(true)
             .recipeTypes(CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR, CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER)
             .recipeModifier(SpacePhotovoltaicBaseStation::recipeModifier,true)
-            .tooltips(Component.translatable("ctnh.spacephotovoltaicbasestation.tooltip.0"),
-                    Component.translatable("ctnh.spacephotovoltaicbasestation.tooltip.1"),
-                    Component.translatable("ctnh.spacephotovoltaicbasestation.tooltip.2"),
-                    Component.translatable("ctnh.spacephotovoltaicbasestation.tooltip.3"),
-                    Component.translatable("ctnh.spacephotovoltaicbasestation.tooltip.4"),
-                    Component.translatable("ctnh.spacephotovoltaicbasestation.tooltip.5"),
-                    Component.translatable("ctnh.spacephotovoltaicbasestation.tooltip.ex")
+            .tooltips(Component.translatable("ctnh.mutiblock.spacephotovoltaicbasestation.tooltip.0"),
+                    Component.translatable("ctnh.mutiblock.spacephotovoltaicbasestation.tooltip.1"),
+                    Component.translatable("ctnh.mutiblock.spacephotovoltaicbasestation.tooltip.2"),
+                    Component.translatable("ctnh.mutiblock.spacephotovoltaicbasestation.tooltip.3"),
+                    Component.translatable("ctnh.mutiblock.spacephotovoltaicbasestation.tooltip.4"),
+                    Component.translatable("ctnh.mutiblock.spacephotovoltaicbasestation.tooltip.5"),
+                    Component.translatable("ctnh.mutiblock.spacephotovoltaicbasestation.tooltip.ex")
 
             )
             .pattern(definition -> FactoryBlockPattern.start()
@@ -1924,11 +1923,11 @@ public class MultiblocksB {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.PVDRONE)
             .recipeModifiers(PhotoVoltaicDroneStation::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(Component.translatable("ctnh.pvdrone.0"),
-                    Component.translatable("ctnh.pvdrone.1"),
-                    Component.translatable("ctnh.pvdrone.2"),
-                    Component.translatable("ctnh.pvdrone.3"),
-                    Component.translatable("ctnh.pvdrone.4")
+            .tooltips(Component.translatable("ctnh.mutiblock.pvdrone.tooltip.0"),
+                    Component.translatable("ctnh.mutiblock.pvdrone.tooltip.1"),
+                    Component.translatable("ctnh.mutiblock.pvdrone.tooltip.2"),
+                    Component.translatable("ctnh.mutiblock.pvdrone.tooltip.3"),
+                    Component.translatable("ctnh.mutiblock.pvdrone.tooltip.4")
 
 
             )
@@ -2048,9 +2047,9 @@ public class MultiblocksB {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.VACUUM_RECIPES)
             .recipeModifiers(CryotheumFreezer::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(Component.translatable("ctnh.cryotheum.0"),
-                    Component.translatable("ctnh.cryotheum.1"),
-                    Component.translatable("ctnh.cryotheum.2"))
+            .tooltips(Component.translatable("cryotheum_freezer.tip.0"),
+                    Component.translatable("cryotheum_freezer.tip.1"),
+                    Component.translatable("cryotheum_freezer.tip.2"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAA", "BBB", "AAA")
                     .aisle("AAA", "B#B", "AAA")
@@ -2138,25 +2137,25 @@ public class MultiblocksB {
             .recipeType(CTNHRecipeTypes.COMPILER_RECIPE)
             .appearanceBlock(CASING_ANTIFREEZE_HEATPROOF_MACHINE)
             .recipeModifiers(NeuroMatrixCompiler::recipeModifier)
-            .tooltips(Component.translatable("ctnh.compiler.0"),
-                    Component.translatable("ctnh.compiler.01"),
-                    Component.translatable("ctnh.compiler.1"),
-                    Component.translatable("ctnh.compiler.2"),
-                    Component.translatable("ctnh.compiler.3"),
-                    Component.translatable("ctnh.compiler.4"),
-                    Component.translatable("ctnh.compiler.5"),
-                    Component.translatable("ctnh.compiler.6"),
-                    Component.translatable("ctnh.compiler.part1"),
-                    Component.translatable("ctnh.compiler.part2"),
-                    Component.translatable("ctnh.compiler.part3"),
-                    Component.translatable("ctnh.compiler.part4"),
-                    Component.translatable("ctnh.compiler.7"),
-                    Component.translatable("ctnh.compiler.8"),
-                    Component.translatable("ctnh.compiler.9"),
-                    Component.translatable("ctnh.compiler.10"),
-                    Component.translatable("ctnh.compiler.11"),
+            .tooltips(Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.0"),
+                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.01"),
+                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.1"),
+                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.2"),
+                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.3"),
+                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.4"),
+                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.5"),
+                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.6"),
+                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.part1"),
+                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.part2"),
+                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.part3"),
+                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.part4"),
+                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.7"),
+                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.8"),
+                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.9"),
+                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.10"),
+                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.11"),
 
-                    Component.translatable("ctnh.compiler.12"))
+                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.12"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("A############BBBBB#############", "#############CCDCC#############", "#############B#B#B#############", "###############################", "###############################", "###############################", "##############B#B##############", "#############CCCCC#############", "#############BBBBB#############")
                     .aisle("#############BBBBB#############", "#############CEFEC#############", "##############EFE##############", "##############EFE##############", "##############EFE##############", "##############EFE##############", "#############BEFEB#############", "#############CEFEC#############", "#############BBBBB#############")
@@ -2217,9 +2216,7 @@ public class MultiblocksB {
                     Component.translatable("zenith_extruder"),
                     Component.translatable("zenith_extruder.1"),
                     Component.translatable("zenith_extruder.2"),
-                    Component.translatable("ctnh.zenith_machine_tip"),
-                    Component.translatable("ctnh.zenith_waring"),
-                    Component.translatable("ctnh.perfect_overclock"))
+                    CTNHCommonTooltips.PERFECT_OVERCLOCK)
 
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("A#BBBBB##", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########")

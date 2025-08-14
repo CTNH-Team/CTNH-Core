@@ -1,5 +1,5 @@
 {
-  "parent": "gtceu:block/cube/all",
+  "parent": "block/cube_all",
   "textures": {
     "all": "ctnhcore:block/arc_cell_active"
   }

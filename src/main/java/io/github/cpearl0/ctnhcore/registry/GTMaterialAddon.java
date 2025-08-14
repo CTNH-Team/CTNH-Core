@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
 import dev.arbor.gtnn.data.GTNNMaterials;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
@@ -20,6 +21,9 @@ public class GTMaterialAddon {
                 GTMedicalConditions.CARCINOGEN, multiplier, true);
     }
     public static void init() {
+        var ore = new OreProperty();
+        ore.addOreByProducts(Arsenic);
+        ArsenicTrioxide.setProperty(PropertyKey.ORE, ore);
         Duranium.addFlags(GENERATE_FRAME);
         Naquadria.addFlags(GENERATE_FRAME);
         NaquadahEnriched.addFlags(GENERATE_FRAME);
