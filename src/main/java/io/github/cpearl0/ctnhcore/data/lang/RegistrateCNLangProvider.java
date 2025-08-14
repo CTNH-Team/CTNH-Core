@@ -65,7 +65,7 @@ public class RegistrateCNLangProvider extends LanguageProvider implements Regist
         this.addTooltip(block, tooltip);
     }
 
-    public void addBlockWithTooltip(NonNullSupplier<? extends Block> block, String name, String tooltip) {
+    public void addBlockWithTooltip(NonNullSupplier<? extends Block> block, String name, List<String> tooltip) {
         this.addBlock(block, name);
         this.addTooltip(block, tooltip);
     }

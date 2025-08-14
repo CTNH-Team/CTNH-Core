@@ -5,10 +5,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
-import dev.arbor.gtnn.data.GTNNMaterials;
-import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.api.data.material.CatalystProperty;
 import io.github.cpearl0.ctnhcore.data.CTNHMaterialFlags;
 
@@ -120,12 +117,8 @@ public class GTMaterialAddon {
         Protactinium.setProperty(PropertyKey.HAZARD, radioactive(1));
         Protactinium.addFlags(CTNHMaterialFlags.GENERATE_WASTE,GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD, GENERATE_FOIL, GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_SMALL_GEAR);
         Thorium.addFlags(CTNHMaterialFlags.GENERATE_WASTE,GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD, GENERATE_FOIL, GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_SMALL_GEAR);
-        Thorium.setProperty(PropertyKey.INGOT, new IngotProperty());
-        Thorium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         Thorium.setProperty(PropertyKey.HAZARD, radioactive(1));
         Americium.addFlags(CTNHMaterialFlags.GENERATE_WASTE,GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD, GENERATE_FOIL, GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_SMALL_GEAR);
-        Americium.setProperty(PropertyKey.INGOT, new IngotProperty());
-        Americium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         Americium.setProperty(PropertyKey.HAZARD, radioactive(1));
         Neptunium.addFlags(CTNHMaterialFlags.GENERATE_WASTE,GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD, GENERATE_FOIL, GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_SMALL_GEAR);
         Neptunium.setProperty(PropertyKey.INGOT, new IngotProperty());
@@ -254,7 +247,6 @@ public class GTMaterialAddon {
         addFluid(AmmoniumChloride);
         addDust(Praseodymium);
 
-        OrangeMetal.setProperty(CATALYST, new CatalystProperty(100));
 
         adjustAluminium(Almandine);
         adjustAluminium(Emerald);
@@ -273,10 +265,7 @@ public class GTMaterialAddon {
 
         adjustPalladium(Cooperite);
         adjustPalladium(Platinum);
-        var oreProp = Platinum.getProperty(PropertyKey.ORE);
-        oreProp.setDirectSmeltResult(PlatinumMetal);
-
-        oreProp = Naquadah.getProperty(PropertyKey.ORE);
+        var oreProp = Naquadah.getProperty(PropertyKey.ORE);
         oreProp.getOreByProducts().clear();
         oreProp.setOreByProducts(Sulfur, Barite, EnrichedNaquadahOxideMixture);
         oreProp.getSeparatedInto().clear();

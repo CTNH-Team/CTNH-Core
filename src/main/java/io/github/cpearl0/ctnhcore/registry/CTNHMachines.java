@@ -20,16 +20,14 @@ import com.gregtechceu.gtceu.client.renderer.machine.*;
 import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
+import com.gregtechceu.gtceu.common.data.models.GTModels;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.*;
 import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
 import io.github.cpearl0.ctnhcore.common.machine.simple.SimpleComputationMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CircuitBusPartMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CompilerMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.DroneHolderMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.DigitalWosMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.HighPerformanceComputerMachine;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
@@ -55,6 +53,41 @@ public class CTNHMachines {
         REGISTRATE.creativeModeTab(() -> CTNHCreativeModeTabs.MACHINE);
     }
 
+    public static final MachineDefinition HIGH_SPEED_PIPE_BLOCK = REGISTRATE.machine("high_speed_pipe_block", HighSpeedPipeBlock::new)
+            .blockModel(GTModels.cubeAllModel(CTNHCore.id("block/speedingpipe")))
+            .itemBuilder(item -> item.model((ctx, prov) -> prov.withExistingParent(ctx.getName(), CTNHCore.id("block/" + ctx.getName()))))
+        .rotationState(RotationState.Y_AXIS).register();
+    public static final MachineDefinition[] NEUTRON_ACCELERATOR = registerTieredMachines(
+            "neutron_accelerator", NeutronAcceleratorMachine::new, (tier, builder) ->
+                    builder.langValue(VNF[tier] + " Neutron Accelerator").rotationState(RotationState.ALL)
+                    .abilities(CTNHPartAbility.NEUTRON_ACCELERATOR)
+                    .tooltips(Component.translatable("ctnh.machine.neutron_accelerator.tooltip.0"))
+                    .tooltips(Component.translatable("ctnh.machine.neutron_accelerator.tooltip.1", V[tier]))
+                    .tooltips(Component.translatable("ctnh.machine.neutron_accelerator.tooltip.2", V[tier] * 8 / 10))
+                    .tooltips(Component.translatable("ctnh.machine.neutron_accelerator.tooltip.3"))
+                    .colorOverlayTieredHullModel("overlay_na")
+                    .register(), GTValues.tiersBetween(ULV, UV)
+    );
+
+    public static final MachineDefinition NEUTRON_SENSOR = REGISTRATE
+            .machine("neutron_sensor", NeutronSensorMachine::new)
+            .langValue("Neutron Sensor")
+            .tier(IV)
+            .rotationState(RotationState.ALL)
+            .abilities(CTNHPartAbility.NEUTRON_SENSOR)
+            .colorOverlayTieredHullModel("overlay_neutron_sensor", null, "overlay_neutron_sensor_emissive")
+            .tooltips(Component.translatable("block.ctnh.neutron_sensor.tooltip.0"))
+            .tooltips(Component.translatable("block.ctnh.neutron_sensor.tooltip.1")).register();
+
+    public static final MachineDefinition CATALYST_HATCH = REGISTRATE
+            .machine("catalyst_hatch", CatalystHatchPartMachine::new)
+            .langValue("Catalyst Hatch")
+            .tier(IV)
+            .rotationState(RotationState.ALL)
+            .abilities(CTNHPartAbility.CATALYST)
+            .colorOverlayTieredHullModel("overlay_catalyst_in", null, "overlay_catalyst_hatch")
+            .tooltips()
+            .register();
     public static final MachineDefinition[] CIRCUIT_BUS = registerTieredMachines("circuit_bus",
             CircuitBusPartMachine::new,
             (tier, builder) -> builder
@@ -68,7 +101,7 @@ public class CTNHMachines {
                 .langValue("drone Holder")
             .tier(UV)
             .rotationState(RotationState.ALL)
-            .abilities(CTNHPartAbility.Drone)
+            .abilities(CTNHPartAbility.DRONE)
             .workableTieredHullModel(GTCEu.id("block/machine/part/object_holder"))
             .register();
     public static final MachineDefinition[] COMPILERMACHINE = registerTieredMachines("neuro_compiler", CompilerMachine::new,

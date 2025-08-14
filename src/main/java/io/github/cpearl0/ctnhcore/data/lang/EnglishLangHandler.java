@@ -8,17 +8,6 @@ import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
 
 public class EnglishLangHandler {
     public static void init(RegistrateLangProvider provider) {
-        LangHandler.replace(provider, CTNHTagPrefixes.oreHolystone.getUnlocalizedName(), "Holystone %s Ore");
-        LangHandler.replace(provider, CTNHTagPrefixes.oreMossyHolystone.getUnlocalizedName(), "Mossy Holystone %s Ore");
-        LangHandler.replace(provider, CTNHTagPrefixes.oreAstralStone.getUnlocalizedName(), "Astral %s Ore");
-        LangHandler.replace(provider, CTNHTagPrefixes.oreIcestone.getUnlocalizedName(), "Icestone %s Ore");
-        LangHandler.replace(provider, CTNHTagPrefixes.oreLivingrock.getUnlocalizedName(), "Livingrock %s Ore");
-        LangHandler.replace(provider, CTNHTagPrefixes.nuclear.getUnlocalizedName(), "%s");
-        LangHandler.replace(provider, CTNHTagPrefixes.fuel.getUnlocalizedName(), "%s Fuel");
-        LangHandler.replace(provider, CTNHTagPrefixes.DepletedFuel.getUnlocalizedName(), "%s Depleted Fuel");
-        LangHandler.replace(provider, CTNHTagPrefixes.waste.getUnlocalizedName(), "%s Waste");
-        LangHandler.replace(provider, CTNHTagPrefixes.hyperRotor.getUnlocalizedName(), "%s Hyper Rotor");
-
         LangHandler.replace(provider, CTNHMaterials.Moonstone.getUnlocalizedName(), "Moon Stone");
         LangHandler.replace(provider, CTNHMaterials.Marsstone.getUnlocalizedName(), "Mars Stone");
         LangHandler.replace(provider, CTNHMaterials.Venusstone.getUnlocalizedName(), "Venus Stone");

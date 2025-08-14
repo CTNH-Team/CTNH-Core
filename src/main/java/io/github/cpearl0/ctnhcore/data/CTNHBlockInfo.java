@@ -18,19 +18,19 @@ public class CTNHBlockInfo {
 
     }
     static {
-        ASTRAL_STONE = REGISTRATE.block("astral_stone", Block::new)
-                .initialProperties(() -> Blocks.STONE)
-                .blockstate((ctx, prov) -> {
-                    prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll("astral_stone", CTNHCore.id("block/stones/astral_stone")));
-                })
-                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
-                .tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .loot((registrateBlockLootTables, block) -> {
-                    registrateBlockLootTables.add(block, LootBuilder.createSingleItemTableWithSilkTouch(block, ASTRAL_COBBLESTONE.asItem()));
-                })
-                .item(BlockItem::new)
-                .build()
-                .register();
+//        ASTRAL_STONE = REGISTRATE.block("astral_stone", Block::new)
+//                .initialProperties(() -> Blocks.STONE)
+//                .blockstate((ctx, prov) -> {
+//                    prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll("astral_stone", CTNHCore.id("block/stones/astral_stone")));
+//                })
+//                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
+//                .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+//                .loot((registrateBlockLootTables, block) -> {
+//                    registrateBlockLootTables.add(block, LootBuilder.createSingleItemTableWithSilkTouch(block, ASTRAL_COBBLESTONE.asItem()));
+//                })
+//                .item(BlockItem::new)
+//                .build()
+//                .register();
         ASTRAL_DIRT = REGISTRATE.block("astral_dirt", Block::new)
                 .initialProperties(() -> Blocks.DIRT)
                 .blockstate((ctx, prov) -> {

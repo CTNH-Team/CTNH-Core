@@ -31,9 +31,6 @@ public class CTNHAPI {
     public static IMaterialRegistryManager materialManager;
     private static boolean highTier;
     private static boolean highTierInitialized;
-    public static final Map<IPBData, Supplier<PhotovoltaicBlock>> PhotovoltaicBlock = new HashMap();
-    public static final Map<ISSFData,Supplier<SpaceStructuralFramework>> SpaceStructuralFramework =new HashMap();
-    public static final Map<Integer, Supplier<Block>> ReactorCoreBlock = new HashMap();
 
     public CTNHAPI() {
     }

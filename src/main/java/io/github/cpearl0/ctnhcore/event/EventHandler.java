@@ -36,13 +36,8 @@ import java.util.Set;
 public class EventHandler {
     public static void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         CTNHMachines.init();
-        CTNHItems.init();
-        CTNHBlocks.init();
         CTNHMultiblockMachines.init();
         GTMachineModify.init();
-        CTNHBlockEntities.init();
-        AstralBlocks.init();
-        CTNHBlockInfo.init();
     }
 
     public static void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation, GTRecipeType> event) {

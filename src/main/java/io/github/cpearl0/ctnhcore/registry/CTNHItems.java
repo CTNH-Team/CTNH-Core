@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.common.item.TooltipBehavior;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import io.github.cpearl0.ctnhcore.common.item.*;
+import io.github.cpearl0.ctnhcore.data.materials.ChemicalItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -417,6 +418,6 @@ public class CTNHItems {
     }
 
     public static void init() {
-
+        ChemicalItems.init();
     }
 }

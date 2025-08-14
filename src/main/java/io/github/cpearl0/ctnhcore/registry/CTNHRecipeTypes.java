@@ -298,17 +298,6 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
     public static final String KINETIC = "kinetic";
-    public static final GTRecipeType SEASON_STEAM_RECIPES = GTRecipeTypes.register("season_steam",KINETIC)
-            .setMaxIOSize(1, 0, 0, 1)
-            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.TURBINE)
-            .setUiBuilder((recipe, group) -> {
-                var handler = new CustomItemStackHandler(AllBlocks.SHAFT.asStack());
-                group.addWidget(new com.gregtechceu.gtceu.api.gui.widget.SlotWidget(handler, 0, group.getSize().width - 30,
-                        group.getSize().height - 30, false, false));
-            })
-            .addDataInfo(data -> LocalizationUtils.format("ctpp.stress_output",String.format("%.1f",data.getFloat("stress"))));
     public static final GTRecipeType INDUSTRIAL_ALTAR_RECIPES = GTRecipeTypes.register("industrial_altar", ELECTRIC)
             .setEUIO(IO.IN)
             .setMaxIOSize(4, 4, 2, 2)

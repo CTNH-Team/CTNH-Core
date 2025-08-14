@@ -2,13 +2,13 @@ package io.github.cpearl0.ctnhcore.registry;
 
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
-import appeng.items.AEBaseItem;
 import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.item.AetherItems;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
 import com.gregtechceu.gtceu.api.data.chemical.material.registry.MaterialRegistry;
@@ -16,15 +16,12 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import dev.arbor.gtnn.data.GTNNMaterials;
 import earth.terrarium.adastra.common.registry.ModBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
-import lombok.Generated;
 import mythicbotany.register.ModItems;
-import net.minecraft.server.commands.PublishCommand;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
 import vazkii.botania.common.block.BotaniaBlocks;
@@ -33,8 +30,10 @@ import vazkii.botania.common.item.BotaniaItems;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.*;
-import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.*;
+import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.HIGHER;
+import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.HIGHEST;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
 import static io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes.hyperRotor;
 
 public class CTNHMaterials {
@@ -767,7 +766,6 @@ public class CTNHMaterials {
     public static Material Kerosene;
     public static Material DenseHydrazineMixedFuel;
     public static Material Hydrazine;
-    public static Material HydrogenPeroxide;
     public static Material EthylAnthraQuinone;
     public static Material EthylAnthraHydroQuinone;
     public static Material Anthracene;
@@ -812,7 +810,6 @@ public class CTNHMaterials {
     public static Material PalladiumRichAmmonia;
     public static Material RutheniumTetroxideLQ;
     public static Material SodiumFormate;
-    // public static Material FormicAcid;
     public static Material RhodiumSulfateGas;
     public static Material AcidicIridium;
     public static Material RutheniumTetroxideHot;
@@ -868,6 +865,7 @@ public class CTNHMaterials {
     public static Material NeutroniumMixture;
     public static Material MARM200Steel;
     public static void init() {
+        NuclearMaterials.init();
         CreateMaterials.init();
         BotaniaMaterials.init();
         AdastraMaterials.init();
@@ -876,8 +874,16 @@ public class CTNHMaterials {
         BrineChain.init();
         SecondMaterials.init();
         CombustibleIce.setFormula("(CH4)(H2O)", true);
-        NuclearMaterials.init();
 
+        //Enable Dense Plate for Hyper Rotor
+        for (MaterialRegistry registry : GTCEuAPI.materialManager.getRegistries())
+            for (Material material : registry.getAllMaterials())
+                if (material.hasAnyOfFlags(MaterialFlags.GENERATE_ROTOR, GENERATE_HYPER_ROTOR)
+                        && !material.hasFlag(GENERATE_DENSE))
+                    material.addFlags(GENERATE_DENSE);
+
+    }
+    public static void tagPrefixIgnore() {
         TagPrefix.ingot.setIgnored(ManaSteel, BotaniaItems.manaSteel);
         TagPrefix.nugget.setIgnored(ManaSteel, BotaniaItems.manasteelNugget);
         TagPrefix.block.setIgnored(ManaSteel, BotaniaBlocks.manasteelBlock);
@@ -916,14 +922,6 @@ public class CTNHMaterials {
         TagPrefix.block.setIgnored(Livingrock, BotaniaBlocks.livingrock);
 
         hyperRotor.setIgnored(Neutronium);
-
-        //Enable Dense Plate for Hyper Rotor
-        for (MaterialRegistry registry : GTCEuAPI.materialManager.getRegistries())
-            for (Material material : registry.getAllMaterials())
-                if (hyperRotor.generationCondition().test(material)
-                        && !material.hasFlag(GENERATE_DENSE))
-                    material.addFlags(GENERATE_DENSE);
-
     }
 
     public static class MaterialIcons {

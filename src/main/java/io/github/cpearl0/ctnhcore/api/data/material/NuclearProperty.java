@@ -8,7 +8,6 @@ import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterialItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
-import dev.arbor.gtnn.data.GTNNMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
@@ -24,7 +23,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static dev.arbor.gtnn.data.GTNNMaterials.Thorium232;
+import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.Thorium232;
 
 public class NuclearProperty implements IMaterialProperty {
     @Getter
@@ -99,8 +98,8 @@ public class NuclearProperty implements IMaterialProperty {
                 .notConsumable(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, GTMaterials.Boron).asStack())
                 .inputItems(getDepletedFuel(getOxideMaterial()))
                 .inputFluids(GTMaterials.NitricAcid.getFluid(1000))
-                .notConsumableFluid(GTNNMaterials.Hydrazine.getFluid(1000))
-                .notConsumableFluid(GTNNMaterials.RP1.getFluid(1000))
+                .notConsumableFluid(CTNHMaterials.Hydrazine.getFluid(1000))
+                .notConsumableFluid(CTNHMaterials.RP1.getFluid(1000))
                 //.notConsumable(Fluid.of("")TributylPhosphate.getFluid(1000))
                 .notConsumable(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, GTMaterials.FerriteMixture).asStack())
                 .outputItems(getDepletedFuel(getNitrideMaterial()))

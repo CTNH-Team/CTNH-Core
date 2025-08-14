@@ -4,22 +4,19 @@ import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
-import com.gregtechceu.gtceu.common.data.GTElements;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import dev.arbor.gtnn.data.GTNNElement;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialBuilder;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialIconSet;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.data.CTNHMaterialFlags;
-import io.github.cpearl0.ctnhcore.registry.CTNHElements;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
-import static com.gregtechceu.gtceu.common.data.GTElements.*;
+import static com.gregtechceu.gtceu.common.data.GTElements.Pu;
+import static com.gregtechceu.gtceu.common.data.GTElements.U;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static dev.arbor.gtnn.data.GTNNMaterials.Thorium232;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearElements.*;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.*;
 
@@ -28,7 +25,7 @@ public class NuclearMaterialsInfo {
     public static Set<Material> decayMaterial = new HashSet<>();
     public static void register() {
         //basic material
-        Uranium = new CTNHMaterialBuilder(GTCEu.id("uranium"))
+        Uranium = new CTNHMaterialBuilder(GTCEu.id("uranium_raw"))
                 .ingot()
                 .ore()
                 .color(0x1c991c)
@@ -37,7 +34,7 @@ public class NuclearMaterialsInfo {
                 .iconSet(MaterialIconSet.SHINY)
                 .radioactiveHazard(1)
                 .register();
-        Plutonium = new CTNHMaterialBuilder(GTCEu.id("plutonium"))
+        Plutonium = new CTNHMaterialBuilder(GTCEu.id("plutonium_raw"))
                 .ingot()
                 .ore()
                 .color(0x9e1616)

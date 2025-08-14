@@ -1,11 +1,13 @@
 package io.github.cpearl0.ctnhcore.data.materials;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.DISABLE_DECOMPOSITION;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.*;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Platinum;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
 public class PlatinumLineMaterials {
     public static void init() {
@@ -58,6 +60,7 @@ public class PlatinumLineMaterials {
 
         PlatinumMetal = new Material.Builder(CTNHCore.id("platinum_metal")).dust().color(0xEBEBB2).iconSet(ROUGH).flags(DISABLE_DECOMPOSITION)
                         .buildAndRegister().setFormula("??PtPdIrOsRhRu??");
+        Platinum.getProperty(PropertyKey.ORE).setDirectSmeltResult(PlatinumMetal);
 
         SodiumRutheniate = new Material.Builder(CTNHCore.id("sodium_rutheniate")).dust().color(0x282C8C).iconSet(METALLIC)
                         .flags(DISABLE_DECOMPOSITION).buildAndRegister().setFormula("Na2RbO3");

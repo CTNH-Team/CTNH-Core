@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.common.data.models.GTModels;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.loot.LootBuilder;
 import io.github.cpearl0.ctnhcore.common.block.AstralFlowerBlock;
 import io.github.cpearl0.ctnhcore.common.block.AstralGrassBlock;
 import io.github.cpearl0.ctnhcore.common.block.AstralSaplingBlock;
@@ -36,7 +37,19 @@ public class AstralBlocks {
     public static final BlockEntry<RotatedPillarBlock> FRUIT_CAFE_CRATE = createLogLikeBlock("fruit_cafe_crate");
     public static final BlockEntry<RotatedPillarBlock> ASPARAGUS_CRATE = createLogLikeBlock("asparagus_crate");
     public static final BlockEntry<Block> ASTRAL_COBBLESTONE = createStoneLikeBlock("astral_cobblestone", CTNHCore.id("block/stones/astral_cobblestone"));
-    public static BlockEntry<Block> ASTRAL_STONE;
+    public static BlockEntry<Block> ASTRAL_STONE = REGISTRATE.block("astral_stone", Block::new)
+            .initialProperties(() -> Blocks.STONE)
+            .blockstate((ctx, prov) -> {
+                prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll("astral_stone", CTNHCore.id("block/stones/astral_stone")));
+            })
+            .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
+            .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+            .loot((registrateBlockLootTables, block) -> {
+                registrateBlockLootTables.add(block, LootBuilder.createSingleItemTableWithSilkTouch(block, ASTRAL_COBBLESTONE.asItem()));
+            })
+            .item(BlockItem::new)
+            .build()
+            .register();;
     public static final BlockEntry<FallingBlock> ASTRAL_SAND = createSandLikeBlock("astral_sand", CTNHCore.id("block/sands/astral_sand"));
     @SuppressWarnings("removal")
     public static BlockEntry<Block> ASTRAL_DIRT;

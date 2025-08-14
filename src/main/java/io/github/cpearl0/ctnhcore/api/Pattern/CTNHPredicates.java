@@ -29,7 +29,7 @@ public class CTNHPredicates {
         return (new TraceabilityPredicate((blockWorldState) -> {
             BlockState blockState = blockWorldState.getBlockState();
 
-            for(Map.Entry<IPBData, Supplier<PhotovoltaicBlock>> entry : CTNHAPI.PhotovoltaicBlock.entrySet()) {
+            for(Map.Entry<IPBData, Supplier<PhotovoltaicBlock>> entry : CTNHBlockMaps.PhotovoltaicBlock.entrySet()) {
                 if (blockState.is((Block)((Supplier)entry.getValue()).get())) {
                     IPBData stats = (IPBData)entry.getKey();
                     Object currentCoil = blockWorldState.getMatchContext().getOrPut("IPBData", stats);
@@ -43,13 +43,13 @@ public class CTNHPredicates {
             }
 
             return false;
-        }, () -> (BlockInfo[])CTNHAPI.PhotovoltaicBlock.entrySet().stream().sorted(Comparator.comparingInt((value) -> ((IPBData)value.getKey()).getTier())).map((pb) -> BlockInfo.fromBlockState(((PhotovoltaicBlock)((Supplier)pb.getValue()).get()).defaultBlockState())).toArray((x$0) -> new BlockInfo[x$0]))).addTooltips(new Component[]{Component.translatable("ctnh.spacephotovoltaicbasestation.jei.error.pv_block")});
+        }, () -> (BlockInfo[])CTNHBlockMaps.PhotovoltaicBlock.entrySet().stream().sorted(Comparator.comparingInt((value) -> ((IPBData)value.getKey()).getTier())).map((pb) -> BlockInfo.fromBlockState(((PhotovoltaicBlock)((Supplier)pb.getValue()).get()).defaultBlockState())).toArray((x$0) -> new BlockInfo[x$0]))).addTooltips(new Component[]{Component.translatable("ctnh.spacephotovoltaicbasestation.jei.error.pv_block")});
     }
     public static TraceabilityPredicate SpaceStructuralFrameworkBlock() {
         return (new TraceabilityPredicate((blockWorldState) -> {
             BlockState blockState = blockWorldState.getBlockState();
 
-            for(Map.Entry<ISSFData, Supplier<SpaceStructuralFramework>> entry : CTNHAPI.SpaceStructuralFramework.entrySet()) {
+            for(Map.Entry<ISSFData, Supplier<SpaceStructuralFramework>> entry : CTNHBlockMaps.SpaceStructuralFramework.entrySet()) {
                 if (blockState.is((Block)((Supplier)entry.getValue()).get())) {
                     ISSFData stats = (ISSFData)entry.getKey();
                     Object currentCoil = blockWorldState.getMatchContext().getOrPut("ISSFData", stats);
@@ -63,7 +63,7 @@ public class CTNHPredicates {
             }
 
             return false;
-        }, () -> (BlockInfo[])CTNHAPI.SpaceStructuralFramework.entrySet().stream().sorted(Comparator.comparingInt((value) -> ((ISSFData)value.getKey()).getTier())).map((pb) -> BlockInfo.fromBlockState(((SpaceStructuralFramework)((Supplier)pb.getValue()).get()).defaultBlockState())).toArray((x$0) -> new BlockInfo[x$0]))).addTooltips(new Component[]{Component.translatable("ctnh.spacephotovoltaicbasestation.jei.error.pv_block")});
+        }, () -> (BlockInfo[])CTNHBlockMaps.SpaceStructuralFramework.entrySet().stream().sorted(Comparator.comparingInt((value) -> ((ISSFData)value.getKey()).getTier())).map((pb) -> BlockInfo.fromBlockState(((SpaceStructuralFramework)((Supplier)pb.getValue()).get()).defaultBlockState())).toArray((x$0) -> new BlockInfo[x$0]))).addTooltips(new Component[]{Component.translatable("ctnh.spacephotovoltaicbasestation.jei.error.pv_block")});
     }
     static TraceabilityPredicate autoLaserAbilities(GTRecipeType... recipeType) {
         TraceabilityPredicate predicate = Predicates.autoAbilities(recipeType, false, false, true, true, true, true);
@@ -80,13 +80,12 @@ public class CTNHPredicates {
         }
         return predicate;
     }
-    static TraceabilityPredicate tierBlock(Map<Integer, Supplier<?>> map, String tierType) {
+    static TraceabilityPredicate tierBlock(Map<Integer, Supplier<? extends Block>> map, String tierType) {
         BlockInfo[] blockInfos = new BlockInfo[map.size()];
         int index = 0;
 
-        for(Iterator var4 = map.values().iterator(); var4.hasNext(); ++index) {
-            Supplier<?> blockSupplier = (Supplier)var4.next();
-            Block block = (Block)blockSupplier.get();
+        for(var blockSupplier : map.values()) {
+            Block block = (Block) blockSupplier.get();
             blockInfos[index] = BlockInfo.fromBlockState(block.defaultBlockState());
         }
 
@@ -111,14 +110,12 @@ public class CTNHPredicates {
             } else {
                 return true;
             }
-        }, () -> {
-            return blockInfos;
-        })).addTooltips(Component.translatable("ctnh.machine.pattern.error.tier"));
+        }, () -> blockInfos)).addTooltips(Component.translatable("ctnh.machine.pattern.error.tier"));
     }
     public static TraceabilityPredicate reactorCore() {
         return new TraceabilityPredicate(blockWorldState -> {
             var blockState = blockWorldState.getBlockState();
-            for (Map.Entry<Integer, Supplier<Block>> entry : CTNHAPI.ReactorCoreBlock.entrySet()) {
+            for (Map.Entry<Integer, Supplier<Block>> entry : CTNHBlockMaps.ReactorCoreBlock.entrySet()) {
                 if (blockState.is(entry.getValue().get())) {
                     var heat = entry.getKey();
                     int current_heat = (int) blockWorldState.getMatchContext().getOrPut("ReactorCore", 0);
@@ -128,14 +125,18 @@ public class CTNHPredicates {
                 }
             }
             return false;
-        }, () -> CTNHAPI.ReactorCoreBlock.entrySet().stream()
+        }, () -> CTNHBlockMaps.ReactorCoreBlock.entrySet().stream()
                 // sort to make autogenerated jei previews not pick random coils each game load
                 .sorted(Comparator.comparingInt(Map.Entry::getKey))
                 .map(block-> BlockInfo.fromBlockState(block.getValue().get().defaultBlockState()))
                 .toArray(BlockInfo[]::new))
                 .addTooltips(Component.translatable("ctnh.multiblock.pattern.error.reactor"));
     }
-//    public static TraceabilityPredicate NuclearReactorComponent() {
-//
-//    }
+    public static TraceabilityPredicate coilBlock = tierBlock(CTNHBlockMaps.CoilBlock,"CoilType");
+
+    public static TraceabilityPredicate plantCasings = tierBlock(CTNHBlockMaps.CasingBlock, "Casing");
+
+    public static TraceabilityPredicate pipeBlock = tierBlock(CTNHBlockMaps.PipeBlock, "Pipe");
+
+    public static TraceabilityPredicate machineCasing = tierBlock(CTNHBlockMaps.MachineCasingBlock, "MachineCasing");
 }

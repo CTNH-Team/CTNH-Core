@@ -9,8 +9,10 @@ import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.data.material.CatalystProperty;
 
 import static io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialBuilder.Builder;
+import static io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys.CATALYST;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.Thorium232;
 
@@ -32,9 +34,6 @@ public class SecondMaterials {
                         .buildAndRegister();
 
         Hydrazine = Builder("hydrazine").fluid().color(0xBBBBBB).iconSet(MaterialIconSet.DULL).buildAndRegister();
-
-        HydrogenPeroxide = Builder("hydrogen_peroxide").fluid().color(0xC3EDED).iconSet(MaterialIconSet.DULL)
-                        .buildAndRegister();
 
         EthylAnthraQuinone = Builder("ethyl_anthra_quinone").fluid().color(0xAABE77).iconSet(MaterialIconSet.DULL)
                         .buildAndRegister();
@@ -180,5 +179,6 @@ public class SecondMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROTOR,
                         MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
+        OrangeMetal.setProperty(CATALYST, new CatalystProperty(100));
     }
 }

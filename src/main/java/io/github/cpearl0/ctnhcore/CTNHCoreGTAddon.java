@@ -7,6 +7,7 @@ import io.github.cpearl0.ctnhcore.data.CTNHBlockInfo;
 import io.github.cpearl0.ctnhcore.data.recipe.*;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
 import io.github.cpearl0.ctnhcore.data.recipe.generated.HyperRotorRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.multiblock.*;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -22,7 +23,11 @@ public class CTNHCoreGTAddon implements IGTAddon {
 
     @Override
     public void initializeAddon() {
-
+        CTNHItems.init();
+        CTNHBlocks.init();
+        AstralBlocks.init();
+        CTNHBlockInfo.init();
+        CTNHBlockEntities.init();
     }
 
     @Override
@@ -67,7 +72,6 @@ public class CTNHCoreGTAddon implements IGTAddon {
         SlaughterHouseRecipes.init(provider);
         BigDamRecipes.init(provider);
         DemonWillGeneratorRecipes.init(provider);
-        KineticGeneratorRecipes.init(provider);
         ChemConsumerRecipes.init(provider);
         WaterPowerStationRecipes.init(provider);
         MeadowRecipes.init(provider);
@@ -82,5 +86,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         BotaniaRecipes.init(provider);
         HyperRotorRecipes.registerAll(provider);
         BrineChain.init(provider);
+
+
     }
 }

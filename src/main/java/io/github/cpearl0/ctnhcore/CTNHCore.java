@@ -6,12 +6,15 @@ import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
 import com.mojang.logging.LogUtils;
+import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps;
 import io.github.cpearl0.ctnhcore.client.ClientProxy;
 import io.github.cpearl0.ctnhcore.common.CommonProxy;
 import io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalItem;
 import io.github.cpearl0.ctnhcore.data.CTNHBlockInfo;
 import io.github.cpearl0.ctnhcore.event.EventHandler;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
+import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundEvents;
 import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
@@ -53,6 +56,8 @@ public class CTNHCore
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
+        CTNHMaterials.tagPrefixIgnore();
+        CTNHBlockMaps.initBlocks();
         event.enqueueWork(() ->
         {
             Regions.register(new CTNHOverworldRegion(2));

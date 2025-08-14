@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksC;
@@ -14,5 +15,6 @@ public class CTNHMultiblockMachines {
         MultiblocksA.init();
         MultiblocksB.init();
         MultiblocksC.init();
+        GTNNMultiblocks.init();
     }
 }
