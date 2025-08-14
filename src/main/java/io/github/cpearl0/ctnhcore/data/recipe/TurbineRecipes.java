@@ -14,6 +14,7 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLY_LINE_RECIPES;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.PLASMA_GENERATOR_FUELS;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
 
 public class TurbineRecipes {

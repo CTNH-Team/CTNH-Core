@@ -1028,18 +1028,18 @@ public class ChineseLangHandler {
         provider.add("ctnhcore.src.sacrifice_unlocked","无法锁定牺牲者");
         provider.add("ctnhcore.src.wetware_duration", "湿件剩余存活时间: %s ticks");
         provider.add("ctnhcore.src.sacrifice", "牺牲者: %s");
-        
+
         provider.add("ctnh.data.noise","当前噪声值：%s");
         provider.add("super_centrifuge", "超速离心");
-        
+
         provider.add("ctnh.super_centrifuge.parallel", "普通离心机模式下会获得8并行");
         provider.add("ultrasonic_apparatus", "超声破碎");
-        
+
         provider.add("ctnhcore.machine.high_performance_computer.tooltip.0", "§3飞龙一般的超频计算");
         provider.add("ctnhcore.machine.high_performance_computer.tooltip.1", "§r能量充足时,提供%d算力");
         provider.add("ctnh.compiler.error.0","§c未知错误");
         provider.add("ctnh.compiler.error.1","§c舱室等级与片区1不匹配");
-        
+
 
         provider.add("ctnh.mutiblock.fluid_drilling_rig.description.inf","§6钻取来自无尽之中的流体之海");
         provider.add("ctnh.mutiblock.fluid_drilling_rig.depletion.inf","§6永§b不§d损§a耗，你在担心什么？");

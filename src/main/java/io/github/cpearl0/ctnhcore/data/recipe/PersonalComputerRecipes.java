@@ -41,6 +41,7 @@ public class PersonalComputerRecipes {
                 .inputItems(CTNHItems.ASTRONOMY_CIRCUIT_1)
                 .duration(60)
                 .EUt(VA[HV])
+                .CWUt(1)
                 .outputItems(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1)
                 .save(provider);
 
@@ -50,6 +51,7 @@ public class PersonalComputerRecipes {
                 .notConsumable(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1)
                 .duration(60)
                 .EUt(VA[HV])
+                .CWUt(1)
                 .outputItems(CTNHItems.PROGRAM_ROCKET_1)
                 .save(provider);
     }
