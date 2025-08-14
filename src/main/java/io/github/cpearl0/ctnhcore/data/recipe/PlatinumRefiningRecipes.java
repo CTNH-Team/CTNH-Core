@@ -47,7 +47,7 @@ public class PlatinumRefiningRecipes {
                 .outputItems(dust, AmmoniumChloride, 1)            //回收一个氯化铵粉末
                 .outputFluids(HydrochloricAcid.getFluid(500))      // HCl气体
                 .blastFurnaceTemp(1200)                                    // 1200K氢气氛围
-                .duration(300).EUt(VA[EV]).save(provider);
+                .duration(300).EUt(VA[HV]).save(provider);
         ARC_FURNACE_RECIPES.recipeBuilder("platinum_black_refining")
                 .inputItems(dust, PLATINUM_BLACK, 2)
                 .outputItems(ingot, Platinum, 1)  // 标准铂锭
