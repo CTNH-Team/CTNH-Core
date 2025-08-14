@@ -11,6 +11,7 @@ import io.github.cpearl0.ctnhcore.data.recipe.multiblock.*;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.Consumer;
 
@@ -87,6 +88,12 @@ public class CTNHCoreGTAddon implements IGTAddon {
         HyperRotorRecipes.registerAll(provider);
         BrineChain.init(provider);
 
+        AdAstraRecipes.init(provider);
 
+    }
+
+    @Override
+    public void removeRecipes(Consumer<ResourceLocation> consumer) {
+        AdAstraRecipes.remove(consumer);
     }
 }
