@@ -6,12 +6,14 @@ import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.tterrag.registrate.util.nullness.NonnullType;
 import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
 import net.minecraft.core.Registry;
+import net.minecraft.data.CachedOutput;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class CTNHLangProvider extends RegistrateLangProvider {
     private final AbstractRegistrate<?> owner;
@@ -31,6 +33,11 @@ public class CTNHLangProvider extends RegistrateLangProvider {
     @Override
     protected void addTranslations() {
         this.owner.genData(CTNHCoreDatagen.CTNHLANG, this);
+    }
+
+    @Override
+    public CompletableFuture<?> run(CachedOutput cache) {
+        return CompletableFuture.allOf(super.run(cache), simplifiedChinese.run(cache));
     }
 
     public void add(String key, String en, String cn) {

@@ -19,43 +19,8 @@ public class GTMaterialAddon {
         return new HazardProperty(HazardProperty.HazardTrigger.ANY,
                 GTMedicalConditions.CARCINOGEN, multiplier, true);
     }
-    public static void adjustAluminium(Material raw) {
-        var ores = raw.getProperty(PropertyKey.ORE).getOreByProducts();
-        var newOre = ores.stream().map(ore -> {
-            if (ore.equals(Aluminium)) {
-                return Alumina;
-            }
-            else return ore;
-        }).toList();
-        raw.getProperty(PropertyKey.ORE).getOreByProducts().clear();
-        raw.getProperty(PropertyKey.ORE).setOreByProducts(newOre);
-    }
-    public static void adjustPlatinum(Material raw) {
-        var ores = raw.getProperty(PropertyKey.ORE).getOreByProducts();
-        var newOre = ores.stream().map(ore -> {
-            if (ore.equals(Platinum)) {
-                return PlatinumMetal;
-            }
-            else return ore;
-        }).toList();
-        raw.getProperty(PropertyKey.ORE).getOreByProducts().clear();
-        raw.getProperty(PropertyKey.ORE).setOreByProducts(newOre);
-    }
-    public static void adjustPalladium(Material raw) {
-        var ores = raw.getProperty(PropertyKey.ORE).getOreByProducts();
-        var newOre = ores.stream().map(ore -> {
-            if (ore.equals(Palladium)) {
-                return PalladiumMetal;
-            }
-            else return ore;
-        }).toList();
-        raw.getProperty(PropertyKey.ORE).getOreByProducts().clear();
-        raw.getProperty(PropertyKey.ORE).setOreByProducts(newOre);
-    }
     public static void init() {
-        var ore = new OreProperty();
-        ore.addOreByProducts(Arsenic);
-        ArsenicTrioxide.setProperty(PropertyKey.ORE, ore);
+
         Duranium.addFlags(GENERATE_FRAME);
         Naquadria.addFlags(GENERATE_FRAME);
         NaquadahEnriched.addFlags(GENERATE_FRAME);
@@ -240,35 +205,5 @@ public class GTMaterialAddon {
         Aluminium.addFlags(GENERATE_ROTOR);
         Iridium.addFlags(GENERATE_ROTOR);
         Iridium.addFlags(GENERATE_SMALL_GEAR);
-        addGas(Oganesson);
-        addGas(Calcium);
-        addFluid(Californium);
-        addFluid(Caesium);
-        addFluid(AmmoniumChloride);
-        addDust(Praseodymium);
-
-
-        adjustAluminium(Almandine);
-        adjustAluminium(Emerald);
-        adjustAluminium(GreenSapphire);
-        adjustAluminium(Sapphire);
-        adjustAluminium(Spodumene);
-        adjustAluminium(GlauconiteSand);
-        adjustAluminium(Pollucite);
-        adjustAluminium(Bentonite);
-        adjustAluminium(FullersEarth);
-        adjustAluminium(Kyanite);
-        adjustAluminium(Mica);
-        adjustAluminium(Zeolite);
-
-        adjustPlatinum(Nickel);
-
-        adjustPalladium(Cooperite);
-        adjustPalladium(Platinum);
-        var oreProp = Naquadah.getProperty(PropertyKey.ORE);
-        oreProp.getOreByProducts().clear();
-        oreProp.setOreByProducts(Sulfur, Barite, EnrichedNaquadahOxideMixture);
-        oreProp.getSeparatedInto().clear();
-        oreProp.setSeparatedInto(EnrichedNaquadahOxideMixture);
     }
 }

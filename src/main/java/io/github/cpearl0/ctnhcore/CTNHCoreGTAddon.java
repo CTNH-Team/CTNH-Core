@@ -26,8 +26,6 @@ public class CTNHCoreGTAddon implements IGTAddon {
     public void initializeAddon() {
         CTNHItems.init();
         CTNHBlocks.init();
-        AstralBlocks.init();
-        CTNHBlockInfo.init();
         CTNHBlockEntities.init();
     }
 
@@ -38,6 +36,8 @@ public class CTNHCoreGTAddon implements IGTAddon {
 
     @Override
     public void registerTagPrefixes() {
+        AstralBlocks.init();
+        CTNHBlockInfo.init();
         CTNHTagPrefixes.init();
     }
 

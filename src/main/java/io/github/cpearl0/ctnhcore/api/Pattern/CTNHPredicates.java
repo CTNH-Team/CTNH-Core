@@ -19,9 +19,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Supplier;
 
 public class CTNHPredicates {
@@ -63,7 +61,11 @@ public class CTNHPredicates {
             }
 
             return false;
-        }, () -> (BlockInfo[])CTNHBlockMaps.SpaceStructuralFramework.entrySet().stream().sorted(Comparator.comparingInt((value) -> ((ISSFData)value.getKey()).getTier())).map((pb) -> BlockInfo.fromBlockState(((SpaceStructuralFramework)((Supplier)pb.getValue()).get()).defaultBlockState())).toArray((x$0) -> new BlockInfo[x$0]))).addTooltips(new Component[]{Component.translatable("ctnh.spacephotovoltaicbasestation.jei.error.pv_block")});
+        }, () -> CTNHBlockMaps.SpaceStructuralFramework.entrySet().stream()
+                .sorted(Comparator.comparingInt((value) -> value.getKey().getTier()))
+                .map((pb) -> BlockInfo.fromBlockState((pb.getValue()).get().defaultBlockState()))
+                .toArray(BlockInfo[]::new)))
+                .addTooltips(Component.translatable("ctnh.spacephotovoltaicbasestation.jei.error.pv_block"));
     }
     static TraceabilityPredicate autoLaserAbilities(GTRecipeType... recipeType) {
         TraceabilityPredicate predicate = Predicates.autoAbilities(recipeType, false, false, true, true, true, true);
@@ -81,36 +83,30 @@ public class CTNHPredicates {
         return predicate;
     }
     static TraceabilityPredicate tierBlock(Map<Integer, Supplier<? extends Block>> map, String tierType) {
-        BlockInfo[] blockInfos = new BlockInfo[map.size()];
-        int index = 0;
+        List<BlockInfo> blockInfos = new ArrayList<>();
 
-        for(var blockSupplier : map.values()) {
-            Block block = (Block) blockSupplier.get();
-            blockInfos[index] = BlockInfo.fromBlockState(block.defaultBlockState());
+        for(var entry : map.entrySet()) {
+            var blockSupplier = entry.getValue();
+            Block block = blockSupplier.get();
+            blockInfos.add(BlockInfo.fromBlockState(block.defaultBlockState()));
         }
 
         return (new TraceabilityPredicate((state) -> {
             BlockState blockState = state.getBlockState();
-            Iterator var4 = map.entrySet().iterator();
-
-            Map.Entry entry;
-            do {
-                if (!var4.hasNext()) {
-                    return false;
+            for (var entry : map.entrySet()) {
+                if (blockState.is(entry.getValue().get())) {
+                    int tier = entry.getKey();
+                    int type = state.getMatchContext().getOrPut(tierType, tier);
+                    if (type != tier) {
+                        state.setError(new PatternStringError("ctnh.machine.pattern.error.tier"));
+                        return false;
+                    } else {
+                        return true;
+                    }
                 }
-
-                entry = (Map.Entry)var4.next();
-            } while(!blockState.is((Block)((Supplier)entry.getValue()).get()));
-
-            int tier = (Integer)entry.getKey();
-            int type = (Integer)state.getMatchContext().getOrPut(tierType, tier);
-            if (type != tier) {
-                state.setError(new PatternStringError("ctnh.machine.pattern.error.tier"));
-                return false;
-            } else {
-                return true;
             }
-        }, () -> blockInfos)).addTooltips(Component.translatable("ctnh.machine.pattern.error.tier"));
+            return false;
+        }, () -> blockInfos.toArray(BlockInfo[]::new))).addTooltips(Component.translatable("ctnh.machine.pattern.error.tier"));
     }
     public static TraceabilityPredicate reactorCore() {
         return new TraceabilityPredicate(blockWorldState -> {

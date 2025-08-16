@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -28,6 +29,7 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.NeutronAccelera
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.NeutronSensorMachine;
 import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
+import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
@@ -62,6 +64,60 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine implement
     private HashSet<NeutronAcceleratorMachine> acceleratorMachines = null;
     public NeutronActivatorMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
+    }
+
+    @Override
+    public void onStructureFormed() {
+        // Declare 'height' as a local variable if not used elsewhere
+        height = 0;
+        super.onStructureFormed();
+
+        // Cache the Map access to avoid repeated calls
+        var matchContext = getMultiblockState().getMatchContext();
+        var ioMap = matchContext.getOrCreate("ioMap", Long2ObjectMaps::emptyMap);
+
+        // Cache the result of getParts() to prevent repetitive calls
+        var parts = getParts();
+        for (var part : parts) {
+            IO io = (IO) ioMap.getOrDefault(part.self().getPos().asLong(), IO.BOTH);
+            if (io == IO.NONE) continue;
+
+            for (var handlerList : part.getRecipeHandlers()) {
+                if (!handlerList.isValid(io)) continue;
+                traitSubscriptions.add(handlerList.subscribe(neutronEnergySubs::updateSubscription, EURecipeCapability.CAP));
+                traitSubscriptions.add(handlerList.subscribe(moderateSubs::updateSubscription, EURecipeCapability.CAP));
+                traitSubscriptions.add(handlerList.subscribe(absorptionSubs::updateSubscription, ItemRecipeCapability.CAP));
+            }
+            if (part instanceof ItemBusPartMachine itemBusPartMachine) {
+                busMachines = (busMachines != null) ? busMachines : new HashSet<>();
+                busMachines.add(itemBusPartMachine);
+            }
+            if (part instanceof NeutronSensorMachine neutronSensorMachine) {
+                sensorMachines = sensorMachines != null ? sensorMachines : new HashSet<>();
+                sensorMachines.add(neutronSensorMachine);
+            }
+            if (part instanceof NeutronAcceleratorMachine neutronAcceleratorMachine) {
+                acceleratorMachines = acceleratorMachines != null ? acceleratorMachines : new HashSet<>();
+                acceleratorMachines.add(neutronAcceleratorMachine);
+            }
+            if (part instanceof HighSpeedPipeBlock) height++;
+        }
+
+        neutronEnergySubs.initialize(getLevel());
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        moderateSubs.initialize(getLevel());
+    }
+    @Override
+    public void onStructureInvalid() {
+        super.onStructureInvalid();
+        height = 0;
+        sensorMachines = null;
+        busMachines = null;
+        acceleratorMachines = null;
     }
 
     private void neutronEnergyUpdate() {

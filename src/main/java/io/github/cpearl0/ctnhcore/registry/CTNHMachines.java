@@ -55,6 +55,7 @@ public class CTNHMachines {
 
     public static final MachineDefinition HIGH_SPEED_PIPE_BLOCK = REGISTRATE.machine("high_speed_pipe_block", HighSpeedPipeBlock::new)
             .blockModel(GTModels.cubeAllModel(CTNHCore.id("block/speedingpipe")))
+            .hasBER(false)
             .itemBuilder(item -> item.model((ctx, prov) -> prov.withExistingParent(ctx.getName(), CTNHCore.id("block/" + ctx.getName()))))
         .rotationState(RotationState.Y_AXIS).register();
     public static final MachineDefinition[] NEUTRON_ACCELERATOR = registerTieredMachines(

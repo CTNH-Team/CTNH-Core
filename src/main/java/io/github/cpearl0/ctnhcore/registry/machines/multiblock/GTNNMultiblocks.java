@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 
+import com.google.common.primitives.Ints;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -17,6 +18,7 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.models.GTMachineModels;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHPredicates;
 import io.github.cpearl0.ctnhcore.client.renderer.DynamicCasingRender;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ChemicalPlantMachine;
@@ -24,6 +26,7 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.NeutronActi
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.LargeNaquadahReactorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
 import io.github.cpearl0.ctnhcore.registry.*;
+import io.github.cpearl0.ctnhcore.utils.StructureUtils;
 import net.minecraft.network.chat.Component;
 
 import java.util.Comparator;
@@ -68,19 +71,19 @@ public class GTNNMultiblocks {
             .where("B", CTNHPredicates.machineCasing)
             .where("#", Predicates.any())
             .build())
-//            .shapeInfos { definition ->
-//            val maxSize = Ints.max(
-//            NNBlockMaps.ALL_CP_CASINGS.size,
-//            NNBlockMaps.ALL_CP_TUBES.size,
-//            NNBlockMaps.ALL_MACHINE_CASINGS.size,
-//            NNBlockMaps.ALL_COIL_BLOCKS.size
-//    )
-//        return@shapeInfos StructureUtil.getMatchingShapes(
-//                definition.patternFactory.get() as NNBlockPattern,
-//                maxSize
-//        )
-//    }
-//            .partSorter(Comparator.comparingInt {a -> a.self().pos.y })
+//            .shapeInfos(definition ->{
+//                int maxSize = Ints.max(
+//                CTNHBlockMaps.CasingBlock.size(),
+//                CTNHBlockMaps.PipeBlock.size(),
+//                CTNHBlockMaps.MachineCasingBlock.size(),
+//                CTNHBlockMaps.CoilBlock.size()
+//                );
+//                return StructureUtils.getMatchingShapes(
+//                        definition.getPatternFactory().get(),
+//                        maxSize
+//                );
+//            })
+            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .model(GTMachineModels.createWorkableCasingMachineModel(
             GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
             CTNHCore.id("block/multiblock/chemical_plant")).andThen(b ->
@@ -91,17 +94,19 @@ public class GTNNMultiblocks {
 
     public static final MultiblockMachineDefinition NEUTRON_ACTIVATOR = REGISTRATE.multiblock("neutron_activator", NeutronActivatorMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
+            .recipeTypes(CTNHRecipeTypes.NEUTRON_ACTIVATOR_RECIPES)
             .tooltips(Component.translatable("ctnh.multiblock.neutron_activator.tooltip.0"))
             .tooltips(Component.translatable("ctnh.multiblock.neutron_activator.tooltip.1"))
             .tooltips(Component.translatable("ctnh.multiblock.neutron_activator.tooltip.2"))
             .tooltips(Component.translatable("ctnh.multiblock.neutron_activator.tooltip.3"))
             .tooltips(Component.translatable("ctnh.multiblock.neutron_activator.tooltip.4"))
-            .recipeTypes(CTNHRecipeTypes.NEUTRON_ACTIVATOR_RECIPES).appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
+            .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
             .pattern(definition ->
             FactoryBlockPattern.start(RelativeDirection.RIGHT, RelativeDirection.BACK, RelativeDirection.UP)
                     .aisle("AASAA", "ABBBA", "ABBBA", "ABBBA", "AAAAA")
                     .aisle("C###C", "#DDD#", "#DED#", "#DDD#", "C###C").setRepeatable(4, 34)
-                    .aisle("VVVVV", "VBBBV", "VBBBV", "VBBBV", "VVVVV").where("S", controller(blocks(definition.get())))
+                    .aisle("VVVVV", "VBBBV", "VBBBV", "VBBBV", "VVVVV")
+                    .where("S", controller(blocks(definition.get())))
                     .where(
                             "V",
                             blocks(GTBlocks.CASING_STAINLESS_CLEAN.get()).or(abilities(PartAbility.IMPORT_FLUIDS))
@@ -114,7 +119,8 @@ public class GTNNMultiblocks {
                     ).where("B", blocks(CTNHBlocks.PROCESS_MACHINE_CASING.get()))
                     .where("C", blocks(ChemicalHelper.getBlock(TagPrefix.frameGt, GTMaterials.Steel)))
                     .where("D", blocks(GTBlocks.CASING_LAMINATED_GLASS.get()))
-                    .where("E", blocks(CTNHMachines.HIGH_SPEED_PIPE_BLOCK.get())).where("#", air()).build()
+                    .where("E", blocks(CTNHMachines.HIGH_SPEED_PIPE_BLOCK.get().self()))
+                    .where("#", air()).build()
 
             )
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),

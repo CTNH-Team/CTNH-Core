@@ -78,13 +78,16 @@ public class DynamicCasingRender extends DynamicRender<IDynamicCasing, DynamicCa
     @Override
     public @NotNull List<BakedQuad> getRenderQuads(@Nullable IDynamicCasing machine, @Nullable BlockAndTintGetter level, @Nullable BlockPos pos, @Nullable BlockState blockState, @Nullable Direction side, RandomSource rand, @NotNull ModelData modelData, @Nullable RenderType renderType) {
         List<BakedQuad> quads = new ArrayList<>();
-        BlockState casing = machine.getAppearance();
-        var model = bakedModelsMap.get(casing);
-        if (model == null) {
-            return super.getRenderQuads(machine, level, pos, blockState, side, rand, modelData, renderType);
+        if (machine != null) {
+            BlockState casing = machine.getAppearance();
+            var model = bakedModelsMap.get(casing);
+            if (model == null) {
+                return super.getRenderQuads(machine, level, pos, blockState, side, rand, modelData, renderType);
+            }
+            var data = model.getModelData(level, pos, casing, modelData);
+            quads.addAll(model.getQuads(casing, side, rand, data, renderType));
+            return quads;
         }
-        var data = model.getModelData(level, pos, casing, modelData);
-        quads.addAll(model.getQuads(casing, side, rand, data, renderType));
         return quads;
     }
 

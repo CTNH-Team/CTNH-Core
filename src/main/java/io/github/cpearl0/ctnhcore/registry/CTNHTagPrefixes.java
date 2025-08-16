@@ -38,11 +38,11 @@ public class CTNHTagPrefixes {
     public static TagPrefix oreMossyHolystone;
     public static TagPrefix oreLivingrock;
     public static TagPrefix oreIcestone;
-    public static TagPrefix oreAstralStone = TagPrefix.oreTagPrefix("astral_stone", BlockTags.MINEABLE_WITH_PICKAXE)
-            .registerOre(() -> AstralBlocks.ASTRAL_STONE.get().defaultBlockState(),
-                    () -> CTNHMaterials.AstralStone,
-                    BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(2.0F, 2.0F),
-                    CTNHCore.id("block/astral_stone"), false, false, true);
+//    public static TagPrefix oreAstralStone = TagPrefix.oreTagPrefix("astral_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+//            .registerOre(() -> AstralBlocks.ASTRAL_STONE.get().defaultBlockState(),
+//                    () -> CTNHMaterials.AstralStone,
+//                    BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(2.0F, 2.0F),
+//                    CTNHCore.id("block/astral_stone"), false, false, true);
     public static TagPrefix oreMoonStone;
     public static TagPrefix oreVenusStone;
     public static TagPrefix oreMarsStone;
@@ -127,7 +127,7 @@ public class CTNHTagPrefixes {
         oreMossyHolystone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Holystone, TagPrefix.dust.materialAmount()));
         oreLivingrock.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Livingrock, TagPrefix.dust.materialAmount()));
         oreIcestone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.icestone, TagPrefix.dust.materialAmount()));
-        oreAstralStone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.AstralStone, TagPrefix.dust.materialAmount()));
+//        oreAstralStone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.AstralStone, TagPrefix.dust.materialAmount()));
 
         nuclear = new TagPrefix("nuclear")
                 .idPattern("%s")

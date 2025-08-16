@@ -228,7 +228,7 @@ public class CTNHItems {
             .lang("Heavy Alloy Ingot T1")
             .properties(properties -> properties.rarity(Rarity.UNCOMMON))
             .onRegister(attach(new TooltipBehavior(text ->
-                text.add(Component.translatable("item.gtnn.heavy_ingot_t1.tooltip"))
+                text.add(Component.translatable("item.ctnh.heavy_ingot_t1.tooltip"))
             )))
             .register();
 
@@ -237,7 +237,7 @@ public class CTNHItems {
             .lang("Heavy Alloy Ingot T2")
             .properties(properties -> properties.rarity(Rarity.UNCOMMON))
             .onRegister(attach(new TooltipBehavior(text ->
-                text.add(Component.translatable("item.gtnn.heavy_ingot_t2.tooltip"))
+                text.add(Component.translatable("item.ctnh.heavy_ingot_t2.tooltip"))
             )))
             .register();
 
@@ -246,7 +246,7 @@ public class CTNHItems {
             .lang("Heavy Alloy Ingot T3")
             .properties(properties -> properties.rarity(Rarity.UNCOMMON))
             .onRegister(attach(new TooltipBehavior(text ->
-                text.add(Component.translatable("item.gtnn.heavy_ingot_t3.tooltip"))
+                text.add(Component.translatable("item.ctnh.heavy_ingot_t3.tooltip"))
             )))
             .register();
 
@@ -255,7 +255,7 @@ public class CTNHItems {
             .lang("Heavy Alloy Ingot T4")
             .properties(properties -> properties.rarity(Rarity.UNCOMMON))
             .onRegister(attach(new TooltipBehavior(text ->
-                text.add(Component.translatable("item.gtnn.heavy_ingot_t4.tooltip"))
+                text.add(Component.translatable("item.ctnh.heavy_ingot_t4.tooltip"))
             )))
             .register();
 
@@ -264,7 +264,7 @@ public class CTNHItems {
             .lang("Heavy Alloy Plate T1")
             .properties(properties -> properties.rarity(Rarity.UNCOMMON))
             .onRegister(attach(new TooltipBehavior(text ->
-                text.add(Component.translatable("item.gtnn.heavy_plate_t1.tooltip"))
+                text.add(Component.translatable("item.ctnh.heavy_plate_t1.tooltip"))
             )))
             .register();
 
@@ -273,7 +273,7 @@ public class CTNHItems {
             .lang("Heavy Alloy Plate T2")
             .properties(properties -> properties.rarity(Rarity.UNCOMMON))
             .onRegister(attach(new TooltipBehavior(text ->
-                text.add(Component.translatable("item.gtnn.heavy_plate_t2.tooltip"))
+                text.add(Component.translatable("item.ctnh.heavy_plate_t2.tooltip"))
             )))
             .register();
 
@@ -282,7 +282,7 @@ public class CTNHItems {
             .lang("Heavy Alloy Plate T3")
             .properties(properties -> properties.rarity(Rarity.UNCOMMON))
             .onRegister(attach(new TooltipBehavior(text ->
-                text.add(Component.translatable("item.gtnn.heavy_plate_t3.tooltip"))
+                text.add(Component.translatable("item.ctnh.heavy_plate_t3.tooltip"))
             )))
             .register();
 
@@ -291,7 +291,7 @@ public class CTNHItems {
             .lang("Heavy Alloy Plate T4")
             .properties(properties -> properties.rarity(Rarity.UNCOMMON))
             .onRegister(attach(new TooltipBehavior(text ->
-                text.add(Component.translatable("item.gtnn.heavy_plate_t4.tooltip"))
+                text.add(Component.translatable("item.ctnh.heavy_plate_t4.tooltip"))
             )))
             .register();
 
@@ -300,7 +300,7 @@ public class CTNHItems {
             .lang("Chip T1")
             .properties(properties -> properties.rarity(Rarity.UNCOMMON))
             .onRegister(attach(new TooltipBehavior(text ->
-                text.add(Component.translatable("item.gtnn.chip_t1.tooltip"))
+                text.add(Component.translatable("item.ctnh.chip_t1.tooltip"))
             )))
             .register();
 
@@ -309,7 +309,7 @@ public class CTNHItems {
             .lang("Chip T2")
             .properties(properties -> properties.rarity(Rarity.UNCOMMON))
             .onRegister(attach(new TooltipBehavior(text ->
-                text.add(Component.translatable("item.gtnn.chip_t2.tooltip"))
+                text.add(Component.translatable("item.ctnh.chip_t2.tooltip"))
             )))
             .register();
 
@@ -318,7 +318,7 @@ public class CTNHItems {
             .lang("Chip T3")
             .properties(properties -> properties.rarity(Rarity.UNCOMMON))
             .onRegister(attach(new TooltipBehavior(text ->
-                text.add(Component.translatable("item.gtnn.chip_t3.tooltip"))
+                text.add(Component.translatable("item.ctnh.chip_t3.tooltip"))
             )))
             .register();
 
@@ -327,7 +327,7 @@ public class CTNHItems {
             .lang("Chip T4")
             .properties(properties -> properties.rarity(Rarity.UNCOMMON))
             .onRegister(attach(new TooltipBehavior(text ->
-                text.add(Component.translatable("item.gtnn.chip_t4.tooltip"))
+                text.add(Component.translatable("item.ctnh.chip_t4.tooltip"))
             )))
             .register();
 
