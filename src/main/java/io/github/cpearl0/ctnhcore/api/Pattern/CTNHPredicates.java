@@ -130,7 +130,7 @@ public class CTNHPredicates {
     }
     public static TraceabilityPredicate coilBlock = tierBlock(CTNHBlockMaps.CoilBlock,"CoilType");
 
-    public static TraceabilityPredicate plantCasings = tierBlock(CTNHBlockMaps.CasingBlock, "Casing");
+    public static TraceabilityPredicate plantCasings = tierBlock(CTNHBlockMaps.CasingBlock, "PlantCasing");
 
     public static TraceabilityPredicate pipeBlock = tierBlock(CTNHBlockMaps.PipeBlock, "Pipe");
 

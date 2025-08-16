@@ -24,10 +24,10 @@ import static java.lang.Math.min;
 public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine implements IDynamicCasing {
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             ChemicalPlantMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
-    public int casingTier;
-    public int pipeTier;
-    public int coilTier;
-    public int voltageTier;
+    public int casingTier = 0;
+    public int pipeTier = 0;
+    public int coilTier = 0;
+    public int voltageTier = 0;
     public ChemicalPlantMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
     }
@@ -120,6 +120,9 @@ public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine impl
     @Override
     public BlockState getAppearance() {
         if (isFormed()) {
+            if (CTNHBlockMaps.CasingBlock.get(casingTier) == null) {
+                return CTNHBlockMaps.CasingBlock.get(1).get().defaultBlockState();
+            }
             return CTNHBlockMaps.CasingBlock.get(casingTier).get().defaultBlockState();
         }
         return CTNHBlockMaps.CasingBlock.get(1).get().defaultBlockState();
@@ -127,7 +130,7 @@ public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine impl
 
     @Override
     public @Nullable BlockState getPartAppearance(IMultiPart part, Direction side, BlockState sourceState, BlockPos sourcePos) {
-        var appearanceBlock = CTNHBlockMaps.CasingBlock.get(casingTier).get().defaultBlockState();
-        return appearanceBlock != null ? appearanceBlock : super.getPartAppearance(part, side, sourceState, sourcePos);
+        var appearanceBlock = CTNHBlockMaps.CasingBlock.get(casingTier);
+        return appearanceBlock != null ? appearanceBlock.get().defaultBlockState() : super.getPartAppearance(part, side, sourceState, sourcePos);
     }
 }
