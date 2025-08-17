@@ -179,6 +179,7 @@ public class SecondMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROTOR,
                         MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
+
         OrangeMetal.setProperty(CATALYST, new CatalystProperty(100));
     }
 }

@@ -6,6 +6,8 @@ import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import io.github.cpearl0.ctnhcore.data.CTNHBlockInfo;
 import io.github.cpearl0.ctnhcore.data.recipe.*;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
+import io.github.cpearl0.ctnhcore.data.recipe.chain.FuelChain;
+import io.github.cpearl0.ctnhcore.data.recipe.chain.NaquadahLine;
 import io.github.cpearl0.ctnhcore.data.recipe.generated.HyperRotorRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.multiblock.*;
 import io.github.cpearl0.ctnhcore.registry.*;
@@ -86,9 +88,13 @@ public class CTNHCoreGTAddon implements IGTAddon {
         ManaCondenserRecipes.init(provider);
         BotaniaRecipes.init(provider);
         HyperRotorRecipes.registerAll(provider);
+        //移植配方
+        NaquadahReactorRecipes.init(provider);
+        DefaultRecipes.init(provider);
         BrineChain.init(provider);
-
+        FuelChain.init(provider);
         AdAstraRecipes.init(provider);
+        NaquadahLine.init(provider);
 
     }
 
