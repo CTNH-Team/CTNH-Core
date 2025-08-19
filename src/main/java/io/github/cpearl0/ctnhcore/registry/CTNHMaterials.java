@@ -35,6 +35,7 @@ import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastP
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
 import static io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes.hyperRotor;
+import static wayoftime.bloodmagic.api.compat.EnumDemonWillType.CORROSIVE;
 
 public class CTNHMaterials {
     public static void addFluid(Material material) {

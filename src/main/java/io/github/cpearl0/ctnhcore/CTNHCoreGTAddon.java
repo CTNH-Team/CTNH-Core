@@ -70,6 +70,11 @@ public class CTNHCoreGTAddon implements IGTAddon {
     }
 
     @Override
+    public void removeRecipes(Consumer<ResourceLocation> consumer) {
+        RecipeRemoval.init(consumer);
+    }
+
+    @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
         UnderfloorHeatingSystemRecipes.init(provider);
         AstronomicalObservatoryRecipes.init(provider);

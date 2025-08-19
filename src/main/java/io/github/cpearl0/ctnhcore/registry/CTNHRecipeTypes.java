@@ -543,14 +543,6 @@ public class CTNHRecipeTypes {
             .setEUIO(IO.IN)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-            .addDataInfo(data->
-            {
-                if(data.contains("cwut"))
-                {
-                    return LocalizationUtils.format("ctnh.mutiblock.lasersorter.recipe.cwut",String.format("%d",data.getInt("cwut")));
-                }
-                return "";
-            })
             .setSound(GTSoundEntries.CHEMICAL);
 
     public static final GTRecipeType PHOTOVOLTAIC_GENERATOR = GTRecipeTypes.register("photovoltaic_generator",GENERATOR)

@@ -375,7 +375,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.item.data.tip2","获取的倍率: %s");
         //
 
-        //NPE
+        //NMC
         provider.add("ctnh.neuro_matrix_compiler.info.part_states","片区%d状态:%s");
         provider.add("ctnh.neuro_matrix_compiler.info.state.idle","§6待机");
         provider.add("ctnh.neuro_matrix_compiler.info.state.error","§c错误,类型：%s");
@@ -535,6 +535,14 @@ public class ChineseLangHandler {
         provider.add("ctnh.spacephotovoltaicbasestation.info.pvc_tier.1","当前结构耐热等级:%d");
         provider.add("ctnh.spacephotovoltaicbasestation.info.pvc_tier.2","当前结构发电量:%.2f");
         provider.add("ctnh.spacephotovoltaicbasestation.info.pvc_tier.3","当前维度光倍率:%d");
+        //freezer ui
+        provider.add("ctnh.mutiblock.cryotheum_freezer.ui.0","当前泪之晶点数:%d");
+        provider.add("ctnh.mutiblock.cryotheum_freezer.ui.1","当前冷冻机加速：%.2f / %.2f");
+        provider.add("ctnh.mutiblock.cryotheum_freezer.ui.2","打开升级面板");
+        provider.add("ctnh.mutiblock.cryotheum_freezer.ui.3","当前能量利用效率：%.2f / %.2f");
+        provider.add("ctnh.mutiblock.cryotheum_freezer.ui.4","当前并行：%d / %d");
+        provider.add("ctnh.mutiblock.cryotheum_freezer.ui.5","§b当前消耗的凛冰:%d / %d");
+
 
         //Machine tooltip
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
@@ -860,7 +868,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.mutiblock.arcgenerator.tooltip.1","物质撕裂器");
         provider.add("ctnh.mutiblock.arcgenerator.tooltip.t2.1","分子撕裂器");
         provider.add("ctnh.mutiblock.arcgenerator.tooltip.t3.1","原子撕裂器");
-        provider.add("ctnh.mutiblock.magic_fuel_generator.tip","魔导精炼厂");
+        provider.add("ctnh.mutiblock.magic_fuel_generator.tip","精炼天地之魔精");
 
 
         provider.add("ctnh.mutiblock.arcgenerator.tooltip.arc.t1.1","§b最大支持电弧强度:1000");
@@ -971,51 +979,51 @@ public class ChineseLangHandler {
         provider.add("ctnh.cryotheum_freezer.tip.1","每次运行配方消耗5*并行mb极寒之凛冰，电压每高于§9IV§r一级，这个消耗就翻4倍");
         provider.add("ctnh.cryotheum_freezer.tip.2","初始具有4并行和3泪之晶点数，可以在升级界面加点。每消耗10000mb凛冰，就获得一点点数，随后将目标翻四倍");
 
-        provider.add("ctnh.compiler.0","将生物的进化之道完全放任于碳基生物的自然演变是一种低效且缓慢的做法，现在我们将亲自编码每一个基因序列，将我们的至臻完美编译在神经元的逻辑之中");
-        provider.add("ctnh.compiler.01","神经矩阵编码器（CMP）是一台编译神经序列的机器，其不同于其他机器，不执行正常的输入逻辑，无法超频");
-        provider.add("ctnh.compiler.1","该机器的输入由6个神经矩阵研究舱室组成，每个舱室在结构完成时将被编码，所有研究舱室必须为同一等级，编码完成后，每个研究舱室将会显示他们所属的片区（并未实现）现在片区分配固定为：机器主方块左前方为1，右前方为2，左后方为3，右后方为4");
-        provider.add("ctnh.compiler.2","该机器的输入§c必须严格按照JEI的物品顺序§9从左到右§r从第一行到第二行放置在§91-5片区§r，同时在第六片区放置§9研究数据集§r§r,任何错误的放置或者外部舱室的放置都会导致机器故障并在对应舱室显示故障");
-        provider.add("ctnh.compiler.3","必须保证所有神经矩阵研究舱室的等级不低于配方等级，否则配方不会运行");
-        provider.add("ctnh.compiler.4","————————机器总体机制————————");
-        provider.add("ctnh.compiler.5","每次检测到新的配方时，机器将§6完美诉诸于随机§r，生成函数F(x1,x2,x3)=§6y=ax1+bx2+cx3+d§r，其中，x1,x2,x3为期望的片区所消耗的物品数量，同时在给定范围内随机x1,x2,x3,获取答案y");
-        provider.add("ctnh.compiler.6","当配方执行时，在开始逻辑运算，1-5片区将各自运行5s,运行完毕时将消耗舱室内所有物品来取得函数");
-        provider.add("ctnh.compiler.part1","片区1-3：用于提供函数F(x)的真实x1,x2,x3");
-        provider.add("ctnh.compiler.part2","片区4：代表函数F(x)的常数量d，同时决定噪声ϵ");
-        provider.add("ctnh.compiler.part3","片区5：此片区用为神经编译提供电路板支持，决定噪声ϵ波动，如果提供电路板大于配方给定值则不造成噪声影响");
-        provider.add("ctnh.compiler.part4","片区6：收集最终编译结果的片区，在完成一次逻辑运算流程后，将根据结果对神经数据集进行修改");
-        provider.add("ctnh.compiler.7","在片区1-5执行完毕后，进行持续5s的总计算流程，在此过程中给出x1,x2,x3，计算得到计算值y，与真实比较，进行最终编译运算");
-        provider.add("ctnh.compiler.8","————————最终编译运算————————");
-        provider.add("ctnh.compiler.9","最终编译运算将比较真实y与结果y，如果结果y的值在真实值y的0.9-1.1倍内，则运算成功，将编译数据集变为配方输出");
-        provider.add("ctnh.compiler.10","如果运算失败，则定义噪声结果函数f(x1,x2,x3)=ax1+bx2+cx3+d+ϵ,根据噪声决定片区，噪声波动最多翻倍5倍，片区误差项为0.9-1.1间，则噪声变为0.5倍率");
-        provider.add("ctnh.compiler.11","最终编译数据集将获得三个信息，信息1代表本次的方程，信息2代表噪声结果函数获得的结果值对于y的倍率，信息3代表误差项的比率");
-        provider.add("ctnh.compiler.12","在执行相同配方时方程不会重置，在执行配方或者结构重新成型时，重置y和方程");
+        provider.add("ctnh.multiblock.neuro_martix_compiler.tip.0","将生物的进化之道完全放任于碳基生物的自然演变是一种低效且缓慢的做法，现在我们将亲自编码每一个基因序列，将我们的至臻完美编译在神经元的逻辑之中");
+        provider.add("ctnh.multiblock.neuro_martix_compiler.tip.01","神经矩阵编码器（CMP）是一台编译神经序列的机器，其不同于其他机器，不执行正常的输入逻辑，无法超频");
+        provider.add("ctnh.multiblock.neuro_martix_compiler.tip.1","该机器的输入由6个神经矩阵研究舱室组成，每个舱室在结构完成时将被编码，所有研究舱室必须为同一等级，编码完成后，每个研究舱室将会显示他们所属的片区（并未实现）现在片区分配固定为：机器主方块左前方为1，右前方为2，左后方为3，右后方为4");
+        provider.add("ctnh.multiblock.neuro_martix_compiler.tip.2","该机器的输入§c必须严格按照JEI的物品顺序§9从左到右§r从第一行到第二行放置在§91-5片区§r，同时在第六片区放置§9研究数据集§r§r,任何错误的放置或者外部舱室的放置都会导致机器故障并在对应舱室显示故障");
+        provider.add("ctnh.multiblock.neuro_martix_compiler.tip.3","必须保证所有神经矩阵研究舱室的等级不低于配方等级，否则配方不会运行");
+        provider.add("ctnh.multiblock.neuro_martix_compiler.tip.4","————————机器总体机制————————");
+        provider.add("ctnh.multiblock.neuro_martix_compiler.tip.5","每次检测到新的配方时，机器将§6完美诉诸于随机§r，生成函数F(x1,x2,x3)=§6y=ax1+bx2+cx3+d§r，其中，x1,x2,x3为期望的片区所消耗的物品数量，同时在给定范围内随机x1,x2,x3,获取答案y");
+        provider.add("ctnh.multiblock.neuro_martix_compiler.tip.6","当配方执行时，在开始逻辑运算，1-5片区将各自运行5s,运行完毕时将消耗舱室内所有物品来取得函数");
+        provider.add("ctnh.multiblock.neuro_martix_compiler.tip.part1","片区1-3：用于提供函数F(x)的真实x1,x2,x3");
+        provider.add("ctnh.multiblock.neuro_martix_compiler.tip.part2","片区4：代表函数F(x)的常数量d，同时决定噪声ϵ");
+        provider.add("ctnh.multiblock.neuro_martix_compiler.tip.part3","片区5：此片区用为神经编译提供电路板支持，决定噪声ϵ波动，如果提供电路板大于配方给定值则不造成噪声影响");
+        provider.add("ctnh.multiblock.neuro_martix_compiler.tip.part4","片区6：收集最终编译结果的片区，在完成一次逻辑运算流程后，将根据结果对神经数据集进行修改");
+        provider.add("ctnh.multiblock.neuro_martix_compiler.tip.7","在片区1-5执行完毕后，进行持续5s的总计算流程，在此过程中给出x1,x2,x3，计算得到计算值y，与真实比较，进行最终编译运算");
+        provider.add("ctnh.multiblock.neuro_martix_compiler.tip.8","————————最终编译运算————————");
+        provider.add("ctnh.multiblock.neuro_martix_compiler.tip.9","最终编译运算将比较真实y与结果y，如果结果y的值在真实值y的0.9-1.1倍内，则运算成功，将编译数据集变为配方输出");
+        provider.add("ctnh.multiblock.neuro_martix_compiler.tip.10","如果运算失败，则定义噪声结果函数f(x1,x2,x3)=ax1+bx2+cx3+d+ϵ,根据噪声决定片区，噪声波动最多翻倍5倍，片区误差项为0.9-1.1间，则噪声变为0.5倍率");
+        provider.add("ctnh.multiblock.neuro_martix_compiler.tip.11","最终编译数据集将获得三个信息，信息1代表本次的方程，信息2代表噪声结果函数获得的结果值对于y的倍率，信息3代表误差项的比率");
+        provider.add("ctnh.multiblock.neuro_martix_compiler.tip.12","在执行相同配方时方程不会重置，在执行配方或者结构重新成型时，重置y和方程");
 
         provider.add("ctnhcore.src.sacrifice_empty","无牺牲者");
         provider.add("ctnhcore.src.sacrifice_locked","已锁定牺牲者！");
         provider.add("ctnhcore.src.sacrifice_unlocked","无法锁定牺牲者");
         provider.add("ctnhcore.src.wetware_duration", "湿件剩余存活时间: %s ticks");
         provider.add("ctnhcore.src.sacrifice", "牺牲者: %s");
+
         provider.add("ctnh.data.noise","当前噪声值：%s");
         provider.add("super_centrifuge", "超速离心");
+
         provider.add("ctnh.super_centrifuge.parallel", "普通离心机模式下会获得8并行");
         provider.add("ultrasonic_apparatus", "超声破碎");
+
         provider.add("ctnhcore.machine.high_performance_computer.tooltip.0", "§3飞龙一般的超频计算");
         provider.add("ctnhcore.machine.high_performance_computer.tooltip.1", "§r能量充足时,提供%d算力");
         provider.add("ctnh.compiler.error.0","§c未知错误");
         provider.add("ctnh.compiler.error.1","§c舱室等级与片区1不匹配");
-        provider.add("ctnh.testui.0","当前泪之晶点数:%d");
-        provider.add("ctnh.freezeui.1","当前冷冻机加速：%.2f / %.2f");
-        provider.add("ctnh.freezeui.2","打开升级面板");
-        provider.add("ctnh.freezeui.3","当前能量利用效率：%.2f / %.2f");
-        provider.add("ctnh.freezeui.4","当前并行：%d / %d");
-        provider.add("ctnh.freezeui.5","§b当前消耗的凛冰:%d / %d");
-        provider.add("ctnh.machine.fluid_drilling_rig.description.inf","§6钻取来自无尽之中的流体之海");
-        provider.add("ctnh.machine.fluid_drilling_rig.depletion.inf","§6永§b不§d损§a耗，你在担心什么？");
+
+
+        provider.add("ctnh.mutiblock.fluid_drilling_rig.description.inf","§6钻取来自无尽之中的流体之海");
+        provider.add("ctnh.mutiblock.fluid_drilling_rig.depletion.inf","§6永§b不§d损§a耗，你在担心什么？");
 
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip0","§a精密计算§f与§e等离子体§f的§5终极艺术");
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1","提供%d算力以达到基础功率，每提供%d算力，输出功率翻一倍");
         provider.add("ctnhcore.recipe_logic.insufficient_cwut","算力不足");
         provider.add("zenith_machine_sp","§5灵能灯塔屹立不倒！");
+        // NOT FINISHED
         provider.add("zenith_extruder","配方类型：压膜机/§5天顶灵压塑形");
         provider.add("zenith_extruder.1","允许使用§5天顶灵压塑形§r，其以每个形态1mb§5天顶源质§5r的代价来一次性塑造大部分锭的各种形态");
         provider.add("zenith_extruder.2","允许塑形的形态包括：§7板，杆，小型齿轮，齿轮，转子，环，螺栓，§4不允许塑形南瓜派！");
@@ -1093,7 +1101,7 @@ public class ChineseLangHandler {
             provider.add(CTNHMachines.HIGH_PERFORMANCE_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + "§r高性能计算机");
         }
 
-//        provider.add(CTNHMachines.STERILE_CLEANROOM_MAINTENANCE_HATCH.getBlock(), "无菌超净间维护仓");
+        provider.add(CTNHMachines.STERILE_CLEANROOM_MAINTENANCE_HATCH.getBlock(), "无菌超净间维护仓");
 
         provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[LV].getBlock(), "基础数字化苦难之井");
         provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[MV].getBlock(), "§b进阶数字化苦难之井§r");
@@ -1340,11 +1348,13 @@ public class ChineseLangHandler {
         provider.add(MultiblocksB.ZENITH_EXTRUDER.getBlock(),"§5天顶灵能塑形者");
         provider.add(MultiblocksB.FLUID_DRILLING_INF[UHV].getBlock(),"无尽流体钻机");
         provider.add(MultiblocksB.MANA_CONDENSER.getBlock(), "魔力凝缩器");
+        provider.add(MultiblocksB.COMPONENT_ASSEMBLY_LINE_CT.getBlock(),"应力部件装配线");
 
         provider.add(MultiblocksC.MANA_SEPERATOR.getBlock(), "魔力分选器");
         provider.add(MultiblocksC.GAIA_REACTOR.getBlock(), "盖亚反应器");
         provider.add(MultiblocksC.GREENHOUSE.getBlock(), "温室");
         provider.add(MultiblocksC.METEOR_CAPTURER.getBlock(), "§4坠星操纵者§r");
+
 
 
 
