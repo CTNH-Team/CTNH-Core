@@ -1,9 +1,11 @@
 package io.github.cpearl0.ctnhcore.registry.nuclear;
 
 import com.gregtechceu.gtceu.api.data.chemical.Element;
+import com.gregtechceu.gtceu.common.data.GTElements;
 
 public class NuclearElements {
     public static void init() {}
+    public static final Element Th232 = GTElements.createAndRegister(90, 142, -1, null, "Thorium-232", "Th-232", true);
     public static final Element Th233 = create("Thorium-233",90, 143, -1, null,  "Th-233", true);
     public static final Element Pa233 = create("Protactinium-233",91, 142, -1, null,"Pa-233",true);
     public static final Element U233 = create("Uranium-233",92, 141, -1, null,"U-233",true);

@@ -11,6 +11,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.api.registry.registrate.MultiblockMachineBuilder;
@@ -19,6 +20,7 @@ import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import com.gregtechceu.gtceu.common.machine.multiblock.generator.LargeCombustionEngineMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.SimpleComputationMachine;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.network.chat.Component;
@@ -112,6 +114,9 @@ public class CTNHMachineUtils {
     public static MachineDefinition[] registerSimpleMachines(String name, GTRecipeType recipeType) {
         return registerSimpleMachines(name, recipeType, GTMachineUtils.defaultTankSizeFunction);
     }
+    public static MachineDefinition[] registerSimpleMachines(String name, GTRecipeType recipeType, int... tiers) {
+        return registerSimpleMachines(name, recipeType, GTMachineUtils.defaultTankSizeFunction, false, tiers);
+    }
 
     /*
      *       算力单方块
@@ -160,7 +165,32 @@ public class CTNHMachineUtils {
     public static MachineDefinition[] registerSimpleComputationMachines(String name, GTRecipeType recipeType) {
         return registerSimpleComputationMachines(name, recipeType, GTMachineUtils.defaultTankSizeFunction);
     }
-
+    public static MachineDefinition[] registerEfficiencyGeneratorMachines(String name, GTRecipeType recipeType, RecipeModifier recipeModifier, Int2IntFunction tankScalingFunction, int... tiers) {
+        return registerTieredMachines(name,
+                (holder, tier) -> new EfficiencyGeneratorMachine(holder, tier, tankScalingFunction), (tier, builder) -> builder
+                        .langValue("%s %s %s".formatted(VLVH[tier], toEnglishName(name), VLVT[tier]))
+                        .editableUI(SimpleGeneratorMachine.EDITABLE_UI_CREATOR.apply(CTNHCore.id(name), recipeType))
+                        .rotationState(RotationState.NON_Y_AXIS)
+                        .recipeModifier(recipeModifier)
+                        .recipeType(recipeType)
+                        .simpleGeneratorModel(CTNHCore.id("block/generators/" + name))
+                        .tooltips(
+                                Component.translatable(
+                                        "ctnh.machine." + name + ".tooltip", EfficiencyGeneratorMachine.getEfficiency(tier, name)
+                                )
+                        )
+                        .tooltips(GTMachineUtils.explosion())
+                        .tooltips(
+                        GTMachineUtils.workableTiered(
+                        tier,
+                        GTValues.V[tier],
+                        GTValues.V[tier] * 64,
+                        recipeType,
+                        tankScalingFunction.apply(tier),
+                        false))
+                        .register(),
+                tiers);
+    }
 
 
     public static Component environmentRequirement(MedicalCondition condition) {

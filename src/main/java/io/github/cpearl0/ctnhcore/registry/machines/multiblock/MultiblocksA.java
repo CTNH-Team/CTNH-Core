@@ -26,7 +26,6 @@ import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
 import com.simibubi.create.foundation.block.CopperBlockSet;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import dev.arbor.gtnn.data.GTNNMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.renderer.HyperPlasmaTurbineRender;
 import io.github.cpearl0.ctnhcore.client.renderer.LargeBottleRender;
@@ -916,7 +915,7 @@ public class MultiblocksA {
                     .aisle("EDDDE", "B###B", "B###B", "CDDDC")
                     .aisle("EEEEE", "AE@EA", "AEEEA", "ACCCA")
                     .where("A", Predicates.blocks(BotaniaBlocks.livingrockPolished))
-                    .where("B", Predicates.frames(GTNNMaterials.ManaSteel))
+                    .where("B", Predicates.frames(CTNHMaterials.ManaSteel))
                     .where("C", Predicates.blocks(BotaniaBlocks.livingrockBrickStairs))
                     .where("D", Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get()))
                     .where("#", Predicates.any())
@@ -975,7 +974,7 @@ public class MultiblocksA {
                     .where("A", Predicates.blocks(BotaniaBlocks.livingrockPolished)
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
                             .or(abilities(PartAbility.IMPORT_FLUIDS)))
-                    .where("B", Predicates.frames(GTNNMaterials.Elementium))
+                    .where("B", Predicates.frames(CTNHMaterials.Elementium))
                     .where("C", Predicates.blocks(CTNHBlocks.ELEMENTIUM_CASING.get()))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
@@ -1000,7 +999,7 @@ public class MultiblocksA {
                             .or(abilities(PartAbility.IMPORT_FLUIDS)))
                     .where("B", Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get()))
                     .where("C", Predicates.blocks(BotaniaBlocks.livingrockBrickStairs))
-                    .where("D", Predicates.frames(GTNNMaterials.ManaSteel))
+                    .where("D", Predicates.frames(CTNHMaterials.ManaSteel))
                     .where("#", Predicates.any())
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
@@ -1752,7 +1751,7 @@ public class MultiblocksA {
                     .where("A", Predicates.blocks(CASING_STAINLESS_CLEAN.get())
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
                             .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
-                    .where("B", Predicates.blocks(MATERIAL_BLOCKS.get(TagPrefix.block, GTNNMaterials.Cerrobase140).get()))
+                    .where("B", Predicates.blocks(MATERIAL_BLOCKS.get(TagPrefix.block, CTNHMaterials.Cerrobase140).get()))
                     .where("C", Predicates.blocks(GTMachines.WORLD_ACCELERATOR[UV].getBlock()))
                     .where("D", Predicates.blocks(MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Neutronium).get()))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
@@ -1926,7 +1925,7 @@ public class MultiblocksA {
                     .aisle("#B#B#", "#BDB#", "BEFEB", "#BGB#").setRepeatable(1, 15)
                     .aisle("#C#C#", "#CDC#", "BEFEB", "#BCB#")
                     .aisle("#CCC#", "#CCC#", "BBHBB", "#B@B#")
-                    .where("B", Predicates.frames(GTNNMaterials.ManaSteel))
+                    .where("B", Predicates.frames(CTNHMaterials.ManaSteel))
                     .where("C", Predicates.blocks(MANA_STEEL_CASING.get()))
                     .where("#", Predicates.any())
                     .where("D", Predicates.heatingCoils())
@@ -1973,7 +1972,7 @@ public class MultiblocksA {
                     .aisle("EEEEE", "E#A#E", "E###E", "E#A#E", "E###E", "##B##")
                     .aisle("#EEE#", "#E@E#", "#EEE#", "#EEE#", "#EEE#", "##B##")
                     .where("A", Predicates.blocks(ELEMENTIUM_PIPE_CASING.get()))
-                    .where("B", Predicates.frames(GTNNMaterials.ManaSteel))
+                    .where("B", Predicates.frames(CTNHMaterials.ManaSteel))
                     .where("C", Predicates.blocks(CASING_MANASTEEL_GEARBOX.get()))
                     .where("D", Predicates.blocks(MANA_STEEL_CASING.get()))
                     .where("#", Predicates.any())

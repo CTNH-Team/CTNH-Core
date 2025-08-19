@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "ctnhcore:block/machine/luv_rocket_engine",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "ctnhcore:block/machine/luv_rocket_engine"
+    },
+    "facing=south": {
+      "model": "ctnhcore:block/machine/luv_rocket_engine",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "ctnhcore:block/machine/luv_rocket_engine",
+      "y": 270
+    }
+  }
+}

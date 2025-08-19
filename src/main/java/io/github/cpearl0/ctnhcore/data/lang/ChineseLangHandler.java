@@ -4,8 +4,6 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
-import com.tterrag.registrate.providers.RegistrateLangProvider;
-import dev.arbor.gtnn.data.GTNNMaterials;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.data.lang.Chinese.OreLang;
 import io.github.cpearl0.ctnhcore.registry.*;
@@ -27,17 +25,6 @@ public class ChineseLangHandler {
     public static void init(RegistrateCNLangProvider provider) {
         OreLang.init(provider);
         //Tagprefix
-        replace(provider, CTNHTagPrefixes.oreHolystone.getUnlocalizedName(), "圣石%s矿石");
-        replace(provider, CTNHTagPrefixes.oreMossyHolystone.getUnlocalizedName(), "覆苔圣石%s矿石");
-        replace(provider, CTNHTagPrefixes.oreAstralStone.getUnlocalizedName(), "星辉%s矿石");
-        replace(provider, CTNHTagPrefixes.oreIcestone.getUnlocalizedName(), "冰石%s矿石");
-        replace(provider, CTNHTagPrefixes.oreLivingrock.getUnlocalizedName(), "活石%s矿石");
-        replace(provider, CTNHTagPrefixes.nuclear.getUnlocalizedName(), "%s");
-        replace(provider, CTNHTagPrefixes.fuel.getUnlocalizedName(), "%s燃料");
-        replace(provider, CTNHTagPrefixes.DepletedFuel.getUnlocalizedName(), "%s枯竭燃料");
-        replace(provider, CTNHTagPrefixes.waste.getUnlocalizedName(), "%s废料");
-        replace(provider, CTNHTagPrefixes.hyperRotor.getUnlocalizedName(), "超级%s转子");
-
         replace(provider, CTNHMaterials.Moonstone.getUnlocalizedName(), "月石");
         replace(provider, CTNHMaterials.Marsstone.getUnlocalizedName(), "火星石");
         replace(provider, CTNHMaterials.Venusstone.getUnlocalizedName(), "金星石");
@@ -136,7 +123,7 @@ public class ChineseLangHandler {
         replace(provider, NuclearMaterials.FermiumHexafluoride.getUnlocalizedName(), "六氟化镄");
         replace(provider, NuclearMaterials.MendeleviumHexafluoride.getUnlocalizedName(), "六氟化钔");
         nuclearTranslation(provider, NuclearMaterials.Thorium233, "钍233");
-        nuclearTranslation(provider, GTNNMaterials.Thorium232, "钍232");
+        nuclearTranslation(provider, NuclearMaterials.Thorium232, "钍232");
         nuclearTranslation(provider, NuclearMaterials.Protactinium233, "镤233");
         nuclearTranslation(provider, NuclearMaterials.Uranium233, "铀233");
         nuclearTranslation(provider, NuclearMaterials.Uranium234, "铀234");
@@ -289,6 +276,14 @@ public class ChineseLangHandler {
         provider.add("gtceu.gaia_reactor", "盖亚反应");
         provider.add("gtceu.greenhouse", "温室");
         provider.add("gtceu.meteor_capturer", "集成式坠星位标");
+        provider.add("gtceu.component_assembly_line", "部件装配线");
+        provider.add("gtceu.circuit_assembly_line", "电路装配线");
+        provider.add("gtceu.chemical_plant", "化工厂");
+        provider.add("gtceu.neutron_activator", "中子活化");
+        provider.add("gtceu.large_naquadah_reactor", "大型硅岩反应");
+        provider.add("gtceu.dehydrator", "脱水");
+        provider.add("gtceu.naquadah_reactor", "硅岩反应");
+        provider.add("gtceu.rocket_engine", "火箭引擎");
 
         provider.add("ctnh.test_terminal.lack_error","在%s处缺少");
         provider.add("ctnh.test_terminal.wrong_error","在%s处应为");

@@ -5,14 +5,13 @@ import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
-import dev.arbor.gtnn.data.GTNNMaterials;
-import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
+import io.github.cpearl0.ctnhcore.api.data.material.CatalystProperty;
 import io.github.cpearl0.ctnhcore.data.CTNHMaterialFlags;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys.CATALYST;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
 
 public class GTMaterialAddon {
@@ -21,9 +20,7 @@ public class GTMaterialAddon {
                 GTMedicalConditions.CARCINOGEN, multiplier, true);
     }
     public static void init() {
-        var ore = new OreProperty();
-        ore.addOreByProducts(Arsenic);
-        ArsenicTrioxide.setProperty(PropertyKey.ORE, ore);
+
         Duranium.addFlags(GENERATE_FRAME);
         Naquadria.addFlags(GENERATE_FRAME);
         NaquadahEnriched.addFlags(GENERATE_FRAME);
@@ -85,12 +82,8 @@ public class GTMaterialAddon {
         Protactinium.setProperty(PropertyKey.HAZARD, radioactive(1));
         Protactinium.addFlags(CTNHMaterialFlags.GENERATE_WASTE,GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD, GENERATE_FOIL, GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_SMALL_GEAR);
         Thorium.addFlags(CTNHMaterialFlags.GENERATE_WASTE,GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD, GENERATE_FOIL, GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_SMALL_GEAR);
-        Thorium.setProperty(PropertyKey.INGOT, new IngotProperty());
-        Thorium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         Thorium.setProperty(PropertyKey.HAZARD, radioactive(1));
         Americium.addFlags(CTNHMaterialFlags.GENERATE_WASTE,GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD, GENERATE_FOIL, GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_SMALL_GEAR);
-        Americium.setProperty(PropertyKey.INGOT, new IngotProperty());
-        Americium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         Americium.setProperty(PropertyKey.HAZARD, radioactive(1));
         Neptunium.addFlags(CTNHMaterialFlags.GENERATE_WASTE,GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD, GENERATE_FOIL, GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_SMALL_GEAR);
         Neptunium.setProperty(PropertyKey.INGOT, new IngotProperty());
@@ -188,5 +181,29 @@ public class GTMaterialAddon {
         Phosphorus.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
 
         RefineryGas.getProperty(PropertyKey.FLUID).getQueuedBuilder(FluidStorageKeys.GAS).density(-10).block();
+
+        Neutronium.setProperty(
+                PropertyKey.BLAST,
+                new BlastProperty(9000, BlastProperty.GasTier.HIGHEST, 491250, 144 * 20, -1, -1)
+        );
+        NaquadahEnriched.addFlags(GENERATE_BOLT_SCREW);
+        Europium.addFlags(GENERATE_BOLT_SCREW);
+        Brass.addFlags(GENERATE_DENSE);
+        Aluminium.addFlags(GENERATE_DENSE);
+        Steel.addFlags(GENERATE_DENSE);
+        Lanthanum.addFlags(GENERATE_DENSE);
+        Iridium.addFlags(GENERATE_DENSE);
+        Lead.addFlags(GENERATE_DENSE);
+        SteelMagnetic.addFlags(GENERATE_PLATE);
+        NeodymiumMagnetic.addFlags(GENERATE_PLATE);
+        NaquadahEnriched.addFlags(GENERATE_LONG_ROD);
+        NickelZincFerrite.addFlags(GENERATE_LONG_ROD);
+        BlueAlloy.addFlags(GENERATE_FRAME);
+        Polybenzimidazole.addFlags(GENERATE_FRAME);
+        Nichrome.addFlags(GENERATE_GEAR);
+        Zeron100.addFlags(GENERATE_GEAR);
+        Aluminium.addFlags(GENERATE_ROTOR);
+        Iridium.addFlags(GENERATE_ROTOR);
+        Iridium.addFlags(GENERATE_SMALL_GEAR);
     }
 }

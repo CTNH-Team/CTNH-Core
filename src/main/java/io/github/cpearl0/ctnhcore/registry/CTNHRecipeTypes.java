@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.GTSoundEntries;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
+import com.gregtechceu.gtceu.utils.ResearchManager;
 import com.lowdragmc.lowdraglib.LDLib;
 import com.lowdragmc.lowdraglib.gui.texture.ProgressTexture;
 import com.lowdragmc.lowdraglib.gui.widget.SlotWidget;
@@ -297,17 +298,6 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
     public static final String KINETIC = "kinetic";
-    public static final GTRecipeType SEASON_STEAM_RECIPES = GTRecipeTypes.register("season_steam",KINETIC)
-            .setMaxIOSize(1, 0, 0, 1)
-            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.TURBINE)
-            .setUiBuilder((recipe, group) -> {
-                var handler = new CustomItemStackHandler(AllBlocks.SHAFT.asStack());
-                group.addWidget(new com.gregtechceu.gtceu.api.gui.widget.SlotWidget(handler, 0, group.getSize().width - 30,
-                        group.getSize().height - 30, false, false));
-            })
-            .addDataInfo(data -> LocalizationUtils.format("ctpp.stress_output",String.format("%.1f",data.getFloat("stress"))));
     public static final GTRecipeType INDUSTRIAL_ALTAR_RECIPES = GTRecipeTypes.register("industrial_altar", ELECTRIC)
             .setEUIO(IO.IN)
             .setMaxIOSize(4, 4, 2, 2)
@@ -677,7 +667,71 @@ public class CTNHRecipeTypes {
             .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.MINER);
+    public static final GTRecipeType COMPONENT_ASSEMBLY_LINE_RECIPES =
+            GTRecipeTypes.register("component_assembly_line", GTRecipeTypes.MULTIBLOCK)
+            .setMaxIOSize(12, 1, 12, 0)
+            .setEUIO(IO.IN)
+            .setMaxTooltips(4)
+            .setSound(GTSoundEntries.ASSEMBLER);
+    public static final GTRecipeType CIRCUIT_ASSEMBLY_LINE_RECIPES =
+            GTRecipeTypes.register("circuit_assembly_line", GTRecipeTypes.MULTIBLOCK)
+            .setMaxIOSize(6, 1, 1, 0)
+            .setEUIO(IO.IN)
+            .setMaxTooltips(4)
+            .setHasResearchSlot(true)
+            .setSound(GTSoundEntries.ASSEMBLER)
+            .onRecipeBuild(ResearchManager::createDefaultResearchRecipe);
 
+    public static final GTRecipeType CHEMICAL_PLANT_RECIPES =
+            GTRecipeTypes.register("chemical_plant", GTRecipeTypes.MULTIBLOCK)
+            .setMaxTooltips(4)
+            .setMaxIOSize(5, 4, 4, 4).setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.BOX_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_BATH, ProgressTexture.FillDirection.LEFT_TO_RIGHT).setMaxTooltips(4)
+            .setSound(GTSoundEntries.COOLING);
+
+    public static final GTRecipeType NEUTRON_ACTIVATOR_RECIPES =
+            GTRecipeTypes.register("neutron_activator", GTRecipeTypes.MULTIBLOCK)
+            .setMaxIOSize(9, 9, 1, 1)
+            .setMaxTooltips(5)
+            .setSound(GTSoundEntries.COOLING);
+
+    public static final GTRecipeType LARGE_NAQUADAH_REACTOR_RECIPES =
+            GTRecipeTypes.register("large_naquadah_reactor", GTRecipeTypes.MULTIBLOCK)
+            .setMaxIOSize(0, 0, 1, 1)
+            .setEUIO(IO.OUT).setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CENTRIFUGE);
+
+    public static final GTRecipeType DEHYDRATOR_RECIPES =
+            GTRecipeTypes.register("dehydrator", GTRecipeTypes.ELECTRIC)
+            .setMaxIOSize(2, 9, 1, 1).setEUIO(IO.IN)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CENTRIFUGE);
+
+    public static final GTRecipeType NAQUADAH_REACTOR_RECIPES =
+            GTRecipeTypes.register("naquadah_reactor", GTRecipeTypes.ELECTRIC)
+            .setMaxIOSize(1, 1, 0, 0).setEUIO(IO.OUT)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CENTRIFUGE);
+
+    public static final GTRecipeType STONE_BEDROCK_ORE_MACHINE_RECIPES =
+            GTRecipeTypes.register("homemade_bedrock_ore_machine", GTRecipeTypes.STEAM)
+            .setXEIVisible(false)
+            .setMaxIOSize(1, 6, 0, 0)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.FURNACE);
+
+    public static final GTRecipeType ROCKET_ENGINE_RECIPES =
+            GTRecipeTypes.register("rocket_engine", GTRecipeTypes.ELECTRIC)
+            .setMaxIOSize(0, 0, 1, 1).setEUIO(IO.OUT)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CENTRIFUGE);
+
+    public static final GTRecipeType PRECISION_ASSEMBLY_RECIPES =
+            GTRecipeTypes.register("precision_assembly", GTRecipeTypes.ELECTRIC)
+                    .setMaxIOSize(4, 1, 4, 0).setEUIO(IO.IN)
+                    .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+                    .setSound(GTSoundEntries.COOLING);
 
     public static void init() {
         CreateRecipeTypes.init();

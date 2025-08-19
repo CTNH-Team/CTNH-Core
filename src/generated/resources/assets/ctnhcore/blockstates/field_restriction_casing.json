@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "ctnhcore:block/field_restriction_casing"
+    }
+  }
+}

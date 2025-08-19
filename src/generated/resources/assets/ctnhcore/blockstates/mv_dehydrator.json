@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "ctnhcore:block/machine/mv_dehydrator",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "ctnhcore:block/machine/mv_dehydrator"
+    },
+    "facing=south": {
+      "model": "ctnhcore:block/machine/mv_dehydrator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "ctnhcore:block/machine/mv_dehydrator",
+      "y": 270
+    }
+  }
+}

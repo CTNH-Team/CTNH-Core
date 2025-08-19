@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.registry;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
@@ -11,6 +12,8 @@ import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ChemicalPlantMachine;
+import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
 import org.jetbrains.annotations.NotNull;
 
 import static com.gregtechceu.gtceu.api.recipe.OverclockingLogic.getCoilEUtDiscount;
@@ -40,16 +43,25 @@ public class CTNHRecipeModifiers {
 
     public static final RecipeModifier COIL_PARALLEL = (machine, recipe) -> CTNHRecipeModifiers.accurateParallel(machine,recipe,Math.min(2147483647, (int) Math.pow(2, ((double) ((CoilWorkableElectricMultiblockMachine) machine).getCoilType().getCoilTemperature() / 900))));
 
-//    public static ModifierFunction chemicalPlantOverclock(MetaMachine machine, @NotNull GTRecipe recipe) {
-//        if (machine instanceof CoilWorkableElectricMultiblockMachine coilMachine) {
-//            GTRecipe recipe1 = reduction(machine, recipe, (1.0 - coilMachine.getCoilTier() * 0.05) * 0.8, (1.0 - coilMachine.getCoilTier() * 0.05) * 0.6);
-//            if (recipe1 != null) {
-//                recipe1 = GTRecipeModifiers.hatchParallel(machine, recipe1);
-//                if (recipe1 != null) return RecipeHelper.applyOverclock(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK, recipe1, coilMachine.getOverclockVoltage(), params, result);
-//            }
-//        }
-//        return null;
-//    }
+    public static ModifierFunction chemicalPlantOverclock(MetaMachine machine, @NotNull GTRecipe recipe) {
+        if (!(machine instanceof IMultiController multiController) || !multiController.isFormed()) return ModifierFunction.IDENTITY;
+        if (machine instanceof ChemicalPlantMachine chemicalPlantMachine) {
+            var speedMultiplier = 100.0 / (100.0 + (chemicalPlantMachine.getSpeedMultiplier()));
+            var energyConsumeMultiplier = 1;
+            var parallels = chemicalPlantMachine.getMaxParallel();
+                parallels = (int) Math.min(parallels,
+                        Math.max(chemicalPlantMachine.getMaxVoltage() / recipe.getInputEUt().getTotalEU(), 1));
+            if (parallels == 1 && speedMultiplier == 1.0 && energyConsumeMultiplier == 1.0)
+                return ModifierFunction.IDENTITY;
+            return  ModifierFunction.builder()
+                    .modifyAllContents(ContentModifier.multiplier(parallels))
+                    .eutMultiplier(parallels * energyConsumeMultiplier)
+                    .durationMultiplier(speedMultiplier)
+                    .parallels(parallels)
+                    .build();
+        }
+        return ModifierFunction.IDENTITY;
+    }
     public static ModifierFunction superEbfOverclock(MetaMachine machine, @NotNull GTRecipe recipe) {
         if (machine instanceof CoilWorkableElectricMultiblockMachine coilMachine) {
             final var blastFurnaceTemperature = coilMachine.getCoilType().getCoilTemperature() +
@@ -79,5 +91,22 @@ public class CTNHRecipeModifiers {
                 .build();
     }
 
+    public static ModifierFunction naquadahReactor(MetaMachine machine, GTRecipe recipe) {
+        if (machine instanceof EfficiencyGeneratorMachine efficiencyGeneratorMachine) {
+            return ModifierFunction.builder()
+                    .durationMultiplier((double) efficiencyGeneratorMachine.efficiency / 100)
+                    .build();
+        }
+        return ModifierFunction.NULL;
+    }
+    public static ModifierFunction rocketEngine(MetaMachine machine, GTRecipe recipe) {
+        ModifierFunction recipeModifier = naquadahReactor(machine, recipe);
+        GTRecipe modifiedRecipe = recipeModifier.apply(recipe);
 
+        if (modifiedRecipe != null) {
+            return recipeModifier;
+        } else {
+            return ModifierFunction.NULL;
+        }
+    }
 }

@@ -9,45 +9,37 @@ import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.models.GTModels;
-import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.api.CTNHAPI;
-import io.github.cpearl0.ctnhcore.client.renderer.TurbineRotorRender;
-import io.github.cpearl0.ctnhcore.common.block.*;
-import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
-import io.github.cpearl0.ctnhcore.common.block.blockdata.ISSFData;
-import io.github.cpearl0.ctnhcore.common.blockentity.TurbineRotorBE;
-import io.github.cpearl0.ctnhcore.common.item.TurbineRotorItem;
-import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
-import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHConfiguredFeatures;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.grower.AbstractTreeGrower;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.material.PushReaction;
-import org.jetbrains.annotations.NotNull;
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.CTNHAPI;
+import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps;
+import io.github.cpearl0.ctnhcore.common.block.CoilType;
+import io.github.cpearl0.ctnhcore.common.block.PhotovoltaicBlock;
+import io.github.cpearl0.ctnhcore.common.block.SpaceStructuralFramework;
+import io.github.cpearl0.ctnhcore.common.block.TurbineRotorBlock;
+import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
+import io.github.cpearl0.ctnhcore.common.block.blockdata.ISSFData;
+import io.github.cpearl0.ctnhcore.common.item.TurbineRotorItem;
+import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.GlassBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import vazkii.botania.forge.block.ForgeSpecialFlowerBlock;
-import vazkii.botania.forge.xplat.ForgeXplatImpl;
-import vazkii.botania.xplat.XplatAbstractions;
 
 import java.util.function.Supplier;
 
-import static io.github.cpearl0.ctnhcore.api.CTNHAPI.ReactorCoreBlock;
+import static io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps.ReactorCoreBlock;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterialBlocks.generateHyperRotorBlocks;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
@@ -142,6 +134,24 @@ public class CTNHBlocks {
             CTNHCore.id("block/casings/blood_casing"));
     public static final BlockEntry<Block> CASING_FORCE_FILED = createCasingBlock("force_field_casing",
             CTNHCore.id("block/casings/force_field_casing"));
+
+    public static final BlockEntry<Block> PROCESS_MACHINE_CASING = createCasingBlock(
+        "process_machine_casing", CTNHCore.id("block/casings/solid/process_machine_casing"));
+
+    public static final BlockEntry<Block> RADIATION_PROOF_MACHINE_CASING = createCasingBlock(
+        "radiation_proof_machine_casing", CTNHCore.id("block/casings/solid/radiation_proof_machine_casing"));
+
+    public static final BlockEntry<Block> MAR_CASING = createCasingBlock(
+        "field_restriction_casing", CTNHCore.id("block/casings/solid/mar_casing"));
+
+    public static final BlockEntry<Block> CASING_POLYBENZIMIDAZOLE_PIPE = createCasingBlock(
+            "polybenzimidazole_pipe", CTNHCore.id("block/casings/pipe/polybenzimidazole_pipe"));
+
+    public static final BlockEntry<Block> IRIDIUM_CASING = createCasingBlock(
+        "iridium_casing", CTNHCore.id("block/casings/solid/iridium_casing"));
+
+    public static final BlockEntry<Block> ADVANCED_FILTER_CASING = createCasingBlock(
+            "advanced_filter_casing", CTNHCore.id("block/casings/solid/advanced_filter_casing"));
 
 
     public static final BlockEntry<ActiveBlock> SUPERCOOLED_BLOCK = createActiveCasing("supercooled_bloock",
@@ -276,7 +286,7 @@ public class CTNHBlocks {
                 .build()
                 .register();
 
-        CTNHAPI.PhotovoltaicBlock.put(pbdata, photovoltaicblock);
+        CTNHBlockMaps.PhotovoltaicBlock.put(pbdata, photovoltaicblock);
         return photovoltaicblock;
     }
     @SuppressWarnings("all")
@@ -292,7 +302,7 @@ public class CTNHBlocks {
                 .build()
                 .register();
 
-        CTNHAPI.SpaceStructuralFramework.put(pbdata, ssfblock);
+        CTNHBlockMaps.SpaceStructuralFramework.put(pbdata, ssfblock);
         return ssfblock;
     }
 

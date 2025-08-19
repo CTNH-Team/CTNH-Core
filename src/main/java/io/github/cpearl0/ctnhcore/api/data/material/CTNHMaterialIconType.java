@@ -4,4 +4,5 @@ import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconType;
 
 public class CTNHMaterialIconType {
     public static final MaterialIconType NUCLEAR = new MaterialIconType("nuclear");
+    public static final MaterialIconType CATALYST = new MaterialIconType("catalyst");
 }

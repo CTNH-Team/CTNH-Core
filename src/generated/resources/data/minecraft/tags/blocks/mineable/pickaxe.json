@@ -1,5 +1,7 @@
 {
   "values": [
+    "ctnhcore:astral_cobblestone",
+    "ctnhcore:astral_stone",
     "ctnhcore:reflect_light_casing",
     "ctnhcore:advance_machine_casing_assembly_control",
     "ctnhcore:osmiridium_casing",
@@ -40,6 +42,12 @@
     "ctnhcore:neutronium_reinforced_turbine_casing",
     "ctnhcore:blood_casing",
     "ctnhcore:force_field_casing",
+    "ctnhcore:process_machine_casing",
+    "ctnhcore:radiation_proof_machine_casing",
+    "ctnhcore:field_restriction_casing",
+    "ctnhcore:polybenzimidazole_pipe",
+    "ctnhcore:iridium_casing",
+    "ctnhcore:advanced_filter_casing",
     "ctnhcore:supercooled_bloock",
     "ctnhcore:reservoir_computing_casing",
     "ctnhcore:space_elevator_power_core",
@@ -64,8 +72,6 @@
     "ctnhcore:pv_coil",
     "ctnhcore:photon_press_cond_block",
     "ctnhcore:hyper_plasma_turbine_rotor",
-    "ctnhcore:nq_excite_carbon_carbon_nanofiber_structural_block",
-    "ctnhcore:astral_cobblestone",
-    "ctnhcore:astral_stone"
+    "ctnhcore:nq_excite_carbon_carbon_nanofiber_structural_block"
   ]
 }

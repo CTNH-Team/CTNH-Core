@@ -62,26 +62,25 @@ description='''${mod_description}'''
     versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="BOTH"
-
 [[dependencies.${mod_id}]]
-    modId="gtceu"
+    modId="botania"
     mandatory=true
-    versionRange="[1.6,)"
+    versionRange="[1.20.1-446-FORGE,)"
     ordering="NONE"
     side="BOTH"
-
-[[dependencies.${mod_id}]]
-modId="gtnn"
-mandatory=true
-versionRange="[1.1.8,)"
-ordering="AFTER"
-side="BOTH"
 
 [[dependencies.${mod_id}]]
     modId="ad_astra"
     mandatory=true
     versionRange="[1.15,)"
     ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="gtceu"
+    mandatory=true
+    versionRange="[7.1,)"
+    ordering="BEFORE"
     side="BOTH"
 
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares

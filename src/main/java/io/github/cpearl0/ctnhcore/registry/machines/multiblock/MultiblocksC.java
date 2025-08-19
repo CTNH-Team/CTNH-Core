@@ -10,10 +10,10 @@ import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import dev.arbor.gtnn.data.GTNNMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.MeteorCaptureMachine;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
+import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 import io.github.cpearl0.ctnhcore.utils.ModUtils;
@@ -39,9 +39,9 @@ public class MultiblocksC {
                 .aisle("A###A", "A###A", "AHHHA", "CH@HC", "#####", "#####", "#####", "#####")
                 .where("A", Predicates.blocks(BotaniaBlocks.livingwoodLogGlimmering))
                 .where("#", Predicates.any())
-                .where("B", Predicates.frames(GTNNMaterials.ManaSteel))
+                .where("B", Predicates.frames(CTNHMaterials.ManaSteel))
                 .where("C", Predicates.blocks(BotaniaBlocks.livingrockPolished))
-                .where("D", Predicates.frames(GTNNMaterials.Elementium))
+                .where("D", Predicates.frames(CTNHMaterials.Elementium))
                 .where("E", Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get()))
                 .where("F", Predicates.blocks(CTNHBlocks.TERRA_STEEL_CASING.get()))
                 .where("G", Predicates.blocks(CTNHBlocks.ALF_STEEL_CASING.get()))

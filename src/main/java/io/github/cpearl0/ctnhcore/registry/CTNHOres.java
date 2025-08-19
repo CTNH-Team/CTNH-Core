@@ -1,24 +1,20 @@
 package io.github.cpearl0.ctnhcore.registry;
 
 import com.gregtechceu.gtceu.GTCEu;
-import com.gregtechceu.gtceu.api.data.worldgen.BiomeWeightModifier;
 import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
 import com.gregtechceu.gtceu.api.data.worldgen.WorldGenLayers;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import dev.arbor.gtnn.data.GTNNMaterials;
-import dev.arbor.gtnn.data.GTNNOres;
-import dev.arbor.gtnn.data.GTNNWorld;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import mythicbotany.register.ModBlocks;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.block.Blocks;
-import org.checkerframework.checker.units.qual.A;
 import twilightforest.data.tags.BiomeTagGenerator;
 
-import static com.gregtechceu.gtceu.api.data.worldgen.WorldGenLayers.*;
-import static com.gregtechceu.gtceu.api.data.worldgen.generator.indicators.SurfaceIndicatorGenerator.IndicatorPlacement.*;
+import static com.gregtechceu.gtceu.api.data.worldgen.WorldGenLayers.ENDSTONE;
+import static com.gregtechceu.gtceu.api.data.worldgen.WorldGenLayers.STONE;
+import static com.gregtechceu.gtceu.api.data.worldgen.generator.indicators.SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE;
 import static com.gregtechceu.gtceu.common.data.GTOres.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHWorlds.*;
 
@@ -31,58 +27,58 @@ public class CTNHOres {
                 .layer(l -> l.weight(1).mat(CTNHMaterials.PreciousAlloy).size(1, 1))
             )
         );
-        GTNNOres.INSTANCE.getGOLD_VEIN_TF().layeredVeinGenerator(generator -> generator
-                .buildLayerPattern(pattern -> pattern
-                .layer(l -> l.weight(3).mat(GTMaterials.Magnetite).size(2, 4))
-                .layer(l -> l.weight(2).mat(GTMaterials.VanadiumMagnetite).size(1, 1))
-                .layer(l -> l.weight(1).mat(CTNHMaterials.PreciousAlloy).size(1, 1))
-            )
-        );
-        GTNNOres.INSTANCE.getARSENIC_VEIN_AD().layeredVeinGenerator(generator -> generator
-                .buildLayerPattern(pattern -> pattern
-                        .layer(l -> l.weight(1).mat(CTNHMaterials.Sperrylite).size(1, 2))
-                        .layer(l -> l.weight(1).mat(CTNHMaterials.Bismuthinite).size(1, 2))
-                        .layer(l -> l.weight(1).mat(GTMaterials.Stibnite).size(1, 2))
-                )
-        );
-        GTNNOres.INSTANCE.getIRIDIUM_VEIN_AD().layeredVeinGenerator(generator -> generator
-                .buildLayerPattern(pattern -> pattern
-                        .layer(l -> l.weight(1).mat(GTMaterials.Nickel).size(2, 3))
-                        .layer(l -> l.weight(1).mat(CTNHMaterials.MeteoricTroilite).size(1, 2))
-                        .layer(l -> l.weight(1).mat(CTNHMaterials.PalladiumSulfide).size(1, 2))
-                )
-        );
-        GTNNOres.INSTANCE.getCHROMIUM_VEIN_AD().layeredVeinGenerator(generator -> generator
-                .buildLayerPattern(pattern -> pattern
-                        .layer(l -> l.weight(1).mat(GTMaterials.Chromite).size(2, 3))
-                        .layer(l -> l.weight(1).mat(CTNHMaterials.Wolframite).size(1, 2))
-                        .layer(l -> l.weight(1).mat(CTNHMaterials.Tarkianite).size(1, 2))
-                        .layer(l -> l.weight(1).mat(GTMaterials.Pyrolusite).size(1, 2))
-                )
-        );
-        GTNNOres.INSTANCE.getNIOBIUM_VEIN_AD().layeredVeinGenerator(generator -> generator
-                .buildLayerPattern(pattern -> pattern
-                        .layer(l -> l.weight(1).mat(GTMaterials.Niobium).size(2, 3))
-                        .layer(l -> l.weight(1).mat(CTNHMaterials.MeteoricTroilite).size(1, 2))
-                        .layer(l -> l.weight(1).mat(CTNHMaterials.Germanite).size(1, 2))
-                )
-        );
-        GTNNOres.INSTANCE.getOSMIUM_VEIN_AD().layeredVeinGenerator(generator -> generator
-                .buildLayerPattern(pattern -> pattern
-                        .layer(l -> l.weight(1).mat(GTMaterials.Nickel).size(2, 3))
-                        .layer(l -> l.weight(1).mat(CTNHMaterials.OsmiumIronSpinel).size(1, 1))
-                        .layer(l -> l.weight(1).mat(CTNHMaterials.MeteoricTroilite).size(1, 1))
-                        .layer(l -> l.weight(1).mat(CTNHMaterials.Crocoite).size(2, 3))
-                )
-        );
-        GTNNOres.INSTANCE.getNEUTRONIUM_VEIN_AD().layeredVeinGenerator(generator -> generator
-                .buildLayerPattern(pattern -> pattern
-                        .layer(l -> l.weight(1).mat(GTMaterials.Neutronium).size(2, 3))
-                        .layer(l -> l.weight(1).mat(CTNHMaterials.OsmiumIronSpinel).size(1, 1))
-                        .layer(l -> l.weight(1).mat(GTMaterials.Naquadria).size(1, 1))
-                        .layer(l -> l.weight(1).mat(CTNHMaterials.Rheniite).size(1, 1))
-                )
-        );
+//        GTNNOres.INSTANCE.getGOLD_VEIN_TF().layeredVeinGenerator(generator -> generator
+//                .buildLayerPattern(pattern -> pattern
+//                .layer(l -> l.weight(3).mat(GTMaterials.Magnetite).size(2, 4))
+//                .layer(l -> l.weight(2).mat(GTMaterials.VanadiumMagnetite).size(1, 1))
+//                .layer(l -> l.weight(1).mat(CTNHMaterials.PreciousAlloy).size(1, 1))
+//            )
+//        );
+//        GTNNOres.INSTANCE.getARSENIC_VEIN_AD().layeredVeinGenerator(generator -> generator
+//                .buildLayerPattern(pattern -> pattern
+//                        .layer(l -> l.weight(1).mat(CTNHMaterials.Sperrylite).size(1, 2))
+//                        .layer(l -> l.weight(1).mat(CTNHMaterials.Bismuthinite).size(1, 2))
+//                        .layer(l -> l.weight(1).mat(GTMaterials.Stibnite).size(1, 2))
+//                )
+//        );
+//        GTNNOres.INSTANCE.getIRIDIUM_VEIN_AD().layeredVeinGenerator(generator -> generator
+//                .buildLayerPattern(pattern -> pattern
+//                        .layer(l -> l.weight(1).mat(GTMaterials.Nickel).size(2, 3))
+//                        .layer(l -> l.weight(1).mat(CTNHMaterials.MeteoricTroilite).size(1, 2))
+//                        .layer(l -> l.weight(1).mat(CTNHMaterials.PalladiumSulfide).size(1, 2))
+//                )
+//        );
+//        GTNNOres.INSTANCE.getCHROMIUM_VEIN_AD().layeredVeinGenerator(generator -> generator
+//                .buildLayerPattern(pattern -> pattern
+//                        .layer(l -> l.weight(1).mat(GTMaterials.Chromite).size(2, 3))
+//                        .layer(l -> l.weight(1).mat(CTNHMaterials.Wolframite).size(1, 2))
+//                        .layer(l -> l.weight(1).mat(CTNHMaterials.Tarkianite).size(1, 2))
+//                        .layer(l -> l.weight(1).mat(GTMaterials.Pyrolusite).size(1, 2))
+//                )
+//        );
+//        GTNNOres.INSTANCE.getNIOBIUM_VEIN_AD().layeredVeinGenerator(generator -> generator
+//                .buildLayerPattern(pattern -> pattern
+//                        .layer(l -> l.weight(1).mat(GTMaterials.Niobium).size(2, 3))
+//                        .layer(l -> l.weight(1).mat(CTNHMaterials.MeteoricTroilite).size(1, 2))
+//                        .layer(l -> l.weight(1).mat(CTNHMaterials.Germanite).size(1, 2))
+//                )
+//        );
+//        GTNNOres.INSTANCE.getOSMIUM_VEIN_AD().layeredVeinGenerator(generator -> generator
+//                .buildLayerPattern(pattern -> pattern
+//                        .layer(l -> l.weight(1).mat(GTMaterials.Nickel).size(2, 3))
+//                        .layer(l -> l.weight(1).mat(CTNHMaterials.OsmiumIronSpinel).size(1, 1))
+//                        .layer(l -> l.weight(1).mat(CTNHMaterials.MeteoricTroilite).size(1, 1))
+//                        .layer(l -> l.weight(1).mat(CTNHMaterials.Crocoite).size(2, 3))
+//                )
+//        );
+//        GTNNOres.INSTANCE.getNEUTRONIUM_VEIN_AD().layeredVeinGenerator(generator -> generator
+//                .buildLayerPattern(pattern -> pattern
+//                        .layer(l -> l.weight(1).mat(GTMaterials.Neutronium).size(2, 3))
+//                        .layer(l -> l.weight(1).mat(CTNHMaterials.OsmiumIronSpinel).size(1, 1))
+//                        .layer(l -> l.weight(1).mat(GTMaterials.Naquadria).size(1, 1))
+//                        .layer(l -> l.weight(1).mat(CTNHMaterials.Rheniite).size(1, 1))
+//                )
+//        );
         GTRegistries.ORE_VEINS.remove(GTCEu.id("nether_quartz_vein"));
         GTRegistries.ORE_VEINS.remove(GTCEu.id("nickel_vein"));
         GTRegistries.ORE_VEINS.remove(GTCEu.id("galena_vein"));
@@ -99,8 +95,8 @@ public class CTNHOres {
                         .layer(l -> l.weight(1).mat(GTMaterials.Pollucite).size(1, 1))
                     )
                 );
-        GTNNOres.INSTANCE.getOSTRUM_VEIN_AD()
-                .clusterSize(40);
+//        GTNNOres.INSTANCE.getOSTRUM_VEIN_AD()
+//                .clusterSize(40);
 
 //        let ADASTRA = ["ad_astra:lunar_wastelands","ad_astra:glacio_ice_peaks","ad_astra:glacio_snowny_barrens",
 //                "ad_astra:inferno_venus_barrens","ad_astra:martian_canyon_creek","ad_astra:martian_polar_caps",
@@ -214,7 +210,7 @@ public class CTNHOres {
         .clusterSize(40)
         .density(0.25F)
         .discardChanceOnAirExposure(0)
-        .layer(GTNNWorld.GTNNWorldGenLayers.TF)
+        .layer(CTNHWorldgenLayers.TWILIGHT)
         .dimensions(TWILIGHT_FOREST)
         .heightRangeUniform(-30, 0)
         .layeredVeinGenerator(generator -> generator
@@ -236,7 +232,7 @@ public class CTNHOres {
                     .clusterSize(40)
                     .density(0.35F)
                     .discardChanceOnAirExposure(0)
-                    .layer(GTNNWorld.GTNNWorldGenLayers.TF)
+                    .layer(CTNHWorldgenLayers.TWILIGHT)
                     .dimensions(TWILIGHT_FOREST)
                     .biomes(BiomeTagGenerator.VALID_NAGA_COURTYARD_BIOMES)
                     .heightRangeUniform(-33, 20)
@@ -259,7 +255,7 @@ public class CTNHOres {
                     .clusterSize(45)
                     .density(0.35F)
                     .discardChanceOnAirExposure(0)
-                    .layer(GTNNWorld.GTNNWorldGenLayers.TF)
+                    .layer(CTNHWorldgenLayers.TWILIGHT)
                     .dimensions(TWILIGHT_FOREST)
                     .biomes(BiomeTagGenerator.VALID_LICH_TOWER_BIOMES)
                     .heightRangeUniform(-33, 20)
@@ -282,7 +278,7 @@ public class CTNHOres {
                     .clusterSize(35)
                     .density(0.45F)
                     .discardChanceOnAirExposure(0)
-                    .layer(GTNNWorld.GTNNWorldGenLayers.TF)
+                    .layer(CTNHWorldgenLayers.TWILIGHT)
                     .dimensions(TWILIGHT_FOREST)
                     .biomes(BiomeTagGenerator.VALID_LABYRINTH_BIOMES)
                     .heightRangeUniform(-33, 20)
@@ -305,7 +301,7 @@ public class CTNHOres {
                     .clusterSize(25)
                     .density(0.45F)
                     .discardChanceOnAirExposure(0)
-                    .layer(GTNNWorld.GTNNWorldGenLayers.TF)
+                    .layer(CTNHWorldgenLayers.TWILIGHT)
                     .dimensions(TWILIGHT_FOREST)
                     .biomes(BiomeTagGenerator.VALID_KNIGHT_STRONGHOLD_BIOMES)
                     .heightRangeUniform(-33, 20)
@@ -328,7 +324,7 @@ public class CTNHOres {
                     .clusterSize(25)
                     .density(0.45F)
                     .discardChanceOnAirExposure(0)
-                    .layer(GTNNWorld.GTNNWorldGenLayers.TF)
+                    .layer(CTNHWorldgenLayers.TWILIGHT)
                     .dimensions(TWILIGHT_FOREST)
                     .biomes(BiomeTagGenerator.VALID_AURORA_PALACE_BIOMES)
                     .heightRangeUniform(-33, 20)
@@ -351,7 +347,7 @@ public class CTNHOres {
                     .clusterSize(35)
                     .density(0.55F)
                     .discardChanceOnAirExposure(0)
-                    .layer(GTNNWorld.GTNNWorldGenLayers.TF)
+                    .layer(CTNHWorldgenLayers.TWILIGHT)
                     .dimensions(TWILIGHT_FOREST)
                     .biomes(BiomeTagGenerator.VALID_HYDRA_LAIR_BIOMES)
                     .heightRangeUniform(-33, 20)
@@ -374,7 +370,7 @@ public class CTNHOres {
                     .clusterSize(45)
                     .density(0.25F)
                     .discardChanceOnAirExposure(0)
-                    .layer(GTNNWorld.GTNNWorldGenLayers.TF)
+                    .layer(CTNHWorldgenLayers.TWILIGHT)
                     .dimensions(TWILIGHT_FOREST)
                     .biomes(BiomeTagGenerator.VALID_DARK_TOWER_BIOMES)
                     .heightRangeUniform(-33, 20)
@@ -397,7 +393,7 @@ public class CTNHOres {
                     .clusterSize(65)
                     .density(0.65F)
                     .discardChanceOnAirExposure(0)
-                    .layer(GTNNWorld.GTNNWorldGenLayers.TF)
+                    .layer(CTNHWorldgenLayers.TWILIGHT)
                     .dimensions(TWILIGHT_FOREST)
                     .biomes(BiomeTagGenerator.VALID_TROLL_CAVE_BIOMES)
                     .heightRangeUniform(-33, 20)
@@ -504,7 +500,7 @@ public class CTNHOres {
         vein.clusterSize(40)
         .density(0.3F)
         .weight(40)
-        .layer(GTNNWorld.GTNNWorldGenLayers.AD)
+        .layer(CTNHWorldgenLayers.ADASTRA)
         .heightRangeUniform(5, 50)
         .dimensions(MOON)
         .layeredVeinGenerator(generator -> generator
@@ -547,7 +543,7 @@ public class CTNHOres {
         .clusterSize(40)
         .density(0.35F)
         .discardChanceOnAirExposure(0)
-        .layer(GTNNWorld.GTNNWorldGenLayers.TF)
+        .layer(CTNHWorldgenLayers.TWILIGHT)
         .dimensions(TWILIGHT_FOREST)
         .heightRangeUniform(-30, 0)
         .layeredVeinGenerator(generator -> generator
@@ -635,7 +631,7 @@ public class CTNHOres {
         .clusterSize(40)
         .density(0.25F)
         .discardChanceOnAirExposure(0)
-        .layer(GTNNWorld.GTNNWorldGenLayers.TF)
+        .layer(CTNHWorldgenLayers.TWILIGHT)
         .dimensions(TWILIGHT_FOREST)
         .heightRangeUniform(-30, 0)
         .layeredVeinGenerator(generator -> generator
@@ -657,7 +653,7 @@ public class CTNHOres {
         .clusterSize(30)
         .density(0.30F)
         .discardChanceOnAirExposure(0)
-        .layer(GTNNWorld.GTNNWorldGenLayers.AD)
+        .layer(CTNHWorldgenLayers.ADASTRA)
         .dimensions(MOON)
         .heightRangeUniform(-20, 50)
         .layeredVeinGenerator(generator -> generator
@@ -678,7 +674,7 @@ public class CTNHOres {
         .clusterSize(40)
         .density(0.25F)
             .discardChanceOnAirExposure(0)
-        .layer(GTNNWorld.GTNNWorldGenLayers.AD)
+        .layer(CTNHWorldgenLayers.ADASTRA)
         .dimensions(MARS, VENUS, MERCURY)
         .heightRangeUniform(30, 80)
         .layeredVeinGenerator(generator -> generator
@@ -700,7 +696,7 @@ public class CTNHOres {
                     .clusterSize(40)
                     .density(0.25F)
                     .discardChanceOnAirExposure(0)
-                    .layer(GTNNWorld.GTNNWorldGenLayers.AD)
+                    .layer(CTNHWorldgenLayers.ADASTRA)
                     .dimensions(VENUS)
                     .heightRangeUniform(30, 80)
                     .layeredVeinGenerator(generator -> generator
@@ -722,7 +718,7 @@ public class CTNHOres {
                     .clusterSize(40)
                     .density(0.25F)
                     .discardChanceOnAirExposure(0)
-                    .layer(GTNNWorld.GTNNWorldGenLayers.AD)
+                    .layer(CTNHWorldgenLayers.ADASTRA)
                     .dimensions(MERCURY)
                     .heightRangeUniform(30, 80)
                     .layeredVeinGenerator(generator -> generator
@@ -744,7 +740,7 @@ public class CTNHOres {
                     .clusterSize(40)
                     .density(0.25F)
                     .discardChanceOnAirExposure(0)
-                    .layer(GTNNWorld.GTNNWorldGenLayers.AD)
+                    .layer(CTNHWorldgenLayers.ADASTRA)
                     .dimensions(GLACIO)
                     .heightRangeUniform(30, 80)
                     .layeredVeinGenerator(generator -> generator

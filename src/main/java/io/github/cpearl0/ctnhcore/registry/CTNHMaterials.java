@@ -1,36 +1,100 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import appeng.core.definitions.AEBlocks;
+import appeng.core.definitions.AEItems;
 import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.item.AetherItems;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty;
+import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
 import com.gregtechceu.gtceu.api.data.chemical.material.registry.MaterialRegistry;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
+import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import dev.arbor.gtnn.data.GTNNMaterials;
 import earth.terrarium.adastra.common.registry.ModBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.data.materials.*;
+import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
-import lombok.Generated;
-import net.minecraft.server.commands.PublishCommand;
+import mythicbotany.register.ModItems;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
 import vazkii.botania.common.block.BotaniaBlocks;
+import vazkii.botania.common.item.BotaniaItems;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.*;
-import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.*;
+import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.HIGHER;
+import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.HIGHEST;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
 import static io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes.hyperRotor;
 import static wayoftime.bloodmagic.api.compat.EnumDemonWillType.CORROSIVE;
 
 public class CTNHMaterials {
+    public static void addFluid(Material material) {
+        if (!material.hasProperty(PropertyKey.FLUID)) {
+            material.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        }
+    }
+    public static void addDust(Material material) {
+        if (!material.hasProperty(PropertyKey.DUST)) {
+            material.setProperty(PropertyKey.DUST, new DustProperty());
+        }
+    }
+    public static void addOre(Material... materials) {
+        materials[0].setProperty(PropertyKey.ORE, new OreProperty());
+        if (materials.length == 2 && materials[1] != null) {
+            var oreProperty = materials[0].getProperty(PropertyKey.ORE);
+            oreProperty.setDirectSmeltResult(materials[1]);
+            oreProperty.setOreByProducts(materials[1]);
+            oreProperty.setSeparatedInto(materials[1]);
+        }
+    }
+    public static void addGas(Material material) {
+        if (!material.hasProperty(PropertyKey.FLUID)) {
+            material.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.GAS, new FluidBuilder()));
+        }
+    }
+    public static void adjustAluminium(Material raw) {
+        var ores = raw.getProperty(PropertyKey.ORE).getOreByProducts();
+        var newOre = ores.stream().map(ore -> {
+            if (ore.equals(Aluminium)) {
+                return Alumina;
+            }
+            else return ore;
+        }).toList();
+        raw.getProperty(PropertyKey.ORE).getOreByProducts().clear();
+        raw.getProperty(PropertyKey.ORE).setOreByProducts(newOre);
+    }
+    public static void adjustPlatinum(Material raw) {
+        var ores = raw.getProperty(PropertyKey.ORE).getOreByProducts();
+        var newOre = ores.stream().map(ore -> {
+            if (ore.equals(Platinum)) {
+                return PlatinumMetal;
+            }
+            else return ore;
+        }).toList();
+        raw.getProperty(PropertyKey.ORE).getOreByProducts().clear();
+        raw.getProperty(PropertyKey.ORE).setOreByProducts(newOre);
+    }
+    public static void adjustPalladium(Material raw) {
+        var ores = raw.getProperty(PropertyKey.ORE).getOreByProducts();
+        var newOre = ores.stream().map(ore -> {
+            if (ore.equals(Palladium)) {
+                return PalladiumMetal;
+            }
+            else return ore;
+        }).toList();
+        raw.getProperty(PropertyKey.ORE).getOreByProducts().clear();
+        raw.getProperty(PropertyKey.ORE).setOreByProducts(newOre);
+    }
     // Ad Astra
     public static final Material Moonstone = new Material.Builder(CTNHCore.id("moon_stone"))
             .dust()
@@ -435,13 +499,6 @@ public class CTNHMaterials {
             .color(0x7D26CD)
             .secondaryColor(0x836FFF)
             .buildAndRegister();
-    public static final Material AlfSteel = new Material.Builder(GTCEu.id("alfsteel"))
-            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
-            .ingot()
-            .color(0xFD9D31)
-            .iconSet(METALLIC)
-            .cableProperties(GTValues.V[GTValues.EV], 6, 1, false)
-            .buildAndRegister();
     public static final Material AERIALITE = new Material.Builder(GTCEu.id("aerialite"))
             .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
             .ingot()
@@ -652,7 +709,7 @@ public class CTNHMaterials {
             .iconSet(OPAL)
             .flags(PHOSPHORESCENT, GENERATE_LENS)
             .components(Europium, 1, Calcium, 1, Fluorine, 2)
-            .addOreByproducts(Fluorine, Yttrium, Terbium)
+            .addOreByproducts(Lanthanum, Yttrium, Terbium)
             .buildAndRegister();
     public static final Material GadoliniteSm = new Material.Builder(GTCEu.id("gadolinite_sm"))
             .ore()
@@ -694,7 +751,7 @@ public class CTNHMaterials {
             .color(0x77DD77).secondaryColor(0x50C878)
             .iconSet(OPAL)
             .components(Calcium, 1, Yttrium, 1, Fluorine, 4)
-            .addOreByproducts(Fluorine, Cerium, Neodymium)
+            .addOreByproducts(Lanthanum, Cerium, Neodymium)
             .buildAndRegister();
     public static final Material Tarkianite = new Material.Builder(GTCEu.id("tarkianite"))
             .ore()
@@ -731,9 +788,186 @@ public class CTNHMaterials {
             .components(Rhenium, 1, Sulfur, 2)
             .addOreByproducts(Molybdenum, Copper, Platinum)
             .buildAndRegister();
+
+    public static Material AndesiteAlloy;
+    public static Material Desh;
+    public static Material Ostrum;
+    public static Material Calorite;
+    public static Material SpaceNeutronium;
+    public static Material InfinityCatalyst;
+    public static Material RP1;
+    public static Material RP1RocketFuel;
+    public static Material Kerosene;
+    public static Material DenseHydrazineMixedFuel;
+    public static Material Hydrazine;
+    public static Material EthylAnthraQuinone;
+    public static Material EthylAnthraHydroQuinone;
+    public static Material Anthracene;
+    public static Material MethylhydrazineNitrateRocketFuel;
+    public static Material MethylHydrazine;
+    public static Material UDMHRocketFuel;
+    public static Material UDMH;
+    public static Material OrangeMetal;
+    public static Material PhthalicAnhydride;
+    public static Material VanadiumPentoxide;
+    public static Material BlackMatter;
+    public static Material Cerrobase140;
+    public static Material PotassiumPyrosulfate;
+    public static Material SodiumSulfate;
+    public static Material ZincSulfate;
+    public static Material Wollastonite;
+    public static Material ArcaneCrystal;
+    public static Material ManaSteel;
+    public static Material TerraSteel;
+    public static Material Elementium;
+    public static Material AlfSteel;
+    public static Material RefinedRadiance;
+    public static Material ShadowSteel;
+    public static Material PlatinumSalt;
+    public static Material RefinedPlatinumSalt;
+    public static Material PalladiumSalt;
+    public static Material RhodiumNitrate;
+    public static Material RoughlyRhodiumMetal;
+    public static Material PalladiumMetal;
+    public static Material MetalSludge;
+    public static Material PlatinumSlag;
+    public static Material ReprecipitatedRhodium;
+    public static Material SodiumNitrate;
+    public static Material RhodiumSalt;
+    public static Material RhodiumFilterCake;
+    public static Material PlatinumMetal;
+    public static Material Kaolinite;
+    public static Material Dolomite;
+    public static Material SodiumRutheniate;
+    public static Material IridiumDioxide;
+    public static Material ConcentratedPlatinum;
+    public static Material PalladiumRichAmmonia;
+    public static Material RutheniumTetroxideLQ;
+    public static Material SodiumFormate;
+    public static Material RhodiumSulfateGas;
+    public static Material AcidicIridium;
+    public static Material RutheniumTetroxideHot;
+    public static Material NaquadahOxideMixture;
+    public static Material EnrichedNaquadahOxideMixture;
+    public static Material NaquadriaOxideMixture;
+    public static Material HexafluorideEnrichedNaquadahSolution;
+    public static Material XenonHexafluoroEnrichedNaquadate;
+    public static Material PalladiumOnCarbon;
+    public static Material GoldTrifluoride;
+    public static Material EnrichedNaquadahResidueSolution;
+    public static Material XenoauricFluoroantimonicAcid;
+    public static Material GoldChloride;
+    public static Material BromineTrifluoride;
+    public static Material HexafluorideNaquadriaSolution;
+    public static Material RadonDifluoride;
+    public static Material RadonNaquadriaOctafluoride;
+    public static Material NaquadriaResidueSolution;
+    public static Material CaesiumFluoride;
+    public static Material XenonTrioxide;
+    public static Material CaesiumXenontrioxideFluoride;
+    public static Material NaquadriaCaesiumXenonnonfluoride;
+    public static Material RadonTrioxide;
+    public static Material NaquadriaCaesiumfluoride;
+    public static Material NitrosoniumOctafluoroxenate;
+    public static Material NitrylFluoride;
+    public static Material AcidicNaquadriaCaesiumfluoride;
+    public static Material GraphiteUraniumMixture;
+    public static Material UraniumCarbideThoriumMixture;
+    public static Material PlutoniumOxideUraniumMixture;
+    public static Material ThoriumBasedLiquidFuelExcited;
+    public static Material ThoriumBasedLiquidFuelDepleted;
+    public static Material ThoriumBasedLiquidFuel;
+    public static Material UraniumBasedLiquidFuelExcited;
+    public static Material UraniumBasedLiquidFuelDepleted;
+    public static Material UraniumBasedLiquidFuel;
+    public static Material PlutoniumBasedLiquidFuelExcited;
+    public static Material PlutoniumBasedLiquidFuelDepleted;
+    public static Material PlutoniumBasedLiquidFuel;
+    public static Material RadiationProtection;
+    public static Material NaquadahBasedLiquidFuel;
+    public static Material NaquadahBasedLiquidFuelExcited;
+    public static Material NaquadahBasedLiquidFuelDepleted;
+    public static Material IodizedBrine;
+    public static Material IodineBrineMixture;
+    public static Material BrominatedBrine;
+    public static Material IodineSlurry;
+    public static Material AcidicBrominatedBrine;
+    public static Material BromineSulfateSolution;
+    public static Material OverheatedBromineSulfateSolution;
+    public static Material WetBromine;
+    public static Material DebrominatedWater;
+    public static Material NeutroniumMixture;
+    public static Material MARM200Steel;
     public static void init() {
-        CombustibleIce.setFormula("(CH4)(H2O)", true);
         NuclearMaterials.init();
+        CreateMaterials.init();
+        BotaniaMaterials.init();
+        AdastraMaterials.init();
+        PlatinumLineMaterials.init();
+        NaquadahMaterials.init();
+        BrineChain.init();
+        SecondMaterials.init();
+        CombustibleIce.setFormula("(CH4)(H2O)", true);
+
+        var ore = new OreProperty();
+        ore.addOreByProducts(Arsenic);
+        ArsenicTrioxide.setProperty(PropertyKey.ORE, ore);
+
+        addGas(Oganesson);
+        addGas(Calcium);
+        addFluid(Californium);
+        addFluid(Caesium);
+        addFluid(AmmoniumChloride);
+        addDust(Praseodymium);
+
+
+        adjustAluminium(Almandine);
+        adjustAluminium(Emerald);
+        adjustAluminium(GreenSapphire);
+        adjustAluminium(Sapphire);
+        adjustAluminium(Spodumene);
+        adjustAluminium(GlauconiteSand);
+        adjustAluminium(Pollucite);
+        adjustAluminium(Bentonite);
+        adjustAluminium(FullersEarth);
+        adjustAluminium(Kyanite);
+        adjustAluminium(Mica);
+        adjustAluminium(Zeolite);
+
+        adjustPlatinum(Nickel);
+
+        adjustPalladium(Cooperite);
+        adjustPalladium(Platinum);
+        var oreProp = Naquadah.getProperty(PropertyKey.ORE);
+        oreProp.getOreByProducts().clear();
+        oreProp.setOreByProducts(Sulfur, Barite, EnrichedNaquadahOxideMixture);
+        oreProp.getSeparatedInto().clear();
+        oreProp.setSeparatedInto(EnrichedNaquadahOxideMixture);
+
+        //Enable Dense Plate for Hyper Rotor
+        for (MaterialRegistry registry : GTCEuAPI.materialManager.getRegistries())
+            for (Material material : registry.getAllMaterials())
+                if (material.hasAnyOfFlags(MaterialFlags.GENERATE_ROTOR, GENERATE_HYPER_ROTOR)
+                        && !material.hasFlag(GENERATE_DENSE))
+                    material.addFlags(GENERATE_DENSE);
+
+    }
+    public static void tagPrefixIgnore() {
+        TagPrefix.ingot.setIgnored(ManaSteel, BotaniaItems.manaSteel);
+        TagPrefix.nugget.setIgnored(ManaSteel, BotaniaItems.manasteelNugget);
+        TagPrefix.block.setIgnored(ManaSteel, BotaniaBlocks.manasteelBlock);
+        TagPrefix.ingot.setIgnored(TerraSteel, BotaniaItems.terrasteel);
+        TagPrefix.nugget.setIgnored(TerraSteel, BotaniaItems.terrasteelNugget);
+        TagPrefix.block.setIgnored(TerraSteel, BotaniaBlocks.terrasteelBlock);
+        TagPrefix.ingot.setIgnored(Elementium, BotaniaItems.elementium);
+        TagPrefix.nugget.setIgnored(Elementium, BotaniaItems.elementiumNugget);
+        TagPrefix.block.setIgnored(Elementium, BotaniaBlocks.elementiumBlock);
+        TagPrefix.ingot.setIgnored(AlfSteel, ModItems.alfsteelIngot);
+        TagPrefix.nugget.setIgnored(AlfSteel, ModItems.alfsteelNugget);
+        TagPrefix.block.setIgnored(AlfSteel, mythicbotany.register.ModBlocks.alfsteelBlock);
+        TagPrefix.gem.setIgnored(GTMaterials.CertusQuartz, AEItems.CERTUS_QUARTZ_CRYSTAL);
+        TagPrefix.block.setIgnored(GTMaterials.CertusQuartz, AEBlocks.QUARTZ_BLOCK);
+
         TagPrefix.block.setIgnored(Moonstone, ModBlocks.MOON_STONE);
         TagPrefix.block.setIgnored(Marsstone, ModBlocks.MARS_STONE);
         TagPrefix.block.setIgnored(Venusstone, ModBlocks.VENUS_STONE);
@@ -757,14 +991,6 @@ public class CTNHMaterials {
         TagPrefix.block.setIgnored(Livingrock, BotaniaBlocks.livingrock);
 
         hyperRotor.setIgnored(Neutronium);
-
-        //Enable Dense Plate for Hyper Rotor
-        for (MaterialRegistry registry : GTCEuAPI.materialManager.getRegistries())
-            for (Material material : registry.getAllMaterials())
-                if (hyperRotor.generationCondition().test(material)
-                        && !material.hasFlag(GENERATE_DENSE))
-                    material.addFlags(GENERATE_DENSE);
-
     }
 
     public static class MaterialIcons {
