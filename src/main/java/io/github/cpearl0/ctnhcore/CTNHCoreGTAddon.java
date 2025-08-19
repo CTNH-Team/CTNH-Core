@@ -9,6 +9,7 @@ import io.github.cpearl0.ctnhcore.data.recipe.*;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.FuelChain;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.NaquadahLine;
+import io.github.cpearl0.ctnhcore.data.recipe.chain.PlatinumLine;
 import io.github.cpearl0.ctnhcore.data.recipe.generated.HyperRotorRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.multiblock.*;
 import io.github.cpearl0.ctnhcore.registry.*;
@@ -70,11 +71,6 @@ public class CTNHCoreGTAddon implements IGTAddon {
     }
 
     @Override
-    public void removeRecipes(Consumer<ResourceLocation> consumer) {
-        RecipeRemoval.init(consumer);
-    }
-
-    @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
         UnderfloorHeatingSystemRecipes.init(provider);
         AstronomicalObservatoryRecipes.init(provider);
@@ -95,6 +91,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         ManaCondenserRecipes.init(provider);
         BotaniaRecipes.init(provider);
         HyperRotorRecipes.registerAll(provider);
+        PlatinumLine.init(provider);
         //移植配方
         NaquadahReactorRecipes.init(provider);
         DefaultRecipes.init(provider);
@@ -108,5 +105,6 @@ public class CTNHCoreGTAddon implements IGTAddon {
     @Override
     public void removeRecipes(Consumer<ResourceLocation> consumer) {
         AdAstraRecipes.remove(consumer);
+        RecipeRemoval.init(consumer);
     }
 }
