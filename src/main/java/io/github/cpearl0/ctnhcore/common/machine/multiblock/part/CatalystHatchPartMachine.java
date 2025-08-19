@@ -153,8 +153,10 @@ public class CatalystHatchPartMachine extends TieredIOPartMachine {
         unsubscribe();
     }
     private void unsubscribe() {
-        transferSubs.unsubscribe();
-        transferSubs = null;
+        if (transferSubs != null) {
+            transferSubs.unsubscribe();
+            transferSubs = null;
+        }
     }
 
     //////////////////////////////////////
@@ -174,8 +176,8 @@ public class CatalystHatchPartMachine extends TieredIOPartMachine {
     }
     private void addSlots(WidgetGroup container, NotifiableItemStackHandler handler, int x, int y, boolean canPutItems) {
         var index = 0;
-        for (int j = 0; j < 3; j++) {
-            for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 4; j++) {
+            for (int i = 0; i < 4; i++) {
                 container.addWidget(
                         new SlotWidget(
                                 handler,
