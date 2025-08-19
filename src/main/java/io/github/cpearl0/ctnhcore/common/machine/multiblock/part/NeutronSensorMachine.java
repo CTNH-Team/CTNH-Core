@@ -87,7 +87,7 @@ public class NeutronSensorMachine extends TieredPartMachine {
                 )
         );
         group.addWidget(
-        new TextFieldWidget(80, 35, 85, 18, () -> String.valueOf(min), (it) -> min = clamp(fromText(it), 0, max)) {
+        new TextFieldWidget(80, 35, 85, 18, () -> String.valueOf(min), (it) -> setMin(clamp(fromText(it), 0, max))) {
             public int maxValue = 0;
             @Override
             public void updateScreen() {
@@ -99,7 +99,7 @@ public class NeutronSensorMachine extends TieredPartMachine {
             }
         }.setNumbersOnly(0, max));
         group.addWidget(
-        new TextFieldWidget(80, 80, 85, 18, () -> String.valueOf(max), (it) -> max = clamp(fromText(it), min, 1200000)) {
+        new TextFieldWidget(80, 80, 85, 18, () -> String.valueOf(max), (it) -> setMax(clamp(fromText(it), min, 1200000))) {
             public int minValue = 0;
             @Override
             public void updateScreen() {
