@@ -131,7 +131,7 @@ public class NeutronSensorMachine extends TieredPartMachine {
                 energy, (max * k), (min * k), isInverted
         );
         if (redstoneSignalOutput != output) {
-            redstoneSignalOutput = output;
+            setRedstoneSignalOutput(output);
         }
     }
 
