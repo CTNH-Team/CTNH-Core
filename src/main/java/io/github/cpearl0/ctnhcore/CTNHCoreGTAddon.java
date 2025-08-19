@@ -86,6 +86,5 @@ public class CTNHCoreGTAddon implements IGTAddon {
         ManaCondenserRecipes.init(provider);
         BotaniaRecipes.init(provider);
         HyperRotorRecipes.registerAll(provider);
-        PlatinumRefiningRecipes.init(provider);
     }
 }

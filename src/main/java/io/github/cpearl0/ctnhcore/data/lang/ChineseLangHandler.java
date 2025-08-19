@@ -123,26 +123,6 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.Crocoite.getUnlocalizedName(), "红铬铅");
         replace(provider, CTNHMaterials.Roquesite.getUnlocalizedName(), "铜铟");
         replace(provider, CTNHMaterials.Smithsonite.getUnlocalizedName(), "菱锌");
-        replace(provider, CTNHMaterials.AU_PD_PT_SOLUTION.getUnlocalizedName(), "金钯铂溶液");
-        replace(provider, CTNHMaterials.SodiumRutheniate.getUnlocalizedName(), "钌酸钠");
-        replace(provider, CTNHMaterials.Pt_Pd_CHLORIDE_SOLUTION.getUnlocalizedName(), "氯铂酸-氯钯酸混合溶液");
-        replace(provider, CTNHMaterials.PALLADIUM_CHLORIDE_SOLUTION.getUnlocalizedName(), "氯钯酸");
-        replace(provider, CTNHMaterials.OxalicAcid.getUnlocalizedName(), "草酸");
-        replace(provider, CTNHMaterials.INSOLUBLE_RESIDUE.getUnlocalizedName(), "不溶渣");
-        replace(provider, CTNHMaterials.CRUDE_GOLD.getUnlocalizedName(), "粗金粉");
-        replace(provider, CTNHMaterials.AMMONIUM_HEXACHLOROPLATINATE.getUnlocalizedName(), "铂铵盐");
-        replace(provider, CTNHMaterials.DIAMMINE_PALLADIUM_CHLORIDE.getUnlocalizedName(), "二氯二氨合钯");
-        replace(provider, CTNHMaterials.SILVER_CHLORIDE.getUnlocalizedName(), "氯化银");
-        replace(provider, CTNHMaterials.SODIUM_PEROXIDE.getUnlocalizedName(), "过氧化钠");
-        replace(provider, CTNHMaterials.SodiumOsmate.getUnlocalizedName(), "锇酸钠");
-        replace(provider, CTNHMaterials.PLATINUM_BLACK.getUnlocalizedName(), "铂黑");
-        replace(provider, CTNHMaterials.RU_RH_IR_RESIDUE.getUnlocalizedName(), "钌铑铱渣");
-        replace(provider, CTNHMaterials.IRIDIUM_METAL_SPONGE.getUnlocalizedName(), "铱海绵金属");
-        replace(provider, CTNHMaterials.RH_IR_CHLORIDE_RESIDUE.getUnlocalizedName(), "铑铱氯化物残渣");
-        replace(provider, CTNHMaterials.OSMIUM_TETROXIDE_GAS.getUnlocalizedName(), "四氧化锇");
-        replace(provider, CTNHMaterials.RUTHENIUM_TETRACHLORIDE_GAS.getUnlocalizedName(), "四氯化钌气体");
-        replace(provider, CTNHMaterials.ZincSulfate.getUnlocalizedName(), "硫酸锌");
-
 
         replace(provider, NuclearMaterials.ThoriumHexafluoride.getUnlocalizedName(), "六氟化钍");
         replace(provider, NuclearMaterials.ProtactiniumHexafluoride.getUnlocalizedName(), "六氟化镤");
