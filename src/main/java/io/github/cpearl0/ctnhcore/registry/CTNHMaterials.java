@@ -897,6 +897,44 @@ public class CTNHMaterials {
     public static Material DebrominatedWater;
     public static Material NeutroniumMixture;
     public static Material MARM200Steel;
+    //新铂线
+    public static Material GoldPlatinumPalladiumAcidSolution;
+    public static Material DenitratedGoldPlatinumPalladiumSolution;
+    public static Material FerricSulfate;
+    public static Material FerrousSulfate;
+    public static Material ChloroplatinicChloropalladicSolution;
+    public static Material AmmoniumChloroplatinate;
+    public static Material AmmoniaMonohydrate;
+    public static Material Diamminedichloropalladium;
+    public static Material SpongePalladium;
+    public static Material SpongePlatinum;
+    public static Material ChloropalladicAcidMixture;
+    public static Material PlatinumGroupResidue;     // 铂族贵金属残渣
+    public static Material Litharge;                // 密陀僧（PbO）
+    public static Material NobleLead;               // 贵铅（Pb/Ag/Au）
+    public static Material NitricLeachSolution;    // 硝酸浸没溶液
+    public static Material EnrichedInertMixture;    // 富集惰性混合物（Rh/Ir/Ru）
+    public static Material RhodiumSulfateSolution; // 含硫酸铑水溶液
+    public static Material RhodiumHydroxide;       // 氢氧化铑
+    public static Material ChlororhodicAcid;       // 氯铑酸（H₃[RhCl₆]）
+    public static Material ConcentratedAmmoniumChlororhodate; // 浓缩氯铑酸铵溶液
+    public static Material AmmoniumChlororhodate;  // 氯铑酸铵（(NH₄)₃[RhCl₆]）
+    public static Material SpongeRhodium;          // 海绵铑
+    public static Material PreciousMetalMixture;
+    public static Material AmmoniumChlororhodateSolution;
+    public static Material SodiumOsmateRuthenateSolution;
+    public static Material SodiumPeroxide;
+    public static Material IridiumOxide;
+    public static Material ChlorosmicAcidEthanolSolution;
+    public static Material ChlororuthenicAcidEthanolSolution;
+    public static Material ChlorosmicAcidGas;
+    public static Material ChlororuthenicAcidGas;
+    public static Material AmmoniumChlorosmate;
+    public static Material AmmoniumChlororuthenate;
+    public static Material SodiumOsmateRuthenateChlorideSolution;
+    public static Material Acetaldehyde;
+
+
     public static void init() {
         NuclearMaterials.init();
         CreateMaterials.init();

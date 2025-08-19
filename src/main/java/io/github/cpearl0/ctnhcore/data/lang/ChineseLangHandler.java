@@ -110,6 +110,44 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.Crocoite.getUnlocalizedName(), "红铬铅");
         replace(provider, CTNHMaterials.Roquesite.getUnlocalizedName(), "铜铟");
         replace(provider, CTNHMaterials.Smithsonite.getUnlocalizedName(), "菱锌");
+        //铂材料
+        // 材料中文名注册（需在语言初始化阶段执行）
+        replace(provider, CTNHMaterials.GoldPlatinumPalladiumAcidSolution.getUnlocalizedName(), "金-铂-钯酸性溶液");
+        replace(provider, CTNHMaterials.DenitratedGoldPlatinumPalladiumSolution.getUnlocalizedName(), "除硝金-铂-钯酸性溶液");
+        replace(provider, CTNHMaterials.FerricSulfate.getUnlocalizedName(), "硫酸铁");
+        replace(provider, CTNHMaterials.FerrousSulfate.getUnlocalizedName(), "酸性硫酸亚铁");
+        replace(provider, CTNHMaterials.ChloroplatinicChloropalladicSolution.getUnlocalizedName(), "氯铂酸-氯钯酸混合溶液");
+        replace(provider, CTNHMaterials.AmmoniumChloroplatinate.getUnlocalizedName(), "氯铂酸铵");
+        replace(provider, CTNHMaterials.AmmoniaMonohydrate.getUnlocalizedName(), "一水合氨");
+        replace(provider, CTNHMaterials.Diamminedichloropalladium.getUnlocalizedName(), "二氯二氨络亚钯");
+        replace(provider, CTNHMaterials.SpongePalladium.getUnlocalizedName(), "海绵钯");
+        replace(provider, CTNHMaterials.SpongePlatinum.getUnlocalizedName(), "海绵铂");
+        replace(provider, CTNHMaterials.ChloropalladicAcidMixture.getUnlocalizedName(), "氯钯酸混合物");
+        replace(provider, CTNHMaterials.PlatinumGroupResidue.getUnlocalizedName(), "铂族贵金属残渣");
+        replace(provider, CTNHMaterials.Litharge.getUnlocalizedName(), "密陀僧");
+        replace(provider, CTNHMaterials.NobleLead.getUnlocalizedName(), "贵铅");
+        replace(provider, CTNHMaterials.NitricLeachSolution.getUnlocalizedName(), "硝酸浸没溶液");
+        replace(provider, CTNHMaterials.EnrichedInertMixture.getUnlocalizedName(), "富集惰性混合物");
+        replace(provider, CTNHMaterials.RhodiumSulfateSolution.getUnlocalizedName(), "含硫酸铑水溶液");
+        replace(provider, CTNHMaterials.RhodiumHydroxide.getUnlocalizedName(), "氢氧化铑");
+        replace(provider, CTNHMaterials.ChlororhodicAcid.getUnlocalizedName(), "氯铑酸");
+        replace(provider, CTNHMaterials.ConcentratedAmmoniumChlororhodate.getUnlocalizedName(), "浓缩氯铑酸铵溶液");
+        replace(provider, CTNHMaterials.AmmoniumChlororhodate.getUnlocalizedName(), "氯铑酸铵");
+        replace(provider, CTNHMaterials.SpongeRhodium.getUnlocalizedName(), "海绵铑");
+        replace(provider, CTNHMaterials.PreciousMetalMixture.getUnlocalizedName(), "珍贵金属混合物");
+        replace(provider, CTNHMaterials.AmmoniumChlororhodateSolution.getUnlocalizedName(), "氯铑酸铵溶液");
+        replace(provider, CTNHMaterials.SodiumOsmateRuthenateSolution.getUnlocalizedName(), "锇酸钠-钌酸钠混合溶液");
+        replace(provider, CTNHMaterials.SodiumPeroxide.getUnlocalizedName(), "过氧化钠");
+        replace(provider, CTNHMaterials.IridiumOxide.getUnlocalizedName(), "氧化铱");
+        replace(provider, CTNHMaterials.ChlorosmicAcidEthanolSolution.getUnlocalizedName(), "氯锇酸-乙醇盐酸溶液");
+        replace(provider, CTNHMaterials.ChlororuthenicAcidEthanolSolution.getUnlocalizedName(), "氯钌酸-乙醇盐酸溶液");
+        replace(provider, CTNHMaterials.ChlorosmicAcidGas.getUnlocalizedName(), "氯锇酸");
+        replace(provider, CTNHMaterials.ChlororuthenicAcidGas.getUnlocalizedName(), "氯钌酸");
+        replace(provider, CTNHMaterials.AmmoniumChlorosmate.getUnlocalizedName(), "氯锇酸铵");
+        replace(provider, CTNHMaterials.AmmoniumChlororuthenate.getUnlocalizedName(), "氯钌酸铵");
+        replace(provider, CTNHMaterials.SodiumOsmateRuthenateChlorideSolution.getUnlocalizedName(), "锇酸钠-钌酸钠-氯化溶液");
+        replace(provider, CTNHMaterials.Acetaldehyde.getUnlocalizedName(), "乙醛");
+
 
         replace(provider, NuclearMaterials.ThoriumHexafluoride.getUnlocalizedName(), "六氟化钍");
         replace(provider, NuclearMaterials.ProtactiniumHexafluoride.getUnlocalizedName(), "六氟化镤");

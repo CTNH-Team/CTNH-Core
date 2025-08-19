@@ -537,16 +537,6 @@ public class DefaultRecipes {
                 .duration(6000) // 300秒
                 .save(provider);
 
-// 14. 氯化铵生产
-        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("ammonium_chloride")
-                .inputFluids(GTMaterials.Ammonia.getFluid(1000))
-                .inputFluids(GTMaterials.HydrochloricAcid.getFluid(1000))
-                .outputFluids(GTMaterials.AmmoniumChloride.getFluid(1000))
-                .circuitMeta(1)
-                .EUt(GTValues.VA[GTValues.LV]) // 30 EU/t
-                .duration(15) // 0.75秒
-                .save(provider);
-
         // 1. 清洁机器外壳（工作台）
         VanillaRecipeHelper.addShapedRecipe(
                 provider, true, "clean_machine_casing",
