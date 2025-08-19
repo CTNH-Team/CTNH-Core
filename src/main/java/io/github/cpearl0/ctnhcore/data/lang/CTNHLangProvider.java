@@ -48,6 +48,13 @@ public class CTNHLangProvider extends RegistrateLangProvider {
     public void addCN(String key, String cn) {
         simplifiedChinese.add(key, cn);
     }
+    public void addBlock(Block block, String en, String cn) {
+        simplifiedChinese.add(block, cn);
+        this.add(block, en);
+    }
+    public void addBlockCN(Block block, String cn) {
+        simplifiedChinese.add(block, cn);
+    }
     public void addItemWithTooltip(NonNullSupplier<Item> item, String name, String tooltip) {
         addItem(item, name);
         addTooltip(item, tooltip);

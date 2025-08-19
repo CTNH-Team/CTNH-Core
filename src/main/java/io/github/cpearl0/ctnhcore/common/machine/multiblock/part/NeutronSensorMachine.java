@@ -113,7 +113,7 @@ public class NeutronSensorMachine extends TieredPartMachine {
         group.addWidget(
                 new ToggleButtonWidget(
                         8, 8, 20, 20, GuiTextures.INVERT_REDSTONE_BUTTON, () -> this.isInverted, this::setIsInverted
-                ).setTooltipText("gui.gtnn.neutron_sensor.invert")
+                ).setTooltipText("gui.ctnh.neutron_sensor.invert")
         );
         group.addWidget(
                 new LabelWidget(80, 13, "1000 KeV = 1 MeV").setTextColor(ColorPattern.BLACK.color).setDropShadow(false)

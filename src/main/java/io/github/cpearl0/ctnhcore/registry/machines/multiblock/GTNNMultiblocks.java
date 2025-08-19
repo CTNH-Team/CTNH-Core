@@ -120,7 +120,7 @@ public class GTNNMultiblocks {
                     .where("C", blocks(ChemicalHelper.getBlock(TagPrefix.frameGt, GTMaterials.Steel)))
                     .where("D", blocks(GTBlocks.CASING_LAMINATED_GLASS.get()))
                     .where("E", blocks(CTNHMachines.HIGH_SPEED_PIPE_BLOCK.get().self()))
-                    .where("#", air()).build()
+                    .where("#", any()).build()
 
             )
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
@@ -157,18 +157,18 @@ public class GTNNMultiblocks {
             .register();
 
 
-    public static final MultiblockMachineDefinition LargeNaquadahReactor = REGISTRATE.multiblock("large_naquadah_reactor", LargeNaquadahReactorMachine::new)
+    public static final MultiblockMachineDefinition LARGE_NAQUADAH_REACTOR = REGISTRATE.multiblock("large_naquadah_reactor", LargeNaquadahReactorMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
-            .tooltips(Component.translatable("gtnn.multiblock.large_naquadah_reactor.tooltip1"))
-            .tooltips(Component.translatable("gtnn.multiblock.large_naquadah_reactor.tooltip2"))
-            .tooltips(Component.translatable("gtnn.multiblock.large_naquadah_reactor.tooltip3"))
-            .tooltips(Component.translatable("gtnn.multiblock.large_naquadah_reactor.tooltip4"))
-            .tooltips(Component.translatable("gtnn.multiblock.large_naquadah_reactor.tooltip5"))
-            .tooltips(Component.translatable("gtnn.multiblock.large_naquadah_reactor.tooltip6"))
-            .tooltips(Component.translatable("gtnn.multiblock.large_naquadah_reactor.tooltip7"))
-            .tooltips(Component.translatable("gtnn.multiblock.large_naquadah_reactor.tooltip8"))
-            .tooltips(Component.translatable("gtnn.multiblock.large_naquadah_reactor.tooltip9"))
             .recipeTypes(CTNHRecipeTypes.LARGE_NAQUADAH_REACTOR_RECIPES)
+            .tooltips(Component.translatable("ctnh.multiblock.large_naquadah_reactor.tooltip.0"))
+            .tooltips(Component.translatable("ctnh.multiblock.large_naquadah_reactor.tooltip.1"))
+            .tooltips(Component.translatable("ctnh.multiblock.large_naquadah_reactor.tooltip.2"))
+            .tooltips(Component.translatable("ctnh.multiblock.large_naquadah_reactor.tooltip.3"))
+            .tooltips(Component.translatable("ctnh.multiblock.large_naquadah_reactor.tooltip.4"))
+            .tooltips(Component.translatable("ctnh.multiblock.large_naquadah_reactor.tooltip.5"))
+            .tooltips(Component.translatable("ctnh.multiblock.large_naquadah_reactor.tooltip.6"))
+            .tooltips(Component.translatable("ctnh.multiblock.large_naquadah_reactor.tooltip.7"))
+            .tooltips(Component.translatable("ctnh.multiblock.large_naquadah_reactor.tooltip.8"))
             .recipeModifier(LargeNaquadahReactorMachine::modifyRecipe)
             .appearanceBlock(CTNHBlocks.RADIATION_PROOF_MACHINE_CASING).pattern(definition ->
                 FactoryBlockPattern.start()

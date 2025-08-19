@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.data.lang;
 
+import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import net.minecraft.world.level.block.Block;
+
 public class CTNHLangHandler {
     private static CTNHLangProvider provider;
     public static void init(CTNHLangProvider provider) {
@@ -15,4 +18,6 @@ public class CTNHLangHandler {
     public static void tsl(String key, String cn, String en) {
         provider.add(key, en, cn);
     }
+    public static void tslBlock(Block block, String cn, String en) { provider.addBlock(block, en, cn);}
+    public static void tslBlock(Block block, String cn) { provider.addBlockCN(block, cn);}
 }

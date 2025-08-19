@@ -45,8 +45,7 @@ import static com.gregtechceu.gtceu.api.capability.recipe.IO.OUT;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
-import static io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils.registerSimpleComputationMachines;
-import static io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils.registerTieredMachines;
+import static io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils.*;
 
 public class CTNHMachines {
     static {
@@ -89,6 +88,20 @@ public class CTNHMachines {
             .colorOverlayTieredHullModel("overlay_catalyst_in", null, "overlay_catalyst_hatch")
             .tooltips()
             .register();
+    public static final MachineDefinition[] DEHYDRATOR = registerSimpleMachines("dehydrator", CTNHRecipeTypes.DEHYDRATOR_RECIPES, GTValues.tiersBetween(MV, ZPM));
+    public static final MachineDefinition[] NAQUADAH_REACTOR = registerEfficiencyGeneratorMachines(
+            "naquadah_reactor",
+            CTNHRecipeTypes.NAQUADAH_REACTOR_RECIPES,
+            CTNHRecipeModifiers::naquadahReactor,
+            tier -> tier * 32000,
+            tiersBetween(EV, UV));
+    public static final MachineDefinition[] ROCKET_ENGINE = registerEfficiencyGeneratorMachines(
+            "rocket_engine",
+            CTNHRecipeTypes.ROCKET_ENGINE_RECIPES,
+            CTNHRecipeModifiers::rocketEngine,
+            tier -> tier * 32000,
+            tiersBetween(EV, LuV)
+    );
     public static final MachineDefinition[] CIRCUIT_BUS = registerTieredMachines("circuit_bus",
             CircuitBusPartMachine::new,
             (tier, builder) -> builder

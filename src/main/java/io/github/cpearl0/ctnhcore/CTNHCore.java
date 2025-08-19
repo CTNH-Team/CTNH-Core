@@ -55,7 +55,6 @@ public class CTNHCore
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         CTNHMaterials.tagPrefixIgnore();
-        CTNHBlockMaps.initBlocks();
         event.enqueueWork(() ->
         {
             Regions.register(new CTNHOverworldRegion(2));

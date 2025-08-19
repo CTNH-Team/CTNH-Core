@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore;
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
+import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps;
 import io.github.cpearl0.ctnhcore.data.CTNHBlockInfo;
 import io.github.cpearl0.ctnhcore.data.recipe.*;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
@@ -27,6 +28,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         CTNHItems.init();
         CTNHBlocks.init();
         CTNHBlockEntities.init();
+        CTNHBlockMaps.initBlocks();
     }
 
     @Override

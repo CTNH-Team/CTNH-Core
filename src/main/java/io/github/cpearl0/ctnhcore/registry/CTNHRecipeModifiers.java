@@ -13,6 +13,7 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ChemicalPlantMachine;
+import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
 import org.jetbrains.annotations.NotNull;
 
 import static com.gregtechceu.gtceu.api.recipe.OverclockingLogic.getCoilEUtDiscount;
@@ -90,5 +91,22 @@ public class CTNHRecipeModifiers {
                 .build();
     }
 
+    public static ModifierFunction naquadahReactor(MetaMachine machine, GTRecipe recipe) {
+        if (machine instanceof EfficiencyGeneratorMachine efficiencyGeneratorMachine) {
+            return ModifierFunction.builder()
+                    .durationMultiplier((double) efficiencyGeneratorMachine.efficiency / 100)
+                    .build();
+        }
+        return ModifierFunction.NULL;
+    }
+    public static ModifierFunction rocketEngine(MetaMachine machine, GTRecipe recipe) {
+        ModifierFunction recipeModifier = naquadahReactor(machine, recipe);
+        GTRecipe modifiedRecipe = recipeModifier.apply(recipe);
 
+        if (modifiedRecipe != null) {
+            return recipeModifier;
+        } else {
+            return ModifierFunction.NULL;
+        }
+    }
 }

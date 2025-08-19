@@ -1,12 +1,18 @@
 package io.github.cpearl0.ctnhcore.data.lang;
 
+import io.github.cpearl0.ctnhcore.registry.CTNHMachines;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
+
+import static com.gregtechceu.gtceu.api.GTValues.*;
 import static io.github.cpearl0.ctnhcore.data.lang.CTNHLangHandler.tsl;
+import static io.github.cpearl0.ctnhcore.data.lang.CTNHLangHandler.tslBlock;
 
 public class MachineLang {
     public static void init(CTNHLangProvider provider) {
         machineInfo(provider);
         machineTooltip(provider);
         machineGui(provider);
+        machineName(provider);
         tsl(
                 "ctnh.recipe.condition.neutron_activator_condition_tooltip",
                 "最小中子动能:\n%s MeV\n最大中子动能:\n%s MeV",
@@ -20,6 +26,39 @@ public class MachineLang {
         tsl("ctnh.recipe.condition.plant_casing.tier.stainless_steel", "不锈钢", "Stainless Steel");
         tsl("ctnh.recipe.condition.plant_casing.tier.titanium", "钛", "Titanium");
         tsl("ctnh.recipe.condition.plant_casing.tier.tungsten_steel", "钨钢", "Tungsten Steel");
+    }
+    public static void machineName(CTNHLangProvider provider) {
+        tslBlock(GTNNMultiblocks.LARGE_DEHYDRATOR.getBlock(), "大型脱水机");
+        tslBlock(CTNHMachines.NEUTRON_SENSOR.getBlock(), "中子传感器");
+        tslBlock(GTNNMultiblocks.CHEMICAL_PLANT.getBlock(), "埃克森美孚化工厂");
+        tslBlock(GTNNMultiblocks.NEUTRON_ACTIVATOR.getBlock(), "中子活化器");
+        tslBlock(GTNNMultiblocks.LARGE_NAQUADAH_REACTOR.getBlock(), "大型硅岩发电堆");
+        tslBlock(CTNHMachines.CATALYST_HATCH.getBlock(),  "催化剂仓");
+        tslBlock(CTNHMachines.HIGH_SPEED_PIPE_BLOCK.getBlock(), "高速管道方块");
+
+        tslBlock(CTNHMachines.DEHYDRATOR[MV].getBlock(), "§b高级脱水机 §r");
+        tslBlock(CTNHMachines.DEHYDRATOR[HV].getBlock(), "§6高级脱水机 II§r");
+        tslBlock(CTNHMachines.DEHYDRATOR[EV].getBlock(), "§5高级脱水机 III§r");
+        tslBlock(CTNHMachines.DEHYDRATOR[IV].getBlock(), "§9精英脱水机 §r");
+        tslBlock(CTNHMachines.DEHYDRATOR[LuV].getBlock(), "§d精英脱水机 II§r");
+        tslBlock(CTNHMachines.DEHYDRATOR[ZPM].getBlock(), "§c精英脱水机 III§r");
+        tslBlock(CTNHMachines.NAQUADAH_REACTOR[EV].getBlock(), "§5高级硅岩发电机 I");
+        tslBlock(CTNHMachines.NAQUADAH_REACTOR[IV].getBlock(), "§9精英硅岩发电机 II");
+        tslBlock(CTNHMachines.NAQUADAH_REACTOR[LuV].getBlock(), "§d精英硅岩发电机 III");
+        tslBlock(CTNHMachines.NAQUADAH_REACTOR[ZPM].getBlock(), "§c精英硅岩发电机 IV");
+        tslBlock(CTNHMachines.NAQUADAH_REACTOR[UV].getBlock(), "§3终极硅岩发电机 V");
+        tslBlock(CTNHMachines.ROCKET_ENGINE[EV].getBlock(), "§5高级火箭引擎发电机 I");
+        tslBlock(CTNHMachines.ROCKET_ENGINE[IV].getBlock(), "§9精英火箭引擎发电机 II");
+        tslBlock(CTNHMachines.ROCKET_ENGINE[LuV].getBlock(), "§d精英火箭引擎发电机 III");
+        tslBlock(CTNHMachines.NEUTRON_ACCELERATOR[ULV].getBlock(), "§8ULV 中子加速器");
+        tslBlock(CTNHMachines.NEUTRON_ACCELERATOR[LV].getBlock(), "§7LV 中子加速器");
+        tslBlock(CTNHMachines.NEUTRON_ACCELERATOR[MV].getBlock(), "§bMV 中子加速器");
+        tslBlock(CTNHMachines.NEUTRON_ACCELERATOR[HV].getBlock(), "§6HV 中子加速器");
+        tslBlock(CTNHMachines.NEUTRON_ACCELERATOR[EV].getBlock(), "§5EV 中子加速器");
+        tslBlock(CTNHMachines.NEUTRON_ACCELERATOR[IV].getBlock(), "§9IV 中子加速器");
+        tslBlock(CTNHMachines.NEUTRON_ACCELERATOR[LuV].getBlock(), "§dLuV 中子加速器");
+        tslBlock(CTNHMachines.NEUTRON_ACCELERATOR[ZPM].getBlock(), "§cZPM 中子加速器");
+        tslBlock(CTNHMachines.NEUTRON_ACCELERATOR[UV].getBlock(), "§3UV 中子加速器");
     }
     public static void machineGui(CTNHLangProvider provider) {
         tsl(

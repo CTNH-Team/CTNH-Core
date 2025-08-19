@@ -27,7 +27,7 @@ import java.util.List;
 
 public class CatalystHatchPartMachine extends TieredIOPartMachine {
     public final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(CatalystHatchPartMachine.class, TieredIOPartMachine.MANAGED_FIELD_HOLDER);
-    ResourceTexture SMALL_ARROW_OVERLAY = new ResourceTexture("ctnh:textures/gui/arrows/small_arrow_overlay.png");
+    ResourceTexture SMALL_ARROW_OVERLAY = new ResourceTexture("ctnhcore:textures/gui/arrows/small_arrow_overlay.png");
     public CatalystHatchPartMachine(IMachineBlockEntity holder) {
         super(holder, GTValues.IV, IO.IN);
     }
@@ -57,8 +57,12 @@ public class CatalystHatchPartMachine extends TieredIOPartMachine {
     @Override
     public void onUnload() {
         super.onUnload();
-        bufferSubs.unsubscribe();
-        inventorySubs.unsubscribe();
+        if (bufferSubs != null) {
+            bufferSubs.unsubscribe();
+        }
+        if (inventorySubs != null) {
+            inventorySubs.unsubscribe();
+        }
     }
     private NotifiableItemStackHandler createInventory() {
         return new NotifiableItemStackHandler(this, 16, IO.IN, IO.OUT, (slots) -> new CustomItemStackHandler(slots) {
