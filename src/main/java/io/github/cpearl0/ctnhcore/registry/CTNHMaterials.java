@@ -708,7 +708,7 @@ public class CTNHMaterials {
             .iconSet(OPAL)
             .flags(PHOSPHORESCENT, GENERATE_LENS)
             .components(Europium, 1, Calcium, 1, Fluorine, 2)
-            .addOreByproducts(Fluorine, Yttrium, Terbium)
+            .addOreByproducts(Lanthanum, Yttrium, Terbium)
             .buildAndRegister();
     public static final Material GadoliniteSm = new Material.Builder(GTCEu.id("gadolinite_sm"))
             .ore()
@@ -750,7 +750,7 @@ public class CTNHMaterials {
             .color(0x77DD77).secondaryColor(0x50C878)
             .iconSet(OPAL)
             .components(Calcium, 1, Yttrium, 1, Fluorine, 4)
-            .addOreByproducts(Fluorine, Cerium, Neodymium)
+            .addOreByproducts(Lanthanum, Cerium, Neodymium)
             .buildAndRegister();
     public static final Material Tarkianite = new Material.Builder(GTCEu.id("tarkianite"))
             .ore()

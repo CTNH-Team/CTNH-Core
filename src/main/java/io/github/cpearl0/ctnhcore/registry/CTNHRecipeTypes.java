@@ -735,6 +735,12 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CENTRIFUGE);
 
+    public static final GTRecipeType PRECISION_ASSEMBLY_RECIPES =
+            GTRecipeTypes.register("precision_assembly", GTRecipeTypes.ELECTRIC)
+                    .setMaxIOSize(4, 1, 4, 0).setEUIO(IO.IN)
+                    .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+                    .setSound(GTSoundEntries.COOLING);
+
     public static void init() {
         CreateRecipeTypes.init();
     }
