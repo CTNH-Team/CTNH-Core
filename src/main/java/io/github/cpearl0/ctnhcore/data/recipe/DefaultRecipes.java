@@ -659,15 +659,6 @@ public class DefaultRecipes {
                 'h',
                 ChemicalHelper.get(TagPrefix.crushedRefined, GTMaterials.Neutronium)
         );
-//        // 1. 粉碎产线控制器（工作台）
-//        VanillaRecipeHelper.addShapedRecipe(
-//                provider, true, "maceration_stack_controller",
-//                GTPPMachines.FactoryMaceration.asStack(),
-//                "ABA", "BCB", "ABA",
-//                'A', TagPrefix.plate, GTMaterials.Titanium,
-//                'B', GTMachines.MACERATOR[GTValues.EV].asStack(),
-//                'C', CustomTags.EV_CIRCUITS
-//        );
 
 // 2. 催化剂舱口（组装机）
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("catalyst_hatch")
@@ -692,22 +683,22 @@ public class DefaultRecipes {
                 .duration(2400) // 120秒
                 .save(provider);
 
-//// 4. 大型Naquadah反应堆（装配线）
-//        GTRecipeTypes.ASSEMBLY_LINE_RECIPES.recipeBuilder("large_naquadah_reactor")
-//                .inputItems(TagPrefix.frameGt, GTMaterials.Neutronium, 8)
-//                .inputItems(CTNHItems.PlateRadiationProtection.asStack(16))
-//                .inputItems(GTItems.FIELD_GENERATOR_ZPM.asStack(2))
-//                .inputItems(GTItems.ELECTRIC_PUMP_ZPM.asStack(8))
-//                .inputItems(CustomTags.UV_CIRCUITS, 4)
-//                .inputItems(TagPrefix.wireGtOctal, GTMaterials.IndiumTinBariumTitaniumCuprate, 8)
-//                .inputItems(TagPrefix.pipeHugeFluid, GTMaterials.Naquadah, 4)
-//                .inputItems(TagPrefix.plate, GTMaterials.NaquadahAlloy, 8)
-//                .inputItems(TagPrefix.screw, GTMaterials.Osmium, 16)
-//                .outputItems(GTNNMultiblocks.LargeNaquadahReactor)
-//                .scannerResearch(CTNHMachines.NAQUADAH_REACTOR[GTValues.LuV].asStack())
-//                .EUt(GTValues.VA[GTValues.ZPM]) // 98304 EU/t
-//                .duration(4200) // 210秒
-//                .save(provider);
+// 4. 大型Naquadah反应堆（装配线）
+        GTRecipeTypes.ASSEMBLY_LINE_RECIPES.recipeBuilder("large_naquadah_reactor")
+                 .inputItems(TagPrefix.frameGt, GTMaterials.Neutronium, 8)
+                 .inputItems(CTNHItems.PlateRadiationProtection.asStack(16))
+                 .inputItems(GTItems.FIELD_GENERATOR_ZPM.asStack(2))
+                 .inputItems(GTItems.ELECTRIC_PUMP_ZPM.asStack(8))
+                 .inputItems(CustomTags.UV_CIRCUITS, 4)
+                 .inputItems(TagPrefix.wireGtOctal, GTMaterials.IndiumTinBariumTitaniumCuprate, 8)
+                 .inputItems(TagPrefix.pipeHugeFluid, GTMaterials.Naquadah, 4)
+                 .inputItems(TagPrefix.plate, GTMaterials.NaquadahAlloy, 8)
+                 .inputItems(TagPrefix.screw, GTMaterials.Osmium, 16)
+                 .outputItems(GTNNMultiblocks.LARGE_NAQUADAH_REACTOR)
+                 .scannerResearch(CTNHMachines.NAQUADAH_REACTOR[GTValues.LuV].asStack())
+                 .EUt(GTValues.VA[GTValues.ZPM])   //98304 EU/t
+                 .duration(4200) // 210秒
+                 .save(provider);
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("neutron_sensor")
                 .inputItems(GTBlocks.MACHINE_CASING_IV.asStack())
                 .inputItems(GTItems.COVER_ACTIVITY_DETECTOR)
@@ -870,83 +861,83 @@ public class DefaultRecipes {
                 'E', GTMachines.HULL[GTValues.LV].asStack(),
                 'F', CTNHItems.INVERTER.asStack()
         );
-//        // MV脱水机
-//        VanillaRecipeHelper.addShapedRecipe(
-//                provider, true, "dehydrator_mv",
-//                CTNHMachines.DEHYDRATOR[GTValues.MV].asStack(),
-//                "ABA", "CDC", "EFE",
-//                'A', TagPrefix.wireFine, GTMaterials.RedAlloy,
-//                'B', CustomTags.MV_CIRCUITS,
-//                'C', TagPrefix.cableGtQuadruple, GTMaterials.Copper,
-//                'D', GTMachines.HULL[GTValues.MV].asStack(),
-//                'E', TagPrefix.gear, GTMaterials.Steel,
-//                'F', GTItems.ROBOT_ARM_MV
-//        );
-//
-//        // HV脱水机
-//        VanillaRecipeHelper.addShapedRecipe(
-//                provider, true, "dehydrator_hv",
-//                CTNHMachines.DEHYDRATOR[GTValues.HV].asStack(),
-//                "ABA", "CDC", "EFE",
-//                'A', TagPrefix.wireFine, GTMaterials.Electrum,
-//                'B', CustomTags.HV_CIRCUITS,
-//                'C', TagPrefix.cableGtQuadruple, GTMaterials.Silver,
-//                'D', GTMachines.HULL[GTValues.HV].asStack(),
-//                'E', TagPrefix.gear, GTMaterials.Potin,
-//                'F', GTItems.ROBOT_ARM_HV
-//        );
-//
-//        // EV脱水机
-//        VanillaRecipeHelper.addShapedRecipe(
-//                provider, true, "dehydrator_ev",
-//                CTNHMachines.DEHYDRATOR[GTValues.EV].asStack(),
-//                "ABA", "CDC", "EFE",
-//                'A', GTItems.VOLTAGE_COIL_EV,
-//                'B', CustomTags.EV_CIRCUITS,
-//                'C', TagPrefix.cableGtQuadruple, GTMaterials.Aluminium,
-//                'D', GTMachines.HULL[GTValues.EV].asStack(),
-//                'E', TagPrefix.gear, GTMaterials.TungstenSteel,
-//                'F', GTItems.ROBOT_ARM_EV
-//        );
-//
-//        // IV脱水机
-//        VanillaRecipeHelper.addShapedRecipe(
-//                provider, true, "dehydrator_iv",
-//                CTNHMachines.DEHYDRATOR[GTValues.IV].asStack(),
-//                "ABA", "CDC", "EFE",
-//                'A', GTItems.VOLTAGE_COIL_IV,
-//                'B', CustomTags.IV_CIRCUITS,
-//                'C', TagPrefix.cableGtQuadruple, GTMaterials.Tungsten,
-//                'D', GTMachines.HULL[GTValues.IV].asStack(),
-//                'E', TagPrefix.gear, GTMaterials.Nichrome,
-//                'F', GTItems.ROBOT_ARM_IV
-//        );
-//
-//        // LuV脱水机
-//        VanillaRecipeHelper.addShapedRecipe(
-//                provider, true, "dehydrator_luv",
-//                CTNHMachines.DEHYDRATOR[GTValues.LuV].asStack(),
-//                "ABA", "CDC", "EFE",
-//                'A', GTItems.VOLTAGE_COIL_LuV,
-//                'B', CustomTags.LuV_CIRCUITS,
-//                'C', TagPrefix.cableGtQuadruple, GTMaterials.Naquadah,
-//                'D', GTMachines.HULL[GTValues.LuV].asStack(),
-//                'E', TagPrefix.gear, GTMaterials.Ultimet,
-//                'F', GTItems.ROBOT_ARM_LuV
-//        );
-//
-//        // ZPM脱水机
-//        VanillaRecipeHelper.addShapedRecipe(
-//                provider, true, "dehydrator_zpm",
-//                CTNHMachines.DEHYDRATOR[GTValues.ZPM].asStack(),
-//                "ABA", "CDC", "EFE",
-//                'A', GTItems.VOLTAGE_COIL_ZPM,
-//                'B', CustomTags.ZPM_CIRCUITS,
-//                'C', TagPrefix.cableGtQuadruple, GTMaterials.Osmium,
-//                'D', GTMachines.HULL[GTValues.ZPM].asStack(),
-//                'E', TagPrefix.gear, GTMaterials.Zeron100,
-//                'F', GTItems.ROBOT_ARM_ZPM
-//        );
+         // MV脱水机
+         VanillaRecipeHelper.addShapedRecipe(
+                 provider, true, "dehydrator_mv",
+                 CTNHMachines.DEHYDRATOR[GTValues.MV].asStack(),
+                 "ABA", "CDC", "EFE",
+                 'A', TagPrefix.wireFine, GTMaterials.RedAlloy,
+                 'B', CustomTags.MV_CIRCUITS,
+                 'C', TagPrefix.cableGtQuadruple, GTMaterials.Copper,
+                 'D', GTMachines.HULL[GTValues.MV].asStack(),
+                 'E', TagPrefix.gear, GTMaterials.Steel,
+                 'F', GTItems.ROBOT_ARM_MV
+         );
+
+           //HV脱水机
+         VanillaRecipeHelper.addShapedRecipe(
+                 provider, true, "dehydrator_hv",
+                 CTNHMachines.DEHYDRATOR[GTValues.HV].asStack(),
+                 "ABA", "CDC", "EFE",
+                 'A', TagPrefix.wireFine, GTMaterials.Electrum,
+                 'B', CustomTags.HV_CIRCUITS,
+                 'C', TagPrefix.cableGtQuadruple, GTMaterials.Silver,
+                 'D', GTMachines.HULL[GTValues.HV].asStack(),
+                 'E', TagPrefix.gear, GTMaterials.Potin,
+                 'F', GTItems.ROBOT_ARM_HV
+         );
+
+           //EV脱水机
+         VanillaRecipeHelper.addShapedRecipe(
+                 provider, true, "dehydrator_ev",
+                 CTNHMachines.DEHYDRATOR[GTValues.EV].asStack(),
+                 "ABA", "CDC", "EFE",
+                 'A', GTItems.VOLTAGE_COIL_EV,
+                 'B', CustomTags.EV_CIRCUITS,
+                 'C', TagPrefix.cableGtQuadruple, GTMaterials.Aluminium,
+                 'D', GTMachines.HULL[GTValues.EV].asStack(),
+                 'E', TagPrefix.gear, GTMaterials.TungstenSteel,
+                 'F', GTItems.ROBOT_ARM_EV
+         );
+
+           //IV脱水机
+         VanillaRecipeHelper.addShapedRecipe(
+                 provider, true, "dehydrator_iv",
+                 CTNHMachines.DEHYDRATOR[GTValues.IV].asStack(),
+                 "ABA", "CDC", "EFE",
+                 'A', GTItems.VOLTAGE_COIL_IV,
+                 'B', CustomTags.IV_CIRCUITS,
+                 'C', TagPrefix.cableGtQuadruple, GTMaterials.Tungsten,
+                 'D', GTMachines.HULL[GTValues.IV].asStack(),
+                 'E', TagPrefix.gear, GTMaterials.Nichrome,
+                 'F', GTItems.ROBOT_ARM_IV
+         );
+
+          //LuV脱水机
+         VanillaRecipeHelper.addShapedRecipe(
+                 provider, true, "dehydrator_luv",
+                 CTNHMachines.DEHYDRATOR[GTValues.LuV].asStack(),
+                 "ABA", "CDC", "EFE",
+                 'A', GTItems.VOLTAGE_COIL_LuV,
+                 'B', CustomTags.LuV_CIRCUITS,
+                 'C', TagPrefix.cableGtQuadruple, GTMaterials.Naquadah,
+                 'D', GTMachines.HULL[GTValues.LuV].asStack(),
+                 'E', TagPrefix.gear, GTMaterials.Ultimet,
+                 'F', GTItems.ROBOT_ARM_LuV
+         );
+
+           //ZPM脱水机
+         VanillaRecipeHelper.addShapedRecipe(
+                 provider, true, "dehydrator_zpm",
+                 CTNHMachines.DEHYDRATOR[GTValues.ZPM].asStack(),
+                 "ABA", "CDC", "EFE",
+                 'A', GTItems.VOLTAGE_COIL_ZPM,
+                 'B', CustomTags.ZPM_CIRCUITS,
+                 'C', TagPrefix.cableGtQuadruple, GTMaterials.Osmium,
+                 'D', GTMachines.HULL[GTValues.ZPM].asStack(),
+                 'E', TagPrefix.gear, GTMaterials.Zeron100,
+                 'F', GTItems.ROBOT_ARM_ZPM
+         );
     }
 }
 
