@@ -41,6 +41,7 @@ public class CTNHRecipeTypes {
     public static final GTRecipeType PERSONAL_COMPUTER = GTRecipeTypes.register("personal_computer", GTRecipeTypes.ELECTRIC)
             .setMaxIOSize(9, 2, 0, 0)
             .setEUIO(IO.IN)
+            .setMaxTooltips(4)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT);
 
     public static final GTRecipeType SLAUGHTER_HOUSE = GTRecipeTypes.register("slaughter_house", GTRecipeTypes.ELECTRIC)

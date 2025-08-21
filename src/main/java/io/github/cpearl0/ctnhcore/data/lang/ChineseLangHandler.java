@@ -381,7 +381,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.simple_nutritious_meal.tooltip.1","能维持机体基本的生理功能");
         provider.add("item.ctnh.ecological_star.desc", "蕴含生态圈的所有精华");
         provider.add("item.sculk_cell.desc", "分化....");
-        provider.add("ctnh.tooltips.simplecomputationmachine","执行大于电压等级HV的配方时,需要2^(配方等级-HV)CWU/t算力");
+        provider.add("ctnh.tooltips.simplecomputationmachine","注意：部分配方需要算力执行");
 
         provider.add("ctnh.recipe.industrial_altar.info.0","消耗/输入的lp量:%.1f");
 
