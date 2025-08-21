@@ -1385,6 +1385,7 @@ public class ChineseLangHandler {
         provider.add(MultiblocksB.HYBRID_POWER_MIXER.getBlock(),"混合动力搅拌机");
         provider.add(MultiblocksB.ZENITH_EXTRUDER.getBlock(),"§5天顶灵能塑形者");
         provider.add(MultiblocksB.FLUID_DRILLING_INF[UHV].getBlock(),"无尽流体钻机");
+        provider.add(MultiblocksB.INF_LARGE_MINER.getBlock(), "无尽钻机");
         provider.add(MultiblocksB.MANA_CONDENSER.getBlock(), "魔力凝缩器");
         provider.add(MultiblocksB.COMPONENT_ASSEMBLY_LINE_CT.getBlock(),"应力部件装配线");
 

@@ -2330,8 +2330,8 @@ public static final MultiblockMachineDefinition[] FLUID_DRILLING_INF = CTNHMachi
                 .langValue("%s Fluid Drilling Rig %s".formatted(VLVH[tier], VLVT[tier]))
                 .recipeType(DUMMY_RECIPES)
                 .tooltips(
-                        Component.translatable("ctnh.machine.fluid_drilling_rig.description.inf"),
-                        Component.translatable("ctnh.machine.fluid_drilling_rig.depletion.inf"
+                        Component.translatable("ctnh.multiblock.fluid_drilling_rig.description.inf"),
+                        Component.translatable("ctnh.multiblock.fluid_drilling_rig.depletion.inf"
                                 ),
                         Component.translatable("gtceu.universal.tooltip.energy_tier_range", GTValues.VNF[tier],
                                 GTValues.VNF[tier + 1]),
