@@ -8,6 +8,10 @@
         "parent": "gtceu:block/machine/template/generator_machine",
         "textures": {
           "bottom": "gtceu:block/casings/voltage/luv/bottom",
+          "overlay_back": "ctnhcore:block/generators/naquadah_reactor/overlay_back",
+          "overlay_front": "ctnhcore:block/generators/naquadah_reactor/overlay_front",
+          "overlay_side": "ctnhcore:block/generators/naquadah_reactor/overlay_side",
+          "overlay_top": "ctnhcore:block/generators/naquadah_reactor/overlay_top",
           "side": "gtceu:block/casings/voltage/luv/side",
           "top": "gtceu:block/casings/voltage/luv/top"
         }
@@ -18,6 +22,10 @@
         "parent": "gtceu:block/machine/template/generator_machine",
         "textures": {
           "bottom": "gtceu:block/casings/voltage/luv/bottom",
+          "overlay_back": "ctnhcore:block/generators/naquadah_reactor/overlay_back",
+          "overlay_front": "ctnhcore:block/generators/naquadah_reactor/overlay_front",
+          "overlay_side": "ctnhcore:block/generators/naquadah_reactor/overlay_side",
+          "overlay_top": "ctnhcore:block/generators/naquadah_reactor/overlay_top",
           "side": "gtceu:block/casings/voltage/luv/side",
           "top": "gtceu:block/casings/voltage/luv/top"
         }
@@ -28,6 +36,10 @@
         "parent": "gtceu:block/machine/template/generator_machine",
         "textures": {
           "bottom": "gtceu:block/casings/voltage/luv/bottom",
+          "overlay_back": "ctnhcore:block/generators/naquadah_reactor/overlay_back_active",
+          "overlay_front": "ctnhcore:block/generators/naquadah_reactor/overlay_front_active",
+          "overlay_side": "ctnhcore:block/generators/naquadah_reactor/overlay_side_active",
+          "overlay_top": "ctnhcore:block/generators/naquadah_reactor/overlay_top_active",
           "side": "gtceu:block/casings/voltage/luv/side",
           "top": "gtceu:block/casings/voltage/luv/top"
         }
@@ -38,6 +50,10 @@
         "parent": "gtceu:block/machine/template/generator_machine",
         "textures": {
           "bottom": "gtceu:block/casings/voltage/luv/bottom",
+          "overlay_back": "ctnhcore:block/generators/naquadah_reactor/overlay_back_active",
+          "overlay_front": "ctnhcore:block/generators/naquadah_reactor/overlay_front_active",
+          "overlay_side": "ctnhcore:block/generators/naquadah_reactor/overlay_side_active",
+          "overlay_top": "ctnhcore:block/generators/naquadah_reactor/overlay_top_active",
           "side": "gtceu:block/casings/voltage/luv/side",
           "top": "gtceu:block/casings/voltage/luv/top"
         }
