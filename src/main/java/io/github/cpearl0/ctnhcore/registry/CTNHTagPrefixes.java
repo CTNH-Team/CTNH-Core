@@ -31,6 +31,7 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.Plutonium;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.Uranium;
+import static io.github.cpearl0.ctnhcore.utils.ModUtils.AdAstraRL;
 
 public class CTNHTagPrefixes {
     public static List<Material> nuclears = List.of(Uranium238, Uranium235, Plutonium239, Plutonium241);
@@ -38,11 +39,11 @@ public class CTNHTagPrefixes {
     public static TagPrefix oreMossyHolystone;
     public static TagPrefix oreLivingrock;
     public static TagPrefix oreIcestone;
-//    public static TagPrefix oreAstralStone = TagPrefix.oreTagPrefix("astral_stone", BlockTags.MINEABLE_WITH_PICKAXE)
-//            .registerOre(() -> AstralBlocks.ASTRAL_STONE.get().defaultBlockState(),
-//                    () -> CTNHMaterials.AstralStone,
-//                    BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(2.0F, 2.0F),
-//                    CTNHCore.id("block/astral_stone"), false, false, true);
+    public static TagPrefix oreAstralStone = TagPrefix.oreTagPrefix("astral_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+            .registerOre(() -> AstralBlocks.ASTRAL_STONE.get().defaultBlockState(),
+                    () -> CTNHMaterials.AstralStone,
+                    BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(2.0F, 2.0F),
+                    CTNHCore.id("block/astral_stone"), false, false, true);
     public static TagPrefix oreMoonStone;
     public static TagPrefix oreVenusStone;
     public static TagPrefix oreMarsStone;
@@ -81,53 +82,53 @@ public class CTNHTagPrefixes {
                         BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(2.0F, 2.0F),
                         ResourceLocation.tryParse("aether:block/icestone"), false, false, true);
         if (LDLib.isModLoaded("ad_astra")) {
-//            oreMoonStone = TagPrefix.oreTagPrefix("moon_stone", BlockTags.MINEABLE_WITH_PICKAXE)
-//                    .registerOre(() -> ModBlocks.MOON_STONE.get().defaultBlockState(),
-//                            () -> CTNHMaterials.Moonstone,
-//                            BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(3, 3),
-//                            CTNHCore.id("block/moon_stone"), false, false, true);
-//            oreVenusStone = TagPrefix.oreTagPrefix("venus_stone", BlockTags.MINEABLE_WITH_PICKAXE)
-//                    .registerOre(() -> ModBlocks.VENUS_STONE.get().defaultBlockState(),
-//                            () -> CTNHMaterials.Venusstone,
-//                            BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(3, 3),
-//                            CTNHCore.id("block/venus_stone"), false, false, true);
-//            oreMarsStone = TagPrefix.oreTagPrefix("mars_stone", BlockTags.MINEABLE_WITH_PICKAXE)
-//                    .registerOre(() -> ModBlocks.MARS_STONE.get().defaultBlockState(),
-//                            () -> CTNHMaterials.Marsstone,
-//                            BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(3, 3),
-//                            CTNHCore.id("block/mars_stone"), false, false, true);
-//            oreMercuryStone = TagPrefix.oreTagPrefix("mercury_stone", BlockTags.MINEABLE_WITH_PICKAXE)
-//                    .registerOre(() -> ModBlocks.MERCURY_STONE.get().defaultBlockState(),
-//                            () -> CTNHMaterials.Mercurystone,
-//                            BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(3, 3),
-//                            CTNHCore.id("block/mercury_stone"), false, false, true);
-//            oreGlacioStone = TagPrefix.oreTagPrefix("glacio_stone", BlockTags.MINEABLE_WITH_PICKAXE)
-//                    .registerOre(() -> ModBlocks.GLACIO_STONE.get().defaultBlockState(),
-//                            () -> CTNHMaterials.Glaciostone,
-//                            BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(3, 3),
-//                            CTNHCore.id("block/glacio_stone"), false, false, true);
-//            oreMoonStone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Moonstone, TagPrefix.dust.materialAmount()));
-//            oreVenusStone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Venusstone, TagPrefix.dust.materialAmount()));
-//            oreMarsStone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Marsstone, TagPrefix.dust.materialAmount()));
-//            oreMercuryStone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Mercurystone, TagPrefix.dust.materialAmount()));
-//            oreGlacioStone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Glaciostone, TagPrefix.dust.materialAmount()));
+            oreMoonStone = TagPrefix.oreTagPrefix("moon_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+                    .registerOre(() -> ModBlocks.MOON_STONE.get().defaultBlockState(),
+                            () -> CTNHMaterials.Moonstone,
+                            BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(3, 3),
+                            AdAstraRL("block/moon_stone"), false, false, true);
+            oreVenusStone = TagPrefix.oreTagPrefix("venus_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+                    .registerOre(() -> ModBlocks.VENUS_STONE.get().defaultBlockState(),
+                            () -> CTNHMaterials.Venusstone,
+                            BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(3, 3),
+                            AdAstraRL("block/venus_stone"), false, false, true);
+            oreMarsStone = TagPrefix.oreTagPrefix("mars_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+                    .registerOre(() -> ModBlocks.MARS_STONE.get().defaultBlockState(),
+                            () -> CTNHMaterials.Marsstone,
+                            BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(3, 3),
+                            AdAstraRL("block/mars_stone"), false, false, true);
+            oreMercuryStone = TagPrefix.oreTagPrefix("mercury_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+                    .registerOre(() -> ModBlocks.MERCURY_STONE.get().defaultBlockState(),
+                            () -> CTNHMaterials.Mercurystone,
+                            BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(3, 3),
+                            AdAstraRL("block/mercury_stone"), false, false, true);
+            oreGlacioStone = TagPrefix.oreTagPrefix("glacio_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+                    .registerOre(() -> ModBlocks.GLACIO_STONE.get().defaultBlockState(),
+                            () -> CTNHMaterials.Glaciostone,
+                            BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(3, 3),
+                            AdAstraRL("block/glacio_stone"), false, false, true);
+            oreMoonStone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Moonstone, TagPrefix.dust.materialAmount()));
+            oreVenusStone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Venusstone, TagPrefix.dust.materialAmount()));
+            oreMarsStone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Marsstone, TagPrefix.dust.materialAmount()));
+            oreMercuryStone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Mercurystone, TagPrefix.dust.materialAmount()));
+            oreGlacioStone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Glaciostone, TagPrefix.dust.materialAmount()));
         }
         oreBlackStone = TagPrefix.oreTagPrefix("black_stone", BlockTags.MINEABLE_WITH_PICKAXE)
                 .registerOre(Blocks.BLACKSTONE::defaultBlockState,
                         null,
                         BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(3, 3),
-                        CTNHCore.id("block/black_stone"), false, false, true);
+                        ResourceLocation.tryBuild("minecraft","block/blackstone"), false, false, true);
         oreSoulSoil = TagPrefix.oreTagPrefix("soul_soil", BlockTags.MINEABLE_WITH_SHOVEL)
                 .registerOre(Blocks.SOUL_SOIL::defaultBlockState,
                         null,
                         BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(2, 2),
-                        CTNHCore.id("block/soul_soil"), false, false, true);
+                        ResourceLocation.tryBuild("minecraft", "block/soul_soil"), false, false, true);
 
         oreHolystone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Holystone, TagPrefix.dust.materialAmount()));
         oreMossyHolystone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Holystone, TagPrefix.dust.materialAmount()));
         oreLivingrock.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Livingrock, TagPrefix.dust.materialAmount()));
         oreIcestone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.icestone, TagPrefix.dust.materialAmount()));
-//        oreAstralStone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.AstralStone, TagPrefix.dust.materialAmount()));
+        oreAstralStone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.AstralStone, TagPrefix.dust.materialAmount()));
 
         nuclear = new TagPrefix("nuclear")
                 .idPattern("%s")

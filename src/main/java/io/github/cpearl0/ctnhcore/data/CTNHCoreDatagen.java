@@ -2,10 +2,11 @@ package io.github.cpearl0.ctnhcore.data;
 
 import com.tterrag.registrate.providers.ProviderType;
 import io.github.cpearl0.ctnhcore.data.lang.*;
+import io.github.cpearl0.ctnhcore.data.lang.old.ChineseLangHandler;
+import io.github.cpearl0.ctnhcore.data.lang.old.EnglishLangHandler;
 import io.github.cpearl0.ctnhcore.data.tags.FluidTypeTags;
 import io.github.cpearl0.ctnhcore.data.tags.StoneTags;
 import io.github.cpearl0.ctnhcore.registry.CTNHRegistration;
-import net.minecraft.tags.BlockTags;
 
 public class CTNHCoreDatagen {
     public static final ProviderType<RegistrateCNLangProvider> CNLANG = ProviderType.register("ctnh_cn_lang", (p, e) -> new RegistrateCNLangProvider(p, e.getGenerator().getPackOutput()));
