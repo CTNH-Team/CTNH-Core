@@ -18,7 +18,8 @@
     "jei.RecipeGuiLogicMixin",
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MobMixin",
-    "mc.MonsterMixin"
+    "mc.MonsterMixin",
+    "mc.WorldLoaderPackConfigMixin"
   ],
   "client": [],
   "minVersion": "0.8"

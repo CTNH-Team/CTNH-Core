@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.data.lang;
+package io.github.cpearl0.ctnhcore.data.lang.old;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.data.lang.Chinese.OreLang;
+import io.github.cpearl0.ctnhcore.data.lang.RegistrateCNLangProvider;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
@@ -24,193 +25,6 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 public class ChineseLangHandler {
     public static void init(RegistrateCNLangProvider provider) {
         OreLang.init(provider);
-        //Tagprefix
-        replace(provider, CTNHMaterials.Moonstone.getUnlocalizedName(), "月石");
-        replace(provider, CTNHMaterials.Marsstone.getUnlocalizedName(), "火星石");
-        replace(provider, CTNHMaterials.Venusstone.getUnlocalizedName(), "金星石");
-        replace(provider, CTNHMaterials.Mercurystone.getUnlocalizedName(), "水星石");
-        replace(provider, CTNHMaterials.Glaciostone.getUnlocalizedName(), "霜原石");
-
-        replace(provider, CTNHMaterials.FlowingAmberGold.getUnlocalizedName(), "通流琥珀金");
-        replace(provider, CTNHMaterials.NQ_END_OF_GASOLINE.getUnlocalizedName(), "硅岩基终末燃油-NQ");
-        replace(provider, CTNHMaterials.LIVING_METAL.getUnlocalizedName(), "活体金属");
-        replace(provider, CTNHMaterials.SpecialCompositeSteelM77.getUnlocalizedName(), "特种复合钢-M77");
-        replace(provider, CTNHMaterials.HiddenAlloy.getUnlocalizedName(), "幽匿合金");
-        replace(provider, CTNHMaterials.SpiritAsh.getUnlocalizedName(), "巫师之骨");
-        replace(provider, CTNHMaterials.SteelLeaf.getUnlocalizedName(), "钢叶");
-        replace(provider, CTNHMaterials.EclipseShadow.getUnlocalizedName(), "幽影");
-        replace(provider, CTNHMaterials.Dragonflame.getUnlocalizedName(), "龙炎");
-        replace(provider, CTNHMaterials.PolarIceCore.getUnlocalizedName(), "极寒晶核");
-        replace(provider, CTNHMaterials.IllusionIron.getUnlocalizedName(), "幻铁");
-        replace(provider, CTNHMaterials.ToxicSwampAmber.getUnlocalizedName(), "毒沼琥珀");
-        replace(provider, CTNHMaterials.LightningPattern.getUnlocalizedName(), "雷纹");
-        replace(provider, CTNHMaterials.Holystone.getUnlocalizedName(), "圣石");
-        replace(provider, CTNHMaterials.Zanite.getUnlocalizedName(), "紫晶石");
-        replace(provider, CTNHMaterials.Ambrosium.getUnlocalizedName(), "神能晶");
-        replace(provider, CTNHMaterials.Skyjade.getUnlocalizedName(), "穹玉");
-        replace(provider, CTNHMaterials.Stratus.getUnlocalizedName(), "云母钢");
-        replace(provider, CTNHMaterials.Zenith_essence.getUnlocalizedName(), "§5天顶源质§r");
-        replace(provider, CTNHMaterials.BiologicalCultureMediumStockSolution.getUnlocalizedName(), "生物培养基原液");
-        replace(provider, CTNHMaterials.SterileBiologicalCultureMediumStockSolution.getUnlocalizedName(), "无菌生物培养基原液");
-        replace(provider, CTNHMaterials.EVE.getUnlocalizedName(),"EVE高能粒子");
-        replace(provider, CTNHMaterials.Ignitium.getUnlocalizedName(), "腾炎");
-        replace(provider, CTNHMaterials.QUASER_MANA.getUnlocalizedName(), "类星体魔力");
-        replace(provider, CTNHMaterials.starlight.getUnlocalizedName(), "星能液");
-        replace(provider, CTNHMaterials.COMPRESSED_ADAMANTITE.getUnlocalizedName(),"压缩精金");
-        replace(provider, CTNHMaterials.COMPRESSED_AETHER.getUnlocalizedName(),"精炼超能以太");
-        replace(provider, CTNHMaterials.SUNNARIUM.getUnlocalizedName(),"阳光化合物");
-        replace(provider, CTNHMaterials.HIKARIUM.getUnlocalizedName(),"§6光素");
-        replace(provider, CTNHMaterials.carbonFluoride.getUnlocalizedName(), "氟化碳");
-        replace(provider, CTNHMaterials.siliconFluoride.getUnlocalizedName(), "氟化硅");
-        replace(provider, CTNHMaterials.zirconiumTetrachloride.getUnlocalizedName(), "四氯化锆");
-        replace(provider, CTNHMaterials.siliconCarbide.getUnlocalizedName(), "碳化硅");
-        replace(provider, CTNHMaterials.HotSteam.getUnlocalizedName(), "过热蒸汽");
-        replace(provider, CTNHMaterials.HotDeuterium.getUnlocalizedName(), "过热氘");
-        replace(provider, CTNHMaterials.HotSodium.getUnlocalizedName(), "过热钠");
-        replace(provider, CTNHMaterials.HotSodiumPotassium.getUnlocalizedName(), "过热钠钾合金");
-        replace(provider, CTNHMaterials.Eglinalloy.getUnlocalizedName(), "埃格林合金");
-        replace(provider, CTNHMaterials.Inconel625.getUnlocalizedName(), "镍铬基合金-625");
-        replace(provider, CTNHMaterials.Starmetal.getUnlocalizedName(), "炫星");
-        replace(provider, CTNHMaterials.AlfSteel.getUnlocalizedName(), "精灵钢");
-        replace(provider, CTNHMaterials.Jasper.getUnlocalizedName(), "碧玉");
-        replace(provider, CTNHMaterials.Abyssalalloy.getUnlocalizedName(), "渊狱合金");
-        replace(provider, CTNHMaterials.Titansteel.getUnlocalizedName(), "泰坦钢");
-        replace(provider, CTNHMaterials.Pikyonium.getUnlocalizedName(), "皮卡优");
-        replace(provider, CTNHMaterials.BlackTitanium.getUnlocalizedName(), "黑钛");
-        replace(provider, CTNHMaterials.Zircon.getUnlocalizedName(), "锆石");
-        replace(provider, CTNHMaterials.Zirkelite.getUnlocalizedName(), "钛锆钍石");
-        replace(provider, CTNHMaterials.Nickeline.getUnlocalizedName(), "红砷镍");
-        replace(provider, CTNHMaterials.Alumina.getUnlocalizedName(), "氧化铝");
-        replace(provider, CTNHMaterials.PreciousAlloy.getUnlocalizedName(), "贵金属");
-        replace(provider, CTNHMaterials.ManaFused.getUnlocalizedName(), "蕴魔");
-        replace(provider, CTNHMaterials.CombustibleIce.getUnlocalizedName(), "可燃冰");
-        replace(provider, CTNHMaterials.Livingrock.getUnlocalizedName(), "活石");
-        replace(provider, CTNHMaterials.icestone.getUnlocalizedName(), "冰石");
-        replace(provider, CTNHMaterials.AERIALITE.getUnlocalizedName(), "天空");
-        replace(provider, CTNHMaterials.SHADOWIUM.getUnlocalizedName(), "暗影");
-        replace(provider, CTNHMaterials.ORICHALCOS.getUnlocalizedName(), "奥利哈刚");
-        replace(provider, CTNHMaterials.PHOTONIUM.getUnlocalizedName(), "         光子");
-        replace(provider, CTNHMaterials.COLORFUL_GEM.getUnlocalizedName(), "异彩（无材质版）");
-        replace(provider, CTNHMaterials.RhodiumSulfurCrystal.getUnlocalizedName(), "铑硫晶");
-        replace(provider, CTNHMaterials.RutheniumAmalgam.getUnlocalizedName(), "钌汞齐");
-        replace(provider, CTNHMaterials.OsmiumIronSpinel.getUnlocalizedName(), "锇铁尖晶石");
-        replace(provider, CTNHMaterials.MeteoricTroilite.getUnlocalizedName(), "陨硫铁镍");
-        replace(provider, CTNHMaterials.PalladiumSulfide.getUnlocalizedName(), "硫晶钯矿");
-        replace(provider, CTNHMaterials.SolarFlareBlackDiamond.getUnlocalizedName(), "太阳耀斑黑钻");
-        replace(provider, CTNHMaterials.Cerite.getUnlocalizedName(), "铈硅石");
-        replace(provider, CTNHMaterials.EuropiumFluorite.getUnlocalizedName(), "铕萤石");
-        replace(provider, CTNHMaterials.GadoliniteSm.getUnlocalizedName(), "钐硅铍钇");
-        replace(provider, CTNHMaterials.Sperrylite.getUnlocalizedName(), "砷铂");
-        replace(provider, CTNHMaterials.Wolframite.getUnlocalizedName(), "黑钨");
-        replace(provider, CTNHMaterials.Germanite.getUnlocalizedName(), "锗镓");
-        replace(provider, CTNHMaterials.Bismuthinite.getUnlocalizedName(), "辉铋");
-        replace(provider, CTNHMaterials.Yttrofluorite.getUnlocalizedName(), "钇萤石");
-        replace(provider, CTNHMaterials.Rheniite.getUnlocalizedName(), "辉铼");
-        replace(provider, CTNHMaterials.Tarkianite.getUnlocalizedName(), "铼钼");
-        replace(provider, CTNHMaterials.Crocoite.getUnlocalizedName(), "红铬铅");
-        replace(provider, CTNHMaterials.Roquesite.getUnlocalizedName(), "铜铟");
-        replace(provider, CTNHMaterials.Smithsonite.getUnlocalizedName(), "菱锌");
-        //铂材料
-        // 材料中文名注册（需在语言初始化阶段执行）
-        replace(provider, CTNHMaterials.GoldPlatinumPalladiumAcidSolution.getUnlocalizedName(), "金-铂-钯酸性溶液");
-        replace(provider, CTNHMaterials.DenitratedGoldPlatinumPalladiumSolution.getUnlocalizedName(), "除硝金-铂-钯酸性溶液");
-        replace(provider, CTNHMaterials.FerricSulfate.getUnlocalizedName(), "硫酸铁");
-        replace(provider, CTNHMaterials.FerrousSulfate.getUnlocalizedName(), "酸性硫酸亚铁");
-        replace(provider, CTNHMaterials.ChloroplatinicChloropalladicSolution.getUnlocalizedName(), "氯铂酸-氯钯酸混合溶液");
-        replace(provider, CTNHMaterials.AmmoniumChloroplatinate.getUnlocalizedName(), "氯铂酸铵");
-        replace(provider, CTNHMaterials.AmmoniaMonohydrate.getUnlocalizedName(), "一水合氨");
-        replace(provider, CTNHMaterials.Diamminedichloropalladium.getUnlocalizedName(), "二氯二氨络亚钯");
-        replace(provider, CTNHMaterials.SpongePalladium.getUnlocalizedName(), "海绵钯");
-        replace(provider, CTNHMaterials.SpongePlatinum.getUnlocalizedName(), "海绵铂");
-        replace(provider, CTNHMaterials.ChloropalladicAcidMixture.getUnlocalizedName(), "氯钯酸混合物");
-        replace(provider, CTNHMaterials.PlatinumGroupResidue.getUnlocalizedName(), "铂族贵金属残渣");
-        replace(provider, CTNHMaterials.Litharge.getUnlocalizedName(), "密陀僧");
-        replace(provider, CTNHMaterials.NobleLead.getUnlocalizedName(), "贵铅");
-        replace(provider, CTNHMaterials.NitricLeachSolution.getUnlocalizedName(), "硝酸浸没溶液");
-        replace(provider, CTNHMaterials.EnrichedInertMixture.getUnlocalizedName(), "富集惰性混合物");
-        replace(provider, CTNHMaterials.RhodiumSulfateSolution.getUnlocalizedName(), "含硫酸铑水溶液");
-        replace(provider, CTNHMaterials.RhodiumHydroxide.getUnlocalizedName(), "氢氧化铑");
-        replace(provider, CTNHMaterials.ChlororhodicAcid.getUnlocalizedName(), "氯铑酸");
-        replace(provider, CTNHMaterials.ConcentratedAmmoniumChlororhodate.getUnlocalizedName(), "浓缩氯铑酸铵溶液");
-        replace(provider, CTNHMaterials.AmmoniumChlororhodate.getUnlocalizedName(), "氯铑酸铵");
-        replace(provider, CTNHMaterials.SpongeRhodium.getUnlocalizedName(), "海绵铑");
-        replace(provider, CTNHMaterials.PreciousMetalMixture.getUnlocalizedName(), "珍贵金属混合物");
-        replace(provider, CTNHMaterials.AmmoniumChlororhodateSolution.getUnlocalizedName(), "氯铑酸铵溶液");
-        replace(provider, CTNHMaterials.SodiumOsmateRuthenateSolution.getUnlocalizedName(), "锇酸钠-钌酸钠混合溶液");
-        replace(provider, CTNHMaterials.SodiumPeroxide.getUnlocalizedName(), "过氧化钠");
-        replace(provider, CTNHMaterials.IridiumOxide.getUnlocalizedName(), "氧化铱");
-        replace(provider, CTNHMaterials.ChlorosmicAcidEthanolSolution.getUnlocalizedName(), "氯锇酸-乙醇盐酸溶液");
-        replace(provider, CTNHMaterials.ChlororuthenicAcidEthanolSolution.getUnlocalizedName(), "氯钌酸-乙醇盐酸溶液");
-        replace(provider, CTNHMaterials.ChlorosmicAcidGas.getUnlocalizedName(), "氯锇酸");
-        replace(provider, CTNHMaterials.ChlororuthenicAcidGas.getUnlocalizedName(), "氯钌酸");
-        replace(provider, CTNHMaterials.AmmoniumChlorosmate.getUnlocalizedName(), "氯锇酸铵");
-        replace(provider, CTNHMaterials.AmmoniumChlororuthenate.getUnlocalizedName(), "氯钌酸铵");
-        replace(provider, CTNHMaterials.SodiumOsmateRuthenateChlorideSolution.getUnlocalizedName(), "锇酸钠-钌酸钠-氯化溶液");
-        replace(provider, CTNHMaterials.Acetaldehyde.getUnlocalizedName(), "乙醛");
-
-
-        replace(provider, NuclearMaterials.ThoriumHexafluoride.getUnlocalizedName(), "六氟化钍");
-        replace(provider, NuclearMaterials.ProtactiniumHexafluoride.getUnlocalizedName(), "六氟化镤");
-        replace(provider, NuclearMaterials.NeptuniumHexafluoride.getUnlocalizedName(), "六氟化镎");
-        replace(provider, NuclearMaterials.PlutoniumHexafluoride.getUnlocalizedName(), "六氟化钋");
-        replace(provider, NuclearMaterials.AmericiumHexafluoride.getUnlocalizedName(), "六氟化镅");
-        replace(provider, NuclearMaterials.CuriumHexafluoride.getUnlocalizedName(), "六氟化锔");
-        replace(provider, NuclearMaterials.BerkeliumHexafluoride.getUnlocalizedName(), "六氟化锫");
-        replace(provider, NuclearMaterials.CaliforniumHexafluoride.getUnlocalizedName(), "六氟化锎");
-        replace(provider, NuclearMaterials.EinsteiniumHexafluoride.getUnlocalizedName(), "六氟化锿");
-        replace(provider, NuclearMaterials.FermiumHexafluoride.getUnlocalizedName(), "六氟化镄");
-        replace(provider, NuclearMaterials.MendeleviumHexafluoride.getUnlocalizedName(), "六氟化钔");
-        nuclearTranslation(provider, NuclearMaterials.Thorium233, "钍233");
-        nuclearTranslation(provider, NuclearMaterials.Thorium232, "钍232");
-        nuclearTranslation(provider, NuclearMaterials.Protactinium233, "镤233");
-        nuclearTranslation(provider, NuclearMaterials.Uranium233, "铀233");
-        nuclearTranslation(provider, NuclearMaterials.Uranium234, "铀234");
-        nuclearTranslation(provider, NuclearMaterials.Uranium239, "铀239");
-        nuclearTranslation(provider, NuclearMaterials.Neptunium235, "镎235");
-        nuclearTranslation(provider, NuclearMaterials.Neptunium237, "镎237");
-        nuclearTranslation(provider, NuclearMaterials.Neptunium239, "镎239");
-        nuclearTranslation(provider, NuclearMaterials.Plutonium240, "钋240");
-        nuclearTranslation(provider, NuclearMaterials.Plutonium244, "钋244");
-        nuclearTranslation(provider, NuclearMaterials.Plutonium245, "钋245");
-        nuclearTranslation(provider, NuclearMaterials.Americium241, "镅241");
-        nuclearTranslation(provider, NuclearMaterials.Americium243, "镅243");
-        nuclearTranslation(provider, NuclearMaterials.Americium245, "镅245");
-        nuclearTranslation(provider, NuclearMaterials.Curium245, "锔245");
-        nuclearTranslation(provider, NuclearMaterials.Curium246, "锔246");
-        nuclearTranslation(provider, NuclearMaterials.Curium247, "锔247");
-        nuclearTranslation(provider, NuclearMaterials.Curium250, "锔250");
-        nuclearTranslation(provider, NuclearMaterials.Curium251, "锔251");
-        nuclearTranslation(provider, NuclearMaterials.Berkelium247, "锫247");
-        nuclearTranslation(provider, NuclearMaterials.Berkelium249, "锫249");
-        nuclearTranslation(provider, NuclearMaterials.Berkelium251, "锫251");
-        nuclearTranslation(provider, NuclearMaterials.Californium251, "锎251");
-        nuclearTranslation(provider, NuclearMaterials.Californium252, "锎252");
-        nuclearTranslation(provider, NuclearMaterials.Californium253, "锎253");
-        nuclearTranslation(provider, NuclearMaterials.Californium256, "锎256");
-        nuclearTranslation(provider, NuclearMaterials.Californium257, "锎257");
-        nuclearTranslation(provider, NuclearMaterials.Einsteinium253, "锿253");
-        nuclearTranslation(provider, NuclearMaterials.Einsteinium255, "锿255");
-        nuclearTranslation(provider, NuclearMaterials.Einsteinium257, "锿257");
-        nuclearTranslation(provider, NuclearMaterials.Fermium257, "镄257");
-        nuclearTranslation(provider, NuclearMaterials.Fermium258, "镄258");
-        nuclearTranslation(provider, NuclearMaterials.Fermium259, "镄259");
-        nuclearTranslation(provider, NuclearMaterials.Fermium262, "镄262");
-        nuclearTranslation(provider, NuclearMaterials.Fermium263, "镄263");
-        nuclearTranslation(provider, NuclearMaterials.Mendelevium259, "钔259");
-        nuclearTranslation(provider, NuclearMaterials.Mendelevium261, "钔261");
-        nuclearTranslation(provider, NuclearMaterials.Mendelevium263, "钔263");
-        replace(provider, NuclearMaterials.CarbideUranium235.getUnlocalizedName(), "碳化铀235");
-        replace(provider, NuclearMaterials.OxideUranium235.getUnlocalizedName(), "氧化铀235");
-        replace(provider, NuclearMaterials.NitrideUranium235.getUnlocalizedName(), "氮化铀235");
-        replace(provider, NuclearMaterials.ZirconiumAlloyUranium235.getUnlocalizedName(), "锆合金铀235");
-        replace(provider, NuclearMaterials.CarbideUranium238.getUnlocalizedName(), "碳化铀238");
-        replace(provider, NuclearMaterials.OxideUranium238.getUnlocalizedName(), "氧化铀238");
-        replace(provider, NuclearMaterials.NitrideUranium238.getUnlocalizedName(), "氮化铀238");
-        replace(provider, NuclearMaterials.ZirconiumAlloyUranium238.getUnlocalizedName(), "锆合金铀238");
-        nuclearTranslation2(provider, GTMaterials.Plutonium239, "钚239");
-        nuclearTranslation2(provider, GTMaterials.Plutonium241, "钚241");
-
-
         //Config
         provider.add("config.ctnhcore.option.ftbPlugin", "FTB相关");
         provider.add("config.ctnhcore.option.kinetic", "应力相关");
@@ -1411,39 +1225,5 @@ public class ChineseLangHandler {
             throw new RuntimeException("Error replacing entry in datagen.", e);
         }
     }
-    public static void nuclearTranslation(RegistrateCNLangProvider provider, Material material, String name) {
-        var nuclearProperty = material.getProperty(CTNHPropertyKeys.NUCLEAR);
-        replace(provider, material.getUnlocalizedName(), name);
-        replace(provider, nuclearProperty.getCarbideMaterial().getUnlocalizedName(), "碳化" + name);
-        replace(provider, nuclearProperty.getOxideMaterial().getUnlocalizedName(), "氧化" + name);
-        replace(provider, nuclearProperty.getNitrideMaterial().getUnlocalizedName(), "氮化" + name);
-        replace(provider, nuclearProperty.getZirconiumAlloyMaterial().getUnlocalizedName(), "锆合金" + name);
-//        replace(provider, nuclearProperty.getFuel(material).getDisplayName().getString(), name + "纯净燃料");
-//        replace(provider, nuclearProperty.getFuel(nuclearProperty.getCarbideMaterial()).getDisplayName().getString(), name + "TRISO燃料");
-//        replace(provider, nuclearProperty.getFuel(nuclearProperty.getOxideMaterial()).getDisplayName().getString(), name + "氧化燃料");
-//        replace(provider, nuclearProperty.getFuel(nuclearProperty.getNitrideMaterial()).getDisplayName().getString(), name + "氮化燃料");
-//        replace(provider, nuclearProperty.getFuel(nuclearProperty.getZirconiumAlloyMaterial()).getDisplayName().getString(), name + "锆合金燃料");
-//        replace(provider, nuclearProperty.getDepletedFuel(material).getDisplayName().getString(), name + "枯竭燃料");
-//        replace(provider, nuclearProperty.getDepletedFuel(nuclearProperty.getCarbideMaterial()).getDisplayName().getString(), name + "枯竭TRISO燃料");
-//        replace(provider, nuclearProperty.getDepletedFuel(nuclearProperty.getOxideMaterial()).getDisplayName().getString(), name + "枯竭氧化燃料");
-//        replace(provider, nuclearProperty.getDepletedFuel(nuclearProperty.getNitrideMaterial()).getDisplayName().getString(), name + "枯竭氮化燃料");
-//        replace(provider, nuclearProperty.getDepletedFuel(nuclearProperty.getZirconiumAlloyMaterial()).getDisplayName().getString(), name + "枯竭锆合金燃料");
-        replace(provider, GTMaterials.get(material.getName() + "_hexafluoride").getUnlocalizedName(), "六氟化" + name);
-        replace(provider, GTMaterials.get(material.getName() + "_hexafluoride_steam_cracked").getUnlocalizedName(), "蒸汽裂解的六氟化" + name);
-    }
-    public static void nuclearTranslation2(RegistrateCNLangProvider provider, Material material, String name) {
-        var nuclearProperty = material.getProperty(CTNHPropertyKeys.NUCLEAR);
-        replace(provider, nuclearProperty.getCarbideMaterial().getUnlocalizedName(), "碳化" + name);
-        replace(provider, nuclearProperty.getOxideMaterial().getUnlocalizedName(), "氧化" + name);
-        replace(provider, nuclearProperty.getNitrideMaterial().getUnlocalizedName(), "氮化" + name);
-        replace(provider, nuclearProperty.getZirconiumAlloyMaterial().getUnlocalizedName(), "锆合金" + name);
-        if(material.equals(GTMaterials.Plutonium239)){
-            replace(provider, GTMaterials.get(material.getName() + "_239_hexafluoride").getUnlocalizedName(), "六氟化" + name);
-            replace(provider, GTMaterials.get(material.getName() + "_239_hexafluoride_steam_cracked").getUnlocalizedName(), "蒸汽裂解的六氟化" + name);
-        }
-        else {
-            replace(provider, GTMaterials.get(material.getName() + "_hexafluoride").getUnlocalizedName(), "六氟化" + name);
-            replace(provider, GTMaterials.get(material.getName() + "_hexafluoride_steam_cracked").getUnlocalizedName(), "蒸汽裂解的六氟化" + name);
-        }
-    }
+
 }

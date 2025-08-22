@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.data.lang;
+package io.github.cpearl0.ctnhcore.data.lang.old;
 
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.tterrag.registrate.providers.RegistrateLangProvider;

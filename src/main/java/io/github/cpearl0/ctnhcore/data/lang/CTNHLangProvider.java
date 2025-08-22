@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.lang;
 
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.tterrag.registrate.AbstractRegistrate;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
@@ -176,5 +178,13 @@ public class CTNHLangProvider extends RegistrateLangProvider {
 
     public String getKey(String modId, String key, ResourceKey<Registry<?>> registry) {
         return registry.location().getPath() +  "." + modId + "." + key;
+    }
+    public void addOreVein(String key, String cn) {
+        add(key, FormattingUtil.toEnglishName(key), cn);
+    }
+
+    public void addMaterial(Material material, String enName, String cnName) {
+        simplifiedChinese.add(material.getUnlocalizedName(), cnName);
+        add(material.getUnlocalizedName(), enName);
     }
 }
