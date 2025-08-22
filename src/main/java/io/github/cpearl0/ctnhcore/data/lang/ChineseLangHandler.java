@@ -4,8 +4,10 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
+import com.moguang.ctnhbio.registry.CBItems;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.data.lang.Chinese.OreLang;
+import io.github.cpearl0.ctnhcore.data.materials.OrdinaryMaterials;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
@@ -110,6 +112,12 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.Crocoite.getUnlocalizedName(), "红铬铅");
         replace(provider, CTNHMaterials.Roquesite.getUnlocalizedName(), "铜铟");
         replace(provider, CTNHMaterials.Smithsonite.getUnlocalizedName(), "菱锌");
+        replace(provider, OrdinaryMaterials.PYRROLE.getUnlocalizedName(), "吡咯");
+        replace(provider, OrdinaryMaterials.FENTONS_REAGENT.getUnlocalizedName(), "芬顿试剂");
+        replace(provider, OrdinaryMaterials.POLYPYRROLE.getUnlocalizedName(), "聚吡咯");
+        replace(provider, OrdinaryMaterials.BLUE_TITANIUM_ALLOY.getUnlocalizedName(), "蓝钛");
+        replace(provider, OrdinaryMaterials.BIO_FLEXIBLE.getUnlocalizedName(), "生物柔性材质");
+        replace(provider, OrdinaryMaterials.PYRROLE.getUnlocalizedName(), "吡咯");
         //铂材料
         // 材料中文名注册（需在语言初始化阶段执行）
         replace(provider, CTNHMaterials.GoldPlatinumPalladiumAcidSolution.getUnlocalizedName(), "金-铂-钯酸性溶液");
@@ -334,6 +342,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.me_advanced_terminal.tooltip.1","§l格雷科技-多方块结构终端-异步成型模式");
         provider.add("ctnh.me_advanced_terminal.tooltip.2","复刻了曾经的旗舰款，终端屏幕上闪烁着久违的画面");
         provider.add("ctnh.me_advanced_terminal.tooltip.3","通过ME无线访问点链接到网络");
+        provider.add("ctnh.advanced_ram_wafer.tooltip", "更好的内存原料");
+        provider.add("ctnh.advanced_ram_chip.tooltip", "更好的随机存取存储器");
 
 //        "item.gtmthings.advanced_terminal": "§b高级终端",
 //                "item.gtmthings.advanced_terminal.setting.title": "高级终端设置",
@@ -1195,6 +1205,8 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.PV_TERMINAL,"光伏绑定终端");
         provider.addItem(CTNHItems.RESEARCH_DATASET,"研究数据集");
         provider.addItem(CTNHItems.RESEARCH_DATASET_LIVING_MATERIAL,"研究数据集：活体金属");
+        provider.addItem(CTNHItems.ADVANCED_RAM_WAFER, "进阶RAM晶圆");
+        provider.addItem(CTNHItems.ADVANCED_RAM_CHIP, "进阶RAM芯片");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
         provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL, "进阶线程控制外壳");
         provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_LINE, "进阶装配核心");
@@ -1385,6 +1397,7 @@ public class ChineseLangHandler {
         provider.add(MultiblocksB.HYBRID_POWER_MIXER.getBlock(),"混合动力搅拌机");
         provider.add(MultiblocksB.ZENITH_EXTRUDER.getBlock(),"§5天顶灵能塑形者");
         provider.add(MultiblocksB.FLUID_DRILLING_INF[UHV].getBlock(),"无尽流体钻机");
+        provider.add(MultiblocksB.INF_LARGE_MINER.getBlock(), "无尽钻机");
         provider.add(MultiblocksB.MANA_CONDENSER.getBlock(), "魔力凝缩器");
         provider.add(MultiblocksB.COMPONENT_ASSEMBLY_LINE_CT.getBlock(),"应力部件装配线");
 

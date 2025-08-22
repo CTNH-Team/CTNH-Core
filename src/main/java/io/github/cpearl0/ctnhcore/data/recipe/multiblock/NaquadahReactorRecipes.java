@@ -13,6 +13,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
+import static io.github.cpearl0.ctnhcore.registry.CTNHMachines.NAQUADAH_REACTOR;
 import static twilightforest.init.custom.Restrictions.asStack;
 
 public class NaquadahReactorRecipes {
@@ -47,58 +48,58 @@ public class NaquadahReactorRecipes {
                 .duration(1907)
                 .EUt(-524288)
                 .save(provider);
-//        VanillaRecipeHelper.addShapedRecipe(
-//                provider, true, "naquadah_reactor_ev", GTNNMachines.NAQUADAH_REACTOR[GTValues.EV]
-//                .asStack(),
-//                "ABA", "CDC", "EBE",
-//                'A',  TagPrefix.rod, GTMaterials.Uranium235,
-//                'B', CustomTags.IV_CIRCUITS,
-//                'C', GTItems.FIELD_GENERATOR_EV,
-//                'D', GTMachines.HULL[GTValues.EV].asStack(),
-//                'E',  TagPrefix.cableGtQuadruple, GTMaterials.Aluminium
-//        );
-//        VanillaRecipeHelper.addShapedRecipe(
-//                provider, true, "naquadah_reactor_iv", GTNNMachines.NAQUADAH_REACTOR[GTValues.IV]
-//                .asStack(),
-//                "ABA", "CDC", "EBE",
-//                'A',  TagPrefix.rod, GTMaterials.Plutonium241,
-//                'B', CustomTags.LuV_CIRCUITS,
-//                'C', GTItems.FIELD_GENERATOR_IV,
-//                'D', GTMachines.HULL[GTValues.IV].asStack(),
-//                'E',  TagPrefix.cableGtQuadruple, GTMaterials.Tungsten
-//        );
-//        VanillaRecipeHelper.addShapedRecipe(
-//                provider, true, "naquadah_reactor_luv", GTNNMachines.NAQUADAH_REACTOR[GTValues.LuV]
-//                .asStack(),
-//                "ABA", "CDC", "EBE",
-//                'A',  TagPrefix.rod, GTMaterials.Europium,
-//                'B', CustomTags.ZPM_CIRCUITS,
-//                'C', GTItems.FIELD_GENERATOR_LuV,
-//                'D', GTMachines.HULL[GTValues.LuV].asStack(),
-//                'E',  TagPrefix.cableGtQuadruple, GTMaterials.HSSG
-//        );
-//        VanillaRecipeHelper.addShapedRecipe(
-//                provider, true, "naquadah_reactor_zpm", GTNNMachines.NAQUADAH_REACTOR[GTValues.ZPM]
-//                .asStack(),
-//                "ABA", "CDC", "EBE",
-//                'A',  TagPrefix.rod, GTMaterials.Americium,
-//                'B', CustomTags.UV_CIRCUITS,
-//                'C', GTItems.FIELD_GENERATOR_ZPM,
-//                'D', GTMachines.HULL[GTValues.ZPM].asStack(),
-//                'E',  TagPrefix.cableGtQuadruple, GTMaterials.Naquadah
-//        );
-//        if (GTCEuAPI.isHighTier() && GTNNMachines.NAQUADAH_REACTOR[GTValues.UV] != null) {
-//            VanillaRecipeHelper.addShapedRecipe(
-//                    provider, true, "naquadah_reactor_uv", GTNNMachines.NAQUADAH_REACTOR[GTValues.UV]
-//                .asStack(),
-//                    "ABA", "CDC", "EBE",
-//                    'A',  TagPrefix.rod, GTMaterials.NaquadahAlloy,
-//                    'B', CustomTags.UHV_CIRCUITS,
-//                    'C', GTItems.FIELD_GENERATOR_UV,
-//                    'D', GTMachines.HULL[GTValues.UV].asStack(),
-//                    'E',  TagPrefix.cableGtQuadruple, GTMaterials.EnrichedNaquadahTriniumEuropiumDuranide
-//        );
-//        }
+         VanillaRecipeHelper.addShapedRecipe(
+                 provider, true, "naquadah_reactor_ev",  NAQUADAH_REACTOR[GTValues.EV]
+                 .asStack(),
+                 "ABA", "CDC", "EBE",
+                 'A',  TagPrefix.rod, GTMaterials.Uranium235,
+                 'B', CustomTags.IV_CIRCUITS,
+                 'C', GTItems.FIELD_GENERATOR_EV,
+                 'D', GTMachines.HULL[GTValues.EV].asStack(),
+                 'E',  TagPrefix.cableGtQuadruple, GTMaterials.Aluminium
+         );
+         VanillaRecipeHelper.addShapedRecipe(
+                 provider, true, "naquadah_reactor_iv",  NAQUADAH_REACTOR[GTValues.IV]
+                 .asStack(),
+                 "ABA", "CDC", "EBE",
+                 'A',  TagPrefix.rod, GTMaterials.Plutonium241,
+                 'B', CustomTags.LuV_CIRCUITS,
+                 'C', GTItems.FIELD_GENERATOR_IV,
+                 'D', GTMachines.HULL[GTValues.IV].asStack(),
+                 'E',  TagPrefix.cableGtQuadruple, GTMaterials.Tungsten
+         );
+         VanillaRecipeHelper.addShapedRecipe(
+                 provider, true, "naquadah_reactor_luv",  NAQUADAH_REACTOR[GTValues.LuV]
+                 .asStack(),
+                 "ABA", "CDC", "EBE",
+                 'A',  TagPrefix.rod, GTMaterials.Europium,
+                 'B', CustomTags.ZPM_CIRCUITS,
+                 'C', GTItems.FIELD_GENERATOR_LuV,
+                 'D', GTMachines.HULL[GTValues.LuV].asStack(),
+                 'E',  TagPrefix.cableGtQuadruple, GTMaterials.HSSG
+         );
+         VanillaRecipeHelper.addShapedRecipe(
+                 provider, true, "naquadah_reactor_zpm",  NAQUADAH_REACTOR[GTValues.ZPM]
+                 .asStack(),
+                 "ABA", "CDC", "EBE",
+                 'A',  TagPrefix.rod, GTMaterials.Americium,
+                 'B', CustomTags.UV_CIRCUITS,
+                 'C', GTItems.FIELD_GENERATOR_ZPM,
+                 'D', GTMachines.HULL[GTValues.ZPM].asStack(),
+                 'E',  TagPrefix.cableGtQuadruple, GTMaterials.Naquadah
+         );
+         if (GTCEuAPI.isHighTier() &&  NAQUADAH_REACTOR[GTValues.UV] != null) {
+             VanillaRecipeHelper.addShapedRecipe(
+                     provider, true, "naquadah_reactor_uv",  NAQUADAH_REACTOR[GTValues.UV]
+                 .asStack(),
+                     "ABA", "CDC", "EBE",
+                     'A',  TagPrefix.rod, GTMaterials.NaquadahAlloy,
+                     'B', CustomTags.UHV_CIRCUITS,
+                     'C', GTItems.FIELD_GENERATOR_UV,
+                     'D', GTMachines.HULL[GTValues.UV].asStack(),
+                     'E',  TagPrefix.cableGtQuadruple, GTMaterials.EnrichedNaquadahTriniumEuropiumDuranide
+         );
+         }
     }
 }
 

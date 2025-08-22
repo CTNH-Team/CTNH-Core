@@ -24,6 +24,10 @@ public class EnglishLangHandler {
         provider.add("enchantment.kubejs.warming.desc", "Enhance your hot defending ability");
         provider.add("enchantment.kubejs.cooling.desc", "Enhance your cold defending ability");
 
+        //Item Tooltip
+        provider.add("ctnh.advanced_ram_wafer.tooltip", "Enhanced RAM Wafer");
+        provider.add("ctnh.advanced_ram_chip.tooltip", "Advanced Random Access Memory");
+
         //Recipe Types
         provider.add("gtceu.underfloor_heating_system", "Underfloor Heating");
         provider.add("gtceu.astronomical_observatory", "Astronomical Observatory");

@@ -4,6 +4,7 @@ import appeng.core.AEConfig;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.common.item.TooltipBehavior;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
+import com.moguang.ctnhbio.CTNHBio;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import io.github.cpearl0.ctnhcore.common.item.*;
 import io.github.cpearl0.ctnhcore.data.materials.ChemicalItems;
@@ -405,6 +406,23 @@ public class CTNHItems {
     .item("computer_advanced_circuit", ComponentItem::create)
             .lang("Advanced Computer Chip")
             .properties(properties -> properties.rarity(Rarity.RARE))
+            .register();
+
+    public static ItemEntry<ComponentItem> ADVANCED_RAM_WAFER = REGISTRATE
+            .item("advanced_ram_wafer", ComponentItem::create)
+            .lang("Advanced Ram Wafer")
+            .properties(p -> new Item.Properties().rarity(Rarity.UNCOMMON))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.advanced_ram_wafer.tooltip").withStyle(ChatFormatting.YELLOW));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> ADVANCED_RAM_CHIP = REGISTRATE
+            .item("advanced_ram_chip", ComponentItem::create)
+            .lang("Advanced Ram Chip")
+            .properties(p -> new Item.Properties().rarity(Rarity.UNCOMMON))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.advanced_ram_chip.tooltip").withStyle(ChatFormatting.YELLOW));
+            })))
             .register();
 
     public static ItemEntry<ProgramItem> registerProgramItem(String id) {

@@ -943,6 +943,7 @@ public class CTNHMaterials {
         NaquadahMaterials.init();
         BrineChain.init();
         SecondMaterials.init();
+        OrdinaryMaterials.init();
         CombustibleIce.setFormula("(CH4)(H2O)", true);
 
         var ore = new OreProperty();

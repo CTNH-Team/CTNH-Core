@@ -1,6 +1,8 @@
 package io.github.cpearl0.ctnhcore.registry;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
+import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -21,6 +23,12 @@ public class CTNHRecipes {
                 return id;
             }
         });
+    }
+    public static PlantCasingCondition setPlantCasing(int tier) {
+        return new PlantCasingCondition(tier);
+    }
+    public static NeutronActivatorCondition setNA(int min, int max) {
+        return new NeutronActivatorCondition(min, max);
     }
 
     public static void init(IEventBus eventBus) {

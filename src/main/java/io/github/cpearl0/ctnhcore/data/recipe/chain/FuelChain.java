@@ -20,6 +20,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import java.util.function.Consumer;
 
 import static com.ibm.icu.impl.CurrencyData.provider;
+import static io.github.cpearl0.ctnhcore.registry.CTNHMachines.ROCKET_ENGINE;
 import static twilightforest.init.custom.Restrictions.asStack;
 
 public class FuelChain {
@@ -217,38 +218,38 @@ public class FuelChain {
                 .EUt(-GTValues.V[GTValues.EV])
                 .duration(6)
                 .save(provider);
-//        VanillaRecipeHelper.addShapedRecipe(
-//                provider, true, "rocket_engine_ev", GTNNMultiblocks.Rocket_Engine[GTValues.EV]
-//                .asStack(),
-//                "ABA", "CDC", "EFE",
-//                'A', GTItems.ELECTRIC_PISTON_EV,
-//                'B', CustomTags.EV_CIRCUITS,
-//                'C', GTItems.ELECTRIC_MOTOR_EV,
-//                'D', GTMachines.HULL[GTValues.EV].asStack(),
-//                'E', TagPrefix.gear, GTMaterials.TungstenSteel,
-//                'F', TagPrefix.cableGtDouble, GTMaterials.Aluminium
-//        );
-//        VanillaRecipeHelper.addShapedRecipe(
-//                provider, true, "rocket_engine_iv", GTNNMultiblocks.Rocket_Engine[GTValues.IV]
-//                .asStack(),
-//                "ABA", "CDC", "EFE",
-//                'A', GTItems.ELECTRIC_PISTON_IV,
-//                'B', CustomTags.IV_CIRCUITS,
-//                'C', GTItems.ELECTRIC_MOTOR_IV,
-//                'D', GTMachines.HULL[GTValues.IV].asStack(),
-//                'E', TagPrefix.gear, GTMaterials.Titanium,
-//                'F', TagPrefix.cableGtDouble, GTMaterials.Platinum
-//        );
-//        VanillaRecipeHelper.addShapedRecipe(
-//                provider, true, "rocket_engine_luv", GTNNMultiblocks.Rocket_Engine[GTValues.LuV]
-//                .asStack(),
-//                "ABA", "CDC", "EFE",
-//                'A', GTItems.ELECTRIC_PISTON_LuV,
-//                'B', CustomTags.LuV_CIRCUITS,
-//                'C', GTItems.ELECTRIC_MOTOR_LuV,
-//                'D', GTMachines.HULL[GTValues.LuV].asStack(),
-//                'E', TagPrefix.gear, GTMaterials.Zeron100,
-//                'F', TagPrefix.cableGtDouble, GTMaterials.Tungsten
-//        );
+         VanillaRecipeHelper.addShapedRecipe(
+                 provider, true, "rocket_engine_ev",  ROCKET_ENGINE[GTValues.EV]
+                 .asStack(),
+                 "ABA", "CDC", "EFE",
+                 'A', GTItems.ELECTRIC_PISTON_EV,
+                 'B', CustomTags.EV_CIRCUITS,
+                 'C', GTItems.ELECTRIC_MOTOR_EV,
+                 'D', GTMachines.HULL[GTValues.EV].asStack(),
+                 'E', TagPrefix.gear, GTMaterials.TungstenSteel,
+                 'F', TagPrefix.cableGtDouble, GTMaterials.Aluminium
+         );
+         VanillaRecipeHelper.addShapedRecipe(
+                 provider, true, "rocket_engine_iv",  ROCKET_ENGINE[GTValues.IV]
+                 .asStack(),
+                 "ABA", "CDC", "EFE",
+                 'A', GTItems.ELECTRIC_PISTON_IV,
+                 'B', CustomTags.IV_CIRCUITS,
+                 'C', GTItems.ELECTRIC_MOTOR_IV,
+                 'D', GTMachines.HULL[GTValues.IV].asStack(),
+                 'E', TagPrefix.gear, GTMaterials.Titanium,
+                 'F', TagPrefix.cableGtDouble, GTMaterials.Platinum
+         );
+         VanillaRecipeHelper.addShapedRecipe(
+                 provider, true, "rocket_engine_luv",  ROCKET_ENGINE[GTValues.LuV]
+                 .asStack(),
+                 "ABA", "CDC", "EFE",
+                 'A', GTItems.ELECTRIC_PISTON_LuV,
+                 'B', CustomTags.LuV_CIRCUITS,
+                 'C', GTItems.ELECTRIC_MOTOR_LuV,
+                 'D', GTMachines.HULL[GTValues.LuV].asStack(),
+                 'E', TagPrefix.gear, GTMaterials.Zeron100,
+                 'F', TagPrefix.cableGtDouble, GTMaterials.Tungsten
+         );
     }
 }
