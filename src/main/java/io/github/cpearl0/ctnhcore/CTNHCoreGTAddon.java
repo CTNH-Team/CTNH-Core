@@ -92,6 +92,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         BotaniaRecipes.init(provider);
         HyperRotorRecipes.registerAll(provider);
         PlatinumLine.init(provider);
+        OrdinaryRecipes.init(provider);
         //移植配方
         NaquadahReactorRecipes.init(provider);
         DefaultRecipes.init(provider);

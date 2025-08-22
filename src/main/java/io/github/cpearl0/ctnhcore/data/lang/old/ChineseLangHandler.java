@@ -4,9 +4,11 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
+import com.moguang.ctnhbio.registry.CBItems;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.data.lang.Chinese.OreLang;
 import io.github.cpearl0.ctnhcore.data.lang.RegistrateCNLangProvider;
+import io.github.cpearl0.ctnhcore.data.materials.OrdinaryMaterials;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
@@ -25,6 +27,12 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 public class ChineseLangHandler {
     public static void init(RegistrateCNLangProvider provider) {
         OreLang.init(provider);
+        replace(provider, OrdinaryMaterials.PYRROLE.getUnlocalizedName(), "吡咯");
+        replace(provider, OrdinaryMaterials.FENTONS_REAGENT.getUnlocalizedName(), "芬顿试剂");
+        replace(provider, OrdinaryMaterials.POLYPYRROLE.getUnlocalizedName(), "聚吡咯");
+        replace(provider, OrdinaryMaterials.BLUE_TITANIUM_ALLOY.getUnlocalizedName(), "蓝钛");
+        replace(provider, OrdinaryMaterials.BIO_FLEXIBLE.getUnlocalizedName(), "生物柔性材质");
+        replace(provider, OrdinaryMaterials.PYRROLE.getUnlocalizedName(), "吡咯");
         //Config
         provider.add("config.ctnhcore.option.ftbPlugin", "FTB相关");
         provider.add("config.ctnhcore.option.kinetic", "应力相关");
@@ -148,6 +156,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.me_advanced_terminal.tooltip.1","§l格雷科技-多方块结构终端-异步成型模式");
         provider.add("ctnh.me_advanced_terminal.tooltip.2","复刻了曾经的旗舰款，终端屏幕上闪烁着久违的画面");
         provider.add("ctnh.me_advanced_terminal.tooltip.3","通过ME无线访问点链接到网络");
+        provider.add("ctnh.advanced_ram_wafer.tooltip", "更好的内存原料");
+        provider.add("ctnh.advanced_ram_chip.tooltip", "更好的随机存取存储器");
 
 //        "item.gtmthings.advanced_terminal": "§b高级终端",
 //                "item.gtmthings.advanced_terminal.setting.title": "高级终端设置",
@@ -195,7 +205,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.simple_nutritious_meal.tooltip.1","能维持机体基本的生理功能");
         provider.add("item.ctnh.ecological_star.desc", "蕴含生态圈的所有精华");
         provider.add("item.sculk_cell.desc", "分化....");
-        provider.add("ctnh.tooltips.simplecomputationmachine","执行大于电压等级HV的配方时,需要2^(配方等级-HV)CWU/t算力");
+        provider.add("ctnh.tooltips.simplecomputationmachine","注意：部分配方需要算力执行");
 
         provider.add("ctnh.recipe.industrial_altar.info.0","消耗/输入的lp量:%.1f");
 
@@ -1009,6 +1019,8 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.PV_TERMINAL,"光伏绑定终端");
         provider.addItem(CTNHItems.RESEARCH_DATASET,"研究数据集");
         provider.addItem(CTNHItems.RESEARCH_DATASET_LIVING_MATERIAL,"研究数据集：活体金属");
+        provider.addItem(CTNHItems.ADVANCED_RAM_WAFER, "进阶RAM晶圆");
+        provider.addItem(CTNHItems.ADVANCED_RAM_CHIP, "进阶RAM芯片");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
         provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL, "进阶线程控制外壳");
         provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_LINE, "进阶装配核心");
