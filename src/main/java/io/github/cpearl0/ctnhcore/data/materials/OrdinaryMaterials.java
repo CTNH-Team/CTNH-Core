@@ -56,7 +56,10 @@ public class OrdinaryMaterials {
                         Tantalum, 4,
                         Gadolinium, 1
                 )
-                .flags(GENERATE_FOIL, GENERATE_SPRING)
+                .flags(GENERATE_FOIL,
+                        GENERATE_SPRING,
+                        GENERATE_FINE_WIRE
+                )
                 .blast(b -> b.temp(6000, BlastProperty.GasTier.HIGH)
                         .blastStats(VA[GTValues.LuV], 3000)
                         .vacuumStats(VA[LuV]))
@@ -64,13 +67,12 @@ public class OrdinaryMaterials {
                 .buildAndRegister();
         BIO_FLEXIBLE = new Material.Builder(CTNHCore.id("bio_flexible"))
                 .color(0x8AFF70)
-                .components(POLYPYRROLE, 1, BLUE_TITANIUM_ALLOY, 1)
+                //.components(POLYPYRROLE, 1, BLUE_TITANIUM_ALLOY, 1)
                 .flags(
                         NO_SMELTING,
-                        FLAMMABLE,
-                        STICKY
+                        GENERATE_FINE_WIRE
                 )
-                .cableProperties(32768, 8, 1)
+                //.cableProperties(32768, 8, 1)
                 .buildAndRegister();
     }
 }

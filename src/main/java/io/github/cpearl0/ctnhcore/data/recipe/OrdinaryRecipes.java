@@ -126,8 +126,8 @@ public class OrdinaryRecipes {
 
         CBRecipeBuilder.of(CTNHCore.id("advanced_ram_wafer_ne_recipe"), CTNHRecipeTypes.PVB_RECIPE)
                 .inputFluids(POLYPYRROLE,288)
-                .inputItems(wireGtSingle,BLUE_TITANIUM_ALLOY,1)
-                .outputItems(wireGtSingle,BIO_FLEXIBLE,1)
+                .inputItems(wireFine,BLUE_TITANIUM_ALLOY,1)
+                .outputItems(wireFine,BIO_FLEXIBLE,1)
                 .duration(200)
                 .EUt(30720)
                 .cleanroom(CleanroomType.CLEANROOM)
