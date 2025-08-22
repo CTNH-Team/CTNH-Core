@@ -1642,7 +1642,7 @@ public class MultiblocksB {
                     .where("Q", Predicates.blocks(WIDESPEEDINGPIPE.get()))
 
                     .build())
-            .workableCasingModel(GTCEu.id("block/casings/gcym/high_temperature_smelting_casing"), CTNHCore.id("block/overlay/super_ebf/"))
+            .workableCasingModel(GTCEu.id("block/casings/gcym/high_temperature_smelting_casing"), CTNHCore.id("block/overlay/super_ebf"))
             .register();
     public final static MultiblockMachineDefinition UNIVERSE_SINOPE = REGISTRATE.multiblock("universe_sinope", holder -> new Arc_Reactor(holder, 10))
             .rotationState(RotationState.NON_Y_AXIS)

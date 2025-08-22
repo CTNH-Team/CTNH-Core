@@ -27,12 +27,6 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 public class ChineseLangHandler {
     public static void init(RegistrateCNLangProvider provider) {
         OreLang.init(provider);
-        replace(provider, OrdinaryMaterials.PYRROLE.getUnlocalizedName(), "吡咯");
-        replace(provider, OrdinaryMaterials.FENTONS_REAGENT.getUnlocalizedName(), "芬顿试剂");
-        replace(provider, OrdinaryMaterials.POLYPYRROLE.getUnlocalizedName(), "聚吡咯");
-        replace(provider, OrdinaryMaterials.BLUE_TITANIUM_ALLOY.getUnlocalizedName(), "蓝钛");
-        replace(provider, OrdinaryMaterials.BIO_FLEXIBLE.getUnlocalizedName(), "生物柔性材质");
-        replace(provider, OrdinaryMaterials.PYRROLE.getUnlocalizedName(), "吡咯");
         //Config
         provider.add("config.ctnhcore.option.ftbPlugin", "FTB相关");
         provider.add("config.ctnhcore.option.kinetic", "应力相关");

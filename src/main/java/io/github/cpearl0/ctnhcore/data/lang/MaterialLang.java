@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
+import io.github.cpearl0.ctnhcore.data.materials.OrdinaryMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
@@ -274,6 +275,11 @@ public class MaterialLang {
         translateMaterial(AmmoniumChlororuthenate, "氯钌酸铵");
         translateMaterial(SodiumOsmateRuthenateChlorideSolution, "锇酸钠-钌酸钠-氯化溶液");
         translateMaterial(Acetaldehyde, "乙醛");
+        translateMaterial(OrdinaryMaterials.PYRROLE, "吡咯");
+        translateMaterial(OrdinaryMaterials.FENTONS_REAGENT, "芬顿试剂");
+        translateMaterial(OrdinaryMaterials.POLYPYRROLE, "聚吡咯");
+        translateMaterial(OrdinaryMaterials.BLUE_TITANIUM_ALLOY, "蓝钛");
+        translateMaterial(OrdinaryMaterials.BIO_FLEXIBLE, "生物柔性材质");
 
 
         translateMaterial(NuclearMaterials.ThoriumHexafluoride, "六氟化钍");
