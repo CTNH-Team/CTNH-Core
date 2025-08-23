@@ -543,7 +543,7 @@ public class DefaultRecipes {
                 provider, true, "clean_machine_casing",
                 CTNHBlocks.PROCESS_MACHINE_CASING.asStack(),
                 "ABA", "BCB", "ABA",
-                'A', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:stainless_steel_foil")),4,
+                'A', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:stainless_steel_foil")),
                 'B', CustomTags.IV_CIRCUITS,
                 'C', GTBlocks.CASING_STEEL_SOLID.asItem()
         );
@@ -730,8 +730,8 @@ public class DefaultRecipes {
                 provider, true, "neutron_source",
                 CTNHItems.NeutronSource.asStack(),
                 " A ", "ABA", " A ",
-                'A', TagPrefix.plateDense, GTMaterials.Steel,
-                'B', CTNHItems.EnrichedUranium.asStack()
+                'A', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:dense_steel_plate")), // 致密钢板
+                'B', CTNHItems.EnrichedUranium.asStack() // 富集铀（直接引用）
         );
         // MV中子加速器
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("neutron_accelerator_mv")
@@ -863,30 +863,30 @@ public class DefaultRecipes {
                 'F', CTNHItems.INVERTER.asStack()
         );
          // MV脱水机
-         VanillaRecipeHelper.addShapedRecipe(
-                 provider, true, "dehydrator_mv",
-                 CTNHMachines.DEHYDRATOR[GTValues.MV].asStack(),
-                 "ABA", "CDC", "EFE",
-                 'A', TagPrefix.wireFine, GTMaterials.RedAlloy,
-                 'B', CustomTags.MV_CIRCUITS,
-                 'C', TagPrefix.cableGtQuadruple, GTMaterials.Copper,
-                 'D', GTMachines.HULL[GTValues.MV].asStack(),
-                 'E', TagPrefix.gear, GTMaterials.Steel,
-                 'F', GTItems.ROBOT_ARM_MV
-         );
+        VanillaRecipeHelper.addShapedRecipe(
+                provider, true, "dehydrator_mv",
+                CTNHMachines.DEHYDRATOR[GTValues.MV].asStack(),
+                "ABA", "CDC", "EFE",
+                'A', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:fine_red_alloy_wire")),
+                'B', CustomTags.MV_CIRCUITS,
+                'C', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:copper_quadruple_cable")),
+                'D', GTMachines.HULL[GTValues.MV].asStack(),
+                'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:steel_gear")),
+                'F', GTItems.ROBOT_ARM_MV
+        );
 
            //HV脱水机
-         VanillaRecipeHelper.addShapedRecipe(
-                 provider, true, "dehydrator_hv",
-                 CTNHMachines.DEHYDRATOR[GTValues.HV].asStack(),
-                 "ABA", "CDC", "EFE",
-                 'A', TagPrefix.wireFine, GTMaterials.Electrum,
-                 'B', CustomTags.HV_CIRCUITS,
-                 'C', TagPrefix.cableGtQuadruple, GTMaterials.Silver,
-                 'D', GTMachines.HULL[GTValues.HV].asStack(),
-                 'E', TagPrefix.gear, GTMaterials.Potin,
-                 'F', GTItems.ROBOT_ARM_HV
-         );
+        VanillaRecipeHelper.addShapedRecipe(
+                provider, true, "dehydrator_hv",
+                CTNHMachines.DEHYDRATOR[GTValues.HV].asStack(),
+                "ABA", "CDC", "EFE",
+                'A', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:fine_electrum_wire")),
+                'B', CustomTags.HV_CIRCUITS,
+                'C', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:silver_quadruple_cable")),
+                'D', GTMachines.HULL[GTValues.HV].asStack(),
+                'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:potin_gear")),
+                'F', GTItems.ROBOT_ARM_HV
+        );
 
            //EV脱水机
          VanillaRecipeHelper.addShapedRecipe(
@@ -895,50 +895,50 @@ public class DefaultRecipes {
                  "ABA", "CDC", "EFE",
                  'A', GTItems.VOLTAGE_COIL_EV,
                  'B', CustomTags.EV_CIRCUITS,
-                 'C', TagPrefix.cableGtQuadruple, GTMaterials.Aluminium,
+                 'C', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:aluminium_quadruple_cable")),
                  'D', GTMachines.HULL[GTValues.EV].asStack(),
-                 'E', TagPrefix.gear, GTMaterials.TungstenSteel,
+                 'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:tungsten_steel_gear")),
                  'F', GTItems.ROBOT_ARM_EV
          );
 
            //IV脱水机
-         VanillaRecipeHelper.addShapedRecipe(
-                 provider, true, "dehydrator_iv",
-                 CTNHMachines.DEHYDRATOR[GTValues.IV].asStack(),
-                 "ABA", "CDC", "EFE",
-                 'A', GTItems.VOLTAGE_COIL_IV,
-                 'B', CustomTags.IV_CIRCUITS,
-                 'C', TagPrefix.cableGtQuadruple, GTMaterials.Tungsten,
-                 'D', GTMachines.HULL[GTValues.IV].asStack(),
-                 'E', TagPrefix.gear, GTMaterials.Nichrome,
-                 'F', GTItems.ROBOT_ARM_IV
-         );
+        VanillaRecipeHelper.addShapedRecipe(
+                provider, true, "dehydrator_iv",
+                CTNHMachines.DEHYDRATOR[GTValues.IV].asStack(),
+                "ABA", "CDC", "EFE",
+                'A', GTItems.VOLTAGE_COIL_IV, // IV级电压线圈（直接引用，无TagPrefix）
+                'B', CustomTags.IV_CIRCUITS,  // IV级电路
+                'C', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:tungsten_quadruple_cable")), // 四重钨电缆
+                'D', GTMachines.HULL[GTValues.IV].asStack(), // IV级机器外壳
+                'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:nichrome_gear")), // 镍铬合金齿轮
+                'F', GTItems.ROBOT_ARM_IV     // IV级机械臂
+        );
 
           //LuV脱水机
-         VanillaRecipeHelper.addShapedRecipe(
-                 provider, true, "dehydrator_luv",
-                 CTNHMachines.DEHYDRATOR[GTValues.LuV].asStack(),
-                 "ABA", "CDC", "EFE",
-                 'A', GTItems.VOLTAGE_COIL_LuV,
-                 'B', CustomTags.LuV_CIRCUITS,
-                 'C', TagPrefix.cableGtQuadruple, GTMaterials.Naquadah,
-                 'D', GTMachines.HULL[GTValues.LuV].asStack(),
-                 'E', TagPrefix.gear, GTMaterials.Ultimet,
-                 'F', GTItems.ROBOT_ARM_LuV
-         );
+        VanillaRecipeHelper.addShapedRecipe(
+                provider, true, "dehydrator_luv",
+                CTNHMachines.DEHYDRATOR[GTValues.LuV].asStack(),
+                "ABA", "CDC", "EFE",
+                'A', GTItems.VOLTAGE_COIL_LuV, // LuV级电压线圈
+                'B', CustomTags.LuV_CIRCUITS,  // LuV级电路
+                'C', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:naquadah_quadruple_cable")),
+                'D', GTMachines.HULL[GTValues.LuV].asStack(), // LuV级机器外壳
+                'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:ultimet_gear")), // Ultimet合金齿轮
+                'F', GTItems.ROBOT_ARM_LuV    // LuV级机械臂
+        );
 
            //ZPM脱水机
-         VanillaRecipeHelper.addShapedRecipe(
-                 provider, true, "dehydrator_zpm",
-                 CTNHMachines.DEHYDRATOR[GTValues.ZPM].asStack(),
-                 "ABA", "CDC", "EFE",
-                 'A', GTItems.VOLTAGE_COIL_ZPM,
-                 'B', CustomTags.ZPM_CIRCUITS,
-                 'C', TagPrefix.cableGtQuadruple, GTMaterials.Osmium,
-                 'D', GTMachines.HULL[GTValues.ZPM].asStack(),
-                 'E', TagPrefix.gear, GTMaterials.Zeron100,
-                 'F', GTItems.ROBOT_ARM_ZPM
-         );
+        VanillaRecipeHelper.addShapedRecipe(
+                provider, true, "dehydrator_zpm",
+                CTNHMachines.DEHYDRATOR[GTValues.ZPM].asStack(),
+                "ABA", "CDC", "EFE",
+                'A', GTItems.VOLTAGE_COIL_ZPM, // ZPM级电压线圈
+                'B', CustomTags.ZPM_CIRCUITS,  // ZPM级电路
+                'C', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:osmium_quadruple_cable")), // 四重锇电缆
+                'D', GTMachines.HULL[GTValues.ZPM].asStack(), // ZPM级机器外壳
+                'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:zeron_100_gear")), // Zeron-100合金齿轮
+                'F', GTItems.ROBOT_ARM_ZPM     // ZPM级机械臂
+        );
     }
 }
 

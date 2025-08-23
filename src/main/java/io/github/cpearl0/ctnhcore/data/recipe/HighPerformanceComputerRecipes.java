@@ -16,21 +16,21 @@ import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.*;
 public class HighPerformanceComputerRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         Material[] plateMaterials ={GTMaterials.Ruthenium,GTMaterials.Iridium,GTMaterials.Osmium};
-        for (int tier = GTValues.HV; tier <= GTValues.IV; tier++){
-            var definition = CTNHMachines.HIGH_PERFORMANCE_COMPUTER[tier];
-            GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("high_performance_computer_"+ GTValues.VN[tier])
-                    .inputItems(CASING.get(tier),1)
-                    .inputItems(TagPrefix.plate,plateMaterials[tier - GTValues.HV],6)
-                    .inputItems(VOLTAGE_COIL.get(tier),4)
-                    .inputItems(POWER_COMPONENT.get(tier),16)
-                    .inputItems(CustomTags.BATTERIES_ARRAY[tier],4)
-                    .inputItems(CABLE_QUAD.get(tier+1))
-                    .inputItems(CustomTags.CIRCUITS_ARRAY[tier+2],16)   //喜欢吗
-                    .duration(600)
-                    .EUt(GTValues.VA[tier])
+//        for (int tier = GTValues.HV; tier <= GTValues.IV; tier++){
+//            var definition = CTNHMachines.HIGH_PERFORMANCE_COMPUTER[tier];
+//            GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("high_performance_computer_"+ GTValues.VN[tier])
+//                    .inputItems(CASING.get(tier),1)
+//                    .inputItems(TagPrefix.plate,plateMaterials[tier - GTValues.HV],6)
+//                    .inputItems(VOLTAGE_COIL.get(tier),4)
+//                    .inputItems(POWER_COMPONENT.get(tier),16)
+//                    .inputItems(CustomTags.BATTERIES_ARRAY[tier],4)
+//                    .inputItems(CABLE_QUAD.get(tier+1))
+//                    .inputItems(CustomTags.CIRCUITS_ARRAY[tier+2],16)   //喜欢吗
+//                    .duration(600)
+//                    .EUt(GTValues.VA[tier])
 //                    .circuitMeta(0)
-                    .outputItems(definition)
-                    .save(provider);
-        }
+//                    .outputItems(definition)
+//                    .save(provider);
+//        }
     }
 }
