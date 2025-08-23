@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.machine.feature.IExplosionMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
+import com.gregtechceu.gtceu.api.recipe.ingredient.EnergyStack;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachine;
@@ -72,7 +73,7 @@ public class LargeNaquadahReactorMachine extends WorkableElectricMultiblockMachi
                     eut = eut * 1.5;
                 }
                 eut *= lmachine.activeFluidPower;
-                copyRecipe.tickOutputs.put(EURecipeCapability.CAP, List.of(new Content(eut, 1, 1, 0)));
+                copyRecipe.tickOutputs.put(EURecipeCapability.CAP, List.of(new Content(new EnergyStack((long) eut), 1, 1, 0)));
                 return copyRecipe;
             };
         }
