@@ -10,6 +10,8 @@ import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Consumer;
 
@@ -49,57 +51,58 @@ public class NaquadahReactorRecipes {
                 .duration(1907)
                 .EUt(-524288)
                 .save(provider);
-         VanillaRecipeHelper.addShapedRecipe(
-                 provider, true, "naquadah_reactor_ev",  NAQUADAH_REACTOR[EV].asStack(),
-                 "ABA", "CDC", "EBE",
-                 'A',  TagPrefix.rod, GTMaterials.Uranium235,
-                 'B', CustomTags.IV_CIRCUITS,
-                 'C', GTItems.FIELD_GENERATOR_EV,
-                 'D', GTMachines.HULL[EV].asStack(),
-                 'E',  TagPrefix.cableGtQuadruple, GTMaterials.Aluminium
-         );
-         VanillaRecipeHelper.addShapedRecipe(
-                 provider, true, "naquadah_reactor_iv",  NAQUADAH_REACTOR[IV]
-                 .asStack(),
-                 "ABA", "CDC", "EBE",
-                 'A',  TagPrefix.rod, GTMaterials.Plutonium241,
-                 'B', CustomTags.LuV_CIRCUITS,
-                 'C', GTItems.FIELD_GENERATOR_IV,
-                 'D', GTMachines.HULL[IV].asStack(),
-                 'E',  TagPrefix.cableGtQuadruple, GTMaterials.Tungsten
-         );
-         VanillaRecipeHelper.addShapedRecipe(
-                 provider, true, "naquadah_reactor_luv",  NAQUADAH_REACTOR[LuV]
-                 .asStack(),
-                 "ABA", "CDC", "EBE",
-                 'A',  TagPrefix.rod, GTMaterials.Europium,
-                 'B', CustomTags.ZPM_CIRCUITS,
-                 'C', GTItems.FIELD_GENERATOR_LuV,
-                 'D', GTMachines.HULL[LuV].asStack(),
-                 'E',  TagPrefix.cableGtQuadruple, GTMaterials.HSSG
-         );
-         VanillaRecipeHelper.addShapedRecipe(
-                 provider, true, "naquadah_reactor_zpm",  NAQUADAH_REACTOR[ZPM]
-                 .asStack(),
-                 "ABA", "CDC", "EBE",
-                 'A',  TagPrefix.rod, GTMaterials.Americium,
-                 'B', CustomTags.UV_CIRCUITS,
-                 'C', GTItems.FIELD_GENERATOR_ZPM,
-                 'D', GTMachines.HULL[GTValues.ZPM].asStack(),
-                 'E',  TagPrefix.cableGtQuadruple, GTMaterials.Naquadah
-         );
-         if (GTCEuAPI.isHighTier() &&  NAQUADAH_REACTOR[GTValues.UV] != null) {
-             VanillaRecipeHelper.addShapedRecipe(
-                     provider, true, "naquadah_reactor_uv",  NAQUADAH_REACTOR[UV]
-                 .asStack(),
-                     "ABA", "CDC", "EBE",
-                     'A',  TagPrefix.rod, GTMaterials.NaquadahAlloy,
-                     'B', CustomTags.UHV_CIRCUITS,
-                     'C', GTItems.FIELD_GENERATOR_UV,
-                     'D', GTMachines.HULL[GTValues.UV].asStack(),
-                     'E',  TagPrefix.cableGtQuadruple, GTMaterials.EnrichedNaquadahTriniumEuropiumDuranide
-         );
-         }
+        VanillaRecipeHelper.addShapedRecipe(
+                provider, true, "naquadah_reactor_ev",
+                NAQUADAH_REACTOR[EV].asStack(),
+                "ABA", "CDC", "EBE",
+                'A', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:uranium_235_rod")), // 铀-235棒
+                'B', CustomTags.IV_CIRCUITS, // IV级电路（直接引用）
+                'C', GTItems.FIELD_GENERATOR_EV, // EV级场发生器（直接引用）
+                'D', GTMachines.HULL[EV].asStack(), // EV级机器外壳（直接引用）
+                'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:aluminium_quadruple_cable")) // 四重铝电缆
+        );
+        VanillaRecipeHelper.addShapedRecipe(
+                provider, true, "naquadah_reactor_iv",
+                NAQUADAH_REACTOR[IV].asStack(),
+                "ABA", "CDC", "EBE",
+                'A', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:plutonium_241_rod")), // 钚-241棒
+                'B', CustomTags.LuV_CIRCUITS, // LuV级电路
+                'C', GTItems.FIELD_GENERATOR_IV, // IV级场发生器
+                'D', GTMachines.HULL[IV].asStack(), // IV级机器外壳
+                'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:tungsten_quadruple_cable")) // 四重钨电缆
+        );
+        VanillaRecipeHelper.addShapedRecipe(
+                provider, true, "naquadah_reactor_luv",
+                NAQUADAH_REACTOR[LuV].asStack(),
+                "ABA", "CDC", "EBE",
+                'A', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:europium_rod")), // 铕棒
+                'B', CustomTags.ZPM_CIRCUITS, // ZPM级电路
+                'C', GTItems.FIELD_GENERATOR_LuV, // LuV级场发生器
+                'D', GTMachines.HULL[LuV].asStack(), // LuV级机器外壳
+                'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:hssg_quadruple_cable")) // 四重HSSG电缆
+        );
+        VanillaRecipeHelper.addShapedRecipe(
+                provider, true, "naquadah_reactor_zpm",
+                NAQUADAH_REACTOR[ZPM].asStack(),
+                "ABA", "CDC", "EBE",
+                'A', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:americium_rod")), // 镅棒
+                'B', CustomTags.UV_CIRCUITS, // UV级电路
+                'C', GTItems.FIELD_GENERATOR_ZPM, // ZPM级场发生器
+                'D', GTMachines.HULL[GTValues.ZPM].asStack(), // ZPM级机器外壳
+                'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:naquadah_quadruple_cable")) // 四重镎电缆
+        );
+        if (GTCEuAPI.isHighTier() && NAQUADAH_REACTOR[GTValues.UV] != null) {
+            VanillaRecipeHelper.addShapedRecipe(
+                    provider, true, "naquadah_reactor_uv",
+                    NAQUADAH_REACTOR[UV].asStack(),
+                    "ABA", "CDC", "EBE",
+                    'A', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:naquadah_alloy_rod")),
+                    'B', CustomTags.UHV_CIRCUITS, // UHV级电路
+                    'C', GTItems.FIELD_GENERATOR_UV, // UV级场发生器
+                    'D', GTMachines.HULL[GTValues.UV].asStack(), // UV级机器外壳
+                    'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:enriched_naquadah_trinium_europium_duranide_hex_wire")) // 四重富集镎-铕-三钛合金电缆
+            );
+        }
     }
 }
 
