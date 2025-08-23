@@ -145,8 +145,8 @@ public class MachineLang {
         );
         tsl(provider, 
                 "ctnh.multiblock.large_naquadah_reactor.tooltip.2",
-                "§6运行时需要消耗§e2400L/s§6液态空气， 否则你的燃料将会被销毁",
-                "§6When the reactor is running, it needs to consume §e2400L/s§6 liquid air, otherwise your fuel will be destroyed"
+                "§6运行时需要消耗§e2400mB/s§6液态空气， 否则你的燃料将会被销毁",
+                "§6When the reactor is running, it needs to consume §e2400mB/s§6 liquid air, otherwise your fuel will be destroyed"
         );
         tsl(provider, 
                 "ctnh.multiblock.large_naquadah_reactor.tooltip.3",
@@ -155,8 +155,8 @@ public class MachineLang {
         );
         tsl(provider, 
                 "ctnh.multiblock.large_naquadah_reactor.tooltip.4",
-                "§6可以消耗§e1000L/s§6冷却液获得§e150%效率提升",
-                "§6Can consume §e1000L/s§6 cooling fluid to get §e150% efficiency"
+                "§6可以消耗§e1000mB/s§6冷却液获得§e150%效率提升",
+                "§6Can consume §e1000mB/s§6 cooling fluid to get §e150% efficiency"
         );
         tsl(provider, 
                 "ctnh.multiblock.large_naquadah_reactor.tooltip.5",
@@ -165,18 +165,18 @@ public class MachineLang {
         );
         tsl(provider, 
                 "ctnh.multiblock.large_naquadah_reactor.tooltip.6",
-                "熔融铯        | §e2x功率 | §6180L/s",
-                "Cesium             | §e2x power | §6180L/s"
+                "液态铯        | §e2x功率 | §6180mB/s",
+                "Cesium             | §e2x power | §6180mB/s"
         );
         tsl(provider, 
                 "ctnh.multiblock.large_naquadah_reactor.tooltip.7",
-                "熔融铀-235  | §e3x功率 | §6180L/s",
-                "Uranium-235   | §e3x power | §6180L/s"
+                "液态铀-235  | §e3x功率 | §6180mB/s",
+                "Uranium-235   | §e3x power | §6180mB/s"
         );
         tsl(provider, 
                 "ctnh.multiblock.large_naquadah_reactor.tooltip.8",
-                "熔融硅岩      | §e4x功率 | §620L/s",
-                "Naquadah       | §e4x power | §620L/s"
+                "液态硅岩      | §e4x功率 | §620mB/s",
+                "Naquadah       | §e4x power | §620mB/s"
         );
 
         tsl(provider, 
