@@ -13,6 +13,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
+import static com.gregtechceu.gtceu.api.GTValues.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMachines.NAQUADAH_REACTOR;
 import static twilightforest.init.custom.Restrictions.asStack;
 
@@ -22,19 +23,19 @@ public class NaquadahReactorRecipes {
                 .inputItems(TagPrefix.bolt, GTMaterials.NaquadahEnriched)
                 .outputItems(TagPrefix.bolt, GTMaterials.Naquadah)
                 .duration(26042)
-                .EUt(-GTValues.V[GTValues.EV])
+                .EUt(-GTValues.V[EV])
                 .save(provider);
         CTNHRecipeTypes.NAQUADAH_REACTOR_RECIPES.recipeBuilder("naquadah_reactor_ii")
                 .inputItems(TagPrefix.rod, GTMaterials.NaquadahEnriched)
                 .outputItems(TagPrefix.rod, GTMaterials.Naquadah)
                 .duration(3255)
-                .EUt(-GTValues.V[GTValues.IV])
+                .EUt(-GTValues.V[IV])
                 .save(provider);
         CTNHRecipeTypes.NAQUADAH_REACTOR_RECIPES.recipeBuilder("naquadah_reactor_iii")
                 .inputItems(TagPrefix.rodLong, GTMaterials.NaquadahEnriched)
                 .outputItems(TagPrefix.rodLong, GTMaterials.Naquadah)
                 .duration(1907)
-                .EUt(-GTValues.V[GTValues.LuV])
+                .EUt(-GTValues.V[LuV])
                 .save(provider);
         CTNHRecipeTypes.NAQUADAH_REACTOR_RECIPES.recipeBuilder("naquadah_reactor_iv")
                 .inputItems(TagPrefix.bolt, GTMaterials.Naquadria)
@@ -49,37 +50,36 @@ public class NaquadahReactorRecipes {
                 .EUt(-524288)
                 .save(provider);
          VanillaRecipeHelper.addShapedRecipe(
-                 provider, true, "naquadah_reactor_ev",  NAQUADAH_REACTOR[GTValues.EV]
-                 .asStack(),
+                 provider, true, "naquadah_reactor_ev",  NAQUADAH_REACTOR[EV].asStack(),
                  "ABA", "CDC", "EBE",
                  'A',  TagPrefix.rod, GTMaterials.Uranium235,
                  'B', CustomTags.IV_CIRCUITS,
                  'C', GTItems.FIELD_GENERATOR_EV,
-                 'D', GTMachines.HULL[GTValues.EV].asStack(),
+                 'D', GTMachines.HULL[EV].asStack(),
                  'E',  TagPrefix.cableGtQuadruple, GTMaterials.Aluminium
          );
          VanillaRecipeHelper.addShapedRecipe(
-                 provider, true, "naquadah_reactor_iv",  NAQUADAH_REACTOR[GTValues.IV]
+                 provider, true, "naquadah_reactor_iv",  NAQUADAH_REACTOR[IV]
                  .asStack(),
                  "ABA", "CDC", "EBE",
                  'A',  TagPrefix.rod, GTMaterials.Plutonium241,
                  'B', CustomTags.LuV_CIRCUITS,
                  'C', GTItems.FIELD_GENERATOR_IV,
-                 'D', GTMachines.HULL[GTValues.IV].asStack(),
+                 'D', GTMachines.HULL[IV].asStack(),
                  'E',  TagPrefix.cableGtQuadruple, GTMaterials.Tungsten
          );
          VanillaRecipeHelper.addShapedRecipe(
-                 provider, true, "naquadah_reactor_luv",  NAQUADAH_REACTOR[GTValues.LuV]
+                 provider, true, "naquadah_reactor_luv",  NAQUADAH_REACTOR[LuV]
                  .asStack(),
                  "ABA", "CDC", "EBE",
                  'A',  TagPrefix.rod, GTMaterials.Europium,
                  'B', CustomTags.ZPM_CIRCUITS,
                  'C', GTItems.FIELD_GENERATOR_LuV,
-                 'D', GTMachines.HULL[GTValues.LuV].asStack(),
+                 'D', GTMachines.HULL[LuV].asStack(),
                  'E',  TagPrefix.cableGtQuadruple, GTMaterials.HSSG
          );
          VanillaRecipeHelper.addShapedRecipe(
-                 provider, true, "naquadah_reactor_zpm",  NAQUADAH_REACTOR[GTValues.ZPM]
+                 provider, true, "naquadah_reactor_zpm",  NAQUADAH_REACTOR[ZPM]
                  .asStack(),
                  "ABA", "CDC", "EBE",
                  'A',  TagPrefix.rod, GTMaterials.Americium,
@@ -90,7 +90,7 @@ public class NaquadahReactorRecipes {
          );
          if (GTCEuAPI.isHighTier() &&  NAQUADAH_REACTOR[GTValues.UV] != null) {
              VanillaRecipeHelper.addShapedRecipe(
-                     provider, true, "naquadah_reactor_uv",  NAQUADAH_REACTOR[GTValues.UV]
+                     provider, true, "naquadah_reactor_uv",  NAQUADAH_REACTOR[UV]
                  .asStack(),
                      "ABA", "CDC", "EBE",
                      'A',  TagPrefix.rod, GTMaterials.NaquadahAlloy,

@@ -15,6 +15,7 @@ import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 import net.createmod.catnip.data.Pair;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -542,7 +543,7 @@ public class DefaultRecipes {
                 provider, true, "clean_machine_casing",
                 CTNHBlocks.PROCESS_MACHINE_CASING.asStack(),
                 "ABA", "BCB", "ABA",
-                'A', TagPrefix.foil, GTMaterials.StainlessSteel,
+                'A', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:stainless_steel_foil")),4,
                 'B', CustomTags.IV_CIRCUITS,
                 'C', GTBlocks.CASING_STEEL_SOLID.asItem()
         );
