@@ -12,6 +12,7 @@ import net.minecraft.world.level.WorldDataConfiguration;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
@@ -20,13 +21,13 @@ import java.util.List;
 
 @Mixin(WorldLoader.PackConfig.class)
 public class WorldLoaderPackConfigMixin {
-    @Inject(method = "createResourceManager",
-            at = @At(value = "RETURN", target = "Lnet/minecraft/server/packs/resources/MultiPackResourceManager;<init>(Lnet/minecraft/server/packs/PackType;Ljava/util/List;)V"),
-            locals = LocalCapture.CAPTURE_FAILHARD,
-            remap = false)
-    private void gtceu$injectDynamicData(CallbackInfoReturnable<Pair<WorldDataConfiguration, CloseableResourceManager>> cir, FeatureFlagSet featureflagset, WorldDataConfiguration worlddataconfiguration, List list, CloseableResourceManager closeableresourcemanager) {
-        List<PackResources> newPack = new ArrayList<>(closeableresourcemanager.listPacks().toList());
-        newPack.addAll(CTNHRegistration.getAllPackResources());
-        closeableresourcemanager = new MultiPackResourceManager(PackType.SERVER_DATA, newPack);
+    @ModifyArg(method = "*",
+            at = @At(value = "INVOKE",
+                    target = "Lnet/minecraft/server/packs/resources/MultiPackResourceManager;<init>(Lnet/minecraft/server/packs/PackType;Ljava/util/List;)V"),
+            index = 1)
+    public List<PackResources> gtceu$injectDynamicData(PackType type, List<PackResources> packs) {
+        List<PackResources> packResources = new ArrayList<>(packs);
+        packResources.addAll(CTNHRegistration.getAllPackResources());
+        return packResources;
     }
 }

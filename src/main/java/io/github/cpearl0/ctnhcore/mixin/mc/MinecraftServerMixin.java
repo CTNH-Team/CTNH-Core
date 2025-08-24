@@ -10,6 +10,7 @@ import net.minecraft.server.packs.resources.MultiPackResourceManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
@@ -18,13 +19,13 @@ import java.util.List;
 
 @Mixin(MinecraftServer.class)
 public class MinecraftServerMixin {
-    @Inject(method = "lambda$reloadResources$23",
-            at = @At(value = "RETURN", target = "Lnet/minecraft/server/packs/resources/MultiPackResourceManager;<init>(Lnet/minecraft/server/packs/PackType;Ljava/util/List;)V"),
-            locals = LocalCapture.CAPTURE_FAILHARD,
-            remap = false)
-    private static void gtceu$injectDynamicData(CloseableResourceManager closeableresourcemanager, ReloadableServerResources p_212907_, Throwable p_212908_, CallbackInfo ci) {
-        List<PackResources> newPack = new ArrayList<>(closeableresourcemanager.listPacks().toList());
-        newPack.addAll(CTNHRegistration.getAllPackResources());
-        closeableresourcemanager = new MultiPackResourceManager(PackType.SERVER_DATA, newPack);
+    @ModifyArg(method = "*",
+            at = @At(value = "INVOKE",
+                    target = "Lnet/minecraft/server/packs/resources/MultiPackResourceManager;<init>(Lnet/minecraft/server/packs/PackType;Ljava/util/List;)V"),
+            index = 1)
+    public List<PackResources> gtceu$injectDynamicData(PackType type, List<PackResources> packs) {
+        List<PackResources> packResources = new ArrayList<>(packs);
+        packResources.addAll(CTNHRegistration.getAllPackResources());
+        return packResources;
     }
 }
