@@ -176,28 +176,28 @@ public class CTNHItems {
             .item("photovoltaic_drone_tier2",holder->new IDroneItem(holder,2,32678*2,256, () -> Items.AIR))
             .lang("pv_drone_tier2")
             .register(); // 确保调用 register() 方法
-    public static ItemEntry<IDroneItem>MODULAR_DYSON_SWARM_T1=REGISTRATE
-            .item("modular_dyson_swarm_tier1",holder->new IDroneItem(holder,4,32678*4*4,64, () -> Items.AIR))
-            .lang("modular_dyson_swarm_tier1")
-            .onRegister(attach(new TooltipBehavior(list -> {
-                list.add(Component.translatable("ctnh.dyson_tier1").withStyle(ChatFormatting.DARK_RED));
-            })))
-            .register(); // 确保调用 register() 方法
-    public static ItemEntry<IDroneItem>MODULAR_DYSON_SWARM_T2=REGISTRATE
-            .item("modular_dyson_swarm_tier2",holder->new IDroneItem(holder,8,32678*4*4*4,128, () -> Items.AIR))
-            .lang("modular_dyson_swarm_tier2")
-            .onRegister(attach(new TooltipBehavior(list -> {
-                list.add(Component.translatable("ctnh.dyson_tier2").withStyle(ChatFormatting.DARK_RED));
-            })))
-            .register(); // 确保调用 register() 方法
+//    public static ItemEntry<IDroneItem>MODULAR_DYSON_SWARM_T1=REGISTRATE
+//            .item("modular_dyson_swarm_tier1",holder->new IDroneItem(holder,4,32678*4*4,64, () -> Items.AIR))
+//            .lang("modular_dyson_swarm_tier1")
+//            .onRegister(attach(new TooltipBehavior(list -> {
+//                list.add(Component.translatable("ctnh.dyson_tier1").withStyle(ChatFormatting.DARK_RED));
+//            })))
+//            .register(); // 确保调用 register() 方法
+//    public static ItemEntry<IDroneItem>MODULAR_DYSON_SWARM_T2=REGISTRATE
+//            .item("modular_dyson_swarm_tier2",holder->new IDroneItem(holder,8,32678*4*4*4,128, () -> Items.AIR))
+//            .lang("modular_dyson_swarm_tier2")
+//            .onRegister(attach(new TooltipBehavior(list -> {
+//                list.add(Component.translatable("ctnh.dyson_tier2").withStyle(ChatFormatting.DARK_RED));
+//            })))
+//            .register(); // 确保调用 register() 方法
     public static ItemEntry<ConnectTerminalItem> PV_TERMINAL=REGISTRATE
             .item("pv_terminal",holder->new ConnectTerminalItem(holder))
             .lang("pv_terminal")
             .register();
-    public static ItemEntry<MutiblockHelper> MutiBlockHelper=REGISTRATE
-            .item("mutiblock_helper",holder->new MutiblockHelper(holder))
-            .lang("mutiblock_helper")
-            .register();
+//    public static ItemEntry<MutiblockHelper> MutiBlockHelper=REGISTRATE
+//            .item("mutiblock_helper",holder->new MutiblockHelper(holder))
+//            .lang("mutiblock_helper")
+//            .register();
     public static ItemEntry<IDataItem> RESEARCH_DATASET=REGISTRATE
             .item("research_dataset",holder->new IDataItem(holder))
             .lang("research_dataset")

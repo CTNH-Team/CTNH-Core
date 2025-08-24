@@ -1008,8 +1008,8 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.PV_DRONE_PROTOTYPE,"光伏无人机原型");
         provider.addItem(CTNHItems.PV_DRONE_TIER1,"标准化光伏无人机");
         provider.addItem(CTNHItems.PV_DRONE_TIER2,"共振结构化光伏无人机");
-        provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T1,"戴森云无人机蜂群MKI");
-        provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T2,"戴森云无人机蜂群MKII");
+//        provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T1,"戴森云无人机蜂群MKI");
+//        provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T2,"戴森云无人机蜂群MKII");
         provider.addItem(CTNHItems.PV_TERMINAL,"光伏绑定终端");
         provider.addItem(CTNHItems.RESEARCH_DATASET,"研究数据集");
         provider.addItem(CTNHItems.RESEARCH_DATASET_LIVING_MATERIAL,"研究数据集：活体金属");
