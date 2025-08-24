@@ -925,7 +925,6 @@ public class CTNHMaterials {
     public static Material AmmoniumChlororhodateSolution;
     public static Material SodiumOsmateRuthenateSolution;
     public static Material SodiumPeroxide;
-    public static Material IridiumOxide;
     public static Material ChlorosmicAcidEthanolSolution;
     public static Material ChlororuthenicAcidEthanolSolution;
     public static Material ChlorosmicAcidGas;

@@ -287,13 +287,6 @@ public class PlatinumLineMaterials {
                 .buildAndRegister()
                 .setFormula("Na2O2", true);
 
-// 氧化铱
-        IridiumOxide = new Material.Builder(CTNHCore.id("iridium_oxide"))
-                .dust()
-                .color(0x2F4F4F)
-                .buildAndRegister()
-                .setFormula("IrO2", true);
-
 // 氯锇酸-乙醇盐酸溶液
         ChlorosmicAcidEthanolSolution = new Material.Builder(CTNHCore.id("chlorosmic_acid_ethanol_solution"))
                 .liquid()

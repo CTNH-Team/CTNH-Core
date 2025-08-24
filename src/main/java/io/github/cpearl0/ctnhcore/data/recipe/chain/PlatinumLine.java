@@ -213,7 +213,7 @@ public class PlatinumLine {
                 .inputFluids(CTNHMaterials.SodiumPeroxide.getFluid(144 * 4))           // 槽位2：1000mb熔融过氧化钠
                 .inputFluids(GTMaterials.SodiumHydroxide.getFluid(144 * 6))           // 槽位3：1000mb氢氧化钠溶液
                 .outputFluids(CTNHMaterials.SodiumOsmateRuthenateSolution.getFluid(2000)) // 2000mb混合溶液
-                .outputItems(TagPrefix.dust,IridiumOxide,1)
+                .outputItems(TagPrefix.dust,IridiumDioxide,1)
                 .EUt(GTValues.VA[GTValues.EV])  // 高电压（7,680 EU/t）
                 .duration(200)                   // 20秒（400 ticks）
                 .save(provider);
@@ -297,7 +297,7 @@ public class PlatinumLine {
                 .duration(260)                // 13秒（260 ticks）
                 .save(provider);
         GTRecipeTypes.BLAST_RECIPES.recipeBuilder("iridium_oxide_carbon_reduction")
-                .inputItems(TagPrefix.dust, CTNHMaterials.IridiumOxide, 3)  // 1个氧化铱粉
+                .inputItems(TagPrefix.dust, CTNHMaterials.IridiumDioxide, 3)  // 1个氧化铱粉
                 .inputItems(TagPrefix.dust, GTMaterials.Carbon, 2)          // 2个碳粉
                 .outputItems(TagPrefix.dust, GTMaterials.Iridium, 1)        // 1个铱粉（纯度>99%）
                 .outputFluids(GTMaterials.CarbonMonoxide.getFluid(2000))    // 2000mb一氧化碳

@@ -266,7 +266,6 @@ public class MaterialLang {
         translateMaterial(provider, AmmoniumChlororhodateSolution, "氯铑酸铵溶液");
         translateMaterial(provider, SodiumOsmateRuthenateSolution, "锇酸钠-钌酸钠混合溶液");
         translateMaterial(provider, SodiumPeroxide, "过氧化钠");
-        translateMaterial(provider, IridiumOxide, "氧化铱");
         translateMaterial(provider, ChlorosmicAcidEthanolSolution, "氯锇酸-乙醇盐酸溶液");
         translateMaterial(provider, ChlororuthenicAcidEthanolSolution, "氯钌酸-乙醇盐酸溶液");
         translateMaterial(provider, ChlorosmicAcidGas, "氯锇酸");

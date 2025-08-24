@@ -16,7 +16,7 @@ public class RecipeRemoval {
         registry.accept(ResourceLocation.parse("gtceu:extractor/extract_osmium_tetroxide_dust"));
         registry.accept(ResourceLocation.parse("gtceu:circuit_assembler/wetware_processor_luv_soc_soldering_alloy"));
         registry.accept(ResourceLocation.parse("gtceu:circuit_assembler/wetware_processor_luv_soc"));
-        registry.accept(ResourceLocation.parse("gtceu:centrifuge/pgs_separation"));
+        registry.accept(ResourceLocation.parse("gtceu:chemical_reactor/inert_metal_mixture_separation"));
 
     }
 }
