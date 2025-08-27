@@ -77,7 +77,7 @@ public class CTNHMaterials {
         var ores = raw.getProperty(PropertyKey.ORE).getOreByProducts();
         var newOre = ores.stream().map(ore -> {
             if (ore.equals(Platinum)) {
-                return PlatinumMetal;
+                return PlatinumOre;
             }
             else return ore;
         }).toList();
@@ -88,7 +88,7 @@ public class CTNHMaterials {
         var ores = raw.getProperty(PropertyKey.ORE).getOreByProducts();
         var newOre = ores.stream().map(ore -> {
             if (ore.equals(Palladium)) {
-                return PalladiumMetal;
+                return PalladiumOre;
             }
             else return ore;
         }).toList();
@@ -823,30 +823,9 @@ public class CTNHMaterials {
     public static Material AlfSteel;
     public static Material RefinedRadiance;
     public static Material ShadowSteel;
-    public static Material PlatinumSalt;
-    public static Material RefinedPlatinumSalt;
-    public static Material PalladiumSalt;
-    public static Material RhodiumNitrate;
-    public static Material RoughlyRhodiumMetal;
-    public static Material PalladiumMetal;
-    public static Material MetalSludge;
-    public static Material PlatinumSlag;
-    public static Material ReprecipitatedRhodium;
-    public static Material SodiumNitrate;
-    public static Material RhodiumSalt;
-    public static Material RhodiumFilterCake;
-    public static Material PlatinumMetal;
     public static Material Kaolinite;
     public static Material Dolomite;
-    public static Material SodiumRutheniate;
     public static Material IridiumDioxide;
-    public static Material ConcentratedPlatinum;
-    public static Material PalladiumRichAmmonia;
-    public static Material RutheniumTetroxideLQ;
-    public static Material SodiumFormate;
-    public static Material RhodiumSulfateGas;
-    public static Material AcidicIridium;
-    public static Material RutheniumTetroxideHot;
     public static Material NaquadahOxideMixture;
     public static Material EnrichedNaquadahOxideMixture;
     public static Material NaquadriaOxideMixture;
@@ -899,6 +878,8 @@ public class CTNHMaterials {
     public static Material NeutroniumMixture;
     public static Material MARM200Steel;
     //新铂线
+    public static Material PlatinumOre;
+    public static Material PalladiumOre;
     public static Material GoldPlatinumPalladiumAcidSolution;
     public static Material DenitratedGoldPlatinumPalladiumSolution;
     public static Material FerricSulfate;

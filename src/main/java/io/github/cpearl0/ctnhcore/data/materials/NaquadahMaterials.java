@@ -44,7 +44,7 @@ public class NaquadahMaterials {
 
         XenoauricFluoroantimonicAcid = new Material.Builder(CTNHCore.id("xenoauric_fluoroantimonic_acid"))
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().attribute(FluidAttributes.ACID)).color(0xE0BD74)
-                .components(GTMaterials.Xenon, 1, GTMaterials.Gold, 1, GTMaterials.Antimony, 1, GTMaterials.Fluorine, 6)
+                .components(GTMaterials.Xenon, 2, GTMaterials.Gold, 1, GTMaterials.Antimony, 2, GTMaterials.Fluorine, 12)
                 .flags(MaterialFlags.DISABLE_DECOMPOSITION).buildAndRegister();
 
         GoldChloride = new Material.Builder(CTNHCore.id("gold_chloride")).fluid().color(0xCCCC66)
