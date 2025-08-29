@@ -27,6 +27,7 @@ import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
+import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.SimpleComputationMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.DigitalWosMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.HighPerformanceComputerMachine;
@@ -94,12 +95,14 @@ public class CTNHMachines {
             CTNHRecipeTypes.NAQUADAH_REACTOR_RECIPES,
             CTNHRecipeModifiers::naquadahReactor,
             tier -> tier * 32000,
+            EfficiencyGeneratorMachine::naquadahReactor,
             tiersBetween(EV, UV));
     public static final MachineDefinition[] ROCKET_ENGINE = registerEfficiencyGeneratorMachines(
             "rocket_engine",
             CTNHRecipeTypes.ROCKET_ENGINE_RECIPES,
             CTNHRecipeModifiers::rocketEngine,
             tier -> tier * 32000,
+            EfficiencyGeneratorMachine::rocketEngine,
             tiersBetween(EV, LuV)
     );
     public static final MachineDefinition[] CIRCUIT_BUS = registerTieredMachines("circuit_bus",

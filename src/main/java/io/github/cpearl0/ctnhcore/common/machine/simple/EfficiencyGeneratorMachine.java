@@ -11,19 +11,20 @@ public class EfficiencyGeneratorMachine extends SimpleGeneratorMachine {
         super(holder, tier, hazardStrengthPerOperation, tankScalingFunction, args);
     }
 
-    public EfficiencyGeneratorMachine(IMachineBlockEntity holder, int tier, Int2IntFunction tankScalingFunction, Object... args) {
+    public EfficiencyGeneratorMachine(IMachineBlockEntity holder, int tier, Int2IntFunction tankScalingFunction, Int2IntFunction efficiencyFunction , Object... args) {
         super(holder, tier, tankScalingFunction, args);
+        efficiency = efficiencyFunction.apply(tier);
     }
-    public static int getEfficiency(int tier, String name) {
-        if (name.equals("naquadah_reactor")) {
-            if (tier == 4) {
-                return 80;
-            }
-            return (tier - 5) * 50 + 100;
+    public static int naquadahReactor(int tier) {
+        if (tier == 4) {
+            return 80;
         }
-        else if(name.equals("rocket_engine")) {
-            return 80 - (tier - 4) * 10;
-        }
+        return (tier - 5) * 50 + 100;
+    }
+    public static int rocketEngine(int tier) {
+        return 80 - (tier - 4) * 10;
+    }
+    public static int normal(int tier) {
         return tier * 20 + 100;
     }
 }

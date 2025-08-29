@@ -38,13 +38,13 @@ public class  MachineModeFancyConfiguratorTest implements IFancyUIProvider {
         return new ItemStackTexture(CTNHItems.LEVEL_ITEM.get());
     }
     public MutableComponent target() {
-        return Component.translatable("ctnh.mutiblock.cryotheum_freezer.ui.1", machine.speed_up,3.5);
+        return Component.translatable("ctnh.multiblock.cryotheum_freezer.ui.1", machine.speed_up,3.5);
     }
     public MutableComponent target2() {
-        return Component.translatable("ctnh.mutiblock.cryotheum_freezer.ui.3", machine.energy_muti,3.5);
+        return Component.translatable("ctnh.multiblock.cryotheum_freezer.ui.3", machine.energy_muti,3.5);
     }
     public MutableComponent target3() {
-        return Component.translatable("ctnh.mutiblock.cryotheum_freezer.ui.4", 2*Math.pow(2,machine.parallel_muti),2*Math.pow(2,10));
+        return Component.translatable("ctnh.multiblock.cryotheum_freezer.ui.4", 2*Math.pow(2,machine.parallel_muti),2*Math.pow(2,10));
     }
     @Override
     public Widget createMainPage(FancyMachineUIWidget widget) {
@@ -186,7 +186,7 @@ public class  MachineModeFancyConfiguratorTest implements IFancyUIProvider {
     @Override
     public List<Component> getTabTooltips() {
         List<Component> tooltip = new ArrayList<>();
-        tooltip.add(Component.translatable("ctnh.mutiblock.cryotheum_freezer.ui.2"));
+        tooltip.add(Component.translatable("ctnh.multiblock.cryotheum_freezer.ui.2"));
         return tooltip;
     }
 

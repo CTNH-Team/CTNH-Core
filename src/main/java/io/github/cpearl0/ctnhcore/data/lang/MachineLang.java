@@ -26,6 +26,8 @@ public class MachineLang {
         tsl(provider, "ctnh.recipe.condition.plant_casing.tier.stainless_steel", "不锈钢", "Stainless Steel");
         tsl(provider, "ctnh.recipe.condition.plant_casing.tier.titanium", "钛", "Titanium");
         tsl(provider, "ctnh.recipe.condition.plant_casing.tier.tungsten_steel", "钨钢", "Tungsten Steel");
+
+        tsl(provider,"gtceu.precision_assembly", "精密组装", "Precision Assembly");
     }
     public static void machineName(CTNHLangProvider provider) {
         tslBlock(provider, GTNNMultiblocks.LARGE_DEHYDRATOR.getBlock(), "大型脱水机");
@@ -188,6 +190,17 @@ public class MachineLang {
                 "block.ctnh.neutron_sensor.tooltip.1",
                 "基于§6中子动能§7输出红石信号，右键以打开GUI进行设置。",
                 "Based on §6neutron kinetic energy §7output red stone signal, right-click to open the GUI for settings."
+        );
+
+        tsl(provider,
+                "ctnh.multiblock.precision_assembly.tooltip.0",
+                "其他可用配方类型: 精密组装",
+                "Other available recipe type: Precision Assembly"
+        );
+        tsl(provider,
+                "ctnh.multiblock.precision_assembly.tooltip.1",
+                "注意：在精密组装模式下无法并行",
+                "NOTE: Parallelization is not possible in precision assembly mode"
         );
 
         tsl(provider, "ctnh.machine.naquadah_reactor.tooltip", "效率: %s%%", "Efficiency: %s%%");

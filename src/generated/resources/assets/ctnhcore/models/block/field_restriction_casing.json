@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "ctnhcore:block/casings/solid/mar_casing"
+    "all": "ctnhcore:block/casings/solid/field_restriction_casing"
   }
 }

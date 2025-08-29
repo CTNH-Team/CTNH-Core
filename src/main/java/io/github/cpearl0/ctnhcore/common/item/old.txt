@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class MutiblockHelper extends ComponentItem implements IInteractionItem {
+public class multiblockHelper extends ComponentItem implements IInteractionItem {
     public static class BlockData {
         int x, y, z;
         char symbol;
@@ -32,7 +32,7 @@ public class MutiblockHelper extends ComponentItem implements IInteractionItem {
             this.symbol = symbol;
         }
     }
-    public  MutiblockHelper(Properties properties) {
+    public  multiblockHelper(Properties properties) {
         super(properties);
     }
     public Level level;

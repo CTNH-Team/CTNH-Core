@@ -13,6 +13,8 @@
     "apotheosis.EarthsBoonEnchantMixin",
     "gtceu.GTBlocksMixin",
     "gtceu.GTItemMixin",
+    "gtceu.GTOreByProductMixin",
+    "gtceu.OreRecipeHandlerMixin",
     "gtceu.TagPrefixMixin",
     "jei.GTRecipeWidgetMixin",
     "jei.RecipeGuiLogicMixin",

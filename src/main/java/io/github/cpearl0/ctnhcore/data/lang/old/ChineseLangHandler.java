@@ -53,92 +53,6 @@ public class ChineseLangHandler {
         provider.add("config.ctnhcore.option.laserSpeedMultiplier", "机械激光厂加速倍率");
         provider.add("config.ctnhcore.option.laserStressRequirement", "机械激光厂应力消耗");
 
-        //Recipe Type
-        provider.add("gtceu.phase_inversion","反相蚀刻");
-        provider.add("gtceu.underfloor_heating_system", "地暖");
-        provider.add("gtceu.astronomical_observatory", "天文台");
-        provider.add("gtceu.photovoltaic_power", "光伏发电");
-        provider.add("gtceu.slaughter_house", "屠宰场");
-        provider.add("gtceu.big_dam", "三峡大坝");
-        provider.add("gtceu.coke_oven", "焦化塔");
-        provider.add("gtceu.demon_will_generator", "恶魔意志发电");
-        provider.add("gtceu.meadow","牧场养殖");
-        provider.add("gtceu.chemical_generator","化学能发电");
-        provider.add("gtceu.void_miner","虚空采矿");
-        provider.add("gtceu.cultivation_room", "培养");
-        provider.add("gtceu.sintering_kiln","烧结");
-        provider.add("gtceu.chemical_vapor_deposition","化学气相沉积");
-        provider.add("gtceu.pvb_recipe","物理气相沉积");
-        provider.add("gtceu.martial_morality_eye","武德之眼");
-        provider.add("gtceu.advanced_coke_oven","高级焦炉");
-        provider.add("gtceu.dimensional_gas_collection_chamber","维度集气");
-        provider.add("gtceu.condensing_discrete","冷凝离散");
-        provider.add("gtceu.ion_exchanger","离子交换");
-        provider.add("gtceu.large_steel_furnace","大型钢制熔炉");
-        provider.add("gtceu.large_steel_alloy_furnace","大型钢制合金炉");
-        provider.add("gtceu.fuel_refining", "燃料精炼");
-        provider.add("gtceu.water_power", "水力发电");
-        provider.add("gtceu.bio_reactor", "生物反应");
-        provider.add("gtceu.resonant_assemble","振动共鸣组装");
-        provider.add("gtceu.wind_power_array", "风力发电阵列");
-        provider.add("gtceu.crystallizer", "结晶反应");
-        provider.add("gtceu.mana_generator", "魔力发电");
-        provider.add("gtceu.season_steam","季节共鸣器");
-        provider.add("gtceu.naq_mk1", "超能燃料");
-        provider.add("gtceu.bedrock_drilling_rigs", "基岩钻机");
-        provider.add("gtceu.plasma_condenser", "等离子冷凝");
-        provider.add("gtceu.vacuum_sintering", "真空烧结");
-        provider.add("gtceu.dimensional_gas_collection", "维度集气");
-        provider.add("gtceu.silica_rock_fuel_refinery", "硅岩燃料精炼");
-        provider.add("gtceu.hellforge", "狱火锻炉");
-        provider.add("gtceu.digital_well_of_suffer", "数字化苦难之井");
-        provider.add("gtceu.twisted_fusion", "扭曲聚变反应堆");
-        provider.add("gtceu.nano_generator","摩擦发电");
-        provider.add("gtceu.quasar_eye","类星体之眼");
-        provider.add("gtceu.decay_pools", "衰变罐");
-        provider.add("gtceu.fermenting", "发酵罐");
-        provider.add("gtceu.beams", "戴森光束");
-        provider.add("gtceu.wood_bionics", "§e林海树场");
-        provider.add("gtceu.sinope", "规模化化工");
-        provider.add("gtceu:quasar_eye","类星体发电");
-        provider.add("gtceu.personal_computer", "个人电脑");
-        provider.add("gtceu.accelerator_upmode","粒子加速：加速模式");
-        provider.add("gtceu.accelerator_downmode","粒子加速：减速模式");
-        provider.add("gtceu.mana_reactor","魔力反应");
-        provider.add("gtceu.arc_generator","物质撕裂湮灭");
-        provider.add("gtceu.arc_reactor","电弧发生");
-        provider.add("gtceu.magic_fuel_generator","魔力燃料精炼");
-        provider.add("gtceu.mechanical_pressor_recipes", "机械辊压");
-        provider.add("gtceu.mechanical_mixer_recipes", "机械搅拌");
-        provider.add("gtceu.mechanical_lathe_recipes", "机械车床");
-        provider.add("gtceu.mechanical_laser_recipes", "机械激光");
-        provider.add("gtceu.mechanical_extractor_recipes", "机械提取");
-        provider.add("gtceu.mechanical_sifter_recipes", "机械筛选");
-        provider.add("gtceu.mechanical_centrifuge_recipes", "机械离心");
-        provider.add("gtceu.photovoltaic_generator","光伏发电");
-        provider.add("gtceu.photovoltaic_assember","太空光伏组装");
-        provider.add("gtceu.gas_centrifuge", "气体离心");
-        provider.add("gtceu.nuclear_reactor", "核能反应");
-        provider.add("gtceu.hot_coolant_turbine", "热冷却液涡轮");
-        provider.add("gtceu.mana_condenser", "魔力凝集");
-        provider.add("gtceu.quasar_create","类星体创生");
-        provider.add("gtceu.differential_centrifuge", "差速离心");
-        provider.add("gtceu.ultrasonication", "超声破碎");
-        provider.add("gtceu.eye_of_quasar","§5类星体§r§1之§c眼");
-        provider.add("gtceu.industrial_altar", "§4工业血之祭坛§r");
-        provider.add("gtceu.mana_seperator", "魔力分选");
-        provider.add("gtceu.gaia_reactor", "盖亚反应");
-        provider.add("gtceu.greenhouse", "温室");
-        provider.add("gtceu.meteor_capturer", "集成式坠星位标");
-        provider.add("gtceu.component_assembly_line", "部件装配线");
-        provider.add("gtceu.circuit_assembly_line", "电路装配线");
-        provider.add("gtceu.chemical_plant", "化工厂");
-        provider.add("gtceu.neutron_activator", "中子活化");
-        provider.add("gtceu.large_naquadah_reactor", "大型硅岩反应");
-        provider.add("gtceu.dehydrator", "脱水");
-        provider.add("gtceu.naquadah_reactor", "硅岩反应");
-        provider.add("gtceu.rocket_engine", "火箭引擎");
-
         provider.add("ctnh.test_terminal.lack_error","在%s处缺少");
         provider.add("ctnh.test_terminal.wrong_error","在%s处应为");
         provider.add("ctnh.test_terminal.position","(%s,%s,%s)");
@@ -223,7 +137,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.recipe.accelerator.mode.speed.g","需求速度:%.2fGev");
         //
         //lasersorter
-        provider.add("ctnh.mutiblock.lasersorter.recipe.cwut","所需的基础算力：%d");
+        provider.add("ctnh.multiblock.lasersorter.recipe.cwut","所需的基础算力：%d");
         //
 
          //research_data
@@ -392,12 +306,12 @@ public class ChineseLangHandler {
         provider.add("ctnh.spacephotovoltaicbasestation.info.pvc_tier.2","当前结构发电量:%.2f");
         provider.add("ctnh.spacephotovoltaicbasestation.info.pvc_tier.3","当前维度光倍率:%d");
         //freezer ui
-        provider.add("ctnh.mutiblock.cryotheum_freezer.ui.0","当前泪之晶点数:%d");
-        provider.add("ctnh.mutiblock.cryotheum_freezer.ui.1","当前冷冻机加速：%.2f / %.2f");
-        provider.add("ctnh.mutiblock.cryotheum_freezer.ui.2","打开升级面板");
-        provider.add("ctnh.mutiblock.cryotheum_freezer.ui.3","当前能量利用效率：%.2f / %.2f");
-        provider.add("ctnh.mutiblock.cryotheum_freezer.ui.4","当前并行：%d / %d");
-        provider.add("ctnh.mutiblock.cryotheum_freezer.ui.5","§b当前消耗的凛冰:%d / %d");
+        provider.add("ctnh.multiblock.cryotheum_freezer.ui.0","当前泪之晶点数:%d");
+        provider.add("ctnh.multiblock.cryotheum_freezer.ui.1","当前冷冻机加速：%.2f / %.2f");
+        provider.add("ctnh.multiblock.cryotheum_freezer.ui.2","打开升级面板");
+        provider.add("ctnh.multiblock.cryotheum_freezer.ui.3","当前能量利用效率：%.2f / %.2f");
+        provider.add("ctnh.multiblock.cryotheum_freezer.ui.4","当前并行：%d / %d");
+        provider.add("ctnh.multiblock.cryotheum_freezer.ui.5","§b当前消耗的凛冰:%d / %d");
 
 
         //Machine tooltip
@@ -413,6 +327,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.multiblock.laser.tooltip", "允许使用激光仓");
         provider.add("ctnh.copyright.info", "§6由CTNH添加");
         provider.add("ctnh.recipe_type.info", "配方类型：%s");
+        provider.add("ctnh.recipe_type.list", "%s, %s");
 
         provider.add("ctnh.copyright.magic.info","§bCTNH：工业魔力学");
 
@@ -718,30 +633,30 @@ public class ChineseLangHandler {
 
         provider.add("ctnh.recipe.arc_generator.require","需求电弧强度:%d");
         provider.add("ctnh.recipe.arc_generator.max_require","满功率需求电弧强度:%d");
-        provider.add("ctnh.mutiblock.arcreactor.arc","可输出的电弧强度:%d");
-        provider.add("ctnh.mutiblock.arcreactor.connect","§b桥接已启用§r");
+        provider.add("ctnh.multiblock.arcreactor.arc","可输出的电弧强度:%d");
+        provider.add("ctnh.multiblock.arcreactor.connect","§b桥接已启用§r");
 
-        provider.add("ctnh.mutiblock.arcgenerator.tooltip.1","物质撕裂器");
-        provider.add("ctnh.mutiblock.arcgenerator.tooltip.t2.1","分子撕裂器");
-        provider.add("ctnh.mutiblock.arcgenerator.tooltip.t3.1","原子撕裂器");
-        provider.add("ctnh.mutiblock.magic_fuel_generator.tip","精炼天地之魔精");
+        provider.add("ctnh.multiblock.arcgenerator.tooltip.1","物质撕裂器");
+        provider.add("ctnh.multiblock.arcgenerator.tooltip.t2.1","分子撕裂器");
+        provider.add("ctnh.multiblock.arcgenerator.tooltip.t3.1","原子撕裂器");
+        provider.add("ctnh.multiblock.magic_fuel_generator.tip","精炼天地之魔精");
 
 
-        provider.add("ctnh.mutiblock.arcgenerator.tooltip.arc.t1.1","§b最大支持电弧强度:1000");
-        provider.add("ctnh.mutiblock.arcgenerator.tooltip.arc.t1.2","§c最大发电效率:75%");
-        provider.add("ctnh.mutiblock.arcgenerator.tooltip.arc.t2.1","§b最大支持电弧强度:10000");
-        provider.add("ctnh.mutiblock.arcgenerator.tooltip.arc.t2.2","§c最大发电效率:125%");
-        provider.add("ctnh.mutiblock.arcgenerator.tooltip.arc.t3.1","§b最大支持电弧强度:50000");
-        provider.add("ctnh.mutiblock.arcgenerator.tooltip.arc.t3.2","§c最大发电效率:225%");
+        provider.add("ctnh.multiblock.arcgenerator.tooltip.arc.t1.1","§b最大支持电弧强度:1000");
+        provider.add("ctnh.multiblock.arcgenerator.tooltip.arc.t1.2","§c最大发电效率:75%");
+        provider.add("ctnh.multiblock.arcgenerator.tooltip.arc.t2.1","§b最大支持电弧强度:10000");
+        provider.add("ctnh.multiblock.arcgenerator.tooltip.arc.t2.2","§c最大发电效率:125%");
+        provider.add("ctnh.multiblock.arcgenerator.tooltip.arc.t3.1","§b最大支持电弧强度:50000");
+        provider.add("ctnh.multiblock.arcgenerator.tooltip.arc.t3.2","§c最大发电效率:225%");
 
-        provider.add("ctnh.mutiblock.arcgenerator.tooltip.2","该机器必须配合电弧生成器使用，要求电弧生成器必须在该机器主方块上方5格，当完成链接时，电弧生成器会显示已完成连接");
-        provider.add("ctnh.mutiblock.arcgenerator.tooltip.3","当电弧强度小于配方最小电弧强度时，配方将无法运行");
-        provider.add("ctnh.mutiblock.arcgenerator.tooltip.4","当电弧强度大于配方最大电弧强度时，配方将以(机器电弧强度-配方需求电弧强度)/(满功率需求电弧强度-需求电弧强度)的效率运行。效率允许超过100%，但不能超过机器最大发电效率");
-        provider.add("ctnh.mutiblock.arcgenerator.tooltip.5","当效率未达100%时，因为湮灭的不完全，将产生少量额外产出");
-        provider.add("ctnh.mutiblock.arcreactor.tooltip","电弧发生者");
-        provider.add("ctnh.mutiblock.arcreactor.tooltip.1","该机器必须配合电弧撕裂者使用，要求电弧生成器必须在电弧撕裂者主方块上方5格，当完成链接时，电弧生成器会显示桥接已启用");
-        provider.add("ctnh.mutiblock.arcreactor.tooltip.2","机器基础每次运行配方产生10电弧强度，无法超频，高等级机器具有更高并行数");
-        provider.add("ctnh.mutiblock.arcreactor.tooltip.t1","该机器并行数:1");
+        provider.add("ctnh.multiblock.arcgenerator.tooltip.2","该机器必须配合电弧生成器使用，要求电弧生成器必须在该机器主方块上方5格，当完成链接时，电弧生成器会显示已完成连接");
+        provider.add("ctnh.multiblock.arcgenerator.tooltip.3","当电弧强度小于配方最小电弧强度时，配方将无法运行");
+        provider.add("ctnh.multiblock.arcgenerator.tooltip.4","当电弧强度大于配方最大电弧强度时，配方将以(机器电弧强度-配方需求电弧强度)/(满功率需求电弧强度-需求电弧强度)的效率运行。效率允许超过100%，但不能超过机器最大发电效率");
+        provider.add("ctnh.multiblock.arcgenerator.tooltip.5","当效率未达100%时，因为湮灭的不完全，将产生少量额外产出");
+        provider.add("ctnh.multiblock.arcreactor.tooltip","电弧发生者");
+        provider.add("ctnh.multiblock.arcreactor.tooltip.1","该机器必须配合电弧撕裂者使用，要求电弧生成器必须在电弧撕裂者主方块上方5格，当完成链接时，电弧生成器会显示桥接已启用");
+        provider.add("ctnh.multiblock.arcreactor.tooltip.2","机器基础每次运行配方产生10电弧强度，无法超频，高等级机器具有更高并行数");
+        provider.add("ctnh.multiblock.arcreactor.tooltip.t1","该机器并行数:1");
 
         provider.add("ctnh.advanceassemblyline.1", "更好的装配线,但是有序输入");
         provider.add("ctnh.magic.generator","精炼天地之魔精");
@@ -755,25 +670,25 @@ public class ChineseLangHandler {
         provider.add("ctnh.gtceu.tooltip.tfmkalephzero.3","§8好吧，我不管你是开创还是怎么回事的，你确实和你的AE征服我了§r");
         provider.add("ctnh.gtceu.tooltip.tfmkalephzero.4","§7并行数为2147483637，配方时间乘以0.0001，无损超频，满意了吧？§r");
 
-        provider.add("ctnh.mutiblock.eternalgarden.tooltip.1","§b万物在这世间绽放的永恒的一瞥§r");
-        provider.add("ctnh.mutiblock.eternalgarden.tooltip.2","无法超频，但是机器自身电压每比配方电压高一级就使最终产出乘以1.25,通过在输入总线内加入五级符文来增大这个系数");
-        provider.add("ctnh.mutiblock.eternalgarden.tooltip.3","每朵花都有自己独特的机制，机制太复杂了！请参阅§5魔力飞升§r章节来获取各种花的机制");
-        provider.add("ctnh.mutiblock.eternalgarden.tooltip.unknown","§5......等待着永恒的紫罗兰如今在何方？");
+        provider.add("ctnh.multiblock.eternalgarden.tooltip.1","§b万物在这世间绽放的永恒的一瞥§r");
+        provider.add("ctnh.multiblock.eternalgarden.tooltip.2","无法超频，但是机器自身电压每比配方电压高一级就使最终产出乘以1.25,通过在输入总线内加入五级符文来增大这个系数");
+        provider.add("ctnh.multiblock.eternalgarden.tooltip.3","每朵花都有自己独特的机制，机制太复杂了！请参阅§5魔力飞升§r章节来获取各种花的机制");
+        provider.add("ctnh.multiblock.eternalgarden.tooltip.unknown","§5......等待着永恒的紫罗兰如今在何方？");
         //
         provider.add("ctnh.anti_inf_matter.1","-∞");
         provider.add("ctnh.anti_inf_matter.2","它到底是怎么在现实世界存在的......");
         //
-        provider.add("ctnh.mutiblock.plasma_alloy.tooltip.1","§4转底炉的复仇");
-        provider.add("ctnh.mutiblock.plasma_alloy.tooltip.11","允许使用§b激光仓§r，使用激光仓时最终速度将除以4，速度低于原速度时拒绝运行");
-        provider.add("ctnh.mutiblock.plasma_alloy.tooltip.2","线圈温度每有1800K，获得4点并行，线圈温度超过10000K时，获得(线圈温度-10000)/10000的额外加速");
-        provider.add("ctnh.mutiblock.plasma_alloy.tooltip.3","运行前消耗(并行数*对应等离子体消耗)的等离子体，获得额外加速");
-        provider.add("ctnh.mutiblock.plasma_alloy.tooltip.4","氦等离子体：消耗500*并行的等离子体，速度+100%");
-        provider.add("ctnh.mutiblock.plasma_alloy.tooltip.5","氧，氮等离子体：消耗300*并行的等离子体，速度+200%");
-        provider.add("ctnh.mutiblock.plasma_alloy.tooltip.6","镍，铁等离子体：消耗200*并行的等离子体，速度+300%");
-        provider.add("ctnh.mutiblock.plasma_alloy.tooltip.7","消耗特殊的冶炼等离子体可以获得额外的速度加成，§c但是同样会将增加你冶炼的风险");
-        provider.add("ctnh.mutiblock.plasma_alloy.tooltip.8","压缩精金等离子：消耗固定100等离子体，使速度*5,使消耗电压翻倍（§c这可能导致配方不运行，请使用多安能源仓）");
-        provider.add("ctnh.mutiblock.plasma_alloy.tooltip.9","精炼超能以太等离子体：消耗50*并行等离子体，使速度*10,§c使最终产物在80%-100%中浮动");
-        provider.add("ctnh.mutiblock.plasma_alloy.tooltip.10","§c速度增幅超过5000%时，最终产物量将会在0%-50%中浮动！");
+        provider.add("ctnh.multiblock.plasma_alloy.tooltip.1","§4转底炉的复仇");
+        provider.add("ctnh.multiblock.plasma_alloy.tooltip.11","允许使用§b激光仓§r，使用激光仓时最终速度将除以4，速度低于原速度时拒绝运行");
+        provider.add("ctnh.multiblock.plasma_alloy.tooltip.2","线圈温度每有1800K，获得4点并行，线圈温度超过10000K时，获得(线圈温度-10000)/10000的额外加速");
+        provider.add("ctnh.multiblock.plasma_alloy.tooltip.3","运行前消耗(并行数*对应等离子体消耗)的等离子体，获得额外加速");
+        provider.add("ctnh.multiblock.plasma_alloy.tooltip.4","氦等离子体：消耗500*并行的等离子体，速度+100%");
+        provider.add("ctnh.multiblock.plasma_alloy.tooltip.5","氧，氮等离子体：消耗300*并行的等离子体，速度+200%");
+        provider.add("ctnh.multiblock.plasma_alloy.tooltip.6","镍，铁等离子体：消耗200*并行的等离子体，速度+300%");
+        provider.add("ctnh.multiblock.plasma_alloy.tooltip.7","消耗特殊的冶炼等离子体可以获得额外的速度加成，§c但是同样会将增加你冶炼的风险");
+        provider.add("ctnh.multiblock.plasma_alloy.tooltip.8","压缩精金等离子：消耗固定100等离子体，使速度*5,使消耗电压翻倍（§c这可能导致配方不运行，请使用多安能源仓）");
+        provider.add("ctnh.multiblock.plasma_alloy.tooltip.9","精炼超能以太等离子体：消耗50*并行等离子体，使速度*10,§c使最终产物在80%-100%中浮动");
+        provider.add("ctnh.multiblock.plasma_alloy.tooltip.10","§c速度增幅超过5000%时，最终产物量将会在0%-50%中浮动！");
 
 
         provider.add("ctnh.plasma_alloy.tooltip.recipe","配方类型：合金冶炼炉");
@@ -782,42 +697,42 @@ public class ChineseLangHandler {
 
 
 
-        provider.add("ctnh.mutiblock.hybrid_mixer.tooltip.0","动力学的电力复兴");
-        provider.add("ctnh.mutiblock.hybrid_mixer.tooltip.1","执行特殊的电压-应力驱动机制");
-        provider.add("ctnh.mutiblock.hybrid_mixer.tooltip.2","机器真实电压等级为配方电压等级和应力等级的较小值。应力输入仓要求转速至少为64，应力输入仓转速为256时，应力等级+1");
-        provider.add("ctnh.mutiblock.hybrid_mixer.tooltip.3","混合动力超频：应力等级和配方电压等级每同时提升一级，运行速度*4");
-        provider.add("ctnh.mutiblock.hybrid_mixer.tooltip.4","当转速超过64时，使配方时间*0.8。转速超过128时配方时间和电压速度将随着转速提升进一步减少");
+        provider.add("ctnh.multiblock.hybrid_mixer.tooltip.0","动力学的电力复兴");
+        provider.add("ctnh.multiblock.hybrid_mixer.tooltip.1","执行特殊的电压-应力驱动机制");
+        provider.add("ctnh.multiblock.hybrid_mixer.tooltip.2","机器真实电压等级为配方电压等级和应力等级的较小值。应力输入仓要求转速至少为64，应力输入仓转速为256时，应力等级+1");
+        provider.add("ctnh.multiblock.hybrid_mixer.tooltip.3","混合动力超频：应力等级和配方电压等级每同时提升一级，运行速度*4");
+        provider.add("ctnh.multiblock.hybrid_mixer.tooltip.4","当转速超过64时，使配方时间*0.8。转速超过128时配方时间和电压速度将随着转速提升进一步减少");
 
 
-        provider.add("ctnh.mutiblock.spacephotovoltaicbasestation.tooltip.0","§6光辉灿烂的太空之路");
-        provider.add("ctnh.mutiblock.spacephotovoltaicbasestation.tooltip.2","在太空发电模式下，星球类型和光伏方块的等级都会提升发电量，在空间站被视为无重力环境，且发电量*4,消耗特定材料以进一步提升发电量");
-        provider.add("ctnh.mutiblock.spacephotovoltaicbasestation.tooltip.3","在太空光伏组装模式下，不消耗EUt，发电量将锁定为1，根据配方的模拟F功率来计算速度和并行量");
-        provider.add("ctnh.mutiblock.spacephotovoltaicbasestation.tooltip.4","光伏等级，光照强度共同决定了是否可以执行太空组装配方，光伏方块耐热性和耐热结构方块决定了可以获得的光照最大倍率，太空结构方块决定了可以使用的光伏方块等级和是否可以使用附属结构");
-        provider.add("ctnh.mutiblock.spacephotovoltaicbasestation.tooltip.5","在太空光伏组装模式下，最终并行为(太空发电模式下发电量/模拟功率),最终时间倍率为(模拟功率/太空发电模式下发电量)，当太空发电模式下发电量小于模拟功率时，最终时间倍率将变为平方");
-        provider.add("ctnh.mutiblock.spacephotovoltaicbasestation.tooltip.ex","§6该结构将持续拓展，这还不是它的完全体状态！");
+        provider.add("ctnh.multiblock.spacephotovoltaicbasestation.tooltip.0","§6光辉灿烂的太空之路");
+        provider.add("ctnh.multiblock.spacephotovoltaicbasestation.tooltip.2","在太空发电模式下，星球类型和光伏方块的等级都会提升发电量，在空间站被视为无重力环境，且发电量*4,消耗特定材料以进一步提升发电量");
+        provider.add("ctnh.multiblock.spacephotovoltaicbasestation.tooltip.3","在太空光伏组装模式下，不消耗EUt，发电量将锁定为1，根据配方的模拟F功率来计算速度和并行量");
+        provider.add("ctnh.multiblock.spacephotovoltaicbasestation.tooltip.4","光伏等级，光照强度共同决定了是否可以执行太空组装配方，光伏方块耐热性和耐热结构方块决定了可以获得的光照最大倍率，太空结构方块决定了可以使用的光伏方块等级和是否可以使用附属结构");
+        provider.add("ctnh.multiblock.spacephotovoltaicbasestation.tooltip.5","在太空光伏组装模式下，最终并行为(太空发电模式下发电量/模拟功率),最终时间倍率为(模拟功率/太空发电模式下发电量)，当太空发电模式下发电量小于模拟功率时，最终时间倍率将变为平方");
+        provider.add("ctnh.multiblock.spacephotovoltaicbasestation.tooltip.ex","§6该结构将持续拓展，这还不是它的完全体状态！");
 
-        provider.add("ctnh.mutiblock.lasersorter.tooltip.0","持续调整激光频率");
-        provider.add("ctnh.mutiblock.lasersorter.tooltip.1","配方类型：激光分配/激光蚀刻");
-        provider.add("ctnh.mutiblock.lasersorter.tooltip.2","本机器需要消耗算力才能运行");
-        provider.add("ctnh.mutiblock.lasersorter.tooltip.3","————————激光蚀刻模式————————");
-        provider.add("ctnh.mutiblock.lasersorter.tooltip.4","LUV及以下的电压固定基础请求8算力，电压每高于LUV一级，请求的基础算力翻倍");
-        provider.add("ctnh.mutiblock.lasersorter.tooltip.5","输入的算力如果为基础请求算力的整数倍，则最终输出*1.25，并行等同于⌊(输入的算力/基础请求算力)⌋的三次方");
-        provider.add("ctnh.mutiblock.lasersorter.tooltip.6","输入的算力每比基础算力多一倍，将一次超频转化为无损超频（即运行速度*2），该效果转化的次数不超过你能超频的等级（即上限为将你所有的有损超频转化为无损）");
-        provider.add("ctnh.mutiblock.lasersorter.tooltip.7","————————激光分配模式————————");
-        provider.add("ctnh.mutiblock.lasersorter.tooltip.8","配方给出请求算力，如果配方没有给出则按照激光蚀刻模式的公式计算");
-        provider.add("ctnh.mutiblock.lasersorter.tooltip.9","输入的算力如果为基础请求算力的整数倍，则并行等同于⌊(输入的算力/基础请求算力)⌋的三次方");
-        provider.add("ctnh.mutiblock.lasersorter.tooltip.10","输入的算力每比基础算力多一倍，将一次超频转化为无损超频（即运行速度*2），该效果转化的次数不超过你能超频的等级（即上限为将你所有的有损超频转化为无损）");
-        provider.add("ctnh.mutiblock.lasersorter.tooltip.11","§c如果输入的算力不为整数倍，则以上所有的增益全部无效且最终所需时间*4");
+        provider.add("ctnh.multiblock.lasersorter.tooltip.0","持续调整激光频率");
+        provider.add("ctnh.multiblock.lasersorter.tooltip.1","配方类型：激光分配/激光蚀刻");
+        provider.add("ctnh.multiblock.lasersorter.tooltip.2","本机器需要消耗算力才能运行");
+        provider.add("ctnh.multiblock.lasersorter.tooltip.3","————————激光蚀刻模式————————");
+        provider.add("ctnh.multiblock.lasersorter.tooltip.4","LUV及以下的电压固定基础请求8算力，电压每高于LUV一级，请求的基础算力翻倍");
+        provider.add("ctnh.multiblock.lasersorter.tooltip.5","输入的算力如果为基础请求算力的整数倍，则最终输出*1.25，并行等同于⌊(输入的算力/基础请求算力)⌋的三次方");
+        provider.add("ctnh.multiblock.lasersorter.tooltip.6","输入的算力每比基础算力多一倍，将一次超频转化为无损超频（即运行速度*2），该效果转化的次数不超过你能超频的等级（即上限为将你所有的有损超频转化为无损）");
+        provider.add("ctnh.multiblock.lasersorter.tooltip.7","————————激光分配模式————————");
+        provider.add("ctnh.multiblock.lasersorter.tooltip.8","配方给出请求算力，如果配方没有给出则按照激光蚀刻模式的公式计算");
+        provider.add("ctnh.multiblock.lasersorter.tooltip.9","输入的算力如果为基础请求算力的整数倍，则并行等同于⌊(输入的算力/基础请求算力)⌋的三次方");
+        provider.add("ctnh.multiblock.lasersorter.tooltip.10","输入的算力每比基础算力多一倍，将一次超频转化为无损超频（即运行速度*2），该效果转化的次数不超过你能超频的等级（即上限为将你所有的有损超频转化为无损）");
+        provider.add("ctnh.multiblock.lasersorter.tooltip.11","§c如果输入的算力不为整数倍，则以上所有的增益全部无效且最终所需时间*4");
 
 
 
-        provider.add("ctnh.mutiblock.pvdrone.tooltip.0","戴森云计划");
-        provider.add("ctnh.mutiblock.pvdrone.tooltip.1","允许使用并行控制仓，并行控制仓提供的每个数值为运行时间倍率");
-        provider.add("ctnh.mutiblock.pvdrone.tooltip.2","为光伏基站提供电力增幅，使用光伏绑定终端来为这两个结构绑定");
-        provider.add("ctnh.mutiblock.pvdrone.tooltip.3","将无人机放入无人机支架以开始发送无人机，每5秒和运行结束时，每个无人机都有一定概率消耗，无人机发电同样受维度和空间站增幅");
-        provider.add("ctnh.mutiblock.pvdrone.tooltip.4","无人机的消耗概率公式为1.0 / (1.0 + Math.exp(-0.25* (x - 9)))");
-        provider.add("ctnh.mutiblock.pvdrone.info.t1","提供的能量:%d");
-        provider.add("ctnh.mutiblock.pvdrone.info.t2","无人机消耗概率:%.4f");
+        provider.add("ctnh.multiblock.pvdrone.tooltip.0","戴森云计划");
+        provider.add("ctnh.multiblock.pvdrone.tooltip.1","允许使用并行控制仓，并行控制仓提供的每个数值为运行时间倍率");
+        provider.add("ctnh.multiblock.pvdrone.tooltip.2","为光伏基站提供电力增幅，使用光伏绑定终端来为这两个结构绑定");
+        provider.add("ctnh.multiblock.pvdrone.tooltip.3","将无人机放入无人机支架以开始发送无人机，每5秒和运行结束时，每个无人机都有一定概率消耗，无人机发电同样受维度和空间站增幅");
+        provider.add("ctnh.multiblock.pvdrone.tooltip.4","无人机的消耗概率公式为1.0 / (1.0 + Math.exp(-0.25* (x - 9)))");
+        provider.add("ctnh.multiblock.pvdrone.info.t1","提供的能量:%d");
+        provider.add("ctnh.multiblock.pvdrone.info.t2","无人机消耗概率:%.4f");
 
 
 
@@ -831,9 +746,9 @@ public class ChineseLangHandler {
         provider.add("ctnh.nuclear_reactor.overclock", "冷却液并非运行所必须，但是在有冷却液时，配方每运行一秒，进度会增加两秒");
         provider.add("ctnh.nuclear_reactor.safe", "反应堆不会过热爆炸");
 
-        provider.add("ctnh.cryotheum_freezer.tip.0","§b泪水如凛冰般落下");
-        provider.add("ctnh.cryotheum_freezer.tip.1","每次运行配方消耗5*并行mb极寒之凛冰，电压每高于§9IV§r一级，这个消耗就翻4倍");
-        provider.add("ctnh.cryotheum_freezer.tip.2","初始具有4并行和3泪之晶点数，可以在升级界面加点。每消耗10000mb凛冰，就获得一点点数，随后将目标翻四倍");
+        provider.add("ctnh.multiblock.cryotheum_freezer.tip.0","§b泪水如凛冰般落下");
+        provider.add("ctnh.multiblock.cryotheum_freezer.tip.1","每次运行配方消耗5*并行mb极寒之凛冰，电压每高于§9IV§r一级，这个消耗就翻4倍");
+        provider.add("ctnh.multiblock.cryotheum_freezer.tip.2","初始具有4并行和3泪之晶点数，可以在升级界面加点。每消耗10000mb凛冰，就获得一点点数，随后将目标翻四倍");
 
         provider.add("ctnh.multiblock.neuro_martix_compiler.tip.0","将生物的进化之道完全放任于碳基生物的自然演变是一种低效且缓慢的做法，现在我们将亲自编码每一个基因序列，将我们的至臻完美编译在神经元的逻辑之中");
         provider.add("ctnh.multiblock.neuro_martix_compiler.tip.01","神经矩阵编码器（CMP）是一台编译神经序列的机器，其不同于其他机器，不执行正常的输入逻辑，无法超频");
@@ -872,8 +787,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.compiler.error.1","§c舱室等级与片区1不匹配");
 
 
-        provider.add("ctnh.mutiblock.fluid_drilling_rig.description.inf","§6钻取来自无尽之中的流体之海");
-        provider.add("ctnh.mutiblock.fluid_drilling_rig.depletion.inf","§6永§b不§d损§a耗，你在担心什么？");
+        provider.add("ctnh.multiblock.fluid_drilling_rig.description.inf","§6钻取来自无尽之中的流体之海");
+        provider.add("ctnh.multiblock.fluid_drilling_rig.depletion.inf","§6永§b不§d损§a耗，你在担心什么？");
 
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip0","§a精密计算§f与§e等离子体§f的§5终极艺术");
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1","提供%d算力以达到基础功率，每提供%d算力，输出功率翻一倍");
@@ -916,7 +831,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.mana_condenser.tooltips.2", "所有魔力输入输出均通过结构中心的魔力池进行");
 
         provider.add("ritual.ctnh.chargerRitual", "充能仪式");
-        provider.add("ctnh.terminal.mutiblockhelper.tips","第一次右键选择第一个方块，第二次右键选择第二个方块，使用shift+右键启用多方块构建\nshift+右键后将清除原坐标\n选择的方块请按照：底部西北角出发，前往顶部东南角来选择不然无法输出完整结构");
+        provider.add("ctnh.terminal.multiblockhelper.tips","第一次右键选择第一个方块，第二次右键选择第二个方块，使用shift+右键启用多方块构建\nshift+右键后将清除原坐标\n选择的方块请按照：底部西北角出发，前往顶部东南角来选择不然无法输出完整结构");
         // NOT USED
         provider.add("ctnh.u_sinope.story.1","在战争没有开始前，人们曾团结在一起，一齐建造这工业的巴别巨塔");
         provider.add("ctnh.u_sinope.story.2","直到那场永恒的战争，这座真空巨塔化为永恒的残骸，随着战争的双方破碎在真空中");
@@ -949,10 +864,6 @@ public class ChineseLangHandler {
         {
             provider.add(CTNHMachines.COMPILERMACHINE[tier].getBlock(),GTValues.VNF[tier]+"§r神经拟合仓" );
         }
-//        for (var definiton : CTNHMachines.HIGH_PERFORMANCE_COMPUTER){
-//            var tier = definiton.getTier();
-//            provider.add(CTNHMachines.HIGH_PERFORMANCE_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + "§r高性能计算机");
-//        }
         for (int tier : GTValues.tiersBetween(HV, IV)){
             provider.add(CTNHMachines.HIGH_PERFORMANCE_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + "§r高性能计算机");
         }

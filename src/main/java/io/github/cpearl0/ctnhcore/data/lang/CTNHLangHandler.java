@@ -10,6 +10,8 @@ public class CTNHLangHandler {
         ItemLang.init(provider);
         MachineLang.init(provider);
         MaterialLang.init(provider);
+        RecipeLang.init(provider);
+        BlockLang.init(provider);
     }
     public static void tsl(CTNHLangProvider provider, String key, String cn) {
         provider.addCN(key, cn);

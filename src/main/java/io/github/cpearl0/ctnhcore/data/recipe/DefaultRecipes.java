@@ -622,11 +622,11 @@ public class DefaultRecipes {
                 .save(provider);
 
 // 9. MAR辐射防护外壳（组装机）
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("mar_casing")
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("field_restriction_casing")
                 .inputItems(CTNHItems.PlateRadiationProtection.asStack(6))
                 .inputItems(TagPrefix.frameGt, GTMaterials.Europium)
                 .inputItems(GTItems.FIELD_GENERATOR_MV)
-                .outputItems(CTNHBlocks.MAR_CASING.asStack())
+                .outputItems(CTNHBlocks.FIELD_RESTRICTION_CASING.asStack())
                 .circuitMeta(1)
                 .EUt(GTValues.VA[GTValues.EV]) // 1920 EU/t
                 .duration(400) // 20秒

@@ -165,9 +165,9 @@ public class CTNHMachineUtils {
     public static MachineDefinition[] registerSimpleComputationMachines(String name, GTRecipeType recipeType) {
         return registerSimpleComputationMachines(name, recipeType, GTMachineUtils.defaultTankSizeFunction);
     }
-    public static MachineDefinition[] registerEfficiencyGeneratorMachines(String name, GTRecipeType recipeType, RecipeModifier recipeModifier, Int2IntFunction tankScalingFunction, int... tiers) {
+    public static MachineDefinition[] registerEfficiencyGeneratorMachines(String name, GTRecipeType recipeType, RecipeModifier recipeModifier, Int2IntFunction tankScalingFunction, Int2IntFunction efficiencyFunction, int... tiers) {
         return registerTieredMachines(name,
-                (holder, tier) -> new EfficiencyGeneratorMachine(holder, tier, tankScalingFunction), (tier, builder) -> builder
+                (holder, tier) -> new EfficiencyGeneratorMachine(holder, tier, tankScalingFunction, efficiencyFunction), (tier, builder) -> builder
                         .langValue("%s %s %s".formatted(VLVH[tier], toEnglishName(name), VLVT[tier]))
                         .editableUI(SimpleGeneratorMachine.EDITABLE_UI_CREATOR.apply(CTNHCore.id(name), recipeType))
                         .rotationState(RotationState.NON_Y_AXIS)
@@ -176,7 +176,7 @@ public class CTNHMachineUtils {
                         .simpleGeneratorModel(CTNHCore.id("block/generators/" + name))
                         .tooltips(
                                 Component.translatable(
-                                        "ctnh.machine." + name + ".tooltip", EfficiencyGeneratorMachine.getEfficiency(tier, name)
+                                        "ctnh.machine." + name + ".tooltip", efficiencyFunction.apply(tier)
                                 )
                         )
                         .tooltips(GTMachineUtils.explosion())

@@ -1,6 +1,11 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
+import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
+import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifierList;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.machines.GCYMMachines;
@@ -8,6 +13,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiConsumer;
 
@@ -84,5 +90,29 @@ public class GTMachineModify {
         GCYMMachines.MEGA_VACUUM_FREEZER.setRecipeModifier(new RecipeModifierList(CTNHRecipeModifiers.GCYM_REDUCTION,GTRecipeModifiers.PARALLEL_HATCH,
                 GTRecipeModifiers.OC_NON_PERFECT_SUBTICK));
         GCYMMachines.MEGA_VACUUM_FREEZER.setTooltipBuilder(GCYMMachines.MEGA_VACUUM_FREEZER.getTooltipBuilder().andThen(REDUCTION_INFO));
+
+        modifyGTAssembly();
+    }
+    private static void modifyGTAssembly() {
+        var lASB = GCYMMachines.LARGE_ASSEMBLER;
+        var lASBRecipeTypes = new java.util.ArrayList<>(Arrays.stream(lASB.getRecipeTypes()).toList());
+        lASBRecipeTypes.add(CTNHRecipeTypes.PRECISION_ASSEMBLY_RECIPES);
+        lASB.setRecipeTypes(lASBRecipeTypes.toArray(GTRecipeType[]::new));
+        lASB.setTooltipBuilder(lASB.getTooltipBuilder().andThen((itemStack, components) -> {
+            components.add(Component.translatable("ctnh.multiblock.precision_assembly.tooltip.0"));
+            components.add(Component.translatable("ctnh.multiblock.precision_assembly.tooltip.1"));
+        }
+        ));
+        lASB.setRecipeModifier(GTMachineModify::assemblyRecipeModifier);
+    }
+    private static ModifierFunction assemblyRecipeModifier(MetaMachine machine, GTRecipe gtRecipe) {
+        if (gtRecipe.recipeType == CTNHRecipeTypes.PRECISION_ASSEMBLY_RECIPES) {
+            return  GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK).getModifier(machine, gtRecipe);
+        } else {
+            return new RecipeModifierList(
+                    GTRecipeModifiers.PARALLEL_HATCH,
+                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK)
+            ).getModifier(machine, gtRecipe);
+        }
     }
 }

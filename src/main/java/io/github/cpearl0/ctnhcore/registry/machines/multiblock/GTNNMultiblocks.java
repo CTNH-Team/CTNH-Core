@@ -189,7 +189,7 @@ public class GTNNMultiblocks {
                                     .or(abilities(PartAbility.IMPORT_FLUIDS).setPreviewCount(1))
                                     .or(abilities(PartAbility.EXPORT_FLUIDS).setPreviewCount(1))
                     ).where("B", blocks(ChemicalHelper.getBlock(TagPrefix.frameGt, CTNHMaterials.RadiationProtection)))
-                    .where("C", blocks(CTNHBlocks.MAR_CASING.get()))
+                    .where("C", blocks(CTNHBlocks.FIELD_RESTRICTION_CASING.get()))
                     .where("D", blocks(GTBlocks.CASING_TUNGSTENSTEEL_PIPE.get())).where("#", air())
                     .build())
             .workableCasingModel(

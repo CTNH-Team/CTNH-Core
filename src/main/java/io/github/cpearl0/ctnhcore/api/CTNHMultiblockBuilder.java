@@ -29,6 +29,7 @@ import lombok.Generated;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -42,6 +43,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.apache.commons.lang3.function.TriFunction;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.*;
@@ -109,17 +111,27 @@ public class CTNHMultiblockBuilder extends MultiblockMachineBuilder {
     }
 
     public CTNHMultiblockBuilder recipeTypes(GTRecipeType... recipeTypes) {
-        String typeName = "";
+        if (recipeTypes == null || recipeTypes.length == 0) {
+            return (CTNHMultiblockBuilder) super.recipeTypes(recipeTypes);
+        }
+        MutableComponent typeNameComponent = Component.empty();
+
         for (int i = 0; i < recipeTypes.length; i++) {
-            if (i != 0) {
-                typeName += ", " + Component.translatable(recipeTypes[i].registryName.toLanguageKey()).getString();
+            if (recipeTypes[i] == null) {
+                continue;
             }
-            else {
-                typeName += Component.translatable(recipeTypes[i].registryName.toLanguageKey()).getString();
+            Component typeComponent = Component.translatable(recipeTypes[i].registryName.toLanguageKey());
+
+            if (i > 0) {
+                typeNameComponent.append(Component.literal(", ")).append(typeComponent);
+            } else {
+                typeNameComponent.append(typeComponent);
             }
         }
-        this.tooltips(Component.translatable("ctnh.recipe_type.info", typeName));
-        return (CTNHMultiblockBuilder)super.recipeTypes(recipeTypes);
+
+        // 使用正确的翻译键和参数
+        this.tooltips(Component.translatable("ctnh.recipe_type.info", typeNameComponent));
+        return (CTNHMultiblockBuilder) super.recipeTypes(recipeTypes);
     }
 
     public CTNHMultiblockBuilder recipeType(GTRecipeType recipeTypes) {

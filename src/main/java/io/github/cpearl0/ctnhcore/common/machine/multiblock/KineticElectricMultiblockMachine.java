@@ -42,8 +42,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class KineticElectricMutiblockMachine extends WorkableMultiblockMachine implements IFancyUIMachine, IDisplayUIMachine, ITieredMachine,IOverclockMachine{
-    public KineticElectricMutiblockMachine(IMachineBlockEntity holder) {
+public class KineticElectricMultiblockMachine extends WorkableMultiblockMachine implements IFancyUIMachine, IDisplayUIMachine, ITieredMachine,IOverclockMachine{
+    public KineticElectricMultiblockMachine(IMachineBlockEntity holder) {
         super(holder, new Object[0]);
     }
     protected EnergyContainerList energyContainer;

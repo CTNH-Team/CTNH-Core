@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class MutiblockHelper extends ComponentItem implements IInteractionItem {
+public class MultiblockHelper extends ComponentItem implements IInteractionItem {
     public static class BlockData {
         int x, y, z;
         char symbol;
@@ -32,7 +32,7 @@ public class MutiblockHelper extends ComponentItem implements IInteractionItem {
             this.symbol = symbol;
         }
     }
-    public  MutiblockHelper(Properties properties) {
+    public MultiblockHelper(Properties properties) {
         super(properties);
     }
     public Level level;
@@ -195,7 +195,7 @@ public class MutiblockHelper extends ComponentItem implements IInteractionItem {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
         CompoundTag nbt = stack.getOrCreateTag();
-        tooltipComponents.add(Component.translatable("ctnh.terminal.mutiblockhelper.tips"));
+        tooltipComponents.add(Component.translatable("ctnh.terminal.multiblockhelper.tips"));
         if(nbt.contains("block_x_f"))
         {
 

@@ -67,9 +67,9 @@ public class Arc_Reactor extends WorkableElectricMultiblockMachine implements IT
         var tier = getTier();
         if(isconnect)
         {
-            textList.add(textList.size(), Component.translatable("ctnh.mutiblock.arcreactor.connect"));
+            textList.add(textList.size(), Component.translatable("ctnh.multiblock.arcreactor.connect"));
         }
-        textList.add(textList.size(), Component.translatable("ctnh.mutiblock.arcreactor.arc",String.format("%d",arc)));
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.arcreactor.arc",String.format("%d",arc)));
 
 
     }

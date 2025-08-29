@@ -141,8 +141,8 @@ public class CTNHBlocks {
     public static final BlockEntry<Block> RADIATION_PROOF_MACHINE_CASING = createCasingBlock(
         "radiation_proof_machine_casing", CTNHCore.id("block/casings/solid/radiation_proof_machine_casing"));
 
-    public static final BlockEntry<Block> MAR_CASING = createCasingBlock(
-        "field_restriction_casing", CTNHCore.id("block/casings/solid/mar_casing"));
+    public static final BlockEntry<Block> FIELD_RESTRICTION_CASING = createCasingBlock(
+        "field_restriction_casing", CTNHCore.id("block/casings/solid/field_restriction_casing"));
 
     public static final BlockEntry<Block> CASING_POLYBENZIMIDAZOLE_PIPE = createCasingBlock(
             "polybenzimidazole_pipe", CTNHCore.id("block/casings/pipe/polybenzimidazole_pipe"));

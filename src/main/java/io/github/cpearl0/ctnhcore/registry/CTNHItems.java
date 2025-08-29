@@ -194,7 +194,7 @@ public class CTNHItems {
             .item("pv_terminal",holder->new ConnectTerminalItem(holder))
             .lang("pv_terminal")
             .register();
-//    public static ItemEntry<MutiblockHelper> MutiBlockHelper=REGISTRATE
+//    public static ItemEntry<multiblockHelper> multiblockHelper=REGISTRATE
 //            .item("mutiblock_helper",holder->new MutiblockHelper(holder))
 //            .lang("mutiblock_helper")
 //            .register();
