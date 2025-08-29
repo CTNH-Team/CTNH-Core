@@ -70,30 +70,7 @@ public class MaterialLang {
         translateMaterial(provider, Cerrobase140, "铋铅合金140");
         translateMaterial(provider, ShadowSteel, "暗影钢");
         translateMaterial(provider, RefinedRadiance, "光辉石");
-        translateMaterial(provider, PlatinumSalt, "铂盐");
-        translateMaterial(provider, PlatinumSlag, "铂渣");
-        translateMaterial(provider, RefinedPlatinumSalt, "精炼铂盐");
-        translateMaterial(provider, PalladiumSalt, "钯盐");
-        translateMaterial(provider, RhodiumFilterCake, "铑滤饼");
-        translateMaterial(provider, RhodiumNitrate, "硝酸铑");
-        translateMaterial(provider, RoughlyRhodiumMetal, "粗制铑金属");
-        translateMaterial(provider, PalladiumMetal, "钯金属");
-        translateMaterial(provider, SodiumRutheniate, "钌酸钠");
-        translateMaterial(provider, IridiumDioxide, "二氧化铱");
-        translateMaterial(provider, MetalSludge, "金属泥渣");
-        translateMaterial(provider, ConcentratedPlatinum, "浓缩铂");
-        translateMaterial(provider, RhodiumSulfateGas, "硫酸铑");
-        translateMaterial(provider, PalladiumRichAmmonia, "富钯氨");
-        translateMaterial(provider, RhodiumSalt, "铑盐");
-        translateMaterial(provider, RutheniumTetroxideHot, "热四氧化钌");
-        translateMaterial(provider, RutheniumTetroxideLQ, "四氧化钌");
-        translateMaterial(provider, ReprecipitatedRhodium, "再沉淀铑");
-        translateMaterial(provider, AcidicIridium, "酸性铱");
-        translateMaterial(provider, PlatinumMetal, "铂金属");
-        translateMaterial(provider, PotassiumPyrosulfate, "焦硫酸钾");
-        translateMaterial(provider, SodiumFormate, "甲酸钠");
         translateMaterial(provider, SodiumSulfate, "硫酸钠");
-        translateMaterial(provider, SodiumNitrate, "硝酸钠");
         translateMaterial(provider, ZincSulfate, "硫酸锌");
         translateMaterial(provider, Kaolinite, "高岭石");
         translateMaterial(provider, Dolomite, "白云石");
@@ -107,7 +84,7 @@ public class MaterialLang {
         translateMaterial(provider, PalladiumOnCarbon, "钯碳");
         translateMaterial(provider, GoldTrifluoride, "三氟化金");
         translateMaterial(provider, EnrichedNaquadahResidueSolution, "富集硅岩残余物溶液");
-        translateMaterial(provider, XenoauricFluoroantimonicAcid, "氟锑酸二氙");
+        translateMaterial(provider, XenoauricFluoroantimonicAcid, "氟锑酸金二氙残液");
         translateMaterial(provider, GoldChloride, "氯化金");
         translateMaterial(provider, BromineTrifluoride, "三氟化溴");
         translateMaterial(provider, HexafluorideNaquadriaSolution, "六氟化超能硅岩溶液");
@@ -240,6 +217,9 @@ public class MaterialLang {
         translateMaterial(provider, Smithsonite, "菱锌");
         //铂材料
         // 材料中文名注册（需在语言初始化阶段执行）
+        translateMaterial(provider, PlatinumOre, "铂金矿");
+        translateMaterial(provider, PalladiumOre, "钯金矿");
+        translateMaterial(provider, IridiumDioxide, "二氧化铱");
         translateMaterial(provider, GoldPlatinumPalladiumAcidSolution, "金-铂-钯酸性溶液");
         translateMaterial(provider, DenitratedGoldPlatinumPalladiumSolution, "除硝金-铂-钯酸性溶液");
         translateMaterial(provider, FerricSulfate, "硫酸铁");
