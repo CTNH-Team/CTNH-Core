@@ -9,8 +9,8 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
 
 public class OreUtils {
     public static Map<Material, Material> ORE_REPLACEMENTS = Map.of(
-            Platinum, PlatinumMetal,
-            Palladium, PalladiumMetal,
+            Platinum, PlatinumOre,
+            Palladium, PalladiumOre,
             Naquadah, NaquadahOxideMixture,
             NaquadahEnriched, EnrichedNaquadahOxideMixture,
             Naquadria, NaquadriaOxideMixture);
