@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.data.recipe.chain;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.common.data.GCYMRecipeTypes;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
@@ -19,6 +20,7 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
 
 public class PlatinumLine {
     public static void init(Consumer<FinishedRecipe> provider) {
+        remove(provider);
         GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("platinum_slurry_aqua_regia")
                 .inputItems(dust,PlatinumGroupSludge,3) // 单槽位输入
                 .inputFluids(GTMaterials.AquaRegia.getFluid(6000))//2HNO3+4HCL
@@ -368,5 +370,45 @@ public class PlatinumLine {
                 .EUt(GTValues.VA[GTValues.LV])
                 .duration(20)
                 .save(provider);
+    }
+    private static void remove(Consumer<FinishedRecipe> provider) {
+        GCYMRecipeTypes.ALLOY_BLAST_RECIPES.recipeBuilder("sodium_pyrosulfate").save(provider);
+        GTRecipeTypes.EXTRACTOR_RECIPES.recipeBuilder("extract_osmium_tetroxide_dust").save(provider);
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("raw_platinum_separation").save(provider);
+        GTRecipeTypes.DISTILLERY_RECIPES.recipeBuilder("acidic_osmium_solution_separation_to_hydrochloric_acid")
+                .save(provider);
+        GTRecipeTypes.DISTILLERY_RECIPES.recipeBuilder("acidic_osmium_solution_separation_to_water").save(provider);
+        GTRecipeTypes.DISTILLATION_RECIPES.recipeBuilder("acidic_osmium_solution_separation").save(provider);
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("extract_ruthenium_tetroxide_dust").save(provider);
+        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder("pgs_separation").save(provider);
+        GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("rarest_metal_mixture_separation").save(provider);
+        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder("iridium_metal_residue_separation").save(provider);
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("rhodium_sulfate_separation").save(provider);
+        chemicalRemoval(provider, "osmium_tetroxide_separation");
+        chemicalRemoval(provider, "inert_metal_mixture_separation");
+        chemicalRemoval(provider, "iridium_chloride_separation");
+        chemicalRemoval(provider, "ruthenium_tetroxide_separation");
+        chemicalRemoval(provider, "raw_palladium_separation");
+        chemicalRemoval(provider, "pgs_from_pentlandite");
+        chemicalRemoval(provider, "pgs_from_tetrahedrite");
+        chemicalRemoval(provider, "pgs_from_chalcocite");
+        chemicalRemoval(provider, "pgs_from_cooperite");
+        chemicalRemoval(provider, "pgs_from_bornite");
+        chemicalRemoval(provider, "pgs_from_chalcopyrite");
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("decomposition_electrolyzing_cooperite")
+                .duration(648)
+                .inputItems(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Cooperite))
+                .outputItems(
+                        ChemicalHelper.get(TagPrefix.dust, PlatinumOre, 3),
+                        ChemicalHelper.get(TagPrefix.dust, GTMaterials.Nickel),
+                        ChemicalHelper.get(TagPrefix.dust, GTMaterials.Sulfur),
+                        ChemicalHelper.get(TagPrefix.dust, PalladiumOre)
+                )
+                .EUt(60).save(provider);
+    }
+
+    private static void chemicalRemoval(Consumer<FinishedRecipe> provider, String id) {
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(id).save(provider);
+        GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder(id).save(provider);
     }
 }
