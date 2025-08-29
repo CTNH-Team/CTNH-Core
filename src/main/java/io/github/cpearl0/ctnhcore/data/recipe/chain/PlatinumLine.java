@@ -67,6 +67,7 @@ public class PlatinumLine {
                 .save(provider);
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("ammonium_chloroplatinate_synthesis")
                 .inputItems(dust,AmmoniumChloride,4)                           // 氯化铵固体（2个，对应2000mb溶液当量）
+                .inputFluids(CTNHMaterials.ChloroplatinicChloropalladicSolution.getFluid(3000))  // 氯铂酸-氯钯酸混合溶液（含H₂[PtCl₆]）
                 .outputItems(dust,CTNHMaterials.AmmoniumChloroplatinate,9)                // 氯铂酸铵沉淀（(NH₄)₂[PtCl₆]）
                 .outputFluids(GTMaterials.HydrochloricAcid.getFluid(2000))                    // 释放的盐酸（2000mb）
                 .outputFluids(CTNHMaterials.ChloropalladicAcidMixture.getFluid(3000)) //氯钯酸混合物
@@ -91,7 +92,7 @@ public class PlatinumLine {
                 .save(provider);
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("palladium_ammonia_precipitation")
                 .inputFluids(CTNHMaterials.ChloropalladicAcidMixture.getFluid(1000)) // 氯钯酸溶液（含H₂[PdCl₆]）
-                .inputFluids(CTNHMaterials.AmmoniaMonohydrate.getFluid(2000))           // 氨水（过量）
+                .inputFluids(CTNHMaterials.AmmoniaMonohydrate.getFluid(800))           // 氨水（过量）
                 .outputItems(dust,CTNHMaterials.Diamminedichloropalladium,2) // 二氯二氨络亚钯
                 .outputFluidsRanged(new FluidStack(GTMaterials.HydrochloricAcid.getFluid(),1), UniformInt.of(1000, 1200))      // 副产盐酸
                 .EUt(GTValues.VA[GTValues.HV])     // 中电压（480 EU/t）
@@ -353,12 +354,19 @@ public class PlatinumLine {
                 .EUt(GTValues.VA[GTValues.MV])  // 中电压（480 EU/t）
                 .duration(100)           // 10秒（200 ticks）
                 .save(provider);
-        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("nh4_cl")
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("nh4_cl")//氯化铵
                 .inputFluids(Ammonia.getFluid(1000))
                 .inputFluids(Chlorine.getFluid(1000))
                 .outputItems(dust,AmmoniumChloride,2)
                 .EUt(GTValues.VA[GTValues.HV])
                 .duration(100)
+                .save(provider);
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("nh3_h2o")//一水合氨
+                .inputFluids(Ammonia.getFluid(1000))
+                .inputFluids(Water.getFluid(1000))
+                .outputFluids(AmmoniaMonohydrate.getFluid(1000))
+                .EUt(GTValues.VA[GTValues.LV])
+                .duration(20)
                 .save(provider);
     }
 }
