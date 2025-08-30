@@ -6,7 +6,6 @@ import static io.github.cpearl0.ctnhcore.data.lang.Chinese.OreLang.initDimension
 
 public class VeinLang {
     public static void init(RegistrateCNLangProvider provider) {
-        initDimensionLang(provider);
         provider.add("ctnhcore:chromite_vein", "铬铁矿脉");
         provider.add("ctnhcore:cryolite_vein", "冰晶石矿脉");
         provider.add("ctnhcore:gold_vein_tf", "暮色森林磁铁矿脉");
