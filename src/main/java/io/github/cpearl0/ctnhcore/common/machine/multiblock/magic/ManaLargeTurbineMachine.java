@@ -78,7 +78,22 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
     @Nullable
     public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         if (!(machine instanceof ManaLargeTurbineMachine turbineMachine)) return ModifierFunction.NULL;
-
+        var recipeinput_base=(int)(recipe.getOutputEUt().getTotalEU()/32);
+        var recipeinput_tier3=Math.pow((int)(recipe.getOutputEUt().getTotalEU()/32),1.2);
+        var recipeinput_tier4=Math.pow((int)(recipe.getOutputEUt().getTotalEU()/32),1.5);
+        double muti=1;
+        if(((ManaLargeTurbineMachine) machine).consumputionefficiency==64)
+        {
+            muti=recipeinput_tier4;
+        }
+        if(((ManaLargeTurbineMachine) machine).consumputionefficiency==16)
+        {
+            muti=recipeinput_tier3;
+        }
+        if(((ManaLargeTurbineMachine) machine).consumputionefficiency<=4&&recipeinput_base<=2)
+        {
+            muti=2;
+        }
         if (turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeAir) ||
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeEarth) ||
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeWater) ||
@@ -132,7 +147,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
         // get the amount of parallel required to match the desired output voltage
         var maxParallel = (int) ((turbineMaxVoltage - turbineMachine.excessVoltage) / (EUt));
         int lose_mana=1;
-        turbineMachine.mana_consumption=maxParallel*(turbineMachine.consumputionrate)*turbineMachine.consumpution_rate*turbineMachine.productionBoost()/2;
+        turbineMachine.mana_consumption=maxParallel*(turbineMachine.consumputionrate)*turbineMachine.consumpution_rate*turbineMachine.productionBoost()/3;
         if(!MachineUtils.inputFluid(CTNHMaterials.Mana.getFluid(maxParallel),turbineMachine))
         {
             lose_mana=5;
@@ -141,10 +156,11 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
         turbineMachine.excessVoltage += (int) (maxParallel * EUt - turbineMaxVoltage);
         int actualParallel = maxParallel;
         turbineMachine.parallel=actualParallel;
+
         return ModifierFunction.builder()
                 .inputModifier(ContentModifier.multiplier(turbineMachine.consumputionrate))
                 .outputModifier(ContentModifier.multiplier(turbineMachine.consumputionrate))
-                .eutMultiplier(turbineMachine.productionBoost() * actualParallel/lose_mana)
+                .eutMultiplier(turbineMachine.productionBoost() * actualParallel*muti/lose_mana)
                 .durationMultiplier(holderEfficiency)
                 .build();
     }
@@ -180,19 +196,19 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
                     getMachineStorageItem().getItem().equals(BotaniaItems.runePride) ||
                     getMachineStorageItem().getItem().equals(BotaniaItems.runeSloth) ||
                     getMachineStorageItem().getItem().equals(BotaniaItems.runeWrath)){
-                if(random <= 0.05){
+                if(random <= 0.025){
                     consumeItem();
                 }
             }
             else if(Tier4_rune.contains(getMachineStorageItem().getItem().toString()))
             {
-                if(random<=0.025)
+                if(random<=0.02)
                 {
                     consumeItem();
                 }
             }
             else if(getMachineStorageItem().getItem().equals(CTNHItems.HORIZEN_RUNE.get())||getMachineStorageItem().getItem().equals(CTNHItems.STARLIGHT_RUNE.get())||getMachineStorageItem().getItem().equals(CTNHItems.TWIST_RUNE.get())||getMachineStorageItem().getItem().equals(CTNHItems.PROLIFERATION_RUNE.get())) {
-                if(random<=0.02)
+                if(random<=0.01)
                 {
                     consumeItem();
                 }

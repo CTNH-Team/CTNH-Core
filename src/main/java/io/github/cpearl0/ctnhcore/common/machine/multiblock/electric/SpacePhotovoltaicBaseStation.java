@@ -153,7 +153,7 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
                     var tier = recipe.data.getInt("tier");
                     var input = recipe.data.getInt("input");
                     var duration = 1.0;
-                    var true_eut=pmachine.muti * pmachine.heat * 163848*2+EUt;
+                    var true_eut=pmachine.muti * pmachine.heat * 16384*2+EUt;
                     var parallel = Math.max((true_eut / input), 0.01); //真实并行
                     if (parallel < 1) {
                         duration = 1 / (parallel * parallel);
