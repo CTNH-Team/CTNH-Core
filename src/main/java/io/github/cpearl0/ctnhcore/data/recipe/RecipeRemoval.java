@@ -23,5 +23,6 @@ public class RecipeRemoval {
         registry.accept(ResourceLocation.parse("gtceu:large_chemical_reactor/naquadah_separation"));
         registry.accept(ResourceLocation.parse("gtceu:centrifuge/impure_naquadria_solution_separation"));
         registry.accept(ResourceLocation.parse("gtceu:centrifuge/acidic_naquadria_solution_separation"));
+        registry.accept(ResourceLocation.parse("gtceu:electrolyzer/decomposition_electrolyzing_cooperite"));
     }
 }

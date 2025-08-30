@@ -326,7 +326,7 @@ public class DefaultRecipes {
 // 3. 钚基液体燃料
         GTRecipeTypes.MIXER_RECIPES.recipeBuilder("plutonium_based_liquid_fuel")
                 .inputItems(CTNHItems.EnrichedPlutonium)
-                .inputItems(TagPrefix.dust, CTNHMaterials.NeutroniumMixture, 8)
+                .inputItems(TagPrefix.dust, GTMaterials.Neutronium, 8)
                 .inputItems(TagPrefix.dust, GTMaterials.Caesium, 16)
                 .inputItems(TagPrefix.dust, GTMaterials.Naquadah, 2)
                 .outputFluids(CTNHMaterials.PlutoniumBasedLiquidFuel.getFluid(1000))
@@ -644,12 +644,23 @@ public class DefaultRecipes {
 
 // 11. 中子混合物处理（混合机）
         GTRecipeTypes.MIXER_RECIPES.recipeBuilder("neutronium_mixture")
-                .inputItems(TagPrefix.dust, CTNHMaterials.NeutroniumMixture)
-                .inputFluids(GTMaterials.Helium.getFluid(FluidStorageKeys.PLASMA, 144))
+                .inputItems(TagPrefix.dust, CTNHMaterials.NeutroniumMixture,8)
+                .inputFluids(GTMaterials.Americium.getFluid(FluidStorageKeys.PLASMA, 144))
+                .inputFluids(GTMaterials.Naquadria.getFluid(144))
                 .outputItems(TagPrefix.dust, GTMaterials.Neutronium)
                 .circuitMeta(1)
                 .EUt(GTValues.VA[GTValues.ZPM]) // 98304 EU/t
-                .duration(225) // 11.25秒
+                .duration(500) // 25秒
+                .save(provider);
+// 11.5 谢尔顿矿粉电解
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("cooperite_dust")
+                .inputItems(TagPrefix.dust, GTMaterials.Cooperite,6)
+                .outputItems(TagPrefix.dust, CTNHMaterials.PlatinumOre,3)
+                .outputItems(TagPrefix.dust, GTMaterials.Nickel)
+                .outputItems(TagPrefix.dust, GTMaterials.Sulfur)
+                .outputItems(TagPrefix.dust, CTNHMaterials.PalladiumOre)
+                .EUt(GTValues.VA[GTValues.MV]) // 98304 EU/t
+                .duration(600) // 30秒
                 .save(provider);
 
 // 12. 中子矿离心（无序合成）

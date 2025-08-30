@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import com.moguang.ctnhbio.registry.CBItems;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.data.lang.Chinese.OreLang;
+import io.github.cpearl0.ctnhcore.data.lang.Chinese.VeinLang;
 import io.github.cpearl0.ctnhcore.data.lang.RegistrateCNLangProvider;
 import io.github.cpearl0.ctnhcore.data.materials.OrdinaryMaterials;
 import io.github.cpearl0.ctnhcore.registry.*;
@@ -27,6 +28,7 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 public class ChineseLangHandler {
     public static void init(RegistrateCNLangProvider provider) {
         OreLang.init(provider);
+        VeinLang.init(provider);
         //Config
         provider.add("config.ctnhcore.option.ftbPlugin", "FTB相关");
         provider.add("config.ctnhcore.option.kinetic", "应力相关");

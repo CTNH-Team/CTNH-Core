@@ -1600,7 +1600,7 @@ public class CTNHOres {
                         .layeredVeinGenerator(generator -> {
                             generator.buildLayerPattern(pattern -> {
                                 pattern.layer(l -> l.weight(2).mat(GTMaterials.Nickel).size(2, 3))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Iridium).size(1, 2))
+                                        .layer(l -> l.weight(1).mat(CTNHMaterials.MeteoricTroilite).size(1, 2))
                                         .layer(l -> l.weight(1).mat(GTMaterials.Palladium).size(1, 2));
                             });
                         });
@@ -1643,8 +1643,8 @@ public class CTNHOres {
                         .layeredVeinGenerator(generator -> {
                             generator.buildLayerPattern(pattern -> {
                                 pattern.layer(l -> l.weight(3).mat(GTMaterials.Nickel).size(2, 3))
-                                        .layer(l -> l.weight(2).mat(GTMaterials.Osmium).size(1, 2))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Iridium).size(1, 1));
+                                        .layer(l -> l.weight(2).mat(CTNHMaterials.OsmiumIronSpinel).size(1, 2))
+                                        .layer(l -> l.weight(1).mat(CTNHMaterials.MeteoricTroilite).size(1, 1));
                             });
                         });
             }
@@ -1672,7 +1672,7 @@ public class CTNHOres {
                         .layeredVeinGenerator(generator -> {
                             generator.buildLayerPattern(pattern -> {
                                 pattern.layer(l -> l.weight(2).mat(GTMaterials.Niobium).size(1, 2))
-                                        .layer(l -> l.weight(2).mat(GTMaterials.Iridium).size(1, 2))
+                                        .layer(l -> l.weight(2).mat(CTNHMaterials.MeteoricTroilite).size(1, 2))
                                         .layer(l -> l.weight(1).mat(GTMaterials.Gallium).size(1, 1));
                             });
                         });
