@@ -57,7 +57,8 @@ public class PlatinumLine {
                 .EUt(GTValues.VA[GTValues.EV])
                 .duration(360)
                 .save(provider);
-        GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("palladium_palladium_platinum_oi_new_process_two")
+        GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("palladium_platinum_oi_new_process")
+                .inputItems(dust,PalladiumOre,7)
                 .inputFluids(Chlorine.getFluid(4000))
                 .inputFluids(HydrochloricAcid.getFluid(2000))
                 .inputItems(dust,AmmoniumChloride,10)
