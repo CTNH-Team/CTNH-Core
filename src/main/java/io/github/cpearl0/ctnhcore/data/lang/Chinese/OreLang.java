@@ -69,6 +69,7 @@ public class OreLang {
         provider.add("gtceu.jei.ore_vein.neutronium_vein_ad", "霜原星中子素矿脉");
         provider.add("gtceu.jei.ore_vein.pyrolusite_vein_ad", "金星软锰矿脉");
         provider.add("gtceu.jei.ore_vein.saltpeter_vein_ad", "水星粗硝石矿脉");
+        provider.add("gtceu.jei.ore_vein.ruthenium_amalgam_vein", "钌汞齐矿脉");
         provider.add("gtceu.jei.ore_vein.arsenic_vein", "红砷镍矿脉");
         provider.add("gtceu.jei.ore_vein.europium_vein", "铕萤石矿脉");
         provider.add("gtceu.jei.ore_vein.lapis_ore_vein", "水星青金石矿脉");
