@@ -108,8 +108,8 @@ public class MachinesRecipes {
                 .circuitMeta(1)
                 .save(provider);
         CTNHRecipeTypes.MANA_GENERATOR.recipeBuilder("mana1")
-                .EUt(-28)
-                .duration(20)
+                .EUt(-32)
+                .duration(100)
                 .circuitMeta(1)
                 .inputFluids(CTNHMaterials.Mana.getFluid(1000))
                 .save(provider);
