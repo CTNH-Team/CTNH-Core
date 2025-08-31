@@ -73,7 +73,7 @@ public class Plasma_alloy_blast extends CoilWorkableElectricMultiblockMachine {
             total_speed=speed;
             if(pmachine.getCoilType().getCoilTemperature()>10000)
             {
-                total_speed+=((double) (pmachine.getCoilType().getCoilTemperature() - 10000) /1800);
+                total_speed+=((double) (pmachine.getCoilType().getCoilTemperature() - 10000) /1000);
             }
             if(MachineUtils.inputFluid(CTNHMaterials.COMPRESSED_ADAMANTITE.getFluid(PLASMA,100),pmachine))
             {
@@ -85,13 +85,12 @@ public class Plasma_alloy_blast extends CoilWorkableElectricMultiblockMachine {
                 total_speed*=10;
                 output=1-0.2*(Math.random());
             }
-            if(pmachine.islasor==1)
             speed=speed*(0.25*pmachine.islasor);
             if(speed>50)
             {
                 output=0.5*(Math.random());
             }
-            if(speed<=0.5)
+            if(speed<=1)
             {
                 return ModifierFunction.NULL;
             }
@@ -99,7 +98,7 @@ public class Plasma_alloy_blast extends CoilWorkableElectricMultiblockMachine {
                     .parallels(parallel)
                     .inputModifier(ContentModifier.multiplier(parallel))
                     .outputModifier(ContentModifier.multiplier(parallel*output))
-                    .eutMultiplier(eut*parallel)
+                    .eutMultiplier(eut)
                     .durationMultiplier(1/total_speed)
                     .build();
         }
