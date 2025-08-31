@@ -12,7 +12,6 @@ import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.simibubi.create.AllBlocks;
 import io.github.cpearl0.ctnhcore.registry.*;
-import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import static com.gregtechceu.gtceu.api.GTValues.*;
@@ -43,7 +42,7 @@ public class MachinesRecipes {
     }).collect(Collectors.toMap(data -> (Integer) data[0], data -> data[1])));
     public static void init(Consumer<FinishedRecipe> provider) {
         VanillaRecipeHelper.addShapedRecipe(provider, true, "underfloor_heating_system",
-                MultiblocksA.UNDERFLOOR_HEATING_SYSTEM.asStack(),
+                CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.asStack(),
                 "SPS", "IwI", "SPS",
                 'S', new ItemStack(AllBlocks.COPPER_SHINGLES.getStandard().get()),
                 'P', GTBlocks.CASING_BRONZE_PIPE.asStack(),
@@ -62,7 +61,7 @@ public class MachinesRecipes {
                 .inputItems(CONVEYOR_MODULE_ZPM, 4)
                 .inputItems(gear, Osmiridium, 4)
                 .circuitMeta(2)
-                .outputItems(MultiblocksA.ZPM_LARGE_MINER)
+                .outputItems(CTNHMultiblockMachines.ZPM_LARGE_MINER)
                 .duration(400).EUt(VA[ZPM]).save(provider);
         COMPRESSOR_RECIPES.recipeBuilder("steelleaf")
                 .duration(300)
@@ -159,7 +158,7 @@ public class MachinesRecipes {
                 .inputItems(CONVEYOR_MODULE_ZPM, 4)
                 .inputItems(gear, Osmiridium, 4)
                 .circuitMeta(2)
-                .outputItems(MultiblocksA.ZPM_LARGE_MINER)
+                .outputItems(CTNHMultiblockMachines.ZPM_LARGE_MINER)
                 .duration(400).EUt(VA[ZPM]).save(provider);
         CTNHRecipeTypes.BEAMS.recipeBuilder("test")
                 .circuitMeta(24)

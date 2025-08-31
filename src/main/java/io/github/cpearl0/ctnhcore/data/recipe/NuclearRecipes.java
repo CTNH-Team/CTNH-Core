@@ -7,7 +7,6 @@ import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.registry.*;
-import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterialsInfo;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -252,7 +251,7 @@ public class NuclearRecipes {
                    GTItems.SENSOR_EV.asStack(2),
                    GTItems.ELECTRIC_MOTOR_EV.asStack(2),
                    GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, Ultimet).asStack(2))
-                .outputItems(MultiblocksB.NUCLEAR_REACTOR.asStack())
+                .outputItems(CTNHMultiblockMachines.NUCLEAR_REACTOR.asStack())
                 .EUt(1920)
                 .duration(400)
                 .save(provider);
@@ -260,7 +259,7 @@ public class NuclearRecipes {
                 .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.gear, Stellite100).asStack(4),
                     GTMachines.HULL[GTValues.EV].asStack())
                 .inputItems(CustomTags.EV_CIRCUITS, 2)
-                .outputItems(MultiblocksB.HOT_COOLANT_TURBINE.asStack())
+                .outputItems(CTNHMultiblockMachines.HOT_COOLANT_TURBINE.asStack())
                 .EUt(1920)
                 .duration(400)
                 .save(provider);

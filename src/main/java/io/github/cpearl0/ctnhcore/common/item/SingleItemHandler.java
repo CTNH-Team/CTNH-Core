@@ -6,12 +6,9 @@ import appeng.api.networking.security.IActionSource;
 import appeng.api.stacks.AEItemKey;
 import appeng.api.stacks.AEKey;
 import appeng.api.storage.MEStorage;
-import appeng.me.helpers.MachineSource;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 
-import static io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalBehavior.ACCESS_POINT_CONTEXT;
 import static io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalBehavior.USE_ON_CONTEXT;
 
 public class SingleItemHandler implements IItemHandler {
@@ -49,12 +46,15 @@ public class SingleItemHandler implements IItemHandler {
             result.setCount(extractAmount);
             var storage = grid.getStorageService().getInventory();
             if (!simulate) {
+                //System.out.println(extractAmount);
+                //System.out.println(grid);
                 var a = storage.extract(
                         key,
                         extractAmount,
                         Actionable.MODULATE,
-                        IActionSource.ofMachine(ACCESS_POINT_CONTEXT.get())
+                        IActionSource.ofPlayer(USE_ON_CONTEXT.get().getPlayer())
                 );
+                //System.out.println("exact: "+a);
             }
             return result;
         }

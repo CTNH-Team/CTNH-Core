@@ -8,12 +8,10 @@ import com.gregtechceu.gtceu.api.machine.feature.IMachineModifyDrops;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDistinctPart;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.TieredIOPartMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
-import com.gregtechceu.gtceu.common.machine.multiblock.part.ItemBusPartMachine;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.jei.IngredientIO;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import lombok.Getter;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.item.ItemStack;
@@ -27,8 +25,7 @@ public class CircuitBusPartMachine extends TieredIOPartMachine implements IDisti
     @Getter
     @Persisted
     private final NotifiableItemStackHandler inventory;
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(CircuitBusPartMachine.class,
-            TieredIOPartMachine.MANAGED_FIELD_HOLDER);
+
     public CircuitBusPartMachine(IMachineBlockEntity holder, int tier) {
         super(holder, tier, IO.IN);
         inventory = new NotifiableItemStackHandler(this, 1, IO.IN);

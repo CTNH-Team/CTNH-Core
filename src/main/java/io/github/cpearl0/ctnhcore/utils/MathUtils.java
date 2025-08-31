@@ -21,11 +21,4 @@ public class MathUtils {
 
         return new float[]{(float) yaw, (float) pitch};
     }
-
-    public static int fastLog2(long n) {
-        return ((Long.SIZE - 1) - Long.numberOfLeadingZeros(n));
-    }
-    public static int fastLog2(int n) {
-        return ((Integer.SIZE - 1) - Integer.numberOfLeadingZeros((n)));
-    }
 }
