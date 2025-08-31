@@ -877,6 +877,9 @@ public class CTNHMaterials {
     public static Material DebrominatedWater;
     public static Material NeutroniumMixture;
     public static Material MARM200Steel;
+    //旧铂线
+    public static Material PalladiumMetal;
+    public static Material PlatinumMetal;
     //新铂线
     public static Material PlatinumOre;
     public static Material PalladiumOre;
@@ -906,8 +909,6 @@ public class CTNHMaterials {
     public static Material AmmoniumChlororhodateSolution;
     public static Material SodiumOsmateRuthenateSolution;
     public static Material SodiumPeroxide;
-    public static Material ChlorosmicAcidEthanolSolution;
-    public static Material ChlororuthenicAcidEthanolSolution;
     public static Material ChlorosmicAcidGas;
     public static Material ChlororuthenicAcidGas;
     public static Material AmmoniumChlorosmate;

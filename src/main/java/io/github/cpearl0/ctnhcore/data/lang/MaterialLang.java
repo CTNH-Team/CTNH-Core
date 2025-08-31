@@ -217,6 +217,8 @@ public class MaterialLang {
         translateMaterial(provider, Smithsonite, "菱锌");
         //铂材料
         // 材料中文名注册（需在语言初始化阶段执行）
+        translateMaterial(provider, PalladiumMetal, "钯金属");
+        translateMaterial(provider, PlatinumMetal, "铂金属");
         translateMaterial(provider, PlatinumOre, "铂金矿");
         translateMaterial(provider, PalladiumOre, "钯金矿");
         translateMaterial(provider, IridiumDioxide, "二氧化铱");
@@ -246,8 +248,6 @@ public class MaterialLang {
         translateMaterial(provider, AmmoniumChlororhodateSolution, "氯铑酸铵溶液");
         translateMaterial(provider, SodiumOsmateRuthenateSolution, "锇酸钠-钌酸钠混合溶液");
         translateMaterial(provider, SodiumPeroxide, "过氧化钠");
-        translateMaterial(provider, ChlorosmicAcidEthanolSolution, "氯锇酸-乙醇盐酸溶液");
-        translateMaterial(provider, ChlororuthenicAcidEthanolSolution, "氯钌酸-乙醇盐酸溶液");
         translateMaterial(provider, ChlorosmicAcidGas, "氯锇酸");
         translateMaterial(provider, ChlororuthenicAcidGas, "氯钌酸");
         translateMaterial(provider, AmmoniumChlorosmate, "氯锇酸铵");

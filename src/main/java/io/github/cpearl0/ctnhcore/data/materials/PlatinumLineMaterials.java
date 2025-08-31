@@ -21,6 +21,11 @@ public class PlatinumLineMaterials {
         addGas(GTMaterials.OsmiumTetroxide);
         addGas(GTMaterials.RutheniumTetroxide);
 
+        PalladiumMetal = new Material.Builder(CTNHCore.id("palladium_metal")).dust().color(0x30302E).iconSet(SAND).flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister().setFormula("??Pd??");
+        PlatinumMetal = new Material.Builder(CTNHCore.id("platinum_metal")).dust().color(0xEBEBB2).iconSet(ROUGH).flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister().setFormula("??PtPdIrOsRhRu??");
+
         PlatinumOre = new Material.Builder(CTNHCore.id("platinum_ore"))
                 .dust()
                 .color(0xFFD700)
@@ -239,20 +244,6 @@ public class PlatinumLineMaterials {
                 .color(0xFFECB3)
                 .buildAndRegister()
                 .setFormula("Na2O2", true);
-
-// 氯锇酸-乙醇盐酸溶液
-        ChlorosmicAcidEthanolSolution = new Material.Builder(CTNHCore.id("chlorosmic_acid_ethanol_solution"))
-                .liquid()
-                .color(0x9400D3)
-                .buildAndRegister()
-                .setFormula("H2OsCl6/C2H5OH/HCl", true);
-
-// 氯钌酸-乙醇盐酸溶液
-        ChlororuthenicAcidEthanolSolution = new Material.Builder(CTNHCore.id("chlororuthenic_acid_ethanol_solution"))
-                .liquid()
-                .color(0x9932CC)
-                .buildAndRegister()
-                .setFormula("H2RuCl6/C2H5OH/HCl", true);
 
 // 氯锇酸气体
         ChlorosmicAcidGas = new Material.Builder(CTNHCore.id("chlorosmic_acid_gas"))

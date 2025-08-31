@@ -31,6 +31,16 @@ public class PlatinumLine {
                 .EUt(GTValues.VA[GTValues.HV])
                 .duration(640)
                 .save(provider);
+        GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("platinum_slurry_aqua_regia_fix")
+                .inputItems(dust,PlatinumMetal,3) // 单槽位输入
+                .inputFluids(GTMaterials.AquaRegia.getFluid(6000))//2HNO3+4HCL
+                .outputFluids(CTNHMaterials.GoldPlatinumPalladiumAcidSolution.getFluid(1000))
+                .outputFluids(GTMaterials.NitricOxide.getFluid(1000))
+                .outputFluids(GTMaterials.Water.getFluid(2000))
+                .outputItems(dust,CTNHMaterials.PlatinumGroupResidue,1)
+                .EUt(GTValues.VA[GTValues.HV])
+                .duration(640)
+                .save(provider);
 //溶液线
         GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("denitrate_gold_platinum_palladium_solution") //反复除硝
                 .inputFluids(CTNHMaterials.GoldPlatinumPalladiumAcidSolution.getFluid(1000)) // 单槽位输入：酸性溶液
@@ -61,6 +71,15 @@ public class PlatinumLine {
                 .save(provider);
         GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("palladium_platinum_oi_new_process")
                 .inputItems(dust,PalladiumOre,7)
+                .inputFluids(Chlorine.getFluid(4000))
+                .inputFluids(HydrochloricAcid.getFluid(2000))
+                .inputItems(dust,AmmoniumChloride,10)
+                .outputFluids(CTNHMaterials.ChloropalladicAcidMixture.getFluid(3000))
+                .EUt(GTValues.VA[GTValues.EV])
+                .duration(400)
+                .save(provider);
+        GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("palladium_platinum_oi_new_process_fix")
+                .inputItems(dust,PalladiumMetal,7)
                 .inputFluids(Chlorine.getFluid(4000))
                 .inputFluids(HydrochloricAcid.getFluid(2000))
                 .inputItems(dust,AmmoniumChloride,10)
@@ -390,12 +409,6 @@ public class PlatinumLine {
         chemicalRemoval(provider, "iridium_chloride_separation");
         chemicalRemoval(provider, "ruthenium_tetroxide_separation");
         chemicalRemoval(provider, "raw_palladium_separation");
-        chemicalRemoval(provider, "pgs_from_pentlandite");
-        chemicalRemoval(provider, "pgs_from_tetrahedrite");
-        chemicalRemoval(provider, "pgs_from_chalcocite");
-        chemicalRemoval(provider, "pgs_from_cooperite");
-        chemicalRemoval(provider, "pgs_from_bornite");
-        chemicalRemoval(provider, "pgs_from_chalcopyrite");
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("decomposition_electrolyzing_cooperite")
                 .duration(648)
                 .inputItems(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Cooperite))
