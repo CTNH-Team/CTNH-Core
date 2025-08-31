@@ -279,10 +279,10 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
     public double difference_caculate(double difference)
     {
         var num=0.0;
-        if(difference<500)
+        if(difference<400)
             num=Math.pow(difference,2);
         else
-            num=Math.pow(500,2)+(difference-500);
+            num=Math.pow(400,2)+(difference-400);
         return num;
     }
     public double getBoostRate() {
