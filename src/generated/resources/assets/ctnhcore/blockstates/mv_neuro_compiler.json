@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "ctnhcore:block/machine/mv_neuro_compiler",
+      "x": 90
+    },
+    "facing=east": {
+      "model": "ctnhcore:block/machine/mv_neuro_compiler",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "ctnhcore:block/machine/mv_neuro_compiler"
+    },
+    "facing=south": {
+      "model": "ctnhcore:block/machine/mv_neuro_compiler",
+      "y": 180
+    },
+    "facing=up": {
+      "gtceu:z": 180,
+      "model": "ctnhcore:block/machine/mv_neuro_compiler",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "ctnhcore:block/machine/mv_neuro_compiler",
+      "y": 270
+    }
+  }
+}

@@ -10,9 +10,11 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
+import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
+import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CompilerMachine;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
@@ -53,10 +55,11 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
     @Persisted public Item items;
     @Persisted public long  noisea;
     @Persisted public long  noiseb;
+    @Persisted public List<Integer> error_message=new ArrayList<>();
 
 
-
-
+    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
+            NeuroMatrixCompiler.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
 
 
 
@@ -69,7 +72,9 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         List<Long>Equation=new ArrayList<Long>();
         for(int i=1;i<=4;i++)
         {
-            Equation.add((long)(Math.random()*(range-Math.sqrt(range))+Math.sqrt(range)));
+            var ranger=(range)*(Math.random());
+            var defaulter=range-ranger;
+            Equation.add((long)(defaulter+ranger*ranger*2));
         }
         return Equation;
     }
@@ -80,11 +85,15 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         for(int i=0;i<3;i++)
         {
             var num=recipe.data.getLong(String.valueOf(i));
+
+
             num=(long)((num/2)+Math.random()*num);
-            true_answer=num+RawEquation.get(i);
+            if(num<1)num=1;
+            if(num>64)num=64;
+            true_answer=num*RawEquation.get(i);
         }
     }
-    public double CaculateEquationNoise(long Noise)
+    public double CalculateEquationNoise(long Noise)
     {
         //计算方程式，但带噪声
         var noise=(long)(Noise*Math.random()*Noise_Muti);
@@ -95,10 +104,10 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         }
         answer+=RawEquation.get(3);
         var fake_answer=(long)(answer+noise*Math.random());
-        return((double) Math.abs(true_answer - fake_answer) /true_answer);
+        return((double) fake_answer/true_answer);
 
     }
-    public double CaculateEquation(long Noise)
+    public double CalculateEquation(long Noise)
     {
         //计算方程式
         var noise=(long)(Noise*Math.random()*Noise_Muti);
@@ -109,7 +118,7 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         }
         answer+=RawEquation.get(3);
         var fake_answer=(long)(answer+noise*Math.random());
-        return((double) Math.abs(true_answer - answer) /true_answer);
+        return((double) answer/true_answer);
 
     }
     public void getNoise()
@@ -137,7 +146,7 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
     public void reload_recipe(GTRecipe recipe)
     {
         range=recipe.data.getInt("range");
-        noisea=recipe.data.getInt("noiseb");
+        noisea=recipe.data.getInt("noisea");
         noiseb=recipe.data.getInt("noiseb");
         RawEquation=getRawEquation(range);
         getTrueAnswer(recipe);
@@ -202,8 +211,8 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         {
              getRecipeLogic().setProgress(getRecipeLogic().getDuration()-100);
              getNoise();
-             eff_fake=CaculateEquationNoise(range);
-             eff=CaculateEquation(range);
+             eff_fake=CalculateEquationNoise(range);
+             eff=CalculateEquation(range);
              turn=10;
         }else if(turn<=4)states.set(turn,1);
         if (getRecipeLogic().getProgress()>100&&turn<=4) {
@@ -243,14 +252,18 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
     }
     @Override
     public void onStructureFormed() {
-
+        states.clear();
+        error_message.clear();
         var tier = getTier();
         var pos=getPos();
         var m1=getMachine(this.getLevel(), MachineUtils.getOffset(this,11 ,0, -6));
+        states.clear();
+        var mx=getBlockState();
         if(m1 instanceof CompilerMachine)
         {
             part1=(CompilerMachine) m1;
             tiers=part1.getTier();
+            part1.set_id(1);
         }
         var m2=getMachine(this.getLevel(), MachineUtils.getOffset(this,-11,0,-6));
         var m3=getMachine(this.getLevel(), MachineUtils.getOffset(this,15,0,7));
@@ -260,28 +273,67 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         if(m2 instanceof IMultiPart)
         {
             part2=(CompilerMachine) m2;
+            part2.set_id(2);
         }
         if(m3 instanceof IMultiPart)
         {
             part3=(CompilerMachine) m3;
+            part3.set_id(3);
         }
         if(m4 instanceof IMultiPart)
         {
             part4=(CompilerMachine) m4;
+            part4.set_id(4);
         }
         if(m5 instanceof IMultiPart)
         {
             part5=(CompilerMachine) m5;
+            part5.set_id(5);
         }
         if(m6 instanceof IMultiPart)
         {
             part6=(CompilerMachine) m6;
+            part6.set_id(6);
         }
-        if(part2.getTier()!=tier||part3.getTier()!=tier||part4.getTier()!=tier||part5.getTier()!=tier||part6.getTier()!=tier)
-            onStructureInvalid();
         for(int i=0;i<=4;i++)
         {
             states.add(0);
+            error_message.add(-1);
+
+        }
+        if (part2.getTier() != tiers) {
+            onStructureInvalid();
+            states.set(1,2);
+            error_message.set(1,0);
+            return;
+        }
+
+        if (part3.getTier() != tiers) {
+            onStructureInvalid();
+            states.set(2,2);
+            error_message.set(2,0);
+            return;
+        }
+
+        if (part4.getTier() != tiers) {
+            onStructureInvalid();
+            states.set(3,2);
+            error_message.set(3,0);
+            return;
+        }
+
+        if (part5.getTier() != tiers) {
+            onStructureInvalid();
+            states.set(4,2);
+            error_message.set(4,0);
+            return;
+        }
+
+        if (part6.getTier() != tiers) {
+            onStructureInvalid();
+            states.set(5,2);
+            error_message.set(5,0);
+            return;
         }
         super.onStructureFormed();
 
@@ -290,12 +342,11 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
     public void onStructureInvalid()
     {
         super.onStructureInvalid();
-        states.clear();
     }
 
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
-        if(tiers<RecipeHelper.getInputEUt(recipe))return false;
+        if(tiers<RecipeHelper.getRecipeEUtTier(recipe))return false;
         var itemsR = recipe.getInputContents(ItemRecipeCapability.CAP).stream()
                 .map(num -> (SizedIngredient) num.getContent()) // 转换为 SizedIngredient
                 .map(SizedIngredient::getItems) // 获取 ItemStack 数组
@@ -306,33 +357,35 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         {
             lastrecipe=recipe;
             reload_recipe(recipe);
+
+        }
+        CheckRecipeValid(recipe,itemsR);
+        ticks=getOffsetTimer();
+
+        return super.beforeWorking(recipe);
+    }
+    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
+        if (machine instanceof NeuroMatrixCompiler nmachine) {
+            for (int i = 0; i <= 4; i++) {
+                nmachine.states.set(i, 4);
+            }
             var itemsX = recipe.getOutputContents(ItemRecipeCapability.CAP).stream()
                     .map(num -> (SizedIngredient) num.getContent()) // 转换为 SizedIngredient
                     .map(SizedIngredient::getItems) // 获取 ItemStack 数组
                     .filter(itemStacks -> itemStacks.length > 0) // 确保至少有一个 ItemStack
                     .map(itemStacks -> itemStacks[0].getItem()) // 获取第一个 ItemStack 的 Item
                     .collect(Collectors.toList()); // 收集到一个 List<Item>
-            items=itemsX.get(0).asItem();
-        }
-        CheckRecipeValid(recipe,itemsR);
-        ticks=getOffsetTimer();
-        return super.beforeWorking(recipe);
-    }
-    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
-        if(machine instanceof NeuroMatrixCompiler nmachine) {
-            for(int i=0;i<=4;i++)
-            {
-                nmachine.states.set(i,4);
-            }
+            if(!itemsX.isEmpty()) nmachine.items=itemsX.get(0).asItem();
             SizedIngredient ingredient=SizedIngredient.create(ItemStack.EMPTY);
             List<Content> itemList = new ArrayList<>();
             var new_recipe=recipe.copy();
-            itemList.add(new Content(ingredient, 0, 0, 0, null, null));
+            itemList.add(new Content(ingredient, 0, 0, 0));
             new_recipe.outputs.put(ItemRecipeCapability.CAP,itemList);
-            return recipe1->new_recipe;
+                return recipe1->new_recipe;
+            }
+            return ModifierFunction.NULL;
         }
-        return ModifierFunction.NULL;
-    }
+
     @Override
     public void addDisplayText(List<Component> textList) {
         //super.addDisplayText(textList);
@@ -349,28 +402,38 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
                 });
         this.getDefinition().getAdditionalDisplay().accept(this, textList);
     }
+    public MutableComponent error_analyse(int i)
+    {
+        if(i==-1)
+        {
+            return Component.translatable("ctnh.compiler.error.0");
+        }
+        if(i==0)
+            return Component.translatable("ctnh.compiler.error.1");
+        return Component.translatable("ctnh.compiler.error.0");
+    }
     public MutableComponent addProgressPartSatus(int i) {
         if(states.get(i)==0)
         {
-            return (Component.translatable("ctnh.compiler.part_states", new Object[]{i+1,Component.translatable("ctnh.compiler.state.idle")}));
+            return (Component.translatable("ctnh.neuro_matrix_compiler.info.part_states", new Object[]{i+1,Component.translatable("ctnh.neuro_matrix_compiler.info.state.idle")}));
         }
         if(states.get(i)==1)
         {
-            return (Component.translatable("ctnh.compiler.part_states", new Object[]{i+1,Component.translatable("ctnh.compiler.state.working",new Object[]{String.format("%.2f",(double)this.recipeLogic.getProgress()/20), String.format("%.2f",(double)this.recipeLogic.getMaxProgress()/120)})}));
+            return (Component.translatable("ctnh.neuro_matrix_compiler.info.part_states", new Object[]{i+1,Component.translatable("ctnh.neuro_matrix_compiler.info.state.working",new Object[]{String.format("%.2f",(double)this.recipeLogic.getProgress()/20), String.format("%.2f",(double)this.recipeLogic.getMaxProgress()/120)})}));
         }
         if(states.get(i)==2)
         {
-            return (Component.translatable("ctnh.compiler.part_states", new Object[]{i+1,Component.translatable("ctnh.compiler.state.error")}));
+            return (Component.translatable("ctnh.neuro_matrix_compiler.info.part_states", new Object[]{i+1,Component.translatable("ctnh.neuro_matrix_compiler.info.state.error",new Object[]{error_analyse(error_message.get(i))})}));
         }
         if(states.get(i)==3)
         {
-            return (Component.translatable("ctnh.compiler.part_states", new Object[]{i+1,Component.translatable("ctnh.compiler.state.finish")}));
+            return (Component.translatable("ctnh.neuro_matrix_compiler.info.part_states", new Object[]{i+1,Component.translatable("ctnh.neuro_matrix_compiler.info.state.finish")}));
         }
         if(states.get(i)==4)
         {
-            return (Component.translatable("ctnh.compiler.part_states", new Object[]{i+1,Component.translatable("ctnh.compiler.state.waiting")}));
+            return (Component.translatable("ctnh.neuro_matrix_compiler.info.part_states", new Object[]{i+1,Component.translatable("ctnh.neuro_matrix_compiler.info.state.waiting")}));
         }
-        return (Component.translatable("ctnh.compiler.part_states", new Object[]{i+1,Component.translatable("ctnh.compiler.state.error")}));
+        return (Component.translatable("ctnh.neuro_matrix_compiler.info.part_states", new Object[]{i+1,Component.translatable("ctnh.neuro_matrix_compiler.info.state.error")}));
     }
 
 

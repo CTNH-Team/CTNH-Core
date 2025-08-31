@@ -10,16 +10,8 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.SCALABLE_RESERVOIR_COMPUTING;
 
 public class ScalableReservoirComputingRecipes {
-    public static void init(Consumer<FinishedRecipe> provider){
+    record SacrificeRecipe(){
 
-        SCALABLE_RESERVOIR_COMPUTING.recipeBuilder("player")
-                .duration(20)
-                .EUt(V[ZPM]*4)
-                .circuitMeta(1)
-                .addData("maxCWUt",512)
-                .addData("wetwareDuration",200)
-                .addData("sacrifice","minecraft:player")
-                .save(provider);
     }
 
 }

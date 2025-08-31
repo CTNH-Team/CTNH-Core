@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:block/block",
+  "loader": "gtceu:machine",
+  "machine": "ctnhcore:ev_dehydrator",
+  "variants": {
+    "recipe_logic_status=idle": {
+      "model": {
+        "parent": "gtceu:block/casings/voltage/ev",
+        "textures": {
+          "overlay_front": "ctnhcore:block/machines/dehydrator/overlay_front",
+          "overlay_side": "ctnhcore:block/machines/dehydrator/overlay_side"
+        }
+      }
+    },
+    "recipe_logic_status=suspend": {
+      "model": {
+        "parent": "gtceu:block/casings/voltage/ev",
+        "textures": {
+          "overlay_front": "ctnhcore:block/machines/dehydrator/overlay_front",
+          "overlay_side": "ctnhcore:block/machines/dehydrator/overlay_side"
+        }
+      }
+    },
+    "recipe_logic_status=waiting": {
+      "model": {
+        "parent": "gtceu:block/casings/voltage/ev",
+        "textures": {
+          "overlay_front": "ctnhcore:block/machines/dehydrator/overlay_front_active",
+          "overlay_front_emissive": "ctnhcore:block/machines/dehydrator/overlay_front_active_emissive",
+          "overlay_side": "ctnhcore:block/machines/dehydrator/overlay_side_active",
+          "overlay_side_emissive": "ctnhcore:block/machines/dehydrator/overlay_side_active_emissive"
+        }
+      }
+    },
+    "recipe_logic_status=working": {
+      "model": {
+        "parent": "gtceu:block/casings/voltage/ev",
+        "textures": {
+          "overlay_front": "ctnhcore:block/machines/dehydrator/overlay_front_active",
+          "overlay_front_emissive": "ctnhcore:block/machines/dehydrator/overlay_front_active_emissive",
+          "overlay_side": "ctnhcore:block/machines/dehydrator/overlay_side_active",
+          "overlay_side_emissive": "ctnhcore:block/machines/dehydrator/overlay_side_active_emissive"
+        }
+      }
+    }
+  }
+}

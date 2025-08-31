@@ -13,6 +13,7 @@ import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.misc.EnergyContainerList;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.Arc_Generator;
@@ -45,6 +46,7 @@ public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMac
     private IEnergyContainer energyContainer;
     private int energy=0;
     public boolean no_energy_waring=false;
+    public double consume_mutiple=1.0;
     @Nullable
     protected TickableSubscription tickSubs;
 
@@ -52,6 +54,9 @@ public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMac
     {
         super(holder);
     }
+
+
+    //初始化
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
@@ -133,6 +138,7 @@ public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMac
             getRecipeLogic().setWaiting(Component.translatable("gtceu.recipe_logic.insufficient_in"));
         }
     }
+
     public void tick() {
         if (isWorkingEnabled()) consumeEnergy();
         var level=getLevel();
@@ -184,7 +190,7 @@ public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMac
                         "ctnh.restore_danger")
                 .addEnergyUsageExactLine(energy)
                 .addWorkingStatusLine();
-            textList.add(textList.size(),Component.translatable("ctnh.trap_electric_max",String.format("%d",max_eu)));
+            textList.add(textList.size(),Component.translatable("ctnh.trap_electric_max",String.format("%d",anti_nu)));
             textList.add(textList.size(),Component.translatable("ctnh.anti_electric",String.format("%d",anti_electron)));
             textList.add(textList.size(),Component.translatable("ctnh.anti_nu",String.format("%d",anti_nu)));
             textList.add(textList.size(),Component.translatable("ctnh.anti_proton",String.format("%d",anti_proton)));

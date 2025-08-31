@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.block;
 
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
+import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.DoublePlantBlock;
@@ -12,6 +13,6 @@ public class AstralTallGrassBlock extends DoublePlantBlock {
     }
     @Override
     protected boolean mayPlaceOn(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
-        return pState.is(CTNHBlocks.ASTRAL_DIRT.get()) || pState.is(CTNHBlocks.ASTRAL_GRASS_BLOCK.get());
+        return pState.is(AstralBlocks.ASTRAL_DIRT.get()) || pState.is(AstralBlocks.ASTRAL_GRASS_BLOCK.get());
     }
 }

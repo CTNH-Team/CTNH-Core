@@ -57,13 +57,13 @@ public class Arc_Generator extends WorkableElectricMultiblockMachine implements 
         super.addDisplayText(textList);
         var tier = getTier();
 
-        textList.add(textList.size(), Component.translatable("ctnh.arcgenerator.arc.1",String.format("%d",arc_max)));
-        textList.add(textList.size(), Component.translatable("ctnh.arcgenerator.arc.2",String.format("%d",arc)));
-        textList.add(textList.size(), Component.translatable("ctnh.arcgenerator.arc.3",String.format("%.2f",efficiency*100)));
-        textList.add(textList.size(), Component.translatable("ctnh.arcgenerator.arc.4",String.format("%.2f",rotor*100)));
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.arcgenerator.info.0",String.format("%d",arc_max)));
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.arcgenerator.info.1",String.format("%d",arc)));
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.arcgenerator.info.2",String.format("%.2f",efficiency*100)));
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.arcgenerator.info.3",String.format("%.2f",rotor*100)));
     }
     @Override
-    public boolean dampingWhenWaiting() {
+    public boolean regressWhenWaiting() {
         return false;
     }
 }

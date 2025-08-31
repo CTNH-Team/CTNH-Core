@@ -1,0 +1,82 @@
+{
+  "parent": "minecraft:block/block",
+  "loader": "gtceu:machine",
+  "machine": "ctnhcore:ev_chemical_generator",
+  "texture_overrides": {
+    "all": "gtceu:block/casings/mechanic/machine_casing_turbine_titanium"
+  },
+  "variants": {
+    "is_formed=false,recipe_logic_status=idle": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/mechanic/machine_casing_turbine_titanium",
+          "overlay_front": "ctnhcore:block/overlay/super_chemical/overlay_front"
+        }
+      }
+    },
+    "is_formed=false,recipe_logic_status=suspend": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/mechanic/machine_casing_turbine_titanium",
+          "overlay_front": "ctnhcore:block/overlay/super_chemical/overlay_front_paused"
+        }
+      }
+    },
+    "is_formed=false,recipe_logic_status=waiting": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/mechanic/machine_casing_turbine_titanium",
+          "overlay_front": "ctnhcore:block/overlay/super_chemical/overlay_front_active"
+        }
+      }
+    },
+    "is_formed=false,recipe_logic_status=working": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/mechanic/machine_casing_turbine_titanium",
+          "overlay_front": "ctnhcore:block/overlay/super_chemical/overlay_front_active"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=idle": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/mechanic/machine_casing_turbine_titanium",
+          "overlay_front": "ctnhcore:block/overlay/super_chemical/overlay_front"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=suspend": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/mechanic/machine_casing_turbine_titanium",
+          "overlay_front": "ctnhcore:block/overlay/super_chemical/overlay_front_paused"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=waiting": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/mechanic/machine_casing_turbine_titanium",
+          "overlay_front": "ctnhcore:block/overlay/super_chemical/overlay_front_active"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=working": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/mechanic/machine_casing_turbine_titanium",
+          "overlay_front": "ctnhcore:block/overlay/super_chemical/overlay_front_active"
+        }
+      }
+    }
+  }
+}

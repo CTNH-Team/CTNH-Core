@@ -190,8 +190,8 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
         return ModifierFunction.NULL;
     }
     public void addDisplayText(List<Component> textList) {
-        textList.add(textList.size(),Component.translatable("ctnh.pvdrone.t1",String.format("%d",eut)));
-        textList.add(textList.size(),Component.translatable("ctnh.pvdrone.t2",String.format("%.4f",num)));
+        textList.add(textList.size(),Component.translatable("ctnh.multiblock.pvdrone.info.t1",String.format("%d",eut)));
+        textList.add(textList.size(),Component.translatable("ctnh.multiblock.pvdrone.info.t2",String.format("%.4f",num)));
         super.addDisplayText(textList);
     }
 }

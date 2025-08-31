@@ -1,21 +1,16 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-import com.gregtechceu.gtceu.api.block.MaterialBlock;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
-import dev.arbor.gtnn.data.GTNNRecipeTypes;
-import dev.arbor.gtnn.data.GTNNRecipes;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.NanoscaleTriboelectricGenerator;
 import net.minecraft.network.chat.Component;
 
 import java.util.List;
@@ -77,8 +72,8 @@ public  int machine_tier=0;
         super.addDisplayText(textList);
         var tier = getTier();
 
-        textList.add(textList.size(), Component.translatable("ctnh.sinope.level",String.format("%d",machine_tier*2)));
-        textList.add(textList.size(), Component.translatable("ctnh.sinope.parallel",String.format("%d",parallel)));
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.sinope_chemical.info.level",String.format("%d",machine_tier*2)));
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.sinope_chemical.info.parallel",String.format("%d",parallel)));
     }
 
 }

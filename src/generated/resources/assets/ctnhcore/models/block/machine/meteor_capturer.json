@@ -1,0 +1,106 @@
+{
+  "parent": "minecraft:block/block",
+  "loader": "gtceu:machine",
+  "machine": "ctnhcore:meteor_capturer",
+  "texture_overrides": {
+    "all": "ctnhcore:block/casings/blood_casing"
+  },
+  "variants": {
+    "is_formed=false,recipe_logic_status=idle": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "ctnhcore:block/casings/blood_casing",
+          "overlay_back": "gtceu:block/machines/miner/overlay_back",
+          "overlay_front": "gtceu:block/machines/miner/overlay_front",
+          "overlay_side": "gtceu:block/machines/miner/overlay_side",
+          "overlay_top": "gtceu:block/machines/miner/overlay_top"
+        }
+      }
+    },
+    "is_formed=false,recipe_logic_status=suspend": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "ctnhcore:block/casings/blood_casing",
+          "overlay_back": "gtceu:block/machines/miner/overlay_back",
+          "overlay_front": "gtceu:block/machines/miner/overlay_front",
+          "overlay_side": "gtceu:block/machines/miner/overlay_side",
+          "overlay_top": "gtceu:block/machines/miner/overlay_top"
+        }
+      }
+    },
+    "is_formed=false,recipe_logic_status=waiting": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "ctnhcore:block/casings/blood_casing",
+          "overlay_back": "gtceu:block/machines/miner/overlay_back",
+          "overlay_front": "gtceu:block/machines/miner/overlay_front",
+          "overlay_side": "gtceu:block/machines/miner/overlay_side",
+          "overlay_top": "gtceu:block/machines/miner/overlay_top"
+        }
+      }
+    },
+    "is_formed=false,recipe_logic_status=working": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "ctnhcore:block/casings/blood_casing",
+          "overlay_back": "gtceu:block/machines/miner/overlay_back",
+          "overlay_front": "gtceu:block/machines/miner/overlay_front",
+          "overlay_side": "gtceu:block/machines/miner/overlay_side",
+          "overlay_top": "gtceu:block/machines/miner/overlay_top"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=idle": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "ctnhcore:block/casings/blood_casing",
+          "overlay_back": "gtceu:block/machines/miner/overlay_back",
+          "overlay_front": "gtceu:block/machines/miner/overlay_front",
+          "overlay_side": "gtceu:block/machines/miner/overlay_side",
+          "overlay_top": "gtceu:block/machines/miner/overlay_top"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=suspend": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "ctnhcore:block/casings/blood_casing",
+          "overlay_back": "gtceu:block/machines/miner/overlay_back",
+          "overlay_front": "gtceu:block/machines/miner/overlay_front",
+          "overlay_side": "gtceu:block/machines/miner/overlay_side",
+          "overlay_top": "gtceu:block/machines/miner/overlay_top"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=waiting": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "ctnhcore:block/casings/blood_casing",
+          "overlay_back": "gtceu:block/machines/miner/overlay_back",
+          "overlay_front": "gtceu:block/machines/miner/overlay_front",
+          "overlay_side": "gtceu:block/machines/miner/overlay_side",
+          "overlay_top": "gtceu:block/machines/miner/overlay_top"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=working": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "ctnhcore:block/casings/blood_casing",
+          "overlay_back": "gtceu:block/machines/miner/overlay_back",
+          "overlay_front": "gtceu:block/machines/miner/overlay_front",
+          "overlay_side": "gtceu:block/machines/miner/overlay_side",
+          "overlay_top": "gtceu:block/machines/miner/overlay_top"
+        }
+      }
+    }
+  }
+}

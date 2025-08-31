@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
@@ -66,7 +67,7 @@ public class MeadowMachine extends KineticWorkableMultiblockMachine {
             }
             var newrecipe = newrecipeBuilder.outputItems(new ItemStack(CTNHItems.ANIMAL_EXCRETA,mmachine.CowCount + mmachine.SheepCount + mmachine.ChickenCount + mmachine.PigCount))
                     .buildRawRecipe();
-            if (newrecipe.matchRecipe(mmachine).isSuccess()) {
+            if (RecipeHelper.matchRecipe(mmachine, newrecipe).isSuccess()) {
                 return recipe1 -> newrecipe;
             }
             return ModifierFunction.IDENTITY;

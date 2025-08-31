@@ -86,8 +86,8 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
     {
         List<ItemStack> ItemsRune = new ArrayList<>();
         List<ItemStack> ItemsFlower = new ArrayList<>();
-        TagKey<Item> RuneTag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), new ResourceLocation("botania", "runes"));
-        TagKey<Item> FlowerTag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), new ResourceLocation("botania", "generating_special_flowers"));
+        TagKey<Item> RuneTag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), ResourceLocation.tryBuild("botania", "runes"));
+        TagKey<Item> FlowerTag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), ResourceLocation.tryBuild("botania", "generating_special_flowers"));
         for (Item item : ForgeRegistries.ITEMS) {
             ItemStack itemStack = item.getDefaultInstance();
 
@@ -104,8 +104,8 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
     {
         List<ItemStack> ItemsRune = new ArrayList<>();
         List<ItemStack> ItemsFlower = new ArrayList<>();
-        TagKey<Item> RuneTag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), new ResourceLocation("botania", "runes"));
-        TagKey<Item> FlowerTag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), new ResourceLocation("botania", "generating_special_flowers"));
+        TagKey<Item> RuneTag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), ResourceLocation.tryBuild("botania", "runes"));
+        TagKey<Item> FlowerTag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), ResourceLocation.tryBuild("botania", "generating_special_flowers"));
         for (Item item : ForgeRegistries.ITEMS) {
             ItemStack itemStack = item.getDefaultInstance();
 
@@ -318,7 +318,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                 int temp=recipe.data.getInt("temp")/2;
                 mmachine.Temperature+=temp;
                 FluidStack pyrotheumFluid = new FluidStack(
-                        Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("gtceu:cryotheum"))),
+                        Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(ResourceLocation.tryParse("gtceu:cryotheum"))),
                         100
                 );
                 // 检查输入仓是否有足够流体
@@ -462,11 +462,11 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
         var tier = getTier();
         if(nutrition>1)
         {
-            textList.add(textList.size(),Component.translatable("ctnh.garden.eat",String.format("%.1f",nutrition)));
+            textList.add(textList.size(),Component.translatable("ctnh.eternalgarden.info.eat",String.format("%.1f",nutrition)));
         }
         if(Temperature>0)
         {
-            textList.add(textList.size(),Component.translatable("ctnh.garden.fire",String.format("%d",Temperature)));
+            textList.add(textList.size(),Component.translatable("ctnh.eternalgarden.info.fire",String.format("%d",Temperature)));
         }
     }
 }

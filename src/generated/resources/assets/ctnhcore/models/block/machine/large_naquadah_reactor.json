@@ -1,0 +1,86 @@
+{
+  "parent": "minecraft:block/block",
+  "loader": "gtceu:machine",
+  "machine": "ctnhcore:large_naquadah_reactor",
+  "texture_overrides": {
+    "all": "ctnhcore:block/casings/solid/radiation_proof_machine_casing"
+  },
+  "variants": {
+    "is_formed=false,recipe_logic_status=idle": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "ctnhcore:block/casings/solid/radiation_proof_machine_casing",
+          "overlay_front": "ctnhcore:block/multiblock/large_naquadah_reactor/overlay_front"
+        }
+      }
+    },
+    "is_formed=false,recipe_logic_status=suspend": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "ctnhcore:block/casings/solid/radiation_proof_machine_casing",
+          "overlay_front": "ctnhcore:block/multiblock/large_naquadah_reactor/overlay_front"
+        }
+      }
+    },
+    "is_formed=false,recipe_logic_status=waiting": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "ctnhcore:block/casings/solid/radiation_proof_machine_casing",
+          "overlay_front": "ctnhcore:block/multiblock/large_naquadah_reactor/overlay_front_active",
+          "overlay_front_emissive": "ctnhcore:block/multiblock/large_naquadah_reactor/overlay_front_active_emissive"
+        }
+      }
+    },
+    "is_formed=false,recipe_logic_status=working": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "ctnhcore:block/casings/solid/radiation_proof_machine_casing",
+          "overlay_front": "ctnhcore:block/multiblock/large_naquadah_reactor/overlay_front_active",
+          "overlay_front_emissive": "ctnhcore:block/multiblock/large_naquadah_reactor/overlay_front_active_emissive"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=idle": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "ctnhcore:block/casings/solid/radiation_proof_machine_casing",
+          "overlay_front": "ctnhcore:block/multiblock/large_naquadah_reactor/overlay_front"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=suspend": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "ctnhcore:block/casings/solid/radiation_proof_machine_casing",
+          "overlay_front": "ctnhcore:block/multiblock/large_naquadah_reactor/overlay_front"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=waiting": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "ctnhcore:block/casings/solid/radiation_proof_machine_casing",
+          "overlay_front": "ctnhcore:block/multiblock/large_naquadah_reactor/overlay_front_active",
+          "overlay_front_emissive": "ctnhcore:block/multiblock/large_naquadah_reactor/overlay_front_active_emissive"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=working": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "ctnhcore:block/casings/solid/radiation_proof_machine_casing",
+          "overlay_front": "ctnhcore:block/multiblock/large_naquadah_reactor/overlay_front_active",
+          "overlay_front_emissive": "ctnhcore:block/multiblock/large_naquadah_reactor/overlay_front_active_emissive"
+        }
+      }
+    }
+  }
+}

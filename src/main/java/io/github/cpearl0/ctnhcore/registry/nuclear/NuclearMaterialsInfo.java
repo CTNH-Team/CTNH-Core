@@ -3,8 +3,8 @@ package io.github.cpearl0.ctnhcore.registry.nuclear;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
-import com.gregtechceu.gtceu.common.data.GTElements;
-import dev.arbor.gtnn.data.GTNNElement;
+import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialBuilder;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialIconSet;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
@@ -14,9 +14,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
-import static com.gregtechceu.gtceu.common.data.GTElements.*;
+import static com.gregtechceu.gtceu.common.data.GTElements.Pu;
+import static com.gregtechceu.gtceu.common.data.GTElements.U;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static dev.arbor.gtnn.data.GTNNMaterials.Thorium232;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearElements.*;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.*;
 
@@ -25,7 +25,7 @@ public class NuclearMaterialsInfo {
     public static Set<Material> decayMaterial = new HashSet<>();
     public static void register() {
         //basic material
-        Uranium = new CTNHMaterialBuilder(GTCEu.id("uranium"))
+        Uranium = new CTNHMaterialBuilder(GTCEu.id("uranium_raw"))
                 .ingot()
                 .ore()
                 .color(0x1c991c)
@@ -34,7 +34,7 @@ public class NuclearMaterialsInfo {
                 .iconSet(MaterialIconSet.SHINY)
                 .radioactiveHazard(1)
                 .register();
-        Plutonium = new CTNHMaterialBuilder(GTCEu.id("plutonium"))
+        Plutonium = new CTNHMaterialBuilder(GTCEu.id("plutonium_raw"))
                 .ingot()
                 .ore()
                 .color(0x9e1616)
@@ -151,7 +151,13 @@ public class NuclearMaterialsInfo {
                 .radioactiveHazard(1)
                 .register();
         // thorium_232
-        Thorium232.getProperties().ensureSet(CTNHPropertyKeys.NUCLEAR);
+        Thorium232 = new CTNHMaterialBuilder(GTCEu.id("thorium_232"))
+                .nuclear(true, false)
+                .ingot(3)
+                .liquid(new FluidBuilder().temperature(1405))
+                .color(0x2c9f2c)
+                .secondaryColor(0x33342c).iconSet(MaterialIconSet.RADIOACTIVE).appendFlags(GTMaterials.EXT_METAL)
+                .element(NuclearElements.Th232).buildAndRegister();
         fertileMaterial.add(Thorium232);
         CarbideThorium232 = new CTNHMaterialBuilder(GTCEu.id("carbide_thorium_232"))
                 .nuclear(false, false)

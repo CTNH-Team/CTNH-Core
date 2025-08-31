@@ -1,32 +1,100 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import appeng.core.definitions.AEBlocks;
+import appeng.core.definitions.AEItems;
 import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.item.AetherItems;
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty;
+import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
+import com.gregtechceu.gtceu.api.data.chemical.material.registry.MaterialRegistry;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
+import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import dev.arbor.gtnn.data.GTNNMaterials;
 import earth.terrarium.adastra.common.registry.ModBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.data.materials.*;
+import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
-import lombok.Generated;
-import net.minecraft.server.commands.PublishCommand;
+import mythicbotany.register.ModItems;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
 import vazkii.botania.common.block.BotaniaBlocks;
+import vazkii.botania.common.item.BotaniaItems;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.*;
-import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.*;
+import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.HIGHER;
+import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.HIGHEST;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
+import static io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes.hyperRotor;
+import static wayoftime.bloodmagic.api.compat.EnumDemonWillType.CORROSIVE;
 
 public class CTNHMaterials {
+    public static void addFluid(Material material) {
+        if (!material.hasProperty(PropertyKey.FLUID)) {
+            material.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        }
+    }
+    public static void addDust(Material material) {
+        if (!material.hasProperty(PropertyKey.DUST)) {
+            material.setProperty(PropertyKey.DUST, new DustProperty());
+        }
+    }
+    public static void addOre(Material... materials) {
+        materials[0].setProperty(PropertyKey.ORE, new OreProperty());
+        if (materials.length == 2 && materials[1] != null) {
+            var oreProperty = materials[0].getProperty(PropertyKey.ORE);
+            oreProperty.setDirectSmeltResult(materials[1]);
+            oreProperty.setOreByProducts(materials[1]);
+            oreProperty.setSeparatedInto(materials[1]);
+        }
+    }
+    public static void addGas(Material material) {
+        if (!material.hasProperty(PropertyKey.FLUID)) {
+            material.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.GAS, new FluidBuilder()));
+        }
+    }
+    public static void adjustAluminium(Material raw) {
+        var ores = raw.getProperty(PropertyKey.ORE).getOreByProducts();
+        var newOre = ores.stream().map(ore -> {
+            if (ore.equals(Aluminium)) {
+                return Alumina;
+            }
+            else return ore;
+        }).toList();
+        raw.getProperty(PropertyKey.ORE).getOreByProducts().clear();
+        raw.getProperty(PropertyKey.ORE).setOreByProducts(newOre);
+    }
+    public static void adjustPlatinum(Material raw) {
+        var ores = raw.getProperty(PropertyKey.ORE).getOreByProducts();
+        var newOre = ores.stream().map(ore -> {
+            if (ore.equals(Platinum)) {
+                return PlatinumOre;
+            }
+            else return ore;
+        }).toList();
+        raw.getProperty(PropertyKey.ORE).getOreByProducts().clear();
+        raw.getProperty(PropertyKey.ORE).setOreByProducts(newOre);
+    }
+    public static void adjustPalladium(Material raw) {
+        var ores = raw.getProperty(PropertyKey.ORE).getOreByProducts();
+        var newOre = ores.stream().map(ore -> {
+            if (ore.equals(Palladium)) {
+                return PalladiumOre;
+            }
+            else return ore;
+        }).toList();
+        raw.getProperty(PropertyKey.ORE).getOreByProducts().clear();
+        raw.getProperty(PropertyKey.ORE).setOreByProducts(newOre);
+    }
     // Ad Astra
     public static final Material Moonstone = new Material.Builder(CTNHCore.id("moon_stone"))
             .dust()
@@ -55,6 +123,12 @@ public class CTNHMaterials {
             .dust()
             .color(0xababab).secondaryColor(0x757575).iconSet(ROUGH)
             .flags(DECOMPOSITION_BY_CENTRIFUGING)
+            .buildAndRegister();
+
+    public static final Material AstralStone = new Material.Builder(CTNHCore.id("astral_stone"))
+            .dust()
+            .color(0xc6b2e8)
+            .iconSet(ROUGH)
             .buildAndRegister();
 
     // Aether
@@ -156,7 +230,7 @@ public class CTNHMaterials {
             .buildAndRegister();
     public static final Material Starmetal = new Material.Builder(GTCEu.id("starmetal"))
             .ingot()
-            .liquid()
+            .liquid(new FluidBuilder().textures(true,true).block())
             .plasma()
             .addOreByproducts(GTMaterials.Sapphire, GTMaterials.Polonium)
             .radioactiveHazard(6)
@@ -385,7 +459,7 @@ public class CTNHMaterials {
             .ore()
             .buildAndRegister();
     public static final Material ImpureOil = new Material.Builder(GTCEu.id("impure_oil"))
-            .liquid()
+            .liquid(new FluidBuilder().block())
             .color(0x171717)
             .buildAndRegister();
     public static final Material SimpleGrowthMedium = new Material.Builder(GTCEu.id("simple_growth_medium"))
@@ -425,12 +499,33 @@ public class CTNHMaterials {
             .color(0x7D26CD)
             .secondaryColor(0x836FFF)
             .buildAndRegister();
-    public static final Material AlfSteel = new Material.Builder(GTCEu.id("alfsteel"))
+    public static final Material AERIALITE = new Material.Builder(GTCEu.id("aerialite"))
             .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
             .ingot()
-            .color(0xFD9D31)
+            .color(0x4D66B3)
             .iconSet(METALLIC)
-            .cableProperties(GTValues.V[GTValues.EV], 6, 1, false)
+            .cableProperties(GTValues.V[HV], 6, 2, false)
+            .buildAndRegister();
+    public static final Material SHADOWIUM = new Material.Builder(GTCEu.id("shadowium"))
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+            .ingot()
+            .color(0x666666)
+            .iconSet(METALLIC)
+            .cableProperties(GTValues.V[HV], 6, 7, false)
+            .buildAndRegister();
+    public static final Material ORICHALCOS = new Material.Builder(GTCEu.id("orichalcos"))
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+            .ingot()
+            .color(0X8000FF)
+            .iconSet(METALLIC)
+            .cableProperties(GTValues.V[IV], 12, 1, false)
+            .buildAndRegister();
+    public static final Material PHOTONIUM = new Material.Builder(GTCEu.id("photonium"))
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+            .ingot()
+            .color(0XCCCCCC)
+            .iconSet(METALLIC)
+            .cableProperties(GTValues.V[HV], 6, 7, false)
             .buildAndRegister();
 
     public static final Material Ignitium = new Material.Builder(GTCEu.id("ignitium"))
@@ -549,13 +644,347 @@ public class CTNHMaterials {
     public static  final Material COLORFUL_GEM=new Material.Builder(GTCEu.id("colorful_gem"))
             .gem()
             .element(CTNHElements.COLORFUL_GEM)
-            .color(0xFF0000) // 主颜色设为红色
+            .color(0xFF0000)
             .secondaryColor(0x0000FF)
             .buildAndRegister();
+    public static final Material RhodiumSulfurCrystal = new Material.Builder(GTCEu.id("rhodium_sulfur_crystal"))
+            .gem().ore()
+            .color(0xFFD700).secondaryColor(0xC0C0C0)
+            .iconSet(GEM_VERTICAL)
+            .flags(GENERATE_LENS, PHOSPHORESCENT, NO_SMASHING)
+            .components(RhodiumSulfate, 1, Sulfur, 3)
+            .addOreByproducts(Sulfur, RhodiumSulfate, Pyrite)
+            .buildAndRegister();
+    public static final Material RutheniumAmalgam = new Material.Builder(GTCEu.id("ruthenium_amalgam"))
+            .ingot().ore()
+            .liquid(new FluidBuilder().temperature(350))
+            .color(0x2E8B57).secondaryColor(0x228B22)
+            .iconSet(SHINY)
+            .flags(GENERATE_FOIL, GENERATE_FINE_WIRE, STICKY)
+            .components(Ruthenium, 1, Mercury, 2)
+            .addOreByproducts(Mercury, RutheniumTetroxide, Cinnabar)
+            .buildAndRegister();
+    public static final Material OsmiumIronSpinel = new Material.Builder(GTCEu.id("osmium_iron_spinel"))
+            .gem().ore()
+            .color(0x000080).secondaryColor(0x000000)
+            .iconSet(DIAMOND)
+            .flags(GENERATE_PLATE, GENERATE_ROD, CRYSTALLIZABLE)
+            .components(Osmium, 1, Iron, 2, Oxygen, 4)
+            .addOreByproducts(RarestMetalMixture, Iron, Cinnabar)
+            .buildAndRegister();
+    public static final Material MeteoricTroilite = new Material.Builder(GTCEu.id("meteoric_troilite"))
+            .ore()
+            .color(0x696969).secondaryColor(0x2F4F4F)
+            .iconSet(METALLIC)
+            .flags(DECOMPOSITION_BY_ELECTROLYZING)
+            .components(Iron, 1, Nickel, 1, Sulfur, 1)
+            .addOreByproducts(Nickel, Platinum, Iridium)
+            .buildAndRegister();
+    public static final Material PalladiumSulfide = new Material.Builder(GTCEu.id("palladium_sulfide"))
+            .gem().ore()
+            .color(0xE6E6FA).secondaryColor(0xD8BFD8)
+            .iconSet(GEM_HORIZONTAL)
+            .flags(GENERATE_LENS, GENERATE_PLATE)
+            .components(Palladium, 1, Sulfur, 1)
+            .addOreByproducts(Palladium, Sulfur, Platinum)
+            .buildAndRegister();
+    public static final Material SolarFlareBlackDiamond = new Material.Builder(GTCEu.id("solar_flare_black_diamond"))
+            .gem().ore()
+            .color(0x000000).secondaryColor(0xFF4500)
+            .iconSet(RUBY)
+            .flags(GENERATE_LENS, PHOSPHORESCENT, NO_WORKING)
+            .addOreByproducts(Diamond, NetherQuartz, Glowstone)
+            .buildAndRegister();
+    public static final Material Cerite = new Material.Builder(GTCEu.id("cerite"))
+            .ore()
+            .color(0xE6D8AD).secondaryColor(0xC9B37E)
+            .iconSet(ROUGH)
+            .flags(DECOMPOSITION_BY_CENTRIFUGING)
+            .components(Cerium, 1, Silicon, 1, Oxygen, 3)
+            .addOreByproducts(Lanthanum, Neodymium, Praseodymium)
+            .buildAndRegister();
+    public static final Material EuropiumFluorite = new Material.Builder(GTCEu.id("europium_fluorite"))
+            .gem().ore()
+            .color(0xDA70D6).secondaryColor(0x9932CC)
+            .iconSet(OPAL)
+            .flags(PHOSPHORESCENT, GENERATE_LENS)
+            .components(Europium, 1, Calcium, 1, Fluorine, 2)
+            .addOreByproducts(Lanthanum, Yttrium, Terbium)
+            .buildAndRegister();
+    public static final Material GadoliniteSm = new Material.Builder(GTCEu.id("gadolinite_sm"))
+            .ore()
+            .color(0x2F4F4F).secondaryColor(0x1E3D3D)
+            .iconSet(DULL)
+            .components(Samarium, 1, Iron, 1, Beryllium, 1, Silicon, 2, Oxygen, 8)
+            .addOreByproducts(Yttrium, Erbium, Terbium)
+            .buildAndRegister();
+    public static final Material Sperrylite = new Material.Builder(GTCEu.id("sperrylite"))
+            .ore()
+            .color(0x8B8B83).secondaryColor(0x696969)
+            .iconSet(SHINY)
+            .components(Platinum, 1, Arsenic, 2)
+            .addOreByproducts(Nickel, Cobalt, Iron)
+            .buildAndRegister();
+    public static final Material Wolframite = new Material.Builder(GTCEu.id("wolframite"))
+            .ore()
+            .color(0x4B3A26).secondaryColor(0x2F1B0C)
+            .iconSet(DULL)
+            .components(Iron, 1, Manganese, 1, Tungsten, 1, Oxygen, 4)
+            .addOreByproducts(Tin, Molybdenum, Bismuth)
+            .buildAndRegister();
+    public static final Material Germanite = new Material.Builder(GTCEu.id("germanite"))
+            .ore()
+            .color(0x708090).secondaryColor(0x2F4F4F)
+            .iconSet(METALLIC)
+            .components(Copper, 3, Germanium, 1, Gallium, 1, Sulfur, 4)
+            .addOreByproducts(Zinc, Arsenic, Selenium)
+            .buildAndRegister();
+    public static final Material Bismuthinite = new Material.Builder(GTCEu.id("bismuthinite"))
+            .ore()
+            .color(0x9C9C9C).secondaryColor(0x7A7A7A)
+            .iconSet(METALLIC)
+            .components(Bismuth, 2, Sulfur, 3)
+            .addOreByproducts(Lead, Antimony, Silver)
+            .buildAndRegister();
+    public static final Material Yttrofluorite = new Material.Builder(GTCEu.id("yttrofluorite"))
+            .ore()
+            .color(0x77DD77).secondaryColor(0x50C878)
+            .iconSet(OPAL)
+            .components(Calcium, 1, Yttrium, 1, Fluorine, 4)
+            .addOreByproducts(Lanthanum, Cerium, Neodymium)
+            .buildAndRegister();
+    public static final Material Tarkianite = new Material.Builder(GTCEu.id("tarkianite"))
+            .ore()
+            .color(0x4682B4).secondaryColor(0x1E90FF)
+            .iconSet(SHINY)
+            .components(Rhenium, 1, Molybdenum, 1, Sulfur, 4)
+            .addOreByproducts(Copper, Silver, Gold)
+            .buildAndRegister();
+    public static final Material Crocoite = new Material.Builder(GTCEu.id("crocoite"))
+            .ore()
+            .color(0xD22B2B).secondaryColor(0x8B0000)
+            .iconSet(RUBY)
+            .components(Lead, 1, Chromium, 1, Oxygen, 4)
+            .addOreByproducts(Lead, Vanadium, Zinc)
+            .buildAndRegister();
+    public static final Material Smithsonite = new Material.Builder(GTCEu.id("smithsonite"))
+            .ore()
+            .color(0x7FFFD4).secondaryColor(0x66CDAA)
+            .iconSet(OPAL)
+            .components(Zinc, 1, Carbon, 1, Oxygen, 3)
+            .addOreByproducts(Calcium, Iron, Magnesium)
+            .buildAndRegister();
+    public static final Material Roquesite = new Material.Builder(GTCEu.id("roquesite"))
+            .ore()
+            .color(0x9370DB).secondaryColor(0x8A2BE2)
+            .iconSet(SHINY)
+            .components(Copper, 1, Indium, 1, Sulfur, 2)
+            .addOreByproducts(Gallium, Silver, Cadmium)
+            .buildAndRegister();
+    public static final Material Rheniite = new Material.Builder(GTCEu.id("rheniite"))
+            .ore()
+            .color(0xA9A9A9).secondaryColor(0x808080)
+            .iconSet(METALLIC)
+            .components(Rhenium, 1, Sulfur, 2)
+            .addOreByproducts(Molybdenum, Copper, Platinum)
+            .buildAndRegister();
 
+    public static Material AndesiteAlloy;
+    public static Material Desh;
+    public static Material Ostrum;
+    public static Material Calorite;
+    public static Material SpaceNeutronium;
+    public static Material InfinityCatalyst;
+    public static Material RP1;
+    public static Material RP1RocketFuel;
+    public static Material Kerosene;
+    public static Material DenseHydrazineMixedFuel;
+    public static Material Hydrazine;
+    public static Material EthylAnthraQuinone;
+    public static Material EthylAnthraHydroQuinone;
+    public static Material Anthracene;
+    public static Material MethylhydrazineNitrateRocketFuel;
+    public static Material MethylHydrazine;
+    public static Material UDMHRocketFuel;
+    public static Material UDMH;
+    public static Material OrangeMetal;
+    public static Material PhthalicAnhydride;
+    public static Material VanadiumPentoxide;
+    public static Material BlackMatter;
+    public static Material Cerrobase140;
+    public static Material PotassiumPyrosulfate;
+    public static Material SodiumSulfate;
+    public static Material ZincSulfate;
+    public static Material Wollastonite;
+    public static Material ArcaneCrystal;
+    public static Material ManaSteel;
+    public static Material TerraSteel;
+    public static Material Elementium;
+    public static Material AlfSteel;
+    public static Material RefinedRadiance;
+    public static Material ShadowSteel;
+    public static Material Kaolinite;
+    public static Material Dolomite;
+    public static Material IridiumDioxide;
+    public static Material NaquadahOxideMixture;
+    public static Material EnrichedNaquadahOxideMixture;
+    public static Material NaquadriaOxideMixture;
+    public static Material HexafluorideEnrichedNaquadahSolution;
+    public static Material XenonHexafluoroEnrichedNaquadate;
+    public static Material PalladiumOnCarbon;
+    public static Material GoldTrifluoride;
+    public static Material EnrichedNaquadahResidueSolution;
+    public static Material XenoauricFluoroantimonicAcid;
+    public static Material GoldChloride;
+    public static Material BromineTrifluoride;
+    public static Material HexafluorideNaquadriaSolution;
+    public static Material RadonDifluoride;
+    public static Material RadonNaquadriaOctafluoride;
+    public static Material NaquadriaResidueSolution;
+    public static Material CaesiumFluoride;
+    public static Material XenonTrioxide;
+    public static Material CaesiumXenontrioxideFluoride;
+    public static Material NaquadriaCaesiumXenonnonfluoride;
+    public static Material RadonTrioxide;
+    public static Material NaquadriaCaesiumfluoride;
+    public static Material NitrosoniumOctafluoroxenate;
+    public static Material NitrylFluoride;
+    public static Material AcidicNaquadriaCaesiumfluoride;
+    public static Material GraphiteUraniumMixture;
+    public static Material UraniumCarbideThoriumMixture;
+    public static Material PlutoniumOxideUraniumMixture;
+    public static Material ThoriumBasedLiquidFuelExcited;
+    public static Material ThoriumBasedLiquidFuelDepleted;
+    public static Material ThoriumBasedLiquidFuel;
+    public static Material UraniumBasedLiquidFuelExcited;
+    public static Material UraniumBasedLiquidFuelDepleted;
+    public static Material UraniumBasedLiquidFuel;
+    public static Material PlutoniumBasedLiquidFuelExcited;
+    public static Material PlutoniumBasedLiquidFuelDepleted;
+    public static Material PlutoniumBasedLiquidFuel;
+    public static Material RadiationProtection;
+    public static Material NaquadahBasedLiquidFuel;
+    public static Material NaquadahBasedLiquidFuelExcited;
+    public static Material NaquadahBasedLiquidFuelDepleted;
+    public static Material IodizedBrine;
+    public static Material IodineBrineMixture;
+    public static Material BrominatedBrine;
+    public static Material IodineSlurry;
+    public static Material AcidicBrominatedBrine;
+    public static Material BromineSulfateSolution;
+    public static Material OverheatedBromineSulfateSolution;
+    public static Material WetBromine;
+    public static Material DebrominatedWater;
+    public static Material NeutroniumMixture;
+    public static Material MARM200Steel;
+    //新铂线
+    public static Material PlatinumOre;
+    public static Material PalladiumOre;
+    public static Material GoldPlatinumPalladiumAcidSolution;
+    public static Material DenitratedGoldPlatinumPalladiumSolution;
+    public static Material FerricSulfate;
+    public static Material FerrousSulfate;
+    public static Material ChloroplatinicChloropalladicSolution;
+    public static Material AmmoniumChloroplatinate;
+    public static Material AmmoniaMonohydrate;
+    public static Material Diamminedichloropalladium;
+    public static Material SpongePalladium;
+    public static Material SpongePlatinum;
+    public static Material ChloropalladicAcidMixture;
+    public static Material PlatinumGroupResidue;     // 铂族贵金属残渣
+    public static Material Litharge;                // 密陀僧（PbO）
+    public static Material NobleLead;               // 贵铅（Pb/Ag/Au）
+    public static Material NitricLeachSolution;    // 硝酸浸没溶液
+    public static Material EnrichedInertMixture;    // 富集惰性混合物（Rh/Ir/Ru）
+    public static Material RhodiumSulfateSolution; // 含硫酸铑水溶液
+    public static Material RhodiumHydroxide;       // 氢氧化铑
+    public static Material ChlororhodicAcid;       // 氯铑酸（H₃[RhCl₆]）
+    public static Material ConcentratedAmmoniumChlororhodate; // 浓缩氯铑酸铵溶液
+    public static Material AmmoniumChlororhodate;  // 氯铑酸铵（(NH₄)₃[RhCl₆]）
+    public static Material SpongeRhodium;          // 海绵铑
+    public static Material PreciousMetalMixture;
+    public static Material AmmoniumChlororhodateSolution;
+    public static Material SodiumOsmateRuthenateSolution;
+    public static Material SodiumPeroxide;
+    public static Material ChlorosmicAcidEthanolSolution;
+    public static Material ChlororuthenicAcidEthanolSolution;
+    public static Material ChlorosmicAcidGas;
+    public static Material ChlororuthenicAcidGas;
+    public static Material AmmoniumChlorosmate;
+    public static Material AmmoniumChlororuthenate;
+    public static Material SodiumOsmateRuthenateChlorideSolution;
+    public static Material Acetaldehyde;
     public static void init() {
-        CombustibleIce.setFormula("(CH4)(H2O)", true);
         NuclearMaterials.init();
+        CreateMaterials.init();
+        BotaniaMaterials.init();
+        AdastraMaterials.init();
+        PlatinumLineMaterials.init();
+        NaquadahMaterials.init();
+        BrineChain.init();
+        SecondMaterials.init();
+        OrdinaryMaterials.init();
+        CombustibleIce.setFormula("(CH4)(H2O)", true);
+
+        var ore = new OreProperty();
+        ore.addOreByProducts(Arsenic);
+        ArsenicTrioxide.setProperty(PropertyKey.ORE, ore);
+
+        addGas(Oganesson);
+        addGas(Calcium);
+        addFluid(Californium);
+        addFluid(Caesium);
+        addFluid(AmmoniumChloride);
+        addDust(Praseodymium);
+
+
+        adjustAluminium(Almandine);
+        adjustAluminium(Emerald);
+        adjustAluminium(GreenSapphire);
+        adjustAluminium(Sapphire);
+        adjustAluminium(Spodumene);
+        adjustAluminium(GlauconiteSand);
+        adjustAluminium(Pollucite);
+        adjustAluminium(Bentonite);
+        adjustAluminium(FullersEarth);
+        adjustAluminium(Kyanite);
+        adjustAluminium(Mica);
+        adjustAluminium(Zeolite);
+
+        adjustPlatinum(Nickel);
+
+        adjustPalladium(Cooperite);
+        adjustPalladium(Platinum);
+        var oreProp = Naquadah.getProperty(PropertyKey.ORE);
+        oreProp.getOreByProducts().clear();
+        oreProp.setOreByProducts(Sulfur, Barite, EnrichedNaquadahOxideMixture);
+        oreProp.getSeparatedInto().clear();
+        oreProp.setSeparatedInto(EnrichedNaquadahOxideMixture);
+
+        //Enable Dense Plate for Hyper Rotor
+        for (MaterialRegistry registry : GTCEuAPI.materialManager.getRegistries())
+            for (Material material : registry.getAllMaterials())
+                if (material.hasAnyOfFlags(MaterialFlags.GENERATE_ROTOR, GENERATE_HYPER_ROTOR)
+                        && !material.hasFlag(GENERATE_DENSE))
+                    material.addFlags(GENERATE_DENSE);
+
+    }
+    public static void tagPrefixIgnore() {
+        TagPrefix.ingot.setIgnored(ManaSteel, BotaniaItems.manaSteel);
+        TagPrefix.nugget.setIgnored(ManaSteel, BotaniaItems.manasteelNugget);
+        TagPrefix.block.setIgnored(ManaSteel, BotaniaBlocks.manasteelBlock);
+        TagPrefix.ingot.setIgnored(TerraSteel, BotaniaItems.terrasteel);
+        TagPrefix.nugget.setIgnored(TerraSteel, BotaniaItems.terrasteelNugget);
+        TagPrefix.block.setIgnored(TerraSteel, BotaniaBlocks.terrasteelBlock);
+        TagPrefix.ingot.setIgnored(Elementium, BotaniaItems.elementium);
+        TagPrefix.nugget.setIgnored(Elementium, BotaniaItems.elementiumNugget);
+        TagPrefix.block.setIgnored(Elementium, BotaniaBlocks.elementiumBlock);
+        TagPrefix.ingot.setIgnored(AlfSteel, ModItems.alfsteelIngot);
+        TagPrefix.nugget.setIgnored(AlfSteel, ModItems.alfsteelNugget);
+        TagPrefix.block.setIgnored(AlfSteel, mythicbotany.register.ModBlocks.alfsteelBlock);
+        TagPrefix.gem.setIgnored(GTMaterials.CertusQuartz, AEItems.CERTUS_QUARTZ_CRYSTAL);
+        TagPrefix.block.setIgnored(GTMaterials.CertusQuartz, AEBlocks.QUARTZ_BLOCK);
+
         TagPrefix.block.setIgnored(Moonstone, ModBlocks.MOON_STONE);
         TagPrefix.block.setIgnored(Marsstone, ModBlocks.MARS_STONE);
         TagPrefix.block.setIgnored(Venusstone, ModBlocks.VENUS_STONE);
@@ -577,6 +1006,8 @@ public class CTNHMaterials {
         TagPrefix.block.setIgnored(Stratus, DABlocks.STRATUS_BLOCK);
 
         TagPrefix.block.setIgnored(Livingrock, BotaniaBlocks.livingrock);
+
+        hyperRotor.setIgnored(Neutronium);
     }
 
     public static class MaterialIcons {

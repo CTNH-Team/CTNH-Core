@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
@@ -46,6 +47,8 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
     public int Speed_rune = 0;
     public int Capacity_rune = 0;
     public int Augmented_rune = 0;
+    public BlockPos pos1 = BlockPos.ZERO;
+    public BlockPos pos2 = BlockPos.ZERO;
     public BlockPos[] Runes = new BlockPos[]{
             MachineUtils.getOffset(this,0,34,-5),
             MachineUtils.getOffset(this,1,34,-5),
@@ -162,8 +165,6 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
         return machineStorage.getStackInSlot(0);
     }
     public double getTotalWillDifference() {
-        var pos1 = MachineUtils.getOffset(this,10,0,-10);
-        var pos2 = MachineUtils.getOffset(this,-10,0,10);
         double difference = 0;
         if (type == EnumDemonWillType.DEFAULT) {
             for (EnumDemonWillType type1 : EnumDemonWillType.values()) {
@@ -203,8 +204,6 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
         }
     }
     public void calculateDiversity() {
-        var pos1 = MachineUtils.getOffset(this,10,0,2);
-        var pos2 = MachineUtils.getOffset(this,-10,0,2);
         double total1 = 0;
         double total2 = 0;
         double diversity1 = 1.2;
@@ -277,11 +276,20 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
             }
         }
     }
+    public double difference_caculate(double difference)
+    {
+        var num=0.0;
+        if(difference<400)
+            num=Math.pow(difference,2);
+        else
+            num=Math.pow(400,2)+(difference-400);
+        return num;
+    }
     public double getBoostRate() {
         return 2 + 0.5 * Sacrifice_rune;
     }
     public GTRecipe getBloodRecipe() {
-        return GTRecipeBuilder.ofRaw().inputFluids(FluidIngredient.of(100,BloodMagicFluids.LIFE_ESSENCE_FLUID_FLOWING.get())).buildRawRecipe();
+        return GTRecipeBuilder.ofRaw().inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 100)).buildRawRecipe();
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         if (machine instanceof DemonWillMachine dmachine) {
@@ -289,10 +297,10 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
             var diversity = dmachine.diversity;
             var modifierFunction = ModifierFunction.builder().durationMultiplier(1 + dmachine.Speed_rune * 0.2);
             if (dmachine.isBoosted) {
-                modifierFunction.eutMultiplier(diversity*Math.pow(difference,2)* dmachine.getBoostRate());
+                modifierFunction.eutMultiplier(diversity*dmachine.difference_caculate(difference)* dmachine.getBoostRate());
             }
             else {
-                modifierFunction.eutMultiplier(diversity*Math.pow(difference,2));
+                modifierFunction.eutMultiplier(diversity*dmachine.difference_caculate(difference));
             }
             return modifierFunction.build();
         }
@@ -301,12 +309,19 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
     @Override
     public boolean onWorking() {
         boolean value = super.onWorking();
+        if (getOffsetTimer() % 20 == 0) {
+            if (!type.equals(EnumDemonWillType.DEFAULT)) {
+                double random = Math.random();
+                if (random < 0.05)
+                    getMachineStorageItem().shrink(1);
+            }
+        }
         long totalContinuousRunningTime = recipeLogic.getTotalContinuousRunningTime();
         // check boost fluid
         if ((totalContinuousRunningTime == 1 || totalContinuousRunningTime % 20 == 0)) {
             var boosterRecipe = getBloodRecipe();
-            this.isBoosted = boosterRecipe.matchRecipe(this).isSuccess() &&
-                    boosterRecipe.handleRecipeIO(IO.IN, this, this.recipeLogic.getChanceCaches());
+            this.isBoosted = RecipeHelper.matchRecipe(this, boosterRecipe).isSuccess() &&
+                    RecipeHelper.handleRecipeIO(this, boosterRecipe, IO.IN, this.recipeLogic.getChanceCaches()).isSuccess();
         }
         return value;
     }
@@ -325,6 +340,8 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
 
     @Override
     public void onStructureFormed() {
+        pos1 = MachineUtils.getOffset(this,10,0,-10);
+        pos2 = MachineUtils.getOffset(this,-10,0,10);
         resetMode();
         calculateRune();
         super.onStructureFormed();
@@ -353,7 +370,7 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
         return MANAGED_FIELD_HOLDER;
     }
     @Override
-    public boolean dampingWhenWaiting() {
+    public boolean regressWhenWaiting() {
         return false;
     }
 }

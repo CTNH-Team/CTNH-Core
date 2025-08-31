@@ -1,15 +1,30 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
+import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
+import com.gregtechceu.gtceu.api.capability.recipe.RecipeCapability;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
+import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
+import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
+import com.gregtechceu.gtceu.api.recipe.content.Content;
+import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachine;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
+import earth.terrarium.botarium.common.registry.fluid.FluidData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.FUSION_REACTOR;
@@ -17,48 +32,76 @@ import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.FUSION_
 public class MachineUtils {
     public static boolean inputItem(ItemStack itemStack, WorkableMultiblockMachine machine) {
         var Recipe = GTRecipeBuilder.ofRaw().inputItems(itemStack).buildRawRecipe();
-        if (Recipe.matchRecipe(machine).isSuccess()) {
-            Recipe.handleRecipeIO(IO.IN, machine, machine.getRecipeLogic().getChanceCaches());
+        if (RecipeHelper.matchRecipe(machine, Recipe).isSuccess()) {
+            RecipeHelper.handleRecipeIO(machine, Recipe, IO.IN, machine.getRecipeLogic().getChanceCaches());
             return true;
         }
         return false;
     }
     public static boolean inputFluid(FluidStack fluidStack, WorkableMultiblockMachine machine) {
         var Recipe = GTRecipeBuilder.ofRaw().inputFluids(fluidStack).buildRawRecipe();
-        if (Recipe.matchRecipe(machine).isSuccess()) {
-            Recipe.handleRecipeIO(IO.IN, machine, machine.getRecipeLogic().getChanceCaches());
+        if (RecipeHelper.matchRecipe(machine, Recipe).isSuccess()) {
+            RecipeHelper.handleRecipeIO(machine, Recipe, IO.IN, machine.getRecipeLogic().getChanceCaches());
             return true;
         }
         return false;
     }
+    //返回值:处理剩下的
+    public static int inputFluidBrute(FluidStack fluidStack, List<FluidHatchPartMachine> source){
+        int ret = fluidStack.getAmount();
+        for(var part : source){
+            var tankStorages = part.tank.getStorages();
+            for (var tankStorage : tankStorages) {
+                FluidStack fs = tankStorage.getFluid();
+                if (fs.getFluid() != fluidStack.getFluid()) continue;
+                int toDrain = Math.min(fs.getAmount(), ret);
+                tankStorage.drain(toDrain, IFluidHandler.FluidAction.EXECUTE);
+                ret -= toDrain;
+                if(ret == 0)break;
+            }
+        }
+        return ret;
+    }
+    public static int getFluidStorageBrute(Fluid fluidType,List<FluidHatchPartMachine> source){
+        int ret = 0;
+        for(var part : source){
+            var tankStorages = part.tank.getStorages();
+            for (var tankStorage : tankStorages) {
+                FluidStack fs = tankStorage.getFluid();
+                if (fs.getFluid() != fluidType) continue;
+                ret += fs.getAmount();
+            }
+        }
+        return ret;
+    }
     public static boolean outputFluid(FluidStack fluidStack, WorkableMultiblockMachine machine) {
         var Recipe = GTRecipeBuilder.ofRaw().outputFluids(fluidStack).buildRawRecipe();
-        if (Recipe.matchRecipe(machine).isSuccess()) {
-            Recipe.handleRecipeIO(IO.OUT, machine, machine.getRecipeLogic().getChanceCaches());
+        if (RecipeHelper.matchRecipe(machine, Recipe).isSuccess()) {
+            RecipeHelper.handleRecipeIO(machine, Recipe, IO.OUT, machine.getRecipeLogic().getChanceCaches());
             return true;
         }
         return false;
     }
     public static  boolean inputCWUT(int CWU,WorkableMultiblockMachine machine){
         var Recipe = GTRecipeBuilder.ofRaw().inputCWU(CWU).buildRawRecipe();
-        if(Recipe.matchRecipe(machine).isSuccess())
+        if(RecipeHelper.matchRecipe(machine, Recipe).isSuccess())
         {
-            Recipe.handleRecipeIO(IO.IN,machine,machine.getRecipeLogic().getChanceCaches());
+            RecipeHelper.handleRecipeIO(machine, Recipe, IO.IN, machine.getRecipeLogic().getChanceCaches());
             return true;
         }
         return false;
     }
     public static boolean canInputFluid(FluidStack fluidStack, WorkableMultiblockMachine machine) {
         var Recipe = GTRecipeBuilder.ofRaw().inputFluids(fluidStack).buildRawRecipe();
-        return Recipe.matchRecipe(machine).isSuccess();
+        return RecipeHelper.matchRecipe(machine, Recipe).isSuccess();
     }
     public static boolean canOutputFluid(FluidStack fluidStack, WorkableMultiblockMachine machine) {
         var Recipe = GTRecipeBuilder.ofRaw().outputFluids(fluidStack).buildRawRecipe();
-        return Recipe.matchRecipe(machine).isSuccess();
+        return RecipeHelper.matchRecipe(machine, Recipe).isSuccess();
     }
     public static boolean canInputItem(ItemStack itemStack, WorkableMultiblockMachine machine) {
         var Recipe = GTRecipeBuilder.ofRaw().inputItems(itemStack).buildRawRecipe();
-        return Recipe.matchRecipe(machine).isSuccess();
+        return RecipeHelper.matchRecipe(machine, Recipe).isSuccess();
     }
     public static BlockPos getOffset(MetaMachine machine,int leftoff, int upoff, int backoff) {
         var pos = machine.getPos();
@@ -98,5 +141,38 @@ public class MachineUtils {
         }
         return AABB.of(BoundingBox.fromCorners(pos,pos));
     }
+    public static void applyContents(MultiblockControllerMachine machine, Consumer<Object> contentHandler, RecipeCapability<?> capability) {
+        applyContents(machine, contentHandler, capability, null);
+    }
 
+    public static void applyContents(MultiblockControllerMachine machine, Consumer<Object> contentHandler, RecipeCapability<?> capability, @Nullable IO io) {
+        machine.getParts().forEach(part-> part.getRecipeHandlers().forEach(handlerList->{
+            if (io != null) {
+                if (!handlerList.getHandlerIO().equals(io)) {
+                    return;
+                }
+            }
+            if (handlerList.getCapability(capability).isEmpty()) {
+                return;
+            }
+            handlerList.getCapability(capability).forEach(iRecipeHandler -> {
+                iRecipeHandler.getContents().forEach(contentHandler);
+            });
+        }));
+    }
+    public static void applyContents(MultiblockControllerMachine machine, BiConsumer<Object, IMultiPart> contentHandler, RecipeCapability<?> capability, @Nullable IO io) {
+        machine.getParts().forEach(part-> part.getRecipeHandlers().forEach(handlerList->{
+            if (io != null) {
+                if (!handlerList.getHandlerIO().equals(io)) {
+                    return;
+                }
+            }
+            if (handlerList.getCapability(capability).isEmpty()) {
+                return;
+            }
+            handlerList.getCapability(capability).forEach(iRecipeHandler -> {
+                iRecipeHandler.getContents().forEach(content -> contentHandler.accept(content, part));
+            });
+        }));
+    }
 }

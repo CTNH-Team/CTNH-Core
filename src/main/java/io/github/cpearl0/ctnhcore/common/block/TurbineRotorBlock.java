@@ -3,12 +3,11 @@ package io.github.cpearl0.ctnhcore.common.block;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.lowdragmc.lowdraglib.client.renderer.IBlockRendererProvider;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
+import com.lowdragmc.lowdraglib.utils.ColorUtils;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
-import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.renderer.TurbineRotorRender;
 import io.github.cpearl0.ctnhcore.common.blockentity.TurbineRotorBE;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlockEntities;
-import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -20,7 +19,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.Property;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -41,6 +39,14 @@ public class TurbineRotorBlock extends ActiveBlock implements EntityBlock, IBloc
     }
     public static NonNullFunction<Properties,TurbineRotorBlock> create(float r, float g, float b, float a) {
         return (p) -> new TurbineRotorBlock(p,r,g,b,a);
+    }
+    public static NonNullFunction<Properties,TurbineRotorBlock> create(int color) {
+        return create(
+                ColorUtils.red(color),
+                ColorUtils.green(color),
+                ColorUtils.blue(color),
+                ColorUtils.alpha(color)
+        );
     }
 
     @Override

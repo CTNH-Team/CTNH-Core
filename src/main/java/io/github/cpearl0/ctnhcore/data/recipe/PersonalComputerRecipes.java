@@ -36,21 +36,23 @@ public class PersonalComputerRecipes {
                 .EUt(30)
                 .save(provider);
 
-        CTNHRecipeTypes.PERSONAL_COMPUTER.recipeBuilder("astronomy_circuit_force")
-                .circuitMeta(1)
-                .inputItems(CTNHItems.ASTRONOMY_CIRCUIT_1)
-                .outputItems(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1)
-                .duration(60)
-                .EUt(VA[HV])
-                .save(provider);
+//        CTNHRecipeTypes.PERSONAL_COMPUTER.recipeBuilder("astronomy_circuit_force")
+//                .circuitMeta(3)
+//                .inputItems(CTNHItems.ASTRONOMY_CIRCUIT_1)
+//                .duration(60)
+//                .EUt(VA[HV])
+//                .CWUt(1)
+//                .outputItems(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1)
+//                .save(provider);
 
         CTNHRecipeTypes.PERSONAL_COMPUTER.recipeBuilder("program_rocket_1_force")
-                .circuitMeta(1)
+                .circuitMeta(3)
                 .inputItems(CTNHItems.PROGRAM_EMPTY)
-                .notConsumable(CTNHItems.PROGRAM_ROCKET_CORE_1)
                 .notConsumable(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1)
                 .duration(60)
                 .EUt(VA[HV])
+                .CWUt(1)
+                .outputItems(CTNHItems.PROGRAM_ROCKET_1)
                 .save(provider);
     }
 }

@@ -1,0 +1,63 @@
+{
+  "parent": "minecraft:block/block",
+  "loader": "gtceu:machine",
+  "machine": "ctnhcore:iv_rocket_engine",
+  "variants": {
+    "recipe_logic_status=idle": {
+      "model": {
+        "parent": "gtceu:block/machine/template/generator_machine",
+        "textures": {
+          "bottom": "gtceu:block/casings/voltage/iv/bottom",
+          "overlay_back": "ctnhcore:block/generators/rocket_engine/overlay_back",
+          "overlay_side": "ctnhcore:block/generators/rocket_engine/overlay_side",
+          "overlay_top": "ctnhcore:block/generators/rocket_engine/overlay_top",
+          "overlay_top_emissive": "ctnhcore:block/generators/rocket_engine/overlay_top_emissive",
+          "side": "gtceu:block/casings/voltage/iv/side",
+          "top": "gtceu:block/casings/voltage/iv/top"
+        }
+      }
+    },
+    "recipe_logic_status=suspend": {
+      "model": {
+        "parent": "gtceu:block/machine/template/generator_machine",
+        "textures": {
+          "bottom": "gtceu:block/casings/voltage/iv/bottom",
+          "overlay_back": "ctnhcore:block/generators/rocket_engine/overlay_back",
+          "overlay_side": "ctnhcore:block/generators/rocket_engine/overlay_side",
+          "overlay_top": "ctnhcore:block/generators/rocket_engine/overlay_top",
+          "overlay_top_emissive": "ctnhcore:block/generators/rocket_engine/overlay_top_emissive",
+          "side": "gtceu:block/casings/voltage/iv/side",
+          "top": "gtceu:block/casings/voltage/iv/top"
+        }
+      }
+    },
+    "recipe_logic_status=waiting": {
+      "model": {
+        "parent": "gtceu:block/machine/template/generator_machine",
+        "textures": {
+          "bottom": "gtceu:block/casings/voltage/iv/bottom",
+          "overlay_back": "ctnhcore:block/generators/rocket_engine/overlay_back_active",
+          "overlay_side": "ctnhcore:block/generators/rocket_engine/overlay_side_active",
+          "overlay_top": "ctnhcore:block/generators/rocket_engine/overlay_top_active",
+          "overlay_top_emissive": "ctnhcore:block/generators/rocket_engine/overlay_top_active_emissive",
+          "side": "gtceu:block/casings/voltage/iv/side",
+          "top": "gtceu:block/casings/voltage/iv/top"
+        }
+      }
+    },
+    "recipe_logic_status=working": {
+      "model": {
+        "parent": "gtceu:block/machine/template/generator_machine",
+        "textures": {
+          "bottom": "gtceu:block/casings/voltage/iv/bottom",
+          "overlay_back": "ctnhcore:block/generators/rocket_engine/overlay_back_active",
+          "overlay_side": "ctnhcore:block/generators/rocket_engine/overlay_side_active",
+          "overlay_top": "ctnhcore:block/generators/rocket_engine/overlay_top_active",
+          "overlay_top_emissive": "ctnhcore:block/generators/rocket_engine/overlay_top_active_emissive",
+          "side": "gtceu:block/casings/voltage/iv/side",
+          "top": "gtceu:block/casings/voltage/iv/top"
+        }
+      }
+    }
+  }
+}

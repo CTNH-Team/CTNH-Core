@@ -29,6 +29,14 @@ public class NuclearMaterials {
     public static Material EinsteiniumHexafluoride;
     public static Material FermiumHexafluoride;
     public static Material MendeleviumHexafluoride;
+    // 钍系
+    public static Material Thorium232;
+    public static Material CarbideThorium232;
+    public static Material OxideThorium232;
+    public static Material NitrideThorium232;
+    public static Material ZirconiumAlloyThorium232;
+    public static Material Thorium232Hexafluoride;
+    public static Material Thorium232HexafluorideSteamCracked;
     public static Material Thorium233;
     public static Material CarbideThorium233;
     public static Material OxideThorium233;
@@ -344,13 +352,6 @@ public class NuclearMaterials {
     public static Material Mendelevium263HexafluorideSteamCracked;
 
     //原gtm特殊
-
-    public static Material CarbideThorium232;
-    public static Material OxideThorium232;
-    public static Material NitrideThorium232;
-    public static Material ZirconiumAlloyThorium232;
-    public static Material Thorium232Hexafluoride;
-    public static Material Thorium232HexafluorideSteamCracked;
 
     public static Material CarbideUranium235;
     public static Material OxideUranium235;

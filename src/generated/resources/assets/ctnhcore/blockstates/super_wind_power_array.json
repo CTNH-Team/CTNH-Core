@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "ctnhcore:block/machine/super_wind_power_array",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "ctnhcore:block/machine/super_wind_power_array"
+    },
+    "facing=south": {
+      "model": "ctnhcore:block/machine/super_wind_power_array",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "ctnhcore:block/machine/super_wind_power_array",
+      "y": 270
+    }
+  }
+}

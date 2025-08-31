@@ -33,6 +33,7 @@ public class CTNHPlacements {
     public static final ResourceKey<PlacedFeature> ASTRAL_LAKE = ResourceKey.create(Registries.PLACED_FEATURE, CTNHCore.id("astral_lake"));
     public static final ResourceKey<PlacedFeature> ASTRAL_LAKE_UNDERGROUND = ResourceKey.create(Registries.PLACED_FEATURE, CTNHCore.id("astral_lake_underground"));
     public static final ResourceKey<PlacedFeature> VENUS_OCHRUM = ResourceKey.create(Registries.PLACED_FEATURE, CTNHCore.id("venus_ochrum"));
+    public static final ResourceKey<PlacedFeature> GAS_SPROUT = ResourceKey.create(Registries.PLACED_FEATURE, CTNHCore.id("gas_sprout"));
 
     public static void bootstrap(BootstapContext<PlacedFeature> ctx) {
         HolderGetter<ConfiguredFeature<?, ?>> featureLookup = ctx.lookup(Registries.CONFIGURED_FEATURE);
@@ -41,12 +42,12 @@ public class CTNHPlacements {
         PlacementUtils.register(ctx, ASTRAL_TREE, featureLookup.getOrThrow(CTNHConfiguredFeatures.ASTRAL_TREE),
                 new BiomePlacement(List.of(
                         new BiomeWeightModifier(() -> HolderSet.direct(biomeLookup.getOrThrow(CTNHBiomes.PLAGUE_WASTELAND)), 50))),
-                CountPlacement.of(12),
+                CountPlacement.of(3),
                 InSquarePlacement.spread(),
                 SurfaceWaterDepthFilter.forMaxDepth(0),
                 PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                 BiomeFilter.biome(),
-                PlacementUtils.filteredByBlockSurvival(CTNHBlocks.ASTRAL_SAPLING.get()));
+                PlacementUtils.filteredByBlockSurvival(AstralBlocks.ASTRAL_SAPLING.get()));
         PlacementUtils.register(ctx, ASTRAL_FLOWER, featureLookup.getOrThrow(CTNHConfiguredFeatures.ASTRAL_FLOWER),
                 new BiomePlacement(List.of(
                         new BiomeWeightModifier(() -> HolderSet.direct(biomeLookup.getOrThrow(CTNHBiomes.PLAGUE_WASTELAND)), 50))),
@@ -55,7 +56,7 @@ public class CTNHPlacements {
                 SurfaceWaterDepthFilter.forMaxDepth(0),
                 PlacementUtils.HEIGHTMAP,
                 BiomeFilter.biome(),
-                PlacementUtils.filteredByBlockSurvival(CTNHBlocks.BLUE_FLOWER.get()));
+                PlacementUtils.filteredByBlockSurvival(AstralBlocks.BLUE_FLOWER.get()));
         PlacementUtils.register(ctx, ASTRAL_GRASS, featureLookup.getOrThrow(CTNHConfiguredFeatures.ASTRAL_GRASS),
                 new BiomePlacement(List.of(
                         new BiomeWeightModifier(() -> HolderSet.direct(biomeLookup.getOrThrow(CTNHBiomes.PLAGUE_WASTELAND)), 50))),
@@ -64,7 +65,7 @@ public class CTNHPlacements {
                 SurfaceWaterDepthFilter.forMaxDepth(0),
                 PlacementUtils.HEIGHTMAP,
                 BiomeFilter.biome(),
-                PlacementUtils.filteredByBlockSurvival(CTNHBlocks.ASTRAL_GRASS.get()));
+                PlacementUtils.filteredByBlockSurvival(AstralBlocks.ASTRAL_GRASS.get()));
         PlacementUtils.register(ctx, ASTRAL_LAKE_UNDERGROUND, featureLookup.getOrThrow(CTNHConfiguredFeatures.ASTRAL_LAKE),
                 RarityFilter.onAverageOnceEvery(9),
                 InSquarePlacement.spread(),
@@ -81,5 +82,10 @@ public class CTNHPlacements {
                 InSquarePlacement.spread(),
                 CountPlacement.of(UniformInt.of(15, 40)),
                 BiomeFilter.biome());
+        PlacementUtils.register(ctx, GAS_SPROUT, featureLookup.getOrThrow(CTNHConfiguredFeatures.GAS_SPROUT),
+                RarityFilter.onAverageOnceEvery(32),
+                InSquarePlacement.spread(),
+                BiomeFilter.biome(),
+                HeightRangePlacement.uniform(VerticalAnchor.absolute(10), VerticalAnchor.absolute(40)));
     }
 }

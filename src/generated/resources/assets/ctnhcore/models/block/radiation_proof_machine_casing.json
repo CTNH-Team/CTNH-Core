@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "ctnhcore:block/casings/solid/radiation_proof_machine_casing"
+  }
+}
