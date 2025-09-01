@@ -370,27 +370,27 @@ public class CTNHRecipeTypes {
             {
                 if(data.getString("type").equals("addnu"))
                 {
-                    return LocalizationUtils.format("ctnh.accelerator.mode.nu");
+                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.nu");
                 }
                 else if(data.getString("type").equals("addproton"))
                 {
-                    return LocalizationUtils.format("ctnh.accelerator.mode.proton");
+                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.proton");
                 }
                 else if(data.getString("type").equals("addelement"))
                 {
-                    return LocalizationUtils.format("ctnh.accelerator.mode.element");
+                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.element");
                 }
                 else if(data.getString("type").equals("element"))
                 {
-                    return LocalizationUtils.format("ctnh.accelerator.mode.element.consume");
+                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.element.consume");
                 }
                 else if(data.getString("type").equals("nu"))
                 {
-                    return LocalizationUtils.format("ctnh.accelerator.mode.nu.consume");
+                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.nu.consume");
                 }
                 else if(data.getString("type").equals("proton"))
                 {
-                    return LocalizationUtils.format("ctnh.accelerator.mode.proton.consume");
+                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.proton.consume");
                 }
                 return  "";
             })
@@ -401,11 +401,11 @@ public class CTNHRecipeTypes {
                     var speed=data.getDouble("speed");
                     if(data.getDouble("speed")<1000)
                     {
-                        return LocalizationUtils.format("ctnh.accelerator.mode.speed.m",String.format("%.2f",speed));
+                        return LocalizationUtils.format("ctnh.recipe.accelerator.mode.speed.m",String.format("%.2f",speed));
                     }
                     if(speed>=1000)
                     {
-                        return LocalizationUtils.format("ctnh.accelerator.mode.speed.g",String.format("%.2f",speed/1000));
+                        return LocalizationUtils.format("ctnh.recipe.accelerator.mode.speed.g",String.format("%.2f",speed/1000));
                     }
 
                 }
@@ -431,27 +431,27 @@ public class CTNHRecipeTypes {
             {
                 if(data.getString("type").equals("addnu"))
                 {
-                    return LocalizationUtils.format("ctnh.accelerator.mode.nu");
+                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.nu");
                 }
                 else if(data.getString("type").equals("addproton"))
                 {
-                    return LocalizationUtils.format("ctnh.accelerator.mode.proton");
+                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.proton");
                 }
                 else if(data.getString("type").equals("addelement"))
                 {
-                    return LocalizationUtils.format("ctnh.accelerator.mode.element");
+                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.element");
                 }
                 else if(data.getString("type").equals("element"))
                 {
-                    return LocalizationUtils.format("ctnh.accelerator.mode.element.consume");
+                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.element.consume");
                 }
                 else if(data.getString("type").equals("nu"))
                 {
-                    return LocalizationUtils.format("ctnh.accelerator.mode.nu.consume");
+                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.nu.consume");
                 }
                 else if(data.getString("type").equals("proton"))
                 {
-                    return LocalizationUtils.format("ctnh.accelerator.mode.proton.consume");
+                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.proton.consume");
                 }
 
                 return "";
@@ -463,11 +463,11 @@ public class CTNHRecipeTypes {
                     var speed=data.getDouble("speed");
                     if(data.getDouble("speed")<1000)
                     {
-                        return LocalizationUtils.format("ctnh.accelerator.mode.speed.m",String.format("%.2f",speed));
+                        return LocalizationUtils.format("ctnh.recipe.accelerator.mode.speed.m",String.format("%.2f",speed));
                     }
                     if(speed>=1000)
                     {
-                        return LocalizationUtils.format("ctnh.accelerator.mode.speed.g",String.format("%.2f",speed/1000));
+                        return LocalizationUtils.format("ctnh.recipe.accelerator.mode.speed.g",String.format("%.2f",speed/1000));
                     }
 
 
