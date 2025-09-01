@@ -188,7 +188,7 @@ public class PlatinumLine {
                 .EUt(120)            // 电压120 EU/t（LV级）
                 .duration(100)       // 5秒（100 ticks）
                 .save(provider);
-        GTRecipeTypes.CHEMICAL_BATH_RECIPES.recipeBuilder("rhodium_hydroxide_to_chlororhodic_acid")
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("rhodium_hydroxide_to_chlororhodic_acid")
                 .inputItems(dust, CTNHMaterials.RhodiumHydroxide, 4)  // 4个氢氧化铑粉
                 .inputFluids(GTMaterials.HydrochloricAcid.getFluid(6000))       // 6000mb盐酸
                 .outputFluids(CTNHMaterials.ChlororhodicAcid.getFluid(1000))   // 1000mb氯铑酸
