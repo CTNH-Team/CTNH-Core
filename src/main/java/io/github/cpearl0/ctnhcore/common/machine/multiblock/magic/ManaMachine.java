@@ -53,6 +53,7 @@ public class ManaMachine extends WorkableElectricMultiblockMachine implements IT
         if (MachineUtils.canInputFluid(CTNHMaterials.Mana.getFluid((int) consumption),this)){
             return super.beforeWorking(recipe);
         }
+
         return false;
     }
 

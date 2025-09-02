@@ -671,7 +671,15 @@ public class DefaultRecipes {
                 'h',
                 ChemicalHelper.get(TagPrefix.crushedRefined, GTMaterials.Neutronium)
         );
-
+// 1. 电解糖
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("sugar_ele")
+                .inputItems(Items.SUGAR,24)
+                .outputItems(TagPrefix.dust, GTMaterials.Coal,6)
+                .outputFluids(GTMaterials.Hydrogen.getFluid(12000))
+                .outputFluids(GTMaterials.Oxygen.getFluid(6000))
+                .EUt(GTValues.VA[GTValues.LV]) // 98304 EU/t
+                .duration(320) // 30秒
+                .save(provider);
 // 2. 催化剂舱口（组装机）
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("catalyst_hatch")
                 .inputItems(CustomTags.MV_CIRCUITS)
