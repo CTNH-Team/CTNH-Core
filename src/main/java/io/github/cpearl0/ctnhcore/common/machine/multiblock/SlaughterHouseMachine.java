@@ -186,58 +186,60 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
         if(machine instanceof SlaughterHouseMachine smachine) {
             smachine.resetWeapon();
             smachine.resetMobList();
-            // 战利品模式
-            double totaltime = 0;
-            int totalExperience = 0;
-            List<Content> itemList = new ArrayList<>();
-            int repeatTimes = smachine.getTier() - 2;
-            for (int i = 0; i < 4; i++) {
-                int index = level.getRandom().nextInt(smachine.mobList.size());
-                String mob = smachine.mobList.get(index);
-                var mobentity = EntityType.byString(mob).get().create(machine.getLevel());
-                if (mobentity instanceof LivingEntity livingEntity) {
-                    var health = 0;
-                    if (livingEntity.getArmorValue() != 0) {
-                        var armor = livingEntity.getArmorValue();
-                        health += livingEntity.getMaxHealth() / ((double) 20 / (armor + 20));
-                    } else {
-                        health += livingEntity.getMaxHealth();
-                    }
-                    var enchantInfluence = EnchantmentHelper.getDamageBonus(smachine.hostWeapon, livingEntity.getMobType());
-                    totaltime += health / ((smachine.damagePerSecond + enchantInfluence) * repeatTimes) * ticksPerSecond;
-                    totalExperience += livingEntity.getExperienceReward() * 20;
-
-                    if (mob.equals("minecraft:wither")){
-                        itemList.add(new Content(SizedIngredient.create(Items.NETHER_STAR.getDefaultInstance()), 1, 1, 0));
-                        continue;
-                    }
-                    var fakePlayer = smachine.getFakePlayer(level);
-                    var loottable = Objects.requireNonNull(level.getServer()).getLootData().getLootTable(ResourceLocation.tryParse(mob.split(":")[0] + ":entities/" + mob.split(":")[1]));
-                    var lootparams = new LootParams.Builder((ServerLevel) machine.getLevel())
-                            .withParameter(LootContextParams.LAST_DAMAGE_PLAYER, fakePlayer)
-                            .withParameter(LootContextParams.TOOL,smachine.hostWeapon)
-                            .withParameter(LootContextParams.THIS_ENTITY, mobentity)
-                            .withParameter(LootContextParams.DAMAGE_SOURCE, new DamageSources(level.getServer().registryAccess()).mobAttack(fakePlayer))
-                            .withParameter(LootContextParams.ORIGIN, machine.getPos().getCenter())
-                            .withParameter(LootContextParams.KILLER_ENTITY, fakePlayer)
-                            .withParameter(LootContextParams.BLOCK_STATE, machine.getBlockState())
-                            .withParameter(LootContextParams.BLOCK_ENTITY, machine.getLevel().getBlockEntity(machine.getPos()))
-                            .withParameter(LootContextParams.DIRECT_KILLER_ENTITY, fakePlayer)
-                            .withParameter(LootContextParams.EXPLOSION_RADIUS, 0F)
-                            .create(loottable.getParamSet());
-                    var loots = loottable.getRandomItems(lootparams);
-                    loots.forEach(itemStack -> {
-                        if (!itemStack.isEmpty()){
-                            itemList.add(new Content(SizedIngredient.create(itemStack), 1, 1, 0));
+            if (!smachine.mobList.isEmpty()) {
+                // 战利品模式
+                double totaltime = 0;
+                int totalExperience = 0;
+                List<Content> itemList = new ArrayList<>();
+                int repeatTimes = smachine.getTier() - 2;
+                for (int i = 0; i < 4; i++) {
+                    int index = level.getRandom().nextInt(smachine.mobList.size());
+                    String mob = smachine.mobList.get(index);
+                    var mobentity = EntityType.byString(mob).get().create(machine.getLevel());
+                    if (mobentity instanceof LivingEntity livingEntity) {
+                        var health = 0;
+                        if (livingEntity.getArmorValue() != 0) {
+                            var armor = livingEntity.getArmorValue();
+                            health += livingEntity.getMaxHealth() / ((double) 20 / (armor + 20));
+                        } else {
+                            health += livingEntity.getMaxHealth();
                         }
-                    });
+                        var enchantInfluence = EnchantmentHelper.getDamageBonus(smachine.hostWeapon, livingEntity.getMobType());
+                        totaltime += health / ((smachine.damagePerSecond + enchantInfluence) * repeatTimes) * ticksPerSecond;
+                        totalExperience += livingEntity.getExperienceReward() * 20;
+
+                        if (mob.equals("minecraft:wither")) {
+                            itemList.add(new Content(SizedIngredient.create(Items.NETHER_STAR.getDefaultInstance()), 1, 1, 0));
+                            continue;
+                        }
+                        var fakePlayer = smachine.getFakePlayer(level);
+                        var loottable = Objects.requireNonNull(level.getServer()).getLootData().getLootTable(ResourceLocation.tryParse(mob.split(":")[0] + ":entities/" + mob.split(":")[1]));
+                        var lootparams = new LootParams.Builder((ServerLevel) machine.getLevel())
+                                .withParameter(LootContextParams.LAST_DAMAGE_PLAYER, fakePlayer)
+                                .withParameter(LootContextParams.TOOL, smachine.hostWeapon)
+                                .withParameter(LootContextParams.THIS_ENTITY, mobentity)
+                                .withParameter(LootContextParams.DAMAGE_SOURCE, new DamageSources(level.getServer().registryAccess()).mobAttack(fakePlayer))
+                                .withParameter(LootContextParams.ORIGIN, machine.getPos().getCenter())
+                                .withParameter(LootContextParams.KILLER_ENTITY, fakePlayer)
+                                .withParameter(LootContextParams.BLOCK_STATE, machine.getBlockState())
+                                .withParameter(LootContextParams.BLOCK_ENTITY, machine.getLevel().getBlockEntity(machine.getPos()))
+                                .withParameter(LootContextParams.DIRECT_KILLER_ENTITY, fakePlayer)
+                                .withParameter(LootContextParams.EXPLOSION_RADIUS, 0F)
+                                .create(loottable.getParamSet());
+                        var loots = loottable.getRandomItems(lootparams);
+                        loots.forEach(itemStack -> {
+                            if (!itemStack.isEmpty()) {
+                                itemList.add(new Content(SizedIngredient.create(itemStack), 1, 1, 0));
+                            }
+                        });
+                    }
                 }
+                var modifier = ContentModifier.multiplier(repeatTimes);
+                newrecipe.outputs.put(ItemRecipeCapability.CAP, itemList);
+                newrecipe.outputs.put(FluidRecipeCapability.CAP, List.of(new Content(FluidIngredient.of(new FluidStack(EIOFluids.XP_JUICE.get().getSource(), totalExperience)), 1, 1, 0)));
+                newrecipe.duration = (int) totaltime * repeatTimes;
+                modifier.applyContents(newrecipe.outputs);
             }
-            var modifier = ContentModifier.multiplier(repeatTimes);
-            newrecipe.outputs.put(ItemRecipeCapability.CAP,itemList);
-            newrecipe.outputs.put(FluidRecipeCapability.CAP, List.of(new Content(FluidIngredient.of(new FluidStack(EIOFluids.XP_JUICE.get().getSource(), totalExperience)), 1, 1, 0)));
-            newrecipe.duration = (int) totaltime * repeatTimes;
-            modifier.applyContents(newrecipe.outputs);
         }
         return recipe1 -> newrecipe;
     }
