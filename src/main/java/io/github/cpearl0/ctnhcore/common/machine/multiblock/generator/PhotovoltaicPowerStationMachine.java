@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.gui.fancy.FancyMachineUIWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
+import com.gregtechceu.gtceu.api.machine.feature.IExplosionMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDisplayUIMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
@@ -23,6 +24,7 @@ import earth.terrarium.adastra.api.planets.Planet;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerLevel;
@@ -35,7 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine implements IFancyUIMachine,IDisplayUIMachine, IWorkable {
+public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine implements IFancyUIMachine,IDisplayUIMachine, IWorkable, IExplosionMachine {
     //const
     public static final int START_TIME = 23000;
     public static final int END_TIME = 13000;
@@ -82,6 +84,16 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
             tickSubs.unsubscribe();
             tickSubs = null;
         }
+    }
+
+    @Override
+    public boolean checkPattern() {
+        var ret = super.checkPattern();
+        if (ret && getUpwardsFacing() != Direction.NORTH){
+            doExplosion(10f);
+            return false;
+        }
+        return ret;
     }
 
     @Override
@@ -138,6 +150,7 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
     public void tick(){
         var level = getLevel();
         assert level != null;
+        if(getPowerState()!=Status.VALID) return;
         //获取时间
         var time = level.getDayTime() % 24000;
         if (time > START_TIME) {
