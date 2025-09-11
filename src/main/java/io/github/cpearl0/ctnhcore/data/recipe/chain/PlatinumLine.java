@@ -211,6 +211,7 @@ public class PlatinumLine {
                 .duration(200)                  // 20秒（400 ticks）
                 .save(provider);
         GTRecipeTypes.AUTOCLAVE_RECIPES.recipeBuilder("ammonium_chlororhodate_crystallization")
+                .circuitMeta(2)
                 .inputFluids(CTNHMaterials.ConcentratedAmmoniumChlororhodate.getFluid(1000))  // 1000mb浓缩液
                 .inputItems(dust, CTNHMaterials.AmmoniumChlororhodate, 1)
                 .outputItems(dust, CTNHMaterials.AmmoniumChlororhodate, 2)         // 1个氯铑酸铵粉
@@ -218,6 +219,7 @@ public class PlatinumLine {
                 .duration(100)                  // 15秒（300 ticks）
                 .save(provider);
         GTRecipeTypes.AUTOCLAVE_RECIPES.recipeBuilder("ammonium_chlororhodate_crystallization_two")
+                .circuitMeta(1)
                 .inputFluids(CTNHMaterials.ConcentratedAmmoniumChlororhodate.getFluid(1000))  // 1000mb浓缩液
                 .outputItems(dust, CTNHMaterials.AmmoniumChlororhodate, 1)         // 1个氯铑酸铵粉
                 .EUt(GTValues.VA[GTValues.HV])  // 高电压（7,680 EU/t）
