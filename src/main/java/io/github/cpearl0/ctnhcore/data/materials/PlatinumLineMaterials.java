@@ -107,14 +107,14 @@ public class PlatinumLineMaterials {
                 .setFormula("Pd(NH3)2Cl2", true);
 
         SpongePalladium = new Material.Builder(CTNHCore.id("sponge_palladium"))
-                .ingot()
+                .dust()
                 .color(0xB0C4DE)
                 .iconSet(SHINY)
                 .buildAndRegister()
                 .setFormula("Pd", true);
 
         SpongePlatinum = new Material.Builder(CTNHCore.id("sponge_platinum"))
-                .ingot()
+                .dust()
                 .color(0xE0FFFF)
                 .iconSet(BRIGHT)
                 .buildAndRegister()

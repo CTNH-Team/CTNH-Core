@@ -228,7 +228,7 @@ public class MaterialLang {
         translateMaterial(provider, FerrousSulfate, "酸性硫酸亚铁");
         translateMaterial(provider, ChloroplatinicChloropalladicSolution, "氯铂酸-氯钯酸混合溶液");
         translateMaterial(provider, AmmoniumChloroplatinate, "氯铂酸铵");
-        translateMaterial(provider, AmmoniaMonohydrate, "一水合氨");
+        translateMaterial(provider, AmmoniaMonohydrate, "氨水");
         translateMaterial(provider, Diamminedichloropalladium, "二氯二氨络亚钯");
         translateMaterial(provider, SpongePalladium, "海绵钯");
         translateMaterial(provider, SpongePlatinum, "海绵铂");

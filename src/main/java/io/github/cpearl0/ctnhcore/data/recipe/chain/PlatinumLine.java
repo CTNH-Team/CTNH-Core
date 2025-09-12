@@ -347,6 +347,7 @@ public class PlatinumLine {
                 .duration(600)                // 30秒（600 ticks）
                 .save(provider);
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("ferrous_sulfate_synthesis")
+                .circuitMeta(2)
                 .inputItems(dust, GTMaterials.Iron, 2)          // 2个铁粉
                 .inputFluids(GTMaterials.SulfuricAcid.getFluid(3000))      // 3000mb硫酸（3mol）
                 .outputFluids(CTNHMaterials.FerrousSulfate.getFluid(1000)) // 1000mb酸性硫酸亚铁溶液
@@ -355,6 +356,7 @@ public class PlatinumLine {
                 .duration(200)                  // 10秒（200 ticks）
                 .save(provider);
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("ferric_sulfate_reduction")
+                .circuitMeta(1)
                 .inputFluids(CTNHMaterials.FerricSulfate.getFluid(2000))  // 1000mb Fe₂(SO₄)₃
                 .inputItems(dust, GTMaterials.Iron, 1)                 // 1个铁粉
                 .inputFluids(GTMaterials.SulfuricAcid.getFluid(3000))      // 3000mb硫酸（3mol）

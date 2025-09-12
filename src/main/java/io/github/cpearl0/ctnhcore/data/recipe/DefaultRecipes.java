@@ -644,13 +644,13 @@ public class DefaultRecipes {
 
 // 11. 中子混合物处理（混合机）
         GTRecipeTypes.MIXER_RECIPES.recipeBuilder("neutronium_mixture")
-                .inputItems(TagPrefix.dust, CTNHMaterials.NeutroniumMixture,8)
+                .inputItems(TagPrefix.dust, CTNHMaterials.NeutroniumMixture,4)
                 .inputFluids(GTMaterials.Americium.getFluid(FluidStorageKeys.PLASMA, 144))
                 .inputFluids(GTMaterials.Naquadria.getFluid(144))
                 .outputItems(TagPrefix.dust, GTMaterials.Neutronium)
                 .circuitMeta(1)
                 .EUt(GTValues.VA[GTValues.ZPM]) // 98304 EU/t
-                .duration(500) // 25秒
+                .duration(200) // 10
                 .save(provider);
 // 11.5 谢尔顿矿粉电解
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("cooperite_dust")
