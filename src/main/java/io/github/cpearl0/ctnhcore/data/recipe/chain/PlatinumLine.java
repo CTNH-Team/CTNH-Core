@@ -394,6 +394,18 @@ public class PlatinumLine {
                 .EUt(GTValues.VA[GTValues.LV])
                 .duration(20)
                 .save(provider);
+        GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES.recipeBuilder("nh4_cl_solidfication")
+                .inputFluids(AmmoniumChloride.getFluid(500))
+                .outputItems(dust,AmmoniumChloride,1)
+                .EUt(GTValues.VA[GTValues.LV])
+                .duration(20)
+                .save(provider);
+        GTRecipeTypes.EXTRACTOR_RECIPES.recipeBuilder("nh4_cl_extractor")
+                .inputItems(dust,AmmoniumChloride,1)
+                .outputFluids(AmmoniumChloride.getFluid(500))
+                .EUt(GTValues.VA[GTValues.LV])
+                .duration(20)
+                .save(provider);
     }
     private static void remove(Consumer<FinishedRecipe> provider) {
         GCYMRecipeTypes.ALLOY_BLAST_RECIPES.recipeBuilder("sodium_pyrosulfate").save(provider);

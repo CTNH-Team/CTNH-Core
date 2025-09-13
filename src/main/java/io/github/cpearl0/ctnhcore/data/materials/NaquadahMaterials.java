@@ -14,13 +14,13 @@ import static io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys.CATA
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
 public class NaquadahMaterials {
     public static void init() {
-        NaquadahOxideMixture = new Material.Builder(CTNHCore.id("naquadah_oxide_mixture")).dust().color(0x4c4c4c).iconSet(MaterialIconSet.ROUGH)
+        NaquadahOxideMixture = new Material.Builder(CTNHCore.id("naquadah_oxide_mixture")).ore().dust().color(0x4c4c4c).iconSet(MaterialIconSet.ROUGH)
                         .buildAndRegister().setFormula("??NqTiGa??");
 
-        EnrichedNaquadahOxideMixture = new Material.Builder(CTNHCore.id("enriched_naquadah_oxide_mixture")).dust().color(0x826868)
+        EnrichedNaquadahOxideMixture = new Material.Builder(CTNHCore.id("enriched_naquadah_oxide_mixture")).ore().dust().color(0x826868)
                         .iconSet(MaterialIconSet.ROUGH).buildAndRegister().setFormula("??Nq+??");
 
-        NaquadriaOxideMixture = new Material.Builder(CTNHCore.id("naquadria_oxide_mixture")).dust().color(0x4d4d55).secondaryColor(0xe7e7ff)
+        NaquadriaOxideMixture = new Material.Builder(CTNHCore.id("naquadria_oxide_mixture")).ore().dust().color(0x4d4d55).secondaryColor(0xe7e7ff)
                         .iconSet(MaterialIconSet.RADIOACTIVE).buildAndRegister().setFormula("??*Nq*In??");
 
         HexafluorideEnrichedNaquadahSolution = new Material.Builder(CTNHCore.id("hexafluoride_enriched_naquadah_solution")).fluid().color(0x868D7F)

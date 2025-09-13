@@ -31,6 +31,8 @@ public class CTNHOres {
                 .layer(l -> l.weight(1).mat(CTNHMaterials.PreciousAlloy).size(1, 1))
             )
         );
+        //Chromite
+        //Alumina
 //        GTNNOres.INSTANCE.getGOLD_VEIN_TF().layeredVeinGenerator(generator -> generator
 //                .buildLayerPattern(pattern -> pattern
 //                .layer(l -> l.weight(3).mat(GTMaterials.Magnetite).size(2, 4))
@@ -87,6 +89,8 @@ public class CTNHOres {
         GTRegistries.ORE_VEINS.remove(GTCEu.id("nickel_vein"));
         GTRegistries.ORE_VEINS.remove(GTCEu.id("galena_vein"));
         GTRegistries.ORE_VEINS.remove(GTCEu.id("sheldonite_vein"));
+        GTRegistries.ORE_VEINS.remove(GTCEu.id("bauxite_vein_end"));
+        GTRegistries.ORE_VEINS.remove(GTCEu.id("naquadah_vein"));
         MICA_VEIN.layer(WorldGenLayers.NETHERRACK)
                 .dimensions(ResourceLocation.tryParse("minecraft:the_nether"))
                 .biomes(BiomeTags.IS_NETHER)
@@ -95,7 +99,7 @@ public class CTNHOres {
                     .buildLayerPattern(pattern -> pattern
                         .layer(l -> l.weight(3).mat(GTMaterials.Kyanite).size(2, 4))
                         .layer(l -> l.weight(2).mat(GTMaterials.Mica).size(1, 1))
-                        .layer(l -> l.weight(2).mat(GTMaterials.Aluminium).size(1, 1))
+                        .layer(l -> l.weight(2).mat(CTNHMaterials.Alumina).size(1, 1))
                         .layer(l -> l.weight(1).mat(GTMaterials.Pollucite).size(1, 1))
                     )
                 );
@@ -449,7 +453,7 @@ public class CTNHOres {
                 .buildLayerPattern(pattern -> pattern
                 .layer(l -> l.weight(3).mat(GTMaterials.Bauxite).size(2, 4))
                 .layer(l -> l.weight(2).mat(GTMaterials.Ilmenite).size(1, 1))
-                .layer(l -> l.weight(1).mat(GTMaterials.Aluminium).size(1, 1))
+                .layer(l -> l.weight(1).mat(CTNHMaterials.Alumina).size(1, 1))
             )
         )
         .surfaceIndicatorGenerator(indicator -> indicator
@@ -511,77 +515,11 @@ public class CTNHOres {
                 .buildLayerPattern(pattern -> pattern
                 .layer(l -> l.weight(3).mat(GTMaterials.Bornite).size(2, 4))
                 .layer(l -> l.weight(2).mat(GTMaterials.Cooperite).size(1, 1))
-                .layer(l -> l.weight(2).mat(GTMaterials.Platinum).size(1, 1))
-                .layer(l -> l.weight(1).mat(GTMaterials.Palladium).size(1, 1))
+                .layer(l -> l.weight(2).mat(CTNHMaterials.PlatinumOre).size(1, 1))
+                .layer(l -> l.weight(1).mat(CTNHMaterials.PalladiumOre).size(1, 1))
                 ))
         .surfaceIndicatorGenerator(indicator -> indicator
-                .surfaceRock(GTMaterials.Platinum)
-                .placement(ABOVE)
-                .density(0.4F)
-                .radius(5)
-        ));
-    public static GTOreDefinition ZIRCON_VEIN = create(CTNHCore.id("zircon_vein"), vein ->
-        vein.weight(40)
-        .clusterSize(40)
-        .density(0.35F)
-        .discardChanceOnAirExposure(0)
-        .layer(ENDSTONE)
-        .dimensions(ResourceLocation.tryParse("minecraft:the_end"))
-        .heightRangeUniform(10, 50)
-        .layeredVeinGenerator(generator -> generator
-                .buildLayerPattern(pattern -> pattern
-                .layer(l -> l.weight(3).mat(CTNHMaterials.Zircon).size(1, 2))
-                .layer(l -> l.weight(2).mat(GTMaterials.Cobalt).size(1, 1))
-                .layer(l -> l.weight(2).mat(GTMaterials.Lead).size(1, 2))
-                .layer(l -> l.weight(1).mat(GTMaterials.Uranium238).size(1, 1))
-            )
-        )
-        .surfaceIndicatorGenerator(indicator -> indicator
-                .surfaceRock(CTNHMaterials.Zircon)
-                .placement(ABOVE)
-                .density(0.4F)
-                .radius(5)
-        ));
-    public static GTOreDefinition ZIRCON_VEIN_TW = create(CTNHCore.id("zircon_vein_tw"), vein ->
-        vein.weight(40)
-        .clusterSize(40)
-        .density(0.35F)
-        .discardChanceOnAirExposure(0)
-        .layer(CTNHWorldgenLayers.TWILIGHT)
-        .dimensions(TWILIGHT_FOREST)
-        .heightRangeUniform(-30, 0)
-        .layeredVeinGenerator(generator -> generator
-                .buildLayerPattern(pattern -> pattern
-                .layer(l -> l.weight(3).mat(CTNHMaterials.Zircon).size(1, 3))
-                .layer(l -> l.weight(2).mat(GTMaterials.Cobalt).size(1, 1))
-                .layer(l -> l.weight(2).mat(GTMaterials.Lead).size(1, 2))
-                .layer(l -> l.weight(1).mat(GTMaterials.Uranium238).size(1, 1))
-            )
-        )
-        .surfaceIndicatorGenerator(indicator -> indicator
-                .surfaceRock(CTNHMaterials.Zircon)
-                .placement(ABOVE)
-                .density(0.4F)
-                .radius(5)
-        ));
-    public static GTOreDefinition ZIRCON_VEIN_AETHER = create(CTNHCore.id("zircon_vein_aether"), vein ->
-        vein.weight(80)
-        .clusterSize(50)
-        .density(0.35F)
-        .discardChanceOnAirExposure(0)
-        .layer(CTNHWorldgenLayers.AETHER)
-        .dimensions(THE_AETHER)
-        .heightRangeUniform(10, 40)
-        .layeredVeinGenerator(generator -> generator
-                .buildLayerPattern(pattern -> pattern
-                .layer(l -> l.weight(3).mat(CTNHMaterials.Zircon).size(1, 3))
-                .layer(l -> l.weight(2).mat(GTMaterials.Cobalt).size(1, 1))
-                .layer(l -> l.weight(2).mat(GTMaterials.Lead).size(1, 2))
-                .layer(l -> l.weight(1).mat(GTMaterials.Uranium238).size(1, 1))
-            )
-        )
-        .surfaceIndicatorGenerator(indicator -> indicator
-                .surfaceRock(CTNHMaterials.Zircon)
+                .surfaceRock(CTNHMaterials.PlatinumOre)
                 .placement(ABOVE)
                 .density(0.4F)
                 .radius(5)
@@ -864,59 +802,6 @@ public class CTNHOres {
                         });
             }
     );
-    public static final GTOreDefinition SAPPHIRE_VEIN_TF = create(
-            CTNHCore.id("sapphire_vein_tf"), vein -> {
-                vein.clusterSize(25).weight(60).layer(CTNHWorldgenLayers.TWILIGHT).density(0.25f).dimensions(TWILIGHT_FOREST)
-                        .heightRangeUniform(-30, 0).discardChanceOnAirExposure(0f)
-                        .layeredVeinGenerator(generator -> {
-                            generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(3).mat(GTMaterials.Almandine).size(2, 4))
-                                        .layer(l -> l.weight(2).mat(GTMaterials.Pyrope).size(1, 1))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Sapphire).size(1, 1))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.GreenSapphire).size(1, 1));
-                            });
-                        }).surfaceIndicatorGenerator(indicator -> {
-                            indicator.surfaceRock(GTMaterials.Sapphire)
-                                    .placement(SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE).density(0.4f).radius(5);
-                        });
-            }
-    );
-
-    public static final GTOreDefinition OLIVINE_VEIN_TF = create(
-            CTNHCore.id("olivine_vein_tf"), vein -> {
-                vein.clusterSize(30).weight(20).layer(CTNHWorldgenLayers.TWILIGHT).density(0.25f).dimensions(TWILIGHT_FOREST)
-                        .heightRangeUniform(-30, 0).discardChanceOnAirExposure(0f)
-                        .layeredVeinGenerator(generator -> {
-                            generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(3).mat(GTMaterials.Bentonite).size(2, 4))
-                                        .layer(l -> l.weight(2).mat(GTMaterials.Magnetite).size(1, 1))
-                                        .layer(l -> l.weight(2).mat(GTMaterials.Olivine).size(1, 1))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.GlauconiteSand).size(1, 1));
-                            });
-                        }).surfaceIndicatorGenerator(indicator -> {
-                            indicator.surfaceRock(GTMaterials.Olivine)
-                                    .placement(SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE).density(0.4f).radius(5);
-                        });
-            }
-    );
-
-    public static final GTOreDefinition NICKEL_VEIN_TF = create(
-            CTNHCore.id("nickel_vein_tf"), vein -> {
-                vein.clusterSize(30).weight(40).layer(CTNHWorldgenLayers.TWILIGHT).density(0.25f).dimensions(TWILIGHT_FOREST)
-                        .heightRangeUniform(-30, 0).discardChanceOnAirExposure(0f)
-                        .layeredVeinGenerator(generator -> {
-                            generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(3).mat(GTMaterials.Garnierite).size(2, 4))
-                                        .layer(l -> l.weight(2).mat(GTMaterials.Nickel).size(1, 1))
-                                        .layer(l -> l.weight(2).mat(GTMaterials.Cobaltite).size(1, 1))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Pentlandite).size(1, 1));
-                            });
-                        }).surfaceIndicatorGenerator(indicator -> {
-                            indicator.surfaceRock(GTMaterials.Nickel)
-                                    .placement(SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE).density(0.4f).radius(5);
-                        });
-            }
-    );
 
     public static final GTOreDefinition DIAMOND_VEIN_TF = create(
             CTNHCore.id("diamond_vein_tf"), vein -> {
@@ -930,111 +815,6 @@ public class CTNHOres {
                             });
                         }).surfaceIndicatorGenerator(indicator -> {
                             indicator.surfaceRock(GTMaterials.Diamond)
-                                    .placement(SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE).density(0.4f).radius(5);
-                        });
-            }
-    );
-
-    public static final GTOreDefinition LAPIS_VEIN_TF = create(
-            CTNHCore.id("lapis_vein_tf"), vein -> {
-                vein.clusterSize(40).weight(40).layer(CTNHWorldgenLayers.TWILIGHT).density(0.25f).dimensions(TWILIGHT_FOREST)
-                        .heightRangeUniform(-30, 0).discardChanceOnAirExposure(0f)
-                        .layeredVeinGenerator(generator -> {
-                            generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(3).mat(GTMaterials.Lazurite).size(1, 3))
-                                        .layer(l -> l.weight(2).mat(GTMaterials.Sodalite).size(1, 2))
-                                        .layer(l -> l.weight(2).mat(GTMaterials.Lapis).size(1, 2))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Calcite).size(1, 1));
-                            });
-                        }).surfaceIndicatorGenerator(indicator -> {
-                            indicator.surfaceRock(GTMaterials.Lapis)
-                                    .placement(SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE).density(0.4f).radius(5);
-                        });
-            }
-    );
-
-    public static final GTOreDefinition MOLYBDENITE_VEIN_TF = create(
-            CTNHCore.id("molybdenite_vein_tf"), vein -> {
-                vein.clusterSize(25).weight(5).layer(CTNHWorldgenLayers.TWILIGHT).density(0.25f).dimensions(TWILIGHT_FOREST)
-                        .heightRangeUniform(-30, 0).discardChanceOnAirExposure(0f)
-                        .layeredVeinGenerator(generator -> {
-                            generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(3).mat(GTMaterials.Wulfenite).size(2, 4))
-                                        .layer(l -> l.weight(2).mat(GTMaterials.Molybdenite).size(1, 1))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Molybdenum).size(1, 1))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Powellite).size(1, 1));
-                            });
-                        }).surfaceIndicatorGenerator(indicator -> {
-                            indicator.surfaceRock(GTMaterials.Molybdenite)
-                                    .placement(SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE).density(0.4f).radius(5);
-                        });
-            }
-    );
-
-    public static final GTOreDefinition COAL_VEIN_TF = create(
-            CTNHCore.id("coal_vein_tf"), vein -> {
-                vein.clusterSize(35).weight(80).layer(CTNHWorldgenLayers.TWILIGHT).density(0.25f).dimensions(TWILIGHT_FOREST)
-                        .heightRangeUniform(-30, 0).discardChanceOnAirExposure(0f)
-                        .layeredVeinGenerator(generator -> {
-                            generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(3).mat(GTMaterials.Coal).size(2, 4))
-                                        .layer(l -> l.weight(3).mat(GTMaterials.Coal).size(2, 4));
-                            });
-                        }).surfaceIndicatorGenerator(indicator -> {
-                            indicator.surfaceRock(GTMaterials.Coal)
-                                    .placement(SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE).density(0.4f).radius(5);
-                        });
-            }
-    );
-
-    public static final GTOreDefinition LUBRICANT_VEIN_TF = create(
-            CTNHCore.id("lubricant_vein_tf"), vein -> {
-                vein.clusterSize(25).weight(40).layer(CTNHWorldgenLayers.TWILIGHT).density(0.25f).dimensions(TWILIGHT_FOREST)
-                        .heightRangeUniform(-30, 0).discardChanceOnAirExposure(0f)
-                        .layeredVeinGenerator(generator -> {
-                            generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(3).mat(GTMaterials.Soapstone).size(2, 4))
-                                        .layer(l -> l.weight(2).mat(GTMaterials.Talc).size(1, 1))
-                                        .layer(l -> l.weight(2).mat(GTMaterials.GlauconiteSand).size(1, 1))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Pentlandite).size(1, 1));
-                            });
-                        }).surfaceIndicatorGenerator(indicator -> {
-                            indicator.surfaceRock(GTMaterials.Soapstone)
-                                    .placement(SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE).density(0.4f).radius(5);
-                        });
-            }
-    );
-
-    public static final GTOreDefinition GOLD_VEIN_TF = create(
-            CTNHCore.id("gold_vein_tf"), vein -> {
-                vein.clusterSize(35).weight(80).layer(CTNHWorldgenLayers.TWILIGHT).density(0.15f).dimensions(TWILIGHT_FOREST)
-                        .heightRangeUniform(-30, 0).discardChanceOnAirExposure(0f)
-                        .layeredVeinGenerator(generator -> {
-                            generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(3).mat(GTMaterials.Magnetite).size(2, 4))
-                                        .layer(l -> l.weight(2).mat(GTMaterials.VanadiumMagnetite).size(1, 1))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Gold).size(1, 1));
-                            });
-                        }).surfaceIndicatorGenerator(indicator -> {
-                            indicator.surfaceRock(GTMaterials.Gold)
-                                    .placement(SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE).density(0.4f).radius(5);
-                        });
-            }
-    );
-
-    public static final GTOreDefinition IRON_VEIN_TF = create(
-            CTNHCore.id("iron_vein_tf"), vein -> {
-                vein.clusterSize(36).weight(120).layer(CTNHWorldgenLayers.TWILIGHT).density(0.3f).dimensions(TWILIGHT_FOREST)
-                        .heightRangeUniform(-30, 0).discardChanceOnAirExposure(0f)
-                        .layeredVeinGenerator(generator -> {
-                            generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(5).mat(GTMaterials.Goethite).size(1, 3))
-                                        .layer(l -> l.weight(2).mat(GTMaterials.YellowLimonite).size(1, 2))
-                                        .layer(l -> l.weight(2).mat(GTMaterials.Hematite).size(1, 2))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Malachite).size(1, 2));
-                            });
-                        }).surfaceIndicatorGenerator(indicator -> {
-                            indicator.surfaceRock(GTMaterials.Goethite)
                                     .placement(SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE).density(0.4f).radius(5);
                         });
             }
@@ -1075,22 +855,6 @@ public class CTNHOres {
             }
     );
 
-    public static final GTOreDefinition CASSITERITE_VEIN_TF = create(
-            CTNHCore.id("cassiterite_vein_tf"), vein -> {
-                vein.clusterSize(36).weight(50).layer(CTNHWorldgenLayers.TWILIGHT).density(0.4f).dimensions(TWILIGHT_FOREST)
-                        .heightRangeUniform(-30, 0).discardChanceOnAirExposure(0f)
-                        .layeredVeinGenerator(generator -> {
-                            generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(3).mat(GTMaterials.Tin).size(2, 3))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Cassiterite).size(1, 2));
-                            });
-                        }).surfaceIndicatorGenerator(indicator -> {
-                            indicator.surfaceRock(GTMaterials.Tin)
-                                    .placement(SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE).density(0.4f).radius(5);
-                        });
-            }
-    );
-
     // Moon 和其他星球的矿脉
     public static final GTOreDefinition MONAZITE_VEIN_N = create(
             CTNHCore.id("monazite_vein_n"), vein -> {
@@ -1114,7 +878,7 @@ public class CTNHOres {
                             generator.buildLayerPattern(pattern -> {
                                 pattern.layer(l -> l.weight(2).mat(GTMaterials.Bauxite).size(1, 4))
                                         .layer(l -> l.weight(1).mat(GTMaterials.Ilmenite).size(1, 2))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Aluminium).size(1, 1));
+                                        .layer(l -> l.weight(1).mat(CTNHMaterials.Alumina).size(1, 1));
                             });
                         });
             }
@@ -1274,7 +1038,7 @@ public class CTNHOres {
                         .layeredVeinGenerator(generator -> {
                             generator.buildLayerPattern(pattern -> {
                                 pattern.layer(l -> l.weight(2).mat(GTMaterials.Uraninite).size(1, 2))
-                                        .layer(l -> l.weight(2).mat(GTMaterials.Uranium238).size(1, 2));
+                                        .layer(l -> l.weight(2).mat(GTMaterials.Pitchblende).size(1, 2));
                             });
                         });
             }
@@ -1425,8 +1189,8 @@ public class CTNHOres {
                         .heightRangeUniform(10, 90).discardChanceOnAirExposure(0f)
                         .layeredVeinGenerator(generator -> {
                             generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(3).mat(GTMaterials.Naquadah).size(2, 4))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.NaquadahEnriched).size(1, 2));
+                                pattern.layer(l -> l.weight(3).mat(CTNHMaterials.NaquadahOxideMixture).size(2, 4))
+                                        .layer(l -> l.weight(1).mat(CTNHMaterials.EnrichedNaquadahOxideMixture).size(1, 2));
                             });
                         });
             }
@@ -1438,7 +1202,7 @@ public class CTNHOres {
                         .heightRangeUniform(-15, 15).discardChanceOnAirExposure(0f)
                         .layeredVeinGenerator(generator -> {
                             generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(1).mat(GTMaterials.Chromium).size(1, 2))
+                                pattern.layer(l -> l.weight(1).mat(GTMaterials.Chromite).size(1, 2))
                                         .layer(l -> l.weight(1).mat(GTMaterials.Tungsten).size(1, 2))
                                         .layer(l -> l.weight(1).mat(GTMaterials.Molybdenum).size(1, 2))
                                         .layer(l -> l.weight(1).mat(GTMaterials.Manganese).size(1, 2));
@@ -1482,8 +1246,8 @@ public class CTNHOres {
                         .heightRangeUniform(-5, 25).discardChanceOnAirExposure(0f)
                         .layeredVeinGenerator(generator -> {
                             generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(3).mat(GTMaterials.Platinum).size(1, 3))
-                                        .layer(l -> l.weight(2).mat(GTMaterials.Chromium).size(1, 2))
+                                pattern.layer(l -> l.weight(3).mat(CTNHMaterials.PlatinumOre).size(1, 3))
+                                        .layer(l -> l.weight(2).mat(GTMaterials.Chromite).size(1, 2))
                                         .layer(l -> l.weight(1).mat(GTMaterials.Cooperite).size(1, 2));
                             });
                         });
@@ -1601,7 +1365,7 @@ public class CTNHOres {
                             generator.buildLayerPattern(pattern -> {
                                 pattern.layer(l -> l.weight(2).mat(GTMaterials.Nickel).size(2, 3))
                                         .layer(l -> l.weight(1).mat(CTNHMaterials.MeteoricTroilite).size(1, 2))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Palladium).size(1, 2));
+                                        .layer(l -> l.weight(1).mat(CTNHMaterials.PalladiumOre).size(1, 2));
                             });
                         });
             }
@@ -1628,8 +1392,8 @@ public class CTNHOres {
                         .heightRangeUniform(10, 90).discardChanceOnAirExposure(0f)
                         .layeredVeinGenerator(generator -> {
                             generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(3).mat(GTMaterials.Naquadah).size(2, 3))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.NaquadahEnriched).size(1, 2));
+                                pattern.layer(l -> l.weight(3).mat(CTNHMaterials.NaquadahOxideMixture).size(2, 3))
+                                        .layer(l -> l.weight(1).mat(CTNHMaterials.EnrichedNaquadahOxideMixture).size(1, 2));
                             });
                         });
             }
