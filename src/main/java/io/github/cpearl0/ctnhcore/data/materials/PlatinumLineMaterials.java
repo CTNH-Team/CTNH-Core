@@ -27,6 +27,7 @@ public class PlatinumLineMaterials {
                 .buildAndRegister().setFormula("??PtPdIrOsRhRu??");
 
         PlatinumOre = new Material.Builder(CTNHCore.id("platinum_ore"))
+                .ore()
                 .dust()
                 .color(0xFFD700)
                 .iconSet(ROUGH)
@@ -36,6 +37,7 @@ public class PlatinumLineMaterials {
                 .setFormula("Pt*Pd*", true);
         Platinum.getProperty(PropertyKey.ORE).setDirectSmeltResult(PlatinumOre);
         PalladiumOre = new Material.Builder(CTNHCore.id("palladium_ore"))
+                .ore()
                 .dust()
                 .color(0xD8BFD8)
                 .iconSet(ROUGH)
