@@ -435,21 +435,18 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.mana_generator_turbine_tier2.tooltip.1", "转子支架等级不能超过§5EV§r");
         provider.add("ctnh.multiblock.mana_generator_turbine_tier2.tooltip.2","运行时消耗2.25倍燃料，获得4倍的发电量");
         provider.add("ctnh.multiblock.mana_generator_turbine_tier2.tooltip.3", "运行基础产能小于64的配方时，产生双倍发电");
-        provider.add("ctnh.mutiblock.mana_generator_turbine.base","运行时会根据能量产出额外消耗液态魔力，请确保液态魔力供应充足，在液态魔力供应不足时最终产能/5");
 
         provider.add("ctnh.multiblock.mana_generator_turbine_tier3.tooltip.0", "精密魔力转换器");
         provider.add("ctnh.multiblock.mana_generator_turbine_tier3.tooltip.1", "转子支架等级不能超过§dLuV§r");
         provider.add("ctnh.multiblock.mana_generator_turbine_tier3.tooltip.2","运行时消耗4倍燃料，获得16倍的发电量");
         provider.add("ctnh.multiblock.mana_generator_turbine_tier3.tooltip.3", "最终发电量额外乘以（1.2^(基础产能/32))");
-        provider.add("ctnh.mutiblock.mana_generator_turbine.base","运行时会根据能量产出额外消耗液态魔力，请确保液态魔力供应充足，在液态魔力供应不足时最终产能/5");
 
         provider.add("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.0", "神奇的能量守恒");
         provider.add("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.1", "转子支架等级不能超过§cUV§r");
         provider.add("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.2","运行时消耗4倍燃料，获得64倍的发电量");
         provider.add("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.3", "最终发电量额外乘以（1.5^(基础产能/32))");
-        provider.add("ctnh.mutiblock.mana_generator_turbine.base","运行时会根据能量产出额外消耗液态魔力，请确保液态魔力供应充足，在液态魔力供应不足时最终产能/5");
 
-        provider.add("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.3","只能使用激光仓");
+        provider.add("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.4","只能使用激光仓");
 
         provider.add("ctnh.multiblock.zenith_laser.tooltip.0","允许使用§5反相蚀刻§r，消耗§5天顶源质§r来将芯片制成晶圆");
 
