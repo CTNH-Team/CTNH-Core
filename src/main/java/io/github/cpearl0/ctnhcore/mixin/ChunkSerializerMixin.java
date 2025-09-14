@@ -11,15 +11,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.PalettedContainer;
 import net.minecraft.world.level.chunk.storage.ChunkSerializer;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = ChunkSerializer.class, remap = false)
+@Mixin(value = ChunkSerializer.class)
 public abstract class ChunkSerializerMixin {
+    @Mutable
+    @Final
     @Shadow
     public static Codec<PalettedContainer<BlockState>> BLOCK_STATE_CODEC;
 
@@ -43,6 +43,6 @@ public abstract class ChunkSerializerMixin {
         Encoder<BlockState> encoder = BlockState.CODEC::encode;
         Decoder<BlockState> decoder = ChunkSerializerMixin::CTNHCore$decode;
         var blockStateCodec = Codec.of(encoder, decoder);
-        ChunkSerializer.BLOCK_STATE_CODEC = PalettedContainer.codecRW(Block.BLOCK_STATE_REGISTRY, blockStateCodec, PalettedContainer.Strategy.SECTION_STATES, Blocks.AIR.defaultBlockState());
+        BLOCK_STATE_CODEC = PalettedContainer.codecRW(Block.BLOCK_STATE_REGISTRY, blockStateCodec, PalettedContainer.Strategy.SECTION_STATES, Blocks.AIR.defaultBlockState());
     }
 }
