@@ -117,6 +117,7 @@ public class MaterialLang {
         translateMaterial(provider, NaquadahBasedLiquidFuelExcited, "硅岩流体燃料(激发态)");
         translateMaterial(provider, NaquadahBasedLiquidFuelDepleted, "硅岩流体燃料(枯竭态)");
         translateMaterial(provider, IodizedBrine, "含碘盐水");
+        translateMaterial(provider, Seawater, "海水");
         translateMaterial(provider, IodineBrineMixture, "浓缩碘盐水混合物");
         translateMaterial(provider, BrominatedBrine, "含溴盐水");
         translateMaterial(provider, IodineSlurry, "碘浆液");

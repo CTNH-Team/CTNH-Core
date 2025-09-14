@@ -10,11 +10,15 @@ import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.DISABLE_DECOMPOSITION;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.SaltWater;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
 public class BrineChain {
     public static void init(Consumer<FinishedRecipe> provider) {
@@ -24,6 +28,12 @@ public class BrineChain {
     public static void init() {
         addFluid(GTMaterials.Bromine);
         addDust(GTMaterials.Iodine);
+        Seawater = new Material.Builder(CTNHCore.id("seawater"))
+                .liquid(new FluidBuilder().temperature(288))
+                .color(0x3B7BB0)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister()
+                .setFormula("Cl?Br?I?[H2O]", false);
         IodizedBrine = new Material.Builder(CTNHCore.id("iodized_brine"))
                 .fluid().color(0x525246)
                 .buildAndRegister()
@@ -85,15 +95,27 @@ public class BrineChain {
                 .buildAndRegister();
     }
     private static void IodineChain(Consumer<FinishedRecipe> provider) {
+        //海水粗提盐水
+        CTNHRecipeTypes.DESALTING.recipeBuilder("seawater_saltwater")
+                .inputFluids(Seawater.getFluid(1000))
+                .chancedOutput(dust,GTMaterials.MagnesiumChloride,2000,0)
+                .chancedOutput(dust,GTMaterials.CalciumChloride,1000,0)
+                .outputFluids(SaltWater.getFluid(500))
+                .circuitMeta(2)
+                .EUt(240)
+                .duration(300)
+                .save(provider);
+
+        //海水精提溴碘
         GTRecipeTypes.BLAST_RECIPES.recipeBuilder("iodine_brine")
-                .inputItems(TagPrefix.dust, GTMaterials.Saltpeter)
-                .inputFluids(GTMaterials.SaltWater.getFluid(1000))
-                .outputItems(TagPrefix.dust, GTMaterials.Potassium)
+                .inputItems(dust, GTMaterials.Saltpeter)
+                .inputFluids(Seawater.getFluid(2000))
+                .outputItems(dust, GTMaterials.Potassium)
                 .outputFluids(IodizedBrine.getFluid(1000))
                 .circuitMeta(1)
                 .EUt(1280)
                 .duration(240)
-                .blastFurnaceTemp(1128)
+                .blastFurnaceTemp(640)
                 .save(provider);
 
         //  I? + 0.3 Cl -> I?Cl
@@ -117,7 +139,7 @@ public class BrineChain {
         //  I? -> I
         CTNHRecipeTypes.DEHYDRATOR_RECIPES.recipeBuilder("iodine")
                 .inputFluids(IodineSlurry.getFluid(1200))
-                .outputItems(TagPrefix.dust, GTMaterials.Iodine)
+                .outputItems(dust, GTMaterials.Iodine)
                 .EUt(1280)
                 .duration(200)
                 .save(provider);
@@ -140,7 +162,7 @@ public class BrineChain {
                 .inputFluids(GTMaterials.Water.getFluid(1000))
                 .circuitMeta(3)
                 .outputFluids(BromineSulfateSolution.getFluid(1000))
-                .outputFluids(GTMaterials.SaltWater.getFluid(1000))
+                .outputFluids(SaltWater.getFluid(1000))
                 .EUt(480)
                 .duration(200)
                 .save(provider);
@@ -176,7 +198,7 @@ public class BrineChain {
         //  Salt Water recycle
         CTNHRecipeTypes.DEHYDRATOR_RECIPES.recipeBuilder("debrominated_water")
                 .inputFluids(DebrominatedWater.getFluid(1000))
-                .outputFluids(GTMaterials.SaltWater.getFluid(100))
+                .outputFluids(SaltWater.getFluid(100))
                 .EUt(360)
                 .duration(80)
                 .save(provider);

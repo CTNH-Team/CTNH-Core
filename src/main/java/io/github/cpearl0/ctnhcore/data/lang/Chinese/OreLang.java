@@ -83,6 +83,9 @@ public class OreLang {
         provider.add("gtceu.jei.ore_vein.arctic_crystal_core_vein", "暮色森林极寒冰核矿脉");
         provider.add("gtceu.jei.ore_vein.calorite_vein_ad", "太空耐热金属矿脉");
         provider.add("gtceu.jei.ore_vein.thorium_vein_ad", "太空钍矿脉");
+
+        provider.add("gtceu.jei.bedrock.fluid.seawater_vein_overworld", "海水矿藏");
+        provider.add("gtceu.jei.bedrock.fluid.moon_seawater_vein", "静海矿藏");
     }
     public static void initDimensionLang(RegistrateCNLangProvider provider) {
         provider.add("dimension.ad_astra:moon", "月球");

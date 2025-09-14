@@ -83,5 +83,8 @@ public class VeinLang {
         provider.add("ctnhcore:arctic_crystal_core_vein", "暮色森林极寒冰核矿脉");
         provider.add("ctnhcore:calorite_vein_ad", "太空耐热金属矿脉");
         provider.add("ctnhcore:thorium_vein_ad", "太空钍矿脉");
+
+        provider.add("ctnhcore:seawater_vein_overworld", "海水矿藏");
+        provider.add("ctnhcore:moon_seawater_vein", "静海矿藏");
     }
 }

@@ -915,6 +915,7 @@ public class CTNHMaterials {
     public static Material AmmoniumChlororuthenate;
     public static Material SodiumOsmateRuthenateChlorideSolution;
     public static Material Acetaldehyde;
+    public static Material Seawater;
     public static void init() {
         NuclearMaterials.init();
         CreateMaterials.init();

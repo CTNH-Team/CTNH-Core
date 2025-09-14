@@ -48,6 +48,7 @@ import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 import io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
@@ -68,6 +69,7 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.abilities;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.HEAT_VENT;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
+import static com.gregtechceu.gtceu.common.data.GTMachines.ENERGY_INPUT_HATCH;
 import static com.gregtechceu.gtceu.common.data.GTMaterialBlocks.MATERIAL_BLOCKS;
 import static com.gregtechceu.gtceu.common.data.GTMaterialItems.MATERIAL_ITEMS;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.DrillingFluid;
@@ -1660,10 +1662,10 @@ public class MultiblocksA {
     public static final MultiblockMachineDefinition LARGE_STEEL_FURNACE = REGISTRATE.multiblock("large_steel_furnace", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.FURNACE_RECIPES)
-            .recipeModifier((machine, recipe) -> GTRecipeModifiers.OC_PERFECT_SUBTICK.getModifier(machine, recipe).compose(CTNHRecipeModifiers.accurateParallel(machine, recipe, 32)))
+            .recipeModifiers((machine, recipe) -> GTRecipeModifiers.OC_PERFECT_SUBTICK.getModifier(machine, recipe).compose(CTNHRecipeModifiers.accurateParallel(machine, recipe, 32)))
             .appearanceBlock(CASING_PRIMITIVE_BRICKS)
             .tooltips(Component.translatable("ctnh.multiblock.large_steel_furnace.tooltip.0").withStyle(ChatFormatting.GRAY))
-            .tooltips(CTNHCommonTooltips.STEEL_MACHINE)
+            .tooltips(Component.translatable("ctnh.common_tooltip.perfect_overclock").withStyle(ChatFormatting.GREEN))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAA", "BBB", "BBB", "#B#")
                     .aisle("AAA", "BCB", "BAB", "#B#")
@@ -1681,10 +1683,10 @@ public class MultiblocksA {
     public static final MultiblockMachineDefinition LARGE_STEEL_ALLOY_FURNACE = REGISTRATE.multiblock("large_steel_alloy_furnace", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.ALLOY_SMELTER_RECIPES)
-            .recipeModifier((machine, recipe) -> GTRecipeModifiers.OC_PERFECT_SUBTICK.getModifier(machine, recipe).compose(CTNHRecipeModifiers.accurateParallel(machine, recipe, 32)))
+            .recipeModifiers((machine, recipe) -> GTRecipeModifiers.OC_PERFECT_SUBTICK.getModifier(machine, recipe).compose(CTNHRecipeModifiers.accurateParallel(machine, recipe, 32)))
             .appearanceBlock(CASING_PRIMITIVE_BRICKS)
             .tooltips(Component.translatable("ctnh.multiblock.large_steel_alloy_furnace.tooltip.0").withStyle(ChatFormatting.GRAY))
-            .tooltips(CTNHCommonTooltips.STEEL_MACHINE)
+            .tooltips(Component.translatable("ctnh.common_tooltip.perfect_overclock").withStyle(ChatFormatting.GREEN))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("ABA", "CCC", "CBC", "CCC")
                     .aisle("BBB", "CCC", "BDB", "CCC")

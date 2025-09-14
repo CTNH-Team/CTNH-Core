@@ -5,14 +5,31 @@ import com.gregtechceu.gtceu.api.data.worldgen.bedrockfluid.BedrockFluidDefiniti
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import earth.terrarium.adastra.api.planets.Planet;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import net.minecraft.client.gui.font.providers.UnihexProvider;
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biomes;
 
+import java.awt.*;
 import java.util.Set;
 
 import static com.gregtechceu.gtceu.common.data.GTBedrockFluids.create;
 public class CTNHFluidVeins {
     public static void init() {
-
     }
+    public static BedrockFluidDefinition SEAWATER_VEIN_OVERWORLD = create(CTNHCore.id("seawater_vein_overworld"), vein -> {
+        vein.dimensions(Set.of(Level.OVERWORLD))
+        .fluid(() -> CTNHMaterials.Seawater.getFluid())
+        .weight(100)
+        .minimumYield(200)
+        .maximumYield(500)
+        .depletionAmount(10)
+        .depletionChance(1)
+        .depletedYield(100)
+        .biomes(200, Biomes.DEEP_OCEAN, Biomes.DEEP_COLD_OCEAN, Biomes.DEEP_FROZEN_OCEAN)
+        .biomes(150, BiomeTags.IS_OCEAN)
+        .register();
+    });
     public static BedrockFluidDefinition FLUORINE_VEIN_AETHER = create(CTNHCore.id("fluorine_vein"), vein -> {
         vein.dimensions(Set.of(AetherDimensions.AETHER_LEVEL))
         .fluid(() -> GTMaterials.Fluorine.getFluid())
@@ -134,15 +151,15 @@ public class CTNHFluidVeins {
         .depletedYield(20)
                 .register();
     });
-    public static BedrockFluidDefinition SALTWATER_VEIN_MOON = create(CTNHCore.id("moon_saltwater_vein"), vein -> {
+    public static BedrockFluidDefinition SEAWATER_VEIN_MOON = create(CTNHCore.id("moon_seawater_vein"), vein -> {
         vein.dimensions(Set.of(Planet.MOON))
-        .fluid(() -> GTMaterials.SaltWater.getFluid())
+        .fluid(() -> CTNHMaterials.Seawater.getFluid())
         .weight(800)
-        .minimumYield(200)
+        .minimumYield(400)
         .maximumYield(800)
-        .depletionAmount(2)
+        .depletionAmount(20)
         .depletionChance(1)
-        .depletedYield(100)
+        .depletedYield(300)
                 .register();
     });
     public static BedrockFluidDefinition SULFURIC_ACID_VEIN_VENUS = create(CTNHCore.id("venus_sulfuric_acid_vein"), vein -> {
