@@ -6,7 +6,10 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GCYMRecipeTypes;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
+import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.ItemStack;
@@ -21,6 +24,26 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
 public class PlatinumLine {
     public static void init(Consumer<FinishedRecipe> provider) {
         remove(provider);
+        // --- 铂钯催化剂 ---
+        GTRecipeTypes.MIXER_RECIPES.recipeBuilder("palladium_on_platinum")
+                .inputItems(TagPrefix.dust, Platinum)
+                .inputItems(TagPrefix.dust, Palladium)
+                .outputItems(CTNHTagPrefixes.catalyst, PalladiumOnPlatinum)
+                .circuitMeta(32)
+                .duration(160)
+                .EUt(GTValues.VA[GTValues.HV])
+                .save(provider);
+
+        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder("enriched_naquadah_reduction")
+                .inputItems(CTNHTagPrefixes.catalyst, CTNHMaterials.PalladiumOnPlatinum)
+                .inputFluids(Hydrogen.getFluid(9000))
+                .inputFluids(Nitrogen.getFluid(3000))
+                .outputFluids(Ammonia.getFluid(3000))
+                .EUt(GTValues.VA[GTValues.MV])
+                .duration(600)
+                .addCondition(new PlantCasingCondition(2))
+                .save(provider);
+
         GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("platinum_slurry_aqua_regia")
                 .inputItems(dust,PlatinumGroupSludge,3) // 单槽位输入
                 .inputFluids(GTMaterials.AquaRegia.getFluid(6000))//2HNO3+4HCL

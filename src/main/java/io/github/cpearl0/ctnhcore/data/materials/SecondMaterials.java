@@ -22,6 +22,10 @@ public class SecondMaterials {
         ArcaneCrystal = new Material.Builder(CTNHCore.id("arcane_crystal")).dust().ore().gem().color(0x93AEFF).iconSet(MaterialIconSet.DIAMOND)
                         .buildAndRegister();
 
+        PalladiumOnPlatinum = new Material.Builder(CTNHCore.id("palladium_on_platinum")).dust().color(0x233144).iconSet(MaterialIconSet.DULL)
+                .flags(MaterialFlags.DISABLE_DECOMPOSITION).components(GTMaterials.Palladium, 1, GTMaterials.Platinum, 1)
+                .buildAndRegister();
+
         RP1 = Builder("rp_1_mixed_fuel").fluid().color(0xC02928).iconSet(MaterialIconSet.DULL)
                         .buildAndRegister();
 

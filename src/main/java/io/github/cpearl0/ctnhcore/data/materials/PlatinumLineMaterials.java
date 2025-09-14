@@ -5,11 +5,13 @@ import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.data.material.CatalystProperty;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.DISABLE_DECOMPOSITION;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Oxygen;
+import static io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys.CATALYST;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
 public class PlatinumLineMaterials {
     public static void init() {
@@ -289,5 +291,7 @@ public class PlatinumLineMaterials {
                 .components(Carbon, 2, Hydrogen, 4, Oxygen, 1)  // C₂H₄O
                 .buildAndRegister()
                 .setFormula("CH3CHO", true);  // 结构式
+
+        PalladiumOnPlatinum.setProperty(CATALYST, new CatalystProperty(300));
     }
 }

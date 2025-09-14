@@ -26,5 +26,7 @@ public class RecipeRemoval {
         registry.accept(ResourceLocation.parse("gtceu:electrolyzer/decomposition_electrolyzing_cooperite"));
         registry.accept(ResourceLocation.parse("gtceu:chemical_reactor/hydrogen_peroxide"));
         registry.accept(ResourceLocation.parse("gtceu:electrolyzer/sugar_electrolysis"));
+        registry.accept(ResourceLocation.parse("gtceu:chemical_reactor/saltpeter"));
+        registry.accept(ResourceLocation.parse("gtceu:large_chemical_reactor/saltpeter"));
     }
 }

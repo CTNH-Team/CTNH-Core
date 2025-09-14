@@ -16,9 +16,11 @@ import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
+import static com.gregtechceu.gtceu.api.GTValues.LV;
+import static com.gregtechceu.gtceu.api.GTValues.VA;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.DISABLE_DECOMPOSITION;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.SaltWater;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
 public class BrineChain {
     public static void init(Consumer<FinishedRecipe> provider) {
@@ -91,10 +93,32 @@ public class BrineChain {
         DebrominatedWater = new Material.Builder(CTNHCore.id("debrominated_water"))
                 .fluid()
                 .color(0x24A3A3)
-                .components(GTMaterials.Hydrogen, 2, GTMaterials.Oxygen, 1)
+                .components(GTMaterials.Hydrogen, 2, Oxygen, 1)
                 .buildAndRegister();
     }
     private static void IodineChain(Consumer<FinishedRecipe> provider) {
+        //硝酸钾配方修改
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("potassium_nitrate_synthesis")
+                .inputItems(TagPrefix.dust, GTMaterials.PotassiumCarbonate, 6)
+                .inputFluids(GTMaterials.NitricAcid.getFluid(2000))
+                .outputItems(TagPrefix.dust, Saltpeter, 10)
+                .outputFluids(GTMaterials.Water.getFluid(1000))
+                .outputFluids(GTMaterials.CarbonDioxide.getFluid(1000))
+                .EUt(GTValues.VA[GTValues.HV])
+                .duration(200)
+                .save(provider);
+
+        //硝酸钾制氨
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("ammonia_from_potassium_nitrate")
+                .inputItems(TagPrefix.dust, GTMaterials.Saltpeter, 5)
+                .inputFluids(GTMaterials.Hydrogen.getFluid(8000))
+                .outputFluids(GTMaterials.Ammonia.getFluid(1000))
+                .outputItems(TagPrefix.dust, GTMaterials.PotassiumHydroxide, 3)
+                .outputFluids(GTMaterials.Water.getFluid(2000))
+                .EUt(GTValues.VA[GTValues.HV])
+                .duration(300)
+                .save(provider);
+
         //海水粗提盐水
         CTNHRecipeTypes.DESALTING.recipeBuilder("seawater_saltwater")
                 .inputFluids(Seawater.getFluid(1000))
@@ -108,9 +132,9 @@ public class BrineChain {
 
         //海水精提溴碘
         GTRecipeTypes.BLAST_RECIPES.recipeBuilder("iodine_brine")
-                .inputItems(dust, GTMaterials.Saltpeter)
+                .inputItems(dust, GTMaterials.Saltpeter,5)
                 .inputFluids(Seawater.getFluid(2000))
-                .outputItems(dust, GTMaterials.Potassium)
+                .outputItems(dust, Potassium)
                 .outputFluids(IodizedBrine.getFluid(1000))
                 .circuitMeta(1)
                 .EUt(1280)
@@ -172,7 +196,7 @@ public class BrineChain {
                 .inputFluids(BromineSulfateSolution.getFluid(2000))
                 .inputFluids(GTMaterials.Steam.getFluid(1000))
                 .outputFluids(OverheatedBromineSulfateSolution.getFluid(3000))
-                .EUt(GTValues.VA[GTValues.HV])
+                .EUt(VA[GTValues.HV])
                 .duration(400)
                 .save(provider);
 
@@ -183,7 +207,7 @@ public class BrineChain {
                 .outputFluids(DebrominatedWater.getFluid(1000))
                 .outputFluids(GTMaterials.Chlorine.getFluid(2000))
                 .outputFluids(GTMaterials.SulfuricAcid.getFluid(1000))
-                .EUt(GTValues.VA[GTValues.HV])
+                .EUt(VA[GTValues.HV])
                 .duration(280)
                 .save(provider);
 

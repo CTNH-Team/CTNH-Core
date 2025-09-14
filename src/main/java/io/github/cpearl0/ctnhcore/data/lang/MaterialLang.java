@@ -82,6 +82,7 @@ public class MaterialLang {
         translateMaterial(provider, HexafluorideEnrichedNaquadahSolution, "六氟化富集硅岩溶液");
         translateMaterial(provider, XenonHexafluoroEnrichedNaquadate, "六氟氙酸富集硅岩");
         translateMaterial(provider, PalladiumOnCarbon, "钯碳");
+        translateMaterial(provider, PalladiumOnPlatinum, "钯铂");
         translateMaterial(provider, GoldTrifluoride, "三氟化金");
         translateMaterial(provider, EnrichedNaquadahResidueSolution, "富集硅岩残余物溶液");
         translateMaterial(provider, XenoauricFluoroantimonicAcid, "氟锑酸金二氙残液");

@@ -662,7 +662,7 @@ public class CTNHMaterials {
             .iconSet(SHINY)
             .flags(GENERATE_FOIL, GENERATE_FINE_WIRE, STICKY)
             .components(Ruthenium, 1, Mercury, 2)
-            .addOreByproducts(Mercury, RutheniumTetroxide, Cinnabar)
+            .addOreByproducts(Cinnabar, RutheniumTetroxide, Cinnabar)
             .buildAndRegister();
     public static final Material OsmiumIronSpinel = new Material.Builder(GTCEu.id("osmium_iron_spinel"))
             .gem().ore()
@@ -817,6 +817,7 @@ public class CTNHMaterials {
     public static Material ZincSulfate;
     public static Material Wollastonite;
     public static Material ArcaneCrystal;
+    public static Material PalladiumOnPlatinum;
     public static Material ManaSteel;
     public static Material TerraSteel;
     public static Material Elementium;
