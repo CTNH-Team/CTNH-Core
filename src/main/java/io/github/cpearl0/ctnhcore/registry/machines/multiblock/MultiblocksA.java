@@ -214,6 +214,8 @@ public class MultiblocksA {
                         Component.translatable("ctnh.multiblock.photovoltaic_power_station_" + tier + ".tooltip.1"),
                         Component.translatable("ctnh.multiblock.photovoltaic_power_station_" + tier + ".tooltip.2"))
                 .appearanceBlock(CTNHBlocks.CASING_REFLECT_LIGHT)
+                .allowExtendedFacing(false)
+                .allowFlip(false)
                 .pattern(definition -> FactoryBlockPattern.start()
                         .aisle("AAAAAAA")
                         .aisle("ABBBBBA")

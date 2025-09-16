@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.common.item;
 
 import appeng.api.implementations.blockentities.IWirelessAccessPoint;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
+import com.gregtechceu.gtceu.api.block.IMachineBlock;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.item.component.IItemUIFactory;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -280,7 +281,7 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
                 // 处理普通方块
                 for (BlockInfo info : blockInfos) {
                     if (info.getBlockState().getBlock() != Blocks.AIR
-                            &&(this.noHatchMode == 0 || !info.getItemStackForm().is(HATCH_TAG))) {
+                            &&(this.noHatchMode == 0 || !(info.getBlockState().getBlock() instanceof IMachineBlock))) {
                         candidates.add(OrientedItem.createOrientedItem(info));
                     }
                 }
@@ -291,7 +292,7 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
         public boolean isPlaceHatch(BlockInfo[] blockInfos) {
             if (this.noHatchMode == 0) return true;
             if (blockInfos != null && blockInfos.length > 0) {
-                return Arrays.stream(blockInfos).noneMatch(b -> b.getItemStackForm().is(HATCH_TAG));
+                return Arrays.stream(blockInfos).noneMatch(b -> b.getBlockState().getBlock() instanceof IMachineBlock);
 //                var blockInfo = blockInfos[0];
 //                if (blockInfo.getBlockState().getBlock() instanceof MetaMachineBlock machineBlock) {
 //                    var id = machineBlock.getDefinition().getName();

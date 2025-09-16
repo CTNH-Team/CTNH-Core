@@ -86,15 +86,18 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
         }
     }
 
-    @Override
-    public boolean checkPattern() {
-        var ret = super.checkPattern();
-        if (ret && getUpwardsFacing() != Direction.NORTH){
-            doExplosion(10f);
-            return false;
-        }
-        return ret;
-    }
+//    @Override
+//    public boolean checkPattern() {
+//        var ret = super.checkPattern();
+//        if (!isRemote() && ret && getUpwardsFacing() != Direction.NORTH){
+//            getLevel().getServer().submit(
+//                    () -> doExplosion(10f)
+//            );
+//
+//            return false;
+//        }
+//        return ret;
+//    }
 
     @Override
     public void onStructureInvalid() {

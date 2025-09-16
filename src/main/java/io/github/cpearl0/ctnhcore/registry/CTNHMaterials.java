@@ -922,10 +922,11 @@ public class CTNHMaterials {
         CreateMaterials.init();
         BotaniaMaterials.init();
         AdastraMaterials.init();
+        SecondMaterials.init();
         PlatinumLineMaterials.init();
         NaquadahMaterials.init();
         BrineChain.init();
-        SecondMaterials.init();
+
         OrdinaryMaterials.init();
         CombustibleIce.setFormula("(CH4)(H2O)", true);
 
