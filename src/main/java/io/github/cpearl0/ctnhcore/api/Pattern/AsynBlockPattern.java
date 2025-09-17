@@ -268,52 +268,6 @@ public class AsynBlockPattern extends BlockPattern {
         return repeat;
     }
 
-//    private void executeLayeredBuilding(BuildContext context, int[] repeatCounts) {
-//        for (int c = 0, z = context.minZ++, r; c < this.fingerLength; c++) {
-//            for (r = 0; r < repeatCounts[c]; r++) {
-//                context.worldState.getLayerCount().clear();
-//                buildSingleLayer(context, c, z);
-//                z++;
-//            }
-//        }
-//    }
-
-//    private void buildSingleLayer(BuildContext context, int layerIndex, int z) {
-//        for (int b = 0, y = -centerOffset[1]; b < this.thumbLength; b++, y++) {
-//            for (int a = 0, x = -centerOffset[0]; a < this.palmLength; a++, x++) {
-//                processSingleBlock(context, layerIndex, b, a, x, y, z);
-//            }
-//        }
-//    }
-
-//    private void processSingleBlock(BuildContext context, int layerIndex, int yIndex, int xIndex,
-//                                    int x, int y, int z) {
-//        TraceabilityPredicate predicate = this.blockMatches[layerIndex][yIndex][xIndex];
-//        BlockPos pos = calculateBlockPosition(context, x, y, z);
-//
-//        updateWorldState(context.worldState, pos, predicate);
-//
-//        // 处理已有方块的情况
-//        if (handleExistingBlock(context, pos, predicate)) {
-//            return;
-//        }
-//        //FluidUtil.getFluidContained()
-//        // 获取需要放置的方块信息
-//        BlockInfo[] infos = determineRequiredBlockInfo(context, predicate);
-//
-//        if (infos == null) return;
-//
-//        // 从玩家物品栏中查找合适的方块
-//        if (!findSuitableItemStack(context, infos)) return;
-//
-//        // 处理线圈替换逻辑
-//        handleCoilReplacement(context, pos);
-//
-//        // 实际放置方块
-//        if(placeBlock(context, pos))
-//            extractInventory(context);
-//    }
-
     private BlockPos calculateBlockPosition(BuildContext context, int x, int y, int z) {
         return setActualRelativeOffset(x, y, z, context.facing, context.upwardsFacing, context.isFlipped)
                 .offset(context.centerPos.getX(), context.centerPos.getY(), context.centerPos.getZ());

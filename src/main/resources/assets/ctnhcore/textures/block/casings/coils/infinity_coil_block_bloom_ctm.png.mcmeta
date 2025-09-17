@@ -8,8 +8,7 @@
     ]
   },
     "ldlib": {
-        "emissive": true,
-        "connection": "ctnhcore:block/casings/coils/infinity_coil_block_bloom_ctm"
+        "emissive": true
     },
     "shimmer": {
         "bloom": true

@@ -30,7 +30,7 @@ public class TestingTerminalBehavior implements IInteractionItem {
         if (player == null) return InteractionResult.PASS;
 
         Level level = context.getLevel();
-        if (level instanceof ServerLevel) {
+        if (level.isClientSide()) {
             return InteractionResult.PASS;  // 客户端不进行实际操作
         }
 
@@ -59,7 +59,7 @@ public class TestingTerminalBehavior implements IInteractionItem {
     }
 
     private void handleUnformedController(Player player, IMultiController controller) {
-        if (!controller.self().allowFlip()) {
+        if (true || !controller.self().allowFlip()) {
             MultiblockState multiblockState = controller.getMultiblockState();
             PatternError error = multiblockState.error;
             if (error != null) {
@@ -129,15 +129,51 @@ public class TestingTerminalBehavior implements IInteractionItem {
 
         if (error instanceof SinglePredicateError) {
             List<List<ItemStack>> candidates = error.getCandidates();
-            var root = candidates.get(0).get(0).getHoverName();
-            messages.add(Component.translatable("ctnh.test_terminal.lack_error", Component.translatable("ctnh.test_terminal.position", pos.getX(), pos.getY(), pos.getZ())));
-            messages.add(Component.literal(" - ").append(root).append(Component.translatable("ctnh.test_terminal.error_info",error.getErrorInfo())));
+            messages.add(Component.translatable("ctnh.test_terminal.lack_error",
+                    Component.translatable("ctnh.test_terminal.position", pos.getX(), pos.getY(), pos.getZ())
+            ));
+
+        // 遍历所有候选物品列表
+            for (List<ItemStack> candidate : candidates) {
+                if (!candidate.isEmpty()) {
+                    // 只取前5个ItemStack
+                    int maxItemsToShow = 5;
+                    int totalItems = candidate.size();
+
+                    for (int i = 0; i < Math.min(maxItemsToShow, totalItems); i++) {
+                        ItemStack itemStack = candidate.get(i);
+                        Component itemName = itemStack.getHoverName();
+                        messages.add(
+                                Component.literal(" - ")
+                                        .append(itemName)
+                                        .append(Component.translatable("ctnh.test_terminal.error_info", error.getErrorInfo()))
+                        );
+                    }
+
+                    // 如果超过5个，显示"..."
+                    if (totalItems > maxItemsToShow) {
+                        messages.add(Component.literal(" - ..."));
+                    }
+                }
+            }
         } else {
             messages.add(Component.translatable("ctnh.test_terminal.wrong_error", Component.translatable("ctnh.test_terminal.position", pos.getX(), pos.getY(), pos.getZ())));
             List<List<ItemStack>> candidates = error.getCandidates();
+            // 设置每个候选列表最多显示的项目数
+            final int MAX_ITEMS_PER_CANDIDATE = 5;
+
             for (List<ItemStack> candidate : candidates) {
                 if (!candidate.isEmpty()) {
-                    messages.add(Component.literal(" - ").append(candidate.get(0).getDisplayName()));
+                    // 遍历前MAX_ITEMS_PER_CANDIDATE个ItemStack
+                    for (int i = 0; i < Math.min(MAX_ITEMS_PER_CANDIDATE, candidate.size()); i++) {
+                        ItemStack itemStack = candidate.get(i);
+                        messages.add(Component.literal(" - ").append(itemStack.getDisplayName()));
+                    }
+
+                    // 如果超过MAX_ITEMS_PER_CANDIDATE个，显示省略号
+                    if (candidate.size() > MAX_ITEMS_PER_CANDIDATE) {
+                        messages.add(Component.literal(" - ..."));
+                    }
                 }
             }
         }

@@ -13,6 +13,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
+import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
@@ -539,10 +540,10 @@ public class MultiblocksA {
             .tooltips(Component.translatable("ctnh.multiblock.sweat_shop.tooltip.7"))
             .tooltips(Component.translatable("ctnh.multiblock.sweat_shop.tooltip.8"))
             .appearanceBlock(CASING_STEEL_SOLID)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("aaaaa", "aaaaa", "aaaaa", "aaaaa")
-                    .aisle("ccccc", "a b a", "e   e", "ccccc").setRepeatable(3, 16)
+            .pattern(definition -> FactoryBlockPattern.start(RelativeDirection.LEFT, RelativeDirection.UP, RelativeDirection.BACK)
                     .aisle("aaaaa", "aadaa", "aaaaa", "aaaaa")
+                    .aisle("ccccc", "a b a", "e   e", "ccccc").setRepeatable(3, 16)
+                    .aisle("aaaaa", "aaaaa", "aaaaa", "aaaaa")
                     .where("a", Predicates.blocks(CASING_STEEL_SOLID.get())
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
                             .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
