@@ -51,9 +51,9 @@ public class NeutronActivatorCondition extends RecipeCondition {
 
     @Override
     public Component getTooltips() {
-        var max = evRange % 10000;
-        var min = evRange / 10000;
-        return Component.translatable("ctnh.recipe.condition.neutron_activator_condition_tooltip", max, min);
+        var min = evRange % 10000;
+        var max = evRange / 10000;
+        return Component.translatable("ctnh.recipe.condition.neutron_activator_condition_tooltip", min, max);
     }
 
     @Override

@@ -277,6 +277,18 @@ dependencies {
     //JAVD
 //    runtimeOnly fg.deobf("curse.maven:javd-370890:4803995")
 //    runtimeOnly fg.deobf("curse.maven:trenzalore-870210:4848244")
+    //implementation fg.deobf("curse.maven:ctnhbio-1333825:6958274")
+    //implementation fg.deobf("curse.maven:ctpp-1163715:6962884")
+
+    implementation  fg.deobf("maven.modrinth:advanced-loot-info:nrGWQ7rF")
+
+    //Hostile Neural NetWork
+    implementation fg.deobf("curse.maven:hostile_neural_network-552574:5895036")
+
+    // Biomancy
+    implementation fg.deobf("curse.maven:biomancy-492939:5886758")
+    implementation fg.deobf("curse.maven:bio-factory-1136762:6293100")
+
 
     implementation project(":modules:CTNH-Bio")
     implementation project(":modules:CTPP")

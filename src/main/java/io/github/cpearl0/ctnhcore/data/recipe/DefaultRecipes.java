@@ -350,7 +350,7 @@ public class DefaultRecipes {
                 .notConsumable(TagPrefix.plate, GTMaterials.Tungsten)
                 .inputFluids(CTNHMaterials.UraniumBasedLiquidFuel.getFluid(100))
                 .outputFluids(CTNHMaterials.UraniumBasedLiquidFuelExcited.getFluid(100))
-                .addCondition(new NeutronActivatorCondition(550, 450))
+                .addCondition(new NeutronActivatorCondition(450, 550))
                 .duration(80) // 4秒
                 .save(provider);
 
@@ -369,7 +369,7 @@ public class DefaultRecipes {
                 .notConsumable(TagPrefix.plate, GTMaterials.Tritanium)
                 .inputFluids(CTNHMaterials.PlutoniumBasedLiquidFuel.getFluid(100))
                 .outputFluids(CTNHMaterials.PlutoniumBasedLiquidFuelExcited.getFluid(100))
-                .addCondition(new NeutronActivatorCondition(600, 500))
+                .addCondition(new NeutronActivatorCondition(500, 600))
                 .duration(80) // 4秒
                 .save(provider);
 
@@ -387,7 +387,7 @@ public class DefaultRecipes {
         CTNHRecipeTypes.NEUTRON_ACTIVATOR_RECIPES.recipeBuilder("thorium_based_liquid_fuel_depleted")
                 .inputFluids(CTNHMaterials.ThoriumBasedLiquidFuelExcited.getFluid(200))
                 .outputFluids(CTNHMaterials.ThoriumBasedLiquidFuelDepleted.getFluid(200))
-                .addCondition(new NeutronActivatorCondition(700, 500))
+                .addCondition(new NeutronActivatorCondition(500, 700))
                 .duration(10000) // 500秒
                 .save(provider);
 

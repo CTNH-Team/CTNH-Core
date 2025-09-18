@@ -272,7 +272,7 @@ public class NaquadahLine {
                 .outputItems(TagPrefix.dust, GTMaterials.Caesium, 3)
                 .outputFluids(GTMaterials.Fluorine.getFluid(18000))
                 .duration(100)  // 5秒
-                .addCondition(new NeutronActivatorCondition(1100, 1050))  // 设置中子通量参数
+                .addCondition(new NeutronActivatorCondition(1050, 1100))  // 设置中子通量参数
                 .save(provider);
 
         // 浓缩Naquadah处理 (酸性溶液 -> 硫酸盐)
@@ -281,7 +281,7 @@ public class NaquadahLine {
                 .outputItems(TagPrefix.dust, GTMaterials.EnrichedNaquadahSulfate, 15)
                 .outputFluids(GTMaterials.ImpureNaquadriaSolution.getFluid(1000))
                 .duration(120)  // 6秒
-                .addCondition(new NeutronActivatorCondition(480, 460))
+                .addCondition(new NeutronActivatorCondition(460, 480))
                 .save(provider);
 
         // Naquadah直接活化 (氧化物混合物 -> 纯Naquadah)-完美循环
@@ -293,7 +293,7 @@ public class NaquadahLine {
                 .outputItems(TagPrefix.dust, GTMaterials.AntimonyTrifluoride, 24)
                 .chancedOutput(TagPrefix.dust, GTMaterials.Gallium, 7500, 0)  // 75%概率副产物
                 .duration(100)  // 5秒
-                .addCondition(new NeutronActivatorCondition(240, 220))
+                .addCondition(new NeutronActivatorCondition(220, 240))
                 .save(provider);
         // 浓缩Naquadah氧化物混合物 + 氟锑酸 -> 三氧化二锑 + 三氟化钛 + 不纯浓缩溶液-半循环
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("enriched_naquadah_oxide_decomposition")
