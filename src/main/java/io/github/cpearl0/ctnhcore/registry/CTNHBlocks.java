@@ -91,6 +91,8 @@ public class CTNHBlocks {
             "terra_steel_casing",CTNHCore.id("block/casings/terra_steel_casing"));
     public static final BlockEntry<Block> ZENITH_EYE = createCasingBlock(
             "zenith_eye",CTNHCore.id("block/zenith_eye"));
+    public static final BlockEntry<Block> FABRIC = createCasingBlock(
+            "fabric",CTNHCore.id("block/fabric"));
     public static final BlockEntry<Block> NATURAL_ECOLOGICAL_SHELL_CASING = createCasingBlock("natural_ecological_shell_casing",
             CTNHCore.id("block/casings/natural_ecological_shell_casing"));
     public static final BlockEntry<Block> REACTOR_CONDENSATION_BLOCK = createCasingBlock(
@@ -153,6 +155,41 @@ public class CTNHBlocks {
     public static final BlockEntry<Block> ADVANCED_FILTER_CASING = createCasingBlock(
             "advanced_filter_casing", CTNHCore.id("block/casings/solid/advanced_filter_casing"));
 
+    public static final BlockEntry<Block> RUNE_STONE_0 = createCasingBlock(
+            "rune_stone_0", CTNHCore.id("block/casings/runictexture/rune_stone_0"));
+    public static final BlockEntry<Block> RUNE_STONE_1 = createCasingBlock(
+            "rune_stone_1", CTNHCore.id("block/casings/runictexture/rune_stone_1"));
+    public static final BlockEntry<Block> RUNE_STONE_2 = createCasingBlock(
+            "rune_stone_2", CTNHCore.id("block/casings/runictexture/rune_stone_2"));
+    public static final BlockEntry<Block> RUNE_STONE_3 = createCasingBlock(
+            "rune_stone_3", CTNHCore.id("block/casings/runictexture/rune_stone_3"));
+    public static final BlockEntry<Block> RUNE_STONE_4 = createCasingBlock(
+            "rune_stone_4", CTNHCore.id("block/casings/runictexture/rune_stone_4"));
+    public static final BlockEntry<Block> RUNE_STONE_5 = createCasingBlock(
+            "rune_stone_5", CTNHCore.id("block/casings/runictexture/rune_stone_5"));
+    public static final BlockEntry<Block> RUNE_STONE_6 = createCasingBlock(
+            "rune_stone_6", CTNHCore.id("block/casings/runictexture/rune_stone_6"));
+    public static final BlockEntry<Block> RUNE_STONE_7 = createCasingBlock(
+            "rune_stone_7", CTNHCore.id("block/casings/runictexture/rune_stone_7"));
+    public static final BlockEntry<Block> RUNE_STONE_8 = createCasingBlock(
+            "rune_stone_8", CTNHCore.id("block/casings/runictexture/rune_stone_8"));
+    public static final BlockEntry<Block> RUNE_STONE_9 = createCasingBlock(
+            "rune_stone_9", CTNHCore.id("block/casings/runictexture/rune_stone_9"));
+    public static final BlockEntry<Block> RUNE_STONE_10 = createCasingBlock(
+            "rune_stone_10", CTNHCore.id("block/casings/runictexture/rune_stone_10"));
+    public static final BlockEntry<Block> RUNE_STONE_11 = createCasingBlock(
+            "rune_stone_11", CTNHCore.id("block/casings/runictexture/rune_stone_11"));
+    public static final BlockEntry<Block> RUNE_STONE_12 = createCasingBlock(
+            "rune_stone_12", CTNHCore.id("block/casings/runictexture/rune_stone_12"));
+    public static final BlockEntry<Block> RUNE_STONE_13 = createCasingBlock(
+            "rune_stone_13", CTNHCore.id("block/casings/runictexture/rune_stone_13"));
+    public static final BlockEntry<Block> RUNE_STONE_14 = createCasingBlock(
+            "rune_stone_14", CTNHCore.id("block/casings/runictexture/rune_stone_14"));
+    public static final BlockEntry<Block> RUNE_STONE_15 = createCasingBlock(
+            "rune_stone_15", CTNHCore.id("block/casings/runictexture/rune_stone_15"));
+    public static final BlockEntry<Block> RUNE_STONE_16 = createCasingBlock(
+            "rune_stone_16", CTNHCore.id("block/casings/runictexture/rune_stone_16"));
+
 
     public static final BlockEntry<ActiveBlock> SUPERCOOLED_BLOCK = createActiveCasing("supercooled_bloock",
             "block/flux/plasma_cooled_core");
@@ -178,6 +215,7 @@ public class CTNHBlocks {
     public static final BlockEntry<CoilBlock> COIL_STARMETAL = createCoilBlock(CoilType.STARMETAL);
     public static final BlockEntry<CoilBlock> COIL_INFINITY = createCoilBlock(CoilType.INFINITYY);
     public static final BlockEntry<CoilBlock> COIL_ULTRA_MANA= createCoilBlock(CoilType.ULTRA_MANA);
+
     public static final BlockEntry<Block> BRONZE_FRAMED_GLASS = createGlassCasingBlock(
             "bronze_framed_glass",CTNHCore.id("block/casings/bronze_framed_glass"), () -> RenderType::cutoutMipped);
 

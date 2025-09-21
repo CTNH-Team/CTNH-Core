@@ -19,11 +19,14 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Water;
 
 public class DefaultRecipes {
     private static final Map<Integer, Pair<Supplier<Item>, Supplier<Item>>> HEAVY_PLATE_TIERS = Map.of(
@@ -958,6 +961,13 @@ public class DefaultRecipes {
                 'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:zeron_100_gear")), // Zeron-100合金齿轮
                 'F', GTItems.ROBOT_ARM_ZPM     // ZPM级机械臂
         );
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("charged_certus_quartz_crystal")
+                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:certus_quartz_crystal")))
+                .notConsumableFluid(new FluidStack(Water.getFluid(),1000))
+                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:charged_certus_quartz_crystal")))
+                .EUt(GTValues.VA[GTValues.MV])
+                .duration(100)
+                .save(provider);
     }
 }
 
