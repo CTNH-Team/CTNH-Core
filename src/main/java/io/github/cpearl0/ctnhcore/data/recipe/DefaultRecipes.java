@@ -963,7 +963,6 @@ public class DefaultRecipes {
         );
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("charged_certus_quartz_crystal")
                 .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:certus_quartz_crystal")))
-                .notConsumableFluid(new FluidStack(Water.getFluid(),1000))
                 .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:charged_certus_quartz_crystal")))
                 .EUt(GTValues.VA[GTValues.MV])
                 .duration(100)
