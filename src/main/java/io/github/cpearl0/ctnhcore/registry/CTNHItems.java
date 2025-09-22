@@ -194,10 +194,10 @@ public class CTNHItems {
             .item("pv_terminal",holder->new ConnectTerminalItem(holder))
             .lang("pv_terminal")
             .register();
-//    public static ItemEntry<multiblockHelper> multiblockHelper=REGISTRATE
-//            .item("mutiblock_helper",holder->new MutiblockHelper(holder))
-//            .lang("mutiblock_helper")
-//            .register();
+    public static ItemEntry<MultiblockHelper> multiblockHelper=REGISTRATE
+            .item("mutiblock_helper",holder->new MultiblockHelper(holder))
+            .lang("mutiblock_helper")
+            .register();
     public static ItemEntry<IDataItem> RESEARCH_DATASET=REGISTRATE
             .item("research_dataset",holder->new IDataItem(holder))
             .lang("research_dataset")

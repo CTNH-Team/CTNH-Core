@@ -1247,6 +1247,7 @@ public class MultiblocksB {
                     .where("D", dataHatchPredicate(blocks(ADVANCE_MACHINE_CASING_GRATE.get())))
                     .where("#", Predicates.any())
                     .build())
+            .partSorter(AssemblyLineMachine::partSorter)
             .workableCasingModel(CTNHCore.id("block/casings/advance_machine_casing_solid_steel"),
                     GTCEu.id("block/multiblock/assembly_line"))
             .register();
@@ -1472,6 +1473,7 @@ public class MultiblocksB {
             .register();
     public final static MultiblockMachineDefinition ETERNAL_GARDEN = REGISTRATE.multiblock("eternal_garden", EternalGarden::new)
             .rotationState(RotationState.NON_Y_AXIS)
+            .allowFlip(false)
             .recipeType(CTNHRecipeTypes.ETERNAL_GARDEN)
             .recipeModifiers(EternalGarden::recipeModifier)
             .tooltips(Component.translatable("ctnh.multiblock.eternalgarden.tooltip.1"),
@@ -1580,6 +1582,7 @@ public class MultiblocksB {
             )
             .model(createWorkableCasingMachineModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/implosion_compressor"))
                     .andThen(b -> b.addDynamicRenderer(EternalGardenRender::new)))
+            .appearanceBlock(CASING_STAINLESS_CLEAN)
             .register();
     public final static MultiblockMachineDefinition PLASMA_ALLOY_BLAST_SMELTER = REGISTRATE.multiblock("plasma_alloy_blast_smelter", Plasma_alloy_blast::new)
             .rotationState(RotationState.NON_Y_AXIS)

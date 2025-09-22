@@ -127,6 +127,7 @@ public class TestingTerminalBehavior implements IInteractionItem {
         List<Component> messages = new ArrayList<>();
         var pos = error.getPos();
 
+        final int MAX_ITEMS_PER_CANDIDATE = 5;
         if (error instanceof SinglePredicateError) {
             List<List<ItemStack>> candidates = error.getCandidates();
             messages.add(Component.translatable("ctnh.test_terminal.lack_error",
@@ -137,10 +138,10 @@ public class TestingTerminalBehavior implements IInteractionItem {
             for (List<ItemStack> candidate : candidates) {
                 if (!candidate.isEmpty()) {
                     // 只取前5个ItemStack
-                    int maxItemsToShow = 5;
+
                     int totalItems = candidate.size();
 
-                    for (int i = 0; i < Math.min(maxItemsToShow, totalItems); i++) {
+                    for (int i = 0; i < Math.min(MAX_ITEMS_PER_CANDIDATE, totalItems); i++) {
                         ItemStack itemStack = candidate.get(i);
                         Component itemName = itemStack.getHoverName();
                         messages.add(
@@ -151,7 +152,7 @@ public class TestingTerminalBehavior implements IInteractionItem {
                     }
 
                     // 如果超过5个，显示"..."
-                    if (totalItems > maxItemsToShow) {
+                    if (totalItems > MAX_ITEMS_PER_CANDIDATE) {
                         messages.add(Component.literal(" - ..."));
                     }
                 }
@@ -160,7 +161,7 @@ public class TestingTerminalBehavior implements IInteractionItem {
             messages.add(Component.translatable("ctnh.test_terminal.wrong_error", Component.translatable("ctnh.test_terminal.position", pos.getX(), pos.getY(), pos.getZ())));
             List<List<ItemStack>> candidates = error.getCandidates();
             // 设置每个候选列表最多显示的项目数
-            final int MAX_ITEMS_PER_CANDIDATE = 5;
+
 
             for (List<ItemStack> candidate : candidates) {
                 if (!candidate.isEmpty()) {

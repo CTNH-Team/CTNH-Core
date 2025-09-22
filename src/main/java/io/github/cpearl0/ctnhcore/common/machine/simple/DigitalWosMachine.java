@@ -35,7 +35,7 @@ public class DigitalWosMachine extends SimpleTieredMachine {
         if(!importItems.isEmpty()){
             ItemStack stack = (ItemStack) importItems.getContents().get(0);
             var count = stack.getTag().getCompound("data_model").getInt("data");
-            if(count < 900) stack.getTag().getCompound("data_model").putInt("data",count + 1);
+            if(count < 54) stack.getTag().getCompound("data_model").putInt("data",count + 1);
         }
         super.afterWorking();
     }
