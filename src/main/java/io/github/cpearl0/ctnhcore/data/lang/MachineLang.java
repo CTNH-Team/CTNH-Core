@@ -90,6 +90,12 @@ public class MachineLang {
         tsl(provider, "ctnh.multiblock.neutron_activator.info.efficiency", "耗时: %s%%", "Efficiency: %s%%");
     }
     public static void machineTooltip(CTNHLangProvider provider) {
+        tsl(provider,
+                "ctnh.multiblock.multithread.status",
+                "§b线程%s:",
+                "§bThread %s:");
+
+
         tsl(provider, 
                 "ctnh.multiblock.chemical_plant.tooltip.0",
                 "§o§7重工业，现在就在你家门口！",
