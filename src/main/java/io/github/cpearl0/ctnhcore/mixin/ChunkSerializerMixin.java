@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.mixin;
 
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.*;
+import io.github.cpearl0.ctnhcore.CTNHConfig;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.resources.ResourceLocation;
@@ -21,7 +22,7 @@ public abstract class ChunkSerializerMixin {
     @Mutable
     @Final
     @Shadow
-    public static Codec<PalettedContainer<BlockState>> BLOCK_STATE_CODEC;
+    private static Codec<PalettedContainer<BlockState>> BLOCK_STATE_CODEC;
 
     @Unique
     private static <T> DataResult<Pair<BlockState, T>> CTNHCore$decode(final DynamicOps<T> ops, final T input) {
@@ -40,9 +41,12 @@ public abstract class ChunkSerializerMixin {
 
     @Inject(method = "<clinit>", at = @At("TAIL"))
     private static void CTNHCore$myCodec(CallbackInfo ci) {
-        Encoder<BlockState> encoder = BlockState.CODEC::encode;
-        Decoder<BlockState> decoder = ChunkSerializerMixin::CTNHCore$decode;
-        var blockStateCodec = Codec.of(encoder, decoder);
-        BLOCK_STATE_CODEC = PalettedContainer.codecRW(Block.BLOCK_STATE_REGISTRY, blockStateCodec, PalettedContainer.Strategy.SECTION_STATES, Blocks.AIR.defaultBlockState());
+        if(CTNHConfig.INSTANCE.migration.migrationMode)
+        {
+            Encoder<BlockState> encoder = BlockState.CODEC::encode;
+            Decoder<BlockState> decoder = ChunkSerializerMixin::CTNHCore$decode;
+            var blockStateCodec = Codec.of(encoder, decoder);
+            BLOCK_STATE_CODEC = PalettedContainer.codecRW(Block.BLOCK_STATE_REGISTRY, blockStateCodec, PalettedContainer.Strategy.SECTION_STATES, Blocks.AIR.defaultBlockState());
+        }
     }
 }

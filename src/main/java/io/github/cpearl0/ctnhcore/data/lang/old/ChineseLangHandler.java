@@ -572,7 +572,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.nano_generator.tooltip.0","利用摩擦热的力量");
         provider.add("ctnh.multiblock.nano_generator.tooltip.1","最大并行数:1024");
         provider.add("ctnh.multiblock.nano_generator.tooltip.2","每有1并行数，总体发电量提升2%\n实际运行时间为配方时间*sqrt(并行数)");
-        provider.add("ctnh.multiblock.nano_generator.tooltip.3","在机器内塞入特定材料可提升倍率，但也有概率消耗\n无材料：0.8倍率\n橡胶片：1.0倍率,并行数/512几率消耗\n聚乙烯片：1.6倍率，并行数/1024几率消耗\n硅橡胶片：2.4倍率，并行数/4096几率消耗\n丁苯橡胶片：3.2倍率，并行数/65535几率消耗\n聚苯并咪唑片：8倍率，并行数/1048576几率消耗");
+        provider.add("ctnh.multiblock.nano_generator.tooltip.3","在控制器内放入特定材料可提升倍率，但也有概率消耗\n无材料：0.8倍率\n橡胶片：1.0倍率,并行数/512几率消耗\n聚乙烯片：1.6倍率，并行数/1024几率消耗\n硅橡胶片：2.4倍率，并行数/4096几率消耗\n聚四氟乙烯片：3.2倍率，并行数/65535几率消耗\n丁苯橡胶片：4.6倍率，并行数/131070几率消耗\n聚苯并咪唑片：8倍率，并行数/1048576几率消耗");
 
         provider.add("ctnh.multiblock.photovoltaic_power_station_energetic.tooltip.0", "简易太阳能发电");
         provider.add("ctnh.multiblock.photovoltaic_power_station_energetic.tooltip.1", "§e基础产能功率：§r512 EU/t");

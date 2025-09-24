@@ -46,7 +46,9 @@ import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 import io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
+import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.botania.common.block.BotaniaBlocks;
 import vazkii.botania.common.block.BotaniaFlowerBlocks;
 import wayoftime.bloodmagic.BloodMagic;
@@ -730,12 +732,12 @@ public class MultiblocksB {
                     .aisle("##EEE##", "##B#B##", "##C#C##", "##C#C##", "##C#C##", "##C#C##", "##C#C##", "##D#D##", "##D#D##", "##DED##", "##E#E##", "##F#F##", "##F#F##", "##DDD##")
                     .aisle("###B###", "###C###", "###C###", "###C###", "###C###", "###C###", "###D###", "###D###", "###D###", "###D###", "###E###", "###F###", "###F###", "###D###")
                     .where("#", Predicates.any())
-                    .where("B", Predicates.blocks(CASING_NONCONDUCTING.get()))
+                    .where("B", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(ResourceLocation.parse("gtceu:polyethylene_block"))))
                     .where("C", Predicates.blocks(CASING_TEMPERED_GLASS.get()))
                     .where("D", Predicates.blocks(CASING_STEEL_PIPE.get()))
                     .where("E", Predicates.blocks(CASING_STEEL_GEARBOX.get()))
                     .where("F", Predicates.blocks(MACHINE_CASING_MV.get()))
-                    .where("G", Predicates.blocks(CASING_NONCONDUCTING.get()))
+                    .where("G", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(ResourceLocation.parse("gtceu:polyethylene_block"))))
                     .where("H", (Predicates.any()))
                     .where("I", (abilities(PartAbility.OUTPUT_ENERGY)))
                     .where("J", Predicates.blocks(PISTON))
@@ -2063,6 +2065,7 @@ public class MultiblocksB {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
+            .appearanceBlock(SUPER_FREEZE_BLOCK)
             .workableCasingModel(CTNHCore.id("block/casings/super_machine_casing_frost_proof"), GTCEu.id("block/multiblock/vacuum_freezer"))
             .register();
     public static final MultiblockMachineDefinition MANA_CONDENSER = REGISTRATE.multiblock("mana_condenser", ManaCondenserMachine::new)

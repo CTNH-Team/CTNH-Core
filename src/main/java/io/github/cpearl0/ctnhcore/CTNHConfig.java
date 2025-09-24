@@ -18,6 +18,16 @@ public class CTNHConfig {
         }
     }
     @Configurable
+    @Configurable.Comment("Migration Setting")
+    public Migration migration = new Migration();
+    public static class Migration{
+        @Configurable
+        @Configurable.Comment({"Whether enable migration function, which might prevent blocks from disappearing when migrating saves from old versions.\n" +
+                "NOTICE: Turn it off after migration, or will slow down the loading", "Default: false"})
+        public boolean migrationMode = false;
+    }
+
+    @Configurable
     @Configurable.Comment("Terminal AutoBuild")
     public Terminal terminal = new Terminal();
     public static class Terminal{

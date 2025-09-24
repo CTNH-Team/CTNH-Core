@@ -27,8 +27,11 @@ import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Map;
 
 public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockMachine implements ITieredMachine {
     @Persisted
@@ -103,41 +106,45 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
     public void consumeItem() { machineStorage.extractItem(0, 1,false); }
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (machine instanceof NanoscaleTriboelectricGenerator zmachine) {
-            double effencicy=0.8;
-            var random=Math.random();
-            var maxParallel = eutgetParallelAmount(zmachine,recipe,1024);
-            if(zmachine.getMachineStorageItem().getItem().equals(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate,GTMaterials.Rubber).get()))
-            {
-                effencicy=1.0;
-                if(random<(double)(maxParallel)/512)zmachine.consumeItem();
-            }
-            else if(zmachine.getMachineStorageItem().getItem().equals(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate,GTMaterials.Polyethylene).get()))
-            {
-                effencicy=1.6;
-                if(random<(double)(maxParallel)/1024)zmachine.consumeItem();
-            }
-            else if(zmachine.getMachineStorageItem().getItem().equals(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate,GTMaterials.SiliconeRubber).get()))
-            {
-                effencicy=2.4;
-                if(random<(double)(maxParallel)/4096)zmachine.consumeItem();
-            }
-            else if(zmachine.getMachineStorageItem().getItem().equals(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate,GTMaterials.StyreneButadieneRubber).get()))
-            {
-                effencicy=3.2;
-                if(random<(double)(maxParallel)/65536)zmachine.consumeItem();
-            }
-            else if(zmachine.getMachineStorageItem().getItem().equals(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate,GTMaterials.Polybenzimidazole).get()))
-            {
-                effencicy=5.0;
-                if(random<(double)(maxParallel)/1048576)zmachine.consumeItem();
+
+            // 定义材料效率配置（材料 -> {效率, 消耗概率分母}）
+            Map<Item, double[]> materialEfficiencyMap = Map.of(
+                    GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, GTMaterials.Rubber).get(),
+                    new double[]{1.0, 512},
+                    GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, GTMaterials.Polyethylene).get(),
+                    new double[]{1.6, 1024},
+                    GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, GTMaterials.SiliconeRubber).get(),
+                    new double[]{2.4, 4096},
+                    GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, GTMaterials.Polytetrafluoroethylene).get(),
+                    new double[]{3.2, 65536},
+                    GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, GTMaterials.StyreneButadieneRubber).get(),
+                    new double[]{4.6, 131070},
+                    GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, GTMaterials.Polybenzimidazole).get(),
+                    new double[]{5.0, 1048576}
+            );
+
+            // 默认效率 0.8
+            double efficiency = 0.8;
+            int maxParallel = eutgetParallelAmount(zmachine, recipe, 1024);
+            Item storageItem = zmachine.getMachineStorageItem().getItem();
+
+            // 检查材料是否在配置中，并更新效率
+            if (materialEfficiencyMap.containsKey(storageItem)) {
+                double[] config = materialEfficiencyMap.get(storageItem);
+                efficiency = config[0];
+                if (Math.random() < (double) maxParallel / config[1]) {
+                    zmachine.consumeItem();
+                }
             }
 
-            if(maxParallel<=0)return ModifierFunction.NULL;
+
+            if (maxParallel <= 0) return ModifierFunction.NULL;
+
             return ModifierFunction.builder()
                     .inputModifier(ContentModifier.multiplier(maxParallel))
                     .outputModifier(ContentModifier.multiplier(maxParallel))
-                    .durationMultiplier(2*Math.sqrt(maxParallel))
-                    .eutMultiplier(maxParallel*(1+maxParallel*0.02)*effencicy)
+                    .durationMultiplier(2 * Math.sqrt(maxParallel))
+                    .eutMultiplier(maxParallel * (1 + maxParallel * 0.02) * efficiency)
                     .build();
         }
         return ModifierFunction.NULL;

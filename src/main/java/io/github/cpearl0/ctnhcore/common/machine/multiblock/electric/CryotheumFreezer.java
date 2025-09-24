@@ -131,7 +131,8 @@ public class CryotheumFreezer extends WorkableElectricMultiblockMachine implemen
         textList.add(textList.size(),Component.translatable("ctnh.freezeui.5",used_energy,target));
     }
 
-
-
-
+    @Override
+    public ManagedFieldHolder getFieldHolder() {
+        return MANAGED_FIELD_HOLDER;
+    }
 }
