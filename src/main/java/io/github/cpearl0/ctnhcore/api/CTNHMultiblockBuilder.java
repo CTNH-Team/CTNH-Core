@@ -111,7 +111,7 @@ public class CTNHMultiblockBuilder extends MultiblockMachineBuilder {
     }
 
     public CTNHMultiblockBuilder recipeTypes(GTRecipeType... recipeTypes) {
-        if (recipeTypes == null || recipeTypes.length == 0) {
+        if (recipeTypes.length == 0) {
             return (CTNHMultiblockBuilder) super.recipeTypes(recipeTypes);
         }
         MutableComponent typeNameComponent = Component.empty();
@@ -136,7 +136,7 @@ public class CTNHMultiblockBuilder extends MultiblockMachineBuilder {
 
     public CTNHMultiblockBuilder recipeType(GTRecipeType recipeTypes) {
         var translationKey = recipeTypes.registryName.getNamespace() + "." + recipeTypes.registryName.getPath();
-        this.tooltips(Component.translatable("ctnh.recipe_type.info", Component.translatable(translationKey).getString()));
+        this.tooltips(Component.translatable("ctnh.recipe_type.info", Component.translatable(translationKey)));
         return (CTNHMultiblockBuilder)super.recipeType(recipeTypes);
     }
 

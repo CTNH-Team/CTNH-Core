@@ -50,11 +50,10 @@ public class DynamicCasingRender extends DynamicRender<IDynamicCasing, DynamicCa
         super();
         this.baseCasing = base;
         this.modelType = type;
+        initModel();
     }
     public DynamicCasingRender(BlockState base, String type) {
-        super();
-        this.baseCasing = base;
-        this.modelType = ModelType.getByName(type);
+        this(base, ModelType.getByName(type));
     }
     public void initModel() {
         ModelUtils.registerBakeEventListener(false, event -> {

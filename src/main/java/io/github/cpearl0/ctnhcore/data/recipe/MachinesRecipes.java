@@ -151,6 +151,20 @@ public class MachinesRecipes {
                 "PwP", 'P', new MaterialEntry(TagPrefix.plate, GTMaterials.NaquadahAlloy), 'F',
                 new MaterialEntry(frameGt, GTMaterials.NaquadahAlloy), 'G',
                 new MaterialEntry(gear, GTMaterials.NaquadahAlloy));
+
+        ASSEMBLER_RECIPES.recipeBuilder("manasteel_gearbox_casing")
+                .inputItems(plate, CTNHMaterials.ManaSteel, 4)
+                .inputItems(gear, CTNHMaterials.ManaSteel, 2)
+                .inputItems(frameGt, CTNHMaterials.ManaSteel)
+                .circuitMeta(4)
+                .outputItems(CTNHBlocks.CASING_MANASTEEL_GEARBOX.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                .duration(50).EUt(16).save(provider);
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "casing_manasteel_gearbox",
+                CTNHBlocks.CASING_MANASTEEL_GEARBOX.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft), "PhP", "GFG",
+                "PwP", 'P', new MaterialEntry(TagPrefix.plate, CTNHMaterials.ManaSteel), 'F',
+                new MaterialEntry(frameGt, CTNHMaterials.ManaSteel), 'G',
+                new MaterialEntry(gear, CTNHMaterials.ManaSteel));
+
         CTNHRecipeTypes.BEAMS.recipeBuilder("test")
                 .circuitMeta(24)
                 .inputFluids(PCBCoolant.getFluid(100))
