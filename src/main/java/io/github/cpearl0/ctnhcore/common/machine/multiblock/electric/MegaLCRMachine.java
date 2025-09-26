@@ -42,7 +42,7 @@ public class MegaLCRMachine extends CoilWorkableElectricMultiblockMachine implem
             int parallel= ParallelLogic.getParallelAmount(machine,recipe,pa);
             var eut=Math.max(0.25,1.01-0.02*parallel);
             var parallel_speed=Math.max(0.25,1.01-0.02*parallel);
-            var coil_speed=Math.max(0,((int)(pmachine.temperature/1800)*0.25-0.75))+1;
+            var coil_speed=Math.max(0,((int)(pmachine.temperature/1800)*0.25-0.55))+1;
             pmachine.eff=1/(parallel_speed*coil_speed);
             return  ModifierFunction.builder()
                     .parallels(parallel)

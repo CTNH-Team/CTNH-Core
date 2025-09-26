@@ -239,7 +239,9 @@ dependencies {
     implementation fg.deobf("dev.latvian.mods:kubejs-forge:${kubejs_version}")
     implementation fg.deobf("dev.latvian.mods:rhino-forge:${rhino_version}")
     implementation fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
-
+    //注释我
+    implementation fg.deobf("curse.maven:ct-1163715:6962884")
+    implementation fg.deobf("curse.maven:ctnh-bio-1333825:6958274")
     // EnderIO
     compileOnly fg.deobf("com.enderio:EnderIO:${enderio_version}:api")
     implementation fg.deobf("com.enderio:EnderIO:${enderio_version}")
@@ -290,8 +292,8 @@ dependencies {
     implementation fg.deobf("curse.maven:bio-factory-1136762:6293100")
 
 
-    implementation project(":modules:CTNH-Bio")
-    implementation project(":modules:CTPP")
+//    implementation project(":modules:CTNH-Bio")
+//    implementation project(":modules:CTPP")
 }
 
 mixin {

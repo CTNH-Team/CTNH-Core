@@ -819,7 +819,7 @@ public class MultiblocksB {
             .register();
     public final static MultiblockMachineDefinition WIDE_PARTICLE_ACCELERATOR = REGISTRATE.multiblock("wide_particle_accelerator", WideParticleAccelerator::new)
             .rotationState(RotationState.ALL)
-            .recipeTypes(CTNHRecipeTypes.ACCELERATOR_UP, CTNHRecipeTypes.ACCELERATOR_DOWN)
+            .recipeTypes(CTNHRecipeTypes.ACCELERATOR_UP)
 
             .recipeModifiers(WideParticleAccelerator::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
             .tooltips(Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.0"),

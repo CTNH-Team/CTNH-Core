@@ -5,20 +5,16 @@ import com.gregtechceu.gtceu.api.gui.fancy.IFancyUIProvider;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
 import com.lowdragmc.lowdraglib.gui.texture.*;
 import com.lowdragmc.lowdraglib.gui.widget.*;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.CryotheumFreezer;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.WideParticleAccelerator;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHGuiTextures;
-import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import org.checkerframework.checker.units.qual.C;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.DoubleSupplier;
+import java.util.function.Function;
 
 public class WPAAcceleratorGui implements IFancyUIProvider {
     protected WideParticleAccelerator machine;
@@ -28,16 +24,16 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
             this.machine = cmachine;
     }
     public MutableComponent get_mode() {
-        return(Component.translatable("ctnh.multiblock.wide_accelerator.info.power",(double)machine.store_energy/100000000,(double)machine.max_energy/100000000));
+        return(Component.translatable("ctnh.multiblock.wide_accelerator.info.power",(double)machine.store_energy/1000000,(double)machine.max_energy/1000000));
     }
-    public MutableComponent target() {
-        return Component.translatable("ctnh.multiblock.wide_accelerator.info.electric_speed",machine.electric_speed);
+    public Function<Double, String> target() {
+        return speed->Component.translatable("ctnh.multiblock.wide_accelerator.info.electric_speed",speed*5000).getString();
     }
-    public MutableComponent target2() {
-        return Component.translatable("ctnh.multiblock.wide_accelerator.info.nu_speed", machine.nu_speed);
+    public Function<Double, String> target2() {
+        return speed->Component.translatable("ctnh.multiblock.wide_accelerator.info.nu_speed", speed*5000).getString();
     }
-    public MutableComponent target3() {
-        return Component.translatable("ctnh.multiblock.wide_accelerator.info.proton_speed", machine.proton_speed);
+    public Function<Double, String> target3() {
+        return speed->Component.translatable("ctnh.multiblock.wide_accelerator.info.proton_speed", speed*5000).getString();
     }
     public void change_electric(int add,boolean reverse)
     {
@@ -121,9 +117,10 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
         /// //////////////////////////
         group.addWidget(new TextTextureWidget(10, 40, 40, 15)
                 .setText(Component.translatable("ctnh.multiblock.wide_accelerator.gui.electric")));
+
         var speed_progress=(new ProgressWidget(machine.get_electric, 50, 60, 100, 15, new ProgressTexture(CTNHGuiTextures.TEST_BAR,CTNHGuiTextures.TEST_BAR_FULL).setFillDirection(ProgressTexture.FillDirection.LEFT_TO_RIGHT)
         )
-                .setHoverTooltips(target())
+                .setDynamicHoverTips(target())
         );
         var button_m=(new ButtonWidget(10, 60, 15, 15, new GuiTextureGroup(new IGuiTexture[]{ResourceBorderTexture.BUTTON_COMMON, new TextTexture("-")}), clickData ->
         {
@@ -142,7 +139,6 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
                 }
             }
             machine.markDirty();
-            speed_progress.setHoverTooltips(target());
         }
         ).setHoverTooltips("减少电子速度")
         );
@@ -163,7 +159,6 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
                 }
             }
             machine.markDirty();
-            speed_progress.setHoverTooltips(target());
         }
         ).setHoverTooltips("增加电子速度")
         );
@@ -177,7 +172,7 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
                 .setText(Component.translatable("ctnh.multiblock.wide_accelerator.gui.nu")));
         var speed_progress2=(new ProgressWidget(machine.get_nu, 50, 120-10, 100, 15, new ProgressTexture(CTNHGuiTextures.TEST_BAR,CTNHGuiTextures.TEST_BAR_FULL).setFillDirection(ProgressTexture.FillDirection.LEFT_TO_RIGHT)
         )
-                .setHoverTooltips(target2())
+                .setDynamicHoverTips(target2())
         );
         var button_m2=(new ButtonWidget(10, 120-10, 15, 15, new GuiTextureGroup(new IGuiTexture[]{ResourceBorderTexture.BUTTON_COMMON, new TextTexture("-")}), clickData ->
         {
@@ -196,7 +191,6 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
                 }
             }
             machine.markDirty();
-            speed_progress2.setHoverTooltips(target2());
         }
         ).setHoverTooltips("减少中子速度")
         );
@@ -217,7 +211,6 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
                 }
             }
             machine.markDirty();
-            speed_progress2.setHoverTooltips(target2());
         }
         ).setHoverTooltips("增加中子速度")
         );
@@ -228,7 +221,7 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
                 .setText(Component.translatable("ctnh.multiblock.wide_accelerator.gui.proton")));
         var speed_progress3=(new ProgressWidget(machine.get_proton, 50, 160, 100, 15, new ProgressTexture(CTNHGuiTextures.TEST_BAR,CTNHGuiTextures.TEST_BAR_FULL).setFillDirection(ProgressTexture.FillDirection.LEFT_TO_RIGHT)
         )
-                .setHoverTooltips(target3())
+                .setDynamicHoverTips(target3())
         );
         var button_m3=(new ButtonWidget(10, 160, 15, 15, new GuiTextureGroup(new IGuiTexture[]{ResourceBorderTexture.BUTTON_COMMON, new TextTexture("-")}), clickData ->
         {
@@ -247,7 +240,6 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
                 }
             }
             machine.markDirty();
-            speed_progress3.setHoverTooltips(target3());
         }
         ).setHoverTooltips("减少原子速度")
         );
@@ -268,7 +260,6 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
                 }
             }
             machine.markDirty();
-            speed_progress3.setHoverTooltips(target3());
         }
 
         ).setHoverTooltips("增加原子速度")

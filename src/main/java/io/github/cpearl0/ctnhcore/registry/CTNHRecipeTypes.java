@@ -422,67 +422,6 @@ public class CTNHRecipeTypes {
             })
             ;
 
-    public static final GTRecipeType ACCELERATOR_DOWN =GTRecipeTypes.register("accelerator_downmode", ELECTRIC)
-            .setMaxIOSize(9,9,3,3)
-            .setEUIO(IO.IN)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_FUSION,ProgressTexture.FillDirection.DOWN_TO_UP)
-            .setSound(GTSoundEntries.FIRE)
-            .addDataInfo(data->
-            {
-                if(data.getString("type").equals("addnu"))
-                {
-                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.nu");
-                }
-                else if(data.getString("type").equals("addproton"))
-                {
-                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.proton");
-                }
-                else if(data.getString("type").equals("addelement"))
-                {
-                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.element");
-                }
-                else if(data.getString("type").equals("element"))
-                {
-                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.element.consume");
-                }
-                else if(data.getString("type").equals("nu"))
-                {
-                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.nu.consume");
-                }
-                else if(data.getString("type").equals("proton"))
-                {
-                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.proton.consume");
-                }
-
-                return "";
-            })
-            .addDataInfo(data->{
-
-                if(data.getString("type").equals("element")||data.getString("type").equals("nu")||data.getString("type").equals("proton"))
-                {
-                    var speed=data.getDouble("speed");
-                    if(data.getDouble("speed")<1000)
-                    {
-                        return LocalizationUtils.format("ctnh.recipe.accelerator.mode.speed.m",String.format("%.2f",speed));
-                    }
-                    if(speed>=1000)
-                    {
-                        return LocalizationUtils.format("ctnh.recipe.accelerator.mode.speed.g",String.format("%.2f",speed/1000));
-                    }
-
-
-                }
-                return "";
-            })
-            .addDataInfo(data->{
-                if(data.contains("darkmatter"))
-                {
-                    return LocalizationUtils.format("ctnh.acc.danger");
-                }
-                return "";
-
-            })
-            ;
     public static final GTRecipeType ARC_GENERATOR = GTRecipeTypes.register("arc_generator",GENERATOR)
             .setMaxIOSize(6, 6, 3, 3)
             .setEUIO(IO.OUT)

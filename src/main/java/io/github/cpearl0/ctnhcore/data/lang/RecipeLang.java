@@ -55,8 +55,7 @@ public class RecipeLang {
         tslRecipeType(provider, "gtceu.sinope", "规模化化工");
         tslRecipeType(provider, "gtceu:quasar_eye","类星体发电");
         tslRecipeType(provider, "gtceu.personal_computer", "个人电脑");
-        tslRecipeType(provider, "gtceu.accelerator_upmode","粒子加速：加速模式");
-        tslRecipeType(provider, "gtceu.accelerator_downmode","粒子加速：减速模式");
+        tslRecipeType(provider, "gtceu.accelerator_upmode","粒子加速");
         tslRecipeType(provider, "gtceu.mana_reactor","魔力反应");
         tslRecipeType(provider, "gtceu.arc_generator","物质撕裂湮灭");
         tslRecipeType(provider, "gtceu.arc_reactor","电弧发生");

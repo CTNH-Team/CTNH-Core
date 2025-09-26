@@ -9,11 +9,13 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
+import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.Nullable;
 
@@ -38,7 +40,23 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
         }
         return super.onWorking();
     }
+    public void listAllOreVeins() {
+        // 获取矿脉注册表 仅测试使用，不要使用此函数
+        //Registry<GTOreDefinition> oreVeinRegistry = GTRegistries.ORE_VEINS;
 
+        // 遍历所有注册的矿脉定义
+        GTRegistries.ORE_VEINS.forEach(oreDefinition -> {
+            // 获取矿脉ID（如：gtceu:copper_vein）
+            ResourceLocation veinId = GTRegistries.ORE_VEINS.getKey(oreDefinition);
+
+            // 提取关键信息
+            String dimensions=oreDefinition.dimensions().toString();
+            String ore=oreDefinition.layer().toString();
+            System.out.println(dimensions);
+            System.out.println(ore);
+            System.out.println(veinId.toString());
+        });
+    }
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
         var tier = getTier();

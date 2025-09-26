@@ -615,16 +615,16 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.twisted_fusion_mk_infinity.tooltip.3","§5想制作这台机器的你疯的不轻，当然这台机器也同样疯狂至极§r");
 
         provider.add("ctnh.multiblock.wide_accelerator.tooltip.0","粒子加速集成者");
-        provider.add("ctnh.multiblock.wide_accelerator.tooltip.1","允许§9使用激光仓§r和§a变电仓§r，无法超频");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.1","允许§9使用激光仓§r和§a变电仓§r");
         provider.add("ctnh.multiblock.wide_accelerator.tooltip.2","通过三个轨道加速三种粒子");
-        provider.add("ctnh.multiblock.wide_accelerator.tooltip.3","本机器只要求粒子速度大于配方需求，粒子速度不得大于50Gev");
-        provider.add("ctnh.multiblock.wide_accelerator.tooltip.4","允许使用§b并行控制仓§r，使用§b并行控制仓§r可以自由控制配方并行和粒子加速减速并行，否则使用默认值");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.3","本机器只要求粒子速度大于配方需求，不满足需求无法运行。粒子速度不会超过50Gev，这台机器非常安全，不会引发爆炸。");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.4","允许使用§b并行控制仓§r，不适用并行控制仓则使用默认值");
         provider.add("ctnh.multiblock.wide_accelerator.tooltip.5","在运行一般配方时如无§b并行控制仓§r,默认使用16并行");
         provider.add("ctnh.multiblock.wide_accelerator.tooltip.6","如果粒子速度过慢，则什么都不会产生");
-        provider.add("ctnh.multiblock.wide_accelerator.tooltip.7","本机器在运行时根据运行配方模式来决定之后逻辑");
-        provider.add("ctnh.multiblock.wide_accelerator.tooltip.8","加速模式:使用加速配方时如无§b并行控制仓§r将试图以1024并行来运行，运行配方时需要大量能源来维持。运行配方时三种粒子速度之和每有100Mev，能源消耗提升10%，此状态下粒子速度§9不会§r减少");
-        provider.add("ctnh.multiblock.wide_accelerator.tooltip.9","减速模式:使用加速配方时如无§b并行控制仓§r将试图以1并行来减少粒子速度，运行配方时需要少量能源来维持。运行配方时三种粒子速度之和每有100Mev，能源消耗提升2.5%。此状态下粒子速度在运行完配方后减少sqrt(配方所需速度)的对应粒子速度");
-        provider.add("ctnh.multiblock.wide_accelerator.tooltip.10","注意:本机器用电量极高，且暂时无法做到只能计算正确并行，使用低电压可能导致§c配方无法运行§r或者§c跳电§r,建议搭配§9激光仓§r使用，如遇配方不工作，请降低该机器并行");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.7","本机器可以存储至多50E EU能量，存储的能量可以在加速界面调整三种粒子速度，每调整1M ev粒子速度需要消耗10M EU存储的能量，按住shift时可以一次性更改10M ev粒子速度，按住ctrl时可以一次性更改100M ev粒子速度");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.8","三种粒子轨道速度之和每有1M ev，每tick便消耗机器存储的100EU能量，电量不足时，每tick粒子速度会衰减10%");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.9","机器没有运行时，默认使用存储能源舱室的所有能源为机器充能。机器运行时仍然使用能源仓的能量。但在机器运行时除非机器存储电量不够，否则能源仓不会为机器充能");
+        provider.add("ctnh.multiblock.wide_accelerator.tooltip.10","注意:本机器用电量极高，且暂时无法做到只能计算正确并行，使用低电压可能导致§c配方无法运行§r或者§c跳电§r,建议搭配§9激光仓§r使用，如遇配方不工作，请报告给作者");
         provider.add("ctnh.multiblock.wide_accelerator.tooltip.11","可以与约束器链接传递部分粒子。§c警告：如果没有链接约束器，不要随意尝试某些危险的配方§r (目前还是饼)");
 
         provider.add("ctnh.multiblock.mana_reactor.tooltip.0","工业魔力奠基者");

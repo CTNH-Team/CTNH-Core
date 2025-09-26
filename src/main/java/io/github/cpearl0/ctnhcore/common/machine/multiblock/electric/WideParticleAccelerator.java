@@ -88,17 +88,13 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
     public int anti_proton=0;
     public int anti_electirc=0;
     public double consume_mutiple=1.0;
+    @Persisted
+    public boolean is_worked=false;
     @Nullable
     protected TickableSubscription EnergySubs;
     @Persisted
     @Getter
     public int reverse=1;
-    @Persisted
-    public int nu_value=1;
-    @Persisted
-    public int proton_value=1;
-    @Persisted
-    public int electric_value=1;
     @Persisted
     public EnergyContainerList energyContainer;
     public WideParticleAccelerator(IMachineBlockEntity holder)
@@ -117,7 +113,7 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
         return parallel;
     }
     public long store_energy=0;
-    public long max_energy=50000000000L;
+    public long max_energy=5000000000L;
 
     /// ///////////////////////////////
     /// /        tick逻辑/       ////
@@ -151,21 +147,61 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
     }
     protected void updateTempSubscription() {
         if (max_energy > store_energy&&isFormed) {
-            EnergySubs = subscribeServerTick(EnergySubs, this::Energy_add);
+            EnergySubs = subscribeServerTick(EnergySubs, this::Energy_Adjust);
         } else if (EnergySubs != null) {
             EnergySubs.unsubscribe();
             EnergySubs = null;
         }
     }
-    protected void Energy_add()
+    protected void Speed_Down()
     {
-        if(store_energy<=max_energy&&this.energyContainer.getEnergyStored()>1)
+        proton_speed-=Math.max(proton_speed*0.05,1);
+        electric_speed-=Math.max(proton_speed*0.05,1);
+        nu_speed-=Math.max(proton_speed*0.05,1);
+        proton_speed=Math.max(proton_speed,0);
+        electric_speed=Math.max(electric_speed,0);
+        nu_speed=Math.max(nu_speed,0);
+    }
+    protected void Energy_Adjust()
+    {
+        var consume=(long)((proton_speed+electric_speed+nu_speed)*100);
+        if(getRecipeLogic().getStatus() != RecipeLogic.Status.WORKING)
         {
-
-            var add_energy=Math.min(this.energyContainer.getEnergyStored(),max_energy-store_energy);
-            this.energyContainer.removeEnergy(add_energy);
-            store_energy+=add_energy;
+            //不工作时，正常消耗和加速
+            if(store_energy-consume<0)
+            {
+                Speed_Down();
+                store_energy=0;
+            }
+            else
+            {
+                store_energy-=consume;
+            }
+            if(store_energy<=max_energy&&this.energyContainer.getEnergyStored()>1)
+            {
+                var add_energy=Math.min(this.energyContainer.getEnergyStored(),max_energy-store_energy);
+                this.energyContainer.removeEnergy(add_energy);
+                store_energy+=add_energy;
+            }
         }
+        else
+        {
+            //工作时候，用电被优先哪来运行配方，停止往机器里存储电，只有机器电不足且能源仓足够供应时才会充电，能源仓最大输电量要求高于15W/t+配方消耗电量
+            if(store_energy-consume<0) {
+                if (this.energyContainer.getEnergyStored() - consume > 0) {
+                    this.energyContainer.removeEnergy((long) consume);
+                }
+                else
+                {
+                    Speed_Down();
+                }
+            }
+            else
+            {
+                store_energy-=consume;
+            }
+        }
+
 
     }
 
@@ -174,22 +210,6 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
 
-
-        if(recipe.getType().equals(CTNHRecipeTypes.ACCELERATOR_DOWN))
-        {
-            if(recipe.data.getString("type").equals("nu"))
-            {
-                add_parallel_nu=-(int) (Math.sqrt(recipe.data.getDouble("speed")));
-            }
-            if(recipe.data.getString("type").equals("proton"))
-            {
-                add_parallel_proton=-(int) (Math.sqrt(recipe.data.getDouble("speed")));
-            }
-            if(recipe.data.getString("type").equals("element"))
-            {
-                add_parallel_element=-(int) (Math.sqrt(recipe.data.getDouble("speed")));
-            }
-        }
         return super.beforeWorking(recipe);
     }
     @Override
@@ -255,18 +275,19 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
                 return ModifierFunction.NULL;
             }
             //计算并行
-            int parallel=16;
+            int parallel=1;
 
             var random = Math.random()*0.25;
-            var eut_consume=recipe.getTickInputContents(EURecipeCapability.CAP).stream()
-                    .map(Content::getContent)
-                    .map(EURecipeCapability.CAP::of)
-                    .mapToLong(EnergyStack::voltage)
-                    .sum();
-            double total_eut= (wmachine.nu_speed+ wmachine.proton_speed+ wmachine.electric_speed)/1000;
-            //计算能耗，减速模式根本没写笑死
-            var true_eut=eut_consume*(1+total_eut);
-            recipe.tickInputs.put(EURecipeCapability.CAP, EURecipeCapability.makeEUContent(new EnergyStack((long) true_eut)));
+//            var eut_consume=recipe.getTickInputContents(EURecipeCapability.CAP).stream()
+//                    .map(Content::getContent)
+//                    .map(EURecipeCapability.CAP::of)
+//                    .mapToLong(EnergyStack::voltage)
+//                    .sum();
+
+//            double total_eut= (wmachine.nu_speed+ wmachine.proton_speed+ wmachine.electric_speed)/1000;
+//            //计算能耗，已废除
+//            var true_eut=eut_consume*(1+total_eut);
+//            recipe.tickInputs.put(EURecipeCapability.CAP, EURecipeCapability.makeEUContent(new EnergyStack((long) true_eut)));
             parallel = ParallelLogic.getParallelAmount(machine,recipe,16);
             if(hatchs>0)parallel=ParallelLogic.getParallelAmount(machine,recipe,hatchs);
 
@@ -274,31 +295,30 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
 
 
 
-            if(recipe.getType().equals(CTNHRecipeTypes.ACCELERATOR_DOWN))total_eut=(wmachine.nu_speed+ wmachine.proton_speed+ wmachine.electric_speed)/250;
-            //加速粒子模式逻辑
-            if(recipe.data.getString("type").equals("addnu")||recipe.data.getString("type").equals("addproton")||recipe.data.getString("type").equals("addelement"))
-            {
-                if(recipe.getType().equals(CTNHRecipeTypes.ACCELERATOR_DOWN)) {
-                    parallel = -1;
-                    if(hatchs>0)parallel=-hatchs*10;
-                }
-                else {
-                    parallel = ParallelLogic.getParallelAmount(machine, recipe, 1024);
-                    if(hatchs>0)parallel=hatchs*10;
-                }
-
-                if(recipe.data.getString("type").equals("addnu"))
-                    wmachine.add_parallel_nu=parallel;
-                if(recipe.data.getString("type").equals("addproton"))
-                    wmachine.add_parallel_proton=parallel;
-                if(recipe.data.getString("type").equals("addelement"))
-                    wmachine.add_parallel_element=parallel;
-
-                return ModifierFunction.builder()
-                        .parallels(parallel)
-                        .eutMultiplier(Math.abs(parallel))
-                        .build();
-            }
+            //加速粒子模式逻辑 弃用
+//            if(recipe.data.getString("type").equals("addnu")||recipe.data.getString("type").equals("addproton")||recipe.data.getString("type").equals("addelement"))
+//            {
+//                if(1==1)
+//                {
+//
+//                }
+//                else {
+//                    parallel = ParallelLogic.getParallelAmount(machine, recipe, 1024);
+//                    if(hatchs>0)parallel=hatchs*10;
+//                }
+//
+//                if(recipe.data.getString("type").equals("addnu"))
+//                    wmachine.add_parallel_nu=parallel;
+//                if(recipe.data.getString("type").equals("addproton"))
+//                    wmachine.add_parallel_proton=parallel;
+//                if(recipe.data.getString("type").equals("addelement"))
+//                    wmachine.add_parallel_element=parallel;
+//
+//                return ModifierFunction.builder()
+//                        .parallels(parallel)
+//                        .eutMultiplier(Math.abs(parallel))
+//                        .build();
+//            }
             //暗物质开始
             if(recipe.data.getString("darkmatter").equals("nu"))
             {

@@ -197,7 +197,7 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
     private Status getPowerState() {
         var time = Objects.requireNonNull(getLevel()).getDayTime() % 24000;
         if(time%20!=0)return lastStatus;
-        if(lastStatus !=Status.VALID || time%1200==0) {//一分钟扫一次,应该不卡?
+        if(lastStatus !=Status.VALID || time%300==0) {//15秒钟扫一次,绝对不会卡?
             if (time > END_TIME && time < START_TIME) {
                 return lastStatus = Status.NIGHT;
             }
