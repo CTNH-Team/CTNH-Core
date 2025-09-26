@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.block.IFilterType;
 import com.gregtechceu.gtceu.api.block.property.GTBlockStateProperties;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
+import com.gregtechceu.gtceu.common.block.BoilerFireboxType;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
@@ -73,5 +74,21 @@ public class CTNHModels {
         };
     }
 
+    public static NonNullBiConsumer<DataGenContext<Block, ActiveBlock>, RegistrateBlockstateProvider> createFireboxModel(BoilerFireboxType type) {
+        return (ctx, prov) -> {
+            String name = ctx.getName();
+            ActiveBlock block = ctx.getEntry();
+            ModelFile inactive = prov.models().cubeBottomTop(name, type.side(), type.bottom(), type.top());
+            ModelFile active = prov.models().withExistingParent(name + "_active", CTNHCore.id("block/new_fire_box_active"))
+                    .texture("side", type.side())
+                    .texture("bottom", type.bottom())
+                    .texture("top", type.top());
+            prov.getVariantBuilder(block)
+                    .partialState().with(GTBlockStateProperties.ACTIVE, false)
+                    .modelForState().modelFile(inactive).addModel()
+                    .partialState().with(GTBlockStateProperties.ACTIVE, true)
+                    .modelForState().modelFile(active).addModel();
+        };
+    }
 
 }
