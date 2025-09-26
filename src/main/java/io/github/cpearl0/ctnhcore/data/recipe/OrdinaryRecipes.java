@@ -10,6 +10,7 @@ import com.moguang.ctnhbio.data.recipe.CBRecipeBuilder;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.OrdinaryMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
+import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -100,24 +101,24 @@ public class OrdinaryRecipes {
 
         //激光蚀刻
         CBRecipeBuilder.of(CTNHCore.id("advanced_ram_wafer_p_recipe"), GTRecipeTypes.LASER_ENGRAVER_RECIPES)
-                .notConsumable(lens, MarkerMaterials.Color.Gray)
                 .inputItems(PHOSPHORUS_WAFER.get().getDefaultInstance())
+                .notConsumable(lens, CTNHMaterials.EuropiumFluorite)
                 .outputItems(CTNHItems.ADVANCED_RAM_WAFER.get().getDefaultInstance())
                 .duration(450)
                 .EUt(1920)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .save(provider);
         CBRecipeBuilder.of(CTNHCore.id("advanced_ram_wafer_na_recipe"), GTRecipeTypes.LASER_ENGRAVER_RECIPES)
-                .notConsumable(lens, MarkerMaterials.Color.Gray)
                 .inputItems(NAQUADAH_WAFER.get().getDefaultInstance())
+                .notConsumable(lens, CTNHMaterials.EuropiumFluorite)
                 .outputItems(CTNHItems.ADVANCED_RAM_WAFER.get().getDefaultInstance(),4)
                 .duration(450)
                 .EUt(6144)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .save(provider);
         CBRecipeBuilder.of(CTNHCore.id("advanced_ram_wafer_ne_recipe"), GTRecipeTypes.LASER_ENGRAVER_RECIPES)
-                .notConsumable(lens, MarkerMaterials.Color.Gray)
                 .inputItems(NEUTRONIUM_WAFER.get().getDefaultInstance())
+                .notConsumable(lens, CTNHMaterials.EuropiumFluorite)
                 .outputItems(CTNHItems.ADVANCED_RAM_WAFER.get().getDefaultInstance(),8)
                 .duration(450)
                 .EUt(30720)
@@ -133,7 +134,7 @@ public class OrdinaryRecipes {
                 .cleanroom(CleanroomType.CLEANROOM)
                 .save(provider);
         //对于进阶RAM适配原版电路的配方
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("mainframe_iv_asmd_cb")
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("mainframe_iv_aram")
                 .inputItems(frameGt, Aluminium, 2)
                 .inputItems(WORKSTATION_EV, 2)
                 .inputItems(ADVANCED_SMD_INDUCTOR, 2)
@@ -146,7 +147,7 @@ public class OrdinaryRecipes {
                 .EUt(VA[HV]).duration(300)
                 .save(provider);
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("nano_processor_assembly_ev_asmd_cb")
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("nano_processor_assembly_ev_aram")
                 .inputItems(ADVANCED_CIRCUIT_BOARD)
                 .inputItems(NANO_PROCESSOR_HV, 2)
                 .inputItems(ADVANCED_SMD_INDUCTOR)
@@ -159,7 +160,7 @@ public class OrdinaryRecipes {
                 .EUt(600).duration(150)
                 .save(provider);
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("nano_computer_iv_asmd_cb")
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("nano_computer_iv_aram")
                 .inputItems(ADVANCED_CIRCUIT_BOARD)
                 .inputItems(NANO_PROCESSOR_ASSEMBLY_EV, 2)
                 .inputItems(ADVANCED_SMD_DIODE, 2)
@@ -172,7 +173,7 @@ public class OrdinaryRecipes {
                 .EUt(600).duration(150)
                 .save(provider);
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("nano_mainframe_luv_asmd_cb")
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("nano_mainframe_luv_aram")
                 .inputItems(frameGt, Aluminium, 2)
                 .inputItems(NANO_COMPUTER_IV, 2)
                 .inputItems(ADVANCED_SMD_INDUCTOR, 4)
@@ -185,7 +186,7 @@ public class OrdinaryRecipes {
                 .EUt(VA[EV]).duration(300)
                 .save(provider);
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("quantum_assembly_iv_asmd_cb")
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("quantum_assembly_iv_aram")
                 .inputItems(EXTREME_CIRCUIT_BOARD)
                 .inputItems(QUANTUM_PROCESSOR_EV, 2)
                 .inputItems(ADVANCED_SMD_INDUCTOR, 2)
@@ -198,7 +199,7 @@ public class OrdinaryRecipes {
                 .EUt(2400).duration(150)
                 .save(provider);
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("quantum_computer_luv_asmd_cb")
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("quantum_computer_luv_aram")
                 .inputItems(EXTREME_CIRCUIT_BOARD)
                 .inputItems(QUANTUM_ASSEMBLY_IV, 2)
                 .inputItems(ADVANCED_SMD_DIODE, 2)
@@ -211,7 +212,7 @@ public class OrdinaryRecipes {
                 .EUt(2400).duration(150)
                 .save(provider);
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("quantum_mainframe_zpm_asmd_cb")
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("quantum_mainframe_zpm_aram")
                 .inputItems(frameGt, HSSG, 2)
                 .inputItems(QUANTUM_COMPUTER_LuV, 2)
                 .inputItems(ADVANCED_SMD_INDUCTOR, 6)
@@ -224,7 +225,7 @@ public class OrdinaryRecipes {
                 .EUt(VA[IV]).duration(300)
                 .save(provider);
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("crystal_assembly_luv")
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("crystal_assembly_luv_aram")
                 .inputItems(ELITE_CIRCUIT_BOARD)
                 .inputItems(CRYSTAL_PROCESSOR_IV, 2)
                 .inputItems(ADVANCED_SMD_INDUCTOR, 4)
@@ -237,7 +238,7 @@ public class OrdinaryRecipes {
                 .EUt(9600).duration(300)
                 .save(provider);
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("crystal_computer_zpm")
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("crystal_computer_zpm_aram")
                 .inputItems(ELITE_CIRCUIT_BOARD)
                 .inputItems(CRYSTAL_ASSEMBLY_LuV, 2)
                 .inputItems(ADVANCED_RAM_CHIP, 1)
@@ -250,7 +251,7 @@ public class OrdinaryRecipes {
                 .EUt(9600).duration(300)
                 .save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("crystal_mainframe_uv")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder("crystal_mainframe_uv_aram")
                 .inputItems(frameGt, HSSE, 2)
                 .inputItems(CRYSTAL_COMPUTER_ZPM, 2)
                 .inputItems(ADVANCED_RAM_CHIP, 8)
@@ -265,7 +266,7 @@ public class OrdinaryRecipes {
                 .EUt(VA[LuV]).duration(600)
                 .save(provider);
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("data_stick_cb")
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("data_stick_aram")
                 .inputItems(PLASTIC_CIRCUIT_BOARD)
                 .inputItems(CENTRAL_PROCESSING_UNIT, 2)
                 .inputItems(NAND_MEMORY_CHIP, 32)
@@ -277,7 +278,7 @@ public class OrdinaryRecipes {
                 .cleanroom(CleanroomType.CLEANROOM)
                 .duration(100).EUt(90).save(provider);
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("data_orb_cb")
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("data_orb_aram")
                 .inputItems(ADVANCED_CIRCUIT_BOARD)
                 .inputItems(CustomTags.HV_CIRCUITS, 2)
                 .inputItems(ADVANCED_RAM_CHIP, 1)
@@ -289,7 +290,7 @@ public class OrdinaryRecipes {
                 .cleanroom(CleanroomType.CLEANROOM)
                 .duration(100).EUt(1200).save(provider);
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("data_module_cb")
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("data_module_aram")
                 .inputItems(WETWARE_PRINTED_CIRCUIT_BOARD)
                 .inputItems(CustomTags.ZPM_CIRCUITS, 2)
                 .inputItems(ADVANCED_RAM_CHIP, 8)

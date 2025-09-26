@@ -1763,7 +1763,7 @@ public class MultiblocksA {
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
                             .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
                     .where("B", Predicates.blocks(MATERIAL_BLOCKS.get(TagPrefix.block, CTNHMaterials.Cerrobase140).get()))
-                    .where("C", Predicates.blocks(GTMachines.WORLD_ACCELERATOR[UV].getBlock()))
+                    .where("C", Predicates.any())
                     .where("D", Predicates.blocks(MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Neutronium).get()))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
