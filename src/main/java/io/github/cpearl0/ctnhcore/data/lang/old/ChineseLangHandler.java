@@ -173,7 +173,7 @@ public class ChineseLangHandler {
 
         provider.add("ctnh.common_tooltip.mana_machine.0", "魔法，神奇吧");
         provider.add("ctnh.common_tooltip.mana_machine.2","运行中的每一并行提供1%时间和耗能减免，至多减少75%");
-        provider.add("ctnh.common_tooltip.mana_machine.3","§4当电压低于LUV且配方电压等级等于当前配方电压时，使配方时间增加50%（魔力组装只增加1%)");
+        provider.add("ctnh.common_tooltip.mana_machine.3","§4运行同电压等级配方时，使配方时间增加50%（魔力组装只增加1%)");
         provider.add("ctnh.common_tooltip.mana_machine.4","放入§5类星体符文§r以在100次配方内启用§5星体之眼模式§r：并行变为无限，并行不再提供额外的时间与电压减少。启动此模式不消耗类星体符文");
 
         provider.add("ctnh.common_tooltip.mana_generator.0","机器的基础最大发电量为(配方发电量)*符文提供倍率*转子最大转速*转子发电效率/100*机器自身提供发电量倍率");

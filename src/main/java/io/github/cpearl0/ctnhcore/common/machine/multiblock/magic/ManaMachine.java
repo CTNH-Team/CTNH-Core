@@ -64,7 +64,7 @@ public class ManaMachine extends WorkableElectricMultiblockMachine implements IT
             var amount=(1-Math.min(0.75,0.01*parallel));
             var tier=mmachine.tier;
             var recipe_tier= RecipeHelper.getRecipeEUtTier(recipe);
-            if(tier<5&&tier<=recipe_tier)
+            if(tier<12&&tier<=recipe_tier)
             {
                 if(recipe.getType().equals(GTRecipeTypes.ASSEMBLER_RECIPES))
                 {
