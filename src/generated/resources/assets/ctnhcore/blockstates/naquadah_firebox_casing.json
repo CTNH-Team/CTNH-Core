@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "ctnhcore:block/naquadah_firebox_casing"
+    },
+    "active=true": {
+      "model": "ctnhcore:block/naquadah_firebox_casing_active"
+    }
+  }
+}

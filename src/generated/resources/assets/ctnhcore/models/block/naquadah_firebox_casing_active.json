@@ -1,0 +1,8 @@
+{
+  "parent": "gtceu:block/fire_box_active",
+  "textures": {
+    "bottom": "ctnhcore:block/casings/nq_casing",
+    "side": "ctnhcore:block/casings/firebox/machine_casing_firebox_naquadah",
+    "top": "ctnhcore:block/casings/nq_casing"
+  }
+}

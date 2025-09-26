@@ -5,16 +5,18 @@ import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
+import com.gregtechceu.gtceu.common.block.BoilerFireboxType;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.models.GTModels;
+import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.api.CTNHAPI;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps;
+import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBoilerFireboxType;
 import io.github.cpearl0.ctnhcore.common.block.CoilType;
 import io.github.cpearl0.ctnhcore.common.block.PhotovoltaicBlock;
 import io.github.cpearl0.ctnhcore.common.block.SpaceStructuralFramework;
@@ -39,6 +41,7 @@ import vazkii.botania.forge.block.ForgeSpecialFlowerBlock;
 
 import java.util.function.Supplier;
 
+import static com.gregtechceu.gtceu.common.data.GTBlocks.ALL_FIREBOXES;
 import static io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps.ReactorCoreBlock;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterialBlocks.generateHyperRotorBlocks;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
@@ -228,6 +231,11 @@ public class CTNHBlocks {
     public static final BlockEntry<PhotovoltaicBlock> PULSATING_PHOTOVOLTAIC_BLOCK = createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.PULSATING_PHOTOVOLTAIC_BLOCK,
             ("block/pulsating_photovoltaic_block"));
     public static final BlockEntry<ActiveBlock> PV_COIL =createActiveCasing("pv_coil","block/flux/pv_coil");
+
+    // Fireboxes
+    public static final BlockEntry<ActiveBlock> NAQUADAH_FIREBOX = createFireboxCasing(CTNHBoilerFireboxType.NAQUADAH_FIREBOX);
+
+
     public static final BlockEntry<PhotovoltaicBlock> PHOTON_PRESS_COND_BLOCK = createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.PHOTON_PRESS_COND_BLOCK,"block/photon_press_cond_block");
     public static final BlockEntry<ForgeSpecialFlowerBlock> DEMON_FLYTRAP = REGISTRATE
             .block("demon_flytrap", properties -> new ForgeSpecialFlowerBlock(MobEffects.HARM, 20, BlockBehaviour.Properties.copy(Blocks.POPPY), () -> CTNHBlockEntities.DEMON_FLYTRAP.get()))
@@ -249,7 +257,20 @@ public class CTNHBlocks {
             .model(GTModels::rubberTreeSaplingModel)
             .build()
             .register();
-
+    private static BlockEntry<ActiveBlock> createFireboxCasing(BoilerFireboxType type) {
+        var block = REGISTRATE
+                .block("%s_casing".formatted(type.name()), ActiveBlock::new)
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate(GTModels.createFireboxModel(type))
+                .tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
+                .item(BlockItem::new)
+                .build()
+                .register();
+        ALL_FIREBOXES.put(type, block);
+        return block;
+    }
 
     public static BlockEntry<TurbineRotorBlock> HYPER_PLASMA_TURBINE_ROTOR = createTurbineRotorBlock("hyper_plasma_turbine_rotor",1,1,1,1);
 
