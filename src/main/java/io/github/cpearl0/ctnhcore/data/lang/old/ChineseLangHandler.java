@@ -1036,6 +1036,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.SUPERCOOLED_BLOCK,"超级冷冻机械线圈");
         provider.addBlock(CTNHBlocks.HYPER_PLASMA_TURBINE_ROTOR,"超極等离子涡轮转子");
         provider.addBlock(CTNHBlocks.NEUTRONIUM_REINFORCED_TURBINE_CASING,"中子素强化涡轮外壳");
+        provider.addBlock(CTNHBlocks.NAQUADAH_FIREBOX,"硅岩燃烧室");
         provider.addBlock(CTNHBlocks.DEMON_FLYTRAP, "恶魔捕蝇草");
         provider.addBlock(CTNHBlocks.BLOOD_ANTIARIS, "见血封喉");
         provider.add(MultiblocksA.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
