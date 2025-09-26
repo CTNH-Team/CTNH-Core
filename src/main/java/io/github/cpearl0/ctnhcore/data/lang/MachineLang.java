@@ -125,13 +125,18 @@ public class MachineLang {
         );
         tsl(provider, 
                 "ctnh.multiblock.neutron_activator.tooltip.2",
-                "§6没有中子加速器运行时，中子动能每秒降低§e72KeV§6中子动能",
+                "§6没有中子加速器运行时，中子动能每秒降低§e72KeV§6中子动能,运行配方时如果中子动能不在配方要求范围内，则只输出放射性废料！",
                 "§6Without a neutron accelerator running, neutron kinetic energy decreases by §e72KeV §6neutron kinetic energy per second"
         );
         tsl(provider, 
                 "ctnh.multiblock.neutron_activator.tooltip.3",
                 "§6输入石墨/铍粉可以立即吸收§e10MeV§6中子动能",
                 "§6Absorb §e10MeV §6neutron kinetic energy immediately when input cesium or beryllium dust"
+        );
+        tsl(provider,
+                "ctnh.multiblock.neutron_activator.tooltip.5",
+                "§6运行配方时如果中子动能不在配方要求范围内，则只输出§4放射性废料！§6",
+                "§6if the neutron's kinetic energy falls outside the required range specified in the recipe, only radioactive waste will be produced as the output."
         );
         tsl(provider, 
                 "ctnh.multiblock.neutron_activator.tooltip.4",

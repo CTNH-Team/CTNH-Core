@@ -100,6 +100,13 @@ public class ChineseLangHandler {
         provider.add("item.ctnh.me_advanced_terminal.setting.9","多方块成型配置");
         provider.add("item.ctnh.me_advanced_terminal.setting.9.tooltip","多方块成型配置");
 
+        //符文tooltips
+        provider.add("ctnh.item.runes.starlight_rune","Per Aspera Ad Astra");
+        provider.add("ctnh.item.runes.twist_rune","速度与人性的扭曲");
+        provider.add("ctnh.item.runes.proliferation_rune","金融与生物的本能");
+        provider.add("ctnh.item.runes.quasar_rune","毁灭与创造交替");
+        provider.add("ctnh.item.runes.horizen_rune","视野所向之处");
+
         provider.add("ctnh.item.drone_tier","无人机等级：%d");
         provider.add("ctnh.item.drone_eut","单个无人机产生的电压: %dEU/t");
         provider.add("ctnh.item.drone_durability","无人机最大耐久:%d");
@@ -165,7 +172,6 @@ public class ChineseLangHandler {
         provider.add("ctnh.common_tooltip.steel_machine.1", "最大并行为32");
 
         provider.add("ctnh.common_tooltip.mana_machine.0", "魔法，神奇吧");
-        provider.add("ctnh.common_tooltip.mana_machine.1","§c魔力机器不再拥有任何并行");
         provider.add("ctnh.common_tooltip.mana_machine.2","运行中的每一并行提供1%时间和耗能减免，至多减少75%");
         provider.add("ctnh.common_tooltip.mana_machine.3","§4当电压低于LUV且配方电压等级等于当前配方电压时，使配方时间增加50%（魔力组装只增加1%)");
         provider.add("ctnh.common_tooltip.mana_machine.4","放入§5类星体符文§r以在100次配方内启用§5星体之眼模式§r：并行变为无限，并行不再提供额外的时间与电压减少。启动此模式不消耗类星体符文");
@@ -911,16 +917,16 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.ANIMAL_EXCRETA, "动物排泄物");
         provider.addItem(CTNHItems.SCULK_CELL, "幽匿干细胞");
         provider.addItem(CTNHItems.TUMOR, "肿瘤");
-        provider.addItem(CTNHItems.HORIZEN_RUNE, "视域符文");
+        provider.addItem(CTNHItems.HORIZEN_RUNE, "§5视域§r符文");
         provider.addItem(CTNHItems.REFINED_IRON_INGOT, "精炼铁方坯");
         provider.addItem(CTNHItems.CORROSIVE_CORE, "腐蚀核心");
         provider.addItem(CTNHItems.VENGEFUL_CORE, "复仇核心");
         provider.addItem(CTNHItems.DESTRUCTIVE_CORE, "破坏核心");
         provider.addItem(CTNHItems.STEADFAST_CORE, "坚毅核心");
-        provider.add(CTNHItems.TWIST_RUNE.get(), "扭曲符文");
-        provider.add(CTNHItems.STARLIGHT_RUNE.get(), "星光符文");
-        provider.add(CTNHItems.QUASAR_RUNE.get(), "§5类星体§r符文");
-        provider.add(CTNHItems.PROLIFERATION_RUNE.get(), "增殖符文");
+        provider.add(CTNHItems.TWIST_RUNE.get(), "§c扭曲§r符文");
+        provider.add(CTNHItems.STARLIGHT_RUNE.get(), "§9星光§r符文");
+        provider.add(CTNHItems.QUASAR_RUNE.get(), "§k类星体§r符文");
+        provider.add(CTNHItems.PROLIFERATION_RUNE.get(), "§a增殖§r符文");
         provider.add(CTNHItems.ANTI_INF_MATTER.get(),"§0反无穷聚合体");
         provider.addItem(CTNHItems.BOSS_SUMMONER, "boss召唤器");
         provider.addItem(CTNHItems.ADVANCED_BOSS_SUMMONER, "进阶boss召唤器");

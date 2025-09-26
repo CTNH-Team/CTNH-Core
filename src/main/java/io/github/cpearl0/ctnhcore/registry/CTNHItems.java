@@ -9,11 +9,15 @@ import com.tterrag.registrate.util.entry.ItemEntry;
 import io.github.cpearl0.ctnhcore.common.item.*;
 import io.github.cpearl0.ctnhcore.data.materials.ChemicalItems;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import org.apache.commons.lang3.StringUtils;
+import vazkii.botania.client.model.BotanicalBreweryModel;
+import vazkii.botania.common.lib.BotaniaTags;
 
 import static com.gregtechceu.gtceu.common.data.GTItems.attach;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
@@ -52,25 +56,46 @@ public class CTNHItems {
             .item("animal_excreta",Item::new)
             .lang("Animal Excreta")
             .register();
-    public static ItemEntry<Item> HORIZEN_RUNE = REGISTRATE
-            .item("horizen_rune",Item::new)
+    public static  ItemEntry<ComponentItem> HORIZEN_RUNE = REGISTRATE
+            .item("horizen_rune",ComponentItem::create)
             .lang("horizen_rune")
+            .tag(BotaniaTags.Items.RUNES,CTNHTags.TIER5_RUNES)
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.item.runes.horizen_rune").withStyle(ChatFormatting.DARK_PURPLE));
+            })))
+
             .register();
-    public static ItemEntry<Item> STARLIGHT_RUNE = REGISTRATE
-            .item("starlight_rune",Item::new)
+    public static ItemEntry<ComponentItem> STARLIGHT_RUNE = REGISTRATE
+            .item("starlight_rune",ComponentItem::create)
             .lang("starlight_rune")
+            .tag(BotaniaTags.Items.RUNES,CTNHTags.TIER5_RUNES)
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.item.runes.starlight_rune").withStyle(ChatFormatting.BLUE));
+            })))
             .register();
-    public static ItemEntry<Item> TWIST_RUNE = REGISTRATE
-            .item("twist_rune",Item::new)
+    public static ItemEntry<ComponentItem> TWIST_RUNE = REGISTRATE
+            .item("twist_rune",ComponentItem::create)
             .lang("twist_rune")
+            .tag(BotaniaTags.Items.RUNES,CTNHTags.TIER5_RUNES)
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.item.runes.twist_rune").withStyle(ChatFormatting.RED));
+            })))
             .register();
-    public static ItemEntry<Item> QUASAR_RUNE = REGISTRATE
-            .item("quasar_rune",Item::new)
+    public static ItemEntry<ComponentItem> QUASAR_RUNE = REGISTRATE
+            .item("quasar_rune",ComponentItem::create)
             .lang("quasar_rune")
+            .tag(BotaniaTags.Items.RUNES,CTNHTags.TIER5_RUNES)
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.item.runes.quasar_rune").withStyle(ChatFormatting.LIGHT_PURPLE));
+            })))
             .register();
-    public static ItemEntry<Item> PROLIFERATION_RUNE = REGISTRATE
-            .item("proliferation_rune",Item::new)
+    public static ItemEntry<ComponentItem> PROLIFERATION_RUNE = REGISTRATE
+            .item("proliferation_rune",ComponentItem::create)
             .lang("proliferation_rune")
+            .tag(BotaniaTags.Items.RUNES,CTNHTags.TIER5_RUNES)
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.item.runes.proliferation_rune").withStyle(ChatFormatting.GREEN));
+            })))
             .register();
     public static ItemEntry<ComponentItem> ANTI_INF_MATTER =REGISTRATE
             .item("anti_inf_matter",ComponentItem::create)

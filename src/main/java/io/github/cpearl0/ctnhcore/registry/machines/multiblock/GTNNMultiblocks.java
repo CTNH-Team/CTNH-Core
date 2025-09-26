@@ -99,6 +99,7 @@ public class GTNNMultiblocks {
             .tooltips(Component.translatable("ctnh.multiblock.neutron_activator.tooltip.1"))
             .tooltips(Component.translatable("ctnh.multiblock.neutron_activator.tooltip.2"))
             .tooltips(Component.translatable("ctnh.multiblock.neutron_activator.tooltip.3"))
+            .tooltips(Component.translatable("ctnh.multiblock.neutron_activator.tooltip.5"))
             .tooltips(Component.translatable("ctnh.multiblock.neutron_activator.tooltip.4"))
             .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
             .pattern(definition ->
