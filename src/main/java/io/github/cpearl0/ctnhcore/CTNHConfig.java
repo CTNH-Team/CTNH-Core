@@ -22,7 +22,7 @@ public class CTNHConfig {
     public Migration migration = new Migration();
     public static class Migration{
         @Configurable
-        @Configurable.Comment({"Whether enable migration function, which might prevent blocks from disappearing when migrating saves from old versions.\n" +
+        @Configurable.Comment({"Whether enable migration function, which might prevent blocks from disappearing when migrating saves from old versions.  " +
                 "NOTICE: Turn it off after migration, or will slow down the loading", "Default: false"})
         public boolean migrationMode = false;
     }
