@@ -17,10 +17,7 @@ import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBoilerFireboxType;
-import io.github.cpearl0.ctnhcore.common.block.CoilType;
-import io.github.cpearl0.ctnhcore.common.block.PhotovoltaicBlock;
-import io.github.cpearl0.ctnhcore.common.block.SpaceStructuralFramework;
-import io.github.cpearl0.ctnhcore.common.block.TurbineRotorBlock;
+import io.github.cpearl0.ctnhcore.common.block.*;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.ISSFData;
 import io.github.cpearl0.ctnhcore.common.item.TurbineRotorItem;
@@ -160,37 +157,37 @@ public class CTNHBlocks {
 
     public static final BlockEntry<Block> RUNE_STONE_0 = createCasingBlock(
             "rune_stone_0", CTNHCore.id("block/casings/runictexture/rune_stone_0"));
-    public static final BlockEntry<Block> RUNE_STONE_1 = createCasingBlock(
+    public static final BlockEntry<RuneBlock> RUNE_STONE_1 = createRuneBlock(
             "rune_stone_1", CTNHCore.id("block/casings/runictexture/rune_stone_1"));
-    public static final BlockEntry<Block> RUNE_STONE_2 = createCasingBlock(
+    public static final BlockEntry<RuneBlock> RUNE_STONE_2 = createRuneBlock(
             "rune_stone_2", CTNHCore.id("block/casings/runictexture/rune_stone_2"));
-    public static final BlockEntry<Block> RUNE_STONE_3 = createCasingBlock(
+    public static final BlockEntry<RuneBlock> RUNE_STONE_3 = createRuneBlock(
             "rune_stone_3", CTNHCore.id("block/casings/runictexture/rune_stone_3"));
-    public static final BlockEntry<Block> RUNE_STONE_4 = createCasingBlock(
+    public static final BlockEntry<RuneBlock> RUNE_STONE_4 = createRuneBlock(
             "rune_stone_4", CTNHCore.id("block/casings/runictexture/rune_stone_4"));
-    public static final BlockEntry<Block> RUNE_STONE_5 = createCasingBlock(
+    public static final BlockEntry<RuneBlock> RUNE_STONE_5 = createRuneBlock(
             "rune_stone_5", CTNHCore.id("block/casings/runictexture/rune_stone_5"));
-    public static final BlockEntry<Block> RUNE_STONE_6 = createCasingBlock(
+    public static final BlockEntry<RuneBlock> RUNE_STONE_6 = createRuneBlock(
             "rune_stone_6", CTNHCore.id("block/casings/runictexture/rune_stone_6"));
-    public static final BlockEntry<Block> RUNE_STONE_7 = createCasingBlock(
+    public static final BlockEntry<RuneBlock> RUNE_STONE_7 = createRuneBlock(
             "rune_stone_7", CTNHCore.id("block/casings/runictexture/rune_stone_7"));
-    public static final BlockEntry<Block> RUNE_STONE_8 = createCasingBlock(
+    public static final BlockEntry<RuneBlock> RUNE_STONE_8 = createRuneBlock(
             "rune_stone_8", CTNHCore.id("block/casings/runictexture/rune_stone_8"));
-    public static final BlockEntry<Block> RUNE_STONE_9 = createCasingBlock(
+    public static final BlockEntry<RuneBlock> RUNE_STONE_9 = createRuneBlock(
             "rune_stone_9", CTNHCore.id("block/casings/runictexture/rune_stone_9"));
-    public static final BlockEntry<Block> RUNE_STONE_10 = createCasingBlock(
+    public static final BlockEntry<RuneBlock> RUNE_STONE_10 = createRuneBlock(
             "rune_stone_10", CTNHCore.id("block/casings/runictexture/rune_stone_10"));
-    public static final BlockEntry<Block> RUNE_STONE_11 = createCasingBlock(
+    public static final BlockEntry<RuneBlock> RUNE_STONE_11 = createRuneBlock(
             "rune_stone_11", CTNHCore.id("block/casings/runictexture/rune_stone_11"));
-    public static final BlockEntry<Block> RUNE_STONE_12 = createCasingBlock(
+    public static final BlockEntry<RuneBlock> RUNE_STONE_12 = createRuneBlock(
             "rune_stone_12", CTNHCore.id("block/casings/runictexture/rune_stone_12"));
-    public static final BlockEntry<Block> RUNE_STONE_13 = createCasingBlock(
+    public static final BlockEntry<RuneBlock> RUNE_STONE_13 = createRuneBlock(
             "rune_stone_13", CTNHCore.id("block/casings/runictexture/rune_stone_13"));
-    public static final BlockEntry<Block> RUNE_STONE_14 = createCasingBlock(
+    public static final BlockEntry<RuneBlock> RUNE_STONE_14 = createRuneBlock(
             "rune_stone_14", CTNHCore.id("block/casings/runictexture/rune_stone_14"));
-    public static final BlockEntry<Block> RUNE_STONE_15 = createCasingBlock(
+    public static final BlockEntry<RuneBlock> RUNE_STONE_15 = createRuneBlock(
             "rune_stone_15", CTNHCore.id("block/casings/runictexture/rune_stone_15"));
-    public static final BlockEntry<Block> RUNE_STONE_16 = createCasingBlock(
+    public static final BlockEntry<RuneBlock> RUNE_STONE_16 = createRuneBlock(
             "rune_stone_16", CTNHCore.id("block/casings/runictexture/rune_stone_16"));
 
 
@@ -302,12 +299,18 @@ public class CTNHBlocks {
     private static BlockEntry<Block> createGlassCasingBlock(String name, ResourceLocation texture, Supplier<Supplier<RenderType>> type) {
         return createCasingBlock(name, GlassBlock::new, texture, () -> Blocks.GLASS, type);
     }
+
+    public static BlockEntry<RuneBlock> createRuneBlock(String name, ResourceLocation texture) {
+        return createRuneBlock(name, RuneBlock::new, texture, () -> Blocks.IRON_BLOCK,
+                () -> RenderType::cutoutMipped);
+    }
+
     @SuppressWarnings("all")
-    public static BlockEntry<Block> createCasingBlock(String name,
-                                                      NonNullFunction<BlockBehaviour.Properties, Block> blockSupplier,
-                                                      ResourceLocation texture,
-                                                      NonNullSupplier<? extends Block> properties,
-                                                      Supplier<Supplier<RenderType>> type) {
+    public static BlockEntry<RuneBlock> createRuneBlock(String name,
+                                                        NonNullFunction<BlockBehaviour.Properties, RuneBlock> blockSupplier,
+                                                        ResourceLocation texture,
+                                                        NonNullSupplier<? extends Block> properties,
+                                                        Supplier<Supplier<RenderType>> type) {
         return REGISTRATE.block(name, blockSupplier)
                 .initialProperties(properties)
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
@@ -320,6 +323,25 @@ public class CTNHBlocks {
                 .build()
                 .register();
     }
+
+    public static BlockEntry<Block> createCasingBlock(String name,
+                                                      NonNullFunction<BlockBehaviour.Properties, Block> blockSupplier,
+                                                      ResourceLocation texture,
+                                                      NonNullSupplier<? extends Block> properties,
+                                                      Supplier<Supplier<RenderType>> type) {
+        return REGISTRATE.block(name, blockSupplier)
+                .initialProperties(properties)
+                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
+                .addLayer(type)
+                .blockstate((ctx, prov) -> {
+                    prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, texture));
+                })
+                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(BlockItem::new)
+                .build()
+                .register();
+    }
+
     @SuppressWarnings("all")
     private static BlockEntry<CoilBlock> createCoilBlock(ICoilType coilType) {
         BlockEntry<CoilBlock> coilBlock = REGISTRATE.block("%s_coil_block".formatted(coilType.getName()), p -> new CoilBlock(p, coilType))
