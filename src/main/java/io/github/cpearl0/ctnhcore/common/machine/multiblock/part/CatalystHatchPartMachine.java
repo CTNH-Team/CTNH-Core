@@ -31,11 +31,12 @@ public class CatalystHatchPartMachine extends TieredIOPartMachine {
     public CatalystHatchPartMachine(IMachineBlockEntity holder) {
         super(holder, GTValues.IV, IO.IN);
     }
-    @Persisted
-    public NotifiableItemStackHandler buffer = new NotifiableItemStackHandler(this, 16,IO.NONE, IO.BOTH);
 
     @Persisted
     public NotifiableItemStackHandler inventory = createInventory();
+    @Persisted
+    public NotifiableItemStackHandler buffer = new NotifiableItemStackHandler(this, 16,IO.NONE, IO.BOTH);
+
     private ISubscription bufferSubs = null;
     private ISubscription inventorySubs = null;
     private TickableSubscription transferSubs = null;
@@ -49,8 +50,9 @@ public class CatalystHatchPartMachine extends TieredIOPartMachine {
     public void onLoad() {
         super.onLoad();
         if (!isRemote()) {
-            bufferSubs = buffer.addChangedListener(this::onInventoryChanged);
             inventorySubs = inventory.addChangedListener(this::onInventoryChanged);
+            bufferSubs = buffer.addChangedListener(this::onInventoryChanged);
+
         }
     }
 
@@ -74,7 +76,6 @@ public class CatalystHatchPartMachine extends TieredIOPartMachine {
             @Override
             public List<Ingredient> handleRecipeInner(IO io, GTRecipe recipe, List<Ingredient> left, boolean simulate) {
                 if (io != handlerIO) return left;
-
                 CustomItemStackHandler capability;
                 if (simulate) {
                     NonNullList<ItemStack> items = NonNullList.create();
