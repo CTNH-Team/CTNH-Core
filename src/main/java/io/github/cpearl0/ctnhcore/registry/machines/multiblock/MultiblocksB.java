@@ -1229,10 +1229,7 @@ public class MultiblocksB {
                     .aisle("FOF", "RTR", "DAG", "#Y#")
                     .where("S", Predicates.controller(blocks(definition.getBlock())))
                     .where("F", blocks(ADVANCE_MACHINE_CASING_SOLID_STEEL.get())
-                            .or(!ConfigHolder.INSTANCE.machines.orderedAssemblyLineFluids ?
-                                    abilities(PartAbility.IMPORT_FLUIDS_1X,
-                                            PartAbility.IMPORT_FLUIDS_4X, PartAbility.IMPORT_FLUIDS_9X) :
-                                    abilities(PartAbility.IMPORT_FLUIDS_1X).setMaxGlobalLimited(4))
+                            .or(abilities(PartAbility.IMPORT_FLUIDS).setMaxGlobalLimited(4))
                             .or(abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1).setPreviewCount(1)))
                     .where("O",
                             abilities(PartAbility.EXPORT_ITEMS)
