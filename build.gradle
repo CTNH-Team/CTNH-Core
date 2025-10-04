@@ -221,7 +221,7 @@ dependencies {
     implementation fg.deobf("earth.terrarium.adastra:ad_astra-forge-${minecraft_version}:${ad_astra_version}")
 
     implementation fg.deobf("curse.maven:aeroblender-879879:4789008")
-    implementation fg.deobf("curse.maven:geckolib-388172:5675221")
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}")
     implementation fg.deobf("curse.maven:terrablender-563928:5378180")
     implementation fg.deobf("curse.maven:aether-255308:5302178")
     implementation fg.deobf("curse.maven:deep-aether-852465:5441091")
@@ -240,8 +240,8 @@ dependencies {
     implementation fg.deobf("dev.latvian.mods:rhino-forge:${rhino_version}")
     implementation fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
     //注释我
-    implementation fg.deobf("curse.maven:ct-1163715:6962884")
-    implementation fg.deobf("curse.maven:ctnh-bio-1333825:6958274")
+    //implementation fg.deobf("curse.maven:ct-1163715:6962884")
+    //implementation fg.deobf("curse.maven:ctnh-bio-1333825:6958274")
     // EnderIO
     compileOnly fg.deobf("com.enderio:EnderIO:${enderio_version}:api")
     implementation fg.deobf("com.enderio:EnderIO:${enderio_version}")
@@ -291,9 +291,10 @@ dependencies {
     implementation fg.deobf("curse.maven:biomancy-492939:5886758")
     implementation fg.deobf("curse.maven:bio-factory-1136762:6293100")
 
+    runtimeOnly  fg.deobf("curse.maven:constructionwand-399558:4684054")
 
-//    implementation project(":modules:CTNH-Bio")
-//    implementation project(":modules:CTPP")
+    implementation project(":modules:CTNH-Bio")
+    implementation project(":modules:CTPP")
 }
 
 mixin {
