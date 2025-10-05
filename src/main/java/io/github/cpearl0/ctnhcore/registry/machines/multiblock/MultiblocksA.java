@@ -1764,7 +1764,7 @@ public class MultiblocksA {
                             .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
                     .where("B", Predicates.blocks(MATERIAL_BLOCKS.get(TagPrefix.block, CTNHMaterials.Cerrobase140).get()))
                     .where("C", Predicates.any())
-                    .where("D", Predicates.blocks(MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Neutronium).get()))
+                    .where("D", Predicates.blocks(RADIATION_PROOF_MACHINE_CASING.get()))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))

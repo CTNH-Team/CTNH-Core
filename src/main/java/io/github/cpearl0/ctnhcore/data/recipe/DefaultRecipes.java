@@ -620,7 +620,7 @@ public class DefaultRecipes {
                 .inputItems(TagPrefix.frameGt, GTMaterials.TungstenSteel)
                 .inputFluids(GTMaterials.Concrete.getFluid(1296))
                 .outputItems(CTNHBlocks.RADIATION_PROOF_MACHINE_CASING.asStack())
-                .EUt(GTValues.VA[GTValues.IV]) // 1920 EU/t
+                .EUt(GTValues.VA[GTValues.EV]) // 1920 EU/t
                 .duration(40) // 2秒
                 .save(provider);
 
