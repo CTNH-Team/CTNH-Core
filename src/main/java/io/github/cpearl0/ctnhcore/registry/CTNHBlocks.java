@@ -155,6 +155,42 @@ public class CTNHBlocks {
     public static final BlockEntry<Block> ADVANCED_FILTER_CASING = createCasingBlock(
             "advanced_filter_casing", CTNHCore.id("block/casings/solid/advanced_filter_casing"));
 
+    public static final BlockEntry<Block> RUNE_CARRIER_BLOCK = createCasingBlock(
+            "rune_carrier_block", CTNHCore.id("block/casings/runictexture/rune_stone_0"));
+    public static final BlockEntry<RuneBlock> WINTER_RUNE_STONE = createRuneBlock(
+            "winter_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_1"));
+    public static final BlockEntry<RuneBlock> MANA_RUNE_STONE = createRuneBlock(
+            "mana_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_2"));
+    public static final BlockEntry<RuneBlock> SIN_GLUTTONY_RUNE_STONE = createRuneBlock(
+            "sin_gluttony_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_3"));
+    public static final BlockEntry<RuneBlock> SIN_PRIDE_RUNE_STONE = createRuneBlock(
+            "sin_pride_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_4"));
+    public static final BlockEntry<RuneBlock> SIN_WRATH_RUNE_STONE = createRuneBlock(
+            "sin_wrath_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_5"));
+    public static final BlockEntry<RuneBlock> FIRE_RUNE_STONE = createRuneBlock(
+            "fire_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_6"));
+    public static final BlockEntry<RuneBlock> AUTUMN_RUNE_STONE = createRuneBlock(
+            "autumn_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_7"));
+    public static final BlockEntry<RuneBlock> EARTH_RUNE_STONE = createRuneBlock(
+            "earth_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_8"));
+    public static final BlockEntry<RuneBlock> SIN_GREED_RUNE_STONE = createRuneBlock(
+            "sin_greed_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_9"));
+    public static final BlockEntry<RuneBlock> SUMMER_RUNE_STONE = createRuneBlock(
+            "summer_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_10"));
+    public static final BlockEntry<RuneBlock> WIND_RUNE_STONE = createRuneBlock(
+            "wind_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_11"));
+    public static final BlockEntry<RuneBlock> WATER_RUNE_STONE = createRuneBlock(
+            "water_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_12"));
+    public static final BlockEntry<RuneBlock> SIN_ENVY_RUNE_STONE = createRuneBlock(
+            "sin_envy_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_13"));
+    public static final BlockEntry<RuneBlock> SIN_LUST_RUNE_STONE = createRuneBlock(
+            "sin_lust_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_14"));
+    public static final BlockEntry<RuneBlock> SPRING_RUNE_STONE = createRuneBlock(
+            "spring_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_15"));
+    public static final BlockEntry<RuneBlock> SIN_SLOTH_RUNE_STONE = createRuneBlock(
+            "sin_sloth_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_16"));
+    public static final BlockEntry<Block> RUNE_STONE_PERFECT = createCasingBlock(
+            "rune_stone_perfect", CTNHCore.id("block/casings/runictexture/rune_stone_perfect"));
     public static final BlockEntry<Block> RUNE_STONE_0 = createCasingBlock(
             "rune_stone_0", CTNHCore.id("block/casings/runictexture/rune_stone_0"));
     public static final BlockEntry<RuneBlock> RUNE_STONE_1 = createRuneBlock(
