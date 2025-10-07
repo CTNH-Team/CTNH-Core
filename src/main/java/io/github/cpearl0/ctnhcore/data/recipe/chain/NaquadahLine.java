@@ -295,6 +295,18 @@ public class NaquadahLine {
                 .duration(100)  // 5秒
                 .addCondition(new NeutronActivatorCondition(220, 240))
                 .save(provider);
+        CTNHRecipeTypes.ACCELERATOR_UP.recipeBuilder("naquadah_direct_activation_acc_up")
+                .inputItems(TagPrefix.dust, CTNHMaterials.NaquadahOxideMixture, 16)
+                .inputFluids(GTMaterials.FluoroantimonicAcid.getFluid(6000))
+                .outputItems(TagPrefix.dust, GTMaterials.TitaniumTrifluoride, 32)
+                .outputItems(TagPrefix.dust, GTMaterials.Naquadah, 2)
+                .outputItems(TagPrefix.dust, GTMaterials.AntimonyTrifluoride, 24)
+                .chancedOutput(TagPrefix.dust, GTMaterials.Gallium, 7500, 0)  // 75%概率副产物
+                .duration(100)  // 5秒
+                .addCondition(new NeutronActivatorCondition(220, 240))
+                .addData("type","nu")
+                .addData("speed",45000)
+                .save(provider);
         // 浓缩Naquadah氧化物混合物 + 氟锑酸 -> 三氧化二锑 + 三氟化钛 + 不纯浓缩溶液-半循环
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("enriched_naquadah_oxide_decomposition")
                 .inputItems(TagPrefix.dust, CTNHMaterials.EnrichedNaquadahOxideMixture, 7)

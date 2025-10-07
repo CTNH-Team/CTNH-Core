@@ -292,6 +292,7 @@ dependencies {
     implementation fg.deobf("curse.maven:bio-factory-1136762:6293100")
 
     runtimeOnly  fg.deobf("curse.maven:constructionwand-399558:4684054")
+    implementation project(":modules:CTNH-Lib")
 
 //    implementation project(":modules:CTNH-Bio")
 //    implementation project(":modules:CTPP")
