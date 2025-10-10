@@ -189,6 +189,7 @@ repositories {
     }
     maven { url = "https://maven.createmod.net" }
  }
+jarJar.enable()
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
@@ -293,9 +294,13 @@ dependencies {
 
     runtimeOnly  fg.deobf("curse.maven:constructionwand-399558:4684054")
 
-    implementation project(":modules:CTNH-Bio")
+    jarJar(implementation(project(":modules:CTNH-Bio")){
+        transitive = false
+    })
+    //implementation
     implementation project(":modules:CTPP")
 }
+reobf.create("jarJar")
 
 mixin {
     // MixinGradle Settings
