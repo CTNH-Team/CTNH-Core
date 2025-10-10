@@ -36,13 +36,13 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine{
         super(holder, args);
     }
 
-
     @Override
-    public boolean checkPattern() {
-        if(super.checkPattern()){
-            //转子：往里四格，往左/右[4,11]格
+    public void onStructureFormed() {
+        super.onStructureFormed();
+        if(!isRemote())
+        {
             var level = getLevel();
-            if (level == null) return false;
+            if (level == null) return;
             var dfront = getFrontFacing();
             var dup = Direction.UP;
 
@@ -63,19 +63,59 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine{
                         var new_state = ltbe.getBlockState().setValue(BlockStateProperties.FACING, RenderUtils.vectorDirections.get(left));
                         level.setBlockAndUpdate(lpos, new_state);
                     }
-                } else return false;
+                }
                 if (level.getBlockEntity(rpos) instanceof TurbineRotorBE rtbe
                     /*&& RenderUtils.dircetionVectors.get(rtbe.getBlockState().getValue(BlockStateProperties.FACING)).equals(right)*/) {
                     if (!RenderUtils.directionVectors.get(rtbe.getBlockState().getValue(BlockStateProperties.FACING)).equals(right)) {
                         var new_state = rtbe.getBlockState().setValue(BlockStateProperties.FACING, RenderUtils.vectorDirections.get(right));
                         level.setBlockAndUpdate(rpos, new_state);
                     }
-                } else return false;
+                }
             }
-            return true;
+
         }
-        return false;
+
     }
+
+    //    @Override
+//    public boolean checkPattern() {
+//        if(super.checkPattern()){
+//            //转子：往里四格，往左/右[4,11]格
+//            var level = getLevel();
+//            if (level == null) return false;
+//            var dfront = getFrontFacing();
+//            var dup = Direction.UP;
+//
+//            var front = RenderUtils.directionVectors.get(dfront);
+//            var up = RenderUtils.directionVectors.get(dup);
+//            var left = RenderUtils.cross(front, up);
+//            var right = new Vector3i(left).negate();
+//            Vector3i loffset, roffset;
+//            BlockPos lpos, rpos, pos = getPos();
+//            for (int i = 4; i <= 11; i++) {
+//                loffset = new Vector3i(left).mul(i).add(new Vector3i(front).mul(-4));
+//                roffset = new Vector3i(left).mul(-i).add(new Vector3i(front).mul(-4));
+//                lpos = new BlockPos(pos.getX() + loffset.x, pos.getY() + loffset.y, pos.getZ() + loffset.z);
+//                rpos = new BlockPos(pos.getX() + roffset.x, pos.getY() + roffset.y, pos.getZ() + roffset.z);
+//                if (level.getBlockEntity(lpos) instanceof TurbineRotorBE ltbe
+//                    /*&& RenderUtils.dircetionVectors.get(ltbe.getBlockState().getValue(BlockStateProperties.FACING)).equals(left)*/) {
+//                    if (!RenderUtils.directionVectors.get(ltbe.getBlockState().getValue(BlockStateProperties.FACING)).equals(left)) {
+//                        var new_state = ltbe.getBlockState().setValue(BlockStateProperties.FACING, RenderUtils.vectorDirections.get(left));
+//                        level.setBlockAndUpdate(lpos, new_state);
+//                    }
+//                } else return false;
+//                if (level.getBlockEntity(rpos) instanceof TurbineRotorBE rtbe
+//                    /*&& RenderUtils.dircetionVectors.get(rtbe.getBlockState().getValue(BlockStateProperties.FACING)).equals(right)*/) {
+//                    if (!RenderUtils.directionVectors.get(rtbe.getBlockState().getValue(BlockStateProperties.FACING)).equals(right)) {
+//                        var new_state = rtbe.getBlockState().setValue(BlockStateProperties.FACING, RenderUtils.vectorDirections.get(right));
+//                        level.setBlockAndUpdate(rpos, new_state);
+//                    }
+//                } else return false;
+//            }
+//            return true;
+//        }
+//        return false;
+//    }
 
     @Override
     public void onStructureInvalid() {
