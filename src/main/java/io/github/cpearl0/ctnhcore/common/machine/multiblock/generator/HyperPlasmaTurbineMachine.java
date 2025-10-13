@@ -118,6 +118,14 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine{
 //    }
 
     @Override
+    public long getMaxVoltage() {
+        if (this.energyContainer == null) {
+            this.energyContainer = getEnergyContainer();
+        }
+        return energyContainer.getOutputVoltage();
+    }
+
+    @Override
     public void onStructureInvalid() {
         super.onStructureInvalid();
     }
