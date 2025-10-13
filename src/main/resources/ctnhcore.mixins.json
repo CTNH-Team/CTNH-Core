@@ -18,6 +18,7 @@
     "gtceu.GTItemMixin",
     "gtceu.GTOreByProductMixin",
     "gtceu.OreRecipeHandlerMixin",
+    "gtceu.RecyclingRecipesMixin",
     "gtceu.TagPrefixMixin",
     "jei.GTRecipeWidgetMixin",
     "jei.RecipeGuiLogicMixin",
