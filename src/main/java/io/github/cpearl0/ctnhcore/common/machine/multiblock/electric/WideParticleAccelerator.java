@@ -209,7 +209,6 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
     //初始化
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
-
         return super.beforeWorking(recipe);
     }
     @Override
