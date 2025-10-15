@@ -82,6 +82,8 @@ public class ForgeEventHandler {
                     tieredMachine.setAutoOutputItems(true);
                     tieredMachine.setOutputFacingFluids(dir.getOpposite());
                     tieredMachine.setOutputFacingItems(dir.getOpposite());
+                    tieredMachine.setAllowInputFromOutputSideItems(true);
+                    tieredMachine.setAllowInputFromOutputSideFluids(true);
                 }
             }
         }
