@@ -6,6 +6,7 @@ import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("removal")
 public class PhotovoltaicBlock extends AppearanceBlock {
     public final IPBData data;
     public PhotovoltaicBlock(BlockBehaviour.Properties properties,IPBData ipbData) {

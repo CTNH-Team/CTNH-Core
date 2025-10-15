@@ -8,6 +8,7 @@ import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
+@SuppressWarnings("removal")
 public class RuneBlock extends AppearanceBlock {
     public RuneBlock(Properties properties) {
         super(properties);

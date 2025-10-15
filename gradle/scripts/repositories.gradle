@@ -9,8 +9,8 @@ repositories {
         }
     }
     maven {
-        name 'FirstDarkDev'
-        url "https://maven.firstdark.dev/snapshots/"
+        name "firstdarkdev"
+        url "https://maven.firstdarkdev.xyz/snapshots"
     }
     maven { // Registrate
         url = "https://maven.tterrag.com/"
