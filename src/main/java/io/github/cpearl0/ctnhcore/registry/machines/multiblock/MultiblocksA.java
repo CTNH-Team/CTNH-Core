@@ -1263,8 +1263,7 @@ public class MultiblocksA {
             .recipeTypes(GTRecipeTypes.LARGE_CHEMICAL_RECIPES)
             .appearanceBlock(CASING_PTFE_INERT)
 
-            .recipeModifiers(MegaLCRMachine::recipeModifier,
-                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .recipeModifiers(CTNHRecipeModifiers.MT_OC_PERFECT, GTRecipeModifiers.BATCH_MODE)
             .pattern(definition ->
                     FactoryBlockPattern.start()
                             .aisle("CCCCC", "CCCCC", "CCCCC", "CCCCC", "CCCCC")

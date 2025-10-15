@@ -17,6 +17,9 @@ import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachi
 import org.jetbrains.annotations.NotNull;
 
 import static com.gregtechceu.gtceu.api.recipe.OverclockingLogic.getCoilEUtDiscount;
+import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.ELECTRIC_OVERCLOCK;
+import static io.github.cpearl0.ctnhcore.api.recipe.MultiThreadOverclockingLogic.MULTI_THREAD_NON_PERFECT_OVERCLOCK;
+import static io.github.cpearl0.ctnhcore.api.recipe.MultiThreadOverclockingLogic.MULTI_THREAD_PERFECT_OVERCLOCK;
 
 public class CTNHRecipeModifiers {
     public static final ModifierFunction accurateParallel(MetaMachine machine,GTRecipe recipe,int parallel) {
@@ -42,6 +45,9 @@ public class CTNHRecipeModifiers {
             .reduction(machine, recipe, 0.8, 0.6);
 
     public static final RecipeModifier COIL_PARALLEL = (machine, recipe) -> CTNHRecipeModifiers.accurateParallel(machine,recipe,Math.min(2147483647, (int) Math.pow(2, ((double) ((CoilWorkableElectricMultiblockMachine) machine).getCoilType().getCoilTemperature() / 900))));
+
+    public static final RecipeModifier MT_OC_PERFECT = ELECTRIC_OVERCLOCK.apply(MULTI_THREAD_PERFECT_OVERCLOCK);
+    public static final RecipeModifier MT_OC_NON_PERFECT = ELECTRIC_OVERCLOCK.apply(MULTI_THREAD_NON_PERFECT_OVERCLOCK);
 
     public static ModifierFunction chemicalPlantOverclock(MetaMachine machine, @NotNull GTRecipe recipe) {
         if (!(machine instanceof IMultiController multiController) || !multiController.isFormed()) return ModifierFunction.IDENTITY;
