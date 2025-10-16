@@ -1,27 +1,37 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.part;
 
+import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDisplayUIMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
+import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.MultiblockPartMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.TieredPartMachine;
+import com.gregtechceu.gtceu.integration.jei.recipe.GTRecipeJEICategory;
 import com.lowdragmc.lowdraglib.gui.util.ClickData;
 import com.lowdragmc.lowdraglib.gui.widget.*;
+import com.lowdragmc.lowdraglib.jei.JEIPlugin;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
+import io.github.cpearl0.ctnhcore.api.recipe.MultiThreadRecipeLogic;
+import mezz.jei.api.recipe.IFocus;
+import mezz.jei.api.recipe.IRecipeManager;
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.ComponentContents;
-import net.minecraft.network.chat.HoverEvent;
-import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.*;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.function.UnaryOperator;
 
-public class AsynThreadHatchMachine extends TieredPartMachine implements IFancyUIMachine {
+public class
+
+AsynThreadHatchMachine extends TieredPartMachine implements IFancyUIMachine {
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             AsynThreadHatchMachine.class, MultiblockPartMachine.MANAGED_FIELD_HOLDER
     );
@@ -38,11 +48,16 @@ public class AsynThreadHatchMachine extends TieredPartMachine implements IFancyU
     int rate = 100;
 
     @Override
+    public boolean hasPlayerInventory() {
+        return false;
+    }
+
+    @Override
     public Widget createUIWidget() {
-        var group = new WidgetGroup(0, 0, 182 + 8, 117 + 8);
-        group.addWidget(new DraggableScrollableWidgetGroup(4, 4, 182, 117).setBackground(GuiTextures.DISPLAY)
-                .addWidget(new LabelWidget(4, 5, self().getBlockState().getBlock().getDescriptionId()))
-                .addWidget(new ComponentPanelWidget(4, 17, this::addDisplayText)
+        var group = new WidgetGroup(0, 0, 200 + 8, 200 + 8);
+        group.addWidget(new DraggableScrollableWidgetGroup(4, 4, 200, 200).setBackground(GuiTextures.DISPLAY)
+                //.addWidget(new LabelWidget(4, 5, self().getBlockState().getBlock().getDescriptionId()))
+                .addWidget(new ComponentPanelWidget(4, 5, this::addDisplayText)
                         .textSupplier(this.getLevel().isClientSide ? null : this::addDisplayText)
                         .setMaxWidthLimit(200)
                         .clickHandler(this::handleDisplayClick)))
@@ -52,34 +67,162 @@ public class AsynThreadHatchMachine extends TieredPartMachine implements IFancyU
         return group;
     }
 
+    MutableComponent enabledText(boolean e)
+    {
+        String enabled = "已启用";
+        String notEnabled = "已禁用";
+        return  Component.literal(e ? enabled : notEnabled);
+    }
+
+    UnaryOperator<Style> hoverText(Component text){
+        return style -> style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, text));
+    }
+
     void addDisplayText(List<Component> textList) {
-        textList.add(Component.literal(rate + "\n"));
-        var buttonText = Component.translatable("ctnh.multiblock.underfloor_heating_system.info.rate_modify");
-        buttonText.append(" ");
-        Component hoverText1 = Component.literal("minus").withStyle(ChatFormatting.GRAY);
-        Component hoverText2 = Component.literal("add").withStyle(ChatFormatting.GRAY);
-        buttonText.append(ComponentPanelWidget.withButton(
-                Component.literal("[-]"), "sub")
-                .copy().withStyle(style -> style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, hoverText1)))
-        );
-        buttonText.append(" ");
-        buttonText.append(ComponentPanelWidget.withButton(
-                Component.literal("[+]"), "add")
-                .copy().withStyle(style -> style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, hoverText2)))
-        );
+        if(getControllers().isEmpty() || !getControllers().first().isFormed())
+        {
+            textList.add(Component.literal("无控制目标"));
+        }
+        else if(
+                getControllers().first() instanceof WorkableElectricMultiblockMachine machine
+                && machine.getRecipeLogic() instanceof MultiThreadRecipeLogic recipeLogic
+        ){
+            textList.add(Component.translatable("控制目标：%s", machine.getBlockState().getBlock().getDescriptionId()));
+            MultiblockDisplayText.builder(textList, isFormed())
+                    .addEnergyUsageLine(machine.getEnergyContainer())
+                    .addEnergyTierLine(machine.getTier());
+            for(int i=0; i<recipeLogic.getAllWorkers().size(); i++)
+            {
 
-        textList.add(buttonText);
+                textList.add(Component.literal("--------------------------------"));
+                var thread = recipeLogic.getAllWorkers().get(i);
+
+                Component hoverText2 = Component.literal("点击切换").withStyle(ChatFormatting.GRAY);
+
+                textList.add(Component.translatable("线程%s:", i+1).append(
+                        ComponentPanelWidget.withButton(
+                                enabledText(thread.isEnabled()),  "enable_"+i
+                        ).copy().withStyle(hoverText(hoverText2))
+                        )
+
+                );
+
+
+                var overclockButtonText = Component.translatable("");
+                Component hoverText0 = Component.literal("设置该线程可用于运行配方或超频的电压等级").withStyle(ChatFormatting.GRAY);
+                overclockButtonText.append(Component.literal("超频等级：").withStyle(hoverText(hoverText0)));
+
+                //Component hoverText2 = Component.literal("add").withStyle(ChatFormatting.GRAY);
+                overclockButtonText.append(ComponentPanelWidget.withButton(
+                                Component.literal("[-] "), "subOverclockTier_"+i)
+                );
+                Component voltageName = Component.literal(GTValues.VNF[thread.getOverclockTier()]);
+                overclockButtonText.append(voltageName);
+                overclockButtonText.append(ComponentPanelWidget.withButton(
+                                Component.literal(" [+]"), "addOverclockTier_"+i)
+                );
+
+                textList.add(overclockButtonText);
+
+
+                Component hoverText5 = Component.literal("点击查询").withStyle(ChatFormatting.GRAY);
+                textList.add(Component.translatable("上一个配方：")
+                        .append(
+                                ComponentPanelWidget.withButton(Component.literal(thread.getLastOriginRecipe()==null ? "无" : thread.getLastOriginRecipe().id.toString()), "lastRecipe_"+i)
+                                        .copy().withStyle(hoverText(hoverText5))
+                        )
+                );
+
+                Component hoverText1 = Component.literal("启用后，该线程只会运行上一个运行的配方，且无视线程保护").withStyle(ChatFormatting.GRAY);
+                var lockRecipeButtonText = Component.literal("");
+                lockRecipeButtonText.append(Component.literal("配方锁定：").withStyle(hoverText(hoverText1)));
+                lockRecipeButtonText.append(
+                        ComponentPanelWidget.withButton(enabledText(thread.isLockRecipe()), "switchLock_"+i)
+                                .copy().withStyle(hoverText(hoverText2))
+                );
+                textList.add(lockRecipeButtonText);
+
+                Component hoverText3 = Component.literal("启用后，该线程不会运行其他线程已锁定或正在运行的配方").withStyle(ChatFormatting.GRAY);
+
+                var threadProtectButtonText = Component.literal("");
+                threadProtectButtonText.append(Component.literal("线程保护：").withStyle(hoverText(hoverText3)));
+                threadProtectButtonText.append(
+                        ComponentPanelWidget.withButton(enabledText(thread.isThreadProtect()), "switchProtect_"+i)
+                                .copy().withStyle(hoverText(hoverText2))
+                );
+                textList.add(threadProtectButtonText);
+
+            }
+        }
+
     }
 
-    void addThreadText(List<Component> textList, int id) {
-
-    }
 
 
     void handleDisplayClick(String componentData, ClickData clickData) {
-        if (!clickData.isRemote) {
-            int result = componentData.equals("add") ? 5 : -5;
-            this.rate = Mth.clamp(rate + result, 25, 100);
+        String[] parts = componentData.split("_");
+        if(parts.length != 2) return;
+        String op = parts[0];
+        int id = Integer.parseInt(parts[1]);
+        if(
+                getControllers().first() instanceof WorkableElectricMultiblockMachine machine
+                        && machine.getRecipeLogic() instanceof MultiThreadRecipeLogic recipeLogic
+        ){
+            if(id <0 || id >= recipeLogic.getAllWorkers().size()) return;
+            var thread = recipeLogic.getAllWorkers().get(id);
+            if (!clickData.isRemote) {
+                switch (op){
+                    case "enable":{
+                        recipeLogic.setWorkingEnabled(!thread.isEnabled(), id);
+                        break;
+                    }
+                    case "subOverclockTier":{
+                        var tier = thread.getOverclockTier();
+                        if(tier > 0) thread.setOverclockTier(tier-1);
+                        break;
+                    }
+                    case "addOverclockTier":{
+                        var tier = thread.getOverclockTier();
+                        if(tier < GTValues.MAX_TRUE) thread.setOverclockTier(tier+1);
+                        break;
+                    }
+                    case "switchLock": {
+                        thread.setLockRecipe(!thread.isLockRecipe());
+                        break;
+                    }
+                    case "switchProtect": {
+                        thread.setThreadProtect(!thread.isThreadProtect());
+                        break;
+                    }
+                    case "lastRecipe" : {
+                        if(thread.getLastOriginRecipe() != null) {
+                            if (GTCEu.Mods.isJEILoaded()){
+                                var recipe = thread.getLastOriginRecipe();
+                                var category = new GTRecipeJEICategory(JEIPlugin.jeiHelpers, recipe.recipeCategory);
+                                JEIPlugin.jeiRuntime.getRecipesGui().showRecipes(
+                                        category,
+                                        List.of(recipe),
+                                        List.of()
+                                );
+                            }
+                        }
+                        break;
+                    }
+                }
+
+
+            }
+//            else if(op.equals("lastRecipe") && thread.getLastOriginRecipe() != null) {
+//                if (GTCEu.Mods.isJEILoaded()){
+//                    var recipe = thread.getLastOriginRecipe();
+//                    var category = new GTRecipeJEICategory(JEIPlugin.jeiHelpers, recipe.recipeCategory);
+//                    JEIPlugin.jeiRuntime.getRecipesGui().showRecipes(
+//                            category,
+//                            List.of(recipe),
+//                            List.of()
+//                    );
+//                }
+//            }
         }
     }
 

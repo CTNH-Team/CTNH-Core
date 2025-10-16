@@ -32,17 +32,13 @@ public class ThreadRecipeLogic extends RecipeLogic {
 
     @Persisted
     @DescSynced
-    int overclockTier = 0;
+    int overclockTier = -1;
 
     public ThreadRecipeLogic(IRecipeLogicMachine machine) {
         super(machine);
         enabled = true;
         threadProtect = false;
         lockRecipe = false;
-        if(machine instanceof IOverclockMachine overclockMachine)
-        {
-            overclockTier = overclockMachine.getMaxOverclockTier();
-        }
     }
 
     @Override
@@ -88,7 +84,6 @@ public class ThreadRecipeLogic extends RecipeLogic {
         recipeDirty = false;
     }
 
-
     @Override
     public void setStatus(Status status) {
         var lastStatus = getStatus();
@@ -96,5 +91,14 @@ public class ThreadRecipeLogic extends RecipeLogic {
         if(lastStatus != status){
             machine.notifyStatusChanged(lastStatus, status);
         }
+    }
+
+    @Override
+    public void resetRecipeLogic() {
+        super.resetRecipeLogic();
+        enabled = true;
+        threadProtect = false;
+        lockRecipe = false;
+
     }
 }

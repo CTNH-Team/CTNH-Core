@@ -15,12 +15,14 @@ import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.client.model.machine.MachineRenderState;
+import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import io.github.cpearl0.ctnhcore.api.machine.IMultiThreadMachine;
 import io.github.cpearl0.ctnhcore.api.recipe.MultiThreadRecipeLogic;
 import lombok.Getter;
 import net.minecraft.network.chat.Component;
+import net.minecraftforge.logging.CrashReportAnalyser;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -46,7 +48,14 @@ public class MegaLCRMachine extends CoilWorkableElectricMultiblockMachine implem
         temperature = getCoilType().getCoilTemperature();
         //maxThreads = 4;
         threads = maxThreads;
+        getRecipeLogic().getAllWorkers().forEach(
+                thread -> {
+                    if(thread.getOverclockTier() == -1)
+                        thread.setOverclockTier(getOverclockTier());
+                }
+        );
     }
+
 
     @Override
     public void addDisplayText(List<Component> textList) {
@@ -93,7 +102,6 @@ public class MegaLCRMachine extends CoilWorkableElectricMultiblockMachine implem
 
 
         getDefinition().getAdditionalDisplay().accept(this, textList);
-
 
     }
 

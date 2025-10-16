@@ -43,7 +43,7 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
 
     public boolean isRunningRecipe(GTRecipe recipe, @Nullable RecipeLogic except){
         for (RecipeLogic worker : threads) {
-            if(worker.getLastRecipe() == recipe && worker != except)
+            if(worker.getLastOriginRecipe() == recipe && worker != except)
                 return true;
         }
         return false;
@@ -116,13 +116,13 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
         return threads[threads.length - 1].getLastRecipe();
     }
 
-    public List<RecipeLogic> getAllWorkers() {
+    public List<ThreadRecipeLogic> getAllWorkers() {
         return Collections.unmodifiableList(Arrays.asList(threads));
     }
 
     @Override
     public void resetRecipeLogic() {
-        for (RecipeLogic worker : threads) {
+        for (ThreadRecipeLogic worker : threads) {
             worker.resetRecipeLogic();
         }
     }
@@ -135,6 +135,14 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
         }
     }
 
+    public void setWorkingEnabled(boolean isWorkingAllowed, int id) {
+        if(id >=0 && id < threads.length)
+        {
+            threads[id].setEnabled(isWorkingAllowed);
+            threads[id].setWorkingEnabled(workingAllowed && isWorkingAllowed);
+        }
+
+    }
     /* ------------------------
        FancyTooltip 聚合
        ------------------------ */
