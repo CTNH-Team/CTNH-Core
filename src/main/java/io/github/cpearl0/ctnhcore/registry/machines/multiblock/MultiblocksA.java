@@ -1262,8 +1262,8 @@ public class MultiblocksA {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.LARGE_CHEMICAL_RECIPES)
             .appearanceBlock(CASING_PTFE_INERT)
-
-            .recipeModifiers(CTNHRecipeModifiers.MT_OC_PERFECT, GTRecipeModifiers.BATCH_MODE)
+            .recipeModifiers(//GTRecipeModifiers.PARALLEL_HATCH,
+                    CTNHRecipeModifiers.MT_OC_PERFECT, GTRecipeModifiers.BATCH_MODE)
             .pattern(definition ->
                     FactoryBlockPattern.start()
                             .aisle("CCCCC", "CCCCC", "CCCCC", "CCCCC", "CCCCC")

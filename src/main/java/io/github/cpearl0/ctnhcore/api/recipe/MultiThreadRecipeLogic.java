@@ -3,13 +3,13 @@ package io.github.cpearl0.ctnhcore.api.recipe;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
-import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.lowdragmc.lowdraglib.gui.texture.IGuiTexture;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
+import lombok.Getter;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
@@ -22,13 +22,18 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
     //private final int maxParallel;
     @Persisted
     @DescSynced
-    private final RecipeLogic[] workers;
+    private final ThreadRecipeLogic[] threads;
+
+    @Getter
+    @Persisted
+    @DescSynced
+    boolean workingAllowed;
 
     public MultiThreadRecipeLogic(IRecipeLogicMachine machine, int maxParallel) {
         super(machine);
-        this.workers = new RecipeLogic[maxParallel];
+        this.threads = new ThreadRecipeLogic[maxParallel];
         for (int i = 0; i < maxParallel; i++) {
-            this.workers[i] = new RecipeLogic(machine);
+            this.threads[i] = new ThreadRecipeLogic(machine);
         }
     }
 
@@ -36,6 +41,13 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
 
     public static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(MultiThreadRecipeLogic.class);
 
+    public boolean isRunningRecipe(GTRecipe recipe, @Nullable RecipeLogic except){
+        for (RecipeLogic worker : threads) {
+            if(worker.getLastRecipe() == recipe && worker != except)
+                return true;
+        }
+        return false;
+    }
 
     @Override
     public void onMachineLoad() {
@@ -45,7 +57,7 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
 
     @Override
     public void updateTickSubscription() {
-        for (RecipeLogic worker : workers) {
+        for (RecipeLogic worker : threads) {
             worker.updateTickSubscription();
         }
     }
@@ -56,27 +68,27 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
 
     @Override
     public boolean isWorking() {
-        return Arrays.stream(workers).anyMatch(RecipeLogic::isWorking);
+        return Arrays.stream(threads).anyMatch(RecipeLogic::isWorking);
     }
 
     @Override
     public boolean isIdle() {
-        return Arrays.stream(workers).allMatch(RecipeLogic::isIdle);
+        return Arrays.stream(threads).allMatch(RecipeLogic::isIdle);
     }
 
     @Override
     public boolean isWaiting() {
-        return Arrays.stream(workers).anyMatch(RecipeLogic::isWaiting);
+        return Arrays.stream(threads).anyMatch(RecipeLogic::isWaiting);
     }
 
     @Override
     public boolean isSuspend() {
-        return Arrays.stream(workers).allMatch(RecipeLogic::isSuspend);
+        return Arrays.stream(threads).allMatch(RecipeLogic::isSuspend);
     }
 
     @Override
     public boolean isActive() {
-        return Arrays.stream(workers).anyMatch(RecipeLogic::isActive);
+        return Arrays.stream(threads).anyMatch(RecipeLogic::isActive);
     }
 
     @Override
@@ -89,43 +101,37 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
 
     @Override
     public int getProgress() {
-        // 平均进度
-        if (workers.length == 0) return 0;
-        double avg = Arrays.stream(workers)
-                .mapToDouble(w -> w.getDuration() == 0 ? 0 : (double) w.getProgress() / w.getDuration())
-                .average()
-                .orElse(0.0);
-        return (int) (avg * 100);
+        return Arrays.stream(threads).mapToInt(RecipeLogic::getProgress).sum();
     }
 
     @Override
     public int getMaxProgress() {
-        return Arrays.stream(workers).mapToInt(RecipeLogic::getMaxProgress).sum();
+        return Arrays.stream(threads).mapToInt(RecipeLogic::getMaxProgress).sum();
     }
 
     @Nullable
     @Override
     public GTRecipe getLastRecipe() {
-        if (workers.length == 0) return null;
-        return workers[workers.length - 1].getLastRecipe();
+        if (threads.length == 0) return null;
+        return threads[threads.length - 1].getLastRecipe();
     }
 
     public List<RecipeLogic> getAllWorkers() {
-        return Collections.unmodifiableList(Arrays.asList(workers));
+        return Collections.unmodifiableList(Arrays.asList(threads));
     }
 
     @Override
     public void resetRecipeLogic() {
-        for (RecipeLogic worker : workers) {
+        for (RecipeLogic worker : threads) {
             worker.resetRecipeLogic();
         }
     }
 
     @Override
     public void setWorkingEnabled(boolean isWorkingAllowed) {
-        setSuspendAfterFinish(!isWorkingAllowed);
-        for (RecipeLogic worker : workers) {
-            worker.setWorkingEnabled(isWorkingAllowed);
+        workingAllowed = isWorkingAllowed;
+        for (ThreadRecipeLogic worker : threads) {
+            worker.setWorkingEnabled(isWorkingAllowed && worker.enabled);
         }
     }
 
@@ -141,7 +147,7 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
     @Override
     public List<Component> getFancyTooltip() {
         List<Component> tips = new ArrayList<>();
-        for (RecipeLogic logic : workers) {
+        for (RecipeLogic logic : threads) {
             tips.addAll(logic.getFancyTooltip());
         }
         return tips;
@@ -149,7 +155,7 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
 
     @Override
     public boolean showFancyTooltip() {
-        return Arrays.stream(workers).anyMatch(RecipeLogic::showFancyTooltip);
+        return Arrays.stream(threads).anyMatch(RecipeLogic::showFancyTooltip);
     }
 
     /* ------------------------
@@ -159,7 +165,7 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
     public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {
         super.saveCustomPersistedData(tag, forDrop);
         ListTag list = new ListTag();
-        for (RecipeLogic logic : workers) {
+        for (RecipeLogic logic : threads) {
             CompoundTag child = new CompoundTag();
             logic.saveCustomPersistedData(child, forDrop);
             list.add(child);
@@ -171,9 +177,9 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
     public void loadCustomPersistedData(@NotNull CompoundTag tag) {
         super.loadCustomPersistedData(tag);
         ListTag list = tag.getList("workers", CompoundTag.TAG_COMPOUND);
-        for (int i = 0; i < Math.min(list.size(), workers.length); i++) {
+        for (int i = 0; i < Math.min(list.size(), threads.length); i++) {
             CompoundTag child = list.getCompound(i);
-            workers[i].loadCustomPersistedData(child);
+            threads[i].loadCustomPersistedData(child);
         }
     }
 

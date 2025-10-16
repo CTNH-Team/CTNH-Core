@@ -133,6 +133,24 @@ public class CTNHMachines {
     public static final MachineDefinition[] PERSONAL_COMPUTER = registerSimpleComputationMachines("personal_computer",
             CTNHRecipeTypes.PERSONAL_COMPUTER);
 
+
+    public static final MachineDefinition[] ASYNC_THREAD_HATCH = registerTieredMachines("async_thread_hatch",
+            AsynThreadHatchMachine::new,
+            (tier, builder) -> builder
+                    .langValue("Async Thread HATCH")
+                    .rotationState(RotationState.ALL)
+                    .abilities(CTNHPartAbility.THREAD_HATCH)
+                    .modelProperty(RecipeLogic.STATUS_PROPERTY, RecipeLogic.Status.IDLE)
+                    .model(createWorkableTieredHullMachineModel(
+                            GTCEu.id("block/machines/parallel_hatch_mk" + (tier - 4)))
+                            .andThen((ctx, prov, model) -> {
+                                model.addReplaceableTextures("bottom", "top", "side");
+                            }))
+                    //.tooltips(Component.translatable("gtceu.machine.parallel_hatch_mk" + tier + ".tooltip"))
+                    .register(),
+            LuV
+    );
+
     public static final MachineDefinition[] PARALLEL_HATCH = registerTieredMachines("parallel_hatch",
             ParallelHatchPartMachine::new,
             (tier, builder) -> builder

@@ -98,6 +98,11 @@ public class MegaLCRMachine extends CoilWorkableElectricMultiblockMachine implem
     }
 
     @Override
+    public int getProgress() {
+        return super.getProgress();
+    }
+
+    @Override
     protected MultiThreadRecipeLogic createRecipeLogic(Object... args) {
         return new MultiThreadRecipeLogic(this, maxThreads);
     }
@@ -110,15 +115,6 @@ public class MegaLCRMachine extends CoilWorkableElectricMultiblockMachine implem
     @Override
     public void notifyStatusChanged(RecipeLogic.Status oldStatus, RecipeLogic.Status newStatus) {
         super.notifyStatusChanged(oldStatus, getRecipeLogic().getStatus());
-        if(!isRemote())
-        {
-            getLevel().getServer().submit(
-                    () -> {setRenderState(getRenderState().setValue(GTMachineModelProperties.RECIPE_LOGIC_STATUS, getRecipeLogic().getStatus()));
-                        scheduleRenderUpdate();}
-
-            );
-        }
-
     }
 
 
