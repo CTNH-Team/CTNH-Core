@@ -6,6 +6,7 @@ import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("removal")
 public class SpaceStructuralFramework extends AppearanceBlock {
     public final ISSFData data;
     public SpaceStructuralFramework(BlockBehaviour.Properties properties, ISSFData Data) {

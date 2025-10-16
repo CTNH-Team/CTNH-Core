@@ -8,6 +8,7 @@ import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("removal")
 public class PlanetMinerBlock extends AppearanceBlock {
     public final PlanetMinerData data;
 

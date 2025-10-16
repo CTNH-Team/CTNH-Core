@@ -128,6 +128,7 @@ public class BrineChain {
                 .circuitMeta(2)
                 .EUt(240)
                 .duration(300)
+                .blastFurnaceTemp(373)
                 .save(provider);
 
         //海水精提溴碘
