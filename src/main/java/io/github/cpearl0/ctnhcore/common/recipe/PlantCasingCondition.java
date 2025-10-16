@@ -69,27 +69,27 @@ public class PlantCasingCondition extends RecipeCondition {
     public RecipeCondition createTemplate() {
         return new PlantCasingCondition();
     }
-    @Override
-    public @NotNull JsonObject serialize() {
-        var value = super.serialize();
-        value.addProperty("plantCasing", tier);
-        return value;
-    }
-    @Override
-    public RecipeCondition deserialize(@NotNull JsonObject config) {
-        super.deserialize(config);
-        this.tier = GsonHelper.getAsInt(config, "plantCasing", 0);
-        return this;
-    }
-    @Override
-    public void toNetwork(FriendlyByteBuf buf) {
-        super.toNetwork(buf);
-        buf.writeInt(tier);
-    }
-    @Override
-    public RecipeCondition fromNetwork(FriendlyByteBuf buf) {
-        super.fromNetwork(buf);
-        this.tier = buf.readInt();
-        return this;
-    }
+//    @Override
+//    public @NotNull JsonObject serialize() {
+//        var value = super.serialize();
+//        value.addProperty("plantCasing", tier);
+//        return value;
+//    }
+//    @Override
+//    public RecipeCondition deserialize(@NotNull JsonObject config) {
+//        super.deserialize(config);
+//        this.tier = GsonHelper.getAsInt(config, "plantCasing", 0);
+//        return this;
+//    }
+//    @Override
+//    public void toNetwork(FriendlyByteBuf buf) {
+//        super.toNetwork(buf);
+//        buf.writeInt(tier);
+//    }
+//    @Override
+//    public RecipeCondition fromNetwork(FriendlyByteBuf buf) {
+//        super.fromNetwork(buf);
+//        this.tier = buf.readInt();
+//        return this;
+//    }
 }

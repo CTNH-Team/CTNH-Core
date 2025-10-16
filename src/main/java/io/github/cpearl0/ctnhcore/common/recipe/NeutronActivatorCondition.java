@@ -66,30 +66,30 @@ public class NeutronActivatorCondition extends RecipeCondition {
         return new NeutronActivatorCondition();
     }
 
-    @Override
-    public @NotNull JsonObject serialize() {
-        var value = super.serialize();
-        value.addProperty("evRange", this.evRange);
-        return value;
-    }
-
-    @Override
-    public RecipeCondition deserialize(@NotNull JsonObject config) {
-        super.deserialize(config);
-        this.evRange = GsonHelper.getAsInt(config, "evRange", 0);
-        return this;
-    }
-
-    @Override
-    public void toNetwork(FriendlyByteBuf buf) {
-        super.toNetwork(buf);
-        buf.writeInt(this.evRange);
-    }
-
-    @Override
-    public RecipeCondition fromNetwork(FriendlyByteBuf buf) {
-        super.fromNetwork(buf);
-        this.evRange = buf.readInt();
-        return this;
-    }
+//    @Override
+//    public @NotNull JsonObject serialize() {
+//        var value = super.serialize();
+//        value.addProperty("evRange", this.evRange);
+//        return value;
+//    }
+//
+//    @Override
+//    public RecipeCondition deserialize(@NotNull JsonObject config) {
+//        super.deserialize(config);
+//        this.evRange = GsonHelper.getAsInt(config, "evRange", 0);
+//        return this;
+//    }
+//
+//    @Override
+//    public void toNetwork(FriendlyByteBuf buf) {
+//        super.toNetwork(buf);
+//        buf.writeInt(this.evRange);
+//    }
+//
+//    @Override
+//    public RecipeCondition fromNetwork(FriendlyByteBuf buf) {
+//        super.fromNetwork(buf);
+//        this.evRange = buf.readInt();
+//        return this;
+//    }
 }
