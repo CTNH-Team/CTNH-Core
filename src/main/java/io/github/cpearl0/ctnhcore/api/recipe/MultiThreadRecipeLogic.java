@@ -27,7 +27,7 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
     @Getter
     @Persisted
     @DescSynced
-    boolean workingAllowed;
+    boolean workingAllowed = true;
 
     public MultiThreadRecipeLogic(IRecipeLogicMachine machine, int maxParallel) {
         super(machine);
@@ -43,7 +43,8 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
 
     public boolean isRunningRecipe(GTRecipe recipe, @Nullable RecipeLogic except){
         for (RecipeLogic worker : threads) {
-            if(worker.getLastOriginRecipe() == recipe && worker != except)
+            var r = worker.getLastRecipe();
+            if(r!=null && r.id.equals(recipe.id) && worker != except)
                 return true;
         }
         return false;
@@ -125,6 +126,11 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
         for (ThreadRecipeLogic worker : threads) {
             worker.resetRecipeLogic();
         }
+    }
+
+    @Override
+    public boolean isWorkingEnabled() {
+        return workingAllowed;
     }
 
     @Override

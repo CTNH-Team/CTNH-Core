@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.IParallelHatch;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -15,13 +16,17 @@ import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.client.model.machine.MachineRenderState;
+import com.gregtechceu.gtceu.utils.GTUtil;
+import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import io.github.cpearl0.ctnhcore.api.machine.IMultiThreadMachine;
 import io.github.cpearl0.ctnhcore.api.recipe.MultiThreadRecipeLogic;
+import io.github.cpearl0.ctnhcore.api.recipe.ThreadRecipeLogic;
 import lombok.Getter;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.logging.CrashReportAnalyser;
 import org.jetbrains.annotations.NotNull;
 
@@ -31,10 +36,10 @@ public class MegaLCRMachine extends CoilWorkableElectricMultiblockMachine implem
     public MegaLCRMachine(IMachineBlockEntity holder) {
         super(holder);
     }
-    @Persisted
-    @DescSynced
-    public int temperature=0;
-    public double eff=0.0;
+//    @Persisted
+//    @DescSynced
+//    public int temperature=0;
+//    public double eff=0.0;
 
     @Persisted
     public int threads;
@@ -45,17 +50,48 @@ public class MegaLCRMachine extends CoilWorkableElectricMultiblockMachine implem
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
-        temperature = getCoilType().getCoilTemperature();
+        //temperature = getCoilType().getCoilTemperature();
         //maxThreads = 4;
         threads = maxThreads;
         getRecipeLogic().getAllWorkers().forEach(
                 thread -> {
                     if(thread.getOverclockTier() == -1)
-                        thread.setOverclockTier(getOverclockTier());
+                        thread.setOverclockTier(GTUtil.getOCTierByVoltage(getOverclockVoltage())-1);
                 }
         );
     }
 
+    public int threadOverclockTier = -1;
+
+    @Override
+    public int getMaxOverclockTier() {
+        getRecipeLogic().getAllWorkers().stream().filter(
+                ThreadRecipeLogic::isModifying
+        )
+                .findFirst()
+                .map(ThreadRecipeLogic::getOverclockTier)
+                .ifPresent(t -> threadOverclockTier = t);
+
+        if(threadOverclockTier >= 0 && threadOverclockTier <= 30)
+            return Math.min(threadOverclockTier, getTier());
+        else
+            return getTier();
+    }
+
+    @Override
+    public long getOverclockVoltage() {
+        getRecipeLogic().getAllWorkers().stream().filter(
+                        ThreadRecipeLogic::isModifying
+                )
+                .findFirst()
+                .map(ThreadRecipeLogic::getOverclockTier)
+                .ifPresent(t -> threadOverclockTier = t);
+
+        if(threadOverclockTier >= 0 && threadOverclockTier <= 30)
+            return Math.min(GTValues.VEX[threadOverclockTier], super.getOverclockVoltage());
+        else
+            return super.getOverclockVoltage();
+    }
 
     @Override
     public void addDisplayText(List<Component> textList) {
@@ -65,8 +101,8 @@ public class MegaLCRMachine extends CoilWorkableElectricMultiblockMachine implem
                 .addEnergyUsageLine(energyContainer)
                 .addEnergyTierLine(tier)
                 .addWorkingStatusLine();
-        textList.add(Component.translatable("ctnh.multiblock.mega_lcr.info.coil", temperature + "K"));
-        textList.add(Component.translatable("ctnh.multiblock.mega_lcr.info.speed", eff));
+        //textList.add(Component.translatable("ctnh.multiblock.mega_lcr.info.coil", temperature + "K"));
+        //textList.add(Component.translatable("ctnh.multiblock.mega_lcr.info.speed", eff));
         for(int i=0; i<maxThreads; i++)
         {
             var thread = getRecipeLogic().getAllWorkers().get(i);
@@ -92,7 +128,7 @@ public class MegaLCRMachine extends CoilWorkableElectricMultiblockMachine implem
                 key= "gtceu.multiblock.idling";
             }
 
-            textList.add(Component.translatable("ctnh.multiblock.multithread.status", i+1).append(Component.translatable(key)));
+            textList.add(Component.translatable("线程%s：", i+1).append(Component.translatable(key)));
             builder.addMachineModeLine(getRecipeType(), getRecipeTypes().length > 1)
                     .addParallelsLine(numParallels, exact)
                     .addBatchModeLine(isBatchEnabled(), batchParallels)

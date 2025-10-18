@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.registry;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.feature.IOverclockMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
@@ -14,7 +15,10 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ChemicalPlantMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
+import net.minecraft.Util;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.function.Function;
 
 import static com.gregtechceu.gtceu.api.recipe.OverclockingLogic.getCoilEUtDiscount;
 import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.ELECTRIC_OVERCLOCK;
@@ -46,8 +50,17 @@ public class CTNHRecipeModifiers {
 
     public static final RecipeModifier COIL_PARALLEL = (machine, recipe) -> CTNHRecipeModifiers.accurateParallel(machine,recipe,Math.min(2147483647, (int) Math.pow(2, ((double) ((CoilWorkableElectricMultiblockMachine) machine).getCoilType().getCoilTemperature() / 900))));
 
-    public static final RecipeModifier MT_OC_PERFECT = ELECTRIC_OVERCLOCK.apply(MULTI_THREAD_PERFECT_OVERCLOCK);
-    public static final RecipeModifier MT_OC_NON_PERFECT = ELECTRIC_OVERCLOCK.apply(MULTI_THREAD_NON_PERFECT_OVERCLOCK);
+    public static final Function<OverclockingLogic, RecipeModifier> MT_ELECTRIC_OVERCLOCK = Util
+            .memoize(logic -> (machine, recipe) -> {
+                if (!(machine instanceof IOverclockMachine overclockMachine)) return ModifierFunction.IDENTITY;
+                if (RecipeHelper.getRecipeEUtTier(recipe) > overclockMachine.getMaxOverclockTier()) {
+                    return ModifierFunction.NULL;
+                }
+                return logic.getModifier(machine, recipe, overclockMachine.getOverclockVoltage());
+            });
+
+    public static final RecipeModifier MT_OC_PERFECT = MT_ELECTRIC_OVERCLOCK.apply(MULTI_THREAD_PERFECT_OVERCLOCK);
+    public static final RecipeModifier MT_OC_NON_PERFECT = MT_ELECTRIC_OVERCLOCK.apply(MULTI_THREAD_NON_PERFECT_OVERCLOCK);
 
     public static ModifierFunction chemicalPlantOverclock(MetaMachine machine, @NotNull GTRecipe recipe) {
         if (!(machine instanceof IMultiController multiController) || !multiController.isFormed()) return ModifierFunction.IDENTITY;

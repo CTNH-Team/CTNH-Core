@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.api.recipe;
 
+import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
+import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.feature.IOverclockMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
@@ -9,6 +11,7 @@ import com.gregtechceu.gtceu.utils.GTUtil;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.MegaLCRMachine;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,6 +37,8 @@ public class ThreadRecipeLogic extends RecipeLogic {
     @DescSynced
     int overclockTier = -1;
 
+    boolean modifying;
+
     public ThreadRecipeLogic(IRecipeLogicMachine machine) {
         super(machine);
         enabled = true;
@@ -52,7 +57,11 @@ public class ThreadRecipeLogic extends RecipeLogic {
                 && machine.getRecipeLogic() instanceof MultiThreadRecipeLogic multiThreadRecipeLogic
                 && multiThreadRecipeLogic.isRunningRecipe(match, this))
             return false;
+
+        modifying = true;
         var modified = machine.fullModifyRecipe(match);
+        modifying = false;
+
         if (modified != null) {
             var recipeMatch = checkRecipe(modified);
             if (recipeMatch.isSuccess()) {
@@ -68,17 +77,24 @@ public class ThreadRecipeLogic extends RecipeLogic {
     }
 
     @Override
+    public void onRecipeFinish() {
+        modifying = true;
+        super.onRecipeFinish();
+        modifying = false;
+    }
+
+    @Override
     public void findAndHandleRecipe() {
         lastFailedMatches = null;
         // try to execute last recipe if possible
         if (!recipeDirty && lastRecipe != null && checkRecipe(lastRecipe).isSuccess()) {
             GTRecipe recipe = lastRecipe;
             lastRecipe = null;
-            lastOriginRecipe = null;
+            //lastOriginRecipe = null;
             setupRecipe(recipe);
         } else if(!lockRecipe) { // try to find and handle a new recipe if not locked
-            lastRecipe = null;
-            lastOriginRecipe = null;
+            //lastRecipe = null;
+            //lastOriginRecipe = null;
             handleSearchingRecipes(searchRecipe());
         }
         recipeDirty = false;

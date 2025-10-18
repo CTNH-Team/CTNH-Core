@@ -5,11 +5,11 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
-import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDisplayUIMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.MultiblockPartMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.TieredPartMachine;
+import com.gregtechceu.gtceu.common.data.GTRecipeCategories;
 import com.gregtechceu.gtceu.integration.jei.recipe.GTRecipeJEICategory;
 import com.lowdragmc.lowdraglib.gui.util.ClickData;
 import com.lowdragmc.lowdraglib.gui.widget.*;
@@ -18,34 +18,37 @@ import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import io.github.cpearl0.ctnhcore.api.recipe.MultiThreadRecipeLogic;
-import mezz.jei.api.recipe.IFocus;
-import mezz.jei.api.recipe.IRecipeManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.*;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.UnaryOperator;
 
-public class
-
-AsynThreadHatchMachine extends TieredPartMachine implements IFancyUIMachine {
+public class AsynThreadHatchMachine extends TieredPartMachine implements IFancyUIMachine {
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             AsynThreadHatchMachine.class, MultiblockPartMachine.MANAGED_FIELD_HOLDER
     );
 
-//    @Persisted
-//    private int threads = 0;
-
-    public AsynThreadHatchMachine(IMachineBlockEntity holder, int tier) {
-        super(holder, tier);
-    }
+    static int MAX_THREADS = 16;
 
     @DescSynced
     @Persisted
-    int rate = 100;
+    ArrayList<String> recipeCategoryCache = new ArrayList<>();
+
+    @DescSynced
+    @Persisted
+    ArrayList<String> recipeIDCache = new ArrayList<>();
+
+    public AsynThreadHatchMachine(IMachineBlockEntity holder, int tier) {
+        super(holder, tier);
+        for(int i=0; i<MAX_THREADS; i++)
+        {
+            recipeCategoryCache.add("null");
+            recipeIDCache.add("null");
+        }
+    }
 
     @Override
     public boolean hasPlayerInventory() {
@@ -109,7 +112,7 @@ AsynThreadHatchMachine extends TieredPartMachine implements IFancyUIMachine {
 
 
                 var overclockButtonText = Component.translatable("");
-                Component hoverText0 = Component.literal("设置该线程可用于运行配方或超频的电压等级").withStyle(ChatFormatting.GRAY);
+                Component hoverText0 = Component.literal("设置该线程可用于运行配方或超频的最大EU/t").withStyle(ChatFormatting.GRAY);
                 overclockButtonText.append(Component.literal("超频等级：").withStyle(hoverText(hoverText0)));
 
                 //Component hoverText2 = Component.literal("add").withStyle(ChatFormatting.GRAY);
@@ -126,9 +129,17 @@ AsynThreadHatchMachine extends TieredPartMachine implements IFancyUIMachine {
 
 
                 Component hoverText5 = Component.literal("点击查询").withStyle(ChatFormatting.GRAY);
+                var lastRecipe = thread.getLastOriginRecipe();
+                var id = "无";
+                if(lastRecipe != null)
+                {
+                    recipeCategoryCache.set(i, lastRecipe.recipeCategory.name);
+                    recipeIDCache.set(i, lastRecipe.id.toString());
+                    id = lastRecipe.id.toString();
+                }
                 textList.add(Component.translatable("上一个配方：")
                         .append(
-                                ComponentPanelWidget.withButton(Component.literal(thread.getLastOriginRecipe()==null ? "无" : thread.getLastOriginRecipe().id.toString()), "lastRecipe_"+i)
+                                ComponentPanelWidget.withButton(Component.literal(id), "lastRecipe_"+i)
                                         .copy().withStyle(hoverText(hoverText5))
                         )
                 );
@@ -164,13 +175,14 @@ AsynThreadHatchMachine extends TieredPartMachine implements IFancyUIMachine {
         if(parts.length != 2) return;
         String op = parts[0];
         int id = Integer.parseInt(parts[1]);
-        if(
-                getControllers().first() instanceof WorkableElectricMultiblockMachine machine
-                        && machine.getRecipeLogic() instanceof MultiThreadRecipeLogic recipeLogic
-        ){
-            if(id <0 || id >= recipeLogic.getAllWorkers().size()) return;
-            var thread = recipeLogic.getAllWorkers().get(id);
-            if (!clickData.isRemote) {
+
+        if (!clickData.isRemote) {
+            if(
+                        getControllers().first() instanceof WorkableElectricMultiblockMachine machine
+                                && machine.getRecipeLogic() instanceof MultiThreadRecipeLogic recipeLogic
+            ){
+                    if(id <0 || id >= recipeLogic.getAllWorkers().size()) return;
+                    var thread = recipeLogic.getAllWorkers().get(id);
                 switch (op){
                     case "enable":{
                         recipeLogic.setWorkingEnabled(!thread.isEnabled(), id);
@@ -194,35 +206,30 @@ AsynThreadHatchMachine extends TieredPartMachine implements IFancyUIMachine {
                         thread.setThreadProtect(!thread.isThreadProtect());
                         break;
                     }
-                    case "lastRecipe" : {
-                        if(thread.getLastOriginRecipe() != null) {
-                            if (GTCEu.Mods.isJEILoaded()){
-                                var recipe = thread.getLastOriginRecipe();
-                                var category = new GTRecipeJEICategory(JEIPlugin.jeiHelpers, recipe.recipeCategory);
-                                JEIPlugin.jeiRuntime.getRecipesGui().showRecipes(
-                                        category,
-                                        List.of(recipe),
-                                        List.of()
-                                );
-                            }
-                        }
-                        break;
-                    }
                 }
 
 
             }
-//            else if(op.equals("lastRecipe") && thread.getLastOriginRecipe() != null) {
-//                if (GTCEu.Mods.isJEILoaded()){
-//                    var recipe = thread.getLastOriginRecipe();
-//                    var category = new GTRecipeJEICategory(JEIPlugin.jeiHelpers, recipe.recipeCategory);
-//                    JEIPlugin.jeiRuntime.getRecipesGui().showRecipes(
-//                            category,
-//                            List.of(recipe),
-//                            List.of()
-//                    );
-//                }
-//            }
+        }else if(op.equals("lastRecipe")) {
+            if (GTCEu.Mods.isJEILoaded()){
+                String recipeCategoryName = recipeCategoryCache.get(id);
+                String recipeID = recipeIDCache.get(id);
+                if(recipeCategoryName.equals("null") || recipeID.equals("null")) return;
+                var recipeCategory = GTRecipeCategories.get(recipeCategoryName);
+                recipeCategory.getRecipeType().getRecipesInCategory(recipeCategory).stream()
+                        .filter(r -> r.id.toString().equals(recipeID))
+                        .findFirst()
+                        .ifPresent(
+                                recipe -> {
+                                    var category = new GTRecipeJEICategory(JEIPlugin.jeiHelpers, recipeCategory);
+                                    JEIPlugin.jeiRuntime.getRecipesGui().showRecipes(
+                                            category,
+                                            List.of(recipe),
+                                            List.of()
+                                    );
+                                }
+                        );
+            }
         }
     }
 

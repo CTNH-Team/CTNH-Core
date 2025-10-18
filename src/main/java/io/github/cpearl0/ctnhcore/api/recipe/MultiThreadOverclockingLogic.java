@@ -37,14 +37,7 @@ public interface MultiThreadOverclockingLogic extends OverclockingLogic {
 
         if (OCs == 0) return ModifierFunction.IDENTITY;
 
-        int maxThreads = getMaxThreads(machine);
-        if(maxThreads != 1)
-        {
-            int tlg = (IntMath.log2(maxThreads, RoundingMode.UP)+1) / 2;
-            if(tlg >= OCs) return ModifierFunction.IDENTITY;
-            else OCs -= tlg;
-        }
-        
+
         int maxParallels;
         if (!shouldParallel) { // don't parallel
             maxParallels = 1;
@@ -67,12 +60,5 @@ public interface MultiThreadOverclockingLogic extends OverclockingLogic {
         OCResult result = runOverclockingLogic(params, maxVoltage);
         return result.toModifier();
     }
-    
-    static int getMaxThreads(MetaMachine machine)
-    {
-        if(machine instanceof IMultiThreadMachine mtm)
-            return mtm.getMaxThreads();
-        else return 1;
-    }
-    
+
 }

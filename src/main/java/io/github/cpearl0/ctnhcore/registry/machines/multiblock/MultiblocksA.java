@@ -1263,7 +1263,7 @@ public class MultiblocksA {
             .recipeTypes(GTRecipeTypes.LARGE_CHEMICAL_RECIPES)
             .appearanceBlock(CASING_PTFE_INERT)
             .recipeModifiers(//GTRecipeModifiers.PARALLEL_HATCH,
-                    CTNHRecipeModifiers.MT_OC_PERFECT, GTRecipeModifiers.BATCH_MODE)
+                    GTRecipeModifiers.OC_PERFECT_SUBTICK, GTRecipeModifiers.BATCH_MODE)
             .pattern(definition ->
                     FactoryBlockPattern.start()
                             .aisle("CCCCC", "CCCCC", "CCCCC", "CCCCC", "CCCCC")
@@ -1280,10 +1280,12 @@ public class MultiblocksA {
                             .where("G", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
                             .where("P", Predicates.blocks(CASING_POLYTETRAFLUOROETHYLENE_PIPE.get()))
                             .where("#", Predicates.air())
-                            .where("C", Predicates.blocks(CASING_PTFE_INERT.get()).setMinGlobalLimited(100)
+                            .where("C", Predicates.blocks(CASING_PTFE_INERT.get()).setMinGlobalLimited(80)
                                     .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                                    .or(Predicates.autoAbilities(true, true, true))
-                                    .or(Predicates.abilities(CTNHPartAbility.THREAD_HATCH))
+                                    .or(Predicates.autoAbilities(true, true, false))
+                                    .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1)
+                                            .setMaxGlobalLimited(4).setPreviewCount(3))
+                                    .or(Predicates.abilities(CTNHPartAbility.THREAD_HATCH).setMaxGlobalLimited(1))
                             )
                             .build()
             )
@@ -1291,10 +1293,11 @@ public class MultiblocksA {
                     GTCEu.id("block/casings/solid/machine_casing_inert_ptfe"),
                     CTNHCore.id("block/overlay/super_ebf"))
             .tooltips(
-                    CTNHCommonTooltips.PARALLEL_HATCH,
+                    //CTNHCommonTooltips.PARALLEL_HATCH,
                     CTNHCommonTooltips.PERFECT_OVERCLOCK,
-                    Component.translatable("ctnh.multiblock.mega_lcr.tooltip.0"),
-                    Component.translatable("ctnh.multiblock.mega_lcr.tooltip.1")
+                    Component.translatable("多线程测试")
+                    //Component.translatable("ctnh.multiblock.mega_lcr.tooltip.0"),
+                    //Component.translatable("ctnh.multiblock.mega_lcr.tooltip.1")
             )
             .register();
     public static final MultiblockMachineDefinition IV_CHEMICAL_GENERATOR = registerChemicalGenerator(
