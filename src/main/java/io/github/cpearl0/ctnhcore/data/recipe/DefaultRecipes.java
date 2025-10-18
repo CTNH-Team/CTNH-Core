@@ -755,6 +755,7 @@ public class DefaultRecipes {
                 'A', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:dense_steel_plate")), // 致密钢板
                 'B', CTNHItems.EnrichedUranium.asStack() // 富集铀（直接引用）
         );
+
         // MV中子加速器
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("neutron_accelerator_mv")
                 .inputItems(CTNHItems.INVERTER.asStack())
@@ -961,12 +962,38 @@ public class DefaultRecipes {
                 'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:zeron_100_gear")), // Zeron-100合金齿轮
                 'F', GTItems.ROBOT_ARM_ZPM     // ZPM级机械臂
         );
+        VanillaRecipeHelper.addShapedRecipe(
+                provider,"polybenzimidazole_pipe",
+                CTNHBlocks.CASING_POLYBENZIMIDAZOLE_PIPE.asStack(),
+                "CAC", "ABA", "CAC",
+                'A', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:polybenzimidazole_plate")),
+                'B', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:polybenzimidazole_frame")),
+                'C', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:polybenzimidazole_normal_fluid_pipe"))
+        );
+        VanillaRecipeHelper.addShapedRecipe(
+                provider,"naquadah_firebox_casing_one",
+                CTNHBlocks.NAQUADAH_FIREBOX.asStack(),
+                "CAC", "ABA", "CAC",
+                'A', CTNHItems.NeutronSource,
+                'B', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:tungsten_frame")),
+                'C', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:naquadah_plate"))
+        );
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("charged_certus_quartz_crystal")
                 .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:certus_quartz_crystal")))
                 .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:charged_certus_quartz_crystal")))
                 .EUt(GTValues.VA[GTValues.MV])
                 .duration(100)
                 .save(provider);
+
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("naquadah_firebox_casing_two")
+                .inputItems(CTNHItems.NeutronSource, 3)
+                .inputItems(TagPrefix.plate, GTMaterials.Naquadah, 3)
+                .inputItems(TagPrefix.frameGt, GTMaterials.Tungsten)
+                .outputItems(CTNHBlocks.NAQUADAH_FIREBOX.asStack())
+                .EUt(GTValues.VA[GTValues.IV])
+                .duration(400)
+                .save(provider);
+
     }
 }
 
