@@ -28,6 +28,7 @@ import com.simibubi.create.Create;
 import com.simibubi.create.foundation.block.CopperBlockSet;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.machine.multiblock.MultiThreadElectricMachine;
 import io.github.cpearl0.ctnhcore.client.renderer.HyperPlasmaTurbineRender;
 import io.github.cpearl0.ctnhcore.client.renderer.LargeBottleRender;
 import io.github.cpearl0.ctnhcore.client.renderer.MartialMoralityEyeRender;
@@ -1258,13 +1259,12 @@ public class MultiblocksA {
             .register();
     //Come from GTCA
     public static final MultiblockMachineDefinition MEGA_LCR = REGISTRATE
-            .multiblock("mega_lcr", MegaLCRMachine::new)
+            .multiblock("mega_lcr", MultiThreadElectricMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.LARGE_CHEMICAL_RECIPES)
             .appearanceBlock(CASING_PTFE_INERT)
-
-            .recipeModifiers(MegaLCRMachine::recipeModifier,
-                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .recipeModifiers(//GTRecipeModifiers.PARALLEL_HATCH,
+                    GTRecipeModifiers.OC_PERFECT_SUBTICK, GTRecipeModifiers.BATCH_MODE)
             .pattern(definition ->
                     FactoryBlockPattern.start()
                             .aisle("CCCCC", "CCCCC", "CCCCC", "CCCCC", "CCCCC")
@@ -1281,19 +1281,26 @@ public class MultiblocksA {
                             .where("G", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
                             .where("P", Predicates.blocks(CASING_POLYTETRAFLUOROETHYLENE_PIPE.get()))
                             .where("#", Predicates.air())
-                            .where("C", Predicates.blocks(CASING_PTFE_INERT.get()).setMinGlobalLimited(100)
+                            .where("C", Predicates.blocks(CASING_PTFE_INERT.get()).setMinGlobalLimited(80)
                                     .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                                    .or(Predicates.autoAbilities(true, true, true)))
+                                    .or(Predicates.autoAbilities(true, true, false))
+                                    .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1)
+                                            .setMaxGlobalLimited(4).setPreviewCount(3))
+                                    .or(Predicates.abilities(CTNHPartAbility.THREAD_HATCH).setMaxGlobalLimited(1))
+                            )
                             .build()
             )
             .workableCasingModel(
                     GTCEu.id("block/casings/solid/machine_casing_inert_ptfe"),
                     CTNHCore.id("block/overlay/super_ebf"))
+            .tooltips(Component.literal("§b具有4个异步线程§r"),
+                    Component.literal("使用§d异步线程控制仓§r以配置多线程运行模式")
+                    //,Component.literal("多线程模式下需要消耗算力")
+            )
             .tooltips(
-                    CTNHCommonTooltips.PARALLEL_HATCH,
-                    CTNHCommonTooltips.PERFECT_OVERCLOCK,
-                    Component.translatable("ctnh.multiblock.mega_lcr.tooltip.0"),
-                    Component.translatable("ctnh.multiblock.mega_lcr.tooltip.1")
+                    CTNHCommonTooltips.PERFECT_OVERCLOCK
+                    //Component.translatable("ctnh.multiblock.mega_lcr.tooltip.0"),
+                    //Component.translatable("ctnh.multiblock.mega_lcr.tooltip.1")
             )
             .register();
     public static final MultiblockMachineDefinition IV_CHEMICAL_GENERATOR = registerChemicalGenerator(
