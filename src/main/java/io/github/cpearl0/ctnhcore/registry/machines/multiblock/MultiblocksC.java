@@ -4,16 +4,22 @@ import appeng.core.definitions.AEBlocks;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
+import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
+import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.MeteorCaptureMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.multithread.CNCAlloySmelter;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 import io.github.cpearl0.ctnhcore.utils.ModUtils;
@@ -22,6 +28,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Blocks;
 import vazkii.botania.common.block.BotaniaBlocks;
 
+import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
+import static com.gregtechceu.gtceu.common.data.GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING;
+import static com.gregtechceu.gtceu.common.data.GCYMRecipeTypes.ALLOY_BLAST_RECIPES;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class MultiblocksC {
@@ -172,4 +181,55 @@ public class MultiblocksC {
             .workableCasingModel(CTNHCore.id("block/casings/blood_casing"), GTCEu.id("block/machines/miner"))
             .register();
 
+    public static final MultiblockMachineDefinition CNC_ALLOY_SMELTER = REGISTRATE
+            .multiblock("cnc_alloy_smelter", CNCAlloySmelter::new)
+            .langValue("CNC ALLOY Smelter")
+            .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
+                    Component.translatable("gtceu.alloy_blast_smelter")))
+            .tooltips(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.0"),
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"))
+            .allowExtendedFacing(false)
+            .allowFlip(false)
+            //.rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(ALLOY_BLAST_RECIPES)
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, CTNHRecipeModifiers::ebfOverclock, GTRecipeModifiers.BATCH_MODE)
+            .appearanceBlock(GTBlocks.COMPUTER_CASING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("#####AAAAA#####", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############")
+                    .aisle("###AABBBBBAA###", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############")
+                    .aisle("##ABBCCCCCBBA##", "#####DDDDD#####", "#####DDDDD#####", "#####DDDDD#####", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "####AAAAAAA####")
+                    .aisle("#ABCCEEEEECCBA#", "###DD#####DD###", "###DD#####DD###", "###DD#####DD###", "###AAFFFFFAA###", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "#####AAAAA#####", "###AACCGCCAA###")
+                    .aisle("#ABCEHBBBHECBA#", "###D#######D###", "###D#######D###", "###D#######D###", "###AA#####AA###", "####AEEEEEA####", "####AEEEEEA####", "####AFFFFFA####", "####AFFFFFA####", "####AFFFFFA####", "####AFFFFFA####", "####AFFFFFA####", "####AEEEEEA####", "####A#####A####", "##AAGAAGAAGAA##")
+                    .aisle("ABCEHBHBHBHECBA", "##D#########D##", "##D#########D##", "##D#########D##", "###F#######F###", "####E#####E####", "####E#####E####", "####FGCCCGF####", "####FGHHHGF####", "####FGHHHGF####", "####FGHHHGF####", "####FGCCCGF####", "####EGGGGGE####", "###A#G###G#A###", "##ACAGGGGGACA##")
+                    .aisle("ABCEBHBBBHBECBA", "##D###B#B###D##", "##D###B#B###D##", "##D###B#B###D##", "###F##B#B##F###", "####E#B#B#E####", "####E#B#B#E####", "####FCB#BCF####", "####FHB#BHF####", "####FHB#BHF####", "####FHB#BHF####", "####FCB#BCF####", "####EGB#BGE####", "###A##BBB##A###", "##ACAGCGCGACA##")
+                    .aisle("ABCEBBBCBBBECBA", "##D####G####D##", "##D####G####D##", "##D####G####D##", "###F###G###F###", "####E##G##E####", "####E##G##E####", "####FC#C#CF####", "####FH#H#HF####", "####FH#H#HF####", "####FH#H#HF####", "####FC#C#CF####", "####EG###GE####", "###A##BBB##A###", "##AGGGGIGGGGA##")
+                    .aisle("ABCEBHBBBHBECBA", "##D###B#B###D##", "##D###B#B###D##", "##D###B#B###D##", "###F##B#B##F###", "####E#B#B#E####", "####E#B#B#E####", "####FCB#BCF####", "####FHB#BHF####", "####FHB#BHF####", "####FHB#BHF####", "####FCB#BCF####", "####EGB#BGE####", "###A##BBB##A###", "##ACAGCGCGACA##")
+                    .aisle("ABCEHBHBHBHECBA", "##D#########D##", "##D#########D##", "##D#########D##", "###F#######F###", "####E#####E####", "####E#####E####", "####FGCCCGF####", "####FGHHHGF####", "####FGHHHGF####", "####FGHHHGF####", "####FGCCCGF####", "####EGGGGGE####", "###A#G###G#A###", "##ACAGGGGGACA##")
+                    .aisle("#ABCEHBBBHECBA#", "###D#######D###", "###D#######D###", "###D#######D###", "###AA#####AA###", "####AEEEEEA####", "####AEEEEEA####", "####AFFFFFA####", "####AFFFFFA####", "####AFFFFFA####", "####AFFFFFA####", "####AFFFFFA####", "####AEEEEEA####", "####A#####A####", "##AAGAAGAAGAA##")
+                    .aisle("#ABCCEEEEECCBA#", "###DD#####DD###", "###DD#####DD###", "###DD#####DD###", "###AAFFFFFAA###", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "#####AAAAA#####", "###AACCGCCAA###")
+                    .aisle("##ABBCCCCCBBA##", "#####DDDDD#####", "#####DD@DD#####", "#####DDDDD#####", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "####AAAAAAA####")
+                    .aisle("###AABBBBBAA###", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############")
+                    .aisle("#####AAAAA#####", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############")
+                    .where("C", Predicates.blocks(GTBlocks.MACHINE_CASING_LuV.get()))
+                    .where("D", Predicates.blocks(GTBlocks.COMPUTER_CASING.get())
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.autoAbilities(true, false, true))
+                            .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1)
+                                    .setMaxGlobalLimited(4).setPreviewCount(2))
+                            .or(Predicates.abilities(CTNHPartAbility.THREAD_HATCH).setMaxGlobalLimited(1))
+                    )
+                    .where("#", Predicates.any())
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("H", heatingCoils())
+                    .where("I", abilities(PartAbility.MUFFLER))
+                    .where("B", Predicates.blocks(CTNHBlocks.CASING_POLYBENZIMIDAZOLE_PIPE.get()))
+                    .where("G", Predicates.blocks(GTBlocks.COMPUTER_CASING.get()))
+                    .where("A", Predicates.blocks(CASING_HIGH_TEMPERATURE_SMELTING.get()))
+                    .where("E", Predicates.blocks(CTNHBlocks.NAQUADAH_FIREBOX.get()))
+                    .where("F", Predicates.blocks(GTBlocks.FUSION_GLASS.get()))
+                    .build())
+            .sidedWorkableCasingModel(GTCEu.id("block/casings/hpca/computer_casing"),
+                    GTCEu.id("block/multiblock/gcym/blast_alloy_smelter"))
+            .register();
 }

@@ -10,7 +10,6 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.utils.GTMath;
 import com.gregtechceu.gtceu.utils.GTUtil;
-import io.github.cpearl0.ctnhcore.api.machine.IMultiThreadMachine;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.RoundingMode;

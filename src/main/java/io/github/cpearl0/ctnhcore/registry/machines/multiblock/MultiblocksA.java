@@ -28,6 +28,7 @@ import com.simibubi.create.Create;
 import com.simibubi.create.foundation.block.CopperBlockSet;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.machine.multiblock.MultiThreadElectricMachine;
 import io.github.cpearl0.ctnhcore.client.renderer.HyperPlasmaTurbineRender;
 import io.github.cpearl0.ctnhcore.client.renderer.LargeBottleRender;
 import io.github.cpearl0.ctnhcore.client.renderer.MartialMoralityEyeRender;
@@ -1258,7 +1259,7 @@ public class MultiblocksA {
             .register();
     //Come from GTCA
     public static final MultiblockMachineDefinition MEGA_LCR = REGISTRATE
-            .multiblock("mega_lcr", MegaLCRMachine::new)
+            .multiblock("mega_lcr", MultiThreadElectricMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.LARGE_CHEMICAL_RECIPES)
             .appearanceBlock(CASING_PTFE_INERT)

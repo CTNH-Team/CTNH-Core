@@ -1158,7 +1158,7 @@ public class ChineseLangHandler {
         provider.add(MultiblocksC.GAIA_REACTOR.getBlock(), "盖亚反应器");
         provider.add(MultiblocksC.GREENHOUSE.getBlock(), "温室");
         provider.add(MultiblocksC.METEOR_CAPTURER.getBlock(), "§4坠星操纵者§r");
-
+        provider.add(MultiblocksC.CNC_ALLOY_SMELTER.getBlock(), "数控合金冶炼炉");
 
 
 

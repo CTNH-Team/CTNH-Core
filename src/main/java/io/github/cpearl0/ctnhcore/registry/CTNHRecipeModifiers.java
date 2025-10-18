@@ -13,6 +13,7 @@ import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
+import io.github.cpearl0.ctnhcore.api.machine.feature.ICoilMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ChemicalPlantMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
 import net.minecraft.Util;
@@ -43,6 +44,32 @@ public class CTNHRecipeModifiers {
                     .outputModifier(ContentModifier.multiplier(maxParallel))
                     .build();
         }
+    }
+
+    public static @NotNull ModifierFunction ebfOverclock(@NotNull MetaMachine machine, @NotNull GTRecipe recipe) {
+        if (!(machine instanceof ICoilMachine coilMachine) || !(machine instanceof WorkableElectricMultiblockMachine workableElectricMultiblockMachine)) {
+            return RecipeModifier.nullWrongType(CoilWorkableElectricMultiblockMachine.class, machine);
+        }
+
+        int blastFurnaceTemperature = coilMachine.getCoilType().getCoilTemperature() +
+                (100 * Math.max(0, workableElectricMultiblockMachine.getTier() - GTValues.MV));
+        int recipeTemp = recipe.data.getInt("ebf_temp");
+        if (!recipe.data.contains("ebf_temp") || recipeTemp > blastFurnaceTemperature) {
+            return ModifierFunction.NULL;
+        }
+
+        if (RecipeHelper.getRecipeEUtTier(recipe) > workableElectricMultiblockMachine.getTier()) {
+            return ModifierFunction.NULL;
+        }
+
+        var discount = ModifierFunction.builder()
+                .eutMultiplier(getCoilEUtDiscount(recipeTemp, blastFurnaceTemperature))
+                .build();
+
+        OverclockingLogic logic = (p, v) -> OverclockingLogic.heatingCoilOC(p, v, recipeTemp, blastFurnaceTemperature);
+        var oc = logic.getModifier(machine, recipe, workableElectricMultiblockMachine.getOverclockVoltage());
+
+        return oc.compose(discount);
     }
 
     public static final RecipeModifier GCYM_REDUCTION = (machine, recipe) -> CTNHRecipeModifiers

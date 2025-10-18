@@ -6,12 +6,13 @@ import com.gregtechceu.gtceu.api.machine.feature.IOverclockMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
+import com.gregtechceu.gtceu.api.recipe.ActionResult;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.MegaLCRMachine;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -53,10 +54,6 @@ public class ThreadRecipeLogic extends RecipeLogic {
 
     @Override
     public boolean checkMatchedRecipeAvailable(GTRecipe match) {
-        if(threadProtect
-                && machine.getRecipeLogic() instanceof MultiThreadRecipeLogic multiThreadRecipeLogic
-                && multiThreadRecipeLogic.isRunningRecipe(match, this))
-            return false;
 
         modifying = true;
         var modified = machine.fullModifyRecipe(match);
@@ -74,6 +71,15 @@ public class ThreadRecipeLogic extends RecipeLogic {
             }
         }
         return false;
+    }
+
+    @Override
+    protected ActionResult checkRecipe(GTRecipe recipe) {
+        if(threadProtect
+                && machine.getRecipeLogic() instanceof MultiThreadRecipeLogic multiThreadRecipeLogic
+                && multiThreadRecipeLogic.isRunningRecipe(recipe, this))
+            return ActionResult.FAIL_NO_REASON;
+        return super.checkRecipe(recipe);
     }
 
     @Override
