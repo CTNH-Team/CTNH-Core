@@ -145,11 +145,14 @@ public class CTNHMachines {
                     .modelProperty(IS_FORMED, false)
                     .modelProperty(GTMachineModelProperties.RECIPE_LOGIC_STATUS, RecipeLogic.Status.IDLE)
                     .model(createWorkableTieredHullMachineModel(
-                            GTCEu.id("block/machines/parallel_hatch_mk" + (tier - 4)))
+                            GTCEu.id("block/machines/parallel_hatch_mk5"))
                             .andThen((ctx, prov, model) -> {
                                 model.addReplaceableTextures("bottom", "top", "side");
                             }))
-                    //.tooltips(Component.translatable("gtceu.machine.parallel_hatch_mk" + tier + ".tooltip"))
+//                    .tooltips(Component.literal("配置以启用机器的多线程模式，基础消耗1点算力"),
+//                            Component.literal("每有一个线程启用线程保护，算力消耗x2"),
+//                            Component.literal("每有一个线程启用配方锁定，算力消耗x4")
+//                            )
                     .register(),
             LuV
     );
@@ -158,9 +161,7 @@ public class CTNHMachines {
             ParallelHatchPartMachine::new,
             (tier, builder) -> builder
                     .langValue(switch (tier) {
-                        case UHV -> "Epic";
-                        case UEV -> "Epic";
-                        case UIV -> "Epic";
+                        case UHV, UEV, UIV -> "Epic";
                         case UXV -> "Legendary";
                         case OpV -> "Eternal";
                         case MAX -> "MAX";

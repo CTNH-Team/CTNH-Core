@@ -36,15 +36,12 @@ public class ThreadRecipeLogic extends RecipeLogic {
 
     @Persisted
     @DescSynced
-    int overclockTier = -1;
+    int overclockTier;
 
     boolean modifying;
 
     public ThreadRecipeLogic(IRecipeLogicMachine machine) {
         super(machine);
-        enabled = true;
-        threadProtect = false;
-        lockRecipe = false;
     }
 
     @Override
@@ -116,11 +113,20 @@ public class ThreadRecipeLogic extends RecipeLogic {
     }
 
     @Override
+    public boolean isSuspend() {
+        return !enabled || super.isSuspend();
+    }
+
+    @Override
     public void resetRecipeLogic() {
         super.resetRecipeLogic();
-        enabled = true;
+    }
+
+    public void resetConfig() {
+        overclockTier = -1;
+        enabled = false;
         threadProtect = false;
         lockRecipe = false;
-
     }
+
 }

@@ -7,10 +7,14 @@ import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.utils.GTUtil;
+import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
+import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import io.github.cpearl0.ctnhcore.api.recipe.MultiThreadRecipeLogic;
 import io.github.cpearl0.ctnhcore.api.recipe.ThreadRecipeLogic;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.AsynThreadHatchMachine;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Player;
 
 import java.util.List;
 
@@ -22,12 +26,19 @@ public class MultiThreadElectricMachine extends WorkableElectricMultiblockMachin
     public final int maxThreads = 4;
 
     @Override
+    public boolean isActive() {
+        return false;
+    }
+
+    @Override
     public void onStructureFormed() {
         super.onStructureFormed();
+        if(getParts().stream().noneMatch(p -> p instanceof AsynThreadHatchMachine))
+            getRecipeLogic().resetConfig();
         getRecipeLogic().getAllWorkers().forEach(
                 thread -> {
                     if(thread.getOverclockTier() == -1)
-                        thread.setOverclockTier(GTUtil.getOCTierByVoltage(getOverclockVoltage())-1);
+                        thread.setOverclockTier(GTUtil.getOCTierByVoltage(getOverclockVoltage()));
                 }
         );
     }
@@ -65,6 +76,11 @@ public class MultiThreadElectricMachine extends WorkableElectricMultiblockMachin
     }
 
     @Override
+    public Widget createUIWidget() {
+        return super.createUIWidget();
+    }
+
+    @Override
     public void addDisplayText(List<Component> textList) {
 
         var builder = MultiblockDisplayText.builder(textList, isFormed())
@@ -72,38 +88,43 @@ public class MultiThreadElectricMachine extends WorkableElectricMultiblockMachin
                 .addEnergyUsageLine(energyContainer)
                 .addEnergyTierLine(tier)
                 .addWorkingStatusLine();
-
-        for(int i=0; i<maxThreads; i++)
+        if(isFormed)
         {
-            var thread = getRecipeLogic().getAllWorkers().get(i);
-            int numParallels;
-            int batchParallels;
-            boolean exact = false;
-            if (thread.isActive() && thread.getLastRecipe() != null) {
-                numParallels = thread.getLastRecipe().parallels;
-                batchParallels = thread.getLastRecipe().batchParallels;
-                exact = true;
-            } else {
-                numParallels = getParallelHatch()
-                        .map(IParallelHatch::getCurrentParallel)
-                        .orElse(0);
-                batchParallels = 0;
+            for(int i=0; i<maxThreads; i++)
+            {
+                var thread = getRecipeLogic().getAllWorkers().get(i);
+                int numParallels;
+                int batchParallels;
+                boolean exact = false;
+                if (thread.isActive() && thread.getLastRecipe() != null) {
+                    numParallels = thread.getLastRecipe().parallels;
+                    batchParallels = thread.getLastRecipe().batchParallels;
+                    exact = true;
+                } else {
+                    numParallels = getParallelHatch()
+                            .map(IParallelHatch::getCurrentParallel)
+                            .orElse(0);
+                    batchParallels = 0;
+                }
+                String key;
+                if(!thread.isEnabled()){
+                    key = "§c已禁用§r";
+                }
+                else if (!thread.isWorkingEnabled()) {
+                    key = "gtceu.multiblock.work_paused";
+                } else if (thread.isActive()) {
+                    key = "gtceu.multiblock.running";
+                } else {
+                    key= "gtceu.multiblock.idling";
+                }
+                textList.add(Component.literal("-----------------------------"));
+                textList.add(Component.translatable("§b线程§%s：§r", i+1).append(Component.translatable(key)));
+                builder.addMachineModeLine(getRecipeType(), getRecipeTypes().length > 1)
+                        .addParallelsLine(numParallels, exact)
+                        .addBatchModeLine(isBatchEnabled(), batchParallels)
+                        .addProgressLine(thread.getProgress(), thread.getMaxProgress(), thread.getProgressPercent())
+                        .addOutputLines(thread.getLastRecipe());
             }
-            String key;
-            if (!thread.isWorkingEnabled()) {
-                key = "gtceu.multiblock.work_paused";
-            } else if (thread.isActive()) {
-                key = "gtceu.multiblock.running";
-            } else {
-                key= "gtceu.multiblock.idling";
-            }
-
-            textList.add(Component.translatable("线程%s：", i+1).append(Component.translatable(key)));
-            builder.addMachineModeLine(getRecipeType(), getRecipeTypes().length > 1)
-                    .addParallelsLine(numParallels, exact)
-                    .addBatchModeLine(isBatchEnabled(), batchParallels)
-                    .addProgressLine(thread.getProgress(), thread.getMaxProgress(), thread.getProgressPercent())
-                    .addOutputLines(thread.getLastRecipe());
         }
 
 

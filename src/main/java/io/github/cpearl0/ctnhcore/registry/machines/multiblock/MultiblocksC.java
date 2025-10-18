@@ -2,8 +2,10 @@ package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 
 import appeng.core.definitions.AEBlocks;
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
+import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
@@ -13,7 +15,9 @@ import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.registry.GTRegistration;
+import com.gregtechceu.gtceu.utils.FormattingUtil;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.machine.feature.ICoilMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.MeteorCaptureMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.multithread.CNCAlloySmelter;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
@@ -25,6 +29,7 @@ import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 import io.github.cpearl0.ctnhcore.utils.ModUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.world.level.block.Blocks;
 import vazkii.botania.common.block.BotaniaBlocks;
 
@@ -184,8 +189,11 @@ public class MultiblocksC {
     public static final MultiblockMachineDefinition CNC_ALLOY_SMELTER = REGISTRATE
             .multiblock("cnc_alloy_smelter", CNCAlloySmelter::new)
             .langValue("CNC ALLOY Smelter")
-            .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
-                    Component.translatable("gtceu.alloy_blast_smelter")))
+            .tooltips(Component.literal("§b具有4个异步线程§r"),
+                    Component.literal("使用§d异步线程控制仓§r以配置多线程运行模式")
+                    //,Component.literal("多线程模式下需要消耗算力")
+            )
+            .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
             .tooltips(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.0"),
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"))
@@ -229,6 +237,21 @@ public class MultiblocksC {
                     .where("E", Predicates.blocks(CTNHBlocks.NAQUADAH_FIREBOX.get()))
                     .where("F", Predicates.blocks(GTBlocks.FUSION_GLASS.get()))
                     .build())
+            .additionalDisplay((controller, components) -> {
+                if (controller instanceof ICoilMachine coilMachine
+                        && controller instanceof ITieredMachine tieredMachine
+                        && controller.isFormed()
+                ) {
+                    components.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature",
+                            Component
+                                    .translatable(
+                                            FormattingUtil
+                                                    .formatNumbers(coilMachine.getCoilType().getCoilTemperature() +
+                                                            100L * Math.max(0, tieredMachine.getTier() - GTValues.MV)) +
+                                                    "K")
+                                    .setStyle(Style.EMPTY.withColor(ChatFormatting.RED))));
+                }
+            })
             .sidedWorkableCasingModel(GTCEu.id("block/casings/hpca/computer_casing"),
                     GTCEu.id("block/multiblock/gcym/blast_alloy_smelter"))
             .register();

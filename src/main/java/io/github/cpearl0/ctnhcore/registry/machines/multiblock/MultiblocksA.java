@@ -1293,10 +1293,12 @@ public class MultiblocksA {
             .workableCasingModel(
                     GTCEu.id("block/casings/solid/machine_casing_inert_ptfe"),
                     CTNHCore.id("block/overlay/super_ebf"))
+            .tooltips(Component.literal("§b具有4个异步线程§r"),
+                    Component.literal("使用§d异步线程控制仓§r以配置多线程运行模式")
+                    //,Component.literal("多线程模式下需要消耗算力")
+            )
             .tooltips(
-                    //CTNHCommonTooltips.PARALLEL_HATCH,
-                    CTNHCommonTooltips.PERFECT_OVERCLOCK,
-                    Component.translatable("多线程测试")
+                    CTNHCommonTooltips.PERFECT_OVERCLOCK
                     //Component.translatable("ctnh.multiblock.mega_lcr.tooltip.0"),
                     //Component.translatable("ctnh.multiblock.mega_lcr.tooltip.1")
             )

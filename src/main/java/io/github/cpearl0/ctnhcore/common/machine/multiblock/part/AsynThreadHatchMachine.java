@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
+import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.MultiblockPartMachine;
@@ -18,9 +19,11 @@ import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import io.github.cpearl0.ctnhcore.api.recipe.MultiThreadRecipeLogic;
+import io.github.cpearl0.ctnhcore.api.recipe.ThreadRecipeLogic;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.*;
 import net.minecraft.util.Mth;
+import org.jetbrains.annotations.MustBeInvokedByOverriders;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -90,7 +93,7 @@ public class AsynThreadHatchMachine extends TieredPartMachine implements IFancyU
                 getControllers().first() instanceof WorkableElectricMultiblockMachine machine
                 && machine.getRecipeLogic() instanceof MultiThreadRecipeLogic recipeLogic
         ){
-            textList.add(Component.translatable("控制目标：%s", machine.getBlockState().getBlock().getDescriptionId()));
+            textList.add(Component.translatable("控制目标：%s", Component.translatable(machine.getBlockState().getBlock().getDescriptionId())));
             MultiblockDisplayText.builder(textList, isFormed())
                     .addEnergyUsageLine(machine.getEnergyContainer())
                     .addEnergyTierLine(machine.getTier());
@@ -168,9 +171,8 @@ public class AsynThreadHatchMachine extends TieredPartMachine implements IFancyU
 
     }
 
-
-
     void handleDisplayClick(String componentData, ClickData clickData) {
+        if(!(clickData.button ==0)) return;
         String[] parts = componentData.split("_");
         if(parts.length != 2) return;
         String op = parts[0];

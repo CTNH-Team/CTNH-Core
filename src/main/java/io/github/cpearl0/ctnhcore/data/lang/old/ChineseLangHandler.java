@@ -844,6 +844,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.mana_condenser.tooltips.1", "可以将魔力转化为液态魔力，或者将液态魔力转化为魔力，后者所需的能量更多");
         provider.add("ctnh.multiblock.mana_condenser.tooltips.2", "所有魔力输入输出均通过结构中心的魔力池进行");
 
+        provider.add("config.jade.plugin_ctnhcore.thread_status_provider", "线程信息");
+
         provider.add("ritual.ctnh.chargerRitual", "充能仪式");
         provider.add("ctnh.terminal.multiblockhelper.tips","第一次右键选择第一个方块，第二次右键选择第二个方块，使用shift+右键启用多方块构建\nshift+右键后将清除原坐标\n选择的方块请按照：底部西北角出发，前往顶部东南角来选择不然无法输出完整结构");
         // NOT USED
@@ -881,7 +883,7 @@ public class ChineseLangHandler {
         for (int tier : GTValues.tiersBetween(HV, IV)){
             provider.add(CTNHMachines.HIGH_PERFORMANCE_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + "§r高性能计算机");
         }
-
+        provider.add(CTNHMachines.ASYNC_THREAD_HATCH[LuV].getBlock(), "§r异步线程控制仓");
         provider.add(CTNHMachines.STERILE_CLEANROOM_MAINTENANCE_HATCH.getBlock(), "无菌超净间维护仓");
 
         provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[LV].getBlock(), "基础数字化苦难之井");

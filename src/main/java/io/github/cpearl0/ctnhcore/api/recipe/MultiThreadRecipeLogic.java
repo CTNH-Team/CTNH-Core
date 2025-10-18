@@ -35,6 +35,7 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
         for (int i = 0; i < maxParallel; i++) {
             this.threads[i] = new ThreadRecipeLogic(machine);
         }
+        resetConfig();
     }
 
     private TickableSubscription subscription;
@@ -113,8 +114,7 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
     @Nullable
     @Override
     public GTRecipe getLastRecipe() {
-        if (threads.length == 0) return null;
-        return threads[threads.length - 1].getLastRecipe();
+        return null;
     }
 
     public List<ThreadRecipeLogic> getAllWorkers() {
@@ -126,6 +126,13 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
         for (ThreadRecipeLogic worker : threads) {
             worker.resetRecipeLogic();
         }
+    }
+
+    public void resetConfig() {
+        for (ThreadRecipeLogic worker : threads) {
+            worker.resetConfig();
+        }
+        threads[0].setEnabled(true);
     }
 
     @Override
@@ -201,4 +208,13 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
     public ManagedFieldHolder getFieldHolder() {
         return MANAGED_FIELD_HOLDER;
     }
+
+    public int getEnabledThreadNum(){
+        return (int) getAllWorkers().stream().filter(ThreadRecipeLogic::isEnabled).count();
+    }
+
+    public int getActiveThreadNum(){
+        return (int) getAllWorkers().stream().filter(ThreadRecipeLogic::isActive).count();
+    }
+
 }
