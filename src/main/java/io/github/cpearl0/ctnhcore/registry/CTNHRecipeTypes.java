@@ -675,6 +675,6 @@ public class CTNHRecipeTypes {
 
     public static void init() {
         CreateRecipeTypes.init();
-        MIXER_RECIPES.setMaxIOSize(6, 1, 9, 1);
+        //MIXER_RECIPES.setMaxIOSize(6, 1, 9, 1);
     }
 }
