@@ -11,14 +11,18 @@ import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifierList;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.machines.GCYMMachines;
+import com.gregtechceu.gtceu.common.machine.multiblock.electric.CleanroomMachine;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiConsumer;
+
+import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.CLEANROOM;
 
 public class GTMachineModify {
 
@@ -59,6 +63,7 @@ public class GTMachineModify {
             machine.setTooltipBuilder(machine.getTooltipBuilder().andThen(REDUCTION_INFO));
         }
         modifyGTAssembly();
+        modifyCleanroom();
     }
     private static void modifyGTAssembly() {
         var lASB = GCYMMachines.LARGE_ASSEMBLER;
@@ -89,5 +94,56 @@ public class GTMachineModify {
                     GTRecipeModifiers.OC_NON_PERFECT_SUBTICK
             ).getModifier(machine, gtRecipe);
         }
+    }
+
+    private static void modifyCleanroom() {
+        CLEANROOM.setBeforeWorking(
+                (machine, recipe) -> {
+                    if (machine instanceof CleanroomMachine cleanroom) {
+                        try {
+                            // Use reflection to access the private distance fields
+                            Class<?> cleanroomClass = cleanroom.getClass();
+
+                            // Get the fields
+                            Field lDistField = cleanroomClass.getDeclaredField("lDist");
+                            Field rDistField = cleanroomClass.getDeclaredField("rDist");
+                            Field bDistField = cleanroomClass.getDeclaredField("bDist");
+                            Field fDistField = cleanroomClass.getDeclaredField("fDist");
+                            Field hDistField = cleanroomClass.getDeclaredField("hDist");
+
+                            // Make them accessible
+                            lDistField.setAccessible(true);
+                            rDistField.setAccessible(true);
+                            bDistField.setAccessible(true);
+                            fDistField.setAccessible(true);
+                            hDistField.setAccessible(true);
+
+                            // Get the values
+                            int lDist = lDistField.getInt(cleanroom);
+                            int rDist = rDistField.getInt(cleanroom);
+                            int bDist = bDistField.getInt(cleanroom);
+                            int fDist = fDistField.getInt(cleanroom);
+                            int hDist = hDistField.getInt(cleanroom);
+
+                            // Calculate length and width
+                            int length = lDist + rDist;
+                            int width = bDist + fDist;
+
+                            // Check if height is greater than length or width
+                            return hDist <= length && hDist <= width;
+                        } catch (NoSuchFieldException | IllegalAccessException e) {
+                            // Handle reflection errors
+                            e.printStackTrace();
+                            return true;
+                        }
+                    }
+                    return true;
+                }
+        );
+        CLEANROOM.setTooltipBuilder(CLEANROOM.getTooltipBuilder().andThen(
+                (stack, tooltip) -> {
+                    tooltip.add(Component.literal("高度大于长度或宽度时，将会停止工作"));
+                }
+        ));
     }
 }
