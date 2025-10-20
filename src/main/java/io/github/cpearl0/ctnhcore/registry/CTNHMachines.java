@@ -149,6 +149,7 @@ public class CTNHMachines {
                             .andThen((ctx, prov, model) -> {
                                 model.addReplaceableTextures("bottom", "top", "side");
                             }))
+                    .tooltips(Component.translatable("gtceu.part_sharing.disabled"))
 //                    .tooltips(Component.literal("配置以启用机器的多线程模式，基础消耗1点算力"),
 //                            Component.literal("每有一个线程启用线程保护，算力消耗x2"),
 //                            Component.literal("每有一个线程启用配方锁定，算力消耗x4")
@@ -176,7 +177,8 @@ public class CTNHMachines {
                             .andThen((ctx, prov, model) -> {
                                 model.addReplaceableTextures("bottom", "top", "side");
                             }))
-                    .tooltips(Component.translatable("gtceu.machine.parallel_hatch_mk" + tier + ".tooltip"))
+                    .tooltips(Component.translatable("gtceu.machine.parallel_hatch_mk" + tier + ".tooltip"),
+                            Component.translatable("gtceu.part_sharing.disabled"))
                     .register(),
             UHV, UEV, UIV, UXV, OpV, MAX);
     public static final MachineDefinition[] ENERGY_OUTPUT_HATCH_4A_LOWER = registerTieredMachines("energy_output_hatch_4a",
