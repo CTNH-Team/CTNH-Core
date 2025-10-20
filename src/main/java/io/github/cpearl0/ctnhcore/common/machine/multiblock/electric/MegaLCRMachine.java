@@ -1,65 +1,44 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.capability.IParallelHatch;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
+import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDisplayUIMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
+import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
+import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
+import com.gregtechceu.gtceu.client.model.machine.MachineRenderState;
+import com.gregtechceu.gtceu.utils.GTUtil;
+import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
+import com.lowdragmc.lowdraglib.gui.widget.Widget;
+import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
+import io.github.cpearl0.ctnhcore.api.recipe.MultiThreadRecipeLogic;
+import io.github.cpearl0.ctnhcore.api.recipe.ThreadRecipeLogic;
+import lombok.Getter;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.logging.CrashReportAnalyser;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class MegaLCRMachine extends CoilWorkableElectricMultiblockMachine implements ITieredMachine {
+public class MegaLCRMachine extends CoilWorkableElectricMultiblockMachine implements ITieredMachine{
     public MegaLCRMachine(IMachineBlockEntity holder) {
         super(holder);
     }
-    @Persisted public int temperature=0;
-    public double eff=0.0;
-    @Override
-    public void onStructureFormed() {
-        super.onStructureFormed();
-        temperature = getCoilType().getCoilTemperature();
-    }
-    public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
-        int pa=1;
-        if (machine instanceof IMultiController controller) {
-            if (controller.isFormed()) {
-                int parallels = (Integer)controller.getParallelHatch().map((hatch) -> ParallelLogic.getParallelAmount(machine, recipe, hatch.getCurrentParallel())).orElse(0);
-                if (parallels > 0) {
-                    pa=parallels;
-                }
-
-            }
-        }
-        if(machine instanceof MegaLCRMachine pmachine) {
-            var speed=1;
-            int parallel= ParallelLogic.getParallelAmount(machine,recipe,pa);
-            var eut=Math.max(0.25,1.01-0.02*parallel);
-            var parallel_speed=Math.max(0.25,1.01-0.02*parallel);
-            var coil_speed=Math.max(0,((int)(pmachine.temperature/1800)*0.25-0.55))+1;
-            pmachine.eff=1/(parallel_speed*coil_speed);
-            return  ModifierFunction.builder()
-                    .parallels(parallel)
-                    .eutMultiplier(eut*parallel)
-                    .durationMultiplier(parallel_speed/coil_speed)
-                    .inputModifier(ContentModifier.multiplier(parallel))
-                    .outputModifier(ContentModifier.multiplier(parallel))
-                    .build();
-        }
-        return ModifierFunction.NULL;
-
-    }
-    @Override
-    public void addDisplayText(List<Component> textList) {
-        super.addDisplayText(textList);
-        textList.add(Component.translatable("ctnh.multiblock.mega_lcr.info.coil", temperature + "K"));
-        textList.add(Component.translatable("ctnh.multiblock.mega_lcr.info.speed", eff));
-    }
+//    @Persisted
+//    @DescSynced
+//    public int temperature=0;
+//    public double eff=0.0;
 
 }

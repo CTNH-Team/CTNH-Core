@@ -844,6 +844,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.mana_condenser.tooltips.1", "可以将魔力转化为液态魔力，或者将液态魔力转化为魔力，后者所需的能量更多");
         provider.add("ctnh.multiblock.mana_condenser.tooltips.2", "所有魔力输入输出均通过结构中心的魔力池进行");
 
+        provider.add("config.jade.plugin_ctnhcore.thread_status_provider", "线程信息");
+
         provider.add("ritual.ctnh.chargerRitual", "充能仪式");
         provider.add("ctnh.terminal.multiblockhelper.tips","第一次右键选择第一个方块，第二次右键选择第二个方块，使用shift+右键启用多方块构建\nshift+右键后将清除原坐标\n选择的方块请按照：底部西北角出发，前往顶部东南角来选择不然无法输出完整结构");
         // NOT USED
@@ -881,7 +883,7 @@ public class ChineseLangHandler {
         for (int tier : GTValues.tiersBetween(HV, IV)){
             provider.add(CTNHMachines.HIGH_PERFORMANCE_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + "§r高性能计算机");
         }
-
+        provider.add(CTNHMachines.ASYNC_THREAD_HATCH[LuV].getBlock(), "§r异步线程控制仓");
         provider.add(CTNHMachines.STERILE_CLEANROOM_MAINTENANCE_HATCH.getBlock(), "无菌超净间维护仓");
 
         provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[LV].getBlock(), "基础数字化苦难之井");
@@ -997,20 +999,20 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.RUNE_CARRIER_BLOCK, "符文载体方块");
         provider.addBlock(CTNHBlocks.WINTER_RUNE_STONE, "冬之符文石");
         provider.addBlock(CTNHBlocks.MANA_RUNE_STONE, "魔力符文石");
-        provider.addBlock(CTNHBlocks.SIN_GLUTTONY_RUNE_STONE, "七罪符文石·暴食");
-        provider.addBlock(CTNHBlocks.SIN_PRIDE_RUNE_STONE, "七罪符文石·傲慢");
-        provider.addBlock(CTNHBlocks.SIN_WRATH_RUNE_STONE, "七罪符文石·暴怒");
+        provider.addBlock(CTNHBlocks.SIN_GLUTTONY_RUNE_STONE, "暴食符文石");
+        provider.addBlock(CTNHBlocks.SIN_PRIDE_RUNE_STONE, "傲慢符文石");
+        provider.addBlock(CTNHBlocks.SIN_WRATH_RUNE_STONE, "暴怒符文石");
         provider.addBlock(CTNHBlocks.FIRE_RUNE_STONE, "火之符文石");
         provider.addBlock(CTNHBlocks.AUTUMN_RUNE_STONE, "秋之符文石");
         provider.addBlock(CTNHBlocks.EARTH_RUNE_STONE, "地之符文石");
-        provider.addBlock(CTNHBlocks.SIN_GREED_RUNE_STONE, "七罪符文石·贪婪");
+        provider.addBlock(CTNHBlocks.SIN_GREED_RUNE_STONE, "贪婪符文石");
         provider.addBlock(CTNHBlocks.SUMMER_RUNE_STONE, "夏之符文石");
         provider.addBlock(CTNHBlocks.WIND_RUNE_STONE, "风之符文石");
         provider.addBlock(CTNHBlocks.WATER_RUNE_STONE, "水之符文石");
-        provider.addBlock(CTNHBlocks.SIN_ENVY_RUNE_STONE, "七罪符文石·嫉妒");
-        provider.addBlock(CTNHBlocks.SIN_LUST_RUNE_STONE, "七罪符文石·欲望");
+        provider.addBlock(CTNHBlocks.SIN_ENVY_RUNE_STONE, "嫉妒符文石");
+        provider.addBlock(CTNHBlocks.SIN_LUST_RUNE_STONE, "欲望符文石");
         provider.addBlock(CTNHBlocks.SPRING_RUNE_STONE, "春之符文石");
-        provider.addBlock(CTNHBlocks.SIN_SLOTH_RUNE_STONE, "七罪符文石·懒惰");
+        provider.addBlock(CTNHBlocks.SIN_SLOTH_RUNE_STONE, "懒惰符文石");
         provider.addBlock(CTNHBlocks.RUNE_STONE_PERFECT, "完美的符文石");
         provider.addBlock(AstralBlocks.ASTRAL_LOG, "星辉木");
         provider.addBlock(AstralBlocks.ASTRAL_STONE, "星辉石");
@@ -1158,7 +1160,7 @@ public class ChineseLangHandler {
         provider.add(MultiblocksC.GAIA_REACTOR.getBlock(), "盖亚反应器");
         provider.add(MultiblocksC.GREENHOUSE.getBlock(), "温室");
         provider.add(MultiblocksC.METEOR_CAPTURER.getBlock(), "§4坠星操纵者§r");
-
+        provider.add(MultiblocksC.CNC_ALLOY_SMELTER.getBlock(), "数控合金冶炼炉");
 
 
 

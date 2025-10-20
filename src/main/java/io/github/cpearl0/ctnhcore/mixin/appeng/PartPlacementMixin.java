@@ -48,6 +48,8 @@ public class PartPlacementMixin {
             tieredMachine.setAutoOutputItems(true);
             tieredMachine.setOutputFacingFluids(side.getOpposite());
             tieredMachine.setOutputFacingItems(side.getOpposite());
+            tieredMachine.setAllowInputFromOutputSideItems(true);
+            tieredMachine.setAllowInputFromOutputSideFluids(true);
         }
 
     }
