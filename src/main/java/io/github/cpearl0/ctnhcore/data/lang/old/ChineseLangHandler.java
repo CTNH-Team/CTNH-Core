@@ -845,6 +845,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.mana_condenser.tooltips.2", "所有魔力输入输出均通过结构中心的魔力池进行");
 
         provider.add("config.jade.plugin_ctnhcore.thread_status_provider", "线程信息");
+        provider.add("config.jade.plugin_ctnhcore.recipe_logic_provider", "配方耗电信息");
 
         provider.add("ritual.ctnh.chargerRitual", "充能仪式");
         provider.add("ctnh.terminal.multiblockhelper.tips","第一次右键选择第一个方块，第二次右键选择第二个方块，使用shift+右键启用多方块构建\nshift+右键后将清除原坐标\n选择的方块请按照：底部西北角出发，前往顶部东南角来选择不然无法输出完整结构");
