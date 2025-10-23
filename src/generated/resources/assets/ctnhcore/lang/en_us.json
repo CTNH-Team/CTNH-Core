@@ -346,6 +346,7 @@
   "block.ctnhcore.zpm_neuro_compiler": "§cZPM Neuro Compiler",
   "block.ctnhcore.zpm_neutron_accelerator": "§cZPM Neutron Accelerator",
   "block.ctnhcore.zpm_personal_computer": "§cElite Personal Computer III§r",
+  "config.jade.plugin_ctnhcore.recipe_logic_provider": "Recipe Logic Info",
   "config.jade.plugin_ctnhcore.thread_status_provider": "Thread Info",
   "ctnh.advanced_ram_chip.tooltip": "Advanced Random Access Memory",
   "ctnh.advanced_ram_wafer.tooltip": "Enhanced RAM Wafer",

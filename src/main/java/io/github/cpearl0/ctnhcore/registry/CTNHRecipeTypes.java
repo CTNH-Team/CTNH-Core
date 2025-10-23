@@ -671,6 +671,7 @@ public class CTNHRecipeTypes {
             GTRecipeTypes.register("precision_assembly", GTRecipeTypes.ELECTRIC)
                     .setMaxIOSize(4, 1, 4, 0).setEUIO(IO.IN)
                     .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+                    .setMaxTooltips(4)
                     .setSound(GTSoundEntries.COOLING);
 
     public static void init() {

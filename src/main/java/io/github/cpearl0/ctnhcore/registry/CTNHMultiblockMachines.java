@@ -16,5 +16,6 @@ public class CTNHMultiblockMachines {
         MultiblocksB.init();
         MultiblocksC.init();
         GTNNMultiblocks.init();
+
     }
 }

@@ -355,6 +355,7 @@
   "config.ctnhcore.option.sifterRpmRequirement": "机械筛选厂最低转速需求",
   "config.ctnhcore.option.sifterSpeedMultiplier": "机械筛选厂加速倍率",
   "config.ctnhcore.option.sifterStressRequirement": "机械筛选厂应力消耗",
+  "config.jade.plugin_ctnhcore.recipe_logic_provider": "配方耗电信息",
   "config.jade.plugin_ctnhcore.thread_status_provider": "线程信息",
   "copper_vein_ad": "铜矿脉",
   "ctnh.acc.danger": "§c危险粒子实验",

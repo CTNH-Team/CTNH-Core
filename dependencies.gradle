@@ -73,7 +73,7 @@ dependencies {
 
     runtimeOnly "dev.gigaherz.graph:GraphLib3:$graphlib_version"
 
-    modImplementation("curse.maven:applied-energistics-2-223794:6501484")
+    modImplementation("appeng:appliedenergistics2-forge:${ae2_version}")
     modImplementation("curse.maven:guideme-1173950:6679102")
     modImplementation("curse.maven:legendary_survival_overhaul-840254:6750561")
 

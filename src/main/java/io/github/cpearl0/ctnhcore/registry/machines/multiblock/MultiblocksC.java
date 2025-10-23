@@ -189,6 +189,7 @@ public class MultiblocksC {
     public static final MultiblockMachineDefinition CNC_ALLOY_SMELTER = REGISTRATE
             .multiblock("cnc_alloy_smelter", CNCAlloySmelter::new)
             .langValue("CNC ALLOY Smelter")
+            .recipeType(ALLOY_BLAST_RECIPES)
             .tooltips(Component.literal("§b具有4个异步线程§r"),
                     Component.literal("使用§d异步线程控制仓§r以配置多线程运行模式")
                     //,Component.literal("多线程模式下需要消耗算力")
@@ -200,7 +201,7 @@ public class MultiblocksC {
             .allowExtendedFacing(false)
             .allowFlip(false)
             //.rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(ALLOY_BLAST_RECIPES)
+
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, CTNHRecipeModifiers::ebfOverclock, GTRecipeModifiers.BATCH_MODE)
             .appearanceBlock(GTBlocks.COMPUTER_CASING)
             .pattern(definition -> FactoryBlockPattern.start()

@@ -9,8 +9,8 @@ import tech.vixhentx.mcmod.ctnhlib.jade.JadePriorityManager;
 public class CTNHJadePlugin {
     public static void init(){
         //手动去除gt的组件以避免分不清哪些是新添加的
-        JadePriorityManager.unregisterBlockComponent("recipe_logic_component");
-        JadePriorityManager.unregisterBlockData("recipe_logic_data");
+//        JadePriorityManager.unregisterBlockComponent("recipe_logic_component");
+//        JadePriorityManager.unregisterBlockData("recipe_logic_data");
 
         JadePriorityManager.registerBlockComponent(
                 new MultithreadRecipeLogicProvider(),
