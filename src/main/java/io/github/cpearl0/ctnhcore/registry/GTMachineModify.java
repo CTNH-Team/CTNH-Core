@@ -3,6 +3,9 @@ package io.github.cpearl0.ctnhcore.registry;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
+import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
+import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
+import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
@@ -12,6 +15,7 @@ import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifierList;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.machines.GCYMMachines;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.CleanroomMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.MultiblockComputationMachine;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -22,6 +26,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiConsumer;
 
+import static com.gregtechceu.gtceu.api.pattern.Predicates.blocks;
+import static com.gregtechceu.gtceu.api.pattern.Predicates.controller;
+import static com.gregtechceu.gtceu.common.data.GCYMBlocks.CASING_LARGE_SCALE_ASSEMBLING;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_TEMPERED_GLASS;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_TUNGSTENSTEEL_ROBUST;
 import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.CLEANROOM;
 
 public class GTMachineModify {
@@ -76,6 +85,24 @@ public class GTMachineModify {
             components.add(Component.translatable("ctnh.multiblock.precision_assembly.tooltip.1"));
         }
         ));
+        //lASB.setMachineSupplier(MultiblockComputationMachine::new);
+        lASB.setPatternFactory(() -> FactoryBlockPattern.start()
+                .aisle("XXXXXXXXX", "XXXXXXXXX", "XXXXXXXXX")
+                .aisle("XXXXXXXXX", "XAAAXAAAX", "XGGGXXXXX")
+                .aisle("XXXXXXXXX", "XGGGXXSXX", "XGGGX###X")
+                .where('S', controller(blocks(lASB.get())))
+                .where('X', blocks(CASING_LARGE_SCALE_ASSEMBLING.get()).setMinGlobalLimited(40)
+                        .or(Predicates.autoAbilities(lASB.getRecipeTypes(), false, false, true, true, true,
+                                true))
+                        .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setExactLimit(1))
+                        .or(Predicates.autoAbilities(true, false, true))
+                        .or(Predicates.abilities(PartAbility.COMPUTATION_DATA_RECEPTION).setMaxGlobalLimited(1).setPreviewCount(1)
+                ))
+                .where('G', Predicates.blocks(CASING_TEMPERED_GLASS.get()))
+                .where('A', Predicates.air())
+                .where('#', Predicates.any())
+                .build());
+
 
         lASB.setRecipeModifier(
                 new RecipeModifierList(

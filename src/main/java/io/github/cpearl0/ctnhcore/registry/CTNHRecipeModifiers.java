@@ -22,7 +22,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Function;
 
 import static com.gregtechceu.gtceu.api.recipe.OverclockingLogic.getCoilEUtDiscount;
-import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.ELECTRIC_OVERCLOCK;
 import static io.github.cpearl0.ctnhcore.api.recipe.MultiThreadOverclockingLogic.MULTI_THREAD_NON_PERFECT_OVERCLOCK;
 import static io.github.cpearl0.ctnhcore.api.recipe.MultiThreadOverclockingLogic.MULTI_THREAD_PERFECT_OVERCLOCK;
 
@@ -89,14 +88,13 @@ public class CTNHRecipeModifiers {
     public static final RecipeModifier MT_OC_PERFECT = MT_ELECTRIC_OVERCLOCK.apply(MULTI_THREAD_PERFECT_OVERCLOCK);
     public static final RecipeModifier MT_OC_NON_PERFECT = MT_ELECTRIC_OVERCLOCK.apply(MULTI_THREAD_NON_PERFECT_OVERCLOCK);
 
-    public static ModifierFunction chemicalPlantOverclock(MetaMachine machine, @NotNull GTRecipe recipe) {
+    public static ModifierFunction chemicalPlantModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         if (!(machine instanceof IMultiController multiController) || !multiController.isFormed()) return ModifierFunction.IDENTITY;
         if (machine instanceof ChemicalPlantMachine chemicalPlantMachine) {
             var speedMultiplier = 100.0 / (100.0 + (chemicalPlantMachine.getSpeedMultiplier()));
             var energyConsumeMultiplier = 1;
-            var parallels = chemicalPlantMachine.getMaxParallel();
-                parallels = (int) Math.min(parallels,
-                        Math.max(chemicalPlantMachine.getMaxVoltage() / recipe.getInputEUt().getTotalEU(), 1));
+            var parallels = ParallelLogic.getParallelAmount(machine, recipe, chemicalPlantMachine.getMaxParallel());;
+
             if (parallels == 1 && speedMultiplier == 1.0 && energyConsumeMultiplier == 1.0)
                 return ModifierFunction.IDENTITY;
             return  ModifierFunction.builder()

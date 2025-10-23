@@ -186,6 +186,7 @@ public class DefaultRecipes {
                     .inputFluids(GTMaterials.SodiumPotassium.getFluid(288))
                     .inputFluids(GTMaterials.Lubricant.getFluid(144))
                     .inputFluids(GTMaterials.StyreneButadieneRubber.getFluid(144))
+                    .CWUt(8)
                     .outputItems(CTNHItems.QuarkCore)
                     .EUt(GTValues.VA[GTValues.LuV])  // 32768 EU/t
                     .duration(100)  // 5秒
