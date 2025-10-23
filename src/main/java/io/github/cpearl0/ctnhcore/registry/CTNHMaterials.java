@@ -73,28 +73,6 @@ public class CTNHMaterials {
         raw.getProperty(PropertyKey.ORE).getOreByProducts().clear();
         raw.getProperty(PropertyKey.ORE).setOreByProducts(newOre);
     }
-    public static void adjustPlatinum(Material raw) {
-        var ores = raw.getProperty(PropertyKey.ORE).getOreByProducts();
-        var newOre = ores.stream().map(ore -> {
-            if (ore.equals(Platinum)) {
-                return PlatinumOre;
-            }
-            else return ore;
-        }).toList();
-        raw.getProperty(PropertyKey.ORE).getOreByProducts().clear();
-        raw.getProperty(PropertyKey.ORE).setOreByProducts(newOre);
-    }
-    public static void adjustPalladium(Material raw) {
-        var ores = raw.getProperty(PropertyKey.ORE).getOreByProducts();
-        var newOre = ores.stream().map(ore -> {
-            if (ore.equals(Palladium)) {
-                return PalladiumOre;
-            }
-            else return ore;
-        }).toList();
-        raw.getProperty(PropertyKey.ORE).getOreByProducts().clear();
-        raw.getProperty(PropertyKey.ORE).setOreByProducts(newOre);
-    }
     // Ad Astra
     public static final Material Moonstone = new Material.Builder(CTNHCore.id("moon_stone"))
             .dust()
@@ -955,10 +933,6 @@ public class CTNHMaterials {
         adjustAluminium(Mica);
         adjustAluminium(Zeolite);
 
-        adjustPlatinum(Nickel);
-
-        adjustPalladium(Cooperite);
-        adjustPalladium(Platinum);
         var oreProp = Naquadah.getProperty(PropertyKey.ORE);
         oreProp.getOreByProducts().clear();
         oreProp.setOreByProducts(Sulfur, Barite, EnrichedNaquadahOxideMixture);
