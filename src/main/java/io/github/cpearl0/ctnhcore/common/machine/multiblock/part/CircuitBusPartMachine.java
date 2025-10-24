@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.part;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
+import com.gregtechceu.gtceu.api.gui.widget.BlockableSlotWidget;
 import com.gregtechceu.gtceu.api.gui.widget.SlotWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.IMachineModifyDrops;
@@ -12,9 +13,11 @@ import com.gregtechceu.gtceu.common.machine.multiblock.part.ItemBusPartMachine;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.jei.IngredientIO;
+import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.item.ItemStack;
 
@@ -27,11 +30,18 @@ public class CircuitBusPartMachine extends TieredIOPartMachine implements IDisti
     @Getter
     @Persisted
     private final NotifiableItemStackHandler inventory;
+
+    @Getter
+    @Setter
+    @Persisted
+    @DescSynced
+    private boolean isLocked;
+
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(CircuitBusPartMachine.class,
             TieredIOPartMachine.MANAGED_FIELD_HOLDER);
     public CircuitBusPartMachine(IMachineBlockEntity holder, int tier) {
         super(holder, tier, IO.IN);
-        inventory = new NotifiableItemStackHandler(this, 1, IO.IN);
+        inventory = new NotifiableItemStackHandler(this, 1, IO.IN, IO.BOTH);
     }
 
     @Override
@@ -49,17 +59,19 @@ public class CircuitBusPartMachine extends TieredIOPartMachine implements IDisti
         getInventory().setDistinct(isDistinct);
     }
 
+    public void setItem(ItemStack dataItem){
+        inventory.setStackInSlot(0, dataItem);
+    }
+
     @Override
     public Widget createUIWidget() {
         var group = new WidgetGroup(0, 0, 34, 34);
         var container = new WidgetGroup(4, 4, 26, 26);
-        int index = 0;
         container.addWidget(
-                new SlotWidget(getInventory().storage, index++, 4, 4, true, io.support(IO.IN))
-                        .setBackgroundTexture(GuiTextures.SLOT)
-                        .setIngredientIO(IngredientIO.INPUT));
-
-        container.setBackground(GuiTextures.BACKGROUND_INVERSE);
+                new BlockableSlotWidget(getInventory(), 0, 4, 4, true, true)
+                        .setIsBlocked(this::isLocked)
+                        .setBackground(GuiTextures.SLOT, GuiTextures.BACKGROUND_INVERSE)
+        );
         group.addWidget(container);
 
         return group;
