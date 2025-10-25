@@ -144,6 +144,8 @@ public class MultiblocksC {
             .register();
     public static final MultiblockMachineDefinition METEOR_CAPTURER = REGISTRATE.multiblock("meteor_capturer", MeteorCaptureMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
+            .allowExtendedFacing(false)
+            .allowFlip(false)
             .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
             .noRecipeModifier()
             .recipeType(CTNHRecipeTypes.METEOR_CAPTURER_RECIPES)
@@ -179,7 +181,10 @@ public class MultiblocksC {
             .where("B", Predicates.blocks(CTNHBlocks.CASING_BLOOD.get()))
             .where("C", Predicates.blocks(CTNHBlocks.CASING_FORCE_FILED.get()))
             .where('D', Predicates.blocks(CTNHBlocks.CASING_BLOOD.get())
-                    .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                    .or(Predicates.autoAbilities(definition.getRecipeTypes(),
+                            false, false, true, true, true, true)
+                            .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(1).setPreviewCount(1))
+                    )
             )
             .where("@", Predicates.controller(Predicates.blocks(definition.get())))
             .build())

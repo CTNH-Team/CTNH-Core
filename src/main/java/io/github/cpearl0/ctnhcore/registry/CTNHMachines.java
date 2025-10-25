@@ -113,6 +113,7 @@ public class CTNHMachines {
                     .langValue(GTValues.VNF[tier] + " Circuit Bus")
                     .rotationState(RotationState.ALL)
                     .abilities(CTNHPartAbility.CIRCUIT)
+                    .modelProperty(IS_FORMED, false)
                     .colorOverlayTieredHullModel(GTCEu.id("block/overlay/machine/overlay_pipe_in"), null, GTCEu.id("block/overlay/machine/" + OVERLAY_ITEM_HATCH))
                     .register(),
             GTMachineUtils.ALL_TIERS);

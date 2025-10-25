@@ -33,6 +33,8 @@ public class LuvModifyRecipe {
                 .inputItems(TagPrefix.dust, GTMaterials.BorosilicateGlass, 21)
                 .inputItems(TagPrefix.dust, GTMaterials.Lanthanum, 4)
                 .inputItems(TagPrefix.dust, GTMaterials.Yttrium)
+                .inputItems(TagPrefix.dust, Copper)
+                .inputFluids(Oxygen, 3000)
                 .outputItems(CBBlocks.CONSCIOUSNESS_SENSOR_GLASS)
                 .blastFurnaceTemp(5400)
                 .EUt(GTValues.V[GTValues.LuV])

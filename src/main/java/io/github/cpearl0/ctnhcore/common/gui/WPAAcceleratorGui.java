@@ -27,22 +27,22 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
         return(Component.translatable("ctnh.multiblock.wide_accelerator.info.power",(double)machine.store_energy/1000000,(double)machine.max_energy/1000000));
     }
     public Function<Double, String> target() {
-        return speed->Component.translatable("ctnh.multiblock.wide_accelerator.info.electric_speed",speed*5000).getString();
+        return speed->Component.translatable("ctnh.multiblock.wide_accelerator.info.electric_speed",speed*50000).getString();
     }
     public Function<Double, String> target2() {
-        return speed->Component.translatable("ctnh.multiblock.wide_accelerator.info.nu_speed", speed*5000).getString();
+        return speed->Component.translatable("ctnh.multiblock.wide_accelerator.info.nu_speed", speed*50000).getString();
     }
     public Function<Double, String> target3() {
-        return speed->Component.translatable("ctnh.multiblock.wide_accelerator.info.proton_speed", speed*5000).getString();
+        return speed->Component.translatable("ctnh.multiblock.wide_accelerator.info.proton_speed", speed*50000).getString();
     }
     public void change_electric(int add,boolean reverse)
     {
         if(!reverse)
         {
-            if(machine.electric_speed<5000&&machine.store_energy>10000000L*add)
+            if(machine.electric_speed<50000&&machine.store_energy>10000000L*add)
             {
-                machine.electric_speed += add;
-                machine.electric_speed=Math.min(machine.electric_speed,5000);
+                machine.electric_speed += add*10;
+                machine.electric_speed=Math.min(machine.electric_speed,50000);
                 machine.store_energy -= 10000000L*add;
             }
         }
@@ -50,7 +50,7 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
         {
             if(machine.electric_speed>0&&machine.store_energy>10000000L*add)
             {
-                machine.electric_speed -= add;
+                machine.electric_speed -= add*10;
                 machine.electric_speed=Math.max(machine.electric_speed,0);
                 machine.store_energy -= 10000000L*add;
             }
@@ -61,10 +61,10 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
     {
         if(!reverse)
         {
-            if(machine.proton_speed<5000&&machine.store_energy>10000000L*add)
+            if(machine.proton_speed<50000&&machine.store_energy>10000000L*add)
             {
-                machine.proton_speed += add;
-                machine.proton_speed=Math.min(machine.proton_speed,5000);
+                machine.proton_speed += add*10;
+                machine.proton_speed=Math.min(machine.proton_speed,50000);
                 machine.store_energy -= 10000000L*add;
             }
         }
@@ -72,7 +72,7 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
         {
             if(machine.proton_speed>0&&machine.store_energy>10000000L*add)
             {
-                machine.proton_speed -= add;
+                machine.proton_speed -= add*10;
                 machine.proton_speed=Math.max(machine.proton_speed,0);
                 machine.store_energy -= 10000000L*add;
             }
@@ -82,10 +82,10 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
     {
         if(!reverse)
         {
-            if(machine.nu_speed<5000&&machine.store_energy>10000000L*add)
+            if(machine.nu_speed<50000&&machine.store_energy>10000000L*add)
             {
-                machine.nu_speed += add;
-                machine.nu_speed=Math.min(machine.nu_speed,5000);
+                machine.nu_speed += add*10;
+                machine.nu_speed=Math.min(machine.nu_speed,50000);
                 machine.store_energy -= 10000000L*add;
             }
         }
@@ -93,7 +93,7 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
         {
             if(machine.nu_speed>0&&machine.store_energy>10000000L*add)
             {
-                machine.nu_speed -= add;
+                machine.nu_speed -= add*10;
                 machine.nu_speed=Math.max(machine.nu_speed,0);
                 machine.store_energy -= 10000000L*add;
             }
