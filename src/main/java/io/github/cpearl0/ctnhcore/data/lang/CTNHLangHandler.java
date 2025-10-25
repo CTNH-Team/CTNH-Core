@@ -7,7 +7,6 @@ public class CTNHLangHandler {
     private static CTNHLangProvider provider;
     public static void init(CTNHLangProvider provider) {
         CTNHLangHandler.provider = provider;
-        ItemLang.init(provider);
         MachineLang.init(provider);
         MaterialLang.init(provider);
         RecipeLang.init(provider);

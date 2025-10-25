@@ -24,10 +24,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.LangProcessor;
 import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;
 
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.ME_ADVANCED_TERMINAL;
+import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 @Mod(CTNHCore.MODID)
 public class CTNHCore
@@ -39,6 +41,8 @@ public class CTNHCore
 
     @SuppressWarnings("removal")
     public CTNHCore() {
+        LangProcessor langProcessor = new LangProcessor(REGISTRATE);
+        langProcessor.processAll();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addGenericListener(MachineDefinition.class, EventHandler::registerMachines);
         modEventBus.addGenericListener(GTRecipeType.class, EventHandler::registerRecipeTypes);
