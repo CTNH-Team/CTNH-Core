@@ -103,9 +103,9 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
     }
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             WideParticleAccelerator.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
-    public DoubleSupplier get_nu = () ->(double)this.nu_speed/5000;
-    public DoubleSupplier get_electric = () ->(double)this.electric_speed/5000;
-    public DoubleSupplier get_proton = () ->(double)this.proton_speed/5000;
+    public DoubleSupplier get_nu = () ->(double)this.nu_speed/50000;
+    public DoubleSupplier get_electric = () ->(double)this.electric_speed/50000;
+    public DoubleSupplier get_proton = () ->(double)this.proton_speed/50000;
 
     public int GetParallel(MetaMachine machine, GTRecipe recipe, int parallelLimit)
     {
@@ -164,7 +164,7 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
     }
     protected void Energy_Adjust()
     {
-        var consume=(long)((proton_speed+electric_speed+nu_speed)*100);
+        var consume=(long)((proton_speed+electric_speed+nu_speed)*10);
         if(getRecipeLogic().getStatus() != RecipeLogic.Status.WORKING)
         {
             //不工作时，正常消耗和加速

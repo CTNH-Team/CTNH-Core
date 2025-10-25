@@ -304,7 +304,7 @@ public class NaquadahLine {
                 .outputItems(TagPrefix.dust, GTMaterials.AntimonyTrifluoride, 24)
                 .chancedOutput(TagPrefix.dust, GTMaterials.Gallium, 7500, 0)  // 75%概率副产物
                 .duration(100)  // 5秒
-                .addCondition(new NeutronActivatorCondition(220, 240))
+                .EUt(GTValues.VA[GTValues.ZPM])
                 .addData("type","nu")
                 .addData("speed",45000)
                 .save(provider);
@@ -318,6 +318,7 @@ public class NaquadahLine {
                 .outputFluids(GTMaterials.ImpureEnrichedNaquadahSolution.getFluid(2000))
                 .EUt(GTValues.VA[GTValues.EV])  // 1920 EU/t
                 .duration(200)  // 10秒
+
                 .save(provider);
 
         // Naquadria氧化物混合物 + 氟锑酸 -> 三氧化二锑 + 三氟化钛 + 不纯Naquadria溶液-四分之一循环
