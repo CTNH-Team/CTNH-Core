@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.data.lang;
 
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.world.level.block.Block;
+import tech.vixhentx.mcmod.ctnhlib.registrate.lang.RegistrateCNLangProvider;
 
 public class CTNHLangHandler {
     private static CTNHLangProvider provider;

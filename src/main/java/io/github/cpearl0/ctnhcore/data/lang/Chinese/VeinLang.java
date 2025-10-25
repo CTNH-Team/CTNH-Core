@@ -1,6 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.lang.Chinese;
 
-import io.github.cpearl0.ctnhcore.data.lang.RegistrateCNLangProvider;
+import tech.vixhentx.mcmod.ctnhlib.registrate.lang.RegistrateCNLangProvider;
 
 import static io.github.cpearl0.ctnhcore.data.lang.Chinese.OreLang.initDimensionLang;
 

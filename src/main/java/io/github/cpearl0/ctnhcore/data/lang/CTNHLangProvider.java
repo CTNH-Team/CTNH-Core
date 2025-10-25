@@ -17,6 +17,8 @@ import net.minecraft.world.level.block.Block;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+import static tech.vixhentx.mcmod.ctnhlib.registrate.data.ProviderTypes.CNLANG;
+
 public class CTNHLangProvider extends RegistrateLangProvider {
     private final AbstractRegistrate<?> owner;
     private final String modId;
@@ -34,7 +36,7 @@ public class CTNHLangProvider extends RegistrateLangProvider {
 
     @Override
     protected void addTranslations() {
-        this.owner.genData(CTNHCoreDatagen.CTNHLANG, this);
+        this.owner.genData(CNLANG, this);
     }
 
     @Override

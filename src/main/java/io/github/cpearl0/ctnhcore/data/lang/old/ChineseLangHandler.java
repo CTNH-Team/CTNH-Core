@@ -8,7 +8,7 @@ import com.moguang.ctnhbio.registry.CBItems;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.data.lang.Chinese.OreLang;
 import io.github.cpearl0.ctnhcore.data.lang.Chinese.VeinLang;
-import io.github.cpearl0.ctnhcore.data.lang.RegistrateCNLangProvider;
+import tech.vixhentx.mcmod.ctnhlib.registrate.lang.RegistrateCNLangProvider;
 import io.github.cpearl0.ctnhcore.data.materials.OrdinaryMaterials;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;

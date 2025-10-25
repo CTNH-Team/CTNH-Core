@@ -28,6 +28,8 @@ import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
+import static tech.vixhentx.mcmod.ctnhlib.registrate.data.ProviderTypes.CNLANG;
+
 public class RegistrateCNLangProvider extends LanguageProvider implements RegistrateProvider {
     private final AbstractRegistrate<?> owner;
 
@@ -45,7 +47,7 @@ public class RegistrateCNLangProvider extends LanguageProvider implements Regist
     }
 
     protected void addTranslations() {
-        this.owner.genData(CTNHCoreDatagen.CNLANG, this);
+        this.owner.genData(CNLANG, this);
     }
 
     public static final String toEnglishName(String internalName) {

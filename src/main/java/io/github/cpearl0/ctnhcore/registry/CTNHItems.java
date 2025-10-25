@@ -14,12 +14,13 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Suffix;
 import vazkii.botania.common.lib.BotaniaTags;
 
 import static com.gregtechceu.gtceu.common.data.GTItems.attach;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
-@Prefix("item")
+@Suffix("tooltip")
 public class CTNHItems {
     static {
         REGISTRATE.creativeModeTab(() -> CTNHCreativeModeTabs.ITEM);
