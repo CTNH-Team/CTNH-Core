@@ -16,12 +16,14 @@ import io.github.cpearl0.ctnhcore.api.CTNHMultiblockBuilder;
 import io.github.cpearl0.ctnhcore.client.model.ModelDefinition;
 import lombok.Getter;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
+import tech.vixhentx.mcmod.ctnhlib.registrate.CNRegistrate;
+import tech.vixhentx.mcmod.ctnhlib.registrate.builders.CTNHMultiblockMachineBuilder;
 
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 //REGISTRATE之力!!!REGISTRATE之力!!!REGISTRATE之力!!!REGISTRATE之力!!!REGISTRATE之力!!!REGISTRATE之力!!!REGISTRATE之力!!!
-public final class CTNHRegistrate extends GTRegistrate {
+public final class CTNHRegistrate extends CNRegistrate {
 
     CTNHRegistrate() {
         super(CTNHCore.MODID);

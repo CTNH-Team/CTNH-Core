@@ -31,6 +31,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nullable;
 import java.util.Map;
 
 public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockMachine implements ITieredMachine {
@@ -38,6 +39,7 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
     public final NotifiableItemStackHandler machineStorage;
     @Persisted public int parallel=1024;
     @Persisted public double effencicy=1.0;
+    @Persisted public boolean is_consume=false;
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             NanoscaleTriboelectricGenerator.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     public NanoscaleTriboelectricGenerator(IMachineBlockEntity holder){
@@ -63,6 +65,15 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
                             .setBackground(GuiTextures.SLOT));
         }
         return widget;
+    }
+    @Override
+    public boolean beforeWorking(@Nullable GTRecipe recipe) {
+        if(is_consume)
+        {
+            consumeItem();
+        }
+        is_consume=false;
+        return super.beforeWorking(recipe);
     }
 
     public ItemStack getMachineStorageItem() {
@@ -133,7 +144,7 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
                 double[] config = materialEfficiencyMap.get(storageItem);
                 efficiency = config[0];
                 if (Math.random() < (double) maxParallel / config[1]) {
-                    zmachine.consumeItem();
+                    zmachine.is_consume=true;
                 }
             }
 

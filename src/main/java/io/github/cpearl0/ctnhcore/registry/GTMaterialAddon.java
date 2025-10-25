@@ -186,6 +186,7 @@ public class GTMaterialAddon {
                 PropertyKey.BLAST,
                 new BlastProperty(9000, BlastProperty.GasTier.HIGHEST, 491250, 144 * 20, -1, -1)
         );
+        Neutronium.setMaterialARGB(0x161616);
         NaquadahEnriched.addFlags(GENERATE_BOLT_SCREW);
         Europium.addFlags(GENERATE_BOLT_SCREW);
         Brass.addFlags(GENERATE_DENSE);
