@@ -22,6 +22,7 @@
     "jei.GTRecipeWidgetMixin",
     "jei.RecipeGuiLogicMixin",
     "legendarysurvival.AltitudeModifierMixin",
+    "mc.AbstractFurnaceBlockEntityMixin",
     "mc.MobMixin",
     "mc.MonsterMixin",
     "mc.WorldLoaderPackConfigMixin"

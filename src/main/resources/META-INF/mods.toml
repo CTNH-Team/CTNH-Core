@@ -66,7 +66,7 @@ description='''${mod_description}'''
     modId="botania"
     mandatory=true
     versionRange="[1.20.1-446-FORGE,)"
-    ordering="NONE"
+    ordering="BEFORE"
     side="BOTH"
 
 [[dependencies.${mod_id}]]

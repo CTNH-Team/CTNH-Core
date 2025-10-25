@@ -948,20 +948,20 @@ public class CTNHMaterials {
 
     }
     public static void tagPrefixIgnore() {
-        TagPrefix.ingot.setIgnored(ManaSteel, BotaniaItems.manaSteel);
-        TagPrefix.nugget.setIgnored(ManaSteel, BotaniaItems.manasteelNugget);
-        TagPrefix.block.setIgnored(ManaSteel, BotaniaBlocks.manasteelBlock);
-        TagPrefix.ingot.setIgnored(TerraSteel, BotaniaItems.terrasteel);
-        TagPrefix.nugget.setIgnored(TerraSteel, BotaniaItems.terrasteelNugget);
-        TagPrefix.block.setIgnored(TerraSteel, BotaniaBlocks.terrasteelBlock);
-        TagPrefix.ingot.setIgnored(Elementium, BotaniaItems.elementium);
-        TagPrefix.nugget.setIgnored(Elementium, BotaniaItems.elementiumNugget);
-        TagPrefix.block.setIgnored(Elementium, BotaniaBlocks.elementiumBlock);
-        TagPrefix.ingot.setIgnored(AlfSteel, ModItems.alfsteelIngot);
-        TagPrefix.nugget.setIgnored(AlfSteel, ModItems.alfsteelNugget);
-        TagPrefix.block.setIgnored(AlfSteel, mythicbotany.register.ModBlocks.alfsteelBlock);
-        TagPrefix.gem.setIgnored(GTMaterials.CertusQuartz, AEItems.CERTUS_QUARTZ_CRYSTAL);
-        TagPrefix.block.setIgnored(GTMaterials.CertusQuartz, AEBlocks.QUARTZ_BLOCK);
+        TagPrefix.ingot.setIgnored(ManaSteel, () -> BotaniaItems.manaSteel);
+        TagPrefix.nugget.setIgnored(ManaSteel, () -> BotaniaItems.manasteelNugget);
+        TagPrefix.block.setIgnored(ManaSteel, () -> BotaniaBlocks.manasteelBlock);
+        TagPrefix.ingot.setIgnored(TerraSteel, () -> BotaniaItems.terrasteel);
+        TagPrefix.nugget.setIgnored(TerraSteel, () -> BotaniaItems.terrasteelNugget);
+        TagPrefix.block.setIgnored(TerraSteel, () -> BotaniaBlocks.terrasteelBlock);
+        TagPrefix.ingot.setIgnored(Elementium, () -> BotaniaItems.elementium);
+        TagPrefix.nugget.setIgnored(Elementium, () -> BotaniaItems.elementiumNugget);
+        TagPrefix.block.setIgnored(Elementium, () -> BotaniaBlocks.elementiumBlock);
+        TagPrefix.ingot.setIgnored(AlfSteel, () -> ModItems.alfsteelIngot);
+        TagPrefix.nugget.setIgnored(AlfSteel, () -> ModItems.alfsteelNugget);
+        TagPrefix.block.setIgnored(AlfSteel, () -> mythicbotany.register.ModBlocks.alfsteelBlock);
+        TagPrefix.gem.setIgnored(GTMaterials.CertusQuartz, () -> AEItems.CERTUS_QUARTZ_CRYSTAL);
+        TagPrefix.block.setIgnored(GTMaterials.CertusQuartz, () -> AEBlocks.QUARTZ_BLOCK);
 
         TagPrefix.block.setIgnored(Moonstone, ModBlocks.MOON_STONE);
         TagPrefix.block.setIgnored(Marsstone, ModBlocks.MARS_STONE);
@@ -983,7 +983,7 @@ public class CTNHMaterials {
         TagPrefix.ingot.setIgnored(Stratus, DAItems.STRATUS_INGOT);
         TagPrefix.block.setIgnored(Stratus, DABlocks.STRATUS_BLOCK);
 
-        TagPrefix.block.setIgnored(Livingrock, BotaniaBlocks.livingrock);
+        TagPrefix.block.setIgnored(Livingrock, () -> BotaniaBlocks.livingrock);
 
         hyperRotor.setIgnored(Neutronium);
     }

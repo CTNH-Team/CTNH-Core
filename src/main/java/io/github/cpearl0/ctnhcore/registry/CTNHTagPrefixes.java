@@ -56,7 +56,18 @@ public class CTNHTagPrefixes {
     public static TagPrefix fuel;
     public static TagPrefix DepletedFuel;
     public static TagPrefix waste;
-    public static TagPrefix hyperRotor;
+    public static TagPrefix hyperRotor = new TagPrefix("hyper_rotor")
+            .itemTable(() -> CTNHMaterialBlocks.HYPER_ROTOR_BLOCKS)
+            .defaultTagPath("hyper_rotors/%s")
+            .unformattedTagPath("hyper_rotors")
+            .idPattern("%s_hyper_rotor")
+            .materialAmount(GTValues.M * 36)
+            .maxStackSize(8)
+            .materialIconType(new MaterialIconType("hyper_rotor"))
+            .unificationEnabled(true)
+            .generateItem(false)
+            .generateBlock(false)
+            .generationCondition(mat -> mat.hasAnyOfFlags(MaterialFlags.GENERATE_ROTOR, GENERATE_HYPER_ROTOR));
     public static TagPrefix catalyst;
 
 
@@ -158,18 +169,7 @@ public class CTNHTagPrefixes {
                 .unificationEnabled(true)
                 .generateItem(true)
                 .generationCondition(material -> material.hasFlag(CTNHMaterialFlags.GENERATE_WASTE) || material.equals(Uranium) || material.equals(Plutonium));
-        hyperRotor = new TagPrefix("hyper_rotor")
-                .itemTable(() -> CTNHMaterialBlocks.HYPER_ROTOR_BLOCKS)
-                .defaultTagPath("hyper_rotors/%s")
-                .unformattedTagPath("hyper_rotors")
-                .idPattern("%s_hyper_rotor")
-                .materialAmount(GTValues.M * 36)
-                .maxStackSize(8)
-                .materialIconType(new MaterialIconType("hyper_rotor"))
-                .unificationEnabled(true)
-                .generateItem(false)
-                .generateBlock(false)
-                .generationCondition(mat -> mat.hasAnyOfFlags(MaterialFlags.GENERATE_ROTOR, GENERATE_HYPER_ROTOR));
+
         catalyst = new TagPrefix("catalyst")
                 .langValue("%s Catalyst")
                 .defaultTagPath("catalyst/%s")
