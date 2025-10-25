@@ -103,27 +103,6 @@ public class CTNHOres {
                         .layer(l -> l.weight(1).mat(GTMaterials.Pollucite).size(1, 1))
                     )
                 );
-//        GTNNOres.INSTANCE.getOSTRUM_VEIN_AD()
-//                .clusterSize(40);
-
-//        let ADASTRA = ["ad_astra:lunar_wastelands","ad_astra:glacio_ice_peaks","ad_astra:glacio_snowny_barrens",
-//                "ad_astra:inferno_venus_barrens","ad_astra:martian_canyon_creek","ad_astra:martian_polar_caps",
-//                "ad_astra:martian_wastelands","ad_astra:mercury_deltas","ad_astra:venus_wastelands","ad_extendra:cosmic_gaslands",
-//                "ad_extendra:intriguing_wastelands"]
-        // event.modify("gtceu:naquadah_vein", vein => {
-        //     vein.layer("all_layer")
-        //     ADASTRA.forEach(biome =>{
-        //         vein.biomes(biome)
-        //     })
-        //     vein.dimensions(["ad_astra:mercury", "ad_extendra:jupiter"])
-        // })
-        // event.modify("gtceu:monazite_vein", vein => {
-        //     vein.layer("all_layer")
-        //     ADASTRA.forEach(biome =>{
-        //         vein.biomes(biome)
-        //     })
-        //     vein.dimensions("ad_extendra:jupiter")
-        // })
     }
 
     public static GTOreDefinition NETHER_QUARTZ_VEIN_OW = create(CTNHCore.id("nether_quartz_vein_ow"), vein -> vein

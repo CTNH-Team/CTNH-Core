@@ -73,7 +73,7 @@ dependencies {
 
     runtimeOnly "dev.gigaherz.graph:GraphLib3:$graphlib_version"
 
-    modImplementation("curse.maven:applied-energistics-2-223794:6501484")
+    modImplementation("appeng:appliedenergistics2-forge:${ae2_version}")
     modImplementation("curse.maven:guideme-1173950:6679102")
     modImplementation("curse.maven:legendary_survival_overhaul-840254:6750561")
 
@@ -117,7 +117,7 @@ dependencies {
 
     modRuntimeOnly("curse.maven:constructionwand-399558:4684054")
     modRuntimeOnly("curse.maven:just-enough-characters-250702:6680042")
-    modRuntimeOnly("curse.maven:not-enough-crashes-forge-442354:6598273")
+    //modRuntimeOnly("curse.maven:not-enough-crashes-forge-442354:6598273")
     // lombok
     //compileOnly 'org.projectlombok:lombok:1.18.24'
     //annotationProcessor 'org.projectlombok:lombok:1.18.24'

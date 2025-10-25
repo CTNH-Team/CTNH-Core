@@ -28,6 +28,9 @@ public class EnglishLangHandler {
         provider.add("ctnh.advanced_ram_wafer.tooltip", "Enhanced RAM Wafer");
         provider.add("ctnh.advanced_ram_chip.tooltip", "Advanced Random Access Memory");
 
+        provider.add("config.jade.plugin_ctnhcore.thread_status_provider", "Thread Info");
+        provider.add("config.jade.plugin_ctnhcore.recipe_logic_provider", "Recipe Logic Info");
+
         //Recipe Types
         provider.add("gtceu.underfloor_heating_system", "Underfloor Heating");
         provider.add("gtceu.astronomical_observatory", "Astronomical Observatory");

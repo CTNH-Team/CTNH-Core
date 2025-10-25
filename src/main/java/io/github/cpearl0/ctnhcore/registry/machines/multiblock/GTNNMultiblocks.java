@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 
-import com.google.common.primitives.Ints;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -18,7 +17,6 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.models.GTMachineModels;
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHPredicates;
 import io.github.cpearl0.ctnhcore.client.renderer.DynamicCasingRender;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ChemicalPlantMachine;
@@ -26,7 +24,6 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.NeutronActi
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.LargeNaquadahReactorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
 import io.github.cpearl0.ctnhcore.registry.*;
-import io.github.cpearl0.ctnhcore.utils.StructureUtils;
 import net.minecraft.network.chat.Component;
 
 import java.util.Comparator;
@@ -45,7 +42,7 @@ public class GTNNMultiblocks {
             .tooltips(Component.translatable("ctnh.multiblock.chemical_plant.tooltip.2"))
             .tooltips(Component.translatable("ctnh.multiblock.chemical_plant.tooltip.3"))
             .recipeTypes(CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES)
-        .recipeModifiers(CTNHRecipeModifiers::chemicalPlantOverclock)
+        .recipeModifiers(CTNHRecipeModifiers::chemicalPlantModifier, GTRecipeModifiers.OC_NON_PERFECT)
         .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
         .pattern(definition -> FactoryBlockPattern.start()
             .aisle("VVVVVVV", "A#####A", "A#####A", "A#####A", "A#####A", "A#####A", "AAAAAAA")

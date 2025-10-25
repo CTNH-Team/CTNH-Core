@@ -38,7 +38,11 @@ public class RecipeRemoval {
                 "gtceu:circuit_assembler/crystal_assembly_luv_soldering_alloy",
                 "gtceu:circuit_assembler/crystal_computer_zpm",
                 "gtceu:circuit_assembler/crystal_computer_zpm_soldering_alloy",
-                "gtceu:assembly_line/crystal_mainframe_uv"
+                "gtceu:assembly_line/crystal_mainframe_uv",
+                //HPCA
+                "gtceu:assembly_line/high_performance_computing_array",
+                //凯金线圈
+                "gtceu:assembler/coil_trinium"
 
         };
 

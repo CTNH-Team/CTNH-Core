@@ -28,6 +28,7 @@ import com.simibubi.create.Create;
 import com.simibubi.create.foundation.block.CopperBlockSet;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.machine.multiblock.MultiThreadElectricMachine;
 import io.github.cpearl0.ctnhcore.client.renderer.HyperPlasmaTurbineRender;
 import io.github.cpearl0.ctnhcore.client.renderer.LargeBottleRender;
 import io.github.cpearl0.ctnhcore.client.renderer.MartialMoralityEyeRender;
@@ -191,7 +192,9 @@ public class MultiblocksA {
                     .where("B", Predicates.blocks(CASING_STAINLESS_CLEAN.get()))
                     .where("R", Predicates.blocks(CTNHBlocks.CASING_REFLECT_LIGHT.get()))
                     .where("C", Predicates.blocks(CASING_STAINLESS_CLEAN.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                            .or(Predicates.abilities(CTNHPartAbility.CIRCUIT))
+                            .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(1).setPreviewCount(1))
+                    )
                     .where("D", Predicates.blocks(CASING_TEMPERED_GLASS.get()))
                     .where("E", Predicates.blocks(GTMachines.HULL[GTValues.HV].getBlock()))
                     .where("F", Predicates.blocks(Blocks.DAYLIGHT_DETECTOR))
@@ -578,7 +581,7 @@ public class MultiblocksA {
                     .aisle("##AAAAAAAAA##", "##AACABACAA##", "##AAAAAAAAA##")
                     .aisle("####AAAAA####", "####BCCCB####", "####AAAAA####")
                     .aisle("#####AAA#####", "#####A@A#####", "#####AAA#####")
-                    .where("A", Predicates.blocks(CTNHBlocks.CASING_ANTIFREEZE_HEATPROOF_MACHINE.get())
+                    .where("A", Predicates.blocks(CTNHBlocks.CASING_ANTIFREEZE_HEATPROOF_MACHINE.get()).setMinGlobalLimited(160)
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
                             .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                             .or(abilities(PartAbility.PARALLEL_HATCH))
@@ -1258,13 +1261,12 @@ public class MultiblocksA {
             .register();
     //Come from GTCA
     public static final MultiblockMachineDefinition MEGA_LCR = REGISTRATE
-            .multiblock("mega_lcr", MegaLCRMachine::new)
+            .multiblock("mega_lcr", MultiThreadElectricMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.LARGE_CHEMICAL_RECIPES)
             .appearanceBlock(CASING_PTFE_INERT)
-
-            .recipeModifiers(MegaLCRMachine::recipeModifier,
-                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .recipeModifiers(//GTRecipeModifiers.PARALLEL_HATCH,
+                    GTRecipeModifiers.OC_PERFECT_SUBTICK, GTRecipeModifiers.BATCH_MODE)
             .pattern(definition ->
                     FactoryBlockPattern.start()
                             .aisle("CCCCC", "CCCCC", "CCCCC", "CCCCC", "CCCCC")
@@ -1281,19 +1283,26 @@ public class MultiblocksA {
                             .where("G", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
                             .where("P", Predicates.blocks(CASING_POLYTETRAFLUOROETHYLENE_PIPE.get()))
                             .where("#", Predicates.air())
-                            .where("C", Predicates.blocks(CASING_PTFE_INERT.get()).setMinGlobalLimited(100)
+                            .where("C", Predicates.blocks(CASING_PTFE_INERT.get()).setMinGlobalLimited(80)
                                     .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                                    .or(Predicates.autoAbilities(true, true, true)))
+                                    .or(Predicates.autoAbilities(true, true, false))
+                                    .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1)
+                                            .setMaxGlobalLimited(4).setPreviewCount(3))
+                                    .or(Predicates.abilities(CTNHPartAbility.THREAD_HATCH).setMaxGlobalLimited(1))
+                            )
                             .build()
             )
             .workableCasingModel(
                     GTCEu.id("block/casings/solid/machine_casing_inert_ptfe"),
                     CTNHCore.id("block/overlay/super_ebf"))
+            .tooltips(Component.literal("§b具有4个异步线程§r"),
+                    Component.literal("使用§d异步线程控制仓§r以配置多线程运行模式")
+                    //,Component.literal("多线程模式下需要消耗算力")
+            )
             .tooltips(
-                    CTNHCommonTooltips.PARALLEL_HATCH,
-                    CTNHCommonTooltips.PERFECT_OVERCLOCK,
-                    Component.translatable("ctnh.multiblock.mega_lcr.tooltip.0"),
-                    Component.translatable("ctnh.multiblock.mega_lcr.tooltip.1")
+                    CTNHCommonTooltips.PERFECT_OVERCLOCK
+                    //Component.translatable("ctnh.multiblock.mega_lcr.tooltip.0"),
+                    //Component.translatable("ctnh.multiblock.mega_lcr.tooltip.1")
             )
             .register();
     public static final MultiblockMachineDefinition IV_CHEMICAL_GENERATOR = registerChemicalGenerator(
@@ -1617,7 +1626,7 @@ public class MultiblocksA {
                     .aisle("A###A", "BB@BB", "BBBBB", "#BDB#", "#BDB#", "#BDB#", "#BDB#", "#BDB#", "#BDB#", "#BDB#", "BBBBB", "CCCCC")
                     .where("A", Predicates.frames(GTMaterials.BlueAlloy))
                     .where("#", Predicates.any())
-                    .where("B", Predicates.blocks(CASING_ALUMINIUM_FROSTPROOF.get())
+                    .where("B", Predicates.blocks(CASING_ALUMINIUM_FROSTPROOF.get()).setMinGlobalLimited(100)
                             .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                             .or(abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
@@ -1644,11 +1653,10 @@ public class MultiblocksA {
                     .aisle("ACDCDCA", "A#EFE#A", "B#EGE#B", "A#EFE#A", "AADADAA", "#AAHAA#")
                     .aisle("#AA@AA#", "AABBBAA", "ABBBBBA", "AABBBAA", "#AAAAA#", "#######")
                     .where("#", Predicates.any())
-                    .where("A", Predicates.blocks(CASING_HSSE_STURDY.get())
-                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
-                            .or(abilities(PartAbility.MUFFLER).setExactLimit(1))
-                            .or(abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("A", Predicates.blocks(CASING_HSSE_STURDY.get()).setMinGlobalLimited(60)
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.autoAbilities(true, true, false))
+                    )
                     .where("B", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
                     .where("C", Predicates.blocks(CASING_PTFE_INERT.get()))
                     .where("D", Predicates.blocks(CTNHBlocks.CASING_OSMIRIDIUM.get()))
@@ -1836,7 +1844,7 @@ public class MultiblocksA {
                     .aisle("AAAAA", "AA#AA", "A###A", "#####", "#####", "#####")
                     .where("A", Predicates.blocks(CASING_INVAR_HEATPROOF.get()))
                     .where("#", Predicates.any())
-                    .where("B", Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get())
+                    .where("B", Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()).setMinGlobalLimited(60)
                             .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
@@ -1878,7 +1886,7 @@ public class MultiblocksA {
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
                     .where("B", Predicates.blocks(HEAT_VENT.get()))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .where("C", Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()))
+                    .where("C", Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()).setMinGlobalLimited(120))
                     .where("D", Predicates.frames(GTMaterials.Tungsten))
                     .where("E", Predicates.heatingCoils())
                     .where("F", Predicates.blocks(CASING_LAMINATED_GLASS.get()))

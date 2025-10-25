@@ -71,7 +71,7 @@ public class MultiblockHelper extends ComponentItem implements IInteractionItem 
                     String blockId = Block.toString().split("\\{|\\}")[1];
 
                     if (!legend.containsKey(blockId)) {
-                        if (blockId.equals("minecraft:air")) {
+                        if (blockId.equals("minecraft:air") || blockId.equals("minecraft:glass")) {
                             legend.put(blockId, (SYMBOLS.charAt(52)));
                         } else if (blockId.equals("minecraft:oak_log")) {
                             legend.put(blockId, (SYMBOLS.charAt(53)));

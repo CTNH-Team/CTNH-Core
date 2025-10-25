@@ -34,7 +34,7 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT);
 
     public static final GTRecipeType ASTRONOMICAL_OBSERVATORY = GTRecipeTypes.register("astronomical_observatory", GTRecipeTypes.ELECTRIC)
-            .setMaxIOSize(1, 0, 0, 0)
+            .setMaxIOSize(1, 1, 0, 0)
             .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT);
 
@@ -671,9 +671,11 @@ public class CTNHRecipeTypes {
             GTRecipeTypes.register("precision_assembly", GTRecipeTypes.ELECTRIC)
                     .setMaxIOSize(4, 1, 4, 0).setEUIO(IO.IN)
                     .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+                    .setMaxTooltips(4)
                     .setSound(GTSoundEntries.COOLING);
 
     public static void init() {
         CreateRecipeTypes.init();
+        //MIXER_RECIPES.setMaxIOSize(6, 1, 9, 1);
     }
 }

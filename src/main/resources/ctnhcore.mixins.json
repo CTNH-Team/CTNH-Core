@@ -15,7 +15,6 @@
     "createmetallurgy.CrucibleBlockEntityMixin",
     "createmetallurgy.FoundryBasinBlockEntityMixin",
     "gtceu.GTBlocksMixin",
-    "gtceu.GTItemMixin",
     "gtceu.GTOreByProductMixin",
     "gtceu.OreRecipeHandlerMixin",
     "gtceu.RecyclingRecipesMixin",

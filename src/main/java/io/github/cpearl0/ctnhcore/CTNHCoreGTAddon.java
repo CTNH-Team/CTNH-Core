@@ -93,6 +93,8 @@ public class CTNHCoreGTAddon implements IGTAddon {
         HyperRotorRecipes.registerAll(provider);
         PlatinumLine.init(provider);
         OrdinaryRecipes.init(provider);
+        AssemblyLineRecipes.init(provider);
+        ManaRecipes.init(provider);
         //移植配方
         NaquadahReactorRecipes.init(provider);
         DefaultRecipes.init(provider);
@@ -100,7 +102,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         FuelChain.init(provider);
         AdAstraRecipes.init(provider);
         NaquadahLine.init(provider);
-
+        LuvModifyRecipe.init(provider);
     }
 
     @Override

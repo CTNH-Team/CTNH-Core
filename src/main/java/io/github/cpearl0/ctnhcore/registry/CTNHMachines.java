@@ -11,6 +11,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
+import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
@@ -43,6 +44,7 @@ import java.util.function.BiFunction;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.capability.recipe.IO.OUT;
+import static com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties.IS_FORMED;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
@@ -111,6 +113,7 @@ public class CTNHMachines {
                     .langValue(GTValues.VNF[tier] + " Circuit Bus")
                     .rotationState(RotationState.ALL)
                     .abilities(CTNHPartAbility.CIRCUIT)
+                    .modelProperty(IS_FORMED, false)
                     .colorOverlayTieredHullModel(GTCEu.id("block/overlay/machine/overlay_pipe_in"), null, GTCEu.id("block/overlay/machine/" + OVERLAY_ITEM_HATCH))
                     .register(),
             GTMachineUtils.ALL_TIERS);
@@ -133,13 +136,34 @@ public class CTNHMachines {
     public static final MachineDefinition[] PERSONAL_COMPUTER = registerSimpleComputationMachines("personal_computer",
             CTNHRecipeTypes.PERSONAL_COMPUTER);
 
+
+    public static final MachineDefinition[] ASYNC_THREAD_HATCH = registerTieredMachines("async_thread_hatch",
+            AsynThreadHatchMachine::new,
+            (tier, builder) -> builder
+                    .langValue("Async Thread HATCH")
+                    .rotationState(RotationState.ALL)
+                    .abilities(CTNHPartAbility.THREAD_HATCH)
+                    .modelProperty(IS_FORMED, false)
+                    .modelProperty(GTMachineModelProperties.RECIPE_LOGIC_STATUS, RecipeLogic.Status.IDLE)
+                    .model(createWorkableTieredHullMachineModel(
+                            GTCEu.id("block/machines/parallel_hatch_mk5"))
+                            .andThen((ctx, prov, model) -> {
+                                model.addReplaceableTextures("bottom", "top", "side");
+                            }))
+                    .tooltips(Component.translatable("gtceu.part_sharing.disabled"))
+//                    .tooltips(Component.literal("配置以启用机器的多线程模式，基础消耗1点算力"),
+//                            Component.literal("每有一个线程启用线程保护，算力消耗x2"),
+//                            Component.literal("每有一个线程启用配方锁定，算力消耗x4")
+//                            )
+                    .register(),
+            LuV
+    );
+
     public static final MachineDefinition[] PARALLEL_HATCH = registerTieredMachines("parallel_hatch",
             ParallelHatchPartMachine::new,
             (tier, builder) -> builder
                     .langValue(switch (tier) {
-                        case UHV -> "Epic";
-                        case UEV -> "Epic";
-                        case UIV -> "Epic";
+                        case UHV, UEV, UIV -> "Epic";
                         case UXV -> "Legendary";
                         case OpV -> "Eternal";
                         case MAX -> "MAX";
@@ -147,13 +171,15 @@ public class CTNHMachines {
                     } + " Parallel Control Hatch")
                     .rotationState(RotationState.ALL)
                     .abilities(PartAbility.PARALLEL_HATCH)
-                    .modelProperty(RecipeLogic.STATUS_PROPERTY, RecipeLogic.Status.IDLE)
+                    .modelProperty(IS_FORMED, false)
+                    .modelProperty(GTMachineModelProperties.RECIPE_LOGIC_STATUS, RecipeLogic.Status.IDLE)
                     .model(createWorkableTieredHullMachineModel(
                             GTCEu.id("block/machines/parallel_hatch_mk" + (tier - 4)))
                             .andThen((ctx, prov, model) -> {
                                 model.addReplaceableTextures("bottom", "top", "side");
                             }))
-                    .tooltips(Component.translatable("gtceu.machine.parallel_hatch_mk" + tier + ".tooltip"))
+                    .tooltips(Component.translatable("gtceu.machine.parallel_hatch_mk" + tier + ".tooltip"),
+                            Component.translatable("gtceu.part_sharing.disabled"))
                     .register(),
             UHV, UEV, UIV, UXV, OpV, MAX);
     public static final MachineDefinition[] ENERGY_OUTPUT_HATCH_4A_LOWER = registerTieredMachines("energy_output_hatch_4a",
@@ -162,6 +188,7 @@ public class CTNHMachines {
                     .langValue(VNF[tier] + " 4A Dynamo Hatch")
                     .rotationState(RotationState.ALL)
                     .abilities(PartAbility.OUTPUT_ENERGY)
+                    .modelProperty(GTMachineModelProperties.RECIPE_LOGIC_STATUS, RecipeLogic.Status.IDLE)
                     .tooltips(Component.translatable("gtceu.universal.tooltip.voltage_out",
                                     FormattingUtil.formatNumbers(V[tier]), VNF[tier]),
                             Component.translatable("gtceu.universal.tooltip.amperage_out", 4),
