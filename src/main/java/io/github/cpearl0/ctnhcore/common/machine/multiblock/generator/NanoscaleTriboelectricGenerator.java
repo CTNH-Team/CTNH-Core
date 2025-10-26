@@ -39,7 +39,7 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
     public final NotifiableItemStackHandler machineStorage;
     @Persisted public int parallel=1024;
     @Persisted public double effencicy=1.0;
-    @Persisted public boolean is_consume=false;
+    @Persisted public double consumeChance=0.0;
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             NanoscaleTriboelectricGenerator.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     public NanoscaleTriboelectricGenerator(IMachineBlockEntity holder){
@@ -68,11 +68,11 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
     }
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
-        if(is_consume)
+        if(Math.random() < consumeChance)
         {
             consumeItem();
         }
-        is_consume=false;
+        consumeChance = 0.0;
         return super.beforeWorking(recipe);
     }
 
@@ -138,14 +138,12 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
             double efficiency = 0.8;
             int maxParallel = eutgetParallelAmount(zmachine, recipe, 1024);
             Item storageItem = zmachine.getMachineStorageItem().getItem();
-
+            zmachine.consumeChance = 0.0;
             // 检查材料是否在配置中，并更新效率
             if (materialEfficiencyMap.containsKey(storageItem)) {
                 double[] config = materialEfficiencyMap.get(storageItem);
                 efficiency = config[0];
-                if (Math.random() < (double) maxParallel / config[1]) {
-                    zmachine.is_consume=true;
-                }
+                zmachine.consumeChance = (double) maxParallel / config[1];
             }
 
 
