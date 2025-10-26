@@ -68,12 +68,13 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
     }
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
-        if(Math.random() < consumeChance)
+        boolean result = super.beforeWorking(recipe);
+        if(result && Math.random() < consumeChance)
         {
             consumeItem();
         }
         consumeChance = 0.0;
-        return super.beforeWorking(recipe);
+        return result;
     }
 
     public ItemStack getMachineStorageItem() {
