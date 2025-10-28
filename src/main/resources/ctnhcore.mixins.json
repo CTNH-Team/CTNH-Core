@@ -26,6 +26,8 @@
     "mc.MonsterMixin",
     "mc.WorldLoaderPackConfigMixin"
   ],
-  "client": [],
+  "client": [
+    "gtceu.ContentMixin"
+  ],
   "minVersion": "0.8"
 }
