@@ -7,7 +7,9 @@ import io.github.cpearl0.ctnhcore.registry.CTNHMultiblockMachines;
 import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
 
 public class EnglishLangHandler {
+    public static RegistrateLangProvider enLangProvider;
     public static void init(RegistrateLangProvider provider) {
+        enLangProvider = provider;
         LangHandler.replace(provider, CTNHMaterials.Moonstone.getUnlocalizedName(), "Moon Stone");
         LangHandler.replace(provider, CTNHMaterials.Marsstone.getUnlocalizedName(), "Mars Stone");
         LangHandler.replace(provider, CTNHMaterials.Venusstone.getUnlocalizedName(), "Venus Stone");

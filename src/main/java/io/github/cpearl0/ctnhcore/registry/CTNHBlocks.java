@@ -49,200 +49,203 @@ public class CTNHBlocks {
         REGISTRATE.creativeModeTab(() -> CTNHCreativeModeTabs.BLOCK);
     }
 
-    public static final BlockEntry<Block> CASING_REFLECT_LIGHT = createCasingBlock("reflect_light_casing",
-            CTNHCore.id("block/casings/reflect_light_casing"));
-    public static final BlockEntry<Block> ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL = createCasingBlock("advance_machine_casing_assembly_control",
-            CTNHCore.id("block/advance_machine_casing_assembly_control"));
-    public static final BlockEntry<Block> CASING_OSMIRIDIUM = createCasingBlock("osmiridium_casing",
-            CTNHCore.id("block/casings/osmiridium_casing"));
-    public static final BlockEntry<Block> CASING_TUNGSTENCU_DIAMOND_PLATING = createCasingBlock("tungstencu_diamond_plating_casing",
-            CTNHCore.id("block/casings/tungstencu_diamond_plating_casing"));
+    public static final BlockEntry<Block> CASING_REFLECT_LIGHT = createCasingBlock(
+            "reflect_light_casing", "反光机械方块", CTNHCore.id("block/casings/reflect_light_casing"));
+    public static final BlockEntry<Block> ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL = createCasingBlock(
+            "advance_machine_casing_assembly_control", "进阶线程控制器方块", CTNHCore.id("block/advance_machine_casing_assembly_control"));
+    public static final BlockEntry<Block> CASING_OSMIRIDIUM = createCasingBlock(
+            "osmiridium_casing", "铱锇合金机械方块", CTNHCore.id("block/casings/osmiridium_casing"));
+    public static final BlockEntry<Block> CASING_TUNGSTENCU_DIAMOND_PLATING = createCasingBlock(
+            "tungstencu_diamond_plating_casing", "W-Cu覆膜金刚石机械方块", CTNHCore.id("block/casings/tungstencu_diamond_plating_casing"));
 //    public static final BlockEntry<Block> ENERGETIC_PHOTOVOLTAIC_BLOCK = createCasingBlock("energetic_photovoltaic_block",
 //            CTNHCore.id("block/energetic_photovoltaic_block"));
 //    public static final BlockEntry<Block> PULSATING_PHOTOVOLTAIC_BLOCK = createCasingBlock("pulsating_photovoltaic_block",
 //            CTNHCore.id("block/pulsating_photovoltaic_block"));
 //    public static final BlockEntry<Block> VIBRANT_PHOTOVOLTAIC_BLOCK = createCasingBlock("vibrant_photovoltaic_block",
 //            CTNHCore.id("block/vibrant_photovoltaic_block"));
-    public static final BlockEntry<Block> ZENITH_CASING_BLOCK = createCasingBlock("zenith_casing",
-            CTNHCore.id("block/casings/zenith_casing"));
-    public static final BlockEntry<Block> CASING_NAQUADAH_BLOCK = createCasingBlock("naquadah_casing_block",
-            CTNHCore.id("block/casings/nq_casing"));
-    public static final BlockEntry<Block> CASING_NAQUADAH_ALLOY_BLOCK = createCasingBlock("naquadah_alloy_casing_block",
-            CTNHCore.id("block/casings/nq_alloy_casing"));
-    public static final BlockEntry<Block> CASING_NEUTRONIUM_ALLOY_BLOCK = createCasingBlock("neutronium_alloy_casing_block",
-            CTNHCore.id("block/casings/nq_neutronium_casing"));
-    public static final BlockEntry<Block> CASING_ANTIFREEZE_HEATPROOF_MACHINE = createCasingBlock("antifreeze_heatproof_machine_casing",
-            CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"));
-    public static final BlockEntry<Block> CASING_ADVANCED_HYPER = createCasingBlock("advanced_hyper_casing",
-            CTNHCore.id("block/casings/advanced_hyper_casing"));
-    public static final BlockEntry<Block> CASING_HYPER = createCasingBlock("hyper_casing",
-            CTNHCore.id("block/casings/hyper_casing"));
+    public static final BlockEntry<Block> ZENITH_CASING_BLOCK = createCasingBlock(
+            "zenith_casing", "天顶强化机械方块", CTNHCore.id("block/casings/zenith_casing"));
+    public static final BlockEntry<Block> CASING_NAQUADAH_BLOCK = createCasingBlock(
+            "naquadah_casing_block", "铿铀强化硅岩铕机械方块", CTNHCore.id("block/casings/nq_casing"));
+    public static final BlockEntry<Block> CASING_NAQUADAH_ALLOY_BLOCK = createCasingBlock(
+            "naquadah_alloy_casing_block", "三钛强化中子素硅岩合金机械方块", CTNHCore.id("block/casings/nq_alloy_casing"));
+    public static final BlockEntry<Block> CASING_NEUTRONIUM_ALLOY_BLOCK = createCasingBlock(
+            "neutronium_alloy_casing_block", "以太强化超能中子基岩合金钅达智能机械方块", CTNHCore.id("block/casings/nq_neutronium_casing"));
+    public static final BlockEntry<Block> CASING_ANTIFREEZE_HEATPROOF_MACHINE = createCasingBlock(
+            "antifreeze_heatproof_machine_casing", "等离子冷凝机械方块", CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"));
+    public static final BlockEntry<Block> CASING_ADVANCED_HYPER = createCasingBlock(
+            "advanced_hyper_casing", "暗物质强化超能硅岩机械方块", CTNHCore.id("block/casings/advanced_hyper_casing"));
+    public static final BlockEntry<Block> CASING_HYPER = createCasingBlock(
+            "hyper_casing", "黑钚强化硅岩合金机械方块", CTNHCore.id("block/casings/hyper_casing"));
     public static final BlockEntry<Block> CASING_SPACE_ELEVATOR_MECHANICAL = createCasingBlock(
-            "space_elevator_mechanical_casing", CTNHCore.id("block/space_elevator_mechanical_casing"));
+            "space_elevator_mechanical_casing", "太空电梯机械方块", CTNHCore.id("block/space_elevator_mechanical_casing"));
     public static final BlockEntry<Block> HIGH_GRADE_COKE_OVEN_BRICKS = createCasingBlock(
-            "high_strength_concrete", CTNHCore.id("block/high_grade_coke_oven_bricks"));
+            "high_strength_concrete", "高级焦炉砖", CTNHCore.id("block/high_grade_coke_oven_bricks"));
     public static final BlockEntry<Block> ADVANCE_MACHINE_CASING_GRATE = createCasingBlock(
-            "advance_machine_casing_grate", CTNHCore.id("block/advance_machine_casing_grate"));
+            "advance_machine_casing_grate", "进阶装配线格栅方块", CTNHCore.id("block/advance_machine_casing_grate"));
     public static final BlockEntry<Block> BLAZE_BLAST_FURNACE_CASING = createCasingBlock(
-            "blaze_blast_furnace_casing",CTNHCore.id("block/casings/blaze_blast_furnace_casing"));
+            "blaze_blast_furnace_casing","炽焱高炉机械外壳", CTNHCore.id("block/casings/blaze_blast_furnace_casing"));
     public static final BlockEntry<Block> MANA_STEEL_CASING = createCasingBlock(
-            "mana_steel_casing",CTNHCore.id("block/casings/mana_steel_casing"));
+            "mana_steel_casing","魔力钢机械外壳", CTNHCore.id("block/casings/mana_steel_casing"));
     public static final BlockEntry<Block> TERRA_STEEL_CASING = createCasingBlock(
-            "terra_steel_casing",CTNHCore.id("block/casings/terra_steel_casing"));
+            "terra_steel_casing","泰拉钢机械外壳", CTNHCore.id("block/casings/terra_steel_casing"));
     public static final BlockEntry<Block> ZENITH_EYE = createCasingBlock(
-            "zenith_eye",CTNHCore.id("block/zenith_eye"));
+            "zenith_eye","§5天顶之眼", CTNHCore.id("block/zenith_eye"));
     public static final BlockEntry<Block> FABRIC = createCasingBlock(
-            "fabric",CTNHCore.id("block/fabric"));
-    public static final BlockEntry<Block> NATURAL_ECOLOGICAL_SHELL_CASING = createCasingBlock("natural_ecological_shell_casing",
+            "fabric","魔力丝绸方块", CTNHCore.id("block/fabric"));
+    public static final BlockEntry<Block> NATURAL_ECOLOGICAL_SHELL_CASING = createCasingBlock(
+            "natural_ecological_shell_casing", "环保机械外壳",
             CTNHCore.id("block/casings/natural_ecological_shell_casing"));
     public static final BlockEntry<Block> REACTOR_CONDENSATION_BLOCK = createCasingBlock(
-            "reactor_condensation_block",CTNHCore.id("block/reactor_condensation_block"));
+            "reactor_condensation_block","反应堆冷凝方块", CTNHCore.id("block/reactor_condensation_block"));
     public static final BlockEntry<Block> ELEMENTIUM_CASING = createCasingBlock(
-            "elementium_casing",CTNHCore.id("block/casings/elementium_casing"));
+            "elementium_casing","源质钢机械外壳", CTNHCore.id("block/casings/elementium_casing"));
     public static final BlockEntry<Block> ALF_STEEL_CASING = createCasingBlock(
-            "alfsteel_casing",CTNHCore.id("block/casings/alfsteel_casing"));
+            "alfsteel_casing","精灵钢机械外壳", CTNHCore.id("block/casings/alfsteel_casing"));
     public static final BlockEntry<Block> ZENITH_CASING_GEARBOX = createCasingBlock(
-            "zenith_casing_gearbox",CTNHCore.id("block/zenith_casing_gearbox"));
+            "zenith_casing_gearbox","天顶强化魔力齿轮箱机械方块", CTNHCore.id("block/zenith_casing_gearbox"));
     public static final BlockEntry<Block> DEPTH_FORCE_FIELD_STABILIZING_CASING = createCasingBlock(
-            "depth_force_field_stabilizing_casing",CTNHCore.id("block/casings/depth_force_field_stabilizing_casing"));
-    public static final BlockEntry<Block> CASING_NAQUADAH_GEARBOX = createCasingBlock("naquadah_gearbox",
+            "depth_force_field_stabilizing_casing","深度力场稳定外壳", CTNHCore.id("block/casings/depth_force_field_stabilizing_casing"));
+    public static final BlockEntry<Block> CASING_NAQUADAH_GEARBOX = createCasingBlock("naquadah_gearbox","硅岩合金齿轮箱机械方块",
             CTNHCore.id("block/casings/gearbox/machine_casing_gearbox_naquadah"));
-    public static final BlockEntry<Block> BIO_REACTOR_CASING = createCasingBlock("bio_reactor_casing",
+    public static final BlockEntry<Block> BIO_REACTOR_CASING = createCasingBlock("bio_reactor_casing","生物反应器外壳",
             CTNHCore.id("block/casings/bio_reactor_casing"));
-    public static final BlockEntry<Block> ADVANCED_BIO_REACTOR_CASING = createCasingBlock("advanced_bio_reactor_casing",
+    public static final BlockEntry<Block> ADVANCED_BIO_REACTOR_CASING = createCasingBlock("advanced_bio_reactor_casing","高级生物反应器外壳",
             CTNHCore.id("block/casings/advanced_bio_reactor_casing"));
-    public static final BlockEntry<Block> ELEMENTIUM_PIPE_CASING = createCasingBlock("elementium_pipe_casing",
+    public static final BlockEntry<Block> ELEMENTIUM_PIPE_CASING = createCasingBlock("elementium_pipe_casing","源质钢管道机械方块",
             CTNHCore.id("block/casings/pipe/elementium_pipe_casing"));
-    public static final BlockEntry<Block> ELEMENTIUM_NORMAL_FLUID_PIPE = createCasingBlock("elementium_normal_fluid_pipe",
+    public static final BlockEntry<Block> ELEMENTIUM_NORMAL_FLUID_PIPE = createCasingBlock("elementium_normal_fluid_pipe","源质管道方块",
             CTNHCore.id("block/casings/pipe/elementium_normal_fluid_pipe"));
-    public static final BlockEntry<Block> CASING_MANASTEEL_GEARBOX = createCasingBlock("mana_steel_gearbox_casing",
+    public static final BlockEntry<Block> CASING_MANASTEEL_GEARBOX = createCasingBlock("mana_steel_gearbox_casing","魔力钢齿轮箱方块",
             CTNHCore.id("block/casings/gearbox/mana_steel_gearbox_casing"));
-    public static final BlockEntry<Block> QUASAR_ENERGY_STABILIZATION_CASING = createCasingBlock("quasar_energy_stabilization_casing",
+    public static final BlockEntry<Block> QUASAR_ENERGY_STABILIZATION_CASING = createCasingBlock("quasar_energy_stabilization_casing","类星体能量稳定机械外壳",
             CTNHCore.id("block/casings/quasar_energy_stabilization_casing"));
-    public static final BlockEntry<Block> SUPER_FREEZE_BLOCK = createCasingBlock("super_machine_casing_frost_proof",
+    public static final BlockEntry<Block> SUPER_FREEZE_BLOCK = createCasingBlock("super_machine_casing_frost_proof","超级冷冻外壳",
             CTNHCore.id("block/casings/super_machine_casing_frost_proof"));
 
-    public static final BlockEntry<Block> TWISTED_FUSION_CASING = createCasingBlock("twisted_fusion_casing",
+    public static final BlockEntry<Block> TWISTED_FUSION_CASING = createCasingBlock("twisted_fusion_casing","扭曲聚变外壳",
             CTNHCore.id("block/casings/twisted_fusion_casing"));
-    public static final BlockEntry<Block> ADVANCE_MACHINE_CASING_SOLID_STEEL = createCasingBlock("advance_machine_casing_solid_steel",
-            CTNHCore.id("block/casings/advance_machine_casing_solid_steel"));
-    public static final BlockEntry<Block> WIDESPEEDINGPIPE =createCasingBlock("widespeedingpipe",CTNHCore.id("block/widespeedingpipe"));
-    public static final BlockEntry<Block> STELLAR_RADIATION_ROUTER_CASING = createCasingBlock("stellar_radiation_router_casing",
-            CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"));
-    public static final BlockEntry<Block> CASING_SHIELDED_REACTOR = createCasingBlock("shielded_reactor_casing",
-            CTNHCore.id("block/casings/shielded_reactor_casing"));
-    public static final BlockEntry<Block> NEUTRONIUM_REINFORCED_TURBINE_CASING = createCasingBlock("neutronium_reinforced_turbine_casing",CTNHCore.id("block/casings/neutronium_reinforced_turbine_casing"));
-    public static final BlockEntry<Block> CASING_BLOOD = createCasingBlock("blood_casing",
-            CTNHCore.id("block/casings/blood_casing"));
-    public static final BlockEntry<Block> CASING_FORCE_FILED = createCasingBlock("force_field_casing",
-            CTNHCore.id("block/casings/force_field_casing"));
+    public static final BlockEntry<Block> ADVANCE_MACHINE_CASING_SOLID_STEEL = createCasingBlock(
+            "advance_machine_casing_solid_steel", "特种钢质外壳", CTNHCore.id("block/casings/advance_machine_casing_solid_steel"));
+    public static final BlockEntry<Block> WIDESPEEDINGPIPE =createCasingBlock(
+            "widespeedingpipe","广粒子加速器通道",CTNHCore.id("block/widespeedingpipe"));
+    public static final BlockEntry<Block> STELLAR_RADIATION_ROUTER_CASING = createCasingBlock(
+            "stellar_radiation_router_casing","恒星辐射分流方块", CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"));
+    public static final BlockEntry<Block> CASING_SHIELDED_REACTOR = createCasingBlock(
+            "shielded_reactor_casing","覆层核反应堆外壳", CTNHCore.id("block/casings/shielded_reactor_casing"));
+    public static final BlockEntry<Block> NEUTRONIUM_REINFORCED_TURBINE_CASING = createCasingBlock(
+            "neutronium_reinforced_turbine_casing","中子素强化涡轮外壳",CTNHCore.id("block/casings/neutronium_reinforced_turbine_casing"));
+    public static final BlockEntry<Block> CASING_BLOOD = createCasingBlock(
+            "blood_casing", "血染机械方块",CTNHCore.id("block/casings/blood_casing"));
+    public static final BlockEntry<Block> CASING_FORCE_FILED = createCasingBlock(
+            "force_field_casing", "力场领域机械方块",CTNHCore.id("block/casings/force_field_casing"));
 
     public static final BlockEntry<Block> PROCESS_MACHINE_CASING = createCasingBlock(
-        "process_machine_casing", CTNHCore.id("block/casings/solid/process_machine_casing"));
+        "process_machine_casing", "洁净机械方块",CTNHCore.id("block/casings/solid/process_machine_casing"));
 
     public static final BlockEntry<Block> RADIATION_PROOF_MACHINE_CASING = createCasingBlock(
-        "radiation_proof_machine_casing", CTNHCore.id("block/casings/solid/radiation_proof_machine_casing"));
+        "radiation_proof_machine_casing", "防辐射机械方块",CTNHCore.id("block/casings/solid/radiation_proof_machine_casing"));
 
     public static final BlockEntry<Block> FIELD_RESTRICTION_CASING = createCasingBlock(
-        "field_restriction_casing", CTNHCore.id("block/casings/solid/field_restriction_casing"));
+        "field_restriction_casing", "立场约束机械方块",CTNHCore.id("block/casings/solid/field_restriction_casing"));
 
     public static final BlockEntry<Block> CASING_POLYBENZIMIDAZOLE_PIPE = createCasingBlock(
-            "polybenzimidazole_pipe", CTNHCore.id("block/casings/pipe/polybenzimidazole_pipe"));
+            "polybenzimidazole_pipe", "聚苯并咪唑管道方块",CTNHCore.id("block/casings/pipe/polybenzimidazole_pipe"));
 
     public static final BlockEntry<Block> IRIDIUM_CASING = createCasingBlock(
-        "iridium_casing", CTNHCore.id("block/casings/solid/iridium_casing"));
+        "iridium_casing", "铱机械方块",CTNHCore.id("block/casings/solid/iridium_casing"));
 
     public static final BlockEntry<Block> ADVANCED_FILTER_CASING = createCasingBlock(
-            "advanced_filter_casing", CTNHCore.id("block/casings/solid/advanced_filter_casing"));
+            "advanced_filter_casing", "高级过滤器机械方块",CTNHCore.id("block/casings/solid/advanced_filter_casing"));
 
     public static final BlockEntry<Block> RUNE_CARRIER_BLOCK = createCasingBlock(
-            "rune_carrier_block", CTNHCore.id("block/casings/runictexture/rune_stone_0"));
+            "rune_carrier_block", "符文载体方块",CTNHCore.id("block/casings/runictexture/rune_stone_0"));
     public static final BlockEntry<RuneBlock> WINTER_RUNE_STONE = createRuneBlock(
-            "winter_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_1"));
+            "winter_rune_stone", "冬之符文石", CTNHCore.id("block/casings/runictexture/rune_stone_1"));
     public static final BlockEntry<RuneBlock> MANA_RUNE_STONE = createRuneBlock(
-            "mana_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_2"));
+            "mana_rune_stone", "魔力符文石", CTNHCore.id("block/casings/runictexture/rune_stone_2"));
     public static final BlockEntry<RuneBlock> SIN_GLUTTONY_RUNE_STONE = createRuneBlock(
-            "sin_gluttony_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_3"));
+            "sin_gluttony_rune_stone", "暴食符文石", CTNHCore.id("block/casings/runictexture/rune_stone_3"));
     public static final BlockEntry<RuneBlock> SIN_PRIDE_RUNE_STONE = createRuneBlock(
-            "sin_pride_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_4"));
+            "sin_pride_rune_stone", "傲慢符文石", CTNHCore.id("block/casings/runictexture/rune_stone_4"));
     public static final BlockEntry<RuneBlock> SIN_WRATH_RUNE_STONE = createRuneBlock(
-            "sin_wrath_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_5"));
+            "sin_wrath_rune_stone", "暴怒符文石", CTNHCore.id("block/casings/runictexture/rune_stone_5"));
     public static final BlockEntry<RuneBlock> FIRE_RUNE_STONE = createRuneBlock(
-            "fire_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_6"));
+            "fire_rune_stone", "火之符文石", CTNHCore.id("block/casings/runictexture/rune_stone_6"));
     public static final BlockEntry<RuneBlock> AUTUMN_RUNE_STONE = createRuneBlock(
-            "autumn_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_7"));
+            "autumn_rune_stone", "秋之符文石", CTNHCore.id("block/casings/runictexture/rune_stone_7"));
     public static final BlockEntry<RuneBlock> EARTH_RUNE_STONE = createRuneBlock(
-            "earth_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_8"));
+            "earth_rune_stone", "地之符文石", CTNHCore.id("block/casings/runictexture/rune_stone_8"));
     public static final BlockEntry<RuneBlock> SIN_GREED_RUNE_STONE = createRuneBlock(
-            "sin_greed_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_9"));
+            "sin_greed_rune_stone", "贪婪符文石", CTNHCore.id("block/casings/runictexture/rune_stone_9"));
     public static final BlockEntry<RuneBlock> SUMMER_RUNE_STONE = createRuneBlock(
-            "summer_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_10"));
+            "summer_rune_stone", "夏之符文石", CTNHCore.id("block/casings/runictexture/rune_stone_10"));
     public static final BlockEntry<RuneBlock> WIND_RUNE_STONE = createRuneBlock(
-            "wind_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_11"));
+            "wind_rune_stone", "风之符文石", CTNHCore.id("block/casings/runictexture/rune_stone_11"));
     public static final BlockEntry<RuneBlock> WATER_RUNE_STONE = createRuneBlock(
-            "water_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_12"));
+            "water_rune_stone", "水之符文石", CTNHCore.id("block/casings/runictexture/rune_stone_12"));
     public static final BlockEntry<RuneBlock> SIN_ENVY_RUNE_STONE = createRuneBlock(
-            "sin_envy_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_13"));
+            "sin_envy_rune_stone", "嫉妒符文石", CTNHCore.id("block/casings/runictexture/rune_stone_13"));
     public static final BlockEntry<RuneBlock> SIN_LUST_RUNE_STONE = createRuneBlock(
-            "sin_lust_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_14"));
+            "sin_lust_rune_stone", "欲望符文石", CTNHCore.id("block/casings/runictexture/rune_stone_14"));
     public static final BlockEntry<RuneBlock> SPRING_RUNE_STONE = createRuneBlock(
-            "spring_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_15"));
+            "spring_rune_stone", "春之符文石", CTNHCore.id("block/casings/runictexture/rune_stone_15"));
     public static final BlockEntry<RuneBlock> SIN_SLOTH_RUNE_STONE = createRuneBlock(
-            "sin_sloth_rune_stone", CTNHCore.id("block/casings/runictexture/rune_stone_16"));
+            "sin_sloth_rune_stone", "懒惰符文石", CTNHCore.id("block/casings/runictexture/rune_stone_16"));
     public static final BlockEntry<Block> RUNE_STONE_PERFECT = createCasingBlock(
-            "rune_stone_perfect", CTNHCore.id("block/casings/runictexture/rune_stone_perfect"));
+            "rune_stone_perfect", "完美的符文石", CTNHCore.id("block/casings/runictexture/rune_stone_perfect"));
     public static final BlockEntry<Block> RUNE_STONE_0 = createCasingBlock(
-            "rune_stone_0", CTNHCore.id("block/casings/runictexture/rune_stone_0"));
+            "rune_stone_0", "符文石0", CTNHCore.id("block/casings/runictexture/rune_stone_0"));
     public static final BlockEntry<RuneBlock> RUNE_STONE_1 = createRuneBlock(
-            "rune_stone_1", CTNHCore.id("block/casings/runictexture/rune_stone_1"));
+            "rune_stone_1", "符文石1", CTNHCore.id("block/casings/runictexture/rune_stone_1"));
     public static final BlockEntry<RuneBlock> RUNE_STONE_2 = createRuneBlock(
-            "rune_stone_2", CTNHCore.id("block/casings/runictexture/rune_stone_2"));
+            "rune_stone_2", "符文石2", CTNHCore.id("block/casings/runictexture/rune_stone_2"));
     public static final BlockEntry<RuneBlock> RUNE_STONE_3 = createRuneBlock(
-            "rune_stone_3", CTNHCore.id("block/casings/runictexture/rune_stone_3"));
+            "rune_stone_3", "符文石3", CTNHCore.id("block/casings/runictexture/rune_stone_3"));
     public static final BlockEntry<RuneBlock> RUNE_STONE_4 = createRuneBlock(
-            "rune_stone_4", CTNHCore.id("block/casings/runictexture/rune_stone_4"));
+            "rune_stone_4", "符文石4", CTNHCore.id("block/casings/runictexture/rune_stone_4"));
     public static final BlockEntry<RuneBlock> RUNE_STONE_5 = createRuneBlock(
-            "rune_stone_5", CTNHCore.id("block/casings/runictexture/rune_stone_5"));
+            "rune_stone_5", "符文石5", CTNHCore.id("block/casings/runictexture/rune_stone_5"));
     public static final BlockEntry<RuneBlock> RUNE_STONE_6 = createRuneBlock(
-            "rune_stone_6", CTNHCore.id("block/casings/runictexture/rune_stone_6"));
+            "rune_stone_6", "符文石6", CTNHCore.id("block/casings/runictexture/rune_stone_6"));
     public static final BlockEntry<RuneBlock> RUNE_STONE_7 = createRuneBlock(
-            "rune_stone_7", CTNHCore.id("block/casings/runictexture/rune_stone_7"));
+            "rune_stone_7", "符文石7", CTNHCore.id("block/casings/runictexture/rune_stone_7"));
     public static final BlockEntry<RuneBlock> RUNE_STONE_8 = createRuneBlock(
-            "rune_stone_8", CTNHCore.id("block/casings/runictexture/rune_stone_8"));
+            "rune_stone_8", "符文石8", CTNHCore.id("block/casings/runictexture/rune_stone_8"));
     public static final BlockEntry<RuneBlock> RUNE_STONE_9 = createRuneBlock(
-            "rune_stone_9", CTNHCore.id("block/casings/runictexture/rune_stone_9"));
+            "rune_stone_9", "符文石9", CTNHCore.id("block/casings/runictexture/rune_stone_9"));
     public static final BlockEntry<RuneBlock> RUNE_STONE_10 = createRuneBlock(
-            "rune_stone_10", CTNHCore.id("block/casings/runictexture/rune_stone_10"));
+            "rune_stone_10", "符文石10", CTNHCore.id("block/casings/runictexture/rune_stone_10"));
     public static final BlockEntry<RuneBlock> RUNE_STONE_11 = createRuneBlock(
-            "rune_stone_11", CTNHCore.id("block/casings/runictexture/rune_stone_11"));
+            "rune_stone_11", "符文石11", CTNHCore.id("block/casings/runictexture/rune_stone_11"));
     public static final BlockEntry<RuneBlock> RUNE_STONE_12 = createRuneBlock(
-            "rune_stone_12", CTNHCore.id("block/casings/runictexture/rune_stone_12"));
+            "rune_stone_12", "符文石12", CTNHCore.id("block/casings/runictexture/rune_stone_12"));
     public static final BlockEntry<RuneBlock> RUNE_STONE_13 = createRuneBlock(
-            "rune_stone_13", CTNHCore.id("block/casings/runictexture/rune_stone_13"));
+            "rune_stone_13", "符文石13", CTNHCore.id("block/casings/runictexture/rune_stone_13"));
     public static final BlockEntry<RuneBlock> RUNE_STONE_14 = createRuneBlock(
-            "rune_stone_14", CTNHCore.id("block/casings/runictexture/rune_stone_14"));
+            "rune_stone_14", "符文石14", CTNHCore.id("block/casings/runictexture/rune_stone_14"));
     public static final BlockEntry<RuneBlock> RUNE_STONE_15 = createRuneBlock(
-            "rune_stone_15", CTNHCore.id("block/casings/runictexture/rune_stone_15"));
+            "rune_stone_15", "符文石15", CTNHCore.id("block/casings/runictexture/rune_stone_15"));
     public static final BlockEntry<RuneBlock> RUNE_STONE_16 = createRuneBlock(
-            "rune_stone_16", CTNHCore.id("block/casings/runictexture/rune_stone_16"));
+            "rune_stone_16", "符文石16", CTNHCore.id("block/casings/runictexture/rune_stone_16"));
 
 
-    public static final BlockEntry<ActiveBlock> SUPERCOOLED_BLOCK = createActiveCasing("supercooled_bloock",
+    public static final BlockEntry<ActiveBlock> SUPERCOOLED_BLOCK = createActiveCasing("supercooled_bloock", "超级冷冻机械线圈",
             "block/flux/plasma_cooled_core");
-    public static final BlockEntry<ActiveBlock> RESERVOIR_COMPUTING_CASING = createActiveCasing("reservoir_computing_casing",
+    public static final BlockEntry<ActiveBlock> RESERVOIR_COMPUTING_CASING = createActiveCasing("reservoir_computing_casing", "高能突触机器外壳",
             "block/flux/reservoir_computing_casing");
-    public static final BlockEntry<ActiveBlock> SPACE_ELEVATOR_POWER_CORE = createActiveCasing("space_elevator_power_core",
+    public static final BlockEntry<ActiveBlock> SPACE_ELEVATOR_POWER_CORE = createActiveCasing("space_elevator_power_core", "太空电梯维持反应堆核心",
             "block/flux/space_elevator_power_core");
-    public static final BlockEntry<ActiveBlock> ANNIHILATE_CORE_MKI = createActiveCasing("annihilate_core_mki",
+    public static final BlockEntry<ActiveBlock> ANNIHILATE_CORE_MKI = createActiveCasing("annihilate_core_mki", "超级硅岩反应堆核心",
             "block/flux/annihilate_core_mk1");
-    public static final BlockEntry<ActiveBlock> ADVANCE_MACHINE_CASING_ASSEMBLY_LINE = createActiveCasing("advance_machine_casing_assembly_line",
+    public static final BlockEntry<ActiveBlock> ADVANCE_MACHINE_CASING_ASSEMBLY_LINE = createActiveCasing("advance_machine_casing_assembly_line", "进阶装配线外壳",
             "block/flux/advance_machine_casing_assembly_line");
 
-    public static  final BlockEntry<ActiveBlock> ARC_CELL = createActiveCasing("arc_cell","block/flux/arc_cell");
-    public static final BlockEntry<ActiveBlock> PLASMA_COOLED_CORE = createActiveCasing("plasma_cooled_core",
+    public static  final BlockEntry<ActiveBlock> ARC_CELL = createActiveCasing("arc_cell", "电弧发生器", "block/flux/arc_cell");
+    public static final BlockEntry<ActiveBlock> PLASMA_COOLED_CORE = createActiveCasing("plasma_cooled_core", "等离子交换热线圈方块",
             "block/flux/plasma_cooled_core");
     public static final BlockEntry<ActiveBlock> CASING_ULTIMATE_ENGINE_INTAKE = createActiveCasing(
-            "ultimate_engine_intake_casing", "block/variant/ultimate_engine_intake");
+            "ultimate_engine_intake_casing", "无尽引擎进气机械方块", "block/variant/ultimate_engine_intake");
 
     public static final BlockEntry<CoilBlock> COIL_ABYSALALLOY = createCoilBlock(CoilType.ABYSSALALLOY);
     public static final BlockEntry<CoilBlock> COIL_TITANSTEEL = createCoilBlock(CoilType.TITANSTEEL);
@@ -253,25 +256,27 @@ public class CTNHBlocks {
     public static final BlockEntry<CoilBlock> COIL_ULTRA_MANA= createCoilBlock(CoilType.ULTRA_MANA);
 
     public static final BlockEntry<Block> BRONZE_FRAMED_GLASS = createGlassCasingBlock(
-            "bronze_framed_glass",CTNHCore.id("block/casings/bronze_framed_glass"), () -> RenderType::cutoutMipped);
+            "bronze_framed_glass", "青铜镶边玻璃",CTNHCore.id("block/casings/bronze_framed_glass"), () -> RenderType::cutoutMipped);
 
     public static final BlockEntry<RotatedPillarBlock> TEST_CASING = createRotateCasing("test_machine_casing", "t1");
     public static final BlockEntry<RotatedPillarBlock> ATOMS_SPLIT_BLOCKS = createRotateCasing("atoms_split_blocks", "atomssplit");
     public static final BlockEntry<PhotovoltaicBlock> VIBRANT_PHOTOVOLTAIC_BLOCK = createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.VIBRANT_PHOTOVOLTAIC_BLOCK,
-            ("block/vibrant_photovoltaic_block"));
+            ("block/vibrant_photovoltaic_block"), "振动光伏方块");
     public static final BlockEntry<PhotovoltaicBlock> ENERGETIC_PHOTOVOLTAIC_BLOCK = createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.ENERGETIC_PHOTOVOLTAIC_BLOCK,
-            ("block/energetic_photovoltaic_block"));
+            ("block/energetic_photovoltaic_block"), "充能光伏方块");
     public static final BlockEntry<PhotovoltaicBlock> PULSATING_PHOTOVOLTAIC_BLOCK = createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.PULSATING_PHOTOVOLTAIC_BLOCK,
-            ("block/pulsating_photovoltaic_block"));
-    public static final BlockEntry<ActiveBlock> PV_COIL =createActiveCasing("pv_coil","block/flux/pv_coil");
+            ("block/pulsating_photovoltaic_block"), "脉冲光伏方块");
+    public static final BlockEntry<ActiveBlock> PV_COIL =createActiveCasing("pv_coil", "光伏线圈方块","block/flux/pv_coil");
 
     // Fireboxes
     public static final BlockEntry<ActiveBlock> NAQUADAH_FIREBOX = createFireboxCasing(CTNHBoilerFireboxType.NAQUADAH_FIREBOX);
 
 
-    public static final BlockEntry<PhotovoltaicBlock> PHOTON_PRESS_COND_BLOCK = createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.PHOTON_PRESS_COND_BLOCK,"block/photon_press_cond_block");
+    public static final BlockEntry<PhotovoltaicBlock> PHOTON_PRESS_COND_BLOCK = createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.PHOTON_PRESS_COND_BLOCK,
+            "block/photon_press_cond_block", "光压传导光伏方块");
     public static final BlockEntry<ForgeSpecialFlowerBlock> DEMON_FLYTRAP = REGISTRATE
             .block("demon_flytrap", properties -> new ForgeSpecialFlowerBlock(MobEffects.HARM, 20, BlockBehaviour.Properties.copy(Blocks.POPPY), () -> CTNHBlockEntities.DEMON_FLYTRAP.get()))
+            .cnlang("恶魔捕蝇草")
             .initialProperties(() -> Blocks.POPPY)
             .lang("Demon Flytrap")
             .blockstate(GTModels::createCrossBlockState)
@@ -282,6 +287,7 @@ public class CTNHBlocks {
             .register();
     public static final BlockEntry<ForgeSpecialFlowerBlock> BLOOD_ANTIARIS = REGISTRATE
             .block("blood_antiaris", properties -> new ForgeSpecialFlowerBlock(MobEffects.HARM, 20, BlockBehaviour.Properties.copy(Blocks.POPPY), () -> CTNHBlockEntities.BLOOD_ANTIARIS.get()))
+            .cnlang("见血封喉")
             .initialProperties(() -> Blocks.POPPY)
             .lang("Blood Antiaris")
             .blockstate(GTModels::createCrossBlockState)
@@ -328,26 +334,28 @@ public class CTNHBlocks {
         generateHyperRotorBlocks();
     }
     // Utils
-    public static BlockEntry<Block> createCasingBlock(String name, ResourceLocation texture) {
-        return createCasingBlock(name, Block::new, texture, () -> Blocks.IRON_BLOCK,
+    public static BlockEntry<Block> createCasingBlock(String name, String cnName, ResourceLocation texture) {
+        return createCasingBlock(name, cnName, Block::new, texture, () -> Blocks.IRON_BLOCK,
                 () -> RenderType::cutoutMipped);
     }
-    private static BlockEntry<Block> createGlassCasingBlock(String name, ResourceLocation texture, Supplier<Supplier<RenderType>> type) {
-        return createCasingBlock(name, GlassBlock::new, texture, () -> Blocks.GLASS, type);
+    private static BlockEntry<Block> createGlassCasingBlock(String name, String cnName, ResourceLocation texture, Supplier<Supplier<RenderType>> type) {
+        return createCasingBlock(name, cnName, GlassBlock::new, texture, () -> Blocks.GLASS, type);
     }
 
-    public static BlockEntry<RuneBlock> createRuneBlock(String name, ResourceLocation texture) {
-        return createRuneBlock(name, RuneBlock::new, texture, () -> Blocks.IRON_BLOCK,
+    public static BlockEntry<RuneBlock> createRuneBlock(String name, String cnName, ResourceLocation texture) {
+        return createRuneBlock(name, cnName, RuneBlock::new, texture, () -> Blocks.IRON_BLOCK,
                 () -> RenderType::cutoutMipped);
     }
 
     @SuppressWarnings("all")
     public static BlockEntry<RuneBlock> createRuneBlock(String name,
+                                                        String cnName,
                                                         NonNullFunction<BlockBehaviour.Properties, RuneBlock> blockSupplier,
                                                         ResourceLocation texture,
                                                         NonNullSupplier<? extends Block> properties,
                                                         Supplier<Supplier<RenderType>> type) {
         return REGISTRATE.block(name, blockSupplier)
+                .cnlang(cnName)
                 .initialProperties(properties)
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
                  .addLayer(type)
@@ -361,11 +369,13 @@ public class CTNHBlocks {
     }
 
     public static BlockEntry<Block> createCasingBlock(String name,
+                                                      String cnName,
                                                       NonNullFunction<BlockBehaviour.Properties, Block> blockSupplier,
                                                       ResourceLocation texture,
                                                       NonNullSupplier<? extends Block> properties,
                                                       Supplier<Supplier<RenderType>> type) {
         return REGISTRATE.block(name, blockSupplier)
+                .cnlang(cnName)
                 .initialProperties(properties)
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
                 .addLayer(type)
@@ -393,9 +403,10 @@ public class CTNHBlocks {
         return coilBlock;
     }
     @SuppressWarnings("all")
-    private static BlockEntry<PhotovoltaicBlock> createPhotovoltaicBlock(IPBData pbdata, String location) {
+    private static BlockEntry<PhotovoltaicBlock> createPhotovoltaicBlock(IPBData pbdata, String location, String cnName) {
         var photovoltaicblock = REGISTRATE.block("%s".formatted(pbdata.getPhotovoltaicName()),
                         p -> new PhotovoltaicBlock(p, pbdata))
+                .cnlang(cnName)
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
                 .addLayer(() -> RenderType::cutoutMipped)
@@ -427,8 +438,9 @@ public class CTNHBlocks {
 
 
     @SuppressWarnings("all")
-    public static BlockEntry<ActiveBlock> createActiveCasing(String name, String baseModelPath) {
+    public static BlockEntry<ActiveBlock> createActiveCasing(String name, String cnName, String baseModelPath) {
         return REGISTRATE.block(name, ActiveBlock::new)
+                .cnlang(cnName)
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .addLayer(() -> RenderType::cutoutMipped)
                 .blockstate(GTModels.createActiveModel(CTNHCore.id(baseModelPath)))

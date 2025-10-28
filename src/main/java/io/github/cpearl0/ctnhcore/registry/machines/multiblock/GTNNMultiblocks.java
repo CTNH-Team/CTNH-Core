@@ -36,6 +36,7 @@ public class GTNNMultiblocks {
     public static final MultiblockMachineDefinition CHEMICAL_PLANT = REGISTRATE.multiblock(
             "exxonmobil_chemical_plant",
             ChemicalPlantMachine::new)
+            .cnLangValue("埃克森美孚化工厂")
             .rotationState(RotationState.NON_Y_AXIS)
         .tooltips(Component.translatable("ctnh.multiblock.chemical_plant.tooltip.0"))
             .tooltips(Component.translatable("ctnh.multiblock.chemical_plant.tooltip.1"))
@@ -90,6 +91,7 @@ public class GTNNMultiblocks {
             .register();
 
     public static final MultiblockMachineDefinition NEUTRON_ACTIVATOR = REGISTRATE.multiblock("neutron_activator", NeutronActivatorMachine::new)
+            .cnLangValue("中子活化器")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.NEUTRON_ACTIVATOR_RECIPES)
             .tooltips(Component.translatable("ctnh.multiblock.neutron_activator.tooltip.0"))
@@ -126,6 +128,7 @@ public class GTNNMultiblocks {
             .register();
 
     public static final MultiblockMachineDefinition LARGE_DEHYDRATOR = REGISTRATE.multiblock("large_dehydrator", WorkableElectricMultiblockMachine::new)
+            .cnLangValue("大型脱水机")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.DEHYDRATOR_RECIPES)
             .recipeModifiers(
@@ -156,6 +159,7 @@ public class GTNNMultiblocks {
 
 
     public static final MultiblockMachineDefinition LARGE_NAQUADAH_REACTOR = REGISTRATE.multiblock("large_naquadah_reactor", LargeNaquadahReactorMachine::new)
+            .cnLangValue("大型硅岩发电堆")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.LARGE_NAQUADAH_REACTOR_RECIPES)
             .tooltips(Component.translatable("ctnh.multiblock.large_naquadah_reactor.tooltip.0"))

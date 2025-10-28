@@ -183,7 +183,7 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe){
         ServerLevel level = (ServerLevel) machine.getLevel();
         var newrecipe = GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK).applyModifier(machine,recipe);
-        if(machine instanceof SlaughterHouseMachine smachine) {
+        if(machine instanceof SlaughterHouseMachine smachine && newrecipe != null) {
             smachine.resetWeapon();
             smachine.resetMobList();
             if (!smachine.mobList.isEmpty()) {

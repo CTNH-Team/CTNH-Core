@@ -32,6 +32,7 @@ public class CTNHBlockInfo {
 //                .build()
 //                .register();
         ASTRAL_DIRT = REGISTRATE.block("astral_dirt", Block::new)
+                .cnlang("星辉泥土")
                 .initialProperties(() -> Blocks.DIRT)
                 .blockstate((ctx, prov) -> {
                     prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll("astral_dirt", CTNHCore.id("block/dirts/astral_dirt")));
@@ -42,6 +43,7 @@ public class CTNHBlockInfo {
                 .build()
                 .register();
         ASTRAL_GRASS_BLOCK = REGISTRATE.block("astral_grass_block", GrassBlock::new)
+                .cnlang("星辉草方块")
                 .initialProperties(() -> Blocks.GRASS_BLOCK)
                 .blockstate((ctx, prov) -> {
                     prov.simpleBlock(ctx.getEntry(), prov.models().cubeBottomTop("astral_grass_block", CTNHCore.id("block/dirts/astral_grass_block_side"), CTNHCore.id("block/dirts/astral_dirt"), CTNHCore.id("block/dirts/astral_grass_block_top")));

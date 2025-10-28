@@ -56,6 +56,7 @@ public class CTNHMachines {
     }
 
     public static final MachineDefinition HIGH_SPEED_PIPE_BLOCK = REGISTRATE.machine("high_speed_pipe_block", HighSpeedPipeBlock::new)
+            .cnLangValue("高速管道方块")
             .blockModel(GTModels.cubeAllModel(CTNHCore.id("block/speedingpipe")))
             .hasBER(false)
             .itemBuilder(item -> item.model((ctx, prov) -> prov.withExistingParent(ctx.getName(), CTNHCore.id("block/" + ctx.getName()))))
@@ -74,6 +75,7 @@ public class CTNHMachines {
 
     public static final MachineDefinition NEUTRON_SENSOR = REGISTRATE
             .machine("neutron_sensor", NeutronSensorMachine::new)
+            .cnLangValue("中子传感器")
             .langValue("Neutron Sensor")
             .tier(IV)
             .rotationState(RotationState.ALL)
@@ -84,6 +86,7 @@ public class CTNHMachines {
 
     public static final MachineDefinition CATALYST_HATCH = REGISTRATE
             .machine("catalyst_hatch", CatalystHatchPartMachine::new)
+            .cnLangValue("催化剂仓")
             .langValue("Catalyst Hatch")
             .tier(IV)
             .rotationState(RotationState.ALL)

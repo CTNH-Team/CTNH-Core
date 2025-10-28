@@ -15,7 +15,6 @@ public class CTNHCoreDatagen {
     public static void init() {
         CTNHRegistration.REGISTRATE.addDataGenerator(ProviderType.LANG, EnglishLangHandler::init);
         CTNHRegistration.REGISTRATE.addDataGenerator(CNLANG, ChineseLangHandler::init);
-        //CTNHRegistration.REGISTRATE.addDataGenerator(CNLANG, CTNHLangHandler::init);
         CTNHRegistration.REGISTRATE.addDataGenerator(ProviderType.BLOCK_TAGS, StoneTags::init);
         CTNHRegistration.REGISTRATE.addDataGenerator(ProviderType.FLUID_TAGS, FluidTypeTags::init);
     }
