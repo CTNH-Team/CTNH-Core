@@ -33,6 +33,16 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHItems.ADVANCED_RAM_CHIP;
 
 public class OrdinaryRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
+//磁选
+        CBRecipeBuilder.of(CTNHCore.id("calcite_electromagnetic"), GTRecipeTypes.ELECTROMAGNETIC_SEPARATOR_RECIPES)
+                .inputItems(dust,Calcite,3)
+                .outputItems(dust,CalciumCarbonate,1)
+                .outputItems(dust,Magnetite,1)
+                .outputItems(dust,Magnetite,1)
+                .duration(50)
+                .EUt(108)
+                .save(provider);
+
 //小化反
         CBRecipeBuilder.of(CTNHCore.id("fenton_reagent_mixing"), GTRecipeTypes.CHEMICAL_RECIPES)
                 .inputFluids(GTMaterials.Iron2Chloride, 1000)
@@ -57,7 +67,7 @@ public class OrdinaryRecipes {
                 .EUt(480)
                 .save(provider);
 
-        //大化反
+//大化反
         CBRecipeBuilder.of(CTNHCore.id("fenton_reagent_mixing"), GTRecipeTypes.LARGE_CHEMICAL_RECIPES)
                 .inputFluids(GTMaterials.Iron2Chloride, 1000)
                 .inputFluids(HydrogenPeroxide, 1000)
@@ -81,6 +91,7 @@ public class OrdinaryRecipes {
                 .duration(100)
                 .EUt(480)
                 .save(provider);
+
         //蒸馏室
         CBRecipeBuilder.of(CTNHCore.id("ferric_to_ferrous_chloride"), GTRecipeTypes.DISTILLERY_RECIPES)
                 .circuitMeta(5)
