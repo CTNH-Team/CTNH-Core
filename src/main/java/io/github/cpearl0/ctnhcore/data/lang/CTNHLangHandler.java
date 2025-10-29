@@ -10,8 +10,6 @@ import static io.github.cpearl0.ctnhcore.data.lang.old.EnglishLangHandler.enLang
 public class CTNHLangHandler {
     public static void init() {
         MachineLang.init();
-        MaterialLang.init();
-        RecipeLang.init();
     }
     public static void tsl(String key, String cn) {
         cnLangProvider.add(key, cn);

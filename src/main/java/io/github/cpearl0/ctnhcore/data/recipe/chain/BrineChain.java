@@ -22,6 +22,8 @@ import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlag
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
+
 public class BrineChain {
     public static void init(Consumer<FinishedRecipe> provider) {
         IodineChain(provider);
@@ -30,51 +32,59 @@ public class BrineChain {
     public static void init() {
         addFluid(GTMaterials.Bromine);
         addDust(GTMaterials.Iodine);
-        Seawater = new Material.Builder(CTNHCore.id("seawater"))
+        Seawater = REGISTRATE.material(CTNHCore.id("seawater"))
+                .cnlang("海水")
                 .liquid(new FluidBuilder().temperature(288))
                 .color(0x3B7BB0)
                 .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Cl?Br?I?[H2O]", false);
-        IodizedBrine = new Material.Builder(CTNHCore.id("iodized_brine"))
+        IodizedBrine = REGISTRATE.material(CTNHCore.id("iodized_brine"))
+                .cnlang("含碘盐水")
                 .fluid().color(0x525246)
                 .buildAndRegister()
                 .setFormula("I?", false);
-        IodineBrineMixture = new Material.Builder(CTNHCore.id("iodine_brine_mixture"))
+        IodineBrineMixture = REGISTRATE.material(CTNHCore.id("iodine_brine_mixture"))
+                .cnlang("浓缩碘盐水混合物")
                 .fluid()
                 .color(0x525234)
                 .buildAndRegister()
                 .setFormula("I?Cl", false);
 
         //  18059 Brominated Brine
-        BrominatedBrine = new Material.Builder(CTNHCore.id("brominated_brine"))
+        BrominatedBrine = REGISTRATE.material(CTNHCore.id("brominated_brine"))
+                .cnlang("含溴盐水")
                 .fluid()
                 .color(0xA9A990)
                 .buildAndRegister()
                 .setFormula("Br?", false);
         //  24039 Iodine Slurry
-        IodineSlurry = new Material.Builder(CTNHCore.id("iodine_slurry"))
+        IodineSlurry = REGISTRATE.material(CTNHCore.id("iodine_slurry"))
+                .cnlang("碘浆液")
                 .fluid()
                 .color(0x292923)
                 .buildAndRegister()
                 .setFormula("I?", false);
 
         //  24040 Acidic Brominated Brine
-        AcidicBrominatedBrine = new Material.Builder(CTNHCore.id("acidic_brominated_brine"))
+        AcidicBrominatedBrine = REGISTRATE.material(CTNHCore.id("acidic_brominated_brine"))
+                .cnlang("酸化含溴盐水")
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().attribute(FluidAttributes.ACID))
                 .color(0xC6A76F)
                 .buildAndRegister()
                 .setFormula("Br?(H2SO4)Cl", true);
 
         //  24041 Bromine Sulfate Solutions
-        BromineSulfateSolution = new Material.Builder(CTNHCore.id("bromine_sulfate_solution"))
+        BromineSulfateSolution = REGISTRATE.material(CTNHCore.id("bromine_sulfate_solution"))
+                .cnlang("硫酸溴溶液")
                 .fluid()
                 .color(0xCC9966)
                 .buildAndRegister()
                 .setFormula("H2SO4Br(H2O)Cl2", true);
 
         //  24042 Overheated Bromine Sulfate Gas
-        OverheatedBromineSulfateSolution = new Material.Builder(CTNHCore.id("overheated_bromine_sulfate_gas"))
+        OverheatedBromineSulfateSolution = REGISTRATE.material(CTNHCore.id("overheated_bromine_sulfate_gas"))
+                .cnlang("过热硫酸溴气")
                 .gas()
                 .color(0xC69337)
                 .iconSet(MaterialIconSet.DULL)
@@ -82,7 +92,8 @@ public class BrineChain {
                 .setFormula("H2SO4Br(H2O)2Cl2", true);
 
         //  24043 Wet Bromine
-        WetBromine = new Material.Builder(CTNHCore.id("wet_bromine"))
+        WetBromine = REGISTRATE.material(CTNHCore.id("wet_bromine"))
+                .cnlang("湿溴气")
                 .gas()
                 .color(0xDB5C5C)
                 .iconSet(MaterialIconSet.DULL)
@@ -90,7 +101,8 @@ public class BrineChain {
                 .setFormula("Br(H2O)", true);
 
         //  24044 Debrominated Water
-        DebrominatedWater = new Material.Builder(CTNHCore.id("debrominated_water"))
+        DebrominatedWater = REGISTRATE.material(CTNHCore.id("debrominated_water"))
+                .cnlang("脱溴盐水")
                 .fluid()
                 .color(0x24A3A3)
                 .components(GTMaterials.Hydrogen, 2, Oxygen, 1)

@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
+import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.moguang.ctnhbio.registry.CBItems;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.data.lang.Chinese.OreLang;
@@ -24,6 +25,7 @@ import java.lang.reflect.Field;
 import java.util.Map;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
+import static io.github.cpearl0.ctnhcore.data.lang.old.EnglishLangHandler.enLangProvider;
 
 public class ChineseLangHandler {
     public static RegistrateCNLangProvider cnLangProvider;
@@ -1072,7 +1074,112 @@ public class ChineseLangHandler {
         provider.add(MultiblocksC.CNC_ALLOY_SMELTER.getBlock(), "数控合金冶炼炉");
 
 
+        nuclearTranslation(NuclearMaterials.Thorium233, "钍233");
+        nuclearTranslation(NuclearMaterials.Thorium232, "钍232");
+        nuclearTranslation(NuclearMaterials.Protactinium233, "镤233");
+        nuclearTranslation(NuclearMaterials.Uranium233, "铀233");
+        nuclearTranslation(NuclearMaterials.Uranium234, "铀234");
+        nuclearTranslation(NuclearMaterials.Uranium239, "铀239");
+        nuclearTranslation(NuclearMaterials.Neptunium235, "镎235");
+        nuclearTranslation(NuclearMaterials.Neptunium237, "镎237");
+        nuclearTranslation(NuclearMaterials.Neptunium239, "镎239");
+        nuclearTranslation(NuclearMaterials.Plutonium240, "钋240");
+        nuclearTranslation(NuclearMaterials.Plutonium244, "钋244");
+        nuclearTranslation(NuclearMaterials.Plutonium245, "钋245");
+        nuclearTranslation(NuclearMaterials.Americium241, "镅241");
+        nuclearTranslation(NuclearMaterials.Americium243, "镅243");
+        nuclearTranslation(NuclearMaterials.Americium245, "镅245");
+        nuclearTranslation(NuclearMaterials.Curium245, "锔245");
+        nuclearTranslation(NuclearMaterials.Curium246, "锔246");
+        nuclearTranslation(NuclearMaterials.Curium247, "锔247");
+        nuclearTranslation(NuclearMaterials.Curium250, "锔250");
+        nuclearTranslation(NuclearMaterials.Curium251, "锔251");
+        nuclearTranslation(NuclearMaterials.Berkelium247, "锫247");
+        nuclearTranslation(NuclearMaterials.Berkelium249, "锫249");
+        nuclearTranslation(NuclearMaterials.Berkelium251, "锫251");
+        nuclearTranslation(NuclearMaterials.Californium251, "锎251");
+        nuclearTranslation(NuclearMaterials.Californium252, "锎252");
+        nuclearTranslation(NuclearMaterials.Californium253, "锎253");
+        nuclearTranslation(NuclearMaterials.Californium256, "锎256");
+        nuclearTranslation(NuclearMaterials.Californium257, "锎257");
+        nuclearTranslation(NuclearMaterials.Einsteinium253, "锿253");
+        nuclearTranslation(NuclearMaterials.Einsteinium255, "锿255");
+        nuclearTranslation(NuclearMaterials.Einsteinium257, "锿257");
+        nuclearTranslation(NuclearMaterials.Fermium257, "镄257");
+        nuclearTranslation(NuclearMaterials.Fermium258, "镄258");
+        nuclearTranslation(NuclearMaterials.Fermium259, "镄259");
+        nuclearTranslation(NuclearMaterials.Fermium262, "镄262");
+        nuclearTranslation(NuclearMaterials.Fermium263, "镄263");
+        nuclearTranslation(NuclearMaterials.Mendelevium259, "钔259");
+        nuclearTranslation(NuclearMaterials.Mendelevium261, "钔261");
+        nuclearTranslation(NuclearMaterials.Mendelevium263, "钔263");
+        translateMaterial(NuclearMaterials.CarbideUranium235, "碳化铀235");
+        translateMaterial(NuclearMaterials.OxideUranium235, "氧化铀235");
+        translateMaterial(NuclearMaterials.NitrideUranium235, "氮化铀235");
+        translateMaterial(NuclearMaterials.ZirconiumAlloyUranium235, "锆合金铀235");
+        translateMaterial(NuclearMaterials.CarbideUranium238, "碳化铀238");
+        translateMaterial(NuclearMaterials.OxideUranium238, "氧化铀238");
+        translateMaterial(NuclearMaterials.NitrideUranium238, "氮化铀238");
+        translateMaterial(NuclearMaterials.ZirconiumAlloyUranium238, "锆合金铀238");
+        nuclearTranslation2(GTMaterials.Plutonium239, "钚239");
+        nuclearTranslation2(GTMaterials.Plutonium241, "钚241");
 
+        translateOreVein("kaolinite_vein", "高岭石矿脉");
+        translateOreVein("wollastonite_vein", "白云石矿脉");
+        translateOreVein("galena_vein_tf", "方铅矿脉");
+        translateOreVein("sapphire_vein_tf", "蓝宝石矿脉");
+        translateOreVein("olivine_vein_tf", "橄榄石矿脉");
+        translateOreVein("nickel_vein_tf", "镍矿脉");
+        translateOreVein("diamond_vein_tf", "钻石矿脉");
+        translateOreVein("lapis_vein_tf", "青金石矿脉");
+        translateOreVein("molybdenite_vein_tf", "辉钼矿脉");
+        translateOreVein("coal_vein_tf", "煤矿脉");
+        translateOreVein("lubricant_vein_tf", "皂石矿脉");
+        translateOreVein("gold_vein_tf", "金矿脉");
+        translateOreVein("iron_vein_tf", "铁矿脉");
+        translateOreVein("apatite_vein_tf", "磷灰石矿脉");
+        translateOreVein("salts_vein_tf", "盐矿脉");
+        translateOreVein("cassiterite_vein_tf", "锡石矿脉");
+        translateOreVein("monazite_vein_n", "独居石矿脉");
+        translateOreVein("bauxite_vein", "铝土矿脉");
+        translateOreVein("ilmenite_vein", "钛铁矿脉");
+        translateOreVein("quartzite_vein", "石英岩矿脉");
+        translateOreVein("molybdenum_vein_ad", "钼矿脉");
+        translateOreVein("galena_vein_ad", "方铅矿脉");
+        translateOreVein("copper_vein_ad", "铜矿脉");
+        translateOreVein("cassiterite_vein_ad", "锡石矿脉");
+        translateOreVein("desh_vein_ad", "戴斯矿脉");
+        translateOreVein("ostrum_vein_ad", "紫金矿脉");
+        translateOreVein("arsenic_vein_ad", "砷矿脉");
+        translateOreVein("pitchblende_vein_ad", "沥青铀矿脉");
+        translateOreVein("tuff_uraninite_vein_ad", "晶质铀矿脉");
+        translateOreVein("scheelite_vein_ad", "白钨矿脉");
+        translateOreVein("sulfur_vein_ad", "硫矿脉");
+        translateOreVein("redstone_vein_ad", "红石矿脉");
+        translateOreVein("nickel_vein_ad", "镍矿脉");
+        translateOreVein("magnetite_vein_ad", "磁铁矿脉");
+        translateOreVein("iron_vein_ad", "铁矿脉");
+        translateOreVein("beryllium_vein_ad", "铍矿脉");
+        translateOreVein("tetrahedrite_vein_ad", "黝铜矿脉");
+        translateOreVein("salts_vein_ad", "盐矿脉");
+        translateOreVein("naquadah_vein_ad_mars", "硅岩矿脉");
+        translateOreVein("chromium_vein_ad", "铬矿脉");
+        translateOreVein("uranium238_vein_ad", "铀238矿脉");
+        translateOreVein("magnesite_vein_ad", "菱镁矿脉");
+        translateOreVein("platinum_vein_ad", "铂矿脉");
+        translateOreVein("lapis_vein_ad", "青金石矿脉");
+        translateOreVein("olivine_vein_ad", "橄榄石矿脉");
+        translateOreVein("manganese_vein_ad", "锰矿脉");
+        translateOreVein("lubricant_vein_ad", "皂石矿脉");
+        translateOreVein("saltpeter_vein_ad", "蓝石矿脉");
+        translateOreVein("calorite_vein_ad", "耐热合金矿脉");
+        translateOreVein("rutile_vein_ad", "金红石矿脉");
+        translateOreVein("iridium_vein_ad", "铱矿脉");
+        translateOreVein("pyrolusite_vein_ad", "软锰矿脉");
+        translateOreVein("naquadah_vein_ad", "硅岩矿脉");
+        translateOreVein("osmium_vein_ad", "锇矿脉");
+        translateOreVein("neutronium_vein_ad", "中子素矿脉");
+        translateOreVein("niobium_vein_ad", "铌矿脉");
     }
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,
                                @NotNull String value) {
@@ -1087,5 +1194,36 @@ public class ChineseLangHandler {
             throw new RuntimeException("Error replacing entry in datagen.", e);
         }
     }
-
+    private static void translateMaterial(Material material, String cn) {
+        if (material == null) return;
+        cnLangProvider.add(material.getUnlocalizedName(), cn);
+    }
+    public static void nuclearTranslation(Material material, String name) {
+        var nuclearProperty = material.getProperty(CTNHPropertyKeys.NUCLEAR);
+        translateMaterial(material, name);
+        translateMaterial(nuclearProperty.getCarbideMaterial(), "碳化" + name);
+        translateMaterial(nuclearProperty.getOxideMaterial(), "氧化" + name);
+        translateMaterial(nuclearProperty.getNitrideMaterial(), "氮化" + name);
+        translateMaterial(nuclearProperty.getZirconiumAlloyMaterial(), "锆合金" + name);
+        translateMaterial(GTMaterials.get(material.getName() + "_hexafluoride"), "六氟化" + name);
+        translateMaterial(GTMaterials.get(material.getName() + "_hexafluoride_steam_cracked"), "蒸汽裂解的六氟化" + name);
+    }
+    public static void nuclearTranslation2(Material material, String name) {
+        var nuclearProperty = material.getProperty(CTNHPropertyKeys.NUCLEAR);
+        translateMaterial(nuclearProperty.getCarbideMaterial(), "碳化" + name);
+        translateMaterial(nuclearProperty.getOxideMaterial(), "氧化" + name);
+        translateMaterial(nuclearProperty.getNitrideMaterial(), "氮化" + name);
+        translateMaterial(nuclearProperty.getZirconiumAlloyMaterial(), "锆合金" + name);
+        if(material.equals(GTMaterials.Plutonium239)){
+            translateMaterial(GTMaterials.get(material.getName() + "_239_hexafluoride"), "六氟化" + name);
+            translateMaterial(GTMaterials.get(material.getName() + "_239_hexafluoride_steam_cracked"), "蒸汽裂解的六氟化" + name);
+        }
+        else {
+            translateMaterial(GTMaterials.get(material.getName() + "_hexafluoride"), "六氟化" + name);
+            translateMaterial(GTMaterials.get(material.getName() + "_hexafluoride_steam_cracked"), "蒸汽裂解的六氟化" + name);
+        }
+    }
+    private static void translateOreVein(String key, String cn) {
+        cnLangProvider.add(key, cn);
+    }
 }

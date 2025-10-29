@@ -20,8 +20,6 @@ public class MachineLang {
         tsl("ctnh.recipe.condition.plant_casing.tier.stainless_steel", "不锈钢", "Stainless Steel");
         tsl("ctnh.recipe.condition.plant_casing.tier.titanium", "钛", "Titanium");
         tsl("ctnh.recipe.condition.plant_casing.tier.tungsten_steel", "钨钢", "Tungsten Steel");
-
-        tsl("gtceu.precision_assembly", "精密组装", "Precision Assembly");
     }
     public static void machineGui() {
         tsl(

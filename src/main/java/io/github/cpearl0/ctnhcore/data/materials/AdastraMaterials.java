@@ -11,6 +11,7 @@ import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlag
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.METALLIC;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class AdastraMaterials {
     public static void init() {
@@ -36,7 +37,8 @@ public class AdastraMaterials {
         addOre(Rutile);
         addOre(Tungsten);
         addOre(Chromium);
-        Desh = new Material.Builder(CTNHCore.id("desh"))
+        Desh = REGISTRATE.material(CTNHCore.id("desh"))
+                .cnlang("戴斯")
                 .ingot()
                 .fluid()
                 .ore()
@@ -46,7 +48,8 @@ public class AdastraMaterials {
                 .iconSet(METALLIC)
                 .appendFlags(EXT2_METAL, GENERATE_ROTOR, GENERATE_DENSE, GENERATE_SMALL_GEAR)
                 .buildAndRegister();
-        Ostrum = new Material.Builder(CTNHCore.id("ostrum"))
+        Ostrum = REGISTRATE.material(CTNHCore.id("ostrum"))
+                .cnlang("紫金")
                 .ingot()
                 .fluid()
                 .ore()
@@ -56,7 +59,8 @@ public class AdastraMaterials {
                 .iconSet(METALLIC)
                 .appendFlags(EXT2_METAL, GENERATE_ROTOR, GENERATE_DENSE, GENERATE_SMALL_GEAR)
                 .buildAndRegister();
-        Calorite = new Material.Builder(CTNHCore.id("calorite"))
+        Calorite = REGISTRATE.material(CTNHCore.id("calorite"))
+                .cnlang("耐热金属")
                 .ingot()
                 .fluid()
                 .ore()
