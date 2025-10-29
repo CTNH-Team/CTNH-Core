@@ -23,6 +23,7 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection.LEFT_TO_RIGHT;
 import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection.UP_TO_DOWN;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.KINETIC;
+import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class CreateRecipeTypes {
     public static void init() {
@@ -113,7 +114,8 @@ public class CreateRecipeTypes {
             }
         });
     }
-    public static final GTRecipeType MECHANICAL_PRESSOR_RECIPES = GTRecipeTypes.register("mechanical_pressor_recipes", KINETIC)
+    public static final GTRecipeType MECHANICAL_PRESSOR_RECIPES = REGISTRATE.recipeType("mechanical_pressor_recipes", KINETIC)
+            .cnlang("机械辊压")
             .setMaxIOSize(2,1,0,0)
             .setSlotOverlay(false, false, false, GuiTextures.BENDER_OVERLAY)
             .setSlotOverlay(false, false, true, GuiTextures.INT_CIRCUIT_OVERLAY)
@@ -125,7 +127,8 @@ public class CreateRecipeTypes {
                         group.getSize().height - 30, false, false));
             })
             .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
-    public static final GTRecipeType MECHANICAL_MIXER_RECIPES = GTRecipeTypes.register("mechanical_mixer_recipes", KINETIC)
+    public static final GTRecipeType MECHANICAL_MIXER_RECIPES = REGISTRATE.recipeType("mechanical_mixer_recipes", KINETIC)
+            .cnlang("机械搅拌")
             .setMaxIOSize(6,6,3,3)
             .setSlotOverlay(false, false, GuiTextures.DUST_OVERLAY)
             .setSlotOverlay(true, false, GuiTextures.DUST_OVERLAY)
@@ -137,7 +140,8 @@ public class CreateRecipeTypes {
                         group.getSize().height - 30, false, false));
             })
             .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
-    public static final GTRecipeType MECHANICAL_CENTRIFUGE_RECIPES = GTRecipeTypes.register("mechanical_centrifuge_recipes", KINETIC)
+    public static final GTRecipeType MECHANICAL_CENTRIFUGE_RECIPES = REGISTRATE.recipeType("mechanical_centrifuge_recipes", KINETIC)
+            .cnlang("机械离心")
             .setMaxIOSize(2,6,1,6)
             .setSlotOverlay(false, false, false, GuiTextures.EXTRACTOR_OVERLAY)
             .setSlotOverlay(false, false, true, GuiTextures.CANISTER_OVERLAY)
@@ -150,7 +154,8 @@ public class CreateRecipeTypes {
                         group.getSize().height - 30, false, false));
             })
             .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
-    public static final GTRecipeType MECHANICAL_SIFTER_RECIPES = GTRecipeTypes.register("mechanical_sifter_recipes", KINETIC)
+    public static final GTRecipeType MECHANICAL_SIFTER_RECIPES = REGISTRATE.recipeType("mechanical_sifter_recipes", KINETIC)
+            .cnlang("机械筛选")
             .setMaxIOSize(1,6,0,0)
             .setProgressBar(GuiTextures.PROGRESS_BAR_SIFT, UP_TO_DOWN)
             .setSound(new ExistingSoundEntry(SoundEvents.SAND_PLACE, SoundSource.BLOCKS))
@@ -160,7 +165,8 @@ public class CreateRecipeTypes {
                         group.getSize().height - 30, false, false));
             })
             .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
-    public static final GTRecipeType MECHANICAL_EXTRACTOR_RECIPES = GTRecipeTypes.register("mechanical_extractor_recipes", KINETIC)
+    public static final GTRecipeType MECHANICAL_EXTRACTOR_RECIPES = REGISTRATE.recipeType("mechanical_extractor_recipes", KINETIC)
+            .cnlang("机械提取")
             .setMaxIOSize(1,1,0,1)
             .setSlotOverlay(false, false, GuiTextures.EXTRACTOR_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, LEFT_TO_RIGHT)
@@ -170,7 +176,8 @@ public class CreateRecipeTypes {
                         group.getSize().height - 30, false, false));
             })
             .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
-    public static final GTRecipeType MECHANICAL_LATHE_RECIPES = GTRecipeTypes.register("mechanical_lathe_recipes", KINETIC)
+    public static final GTRecipeType MECHANICAL_LATHE_RECIPES = REGISTRATE.recipeType("mechanical_lathe_recipes", KINETIC)
+            .cnlang("机械车床")
             .setMaxIOSize(1,2,0,0)
             .setSlotOverlay(false, false, GuiTextures.PIPE_OVERLAY_1)
             .setSlotOverlay(true, false, false, GuiTextures.PIPE_OVERLAY_2)
@@ -182,7 +189,8 @@ public class CreateRecipeTypes {
                         group.getSize().height - 30, false, false));
             })
             .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
-    public static final GTRecipeType MECHANICAL_LASER_RECIPES = GTRecipeTypes.register("mechanical_laser_recipes", KINETIC)
+    public static final GTRecipeType MECHANICAL_LASER_RECIPES = REGISTRATE.recipeType("mechanical_laser_recipes", KINETIC)
+            .cnlang("机械激光")
             .setMaxIOSize(2,1,0,0)
             .setSlotOverlay(false, false, true, GuiTextures.LENS_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)

@@ -1,10 +1,17 @@
 package io.github.cpearl0.ctnhcore.data.lang.old;
 
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
+import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
+import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHMultiblockMachines;
 import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
+import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
+
+import static io.github.cpearl0.ctnhcore.data.lang.old.ChineseLangHandler.cnLangProvider;
 
 public class EnglishLangHandler {
     public static RegistrateLangProvider enLangProvider;
@@ -549,5 +556,146 @@ public class EnglishLangHandler {
 
         provider.add("ctnhcore.machine.high_performance_computer.tooltip.0", "§3Fetal OVERCLOCKING?");
         provider.add("ctnhcore.machine.high_performance_computer.tooltip.1", "§rProvider %d computation when energy is sufficient.");
+
+        nuclearTranslation(NuclearMaterials.Thorium233, "Thorium 233");
+        nuclearTranslation(NuclearMaterials.Thorium232, "Thorium 232");
+        nuclearTranslation(NuclearMaterials.Protactinium233, "Protactinium 233");
+        nuclearTranslation(NuclearMaterials.Uranium233, "Uranium 233");
+        nuclearTranslation(NuclearMaterials.Uranium234, "Uranium 234");
+        nuclearTranslation(NuclearMaterials.Uranium239, "Uranium 239");
+        nuclearTranslation(NuclearMaterials.Neptunium235, "Neptunium 235");
+        nuclearTranslation(NuclearMaterials.Neptunium237, "Neptunium 237");
+        nuclearTranslation(NuclearMaterials.Neptunium239, "Neptunium 239");
+        nuclearTranslation(NuclearMaterials.Plutonium240, "Plutonium 240");
+        nuclearTranslation(NuclearMaterials.Plutonium244, "Plutonium 244");
+        nuclearTranslation(NuclearMaterials.Plutonium245, "Plutonium 245");
+        nuclearTranslation(NuclearMaterials.Americium241, "Americium 241");
+        nuclearTranslation(NuclearMaterials.Americium243, "Americium 243");
+        nuclearTranslation(NuclearMaterials.Americium245, "Americium 245");
+        nuclearTranslation(NuclearMaterials.Curium245, "Curium 245");
+        nuclearTranslation(NuclearMaterials.Curium246, "Curium 246");
+        nuclearTranslation(NuclearMaterials.Curium247, "Curium 247");
+        nuclearTranslation(NuclearMaterials.Curium250, "Curium 250");
+        nuclearTranslation(NuclearMaterials.Curium251, "Curium 251");
+        nuclearTranslation(NuclearMaterials.Berkelium247, "Berkelium 247");
+        nuclearTranslation(NuclearMaterials.Berkelium249, "Berkelium 249");
+        nuclearTranslation(NuclearMaterials.Berkelium251, "Berkelium 251");
+        nuclearTranslation(NuclearMaterials.Californium251, "Californium 251");
+        nuclearTranslation(NuclearMaterials.Californium252, "Californium 252");
+        nuclearTranslation(NuclearMaterials.Californium253, "Californium 253");
+        nuclearTranslation(NuclearMaterials.Californium256, "Californium 256");
+        nuclearTranslation(NuclearMaterials.Californium257, "Californium 257");
+        nuclearTranslation(NuclearMaterials.Einsteinium253, "Einsteinium 253");
+        nuclearTranslation(NuclearMaterials.Einsteinium255, "Einsteinium 255");
+        nuclearTranslation(NuclearMaterials.Einsteinium257, "Einsteinium 257");
+        nuclearTranslation(NuclearMaterials.Fermium257, "Fermium 257");
+        nuclearTranslation(NuclearMaterials.Fermium258, "Fermium 258");
+        nuclearTranslation(NuclearMaterials.Fermium259, "Fermium 259");
+        nuclearTranslation(NuclearMaterials.Fermium262, "Fermium 262");
+        nuclearTranslation(NuclearMaterials.Fermium263, "Fermium 263");
+        nuclearTranslation(NuclearMaterials.Mendelevium259, "Mendelevium 259");
+        nuclearTranslation(NuclearMaterials.Mendelevium261, "Mendelevium 261");
+        nuclearTranslation(NuclearMaterials.Mendelevium263, "Mendelevium 263");
+        translateMaterial(NuclearMaterials.CarbideUranium235, "碳化Uranium  235");
+        translateMaterial(NuclearMaterials.OxideUranium235, "氧化Uranium  235");
+        translateMaterial(NuclearMaterials.NitrideUranium235, "氮化Uranium  235");
+        translateMaterial(NuclearMaterials.ZirconiumAlloyUranium235, "锆合金Uranium  235");
+        translateMaterial(NuclearMaterials.CarbideUranium238, "碳化Uranium  238");
+        translateMaterial(NuclearMaterials.OxideUranium238, "氧化Uranium  238");
+        translateMaterial(NuclearMaterials.NitrideUranium238, "氮化Uranium  238");
+        translateMaterial(NuclearMaterials.ZirconiumAlloyUranium238, "锆合金Uranium  238");
+        nuclearTranslation2(GTMaterials.Plutonium239, "Plutonium 239");
+        nuclearTranslation2(GTMaterials.Plutonium241, "Plutonium 241");
+
+        translateOreVein("kaolinite_vein");
+        translateOreVein("wollastonite_vein");
+        translateOreVein("galena_vein_tf");
+        translateOreVein("sapphire_vein_tf");
+        translateOreVein("olivine_vein_tf");
+        translateOreVein("nickel_vein_tf");
+        translateOreVein("diamond_vein_tf");
+        translateOreVein("lapis_vein_tf");
+        translateOreVein("molybdenite_vein_tf");
+        translateOreVein("coal_vein_tf");
+        translateOreVein("lubricant_vein_tf");
+        translateOreVein("gold_vein_tf");
+        translateOreVein("iron_vein_tf");
+        translateOreVein("apatite_vein_tf");
+        translateOreVein("salts_vein_tf");
+        translateOreVein("cassiterite_vein_tf");
+        translateOreVein("monazite_vein_n");
+        translateOreVein("bauxite_vein");
+        translateOreVein("ilmenite_vein");
+        translateOreVein("quartzite_vein");
+        translateOreVein("molybdenum_vein_ad");
+        translateOreVein("galena_vein_ad");
+        translateOreVein("copper_vein_ad");
+        translateOreVein("cassiterite_vein_ad");
+        translateOreVein("desh_vein_ad");
+        translateOreVein("ostrum_vein_ad");
+        translateOreVein("arsenic_vein_ad");
+        translateOreVein("pitchblende_vein_ad");
+        translateOreVein("tuff_uraninite_vein_ad");
+        translateOreVein("scheelite_vein_ad");
+        translateOreVein("sulfur_vein_ad");
+        translateOreVein("redstone_vein_ad");
+        translateOreVein("nickel_vein_ad");
+        translateOreVein("magnetite_vein_ad");
+        translateOreVein("iron_vein_ad");
+        translateOreVein("beryllium_vein_ad");
+        translateOreVein("tetrahedrite_vein_ad");
+        translateOreVein("salts_vein_ad");
+        translateOreVein("naquadah_vein_ad_mars");
+        translateOreVein("chromium_vein_ad");
+        translateOreVein("uranium238_vein_ad");
+        translateOreVein("magnesite_vein_ad");
+        translateOreVein("platinum_vein_ad");
+        translateOreVein("lapis_vein_ad");
+        translateOreVein("olivine_vein_ad");
+        translateOreVein("manganese_vein_ad");
+        translateOreVein("lubricant_vein_ad");
+        translateOreVein("saltpeter_vein_ad");
+        translateOreVein("calorite_vein_ad");
+        translateOreVein("rutile_vein_ad");
+        translateOreVein("iridium_vein_ad");
+        translateOreVein("pyrolusite_vein_ad");
+        translateOreVein("naquadah_vein_ad");
+        translateOreVein("osmium_vein_ad");
+        translateOreVein("neutronium_vein_ad");
+        translateOreVein("niobium_vein_ad");
+    }
+
+    private static void translateMaterial(Material material, String en) {
+        if (material == null) return;
+        var enName = FormattingUtil.toEnglishName(material.getName());
+        enLangProvider.add(material.getUnlocalizedName(), enName);
+    }
+    public static void nuclearTranslation(Material material, String name) {
+        var nuclearProperty = material.getProperty(CTNHPropertyKeys.NUCLEAR);
+        translateMaterial(material, name);
+        translateMaterial(nuclearProperty.getCarbideMaterial(), name + " Carbide");
+        translateMaterial(nuclearProperty.getOxideMaterial(), name + " Oxide");
+        translateMaterial(nuclearProperty.getNitrideMaterial(), name + " Nitride");
+        translateMaterial(nuclearProperty.getZirconiumAlloyMaterial(), name + " Zircon Alloy");
+        translateMaterial(GTMaterials.get(material.getName() + "_hexafluoride"), name + " Hexafluoride");
+        translateMaterial(GTMaterials.get(material.getName() + "_hexafluoride_steam_cracked"), "Steam-Cracked " + name + " Hexafluoride");
+    }
+    public static void nuclearTranslation2(Material material, String name) {
+        var nuclearProperty = material.getProperty(CTNHPropertyKeys.NUCLEAR);
+        translateMaterial(nuclearProperty.getCarbideMaterial(), name + " Carbide");
+        translateMaterial(nuclearProperty.getOxideMaterial(), name + " Oxide");
+        translateMaterial(nuclearProperty.getNitrideMaterial(), name + " Nitride");
+        translateMaterial(nuclearProperty.getZirconiumAlloyMaterial(), name + " Zircon Alloy");
+        if(material.equals(GTMaterials.Plutonium239)){
+            translateMaterial(GTMaterials.get(material.getName() + "_239_hexafluoride"), name + " Hexafluoride");
+            translateMaterial(GTMaterials.get(material.getName() + "_239_hexafluoride_steam_cracked"), "Steam-Cracked " + name + " Hexafluoride");
+        }
+        else {
+            translateMaterial(GTMaterials.get(material.getName() + "_hexafluoride"), name + " Hexafluoride");
+            translateMaterial(GTMaterials.get(material.getName() + "_hexafluoride_steam_cracked"), "Steam-Cracked " + name + " Hexafluoride");
+        }
+    }
+    private static void translateOreVein(String key) {
+        enLangProvider.add(key, FormattingUtil.toEnglishName(key));
     }
 }

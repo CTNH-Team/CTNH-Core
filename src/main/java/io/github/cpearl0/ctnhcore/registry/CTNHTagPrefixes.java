@@ -29,6 +29,7 @@ import java.util.List;
 
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
+import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.Plutonium;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.Uranium;
 import static io.github.cpearl0.ctnhcore.utils.ModUtils.AdAstraRL;
@@ -39,7 +40,8 @@ public class CTNHTagPrefixes {
     public static TagPrefix oreMossyHolystone;
     public static TagPrefix oreLivingrock;
     public static TagPrefix oreIcestone;
-    public static TagPrefix oreAstralStone = TagPrefix.oreTagPrefix("astral_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+    public static TagPrefix oreAstralStone = REGISTRATE.oreTagPrefix("astral_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+            .cnlang("星辉%s矿石")
             .registerOre(() -> AstralBlocks.ASTRAL_STONE.get().defaultBlockState(),
                     () -> CTNHMaterials.AstralStone,
                     BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(2.0F, 2.0F),
@@ -56,7 +58,9 @@ public class CTNHTagPrefixes {
     public static TagPrefix fuel;
     public static TagPrefix DepletedFuel;
     public static TagPrefix waste;
-    public static TagPrefix hyperRotor = new TagPrefix("hyper_rotor")
+    public static TagPrefix hyperRotor = REGISTRATE.tagPrefix("hyper_rotor")
+            .cnlang("超级%s转子")
+            .lang("%s Hyper Rotor")
             .itemTable(() -> CTNHMaterialBlocks.HYPER_ROTOR_BLOCKS)
             .defaultTagPath("hyper_rotors/%s")
             .unformattedTagPath("hyper_rotors")
@@ -72,48 +76,66 @@ public class CTNHTagPrefixes {
 
 
     public static void init() {
-        oreHolystone = TagPrefix.oreTagPrefix("holystone", BlockTags.MINEABLE_WITH_PICKAXE)
+        oreHolystone = REGISTRATE.oreTagPrefix("holystone", BlockTags.MINEABLE_WITH_PICKAXE)
+                .cnlang("圣石%s矿石")
+                .lang("Holystone %s Ore")
                 .registerOre(() -> AetherBlocks.HOLYSTONE.get().defaultBlockState().setValue(AetherBlockStateProperties.DOUBLE_DROPS, true),
                         () -> CTNHMaterials.Holystone,
                         BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(3.0F, 3.0F),
                         ResourceLocation.tryBuild(Aether.MODID, "block/holystone"), true, false, true);
-        oreMossyHolystone = TagPrefix.oreTagPrefix("mossy_holystone", BlockTags.MINEABLE_WITH_PICKAXE)
+        oreMossyHolystone = REGISTRATE.oreTagPrefix("mossy_holystone", BlockTags.MINEABLE_WITH_PICKAXE)
+                .cnlang("覆苔圣石%s矿石")
+                .lang("Mossy Holystone %s Ore")
                 .registerOre(() -> AetherBlocks.MOSSY_HOLYSTONE.get().defaultBlockState().setValue(AetherBlockStateProperties.DOUBLE_DROPS, true),
                         () -> CTNHMaterials.Holystone,
                         BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(3.0F, 3.0F),
                         ResourceLocation.tryBuild(Aether.MODID, "block/mossy_holystone"), true, false, true);
-        oreLivingrock = TagPrefix.oreTagPrefix("livingrock", BlockTags.MINEABLE_WITH_PICKAXE)
+        oreLivingrock = REGISTRATE.oreTagPrefix("livingrock", BlockTags.MINEABLE_WITH_PICKAXE)
+                .cnlang("活石%s矿石")
+                .lang("Livingrock %s Ore")
                 .registerOre(() -> BotaniaBlocks.livingrock.defaultBlockState(),
                         () -> CTNHMaterials.Livingrock,
                         BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(3.0F, 3.0F),
                         ResourceLocation.tryParse("botania:block/polished_livingrock"), false, false, true);
-        oreIcestone = TagPrefix.oreTagPrefix("icestone", BlockTags.MINEABLE_WITH_PICKAXE)
+        oreIcestone = REGISTRATE.oreTagPrefix("icestone", BlockTags.MINEABLE_WITH_PICKAXE)
+                .cnlang("冰石%s矿石")
+                .lang("Icestone %s Ore")
                 .registerOre(() -> AetherBlocks.ICESTONE.get().defaultBlockState(),
                         () -> CTNHMaterials.icestone,
                         BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(2.0F, 2.0F),
                         ResourceLocation.tryParse("aether:block/icestone"), false, false, true);
         if (LDLib.isModLoaded("ad_astra")) {
-            oreMoonStone = TagPrefix.oreTagPrefix("moon_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+            oreMoonStone = REGISTRATE.oreTagPrefix("moon_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+                    .cnlang("月岩%s矿石")
+                    .lang("Moon Stone %s Ore")
                     .registerOre(() -> ModBlocks.MOON_STONE.get().defaultBlockState(),
                             () -> CTNHMaterials.Moonstone,
                             BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(3, 3),
                             AdAstraRL("block/moon_stone"), false, false, true);
-            oreVenusStone = TagPrefix.oreTagPrefix("venus_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+            oreVenusStone = REGISTRATE.oreTagPrefix("venus_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+                    .cnlang("锃金岩%s矿石")
+                    .lang("Venus Stone %s Ore")
                     .registerOre(() -> ModBlocks.VENUS_STONE.get().defaultBlockState(),
                             () -> CTNHMaterials.Venusstone,
                             BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(3, 3),
                             AdAstraRL("block/venus_stone"), false, false, true);
-            oreMarsStone = TagPrefix.oreTagPrefix("mars_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+            oreMarsStone = REGISTRATE.oreTagPrefix("mars_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+                    .cnlang("深红岩%s矿石")
+                    .lang("Mars Stone %s Ore")
                     .registerOre(() -> ModBlocks.MARS_STONE.get().defaultBlockState(),
                             () -> CTNHMaterials.Marsstone,
                             BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(3, 3),
                             AdAstraRL("block/mars_stone"), false, false, true);
-            oreMercuryStone = TagPrefix.oreTagPrefix("mercury_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+            oreMercuryStone = REGISTRATE.oreTagPrefix("mercury_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+                    .cnlang("旱海岩%s矿石")
+                    .lang("Mercury Stone %s Ore")
                     .registerOre(() -> ModBlocks.MERCURY_STONE.get().defaultBlockState(),
                             () -> CTNHMaterials.Mercurystone,
                             BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(3, 3),
                             AdAstraRL("block/mercury_stone"), false, false, true);
-            oreGlacioStone = TagPrefix.oreTagPrefix("glacio_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+            oreGlacioStone = REGISTRATE.oreTagPrefix("glacio_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+                    .cnlang("坚冰岩%s矿石")
+                    .lang("Glacio Stone %s Ore")
                     .registerOre(() -> ModBlocks.GLACIO_STONE.get().defaultBlockState(),
                             () -> CTNHMaterials.Glaciostone,
                             BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(3, 3),
@@ -124,12 +146,16 @@ public class CTNHTagPrefixes {
             oreMercuryStone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Mercurystone, TagPrefix.dust.materialAmount()));
             oreGlacioStone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Glaciostone, TagPrefix.dust.materialAmount()));
         }
-        oreBlackStone = TagPrefix.oreTagPrefix("black_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+        oreBlackStone = REGISTRATE.oreTagPrefix("black_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+                .cnlang("嵌%s黑石")
+                .lang("Blackstone %s Ore")
                 .registerOre(Blocks.BLACKSTONE::defaultBlockState,
                         null,
                         BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(3, 3),
                         ResourceLocation.tryBuild("minecraft","block/blackstone"), false, false, true);
-        oreSoulSoil = TagPrefix.oreTagPrefix("soul_soil", BlockTags.MINEABLE_WITH_SHOVEL)
+        oreSoulSoil = REGISTRATE.oreTagPrefix("soul_soil", BlockTags.MINEABLE_WITH_SHOVEL)
+                .cnlang("含%s灵魂土")
+                .lang("Soul Soil %s Ore")
                 .registerOre(Blocks.SOUL_SOIL::defaultBlockState,
                         null,
                         BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(2, 2),
@@ -141,28 +167,36 @@ public class CTNHTagPrefixes {
         oreIcestone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.icestone, TagPrefix.dust.materialAmount()));
         oreAstralStone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.AstralStone, TagPrefix.dust.materialAmount()));
 
-        nuclear = new TagPrefix("nuclear")
+        nuclear = REGISTRATE.tagPrefix("nuclear")
+                .cnlang("%s")
+                .lang("%s")
                 .idPattern("%s")
                 .materialAmount(GTValues.M)
                 .materialIconType(CTNHMaterialIconType.NUCLEAR)
                 .unificationEnabled(true)
                 .generateItem(true)
                 .generationCondition(material -> material.hasProperty(CTNHPropertyKeys.NUCLEAR) || nuclears.contains(material));
-        fuel = new TagPrefix("fuel")
+        fuel = REGISTRATE.tagPrefix("fuel")
+                .cnlang("%s燃料")
+                .lang("%s Fuel")
                 .idPattern("%s_fuel")
                 .materialAmount(GTValues.M)
                 .materialIconType(new MaterialIconType("fuel"))
                 .unificationEnabled(true)
                 .generateItem(true)
                 .generationCondition(material -> material.hasProperty(CTNHPropertyKeys.NUCLEAR) || nuclears.contains(material));
-        DepletedFuel = new TagPrefix("depleted_fuel")
+        DepletedFuel = REGISTRATE.tagPrefix("depleted_fuel")
+                .cnlang("%s枯竭燃料")
+                .lang("%s Depleted Fuel")
                 .idPattern("depleted_%s_fuel")
                 .materialAmount(GTValues.M)
                 .materialIconType(new MaterialIconType("depleted_fuel"))
                 .unificationEnabled(true)
                 .generateItem(true)
                 .generationCondition(material -> material.hasProperty(CTNHPropertyKeys.NUCLEAR) || nuclears.contains(material));
-        waste = new TagPrefix("waste")
+        waste = REGISTRATE.tagPrefix("waste")
+                .cnlang("%s废料")
+                .lang("%s Waste")
                 .idPattern("%s_waste")
                 .materialAmount(GTValues.M)
                 .materialIconType(new MaterialIconType("waste"))
@@ -170,7 +204,9 @@ public class CTNHTagPrefixes {
                 .generateItem(true)
                 .generationCondition(material -> material.hasFlag(CTNHMaterialFlags.GENERATE_WASTE) || material.equals(Uranium) || material.equals(Plutonium));
 
-        catalyst = new TagPrefix("catalyst")
+        catalyst = REGISTRATE.tagPrefix("catalyst")
+                .cnlang("%s催化剂")
+                .lang("%s Catalyst")
                 .langValue("%s Catalyst")
                 .defaultTagPath("catalyst/%s")
                 .unformattedTagPath("catalyst")

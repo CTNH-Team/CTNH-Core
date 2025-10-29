@@ -922,7 +922,7 @@ public class MultiblocksB {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
-            .addUnderTooltip("ctnh.copyright.magic.info")
+
             .workableCasingModel(BotaniaRL("block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public final static MultiblockMachineDefinition ARC_GENERATOR = REGISTRATE.multiblock("arc_generator", holder -> new Arc_Generator(holder, 0.75, 1000))
@@ -2131,7 +2131,7 @@ public class MultiblocksB {
             .model(createWorkableCasingMachineModel(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"),
                     GTCEu.id("block/multiblock/generator/large_steam_turbine"))
                     .andThen(b -> b.addDynamicRenderer(() -> new ManaCondenserRender())))
-//            .addUnderTooltip("ctnh.copyright.magic.info")
+//
             .register();
     public final static MultiblockMachineDefinition NERUOMATRIXCOMPILER = REGISTRATE.multiblock("neruo_martix_compiler", NeuroMatrixCompiler::new)
             .rotationState(RotationState.NON_Y_AXIS)
@@ -2247,7 +2247,7 @@ public class MultiblocksB {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
-            .addUnderTooltip("ctnh.copyright.magic.info")
+
             .workableCasingModel((CTNHCore.id("block/casings/zenith_casing")), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
 //    public final static MultiblockMachineDefinition  QUANTUM_MANAGEMENT_CENTER = REGISTRATE.multiblock("quantum_management_center", CryotheumFreezer::new)

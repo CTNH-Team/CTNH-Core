@@ -17,6 +17,7 @@ import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlag
 import static com.gregtechceu.gtceu.common.data.GTElements.Pu;
 import static com.gregtechceu.gtceu.common.data.GTElements.U;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearElements.*;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.*;
 
@@ -25,7 +26,8 @@ public class NuclearMaterialsInfo {
     public static Set<Material> decayMaterial = new HashSet<>();
     public static void register() {
         //basic material
-        Uranium = new CTNHMaterialBuilder(GTCEu.id("uranium_raw"))
+        Uranium = REGISTRATE.material(GTCEu.id("uranium_raw"))
+                .cnlang("铀")
                 .ingot()
                 .ore()
                 .color(0x1c991c)
@@ -34,7 +36,8 @@ public class NuclearMaterialsInfo {
                 .iconSet(MaterialIconSet.SHINY)
                 .radioactiveHazard(1)
                 .register();
-        Plutonium = new CTNHMaterialBuilder(GTCEu.id("plutonium_raw"))
+        Plutonium = REGISTRATE.material(GTCEu.id("plutonium_raw"))
+                .cnlang("钚")
                 .ingot()
                 .ore()
                 .color(0x9e1616)
@@ -43,57 +46,68 @@ public class NuclearMaterialsInfo {
                 .iconSet(MaterialIconSet.SHINY)
                 .radioactiveHazard(1)
                 .register();
-        PlutoniumHexafluoride = new CTNHMaterialBuilder(GTCEu.id("plutonium_hexafluoride"))
+        PlutoniumHexafluoride = REGISTRATE.material(GTCEu.id("plutonium_hexafluoride"))
+                .cnlang("六氟化钋")
                 .gas()
                 .color(0x9e1616)
                 .flags(DISABLE_DECOMPOSITION)
                 .register();
-        ThoriumHexafluoride = new CTNHMaterialBuilder(GTCEu.id("thorium_hexafluoride"))
+        ThoriumHexafluoride = REGISTRATE.material(GTCEu.id("thorium_hexafluoride"))
+                .cnlang("六氟化钍")
                 .gas()
                 .color(Thorium.getMaterialRGB())
                 .flags(DISABLE_DECOMPOSITION)
                 .register();
-        ProtactiniumHexafluoride = new CTNHMaterialBuilder(GTCEu.id("protactinium_hexafluoride"))
+        ProtactiniumHexafluoride = REGISTRATE.material(GTCEu.id("protactinium_hexafluoride"))
+                .cnlang("六氟化镤")
                 .gas()
                 .color(Protactinium.getMaterialRGB())
                 .flags(DISABLE_DECOMPOSITION)
                 .register();
-        NeptuniumHexafluoride = new CTNHMaterialBuilder(GTCEu.id("neptunium_hexafluoride"))
+        NeptuniumHexafluoride = REGISTRATE.material(GTCEu.id("neptunium_hexafluoride"))
+                .cnlang("六氟化镎")
                 .gas()
                 .color(Neptunium.getMaterialRGB())
                 .flags(DISABLE_DECOMPOSITION)
                 .register();
-        AmericiumHexafluoride = new CTNHMaterialBuilder(GTCEu.id("americium_hexafluoride"))
+        AmericiumHexafluoride = REGISTRATE.material(GTCEu.id("americium_hexafluoride"))
+                .cnlang("六氟化镅")
                 .gas()
                 .color(Americium.getMaterialRGB())
                 .flags(DISABLE_DECOMPOSITION)
                 .register();
-        CuriumHexafluoride = new CTNHMaterialBuilder(GTCEu.id("curium_hexafluoride"))
+        CuriumHexafluoride = REGISTRATE.material(GTCEu.id("curium_hexafluoride"))
+                .cnlang("六氟化锔")
                 .gas()
                 .color(Curium.getMaterialRGB())
                 .flags(DISABLE_DECOMPOSITION)
                 .register();
-        BerkeliumHexafluoride = new CTNHMaterialBuilder(GTCEu.id("berkelium_hexafluoride"))
+        BerkeliumHexafluoride = REGISTRATE.material(GTCEu.id("berkelium_hexafluoride"))
+                .cnlang("六氟化锫")
                 .gas()
                 .color(Berkelium.getMaterialRGB())
                 .flags(DISABLE_DECOMPOSITION)
                 .register();
-        CaliforniumHexafluoride = new CTNHMaterialBuilder(GTCEu.id("californium_hexafluoride"))
+        CaliforniumHexafluoride = REGISTRATE.material(GTCEu.id("californium_hexafluoride"))
+                .cnlang("六氟化锎")
                 .gas()
                 .color(Californium.getMaterialRGB())
                 .flags(DISABLE_DECOMPOSITION)
                 .register();
-        EinsteiniumHexafluoride = new CTNHMaterialBuilder(GTCEu.id("einsteinium_hexafluoride"))
+        EinsteiniumHexafluoride = REGISTRATE.material(GTCEu.id("einsteinium_hexafluoride"))
+                .cnlang("六氟化锿")
                 .gas()
                 .color(Einsteinium.getMaterialRGB())
                 .flags(DISABLE_DECOMPOSITION)
                 .register();
-        FermiumHexafluoride = new CTNHMaterialBuilder(GTCEu.id("fermium_hexafluoride"))
+        FermiumHexafluoride = REGISTRATE.material(GTCEu.id("fermium_hexafluoride"))
+                .cnlang("六氟化镄")
                 .gas()
                 .color(Fermium.getMaterialRGB())
                 .flags(DISABLE_DECOMPOSITION)
                 .register();
-        MendeleviumHexafluoride = new CTNHMaterialBuilder(GTCEu.id("mendelevium_hexafluoride"))
+        MendeleviumHexafluoride = REGISTRATE.material(GTCEu.id("mendelevium_hexafluoride"))
+                .cnlang("六氟化钔")
                 .gas()
                 .color(Mendelevium.getMaterialRGB())
                 .flags(DISABLE_DECOMPOSITION)

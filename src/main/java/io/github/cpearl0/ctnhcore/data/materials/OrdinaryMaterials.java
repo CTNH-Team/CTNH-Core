@@ -12,6 +12,7 @@ import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlag
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.METALLIC;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.SHINY;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class OrdinaryMaterials {
     public static Material PYRROLE;
@@ -20,7 +21,8 @@ public class OrdinaryMaterials {
     public static Material BLUE_TITANIUM_ALLOY;
     public static Material BIO_FLEXIBLE;
     public static void init() {
-        PYRROLE = new Material.Builder(CTNHCore.id("pyrrole"))
+        PYRROLE = REGISTRATE.material(CTNHCore.id("pyrrole"))
+                .cnlang("吡咯")
                 .liquid(new FluidBuilder()
                         .color(0xD4AF37)
                         .temperature(398)
@@ -28,7 +30,8 @@ public class OrdinaryMaterials {
                 .components(Carbon, 4, Hydrogen, 5, Nitrogen, 1)
                 .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
-        FENTONS_REAGENT = new Material.Builder(CTNHCore.id("fentons_reagent"))
+        FENTONS_REAGENT = REGISTRATE.material(CTNHCore.id("fentons_reagent"))
+                .cnlang("芬顿试剂")
                 .liquid(new FluidBuilder()
                         .color(0x7FFFD4)
                         .temperature(303)
@@ -36,7 +39,8 @@ public class OrdinaryMaterials {
                 .components(Iron2Chloride, 1, HydrogenPeroxide, 1)
                 .flags(EXPLOSIVE)
                 .buildAndRegister();
-        POLYPYRROLE = new Material.Builder(CTNHCore.id("polypyrrole"))
+        POLYPYRROLE = REGISTRATE.material(CTNHCore.id("polypyrrole"))
+                .cnlang("聚吡咯")
                 .dust()
                 .ingot()
                 .liquid()
@@ -45,7 +49,8 @@ public class OrdinaryMaterials {
                 .components(Carbon, 4, Hydrogen, 3, Nitrogen, 1)
                 .cableProperties(128, 1, 1)
                 .buildAndRegister();
-        BLUE_TITANIUM_ALLOY = new Material.Builder(CTNHCore.id("blue_titanium_alloy"))
+        BLUE_TITANIUM_ALLOY = REGISTRATE.material(CTNHCore.id("blue_titanium_alloy"))
+                .cnlang("蓝钛")
                 .dust()
                 .ingot(5)
                 .liquid()
@@ -65,7 +70,8 @@ public class OrdinaryMaterials {
                         .vacuumStats(VA[LuV]))
                 .cableProperties(2048, 8, 16)
                 .buildAndRegister();
-        BIO_FLEXIBLE = new Material.Builder(CTNHCore.id("bio_flexible"))
+        BIO_FLEXIBLE = REGISTRATE.material(CTNHCore.id("bio_flexible"))
+                .cnlang("生物柔性材质")
                 .color(0x8AFF70)
                 //.components(POLYPYRROLE, 1, BLUE_TITANIUM_ALLOY, 1)
                 .flags(
