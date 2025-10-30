@@ -17,7 +17,9 @@ import org.jetbrains.annotations.NotNull;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
 
+@Prefix("recipe.condition.neutron_activator")
 public class NeutronActivatorCondition extends RecipeCondition {
     public static final Codec<NeutronActivatorCondition> CODEC = RecordCodecBuilder.create(instance ->
             instance.group(

@@ -110,12 +110,6 @@ public class CTNHMultiblockBuilder extends CTNHMultiblockMachineBuilder {
         return (CTNHMultiblockBuilder)super.itemBuilder(itemBuilder);
     }
 
-    public CTNHMultiblockBuilder recipeType(GTRecipeType recipeTypes) {
-        var translationKey = recipeTypes.registryName.getNamespace() + "." + recipeTypes.registryName.getPath();
-        this.tooltips(Component.translatable("ctnh.recipe_type.info", Component.translatable(translationKey)));
-        return (CTNHMultiblockBuilder)super.recipeType(recipeTypes);
-    }
-
     public CTNHMultiblockBuilder tier(int tier) {
         return (CTNHMultiblockBuilder)super.tier(tier);
     }

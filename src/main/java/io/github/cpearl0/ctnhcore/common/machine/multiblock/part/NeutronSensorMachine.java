@@ -19,9 +19,11 @@ import org.jetbrains.annotations.Nullable;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
 
 import java.util.List;
 
+@Prefix("gui.multiblock.neutron_sensor")
 public class NeutronSensorMachine extends TieredPartMachine {
     private ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             NeutronSensorMachine.class, TieredPartMachine.MANAGED_FIELD_HOLDER

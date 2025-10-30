@@ -1087,7 +1087,7 @@ public class CTNHMaterials {
 
         TagPrefix.ingot.setIgnored(GTMaterials.Neutronium, neutron_ingot);
         TagPrefix.nugget.setIgnored(GTMaterials.Neutronium, neutron_nugget);
-        TagPrefix.block.setIgnored(GTMaterials.Neutronium, neutron);
+        TagPrefix.block.setIgnored(GTMaterials.Neutronium, () -> neutron.get());
     }
 
     public static class MaterialIcons {
