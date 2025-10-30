@@ -121,4 +121,7 @@ dependencies {
     // lombok
     //compileOnly 'org.projectlombok:lombok:1.18.24'
     //annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    //Re-Avaritia
+    implementation("committee.nova.mods:avaritia-forge:${avaritia_version}")
 }

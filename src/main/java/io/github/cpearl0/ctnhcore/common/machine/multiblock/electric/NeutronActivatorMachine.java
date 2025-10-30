@@ -37,11 +37,16 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Prefix("info.multiblock.neutron_activator")
 public class NeutronActivatorMachine extends WorkableMultiblockMachine implements IFancyUIMachine, IDisplayUIMachine, IExplosionMachine {
     public ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(NeutronActivatorMachine.class, WorkableMultiblockMachine.MANAGED_FIELD_HOLDER);
     public static int K = 1000;
@@ -172,7 +177,15 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine implement
     //////////////////////////////////////
     //**********     GUI     ***********//
     //////////////////////////////////////
-
+    @CN("当前中子动能: %deV")
+    @EN("Current Neutron Kinetic Energy: %deV")
+    Lang ev;
+    @CN("高度: %s")
+    @EN("Height: %s")
+    Lang height_tooltip;
+    @CN("耗时: %s%%")
+    @EN("Efficiency: %s%%")
+    Lang efficiency;
     @Override
     public void addDisplayText(List<Component> textList) {
         IDisplayUIMachine.super.addDisplayText(textList);
@@ -201,18 +214,9 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine implement
                                 .setStyle(Style.EMPTY.withColor(ChatFormatting.RED))
                 );
             }
-            textList.add(Component.translatable("ctnh.multiblock.neutron_activator.info.ev", processNumber(eV)));
-            textList.add(
-                    Component.translatable(
-                            "ctnh.multiblock.neutron_activator.info.height", FormattingUtil.formatNumbers(height)
-                    )
-            );
-            textList.add(
-                    Component.translatable(
-                            "ctnh.multiblock.neutron_activator.info.efficiency",
-                            FormattingUtil.formatNumbers(getEfficiencyFactor() * 100)
-                    )
-            );
+            textList.add(ev.translate(processNumber(eV)));
+            textList.add(height_tooltip.translate(FormattingUtil.formatNumbers(height)));
+            textList.add(efficiency.translate(FormattingUtil.formatNumbers(getEfficiencyFactor() * 100)));
         }
         getDefinition().getAdditionalDisplay().accept(this, textList);
     }

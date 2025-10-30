@@ -20,11 +20,16 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
 
 import java.util.List;
 
 import static java.lang.Math.min;
 
+@Prefix("info.multiblock.chemical_plant")
 public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine implements IDynamicCasing {
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             ChemicalPlantMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
@@ -100,29 +105,33 @@ public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine impl
         return MANAGED_FIELD_HOLDER;
     }
 
+    @CN("§5并行: %s")
+    @EN("§bParallel: %s")
+    Lang coil;
+    @CN("§6提速: %s%%")
+    @EN("§6Speed: %s%%")
+    Lang parallel;
+    @CN("§e配方电压最大支持: %s")
+    @EN("§eRecipe voltage maximum support:\n%s")
+    Lang tier;
+    @CN("§6催化剂消耗概率: %s%%")
+    @EN("§6Catalyst consumption probability:\n%s%%")
+    Lang chance;
     @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
         if (isFormed()) {
             textList.add(
-                    Component.translatable(
-                            "ctnh.multiblock.chemical_plant.info.heating_coil", coilTier * 50
-                    )
+                    coil.translate(coilTier * 50)
             );
             textList.add(
-                    Component.translatable(
-                            "ctnh.multiblock.chemical_plant.info.parallel_level", pipeTier * 2
-                    )
+                    parallel.translate(pipeTier * 2)
             );
             textList.add(
-                    Component.translatable(
-                            "ctnh.multiblock.chemical_plant.info.tier", GTValues.VNF[voltageTier]
-                    )
+                    tier.translate(GTValues.VNF[voltageTier])
             );
             textList.add(
-                    Component.translatable(
-                            "ctnh.multiblock.chemical_plant.info.chance", getChance()
-                    )
+                    chance.translate(getChance())
             );
         }
     }

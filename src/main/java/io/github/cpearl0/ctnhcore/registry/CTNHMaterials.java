@@ -36,6 +36,8 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes.hyperRotor;
+import static committee.nova.mods.avaritia.init.registry.ModItems.*;
+import static committee.nova.mods.avaritia.init.registry.ModBlocks.*;
 import static wayoftime.bloodmagic.api.compat.EnumDemonWillType.CORROSIVE;
 
 public class CTNHMaterials {
@@ -1082,6 +1084,10 @@ public class CTNHMaterials {
         TagPrefix.block.setIgnored(Livingrock, () -> BotaniaBlocks.livingrock);
 
         hyperRotor.setIgnored(Neutronium);
+
+        TagPrefix.ingot.setIgnored(GTMaterials.Neutronium, neutron_ingot);
+        TagPrefix.nugget.setIgnored(GTMaterials.Neutronium, neutron_nugget);
+        TagPrefix.block.setIgnored(GTMaterials.Neutronium, () -> neutron.get());
     }
 
     public static class MaterialIcons {

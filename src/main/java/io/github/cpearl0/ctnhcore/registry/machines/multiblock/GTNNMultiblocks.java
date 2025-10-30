@@ -197,14 +197,5 @@ public class GTNNMultiblocks {
             .workableCasingModel(
             CTNHCore.id("block/casings/solid/radiation_proof_machine_casing"),
                 CTNHCore.id("block/multiblock/large_naquadah_reactor"))
-            .additionalDisplay((controller, components) -> {
-                if (controller instanceof LargeNaquadahReactorMachine largeNaquadahReactorMachine && controller.isFormed()) {
-                    components.add(
-                            Component.translatable(
-                                    "ctnh.multiblock.large_naquadah_reactor.info.power", largeNaquadahReactorMachine.getFinalPowerRate()
-                            )
-                    );
-                }
-            })
             .register();
 }

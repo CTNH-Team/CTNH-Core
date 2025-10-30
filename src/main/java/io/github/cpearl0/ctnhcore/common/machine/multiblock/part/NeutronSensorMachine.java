@@ -16,9 +16,14 @@ import com.lowdragmc.lowdraglib.utils.Position;
 import com.lowdragmc.lowdraglib.utils.Size;
 import net.minecraft.core.Direction;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
 
 import java.util.List;
 
+@Prefix("gui.multiblock.neutron_sensor")
 public class NeutronSensorMachine extends TieredPartMachine {
     private ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             NeutronSensorMachine.class, TieredPartMachine.MANAGED_FIELD_HOLDER
@@ -72,18 +77,23 @@ public class NeutronSensorMachine extends TieredPartMachine {
     //////////////////////////////////////
     //**********     GUI     ***********//
     //////////////////////////////////////
-
+    @CN("最小中子动能\n(%s)")
+    @EN("Min Neutron Kinetic Energy\n(%s)")
+    Lang energy_min;
+    @CN("最大中子动能\n(%s)")
+    @EN("Max Neutron Kinetic Energy\n(%s)")
+    Lang energy_max;
     @Override
     public Widget createUIWidget() {
         var group = new WidgetGroup(Position.ORIGIN, new Size(176, 112));
         group.addWidget(
                 new TextBoxWidget(
-                        8, 35, 65, List.of(LocalizationUtils.format("ctnh.gui.neutron_kinetic_energy.min", "KeV"))
+                        8, 35, 65, List.of(energy_min.translate("KeV").getString())
                 )
         );
         group.addWidget(
                 new TextBoxWidget(
-                        8, 80, 65, List.of(LocalizationUtils.format("ctnh.gui.neutron_kinetic_energy.max", "KeV"))
+                        8, 80, 65, List.of(energy_max.translate("KeV").getString())
                 )
         );
         group.addWidget(

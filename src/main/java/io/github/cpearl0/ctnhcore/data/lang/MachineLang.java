@@ -4,22 +4,8 @@ import static io.github.cpearl0.ctnhcore.data.lang.CTNHLangHandler.tsl;
 
 public class MachineLang {
     public static void init() {
-        machineInfo();
         machineTooltip();
         machineGui();
-        tsl(
-                "ctnh.recipe.condition.neutron_activator_condition_tooltip",
-                "最小中子动能:\n%s MeV\n最大中子动能:\n%s MeV",
-                "Min Neutron Kinetic Energy:\n%s MeV\nMax Neutron Kinetic Energy:\n%s MeV"
-        );
-        tsl("ctnh.recipe.condition.plant_casing.tooltip", "外壳等级: %s (%s)", "Casing: %s (%s)");
-        tsl("ctnh.recipe.condition.tier_casing.desc", "外壳等级：%s", "Casing Tier: %s");
-        tsl("ctnh.recipe.condition.plant_casing.tier.bronze", "青铜", "Bronze");
-        tsl("ctnh.recipe.condition.plant_casing.tier.steel", "钢", "Steel");
-        tsl("ctnh.recipe.condition.plant_casing.tier.aluminium", "铝", "Aluminium");
-        tsl("ctnh.recipe.condition.plant_casing.tier.stainless_steel", "不锈钢", "Stainless Steel");
-        tsl("ctnh.recipe.condition.plant_casing.tier.titanium", "钛", "Titanium");
-        tsl("ctnh.recipe.condition.plant_casing.tier.tungsten_steel", "钨钢", "Tungsten Steel");
     }
     public static void machineGui() {
         tsl(
@@ -33,21 +19,8 @@ public class MachineLang {
                 "Output: Normal\n\nSwitch to reverse redstone logic\nBy default, the sensor will emit a redstone signal when the neutron kinetic energy is between the set minimum and maximum values, and stop emitting a redstone signal when it is less than the minimum value."
         );
 
-        tsl("ctnh.gui.neutron_kinetic_energy.min", "最小中子动能\n(%s)", "Min Neutron Kinetic Energy\n(%s)");
-        tsl("ctnh.gui.neutron_kinetic_energy.max", "最大中子动能\n(%s)", "Max Neutron Kinetic Energy\n(%s)");
     }
-    public static void machineInfo() {
-        tsl("ctnh.multiblock.chemical_plant.info.parallel_level", "§5并行: %s", "§bParallel: %s");
-        tsl("ctnh.multiblock.chemical_plant.info.heating_coil", "§6提速: %s%%", "§6Speed: %s%%");
-        tsl("ctnh.multiblock.chemical_plant.info.tier", "§e配方电压最大支持: %s", "§eRecipe voltage maximum support:\n%s");
-        tsl("ctnh.multiblock.chemical_plant.info.chance", "§6催化剂消耗概率: %s%%", "§6Catalyst consumption probability:\n%s%%");
 
-        tsl("ctnh.multiblock.large_naquadah_reactor.info.power", "发电倍率: %s", "Power: %s");
-
-        tsl("ctnh.multiblock.neutron_activator.info.ev", "当前中子动能: %deV", "Current Neutron Kinetic Energy: %deV");
-        tsl("ctnh.multiblock.neutron_activator.info.height", "高度: %s", "Height: %s");
-        tsl("ctnh.multiblock.neutron_activator.info.efficiency", "耗时: %s%%", "Efficiency: %s%%");
-    }
     public static void machineTooltip() {
         tsl(
                 "ctnh.multiblock.multithread.status",
