@@ -7,6 +7,9 @@ import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeConditions;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 
 public class TierCasingCondition extends RecipeCondition {
     @Override
@@ -14,9 +17,12 @@ public class TierCasingCondition extends RecipeCondition {
         return null;
     }
 
+    @CN("外壳等级：%s")
+    @EN("Casing Tier: %s")
+    Lang tooltip;
     @Override
     public Component getTooltips() {
-        return null;
+        return tooltip.translate();
     }
 
     @Override

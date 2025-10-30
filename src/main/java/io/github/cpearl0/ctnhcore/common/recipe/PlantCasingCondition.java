@@ -14,6 +14,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.GsonHelper;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Math;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 
 import java.util.Map;
 
@@ -24,13 +27,31 @@ public class PlantCasingCondition extends RecipeCondition {
                     Codec.INT.fieldOf("plantCasing").forGetter(cond -> cond.tier)
             ).apply(instance, PlantCasingCondition::new)
     );
-    public static Map<Integer, String> CASING_TIERS = Map.of(
-            1, "ctnh.recipe.condition.plant_casing.tier.bronze",
-            2, "ctnh.recipe.condition.plant_casing.tier.steel",
-            3, "ctnh.recipe.condition.plant_casing.tier.aluminium",
-            4, "ctnh.recipe.condition.plant_casing.tier.stainless_steel",
-            5, "ctnh.recipe.condition.plant_casing.tier.titanium",
-            6, "ctnh.recipe.condition.plant_casing.tier.tungsten_steel"
+    @CN("青铜")
+    @EN("Bronze")
+    static Lang bronze;
+    @CN("钢")
+    @EN("Steel")
+    static Lang steel;
+    @CN("铝")
+    @EN("Aluminium")
+    static Lang aluminium;
+    @CN("不锈钢")
+    @EN("Stainless Steel")
+    static Lang stainless_steel;
+    @CN("钛")
+    @EN("Titanium")
+    static Lang titanium;
+    @CN("钨钢")
+    @EN("Tungsten Steel")
+    static Lang tungsten_steel;
+    public static Map<Integer, Lang> CASING_TIERS = Map.of(
+            1, bronze,
+            2, steel,
+            3, aluminium,
+            4, stainless_steel,
+            5, titanium,
+            6, tungsten_steel
             );
     private int tier;
     public PlantCasingCondition() {}
@@ -48,12 +69,12 @@ public class PlantCasingCondition extends RecipeCondition {
         return CTNHRecipeConditions.PLANT_CASING;
     }
 
+    @CN("外壳等级: %s (%s)")
+    @EN("Casing: %s (%s)")
+    Lang tooltip;
     @Override
     public Component getTooltips() {
-        return Component.translatable(
-                "ctnh.recipe.condition.plant_casing.tooltip",
-                tier, Component.translatable(CASING_TIERS.get(tier))
-        );
+        return tooltip.translate(tier, CASING_TIERS.get(tier).translate());
     }
 
     @Override

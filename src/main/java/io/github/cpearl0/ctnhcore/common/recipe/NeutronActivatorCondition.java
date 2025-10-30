@@ -14,6 +14,9 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.GsonHelper;
 import org.jetbrains.annotations.NotNull;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 
 public class NeutronActivatorCondition extends RecipeCondition {
     public static final Codec<NeutronActivatorCondition> CODEC = RecordCodecBuilder.create(instance ->
@@ -49,11 +52,14 @@ public class NeutronActivatorCondition extends RecipeCondition {
         return CTNHRecipeConditions.NEUTRON_ACTIVATOR;
     }
 
+    @CN("最小中子动能:\n%s MeV\n最大中子动能:\n%s MeV")
+    @EN("Min Neutron Kinetic Energy:\n%s MeV\nMax Neutron Kinetic Energy:\n%s MeV")
+    Lang tooltip;
     @Override
     public Component getTooltips() {
         var min = evRange % 10000;
         var max = evRange / 10000;
-        return Component.translatable("ctnh.recipe.condition.neutron_activator_condition_tooltip", min, max);
+        return tooltip.translate(min, max);
     }
 
     @Override

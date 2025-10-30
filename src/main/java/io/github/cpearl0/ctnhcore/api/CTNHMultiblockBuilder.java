@@ -110,30 +110,6 @@ public class CTNHMultiblockBuilder extends CTNHMultiblockMachineBuilder {
         return (CTNHMultiblockBuilder)super.itemBuilder(itemBuilder);
     }
 
-    public CTNHMultiblockBuilder recipeTypes(GTRecipeType... recipeTypes) {
-        if (recipeTypes.length == 0) {
-            return (CTNHMultiblockBuilder) super.recipeTypes(recipeTypes);
-        }
-        MutableComponent typeNameComponent = Component.empty();
-
-        for (int i = 0; i < recipeTypes.length; i++) {
-            if (recipeTypes[i] == null) {
-                continue;
-            }
-            Component typeComponent = Component.translatable(recipeTypes[i].registryName.toLanguageKey());
-
-            if (i > 0) {
-                typeNameComponent.append(Component.literal(", ")).append(typeComponent);
-            } else {
-                typeNameComponent.append(typeComponent);
-            }
-        }
-
-        // 使用正确的翻译键和参数
-        this.tooltips(Component.translatable("ctnh.recipe_type.info", typeNameComponent));
-        return (CTNHMultiblockBuilder) super.recipeTypes(recipeTypes);
-    }
-
     public CTNHMultiblockBuilder recipeType(GTRecipeType recipeTypes) {
         var translationKey = recipeTypes.registryName.getNamespace() + "." + recipeTypes.registryName.getPath();
         this.tooltips(Component.translatable("ctnh.recipe_type.info", Component.translatable(translationKey)));

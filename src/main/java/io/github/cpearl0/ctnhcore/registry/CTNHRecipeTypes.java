@@ -473,18 +473,18 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
-//    public static final GTRecipeType CT_ASSEMBLY_LINE = REGISTRATE.recipeType(GTCEu.id("ct_assembly_line"),ELECTRIC)
-//            .cnlang("").setMaxIOSize(6, 1, 3, 0)
-//            .setEUIO(IO.IN)
-//            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
-//            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-//            .setSound(GTSoundEntries.CHEMICAL);
-//    public static final GTRecipeType CT_ASSEMBLY_LINE_MAKER = REGISTRATE.recipeType(GTCEu.id("ct_assembly_line_maker"),ELECTRIC)
-//            .cnlang("").setMaxIOSize(6, 1, 0, 0)
-//            .setEUIO(IO.IN)
-//            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
-//            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-//            .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType CT_ASSEMBLY_LINE = REGISTRATE.recipeType(GTCEu.id("ct_assembly_line"),ELECTRIC)
+            .cnlang("机械装配线").setMaxIOSize(6, 1, 3, 0)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType CT_ASSEMBLY_LINE_MAKER = REGISTRATE.recipeType(GTCEu.id("ct_assembly_line_maker"),ELECTRIC)
+            .cnlang("机械部件装配线").setMaxIOSize(6, 1, 0, 0)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType PVB_RECIPE = REGISTRATE.recipeType(GTCEu.id("pvb_recipe"),ELECTRIC)
             .cnlang("物理气相沉积").setMaxIOSize(6, 6, 3, 3)
             .setEUIO(IO.IN)

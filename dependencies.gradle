@@ -121,4 +121,11 @@ dependencies {
     // lombok
     //compileOnly 'org.projectlombok:lombok:1.18.24'
     //annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    //Re-Avaritia
+    implementation("curse.maven:re-avaritia-623969:${avaritia_version}")
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.0-rc.3"))
+    jarJar(api("io.github.llamalad7:mixinextras-forge:0.5.0-rc.3")).version {
+        require("[0.5.0-rc.3,)")
+    }
 }

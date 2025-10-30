@@ -17,8 +17,12 @@ import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 
 import java.util.HashSet;
 import java.util.List;
@@ -112,8 +116,14 @@ public class LargeNaquadahReactorMachine extends WorkableElectricMultiblockMachi
             }
         }
     }
-
-
+    @CN("发电倍率: %s")
+    @EN("Power: %s")
+    Lang power;
+    @Override
+    public void addDisplayText(List<Component> textList) {
+        super.addDisplayText(textList);
+        textList.add(power.translate(getFinalPowerRate()));
+    }
     //////////////////////////////////////
     //******     RECIPE LOGIC    *******//
     //////////////////////////////////////
