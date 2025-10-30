@@ -56,7 +56,7 @@ public class NeutronActivatorCondition extends RecipeCondition {
 
     @CN("最小中子动能:\n%s MeV\n最大中子动能:\n%s MeV")
     @EN("Min Neutron Kinetic Energy:\n%s MeV\nMax Neutron Kinetic Energy:\n%s MeV")
-    Lang tooltip;
+    static Lang tooltip;
     @Override
     public Component getTooltips() {
         var min = evRange % 10000;

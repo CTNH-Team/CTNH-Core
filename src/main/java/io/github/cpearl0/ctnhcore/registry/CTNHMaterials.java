@@ -16,6 +16,7 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.utils.memoization.GTMemoizer;
 import earth.terrarium.adastra.common.registry.ModBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.*;
@@ -26,6 +27,9 @@ import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
 import vazkii.botania.common.block.BotaniaBlocks;
 import vazkii.botania.common.item.BotaniaItems;
+
+import java.util.Arrays;
+import java.util.function.Supplier;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
@@ -1087,7 +1091,7 @@ public class CTNHMaterials {
 
         TagPrefix.ingot.setIgnored(GTMaterials.Neutronium, neutron_ingot);
         TagPrefix.nugget.setIgnored(GTMaterials.Neutronium, neutron_nugget);
-        TagPrefix.block.setIgnored(GTMaterials.Neutronium, () -> neutron.get());
+        TagPrefix.block.setIgnored(GTMaterials.Neutronium, neutron);
     }
 
     public static class MaterialIcons {

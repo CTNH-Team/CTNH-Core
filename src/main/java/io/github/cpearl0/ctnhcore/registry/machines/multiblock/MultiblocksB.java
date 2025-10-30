@@ -65,6 +65,7 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.DUMMY_RECIPES;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
 import static com.hollingsworth.arsnouveau.setup.registry.BlockRegistry.*;
+import static committee.nova.mods.avaritia.init.registry.ModBlocks.neutron;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips.MANA_MACHINE;
@@ -396,7 +397,7 @@ public class MultiblocksB {
                     .where("M", Predicates.frames(BlueAlloy))
                     .where("N", Predicates.blocks(MATERIAL_BLOCKS.get(TagPrefix.block, Naquadria).get()))
                     .where("O", Predicates.frames(Neutronium))
-                    .where("P", Predicates.blocks(MATERIAL_BLOCKS.get(TagPrefix.block, Neutronium).get()))
+                    .where("P", Predicates.blocks(neutron.get()))
                     .where("Q", Predicates.blocks(DEPTH_FORCE_FIELD_STABILIZING_CASING.get()))
                     .where("R", Predicates.blocks(COIL_ULTRA_MANA.get()))
                     .where("S", Predicates.blocks(COIL_ULTRA_MANA.get()))
@@ -873,7 +874,7 @@ public class MultiblocksB {
                     )
                     .where("D", Predicates.blocks(WIDESPEEDINGPIPE.get()))
                     .where("E", Predicates.controller(Predicates.blocks(definition.get())))
-                    .where("F", Predicates.blocks(MATERIAL_BLOCKS.get(TagPrefix.block, Neutronium).get()))
+                    .where("F", Predicates.blocks(neutron.get()))
                     .where("G", Predicates.blocks(HERMETIC_CASING_UHV.get()))
                     .where("H", Predicates.blocks(MACHINE_CASING_UHV.get()))
                     .where("I", Predicates.blocks(SUPERCONDUCTING_COIL.get()))
@@ -1199,7 +1200,7 @@ public class MultiblocksB {
                             .or(Predicates.abilities(PartAbility.INPUT_ENERGY)))
                     .where("E", Predicates.blocks(WIDESPEEDINGPIPE.get()))
                     .where("F", Predicates.blocks(MACHINE_CASING_ZPM.get()))
-                    .where("G", Predicates.blocks(MATERIAL_BLOCKS.get(TagPrefix.block, Neutronium).get()))
+                    .where("G", Predicates.blocks(neutron.get()))
                     .where("H", Predicates.blocks(HERMETIC_CASING_ZPM.get()))
                     .where("I", Predicates.blocks(DEPTH_FORCE_FIELD_STABILIZING_CASING.get()))
                     .where("J", Predicates.blocks(FUSION_GLASS.get()))
