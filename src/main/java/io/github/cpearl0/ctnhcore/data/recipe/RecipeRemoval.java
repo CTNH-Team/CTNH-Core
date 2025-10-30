@@ -42,7 +42,9 @@ public class RecipeRemoval {
                 //HPCA
                 "gtceu:assembly_line/high_performance_computing_array",
                 //凯金线圈
-                "gtceu:assembler/coil_trinium"
+                "gtceu:assembler/coil_trinium",
+                //模拟室
+                "hostilenetworks:sim_chamber"
 
         };
 
