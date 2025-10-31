@@ -12,8 +12,8 @@
       "model": {
         "parent": "gtceu:block/casings/voltage/luv",
         "textures": {
-          "overlay_front": "gtceu:block/machines/parallel_hatch_mk5/overlay_front",
-          "overlay_front_emissive": "gtceu:block/machines/parallel_hatch_mk5/overlay_front_emissive"
+          "overlay_front": "ctnhcore:block/machines/thread_hatch/overlay_front",
+          "overlay_front_emissive": "ctnhcore:block/machines/thread_hatch/overlay_front_emissive"
         }
       }
     },
@@ -21,8 +21,8 @@
       "model": {
         "parent": "gtceu:block/casings/voltage/luv",
         "textures": {
-          "overlay_front": "gtceu:block/machines/parallel_hatch_mk5/overlay_front",
-          "overlay_front_emissive": "gtceu:block/machines/parallel_hatch_mk5/overlay_front_emissive"
+          "overlay_front": "ctnhcore:block/machines/thread_hatch/overlay_front",
+          "overlay_front_emissive": "ctnhcore:block/machines/thread_hatch/overlay_front_emissive"
         }
       }
     },
@@ -30,8 +30,8 @@
       "model": {
         "parent": "gtceu:block/casings/voltage/luv",
         "textures": {
-          "overlay_front": "gtceu:block/machines/parallel_hatch_mk5/overlay_front_active",
-          "overlay_front_emissive": "gtceu:block/machines/parallel_hatch_mk5/overlay_front_active_emissive"
+          "overlay_front": "ctnhcore:block/machines/thread_hatch/overlay_front_active",
+          "overlay_front_emissive": "ctnhcore:block/machines/thread_hatch/overlay_front_active_emissive"
         }
       }
     },
@@ -39,8 +39,8 @@
       "model": {
         "parent": "gtceu:block/casings/voltage/luv",
         "textures": {
-          "overlay_front": "gtceu:block/machines/parallel_hatch_mk5/overlay_front_active",
-          "overlay_front_emissive": "gtceu:block/machines/parallel_hatch_mk5/overlay_front_active_emissive"
+          "overlay_front": "ctnhcore:block/machines/thread_hatch/overlay_front_active",
+          "overlay_front_emissive": "ctnhcore:block/machines/thread_hatch/overlay_front_active_emissive"
         }
       }
     },
@@ -48,8 +48,8 @@
       "model": {
         "parent": "gtceu:block/casings/voltage/luv",
         "textures": {
-          "overlay_front": "gtceu:block/machines/parallel_hatch_mk5/overlay_front",
-          "overlay_front_emissive": "gtceu:block/machines/parallel_hatch_mk5/overlay_front_emissive"
+          "overlay_front": "ctnhcore:block/machines/thread_hatch/overlay_front",
+          "overlay_front_emissive": "ctnhcore:block/machines/thread_hatch/overlay_front_emissive"
         }
       }
     },
@@ -57,8 +57,8 @@
       "model": {
         "parent": "gtceu:block/casings/voltage/luv",
         "textures": {
-          "overlay_front": "gtceu:block/machines/parallel_hatch_mk5/overlay_front",
-          "overlay_front_emissive": "gtceu:block/machines/parallel_hatch_mk5/overlay_front_emissive"
+          "overlay_front": "ctnhcore:block/machines/thread_hatch/overlay_front",
+          "overlay_front_emissive": "ctnhcore:block/machines/thread_hatch/overlay_front_emissive"
         }
       }
     },
@@ -66,8 +66,8 @@
       "model": {
         "parent": "gtceu:block/casings/voltage/luv",
         "textures": {
-          "overlay_front": "gtceu:block/machines/parallel_hatch_mk5/overlay_front_active",
-          "overlay_front_emissive": "gtceu:block/machines/parallel_hatch_mk5/overlay_front_active_emissive"
+          "overlay_front": "ctnhcore:block/machines/thread_hatch/overlay_front_active",
+          "overlay_front_emissive": "ctnhcore:block/machines/thread_hatch/overlay_front_active_emissive"
         }
       }
     },
@@ -75,8 +75,8 @@
       "model": {
         "parent": "gtceu:block/casings/voltage/luv",
         "textures": {
-          "overlay_front": "gtceu:block/machines/parallel_hatch_mk5/overlay_front_active",
-          "overlay_front_emissive": "gtceu:block/machines/parallel_hatch_mk5/overlay_front_active_emissive"
+          "overlay_front": "ctnhcore:block/machines/thread_hatch/overlay_front_active",
+          "overlay_front_emissive": "ctnhcore:block/machines/thread_hatch/overlay_front_active_emissive"
         }
       }
     }

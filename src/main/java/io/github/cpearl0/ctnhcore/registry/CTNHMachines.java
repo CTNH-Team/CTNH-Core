@@ -149,7 +149,7 @@ public class CTNHMachines {
                     .modelProperty(IS_FORMED, false)
                     .modelProperty(GTMachineModelProperties.RECIPE_LOGIC_STATUS, RecipeLogic.Status.IDLE)
                     .model(createWorkableTieredHullMachineModel(
-                            GTCEu.id("block/machines/parallel_hatch_mk5"))
+                            CTNHCore.id("block/machines/thread_hatch"))
                             .andThen((ctx, prov, model) -> {
                                 model.addReplaceableTextures("bottom", "top", "side");
                             }))
