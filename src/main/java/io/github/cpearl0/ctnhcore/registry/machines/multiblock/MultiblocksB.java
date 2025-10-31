@@ -1923,13 +1923,13 @@ public class MultiblocksB {
     public final static MultiblockMachineDefinition PHOTOVOLTAIC_DRONE_STATION = REGISTRATE.multiblock("photovoltaic_drone_station", PhotoVoltaicDroneStation::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.PVDRONE)
-            .recipeModifiers(PhotoVoltaicDroneStation::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .recipeModifiers(PhotoVoltaicDroneStation::recipeModifier)
             .tooltips(Component.translatable("ctnh.multiblock.pvdrone.tooltip.0"),
                     Component.translatable("ctnh.multiblock.pvdrone.tooltip.1"),
                     Component.translatable("ctnh.multiblock.pvdrone.tooltip.2"),
                     Component.translatable("ctnh.multiblock.pvdrone.tooltip.3"),
-                    Component.translatable("ctnh.multiblock.pvdrone.tooltip.4")
-
+                    Component.translatable("ctnh.multiblock.pvdrone.tooltip.4"),
+                    Component.translatable("ctnh.multiblock.pvdrone.tooltip.5")
 
             )
             .pattern(definition -> FactoryBlockPattern.start()

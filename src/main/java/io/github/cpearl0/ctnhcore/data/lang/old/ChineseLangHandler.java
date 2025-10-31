@@ -745,10 +745,11 @@ public class ChineseLangHandler {
 
 
         provider.add("ctnh.multiblock.pvdrone.tooltip.0","戴森云计划");
-        provider.add("ctnh.multiblock.pvdrone.tooltip.1","允许使用并行控制仓，并行控制仓提供的每个数值为运行时间倍率");
+        provider.add("ctnh.multiblock.pvdrone.tooltip.1","允许使用并行控制仓，并行数为运行时间倍率");
         provider.add("ctnh.multiblock.pvdrone.tooltip.2","为光伏基站提供电力增幅，使用光伏绑定终端来为这两个结构绑定");
         provider.add("ctnh.multiblock.pvdrone.tooltip.3","将无人机放入无人机支架以开始发送无人机，每5秒和运行结束时，每个无人机都有一定概率消耗，无人机发电同样受维度和空间站增幅");
         provider.add("ctnh.multiblock.pvdrone.tooltip.4","无人机的消耗概率公式为1.0 / (1.0 + Math.exp(-0.25* (x - 9)))");
+        provider.add("ctnh.multiblock.pvdrone.tooltip.5","使用无人机收集陨石时，产出的倍率公式为0.1*Math.sqrt(无人机电压之和)，倍率小于1时无产出，无法超频");
         provider.add("ctnh.multiblock.pvdrone.info.t1","提供的能量:%d");
         provider.add("ctnh.multiblock.pvdrone.info.t2","无人机消耗概率:%.4f");
 

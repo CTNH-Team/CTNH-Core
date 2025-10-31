@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.capability.IParallelHatch;
 import com.gregtechceu.gtceu.api.capability.forge.GTCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
+import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
@@ -38,14 +39,14 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
     public PhotoVoltaicDroneStation(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
     }
-    @Persisted
+
     private DroneHolderMachine droneholder;
-    @Persisted
+
     private boolean orbit=false;
-    @Persisted
+
     @Getter
     private int eut=0;
-    @Persisted
+
     private double num=0.0;
     @Override
     public void onStructureFormed() {
@@ -67,8 +68,8 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
         droneholder=null;
         // recheck the ability to make sure it wasn't the one broken
         for (IMultiPart part : getParts()) {
-            if (part instanceof DroneHolderMachine holder) {
-                holder.setLocked(false);
+            if (part instanceof DroneHolderMachine holderMachine) {
+                holderMachine.setLocked(false);
             }
         }
         super.onStructureInvalid();
@@ -117,7 +118,13 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
         var dimension = level.dimension();
         orbit=false;
         double rate = 1;
-        if(dimension== Planet.MOON_ORBIT || dimension == Planet.VENUS_ORBIT|| dimension == Planet.MERCURY_ORBIT|| dimension == Planet.MARS_ORBIT|| dimension == Planet.GLACIO_ORBIT)
+        if(dimension== Planet.MOON_ORBIT
+                || dimension == Planet.VENUS_ORBIT
+                || dimension == Planet.MERCURY_ORBIT
+                || dimension == Planet.MARS_ORBIT
+                || dimension == Planet.GLACIO_ORBIT
+                || dimension == Planet.EARTH_ORBIT
+        )
         {
             orbit=true;
             rate*=4;
@@ -159,6 +166,7 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
         ConsumeDrone();
         super.afterWorking();
         droneholder.setLocked(false);
+        eut = 0;
     }
 
     public static double sigmoid(double x, double k, double c) {
@@ -169,18 +177,25 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
         if (machine instanceof PhotoVoltaicDroneStation lmachine) {
             var eut=lmachine.GetDronePower()* lmachine.dimension_check();
             var pa=1;
-            if (machine instanceof IMultiController controller) {
-                if (controller.isFormed()) {
-                    int parallels = (Integer)controller.getParallelHatch()
-                            .map(IParallelHatch::getCurrentParallel)
-                            .orElse(0);
-                    if (parallels > 0) {
-                        pa=parallels;
-                    }
-
+            if (lmachine.isFormed()) {
+                int parallels = (Integer) lmachine.getParallelHatch()
+                        .map(IParallelHatch::getCurrentParallel)
+                        .orElse(0);
+                if (parallels > 0) {
+                    pa = parallels;
                 }
+
             }
-            lmachine.eut=(int)eut;
+            if(RecipeHelper.getOutputContents(recipe, ItemRecipeCapability.CAP).isEmpty())
+                //运行非挖矿配方时对光伏进行强化
+                lmachine.eut=(int)eut;
+            else if(!lmachine.orbit)  //只能在轨道维度挖矿
+                return ModifierFunction.NULL;
+            else {
+                return ModifierFunction.builder()
+                        .outputModifier(ContentModifier.multiplier(0.1 * Math.sqrt(lmachine.GetDronePower())))
+                        .build();
+            }
             return ModifierFunction.builder()
                     .durationMultiplier(pa)
                     .build();

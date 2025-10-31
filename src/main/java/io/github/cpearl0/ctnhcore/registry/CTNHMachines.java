@@ -125,7 +125,12 @@ public class CTNHMachines {
             .tier(UV)
             .rotationState(RotationState.ALL)
             .abilities(CTNHPartAbility.DRONE)
-            .workableTieredHullModel(GTCEu.id("block/machine/part/object_holder"))
+            .modelProperty(IS_FORMED, false)
+            .modelProperty(GTMachineModelProperties.RECIPE_LOGIC_STATUS, RecipeLogic.Status.IDLE)
+            .model(createWorkableTieredHullMachineModel(GTCEu.id("block/machines/object_holder"))
+                    .andThen((ctx, prov, model) -> {
+                        model.addReplaceableTextures("bottom", "top", "side");
+                    }))
             .register();
     public static final MachineDefinition[] COMPILERMACHINE = registerTieredMachines("neuro_compiler", CompilerMachine::new,
             (tier, builder) -> builder

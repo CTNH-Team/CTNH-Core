@@ -17,6 +17,7 @@ import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluids;
+import tech.vixhentx.mcmod.ctnhlib.registrate.builders.CTNHTagPrefix;
 
 import java.util.function.Consumer;
 
@@ -117,6 +118,16 @@ public class MachinesRecipes {
                 .duration(100)
                 .circuitMeta(1)
                 .save(provider);
+
+        CTNHRecipeTypes.PVDRONE.recipeBuilder("meteorite_capture")
+                .duration(1000)
+                .circuitMeta(2)
+                .outputItems(CTNHTagPrefixes.oreMoonStone, CTNHMaterials.Desh)
+                .outputItems(CTNHTagPrefixes.oreVenusStone, CTNHMaterials.Calorite)
+                .outputItems(CTNHTagPrefixes.oreMarsStone, CTNHMaterials.Ostrum)
+                .EUt(VA[LuV])
+                .save(provider);
+
         CTNHRecipeTypes.COMPILER_RECIPE.recipeBuilder("test")
                 .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
                 .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
