@@ -23,6 +23,7 @@ import com.mo_guang.ctpp.common.machine.multiblock.KineticWorkableMultiblockMach
 import com.mo_guang.ctpp.util.CommonTooltips;
 import com.negodya1.vintageimprovements.VintageBlocks;
 import com.simibubi.create.AllBlocks;
+import committee.nova.mods.avaritia.init.registry.ModBlocks;
 import fr.lucreeper74.createmetallurgy.registries.CMBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHPredicates;
@@ -2308,7 +2309,7 @@ public class MultiblocksB {
 //                            .where("Q", Predicates.blocks(COMPUTER_HEAT_VENT.get()))
 //                            .where("R", Predicates.blocks(CASING_TUNGSTENSTEEL_GEARBOX.get()))
 //                            .where("S", Predicates.blocks(CASING_LARGE_SCALE_ASSEMBLING.get()))
-//                            .where("T", Predicates.blocks(MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Neutronium).get()))
+//                            .where("T", Predicates.blocks(ModBlock.neutron))
 //                            .where("U", Predicates.blocks(CASING_TUNGSTENSTEEL_TURBINE.get()))
 //                            .where("V", Predicates.blocks(CASING_TUNGSTENSTEEL_PIPE.get()))
 //                            .where("W", Predicates.powerSubstationBatteries())

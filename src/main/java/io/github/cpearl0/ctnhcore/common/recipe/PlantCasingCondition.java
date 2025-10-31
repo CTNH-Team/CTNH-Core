@@ -30,22 +30,22 @@ public class PlantCasingCondition extends RecipeCondition {
     );
     @CN("青铜")
     @EN("Bronze")
-    Lang bronze;
+    static Lang bronze;
     @CN("钢")
     @EN("Steel")
-    Lang steel;
+    static Lang steel;
     @CN("铝")
     @EN("Aluminium")
-    Lang aluminium;
+    static Lang aluminium;
     @CN("不锈钢")
     @EN("Stainless Steel")
-    Lang stainless_steel;
+    static Lang stainless_steel;
     @CN("钛")
     @EN("Titanium")
-    Lang titanium;
+    static Lang titanium;
     @CN("钨钢")
     @EN("Tungsten Steel")
-    Lang tungsten_steel;
+    static Lang tungsten_steel;
 
     private int tier;
     public PlantCasingCondition() {}
@@ -65,7 +65,7 @@ public class PlantCasingCondition extends RecipeCondition {
 
     @CN("外壳等级: %s (%s)")
     @EN("Casing: %s (%s)")
-    Lang tooltip;
+    static Lang tooltip;
     @Override
     public Component getTooltips() {
          Map<Integer, Lang> CASING_TIERS = Map.of(

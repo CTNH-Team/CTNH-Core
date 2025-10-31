@@ -206,5 +206,7 @@ public class GTMaterialAddon {
         Aluminium.addFlags(GENERATE_ROTOR);
         Iridium.addFlags(GENERATE_ROTOR);
         Iridium.addFlags(GENERATE_SMALL_GEAR);
+
+        Netherite.addFlags(GENERATE_FRAME, GENERATE_GEAR, GENERATE_PLATE, GENERATE_BOLT_SCREW, GENERATE_SPRING, GENERATE_SPRING_SMALL);
     }
 }
