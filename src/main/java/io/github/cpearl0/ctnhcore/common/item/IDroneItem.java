@@ -34,9 +34,9 @@ public class IDroneItem extends ComponentItem {
     }
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
-        tooltipComponents.add(Component.translatable("ctnh.drone_tier",String.format("%d",tier)));
-        tooltipComponents.add(Component.translatable("ctnh.drone_eut",String.format("%d",eut)));
-        tooltipComponents.add(Component.translatable("ctnh.drone_durability",String.format("%d",durability)));
+        tooltipComponents.add(Component.translatable("ctnh.item.drone_tier",String.format("%d",tier)));
+        tooltipComponents.add(Component.translatable("ctnh.item.drone_eut",String.format("%d",eut)));
+        tooltipComponents.add(Component.translatable("ctnh.item.drone_durability",String.format("%d",durability)));
         super.appendHoverText(stack, level, tooltipComponents, isAdvanced); // 调用父类方法以处理原版提示信息
 
     }
