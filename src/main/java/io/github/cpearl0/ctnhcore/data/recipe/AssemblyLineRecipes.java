@@ -7,9 +7,12 @@ import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
+import com.moguang.ctnhbio.data.materials.CommonMaterials;
+import com.moguang.ctnhbio.machine.multiblock.CBMultiblocks;
 import com.moguang.ctnhbio.registry.CBBlocks;
 import com.moguang.ctnhbio.registry.CBMachines;
 import com.moguang.ctnhbio.registry.CBMultiblockMachines;
+import io.github.cpearl0.ctnhcore.data.materials.SecondMaterials;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
@@ -30,6 +33,7 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLY_LINE_RECIPES;
 import static com.gregtechceu.gtceu.common.data.machines.GCYMMachines.PARALLEL_HATCH;
 import static com.moguang.ctnhbio.data.materials.OrganicMaterials.*;
+import static dev.shadowsoffire.hostilenetworks.Hostile.Items.SIM_CHAMBER;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.ADVANCED_RAM_CHIP;
 
 public class AssemblyLineRecipes {
@@ -48,7 +52,7 @@ public class AssemblyLineRecipes {
                 .inputFluids(new FluidStack(GTMaterials.HSSG.getFluid(), 144*36))
                 .inputFluids(new FluidStack(GTMaterials.HSSE.getFluid(), 144*36))
                 .outputItems(CTNHMachines.ASYNC_THREAD_HATCH[LuV])
-                .stationResearch(b -> b.researchStack(PARALLEL_HATCH[LuV].asStack()).CWUt(8))
+                .scannerResearch(b -> b.researchStack(PARALLEL_HATCH[LuV].asStack()).EUt(VA[LuV]))
                 .EUt(VA[LuV]).duration(1200)
                 .save(provider);
         ASSEMBLY_LINE_RECIPES.recipeBuilder("cnc_alloy_smelter")
@@ -63,29 +67,29 @@ public class AssemblyLineRecipes {
                 .inputFluids(new FluidStack(TitaniumTungstenCarbide.getFluid(), 144*40))
                 .inputFluids(new FluidStack(TantalumCarbide.getFluid(), 144*40))
                 .outputItems(MultiblocksC.CNC_ALLOY_SMELTER,1)
-                .stationResearch(b -> b.researchStack(GTMachines.ALLOY_SMELTER[LuV].asStack()).CWUt(2))
+                .scannerResearch(b -> b.researchStack(GTMachines.ALLOY_SMELTER[LuV].asStack()).EUt(VA[LuV]))
                 .EUt(VA[LuV]).duration(800)
                 .save(provider);
         ASSEMBLY_LINE_RECIPES.recipeBuilder("parabiotic_bridge")
                 .inputItems(ModItems.CREATOR_MIX,4)
-                .inputItems(ModItems.LIVING_FLESH,4)
+                .inputItems(TagPrefix.plate, CommonMaterials.BLOODSTEEL, 16)
                 .inputItems(CustomTags.LuV_CIRCUITS,4)
                 .inputItems(CTNHMachines.CIRCUIT_BUS[IV],2)
                 .inputItems(GTMachines.ITEM_IMPORT_BUS[ZPM],1)
                 .inputItems(GTMachines.ITEM_EXPORT_BUS[ZPM],1)
                 .inputFluids(new FluidStack(Primordial_Serum.getFluid(), 144*20))
                 .outputItems(CBMachines.PARABIOTIC_BRIDGE,1)
-                .stationResearch(b -> b.researchStack(ModItems.CREATOR_MIX.get().getDefaultInstance()).CWUt(8))
+                .stationResearch(b -> b.researchStack(ModItems.CREATOR_MIX.get().getDefaultInstance()).CWUt(16).EUt(VA[ZPM]))
                 .EUt(VA[LuV]).duration(400)
                 .save(provider);
         ASSEMBLY_LINE_RECIPES.recipeBuilder("consciousness_linker")
                 .inputItems(CBBlocks.NEURAL_NETWORK_CASING,1)
                 .inputItems(CTNHBlocks.SUPER_FREEZE_BLOCK,4)
                 .inputItems(TagPrefix.dust,Promethium,16)
-                .inputItems(CTNHItems.HEAVY_PLATE_T2,16)
+                .inputItems(CTNHItems.HEAVY_PLATE_T2,4)
                 .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 144*10))
                 .inputFluids(new FluidStack(CTNHMaterials.Cryotheum.getFluid(), 144*10))
-                .outputItems(CBBlocks.CONSCIOUSNESS_LINKER,1)
+                .outputItems(CBBlocks.CONSCIOUSNESS_LINKER,4)
                 .stationResearch(b -> b.researchStack(CTNHBlocks.SUPER_FREEZE_BLOCK.asStack()).CWUt(4))
                 .EUt(VA[LuV]).duration(800)
                 .save(provider);
@@ -93,10 +97,10 @@ public class AssemblyLineRecipes {
                 .inputItems(CBBlocks.NEURAL_NETWORK_CASING,1)
                 .inputItems(CTNHBlocks.BLAZE_BLAST_FURNACE_CASING,4)
                 .inputItems(TagPrefix.dust,Praseodymium,16)
-                .inputItems(CTNHItems.HEAVY_PLATE_T2,16)
+                .inputItems(CTNHItems.HEAVY_PLATE_T2,4)
                 .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 144*10))
                 .inputFluids(new FluidStack(CTNHMaterials.Pyrotheum.getFluid(), 144*10))
-                .outputItems(CBBlocks.CONSCIOUSNESS_CONTROLLER,1)
+                .outputItems(CBBlocks.CONSCIOUSNESS_CONTROLLER,4)
                 .stationResearch(b -> b.researchStack(CTNHBlocks.BLAZE_BLAST_FURNACE_CASING.asStack()).CWUt(4))
                 .EUt(VA[LuV]).duration(800)
                 .save(provider);
@@ -122,15 +126,15 @@ public class AssemblyLineRecipes {
                 .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 144*5))
                 .inputFluids(new FluidStack(BlueSteel.getFluid(), 144*5))
                 .inputFluids(new FluidStack(Heterogeneous_Compound.getFluid(), 144*5))
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("hostilenetworks:sim_chamber")),1)
+                .outputItems(SIM_CHAMBER)
                 .stationResearch(b -> b.researchStack(CBBlocks.CONSCIOUSNESS_SENSOR_GLASS.asStack()).CWUt(8))
                 .EUt(VA[LuV]).duration(500)
                 .save(provider);
         ASSEMBLY_LINE_RECIPES.recipeBuilder("hostile_observer")
-                .inputItems(CTNHItems.HEAVY_PLATE_T3,64)
-                .inputItems(CTNHItems.HEAVY_PLATE_T3,64)
-                .inputItems(CTNHItems.HEAVY_PLATE_T3,64)
-                .inputItems(CTNHItems.HEAVY_PLATE_T3,64)
+                .inputItems(CTNHItems.HEAVY_PLATE_T3,16)
+                .inputItems(CTNHItems.HEAVY_PLATE_T3,16)
+                .inputItems(CTNHItems.HEAVY_PLATE_T3,16)
+                .inputItems(CTNHItems.HEAVY_PLATE_T3,16)
                 .inputItems(CTNHBlocks.CASING_POLYBENZIMIDAZOLE_PIPE,16)
                 .inputItems(CASING_POLYTETRAFLUOROETHYLENE_PIPE,4)
                 .inputItems(CASING_TITANIUM_PIPE,4)
@@ -142,9 +146,21 @@ public class AssemblyLineRecipes {
                 .inputFluids(new FluidStack(Primordial_Serum.getFluid(), 144*5))
                 .inputFluids(new FluidStack(Heterogeneous_Compound.getFluid(), 144*5))
                 .inputFluids(new FluidStack(Unstable_Compound.getFluid(), 144*5))
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ctnhbio:hostile_observer")))
-                .stationResearch(b -> b.researchStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("hostilenetworks:sim_chamber")).getDefaultInstance()).CWUt(24))
+                .outputItems(CBMultiblocks.HOSTILE_OBSERVER)
+                .stationResearch(b -> b.researchStack(SIM_CHAMBER.get().getDefaultInstance()).CWUt(32).EUt(VA[UV]))
                 .EUt(VA[ZPM]).duration(1000)
+                .save(provider);
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder("advanced_neural_model_accessor")
+                .inputItems(CBBlocks.CONSCIOUSNESS_CONTROLLER)
+                .inputItems(TOOL_DATA_MODULE)
+                .inputItems(CBMachines.NEURAL_MODEL_ACCESSOR)
+                .inputItems(TagPrefix.plate, Tritanium, 16)
+                .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 144*5))
+                .inputFluids(CTNHMaterials.Cerrobase140, 288)
+                .outputItems(CBMachines.ADVANCED_NEURAL_MODEL_ACCESSOR)
+                .stationResearch(b->b.researchStack(CBMachines.NEURAL_MODEL_ACCESSOR.asStack()).CWUt(32).EUt(VA[UV]))
+                .EUt(VA[UV]).duration(1000)
                 .save(provider);
     }
 }

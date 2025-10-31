@@ -612,7 +612,7 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.BATH);
     public static final GTRecipeType METEOR_CAPTURER_RECIPES = REGISTRATE.recipeType(GTCEu.id("meteor_capturer"), MULTIBLOCK)
-            .cnlang("集成式坠星位标").setMaxIOSize(1, 32, 1, 0)
+            .cnlang("集成式坠星位标").setMaxIOSize(1, 24, 1, 0)
             .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.MINER);
