@@ -9,6 +9,7 @@ import com.moguang.ctnhbio.registry.CBItems;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.data.lang.Chinese.OreLang;
 import io.github.cpearl0.ctnhcore.data.lang.Chinese.VeinLang;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.Mechanical;
 import tech.vixhentx.mcmod.ctnhlib.registrate.lang.RegistrateCNLangProvider;
 import io.github.cpearl0.ctnhcore.data.materials.OrdinaryMaterials;
 import io.github.cpearl0.ctnhcore.registry.*;
@@ -681,7 +682,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.magic.generator.1","具有8并行，每秒基础消耗12mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
         provider.add("ctnh.gcym.reduction","配方耗时x0.8，配方耗能x0.6");
         provider.add("ctnh.boss_summoner.use", "右键长按蓄力掷出，在落点处召唤一只神化boss，每次使用有五分之一的概率消耗");
-        provider.add("ctnh.mechanical_lathe.structure", "结构须知：车床必须放满6个，且动力侧朝外，移动侧朝中心");
+        provider.add("ctnh.mechanical_lathe.structure", "结构中的车床必须严格依照JEI结构信息页面展示的位置和方向摆放");
 
         provider.add("ctnh.gtceu.tooltip.tfmkalephzero.1","§4不，这不可能，你到底是怎么做出来这个东西的？§r");
         provider.add("ctnh.gtceu.tooltip.tfmkalephzero.2","§c你到底是无聊到什么地步能凑到这么多材料和算力，只为了这点并行和速度？§r");
@@ -1038,13 +1039,13 @@ public class ChineseLangHandler {
         provider.add(MultiblocksB.ARC_REACTOR.getBlock(),"电弧发生器");
         provider.add(MultiblocksB.ADVANCED_ASSEMBLY_LINE.getBlock(), "进阶装配线");
         provider.add(MultiblocksB.CultivationRoom.getBlock(), "培养室");
-        provider.add(MultiblocksB.MECHANICAL_LATHE.getBlock(), "机械车床厂");
-        provider.add(MultiblocksB.MECHANICAL_CENTRIFUGE.getBlock(), "机械离心厂");
-        provider.add(MultiblocksB.MECHANICAL_EXTRACTOR.getBlock(), "机械熔炼厂");
-        provider.add(MultiblocksB.MECHANICAL_LASER.getBlock(), "机械激光厂");
-        provider.add(MultiblocksB.MECHANICAL_MIXER.getBlock(), "机械搅拌厂");
-        provider.add(MultiblocksB.MECHANICAL_SIFTER.getBlock(), "机械筛选厂");
-        provider.add(MultiblocksB.MECHANICAL_PRESSOR.getBlock(), "机械辊压厂");
+        provider.add(Mechanical.MECHANICAL_LATHE.getBlock(), "机械车床厂");
+        provider.add(Mechanical.MECHANICAL_CENTRIFUGE.getBlock(), "机械离心厂");
+        provider.add(Mechanical.MECHANICAL_EXTRACTOR.getBlock(), "机械熔炼厂");
+        provider.add(Mechanical.MECHANICAL_LASER.getBlock(), "机械激光厂");
+        provider.add(Mechanical.MECHANICAL_MIXER.getBlock(), "机械搅拌厂");
+        provider.add(Mechanical.MECHANICAL_SIFTER.getBlock(), "机械筛选厂");
+        provider.add(Mechanical.MECHANICAL_PRESSOR.getBlock(), "机械辊压厂");
         provider.add(MultiblocksB.ETERNAL_GARDEN.getBlock(), "芙蕾雅的永恒花园");
         provider.add(MultiblocksB.SUPERCONDUCTING_PENNING_TRAP.getBlock(), "超导潘宁势阱");
         provider.add(MultiblocksB.ARC_GENERATOR_MK1.getBlock(),"超压电弧撕裂者MK1");
