@@ -464,6 +464,7 @@ public class CTNHMaterials {
             .color(0x2F4F4F)
             .secondaryColor(0x00FF7F)
             .element(CTNHElements.BOG_AMBER)
+            .flags(GENERATE_LENS)
             .ore()
             .addOreByproducts(Sulfur, Realgar)
             .buildAndRegister();

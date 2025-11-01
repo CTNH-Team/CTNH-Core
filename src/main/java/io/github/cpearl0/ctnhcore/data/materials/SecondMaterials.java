@@ -20,6 +20,7 @@ public class SecondMaterials {
     public static void init() {
         ArcaneCrystal = REGISTRATE.material(CTNHCore.id("arcane_crystal")).cnlang("神秘水晶")
                 .dust().ore().gem().color(0x93AEFF).iconSet(MaterialIconSet.DIAMOND)
+                .flags(MaterialFlags.GENERATE_LENS)
                         .buildAndRegister();
 
         PalladiumOnPlatinum = REGISTRATE.material(CTNHCore.id("palladium_on_platinum")).cnlang("钯铂").dust().color(0x233144).iconSet(MaterialIconSet.DULL)
