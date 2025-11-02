@@ -232,6 +232,7 @@ public class CTNHMachines {
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeModifier(DigitalWosMachine::recipeModifier)
                     .workableTieredHullModel(GTCEu.id("block/machines/digital_well_of_suffer"))
+                    .tooltips(Component.translatable("ctnh.dwof.tooltip").withStyle(ChatFormatting.YELLOW))
                     .register(),
             GTValues.tiersBetween(LV,UV));
 

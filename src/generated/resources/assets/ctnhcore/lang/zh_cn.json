@@ -418,6 +418,7 @@
   "ctnh.copyright.info": "§6由CTNH添加",
   "ctnh.copyright.magic.info": "§bCTNH：工业魔力学",
   "ctnh.data.noise": "当前噪声值：%s",
+  "ctnh.dwof.tooltip": "运行时为模型积累数据，至多将模型提高至[进阶]等级",
   "ctnh.eternal_engine.1": "当前发电量:%d EU /tick",
   "ctnh.eternal_engine.2": "累计的工作时间:%.2f s/36000 s",
   "ctnh.eternalgarden.info.eat": "当前彼方兰营养值:%d",

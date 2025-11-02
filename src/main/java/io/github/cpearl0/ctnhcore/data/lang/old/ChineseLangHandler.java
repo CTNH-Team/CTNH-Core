@@ -806,6 +806,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.compiler.error.0","§c未知错误");
         provider.add("ctnh.compiler.error.1","§c舱室等级与片区1不匹配");
 
+        provider.add("ctnh.dwof.tooltip","运行时为模型积累数据，至多将模型提高至[进阶]等级");
 
         provider.add("ctnh.multiblock.fluid_drilling_rig.description.inf","§6钻取来自无尽之中的流体之海");
         provider.add("ctnh.multiblock.fluid_drilling_rig.depletion.inf","§6永§b不§d损§a耗，你在担心什么？");

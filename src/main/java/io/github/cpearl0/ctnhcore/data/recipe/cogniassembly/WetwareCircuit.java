@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe.cogniassembly;
 
+import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.entity.AetherEntityTypes;
 import com.enderio.base.common.init.EIOFluids;
 import com.github.elenterius.biomancy.init.ModEntityTypes;
@@ -22,6 +23,7 @@ import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
+import static com.moguang.ctnhbio.data.recipe.multi.HostileObservationRecipes.addEntityTypeWithItem;
 import static com.moguang.ctnhbio.registry.CBItems.*;
 import static dev.shadowsoffire.hostilenetworks.data.ModelTier.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.HiddenAlloy;
@@ -37,18 +39,18 @@ public class WetwareCircuit {
                 .duration(200)
                 .setIntermediate(WETWARE_PROCESSOR_COMPUTER_UNFINISHED.get())
                 .setFinalOutput(WETWARE_SUPER_COMPUTER_UV.get())
-                .MIFStep(SUPERIOR, IRON_GOLEM,
+                .MIFStep(ADVANCED, IRON_GOLEM,
                         WETWARE_PRINTED_CIRCUIT_BOARD, 1,
                         SolderingAlloy.getFluid(1152))
                 .MIFStep(
-                        SUPERIOR, SLIME,
+                        ADVANCED, SLIME,
                         WETWARE_PROCESSOR_ASSEMBLY_ZPM, 1,
                         Healing_Compound.getFluid(1000)
                 )
-                .MIFStep(SUPERIOR, GUARDIAN,
+                .MIFStep(ADVANCED, GUARDIAN,
                         WETWARE_DIODE, 16,
                         Organic_Compound.getFluid(1000))
-                .MIFStep(SUPERIOR, SPIDER,
+                .MIFStep(ADVANCED, SPIDER,
                         CTNHItems.ADVANCED_RAM_CHIP, 16,
                         Toxin_Extract.getFluid(1000))
                 .IFStep(ChemicalHelper.get(TagPrefix.wireFine, OrdinaryMaterials.BIO_FLEXIBLE, 64),
@@ -138,6 +140,9 @@ public class WetwareCircuit {
                         new FluidStack(EIOFluids.XP_JUICE.get(), 1000)
                 )
                 .save(provider);
+
+        addEntityTypeWithItem(ModEntityTypes.PRIMORDIAL_FLESH_BLOB.get(), (com.github.elenterius.biomancy.init.ModItems.LIVING_FLESH.get()), provider);
+        addEntityTypeWithItem(AetherEntityTypes.AERWHALE.get(), AetherBlocks.BLUE_AERCLOUD.get().asItem(), provider);
     }
 
 
