@@ -9,6 +9,9 @@ import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
+import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
+import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import lombok.Getter;
@@ -32,30 +35,38 @@ import java.util.*;
 @Setter
 @Getter
 public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachine {
+
+    @Persisted
+    @DescSynced
     private int currentTemperature = 0;  // 初始温度为0K
     private static final int MAX_TEMP = 25000;
     private static final int MIN_TEMP = 0;
+    @Persisted
     private boolean isOverheated = false; // 过热状态标志
     private int fluidAmount = FLUID_AMOUNT; // 定义为类的成员变量
     // 流体消耗量（单位：mB）
     private static final int FLUID_AMOUNT = 100;  // 每次消耗的流体量（可调整）
+    @Persisted
     private int nextPyrotheumAmount = 1000;  // 初始为 1000mb
+    @Persisted
     private int nextCryotheumAmount = 1000;  // 初始为 1000mb
     private static final Random random = new Random();
+    @Persisted
     private int fluidCycle = 1;
-    private String CURRENTTEMPERATURE_STRING = "currentTemperature";
-    private String MAX_TEMP_STRING = "maxTemperature";
-    private String MIN_TEMP_STRING = "minTemperature";
-    private String ISOVERHEATED_STRING = "isOverheated"; // 过热状态标志的字符串表示
-    private String FLUIDAMOUNT_STRING = "fluidAmount"; // 流体量的字符串表示
-    private String FLUID_AMOUNT_CONSTANT_STRING = "FLUID_AMOUNT";  // 每次消耗的流体量的字符串表示（可调整）
-    private String NEXTPYROTHEUMAMOUNT_STRING = "nextPyrotheumAmount";  // 初始为 100mb 的字符串表示
-    private String NEXTCRYOTHEUMAMOUNT_STRING = "nextCryotheumAmount";  // 初始为 100mb 的字符串表示
-    private String FLUIDCYCLE_STRING = "fluidCycle";  // 流体循环次数的字符串表示
+
+    private static List<ItemStack> rawOreItems = null;
+
     public VoidMinerProcessingMachine(IMachineBlockEntity holder) {
         super(holder);
     }
 
+    public static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
+            VoidMinerProcessingMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
+
+    @Override
+    public ManagedFieldHolder getFieldHolder() {
+        return MANAGED_FIELD_HOLDER;
+    }
 
     public boolean onWorking() {
         if (getOffsetTimer() % 20 == 0) {
@@ -156,8 +167,6 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
         textList.add(Component.translatable("ctnh.multiblock.void_miner.info.cryotheum", nextCryotheumAmount + " mB").withStyle(ChatFormatting.AQUA));
     }
 
-
-
     public int getParallelCount() {
         if (currentTemperature >= 24000) {
             return 16;  // 温度达到24000时并行数为16
@@ -216,14 +225,14 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
                     itemList.add(new Content(ingredient, adjustedAmount, adjustedAmount, 0));
                 }
             }
-
+            GTRecipe newRecipe = recipe.copy();
             // 修改配方的输出
             if (!itemList.isEmpty()) {
-                recipe.outputs.put(ItemRecipeCapability.CAP, itemList);
+                newRecipe.outputs.put(ItemRecipeCapability.CAP, itemList);
             }
 
             // 继续处理配方逻辑
-            return recipe1 -> recipe;
+            return recipe1 -> newRecipe;
         }
 
         return ModifierFunction.IDENTITY;  // 返回默认修改器
@@ -231,22 +240,24 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
 
     // 获取所有带有 '#c:raw_ores' 标签的物品，排除黑名单物品
     private static List<ItemStack> getRawOreItems() {
-        List<ItemStack> rawOreItems = new ArrayList<>();
 
-        // 创建 '#c:raw_ores' 标签的 TagKey
-        TagKey<Item> rawOresTag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), ResourceLocation.tryBuild("c", "raw_ores"));
+        if(rawOreItems == null)
+        {
+            rawOreItems = new ArrayList<>();
+            TagKey<Item> rawOresTag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), ResourceLocation.tryBuild("forge", "raw_materials"));
 
-        // 黑名单物品列表（需要排除的物品）
-        Set<Item> blacklist = getBlacklistedItems();
+            // 黑名单物品列表（需要排除的物品）
+            Set<Item> blacklist = getBlacklistedItems();
 
-        // 遍历所有注册的物品
-        for (Item item : ForgeRegistries.ITEMS) {
-            // 获取物品的默认实例
-            ItemStack itemStack = item.getDefaultInstance();
+            // 遍历所有注册的物品
+            for (Item item : ForgeRegistries.ITEMS) {
+                // 获取物品的默认实例
+                ItemStack itemStack = item.getDefaultInstance();
 
-            // 检查物品是否属于 '#c:raw_ores' 标签，并且不在黑名单中
-            if (itemStack.is(rawOresTag) && !blacklist.contains(item)) {
-                rawOreItems.add(itemStack);
+                // 检查物品是否属于 '#c:raw_ores' 标签，并且不在黑名单中
+                if (itemStack.is(rawOresTag) && !blacklist.contains(item)) {
+                    rawOreItems.add(itemStack);
+                }
             }
         }
 
@@ -271,28 +282,11 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
 
         return blacklist;
     }
-    @Override
-    public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {
-        super.saveCustomPersistedData(tag, forDrop);
-        if (!forDrop) {
-            tag.putInt(CURRENTTEMPERATURE_STRING, currentTemperature);
-            tag.putBoolean(ISOVERHEATED_STRING,isOverheated);
-            tag.putInt(NEXTCRYOTHEUMAMOUNT_STRING,nextCryotheumAmount);
-            tag.putInt(NEXTPYROTHEUMAMOUNT_STRING,nextPyrotheumAmount);
-            tag.putInt(FLUIDCYCLE_STRING,fluidCycle);
-        }
-    }
 
     @Override
-    public void loadCustomPersistedData(@NotNull CompoundTag tag) {
-        super.loadCustomPersistedData(tag);
-        currentTemperature= tag.contains(CURRENTTEMPERATURE_STRING) ? tag.getInt(CURRENTTEMPERATURE_STRING) : 0;
-        isOverheated=tag.contains(ISOVERHEATED_STRING)? tag.getBoolean(ISOVERHEATED_STRING):false;
-        nextCryotheumAmount=tag.contains(NEXTCRYOTHEUMAMOUNT_STRING)?tag.getInt(NEXTCRYOTHEUMAMOUNT_STRING):100;
-        nextPyrotheumAmount=tag.contains(NEXTCRYOTHEUMAMOUNT_STRING)?tag.getInt(NEXTCRYOTHEUMAMOUNT_STRING):100;
-        fluidCycle=tag.contains(FLUIDCYCLE_STRING)?tag.getInt(FLUIDCYCLE_STRING):1;
+    public boolean alwaysTryModifyRecipe() {
+        return super.alwaysTryModifyRecipe();
     }
-
 }
 
 
