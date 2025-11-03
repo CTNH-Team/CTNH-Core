@@ -162,10 +162,10 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
                     else {
                         duration = ((int) (parallel));
                     }
-                    var new_recipe = recipe;
-
-                    new_recipe.tickOutputs.put(EURecipeCapability.CAP, EURecipeCapability.makeEUContent(new EnergyStack(1)));
-                    recipe = new_recipe;
+//                    var new_recipe = recipe;
+//
+//                    new_recipe.tickOutputs.put(EURecipeCapability.CAP, EURecipeCapability.makeEUContent(new EnergyStack(1)));
+//                    recipe = new_recipe;
                     var maxparallel = ParallelLogic.getParallelAmount(machine, recipe, (int) parallel);
                     return ModifierFunction.builder()
                             .parallels(maxparallel)
@@ -176,8 +176,9 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
                 }
                 if (recipe.recipeType.equals(CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR)) {
                     var true_eut=EUt+ pmachine.muti*16384* pmachine.heat * 2;
-                    recipe.tickOutputs.put(EURecipeCapability.CAP, EURecipeCapability.makeEUContent(new EnergyStack((long) true_eut)));
+
                     return ModifierFunction.builder()
+                            .tickOutputModifier(ContentModifier.multiplier((int)true_eut))
                             .build();
                 }
             }
