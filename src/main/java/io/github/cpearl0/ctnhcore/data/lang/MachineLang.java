@@ -29,113 +29,6 @@ public class MachineLang {
 
 
         tsl(
-                "ctnh.multiblock.chemical_plant.tooltip.0",
-                "§o§7重工业，现在就在你家门口！",
-                "§o§7Heavy industry, right at your doorstep now!"
-        );
-        tsl("ctnh.multiblock.chemical_plant.tooltip.1", "§6线圈：§e+50%§6 速度/级", "§6Coil：§e+50%§6 speed/tier");
-        tsl("ctnh.multiblock.chemical_plant.tooltip.2",
-                "§b管道方块：§e+2§b 并行 及 §e-20%§b 催化剂消耗概率/级", "§bPipe：§e+2§b parallel and §e-20%§b catalyst consumption/tier");
-        tsl(
-                "ctnh.multiblock.chemical_plant.tooltip.3",
-                "§5机械方块：配方电压支持等级",
-                "§5MachineCasing：Recipe voltage support level"
-        );
-
-        tsl(
-                "ctnh.machine.neutron_accelerator.tooltip.0",
-                "§o§7输入EU，加速中子!",
-                "§o§7Input EU to Accelerate the Neutron!"
-        );
-        tsl("ctnh.machine.neutron_accelerator.tooltip.1", "§6最大EU输入: %s", "§6Max EU Input: %s");
-        tsl("ctnh.machine.neutron_accelerator.tooltip.2", "§6最大EU消耗: %s", "§6Max EU Cost: %s");
-        tsl(
-                "ctnh.machine.neutron_accelerator.tooltip.3",
-                "§b每点EU都会转化为§e10~20-eV§b中子动能.",
-                "§bEach EU will be converted to §e10~20-eV§b of neutron kinetic energy."
-        );
-
-        tsl("ctnh.multiblock.neutron_activator.tooltip.0", "§o§7超光速运动!", "§o§7Faster-Light Movement!");
-        tsl(
-                "ctnh.multiblock.neutron_activator.tooltip.1",
-                "§6额外的高速管道方块提供配方时间减免，同时降低中子加速器的效率",
-                "§6Extra high-speed pipe blocks provide recipe time reduction, and lower the efficiency of the neutron accelerator"
-        );
-        tsl(
-                "ctnh.multiblock.neutron_activator.tooltip.2",
-                "§6没有中子加速器运行时，中子动能每秒降低§e72KeV§6中子动能,运行配方时如果中子动能不在配方要求范围内，则只输出放射性废料！",
-                "§6Without a neutron accelerator running, neutron kinetic energy decreases by §e72KeV §6neutron kinetic energy per second"
-        );
-        tsl(
-                "ctnh.multiblock.neutron_activator.tooltip.3",
-                "§6输入石墨/铍粉可以立即吸收§e10MeV§6中子动能",
-                "§6Absorb §e10MeV §6neutron kinetic energy immediately when input cesium or beryllium dust"
-        );
-        tsl(
-                "ctnh.multiblock.neutron_activator.tooltip.5",
-                "§6运行配方时如果中子动能不在配方要求范围内，则只输出§4放射性废料！§6",
-                "§6if the neutron's kinetic energy falls outside the required range specified in the recipe, only radioactive waste will be produced as the output."
-        );
-        tsl(
-                "ctnh.multiblock.neutron_activator.tooltip.4",
-                "§6当中子动能超过§41200MeV§6后将会爆炸！",
-                "§6When the neutron kinetic energy exceeds §41200MeV§6, it will explode!"
-        );
-
-        tsl("ctnh.multiblock.large_naquadah_reactor.tooltip.0", "§o§7环境友好型!", "§o§7Environment Friendly!");
-        tsl(
-                "ctnh.multiblock.large_naquadah_reactor.tooltip.1",
-                "§6从高能流体中获取能量",
-                "§6Get energy from high-power fluid"
-        );
-        tsl(
-                "ctnh.multiblock.large_naquadah_reactor.tooltip.2",
-                "§6运行时需要消耗§e2400mB/s§6液态空气， 否则你的燃料将会被销毁",
-                "§6When the reactor is running, it needs to consume §e2400mB/s§6 liquid air, otherwise your fuel will be destroyed"
-        );
-        tsl(
-                "ctnh.multiblock.large_naquadah_reactor.tooltip.3",
-                "§6输入液态燃料, 输入仓内出现不止§4一种§6燃料时，反应堆将会爆炸",
-                "§6Input liquid fuel, if there are more than §4one §6fuel in the input hatch, the reactor will explode"
-        );
-        tsl(
-                "ctnh.multiblock.large_naquadah_reactor.tooltip.4",
-                "§6可以消耗§e1000mB/s§6冷却液获得§e150%效率提升",
-                "§6Can consume §e1000mB/s§6 cooling fluid to get §e150% efficiency"
-        );
-        tsl(
-                "ctnh.multiblock.large_naquadah_reactor.tooltip.5",
-                "§6消耗激发流体以提升输出功率",
-                "§6Consume igniting fluid to increase output power"
-        );
-        tsl(
-                "ctnh.multiblock.large_naquadah_reactor.tooltip.6",
-                "液态铯        | §e2x功率 | §6180mB/s",
-                "Cesium             | §e2x power | §6180mB/s"
-        );
-        tsl(
-                "ctnh.multiblock.large_naquadah_reactor.tooltip.7",
-                "液态铀-235  | §e3x功率 | §6180mB/s",
-                "Uranium-235   | §e3x power | §6180mB/s"
-        );
-        tsl(
-                "ctnh.multiblock.large_naquadah_reactor.tooltip.8",
-                "液态硅岩      | §e4x功率 | §620mB/s",
-                "Naquadah       | §e4x power | §620mB/s"
-        );
-
-        tsl(
-                "block.ctnh.neutron_sensor.tooltip.0",
-                "§7可安装在§b中子活化器§7上",
-                "§7Could be installed on §bNeutron Activator§7"
-        );
-        tsl(
-                "block.ctnh.neutron_sensor.tooltip.1",
-                "基于§6中子动能§7输出红石信号，右键以打开GUI进行设置。",
-                "Based on §6neutron kinetic energy §7output red stone signal, right-click to open the GUI for settings."
-        );
-
-        tsl(
                 "ctnh.multiblock.precision_assembly.tooltip.0",
                 "其他可用配方类型: 精密组装",
                 "Other available recipe type: Precision Assembly"
@@ -146,7 +39,5 @@ public class MachineLang {
                 "NOTE: Parallelization is not possible in precision assembly mode"
         );
 
-        tsl("ctnh.machine.naquadah_reactor.tooltip", "效率: %s%%", "Efficiency: %s%%");
-        tsl("ctnh.machine.rocket_engine.tooltip", "效率: %s%%", "Efficiency: %s%%");
     }
 }

@@ -118,7 +118,7 @@ public class LargeNaquadahReactorMachine extends WorkableElectricMultiblockMachi
     }
     @CN("发电倍率: %s")
     @EN("Power: %s")
-    Lang power;
+    static Lang power;
     @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);

@@ -21,7 +21,7 @@ public class TierCasingCondition extends RecipeCondition {
 
     @CN("外壳等级：%s")
     @EN("Casing Tier: %s")
-    Lang tooltip;
+    static Lang tooltip;
     @Override
     public Component getTooltips() {
         return tooltip.translate();

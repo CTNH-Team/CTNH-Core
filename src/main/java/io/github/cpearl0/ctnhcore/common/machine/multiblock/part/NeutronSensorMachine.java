@@ -79,10 +79,10 @@ public class NeutronSensorMachine extends TieredPartMachine {
     //////////////////////////////////////
     @CN("最小中子动能\n(%s)")
     @EN("Min Neutron Kinetic Energy\n(%s)")
-    Lang energy_min;
+    static Lang energy_min;
     @CN("最大中子动能\n(%s)")
     @EN("Max Neutron Kinetic Energy\n(%s)")
-    Lang energy_max;
+    static Lang energy_max;
     @Override
     public Widget createUIWidget() {
         var group = new WidgetGroup(Position.ORIGIN, new Size(176, 112));

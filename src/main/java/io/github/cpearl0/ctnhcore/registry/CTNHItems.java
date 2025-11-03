@@ -364,6 +364,22 @@ public class CTNHItems {
                     list.add(Component.translatable("ctnh.advanced_ram_chip.tooltip").withStyle(ChatFormatting.YELLOW));
                 })))
                 .register();
+        PRIMARY_STEW = REGISTRATE
+                .item("primary_stew", ComponentItem::create)
+                .cnlang("初级煲")
+                .lang("Primary Stew")
+                .properties(p -> new Item.Properties().rarity(Rarity.EPIC))
+                .onRegister(attach(new TooltipBehavior(list -> {
+                })))
+                .register();
+        GALAXY_MEATBALL = REGISTRATE
+                .item("galaxy_meatball", ComponentItem::create)
+                .cnlang("银河肉丸")
+                .lang("Galaxy Meatball")
+                .properties(p -> new Item.Properties().rarity(Rarity.EPIC))
+                .onRegister(attach(new TooltipBehavior(list -> {
+                })))
+                .register();
     }
     public static ItemEntry<Item> GREAT_ASTRONOMY_CIRCUIT_1;
     public static ItemEntry<ComponentItem> SIMPLE_NUTRITIOUS_MEAL;
@@ -556,6 +572,8 @@ public class CTNHItems {
 
     public static ItemEntry<ComponentItem> ADVANCED_RAM_WAFER;
     public static ItemEntry<ComponentItem> ADVANCED_RAM_CHIP;
+    public static ItemEntry<ComponentItem> PRIMARY_STEW;
+    public static ItemEntry<ComponentItem> GALAXY_MEATBALL;
     public static void init() {
         registerItem();
         ChemicalItems.init();

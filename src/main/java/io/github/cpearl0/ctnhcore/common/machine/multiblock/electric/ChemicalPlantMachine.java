@@ -107,16 +107,16 @@ public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine impl
 
     @CN("§5并行: %s")
     @EN("§bParallel: %s")
-    Lang coil;
+    static Lang coil;
     @CN("§6提速: %s%%")
     @EN("§6Speed: %s%%")
-    Lang parallel;
+    static Lang parallel;
     @CN("§e配方电压最大支持: %s")
     @EN("§eRecipe voltage maximum support:\n%s")
-    Lang tier;
+    static Lang tier;
     @CN("§6催化剂消耗概率: %s%%")
     @EN("§6Catalyst consumption probability:\n%s%%")
-    Lang chance;
+    static Lang chance;
     @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);

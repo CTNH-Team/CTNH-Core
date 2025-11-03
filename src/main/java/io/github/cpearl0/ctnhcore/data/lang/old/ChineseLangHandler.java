@@ -9,6 +9,7 @@ import com.moguang.ctnhbio.registry.CBItems;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.data.lang.Chinese.OreLang;
 import io.github.cpearl0.ctnhcore.data.lang.Chinese.VeinLang;
+import io.github.cpearl0.ctnhcore.data.machines.GTNNMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.Mechanical;
 import tech.vixhentx.mcmod.ctnhlib.registrate.lang.RegistrateCNLangProvider;
 import io.github.cpearl0.ctnhcore.data.materials.OrdinaryMaterials;
@@ -868,7 +869,10 @@ public class ChineseLangHandler {
         provider.add("ctnh.u_sinope.6","允许使用激光仓，但你的配方电压等级必须达到OPV，否则效率将减少99%");
         provider.add("ctnh.u_sinope.7","对于常规配方，该巨构拥有8^（电压等级）的并行，最高不超过2^32，在能源仓等级达到OPV时解锁无损超频，配方等级每超过UHV一级，处理速度+555%,每100点并行使处理速度增加333%,如果使用了四维工程学材料，则速度额外增加5000%");
         provider.add("ctnh.u_sinope.8","对于该巨构特有的配方类型具有特殊机制：时间固定为100秒，并行固定为10，电压每超过UHV一级，则时间减少10秒，并行增加10,如果使用了四维工程学材料且线圈等级大于等于UIV，则时间固定为1秒");
-//
+
+        provider.add("ctnh.machine.naquadah_reactor.tooltip", "效率: %s%%");
+        provider.add("ctnh.machine.rocket_engine.tooltip", "效率: %s%%");
+        //
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }
@@ -918,15 +922,15 @@ public class ChineseLangHandler {
         provider.add(CTNHMachines.ROCKET_ENGINE[EV].getBlock(), "§5高级火箭引擎发电机 I");
         provider.add(CTNHMachines.ROCKET_ENGINE[IV].getBlock(), "§9精英火箭引擎发电机 II");
         provider.add(CTNHMachines.ROCKET_ENGINE[LuV].getBlock(), "§d精英火箭引擎发电机 III");
-        provider.add(CTNHMachines.NEUTRON_ACCELERATOR[ULV].getBlock(), "§8ULV 中子加速器");
-        provider.add(CTNHMachines.NEUTRON_ACCELERATOR[LV].getBlock(), "§7LV 中子加速器");
-        provider.add(CTNHMachines.NEUTRON_ACCELERATOR[MV].getBlock(), "§bMV 中子加速器");
-        provider.add(CTNHMachines.NEUTRON_ACCELERATOR[HV].getBlock(), "§6HV 中子加速器");
-        provider.add(CTNHMachines.NEUTRON_ACCELERATOR[EV].getBlock(), "§5EV 中子加速器");
-        provider.add(CTNHMachines.NEUTRON_ACCELERATOR[IV].getBlock(), "§9IV 中子加速器");
-        provider.add(CTNHMachines.NEUTRON_ACCELERATOR[LuV].getBlock(), "§dLuV 中子加速器");
-        provider.add(CTNHMachines.NEUTRON_ACCELERATOR[ZPM].getBlock(), "§cZPM 中子加速器");
-        provider.add(CTNHMachines.NEUTRON_ACCELERATOR[UV].getBlock(), "§3UV 中子加速器");
+        provider.add(GTNNMachines.NEUTRON_ACCELERATOR[ULV].getBlock(), "§8ULV 中子加速器");
+        provider.add(GTNNMachines.NEUTRON_ACCELERATOR[LV].getBlock(), "§7LV 中子加速器");
+        provider.add(GTNNMachines.NEUTRON_ACCELERATOR[MV].getBlock(), "§bMV 中子加速器");
+        provider.add(GTNNMachines.NEUTRON_ACCELERATOR[HV].getBlock(), "§6HV 中子加速器");
+        provider.add(GTNNMachines.NEUTRON_ACCELERATOR[EV].getBlock(), "§5EV 中子加速器");
+        provider.add(GTNNMachines.NEUTRON_ACCELERATOR[IV].getBlock(), "§9IV 中子加速器");
+        provider.add(GTNNMachines.NEUTRON_ACCELERATOR[LuV].getBlock(), "§dLuV 中子加速器");
+        provider.add(GTNNMachines.NEUTRON_ACCELERATOR[ZPM].getBlock(), "§cZPM 中子加速器");
+        provider.add(GTNNMachines.NEUTRON_ACCELERATOR[UV].getBlock(), "§3UV 中子加速器");
 
         provider.add(CTNHCreativeModeTabs.MACHINE.get(), "CTNH机器");
         provider.add(CTNHCreativeModeTabs.ITEM.get(), "CTNH物品");

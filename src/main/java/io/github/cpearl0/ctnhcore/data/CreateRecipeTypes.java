@@ -35,6 +35,7 @@ public class CreateRecipeTypes {
                         .buildRawRecipe();
                 new CTPPRecipeBuilder(newrecipe, MECHANICAL_PRESSOR_RECIPES).rpm(CTNHConfig.INSTANCE.kinetic.pressorRpmRequirement)
                         .noEUt()
+                        .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt().voltage()) * 2, 5))
                         .inputStress(builder.EUt().voltage() * CTNHConfig.INSTANCE.kinetic.pressorStressRequirement)
                         .save(provider);
             }
@@ -47,6 +48,7 @@ public class CreateRecipeTypes {
                         .buildRawRecipe();
                 new CTPPRecipeBuilder(newrecipe, MECHANICAL_MIXER_RECIPES).rpm(CTNHConfig.INSTANCE.kinetic.mixerRpmRequirement)
                         .noEUt()
+                        .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt().voltage()) * 2, 5))
                         .inputStress(builder.EUt().voltage() * CTNHConfig.INSTANCE.kinetic.mixerStressRequirement)
                         .save(provider);
             }
@@ -59,6 +61,7 @@ public class CreateRecipeTypes {
                         .buildRawRecipe();
                 new CTPPRecipeBuilder(newrecipe, MECHANICAL_CENTRIFUGE_RECIPES).rpm(CTNHConfig.INSTANCE.kinetic.centrifugeRpmRequirement)
                         .noEUt()
+                        .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt().voltage()) * 2, 5))
                         .inputStress(builder.EUt().voltage() * CTNHConfig.INSTANCE.kinetic.centrifugeStressRequirement)
                         .save(provider);
             }
@@ -71,6 +74,7 @@ public class CreateRecipeTypes {
                         .buildRawRecipe();
                 new CTPPRecipeBuilder(newrecipe, MECHANICAL_SIFTER_RECIPES).rpm(CTNHConfig.INSTANCE.kinetic.sifterRpmRequirement)
                         .noEUt()
+                        .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt().voltage()) * 2, 5))
                         .inputStress(builder.EUt().voltage() * CTNHConfig.INSTANCE.kinetic.sifterStressRequirement)
                         .chancedOutputLogic(ItemRecipeCapability.CAP, CTNHChanceLogic.BASIC)
                         .save(provider);
@@ -84,6 +88,7 @@ public class CreateRecipeTypes {
                         .buildRawRecipe();
                 new CTPPRecipeBuilder(newrecipe, MECHANICAL_EXTRACTOR_RECIPES).rpm(CTNHConfig.INSTANCE.kinetic.extractorRpmRequirement)
                         .noEUt()
+                        .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt().voltage()) * 2, 5))
                         .inputStress(builder.EUt().voltage() * CTNHConfig.INSTANCE.kinetic.extractorStressRequirement)
                         .chancedOutputLogic(ItemRecipeCapability.CAP, ChanceLogic.NONE)
                         .save(provider);
@@ -97,6 +102,7 @@ public class CreateRecipeTypes {
                         .buildRawRecipe();
                 new CTPPRecipeBuilder(newrecipe, MECHANICAL_LATHE_RECIPES).rpm(CTNHConfig.INSTANCE.kinetic.latheRpmRequirement)
                         .noEUt()
+                        .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt().voltage()) * 2, 5))
                         .inputStress(builder.EUt().voltage() * CTNHConfig.INSTANCE.kinetic.latheStressRequirement)
                         .save(provider);
             }
@@ -109,6 +115,7 @@ public class CreateRecipeTypes {
                         .buildRawRecipe();
                 new CTPPRecipeBuilder(newrecipe, MECHANICAL_LASER_RECIPES).rpm(CTNHConfig.INSTANCE.kinetic.laserRpmRequirement)
                         .noEUt()
+                        .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt().voltage()) * 2, 5))
                         .inputStress(builder.EUt().voltage() * CTNHConfig.INSTANCE.kinetic.laserStressRequirement)
                         .save(provider);
             }

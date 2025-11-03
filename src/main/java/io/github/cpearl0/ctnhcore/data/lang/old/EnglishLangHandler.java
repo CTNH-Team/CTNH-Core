@@ -557,6 +557,9 @@ public class EnglishLangHandler {
         provider.add("ctnhcore.machine.high_performance_computer.tooltip.0", "§3Fetal OVERCLOCKING?");
         provider.add("ctnhcore.machine.high_performance_computer.tooltip.1", "§rProvider %d computation when energy is sufficient.");
 
+        provider.add("ctnh.machine.naquadah_reactor.tooltip", "Efficiency: %s%%");
+        provider.add("ctnh.machine.rocket_engine.tooltip", "Efficiency: %s%%");
+
         nuclearTranslation(NuclearMaterials.Thorium233, "Thorium 233");
         nuclearTranslation(NuclearMaterials.Thorium232, "Thorium 232");
         nuclearTranslation(NuclearMaterials.Protactinium233, "Protactinium 233");

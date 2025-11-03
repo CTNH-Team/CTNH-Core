@@ -179,13 +179,13 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine implement
     //////////////////////////////////////
     @CN("当前中子动能: %deV")
     @EN("Current Neutron Kinetic Energy: %deV")
-    Lang ev;
+    static Lang ev;
     @CN("高度: %s")
     @EN("Height: %s")
-    Lang height_tooltip;
+    static Lang height_tooltip;
     @CN("耗时: %s%%")
     @EN("Efficiency: %s%%")
-    Lang efficiency;
+    static Lang efficiency;
     @Override
     public void addDisplayText(List<Component> textList) {
         IDisplayUIMachine.super.addDisplayText(textList);

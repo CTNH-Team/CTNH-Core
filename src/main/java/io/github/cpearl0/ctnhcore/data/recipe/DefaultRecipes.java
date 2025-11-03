@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
 import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
+import io.github.cpearl0.ctnhcore.data.machines.GTNNMachines;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
@@ -731,7 +732,7 @@ public class DefaultRecipes {
                 .inputItems(CustomTags.EV_CIRCUITS)
                 .inputItems(GTItems.SENSOR_HV.asStack(2))
                 .circuitMeta(1)
-                .outputItems(CTNHMachines.NEUTRON_SENSOR.asStack())
+                .outputItems(GTNNMachines.NEUTRON_SENSOR.asStack())
                 .EUt(GTValues.VA[GTValues.EV]) // 1920 EU/t
                 .duration(300) // 15秒
                 .save(provider);
@@ -765,7 +766,7 @@ public class DefaultRecipes {
                 .inputItems(TagPrefix.plate, GTMaterials.Polyethylene)
                 .inputItems(TagPrefix.plate, GTMaterials.Beryllium, 2)
                 .inputItems(GTItems.ELECTRIC_MOTOR_MV)
-                .outputItems(CTNHMachines.NEUTRON_ACCELERATOR[GTValues.MV].asStack())
+                .outputItems(GTNNMachines.NEUTRON_ACCELERATOR[GTValues.MV].asStack())
                 .EUt(GTValues.VA[GTValues.MV]) // 120 EU/t
                 .duration(300) // 15秒
                 .save(provider);
@@ -778,7 +779,7 @@ public class DefaultRecipes {
                 .inputItems(TagPrefix.plate, GTMaterials.PolyvinylChloride)
                 .inputItems(TagPrefix.plateDouble, GTMaterials.Beryllium, 2)
                 .inputItems(GTItems.ELECTRIC_MOTOR_HV.asStack(2))
-                .outputItems(CTNHMachines.NEUTRON_ACCELERATOR[GTValues.HV].asStack())
+                .outputItems(GTNNMachines.NEUTRON_ACCELERATOR[GTValues.HV].asStack())
                 .EUt(GTValues.VA[GTValues.HV]) // 480 EU/t
                 .duration(300) // 15秒
                 .save(provider);
@@ -792,7 +793,7 @@ public class DefaultRecipes {
                 .inputItems(TagPrefix.plate, GTMaterials.IronMagnetic, 4)
                 .inputItems(TagPrefix.plate, GTMaterials.TungstenCarbide, 2)
                 .inputItems(GTItems.ELECTRIC_MOTOR_EV.asStack(2))
-                .outputItems(CTNHMachines.NEUTRON_ACCELERATOR[GTValues.EV].asStack())
+                .outputItems(GTNNMachines.NEUTRON_ACCELERATOR[GTValues.EV].asStack())
                 .EUt(GTValues.VA[GTValues.EV]) // 1920 EU/t
                 .duration(300) // 15秒
                 .save(provider);
@@ -806,7 +807,7 @@ public class DefaultRecipes {
                 .inputItems(TagPrefix.plate, GTMaterials.SteelMagnetic, 4)
                 .inputItems(TagPrefix.plateDouble, GTMaterials.TungstenCarbide, 2)
                 .inputItems(GTItems.ELECTRIC_MOTOR_IV.asStack(2))
-                .outputItems(CTNHMachines.NEUTRON_ACCELERATOR[GTValues.IV].asStack())
+                .outputItems(GTNNMachines.NEUTRON_ACCELERATOR[GTValues.IV].asStack())
                 .EUt(GTValues.VA[GTValues.IV]) // 1920 EU/t
                 .duration(300) // 15秒
                 .save(provider);
@@ -821,8 +822,8 @@ public class DefaultRecipes {
                 .inputItems(TagPrefix.plate, GTMaterials.NeodymiumMagnetic, 4)
                 .inputItems(GTItems.ELECTRIC_MOTOR_LuV.asStack(2))
                 .inputFluids(GTMaterials.Argon.getFluid(3000))
-                .outputItems(CTNHMachines.NEUTRON_ACCELERATOR[GTValues.LuV].asStack())
-                .scannerResearch(CTNHMachines.NEUTRON_ACCELERATOR[GTValues.IV].asStack())
+                .outputItems(GTNNMachines.NEUTRON_ACCELERATOR[GTValues.LuV].asStack())
+                .scannerResearch(GTNNMachines.NEUTRON_ACCELERATOR[GTValues.IV].asStack())
                 .EUt(GTValues.VA[GTValues.LuV]) // 32768 EU/t
                 .duration(300) // 15秒
                 .save(provider);
@@ -838,8 +839,8 @@ public class DefaultRecipes {
                 .inputItems(GTItems.ELECTRIC_MOTOR_ZPM.asStack(2))
                 .inputItems(TagPrefix.wireGtQuadruple, GTMaterials.UraniumTriplatinum, 4)
                 .inputFluids(GTMaterials.Xenon.getFluid(3000))
-                .outputItems(CTNHMachines.NEUTRON_ACCELERATOR[GTValues.ZPM].asStack())
-                .scannerResearch(CTNHMachines.NEUTRON_ACCELERATOR[GTValues.LuV].asStack())
+                .outputItems(GTNNMachines.NEUTRON_ACCELERATOR[GTValues.ZPM].asStack())
+                .scannerResearch(GTNNMachines.NEUTRON_ACCELERATOR[GTValues.LuV].asStack())
                 .EUt(GTValues.VA[GTValues.ZPM]) // 98304 EU/t
                 .duration(300) // 15秒
                 .save(provider);
@@ -856,15 +857,15 @@ public class DefaultRecipes {
                 .inputItems(GTItems.ELECTRIC_MOTOR_UV.asStack(2))
                 .inputItems(TagPrefix.wireGtQuadruple, GTMaterials.IndiumTinBariumTitaniumCuprate, 4)
                 .inputFluids(GTMaterials.Oganesson.getFluid(3000))
-                .outputItems(CTNHMachines.NEUTRON_ACCELERATOR[GTValues.UV].asStack())
-                .scannerResearch(CTNHMachines.NEUTRON_ACCELERATOR[GTValues.ZPM].asStack())
+                .outputItems(GTNNMachines.NEUTRON_ACCELERATOR[GTValues.UV].asStack())
+                .scannerResearch(GTNNMachines.NEUTRON_ACCELERATOR[GTValues.ZPM].asStack())
                 .EUt(GTValues.VA[GTValues.UV]) // 393216 EU/t
                 .duration(300) // 15秒
                 .save(provider);
         // ULV中子加速器
         VanillaRecipeHelper.addShapedRecipe(
                 provider, "neutron_accelerator_ulv",
-                CTNHMachines.NEUTRON_ACCELERATOR[GTValues.ULV].asStack(),
+                GTNNMachines.NEUTRON_ACCELERATOR[GTValues.ULV].asStack(),
                 "ABC", "DEF", "ABC",
                 'A', TagPrefix.cableGtSingle, GTMaterials.Lead,
                 'B', TagPrefix.plate, GTMaterials.Lead,
@@ -877,7 +878,7 @@ public class DefaultRecipes {
         // LV中子加速器
         VanillaRecipeHelper.addShapedRecipe(
                 provider, "neutron_accelerator_lv",
-                CTNHMachines.NEUTRON_ACCELERATOR[GTValues.LV].asStack(),
+                GTNNMachines.NEUTRON_ACCELERATOR[GTValues.LV].asStack(),
                 "ABC", "DEF", "ABC",
                 'A', TagPrefix.cableGtSingle, GTMaterials.Tin,
                 'B', TagPrefix.plateDouble, GTMaterials.Lead,

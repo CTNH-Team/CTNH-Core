@@ -20,6 +20,11 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Suffix;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -32,7 +37,8 @@ import static com.gregtechceu.gtceu.common.data.GCYMBlocks.CASING_LARGE_SCALE_AS
 import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_TEMPERED_GLASS;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_TUNGSTENSTEEL_ROBUST;
 import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.CLEANROOM;
-
+@Prefix("multiblock")
+@Suffix("tooltip")
 public class GTMachineModify {
 
     public static BiConsumer<ItemStack, List<Component>> REDUCTION_INFO = (itemStack, list) -> list.add(Component.translatable("ctnh.gcym.reduction").withStyle(ChatFormatting.GREEN));
@@ -74,6 +80,16 @@ public class GTMachineModify {
         modifyGTAssembly();
         modifyCleanroom();
     }
+
+    @CN({
+            "其他可用配方类型: 精密组装",
+            "注意：在精密组装模式下无法并行"
+    })
+    @EN({
+            "Other available recipe type: Precision Assembly",
+            "NOTE: Parallelization is not possible in precision assembly mode"
+    })
+    static Lang[] precision_assembly;
     private static void modifyGTAssembly() {
         var lASB = GCYMMachines.LARGE_ASSEMBLER;
         var lASBRecipeTypes = new java.util.ArrayList<>(Arrays.stream(lASB.getRecipeTypes()).toList());
@@ -81,8 +97,8 @@ public class GTMachineModify {
         lASB.setRecipeTypes(lASBRecipeTypes.toArray(GTRecipeType[]::new));
         lASB.setTooltipBuilder(lASB.getTooltipBuilder().andThen((itemStack, components) -> {
             components.add(Component.translatable("ctnh.gcym.reduction").withStyle(ChatFormatting.GREEN));
-            components.add(Component.translatable("ctnh.multiblock.precision_assembly.tooltip.0"));
-            components.add(Component.translatable("ctnh.multiblock.precision_assembly.tooltip.1"));
+            components.add(precision_assembly[0].translate());
+            components.add(precision_assembly[1].translate());
         }
         ));
         //lASB.setMachineSupplier(MultiblockComputationMachine::new);

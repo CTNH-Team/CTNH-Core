@@ -32,9 +32,15 @@ import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachi
 import io.github.cpearl0.ctnhcore.common.machine.simple.SimpleComputationMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.DigitalWosMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.HighPerformanceComputerMachine;
+import io.github.cpearl0.ctnhcore.data.machines.GTNNMachines;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Suffix;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +55,8 @@ import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils.*;
-
+@Prefix("machine")
+@Suffix("tooltip")
 public class CTNHMachines {
     static {
         REGISTRATE.creativeModeTab(() -> CTNHCreativeModeTabs.MACHINE);
@@ -61,28 +68,6 @@ public class CTNHMachines {
             .hasBER(false)
             .itemBuilder(item -> item.model((ctx, prov) -> prov.withExistingParent(ctx.getName(), CTNHCore.id("block/" + ctx.getName()))))
         .rotationState(RotationState.Y_AXIS).register();
-    public static final MachineDefinition[] NEUTRON_ACCELERATOR = registerTieredMachines(
-            "neutron_accelerator", NeutronAcceleratorMachine::new, (tier, builder) ->
-                    builder.langValue(VNF[tier] + " Neutron Accelerator").rotationState(RotationState.ALL)
-                    .abilities(CTNHPartAbility.NEUTRON_ACCELERATOR)
-                    .tooltips(Component.translatable("ctnh.machine.neutron_accelerator.tooltip.0"))
-                    .tooltips(Component.translatable("ctnh.machine.neutron_accelerator.tooltip.1", V[tier]))
-                    .tooltips(Component.translatable("ctnh.machine.neutron_accelerator.tooltip.2", V[tier] * 8 / 10))
-                    .tooltips(Component.translatable("ctnh.machine.neutron_accelerator.tooltip.3"))
-                    .colorOverlayTieredHullModel("overlay_na")
-                    .register(), GTValues.tiersBetween(ULV, UV)
-    );
-
-    public static final MachineDefinition NEUTRON_SENSOR = REGISTRATE
-            .machine("neutron_sensor", NeutronSensorMachine::new)
-            .cnLangValue("中子传感器")
-            .langValue("Neutron Sensor")
-            .tier(IV)
-            .rotationState(RotationState.ALL)
-            .abilities(CTNHPartAbility.NEUTRON_SENSOR)
-            .colorOverlayTieredHullModel("overlay_neutron_sensor", null, "overlay_neutron_sensor_emissive")
-            .tooltips(Component.translatable("block.ctnh.neutron_sensor.tooltip.0"))
-            .tooltips(Component.translatable("block.ctnh.neutron_sensor.tooltip.1")).register();
 
     public static final MachineDefinition CATALYST_HATCH = REGISTRATE
             .machine("catalyst_hatch", CatalystHatchPartMachine::new)
@@ -267,6 +252,8 @@ public class CTNHMachines {
             ;
 
     public static void init() {
+        GTNNMachines.init();
 
     }
+
 }
