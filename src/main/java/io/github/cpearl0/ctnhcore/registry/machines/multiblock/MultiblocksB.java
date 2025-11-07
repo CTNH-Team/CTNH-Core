@@ -69,6 +69,7 @@ import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWor
 import static com.hollingsworth.arsnouveau.setup.registry.BlockRegistry.*;
 import static committee.nova.mods.avaritia.init.registry.ModBlocks.neutron;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHMachines.HIGH_SPEED_PIPE_BLOCK;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips.MANA_MACHINE;
 import static io.github.cpearl0.ctnhcore.utils.ModUtils.BotaniaRL;
@@ -1867,16 +1868,31 @@ public class MultiblocksB {
                     Component.translatable("ctnh.multiblock.cryotheum_freezer.tip.1"),
                     Component.translatable("ctnh.multiblock.cryotheum_freezer.tip.2"))
             .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("AAA", "BBB", "AAA")
-                    .aisle("AAA", "B#B", "AAA")
-                    .aisle("AAA", "B@B", "AAA")
-                    .where("A", Predicates.blocks(SUPER_FREEZE_BLOCK.get()).setMinGlobalLimited(10)
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
-
-                    .where("B", Predicates.blocks(SUPERCOOLED_BLOCK.get()))
+                    .aisle("A###BBBBB####", "####BCCCB####", "####BCCCB####", "####BCCCB####", "####BCCCB####", "####BCCCB####", "####BBBBB####")
+                    .aisle("#BBBBBDBBBBB#", "#DDDBEDEBDDD#", "#BBBBEDEBBBB#", "#DDDBEFEBDDD#", "#BBBBEDEBBBB#", "#DDDBEDEBDDD#", "#BBBBBEBBBBB#")
+                    .aisle("#B##BBBBB##B#", "#D##BCCCB##D#", "#B##BCCCB##B#", "#D##BCFCB##D#", "#B##BCCCB##B#", "#D##BCCCB##D#", "#B##BBBBB##B#")
+                    .aisle("#B#########B#", "#D#########D#", "#B###CCC###B#", "#D###CFC###D#", "#B###CCC###B#", "#D#########D#", "#B#########B#")
+                    .aisle("BBB#######BBB", "BBB##BBB##BBB", "BBB#BEEEB#BBB", "BBB#BEFEB#BBB", "BBB#BEEEB#BBB", "BBB##BBB##BBB", "BBB#######BBB")
+                    .aisle("BBB##BBB##BBB", "CEC#BEEEB#CEC", "CECCEBBBECCEC", "CECCEBGBECCEC", "CECCEBBBECCEC", "CEC#BEEEB#CEC", "BBB##BBB##BBB")
+                    .aisle("BDB##BDB##BDB", "CDC#BEDEB#CDC", "CDCCEBDBECCDC", "CFFFFGDGFFFFC", "CDCCEBDBECCDC", "CDC#BEDEB#CDC", "BEB##BDB##BEB")
+                    .aisle("BBB##BBB##BBB", "CEC#BEEEB#CEC", "CECCEEGEECCEC", "CECCEGDGECCEC", "CECCEEGEECCEC", "CEC#BEEEB#CEC", "BBB##BBB##BBB")
+                    .aisle("BBB#######BBB", "BBB##BBB##BBB", "BBB#BDDDB#BBB", "BBB#BDDDB#BBB", "BBB#BDDDB#BBB", "BBB##BBB##BBB", "BBB#######BBB")
+                    .aisle("#############", "#############", "#####BBB#####", "#####BHB#####", "#####BBB#####", "#############", "############A")
+                    .where("A", Predicates.any())
                     .where("#", Predicates.any())
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build()
+                    .where("B", Predicates.blocks(SUPER_FREEZE_BLOCK.get()).or(Predicates.autoAbilities()))
+                    .where("C", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
+                    .where("D", Predicates.blocks(SUPERCOOLED_BLOCK.get()))
+                    .where("E", Predicates.blocks(MOLYBDENUM_DISILICIDE_COIL_BLOCK.get()))
+                    .where("F", Predicates.blocks(CASING_POLYBENZIMIDAZOLE_PIPE.get()))
+                    .where("G", Predicates.blocks(HIGH_SPEED_PIPE_BLOCK.get()))
+                    .where("H", Predicates.controller(Predicates.blocks(definition.get())))
+
+
+
+
+
+                            .build()
             )
             .appearanceBlock(SUPER_FREEZE_BLOCK)
             .workableCasingModel(CTNHCore.id("block/casings/super_machine_casing_frost_proof"), GTCEu.id("block/multiblock/vacuum_freezer"))

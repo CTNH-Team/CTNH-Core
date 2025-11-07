@@ -65,7 +65,7 @@ public class CryotheumFreezer extends WorkableElectricMultiblockMachine implemen
     @Persisted
     public long target=100000L;
     public MutableComponent provider_a() {
-        return Component.translatable("ctnh.testui.0", a);
+        return Component.translatable("ctnh.multiblock.cryotheum_freezer.ui.0", a);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class CryotheumFreezer extends WorkableElectricMultiblockMachine implemen
     @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
-        textList.add(textList.size(),Component.translatable("ctnh.freezeui.5",used_energy,target));
+        textList.add(textList.size(),Component.translatable("ctnh.multiblock.cryotheum_freezer.ui.5",used_energy,target));
     }
 
     @Override

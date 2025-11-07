@@ -136,15 +136,15 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
         else if (dimension == AetherDimensions.AETHER_LEVEL) {
             rate *= 1;
         } else if (dimension == Planet.MOON || dimension == Planet.MOON_ORBIT) {
-            rate *= 1.5;
-        } else if (dimension == Planet.VENUS || dimension == Planet.VENUS_ORBIT) {
             rate *= 2;
-        } else if (dimension == Planet.MERCURY || dimension == Planet.MERCURY_ORBIT) {
+        } else if (dimension == Planet.VENUS || dimension == Planet.VENUS_ORBIT) {
             rate *= 4;
-        } else if (dimension == Planet.MARS || dimension == Planet.MARS_ORBIT) {
-            rate *= 6;
-        } else if (dimension == Planet.GLACIO || dimension == Planet.GLACIO_ORBIT) {
+        } else if (dimension == Planet.MERCURY || dimension == Planet.MERCURY_ORBIT) {
             rate *= 8;
+        } else if (dimension == Planet.MARS || dimension == Planet.MARS_ORBIT) {
+            rate *= 16;
+        } else if (dimension == Planet.GLACIO || dimension == Planet.GLACIO_ORBIT) {
+            rate *= 32;
         }
 
         return rate;

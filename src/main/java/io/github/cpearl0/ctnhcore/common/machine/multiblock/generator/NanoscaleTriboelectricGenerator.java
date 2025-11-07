@@ -154,7 +154,7 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
             return ModifierFunction.builder()
                     .inputModifier(ContentModifier.multiplier(maxParallel))
                     .outputModifier(ContentModifier.multiplier(maxParallel))
-                    .durationMultiplier(2 * Math.sqrt(maxParallel))
+                    .durationMultiplier(Math.sqrt(maxParallel))
                     .eutMultiplier(maxParallel * (1 + maxParallel * 0.02) * efficiency)
                     .build();
         }
