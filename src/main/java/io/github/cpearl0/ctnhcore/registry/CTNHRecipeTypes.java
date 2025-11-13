@@ -351,8 +351,8 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_CRYSTALLIZATION, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL)
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.beams.info.mana_required",String.format("%.2f",data.getFloat("required_mana")/1000000)))
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.beams.info.mana_consumption",String.format("%.2f",data.getFloat("mana")/1000000)));
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.multiblock.nicoll_dyson_beams.info.mana_required",String.format("%.2f",data.getFloat("required_mana")/1000000)))
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.multiblock.nicoll_dyson_beams.info.mana_consumption",String.format("%.2f",data.getFloat("mana")/1000000)));
     public static final GTRecipeType TWISTED_FUSION = REGISTRATE.recipeType(GTCEu.id("twisted_fusion"),ELECTRIC)
                 .cnlang("扭曲聚变反应堆").setMaxIOSize(0, 0, 2, 2)
                 .setEUIO(IO.IN)
