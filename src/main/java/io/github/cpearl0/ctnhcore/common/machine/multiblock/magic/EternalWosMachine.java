@@ -40,7 +40,7 @@ public class EternalWosMachine extends WorkableElectricMultiblockMachine {
     public void afterWorking() {
         MachineUtils.applyContents(this, (content)->{
             var count = ((ItemStack)content).getTag().getCompound("data_model").getInt("data");
-            if(count < 900) ((ItemStack)content).getTag().getCompound("data_model").putInt("data",count + 1);
+            if(count < 54) ((ItemStack)content).getTag().getCompound("data_model").putInt("data",count + 1);
         }, GTRecipeCapabilities.ITEM, IO.IN);
         super.afterWorking();
     }
