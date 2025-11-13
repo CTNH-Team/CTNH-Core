@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.common.machine.multiblock.part.ObjectHolderMachine;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.data.recipe.CraftingComponent;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
@@ -18,7 +19,6 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluids;
 import tech.vixhentx.mcmod.ctnhlib.registrate.builders.CTNHTagPrefix;
-
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
@@ -26,8 +26,10 @@ import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
+import static com.gregtechceu.gtceu.common.data.machines.GTResearchMachines.OBJECT_HOLDER;
 import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.*;
 import static com.gregtechceu.gtceu.data.recipe.misc.MetaTileEntityLoader.registerMachineRecipe;
+import static io.github.cpearl0.ctnhcore.registry.CTNHMachines.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR;
 import static twilightforest.init.TFItems.STEELEAF_INGOT;
@@ -216,6 +218,14 @@ public class MachinesRecipes {
                 //.EUt(-1)
                 .circuitMeta(1)
                 .addData("input",32678)
+                .save(provider);
+        ASSEMBLER_RECIPES.recipeBuilder("drone_holder")
+                .duration(100)
+                .EUt(32678*4)
+                .circuitMeta(1)
+                .inputItems(OBJECT_HOLDER)
+                .outputItems(DRONEHOLDER)
+                .inputItems(CustomTags.UV_CIRCUITS, 4)
                 .save(provider);
     }
 
