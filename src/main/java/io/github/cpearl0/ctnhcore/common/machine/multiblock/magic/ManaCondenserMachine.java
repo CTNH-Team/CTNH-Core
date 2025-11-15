@@ -48,7 +48,7 @@ public class ManaCondenserMachine extends WorkableElectricMultiblockMachine {
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
         if (getLevel().getBlockEntity(poolPos) instanceof ManaPoolBlockEntity manaPoolBlockEntity){
-            if (recipe.data.get("mode") != null && recipe.data.get("mode").equals("reverse")) {
+            if (recipe.data.get("mode") != null && recipe.data.getString("mode").equals("reverse")) {
                 reverse = true;
                 if (manaPoolBlockEntity.getAvailableSpaceForMana() < basicMana * parallel * 10) {
                     return false;

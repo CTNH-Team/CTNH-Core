@@ -51,37 +51,18 @@ public class ManaCondenserRender extends DynamicRender<IMachineFeature, ManaCond
                     MachineUtils.getOffset(machine, -5, 8, -5));
             BlockPos core = MachineUtils.getOffset(machine, 0, 5, 0);
             boolean reverse = false;
-            if (machine.getRecipeLogic().getLastRecipe().data != null && machine.getRecipeLogic().getLastRecipe().data.getString("mode").equals("reverse")) {
+            if (machine.getRecipeLogic().getLastRecipe().data.get("mode") != null && machine.getRecipeLogic().getLastRecipe().data.getString("mode").equals("reverse")) {
                 reverse = true;
             }
-            float xoff = 0;
-            float zoff = 0;
-            var facing = machine.getFrontFacing();
-            switch (facing) {
-                case NORTH -> {
-                    xoff = -0.5F;
-                    zoff = -0.5F;
-                }
-                case SOUTH -> {
-                    xoff = 0.5F;
-                    zoff = 0.5F;
-                }
-                case WEST -> {
-                    xoff = -0.5F;
-                    zoff = 0.5F;
-                }
-                case EAST -> {
-                    xoff = 0.5F;
-                    zoff = -0.5F;
-                }
-            }
+            float xoff = 0.5F;
+            float zoff = 0.5F;
             for (BlockPos pos : target) {
                 float x = pos.getX() - core.getX();
                 float y = pos.getY() - core.getY();
                 float z = pos.getZ() - core.getZ();
                 if (reverse) {
                     poseStack.pushPose();
-                    poseStack.translate(xoff, 4, zoff);
+                    poseStack.translate(xoff + x, 4 + y, zoff + z);
                     EnderDragonRenderer.renderCrystalBeams(-x, -y, -z, machine.getLevel().getGameTime() + gameTime, 2000, poseStack, buffer, 15);
                     poseStack.popPose();
                 }
