@@ -223,7 +223,7 @@ public class EnglishLangHandler {
         provider.add("ctnh.multiblock.arcgenerator.info.3", "Current Efficiency: %.2f%%");
 
         // Machine Tooltips
-        provider.add("ctnh.copyright.info", "Added by CTNH");
+        provider.add("ctnhcore.copyright.info", "Added by CTNH");
 
         provider.add("ctnh.recipe_type.info", "Recipe Type：%s");
 

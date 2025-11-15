@@ -339,7 +339,7 @@ public class ChineseLangHandler {
         provider.add("block.ctnhcore.zpm_compressed_fusion_reactor", "压缩核聚变反应堆控制电脑 MK-II");
         provider.add("block.ctnhcore.uv_compressed_fusion_reactor", "压缩核聚变反应堆控制电脑 MK-III");
         provider.add("gtceu.multiblock.laser.tooltip", "允许使用激光仓");
-        provider.add("ctnh.copyright.info", "§6由CTNH添加");
+        provider.add("ctnhcore.copyright.info", "§6由CTNH添加");
         provider.add("ctnh.recipe_type.info", "配方类型：%s");
         provider.add("ctnh.recipe_type.list", "%s, %s");
 

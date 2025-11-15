@@ -29,7 +29,7 @@ public class CreateRecipeTypes {
     public static void init() {
         BENDER_RECIPES.onRecipeBuild((builder, provider) ->{
             assert MECHANICAL_PRESSOR_RECIPES != null;
-            if(GTUtil.getTierByVoltage(builder.EUt().voltage()) <= GTValues.LV) {
+            if(GTUtil.getTierByVoltage(builder.EUt().voltage()) <= GTValues.HV) {
                 var newrecipe = MECHANICAL_PRESSOR_RECIPES.copyFrom(builder)
                         .duration(Math.max((int)(builder.duration / CTNHConfig.INSTANCE.kinetic.pressorSpeedMultiplier), 1))
                         .buildRawRecipe();
@@ -42,7 +42,7 @@ public class CreateRecipeTypes {
         });
         MIXER_RECIPES.onRecipeBuild((builder, provider) ->{
             assert MECHANICAL_MIXER_RECIPES != null;
-            if(GTUtil.getTierByVoltage(builder.EUt().voltage()) <= GTValues.LV) {
+            if(GTUtil.getTierByVoltage(builder.EUt().voltage()) <= GTValues.HV) {
                 var newrecipe = MECHANICAL_MIXER_RECIPES.copyFrom(builder)
                         .duration(Math.max((int)(builder.duration / CTNHConfig.INSTANCE.kinetic.mixerSpeedMultiplier), 1))
                         .buildRawRecipe();
@@ -55,7 +55,7 @@ public class CreateRecipeTypes {
         });
         CENTRIFUGE_RECIPES.onRecipeBuild((builder, provider) ->{
             assert MECHANICAL_CENTRIFUGE_RECIPES != null;
-            if(GTUtil.getTierByVoltage(builder.EUt().voltage()) <= GTValues.LV) {
+            if(GTUtil.getTierByVoltage(builder.EUt().voltage()) <= GTValues.HV) {
                 var newrecipe = MECHANICAL_CENTRIFUGE_RECIPES.copyFrom(builder)
                         .duration(Math.max((int)(builder.duration / CTNHConfig.INSTANCE.kinetic.centrifugeSpeedMultiplier), 1))
                         .buildRawRecipe();
@@ -68,7 +68,7 @@ public class CreateRecipeTypes {
         });
         SIFTER_RECIPES.onRecipeBuild((builder, provider) ->{
             assert MECHANICAL_SIFTER_RECIPES != null;
-            if(GTUtil.getTierByVoltage(builder.EUt().voltage()) <= GTValues.LV) {
+            if(GTUtil.getTierByVoltage(builder.EUt().voltage()) <= GTValues.HV) {
                 var newrecipe = MECHANICAL_SIFTER_RECIPES.copyFrom(builder)
                         .duration(Math.max((int)(builder.duration / CTNHConfig.INSTANCE.kinetic.sifterSpeedMultiplier), 1))
                         .buildRawRecipe();
@@ -82,7 +82,7 @@ public class CreateRecipeTypes {
         });
         EXTRACTOR_RECIPES.onRecipeBuild((builder, provider) ->{
             assert MECHANICAL_EXTRACTOR_RECIPES != null;
-            if(GTUtil.getTierByVoltage(builder.EUt().voltage()) <= GTValues.LV) {
+            if(GTUtil.getTierByVoltage(builder.EUt().voltage()) <= GTValues.HV) {
                 var newrecipe = MECHANICAL_EXTRACTOR_RECIPES.copyFrom(builder)
                         .duration(Math.max((int)(builder.duration / CTNHConfig.INSTANCE.kinetic.extractorSpeedMultiplier), 1))
                         .buildRawRecipe();
@@ -96,7 +96,7 @@ public class CreateRecipeTypes {
         });
         LATHE_RECIPES.onRecipeBuild((builder, provider) ->{
             assert MECHANICAL_LATHE_RECIPES != null;
-            if(GTUtil.getTierByVoltage(builder.EUt().voltage()) <= GTValues.LV) {
+            if(GTUtil.getTierByVoltage(builder.EUt().voltage()) <= GTValues.HV) {
                 var newrecipe = MECHANICAL_LATHE_RECIPES.copyFrom(builder)
                         .duration(Math.max((int)(builder.duration / CTNHConfig.INSTANCE.kinetic.latheSpeedMultiplier), 1))
                         .buildRawRecipe();
@@ -109,7 +109,7 @@ public class CreateRecipeTypes {
         });
         LASER_ENGRAVER_RECIPES.onRecipeBuild((builder, provider) ->{
             assert MECHANICAL_LASER_RECIPES != null;
-            if(GTUtil.getTierByVoltage(builder.EUt().voltage()) <= GTValues.LV) {
+            if(GTUtil.getTierByVoltage(builder.EUt().voltage()) <= GTValues.HV) {
                 var newrecipe = MECHANICAL_LASER_RECIPES.copyFrom(builder)
                         .duration(Math.max((int)(builder.duration / CTNHConfig.INSTANCE.kinetic.laserSpeedMultiplier), 1))
                         .buildRawRecipe();
