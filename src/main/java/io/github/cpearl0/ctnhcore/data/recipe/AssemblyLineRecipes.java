@@ -1,11 +1,16 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import appeng.core.definitions.AEBlocks;
+import appeng.datagen.providers.models.AE2BlockStateProvider;
 import com.github.elenterius.biomancy.init.ModItems;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.common.data.machines.GTAEMachines;
+import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
+import com.gregtechceu.gtceu.common.data.machines.GTResearchMachines;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.moguang.ctnhbio.data.materials.CommonMaterials;
 import com.moguang.ctnhbio.machine.multiblock.CBMultiblocks;
@@ -14,6 +19,7 @@ import com.moguang.ctnhbio.registry.CBMachines;
 import com.moguang.ctnhbio.registry.CBMultiblockMachines;
 import io.github.cpearl0.ctnhcore.data.materials.SecondMaterials;
 import io.github.cpearl0.ctnhcore.registry.*;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksC;
@@ -21,25 +27,28 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
+import tech.luckyblock.mcmod.ctnhenergy.CTNHEnergy;
 
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.frameGt;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.wireGtSingle;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
+import static com.gregtechceu.gtceu.common.data.GTMachines.HULL;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLY_LINE_RECIPES;
 import static com.gregtechceu.gtceu.common.data.machines.GCYMMachines.PARALLEL_HATCH;
 import static com.moguang.ctnhbio.data.materials.OrganicMaterials.*;
 import static dev.shadowsoffire.hostilenetworks.Hostile.Items.SIM_CHAMBER;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.ADVANCED_RAM_CHIP;
+import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines.ADVANCED_ME_PATTERN_BUFFER;
+import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMultiblock.JIUZHANG_QUANTUM_COMPUTER;
 
 public class AssemblyLineRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         ASSEMBLY_LINE_RECIPES.recipeBuilder("async_thread_hatch_luv")
-                .inputItems(GTMachines.HULL[LuV].asStack(),1)
+                .inputItems(HULL[LuV].asStack(),1)
                 .inputItems(GTMachines.QUANTUM_CHEST[LuV].asStack(),4)
                 .inputItems(GTMachines.QUANTUM_TANK[LuV].asStack(),4)
                 .inputItems(CustomTags.UV_CIRCUITS, 4)
@@ -56,7 +65,7 @@ public class AssemblyLineRecipes {
                 .EUt(VA[LuV]).duration(1200)
                 .save(provider);
         ASSEMBLY_LINE_RECIPES.recipeBuilder("cnc_alloy_smelter")
-                .inputItems(GTMachines.HULL[LuV].asStack(),1)
+                .inputItems(HULL[LuV].asStack(),1)
                 .inputItems(GTMachines.ALLOY_SMELTER[LuV].asStack(),4)
                 .inputItems(GTMachines.EXTRACTOR[LuV].asStack(),4)
                 .inputItems(CustomTags.LuV_CIRCUITS, 4)
@@ -116,7 +125,7 @@ public class AssemblyLineRecipes {
                 .EUt(VA[LuV]).duration(800)
                 .save(provider);
         ASSEMBLY_LINE_RECIPES.recipeBuilder("sim_chamber")
-                .inputItems(GTMachines.HULL[IV],1)
+                .inputItems(HULL[IV],1)
                 .inputItems(CTNHItems.HEAVY_PLATE_T3,4)
                 .inputItems(TagPrefix.plateDouble,VanadiumGallium,4)
                 .inputItems(TagPrefix.plateDouble,NiobiumTitanium,4)
@@ -162,5 +171,40 @@ public class AssemblyLineRecipes {
                 .stationResearch(b->b.researchStack(CBMachines.NEURAL_MODEL_ACCESSOR.asStack()).CWUt(32).EUt(VA[UV]))
                 .EUt(VA[UV]).duration(1000)
                 .save(provider);
+        ASSEMBLY_LINE_RECIPES.recipeBuilder("jiuzhang_quantum_computer")
+                .inputItems(GTMachines.SCANNER[LuV].asStack())
+                .inputItems(GTMultiMachines.ACTIVE_TRANSFORMER.asStack())
+                .inputItems(GTResearchMachines.HPCA_COMPUTATION_COMPONENT.asStack(),16)
+                .inputItems(GTResearchMachines.HPCA_ACTIVE_COOLER_COMPONENT.asStack(),16)
+                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2omnicells:omni_cell_component_64k")),4)
+                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2omnicells:omni_cell_component_256k")),2)
+                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:cell_component_64k")),4)
+                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:cell_component_256k")),2)
+                .inputItems(OPTICAL_PIPES[0].asStack(64))
+                .inputItems(OPTICAL_PIPES[0].asStack(64))
+                .inputItems(OPTICAL_PIPES[0].asStack(64))
+                .inputItems(OPTICAL_PIPES[0].asStack(64))
+                .inputFluids(new FluidStack(PCBCoolant.getFluid(), 2880*5))
+                .outputItems(JIUZHANG_QUANTUM_COMPUTER,1)
+                .stationResearch(b->b.researchStack(AEBlocks.NOT_SO_MYSTERIOUS_CUBE.asItem().getDefaultInstance()).CWUt(4).EUt(VA[LuV]))
+                .EUt(VA[LuV]).duration(5000)
+                .save(provider);
+        ASSEMBLY_LINE_RECIPES.recipeBuilder("advanced_me_pattern_buffer")
+                .inputItems(HULL[ZPM].asStack())
+                .inputItems(GTAEMachines.STOCKING_IMPORT_BUS_ME.asStack())
+                .inputItems(GTAEMachines.STOCKING_IMPORT_HATCH_ME.asStack())
+                .inputItems(frameGt,NaquadahAlloy,4)
+                .inputItems(spring,NaquadahAlloy,4)
+                .inputItems(screw,NaquadahAlloy,16)
+                .inputItems(CustomTags.IV_CIRCUITS,4)
+                .inputItems(CustomTags.LuV_CIRCUITS,2)
+                .inputItems(CustomTags.ZPM_CIRCUITS,1)
+                .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 2880*2))
+                .inputFluids(new FluidStack(BorosilicateGlass.getFluid(), 2880*4))
+                .outputItems(ADVANCED_ME_PATTERN_BUFFER,1)
+                .stationResearch(b->b.researchStack(GTAEMachines.ME_PATTERN_BUFFER.asStack()).CWUt(16).EUt(VA[ZPM]))
+                .EUt(VA[ZPM]).duration(6000)
+                .save(provider);
+
     }
 }

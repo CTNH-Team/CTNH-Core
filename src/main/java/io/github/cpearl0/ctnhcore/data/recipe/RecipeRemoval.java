@@ -44,7 +44,11 @@ public class RecipeRemoval {
                 //凯金线圈
                 "gtceu:assembler/coil_trinium",
                 //模拟室
-                "hostilenetworks:sim_chamber"
+                "hostilenetworks:sim_chamber",
+                //me总成
+                "gtmthings:assembler/me_export_buffer",
+                //编程电路卡
+                "pccard:item/card_programmed_circuit"
 
         };
 

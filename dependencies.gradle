@@ -10,6 +10,7 @@ dependencies {
     jarJar(project(":modules:CTPP")){transitive = false}
     modImplementation(project(":modules:CTNH-Lib")){transitive = false}
     jarJar(project(":modules:CTNH-Lib")){transitive = false}
+    implementation(project(":modules:CTNH-Energy"))
     //modImplementation(project(":modules:CTNH-Mana"))
     // JEI, EMI, Jade
     modImplementation("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")

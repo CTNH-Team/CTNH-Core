@@ -1,18 +1,21 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import appeng.core.definitions.AEBlocks;
+import appeng.core.definitions.AEItems;
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.MarkerMaterials;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
-import com.gregtechceu.gtceu.common.data.GTBlocks;
-import com.gregtechceu.gtceu.common.data.GTItems;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
+import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.common.data.machines.GTAEMachines;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.moguang.ctnhbio.data.recipe.CBRecipeBuilder;
 import com.moguang.ctnhbio.registry.CBBlocks;
+import com.moguang.ctnhbio.registry.CBItems;
 import com.moguang.ctnhbio.registry.CBMachines;
 import com.moguang.ctnhbio.registry.CBMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.data.machines.GTNNMachines;
 import io.github.cpearl0.ctnhcore.data.materials.OrdinaryMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
@@ -23,6 +26,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
+import tech.luckyblock.mcmod.ctnhenergy.registry.CEBlocks;
 
 import java.util.function.Consumer;
 
@@ -30,7 +34,9 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.GTValues.LuV;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.wireFine;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.OPTICAL_PIPES;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
+import static com.gregtechceu.gtceu.common.data.GTMachines.HULL;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Iron;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLY_LINE_RECIPES;
@@ -39,6 +45,8 @@ import static com.moguang.ctnhbio.registry.CBItems.WETWARE_PRINTED_CIRCUIT_BOARD
 import static io.github.cpearl0.ctnhcore.data.materials.OrdinaryMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.ADVANCED_RAM_CHIP;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.HEAVY_PLATE_T3;
+import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines.ADVANCED_ME_PATTERN_BUFFER;
+import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines.ADVANCED_ME_PATTERN_BUFFER_PROXY;
 
 public class OrdinaryRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
@@ -168,13 +176,91 @@ public class OrdinaryRecipes {
                 .save(provider);
         CBRecipeBuilder.of(CTNHCore.id("neural_model_accessor"), GTRecipeTypes.ASSEMBLER_RECIPES)
                 .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("hostilenetworks:sim_chamber")),1)
-                .inputItems(GTBlocks.OPTICAL_PIPES,64)
+                .inputItems(OPTICAL_PIPES[0].asStack(64))
                 .inputItems(TOOL_DATA_STICK,64)
                 .inputItems(HEAVY_PLATE_T3,16)
                 .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(),288))
                 .outputItems(CBMachines.NEURAL_MODEL_ACCESSOR,1)
                 .duration(800)
                 .EUt(30720)
+                .save(provider);
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("card_programmed_circuit")
+                .inputItems(AEItems.BASIC_CARD.asItem(),1)
+                .inputItems(GTMachines.STAINLESS_STEEL_CRATE,1)
+                .inputItems(CBItems.META_CORE,1)
+                .inputItems(PROGRAMMED_CIRCUIT,32)
+                .inputFluids(new FluidStack(SolderingAlloy.getFluid(),1440))
+                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("pccard:card_programmed_circuit")),1)
+                .EUt(GTValues.VA[GTValues.HV])
+                .duration(200)
+                .save(provider);
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("me_dual_output_hatch")
+                .inputItems(GTAEMachines.ITEM_EXPORT_BUS_ME,1)
+                .inputItems(GTAEMachines.FLUID_EXPORT_HATCH_ME,1)
+                .inputItems(plateDense,TungstenSteel,8)
+                .inputItems(GTMachines.TUNGSTENSTEEL_CRATE,1)
+                .inputItems(FLUID_CELL_LARGE_TUNGSTEN_STEEL,1)
+                .inputFluids(new FluidStack(SolderingAlloy.getFluid(),2880))
+                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ctnhenergy:me_dual_output_hatch")),1)
+                .EUt(GTValues.VA[GTValues.IV])
+                .duration(500)
+                .save(provider);
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("advanced_me_pattern_buffer_proxy")
+                .inputItems(ADVANCED_ME_PATTERN_BUFFER,1)
+                .inputItems(CBItems.OMNI_CORE,1)
+                .outputItems(ADVANCED_ME_PATTERN_BUFFER_PROXY,1)
+                .EUt(GTValues.VA[GTValues.HV])
+                .duration(100)
+                .save(provider);
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("quantum_computer_casing")
+                .inputItems(GTBlocks.SUPERCONDUCTING_COIL,1)
+                .inputItems(CustomTags.LuV_CIRCUITS,4)
+                .inputItems(CustomTags.IV_CIRCUITS,4)
+                .inputItems(AEItems.CALCULATION_PROCESSOR.asItem(),16)
+                .inputItems(AEItems.ENGINEERING_PROCESSOR.asItem(),16)
+                .inputItems(AEItems.LOGIC_PROCESSOR.asItem(),16)
+                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2omnicells:omni_link_processor")),16)
+                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2omnicells:complex_link_processor")),16)
+                .inputFluids(new FluidStack(BlueAlloy.getFluid(),576))
+                .outputItems(CEBlocks.QUANTUM_COMPUTER_CASING,16)
+                .EUt(GTValues.VA[LuV])
+                .duration(1000)
+                .save(provider);
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("quantum_computer_me_network_port")
+                .inputItems(CEBlocks.STEADY_STATE_COMPUTING_MATRIX_SHELL,1)
+                .inputItems(AEBlocks.INTERFACE.asItem(),1)
+                .inputItems(AEBlocks.PATTERN_PROVIDER.asItem(),1)
+                .inputItems(GTItems.QUBIT_CENTRAL_PROCESSING_UNIT,64)
+                .inputItems(QUANTUM_EYE,32)
+                .inputItems(QUANTUM_STAR,16)
+                .inputFluids(new FluidStack(Argon.getFluid(),5760))
+                .outputItems(CEBlocks.QUANTUM_COMPUTER_ME_NETWORK_PORT,1)
+                .EUt(GTValues.VA[LuV])
+                .duration(1000)
+                .save(provider);
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("quantum_pointing_block")
+                .inputItems(CEBlocks.STEADY_STATE_COMPUTING_MATRIX_SHELL,1)
+                .inputItems(plate,TungstenSteel,16)
+                .inputItems(pipeSmallItem,Osmium,4)
+                .inputItems(pipeSmallFluid,Iridium,4)
+                .inputItems(screw,Europium,16)
+                .inputFluids(new FluidStack(PCBCoolant.getFluid(),288))
+                .outputItems(CEBlocks.QUANTUM_POINTING_BLOCK,1)
+                .EUt(GTValues.VA[IV])
+                .duration(400)
+                .save(provider);
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("steady_state_computing_matrix_shell")
+                .inputItems(HULL[LuV],1)
+                .inputItems(CustomTags.LuV_CIRCUITS,2)
+                .inputItems(round,Osmiridium,64)
+                .inputItems(plateDense,Iridium,4)
+                .inputItems(springSmall,VanadiumGallium,4)
+                .inputItems(wireFine,Ruridit,64)
+                .inputItems(wireFine,Platinum,64)
+                .inputFluids(new FluidStack(PCBCoolant.getFluid(),144))
+                .outputItems(CEBlocks.STEADY_STATE_COMPUTING_MATRIX_SHELL,1)
+                .EUt(GTValues.VA[EV])
+                .duration(200)
                 .save(provider);
 //对于进阶RAM适配原版电路的配方
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("mainframe_iv_aram")
