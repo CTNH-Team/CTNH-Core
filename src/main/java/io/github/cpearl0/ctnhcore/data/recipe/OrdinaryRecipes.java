@@ -188,7 +188,7 @@ public class OrdinaryRecipes {
                 .inputItems(AEItems.BASIC_CARD.asItem(),1)
                 .inputItems(GTMachines.STAINLESS_STEEL_CRATE,1)
                 .inputItems(CBItems.META_CORE,1)
-                .inputItems(PROGRAMMED_CIRCUIT,32)
+                .inputItems(COVER_SCREEN,32)
                 .inputFluids(new FluidStack(SolderingAlloy.getFluid(),1440))
                 .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("pccard:card_programmed_circuit")),1)
                 .EUt(GTValues.VA[GTValues.HV])
@@ -261,6 +261,18 @@ public class OrdinaryRecipes {
                 .outputItems(CEBlocks.STEADY_STATE_COMPUTING_MATRIX_SHELL,1)
                 .EUt(GTValues.VA[EV])
                 .duration(200)
+                .save(provider);
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("ctnh_assembler_matrix_wall")
+                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("expatternprovider:assembler_matrix_wall")),1)
+                .outputItems(CEBlocks.ASSEMBLER_MATRIX_WALL,1)
+                .EUt(GTValues.VA[LV])
+                .duration(20)
+                .save(provider);
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("ctnh_assembler_matrix_frame")
+                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("expatternprovider:assembler_matrix_frame")),1)
+                .outputItems(CEBlocks.ASSEMBLER_MATRIX_FRAME,1)
+                .EUt(GTValues.VA[LV])
+                .duration(20)
                 .save(provider);
 //对于进阶RAM适配原版电路的配方
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("mainframe_iv_aram")

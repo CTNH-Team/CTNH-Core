@@ -55,7 +55,7 @@ public class AssemblyLineRecipes {
                 .inputItems(ENERGY_LAPOTRONIC_ORB_CLUSTER,4)
                 .inputItems(COVER_MACHINE_CONTROLLER,64)
                 .inputItems(COVER_ACTIVITY_DETECTOR_ADVANCED,64)
-                .inputItems(PROGRAMMED_CIRCUIT,64)
+                .inputItems(COVER_SCREEN,64)
                 .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 144*36))
                 .inputFluids(new FluidStack(GTMaterials.HSSS.getFluid(), 144*36))
                 .inputFluids(new FluidStack(GTMaterials.HSSG.getFluid(), 144*36))
