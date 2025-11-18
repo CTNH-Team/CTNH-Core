@@ -205,13 +205,6 @@ public class OrdinaryRecipes {
                 .EUt(GTValues.VA[GTValues.IV])
                 .duration(500)
                 .save(provider);
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("advanced_me_pattern_buffer_proxy")
-                .inputItems(ADVANCED_ME_PATTERN_BUFFER,1)
-                .inputItems(CBItems.OMNI_CORE,1)
-                .outputItems(ADVANCED_ME_PATTERN_BUFFER_PROXY,1)
-                .EUt(GTValues.VA[GTValues.HV])
-                .duration(100)
-                .save(provider);
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("quantum_computer_casing")
                 .inputItems(GTBlocks.SUPERCONDUCTING_COIL,1)
                 .inputItems(CustomTags.LuV_CIRCUITS,4)

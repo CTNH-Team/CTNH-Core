@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
 import appeng.core.definitions.AEBlocks;
+import appeng.core.definitions.AEItems;
 import appeng.datagen.providers.models.AE2BlockStateProvider;
 import com.github.elenterius.biomancy.init.ModItems;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
@@ -15,6 +16,7 @@ import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.moguang.ctnhbio.data.materials.CommonMaterials;
 import com.moguang.ctnhbio.machine.multiblock.CBMultiblocks;
 import com.moguang.ctnhbio.registry.CBBlocks;
+import com.moguang.ctnhbio.registry.CBItems;
 import com.moguang.ctnhbio.registry.CBMachines;
 import com.moguang.ctnhbio.registry.CBMultiblockMachines;
 import io.github.cpearl0.ctnhcore.data.materials.SecondMaterials;
@@ -35,14 +37,17 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
+import static com.gregtechceu.gtceu.common.data.GTMachines.DUAL_IMPORT_HATCH;
 import static com.gregtechceu.gtceu.common.data.GTMachines.HULL;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLY_LINE_RECIPES;
 import static com.gregtechceu.gtceu.common.data.machines.GCYMMachines.PARALLEL_HATCH;
+import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.DUAL_INPUT_HATCH_ABILITIES;
 import static com.moguang.ctnhbio.data.materials.OrganicMaterials.*;
 import static dev.shadowsoffire.hostilenetworks.Hostile.Items.SIM_CHAMBER;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.ADVANCED_RAM_CHIP;
 import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines.ADVANCED_ME_PATTERN_BUFFER;
+import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines.ADVANCED_ME_PATTERN_BUFFER_PROXY;
 import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMultiblock.JIUZHANG_QUANTUM_COMPUTER;
 
 public class AssemblyLineRecipes {
@@ -199,12 +204,30 @@ public class AssemblyLineRecipes {
                 .inputItems(CustomTags.IV_CIRCUITS,4)
                 .inputItems(CustomTags.LuV_CIRCUITS,2)
                 .inputItems(CustomTags.ZPM_CIRCUITS,1)
+                .inputItems(CBItems.OMNI_CORE,1)
+                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("pccard:card_programmed_circuit")),4)
                 .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 2880*2))
                 .inputFluids(new FluidStack(BorosilicateGlass.getFluid(), 2880*4))
                 .outputItems(ADVANCED_ME_PATTERN_BUFFER,1)
-                .stationResearch(b->b.researchStack(GTAEMachines.ME_PATTERN_BUFFER.asStack()).CWUt(16).EUt(VA[ZPM]))
+                .stationResearch(b->b.researchStack(DUAL_IMPORT_HATCH[ZPM].asStack()).CWUt(16).EUt(VA[ZPM]))
                 .EUt(VA[ZPM]).duration(6000)
                 .save(provider);
-
+        ASSEMBLY_LINE_RECIPES.recipeBuilder("advanced_me_pattern_buffer_proxy")
+                .inputItems(HULL[ZPM].asStack())
+                .inputItems(GTAEMachines.STOCKING_IMPORT_BUS_ME.asStack())
+                .inputItems(GTAEMachines.STOCKING_IMPORT_HATCH_ME.asStack())
+                .inputItems(frameGt,NaquadahAlloy,4)
+                .inputItems(spring,NaquadahAlloy,4)
+                .inputItems(screw,NaquadahAlloy,16)
+                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("pccard:card_programmed_circuit")),4)
+                .inputItems(SENSOR_ZPM,2)
+                .inputItems(AEBlocks.QUANTUM_RING.asItem(),4)
+                .inputItems(AEBlocks.QUANTUM_LINK.asItem(),1)
+                .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 2880*2))
+                .inputFluids(new FluidStack(BorosilicateGlass.getFluid(), 2880*4))
+                .outputItems(ADVANCED_ME_PATTERN_BUFFER_PROXY,1)
+                .stationResearch(b->b.researchStack(ADVANCED_ME_PATTERN_BUFFER.asStack()).CWUt(16).EUt(VA[ZPM]))
+                .EUt(VA[ZPM]).duration(6000)
+                .save(provider);
     }
 }
