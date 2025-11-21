@@ -27,6 +27,7 @@ import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch.HugeItemBusPartMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
 import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.SimpleComputationMachine;
@@ -49,8 +50,10 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.api.capability.recipe.IO.IN;
 import static com.gregtechceu.gtceu.api.capability.recipe.IO.OUT;
 import static com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties.IS_FORMED;
+import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.ALL_TIERS;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
@@ -181,7 +184,7 @@ public class CTNHMachines {
                     .langValue(VNF[tier] + " 4A Dynamo Hatch")
                     .rotationState(RotationState.ALL)
                     .abilities(PartAbility.OUTPUT_ENERGY)
-                    .modelProperty(GTMachineModelProperties.RECIPE_LOGIC_STATUS, RecipeLogic.Status.IDLE)
+                    .modelProperty(IS_FORMED, false)
                     .tooltips(Component.translatable("gtceu.universal.tooltip.voltage_out",
                                     FormattingUtil.formatNumbers(V[tier]), VNF[tier]),
                             Component.translatable("gtceu.universal.tooltip.amperage_out", 4),
@@ -248,9 +251,37 @@ public class CTNHMachines {
                     .tooltips(Component.translatable("ctnhcore.machine.high_performance_computer.tooltip.0"),
                               Component.translatable("ctnhcore.machine.high_performance_computer.tooltip.1",(tier>=GTValues.HV?1<<(tier-GTValues.HV):0)),
                               Component.translatable("gtceu.universal.tooltip.voltage_in",FormattingUtil.formatNumbers(VA[tier]*HighPerformanceComputerMachine.getMaxInputOutputAmperageStatic()), VNF[tier]))   //输入电流16A
-                    .register(),GTValues.tiersBetween(HV,IV))
-            ;
+                    .register(),GTValues.tiersBetween(HV,IV));
 
+    public static final MachineDefinition[] HUGE_ITEM_IMPORT_BUS = registerTieredMachines("huge_input_bus",
+            (holder, tier) -> new HugeItemBusPartMachine(holder, tier, IN),
+            (tier, builder) -> builder
+                    .langValue(VNF[tier] + " Huge Input Bus")
+                    .rotationState(RotationState.ALL)
+                    .abilities(PartAbility.IMPORT_ITEMS)
+                    .modelProperty(IS_FORMED, false)
+                    .colorOverlayTieredHullModel("overlay_pipe_in_emissive", null, OVERLAY_ITEM_HATCH)
+                    .tooltips(Component.translatable("gtceu.machine.item_bus.import.tooltip"),
+                            Component.translatable("gtceu.universal.tooltip.item_storage_capacity",
+                                    (1 + Math.min(9, tier)) * (1 + Math.min(9, tier))))
+                    .allowCoverOnFront(true)
+                    .register(),
+            ALL_TIERS);
+
+    public static final MachineDefinition[] HUGE_ITEM_EXPORT_BUS = registerTieredMachines("huge_output_bus",
+            (holder, tier) -> new HugeItemBusPartMachine(holder, tier, OUT),
+            (tier, builder) -> builder
+                    .langValue(VNF[tier] + " Huge Output Bus")
+                    .rotationState(RotationState.ALL)
+                    .abilities(PartAbility.EXPORT_ITEMS)
+                    .modelProperty(IS_FORMED, false)
+                    .colorOverlayTieredHullModel("overlay_pipe_out_emissive", null, OVERLAY_ITEM_HATCH)
+                    .tooltips(Component.translatable("gtceu.machine.item_bus.export.tooltip"),
+                            Component.translatable("gtceu.universal.tooltip.item_storage_capacity",
+                                    (1 + Math.min(9, tier)) * (1 + Math.min(9, tier))))
+                    .allowCoverOnFront(true)
+                    .register(),
+            ALL_TIERS);
     public static void init() {
         GTNNMachines.init();
 

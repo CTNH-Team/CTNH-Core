@@ -1245,6 +1245,7 @@
   "gtceu.zenith_extruder": "天顶塑形",
   "gui.multiblock.neutron_sensor.ctnhcore.energy_max": "最大中子动能\n(%s)",
   "gui.multiblock.neutron_sensor.ctnhcore.energy_min": "最小中子动能\n(%s)",
+  "hugeslotwidget.ctnhcore.item_amount": "数量：%s / %s",
   "ilmenite_vein": "钛铁矿脉",
   "info.multiblock.chemical_plant.ctnhcore.chance": "§6催化剂消耗概率: %s%%",
   "info.multiblock.chemical_plant.ctnhcore.coil": "§5并行: %s",
