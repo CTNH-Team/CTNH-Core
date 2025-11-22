@@ -87,7 +87,7 @@ public class ManaMachine extends WorkableElectricMultiblockMachine implements IT
             }
             return  ModifierFunction.builder()
                     .parallels(parallel)
-                    .eutMultiplier(parallel*amount)
+                    .eutMultiplier(parallel)
                     .inputModifier(ContentModifier.multiplier(parallel))
                     .outputModifier(ContentModifier.multiplier(parallel))
                     .durationMultiplier(amount)
