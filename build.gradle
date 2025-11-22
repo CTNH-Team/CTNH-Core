@@ -49,7 +49,8 @@ legacyForge {
             // "REGISTRIES": For firing of registry events.
             // "REGISTRYDUMP": For getting the contents of all registries.
             systemProperty 'forge.logging.markers', 'REGISTRIES'
-            //jvmArgument("-XX:+AllowEnhancedClassRedefinition")
+            jvmArgument("-XX:+AllowEnhancedClassRedefinition")
+            jvmArgument("-DnetworkTimeout=6000000")
             // Recommended logging level for the console
             // You can set various levels here.
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
@@ -73,6 +74,7 @@ legacyForge {
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
             programArguments.addAll('--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath())
             programArguments.addAll('--existing-mod', 'gtceu')
+            programArguments.addAll('--existing-mod', 'ctpp')
         }
     }
 
@@ -93,12 +95,12 @@ jar {
 }
 
 //apply from: "$rootDir/gradle/scripts/spotless.gradle"
-idea {
-    module {
-        downloadSources = true
-        downloadJavadoc = true
-    }
-}
+//idea {
+//    module {
+//        downloadSources = true
+//        downloadJavadoc = true
+//    }
+//}
 
 
 // See com.example.examplemod.mixin.DummyMixin for information about mixins
@@ -140,4 +142,24 @@ tasks.withType(JavaCompile).configureEach {
 
 lombok {
     version = "1.18.38"
+}
+
+// === 自动复制构建产物到指定目录 ===
+
+// 自定义目标路径（可以改成绝对路径）
+def outputDir = file("E:\\gtnh\\versions\\ctnh-dev\\mods")  // 目标目录
+
+// 创建一个新的任务
+tasks.register('copyModJar', Copy) {
+    dependsOn build // 先执行 build 任务
+    from(tasks.named("reobfJar").get().archiveFile) // 获取 jar 输出文件
+    into(outputDir) // 输出目录
+    doFirst {
+        println "复制 mod jar 到: ${outputDir}"
+    }
+}
+
+// 当执行 `build` 时自动执行复制任务
+tasks.named("build").configure {
+    finalizedBy("copyModJar")
 }

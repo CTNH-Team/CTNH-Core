@@ -2,6 +2,8 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
+import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
+import com.gregtechceu.gtceu.api.gui.fancy.IFancyConfigurator;
 import com.gregtechceu.gtceu.api.gui.widget.SlotWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
@@ -9,16 +11,33 @@ import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.ItemBusPartMachine;
+import com.gregtechceu.gtceu.utils.GTTransferUtils;
+import com.hepdd.gtmthings.api.machine.fancyconfigurator.ButtonConfigurator;
+import com.lowdragmc.lowdraglib.gui.texture.GuiTextureGroup;
+import com.lowdragmc.lowdraglib.gui.texture.IGuiTexture;
+import com.lowdragmc.lowdraglib.gui.texture.TextTexture;
+import com.lowdragmc.lowdraglib.gui.util.ClickData;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.jei.IngredientIO;
+import com.lowdragmc.lowdraglib.side.item.ItemTransferHelper;
 import io.github.cpearl0.ctnhcore.common.gui.HugeSlotWidget;
 import io.github.cpearl0.ctnhcore.registry.CTNHMachines;
+import io.github.cpearl0.ctnhcore.utils.HugeBusTransferHelper;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Suffix;
 
+import java.util.List;
+
+@Suffix("tooltip")
 public class HugeItemBusPartMachine extends ItemBusPartMachine {
 
     public HugeItemBusPartMachine(IMachineBlockEntity holder, int tier, IO io, Object... args) {
@@ -27,11 +46,28 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine {
 
     @Override
     protected @NotNull NotifiableItemStackHandler createInventory(Object... args) {
-        return new NotifiableItemStackHandler(this, getInventorySize(), io, io, i -> new HugeItemStackHandler(i, getSlotMultiplier()));
+        return new NotifiableItemStackHandler(this, getInventorySize(), io, io, i -> new HugeItemStackHandler(i, getSlotMultiplier())) {
+            @Override
+            public boolean canCapOutput() {
+                return true;
+            }
+
+            @Override
+            public void exportToNearby(@NotNull Direction... facings) {
+                if (isEmpty()) return;
+                var level = getMachine().getLevel();
+                var pos = getMachine().getPos();
+                for (Direction facing : facings) {
+                    var filter = getMachine().getItemCapFilter(facing, IO.OUT);
+                    GTTransferUtils.getAdjacentItemHandler(level, pos, facing)
+                            .ifPresent(adj -> HugeBusTransferHelper.transferItemsFiltered(this, adj, filter, Integer.MAX_VALUE));
+                }
+            }
+        };
     }
 
     int getSlotMultiplier(){
-        return 1 << (4 + 2 * getTier());
+        return getTier()<11 ? 1 << (4 + 2 * getTier()) : Integer.MAX_VALUE;
     }
 
     @Override
@@ -40,7 +76,7 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine {
     }
 
     @Override
-    public Widget createUIWidget() {
+    public @NotNull Widget createUIWidget() {
         int inventorySize = getInventorySize();
         inventorySize = Math.min(inventorySize, 16); // 限制最大16个
 
@@ -72,10 +108,35 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine {
         return group;
     }
 
-    /**
-     * 智能计算最优布局
-     */
-    private int[] calculateOptimalLayout(int slotCount) {
+    @Override
+    protected void autoIO() {
+        super.autoIO();
+    }
+
+    protected void refundAll(ClickData clickData) {
+        if (!clickData.isRemote) {
+            this.setWorkingEnabled(false);
+            getInventory().exportToNearby(getFrontFacing());
+        }
+    }
+
+    @EN("Returns al items to the container in front")
+    @CN("返还所有物品到面前的容器中")
+    static Lang refund_item;
+
+    @Override
+    public void attachConfigurators(ConfiguratorPanel configuratorPanel) {
+        super.attachConfigurators(configuratorPanel);
+        if (this.io == IO.IN) {
+            configuratorPanel.attachConfigurators(
+                    new ButtonConfigurator(new GuiTextureGroup(GuiTextures.BUTTON, new TextTexture("\ud83d\udd19")), this::refundAll)
+                            .setTooltips(List.of(refund_item.translate()))
+            );
+
+        }
+    }
+
+    public int[] calculateOptimalLayout(int slotCount) {
         if (slotCount <= 0) return new int[]{1, 1};
 
         // 优先选择接近正方形的布局
@@ -128,7 +189,6 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine {
 
     public static class HugeItemStackHandler extends CustomItemStackHandler{
         public final int multiplier;
-        public int limit = 0;
 
         public HugeItemStackHandler(int i, int p) {
             super(i);
@@ -137,17 +197,13 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine {
 
         @Override
         public int getSlotLimit(int slot) {
-            return 64 * multiplier;
+            return multiplier == Integer.MAX_VALUE ? Integer.MAX_VALUE : 64 * multiplier;
         }
 
         @Override
         public int getStackLimit(int slot, @NotNull ItemStack stack) {
-            return Math.min(this.getSlotLimit(slot), stack.getMaxStackSize() * multiplier);
-        }
-
-        @Override
-        public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-            return super.insertItem(slot, stack, simulate);
+            return multiplier == Integer.MAX_VALUE ? Integer.MAX_VALUE :
+                    Math.min(this.getSlotLimit(slot), stack.getMaxStackSize() * multiplier);
         }
     }
 }
