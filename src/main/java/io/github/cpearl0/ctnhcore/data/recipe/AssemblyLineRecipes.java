@@ -191,7 +191,7 @@ public class AssemblyLineRecipes {
                 .inputItems(OPTICAL_PIPES[0].asStack(64))
                 .inputFluids(new FluidStack(PCBCoolant.getFluid(), 2880*5))
                 .outputItems(JIUZHANG_QUANTUM_COMPUTER,1)
-                .stationResearch(b->b.researchStack(AEBlocks.NOT_SO_MYSTERIOUS_CUBE.asItem().getDefaultInstance()).CWUt(4).EUt(VA[LuV]))
+                .stationResearch(b->b.researchStack(AEBlocks.MYSTERIOUS_CUBE.asItem().getDefaultInstance()).CWUt(4).EUt(VA[LuV]))
                 .EUt(VA[LuV]).duration(5000)
                 .save(provider);
         ASSEMBLY_LINE_RECIPES.recipeBuilder("advanced_me_pattern_buffer")

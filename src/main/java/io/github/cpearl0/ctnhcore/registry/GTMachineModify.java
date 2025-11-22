@@ -37,6 +37,9 @@ import static com.gregtechceu.gtceu.common.data.GCYMBlocks.CASING_LARGE_SCALE_AS
 import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_TEMPERED_GLASS;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_TUNGSTENSTEEL_ROBUST;
 import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.CLEANROOM;
+import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.LARGE_CHEMICAL_REACTOR;
+import static io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips.PERFECT_OVERCLOCK;
+
 @Prefix("multiblock")
 @Suffix("tooltip")
 public class GTMachineModify {
@@ -77,6 +80,13 @@ public class GTMachineModify {
             machine.setRecipeModifier(commonModifier);
             machine.setTooltipBuilder(machine.getTooltipBuilder().andThen(REDUCTION_INFO));
         }
+        LARGE_CHEMICAL_REACTOR.setTooltipBuilder(
+                LARGE_CHEMICAL_REACTOR.getTooltipBuilder().andThen(
+                        (stack, tooltip) -> {
+                            tooltip.add(PERFECT_OVERCLOCK);
+                        }
+                )
+        );
         modifyGTAssembly();
         modifyCleanroom();
     }
@@ -139,6 +149,9 @@ public class GTMachineModify {
         }
     }
 
+    @CN("高度大于长度或宽度时，将会停止工作")
+    @EN("Stop working if height is greater than length or wight")
+    static Lang cleanroom_restriction;
     private static void modifyCleanroom() {
         CLEANROOM.setBeforeWorking(
                 (machine, recipe) -> {
@@ -185,7 +198,7 @@ public class GTMachineModify {
         );
         CLEANROOM.setTooltipBuilder(CLEANROOM.getTooltipBuilder().andThen(
                 (stack, tooltip) -> {
-                    tooltip.add(Component.literal("高度大于长度或宽度时，将会停止工作"));
+                    tooltip.add(cleanroom_restriction.translate());
                 }
         ));
     }

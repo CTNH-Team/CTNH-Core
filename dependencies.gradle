@@ -3,6 +3,7 @@ dependencies {
 
     // Mixin
     annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.0-rc.3"))
 
     modImplementation(project(":modules:CTNH-Bio")){transitive = false}
     jarJar(project(":modules:CTNH-Bio")){transitive = false}
@@ -11,6 +12,7 @@ dependencies {
     modImplementation(project(":modules:CTNH-Lib")){transitive = false}
     jarJar(project(":modules:CTNH-Lib")){transitive = false}
     implementation(project(":modules:CTNH-Energy"))
+    jarJar(project(":modules:CTNH-Energy")){transitive = false}
     //modImplementation(project(":modules:CTNH-Mana"))
     // JEI, EMI, Jade
     modImplementation("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
@@ -117,12 +119,17 @@ dependencies {
     modImplementation("curse.maven:bio-factory-1136762:6293100")
 
     modRuntimeOnly("curse.maven:constructionwand-399558:4684054")
-    modRuntimeOnly("curse.maven:just-enough-characters-250702:6680042")
+    //modRuntimeOnly("curse.maven:just-enough-characters-250702:6680042")
     //modRuntimeOnly("curse.maven:not-enough-crashes-forge-442354:6598273")
     // lombok
     //compileOnly 'org.projectlombok:lombok:1.18.24'
     //annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
     //Re-Avaritia
-    implementation("committee.nova.mods:avaritia-forge:${avaritia_version}")
+    modImplementation("committee.nova.mods:avaritia-forge:${avaritia_version}")
+
+    //modImplementation("curse.maven:sophisticated-core-618298:7169400")
+    //modImplementation("maven.modrinth:pneumaticcraft-repressurized:${pneumaticcraft_version}")
+    //modImplementation("curse.maven:compressedcreativity-549381:6603441")
+    //modImplementation("curse.maven:appliedpneumatics-1355087:7124464")
 }

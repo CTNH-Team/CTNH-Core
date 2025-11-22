@@ -13,13 +13,6 @@ import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
-import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
-import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
-import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
-import com.gregtechceu.gtceu.api.registry.registrate.MultiblockMachineBuilder;
-import com.gregtechceu.gtceu.client.renderer.machine.*;
-import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
-import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import com.gregtechceu.gtceu.common.data.models.GTModels;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.*;
@@ -27,6 +20,8 @@ import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch.HugeDualHatchPartMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch.HugeItemBusPartMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
 import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.SimpleComputationMachine;
@@ -49,8 +44,12 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.api.capability.recipe.IO.IN;
 import static com.gregtechceu.gtceu.api.capability.recipe.IO.OUT;
 import static com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties.IS_FORMED;
+
+import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.DUAL_INPUT_HATCH_ABILITIES;
+import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.DUAL_OUTPUT_HATCH_ABILITIES;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
@@ -181,7 +180,7 @@ public class CTNHMachines {
                     .langValue(VNF[tier] + " 4A Dynamo Hatch")
                     .rotationState(RotationState.ALL)
                     .abilities(PartAbility.OUTPUT_ENERGY)
-                    .modelProperty(GTMachineModelProperties.RECIPE_LOGIC_STATUS, RecipeLogic.Status.IDLE)
+                    .modelProperty(IS_FORMED, false)
                     .tooltips(Component.translatable("gtceu.universal.tooltip.voltage_out",
                                     FormattingUtil.formatNumbers(V[tier]), VNF[tier]),
                             Component.translatable("gtceu.universal.tooltip.amperage_out", 4),
@@ -248,8 +247,95 @@ public class CTNHMachines {
                     .tooltips(Component.translatable("ctnhcore.machine.high_performance_computer.tooltip.0"),
                               Component.translatable("ctnhcore.machine.high_performance_computer.tooltip.1",(tier>=GTValues.HV?1<<(tier-GTValues.HV):0)),
                               Component.translatable("gtceu.universal.tooltip.voltage_in",FormattingUtil.formatNumbers(VA[tier]*HighPerformanceComputerMachine.getMaxInputOutputAmperageStatic()), VNF[tier]))   //输入电流16A
-                    .register(),GTValues.tiersBetween(HV,IV))
-            ;
+                    .register(),GTValues.tiersBetween(HV,IV));
+
+    public static final MachineDefinition[] HUGE_ITEM_IMPORT_BUS = registerTieredMachines(
+            "huge_input_bus",
+            "§r巨型输入总线",
+            (holder, tier) -> new HugeItemBusPartMachine(holder, tier, IN),
+            (tier, builder) -> builder
+                    .langValue(VNF[tier] + "§r Huge Input Bus")
+                    .rotationState(RotationState.ALL)
+                    .abilities(PartAbility.IMPORT_ITEMS)
+                    .modelProperty(IS_FORMED, false)
+                    .colorOverlayTieredHullModel("huge_bus_in", null, null)
+                    .tooltips(Component.translatable("gtceu.machine.item_bus.import.tooltip"),
+                            Component.translatable("gtceu.universal.tooltip.item_storage_capacity", 1+tier),
+                            REGISTRATE.genLang("ctnhcore.universal.tooltip.item_storage_multiplier",
+                                    "§6Item Stack Multiplier: §f%d",
+                                    "§6物品堆叠倍数：§f%d",
+                                   FormattingUtil.formatNumbers(tier<11 ? 1 << (4 + 2 * tier) : Integer.MAX_VALUE)
+                            )
+                    )
+                    .allowCoverOnFront(true)
+                    .register(),
+            ALL_TIERS);
+
+    public static final MachineDefinition[] HUGE_ITEM_EXPORT_BUS = registerTieredMachines(
+            "huge_output_bus",
+            "§r巨型输出总线",
+            (holder, tier) -> new HugeItemBusPartMachine(holder, tier, OUT),
+            (tier, builder) -> builder
+                    .langValue(VNF[tier] + " §rHuge Output Bus")
+                    .rotationState(RotationState.ALL)
+                    .abilities(PartAbility.EXPORT_ITEMS)
+                    .modelProperty(IS_FORMED, false)
+                    .colorOverlayTieredHullModel("overlay_pipe_out_emissive", null, OVERLAY_ITEM_HATCH)
+                    .tooltips(Component.translatable("gtceu.machine.item_bus.export.tooltip"),
+                            Component.translatable("gtceu.universal.tooltip.item_storage_capacity", 1+tier),
+                            Component.translatable("ctnhcore.universal.tooltip.item_storage_multiplier",
+                                            FormattingUtil.formatNumbers(tier<11 ? 1 << (4 + 2 * tier) : Integer.MAX_VALUE))
+                    )
+                    .allowCoverOnFront(true)
+                    .register(),
+            ALL_TIERS);
+
+    public static final MachineDefinition[] HUGE_DUAL_IMPORT_HATCH = registerTieredMachines(
+            "huge_dual_input_hatch",
+            "§r巨型输入总成",
+            (holder, tier) -> new HugeDualHatchPartMachine(holder, tier, IN),
+            (tier, builder) -> builder
+                    .langValue("%s Huge Dual Input Hatch".formatted(VNF[tier]))
+                    .rotationState(RotationState.ALL)
+                    .abilities(DUAL_INPUT_HATCH_ABILITIES)
+                    .modelProperty(IS_FORMED, false)
+                    .overlayTieredHullModel(GTCEu.id("block/machine/part/dual_input_hatch"))
+                    .tooltips(
+                            Component.translatable("gtceu.machine.dual_hatch.import.tooltip"),
+                            Component.translatable("gtceu.universal.tooltip.item_storage_capacity", (1+tier)),
+                            Component.translatable("ctnhcore.universal.tooltip.item_storage_multiplier",
+                                    FormattingUtil.formatNumbers(tier<11 ? 1 << (4 + 2 * tier) : Integer.MAX_VALUE)),
+                            Component.translatable(
+                                    "gtceu.universal.tooltip.fluid_storage_capacity_mult",
+                                    HugeDualHatchPartMachine.getTankSize(tier),
+                                    FormattingUtil.formatNumbers(HugeDualHatchPartMachine.getTankCapacity(DualHatchPartMachine.INITIAL_TANK_CAPACITY,
+                                            tier)))
+                    )
+                    .register(),
+            ALL_TIERS);
+    public static final MachineDefinition[] HUGE_DUAL_EXPORT_HATCH = registerTieredMachines(
+            "huge_dual_output_hatch",
+            "§r巨型输出总成",
+            (holder, tier) -> new HugeDualHatchPartMachine(holder, tier, OUT),
+            (tier, builder) -> builder
+                    .langValue("%s Huge Dual Output Hatch".formatted(VNF[tier]))
+                    .rotationState(RotationState.ALL)
+                    .abilities(DUAL_OUTPUT_HATCH_ABILITIES)
+                    .modelProperty(IS_FORMED, false)
+                    .overlayTieredHullModel(GTCEu.id( "block/machine/part/dual_output_hatch"))
+                    .tooltips(
+                            Component.translatable("gtceu.machine.dual_hatch.export.tooltip"),
+                            Component.translatable("gtceu.universal.tooltip.item_storage_capacity", (1+tier)),
+                            Component.translatable("ctnhcore.universal.tooltip.item_storage_multiplier",
+                                    FormattingUtil.formatNumbers(tier<11 ? 1 << (4 + 2 * tier) : Integer.MAX_VALUE)),
+                            Component.translatable(
+                                    "gtceu.universal.tooltip.fluid_storage_capacity_mult",
+                                    HugeDualHatchPartMachine.getTankSize(tier),
+                                    FormattingUtil.formatNumbers(HugeDualHatchPartMachine.getTankCapacity(DualHatchPartMachine.INITIAL_TANK_CAPACITY,
+                                            tier)))
+                    )
+                    .register(),
+            ALL_TIERS);
 
     public static void init() {
         GTNNMachines.init();
