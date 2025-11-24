@@ -29,7 +29,9 @@
     "mc.WorldLoaderPackConfigMixin"
   ],
   "client": [
-    "gtceu.ContentMixin"
+    "gtceu.ContentMixin",
+    "gtceu.OreVeinElementRendererMixin",
+    "gtceu.OreVeinElementRendererWorldMixin"
   ],
   "minVersion": "0.8"
 }

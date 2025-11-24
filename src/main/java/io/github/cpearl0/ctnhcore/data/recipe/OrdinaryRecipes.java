@@ -27,6 +27,7 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEBlocks;
+import tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines;
 
 import java.util.function.Consumer;
 
@@ -195,13 +196,11 @@ public class OrdinaryRecipes {
                 .duration(200)
                 .save(provider);
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("me_dual_output_hatch")
+                .inputItems(HULL[IV])
                 .inputItems(GTAEMachines.ITEM_EXPORT_BUS_ME,1)
                 .inputItems(GTAEMachines.FLUID_EXPORT_HATCH_ME,1)
-                .inputItems(plateDense,TungstenSteel,8)
-                .inputItems(GTMachines.TUNGSTENSTEEL_CRATE,1)
-                .inputItems(FLUID_CELL_LARGE_TUNGSTEN_STEEL,1)
                 .inputFluids(new FluidStack(SolderingAlloy.getFluid(),2880))
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ctnhenergy:me_dual_output_hatch")),1)
+                .outputItems(CEMachines.DUAL_OUTPUT_HATCH_ME,1)
                 .EUt(GTValues.VA[GTValues.IV])
                 .duration(500)
                 .save(provider);
