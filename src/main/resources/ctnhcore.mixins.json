@@ -12,6 +12,7 @@
     "adastra.TemperatureApilmplMixin",
     "apotheosis.EarthsBoonEnchantMixin",
     "appeng.PartPlacementMixin",
+    "createmetallurgy.CreateMetallurgyJEIMixin",
     "createmetallurgy.CrucibleBlockEntityMixin",
     "createmetallurgy.FoundryBasinBlockEntityMixin",
     "gtceu.GTBlocksMixin",
