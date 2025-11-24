@@ -38,7 +38,6 @@ public class IDroneItem extends ComponentItem {
         tooltipComponents.add(Component.translatable("ctnh.item.drone_eut",String.format("%d",eut)));
         tooltipComponents.add(Component.translatable("ctnh.item.drone_durability",String.format("%d",durability)));
         super.appendHoverText(stack, level, tooltipComponents, isAdvanced); // 调用父类方法以处理原版提示信息
-
     }
 
 
