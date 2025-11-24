@@ -5,7 +5,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-@Mixin(value = Content.class, remap = false)
+@Mixin(value = Content.class)
 public class ContentMixin {
 //    @ModifyArg(
 //            method = "drawChance",
@@ -22,7 +22,10 @@ public class ContentMixin {
             method = "drawChance",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Ljava/lang/String;IIIZ)I"),
+                    target = "Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Ljava/lang/String;IIIZ)I",
+                    remap = true
+            ),
+            remap = false,
             index = 3
     )
     public int modifyY(int y){

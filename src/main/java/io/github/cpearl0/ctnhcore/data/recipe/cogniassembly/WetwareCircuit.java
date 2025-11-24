@@ -137,7 +137,7 @@ public class WetwareCircuit {
                 .MIFStep(
                         SUPERIOR, WARDEN,
                         () -> Items.SCULK_VEIN, 64,
-                        new FluidStack(EIOFluids.XP_JUICE.get(), 1000)
+                        new FluidStack(EIOFluids.XP_JUICE.get().getSource(), 1000)
                 )
                 .save(provider);
 
