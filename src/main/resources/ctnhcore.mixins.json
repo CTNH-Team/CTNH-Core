@@ -12,6 +12,7 @@
     "adastra.TemperatureApilmplMixin",
     "apotheosis.EarthsBoonEnchantMixin",
     "appeng.PartPlacementMixin",
+    "createmetallurgy.CreateMetallurgyJEIMixin",
     "createmetallurgy.CrucibleBlockEntityMixin",
     "createmetallurgy.FoundryBasinBlockEntityMixin",
     "gtceu.GTBlocksMixin",
@@ -29,7 +30,9 @@
     "mc.WorldLoaderPackConfigMixin"
   ],
   "client": [
-    "gtceu.ContentMixin"
+    "gtceu.ContentMixin",
+    "gtceu.OreVeinElementRendererMixin",
+    "gtceu.OreVeinElementRendererWorldMixin"
   ],
   "minVersion": "0.8"
 }
