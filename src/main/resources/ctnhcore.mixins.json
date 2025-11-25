@@ -27,7 +27,8 @@
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MobMixin",
     "mc.MonsterMixin",
-    "mc.WorldLoaderPackConfigMixin"
+    "mc.WorldLoaderPackConfigMixin",
+    "vintageimprovements.LatheRotatingBlockMixin"
   ],
   "client": [
     "gtceu.ContentMixin",
