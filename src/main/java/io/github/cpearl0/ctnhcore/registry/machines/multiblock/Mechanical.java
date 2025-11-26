@@ -222,33 +222,6 @@ public class Mechanical {
             )
             .workableCasingModel(CTPP.id("block/create/railway_casing"), GTCEu.id("block/multiblock/large_chemical_reactor"))
             .register();
-    public final static MultiblockMachineDefinition MECHANICAL_LASER = REGISTRATE.multiblock("mechanical_laser", KineticElectricMultiblockMachine::new)
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(CreateRecipeTypes.MECHANICAL_LASER_RECIPES)
-            .appearanceBlock(() -> AllBlocks.RAILWAY_CASING.get())
-            .recipeModifier(CTPPRecipeModifiers.KINETIC_OVERCLOCK)
-            .tooltips(CommonTooltips.KINETIC_OVERCLOCK)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("AAAAA", "BCCCB", "B###B", "B###B", "B###B", "BCCCB", "AAAAA")
-                    .aisle("AAAAA", "CDDDC", "#EEE#", "#EEE#", "#EEE#", "CFFFC", "AAAAA")
-                    .aisle("AAAAA", "CDDDC", "#EEE#", "#EEE#", "#EEE#", "CFFFC", "AAAAA")
-                    .aisle("AAAAA", "CDDDC", "#EEE#", "#EEE#", "#EEE#", "CFFFC", "AAAAA")
-                    .aisle("AA@AA", "BCCCB", "B###B", "B###B", "B###B", "BCCCB", "AAAAA")
-                    .where("A", Predicates.blocks(AllBlocks.RAILWAY_CASING.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(Predicates.abilities(CTPPPartAbility.INPUT_KINETIC))
-                            .or(Predicates.abilities(CTPPPartAbility.MECHANICAL_UPGRADE)))
-                    .where("B", Predicates.blocks(AllBlocks.METAL_GIRDER.get()))
-                    .where("C", Predicates.blocks(AllBlocks.BRASS_CASING.get()))
-                    .where("#", Predicates.any())
-                    .where("D", Predicates.blocks(AllBlocks.DEPOT.get()))
-                    .where("E", Predicates.blocks(CASING_TEMPERED_GLASS.get()))
-                    .where("F", Predicates.blocks(VintageBlocks.LASER.get()))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build()
-            )
-            .workableCasingModel(CTPP.id("block/create/railway_casing"), GTCEu.id("block/multiblock/large_chemical_reactor"))
-            .register();
 
     public static void init() {}
 }

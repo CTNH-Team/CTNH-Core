@@ -1047,7 +1047,6 @@ public class ChineseLangHandler {
         provider.add(Mechanical.MECHANICAL_LATHE.getBlock(), "机械车床厂");
         provider.add(Mechanical.MECHANICAL_CENTRIFUGE.getBlock(), "机械离心厂");
         provider.add(Mechanical.MECHANICAL_EXTRACTOR.getBlock(), "机械熔炼厂");
-        provider.add(Mechanical.MECHANICAL_LASER.getBlock(), "机械激光厂");
         provider.add(Mechanical.MECHANICAL_MIXER.getBlock(), "机械搅拌厂");
         provider.add(Mechanical.MECHANICAL_SIFTER.getBlock(), "机械筛选厂");
         provider.add(Mechanical.MECHANICAL_PRESSOR.getBlock(), "机械辊压厂");
