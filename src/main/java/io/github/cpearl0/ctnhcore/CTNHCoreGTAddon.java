@@ -104,7 +104,9 @@ public class CTNHCoreGTAddon implements IGTAddon {
         FuelChain.init(provider);
         AdAstraRecipes.init(provider);
         NaquadahLine.init(provider);
+
         LuvModifyRecipe.init(provider);
+        HugeHatchRecipes.init(provider);
     }
 
     @Override
