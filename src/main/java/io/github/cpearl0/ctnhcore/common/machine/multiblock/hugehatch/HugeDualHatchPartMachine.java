@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.gui.widget.TankWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
+import com.gregtechceu.gtceu.api.machine.fancyconfigurator.FancyTankConfigurator;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableFluidTank;
 import com.gregtechceu.gtceu.utils.GTTransferUtils;
 import com.lowdragmc.lowdraglib.gui.util.ClickData;
@@ -15,11 +16,16 @@ import com.lowdragmc.lowdraglib.syncdata.ISubscription;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import io.github.cpearl0.ctnhcore.common.gui.HugeSlotWidget;
+import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.RightConfiguratorPanel;
 import io.github.cpearl0.ctnhcore.registry.CTNHMachines;
+import lombok.Getter;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 
@@ -32,6 +38,10 @@ public class HugeDualHatchPartMachine extends HugeItemBusPartMachine{
     @Persisted
     public final NotifiableFluidTank tank;
 
+    @Getter
+    @Persisted
+    protected final NotifiableFluidTank shareTank;
+
     @Nullable
     protected ISubscription tankSubs;
 
@@ -41,6 +51,7 @@ public class HugeDualHatchPartMachine extends HugeItemBusPartMachine{
     public HugeDualHatchPartMachine(IMachineBlockEntity holder, int tier, IO io, Object... args) {
         super(holder, tier, io, args);
         this.tank = createTank(INITIAL_TANK_CAPACITY, getTankSize(), args);
+        this.shareTank = new NotifiableFluidTank(this, 9, 8 * FluidType.BUCKET_VOLUME, IO.IN, IO.NONE);
     }
 
     public int getTankSize(){
@@ -58,7 +69,7 @@ public class HugeDualHatchPartMachine extends HugeItemBusPartMachine{
     }
 
     public static int getTankCapacity(int initialCapacity, int tier) {
-
+        if(tier == 0) return Integer.MAX_VALUE;
         return tier < MAX ? initialCapacity * (1 << (tier + 2)) : Integer.MAX_VALUE;
     }
 
@@ -217,6 +228,15 @@ public class HugeDualHatchPartMachine extends HugeItemBusPartMachine{
         return group;
     }
 
+    @Override
+    public void attachRightConfigurators(RightConfiguratorPanel configuratorPanel) {
+        super.attachRightConfigurators(configuratorPanel);
+        if(io != IO.IN) return;
+        configuratorPanel.attachConfigurators(new FancyTankConfigurator(
+                shareTank.getStorages(), Component.translatable("gui.gtceu.share_tank.title"))
+                .setTooltips(List.of(
+                        Component.translatable("gui.gtceu.share_inventory.desc.1"))));
+    }
 
     @Override
     public ManagedFieldHolder getFieldHolder() {

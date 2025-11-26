@@ -3,32 +3,39 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
-import com.gregtechceu.gtceu.api.gui.fancy.IFancyConfigurator;
-import com.gregtechceu.gtceu.api.gui.widget.SlotWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
+import com.gregtechceu.gtceu.api.machine.fancyconfigurator.FancyInvConfigurator;
+import com.gregtechceu.gtceu.api.machine.fancyconfigurator.FancyTankConfigurator;
+import com.gregtechceu.gtceu.api.machine.trait.NotifiableFluidTank;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
-import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.ItemBusPartMachine;
 import com.gregtechceu.gtceu.utils.GTTransferUtils;
 import com.hepdd.gtmthings.api.machine.fancyconfigurator.ButtonConfigurator;
+import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.texture.GuiTextureGroup;
-import com.lowdragmc.lowdraglib.gui.texture.IGuiTexture;
 import com.lowdragmc.lowdraglib.gui.texture.TextTexture;
 import com.lowdragmc.lowdraglib.gui.util.ClickData;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.jei.IngredientIO;
-import com.lowdragmc.lowdraglib.side.item.ItemTransferHelper;
+import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
+import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import io.github.cpearl0.ctnhcore.common.gui.HugeSlotWidget;
+import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.IRCFancyUIProvider;
+import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.RCUIWidget;
+import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.RightConfiguratorPanel;
 import io.github.cpearl0.ctnhcore.registry.CTNHMachines;
 import io.github.cpearl0.ctnhcore.utils.HugeBusTransferHelper;
+import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.NotNull;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
@@ -38,10 +45,19 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Suffix;
 import java.util.List;
 
 @Suffix("tooltip")
-public class HugeItemBusPartMachine extends ItemBusPartMachine {
+public class HugeItemBusPartMachine extends ItemBusPartMachine implements IRCFancyUIProvider {
+
+    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(HugeItemBusPartMachine.class,
+        ItemBusPartMachine.MANAGED_FIELD_HOLDER);
+
+    @Getter
+    @Persisted
+    protected final NotifiableItemStackHandler shareInventory;
 
     public HugeItemBusPartMachine(IMachineBlockEntity holder, int tier, IO io, Object... args) {
         super(holder, tier, io, args);
+        this.shareInventory = new NotifiableItemStackHandler(this, 9, IO.IN, IO.NONE);
+
     }
 
     @Override
@@ -66,8 +82,13 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine {
         };
     }
 
+    public static int getSlotMultiplier(int tier){
+        if(tier == 0) return Integer.MAX_VALUE;
+        return tier<11 ? 1 << (4 + 2 * tier) : Integer.MAX_VALUE;
+    }
+
     int getSlotMultiplier(){
-        return getTier()<11 ? 1 << (4 + 2 * getTier()) : Integer.MAX_VALUE;
+        return getSlotMultiplier(getTier());
     }
 
     @Override
@@ -134,6 +155,27 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine {
             );
 
         }
+    }
+
+    @Override
+    public void attachRightConfigurators(RightConfiguratorPanel configuratorPanel) {
+        if(io != IO.IN) return;
+        configuratorPanel.attachConfigurators(new FancyInvConfigurator(
+                shareInventory.storage, Component.translatable("gui.gtceu.share_inventory.title"))
+                .setTooltips(List.of(
+                        Component.translatable("gui.gtceu.share_inventory.desc.1"))));
+
+    }
+
+    @Override
+    public void onMachineRemoved() {
+        super.onMachineRemoved();
+        clearInventory(shareInventory);
+    }
+
+    @Override
+    public ModularUI createUI(Player entityPlayer) {
+        return new ModularUI(176, 166, this, entityPlayer).widget(new RCUIWidget(this, 176, 166));
     }
 
     public int[] calculateOptimalLayout(int slotCount) {
@@ -205,5 +247,10 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine {
             return multiplier == Integer.MAX_VALUE ? Integer.MAX_VALUE :
                     Math.min(this.getSlotLimit(slot), stack.getMaxStackSize() * multiplier);
         }
+    }
+
+    @Override
+    public ManagedFieldHolder getFieldHolder() {
+        return MANAGED_FIELD_HOLDER;
     }
 }

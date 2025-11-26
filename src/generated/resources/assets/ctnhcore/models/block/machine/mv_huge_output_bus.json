@@ -10,11 +10,10 @@
   "variants": {
     "is_formed=false,is_painted=false": {
       "model": {
-        "parent": "gtceu:block/machine/template/part/hatch_machine_emissive",
+        "parent": "gtceu:block/machine/template/part/hatch_machine",
         "textures": {
           "bottom": "gtceu:block/casings/voltage/mv/bottom",
-          "overlay": "ctnhcore:block/overlay/machine/overlay_pipe_out_emissive",
-          "overlay_emissive": "ctnhcore:block/overlay/machine/overlay_item_hatch",
+          "overlay": "ctnhcore:block/overlay/machine/huge_bus_out",
           "side": "gtceu:block/casings/voltage/mv/side",
           "top": "gtceu:block/casings/voltage/mv/top"
         }
@@ -22,11 +21,10 @@
     },
     "is_formed=false,is_painted=true": {
       "model": {
-        "parent": "gtceu:block/machine/template/part/hatch_machine_emissive_color_ring",
+        "parent": "gtceu:block/machine/template/part/hatch_machine_color_ring",
         "textures": {
           "bottom": "gtceu:block/casings/voltage/mv/bottom",
-          "overlay": "ctnhcore:block/overlay/machine/overlay_pipe_out_emissive",
-          "overlay_emissive": "ctnhcore:block/overlay/machine/overlay_item_hatch",
+          "overlay": "ctnhcore:block/overlay/machine/huge_bus_out",
           "side": "gtceu:block/casings/voltage/mv/side",
           "top": "gtceu:block/casings/voltage/mv/top"
         }
@@ -34,11 +32,10 @@
     },
     "is_formed=true,is_painted=false": {
       "model": {
-        "parent": "gtceu:block/machine/template/part/hatch_machine_emissive",
+        "parent": "gtceu:block/machine/template/part/hatch_machine",
         "textures": {
           "bottom": "gtceu:block/casings/voltage/mv/bottom",
-          "overlay": "ctnhcore:block/overlay/machine/overlay_pipe_out_emissive",
-          "overlay_emissive": "ctnhcore:block/overlay/machine/overlay_item_hatch",
+          "overlay": "ctnhcore:block/overlay/machine/huge_bus_out",
           "side": "gtceu:block/casings/voltage/mv/side",
           "top": "gtceu:block/casings/voltage/mv/top"
         }
@@ -46,11 +43,10 @@
     },
     "is_formed=true,is_painted=true": {
       "model": {
-        "parent": "gtceu:block/machine/template/part/hatch_machine_emissive_color_ring",
+        "parent": "gtceu:block/machine/template/part/hatch_machine_color_ring",
         "textures": {
           "bottom": "gtceu:block/casings/voltage/mv/bottom",
-          "overlay": "ctnhcore:block/overlay/machine/overlay_pipe_out_emissive",
-          "overlay_emissive": "ctnhcore:block/overlay/machine/overlay_item_hatch",
+          "overlay": "ctnhcore:block/overlay/machine/huge_bus_out",
           "side": "gtceu:block/casings/voltage/mv/side",
           "top": "gtceu:block/casings/voltage/mv/top"
         }
