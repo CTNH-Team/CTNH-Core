@@ -4,7 +4,6 @@ import static io.github.cpearl0.ctnhcore.data.lang.CTNHLangHandler.tsl;
 
 public class MachineLang {
     public static void init() {
-        machineTooltip();
         machineGui();
     }
     public static void machineGui() {
@@ -21,23 +20,4 @@ public class MachineLang {
 
     }
 
-    public static void machineTooltip() {
-        tsl(
-                "ctnh.multiblock.multithread.status",
-                "§b线程%s:",
-                "§bThread %s:");
-
-
-        tsl(
-                "ctnh.multiblock.precision_assembly.tooltip.0",
-                "其他可用配方类型: 精密组装",
-                "Other available recipe type: Precision Assembly"
-        );
-        tsl(
-                "ctnh.multiblock.precision_assembly.tooltip.1",
-                "注意：在精密组装模式下无法并行",
-                "NOTE: Parallelization is not possible in precision assembly mode"
-        );
-
-    }
 }
