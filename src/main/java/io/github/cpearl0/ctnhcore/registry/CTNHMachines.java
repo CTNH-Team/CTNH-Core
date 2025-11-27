@@ -264,7 +264,7 @@ public class CTNHMachines {
                             REGISTRATE.genLang("ctnhcore.universal.tooltip.item_storage_multiplier",
                                     "§6Item Stack Multiplier: §f%d",
                                     "§6物品堆叠倍数：§f%d",
-                                   FormattingUtil.formatNumbers(tier<11 ? 1 << (4 + 2 * tier) : Integer.MAX_VALUE)
+                                   FormattingUtil.formatNumbers(HugeItemBusPartMachine.getSlotMultiplier(tier))
                             )
                     )
                     .allowCoverOnFront(true)
@@ -280,11 +280,11 @@ public class CTNHMachines {
                     .rotationState(RotationState.ALL)
                     .abilities(PartAbility.EXPORT_ITEMS)
                     .modelProperty(IS_FORMED, false)
-                    .colorOverlayTieredHullModel("overlay_pipe_out_emissive", null, OVERLAY_ITEM_HATCH)
+                    .colorOverlayTieredHullModel("huge_bus_out", null, null)
                     .tooltips(Component.translatable("gtceu.machine.item_bus.export.tooltip"),
                             Component.translatable("gtceu.universal.tooltip.item_storage_capacity", 1+tier),
                             Component.translatable("ctnhcore.universal.tooltip.item_storage_multiplier",
-                                            FormattingUtil.formatNumbers(tier<11 ? 1 << (4 + 2 * tier) : Integer.MAX_VALUE))
+                                    FormattingUtil.formatNumbers(HugeItemBusPartMachine.getSlotMultiplier(tier)))
                     )
                     .allowCoverOnFront(true)
                     .register(),
@@ -299,12 +299,12 @@ public class CTNHMachines {
                     .rotationState(RotationState.ALL)
                     .abilities(DUAL_INPUT_HATCH_ABILITIES)
                     .modelProperty(IS_FORMED, false)
-                    .overlayTieredHullModel(GTCEu.id("block/machine/part/dual_input_hatch"))
+                    .colorOverlayTieredHullModel("huge_dual_hatch_in", null, null)
                     .tooltips(
                             Component.translatable("gtceu.machine.dual_hatch.import.tooltip"),
                             Component.translatable("gtceu.universal.tooltip.item_storage_capacity", (1+tier)),
                             Component.translatable("ctnhcore.universal.tooltip.item_storage_multiplier",
-                                    FormattingUtil.formatNumbers(tier<11 ? 1 << (4 + 2 * tier) : Integer.MAX_VALUE)),
+                                    FormattingUtil.formatNumbers(HugeItemBusPartMachine.getSlotMultiplier(tier))),
                             Component.translatable(
                                     "gtceu.universal.tooltip.fluid_storage_capacity_mult",
                                     HugeDualHatchPartMachine.getTankSize(tier),
@@ -322,12 +322,12 @@ public class CTNHMachines {
                     .rotationState(RotationState.ALL)
                     .abilities(DUAL_OUTPUT_HATCH_ABILITIES)
                     .modelProperty(IS_FORMED, false)
-                    .overlayTieredHullModel(GTCEu.id( "block/machine/part/dual_output_hatch"))
+                    .colorOverlayTieredHullModel("huge_dual_hatch_out", null, null)
                     .tooltips(
                             Component.translatable("gtceu.machine.dual_hatch.export.tooltip"),
                             Component.translatable("gtceu.universal.tooltip.item_storage_capacity", (1+tier)),
                             Component.translatable("ctnhcore.universal.tooltip.item_storage_multiplier",
-                                    FormattingUtil.formatNumbers(tier<11 ? 1 << (4 + 2 * tier) : Integer.MAX_VALUE)),
+                                    FormattingUtil.formatNumbers(HugeItemBusPartMachine.getSlotMultiplier(tier))),
                             Component.translatable(
                                     "gtceu.universal.tooltip.fluid_storage_capacity_mult",
                                     HugeDualHatchPartMachine.getTankSize(tier),

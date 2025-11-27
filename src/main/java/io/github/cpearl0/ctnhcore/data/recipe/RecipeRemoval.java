@@ -2,15 +2,44 @@ package io.github.cpearl0.ctnhcore.data.recipe;
 
 import net.minecraft.resources.ResourceLocation;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 public class RecipeRemoval {
+    public static List<String> recipePaths = new ArrayList<>();
     public static void init(Consumer<ResourceLocation> registry) {
+        centrifugeRecipeRemovals();
+        maceratorRecipeRemovals();
+        //放最后
         ctnhRemovals(registry);
+    }
+    public static void centrifugeRecipeRemovals() {
+        recipePaths.addAll(List.of(
+                "gtceu:centrifuge/ruby_slurry_centrifuging",
+                "gtceu:centrifuge/pgs_separation",
+                "gtceu:centrifuge/impure_enriched_naquadah_solution_separation",
+                "gtceu:centrifuge/acidic_enriched_naquadah_separation",
+                "gtceu:centrifuge/impure_naquadria_solution_separation",
+                "gtceu:centrifuge/acidic_naquadria_solution_separation",
+                "gtceu:centrifuge/rare_earth_separation",
+                "gtceu:centrifuge/iridium_metal_residue_separation",
+                "gtceu:centrifuge/platinum_group_sludge_dust"
+                ));
+    }
+    public static void maceratorRecipeRemovals() {
+        recipePaths.addAll(List.of(
+                "gtceu:centrifuge/platinum_group_sludge_dust"
+        ));
+    }
+    public static void benderRecipeRemovals() {
+        recipePaths.addAll(List.of(
+                "gtceu:bender/bend_graphite_ir_plate_ingot_to_double_plate",
+                "gtceu:bender/bend_graphite_ir_plate_plate_to_double_plate"
+        ));
     }
 
     public static void ctnhRemovals(Consumer<ResourceLocation> registry){
-        String[] recipePaths = {
-                "gtceu:centrifuge/pgs_separation",
+        recipePaths.addAll(List.of(
                 "gtceu:electrolyzer/raw_platinum_separation",
                 "gtceu:chemical_reactor/raw_palladium_separation",
                 "gtceu:large_chemical_reactor/inert_metal_mixture_separation",
@@ -19,11 +48,7 @@ public class RecipeRemoval {
                 "gtceu:circuit_assembler/wetware_processor_luv_soc",
                 "gtceu:chemical_reactor/inert_metal_mixture_separation",
                 "gtceu:electrolyzer/rhodium_sulfate_separation",
-                "gtceu:centrifuge/impure_enriched_naquadah_solution_separation",
-                "gtceu:centrifuge/acidic_enriched_naquadah_separation",
                 "gtceu:large_chemical_reactor/naquadah_separation",
-                "gtceu:centrifuge/impure_naquadria_solution_separation",
-                "gtceu:centrifuge/acidic_naquadria_solution_separation",
                 "gtceu:electrolyzer/decomposition_electrolyzing_cooperite",
                 "gtceu:chemical_reactor/hydrogen_peroxide",
                 "gtceu:large_chemical_reactor/hydrogen_peroxide",
@@ -50,10 +75,11 @@ public class RecipeRemoval {
                 //编程电路卡
                 "pccard:item/card_programmed_circuit"
 
-        };
+        ));
 
         for (String path : recipePaths) {
             registry.accept(ResourceLocation.parse(path));
         }
     }
+
 }
