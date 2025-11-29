@@ -17,6 +17,7 @@
     "createmetallurgy.FoundryBasinBlockEntityMixin",
     "gtceu.GTBlocksMixin",
     "gtceu.GTOreByProductMixin",
+    "gtceu.GTRecipeWidgetMixin",
     "gtceu.NotifiableItemStackHandlerMixin",
     "gtceu.OreRecipeHandlerMixin",
     "gtceu.RecyclingRecipesMixin",

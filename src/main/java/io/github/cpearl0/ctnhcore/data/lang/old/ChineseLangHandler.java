@@ -139,8 +139,6 @@ public class ChineseLangHandler {
         provider.add("ctnh.recipe.hellforge.info.minimum_drain", "最少：%s意志");
         provider.add("ctnh.recipe.hellforge.info.drain", "消耗：%s意志");
 
-        provider.add("ctnh.recipe.kinetic.info.stress_output", "输出应力: %d");
-        provider.add("ctnh.recipe.kinetic.info.stress_input", "输入应力: %d");
         //wps
         provider.add("ctnh.recipe.accelerator.mode.nu","模式：加速中子");
         provider.add("ctnh.recipe.accelerator.mode.proton","模式：加速质子");

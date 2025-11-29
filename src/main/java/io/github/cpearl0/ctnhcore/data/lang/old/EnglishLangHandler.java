@@ -74,9 +74,6 @@ public class EnglishLangHandler {
         provider.add("ctnh.recipe.hellforge.info.minimum_drain", "MinimumDrain: %s Will");
         provider.add("ctnh.recipe.hellforge.info.drain", "Drain: %s Will");
 
-        provider.add("ctnh.recipe.kinetic.info.stress_output", "Output Stress: %d");
-        provider.add("ctnh.recipe.kinetic.info.stress_input", "Input Stress: %d");
-
         provider.add("ctnh.recipe.accelerator.mode.nu", "Mode: Neutron Acceleration");
         provider.add("ctnh.recipe.accelerator.mode.proton", "Mode: Proton Acceleration");
         provider.add("ctnh.recipe.accelerator.mode.element", "Mode: Electron Acceleration");
