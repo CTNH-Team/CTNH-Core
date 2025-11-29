@@ -352,7 +352,7 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
         super.addDisplayText(textList);
         var outputEnergy = (isBoosted? getBoostRate() : 1) * diversity * Math.pow(difference,2) * 32;
         var voltageName = GTValues.VNF[GTUtil.getTierByVoltage((long) outputEnergy)];
-        textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station2", FormattingUtil.formatNumbers(outputEnergy), voltageName));
+        textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station.info.2", FormattingUtil.formatNumbers(outputEnergy), voltageName));
         switch (type) {
             case DEFAULT -> textList.add(Component.translatable("ctnh.multiblock.demon_generator.info.default"));
             case VENGEFUL -> textList.add(Component.translatable("ctnh.multiblock.demon_generator.info.vengeful"));
