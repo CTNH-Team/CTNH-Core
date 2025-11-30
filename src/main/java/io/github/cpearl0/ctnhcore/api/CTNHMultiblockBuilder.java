@@ -25,6 +25,7 @@ import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.nullness.NonNullConsumer;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.Reference2IntMap;
 import lombok.Generated;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -114,7 +115,7 @@ public class CTNHMultiblockBuilder extends CTNHMultiblockMachineBuilder {
         return (CTNHMultiblockBuilder)super.tier(tier);
     }
 
-    public CTNHMultiblockBuilder recipeOutputLimits(Object2IntMap<RecipeCapability<?>> map) {
+    public CTNHMultiblockBuilder recipeOutputLimits(Reference2IntMap<RecipeCapability<?>> map) {
         return (CTNHMultiblockBuilder)super.recipeOutputLimits(map);
     }
 

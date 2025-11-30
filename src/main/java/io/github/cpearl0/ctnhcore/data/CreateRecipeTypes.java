@@ -88,7 +88,8 @@ public class CreateRecipeTypes {
                             .noEUt()
                             .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt().voltage()) * 2, 5))
                             .inputStress(builder.EUt().voltage() * CTNHConfig.INSTANCE.kinetic.sifterStressRequirement)
-                            .chancedOutputLogic(ItemRecipeCapability.CAP, CTNHChanceLogic.BASIC)
+                            //.chancedOutputLogic(ItemRecipeCapability.CAP, CTNHChanceLogic.BASIC)
+                            .chancedOutputLogic(ItemRecipeCapability.CAP, ChanceLogic.NONE)
                             .save(provider);
                 }
             }
