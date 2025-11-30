@@ -22,6 +22,7 @@ import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMac
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.LargeMinerMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.mo_guang.ctpp.api.CTPPPartAbility;
+import com.mo_guang.ctpp.common.data.CTPPRecipeModifiers;
 import com.mo_guang.ctpp.common.machine.multiblock.KineticOutputMachine;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
@@ -274,6 +275,7 @@ public class MultiblocksA {
     public static final MultiblockMachineDefinition BIG_DAM = REGISTRATE.multiblock("big_dam", KineticOutputMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.BIG_DAM)
+            .recipeModifiers(CTPPRecipeModifiers.KINETIC_ADJUST)
             .appearanceBlock(() -> Blocks.STONE_BRICKS)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAA", "AAAAAAIIIIIAAAAAAA", "AAAAAAIIIIIAAAAAAA", "AAAAAAIIIIIAAAAAA#", "AAAAAAIIIIIAAAAAA#", "AAAAAAIIIIIAAAAA##", "AAAAAAAAAAAAAAAA##", "AAAAAAAAAAAAAAAA##", "AAAAAAAAAAAAAAA###", "AAAAAAAAAAAAA#####", "AAAAAAAAAAA#######")

@@ -62,8 +62,7 @@ public class CTNHRecipeTypes {
             .setMaxIOSize(0, 0, 1, 0)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.COOLING)
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_output", String.format("%.1f", data.getFloat("output_stress"))));
+            .setSound(GTSoundEntries.COOLING);
 
     public static final GTRecipeType FERMENTING = REGISTRATE.recipeType(GTCEu.id("fermenting"), GTRecipeTypes.MULTIBLOCK)
             .cnlang("发酵罐")

@@ -14,7 +14,6 @@ public class BigDamRecipes {
         CTPPRecipeBuilder.of(GTCEu.id("big_dam"),CTNHRecipeTypes.BIG_DAM)
                 .outputStress(1048576)
                 .inputFluids(GTMaterials.Lubricant.getFluid(50))
-                .addData("output_stress", 1048576)
                 .duration(200)
                 .save(provider);
     }
