@@ -16,14 +16,10 @@ import com.negodya1.vintageimprovements.VintageBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
 import fr.lucreeper74.createmetallurgy.registries.CMBlocks;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.KineticElectricMultiblockMachine;
 import io.github.cpearl0.ctnhcore.data.CreateRecipeTypes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.Property;
 
 import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_TEMPERED_GLASS;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
@@ -36,7 +32,7 @@ public class Mechanical {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CreateRecipeTypes.MECHANICAL_PRESSOR_RECIPES)
             .appearanceBlock(AllBlocks.RAILWAY_CASING)
-            .recipeModifier(CTPPRecipeModifiers.KINETIC_OVERCLOCK)
+            .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALELL)
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "BCCCB", "B###B", "BBBBB", "B###B", "BCCCB", "AAAAA")
@@ -62,7 +58,7 @@ public class Mechanical {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CreateRecipeTypes.MECHANICAL_MIXER_RECIPES)
             .appearanceBlock(AllBlocks.RAILWAY_CASING)
-            .recipeModifier(CTPPRecipeModifiers.KINETIC_OVERCLOCK)
+            .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALELL)
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "BCCCB", "BDDDB", "B###B", "B###B", "BDDDB", "AAAAA")
@@ -90,7 +86,7 @@ public class Mechanical {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CreateRecipeTypes.MECHANICAL_CENTRIFUGE_RECIPES)
             .appearanceBlock(AllBlocks.RAILWAY_CASING)
-            .recipeModifier(CTPPRecipeModifiers.KINETIC_OVERCLOCK)
+            .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALELL)
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "BCCCB", "B###B", "B###B", "B###B", "BBBBB", "AAAAA")
@@ -118,7 +114,7 @@ public class Mechanical {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CreateRecipeTypes.MECHANICAL_SIFTER_RECIPES)
             .appearanceBlock(AllBlocks.RAILWAY_CASING)
-            .recipeModifier(CTPPRecipeModifiers.KINETIC_OVERCLOCK)
+            .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALELL)
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "BCCCB", "B###B", "AAAAA", "B###B", "BCCCB", "AAAAA")
@@ -145,7 +141,7 @@ public class Mechanical {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CreateRecipeTypes.MECHANICAL_EXTRACTOR_RECIPES)
             .appearanceBlock(AllBlocks.RAILWAY_CASING)
-            .recipeModifier(CTPPRecipeModifiers.KINETIC_OVERCLOCK)
+            .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALELL)
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "BCCCB", "BDDDB", "B###B", "B###B", "BDDDB", "AAAAA")
@@ -177,7 +173,7 @@ public class Mechanical {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CreateRecipeTypes.MECHANICAL_LATHE_RECIPES)
             .appearanceBlock(AllBlocks.RAILWAY_CASING)
-            .recipeModifier(CTPPRecipeModifiers.KINETIC_OVERCLOCK)
+            .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALELL)
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK)
             .tooltips(Component.translatable("ctnh.mechanical_lathe.structure").withStyle(ChatFormatting.DARK_RED))
             .pattern(definition -> FactoryBlockPattern.start()

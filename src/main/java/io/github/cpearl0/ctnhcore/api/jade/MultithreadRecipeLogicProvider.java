@@ -3,18 +3,15 @@ package io.github.cpearl0.ctnhcore.api.jade;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.blockentity.MetaMachineBlockEntity;
 import com.gregtechceu.gtceu.api.capability.GTCapabilityHelper;
-import com.gregtechceu.gtceu.api.machine.SimpleTieredMachine;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.steam.SimpleSteamMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.client.util.TooltipHelper;
-import com.gregtechceu.gtceu.common.machine.multiblock.part.EnergyHatchPartMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
 import com.gregtechceu.gtceu.integration.jade.provider.CapabilityBlockProvider;
-import com.gregtechceu.gtceu.integration.jade.provider.RecipeLogicProvider;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
+import com.mo_guang.ctpp.recipe.CTPPRecipeBuilder;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.recipe.MultiThreadRecipeLogic;
 import net.minecraft.ChatFormatting;
@@ -23,7 +20,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -32,6 +28,8 @@ import org.jetbrains.annotations.Nullable;
 import snownee.jade.api.BlockAccessor;
 import snownee.jade.api.ITooltip;
 import snownee.jade.api.config.IPluginConfig;
+
+import static com.gregtechceu.gtceu.integration.jade.provider.RecipeLogicProvider.getVoltage;
 
 public class MultithreadRecipeLogicProvider extends CapabilityBlockProvider<RecipeLogic> {
 
@@ -74,6 +72,9 @@ public class MultithreadRecipeLogicProvider extends CapabilityBlockProvider<Reci
                 recipeInfo.putLong("EUt", EUt.getTotalEU());
                 recipeInfo.putLong("voltage", getVoltage(capability));
                 recipeInfo.putBoolean("isInput", EUt.isInput());
+
+                var stress = CTPPRecipeBuilder.getStressWithIO(recipe);
+                recipeInfo.putFloat("Stress", stress);
             }
         }
 
@@ -81,23 +82,6 @@ public class MultithreadRecipeLogicProvider extends CapabilityBlockProvider<Reci
         if (!recipeInfo.isEmpty()) {
             data.put("Recipe", recipeInfo);
         }
-    }
-
-    public static long getVoltage(RecipeLogic capability) {
-        long voltage = -1;
-        if (capability.machine instanceof SimpleTieredMachine machine) {
-            voltage = GTValues.V[machine.getTier()];
-        } else if (capability.machine instanceof WorkableElectricMultiblockMachine machine) {
-            voltage = machine.getParts().stream()
-                    .filter(EnergyHatchPartMachine.class::isInstance)
-                    .map(EnergyHatchPartMachine.class::cast)
-                    .mapToLong(dynamo -> GTValues.V[dynamo.getTier()])
-                    .max()
-                    .orElse(-1);
-        }
-        // default display as LV, this shouldn't happen because a machine is either electric or steam
-        if (voltage == -1) voltage = 32;
-        return voltage;
     }
 
     @Override
@@ -160,6 +144,14 @@ public class MultithreadRecipeLogicProvider extends CapabilityBlockProvider<Reci
                     } else {
                         tooltip.add(Component.translatable("gtceu.top.energy_production").append(" ").append(text));
                     }
+                }
+
+                var stress = Math.abs(recipeInfo.getFloat("Stress"));
+                var isInputStress = recipeInfo.getFloat("Stress")>0;
+                if(stress != 0){
+                    tooltip.add(Component.translatable("ctpp.top.stress_" + (isInputStress?"consumption":"production"))
+                            .append(Component.literal(FormattingUtil.formatNumbers(stress) + " su").withStyle(ChatFormatting.AQUA))
+                    );
                 }
             }
         }

@@ -275,7 +275,7 @@ public class MultiblocksA {
     public static final MultiblockMachineDefinition BIG_DAM = REGISTRATE.multiblock("big_dam", KineticOutputMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.BIG_DAM)
-            .recipeModifiers(CTPPRecipeModifiers.KINETIC_ADJUST)
+            .noRecipeModifier()
             .appearanceBlock(() -> Blocks.STONE_BRICKS)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAA", "AAAAAAIIIIIAAAAAAA", "AAAAAAIIIIIAAAAAAA", "AAAAAAIIIIIAAAAAA#", "AAAAAAIIIIIAAAAAA#", "AAAAAAIIIIIAAAAA##", "AAAAAAAAAAAAAAAA##", "AAAAAAAAAAAAAAAA##", "AAAAAAAAAAAAAAA###", "AAAAAAAAAAAAA#####", "AAAAAAAAAAA#######")
