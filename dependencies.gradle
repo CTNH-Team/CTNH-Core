@@ -5,7 +5,7 @@ dependencies {
     annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.0-rc.3"))
 
-    modImplementation(project(":modules:CTNH-Bio")){transitive = false}
+    implementation(project(":modules:CTNH-Bio"))
     jarJar(project(":modules:CTNH-Bio")){transitive = false}
     modImplementation(project(":modules:CTPP")){transitive = false}
     jarJar(project(":modules:CTPP")){transitive = false}
@@ -15,10 +15,11 @@ dependencies {
     jarJar(project(":modules:CTNH-Energy")){transitive = false}
     //modImplementation(project(":modules:CTNH-Mana"))
     // JEI, EMI, Jade
-    modImplementation("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+    modCompileOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
     //modCompileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     //modRuntimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
-    //modRuntimeOnly("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
+    modCompileOnly("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
+    modRuntimeOnly("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
     modImplementation("curse.maven:jade-324717:6855440")
 
     // GregTech and dependencies
@@ -102,14 +103,6 @@ dependencies {
 
     // Twilight forest
     modImplementation("curse.maven:twilight_forest-227639:5468648")
-
-    //JAVD
-//    runtimeOnly fg.deobf("curse.maven:javd-370890:4803995")
-//    runtimeOnly fg.deobf("curse.maven:trenzalore-870210:4848244")
-//    modImplementation("curse.maven:ctnhbio-1333825:6958274")
-//    modImplementation("curse.maven:ctpp-1163715:6962884")
-
-    modImplementation("maven.modrinth:advanced-loot-info:nrGWQ7rF")
 
     //Hostile Neural NetWork
     modImplementation("curse.maven:hostile_neural_network-552574:5895036")

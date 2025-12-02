@@ -22,8 +22,7 @@
     "gtceu.OreRecipeHandlerMixin",
     "gtceu.RecyclingRecipesMixin",
     "gtceu.TagPrefixMixin",
-    "jei.GTRecipeWidgetMixin",
-    "jei.RecipeGuiLogicMixin",
+
     "ldlib.ModularUIContainerMixin",
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MobMixin",
