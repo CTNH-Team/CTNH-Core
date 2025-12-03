@@ -287,4 +287,16 @@ public class CTNHMachineUtils {
                                         V[tier] * 3))
                 .register();
     }
+    public static class CategoryBuckets {
+        public final List<MachineDefinition> multiblocks = new ArrayList<>();
+        public final List<MachineDefinition> singles = new ArrayList<>();
+
+        public void addMachine(MachineDefinition m) {
+            if (m instanceof MultiblockMachineDefinition) {
+                multiblocks.add(m);
+            } else {
+                singles.add(m);
+            }
+        }
+    }
 }

@@ -15,6 +15,8 @@
     "createmetallurgy.CreateMetallurgyJEIMixin",
     "createmetallurgy.CrucibleBlockEntityMixin",
     "createmetallurgy.FoundryBasinBlockEntityMixin",
+    "emi.EmiApiTagExpandMixin",
+    "emi.GTRecipeEMICategoryMixin",
     "gtceu.GTBlocksMixin",
     "gtceu.GTOreByProductMixin",
     "gtceu.GTRecipeWidgetMixin",
@@ -22,7 +24,6 @@
     "gtceu.OreRecipeHandlerMixin",
     "gtceu.RecyclingRecipesMixin",
     "gtceu.TagPrefixMixin",
-
     "ldlib.ModularUIContainerMixin",
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MobMixin",
