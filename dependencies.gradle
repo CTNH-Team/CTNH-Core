@@ -7,7 +7,7 @@ dependencies {
 
     implementation(project(":modules:CTNH-Bio"))
     jarJar(project(":modules:CTNH-Bio")){transitive = false}
-    modImplementation(project(":modules:CTPP")){transitive = false}
+    implementation(project(":modules:CTPP"))
     jarJar(project(":modules:CTPP")){transitive = false}
     modImplementation(project(":modules:CTNH-Lib")){transitive = false}
     jarJar(project(":modules:CTNH-Lib")){transitive = false}
