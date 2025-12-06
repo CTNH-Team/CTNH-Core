@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.registry;
 
-import io.github.cpearl0.ctnhcore.legendary.ArmorModifier;
-import io.github.cpearl0.ctnhcore.legendary.UnderfloorHeatingSystemTempModifier;
+import io.github.cpearl0.ctnhcore.integration.legendary.ArmorModifier;
+import io.github.cpearl0.ctnhcore.integration.legendary.UnderfloorHeatingSystemTempModifier;
 import net.minecraftforge.registries.RegistryObject;
 import sfiomn.legendarysurvivaloverhaul.api.temperature.DynamicModifierBase;
 import sfiomn.legendarysurvivaloverhaul.api.temperature.ModifierBase;
