@@ -11,9 +11,9 @@ import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultib
 import com.gregtechceu.gtceu.integration.jade.provider.CapabilityBlockProvider;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
-import com.mo_guang.ctpp.recipe.CTPPRecipeBuilder;
+import com.mo_guang.ctpp.common.data.CTPPRecipeHelper;
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.api.recipe.MultiThreadRecipeLogic;
+import io.github.cpearl0.ctnhcore.api.recipe.multithread.MultiThreadRecipeLogic;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -73,7 +73,7 @@ public class MultithreadRecipeLogicProvider extends CapabilityBlockProvider<Reci
                 recipeInfo.putLong("voltage", getVoltage(capability));
                 recipeInfo.putBoolean("isInput", EUt.isInput());
 
-                var stress = CTPPRecipeBuilder.getStressWithIO(recipe);
+                var stress = CTPPRecipeHelper.getStressWithIO(recipe);
                 recipeInfo.putFloat("Stress", stress);
             }
         }

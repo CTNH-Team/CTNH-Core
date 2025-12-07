@@ -16,6 +16,7 @@ import com.lowdragmc.lowdraglib.gui.texture.ProgressTexture;
 import com.lowdragmc.lowdraglib.gui.widget.SlotWidget;
 import com.lowdragmc.lowdraglib.utils.CycleItemStackHandler;
 import com.lowdragmc.lowdraglib.utils.LocalizationUtils;
+import com.moguang.ctnhbio.api.capability.recipe.EntityRecipeCapability;
 import com.simibubi.create.AllBlocks;
 import io.github.cpearl0.ctnhcore.data.CreateRecipeTypes;
 import net.minecraft.client.resources.language.I18n;
@@ -135,11 +136,11 @@ public class CTNHRecipeTypes {
             .setSound(GTSoundEntries.CHEMICAL);
 
     public static final GTRecipeType MEADOW = REGISTRATE.recipeType(GTCEu.id("meadow"), MULTIBLOCK)
-            .cnlang("牧场养殖").setMaxIOSize(3, 3, 3, 3)
+            .cnlang("牧场养殖").setMaxIOSize(2, 3, 2, 2)
+            .setMaxSize(IO.IN, EntityRecipeCapability.CAP,1)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.BATH)
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f",data.getFloat("input_stress"))));
+            .setSound(GTSoundEntries.BATH);
     public static final GTRecipeType MANA_GENERATOR = REGISTRATE.recipeType(GTCEu.id("mana_generator"),GENERATOR)
             .cnlang("魔力发电")
             .setEUIO(IO.OUT)

@@ -22,6 +22,7 @@ import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMac
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.LargeMinerMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.mo_guang.ctpp.api.CTPPPartAbility;
+import com.mo_guang.ctpp.common.data.CTPPRecipeModifiers;
 import com.mo_guang.ctpp.common.machine.multiblock.KineticOutputMachine;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
@@ -687,7 +688,7 @@ public class MultiblocksA {
     public final static MultiblockMachineDefinition MEADOW = REGISTRATE.multiblock("meadow", MeadowMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.MEADOW)
-            .recipeModifier(MeadowMachine::recipmeModifier)
+            .recipeModifier(CTPPRecipeModifiers.KINETIC_PERFECT_PARALLEL)
             .tooltips(Component.translatable("ctnh.multiblock.meadow.tooltip.0").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.multiblock.meadow.tooltip.1"),
                     Component.translatable("ctnh.multiblock.meadow.tooltip.2"))
