@@ -3,12 +3,10 @@ package io.github.cpearl0.ctnhcore.api.recipe.crossparalell;
 import com.gregtechceu.gtceu.api.capability.recipe.RecipeCapability;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
-import com.gregtechceu.gtceu.api.recipe.RecipeCondition;
 import com.gregtechceu.gtceu.api.recipe.category.GTRecipeCategory;
-import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
 import net.minecraft.nbt.CompoundTag;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.*;
 
@@ -16,12 +14,13 @@ public class MergedGTRecipe extends GTRecipe {
 
     //public List<GTRecipe> recipes = new ArrayList<>();
 
-    public MergedGTRecipe(GTRecipeType recipeType, GTRecipeCategory recipeCategory){
+    public MergedGTRecipe(GTRecipeType recipeType, GTRecipeCategory recipeCategory, ResourceLocation id){
         super(recipeType,
-                new HashMap<>(),
-                new HashMap<>(),
-                new HashMap<>(),
-                new HashMap<>(),
+                id,
+                new RecipeContentMap(),
+                new RecipeContentMap(),
+                new RecipeContentMap(),
+                new RecipeContentMap(),
                 new HashMap<>(),
                 new HashMap<>(),
                 new HashMap<>(),
@@ -36,33 +35,10 @@ public class MergedGTRecipe extends GTRecipe {
     }
 
     public void add(GTRecipe recipe){
-        recipe.inputs.forEach((key, value) ->
-                inputs.merge(key, value, (oldList, newList) -> {
-                    oldList.addAll(newList);
-                    return oldList;
-                })
-        );
-
-        recipe.outputs.forEach((key, value) ->
-                outputs.merge(key, value, (oldList, newList) -> {
-                    oldList.addAll(newList);
-                    return oldList;
-                })
-        );
-
-        recipe.tickInputs.forEach((key, value) ->
-                tickInputs.merge(key, value, (oldList, newList) -> {
-                    oldList.addAll(newList);
-                    return oldList;
-                })
-        );
-
-        recipe.tickOutputs.forEach((key, value) ->
-                tickOutputs.merge(key, value, (oldList, newList) -> {
-                    oldList.addAll(newList);
-                    return oldList;
-                })
-        );
+        ((RecipeContentMap)inputs).mergeFrom(recipe.inputs);
+        ((RecipeContentMap)outputs).mergeFrom(recipe.outputs);
+        ((RecipeContentMap)tickInputs).mergeFrom(recipe.tickInputs);
+        ((RecipeContentMap)tickOutputs).mergeFrom(recipe.tickOutputs);
 
         inputChanceLogics.putAll(recipe.inputChanceLogics);
         outputChanceLogics.putAll(recipe.outputChanceLogics);
@@ -97,20 +73,30 @@ public class MergedGTRecipe extends GTRecipe {
         return parallels != 0;
     }
 
-    public static Map<RecipeCapability<?>, List<Content>> merge(
-            Map<RecipeCapability<?>, List<Content>> map1,
-            Map<RecipeCapability<?>, List<Content>> map2) {
+    public static class RecipeContentMap extends HashMap<RecipeCapability<?>, List<Content>> {
 
-        Map<RecipeCapability<?>, List<Content>> result = new HashMap<>(map1);
+        public void mergeFrom(Map<RecipeCapability<?>, List<Content>> other) {
+            if (other == null || other.isEmpty()) {
+                return;
+            }
 
-        map2.forEach((key, value) ->
-                result.merge(key, value, (oldList, newList) -> {
-                    oldList.addAll(newList);
-                    return oldList;
-                })
-        );
+            for (Map.Entry<RecipeCapability<?>, List<Content>> entry : other.entrySet()) {
+                RecipeCapability<?> key = entry.getKey();
+                List<Content> incoming = entry.getValue();
 
-        return result;
+                if (incoming == null || incoming.isEmpty()) {
+                    continue;
+                }
+
+                List<Content> existing = this.get(key);
+
+                if (existing == null) {
+                    this.put(key, new ArrayList<>(incoming));
+                } else {
+                    existing.addAll(incoming);
+                }
+            }
+        }
     }
 
 }

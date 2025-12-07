@@ -2,30 +2,17 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
-import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
-import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.mo_guang.ctpp.common.data.CTPPRecipeHelper;
 import com.mo_guang.ctpp.common.machine.multiblock.KineticWorkableMultiblockMachine;
 import com.moguang.ctnhbio.api.machine.trait.NotifiableEntityContainer;
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.recipe.crossparalell.MergedGTRecipe;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
-import io.github.cpearl0.ctnhcore.registry.CTNHItems;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import net.minecraft.core.Direction;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 public class MeadowMachine extends KineticWorkableMultiblockMachine {
@@ -73,7 +60,10 @@ public class MeadowMachine extends KineticWorkableMultiblockMachine {
 
     public class MeadowRecipeLogic extends KineticRecipeLogic{
 
-        public MergedGTRecipe mergedRecipe = new MergedGTRecipe(CTNHRecipeTypes.MEADOW, CTNHRecipeTypes.MEADOW.getCategory());
+        public MergedGTRecipe mergedRecipe = new MergedGTRecipe(getRecipeType(),
+                getRecipeType().getCategory(),
+                CTNHCore.id(getRecipeType().registryName.getPath() + "/merged/" + this.hashCode())
+        );
 
         public MeadowRecipeLogic(IRecipeLogicMachine machine) {
             super(machine);

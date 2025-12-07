@@ -11,6 +11,7 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch.HugeItemBu
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
@@ -22,6 +23,7 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
 
 import java.util.List;
+import java.util.Optional;
 
 @Prefix("hugeslotwidget")
 public class HugeSlotWidget extends SlotWidget {
@@ -113,6 +115,12 @@ public class HugeSlotWidget extends SlotWidget {
             var stack1 = itemHandler.getStackInSlot(index);
             boolean mayReplace = stack1.getCount() <= stack1.getMaxStackSize() || ItemStack.isSameItemSameTags(stack, stack1);
             return super.mayPlace(stack) && mayReplace;
+        }
+
+        @Override
+        public Optional<ItemStack> tryRemove(int count, int decrement, Player player) {
+            count = Math.min(count, itemHandler.getStackInSlot(index).getMaxStackSize());
+            return super.tryRemove(count, decrement, player);
         }
     }
 }

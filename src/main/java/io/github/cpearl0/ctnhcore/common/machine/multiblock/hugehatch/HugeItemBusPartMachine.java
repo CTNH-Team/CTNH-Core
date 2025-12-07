@@ -31,17 +31,21 @@ import io.github.cpearl0.ctnhcore.utils.HugeBusTransferHelper;
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fluids.FluidType;
+import net.minecraftforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.NotNull;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Suffix;
 
+import java.util.Collections;
 import java.util.List;
 
 @Suffix("tooltip")
@@ -238,6 +242,37 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IRCFan
         }
 
         @Override
+        public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
+            if (amount == 0) {
+                return ItemStack.EMPTY;
+            } else {
+                this.validateSlotIndex(slot);
+                ItemStack existing = this.stacks.get(slot);
+                if (existing.isEmpty()) {
+                    return ItemStack.EMPTY;
+                } else {
+                    int toExtract = Math.min(amount, getStackLimit(slot, existing));
+                    if (existing.getCount() <= toExtract) {
+                        if (!simulate) {
+                            this.stacks.set(slot, ItemStack.EMPTY);
+                            this.onContentsChanged(slot);
+                            return existing;
+                        } else {
+                            return existing.copy();
+                        }
+                    } else {
+                        if (!simulate) {
+                            this.stacks.set(slot, ItemHandlerHelper.copyStackWithSize(existing, existing.getCount() - toExtract));
+                            this.onContentsChanged(slot);
+                        }
+
+                        return ItemHandlerHelper.copyStackWithSize(existing, toExtract);
+                    }
+                }
+            }
+        }
+
+        @Override
         public int getSlotLimit(int slot) {
             return multiplier == Integer.MAX_VALUE ? Integer.MAX_VALUE : 64 * multiplier;
         }
@@ -247,6 +282,66 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IRCFan
             return multiplier == Integer.MAX_VALUE ? Integer.MAX_VALUE :
                     Math.min(this.getSlotLimit(slot), stack.getMaxStackSize() * multiplier);
         }
+
+        @Override
+        public CompoundTag serializeNBT() {
+            ListTag nbtTagList = new ListTag();
+
+            for (int i = 0; i < this.stacks.size(); ++i) {
+                ItemStack stack = this.stacks.get(i);
+
+                if (!stack.isEmpty()) {
+                    CompoundTag itemTag = new CompoundTag();
+
+                    itemTag.putInt("Slot", i);
+
+                    CompoundTag itemIdTag = new CompoundTag();
+                    stack.save(itemIdTag);
+                    itemTag.put("Item", itemIdTag);
+
+                    itemTag.putInt("Count", stack.getCount());
+
+                    nbtTagList.add(itemTag);
+                }
+            }
+
+            CompoundTag nbt = new CompoundTag();
+            nbt.put("Items", nbtTagList);
+            nbt.putInt("Size", this.stacks.size());
+            return nbt;
+        }
+
+        @Override
+        public void deserializeNBT(CompoundTag nbt) {
+            this.setSize(nbt.contains("Size", CompoundTag.TAG_INT)
+                    ? nbt.getInt("Size")
+                    : this.stacks.size());
+
+            ListTag tagList = nbt.getList("Items", CompoundTag.TAG_COMPOUND);
+
+            Collections.fill(this.stacks, ItemStack.EMPTY);
+
+            for (int i = 0; i < tagList.size(); ++i) {
+                CompoundTag itemTags = tagList.getCompound(i);
+                int slot = itemTags.getInt("Slot");
+
+                if (slot >= 0 && slot < this.stacks.size()) {
+
+                    CompoundTag itemData = itemTags.getCompound("Item");
+                    ItemStack stack = ItemStack.of(itemData);
+
+                    if (itemTags.contains("Count", CompoundTag.TAG_INT)) {
+                        stack.setCount(itemTags.getInt("Count"));
+                    }
+
+                    this.stacks.set(slot, stack);
+                }
+            }
+
+            this.onLoad();
+        }
+
+
     }
 
     @Override
