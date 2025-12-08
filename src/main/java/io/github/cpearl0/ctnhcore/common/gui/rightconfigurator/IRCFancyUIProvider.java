@@ -26,9 +26,8 @@ public interface IRCFancyUIProvider {
                     String allow = "", notAllow = "";
 
                     if(trait instanceof NotifiableItemStackHandler inventory
-                            && inventory.getSlots() != 0
+                            && inventory.getSlots() > 1
                             && inventory.capabilityIO != IO.NONE){
-                        if(inventory instanceof ProgrammableCircuitHandler) continue;
                         if(inventory.capabilityIO ==IO.IN){
                             button = ALLOW_SAME_ITEM_IN;
                             allow = "允许相同物品输入";
@@ -41,7 +40,7 @@ public interface IRCFancyUIProvider {
                         }
                     }
                     else if(trait instanceof NotifiableFluidTank tank
-                            && tank.getTanks() != 0
+                            && tank.getTanks() > 1
                             && tank.getCapabilityIO() != IO.NONE){
                         if(tank.capabilityIO ==IO.IN){
                             button = ALLOW_SAME_FLUID_IN;
