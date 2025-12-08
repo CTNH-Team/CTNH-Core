@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.mixin.gtceu;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
+import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.ingredient.IntProviderIngredient;
@@ -26,6 +27,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.function.IntFunction;
 
 @Mixin(value = NotifiableItemStackHandler.class, remap = false)
 public abstract class NotifiableItemStackHandlerMixin implements IAllowSameContainer {
@@ -48,15 +50,14 @@ public abstract class NotifiableItemStackHandlerMixin implements IAllowSameConta
 
     @Persisted
     @Unique
-    boolean ctnhcore$allowSameItems = false;
-
-    @Unique
-    private boolean ctnhcore$itemSlotCacheDirty = true;
-
-    @Unique
-    private final Int2IntMap ctnhcore$itemSlotCache = new Int2IntOpenHashMap();
+    boolean ctnhcore$allowSameItems;
 
 
+    @Inject(method = "<init>(Lcom/gregtechceu/gtceu/api/machine/MetaMachine;ILcom/gregtechceu/gtceu/api/capability/recipe/IO;Lcom/gregtechceu/gtceu/api/capability/recipe/IO;Ljava/util/function/IntFunction;)V",
+    at = @At("TAIL"))
+    public void injectInit(MetaMachine machine, int slots, IO handlerIO, IO capabilityIO, IntFunction storageFactory, CallbackInfo ci){
+        ctnhcore$allowSameItems = handlerIO.support(IO.OUT);
+    }
 
     @Redirect(
             method = "handleRecipe",
@@ -79,16 +80,7 @@ public abstract class NotifiableItemStackHandlerMixin implements IAllowSameConta
         onContentsChanged();
     }
 
-    @Unique
-    private void gtceu$markCacheDirty() {
-        ctnhcore$itemSlotCacheDirty = true;
-    }
 
-
-    @Inject(method = "onContentsChanged", at = @At("HEAD"))
-    private void gtceu$invalidateCache(CallbackInfo ci) {
-        gtceu$markCacheDirty();
-    }
 
     /**
      * @author
