@@ -25,7 +25,6 @@
     "gtceu.OreRecipeHandlerMixin",
     "gtceu.RecyclingRecipesMixin",
     "gtceu.TagPrefixMixin",
-    "gtceu.WorkableTieredMachineMixin",
     "ldlib.ModularUIContainerMixin",
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MobMixin",
