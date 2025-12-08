@@ -42,7 +42,7 @@ public abstract class WorkableTieredMachineMixin extends TieredEnergyMachine {
     protected void createExportItemHandler(Object[] args, CallbackInfoReturnable<NotifiableItemStackHandler> cir) {
         cir.setReturnValue(
                 new NotifiableItemStackHandler(this,
-                        getRecipeType().getMaxInputs(ItemRecipeCapability.CAP),
+                        getRecipeType().getMaxOutputs(ItemRecipeCapability.CAP),
                         IO.OUT,
                         IO.OUT,
                         i -> new HugeItemBusPartMachine.HugeItemStackHandler(i, ctnhcore$getSlotMultiplier(getTier()))
