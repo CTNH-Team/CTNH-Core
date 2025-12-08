@@ -163,6 +163,7 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IRCFan
 
     @Override
     public void attachRightConfigurators(RightConfiguratorPanel configuratorPanel) {
+        IRCFancyUIProvider.super.attachRightConfigurators(configuratorPanel);
         if(io != IO.IN) return;
         configuratorPanel.attachConfigurators(new FancyInvConfigurator(
                 shareInventory.storage, Component.translatable("gui.gtceu.share_inventory.title"))
