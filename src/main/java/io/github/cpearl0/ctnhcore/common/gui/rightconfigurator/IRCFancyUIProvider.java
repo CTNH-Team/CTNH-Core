@@ -1,15 +1,11 @@
 package io.github.cpearl0.ctnhcore.common.gui.rightconfigurator;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
-import com.gregtechceu.gtceu.api.gui.GuiTextures;
-import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
 import com.gregtechceu.gtceu.api.gui.fancy.IFancyConfiguratorButton;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableFluidTank;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
-import com.hepdd.gtmthings.api.machine.trait.ProgrammableCircuitHandler;
 import com.lowdragmc.lowdraglib.gui.texture.ResourceTexture;
-import io.github.cpearl0.ctnhcore.registry.CTNHGuiTextures;
 import io.github.cpearl0.ctnhcore.utils.IAllowSameContainer;
 import net.minecraft.network.chat.Component;
 
