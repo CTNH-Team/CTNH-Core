@@ -5,12 +5,13 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
-import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.MultiblockPartMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.TieredPartMachine;
 import com.gregtechceu.gtceu.common.data.GTRecipeCategories;
+import com.gregtechceu.gtceu.integration.emi.recipe.GTEmiRecipe;
+import com.gregtechceu.gtceu.integration.emi.recipe.GTRecipeEMICategory;
 import com.gregtechceu.gtceu.integration.jei.recipe.GTRecipeJEICategory;
 import com.lowdragmc.lowdraglib.gui.util.ClickData;
 import com.lowdragmc.lowdraglib.gui.widget.*;
@@ -18,12 +19,10 @@ import com.lowdragmc.lowdraglib.jei.JEIPlugin;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-import io.github.cpearl0.ctnhcore.api.recipe.MultiThreadRecipeLogic;
-import io.github.cpearl0.ctnhcore.api.recipe.ThreadRecipeLogic;
+import dev.emi.emi.api.EmiApi;
+import io.github.cpearl0.ctnhcore.api.recipe.multithread.MultiThreadRecipeLogic;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.*;
-import net.minecraft.util.Mth;
-import org.jetbrains.annotations.MustBeInvokedByOverriders;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -213,16 +212,16 @@ public class AsynThreadHatchMachine extends TieredPartMachine implements IFancyU
 
             }
         }else if(op.equals("lastRecipe")) {
-            if (GTCEu.Mods.isJEILoaded()){
-                String recipeCategoryName = recipeCategoryCache.get(id);
-                String recipeID = recipeIDCache.get(id);
-                if(recipeCategoryName.equals("null") || recipeID.equals("null")) return;
-                var recipeCategory = GTRecipeCategories.get(recipeCategoryName);
-                recipeCategory.getRecipeType().getRecipesInCategory(recipeCategory).stream()
-                        .filter(r -> r.id.toString().equals(recipeID))
-                        .findFirst()
-                        .ifPresent(
-                                recipe -> {
+            String recipeCategoryName = recipeCategoryCache.get(id);
+            String recipeID = recipeIDCache.get(id);
+            if(recipeCategoryName.equals("null") || recipeID.equals("null")) return;
+            var recipeCategory = GTRecipeCategories.get(recipeCategoryName);
+            recipeCategory.getRecipeType().getRecipesInCategory(recipeCategory).stream()
+                    .filter(r -> r.id.toString().equals(recipeID))
+                    .findFirst()
+                    .ifPresent(
+                            recipe -> {
+                                if (GTCEu.Mods.isJEILoaded()) {
                                     var category = new GTRecipeJEICategory(JEIPlugin.jeiHelpers, recipeCategory);
                                     JEIPlugin.jeiRuntime.getRecipesGui().showRecipes(
                                             category,
@@ -230,8 +229,13 @@ public class AsynThreadHatchMachine extends TieredPartMachine implements IFancyU
                                             List.of()
                                     );
                                 }
-                        );
-            }
+                                else if(GTCEu.Mods.isEMILoaded()){
+                                    var category = GTRecipeEMICategory.machineCategory(recipeCategory);
+                                    EmiApi.displayRecipe(new GTEmiRecipe(recipe, category));
+                                }
+                            }
+                    );
+
         }
     }
 

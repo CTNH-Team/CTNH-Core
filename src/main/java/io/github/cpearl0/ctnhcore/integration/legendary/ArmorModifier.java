@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.legendary;
+package io.github.cpearl0.ctnhcore.integration.legendary;
 
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import net.minecraft.world.entity.player.Player;

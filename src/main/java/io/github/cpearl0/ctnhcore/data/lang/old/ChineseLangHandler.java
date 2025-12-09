@@ -139,8 +139,6 @@ public class ChineseLangHandler {
         provider.add("ctnh.recipe.hellforge.info.minimum_drain", "最少：%s意志");
         provider.add("ctnh.recipe.hellforge.info.drain", "消耗：%s意志");
 
-        provider.add("ctnh.recipe.kinetic.info.stress_output", "输出应力: %d");
-        provider.add("ctnh.recipe.kinetic.info.stress_input", "输入应力: %d");
         //wps
         provider.add("ctnh.recipe.accelerator.mode.nu","模式：加速中子");
         provider.add("ctnh.recipe.accelerator.mode.proton","模式：加速质子");
@@ -939,9 +937,9 @@ public class ChineseLangHandler {
         provider.addEnchantment(CTNHEnchantments.VACUUM_SEAL, "真空密封");
         provider.addEnchantment(CTNHEnchantments.WARMING, "御寒");
         provider.addEnchantment(CTNHEnchantments.COOLING, "御暑");
-        provider.add("enchantment.kubejs.vacuum_seal.desc", "使你不再受到真空的伤害。注：必须所有装备均拥有该附魔");
-        provider.add("enchantment.kubejs.warming.desc", "增强御暑能力");
-        provider.add("enchantment.kubejs.cooling.desc", "增强御寒能力");
+        provider.add("enchantment.ctnhcore.vacuum_seal.desc", "使你不再受到真空的伤害。注：必须所有装备均拥有该附魔");
+        provider.add("enchantment.ctnhcore.warming.desc", "增强御暑能力");
+        provider.add("enchantment.ctnhcore.cooling.desc", "增强御寒能力");
 
 //        provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T1,"戴森云无人机蜂群MKI");
 //        provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T2,"戴森云无人机蜂群MKII");

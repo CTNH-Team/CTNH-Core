@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.api.recipe;
+package io.github.cpearl0.ctnhcore.api.recipe.multithread;
 
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;

@@ -88,7 +88,8 @@ public class CreateRecipeTypes {
                             .noEUt()
                             .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt().voltage()) * 2, 5))
                             .inputStress(builder.EUt().voltage() * CTNHConfig.INSTANCE.kinetic.sifterStressRequirement)
-                            .chancedOutputLogic(ItemRecipeCapability.CAP, CTNHChanceLogic.BASIC)
+                            //.chancedOutputLogic(ItemRecipeCapability.CAP, CTNHChanceLogic.BASIC)
+                            .chancedOutputLogic(ItemRecipeCapability.CAP, ChanceLogic.NONE)
                             .save(provider);
                 }
             }
@@ -131,26 +132,14 @@ public class CreateRecipeTypes {
             .setSlotOverlay(false, false, false, GuiTextures.BENDER_OVERLAY)
             .setSlotOverlay(false, false, true, GuiTextures.INT_CIRCUIT_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_BENDING, LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.CUT)
-            .setUiBuilder((recipe, group) -> {
-                var handler = new CustomItemStackHandler(AllBlocks.SHAFT.asStack());
-                group.addWidget(new SlotWidget(handler, 0, group.getSize().width - 30,
-                        group.getSize().height - 30, false, false));
-            })
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
+            .setSound(GTSoundEntries.CUT);
     public static final GTRecipeType MECHANICAL_MIXER_RECIPES = REGISTRATE.recipeType("mechanical_mixer_recipes", KINETIC)
             .cnlang("机械搅拌")
             .setMaxIOSize(6,6,3,3)
             .setSlotOverlay(false, false, GuiTextures.DUST_OVERLAY)
             .setSlotOverlay(true, false, GuiTextures.DUST_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.MIXER)
-            .setUiBuilder((recipe, group) -> {
-                var handler = new CustomItemStackHandler(AllBlocks.SHAFT.asStack());
-                group.addWidget(new SlotWidget(handler, 0, group.getSize().width - 30,
-                        group.getSize().height - 30, false, false));
-            })
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
+            .setSound(GTSoundEntries.MIXER);
     public static final GTRecipeType MECHANICAL_CENTRIFUGE_RECIPES = REGISTRATE.recipeType("mechanical_centrifuge_recipes", KINETIC)
             .cnlang("机械离心")
             .setMaxIOSize(2,6,1,6)
@@ -158,46 +147,22 @@ public class CreateRecipeTypes {
             .setSlotOverlay(false, false, true, GuiTextures.CANISTER_OVERLAY)
             .setSlotOverlay(false, true, true, GuiTextures.CENTRIFUGE_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.CENTRIFUGE)
-            .setUiBuilder((recipe, group) -> {
-                var handler = new CustomItemStackHandler(AllBlocks.SHAFT.asStack());
-                group.addWidget(new SlotWidget(handler, 0, group.getSize().width - 30,
-                        group.getSize().height - 30, false, false));
-            })
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
+            .setSound(GTSoundEntries.CENTRIFUGE);
     public static final GTRecipeType MECHANICAL_SIFTER_RECIPES = REGISTRATE.recipeType("mechanical_sifter_recipes", KINETIC)
             .cnlang("机械筛选")
             .setMaxIOSize(1,6,0,0)
             .setProgressBar(GuiTextures.PROGRESS_BAR_SIFT, UP_TO_DOWN)
-            .setSound(new ExistingSoundEntry(SoundEvents.SAND_PLACE, SoundSource.BLOCKS))
-            .setUiBuilder((recipe, group) -> {
-                var handler = new CustomItemStackHandler(AllBlocks.SHAFT.asStack());
-                group.addWidget(new SlotWidget(handler, 0, group.getSize().width - 30,
-                        group.getSize().height - 30, false, false));
-            })
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
+            .setSound(new ExistingSoundEntry(SoundEvents.SAND_PLACE, SoundSource.BLOCKS));
     public static final GTRecipeType MECHANICAL_EXTRACTOR_RECIPES = REGISTRATE.recipeType("mechanical_extractor_recipes", KINETIC)
             .cnlang("机械提取")
             .setMaxIOSize(1,1,0,1)
             .setSlotOverlay(false, false, GuiTextures.EXTRACTOR_OVERLAY)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, LEFT_TO_RIGHT)
-            .setUiBuilder((recipe, group) -> {
-                var handler = new CustomItemStackHandler(AllBlocks.SHAFT.asStack());
-                group.addWidget(new SlotWidget(handler, 0, group.getSize().width - 30,
-                        group.getSize().height - 30, false, false));
-            })
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
+            .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, LEFT_TO_RIGHT);
     public static final GTRecipeType MECHANICAL_LATHE_RECIPES = REGISTRATE.recipeType("mechanical_lathe_recipes", KINETIC)
             .cnlang("机械车床")
             .setMaxIOSize(1,2,0,0)
             .setSlotOverlay(false, false, GuiTextures.PIPE_OVERLAY_1)
             .setSlotOverlay(true, false, false, GuiTextures.PIPE_OVERLAY_2)
             .setSlotOverlay(true, false, true, GuiTextures.DUST_OVERLAY)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_LATHE, LEFT_TO_RIGHT)
-            .setUiBuilder((recipe, group) -> {
-                var handler = new CustomItemStackHandler(AllBlocks.SHAFT.asStack());
-                group.addWidget(new SlotWidget(handler, 0, group.getSize().width - 30,
-                        group.getSize().height - 30, false, false));
-            })
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.kinetic.info.stress_input", String.format("%.1f", data.getFloat("input_stress"))));
+            .setProgressBar(GuiTextures.PROGRESS_BAR_LATHE, LEFT_TO_RIGHT);
 }

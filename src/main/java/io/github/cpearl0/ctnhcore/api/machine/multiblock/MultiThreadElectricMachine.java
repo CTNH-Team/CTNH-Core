@@ -7,14 +7,11 @@ import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.utils.GTUtil;
-import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
-import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import io.github.cpearl0.ctnhcore.api.recipe.MultiThreadRecipeLogic;
-import io.github.cpearl0.ctnhcore.api.recipe.ThreadRecipeLogic;
+import io.github.cpearl0.ctnhcore.api.recipe.multithread.MultiThreadRecipeLogic;
+import io.github.cpearl0.ctnhcore.api.recipe.multithread.ThreadRecipeLogic;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.AsynThreadHatchMachine;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.player.Player;
 
 import java.util.List;
 
