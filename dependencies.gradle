@@ -123,7 +123,7 @@ dependencies {
 
     modImplementation("curse.maven:xaeros-minimap-263420:6778028")
     modImplementation("curse.maven:xaeros-world-map-317780:6778091")
-    //modImplementation("curse.maven:sophisticated-core-618298:7169400")
+    modImplementation("curse.maven:sophisticated-core-618298:6596375")
     //modImplementation("maven.modrinth:pneumaticcraft-repressurized:${pneumaticcraft_version}")
     //modImplementation("curse.maven:compressedcreativity-549381:6603441")
     //modImplementation("curse.maven:appliedpneumatics-1355087:7124464")

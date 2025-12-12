@@ -29,13 +29,20 @@
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MobMixin",
     "mc.MonsterMixin",
+    "mc.ServerPlayerMixin",
     "mc.WorldLoaderPackConfigMixin",
+
     "vintageimprovements.LatheRotatingBlockMixin"
   ],
   "client": [
     "gtceu.ContentMixin",
     "gtceu.OreVeinElementRendererMixin",
-    "gtceu.OreVeinElementRendererWorldMixin"
+    "gtceu.OreVeinElementRendererWorldMixin",
+    "sophisticatedcore.SyncContainerStacksMessageMixin",
+    "sophisticatedcore.SyncSlotStackMessageMixin"
   ],
+  "mixinextras": {
+    "minVersion": "0.5.0"
+  },
   "minVersion": "0.8"
 }
