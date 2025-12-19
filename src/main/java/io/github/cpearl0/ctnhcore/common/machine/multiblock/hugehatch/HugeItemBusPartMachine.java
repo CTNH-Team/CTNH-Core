@@ -60,8 +60,7 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IRCFan
 
     public HugeItemBusPartMachine(IMachineBlockEntity holder, int tier, IO io, Object... args) {
         super(holder, tier, io, args);
-        this.shareInventory = new NotifiableItemStackHandler(this, 9, IO.IN, IO.NONE);
-
+        this.shareInventory = new NotifiableItemStackHandler(this, 9, IO.IN, IO.NONE).shouldSearchContent(false);
     }
 
     @Override

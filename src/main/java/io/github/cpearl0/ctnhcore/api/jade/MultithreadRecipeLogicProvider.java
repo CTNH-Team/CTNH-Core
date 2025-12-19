@@ -3,10 +3,14 @@ package io.github.cpearl0.ctnhcore.api.jade;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.blockentity.MetaMachineBlockEntity;
 import com.gregtechceu.gtceu.api.capability.GTCapabilityHelper;
+import com.gregtechceu.gtceu.api.machine.SimpleGeneratorMachine;
+import com.gregtechceu.gtceu.api.machine.SimpleTieredMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.steam.SimpleSteamMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.client.util.TooltipHelper;
+import com.gregtechceu.gtceu.common.machine.multiblock.part.EnergyHatchPartMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
 import com.gregtechceu.gtceu.integration.jade.provider.CapabilityBlockProvider;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -28,8 +32,6 @@ import org.jetbrains.annotations.Nullable;
 import snownee.jade.api.BlockAccessor;
 import snownee.jade.api.ITooltip;
 import snownee.jade.api.config.IPluginConfig;
-
-import static com.gregtechceu.gtceu.integration.jade.provider.RecipeLogicProvider.getVoltage;
 
 public class MultithreadRecipeLogicProvider extends CapabilityBlockProvider<RecipeLogic> {
 
@@ -82,6 +84,21 @@ public class MultithreadRecipeLogicProvider extends CapabilityBlockProvider<Reci
         if (!recipeInfo.isEmpty()) {
             data.put("Recipe", recipeInfo);
         }
+    }
+
+    public static long getVoltage(RecipeLogic capability) {
+        long voltage = -1;
+        if (capability.machine instanceof SimpleTieredMachine machine) {
+            voltage = GTValues.V[machine.getTier()];
+        } else if (capability.machine instanceof SimpleGeneratorMachine machine) {
+            voltage = GTValues.V[machine.getTier()];
+        } else if (capability.machine instanceof WorkableElectricMultiblockMachine machine) {
+            voltage = Math.max(machine.getEnergyContainer().getHighestInputVoltage(),
+                    machine.getEnergyContainer().getOutputVoltage());
+        }
+        // default display as LV, this shouldn't happen because a machine is either electric or steam
+        if (voltage == -1) voltage = 32;
+        return voltage;
     }
 
     @Override

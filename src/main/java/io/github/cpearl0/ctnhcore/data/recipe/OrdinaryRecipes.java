@@ -3,7 +3,6 @@ package io.github.cpearl0.ctnhcore.data.recipe;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.data.chemical.material.MarkerMaterials;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gregtechceu.gtceu.common.data.*;
@@ -13,10 +12,7 @@ import com.moguang.ctnhbio.data.recipe.CBRecipeBuilder;
 import com.moguang.ctnhbio.registry.CBBlocks;
 import com.moguang.ctnhbio.registry.CBItems;
 import com.moguang.ctnhbio.registry.CBMachines;
-import com.moguang.ctnhbio.registry.CBMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.data.machines.GTNNMachines;
-import io.github.cpearl0.ctnhcore.data.materials.OrdinaryMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
@@ -46,8 +42,6 @@ import static com.moguang.ctnhbio.registry.CBItems.WETWARE_PRINTED_CIRCUIT_BOARD
 import static io.github.cpearl0.ctnhcore.data.materials.OrdinaryMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.ADVANCED_RAM_CHIP;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.HEAVY_PLATE_T3;
-import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines.ADVANCED_ME_PATTERN_BUFFER;
-import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines.ADVANCED_ME_PATTERN_BUFFER_PROXY;
 
 public class OrdinaryRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
