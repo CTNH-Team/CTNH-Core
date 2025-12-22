@@ -551,7 +551,9 @@ public class MultiblocksA {
                     .where("d", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("e", Predicates.blocks(Blocks.IRON_BARS))
                     .where(" ", Predicates.any())
-                    .build())
+                    .build()
+
+            )
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/vacuum_freezer"))
             .register();
 
