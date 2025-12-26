@@ -17,7 +17,7 @@ public class BotaniaMaterials {
                 .cnlang("魔力钢")
                 .ingot()
                 .fluid()
-                .color(0x438FFE)
+                .color(0x58a9ff)
                 .secondaryColor(0x3962D7)
                 .iconSet(MaterialIconSet.METALLIC)
                 .flags(GENERATE_PLATE,
@@ -44,7 +44,7 @@ public class BotaniaMaterials {
                 .cnlang("源质钢")
                 .ingot()
                 .fluid()
-                .color(0xf762a3)
+                .color(0xff80b9)
                 .secondaryColor(0xf768d1)
                 .iconSet(MaterialIconSet.METALLIC)
                 .flags(GENERATE_PLATE,
