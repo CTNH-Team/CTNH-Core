@@ -29,7 +29,6 @@
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MobMixin",
     "mc.MonsterMixin",
-    "mc.ServerPlayerMixin",
     "mc.WorldLoaderPackConfigMixin",
 
     "vintageimprovements.LatheRotatingBlockMixin"

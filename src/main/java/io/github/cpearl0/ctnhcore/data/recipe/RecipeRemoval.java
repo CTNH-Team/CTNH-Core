@@ -73,7 +73,14 @@ public class RecipeRemoval {
                 //me总成
                 "gtmthings:assembler/me_export_buffer",
                 //编程电路卡
-                "pccard:item/card_programmed_circuit"
+                "pccard:item/card_programmed_circuit",
+                //湿件
+                "gtceu:circuit_assembler/wetware_processor_luv",
+                "gtceu:circuit_assembler/wetware_processor_luv_soldering_alloy",
+                "gtceu:circuit_assembler/wetware_processor_assembly_zpm",
+                "gtceu:circuit_assembler/wetware_processor_assembly_zpm_soldering_alloy",
+                "gtceu:assembly_line/wetware_super_computer_uv",
+                "gtceu:assembly_line/wetware_mainframe_uhv"
 
         ));
 
