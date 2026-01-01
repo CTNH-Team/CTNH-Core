@@ -59,16 +59,6 @@ public abstract class NotifiableItemStackHandlerMixin implements IAllowSameConta
         ctnhcore$allowSameItems = handlerIO.support(IO.OUT);
     }
 
-    @Redirect(
-            method = "handleRecipe",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;getMaxStackSize()I", remap = true)
-    )
-    private static int getMaxStackSize(ItemStack instance, @Local(name = "storage") CustomItemStackHandler storage, @Local(name = "slot") int slot){
-        if(storage instanceof HugeItemBusPartMachine.HugeItemStackHandler hugeItemStackHandler)
-            return hugeItemStackHandler.getStackLimit(slot, instance);
-        else return instance.getMaxStackSize();
-    }
-
     @Override
     public boolean isAllowSame() {
         return ctnhcore$allowSameItems;
@@ -79,8 +69,6 @@ public abstract class NotifiableItemStackHandlerMixin implements IAllowSameConta
         ctnhcore$allowSameItems = b;
         onContentsChanged();
     }
-
-
 
     /**
      * @author
@@ -185,21 +173,19 @@ public abstract class NotifiableItemStackHandlerMixin implements IAllowSameConta
                     ItemStack output = items[0].copyWithCount(amount);
                     // Only try this slot if not visited or if visited with the same type of item
                     if (visited[slot] == null || GTUtil.isSameItemSameTags(visited[slot], output)) {
-                        if (count < output.getMaxStackSize() && count < storage.getSlotLimit(slot)) {
-                            var remainder = getActioned(storage, slot, recipe.ingredientActions);
-                            if (remainder == null){
-                                remainder = storage.insertItem(slot, output, simulate);
+                        var remainder = getActioned(storage, slot, recipe.ingredientActions);
+                        if (remainder == null){
+                            remainder = storage.insertItem(slot, output, simulate);
 
-                            }
-                            if (remainder.getCount() < amount) {
-                                changed = true;
-                                visited[slot] = output.copyWithCount(count + amount - remainder.getCount());
-                            }
-                            amount = remainder.getCount();
-                            if(!ctnhcore$allowSameItems){
-                                if(amount <= 0) it.remove();
-                                break;
-                            }
+                        }
+                        if (remainder.getCount() < amount) {
+                            changed = true;
+                            visited[slot] = output.copyWithCount(count + amount - remainder.getCount());
+                        }
+                        amount = remainder.getCount();
+                        if(!ctnhcore$allowSameItems){
+                            if(amount <= 0) it.remove();
+                            break;
                         }
                     }
                 }

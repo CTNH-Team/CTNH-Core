@@ -85,6 +85,8 @@ public class ThreadRecipeLogic extends RecipeLogic {
     public void findAndHandleRecipe() {
         lastFailedMatches = null;
         // try to execute last recipe if possible
+        if(machine.keepSubscribing() && !(getMachine().getOffsetTimer() % 60 == 0))
+            return;
         if (!recipeDirty && lastRecipe != null && checkRecipe(lastRecipe).isSuccess()) {
             GTRecipe recipe = lastRecipe;
             lastRecipe = null;

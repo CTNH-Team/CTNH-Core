@@ -25,18 +25,17 @@
     "gtceu.OreRecipeHandlerMixin",
     "gtceu.RecyclingRecipesMixin",
     "gtceu.TagPrefixMixin",
+    "gtceu.orevein.ClientProxyAccessor",
+
     "ldlib.ModularUIContainerMixin",
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MobMixin",
     "mc.MonsterMixin",
     "mc.WorldLoaderPackConfigMixin",
-
     "vintageimprovements.LatheRotatingBlockMixin"
   ],
   "client": [
     "gtceu.ContentMixin",
-    "gtceu.OreVeinElementRendererMixin",
-    "gtceu.OreVeinElementRendererWorldMixin",
     "sophisticatedcore.SyncContainerStacksMessageMixin",
     "sophisticatedcore.SyncSlotStackMessageMixin"
   ],
