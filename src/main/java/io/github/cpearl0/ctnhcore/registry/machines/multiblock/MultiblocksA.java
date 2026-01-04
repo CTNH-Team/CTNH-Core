@@ -22,7 +22,7 @@ import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMac
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.LargeMinerMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.mo_guang.ctpp.api.CTPPPartAbility;
-import com.mo_guang.ctpp.common.data.CTPPRecipeModifiers;
+import com.mo_guang.ctpp.common.data.recipe.CTPPRecipeModifiers;
 import com.mo_guang.ctpp.common.machine.multiblock.KineticOutputMachine;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
