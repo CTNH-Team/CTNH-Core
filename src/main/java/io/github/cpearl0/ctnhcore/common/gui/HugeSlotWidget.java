@@ -27,6 +27,10 @@ import java.util.Optional;
 @Prefix("hugeslotwidget")
 public class HugeSlotWidget extends SlotWidget {
 
+    public HugeSlotWidget(){
+        super();
+    }
+
     public HugeSlotWidget(IItemHandlerModifiable itemHandler, int slotIndex, int xPosition, int yPosition,
                       boolean canTakeItems, boolean canPutItems) {
         super(itemHandler, slotIndex, xPosition, yPosition, canTakeItems, canPutItems);
@@ -45,7 +49,8 @@ public class HugeSlotWidget extends SlotWidget {
     public List<Component> getTooltipTexts() {
 
         List<Component> tooltips = super.getTooltipTexts();
-        if(slotReference != null)
+        if(slotReference != null
+                &&slotReference.getItem().getMaxStackSize() != slotReference.getMaxStackSize(slotReference.getItem()))
         {
             tooltips.add(
                     item_amount.translate(
