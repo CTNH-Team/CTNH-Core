@@ -1,5 +1,9 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.common.block.PhotovoltaicBlock;
+import io.github.cpearl0.ctnhcore.common.block.SpaceStructuralFramework;
+
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.block.property.GTBlockStateProperties;
@@ -7,23 +11,24 @@ import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.common.block.BoilerFireboxType;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
-import com.tterrag.registrate.providers.DataGenContext;
-import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
-import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.common.block.PhotovoltaicBlock;
-import io.github.cpearl0.ctnhcore.common.block.SpaceStructuralFramework;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
 
+import com.tterrag.registrate.providers.DataGenContext;
+import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
+
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.MAINTENANCE_TAPED_OVERLAY;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.tieredHullTextures;
 
 public class CTNHModels {
-    public static NonNullBiConsumer<DataGenContext<Block, CoilBlock>, RegistrateBlockstateProvider> createCoilModel(String name, ICoilType coilType) {
+
+    public static NonNullBiConsumer<DataGenContext<Block, CoilBlock>, RegistrateBlockstateProvider> createCoilModel(String name,
+                                                                                                                    ICoilType coilType) {
         return (ctx, prov) -> {
             ActiveBlock block = ctx.getEntry();
             ModelFile inactive = prov.models().cubeAll(name, coilType.getTexture());
@@ -31,15 +36,18 @@ public class CTNHModels {
                     .texture("bot_all", coilType.getTexture())
                     .texture("top_all", coilType.getTexture().withSuffix("_bloom"));
             prov.getVariantBuilder(block)
-                    .partialState().with(GTBlockStateProperties.ACTIVE, false).modelForState().modelFile(inactive).addModel()
-                    .partialState().with(GTBlockStateProperties.ACTIVE, true).modelForState().modelFile(active).addModel();
+                    .partialState().with(GTBlockStateProperties.ACTIVE, false).modelForState().modelFile(inactive)
+                    .addModel()
+                    .partialState().with(GTBlockStateProperties.ACTIVE, true).modelForState().modelFile(active)
+                    .addModel();
         };
     }
 
     public static NonNullBiConsumer<DataGenContext<Block, RotatedPillarBlock>, RegistrateBlockstateProvider> createMapCasingModel(String name,
                                                                                                                                   String map) {
         return (ctx, prov) -> {
-            prov.axisBlock(ctx.getEntry(), CTNHCore.id("block/casings/map/%s/side".formatted(map)), CTNHCore.id("block/casings/map/%s/top".formatted(map)));
+            prov.axisBlock(ctx.getEntry(), CTNHCore.id("block/casings/map/%s/side".formatted(map)),
+                    CTNHCore.id("block/casings/map/%s/top".formatted(map)));
         };
     }
 
@@ -49,24 +57,27 @@ public class CTNHModels {
             prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, CTNHCore.id(location)));
         };
     }
+
     public static NonNullBiConsumer<DataGenContext<Block, SpaceStructuralFramework>, RegistrateBlockstateProvider> createssfModel(String name,
                                                                                                                                   String location) {
         return (ctx, prov) -> {
             prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, CTNHCore.id(location)));
         };
     }
+
     public static MachineBuilder.ModelInitializer createMaintenanceModel(ResourceLocation overlayModel) {
         return (ctx, prov, builder) -> {
             builder.forAllStatesModels((state) -> {
-                BlockModelBuilder baseModel = (BlockModelBuilder)((BlockModelBuilder)prov.models().nested()).parent(prov.models().getExistingFile(overlayModel));
+                BlockModelBuilder baseModel = (BlockModelBuilder) ((BlockModelBuilder) prov.models().nested())
+                        .parent(prov.models().getExistingFile(overlayModel));
                 tieredHullTextures(baseModel, builder.getOwner().getTier());
-                if ((Boolean)state.getValue(GTMachineModelProperties.IS_TAPED)) {
+                if ((Boolean) state.getValue(GTMachineModelProperties.IS_TAPED)) {
                     baseModel.texture("overlay_2", MAINTENANCE_TAPED_OVERLAY);
                 }
 
                 return baseModel;
             });
-            builder.addReplaceableTextures(new String[]{"bottom", "top", "side"});
+            builder.addReplaceableTextures(new String[] { "bottom", "top", "side" });
         };
     }
 
@@ -75,7 +86,8 @@ public class CTNHModels {
             String name = ctx.getName();
             ActiveBlock block = ctx.getEntry();
             ModelFile inactive = prov.models().cubeBottomTop(name, type.side(), type.bottom(), type.top());
-            ModelFile active = prov.models().withExistingParent(name + "_active", CTNHCore.id("block/new_fire_box_active"))
+            ModelFile active = prov.models()
+                    .withExistingParent(name + "_active", CTNHCore.id("block/new_fire_box_active"))
                     .texture("side", type.side())
                     .texture("bottom", type.bottom())
                     .texture("top", type.top());
@@ -86,5 +98,4 @@ public class CTNHModels {
                     .modelForState().modelFile(active).addModel();
         };
     }
-
 }

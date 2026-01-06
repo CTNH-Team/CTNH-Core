@@ -14,8 +14,8 @@ spotless {
     java {
         target 'src/main/java/**/*.java', 'src/test/java/**/*.java'
 
-        def orderFile = file("$rootDir/spotless/spotless.importorder")
-        def formatFile = file("$rootDir/spotless/spotless.eclipseformat.xml")
+        def orderFile = file("./spotless/spotless.importorder")
+        def formatFile = file("./spotless/spotless.eclipseformat.xml")
 
         toggleOffOn()
         importOrderFile(orderFile)

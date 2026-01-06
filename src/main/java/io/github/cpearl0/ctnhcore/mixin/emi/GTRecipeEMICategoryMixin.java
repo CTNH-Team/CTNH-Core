@@ -1,16 +1,18 @@
 package io.github.cpearl0.ctnhcore.mixin.emi;
 
+import io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils;
+
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.category.GTRecipeCategory;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.integration.emi.recipe.GTRecipeEMICategory;
+
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
-import io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
@@ -24,6 +26,7 @@ import static com.gregtechceu.gtceu.integration.emi.recipe.GTRecipeEMICategory.s
 
 @Mixin(value = GTRecipeEMICategory.class, remap = false)
 public class GTRecipeEMICategoryMixin {
+
     /**
      * @author
      * @reason
@@ -55,7 +58,7 @@ public class GTRecipeEMICategoryMixin {
         for (Map.Entry<EmiRecipeCategory, CTNHMachineUtils.CategoryBuckets> e : bucketMap.entrySet()) {
             EmiRecipeCategory category = e.getKey();
             CTNHMachineUtils.CategoryBuckets buckets = e.getValue();
-            //普通机器：合并成一个 EmiIngredient
+            // 普通机器：合并成一个 EmiIngredient
             if (!buckets.singles.isEmpty()) {
                 List<EmiIngredient> list = buckets.singles.stream()
                         .map(m -> EmiStack.of(m.asStack()))
@@ -65,12 +68,11 @@ public class GTRecipeEMICategoryMixin {
                 registry.addWorkstation(category, merged);
             }
 
-            //多方块机器：保持原有行为，一个个注册
+            // 多方块机器：保持原有行为，一个个注册
             for (MachineDefinition m : buckets.multiblocks) {
                 registry.addWorkstation(category, EmiStack.of(m.asStack()));
             }
 
         }
     }
-
 }

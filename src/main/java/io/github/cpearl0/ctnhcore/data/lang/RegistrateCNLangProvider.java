@@ -1,9 +1,5 @@
 package io.github.cpearl0.ctnhcore.data.lang;
 
-import com.tterrag.registrate.AbstractRegistrate;
-import com.tterrag.registrate.providers.RegistrateProvider;
-import com.tterrag.registrate.util.nullness.NonNullSupplier;
-import com.tterrag.registrate.util.nullness.NonnullType;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -19,6 +15,11 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.fml.LogicalSide;
+
+import com.tterrag.registrate.AbstractRegistrate;
+import com.tterrag.registrate.providers.RegistrateProvider;
+import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import com.tterrag.registrate.util.nullness.NonnullType;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
@@ -30,6 +31,7 @@ import java.util.stream.Collectors;
 import static tech.vixhentx.mcmod.ctnhlib.registrate.data.ProviderTypes.CNLANG;
 
 public class RegistrateCNLangProvider extends LanguageProvider implements RegistrateProvider {
+
     private final AbstractRegistrate<?> owner;
 
     public RegistrateCNLangProvider(AbstractRegistrate<?> owner, PackOutput packOutput) {
@@ -50,11 +52,13 @@ public class RegistrateCNLangProvider extends LanguageProvider implements Regist
     }
 
     public static final String toEnglishName(String internalName) {
-        return (String) Arrays.stream(internalName.toLowerCase(Locale.ROOT).split("_")).map(StringUtils::capitalize).collect(Collectors.joining(" "));
+        return (String) Arrays.stream(internalName.toLowerCase(Locale.ROOT).split("_")).map(StringUtils::capitalize)
+                .collect(Collectors.joining(" "));
     }
 
     public <T> String getAutomaticName(NonNullSupplier<? extends T> sup, ResourceKey<Registry<T>> registry) {
-        return toEnglishName(((Registry) BuiltInRegistries.REGISTRY.get(registry.location())).getKey(sup.get()).getPath());
+        return toEnglishName(
+                ((Registry) BuiltInRegistries.REGISTRY.get(registry.location())).getKey(sup.get()).getPath());
     }
 
     public void addBlock(NonNullSupplier<? extends Block> block) {
@@ -75,20 +79,20 @@ public class RegistrateCNLangProvider extends LanguageProvider implements Regist
         this.addItem(item, this.getAutomaticName(item, Registries.ITEM));
     }
 
-    public void addItemWithTooltip(NonNullSupplier<? extends Item> block, String name, List<@NonnullType String> tooltip) {
+    public void addItemWithTooltip(NonNullSupplier<? extends Item> block, String name,
+                                   List<@NonnullType String> tooltip) {
         this.addItem(block, name);
         this.addTooltip(block, tooltip);
     }
 
     public void addTooltip(NonNullSupplier<? extends ItemLike> item, String tooltip) {
-        this.add(((ItemLike)item.get()).asItem().getDescriptionId() + ".desc", tooltip);
+        this.add(((ItemLike) item.get()).asItem().getDescriptionId() + ".desc", tooltip);
     }
 
     public void addTooltip(NonNullSupplier<? extends ItemLike> item, List<@NonnullType String> tooltip) {
-        for(int i = 0; i < tooltip.size(); ++i) {
-            this.add(((ItemLike)item.get()).asItem().getDescriptionId() + ".desc." + i, (String)tooltip.get(i));
+        for (int i = 0; i < tooltip.size(); ++i) {
+            this.add(((ItemLike) item.get()).asItem().getDescriptionId() + ".desc." + i, (String) tooltip.get(i));
         }
-
     }
 
     public void add(CreativeModeTab tab, String name) {
@@ -96,7 +100,8 @@ public class RegistrateCNLangProvider extends LanguageProvider implements Regist
         if (contents instanceof TranslatableContents lang) {
             this.add(lang.getKey(), name);
         } else {
-            throw new IllegalArgumentException("Creative tab does not have a translatable name: " + tab.getDisplayName());
+            throw new IllegalArgumentException(
+                    "Creative tab does not have a translatable name: " + tab.getDisplayName());
         }
     }
 

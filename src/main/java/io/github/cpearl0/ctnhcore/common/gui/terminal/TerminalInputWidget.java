@@ -2,18 +2,21 @@
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by FernFlower decompiler)
 //
-
 package io.github.cpearl0.ctnhcore.common.gui.terminal;
 
 import com.lowdragmc.lowdraglib.gui.widget.TextFieldWidget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-import lombok.Generated;
+
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.Mth;
 
+import lombok.Generated;
+
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
 public class TerminalInputWidget extends WidgetGroup {
+
     private Supplier<Integer> valueSupplier;
     private Integer min = this.defaultMin();
     private Integer max = this.defaultMax();
@@ -44,7 +47,8 @@ public class TerminalInputWidget extends WidgetGroup {
         textField.setNumbersOnly(min, max);
     }
 
-    public TerminalInputWidget(int x, int y, int width, int height, Supplier<Integer> valueSupplier, Consumer<Integer> onChanged) {
+    public TerminalInputWidget(int x, int y, int width, int height, Supplier<Integer> valueSupplier,
+                               Consumer<Integer> onChanged) {
         super(x, y, width, height);
         this.valueSupplier = valueSupplier;
         this.onChanged = onChanged;
@@ -53,12 +57,12 @@ public class TerminalInputWidget extends WidgetGroup {
 
     public void initWidget() {
         super.initWidget();
-        this.textField.setCurrentString(this.toText((Integer)this.valueSupplier.get()));
+        this.textField.setCurrentString(this.toText((Integer) this.valueSupplier.get()));
     }
 
     public void writeInitialData(FriendlyByteBuf buffer) {
         super.writeInitialData(buffer);
-        buffer.writeUtf(this.toText((Integer)this.valueSupplier.get()));
+        buffer.writeUtf(this.toText((Integer) this.valueSupplier.get()));
     }
 
     public void readInitialData(FriendlyByteBuf buffer) {
@@ -67,13 +71,17 @@ public class TerminalInputWidget extends WidgetGroup {
     }
 
     private void buildUI() {
-        this.textField = new TextFieldWidget(0, 0, this.getSizeWidth(), 12, () -> this.toText((Integer)this.valueSupplier.get()), (stringValue) -> this.setValue(this.clamp(this.fromText(stringValue), this.min, this.max))) {
+        this.textField = new TextFieldWidget(0, 0, this.getSizeWidth(), 12,
+                () -> this.toText((Integer) this.valueSupplier.get()),
+                (stringValue) -> this.setValue(this.clamp(this.fromText(stringValue), this.min, this.max))) {
+
             public boolean mouseWheelMove(double mouseX, double mouseY, double wheelDelta) {
-                if (this.wheelDur > 0.0F && this.numberInstance != null && this.isMouseOverElement(mouseX, mouseY) && this.isFocus()) {
+                if (this.wheelDur > 0.0F && this.numberInstance != null && this.isMouseOverElement(mouseX, mouseY) &&
+                        this.isFocus()) {
                     try {
-                        this.onTextChanged(String.valueOf(Integer.parseInt(this.getCurrentString()) + (int)((float)(wheelDelta > (double)0.0F ? 1 : -1) * this.wheelDur)));
-                    } catch (Exception var8) {
-                    }
+                        this.onTextChanged(String.valueOf(Integer.parseInt(this.getCurrentString()) +
+                                (int) ((float) (wheelDelta > (double) 0.0F ? 1 : -1) * this.wheelDur)));
+                    } catch (Exception var8) {}
 
                     this.setFocus(true);
                     return true;
@@ -104,7 +112,7 @@ public class TerminalInputWidget extends WidgetGroup {
 
     protected void updateTextFieldRange() {
         this.setTextFieldRange(this.textField, this.min, this.max);
-        this.setValue(this.clamp((Integer)this.valueSupplier.get(), this.min, this.max));
+        this.setValue(this.clamp((Integer) this.valueSupplier.get(), this.min, this.max));
     }
 
     @Generated

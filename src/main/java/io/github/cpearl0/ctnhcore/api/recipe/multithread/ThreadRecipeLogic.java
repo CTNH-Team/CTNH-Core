@@ -4,9 +4,11 @@ import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.ActionResult;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -45,7 +47,6 @@ public class ThreadRecipeLogic extends RecipeLogic {
 
     @Override
     public boolean checkMatchedRecipeAvailable(GTRecipe match) {
-
         modifying = true;
         var modified = machine.fullModifyRecipe(match);
         modifying = false;
@@ -66,9 +67,8 @@ public class ThreadRecipeLogic extends RecipeLogic {
 
     @Override
     protected ActionResult checkRecipe(GTRecipe recipe) {
-        if(threadProtect
-                && machine.getRecipeLogic() instanceof MultiThreadRecipeLogic multiThreadRecipeLogic
-                && multiThreadRecipeLogic.isRunningRecipe(recipe, this))
+        if (threadProtect && machine.getRecipeLogic() instanceof MultiThreadRecipeLogic multiThreadRecipeLogic &&
+                multiThreadRecipeLogic.isRunningRecipe(recipe, this))
             return ActionResult.FAIL_NO_REASON;
         return super.checkRecipe(recipe);
     }
@@ -84,16 +84,16 @@ public class ThreadRecipeLogic extends RecipeLogic {
     public void findAndHandleRecipe() {
         lastFailedMatches = null;
         // try to execute last recipe if possible
-        if(machine.keepSubscribing() && !(getMachine().getOffsetTimer() % 60 == 0))
+        if (machine.keepSubscribing() && !(getMachine().getOffsetTimer() % 60 == 0))
             return;
         if (!recipeDirty && lastRecipe != null && checkRecipe(lastRecipe).isSuccess()) {
             GTRecipe recipe = lastRecipe;
             lastRecipe = null;
-            //lastOriginRecipe = null;
+            // lastOriginRecipe = null;
             setupRecipe(recipe);
-        } else if(!lockRecipe) { // try to find and handle a new recipe if not locked
-            //lastRecipe = null;
-            //lastOriginRecipe = null;
+        } else if (!lockRecipe) { // try to find and handle a new recipe if not locked
+            // lastRecipe = null;
+            // lastOriginRecipe = null;
             handleSearchingRecipes(searchRecipe());
         }
         recipeDirty = false;
@@ -103,7 +103,7 @@ public class ThreadRecipeLogic extends RecipeLogic {
     public void setStatus(Status status) {
         var lastStatus = getStatus();
         super.setStatus(status);
-        if(lastStatus != status){
+        if (lastStatus != status) {
             machine.notifyStatusChanged(lastStatus, status);
         }
     }
@@ -124,5 +124,4 @@ public class ThreadRecipeLogic extends RecipeLogic {
         threadProtect = false;
         lockRecipe = false;
     }
-
 }

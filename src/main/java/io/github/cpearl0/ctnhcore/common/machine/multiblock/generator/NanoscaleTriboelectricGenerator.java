@@ -18,40 +18,52 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.data.GTMaterialItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
-import it.unimi.dsi.fastutil.ints.IntSet;
+
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
+import it.unimi.dsi.fastutil.ints.IntSet;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
 import java.util.Map;
 
+import javax.annotation.Nullable;
+
 public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockMachine implements ITieredMachine {
+
     @Persisted
     public final NotifiableItemStackHandler machineStorage;
-    @Persisted public int parallel=1024;
-    @Persisted public double effencicy=1.0;
-    @Persisted public boolean is_consume=false;
+    @Persisted
+    public int parallel = 1024;
+    @Persisted
+    public double effencicy = 1.0;
+    @Persisted
+    public boolean is_consume = false;
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             NanoscaleTriboelectricGenerator.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
-    public NanoscaleTriboelectricGenerator(IMachineBlockEntity holder){
+
+    public NanoscaleTriboelectricGenerator(IMachineBlockEntity holder) {
         super(holder);
         this.machineStorage = createMachineStorage((byte) 64);
     }
+
     protected NotifiableItemStackHandler createMachineStorage(byte value) {
         return new NotifiableItemStackHandler(
                 this, 1, IO.NONE, IO.BOTH, slots -> new CustomItemStackHandler(1) {
-            @Override
-            public int getSlotLimit(int slot) {
-                return value;
-            }
-        });
+
+                    @Override
+                    public int getSlotLimit(int slot) {
+                        return value;
+                    }
+                });
     }
+
     @Override
     public @NotNull Widget createUIWidget() {
         var widget = super.createUIWidget();
@@ -63,19 +75,20 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
         }
         return widget;
     }
+
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
-        if(is_consume)
-        {
+        if (is_consume) {
             consumeItem();
         }
-        is_consume=false;
+        is_consume = false;
         return super.beforeWorking(recipe);
     }
 
     public ItemStack getMachineStorageItem() {
         return machineStorage.getStackInSlot(0);
     }
+
     public static int eutgetParallelAmount(MetaMachine machine, GTRecipe recipe, int parallelLimit) {
         if (parallelLimit <= 1) return parallelLimit;
         if (!(machine instanceof IRecipeLogicMachine rlm)) return 1;
@@ -111,25 +124,27 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
         return multipliers.intStream().min().orElse(0);
     }
 
-    public void consumeItem() { machineStorage.extractItem(0, 1,false); }
+    public void consumeItem() {
+        machineStorage.extractItem(0, 1, false);
+    }
+
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (machine instanceof NanoscaleTriboelectricGenerator zmachine) {
 
             // 定义材料效率配置（材料 -> {效率, 消耗概率分母}）
             Map<Item, double[]> materialEfficiencyMap = Map.of(
                     GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, GTMaterials.Rubber).get(),
-                    new double[]{1.0, 512},
+                    new double[] { 1.0, 512 },
                     GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, GTMaterials.Polyethylene).get(),
-                    new double[]{1.6, 1024},
+                    new double[] { 1.6, 1024 },
                     GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, GTMaterials.SiliconeRubber).get(),
-                    new double[]{2.4, 4096},
+                    new double[] { 2.4, 4096 },
                     GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, GTMaterials.Polytetrafluoroethylene).get(),
-                    new double[]{3.2, 65536},
+                    new double[] { 3.2, 65536 },
                     GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, GTMaterials.StyreneButadieneRubber).get(),
-                    new double[]{4.6, 131070},
+                    new double[] { 4.6, 131070 },
                     GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, GTMaterials.Polybenzimidazole).get(),
-                    new double[]{5.0, 1048576}
-            );
+                    new double[] { 5.0, 1048576 });
 
             // 默认效率 0.8
             double efficiency = 0.8;
@@ -141,10 +156,9 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
                 double[] config = materialEfficiencyMap.get(storageItem);
                 efficiency = config[0];
                 if (Math.random() < (double) maxParallel / config[1]) {
-                    zmachine.is_consume=true;
+                    zmachine.is_consume = true;
                 }
             }
-
 
             if (maxParallel <= 0) return ModifierFunction.NULL;
 
@@ -157,10 +171,12 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
         }
         return ModifierFunction.NULL;
     }
+
     @Override
     public ManagedFieldHolder getFieldHolder() {
         return MANAGED_FIELD_HOLDER;
     }
+
     @Override
     public boolean regressWhenWaiting() {
         return false;

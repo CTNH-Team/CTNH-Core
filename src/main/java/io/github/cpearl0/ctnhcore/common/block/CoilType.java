@@ -1,24 +1,34 @@
 package io.github.cpearl0.ctnhcore.common.block;
 
-import com.gregtechceu.gtceu.api.block.ICoilType;
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
-import lombok.Getter;
+
+import com.gregtechceu.gtceu.api.block.ICoilType;
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.StringRepresentable;
+
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
 @Getter
 public enum CoilType implements StringRepresentable, ICoilType {
 
-    ABYSSALALLOY("abyssalalloy", 12600, 16, 9, 8, CTNHMaterials.Abyssalalloy, CTNHCore.id("block/casings/coils/abyssalalloy_coil_block")),
-    TITANSTEEL("titansteel", 14400, 32,10, 8, CTNHMaterials.Titansteel, CTNHCore.id("block/casings/coils/titansteel_coil_block")),
-    PIKYONIUM("pikyonium", 16200, 32,11, 9, CTNHMaterials.Pikyonium, CTNHCore.id("block/casings/coils/pikyonium_coil_block")),
-    BLACKTITANIUM("black_titanium", 18900, 64,12, 9, CTNHMaterials.BlackTitanium, CTNHCore.id("block/casings/coils/black_titanium_coil_block")),
-    STARMETAL("starmetal", 21600, 64,13, 9, CTNHMaterials.Starmetal, CTNHCore.id("block/casings/coils/starmetal_coil_block")),
-    INFINITYY("infinity", 36000, 128,14, 9, CTNHMaterials.Infinity, CTNHCore.id("block/casings/coils/infinity_coil_block")),
-    ULTRA_MANA("ulta_mana",7201,16,5,6,CTNHMaterials.QUASER_MANA,CTNHCore.id("block/casings/coils/ultra_mana_coil_block"));
+    ABYSSALALLOY("abyssalalloy", 12600, 16, 9, 8, CTNHMaterials.Abyssalalloy,
+            CTNHCore.id("block/casings/coils/abyssalalloy_coil_block")),
+    TITANSTEEL("titansteel", 14400, 32, 10, 8, CTNHMaterials.Titansteel,
+            CTNHCore.id("block/casings/coils/titansteel_coil_block")),
+    PIKYONIUM("pikyonium", 16200, 32, 11, 9, CTNHMaterials.Pikyonium,
+            CTNHCore.id("block/casings/coils/pikyonium_coil_block")),
+    BLACKTITANIUM("black_titanium", 18900, 64, 12, 9, CTNHMaterials.BlackTitanium,
+            CTNHCore.id("block/casings/coils/black_titanium_coil_block")),
+    STARMETAL("starmetal", 21600, 64, 13, 9, CTNHMaterials.Starmetal,
+            CTNHCore.id("block/casings/coils/starmetal_coil_block")),
+    INFINITYY("infinity", 36000, 128, 14, 9, CTNHMaterials.Infinity,
+            CTNHCore.id("block/casings/coils/infinity_coil_block")),
+    ULTRA_MANA("ulta_mana", 7201, 16, 5, 6, CTNHMaterials.QUASER_MANA,
+            CTNHCore.id("block/casings/coils/ultra_mana_coil_block"));
 
     @NotNull
     private final String name;

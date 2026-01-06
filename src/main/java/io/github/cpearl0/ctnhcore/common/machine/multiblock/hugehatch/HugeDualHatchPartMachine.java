@@ -1,5 +1,9 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch;
 
+import io.github.cpearl0.ctnhcore.common.gui.HugeSlotWidget;
+import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.RightConfiguratorPanel;
+import io.github.cpearl0.ctnhcore.registry.CTNHMachines;
+
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.gui.widget.TankWidget;
@@ -8,6 +12,7 @@ import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.fancyconfigurator.FancyTankConfigurator;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableFluidTank;
 import com.gregtechceu.gtceu.utils.GTTransferUtils;
+
 import com.lowdragmc.lowdraglib.gui.util.ClickData;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
@@ -15,25 +20,25 @@ import com.lowdragmc.lowdraglib.jei.IngredientIO;
 import com.lowdragmc.lowdraglib.syncdata.ISubscription;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-import io.github.cpearl0.ctnhcore.common.gui.HugeSlotWidget;
-import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.RightConfiguratorPanel;
-import io.github.cpearl0.ctnhcore.registry.CTNHMachines;
-import lombok.Getter;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fluids.FluidType;
+
+import lombok.Getter;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 
-public class HugeDualHatchPartMachine extends HugeItemBusPartMachine{
+public class HugeDualHatchPartMachine extends HugeItemBusPartMachine {
 
     public static final int INITIAL_TANK_CAPACITY = 16 * FluidType.BUCKET_VOLUME;
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(HugeDualHatchPartMachine.class,
-        HugeItemBusPartMachine.MANAGED_FIELD_HOLDER);
+    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
+            HugeDualHatchPartMachine.class,
+            HugeItemBusPartMachine.MANAGED_FIELD_HOLDER);
 
     @Persisted
     public final NotifiableFluidTank tank;
@@ -54,12 +59,12 @@ public class HugeDualHatchPartMachine extends HugeItemBusPartMachine{
         this.shareTank = new NotifiableFluidTank(this, 9, 8 * FluidType.BUCKET_VOLUME, IO.IN, IO.NONE);
     }
 
-    public int getTankSize(){
+    public int getTankSize() {
         return getTankSize(getTier());
     }
 
-     public static int getTankSize(int tier){
-        return switch (tier){
+    public static int getTankSize(int tier) {
+        return switch (tier) {
             case HV, EV, IV -> 2;
             case LuV, ZPM, UV -> 3;
             case UHV, UEV, UIV -> 4;
@@ -69,12 +74,13 @@ public class HugeDualHatchPartMachine extends HugeItemBusPartMachine{
     }
 
     public static int getTankCapacity(int initialCapacity, int tier) {
-        if(tier == 0) return Integer.MAX_VALUE;
+        if (tier == 0) return Integer.MAX_VALUE;
         return tier < MAX ? initialCapacity * (1 << (tier + 2)) : Integer.MAX_VALUE;
     }
 
     protected NotifiableFluidTank createTank(int initialCapacity, int slots, Object... args) {
-        return new NotifiableFluidTank(this, slots, getTankCapacity(initialCapacity, getTier()), io){
+        return new NotifiableFluidTank(this, slots, getTankCapacity(initialCapacity, getTier()), io) {
+
             public boolean canCapOutput() {
                 return true;
             }
@@ -200,10 +206,10 @@ public class HugeDualHatchPartMachine extends HugeItemBusPartMachine{
             for (int x = 0; x < itemCols; x++) {
                 if (index < inventorySize) {
                     container.addWidget(
-                            new HugeSlotWidget(getInventory().storage, index, 4 + x * 18, 4 + y * 18, true, io.support(IO.IN))
+                            new HugeSlotWidget(getInventory().storage, index, 4 + x * 18, 4 + y * 18, true,
+                                    io.support(IO.IN))
                                     .setBackgroundTexture(GuiTextures.SLOT)
-                                    .setIngredientIO(this.io == IO.IN ? IngredientIO.INPUT : IngredientIO.OUTPUT)
-                    );
+                                    .setIngredientIO(this.io == IO.IN ? IngredientIO.INPUT : IngredientIO.OUTPUT));
                     index++;
                 }
             }
@@ -218,8 +224,7 @@ public class HugeDualHatchPartMachine extends HugeItemBusPartMachine{
                     4 + itemRows * 18,      // 在物品槽下方
                     true,
                     io.support(IO.IN))
-                    .setBackground(GuiTextures.FLUID_SLOT)
-            );
+                    .setBackground(GuiTextures.FLUID_SLOT));
         }
 
         container.setBackground(GuiTextures.BACKGROUND_INVERSE);
@@ -231,7 +236,7 @@ public class HugeDualHatchPartMachine extends HugeItemBusPartMachine{
     @Override
     public void attachRightConfigurators(RightConfiguratorPanel configuratorPanel) {
         super.attachRightConfigurators(configuratorPanel);
-        if(io != IO.IN) return;
+        if (io != IO.IN) return;
         configuratorPanel.attachConfigurators(new FancyTankConfigurator(
                 shareTank.getStorages(), Component.translatable("gui.gtceu.share_tank.title"))
                 .setTooltips(List.of(

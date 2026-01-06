@@ -1,13 +1,5 @@
 package io.github.cpearl0.ctnhcore;
 
-import appeng.api.features.GridLinkables;
-import com.gregtechceu.gtceu.api.data.DimensionMarker;
-import com.gregtechceu.gtceu.api.machine.MachineDefinition;
-import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
-import com.gregtechceu.gtceu.api.recipe.category.GTRecipeCategory;
-import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
-import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
-import com.mojang.logging.LogUtils;
 import io.github.cpearl0.ctnhcore.client.ClientProxy;
 import io.github.cpearl0.ctnhcore.common.CommonProxy;
 import io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalItem;
@@ -16,12 +8,23 @@ import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundEvents;
 import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHOverworldRegion;
 import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHSurfaceRuleData;
+
+import com.gregtechceu.gtceu.api.data.DimensionMarker;
+import com.gregtechceu.gtceu.api.machine.MachineDefinition;
+import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
+import com.gregtechceu.gtceu.api.recipe.category.GTRecipeCategory;
+import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
+import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+import appeng.api.features.GridLinkables;
+import com.mojang.logging.LogUtils;
 import org.slf4j.Logger;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.LangProcessor;
 import terrablender.api.Regions;
@@ -31,8 +34,8 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHItems.ME_ADVANCED_TERMINAL
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 @Mod(CTNHCore.MODID)
-public class CTNHCore
-{
+public class CTNHCore {
+
     public static final String MODID = "ctnhcore";
     public static final Logger LOGGER = LogUtils.getLogger();
 
@@ -47,7 +50,7 @@ public class CTNHCore
         modEventBus.addGenericListener(GTRecipeType.class, EventHandler::registerRecipeTypes);
         modEventBus.addGenericListener(DimensionMarker.class, EventHandler::registerDimensionMarkers);
         modEventBus.addGenericListener(GTRecipeCategory.class, EventHandler::onRecipeCategoryRegister);
-        modEventBus.addGenericListener(ChanceLogic.class,EventHandler::registerChanceLogic);
+        modEventBus.addGenericListener(ChanceLogic.class, EventHandler::registerChanceLogic);
         modEventBus.addGenericListener(RecipeConditionType.class, EventHandler::registerRecipeConditions);
         modEventBus.addListener(this::commonSetup);
         DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
@@ -55,19 +58,17 @@ public class CTNHCore
         CTNHEnchantments.Enchantments.register(modEventBus);
     }
 
-
-    private void commonSetup(final FMLCommonSetupEvent event)
-    {
-        //CTNHMaterials.tagPrefixIgnore();
-        event.enqueueWork(() ->
-        {
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        // CTNHMaterials.tagPrefixIgnore();
+        event.enqueueWork(() -> {
             Regions.register(new CTNHOverworldRegion(2));
-            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, CTNHCore.MODID, CTNHSurfaceRuleData.customSurface());
+            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, CTNHCore.MODID,
+                    CTNHSurfaceRuleData.customSurface());
         });
         GridLinkables.register(ME_ADVANCED_TERMINAL, MEAdvancedTerminalItem.LINKABLE_HANDLER);
     }
+
     public static ResourceLocation id(String name) {
         return ResourceLocation.tryBuild(MODID, name);
     }
-
 }

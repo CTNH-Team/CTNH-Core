@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.registry;
 
 import net.minecraft.server.packs.FilePackResources;
 import net.minecraft.server.packs.PackResources;
+
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -12,6 +13,7 @@ import java.util.List;
 public abstract class CTNHRegistration {
 
     public static final CTNHRegistrate REGISTRATE = CTNHRegistrate.create();
+
     public static List<PackResources> getAllPackResources() {
         List<PackResources> packResources = new ArrayList<>();
         try (InputStream inputStream = CTNHRegistration.class.getResourceAsStream("/data/ctnhcore/ad_astra.zip")) {

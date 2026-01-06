@@ -1,16 +1,18 @@
 package io.github.cpearl0.ctnhcore.data.recipe.chain;
 
+import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
+import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
+import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
+
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
-import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
-import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
-import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.util.valueproviders.UniformInt;
 
@@ -19,10 +21,12 @@ import java.util.function.Consumer;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
 
 public class NaquadahLine {
+
     public static void init(Consumer<FinishedRecipe> provider) {
         removeOriginalRecipes(provider);
         registerSiliconProcess(provider);
     }
+
     /* ==== 配方移除组 ==== */
     public static void removeOriginalRecipes(Consumer<FinishedRecipe> provider) {
         // 离心机配方移除
@@ -112,7 +116,7 @@ public class NaquadahLine {
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("xenoauric_fluoroantimonic_acid_recycle")
                 .inputFluids(CTNHMaterials.XenoauricFluoroantimonicAcid.getFluid(1000))
                 .outputItems(TagPrefix.dust, GTMaterials.Gold)
-                .outputItems(TagPrefix.dust, GTMaterials.AntimonyTrifluoride,8)
+                .outputItems(TagPrefix.dust, GTMaterials.AntimonyTrifluoride, 8)
                 .outputFluids(GTMaterials.Xenon.getFluid(2000))
                 .outputFluids(GTMaterials.Fluorine.getFluid(6000))
                 .EUt(GTValues.VA[GTValues.IV]) // 1920 EU/t
@@ -305,8 +309,8 @@ public class NaquadahLine {
                 .chancedOutput(TagPrefix.dust, GTMaterials.Gallium, 7500, 0)  // 75%概率副产物
                 .duration(100)  // 5秒
                 .EUt(GTValues.VA[GTValues.ZPM])
-                .addData("type","nu")
-                .addData("speed",45000)
+                .addData("type", "nu")
+                .addData("speed", 45000)
                 .save(provider);
 
         // 浓缩Naquadah氧化物混合物 + 氟锑酸 -> 三氧化二锑 + 三氟化钛 + 不纯浓缩溶液-半循环
@@ -333,9 +337,5 @@ public class NaquadahLine {
                 .save(provider);
     }
 
-
-
     /* ==== 统一注册入口 ==== */
-
 }
-

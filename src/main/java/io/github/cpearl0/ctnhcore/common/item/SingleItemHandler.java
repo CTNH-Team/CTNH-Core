@@ -1,11 +1,12 @@
 package io.github.cpearl0.ctnhcore.common.item;
 
-import appeng.api.networking.IGrid;
-import appeng.api.stacks.AEItemKey;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 
-//import static io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalBehavior.ACCESS_POINT_CONTEXT;
+import appeng.api.networking.IGrid;
+import appeng.api.stacks.AEItemKey;
+
+// import static io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalBehavior.ACCESS_POINT_CONTEXT;
 // static io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalBehavior.USE_ON_CONTEXT;
 
 public class SingleItemHandler implements IItemHandler {
@@ -42,14 +43,14 @@ public class SingleItemHandler implements IItemHandler {
             ItemStack result = stack.copy();
             result.setCount(extractAmount);
             var storage = grid.getStorageService().getInventory();
-//            if (!simulate) {
-//                var a = storage.extract(
-//                        key,
-//                        extractAmount,
-//                        Actionable.MODULATE,
-//                        IActionSource.ofMachine(ACCESS_POINT_CONTEXT.get())
-//                );
-//            }
+            // if (!simulate) {
+            // var a = storage.extract(
+            // key,
+            // extractAmount,
+            // Actionable.MODULATE,
+            // IActionSource.ofMachine(ACCESS_POINT_CONTEXT.get())
+            // );
+            // }
             return result;
         }
         return ItemStack.EMPTY;

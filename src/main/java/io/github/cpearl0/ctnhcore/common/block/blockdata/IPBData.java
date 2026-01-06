@@ -3,9 +3,11 @@ package io.github.cpearl0.ctnhcore.common.block.blockdata;
 import org.jetbrains.annotations.NotNull;
 
 public interface IPBData {
-     int getTier();
 
-     int getheatlevel();
+    int getTier();
 
-     @NotNull String getPhotovoltaicName();
+    int getheatlevel();
+
+    @NotNull
+    String getPhotovoltaicName();
 }

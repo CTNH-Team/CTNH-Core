@@ -1,16 +1,24 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch;
 
+import io.github.cpearl0.ctnhcore.common.gui.HugeSlotWidget;
+import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.IRCFancyUIProvider;
+import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.RCUIWidget;
+import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.RightConfiguratorPanel;
+import io.github.cpearl0.ctnhcore.registry.CTNHMachines;
+import io.github.cpearl0.ctnhcore.utils.HugeBusTransferHelper;
+
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
+import com.gregtechceu.gtceu.api.machine.fancyconfigurator.ButtonConfigurator;
 import com.gregtechceu.gtceu.api.machine.fancyconfigurator.FancyInvConfigurator;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.ItemBusPartMachine;
 import com.gregtechceu.gtceu.utils.GTTransferUtils;
-import com.gregtechceu.gtceu.api.machine.fancyconfigurator.ButtonConfigurator;
+
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.texture.GuiTextureGroup;
 import com.lowdragmc.lowdraglib.gui.texture.TextTexture;
@@ -20,13 +28,7 @@ import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.jei.IngredientIO;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-import io.github.cpearl0.ctnhcore.common.gui.HugeSlotWidget;
-import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.IRCFancyUIProvider;
-import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.RCUIWidget;
-import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.RightConfiguratorPanel;
-import io.github.cpearl0.ctnhcore.registry.CTNHMachines;
-import io.github.cpearl0.ctnhcore.utils.HugeBusTransferHelper;
-import lombok.Getter;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -36,6 +38,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemHandlerHelper;
+
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
@@ -48,8 +52,9 @@ import java.util.List;
 @Suffix("tooltip")
 public class HugeItemBusPartMachine extends ItemBusPartMachine implements IRCFancyUIProvider {
 
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(HugeItemBusPartMachine.class,
-        ItemBusPartMachine.MANAGED_FIELD_HOLDER);
+    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
+            HugeItemBusPartMachine.class,
+            ItemBusPartMachine.MANAGED_FIELD_HOLDER);
 
     @Getter
     @Persisted
@@ -62,7 +67,9 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IRCFan
 
     @Override
     protected @NotNull NotifiableItemStackHandler createInventory(Object... args) {
-        return new NotifiableItemStackHandler(this, getInventorySize(), io, io, i -> new HugeItemStackHandler(i, getSlotMultiplier())) {
+        return new NotifiableItemStackHandler(this, getInventorySize(), io, io,
+                i -> new HugeItemStackHandler(i, getSlotMultiplier())) {
+
             @Override
             public boolean canCapOutput() {
                 return true;
@@ -76,18 +83,19 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IRCFan
                 for (Direction facing : facings) {
                     var filter = getMachine().getItemCapFilter(facing, IO.OUT);
                     GTTransferUtils.getAdjacentItemHandler(level, pos, facing)
-                            .ifPresent(adj -> HugeBusTransferHelper.transferItemsFiltered(this, adj, filter, Integer.MAX_VALUE));
+                            .ifPresent(adj -> HugeBusTransferHelper.transferItemsFiltered(this, adj, filter,
+                                    Integer.MAX_VALUE));
                 }
             }
         };
     }
 
-    public static int getSlotMultiplier(int tier){
-        if(tier == 0) return Integer.MAX_VALUE;
-        return tier<11 ? 1 << (4 + 2 * tier) : Integer.MAX_VALUE;
+    public static int getSlotMultiplier(int tier) {
+        if (tier == 0) return Integer.MAX_VALUE;
+        return tier < 11 ? 1 << (4 + 2 * tier) : Integer.MAX_VALUE;
     }
 
-    int getSlotMultiplier(){
+    int getSlotMultiplier() {
         return getSlotMultiplier(getTier());
     }
 
@@ -114,10 +122,10 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IRCFan
             for (int x = 0; x < rowSize; x++) {
                 if (index < inventorySize) {
                     container.addWidget(
-                            new HugeSlotWidget(getInventory().storage, index, 4 + x * 18, 4 + y * 18, true, io.support(IO.IN))
+                            new HugeSlotWidget(getInventory().storage, index, 4 + x * 18, 4 + y * 18, true,
+                                    io.support(IO.IN))
                                     .setBackgroundTexture(GuiTextures.SLOT)
-                                    .setIngredientIO(this.io == IO.IN ? IngredientIO.INPUT : IngredientIO.OUTPUT)
-                    );
+                                    .setIngredientIO(this.io == IO.IN ? IngredientIO.INPUT : IngredientIO.OUTPUT));
                     index++;
                 }
             }
@@ -150,9 +158,9 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IRCFan
         super.attachConfigurators(configuratorPanel);
         if (this.io == IO.IN) {
             configuratorPanel.attachConfigurators(
-                    new ButtonConfigurator(new GuiTextureGroup(GuiTextures.BUTTON, new TextTexture("\ud83d\udd19")), this::refundAll)
-                            .setTooltips(List.of(refund_item.translate()))
-            );
+                    new ButtonConfigurator(new GuiTextureGroup(GuiTextures.BUTTON, new TextTexture("\ud83d\udd19")),
+                            this::refundAll)
+                            .setTooltips(List.of(refund_item.translate())));
 
         }
     }
@@ -160,12 +168,11 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IRCFan
     @Override
     public void attachRightConfigurators(RightConfiguratorPanel configuratorPanel) {
         IRCFancyUIProvider.super.attachRightConfigurators(configuratorPanel);
-        if(io != IO.IN) return;
+        if (io != IO.IN) return;
         configuratorPanel.attachConfigurators(new FancyInvConfigurator(
                 shareInventory.storage, Component.translatable("gui.gtceu.share_inventory.title"))
                 .setTooltips(List.of(
                         Component.translatable("gui.gtceu.share_inventory.desc.1"))));
-
     }
 
     @Override
@@ -180,7 +187,7 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IRCFan
     }
 
     public int[] calculateOptimalLayout(int slotCount) {
-        if (slotCount <= 0) return new int[]{1, 1};
+        if (slotCount <= 0) return new int[] { 1, 1 };
 
         // 优先选择接近正方形的布局
         int sqrt = (int) Math.sqrt(slotCount);
@@ -202,7 +209,7 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IRCFan
             rows = (int) Math.ceil(slotCount / 4.0);
         }
 
-        return new int[]{cols, rows};
+        return new int[] { cols, rows };
     }
 
     @Override
@@ -230,7 +237,8 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IRCFan
         return true;
     }
 
-    public static class HugeItemStackHandler extends CustomItemStackHandler{
+    public static class HugeItemStackHandler extends CustomItemStackHandler {
+
         public final int multiplier;
 
         public HugeItemStackHandler(int i, int p) {
@@ -259,7 +267,8 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IRCFan
                         }
                     } else {
                         if (!simulate) {
-                            this.stacks.set(slot, ItemHandlerHelper.copyStackWithSize(existing, existing.getCount() - toExtract));
+                            this.stacks.set(slot,
+                                    ItemHandlerHelper.copyStackWithSize(existing, existing.getCount() - toExtract));
                             this.onContentsChanged(slot);
                         }
 
@@ -310,9 +319,7 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IRCFan
 
         @Override
         public void deserializeNBT(CompoundTag nbt) {
-            this.setSize(nbt.contains("Size", CompoundTag.TAG_INT)
-                    ? nbt.getInt("Size")
-                    : this.stacks.size());
+            this.setSize(nbt.contains("Size", CompoundTag.TAG_INT) ? nbt.getInt("Size") : this.stacks.size());
 
             ListTag tagList = nbt.getList("Items", CompoundTag.TAG_COMPOUND);
 
@@ -337,8 +344,6 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IRCFan
 
             this.onLoad();
         }
-
-
     }
 
     @Override

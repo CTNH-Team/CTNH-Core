@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
-import com.aetherteam.aether.data.resources.registries.AetherDimensions;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.IEnergyContainer;
 import com.gregtechceu.gtceu.api.capability.IWorkable;
@@ -18,17 +17,21 @@ import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
 import com.gregtechceu.gtceu.api.misc.EnergyContainerList;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
+
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.widget.*;
-import earth.terrarium.adastra.api.planets.Planet;
-import lombok.Getter;
-import lombok.Setter;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+
+import com.aetherteam.aether.data.resources.registries.AetherDimensions;
+import earth.terrarium.adastra.api.planets.Planet;
+import lombok.Getter;
+import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -36,8 +39,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine implements IFancyUIMachine,IDisplayUIMachine, IWorkable, IExplosionMachine {
-    //const
+public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine implements IFancyUIMachine,
+                                             IDisplayUIMachine, IWorkable, IExplosionMachine {
+
+    // const
     public static final int START_TIME = 23000;
     public static final int END_TIME = 13000;
 
@@ -45,16 +50,18 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
     private int rate_mul = 0;
 
     private long lastOutputEnergy;
-//    @Override
-    @Getter @Setter
+    // @Override
+    @Getter
+    @Setter
     private boolean isWorkingEnabled = true;
     private EnergyContainerList energyContainer;
+
     public PhotovoltaicPowerStationMachine(IMachineBlockEntity holder, int basicRate) {
         super(holder);
         BASIC_RATE = basicRate * 512;
     }
 
-    //最好成型再用
+    // 最好成型再用
     public void updateEnergyContainer() {
         List<IEnergyContainer> containers = new ArrayList<>();
 
@@ -85,18 +92,18 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
         }
     }
 
-//    @Override
-//    public boolean checkPattern() {
-//        var ret = super.checkPattern();
-//        if (!isRemote() && ret && getUpwardsFacing() != Direction.NORTH){
-//            getLevel().getServer().submit(
-//                    () -> doExplosion(10f)
-//            );
-//
-//            return false;
-//        }
-//        return ret;
-//    }
+    // @Override
+    // public boolean checkPattern() {
+    // var ret = super.checkPattern();
+    // if (!isRemote() && ret && getUpwardsFacing() != Direction.NORTH){
+    // getLevel().getServer().submit(
+    // () -> doExplosion(10f)
+    // );
+    //
+    // return false;
+    // }
+    // return ret;
+    // }
 
     @Override
     public void onStructureInvalid() {
@@ -112,11 +119,11 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
     public void onStructureFormed() {
         super.onStructureFormed();
         updateEnergyContainer();
-        //计算发电效率
+        // 计算发电效率
         var dimension = getLevel().dimension();
         var str = dimension.location().toString();
-        if (dimension == Level.OVERWORLD || str.equals("twilightforest:twilight_forest") || str.equals("mythicbotany:alfheim")
-            || str.equals("javd:void")) {
+        if (dimension == Level.OVERWORLD || str.equals("twilightforest:twilight_forest") ||
+                str.equals("mythicbotany:alfheim") || str.equals("javd:void")) {
             rate_mul = 1;
         } else if (dimension == AetherDimensions.AETHER_LEVEL) {
             rate_mul = 2;
@@ -131,16 +138,17 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
         } else if (dimension == Planet.GLACIO || dimension == Planet.GLACIO_ORBIT) {
             rate_mul = 7;
         }
-        if (getLevel() instanceof ServerLevel serverLevel && rate_mul>0) {
+        if (getLevel() instanceof ServerLevel serverLevel && rate_mul > 0) {
             serverLevel.getServer().tell(new TickTask(0, this::updateTickSubscription));
         }
     }
 
     /// ///////////////////////////////
-    /// /        运行逻辑/       ////
+    /// / 运行逻辑/ ////
     /// //////////////////////////
     @Nullable
     protected TickableSubscription tickSubs;
+
     protected void updateTickSubscription() {
         if (isFormed) {
             tickSubs = subscribeServerTick(tickSubs, this::tick);
@@ -149,27 +157,24 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
             tickSubs = null;
         }
     }
-    public void tick(){
+
+    public void tick() {
         var level = getLevel();
         assert level != null;
-        if(getPowerState()!=Status.VALID) return;
-        //获取时间
+        if (getPowerState() != Status.VALID) return;
+        // 获取时间
         var time = level.getDayTime() % 24000;
         if (time > START_TIME) {
             time -= START_TIME;
-        }
-        else if (time < END_TIME) {
+        } else if (time < END_TIME) {
             time += 24000 - START_TIME;
-        }
-        else return;
+        } else return;
 
-        //计算发电功率
-        lastOutputEnergy = (long)(Math.sin((double) time / (END_TIME + 24000 - START_TIME) * Math.PI)
-                * BASIC_RATE
-                * rate_mul);
+        // 计算发电功率
+        lastOutputEnergy = (long) (Math.sin((double) time / (END_TIME + 24000 - START_TIME) * Math.PI) * BASIC_RATE *
+                rate_mul);
         energyContainer.addEnergy(lastOutputEnergy);
     }
-
 
     @Override
     public int getProgress() {
@@ -186,17 +191,19 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
         return lastStatus == Status.VALID;
     }
 
-    //末影b灯怎么讨厌Enum吗
+    // 末影b灯怎么讨厌Enum吗
     public enum Status {
         VALID,
         INVALID,
         NIGHT
     }
+
     Status lastStatus = Status.INVALID;
+
     private Status getPowerState() {
         var time = Objects.requireNonNull(getLevel()).getDayTime() % 24000;
-        if(time%20!=0)return lastStatus;
-        if(lastStatus !=Status.VALID || time%300==0) {//15秒钟扫一次,绝对不会卡?
+        if (time % 20 != 0) return lastStatus;
+        if (lastStatus != Status.VALID || time % 300 == 0) {// 15秒钟扫一次,绝对不会卡?
             if (time > END_TIME && time < START_TIME) {
                 return lastStatus = Status.NIGHT;
             }
@@ -244,8 +251,9 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
         }
         return lastStatus = Status.VALID;
     }
+
     /// /////////////////
-    ///     UI         //
+    /// UI //
     /// /////////////////
     @Override
     public void addDisplayText(@NotNull List<Component> textList) {
@@ -253,19 +261,23 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
             var valid = getPowerState();
             var voltageName = GTValues.VNF[GTUtil.getTierByVoltage(lastOutputEnergy)];
             MultiblockDisplayText.builder(textList, isFormed())
-                    .setWorkingStatus(isWorkingEnabled,valid == Status.VALID)
+                    .setWorkingStatus(isWorkingEnabled, valid == Status.VALID)
                     .addWorkingStatusLine();
 
-            if(valid == Status.VALID) {
-                //gtceu.multiblock.generation_eu
-                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station.info.1", String.format("%.1f", (lastOutputEnergy * 100f / BASIC_RATE))));
-                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station.info.2", FormattingUtil.formatNumbers(lastOutputEnergy), voltageName));
-            }
-            else{
-                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station.info."+valid.name().toLowerCase()).withStyle(ChatFormatting.RED));
+            if (valid == Status.VALID) {
+                // gtceu.multiblock.generation_eu
+                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station.info.1",
+                        String.format("%.1f", (lastOutputEnergy * 100f / BASIC_RATE))));
+                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station.info.2",
+                        FormattingUtil.formatNumbers(lastOutputEnergy), voltageName));
+            } else {
+                textList.add(Component
+                        .translatable("ctnh.multiblock.photovoltaic_power_station.info." + valid.name().toLowerCase())
+                        .withStyle(ChatFormatting.RED));
             }
         }
     }
+
     @Override
     public Widget createUIWidget() {
         var group = new WidgetGroup(0, 0, 182 + 8, 117 + 8);

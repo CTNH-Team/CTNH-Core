@@ -1,10 +1,12 @@
 package io.github.cpearl0.ctnhcore.api.Pattern;
 
-import com.gregtechceu.gtceu.api.GTCEuAPI;
-import com.gregtechceu.gtceu.common.data.GTBlocks;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.ISSFData;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
+
+import com.gregtechceu.gtceu.api.GTCEuAPI;
+import com.gregtechceu.gtceu.common.data.GTBlocks;
+
 import net.minecraft.world.level.block.Block;
 
 import java.util.HashMap;
@@ -12,13 +14,15 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class CTNHBlockMaps {
+
     public static final Map<IPBData, Supplier<io.github.cpearl0.ctnhcore.common.block.PhotovoltaicBlock>> PhotovoltaicBlock = new HashMap();
-    public static final Map<ISSFData,Supplier<io.github.cpearl0.ctnhcore.common.block.SpaceStructuralFramework>> SpaceStructuralFramework =new HashMap();
+    public static final Map<ISSFData, Supplier<io.github.cpearl0.ctnhcore.common.block.SpaceStructuralFramework>> SpaceStructuralFramework = new HashMap();
     public static final Map<Integer, Supplier<Block>> ReactorCoreBlock = new HashMap();
     public static final Map<Integer, Supplier<? extends Block>> CasingBlock = new HashMap<>();
     public static final Map<Integer, Supplier<? extends Block>> PipeBlock = new HashMap<>();
     public static final Map<Integer, Supplier<? extends Block>> CoilBlock = new HashMap<>();
     public static final Map<Integer, Supplier<? extends Block>> MachineCasingBlock = new HashMap<>();
+
     public static void initBlocks() {
         CasingBlock.put(1, GTBlocks.CASING_BRONZE_BRICKS);
         CasingBlock.put(2, GTBlocks.CASING_STEEL_SOLID);

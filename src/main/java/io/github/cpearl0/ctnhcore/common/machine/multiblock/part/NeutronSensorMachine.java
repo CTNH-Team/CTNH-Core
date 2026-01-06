@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.gui.widget.ToggleButtonWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.TieredPartMachine;
 import com.gregtechceu.gtceu.utils.RedstoneUtil;
+
 import com.lowdragmc.lowdraglib.gui.editor.ColorPattern;
 import com.lowdragmc.lowdraglib.gui.widget.*;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
@@ -13,7 +14,9 @@ import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import com.lowdragmc.lowdraglib.utils.Position;
 import com.lowdragmc.lowdraglib.utils.Size;
+
 import net.minecraft.core.Direction;
+
 import org.jetbrains.annotations.Nullable;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
@@ -24,18 +27,21 @@ import java.util.List;
 
 @Prefix("gui.multiblock.neutron_sensor")
 public class NeutronSensorMachine extends TieredPartMachine {
+
     private ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            NeutronSensorMachine.class, TieredPartMachine.MANAGED_FIELD_HOLDER
-        );
+            NeutronSensorMachine.class, TieredPartMachine.MANAGED_FIELD_HOLDER);
+
     public NeutronSensorMachine(IMachineBlockEntity holder) {
         super(holder, GTValues.IV);
     }
+
     @Persisted
     private int energy = 0;
 
     @Persisted
     @DescSynced
     private int min = 0;
+
     private void setMin(int min) {
         this.min = min;
         update();
@@ -44,6 +50,7 @@ public class NeutronSensorMachine extends TieredPartMachine {
     @Persisted
     @DescSynced
     private int max = 0;
+
     private void setMax(int max) {
         this.max = max;
         update();
@@ -51,6 +58,7 @@ public class NeutronSensorMachine extends TieredPartMachine {
 
     @Persisted
     private boolean isInverted = false;
+
     private void setIsInverted(boolean isInverted) {
         this.isInverted = isInverted;
         update();
@@ -58,6 +66,7 @@ public class NeutronSensorMachine extends TieredPartMachine {
 
     @Persisted
     private int redstoneSignalOutput = 0;
+
     private void setRedstoneSignalOutput(int redstoneSignalOutput) {
         this.redstoneSignalOutput = redstoneSignalOutput;
         updateSignal();
@@ -74,7 +83,7 @@ public class NeutronSensorMachine extends TieredPartMachine {
     }
 
     //////////////////////////////////////
-    //**********     GUI     ***********//
+    // ********** GUI ***********//
     //////////////////////////////////////
     @CN("最小中子动能\n(%s)")
     @EN("Min Neutron Kinetic Energy\n(%s)")
@@ -82,63 +91,64 @@ public class NeutronSensorMachine extends TieredPartMachine {
     @CN("最大中子动能\n(%s)")
     @EN("Max Neutron Kinetic Energy\n(%s)")
     static Lang energy_max;
+
     @Override
     public Widget createUIWidget() {
         var group = new WidgetGroup(Position.ORIGIN, new Size(176, 112));
         group.addWidget(
                 new TextBoxWidget(
-                        8, 35, 65, List.of(energy_min.translate("KeV").getString())
-                )
-        );
+                        8, 35, 65, List.of(energy_min.translate("KeV").getString())));
         group.addWidget(
                 new TextBoxWidget(
-                        8, 80, 65, List.of(energy_max.translate("KeV").getString())
-                )
-        );
+                        8, 80, 65, List.of(energy_max.translate("KeV").getString())));
         group.addWidget(
-        new TextFieldWidget(80, 35, 85, 18, () -> String.valueOf(min), (it) -> setMin(clamp(fromText(it), 0, max))) {
-            public int maxValue = 0;
-            @Override
-            public void updateScreen() {
-                super.updateScreen();
-                if (maxValue != max) {
-                    maxValue = max;
-                    setNumbersOnly(0, maxValue);
-                }
-            }
-        }.setNumbersOnly(0, max));
+                new TextFieldWidget(80, 35, 85, 18, () -> String.valueOf(min),
+                        (it) -> setMin(clamp(fromText(it), 0, max))) {
+
+                    public int maxValue = 0;
+
+                    @Override
+                    public void updateScreen() {
+                        super.updateScreen();
+                        if (maxValue != max) {
+                            maxValue = max;
+                            setNumbersOnly(0, maxValue);
+                        }
+                    }
+                }.setNumbersOnly(0, max));
         group.addWidget(
-        new TextFieldWidget(80, 80, 85, 18, () -> String.valueOf(max), (it) -> setMax(clamp(fromText(it), min, 1200000))) {
-            public int minValue = 0;
-            @Override
-            public void updateScreen() {
-                super.updateScreen();
-                if (minValue != min) {
-                    minValue = min;
-                    setNumbersOnly(minValue, 1200000);
-                }
-            }
-        }.setNumbersOnly(min, 1200000));
+                new TextFieldWidget(80, 80, 85, 18, () -> String.valueOf(max),
+                        (it) -> setMax(clamp(fromText(it), min, 1200000))) {
+
+                    public int minValue = 0;
+
+                    @Override
+                    public void updateScreen() {
+                        super.updateScreen();
+                        if (minValue != min) {
+                            minValue = min;
+                            setNumbersOnly(minValue, 1200000);
+                        }
+                    }
+                }.setNumbersOnly(min, 1200000));
         group.addWidget(
                 new ToggleButtonWidget(
-                        8, 8, 20, 20, GuiTextures.INVERT_REDSTONE_BUTTON, () -> this.isInverted, this::setIsInverted
-                ).setTooltipText("gui.ctnh.neutron_sensor.invert")
-        );
+                        8, 8, 20, 20, GuiTextures.INVERT_REDSTONE_BUTTON, () -> this.isInverted, this::setIsInverted)
+                        .setTooltipText("gui.ctnh.neutron_sensor.invert"));
         group.addWidget(
-                new LabelWidget(80, 13, "1000 KeV = 1 MeV").setTextColor(ColorPattern.BLACK.color).setDropShadow(false)
-        );
+                new LabelWidget(80, 13, "1000 KeV = 1 MeV").setTextColor(ColorPattern.BLACK.color)
+                        .setDropShadow(false));
         return group;
     }
 
     //////////////////////////////////////
-    //********     Redstone     ********//
+    // ******** Redstone ********//
     //////////////////////////////////////
 
     public void update(int energy) {
         this.energy = energy;
         var output = RedstoneUtil.computeRedstoneBetweenValues(
-                energy, (max * k), (min * k), isInverted
-        );
+                energy, (max * k), (min * k), isInverted);
         if (redstoneSignalOutput != output) {
             setRedstoneSignalOutput(output);
         }
@@ -163,7 +173,7 @@ public class NeutronSensorMachine extends TieredPartMachine {
     }
 
     //////////////////////////////////////
-    //**********     Data     **********//
+    // ********** Data **********//
     //////////////////////////////////////
     private int fromText(String num) {
         return Integer.parseInt(num);

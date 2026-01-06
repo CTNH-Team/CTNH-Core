@@ -1,12 +1,16 @@
 package io.github.cpearl0.ctnhcore.mixin.gtceu;
 
+import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.IRCFancyUIProvider;
+import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.RCUIWidget;
+
 import com.gregtechceu.gtceu.api.gui.fancy.IFancyUIProvider;
 import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IUIMachine;
+
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
-import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.IRCFancyUIProvider;
-import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.RCUIWidget;
+
 import net.minecraft.world.entity.player.Player;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 

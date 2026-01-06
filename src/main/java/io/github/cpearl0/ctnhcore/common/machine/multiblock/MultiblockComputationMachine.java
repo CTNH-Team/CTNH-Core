@@ -6,20 +6,21 @@ import com.gregtechceu.gtceu.api.capability.forge.GTCapability;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
+
 import net.minecraft.network.chat.Component;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class MultiblockComputationMachine extends WorkableElectricMultiblockMachine implements IOpticalComputationReceiver {
-
+public class MultiblockComputationMachine extends WorkableElectricMultiblockMachine
+                                          implements IOpticalComputationReceiver {
 
     protected IOpticalComputationProvider computationContainer;
 
     public MultiblockComputationMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
     }
-
 
     @Override
     public void onStructureFormed() {
@@ -31,6 +32,7 @@ public class MultiblockComputationMachine extends WorkableElectricMultiblockMach
             onStructureInvalid();
         }
     }
+
     @Override
     public void onStructureInvalid() {
         computationContainer = null;
@@ -38,20 +40,20 @@ public class MultiblockComputationMachine extends WorkableElectricMultiblockMach
     }
 
     @Override
-    public IOpticalComputationProvider getComputationProvider()
-    {
+    public IOpticalComputationProvider getComputationProvider() {
         return computationContainer;
     }
 
     public int getMaxCWUt() {
-        return computationContainer!= null? computationContainer.getMaxCWUt() : 0;
+        return computationContainer != null ? computationContainer.getMaxCWUt() : 0;
     }
+
     //////////////////////////////////////
     // ******* GUI ********//
     //////////////////////////////////////
     @Override
     public void addDisplayText(@NotNull List<Component> textList) {
-        if(isFormed()) {
+        if (isFormed()) {
             int maxCUWt = getMaxCWUt();
             textList.add(Component.translatable("gtceu.multiblock.computation.max",
                     FormattingUtil.formatNumbers(maxCUWt)));
@@ -59,4 +61,3 @@ public class MultiblockComputationMachine extends WorkableElectricMultiblockMach
         super.addDisplayText(textList);
     }
 }
-

@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CircuitBusPartMachine;
+
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -10,11 +12,12 @@ import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.ActionResult;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CircuitBusPartMachine;
-import lombok.Getter;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
+
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -23,6 +26,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class AstronomicalMachine extends WorkableElectricMultiblockMachine {
+
     public static final int START_TIME = 23000;
     public static final int END_TIME = 13000;
 
@@ -32,38 +36,41 @@ public class AstronomicalMachine extends WorkableElectricMultiblockMachine {
     public AstronomicalMachine(IMachineBlockEntity holder) {
         super(holder);
     }
+
     private boolean isValidPhotovoltaicPower() {
         var time = Objects.requireNonNull(getLevel()).getDayTime() % 24000;
         return time > END_TIME && time < START_TIME;
     }
+
     @Override
     public boolean keepSubscribing() {
         return true;
     }
+
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
         return isValidPhotovoltaicPower();
-//        final boolean[] begin = {false};
-//        getParts().stream()
-//                .filter(part -> part instanceof CircuitBusPartMachine)
-//                .findFirst()
-//                .ifPresent(bus -> {
-//                    var circuitBus = (CircuitBusPartMachine) bus;
-//                    if (!circuitBus.getInventory().isEmpty()) {
-//                        var circuit = circuitBus.getInventory().getStackInSlot(0);
-//                        begin[0] = AstronomyCircuitItem.workInLevel(circuit, getLevel());
-//                    }
-//                });
-//        return begin[0];
+        // final boolean[] begin = {false};
+        // getParts().stream()
+        // .filter(part -> part instanceof CircuitBusPartMachine)
+        // .findFirst()
+        // .ifPresent(bus -> {
+        // var circuitBus = (CircuitBusPartMachine) bus;
+        // if (!circuitBus.getInventory().isEmpty()) {
+        // var circuit = circuitBus.getInventory().getStackInSlot(0);
+        // begin[0] = AstronomyCircuitItem.workInLevel(circuit, getLevel());
+        // }
+        // });
+        // return begin[0];
     }
 
     @Override
     public void addDisplayText(@NotNull List<Component> textList) {
         if (isFormed()) {
             if (!isValidPhotovoltaicPower()) {
-                textList.add(Component.translatable("ctnh.multiblock.astronomical.info.invalid").withStyle(ChatFormatting.RED));
-            }
-            else {
+                textList.add(Component.translatable("ctnh.multiblock.astronomical.info.invalid")
+                        .withStyle(ChatFormatting.RED));
+            } else {
                 super.addDisplayText(textList);
             }
         }
@@ -73,7 +80,7 @@ public class AstronomicalMachine extends WorkableElectricMultiblockMachine {
     public void onStructureFormed() {
         super.onStructureFormed();
         for (IMultiPart part : getParts()) {
-            if(part instanceof CircuitBusPartMachine circuitBusPartMachine){
+            if (part instanceof CircuitBusPartMachine circuitBusPartMachine) {
                 this.circuitBus = circuitBusPartMachine;
                 addHandlerList(RecipeHandlerList.of(IO.IN, circuitBus.getInventory()));
             }
@@ -90,7 +97,7 @@ public class AstronomicalMachine extends WorkableElectricMultiblockMachine {
         return (AstronomicalMachineRecipeLogic) super.getRecipeLogic();
     }
 
-    public static class AstronomicalMachineRecipeLogic extends RecipeLogic{
+    public static class AstronomicalMachineRecipeLogic extends RecipeLogic {
 
         public AstronomicalMachineRecipeLogic(AstronomicalMachine machine) {
             super(machine);
@@ -98,7 +105,7 @@ public class AstronomicalMachine extends WorkableElectricMultiblockMachine {
 
         @Override
         public AstronomicalMachine getMachine() {
-            return (AstronomicalMachine)super.getMachine();
+            return (AstronomicalMachine) super.getMachine();
         }
 
         @Override
@@ -127,7 +134,7 @@ public class AstronomicalMachine extends WorkableElectricMultiblockMachine {
         @Override
         protected ActionResult handleRecipeIO(GTRecipe recipe, IO io) {
             var circuitBus = getMachine().getCircuitBus();
-            if(io == IO.IN){
+            if (io == IO.IN) {
                 circuitBus.setLocked(true);
                 return ActionResult.SUCCESS;
             }

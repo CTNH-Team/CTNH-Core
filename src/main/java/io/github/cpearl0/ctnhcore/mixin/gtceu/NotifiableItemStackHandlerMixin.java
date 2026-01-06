@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.mixin.gtceu;
 
+import io.github.cpearl0.ctnhcore.utils.IAllowSameContainer;
+
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
@@ -8,10 +10,12 @@ import com.gregtechceu.gtceu.api.recipe.ingredient.IntProviderIngredient;
 import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.utils.GTUtil;
+
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import io.github.cpearl0.ctnhcore.utils.IAllowSameContainer;
+
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
@@ -45,10 +49,10 @@ public abstract class NotifiableItemStackHandlerMixin implements IAllowSameConta
     @Unique
     boolean ctnhcore$allowSameItems;
 
-
     @Inject(method = "<init>(Lcom/gregtechceu/gtceu/api/machine/MetaMachine;ILcom/gregtechceu/gtceu/api/capability/recipe/IO;Lcom/gregtechceu/gtceu/api/capability/recipe/IO;Ljava/util/function/IntFunction;)V",
-    at = @At("TAIL"))
-    public void injectInit(MetaMachine machine, int slots, IO handlerIO, IO capabilityIO, IntFunction storageFactory, CallbackInfo ci){
+            at = @At("TAIL"))
+    public void injectInit(MetaMachine machine, int slots, IO handlerIO, IO capabilityIO, IntFunction storageFactory,
+                           CallbackInfo ci) {
         ctnhcore$allowSameItems = handlerIO.support(IO.OUT);
     }
 
@@ -120,16 +124,17 @@ public abstract class NotifiableItemStackHandlerMixin implements IAllowSameConta
                 ItemStack output = items[0].copyWithCount(amount);
                 int existingSlot = -1;
                 for (int i = 0; i < storage.getSlots(); i++) {
-                    if(GTUtil.isSameItemSameTags(output, storage.getStackInSlot(i))){
+                    if (GTUtil.isSameItemSameTags(output, storage.getStackInSlot(i))) {
                         existingSlot = i;
                         break;
                     }
                 }
-                if(existingSlot != -1){
+                if (existingSlot != -1) {
                     var remainder = storage.insertItem(existingSlot, output, simulate);
                     if (remainder.getCount() < amount) {
                         changed = true;
-                        ItemStack current = visited[existingSlot] == null ? storage.getStackInSlot(existingSlot) : visited[existingSlot];
+                        ItemStack current = visited[existingSlot] == null ? storage.getStackInSlot(existingSlot) :
+                                visited[existingSlot];
                         int count = current.getCount();
                         visited[existingSlot] = output.copyWithCount(count + amount - remainder.getCount());
                     }
@@ -140,8 +145,7 @@ public abstract class NotifiableItemStackHandlerMixin implements IAllowSameConta
                         } else {
                             items[0].setCount(amount);
                         }
-                    }
-                    else {
+                    } else {
                         it.remove();
                     }
                     continue;
@@ -167,7 +171,7 @@ public abstract class NotifiableItemStackHandlerMixin implements IAllowSameConta
                     // Only try this slot if not visited or if visited with the same type of item
                     if (visited[slot] == null || GTUtil.isSameItemSameTags(visited[slot], output)) {
                         var remainder = getActioned(storage, slot, recipe.ingredientActions);
-                        if (remainder == null){
+                        if (remainder == null) {
                             remainder = storage.insertItem(slot, output, simulate);
 
                         }
@@ -176,8 +180,8 @@ public abstract class NotifiableItemStackHandlerMixin implements IAllowSameConta
                             visited[slot] = output.copyWithCount(count + amount - remainder.getCount());
                         }
                         amount = remainder.getCount();
-                        if(!ctnhcore$allowSameItems){
-                            if(amount <= 0) it.remove();
+                        if (!ctnhcore$allowSameItems) {
+                            if (amount <= 0) it.remove();
                             break;
                         }
                     }
@@ -207,18 +211,16 @@ public abstract class NotifiableItemStackHandlerMixin implements IAllowSameConta
     @Inject(
             method = "insertItem",
             at = @At("HEAD"),
-            cancellable = true
-    )
+            cancellable = true)
     private void gtceu$limitSameItemCapability(
-            int slot,
-            ItemStack stack,
-            boolean simulate,
-            CallbackInfoReturnable<ItemStack> cir
-    ) {
+                                               int slot,
+                                               ItemStack stack,
+                                               boolean simulate,
+                                               CallbackInfoReturnable<ItemStack> cir) {
         if (!ctnhcore$allowSameItems) {
             int existingSlot = -1;
             for (int i = 0; i < storage.getSlots(); i++) {
-                if(GTUtil.isSameItemSameTags(stack, storage.getStackInSlot(i)))
+                if (GTUtil.isSameItemSameTags(stack, storage.getStackInSlot(i)))
                     existingSlot = i;
             }
             if (existingSlot != -1 && existingSlot != slot) {

@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.mixin.gtceu;
 
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch.HugeItemBusPartMachine;
+
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -7,7 +9,7 @@ import com.gregtechceu.gtceu.api.machine.TieredEnergyMachine;
 import com.gregtechceu.gtceu.api.machine.WorkableTieredMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch.HugeItemBusPartMachine;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -34,8 +36,8 @@ public abstract class WorkableTieredMachineMixin extends TieredEnergyMachine {
                         getRecipeType().getMaxInputs(ItemRecipeCapability.CAP),
                         IO.IN,
                         IO.IN,
-                        i -> new HugeItemBusPartMachine.HugeItemStackHandler(i, ctnhcore$getSlotMultiplier(getTier()))
-        ));
+                        i -> new HugeItemBusPartMachine.HugeItemStackHandler(i,
+                                ctnhcore$getSlotMultiplier(getTier()))));
     }
 
     @Inject(method = "createExportItemHandler", at = @At("HEAD"), cancellable = true)
@@ -45,13 +47,13 @@ public abstract class WorkableTieredMachineMixin extends TieredEnergyMachine {
                         getRecipeType().getMaxOutputs(ItemRecipeCapability.CAP),
                         IO.OUT,
                         IO.OUT,
-                        i -> new HugeItemBusPartMachine.HugeItemStackHandler(i, ctnhcore$getSlotMultiplier(getTier()))
-                ));
+                        i -> new HugeItemBusPartMachine.HugeItemStackHandler(i,
+                                ctnhcore$getSlotMultiplier(getTier()))));
     }
 
     @Unique
-    private static int ctnhcore$getSlotMultiplier(int tier){
-        if(tier == 0) return 1;
-        return 1 <<  (2 * (tier -1));
+    private static int ctnhcore$getSlotMultiplier(int tier) {
+        if (tier == 0) return 1;
+        return 1 << (tier - 1);
     }
 }

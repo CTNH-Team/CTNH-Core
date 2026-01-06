@@ -5,24 +5,29 @@ import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+
 import com.lowdragmc.lowdraglib.gui.texture.IGuiTexture;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-import lombok.Getter;
+
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
+
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 public class MultiThreadRecipeLogic extends RecipeLogic {
-    //private final int maxParallel;
+
+    // private final int maxParallel;
     @Persisted
     @DescSynced
     private final ThreadRecipeLogic[] threads;
@@ -45,10 +50,10 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
 
     public static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(MultiThreadRecipeLogic.class);
 
-    public boolean isRunningRecipe(GTRecipe recipe, @Nullable RecipeLogic except){
+    public boolean isRunningRecipe(GTRecipe recipe, @Nullable RecipeLogic except) {
         for (RecipeLogic worker : threads) {
             var r = worker.getLastRecipe();
-            if(r!=null && r.id.equals(recipe.id) && worker != except)
+            if (r != null && r.id.equals(recipe.id) && worker != except)
                 return true;
         }
         return false;
@@ -67,9 +72,11 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
         }
     }
 
-    /* ------------------------
-       状态聚合
-       ------------------------ */
+    /*
+     * ------------------------
+     * 状态聚合
+     * ------------------------
+     */
 
     @Override
     public boolean isWorking() {
@@ -152,16 +159,17 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
     }
 
     public void setWorkingEnabled(boolean isWorkingAllowed, int id) {
-        if(id >=0 && id < threads.length)
-        {
+        if (id >= 0 && id < threads.length) {
             threads[id].setEnabled(isWorkingAllowed);
             threads[id].setWorkingEnabled(workingAllowed && isWorkingAllowed);
         }
-
     }
-    /* ------------------------
-       FancyTooltip 聚合
-       ------------------------ */
+
+    /*
+     * ------------------------
+     * FancyTooltip 聚合
+     * ------------------------
+     */
     @Override
     public IGuiTexture getFancyTooltipIcon() {
         if (isWaiting()) return GuiTextures.INSUFFICIENT_INPUT;
@@ -182,9 +190,11 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
         return Arrays.stream(threads).anyMatch(RecipeLogic::showFancyTooltip);
     }
 
-    /* ------------------------
-       持久化
-       ------------------------ */
+    /*
+     * ------------------------
+     * 持久化
+     * ------------------------
+     */
     @Override
     public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {
         super.saveCustomPersistedData(tag, forDrop);
@@ -212,12 +222,11 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
         return MANAGED_FIELD_HOLDER;
     }
 
-    public int getEnabledThreadNum(){
+    public int getEnabledThreadNum() {
         return (int) getAllWorkers().stream().filter(ThreadRecipeLogic::isEnabled).count();
     }
 
-    public int getActiveThreadNum(){
+    public int getActiveThreadNum() {
         return (int) getAllWorkers().stream().filter(ThreadRecipeLogic::isActive).count();
     }
-
 }

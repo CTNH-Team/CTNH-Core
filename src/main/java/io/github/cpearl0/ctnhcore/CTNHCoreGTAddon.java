@@ -1,8 +1,5 @@
 package io.github.cpearl0.ctnhcore;
 
-import com.gregtechceu.gtceu.api.addon.GTAddon;
-import com.gregtechceu.gtceu.api.addon.IGTAddon;
-import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps;
 import io.github.cpearl0.ctnhcore.data.CTNHBlockInfo;
 import io.github.cpearl0.ctnhcore.data.recipe.*;
@@ -15,6 +12,11 @@ import io.github.cpearl0.ctnhcore.data.recipe.generated.HyperRotorRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.multiblock.*;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
+
+import com.gregtechceu.gtceu.api.addon.GTAddon;
+import com.gregtechceu.gtceu.api.addon.IGTAddon;
+import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 
@@ -22,6 +24,7 @@ import java.util.function.Consumer;
 
 @GTAddon
 public class CTNHCoreGTAddon implements IGTAddon {
+
     @Override
     public GTRegistrate getRegistrate() {
         return CTNHRegistration.REGISTRATE;
@@ -68,8 +71,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
     }
 
     @Override
-    public void registerSounds() {
-    }
+    public void registerSounds() {}
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
@@ -96,7 +98,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         AssemblyLineRecipes.init(provider);
 
         WetwareCircuit.init(provider);
-        //移植配方
+        // 移植配方
         NaquadahReactorRecipes.init(provider);
         DefaultRecipes.init(provider);
         BrineChain.init(provider);

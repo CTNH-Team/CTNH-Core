@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock;
 
-import com.enderio.base.common.init.EIOFluids;
-import com.enderio.machines.common.init.MachineBlocks;
+import io.github.cpearl0.ctnhcore.api.gui.CTNHGuiTextures;
+
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
@@ -20,12 +20,12 @@ import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
+
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-import com.mojang.authlib.GameProfile;
-import io.github.cpearl0.ctnhcore.api.gui.CTNHGuiTextures;
+
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -43,6 +43,10 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fluids.FluidStack;
+
+import com.enderio.base.common.init.EIOFluids;
+import com.enderio.machines.common.init.MachineBlocks;
+import com.mojang.authlib.GameProfile;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -54,6 +58,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine implements IMachineModifyDrops {
+
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             SlaughterHouseMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     @Persisted
@@ -73,7 +78,6 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
         return fakePlayer;
     }
 
-
     public SlaughterHouseMachine(IMachineBlockEntity holder) {
         super(holder);
         this.machineStorage = createMachineStorage((byte) 1);
@@ -91,17 +95,20 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
     protected NotifiableItemStackHandler createMachineStorage(byte value) {
         return new NotifiableItemStackHandler(
                 this, 1, IO.NONE, IO.BOTH, slots -> new CustomItemStackHandler(1) {
-            @Override
-            public int getSlotLimit(int slot) {
-                return value;
-            }
-            @Override
-            public void onContentsChanged(int slot) {
-                resetWeapon();
-                super.onContentsChanged(slot);
-            }
-        });
+
+                    @Override
+                    public int getSlotLimit(int slot) {
+                        return value;
+                    }
+
+                    @Override
+                    public void onContentsChanged(int slot) {
+                        resetWeapon();
+                        super.onContentsChanged(slot);
+                    }
+                });
     }
+
     @Override
     public void onDrops(List<ItemStack> drops) {
         clearInventory(machineStorage.storage);
@@ -124,24 +131,25 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
     }
 
     public void resetWeapon() {
-        if (machineStorage.isEmpty()){
+        if (machineStorage.isEmpty()) {
             hostWeapon = Items.DIRT.getDefaultInstance();
-        }
-        else {
+        } else {
             hostWeapon = getMachineStorageItem();
         }
         if (!getLevel().isClientSide) {
             getFakePlayer((ServerLevel) getLevel()).setItemInHand(InteractionHand.MAIN_HAND, hostWeapon);
         }
 
-        damagePerSecond = calculateFinalValue(1, hostWeapon.getAttributeModifiers(EquipmentSlot.MAINHAND).get(Attributes.ATTACK_DAMAGE).stream())
-                * calculateFinalValue(4, hostWeapon.getAttributeModifiers(EquipmentSlot.MAINHAND).get(Attributes.ATTACK_SPEED).stream());
+        damagePerSecond = calculateFinalValue(1,
+                hostWeapon.getAttributeModifiers(EquipmentSlot.MAINHAND).get(Attributes.ATTACK_DAMAGE).stream()) *
+                calculateFinalValue(4,
+                        hostWeapon.getAttributeModifiers(EquipmentSlot.MAINHAND).get(Attributes.ATTACK_SPEED).stream());
     }
+
     public static double calculateFinalValue(double baseValue, Stream<AttributeModifier> modifiers) {
         // 按操作类型分组并处理
         var modifiersByOp = modifiers.collect(
-                Collectors.groupingBy(AttributeModifier::getOperation)
-        );
+                Collectors.groupingBy(AttributeModifier::getOperation));
 
         // 1. 处理 ADDITION
         double addition = modifiersByOp.getOrDefault(AttributeModifier.Operation.ADDITION, List.of())
@@ -164,29 +172,34 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
         // 最终计算
         return (baseValue + addition + (baseValue * multiplyBase)) * multiplyTotal;
     }
+
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
         if (!super.beforeWorking(recipe))
             return false;
         return !mobList.isEmpty();
     }
+
     public void resetMobList() {
         mobList.clear();
         MachineUtils.applyContents(this, contents -> {
             if (contents instanceof ItemStack item) {
                 if (item.is(MachineBlocks.POWERED_SPAWNER.asItem()) && item.hasTag()) {
-                    var mob = item.getTag().getCompound("BlockEntityTag").getCompound("EntityStorage").getCompound("Entity").getString("id");
-                    if(!mobList.contains(mob)){
+                    var mob = item.getTag().getCompound("BlockEntityTag").getCompound("EntityStorage")
+                            .getCompound("Entity").getString("id");
+                    if (!mobList.contains(mob)) {
                         mobList.add(mob);
                     }
                 }
             }
         }, ItemRecipeCapability.CAP, IO.IN);
     }
-    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe){
+
+    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         ServerLevel level = (ServerLevel) machine.getLevel();
-        var newrecipe = GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK).applyModifier(machine,recipe.copy());
-        if(machine instanceof SlaughterHouseMachine smachine && newrecipe != null) {
+        var newrecipe = GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK)
+                .applyModifier(machine, recipe.copy());
+        if (machine instanceof SlaughterHouseMachine smachine && newrecipe != null) {
             smachine.resetWeapon();
             smachine.resetMobList();
             if (!smachine.mobList.isEmpty()) {
@@ -207,25 +220,31 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
                         } else {
                             health += livingEntity.getMaxHealth();
                         }
-                        var enchantInfluence = EnchantmentHelper.getDamageBonus(smachine.hostWeapon, livingEntity.getMobType());
-                        totaltime += health / ((smachine.damagePerSecond + enchantInfluence) * repeatTimes) * ticksPerSecond;
+                        var enchantInfluence = EnchantmentHelper.getDamageBonus(smachine.hostWeapon,
+                                livingEntity.getMobType());
+                        totaltime += health / ((smachine.damagePerSecond + enchantInfluence) * repeatTimes) *
+                                ticksPerSecond;
                         totalExperience += livingEntity.getExperienceReward() * 20;
 
                         if (mob.equals("minecraft:wither")) {
-                            itemList.add(new Content(SizedIngredient.create(Items.NETHER_STAR.getDefaultInstance()), 1, 1, 0));
+                            itemList.add(new Content(SizedIngredient.create(Items.NETHER_STAR.getDefaultInstance()), 1,
+                                    1, 0));
                             continue;
                         }
                         var fakePlayer = smachine.getFakePlayer(level);
-                        var loottable = Objects.requireNonNull(level.getServer()).getLootData().getLootTable(ResourceLocation.tryParse(mob.split(":")[0] + ":entities/" + mob.split(":")[1]));
+                        var loottable = Objects.requireNonNull(level.getServer()).getLootData().getLootTable(
+                                ResourceLocation.tryParse(mob.split(":")[0] + ":entities/" + mob.split(":")[1]));
                         var lootparams = new LootParams.Builder((ServerLevel) machine.getLevel())
                                 .withParameter(LootContextParams.LAST_DAMAGE_PLAYER, fakePlayer)
                                 .withParameter(LootContextParams.TOOL, smachine.hostWeapon)
                                 .withParameter(LootContextParams.THIS_ENTITY, mobentity)
-                                .withParameter(LootContextParams.DAMAGE_SOURCE, new DamageSources(level.getServer().registryAccess()).mobAttack(fakePlayer))
+                                .withParameter(LootContextParams.DAMAGE_SOURCE,
+                                        new DamageSources(level.getServer().registryAccess()).mobAttack(fakePlayer))
                                 .withParameter(LootContextParams.ORIGIN, machine.getPos().getCenter())
                                 .withParameter(LootContextParams.KILLER_ENTITY, fakePlayer)
                                 .withParameter(LootContextParams.BLOCK_STATE, machine.getBlockState())
-                                .withParameter(LootContextParams.BLOCK_ENTITY, machine.getLevel().getBlockEntity(machine.getPos()))
+                                .withParameter(LootContextParams.BLOCK_ENTITY,
+                                        machine.getLevel().getBlockEntity(machine.getPos()))
                                 .withParameter(LootContextParams.DIRECT_KILLER_ENTITY, fakePlayer)
                                 .withParameter(LootContextParams.EXPLOSION_RADIUS, 0F)
                                 .create(loottable.getParamSet());
@@ -239,19 +258,26 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
                 }
                 var modifier = ContentModifier.multiplier(repeatTimes);
                 newrecipe.outputs.put(ItemRecipeCapability.CAP, itemList);
-                newrecipe.outputs.put(FluidRecipeCapability.CAP, List.of(new Content(FluidIngredient.of(new FluidStack(EIOFluids.XP_JUICE.get().getSource(), totalExperience)), 1, 1, 0)));
+                newrecipe.outputs.put(FluidRecipeCapability.CAP,
+                        List.of(new Content(
+                                FluidIngredient
+                                        .of(new FluidStack(EIOFluids.XP_JUICE.get().getSource(), totalExperience)),
+                                1, 1, 0)));
                 newrecipe.duration = (int) totaltime * repeatTimes;
                 modifier.applyContents(newrecipe.outputs);
             }
         }
         return recipe1 -> newrecipe;
     }
+
     @Override
     public void addDisplayText(@NotNull List<Component> textList) {
         super.addDisplayText(textList);
         var mobName = mobList.stream().map(mob -> EntityType.byString(mob).get().getDescription().getString()).toList();
-        textList.add(textList.size(), Component.translatable("ctnh.multiblock.slaughter_house.info.mobcount", mobList.size(),mobName));
+        textList.add(textList.size(),
+                Component.translatable("ctnh.multiblock.slaughter_house.info.mobcount", mobList.size(), mobName));
     }
+
     @Override
     public ManagedFieldHolder getFieldHolder() {
         return MANAGED_FIELD_HOLDER;

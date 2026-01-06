@@ -1,14 +1,17 @@
 package io.github.cpearl0.ctnhcore.common.block;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+
 import com.gregtechceu.gtceu.api.block.IFusionCasingType;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.block.FusionCasingBlock;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import lombok.Getter;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.block.Block;
+
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
 import static com.gregtechceu.gtceu.api.GTValues.LuV;
@@ -54,7 +57,8 @@ public class CTNHFusionCasingType extends FusionCasingBlock {
         };
     }
 
-    public enum CasingType implements IFusionCasingType, StringRepresentable {;
+    public enum CasingType implements IFusionCasingType, StringRepresentable {
+        ;
 
         private final String name;
         @Getter

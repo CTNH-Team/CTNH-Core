@@ -15,19 +15,23 @@ import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.machine.multiblock.generator.LargeCombustionEngineMachine;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
+
 import com.lowdragmc.lowdraglib.side.fluid.FluidHelper;
-import lombok.Getter;
+
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.fluids.FluidStack;
+
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-
 public class ChemicalGeneratorMachine extends WorkableElectricMultiblockMachine {
-    private static final FluidStack OXYGEN_STACK = GTMaterials.Oxygen.getFluid((int) (20 * FluidHelper.getBucket() / 1000));
+
+    private static final FluidStack OXYGEN_STACK = GTMaterials.Oxygen
+            .getFluid((int) (20 * FluidHelper.getBucket() / 1000));
     private static final FluidStack LIQUID_OXYGEN_STACK = GTMaterials.Oxygen.getFluid(FluidStorageKeys.LIQUID,
-            (int)(80 * FluidHelper.getBucket() / 1000));
+            (int) (80 * FluidHelper.getBucket() / 1000));
 
     @Getter
     private final int tier;
@@ -57,6 +61,7 @@ public class ChemicalGeneratorMachine extends WorkableElectricMultiblockMachine 
     protected GTRecipe getBoostRecipe() {
         return GTRecipeBuilder.ofRaw().inputFluids(isExtreme() ? LIQUID_OXYGEN_STACK : OXYGEN_STACK).buildRawRecipe();
     }
+
     public static ModifierFunction recipeModifier(@NotNull MetaMachine machine, @NotNull GTRecipe recipe) {
         if (!(machine instanceof ChemicalGeneratorMachine engineMachine)) {
             return RecipeModifier.nullWrongType(LargeCombustionEngineMachine.class, machine);
@@ -77,6 +82,7 @@ public class ChemicalGeneratorMachine extends WorkableElectricMultiblockMachine 
         }
         return ModifierFunction.NULL;
     }
+
     protected double getProductionBoost() {
         if (!isOxygenBoosted) return 1;
         return isExtreme() ? 2.0 : 1.5;
@@ -89,7 +95,8 @@ public class ChemicalGeneratorMachine extends WorkableElectricMultiblockMachine 
         if ((totalContinuousRunningTime == 1 || totalContinuousRunningTime % 20 == 0) && isBoostAllowed()) {
             var boosterRecipe = getBoostRecipe();
             this.isOxygenBoosted = RecipeHelper.matchRecipe(this, boosterRecipe).isSuccess() &&
-                    RecipeHelper.handleRecipeIO(this, boosterRecipe, IO.IN, this.recipeLogic.getChanceCaches()).isSuccess();
+                    RecipeHelper.handleRecipeIO(this, boosterRecipe, IO.IN, this.recipeLogic.getChanceCaches())
+                            .isSuccess();
         }
         return value;
     }

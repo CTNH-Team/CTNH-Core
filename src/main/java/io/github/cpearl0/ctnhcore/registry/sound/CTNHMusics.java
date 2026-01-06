@@ -4,5 +4,7 @@ import net.minecraft.sounds.Music;
 import net.minecraft.sounds.Musics;
 
 public class CTNHMusics {
-    public static final Music ASTRAL_BGM = Musics.createGameMusic(CTNHSoundEvents.AMBIENT_ASTRAL.getHolder().orElseThrow());
+
+    public static final Music ASTRAL_BGM = Musics
+            .createGameMusic(CTNHSoundEvents.AMBIENT_ASTRAL.getHolder().orElseThrow());
 }

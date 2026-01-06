@@ -1,5 +1,9 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import io.github.cpearl0.ctnhcore.api.machine.feature.ICoilMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ChemicalPlantMachine;
+import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
+
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IOverclockMachine;
@@ -13,10 +17,9 @@ import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
-import io.github.cpearl0.ctnhcore.api.machine.feature.ICoilMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ChemicalPlantMachine;
-import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
+
 import net.minecraft.Util;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Function;
@@ -24,17 +27,17 @@ import java.util.function.Function;
 import static com.gregtechceu.gtceu.api.recipe.OverclockingLogic.getCoilEUtDiscount;
 
 public class CTNHRecipeModifiers {
-    public static final ModifierFunction accurateParallel(MetaMachine machine,GTRecipe recipe,int parallel) {
-        var maxParallel = ParallelLogic.getParallelAmount(machine,recipe,parallel);
-        if(recipe.hasTick()) {
+
+    public static final ModifierFunction accurateParallel(MetaMachine machine, GTRecipe recipe, int parallel) {
+        var maxParallel = ParallelLogic.getParallelAmount(machine, recipe, parallel);
+        if (recipe.hasTick()) {
             return ModifierFunction.builder()
                     .parallels(maxParallel)
                     .inputModifier(ContentModifier.multiplier(maxParallel))
                     .outputModifier(ContentModifier.multiplier(maxParallel))
                     .eutMultiplier(maxParallel)
                     .build();
-        }
-        else {
+        } else {
             return ModifierFunction.builder()
                     .parallels(maxParallel)
                     .inputModifier(ContentModifier.multiplier(maxParallel))
@@ -44,7 +47,8 @@ public class CTNHRecipeModifiers {
     }
 
     public static @NotNull ModifierFunction ebfOverclock(@NotNull MetaMachine machine, @NotNull GTRecipe recipe) {
-        if (!(machine instanceof ICoilMachine coilMachine) || !(machine instanceof WorkableElectricMultiblockMachine workableElectricMultiblockMachine)) {
+        if (!(machine instanceof ICoilMachine coilMachine) ||
+                !(machine instanceof WorkableElectricMultiblockMachine workableElectricMultiblockMachine)) {
             return RecipeModifier.nullWrongType(CoilWorkableElectricMultiblockMachine.class, machine);
         }
 
@@ -72,7 +76,11 @@ public class CTNHRecipeModifiers {
     public static final RecipeModifier GCYM_REDUCTION = (machine, recipe) -> CTNHRecipeModifiers
             .reduction(machine, recipe, 0.8, 0.6);
 
-    public static final RecipeModifier COIL_PARALLEL = (machine, recipe) -> CTNHRecipeModifiers.accurateParallel(machine,recipe,Math.min(2147483647, (int) Math.pow(2, ((double) ((CoilWorkableElectricMultiblockMachine) machine).getCoilType().getCoilTemperature() / 900))));
+    public static final RecipeModifier COIL_PARALLEL = (machine, recipe) -> CTNHRecipeModifiers.accurateParallel(
+            machine, recipe,
+            Math.min(2147483647, (int) Math.pow(2,
+                    ((double) ((CoilWorkableElectricMultiblockMachine) machine).getCoilType().getCoilTemperature() /
+                            900))));
 
     public static final Function<OverclockingLogic, RecipeModifier> MT_ELECTRIC_OVERCLOCK = Util
             .memoize(logic -> (machine, recipe) -> {
@@ -84,7 +92,8 @@ public class CTNHRecipeModifiers {
             });
 
     public static ModifierFunction chemicalPlantModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
-        if (!(machine instanceof IMultiController multiController) || !multiController.isFormed()) return ModifierFunction.IDENTITY;
+        if (!(machine instanceof IMultiController multiController) || !multiController.isFormed())
+            return ModifierFunction.IDENTITY;
         if (machine instanceof ChemicalPlantMachine chemicalPlantMachine) {
             var speedMultiplier = 100.0 / (100.0 + (chemicalPlantMachine.getSpeedMultiplier()));
             var energyConsumeMultiplier = 1;
@@ -92,7 +101,7 @@ public class CTNHRecipeModifiers {
 
             if (parallels == 1 && speedMultiplier == 1.0 && energyConsumeMultiplier == 1.0)
                 return ModifierFunction.IDENTITY;
-            return  ModifierFunction.builder()
+            return ModifierFunction.builder()
                     .modifyAllContents(ContentModifier.multiplier(parallels))
                     .eutMultiplier(parallels * energyConsumeMultiplier)
                     .durationMultiplier(speedMultiplier)
@@ -101,6 +110,7 @@ public class CTNHRecipeModifiers {
         }
         return ModifierFunction.IDENTITY;
     }
+
     public static ModifierFunction superEbfOverclock(MetaMachine machine, @NotNull GTRecipe recipe) {
         if (machine instanceof CoilWorkableElectricMultiblockMachine coilMachine) {
             final var blastFurnaceTemperature = coilMachine.getCoilType().getCoilTemperature() +
@@ -117,13 +127,16 @@ public class CTNHRecipeModifiers {
                     .durationMultiplier(0.5)
                     .build();
 
-            OverclockingLogic logic = (p, v) -> OverclockingLogic.heatingCoilOC(p, v, recipeTemp, blastFurnaceTemperature);
+            OverclockingLogic logic = (p, v) -> OverclockingLogic.heatingCoilOC(p, v, recipeTemp,
+                    blastFurnaceTemperature);
             var oc = logic.getModifier(machine, recipe, coilMachine.getOverclockVoltage());
             return oc.compose(discount);
         }
         return ModifierFunction.IDENTITY;
     }
-    private static ModifierFunction reduction(MetaMachine machine, @NotNull GTRecipe recipe, double duration, double eut) {
+
+    private static ModifierFunction reduction(MetaMachine machine, @NotNull GTRecipe recipe, double duration,
+                                              double eut) {
         return ModifierFunction.builder()
                 .durationMultiplier(duration)
                 .eutMultiplier(eut)
@@ -138,6 +151,7 @@ public class CTNHRecipeModifiers {
         }
         return ModifierFunction.NULL;
     }
+
     public static ModifierFunction rocketEngine(MetaMachine machine, GTRecipe recipe) {
         ModifierFunction recipeModifier = naquadahReactor(machine, recipe);
         GTRecipe modifiedRecipe = recipeModifier.apply(recipe);

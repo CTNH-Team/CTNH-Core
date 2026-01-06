@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.data.lang.Chinese;
 import tech.vixhentx.mcmod.ctnhlib.registrate.lang.RegistrateCNLangProvider;
 
 public class OreLang {
+
     public static void init(RegistrateCNLangProvider provider) {
         initDimensionLang(provider);
         provider.add("gtceu.jei.ore_vein.chromite_vein", "铬铁矿脉");
@@ -84,9 +85,10 @@ public class OreLang {
         provider.add("gtceu.jei.ore_vein.calorite_vein_ad", "太空耐热金属矿脉");
         provider.add("gtceu.jei.ore_vein.thorium_vein_ad", "太空钍矿脉");
 
-        //provider.add("gtceu.jei.bedrock.fluid.seawater_vein_overworld", "海水矿藏");
-        //provider.add("gtceu.jei.bedrock.fluid.moon_seawater_vein", "静海矿藏");
+        // provider.add("gtceu.jei.bedrock.fluid.seawater_vein_overworld", "海水矿藏");
+        // provider.add("gtceu.jei.bedrock.fluid.moon_seawater_vein", "静海矿藏");
     }
+
     public static void initDimensionLang(RegistrateCNLangProvider provider) {
         provider.add("dimension.ad_astra:moon", "月球");
         provider.add("dimension.ad_astra:mars", "火星");

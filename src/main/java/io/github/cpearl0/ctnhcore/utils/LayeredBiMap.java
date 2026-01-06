@@ -6,8 +6,8 @@ import com.google.common.collect.ForwardingMap;
 import java.util.*;
 
 public final class LayeredBiMap<K, V>
-        extends ForwardingMap<K, V>
-        implements BiMap<K, V> {
+                               extends ForwardingMap<K, V>
+                               implements BiMap<K, V> {
 
     private final BiMap<K, V> primary;
     private final Map<K, V> fallback;
@@ -27,9 +27,7 @@ public final class LayeredBiMap<K, V>
 
             @Override
             public V get(Object key) {
-                return primary.containsKey(key)
-                        ? primary.get(key)
-                        : fallback.get(key);
+                return primary.containsKey(key) ? primary.get(key) : fallback.get(key);
             }
 
             @Override
@@ -87,8 +85,8 @@ public final class LayeredBiMap<K, V>
     // ================= Inverse =================
 
     private final class Inverse
-            extends ForwardingMap<V, K>
-            implements BiMap<V, K> {
+                                extends ForwardingMap<V, K>
+                                implements BiMap<V, K> {
 
         @Override
         protected Map<V, K> delegate() {
@@ -110,8 +108,7 @@ public final class LayeredBiMap<K, V>
 
                 @Override
                 public boolean containsKey(Object value) {
-                    return primary.inverse().containsKey(value)
-                            || fallback.containsValue(value);
+                    return primary.inverse().containsKey(value) || fallback.containsValue(value);
                 }
 
                 @Override
@@ -161,5 +158,3 @@ public final class LayeredBiMap<K, V>
         }
     }
 }
-
-

@@ -3,10 +3,13 @@ package io.github.cpearl0.ctnhcore.utils;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.utils.Position;
 import com.lowdragmc.lowdraglib.utils.Size;
+
 import net.minecraft.client.gui.GuiGraphics;
+
 import org.jetbrains.annotations.NotNull;
 
 public class VoltageBorderWidget extends Widget {
+
     private final int color;
 
     public VoltageBorderWidget(int x, int y, int width, int height, int color) {
@@ -45,8 +48,10 @@ public class VoltageBorderWidget extends Widget {
         // === 内层边框（亮色，靠近内容） ===
         graphics.fill(x + 1, y + 1, x + width - 1, y + 1 + innerThickness, innerColor); // top
         graphics.fill(x + 1, y + height - 1 - innerThickness, x + width - 1, y + height - 1, innerColor); // bottom
-        graphics.fill(x + 1, y + 1 + innerThickness, x + 1 + innerThickness, y + height - 1 - innerThickness, innerColor); // left
-        graphics.fill(x + width - 1 - innerThickness, y + 1 + innerThickness, x + width - 1, y + height - 1 - innerThickness, innerColor); // right
+        graphics.fill(x + 1, y + 1 + innerThickness, x + 1 + innerThickness, y + height - 1 - innerThickness,
+                innerColor); // left
+        graphics.fill(x + width - 1 - innerThickness, y + 1 + innerThickness, x + width - 1,
+                y + height - 1 - innerThickness, innerColor); // right
 
         // === Glow 层（只上下）===
         graphics.fill(x + 4, y + 3, x + width - 4, y + 3 + glowThickness, glowColor); // top glow
@@ -64,10 +69,10 @@ public class VoltageBorderWidget extends Widget {
         return 0xFF000000 | (r << 16) | (g << 8) | b;
     }
 
-//    @Override
-//    public boolean isMouseOver(double mouseX, double mouseY) {
-//        return false; // 永远不响应鼠标悬停、点击等事件
-//    }
+    // @Override
+    // public boolean isMouseOver(double mouseX, double mouseY) {
+    // return false; // 永远不响应鼠标悬停、点击等事件
+    // }
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {

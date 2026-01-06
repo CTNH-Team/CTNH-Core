@@ -8,22 +8,27 @@ import com.gregtechceu.gtceu.api.machine.feature.IMachineModifyDrops;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDistinctPart;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.TieredIOPartMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
+
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-import lombok.Getter;
-import lombok.Setter;
+
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.item.ItemStack;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
+
+import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class CircuitBusPartMachine extends TieredIOPartMachine implements IDistinctPart, IMachineModifyDrops {
+
     @Getter
     @Persisted
     private final NotifiableItemStackHandler inventory;
@@ -36,6 +41,7 @@ public class CircuitBusPartMachine extends TieredIOPartMachine implements IDisti
 
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(CircuitBusPartMachine.class,
             TieredIOPartMachine.MANAGED_FIELD_HOLDER);
+
     public CircuitBusPartMachine(IMachineBlockEntity holder, int tier) {
         super(holder, tier, IO.IN);
         inventory = new NotifiableItemStackHandler(this, 1, IO.IN, IO.BOTH);
@@ -56,7 +62,7 @@ public class CircuitBusPartMachine extends TieredIOPartMachine implements IDisti
         getInventory().setDistinct(isDistinct);
     }
 
-    public void setItem(ItemStack dataItem){
+    public void setItem(ItemStack dataItem) {
         inventory.setStackInSlot(0, dataItem);
     }
 
@@ -67,8 +73,7 @@ public class CircuitBusPartMachine extends TieredIOPartMachine implements IDisti
         container.addWidget(
                 new BlockableSlotWidget(getInventory(), 0, 4, 4, true, true)
                         .setIsBlocked(this::isLocked)
-                        .setBackground(GuiTextures.SLOT, GuiTextures.BACKGROUND_INVERSE)
-        );
+                        .setBackground(GuiTextures.SLOT, GuiTextures.BACKGROUND_INVERSE));
         group.addWidget(container);
 
         return group;

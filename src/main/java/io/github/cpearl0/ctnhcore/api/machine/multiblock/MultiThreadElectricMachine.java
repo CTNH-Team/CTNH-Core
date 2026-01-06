@@ -1,5 +1,9 @@
 package io.github.cpearl0.ctnhcore.api.machine.multiblock;
 
+import io.github.cpearl0.ctnhcore.api.recipe.multithread.MultiThreadRecipeLogic;
+import io.github.cpearl0.ctnhcore.api.recipe.multithread.ThreadRecipeLogic;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.AsynThreadHatchMachine;
+
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.IParallelHatch;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -7,15 +11,15 @@ import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.utils.GTUtil;
+
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
-import io.github.cpearl0.ctnhcore.api.recipe.multithread.MultiThreadRecipeLogic;
-import io.github.cpearl0.ctnhcore.api.recipe.multithread.ThreadRecipeLogic;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.AsynThreadHatchMachine;
+
 import net.minecraft.network.chat.Component;
 
 import java.util.List;
 
 public class MultiThreadElectricMachine extends WorkableElectricMultiblockMachine {
+
     public MultiThreadElectricMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
     }
@@ -30,14 +34,13 @@ public class MultiThreadElectricMachine extends WorkableElectricMultiblockMachin
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
-        if(getParts().stream().noneMatch(p -> p instanceof AsynThreadHatchMachine))
+        if (getParts().stream().noneMatch(p -> p instanceof AsynThreadHatchMachine))
             getRecipeLogic().resetConfig();
         getRecipeLogic().getAllWorkers().forEach(
                 thread -> {
-                    if(thread.getOverclockTier() == -1)
+                    if (thread.getOverclockTier() == -1)
                         thread.setOverclockTier(GTUtil.getOCTierByVoltage(getOverclockVoltage()));
-                }
-        );
+                });
     }
 
     public int threadOverclockTier = -1;
@@ -45,13 +48,12 @@ public class MultiThreadElectricMachine extends WorkableElectricMultiblockMachin
     @Override
     public int getMaxOverclockTier() {
         getRecipeLogic().getAllWorkers().stream().filter(
-                        ThreadRecipeLogic::isModifying
-                )
+                ThreadRecipeLogic::isModifying)
                 .findFirst()
                 .map(ThreadRecipeLogic::getOverclockTier)
                 .ifPresent(t -> threadOverclockTier = t);
 
-        if(threadOverclockTier >= 0 && threadOverclockTier <= 30)
+        if (threadOverclockTier >= 0 && threadOverclockTier <= 30)
             return Math.min(threadOverclockTier, getTier());
         else
             return getTier();
@@ -60,13 +62,12 @@ public class MultiThreadElectricMachine extends WorkableElectricMultiblockMachin
     @Override
     public long getOverclockVoltage() {
         getRecipeLogic().getAllWorkers().stream().filter(
-                        ThreadRecipeLogic::isModifying
-                )
+                ThreadRecipeLogic::isModifying)
                 .findFirst()
                 .map(ThreadRecipeLogic::getOverclockTier)
                 .ifPresent(t -> threadOverclockTier = t);
 
-        if(threadOverclockTier >= 0 && threadOverclockTier <= 30)
+        if (threadOverclockTier >= 0 && threadOverclockTier <= 30)
             return Math.min(GTValues.VEX[threadOverclockTier], super.getOverclockVoltage());
         else
             return super.getOverclockVoltage();
@@ -79,16 +80,13 @@ public class MultiThreadElectricMachine extends WorkableElectricMultiblockMachin
 
     @Override
     public void addDisplayText(List<Component> textList) {
-
         var builder = MultiblockDisplayText.builder(textList, isFormed())
                 .setWorkingStatus(recipeLogic.isWorkingEnabled(), recipeLogic.isActive())
                 .addEnergyUsageLine(energyContainer)
                 .addEnergyTierLine(tier)
                 .addWorkingStatusLine();
-        if(isFormed)
-        {
-            for(int i=0; i<maxThreads; i++)
-            {
+        if (isFormed) {
+            for (int i = 0; i < maxThreads; i++) {
                 var thread = getRecipeLogic().getAllWorkers().get(i);
                 int numParallels;
                 int batchParallels;
@@ -104,18 +102,17 @@ public class MultiThreadElectricMachine extends WorkableElectricMultiblockMachin
                     batchParallels = 0;
                 }
                 String key;
-                if(!thread.isEnabled()){
+                if (!thread.isEnabled()) {
                     key = "§c已禁用§r";
-                }
-                else if (!thread.isWorkingEnabled()) {
+                } else if (!thread.isWorkingEnabled()) {
                     key = "gtceu.multiblock.work_paused";
                 } else if (thread.isActive()) {
                     key = "gtceu.multiblock.running";
                 } else {
-                    key= "gtceu.multiblock.idling";
+                    key = "gtceu.multiblock.idling";
                 }
                 textList.add(Component.literal("-----------------------------"));
-                textList.add(Component.translatable("§b线程§%s：§r", i+1).append(Component.translatable(key)));
+                textList.add(Component.translatable("§b线程§%s：§r", i + 1).append(Component.translatable(key)));
                 builder.addMachineModeLine(getRecipeType(), getRecipeTypes().length > 1)
                         .addParallelsLine(numParallels, exact)
                         .addBatchModeLine(isBatchEnabled(), batchParallels)
@@ -124,9 +121,7 @@ public class MultiThreadElectricMachine extends WorkableElectricMultiblockMachin
             }
         }
 
-
         getDefinition().getAdditionalDisplay().accept(this, textList);
-
     }
 
     @Override
@@ -141,7 +136,7 @@ public class MultiThreadElectricMachine extends WorkableElectricMultiblockMachin
 
     @Override
     public MultiThreadRecipeLogic getRecipeLogic() {
-        return (MultiThreadRecipeLogic)super.getRecipeLogic();
+        return (MultiThreadRecipeLogic) super.getRecipeLogic();
     }
 
     @Override
@@ -149,8 +144,8 @@ public class MultiThreadElectricMachine extends WorkableElectricMultiblockMachin
         super.notifyStatusChanged(oldStatus, getRecipeLogic().getStatus());
     }
 
-    public int getWorkingThreadNum(){
-        return (int)getRecipeLogic().getAllWorkers().stream()
+    public int getWorkingThreadNum() {
+        return (int) getRecipeLogic().getAllWorkers().stream()
                 .filter(RecipeLogic::isWorking)
                 .count();
     }

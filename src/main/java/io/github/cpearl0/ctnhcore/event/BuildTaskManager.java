@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.event;
 // BuildTaskManager.java
 
 import io.github.cpearl0.ctnhcore.api.Pattern.AsynBlockPattern;
+
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -15,6 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class BuildTaskManager {
+
     private static final BuildTaskManager INSTANCE = new BuildTaskManager();
     private final Map<UUID, AsynBlockPattern> activeTasks = new ConcurrentHashMap<>();
     private static final int MAX_TICK_TIME_NS = 2_000_000; // 2ms per tick
@@ -34,12 +36,12 @@ public class BuildTaskManager {
         }
     }
 
-//    @SubscribeEvent
-//    public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
-//        if (event.getEntity() instanceof ServerPlayer) {
-//            getInstance().cancelPlayerTasks(event.getEntity().getUUID());
-//        }
-//    }
+    // @SubscribeEvent
+    // public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
+    // if (event.getEntity() instanceof ServerPlayer) {
+    // getInstance().cancelPlayerTasks(event.getEntity().getUUID());
+    // }
+    // }
 
     private void tickAllTasks() {
         long startTime = System.nanoTime();
@@ -57,10 +59,10 @@ public class BuildTaskManager {
         }
     }
 
-//    private void cancelPlayerTasks(UUID playerId) {
-//        AsynBlockPattern task = activeTasks.remove(playerId);
-//        if (task != null) {
-//            task.onCancelled();
-//        }
-//    }
+    // private void cancelPlayerTasks(UUID playerId) {
+    // AsynBlockPattern task = activeTasks.remove(playerId);
+    // if (task != null) {
+    // task.onCancelled();
+    // }
+    // }
 }

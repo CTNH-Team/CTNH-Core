@@ -1,21 +1,25 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps;
+import io.github.cpearl0.ctnhcore.api.machine.feature.IDynamicCasing;
+
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
+
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps;
-import io.github.cpearl0.ctnhcore.api.machine.feature.IDynamicCasing;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.state.BlockState;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
@@ -29,6 +33,7 @@ import static java.lang.Math.min;
 
 @Prefix("info.multiblock.chemical_plant")
 public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine implements IDynamicCasing {
+
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             ChemicalPlantMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     @Persisted
@@ -43,6 +48,7 @@ public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine impl
     @Persisted
     @DescSynced
     public int voltageTier = 0;
+
     public ChemicalPlantMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
     }
@@ -55,12 +61,12 @@ public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine impl
         this.casingTier = context.getOrDefault("PlantCasing", 0);
         this.pipeTier = context.getOrDefault("Pipe", 0);
         this.voltageTier = context.getOrDefault("MachineCasing", 0);
-//        var LOGGER = CTNHCore.LOGGER;
-//        LOGGER.debug("调试信息 - 机器参数:");
-//        LOGGER.debug("线圈等级: {}", this.coilTier);
-//        LOGGER.debug("外壳等级: {}", this.casingTier);
-//        LOGGER.debug("管道等级: {}", this.pipeTier);
-//        LOGGER.debug("电压等级: {}", this.voltageTier);
+        // var LOGGER = CTNHCore.LOGGER;
+        // LOGGER.debug("调试信息 - 机器参数:");
+        // LOGGER.debug("线圈等级: {}", this.coilTier);
+        // LOGGER.debug("外壳等级: {}", this.casingTier);
+        // LOGGER.debug("管道等级: {}", this.pipeTier);
+        // LOGGER.debug("电压等级: {}", this.voltageTier);
     }
 
     @Override
@@ -71,12 +77,15 @@ public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine impl
         casingTier = 0;
         voltageTier = 0;
     }
+
     public int getSpeedMultiplier() {
         return coilTier * 50;
     }
+
     public int getMaxParallel() {
         return Math.max(((pipeTier) - 1) * 2 + 1, 1);
     }
+
     @Override
     public long getMaxVoltage() {
         return GTValues.V[voltageTier];
@@ -89,7 +98,7 @@ public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine impl
         }
         var modified = super.getRealRecipe(recipe);
         if (casingTier > 0) {
-            var copied = recipe == modified? modified.copy() : modified;
+            var copied = recipe == modified ? modified.copy() : modified;
             if (copied != null) {
                 copied.duration = (int) (copied.duration / (1 + coilTier * 0.5));
             }
@@ -115,30 +124,29 @@ public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine impl
     @CN("§6催化剂消耗概率: %s%%")
     @EN("§6Catalyst consumption probability:\n%s%%")
     static Lang chance;
+
     @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
         if (isFormed()) {
             textList.add(
-                    coil.translate(coilTier * 50)
-            );
+                    coil.translate(coilTier * 50));
             textList.add(
-                    parallel.translate(pipeTier * 2)
-            );
+                    parallel.translate(pipeTier * 2));
             textList.add(
-                    tier.translate(GTValues.VNF[voltageTier])
-            );
+                    tier.translate(GTValues.VNF[voltageTier]));
             textList.add(
-                    chance.translate(getChance())
-            );
+                    chance.translate(getChance()));
         }
     }
+
     public int getChance() {
         return (int) min((100 - 20 * (pipeTier - 1)), 100.0);
     }
 
     @Override
-    public @NotNull BlockState getBlockAppearance(BlockState state, BlockAndTintGetter level, BlockPos pos, Direction side, BlockState sourceState, BlockPos sourcePos) {
+    public @NotNull BlockState getBlockAppearance(BlockState state, BlockAndTintGetter level, BlockPos pos,
+                                                  Direction side, BlockState sourceState, BlockPos sourcePos) {
         return getAppearance();
     }
 
@@ -154,8 +162,10 @@ public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine impl
     }
 
     @Override
-    public @Nullable BlockState getPartAppearance(IMultiPart part, Direction side, BlockState sourceState, BlockPos sourcePos) {
+    public @Nullable BlockState getPartAppearance(IMultiPart part, Direction side, BlockState sourceState,
+                                                  BlockPos sourcePos) {
         var appearanceBlock = CTNHBlockMaps.CasingBlock.get(casingTier);
-        return appearanceBlock != null ? appearanceBlock.get().defaultBlockState() : super.getPartAppearance(part, side, sourceState, sourcePos);
+        return appearanceBlock != null ? appearanceBlock.get().defaultBlockState() :
+                super.getPartAppearance(part, side, sourceState, sourcePos);
     }
 }

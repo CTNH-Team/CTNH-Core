@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.api.jade;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.recipe.multithread.MultiThreadRecipeLogic;
+
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.blockentity.MetaMachineBlockEntity;
 import com.gregtechceu.gtceu.api.capability.GTCapabilityHelper;
@@ -14,9 +17,7 @@ import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultib
 import com.gregtechceu.gtceu.integration.jade.provider.CapabilityBlockProvider;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
-import com.mo_guang.ctpp.common.data.recipe.builder.CTPPRecipeHelper;
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.api.recipe.multithread.MultiThreadRecipeLogic;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -27,6 +28,8 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+
+import com.mo_guang.ctpp.common.data.recipe.builder.CTPPRecipeHelper;
 import org.jetbrains.annotations.Nullable;
 import snownee.jade.api.BlockAccessor;
 import snownee.jade.api.ITooltip;
@@ -48,8 +51,7 @@ public class MultithreadRecipeLogicProvider extends CapabilityBlockProvider<Reci
     protected void write(CompoundTag data, RecipeLogic capability) {
         data.putBoolean("Working", capability.isWorking());
         var recipeInfo = new CompoundTag();
-        if(capability instanceof MultiThreadRecipeLogic m)
-        {
+        if (capability instanceof MultiThreadRecipeLogic m) {
             long totalEU = 0;
             long voltage = 0;
             boolean isInput = false;
@@ -65,8 +67,7 @@ public class MultithreadRecipeLogicProvider extends CapabilityBlockProvider<Reci
             recipeInfo.putLong("EUt", totalEU);
             recipeInfo.putLong("voltage", voltage);
             recipeInfo.putBoolean("isInput", isInput);
-        }
-        else {
+        } else {
             var recipe = capability.getLastRecipe();
             if (recipe != null) {
                 var EUt = RecipeHelper.getRealEUtWithIO(recipe);
@@ -78,7 +79,6 @@ public class MultithreadRecipeLogicProvider extends CapabilityBlockProvider<Reci
                 recipeInfo.putFloat("Stress", stress);
             }
         }
-
 
         if (!recipeInfo.isEmpty()) {
             data.put("Recipe", recipeInfo);
@@ -150,8 +150,8 @@ public class MultithreadRecipeLogicProvider extends CapabilityBlockProvider<Reci
 
                         }
                         text.append(Component.translatable("gtceu.universal.padded_parentheses",
-                                        (Component.translatable("gtceu.recipe.eu.total",
-                                                FormattingUtil.formatNumbers(EUt))))
+                                (Component.translatable("gtceu.recipe.eu.total",
+                                        FormattingUtil.formatNumbers(EUt))))
                                 .withStyle(ChatFormatting.WHITE));
                     }
 
@@ -163,11 +163,12 @@ public class MultithreadRecipeLogicProvider extends CapabilityBlockProvider<Reci
                 }
 
                 var stress = Math.abs(recipeInfo.getFloat("Stress"));
-                var isInputStress = recipeInfo.getFloat("Stress")>0;
-                if(stress != 0){
-                    tooltip.add(Component.translatable("ctpp.top.stress_" + (isInputStress?"consumption":"production"))
-                            .append(Component.literal(FormattingUtil.formatNumbers(stress) + " su").withStyle(ChatFormatting.AQUA))
-                    );
+                var isInputStress = recipeInfo.getFloat("Stress") > 0;
+                if (stress != 0) {
+                    tooltip.add(
+                            Component.translatable("ctpp.top.stress_" + (isInputStress ? "consumption" : "production"))
+                                    .append(Component.literal(FormattingUtil.formatNumbers(stress) + " su")
+                                            .withStyle(ChatFormatting.AQUA)));
                 }
             }
         }

@@ -4,11 +4,14 @@ import com.gregtechceu.gtceu.api.fluids.PropertyFluidFilter;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.MultiblockTankMachine;
+
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.RequireRerender;
-import lombok.Getter;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+
+import lombok.Getter;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
@@ -16,8 +19,10 @@ import java.util.List;
 import java.util.Set;
 
 public class LargeBottleMachine extends MultiblockTankMachine {
-    public LargeBottleMachine(IMachineBlockEntity holder, int capacity, @Nullable PropertyFluidFilter filter, Object... args){
-        super(holder,capacity,filter,args);
+
+    public LargeBottleMachine(IMachineBlockEntity holder, int capacity, @Nullable PropertyFluidFilter filter,
+                              Object... args) {
+        super(holder, capacity, filter, args);
     }
 
     @Getter
@@ -124,14 +129,13 @@ public class LargeBottleMachine extends MultiblockTankMachine {
             clockWise = Direction.UP;
             counterClockWise = Direction.DOWN;
 
-
         }
 
         BlockPos pos = getPos();
         BlockPos center = pos.relative(up);
         var capacity = getTank().getTankCapacity(0);
         var amount = getTank().getFluidInTank(0).getAmount();
-        var height = 12 * (double)amount / capacity;
+        var height = 12 * (double) amount / capacity;
 
         for (int i = 0; i < 5; i++) {
             center = center.relative(back);

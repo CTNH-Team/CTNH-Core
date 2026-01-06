@@ -1,12 +1,15 @@
 package io.github.cpearl0.ctnhcore.common.item;
 
+import io.github.cpearl0.ctnhcore.client.renderer.TurbineRotorRender;
+
 import com.lowdragmc.lowdraglib.client.renderer.IItemRendererProvider;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
-import io.github.cpearl0.ctnhcore.client.renderer.TurbineRotorRender;
-import lombok.NonNull;
+
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+
+import lombok.NonNull;
 
 public class TurbineRotorItem extends BlockItem implements IItemRendererProvider {
 
@@ -18,5 +21,4 @@ public class TurbineRotorItem extends BlockItem implements IItemRendererProvider
     public @NonNull IRenderer getRenderer(ItemStack itemStack) {
         return TurbineRotorRender.INSTANCE;
     }
-
 }

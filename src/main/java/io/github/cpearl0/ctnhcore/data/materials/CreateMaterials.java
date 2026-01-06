@@ -1,7 +1,8 @@
 package io.github.cpearl0.ctnhcore.data.materials;
 
-import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+
+import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.EXT2_METAL;
@@ -9,6 +10,7 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class CreateMaterials {
+
     public static void init() {
         AndesiteAlloy = REGISTRATE.material(CTNHCore.id("andesite_alloy"))
                 .cnlang("安山合金")

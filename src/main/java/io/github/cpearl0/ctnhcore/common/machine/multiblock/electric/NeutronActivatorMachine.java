@@ -1,5 +1,11 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.HighSpeedPipeBlock;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.NeutronAcceleratorMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.NeutronSensorMachine;
+import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
+import io.github.cpearl0.ctnhcore.registry.CTNHItems;
+
 import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
@@ -19,23 +25,21 @@ import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.ItemBusPartMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
+
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.widget.*;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.HighSpeedPipeBlock;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.NeutronAcceleratorMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.NeutronSensorMachine;
-import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
-import io.github.cpearl0.ctnhcore.registry.CTNHItems;
-import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.crafting.Ingredient;
+
+import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
 import org.jetbrains.annotations.Nullable;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
@@ -47,8 +51,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Prefix("info.multiblock.neutron_activator")
-public class NeutronActivatorMachine extends WorkableMultiblockMachine implements IFancyUIMachine, IDisplayUIMachine, IExplosionMachine {
-    public ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(NeutronActivatorMachine.class, WorkableMultiblockMachine.MANAGED_FIELD_HOLDER);
+public class NeutronActivatorMachine extends WorkableMultiblockMachine
+                                     implements IFancyUIMachine, IDisplayUIMachine, IExplosionMachine {
+
+    public ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(NeutronActivatorMachine.class,
+            WorkableMultiblockMachine.MANAGED_FIELD_HOLDER);
     public static int K = 1000;
     public static int M = 1000000;
     public static int MAX_ENERGY = 1200 * M;
@@ -61,12 +68,16 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine implement
 
     @Persisted
     private boolean isWorking = false;
-    private ConditionalSubscriptionHandler neutronEnergySubs = new ConditionalSubscriptionHandler(this, this::neutronEnergyUpdate, () -> isFormed);
-    private ConditionalSubscriptionHandler moderateSubs = new ConditionalSubscriptionHandler(this, this::moderateUpdate, () -> eV > 0);
-    private ConditionalSubscriptionHandler absorptionSubs = new ConditionalSubscriptionHandler(this, this::absorptionUpdate, () -> eV > 0);
+    private ConditionalSubscriptionHandler neutronEnergySubs = new ConditionalSubscriptionHandler(this,
+            this::neutronEnergyUpdate, () -> isFormed);
+    private ConditionalSubscriptionHandler moderateSubs = new ConditionalSubscriptionHandler(this, this::moderateUpdate,
+            () -> eV > 0);
+    private ConditionalSubscriptionHandler absorptionSubs = new ConditionalSubscriptionHandler(this,
+            this::absorptionUpdate, () -> eV > 0);
     private HashSet<NeutronSensorMachine> sensorMachines = null;
     private HashSet<ItemBusPartMachine> busMachines = null;
     private HashSet<NeutronAcceleratorMachine> acceleratorMachines = null;
+
     public NeutronActivatorMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
     }
@@ -89,9 +100,11 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine implement
 
             for (var handlerList : part.getRecipeHandlers()) {
                 if (!handlerList.isValid(io)) continue;
-                traitSubscriptions.add(handlerList.subscribe(neutronEnergySubs::updateSubscription, EURecipeCapability.CAP));
+                traitSubscriptions
+                        .add(handlerList.subscribe(neutronEnergySubs::updateSubscription, EURecipeCapability.CAP));
                 traitSubscriptions.add(handlerList.subscribe(moderateSubs::updateSubscription, EURecipeCapability.CAP));
-                traitSubscriptions.add(handlerList.subscribe(absorptionSubs::updateSubscription, ItemRecipeCapability.CAP));
+                traitSubscriptions
+                        .add(handlerList.subscribe(absorptionSubs::updateSubscription, ItemRecipeCapability.CAP));
             }
             if (part instanceof ItemBusPartMachine itemBusPartMachine) {
                 busMachines = (busMachines != null) ? busMachines : new HashSet<>();
@@ -116,6 +129,7 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine implement
         super.onLoad();
         moderateSubs.initialize(getLevel());
     }
+
     @Override
     public void onStructureInvalid() {
         super.onStructureInvalid();
@@ -145,7 +159,7 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine implement
 
     private void moderateUpdate() {
         if (!isWorking && getOffsetTimer() % 20 == 0L) {
-            this.eV = Math.max((eV - 72 * K),0);
+            this.eV = Math.max((eV - 72 * K), 0);
         }
         if (this.eV < 0) this.eV = 0;
         if (!isFormed() || sensorMachines == null) return;
@@ -174,8 +188,9 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine implement
         }
         if (!hasSlower) absorptionSubs.unsubscribe();
     }
+
     //////////////////////////////////////
-    //**********     GUI     ***********//
+    // ********** GUI ***********//
     //////////////////////////////////////
     @CN("当前中子动能: %deV")
     @EN("Current Neutron Kinetic Energy: %deV")
@@ -186,6 +201,7 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine implement
     @CN("耗时: %s%%")
     @EN("Efficiency: %s%%")
     static Lang efficiency;
+
     @Override
     public void addDisplayText(List<Component> textList) {
         IDisplayUIMachine.super.addDisplayText(textList);
@@ -194,11 +210,8 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine implement
                     Component.translatable(getRecipeType().registryName.toLanguageKey()).setStyle(
                             Style.EMPTY.withColor(ChatFormatting.AQUA).withHoverEvent(
                                     new HoverEvent(
-                                            HoverEvent.Action.SHOW_TEXT, Component.translatable("gtceu.gui.machinemode.title")
-                                    )
-                            )
-                    )
-            );
+                                            HoverEvent.Action.SHOW_TEXT,
+                                            Component.translatable("gtceu.gui.machinemode.title")))));
             if (!isWorkingEnabled()) {
                 textList.add(Component.translatable("gtceu.multiblock.work_paused"));
             } else if (this.isActive()) {
@@ -211,8 +224,7 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine implement
             if (recipeLogic.isWaiting()) {
                 textList.add(
                         Component.translatable("gtceu.multiblock.waiting")
-                                .setStyle(Style.EMPTY.withColor(ChatFormatting.RED))
-                );
+                                .setStyle(Style.EMPTY.withColor(ChatFormatting.RED)));
             }
             textList.add(ev.translate(processNumber(eV)));
             textList.add(height_tooltip.translate(FormattingUtil.formatNumbers(height)));
@@ -220,6 +232,7 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine implement
         }
         getDefinition().getAdditionalDisplay().accept(this, textList);
     }
+
     private String processNumber(int num) {
         var num2 = num / 1000F;
         if (num2 <= 0) {
@@ -238,15 +251,15 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine implement
         var container = new WidgetGroup(4, 4, 170, 129);
         container.addWidget(
                 new DraggableScrollableWidgetGroup(4, 4, 162, 121).setBackground(getScreenTexture())
-                        .addWidget(new LabelWidget(4, 5, self().getBlockState().getBlock().getDescriptionId())).addWidget(
+                        .addWidget(new LabelWidget(4, 5, self().getBlockState().getBlock().getDescriptionId()))
+                        .addWidget(
                                 new ComponentPanelWidget(4, 17, this::addDisplayText).setMaxWidthLimit(150)
-                                        .clickHandler(this::handleDisplayClick)
-                        )
-        );
+                                        .clickHandler(this::handleDisplayClick)));
         container.setBackground(GuiTextures.BACKGROUND_INVERSE);
         group.addWidget(container);
         return group;
     }
+
     @Override
     public ModularUI createUI(Player entityPlayer) {
         return IFancyUIMachine.super.createUI(entityPlayer);
@@ -272,8 +285,9 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine implement
             part.attachFancyTooltipsToController(this, tooltipsPanel);
         }
     }
+
     //////////////////////////////////////
-    //******   Multiblock Data   *******//
+    // ****** Multiblock Data *******//
     //////////////////////////////////////
     private double getVelocityFactor() {
         return Math.pow(0.9, Math.max((height - 4), 0));
@@ -289,7 +303,7 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine implement
     }
 
     //////////////////////////////////////
-    //******     RECIPE LOGIC    *******//
+    // ****** RECIPE LOGIC *******//
     //////////////////////////////////////
 
     @Override
@@ -299,7 +313,8 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine implement
 
     @Override
     protected @Nullable GTRecipe getRealRecipe(GTRecipe recipe) {
-        List<NeutronActivatorCondition> conditions = recipe.conditions.stream().filter(NeutronActivatorCondition.class::isInstance)
+        List<NeutronActivatorCondition> conditions = recipe.conditions.stream()
+                .filter(NeutronActivatorCondition.class::isInstance)
                 .map(NeutronActivatorCondition.class::cast)
                 .toList();
         var newRecipe = recipe.copy();
@@ -308,7 +323,8 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine implement
             var condition = conditions.get(0);
             if (eV > (condition.evRange / 10000) * 1000000 || eV < (condition.evRange % 10000) * 1000000) {
                 newRecipe.outputs.clear();
-                newRecipe.outputs.put(ItemRecipeCapability.CAP, List.of(new Content(Ingredient.of(CTNHItems.RADIOACTIVE_WASTE), 1, 1, 0)));
+                newRecipe.outputs.put(ItemRecipeCapability.CAP,
+                        List.of(new Content(Ingredient.of(CTNHItems.RADIOACTIVE_WASTE), 1, 1, 0)));
             }
         }
         return super.getRealRecipe(newRecipe);

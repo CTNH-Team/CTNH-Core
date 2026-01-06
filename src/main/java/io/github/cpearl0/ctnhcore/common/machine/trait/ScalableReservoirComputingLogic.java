@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.common.machine.trait;
 
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ScalableReservoirComputingMachine;
+import io.github.cpearl0.ctnhcore.registry.CTNHDamageTypes;
+
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
@@ -7,22 +10,22 @@ import com.gregtechceu.gtceu.api.recipe.ActionResult;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ScalableReservoirComputingMachine;
-import io.github.cpearl0.ctnhcore.registry.CTNHDamageTypes;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.Iterator;
 
+import javax.annotation.Nullable;
 
 public class ScalableReservoirComputingLogic extends RecipeLogic {
 
     ScalableReservoirComputingMachine machine;
     public LivingEntity lockedSacrifice;
+
     public ScalableReservoirComputingLogic(IRecipeLogicMachine machine) {
         super(machine);
         this.machine = (ScalableReservoirComputingMachine) machine;
@@ -40,10 +43,8 @@ public class ScalableReservoirComputingLogic extends RecipeLogic {
         if (!machine.hasCapabilityProxies()) return null;
         var iterator = recipeType.getLookup()
                 .getRecipeIterator(machine,
-                        recipe -> RecipeHelper.matchRecipe(machine, recipe).isSuccess()
-                                && RecipeHelper.matchTickRecipe(machine, recipe).isSuccess()
-                                && matchSacrifice(recipe)
-                );
+                        recipe -> RecipeHelper.matchRecipe(machine, recipe).isSuccess() &&
+                                RecipeHelper.matchTickRecipe(machine, recipe).isSuccess() && matchSacrifice(recipe));
         boolean any = false;
         while (iterator.hasNext()) {
             GTRecipe recipe = iterator.next();
@@ -64,12 +65,11 @@ public class ScalableReservoirComputingLogic extends RecipeLogic {
 
     @Override
     protected ActionResult handleRecipeIO(GTRecipe recipe, IO io) {
-        if(io == IO.OUT){
+        if (io == IO.OUT) {
             var t = getRecipeOutputCWUt(recipe);
-            if(t==machine.maxCWUt){
+            if (t == machine.maxCWUt) {
                 machine.duration += getRecipeOutputLifeDuration(recipe);
-            }
-            else {
+            } else {
                 machine.duration = getRecipeOutputLifeDuration(recipe);
                 machine.maxCWUt = t;
             }
@@ -83,23 +83,23 @@ public class ScalableReservoirComputingLogic extends RecipeLogic {
     @Override
     public void setupRecipe(GTRecipe recipe) {
         LivingEntity sacrifice = getSacrifice(recipe);
-        if(sacrifice != null) {
-            sacrifice.hurt(CTNHDamageTypes.COMPUTATION_SACRIFICE.source(machine.getLevel()),Float.MAX_VALUE);
-            if(sacrifice.isRemoved() || !sacrifice.isAlive())
+        if (sacrifice != null) {
+            sacrifice.hurt(CTNHDamageTypes.COMPUTATION_SACRIFICE.source(machine.getLevel()), Float.MAX_VALUE);
+            if (sacrifice.isRemoved() || !sacrifice.isAlive())
                 super.setupRecipe(recipe);
         }
     }
 
     @Nullable
     private LivingEntity getSacrifice(GTRecipe recipe) {
-        if(machine.getAabb() == null)return null;
-        if(lockedSacrifice == null) return null;
+        if (machine.getAabb() == null) return null;
+        if (lockedSacrifice == null) return null;
 
         EntityType<?> input = getRecipeInputSacrifice(recipe);
         if (input == null) return null;
 
-        if (lockedSacrifice.isAlive() && machine.getAabb().contains(lockedSacrifice.position())
-                && input.equals(lockedSacrifice.getType())) {
+        if (lockedSacrifice.isAlive() && machine.getAabb().contains(lockedSacrifice.position()) &&
+                input.equals(lockedSacrifice.getType())) {
             return lockedSacrifice;
         }
 
@@ -109,17 +109,20 @@ public class ScalableReservoirComputingLogic extends RecipeLogic {
     public static int getRecipeOutputCWUt(GTRecipe recipe) {
         return recipe.data.getInt("maxCWUt");
     }
+
     public static int getRecipeOutputLifeDuration(GTRecipe recipe) {
         return recipe.data.getInt("wetwareDuration");
     }
+
     @Nullable
     public static EntityType<?> getRecipeInputSacrifice(GTRecipe recipe) {
-        var loc = ResourceLocation.tryParse( recipe.data.getString("sacrifice") );
+        var loc = ResourceLocation.tryParse(recipe.data.getString("sacrifice"));
         return ForgeRegistries.ENTITY_TYPES.getValue(loc);
     }
+
     public boolean matchSacrifice(GTRecipe recipe) {
         EntityType<?> input = getRecipeInputSacrifice(recipe);
-        return input != null && lockedSacrifice != null && lockedSacrifice.isAlive()
-                && input.equals(lockedSacrifice.getType());
+        return input != null && lockedSacrifice != null && lockedSacrifice.isAlive() &&
+                input.equals(lockedSacrifice.getType());
     }
 }
