@@ -1,14 +1,10 @@
 package io.github.cpearl0.ctnhcore.api.Pattern;
 
-import com.gregtechceu.gtceu.GTCEu;
-
 import com.gregtechceu.gtceu.common.block.BoilerFireboxType;
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import net.minecraft.resources.ResourceLocation;
-
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
-import org.jetbrains.annotations.NotNull;
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.HashMap;
 import java.util.Map;

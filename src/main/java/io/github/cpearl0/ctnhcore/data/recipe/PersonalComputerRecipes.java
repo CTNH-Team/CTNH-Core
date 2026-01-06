@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
-import com.gregtechceu.gtceu.api.GTValues;
 import io.github.cpearl0.ctnhcore.common.item.ProgramItem;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
@@ -9,7 +8,8 @@ import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
-import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.api.GTValues.HV;
+import static com.gregtechceu.gtceu.api.GTValues.VA;
 
 public class PersonalComputerRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {

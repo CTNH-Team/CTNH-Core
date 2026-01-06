@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 
-import appeng.core.definitions.AEBlocks;
 import com.enderio.base.common.init.EIOBlocks;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
@@ -36,31 +35,29 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.LargeBottleMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.SlaughterHouseMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.UnderfloorHeatingMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.*;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.*;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.ChemicalGeneratorMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.Eternal_Combustion_engine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.NaqReactorMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotovoltaicPowerStationMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.IndustrialPrimitiveBlastFurnaceMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.MeadowMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.DemonWillMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.ManaLargeTurbineMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.ManaMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.ZenithMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
 import io.github.cpearl0.ctnhcore.integration.legendary.UnderfloorHeatingSystemTempModifier;
-import io.github.cpearl0.ctnhcore.registry.*;
+import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
+import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 import io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
-import vazkii.botania.common.block.BotaniaBlocks;
-import wayoftime.bloodmagic.BloodMagic;
-import wayoftime.bloodmagic.common.block.BloodMagicBlocks;
 
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -74,12 +71,9 @@ import static com.gregtechceu.gtceu.common.data.GTMaterialItems.MATERIAL_ITEMS;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.DrillingFluid;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.TungstenSteel;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.DUMMY_RECIPES;
-import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.registerLargeCombustionEngine;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
-import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.MANA_STEEL_CASING;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
-import static io.github.cpearl0.ctnhcore.utils.ModUtils.BotaniaRL;
 import static net.minecraft.world.level.block.Blocks.OAK_PLANKS;
 
 public class MultiblocksA {
@@ -424,7 +418,7 @@ public class MultiblocksA {
                             .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                             .or(abilities(PartAbility.OUTPUT_LASER).setPreviewCount(1)))
                     .where("C", Predicates.frames(GTMaterials.Naquadria))
-                    .where("D", Predicates.blocks(DEPTH_FORCE_FIELD_STABILIZING_CASING.get()))
+                    .where("D", Predicates.blocks(CTNHBlocks.CASING_NAQUADAH_BLOCK.get()))
                     .where("E", Predicates.blocks(CTNHBlocks.CASING_NAQUADAH_BLOCK.get()))
                     .where("F", Predicates.blocks(CTNHBlocks.PLASMA_COOLED_CORE.get()))
                     .where("G", Predicates.blocks(CTNHBlocks.ANNIHILATE_CORE_MKI.get()))
@@ -592,98 +586,7 @@ public class MultiblocksA {
                     GTCEu.id("block/multiblock/fusion_reactor"))
             .register();
 
-    public final static MultiblockMachineDefinition DEMON_WILL_GENERATOR = REGISTRATE.multiblock("demon_will_generator", DemonWillMachine::new)
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeTypes(CTNHRecipeTypes.DEMON_WILL_GENERATOR_RECIPE)
-            .generator(true)
-            .recipeModifiers(DemonWillMachine::recipeModifier)
-            .tooltips(Component.translatable("ctnh.multiblock.demon_will_generator.tooltip.0").withStyle(ChatFormatting.GRAY),
-                    Component.translatable("ctnh.multiblock.demon_will_generator.tooltip.01"),
-                    Component.translatable("ctnh.multiblock.demon_will_generator.tooltip.1"),
-                    Component.translatable("ctnh.multiblock.demon_will_generator.tooltip.2"),
-                    Component.translatable("ctnh.multiblock.demon_will_generator.tooltip.3"),
-                    Component.translatable("ctnh.multiblock.demon_will_generator.tooltip.4"),
-                    Component.translatable("ctnh.multiblock.demon_will_generator.tooltip.5"),
-                    Component.translatable("ctnh.multiblock.demon_will_generator.tooltip.6"))
-            .appearanceBlock(CASING_STEEL_SOLID)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "      B                   B      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "      C                   C      ", "      C                   C      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "      D                   D      ", "      C                   C      ", "      E                   E      ", "    BCECB               BCECB    ", "      C                   C      ", "      D                   D      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "      B                   B      ", "  B   F   B           B   F   B  ", "      B                   B      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "      B                   B      ", "      G                   G      ", "  C  H H  C           C  H H  C  ", "  C       C           C       C  ", "     H H                 H H     ", "      G                   G      ", "      B                   B      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "      F                   F      ", "      C                   C      ", "      I       JJJJJ       I      ", "  D  BKB  D           D  BKB  D  ", "  C  GKG  C           C  GKG  C  ", " CE B K B EC         CE B K B EC ", "BCE F K F ECB       BCE F K F ECB", "  C B K B C           C B K B C  ", "  D  GKG  D           D  GKG  D  ", "     BKB                 BKB     ", "      I                   Z      ", "      C                   C      ", "      F                   F      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "             LBLBLBL             ", "           JJJNNNNNJJJ           ", "      B       JLJLJ       B      ", "      G                   G      ", "  C  H H  C           C  H H  C  ", "  C       C           C       C  ", "     H H                 H H     ", "      G                   G      ", "      B                   B      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "          BNNN     NNNB          ", "           JLJ     JLJ           ", "                                 ", "      B                   B      ", "  B   F   B           B   F   B  ", "      B                   B      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "               BFB               ", "              E H E              ", "                                 ", "                                 ", "              FBHBF              ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "              EEEEE              ", "                                 ", "        B               B        ", "      D                   D      ", "      C       NNNNN       C      ", "     CEC                 CEC     ", "    BCECB               BCECB    ", "      C                   C      ", "      D                   D      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                H                ", "             OO   OO             ", "           FE       EF           ", "           E         E           ", "       JN               NJ       ", "        J               J        ", "             N     N             ", "      C                   C      ", "      C                   C      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                M                ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "               OOO               ", "            O       O            ", "           E         E           ", "                                 ", "       JN               NJ       ", "        L               L        ", "                                 ", "                                 ", "      B                   B      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("               MMM               ", "                                 ", "                                 ", "                                 ", "                                 ", "                M                ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "               M M               ", "               K K               ", "               G G               ", "               G G               ", "               K K               ", "               O O               ", "             O     O             ", "           O         O           ", "                                 ", "       P                 L       ", "       JN               NJ       ", "        J               J        ", "           N         N           ", "                                 ", "                K                ", "                I                ", "                F                ", "                F                ", "                I                ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("              MMMMM              ", "              M   M              ", "              M   M              ", "              M   M              ", "              MMMMM              ", "              M M M              ", "                M                ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                M                ", "               QMQ               ", "              MR RM              ", "              I   I              ", "              F   F              ", "              F   F              ", "              I   I              ", "              O S O              ", "                S                ", "           O    S    O           ", "          E     S     E          ", "       B E      S      E B       ", "      JN                 NJ      ", "       J                 J       ", "         FN           NF         ", "                                 ", "               K K               ", "               G G               ", "               G G               ", "               K K               ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("             MMMMMMM             ", "               OOO               ", "               OOO               ", "               OOO               ", "              MOOOM              ", "               MMM               ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                T                ", "                T                ", "                T                ", "                T                ", "                T                ", "                U                ", "                G                ", "                G                ", "                G                ", "                G                ", "               E E               ", "               F F               ", "              QF FQ              ", "             MR   RM             ", "             K     K             ", "             G  S  G             ", "             G  S  G             ", "             K  S  K             ", "             O SVS O             ", "            O  SVS  O            ", "               SVS               ", "         BE    SVS    EB         ", "       P       SVS       L       ", "      JN        S        NJ      ", "       L                 L       ", "         BN           NB         ", "                W                ", "              K   K              ", "              G   G              ", "              G   G              ", "              K   K              ", "               W W               ", "               X X               ", "               X X               ", "               W W               ", "                U                ", "                Y                ", "                Y                ", "                U                ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("            MMMMMMMMM            ", "               OOO               ", "               OOO               ", "               OOO               ", "              MOOOM              ", "             MMMMMMM             ", "              M F M              ", "                                 ", "                F                ", "                C                ", "                C                ", "               TUT               ", "               TUT               ", "               TUT               ", "               TUT               ", "               TUT               ", "               UUU               ", "               GFG               ", "               GFG               ", "               GFG               ", "               GFG               ", "                I                ", "              M   M              ", "              M   M              ", "                                 ", "                S                ", "               SVS               ", "               SVS               ", "               SVS               ", "              SVVVS              ", "           HO SVVVS OH           ", "              SVVVS              ", "         FE   SVVVS   EF         ", "       B H     SVS     H B       ", "      JN       SVS       NJ      ", "       J        S        J       ", "         HN     W     NH         ", "               WWW               ", "             K     K             ", "             I     I             ", "             F     F             ", "             F     F             ", "             I     I             ", "                                 ", "                                 ", "                                 ", "               UUU               ", "               YFY               ", "               YFY               ", "               UUU               ", "                U                ", "                C                ", "                C                ", "                F                ")
-                    .aisle("             MMMMMMM             ", "               OOO               ", "               O@O               ", "               OOO               ", "              MOOOM              ", "               MMM               ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                T                ", "                T                ", "                T                ", "                T                ", "                T                ", "                U                ", "                G                ", "                G                ", "                G                ", "                G                ", "               E E               ", "               F F               ", "              QF FQ              ", "             MR   RM             ", "             K     K             ", "             G  S  G             ", "             G  S  G             ", "             K SVS K             ", "             O SVS O             ", "            O  SVS  O            ", "               SVS               ", "         BE    SVS    EB         ", "       P        S        L       ", "      JN        S        NJ      ", "       L                 L       ", "         BN           NB         ", "                W                ", "              K   K              ", "              G   G              ", "              G   G              ", "              K   K              ", "               W W               ", "               X X               ", "               X X               ", "               W W               ", "                U                ", "                Y                ", "                Y                ", "                U                ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("              MMMMM              ", "              M   M              ", "              M   M              ", "              M   M              ", "              MMMMM              ", "              M M M              ", "                M                ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                M                ", "               QMQ               ", "              MR RM              ", "              I   I              ", "              F   F              ", "              F   F              ", "              I S I              ", "              O S O              ", "                S                ", "           O    S    O           ", "          E     S     E          ", "       B E             E B       ", "      JN                 NJ      ", "       J                 J       ", "         FN           NF         ", "                                 ", "               K K               ", "               G G               ", "               G G               ", "               K K               ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("               MMM               ", "                                 ", "                                 ", "                                 ", "                                 ", "                M                ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "               M M               ", "               K K               ", "               G G               ", "               G G               ", "               K K               ", "               O O               ", "             O     O             ", "           O         O           ", "                                 ", "       P                 L       ", "       JN               NJ       ", "        J               J        ", "           N         N           ", "                                 ", "                K                ", "                I                ", "                F                ", "                F                ", "                I                ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                M                ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "               OOO               ", "            O       O            ", "           E         E           ", "                                 ", "       JN               NJ       ", "        L               L        ", "                                 ", "                                 ", "      B                   B      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                H                ", "             OO   OO             ", "           FE       EF           ", "           E           E         ", "       JN               NJ       ", "        J               J        ", "             N     N             ", "      C                   C      ", "      C                   C      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "              EEEEE              ", "                                 ", "        B               B        ", "      D                   D      ", "      C       NNNNN       C      ", "      E                   E      ", "    BCECB               BCECB    ", "      C                   C      ", "      D                   D      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "               BFB               ", "              E H E              ", "                                 ", "                                 ", "              FBHBF              ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "          BNNN     NNNB          ", "           JLJ     JLJ           ", "                                 ", "      B                   B      ", "  B   F   B           B   F   B  ", "      B                   B      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "             LBLBLBL             ", "           JJJNNNNNJJJ           ", "      B       JLJLJ       B      ", "      G                   G      ", "  C  H H  C           C  H H  C  ", "  C       C           C       C  ", "     H H                 H H     ", "      G                   G      ", "      B                   B      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "      F                   F      ", "      C                   C      ", "      I       JJJJJ       I      ", "  D  BKB  D           D  BKB  D  ", "  C  GKG  C           C  GKG  C  ", " CE B K B EC         CE B K B EC ", "BCE F K F ECB       BCE F K F ECB", "  C B K B C           C B K B C  ", "  D  GKG  D           D  GKG  D  ", "     BKB                 BKB     ", "      Z                   I      ", "      C                   C      ", "      F                   F      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "      B                   B      ", "      G                   G      ", "  C  H H  C           C  H H  C  ", "  C       C           C       C  ", "     H H                 H H     ", "      G                   G      ", "      B                   B      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "      B                   B      ", "  B   F   B           B   F   B  ", "      B                   B      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "      D                   D      ", "      C                   C      ", "     CEC                 CEC     ", "    BCECB               BCECB    ", "      C                   C      ", "      D                   D      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "      C                   C      ", "      C                   C      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "      B                   B      ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-                    .where("A", Predicates.blocks(Blocks.WHITE_CONCRETE))
-                    .where(" ", Predicates.any())
-                    .where("B", Predicates.blocks(BloodMagicBlocks.DUNGEON_BRICK_STAIRS.get()))
-                    .where("C", Predicates.blocks(BloodMagicBlocks.DUNGEON_BRICK_WALL.get()))
-                    .where("D", Predicates.blocks(Blocks.NETHER_BRICK_FENCE))
-                    .where("E", Predicates.blocks(Blocks.BLACK_CONCRETE))
-                    .where("F", Predicates.blocks(Blocks.IRON_BARS))
-                    .where("G", Predicates.blocks(Blocks.RED_STAINED_GLASS))
-                    .where("H", Predicates.blocks(BloodMagicBlocks.DUNGEON_BRICK_SLAB.get()))
-                    .where("I", Predicates.blocks(LAMPS.get(DyeColor.RED).get()))
-                    .where("J", Predicates.blocks(Blocks.POLISHED_BLACKSTONE_SLAB))
-                    .where("K", Predicates.blocks(Blocks.RED_CONCRETE))
-                    .where("L", Predicates.blocks(Blocks.POLISHED_BLACKSTONE_STAIRS))
-                    .where("M", Predicates.blocks(BloodMagicBlocks.DUNGEON_BRICK_1.get()))
-                    .where("N", Predicates.blocks(BloodMagicBlocks.BLANK_RUNE.get())
-                            .or(Predicates.blocks(BloodMagicBlocks.SPEED_RUNE.get()))
-                            .or(Predicates.blocks(BloodMagicBlocks.SPEED_RUNE_2.get()))
-                            .or(Predicates.blocks(BloodMagicBlocks.SACRIFICE_RUNE.get()))
-                            .or(Predicates.blocks(BloodMagicBlocks.SACRIFICE_RUNE_2.get()))
-                            .or(Predicates.blocks(BloodMagicBlocks.SELF_SACRIFICE_RUNE.get()))
-                            .or(Predicates.blocks(BloodMagicBlocks.SELF_SACRIFICE_RUNE_2.get()))
-                            .or(Predicates.blocks(BloodMagicBlocks.CAPACITY_RUNE.get()))
-                            .or(Predicates.blocks(BloodMagicBlocks.CAPACITY_RUNE_2.get()))
-                            .or(Predicates.blocks(BloodMagicBlocks.AUGMENTED_CAPACITY_RUNE.get()))
-                            .or(Predicates.blocks(BloodMagicBlocks.AUGMENTED_CAPACITY_RUNE_2.get())))
-                    .where("O", Predicates.blocks(BloodMagicBlocks.OBSIDIAN_TILE_PATH.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(Predicates.abilities(PartAbility.SUBSTATION_OUTPUT_ENERGY))
-                    )
-                    .where("P", Predicates.blocks(Blocks.POLISHED_BLACKSTONE_BRICK_STAIRS))
-                    .where("Q", Predicates.blocks(Blocks.RED_STAINED_GLASS_PANE))
-                    .where("R", Predicates.blocks(Blocks.BLUE_STAINED_GLASS_PANE))
-                    .where("S", Predicates.blocks(BotaniaBlocks.bifrostPerm))
-                    .where("T", Predicates.blocks(Blocks.ORANGE_STAINED_GLASS_PANE))
-                    .where("U", Predicates.blocks(Blocks.GRAY_CONCRETE))
-                    .where("V", Predicates.blocks(AEBlocks.QUARTZ_VIBRANT_GLASS.block()))
-                    .where("W", Predicates.blocks(Blocks.PURPLE_CONCRETE))
-                    .where("X", Predicates.blocks(Blocks.PURPLE_STAINED_GLASS))
-                    .where("Y", Predicates.blocks(Blocks.GRAY_STAINED_GLASS))
-                    .where("Z", Predicates.blocks(BloodMagicBlocks.HELLFORGED_BLOCK.get()))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build())
-            .workableCasingModel(BloodMagic.rl("block/obsidiantilepath"), GTCEu.id("block/multiblock/vacuum_freezer"))
-            .register();
+
 
     public final static MultiblockMachineDefinition MEADOW = REGISTRATE.multiblock("meadow", MeadowMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
@@ -884,293 +787,12 @@ public class MultiblocksA {
             )
             .workableCasingModel(CTNHCore.id("block/casings/blaze_blast_furnace_casing"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
-    public final static MultiblockMachineDefinition MANA_MACERATOR = REGISTRATE.multiblock("mana_macerator", holder -> new ManaMachine(holder, 8, 2))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(GTRecipeTypes.MACERATOR_RECIPES)
-            .recipeModifiers(ManaMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(CTNHCommonTooltips.MANA_MACHINE)
-            .tooltips(CTNHCommonTooltips.BASIC_MANA_CONSUME, CTNHCommonTooltips.PERFECT_OVERCLOCK)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("ABBA", "AAAA", "ABBA")
-                    .aisle("ABBA", "ACCA", "ABBA")
-                    .aisle("ABBA", "A@DA", "ABBA")
-                    .where("A", Predicates.blocks(BotaniaBlocks.livingrockPolished)
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
-                    .where("B", Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get()))
-                    .where("C", Predicates.blocks(CASING_STEEL_GEARBOX.get()))
-                    .where("D", abilities(PartAbility.IMPORT_FLUIDS))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build()
-            )
 
-            .workableCasingModel(BotaniaRL("block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
-            .register();
 
-    public final static MultiblockMachineDefinition MANA_BENDER = REGISTRATE.multiblock("mana_bender", holder -> new ManaMachine(holder, 8, 2))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(GTRecipeTypes.BENDER_RECIPES)
-            .recipeModifiers(ManaMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(CTNHCommonTooltips.MANA_MACHINE)
-            .tooltips(CTNHCommonTooltips.BASIC_MANA_CONSUME, CTNHCommonTooltips.PERFECT_OVERCLOCK)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("EEEEE", "ABBBA", "ABBBA", "ACCCA")
-                    .aisle("EDDDE", "B###B", "B###B", "CDDDC")
-                    .aisle("EDDDE", "B#F#B", "B#F#B", "CDDDC")
-                    .aisle("EDDDE", "B###B", "B###B", "CDDDC")
-                    .aisle("EEEEE", "AE@EA", "AEEEA", "ACCCA")
-                    .where("A", Predicates.blocks(BotaniaBlocks.livingrockPolished))
-                    .where("B", Predicates.frames(CTNHMaterials.ManaSteel))
-                    .where("C", Predicates.blocks(BotaniaBlocks.livingrockBrickStairs))
-                    .where("D", Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get()))
-                    .where("#", Predicates.any())
-                    .where("E", Predicates.blocks(BotaniaBlocks.livingrockPolished)
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(abilities(PartAbility.IMPORT_FLUIDS)))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .where("F", Predicates.blocks(CASING_STEEL_GEARBOX.get()))
 
-                    .build()
-            )
 
-            .workableCasingModel(BotaniaRL("block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
-            .register();
-    public final static MultiblockMachineDefinition ZENITH_LASER = REGISTRATE.multiblock("zenith_laser", holder -> new ZenithMachine(holder, 24, 12, 60, 20))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeTypes(GTRecipeTypes.LASER_ENGRAVER_RECIPES, CTNHRecipeTypes.PHASE_INVERSION)
-            .appearanceBlock(CTNHBlocks.ZENITH_CASING_BLOCK)
-            .recipeModifiers(ZenithMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(Component.translatable("ctnh.multiblock.zenith_laser.tooltip.0"))
-            .tooltips(CTNHCommonTooltips.ZENITH_MACHINE)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("EEEEE", "EAAAE", "EAAAE", "EEEEE")
-                    .aisle("EECEE", "A###A", "A###A", "EDDDE")
-                    .aisle("ECECE", "F#D#F", "F###F", "EDBDE")
-                    .aisle("EECEE", "A###A", "A###A", "EDDDE")
-                    .aisle("EEEEE", "EA@AE", "EAEAE", "EEEEE")
-                    .where("A", Predicates.blocks(CTNHBlocks.DEPTH_FORCE_FIELD_STABILIZING_CASING.get()))
-                    .where("B", Predicates.blocks(CTNHBlocks.ZENITH_EYE.get()))
-                    .where("C", Predicates.blocks(CTNHBlocks.ALF_STEEL_CASING.get()))
-                    .where("D", Predicates.blocks(CTNHBlocks.ZENITH_CASING_GEARBOX.get()))
-                    .where("#", Predicates.any())
-                    .where("E", Predicates.blocks(CTNHBlocks.ZENITH_CASING_BLOCK.get())
-                            .or(abilities(PartAbility.MAINTENANCE))
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(abilities(PartAbility.IMPORT_FLUIDS)))
-                    .where("F", Predicates.blocks(BotaniaBlocks.manaGlass))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
 
-                    .build()
-            )
-            .workableCasingModel((CTNHCore.id("block/casings/zenith_casing")), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
-            .register();
 
-    public final static MultiblockMachineDefinition MANA_WIREMILL = REGISTRATE.multiblock("mana_wiremill", holder -> new ManaMachine(holder, 8, 2))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(GTRecipeTypes.WIREMILL_RECIPES)
-            .recipeModifiers(ManaMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(CTNHCommonTooltips.MANA_MACHINE)
-            .tooltips(CTNHCommonTooltips.BASIC_MANA_CONSUME,
-                    CTNHCommonTooltips.PERFECT_OVERCLOCK)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("AAA", "BBB", "CCC")
-                    .aisle("AAA", "BBB", "CCC")
-                    .aisle("AAA", "B@B", "CCC")
-                    .where("A", Predicates.blocks(BotaniaBlocks.livingrockPolished)
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(abilities(PartAbility.IMPORT_FLUIDS)))
-                    .where("B", Predicates.frames(CTNHMaterials.Elementium))
-                    .where("C", Predicates.blocks(CTNHBlocks.ELEMENTIUM_CASING.get()))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build()
-            )
-
-            .workableCasingModel(BotaniaRL("block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
-            .register();
-    public final static MultiblockMachineDefinition MANA_LATHE = REGISTRATE.multiblock("mana_lathe", holder -> new ManaMachine(holder, 8, 2))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(GTRecipeTypes.LATHE_RECIPES)
-            .recipeModifiers(ManaMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(CTNHCommonTooltips.MANA_MACHINE)
-            .tooltips(CTNHCommonTooltips.BASIC_MANA_CONSUME, CTNHCommonTooltips.PERFECT_OVERCLOCK)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("ABA", "AAA", "AAA", "CAC")
-                    .aisle("ABA", "D#D", "D#D", "CAC")
-                    .aisle("ABA", "D#D", "D#D", "CAC")
-                    .aisle("ABA", "D#D", "D#D", "CAC")
-                    .aisle("ABA", "A@A", "AAA", "CAC")
-                    .where("A", Predicates.blocks(BotaniaBlocks.livingrockPolished)
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(abilities(PartAbility.IMPORT_FLUIDS)))
-                    .where("B", Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get()))
-                    .where("C", Predicates.blocks(BotaniaBlocks.livingrockBrickStairs))
-                    .where("D", Predicates.frames(CTNHMaterials.ManaSteel))
-                    .where("#", Predicates.any())
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build()
-            )
-
-            .workableCasingModel(BotaniaRL("block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
-            .register();
-    public final static MultiblockMachineDefinition MANA_ASSEMBLER = REGISTRATE.multiblock("mana_assembler", holder -> new ManaMachine(holder, 8, 5))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(GTRecipeTypes.ASSEMBLER_RECIPES)
-            .recipeModifiers(ManaMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(CTNHCommonTooltips.MANA_MACHINE)
-            .tooltips(CTNHCommonTooltips.ADVANCED_MANA_CONSUME, CTNHCommonTooltips.PERFECT_OVERCLOCK)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("ABBBBBA", "ABBBBBA", "ABBBBBA", "ACCCCCA", "AAAAAAA")
-                    .aisle("BDEEEDB", "B#####B", "B#####B", "C#####C", "ABBBBBA")
-                    .aisle("BEDFDEB", "B#####B", "B##G##B", "C#####C", "ABBBBBA")
-                    .aisle("BEFDFEB", "B##H##B", "B#GHG#B", "C##H##C", "ABBBBBA")
-                    .aisle("BEDFDEB", "B#####B", "B##G##B", "C#####C", "ABBBBBA")
-                    .aisle("BDEEEDB", "B#####B", "B#####B", "C#####C", "ABBBBBA")
-                    .aisle("ABBBBBA", "ABB@BBA", "ABBBBBA", "ACCCCCA", "AAAAAAA")
-                    .where("A", Predicates.frames(CTNHMaterials.AlfSteel))
-                    .where("B", Predicates.blocks(BotaniaBlocks.livingrockPolished)
-                            .or(abilities(PartAbility.INPUT_ENERGY).setExactLimit(1))
-                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
-                            .or(abilities(PartAbility.IMPORT_FLUIDS))
-                            .or(abilities(PartAbility.IMPORT_ITEMS))
-                            .or(abilities(PartAbility.EXPORT_ITEMS))
-                            .or(abilities(PartAbility.EXPORT_FLUIDS)))
-
-                    .where("C", Predicates.blocks(BotaniaBlocks.manaGlass))
-                    .where("D", Predicates.blocks(CTNHBlocks.ELEMENTIUM_CASING.get()))
-                    .where("E", Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get()))
-                    .where("#", Predicates.any())
-                    .where("F", Predicates.blocks(CTNHBlocks.TERRA_STEEL_CASING.get()))
-                    .where("G", Predicates.blocks(CASING_STAINLESS_STEEL_GEARBOX.get()))
-                    .where("H", Predicates.blocks(CASING_TITANIUM_GEARBOX.get()))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build()
-            )
-
-            .workableCasingModel(BotaniaRL("block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
-            .register();
-
-    public static final MultiblockMachineDefinition MANA_GENERATOR_TIER1 = REGISTRATE.multiblock("mana_generator_turbine_tier1", holder -> new ManaLargeTurbineMachine(holder, MV, 1, 1))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(CTNHRecipeTypes.MANA_GENERATOR)
-            .generator(true)
-            .tooltips(Component.translatable("ctnh.multiblock.mana_generator_turbine_tier1.tooltip.0").withStyle(ChatFormatting.GRAY),
-                    Component.translatable("ctnh.multiblock.mana_generator_turbine_tier1.tooltip.1"),
-                    Component.translatable("ctnh.multiblock.mana_generator_turbine_tier1.tooltip.2")
-            )
-            .tooltips(CTNHCommonTooltips.MANA_GENERATOR)
-            .recipeModifier(ManaLargeTurbineMachine::recipeModifier)
-            .appearanceBlock(CTNHBlocks.MANA_STEEL_CASING)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("AAAA", "ASSA", "AAAA")
-                    .aisle("ASSA", "BCCB", "ASSA")
-                    .aisle("AAAA", "A@SA", "AAAA")
-                    .where("A", Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get()))
-                    .where("B", abilities(PartAbility.OUTPUT_ENERGY).setExactLimit(1)
-                            .or(abilities(PartAbility.ROTOR_HOLDER).setExactLimit(1)))
-                    .where("C", Predicates.blocks(GTBlocks.CASING_STEEL_GEARBOX.get()))
-                    .where("S", Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
-                            .or(abilities(PartAbility.EXPORT_FLUIDS))
-                            .or(abilities(PartAbility.MUFFLER).setExactLimit(1)))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build()
-            )
-
-            .workableCasingModel(CTNHCore.id("block/casings/mana_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
-            .register();
-    public static final MultiblockMachineDefinition MANA_GENERATOR_TIER2 = REGISTRATE.multiblock("mana_generator_turbine_tier2", holder -> new ManaLargeTurbineMachine(holder, GTValues.EV, 2.25, 4))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(CTNHRecipeTypes.MANA_GENERATOR)
-            .generator(true)
-            .tooltips(Component.translatable("ctnh.multiblock.mana_generator_turbine_tier2.tooltip.0").withStyle(ChatFormatting.GRAY),
-                    Component.translatable("ctnh.multiblock.mana_generator_turbine_tier2.tooltip.1"),
-                    Component.translatable("ctnh.multiblock.mana_generator_turbine_tier2.tooltip.2"),
-                    Component.translatable("ctnh.multiblock.mana_generator_turbine_tier2.tooltip.3")
-            )
-            .tooltips(CTNHCommonTooltips.MANA_GENERATOR)
-            .recipeModifier(ManaLargeTurbineMachine::recipeModifier)
-            .appearanceBlock(CTNHBlocks.ELEMENTIUM_CASING)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("AAAA", "ASSA", "AAAA")
-                    .aisle("ASSA", "BCCB", "ASSA")
-                    .aisle("AAAA", "A@SA", "AAAA")
-                    .where("A", Predicates.blocks(CTNHBlocks.ELEMENTIUM_CASING.get()))
-                    .where("B", abilities(PartAbility.OUTPUT_ENERGY).setExactLimit(1)
-                            .or(abilities(PartAbility.ROTOR_HOLDER).setExactLimit(1)))
-                    .where("C", Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get()))
-                    .where("S", Predicates.blocks(CTNHBlocks.ELEMENTIUM_CASING.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
-                            .or(abilities(PartAbility.MUFFLER).setExactLimit(1))
-                            .or(abilities(PartAbility.EXPORT_FLUIDS))
-                    )
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build()
-            )
-
-            .workableCasingModel(CTNHCore.id("block/casings/elementium_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
-            .register();
-    public static final MultiblockMachineDefinition MANA_GENERATOR_TIER3 = REGISTRATE.multiblock("mana_generator_turbine_tier3", holder -> new ManaLargeTurbineMachine(holder, GTValues.LuV, 4, 16))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(CTNHRecipeTypes.MANA_GENERATOR)
-            .generator(true)
-            .tooltips(Component.translatable("ctnh.multiblock.mana_generator_turbine_tier3.tooltip.0").withStyle(ChatFormatting.GRAY),
-                    Component.translatable("ctnh.multiblock.mana_generator_turbine_tier3.tooltip.1"),
-                    Component.translatable("ctnh.multiblock.mana_generator_turbine_tier3.tooltip.2"),
-                    Component.translatable("ctnh.multiblock.mana_generator_turbine_tier3.tooltip.3"))
-            .tooltips(CTNHCommonTooltips.MANA_GENERATOR)
-            .recipeModifier(ManaLargeTurbineMachine::recipeModifier)
-            .appearanceBlock(CTNHBlocks.TERRA_STEEL_CASING)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("AAAA", "ASSA", "AAAA")
-                    .aisle("ASSA", "BCCB", "ASSA")
-                    .aisle("AAAA", "A@SA", "AAAA")
-                    .where("A", Predicates.blocks(CTNHBlocks.TERRA_STEEL_CASING.get()))
-                    .where("B", abilities(PartAbility.OUTPUT_ENERGY).setExactLimit(1)
-                            .or(abilities(PartAbility.ROTOR_HOLDER).setExactLimit(1)))
-                    .where("C", Predicates.blocks(GTBlocks.CASING_STAINLESS_STEEL_GEARBOX.get()))
-                    .where("S", Predicates.blocks(CTNHBlocks.TERRA_STEEL_CASING.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
-                            .or(abilities(PartAbility.EXPORT_FLUIDS))
-                            .or(abilities(PartAbility.MUFFLER).setExactLimit(1)))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build()
-            )
-
-            .workableCasingModel(CTNHCore.id("block/casings/terra_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
-            .register();
-    public static final MultiblockMachineDefinition MANA_GENERATOR_TIER4 = REGISTRATE.multiblock("mana_generator_turbine_tier4", holder -> new ManaLargeTurbineMachine(holder, GTValues.UV, 8, 64))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(CTNHRecipeTypes.MANA_GENERATOR)
-            .generator(true)
-            .tooltips(Component.translatable("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.0").withStyle(ChatFormatting.GRAY),
-                    Component.translatable("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.1"),
-                    Component.translatable("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.2"),
-                    Component.translatable("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.3").withStyle(ChatFormatting.RED),
-                    Component.translatable("ctnh.multiblock.mana_generator_turbine_tier3.tooltip.4"))
-            .tooltips(CTNHCommonTooltips.MANA_GENERATOR)
-            .recipeModifier(ManaLargeTurbineMachine::recipeModifier)
-            .appearanceBlock(CTNHBlocks.ALF_STEEL_CASING)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("AAAA", "ASSA", "AAAA")
-                    .aisle("ASSA", "BCCB", "ASSA")
-                    .aisle("AAAA", "A@SA", "AAAA")
-                    .where("A", Predicates.blocks(CTNHBlocks.ALF_STEEL_CASING.get()))
-                    .where("B", abilities(PartAbility.OUTPUT_LASER).setExactLimit(1)
-                            .or(abilities(PartAbility.ROTOR_HOLDER).setExactLimit(1)))
-                    .where("C", Predicates.blocks(GTBlocks.CASING_TUNGSTENSTEEL_GEARBOX.get()))
-                    .where("S", Predicates.blocks(CTNHBlocks.ALF_STEEL_CASING.get())
-                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
-                            .or(abilities(PartAbility.IMPORT_FLUIDS))
-                            .or(abilities(PartAbility.EXPORT_FLUIDS))
-                            .or(abilities(PartAbility.MUFFLER).setExactLimit(1)))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build()
-            )
-
-            .workableCasingModel(CTNHCore.id("block/casings/alfsteel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
-            .register();
     // Come from GTCA
     public static final MultiblockMachineDefinition SUPER_EBF = REGISTRATE
             .multiblock("super_ebf", SuperEBF::new)
@@ -1928,30 +1550,7 @@ public class MultiblocksA {
             })
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
-    public static final MultiblockMachineDefinition WATER_POWER_STATION = REGISTRATE.multiblock("water_power_station", WaterPowerStationMachine::new)
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(CTNHRecipeTypes.WATER_POWER)
-            .recipeModifier(WaterPowerStationMachine::recipeModifier)
-            .tooltips(Component.translatable("ctnh.multiblock.water_power_station.tooltip.0").withStyle(ChatFormatting.GRAY),
-                    Component.translatable("ctnh.multiblock.water_power_station.tooltip.1"),
-                    Component.translatable("ctnh.multiblock.water_power_station.tooltip.2").withStyle(ChatFormatting.GREEN))
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("#BCB#", "#BCB#", "BBBBB", "#BBB#")
-                    .aisle("#B#B#", "#BDB#", "BEFEB", "#BGB#").setRepeatable(1, 15)
-                    .aisle("#C#C#", "#CDC#", "BEFEB", "#BCB#")
-                    .aisle("#CCC#", "#CCC#", "BBHBB", "#B@B#")
-                    .where("B", Predicates.frames(CTNHMaterials.ManaSteel))
-                    .where("C", Predicates.blocks(MANA_STEEL_CASING.get()))
-                    .where("#", Predicates.any())
-                    .where("D", Predicates.heatingCoils())
-                    .where("E", Predicates.blocks(CASING_STEEL_PIPE.get()))
-                    .where("F", Predicates.blocks(CASING_STEEL_GEARBOX.get()))
-                    .where("G", abilities(PartAbility.OUTPUT_ENERGY))
-                    .where("H", abilities(PartAbility.IMPORT_FLUIDS))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build())
-            .workableCasingModel(CTNHCore.id("block/casings/mana_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
-            .register();
+
     public static final MultiblockMachineDefinition BIO_REACTOR = REGISTRATE.multiblock("bio_reactor", BioMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.BIO_REACTOR)
@@ -1973,33 +1572,7 @@ public class MultiblocksA {
                     .build())
             .workableCasingModel(CTNHCore.id("block/casings/bio_reactor_casing"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
-    public static final MultiblockMachineDefinition MANA_MIXER = REGISTRATE.multiblock("mana_mixer", holder -> new ManaMachine(holder, 4, 2))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(GTRecipeTypes.MIXER_RECIPES)
-            .recipeModifiers(ManaMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(CTNHCommonTooltips.MANA_MACHINE)
-            .tooltips(CTNHCommonTooltips.ADVANCED_MANA_CONSUME, CTNHCommonTooltips.PERFECT_OVERCLOCK)
-            .appearanceBlock(MANA_STEEL_CASING)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("#EEE#", "#EEE#", "#EEE#", "#EEE#", "#EEE#", "##B##")
-                    .aisle("EEEEE", "E#A#E", "E###E", "E#A#E", "E###E", "##B##")
-                    .aisle("EEEEE", "EAAAE", "E#A#E", "EAAAE", "E#C#E", "BBCBB")
-                    .aisle("EEEEE", "E#A#E", "E###E", "E#A#E", "E###E", "##B##")
-                    .aisle("#EEE#", "#E@E#", "#EEE#", "#EEE#", "#EEE#", "##B##")
-                    .where("A", Predicates.blocks(ELEMENTIUM_PIPE_CASING.get()))
-                    .where("B", Predicates.frames(CTNHMaterials.ManaSteel))
-                    .where("C", Predicates.blocks(CASING_MANASTEEL_GEARBOX.get()))
-                    .where("D", Predicates.blocks(MANA_STEEL_CASING.get()))
-                    .where("#", Predicates.any())
-                    .where("E", Predicates.blocks(MANA_STEEL_CASING.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(abilities(PartAbility.IMPORT_FLUIDS)))
-                    .where("F", Predicates.blocks(CASING_STEEL_GEARBOX.get()))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build())
 
-            .workableCasingModel(CTNHCore.id("block/casings/mana_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
-            .register();
 
     public static final MultiblockMachineDefinition SUPER_CENTRIFUGE = REGISTRATE.multiblock("super_centrifuge", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)

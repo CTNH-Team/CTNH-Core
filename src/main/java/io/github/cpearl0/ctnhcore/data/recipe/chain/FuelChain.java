@@ -9,7 +9,6 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
-import io.github.cpearl0.ctnhcore.CTNHCoreGTAddon;
 import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
@@ -22,9 +21,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.ibm.icu.impl.CurrencyData.provider;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMachines.ROCKET_ENGINE;
-import static twilightforest.init.custom.Restrictions.asStack;
 
 public class FuelChain {
     public static void init(Consumer<FinishedRecipe> provider){

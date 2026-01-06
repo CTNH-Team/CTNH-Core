@@ -9,7 +9,6 @@ import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconType;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.lowdragmc.lowdraglib.LDLib;
 import earth.terrarium.adastra.common.registry.ModBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
@@ -23,7 +22,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
-import vazkii.botania.common.block.BotaniaBlocks;
 
 import java.util.List;
 
@@ -38,7 +36,7 @@ public class CTNHTagPrefixes {
     public static List<Material> nuclears = List.of(Uranium238, Uranium235, Plutonium239, Plutonium241);
     public static TagPrefix oreHolystone;
     public static TagPrefix oreMossyHolystone;
-    public static TagPrefix oreLivingrock;
+
     public static TagPrefix oreIcestone;
     public static TagPrefix oreAstralStone = REGISTRATE.oreTagPrefix("astral_stone", BlockTags.MINEABLE_WITH_PICKAXE)
             .cnlang("星辉%s矿石")
@@ -90,13 +88,7 @@ public class CTNHTagPrefixes {
                         () -> CTNHMaterials.Holystone,
                         BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(3.0F, 3.0F),
                         ResourceLocation.tryBuild(Aether.MODID, "block/mossy_holystone"), true, false, true);
-        oreLivingrock = REGISTRATE.oreTagPrefix("livingrock", BlockTags.MINEABLE_WITH_PICKAXE)
-                .cnlang("活石%s矿石")
-                .lang("Livingrock %s Ore")
-                .registerOre(() -> BotaniaBlocks.livingrock.defaultBlockState(),
-                        () -> CTNHMaterials.Livingrock,
-                        BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(3.0F, 3.0F),
-                        ResourceLocation.tryParse("botania:block/polished_livingrock"), false, false, true);
+
         oreIcestone = REGISTRATE.oreTagPrefix("icestone", BlockTags.MINEABLE_WITH_PICKAXE)
                 .cnlang("冰石%s矿石")
                 .lang("Icestone %s Ore")
@@ -163,7 +155,7 @@ public class CTNHTagPrefixes {
 
         oreHolystone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Holystone, TagPrefix.dust.materialAmount()));
         oreMossyHolystone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Holystone, TagPrefix.dust.materialAmount()));
-        oreLivingrock.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Livingrock, TagPrefix.dust.materialAmount()));
+
         oreIcestone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.icestone, TagPrefix.dust.materialAmount()));
         oreAstralStone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.AstralStone, TagPrefix.dust.materialAmount()));
 

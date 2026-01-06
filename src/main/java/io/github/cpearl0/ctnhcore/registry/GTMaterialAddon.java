@@ -1,18 +1,14 @@
 package io.github.cpearl0.ctnhcore.registry;
 
 
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
-import io.github.cpearl0.ctnhcore.api.data.material.CatalystProperty;
 import io.github.cpearl0.ctnhcore.data.CTNHMaterialFlags;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys.CATALYST;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
 
 public class GTMaterialAddon {
     public static HazardProperty radioactive(float multiplier) {

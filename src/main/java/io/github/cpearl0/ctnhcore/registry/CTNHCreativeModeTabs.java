@@ -4,7 +4,6 @@ import com.gregtechceu.gtceu.common.data.GTCreativeModeTabs;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
-import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
 import net.minecraft.world.item.CreativeModeTab;
 
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;

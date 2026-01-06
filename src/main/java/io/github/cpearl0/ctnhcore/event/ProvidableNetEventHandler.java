@@ -1,9 +1,12 @@
 package io.github.cpearl0.ctnhcore.event;
 
-import io.github.cpearl0.ctnhcore.common.machine.trait.providable_net.*;
+import io.github.cpearl0.ctnhcore.common.machine.trait.providable_net.ProvidableNetInfo;
 import net.minecraftforge.event.TickEvent;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class ProvidableNetEventHandler {
     public static Set<ProvidableNetInfo<?>> nets =  new HashSet<>();

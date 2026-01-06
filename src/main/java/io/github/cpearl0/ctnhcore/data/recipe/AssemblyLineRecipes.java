@@ -10,11 +10,14 @@ import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.common.data.machines.GTResearchMachines;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.moguang.ctnhbio.data.materials.CommonMaterials;
-import com.moguang.ctnhbio.registry.CBMultiblocks;
 import com.moguang.ctnhbio.registry.CBBlocks;
 import com.moguang.ctnhbio.registry.CBItems;
 import com.moguang.ctnhbio.registry.CBMachines;
-import io.github.cpearl0.ctnhcore.registry.*;
+import com.moguang.ctnhbio.registry.CBMultiblocks;
+import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
+import io.github.cpearl0.ctnhcore.registry.CTNHItems;
+import io.github.cpearl0.ctnhcore.registry.CTNHMachines;
+import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksC;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
@@ -34,8 +37,8 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLY_LINE_RECI
 import static com.gregtechceu.gtceu.common.data.machines.GCYMMachines.PARALLEL_HATCH;
 import static com.moguang.ctnhbio.data.materials.OrganicMaterials.*;
 import static dev.shadowsoffire.hostilenetworks.Hostile.Items.SIM_CHAMBER;
-import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines.ADVANCED_ME_PATTERN_BUFFER;
-import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines.ADVANCED_ME_PATTERN_BUFFER_PROXY;
+import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines.ME_ADVANCED_PATTERN_BUFFER;
+import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines.ME_ADVANCED_PATTERN_BUFFER_PROXY;
 import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMultiblock.JIUZHANG_QUANTUM_COMPUTER;
 
 public class AssemblyLineRecipes {
@@ -196,7 +199,7 @@ public class AssemblyLineRecipes {
                 .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("pccard:card_programmed_circuit")),4)
                 .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 2880*2))
                 .inputFluids(new FluidStack(BorosilicateGlass.getFluid(), 2880*4))
-                .outputItems(ADVANCED_ME_PATTERN_BUFFER,1)
+                .outputItems(ME_ADVANCED_PATTERN_BUFFER,1)
                 .stationResearch(b->b.researchStack(DUAL_IMPORT_HATCH[ZPM].asStack()).CWUt(16).EUt(VA[ZPM]))
                 .EUt(VA[ZPM]).duration(6000)
                 .save(provider);
@@ -213,8 +216,8 @@ public class AssemblyLineRecipes {
                 .inputItems(AEBlocks.QUANTUM_LINK.asItem(),1)
                 .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 2880*2))
                 .inputFluids(new FluidStack(BorosilicateGlass.getFluid(), 2880*4))
-                .outputItems(ADVANCED_ME_PATTERN_BUFFER_PROXY,1)
-                .stationResearch(b->b.researchStack(ADVANCED_ME_PATTERN_BUFFER.asStack()).CWUt(16).EUt(VA[ZPM]))
+                .outputItems(ME_ADVANCED_PATTERN_BUFFER_PROXY,1)
+                .stationResearch(b->b.researchStack(ME_ADVANCED_PATTERN_BUFFER.asStack()).CWUt(16).EUt(VA[ZPM]))
                 .EUt(VA[ZPM]).duration(6000)
                 .save(provider);
     }

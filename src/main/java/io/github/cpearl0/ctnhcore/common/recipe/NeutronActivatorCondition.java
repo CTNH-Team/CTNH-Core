@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.recipe;
 
-import com.google.gson.JsonObject;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
@@ -10,9 +9,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.NeutronActivatorMachine;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeConditions;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.GsonHelper;
 import org.jetbrains.annotations.NotNull;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;

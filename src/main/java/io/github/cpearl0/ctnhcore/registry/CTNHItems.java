@@ -13,9 +13,7 @@ import net.minecraft.world.item.Rarity;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Suffix;
-import vazkii.botania.common.lib.BotaniaTags;
 
 import static com.gregtechceu.gtceu.common.data.GTItems.attach;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
@@ -106,51 +104,7 @@ public class CTNHItems {
                 .cnlang("精炼铁方坯")
                 .lang("Refined Iron Ingot")
                 .register();
-        HORIZEN_RUNE = REGISTRATE
-                .item("horizen_rune",ComponentItem::create)
-                .cnlang("§5视域§r符文")
-                .lang("§5Horizen§r Rune")
-                .tag(BotaniaTags.Items.RUNES,CTNHTags.TIER5_RUNES)
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.translatable("ctnh.item.runes.horizen_rune").withStyle(ChatFormatting.DARK_PURPLE));
-                })))
-                .register();
-        STARLIGHT_RUNE = REGISTRATE
-                .item("starlight_rune",ComponentItem::create)
-                .cnlang("§9星光§r符文")
-                .lang("§9Starlight§r Rune")
-                .tag(BotaniaTags.Items.RUNES,CTNHTags.TIER5_RUNES)
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.translatable("ctnh.item.runes.starlight_rune").withStyle(ChatFormatting.BLUE));
-                })))
-                .register();
-        TWIST_RUNE = REGISTRATE
-                .item("twist_rune",ComponentItem::create)
-                .cnlang("§c扭曲§r符文")
-                .lang("§cTwist§r Rune")
-                .tag(BotaniaTags.Items.RUNES,CTNHTags.TIER5_RUNES)
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.translatable("ctnh.item.runes.twist_rune").withStyle(ChatFormatting.RED));
-                })))
-                .register();
-        QUASAR_RUNE = REGISTRATE
-                .item("quasar_rune",ComponentItem::create)
-                .cnlang("§k类星体§r符文")
-                .lang("§kQuasar§r Rune")
-                .tag(BotaniaTags.Items.RUNES,CTNHTags.TIER5_RUNES)
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.translatable("ctnh.item.runes.quasar_rune").withStyle(ChatFormatting.LIGHT_PURPLE));
-                })))
-                .register();
-        PROLIFERATION_RUNE = REGISTRATE
-                .item("proliferation_rune",ComponentItem::create)
-                .cnlang("§a增殖§r符文")
-                .lang("§aProliferation§r Rune")
-                .tag(BotaniaTags.Items.RUNES,CTNHTags.TIER5_RUNES)
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.translatable("ctnh.item.runes.proliferation_rune").withStyle(ChatFormatting.GREEN));
-                })))
-                .register();
+
         ANTI_INF_MATTER =REGISTRATE
                 .item("anti_inf_matter",ComponentItem::create)
                 .cnlang("§0反无穷聚合体")
@@ -388,36 +342,13 @@ public class CTNHItems {
     public static ItemEntry<Item> ANIMAL_EXCRETA;
     public static ItemEntry<Item> TUMOR;
     public static ItemEntry<Item> REFINED_IRON_INGOT;
-    public static ItemEntry<Item> CORROSIVE_CORE = REGISTRATE
-            .item("corrosive_core",Item::new)
-            .cnlang("腐蚀核心")
-            .lang("Corrosive Core")
-            .register();
-    public static ItemEntry<Item> VENGEFUL_CORE = REGISTRATE
-            .item("vengeful_core",Item::new)
-            .cnlang("复仇核心")
-            .lang("Vengeful Core")
-            .register();
-    public static ItemEntry<Item> DESTRUCTIVE_CORE = REGISTRATE
-            .item("destructive_core",Item::new)
-            .cnlang("破坏核心")
-            .lang("Destructive Core")
-            .register();
-    public static ItemEntry<Item> STEADFAST_CORE = REGISTRATE
-            .item("steadfast_core",Item::new)
-            .cnlang("坚毅核心")
-            .lang("Steadfast Core")
-            .register();
+
     public static ItemEntry<Item> CRYSTAL_CATALYST = REGISTRATE
             .item("crystal_catalyst", Item::new)
             .cnlang("水晶催化剂")
             .lang("Crystal Catalyst")
             .register();
-    public static ItemEntry<ComponentItem> HORIZEN_RUNE;
-    public static ItemEntry<ComponentItem> STARLIGHT_RUNE;
-    public static ItemEntry<ComponentItem> TWIST_RUNE;
-    public static ItemEntry<ComponentItem> QUASAR_RUNE;
-    public static ItemEntry<ComponentItem> PROLIFERATION_RUNE;
+
     public static ItemEntry<ComponentItem> ANTI_INF_MATTER;
     public static ItemEntry<ComponentItem> TESTING_TERMINAL;
     public static ItemEntry<MEAdvancedTerminalItem> ME_ADVANCED_TERMINAL;

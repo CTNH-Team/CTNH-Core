@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.gui.rightconfigurator;
 
-import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
 import com.gregtechceu.gtceu.api.gui.fancy.FancyMachineUIWidget;
 import com.gregtechceu.gtceu.api.gui.fancy.IFancyUIProvider;
 import com.lowdragmc.lowdraglib.utils.Position;

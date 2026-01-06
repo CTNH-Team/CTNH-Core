@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.utils;
 
 
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
-
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;

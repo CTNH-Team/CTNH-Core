@@ -6,7 +6,6 @@
   "mixins": [
     "ChunkMixin",
     "ChunkSerializerMixin",
-    "ManaPoolBlockEntityMixin",
     "TagLoaderMixin",
     "adastra.OxygenApilmplMixin",
     "adastra.TemperatureApilmplMixin",

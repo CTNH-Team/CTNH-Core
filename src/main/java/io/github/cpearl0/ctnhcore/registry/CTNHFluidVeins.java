@@ -5,12 +5,10 @@ import com.gregtechceu.gtceu.api.data.worldgen.bedrockfluid.BedrockFluidDefiniti
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import earth.terrarium.adastra.api.planets.Planet;
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import net.minecraft.client.gui.font.providers.UnihexProvider;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biomes;
 
-import java.awt.*;
 import java.util.Set;
 
 import static com.gregtechceu.gtceu.common.data.GTBedrockFluids.create;

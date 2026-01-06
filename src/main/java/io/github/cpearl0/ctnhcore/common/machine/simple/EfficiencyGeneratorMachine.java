@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.common.machine.simple;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.SimpleGeneratorMachine;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 
 public class EfficiencyGeneratorMachine extends SimpleGeneratorMachine {

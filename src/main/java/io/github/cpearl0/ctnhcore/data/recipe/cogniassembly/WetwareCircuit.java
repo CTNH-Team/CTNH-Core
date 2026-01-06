@@ -7,14 +7,11 @@ import com.github.elenterius.biomancy.init.ModEntityTypes;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.moguang.ctnhbio.data.recipe.CogniRecipeBuilder;
-import com.moguang.ctnhbio.registry.CBItems;
 import com.moguang.ctnhbio.registry.CBRecipeTypes;
 import committee.nova.mods.avaritia.init.registry.ModItems;
-import dev.shadowsoffire.hostilenetworks.data.ModelTier;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.OrdinaryMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.fluids.FluidStack;
@@ -23,14 +20,15 @@ import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.moguang.ctnhbio.data.materials.OrganicMaterials.*;
 import static com.moguang.ctnhbio.data.recipe.multi.HostileObservationRecipes.addEntityTypeWithItem;
 import static com.moguang.ctnhbio.registry.CBItems.*;
-import static dev.shadowsoffire.hostilenetworks.data.ModelTier.*;
+import static dev.shadowsoffire.hostilenetworks.data.ModelTier.ADVANCED;
+import static dev.shadowsoffire.hostilenetworks.data.ModelTier.SUPERIOR;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.HiddenAlloy;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.SterileBiologicalCultureMediumStockSolution;
 import static net.minecraft.world.entity.EntityType.*;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static com.moguang.ctnhbio.data.materials.OrganicMaterials.*;
 
 public class WetwareCircuit {
     public static void init(Consumer<FinishedRecipe> provider) {

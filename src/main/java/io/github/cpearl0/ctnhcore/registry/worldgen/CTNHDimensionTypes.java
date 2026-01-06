@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry.worldgen;
 
-import earth.terrarium.adastra.api.planets.Planet;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;

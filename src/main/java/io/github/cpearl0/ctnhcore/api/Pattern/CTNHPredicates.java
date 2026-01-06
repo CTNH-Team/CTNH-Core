@@ -1,25 +1,24 @@
 package io.github.cpearl0.ctnhcore.api.Pattern;
 
-import com.gregtechceu.gtceu.api.GTCEuAPI;
-import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import com.gregtechceu.gtceu.api.pattern.error.PatternStringError;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
-import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
-import io.github.cpearl0.ctnhcore.api.CTNHAPI;
+import io.github.cpearl0.ctnhcore.common.block.PhotovoltaicBlock;
 import io.github.cpearl0.ctnhcore.common.block.SpaceStructuralFramework;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
-import io.github.cpearl0.ctnhcore.common.block.PhotovoltaicBlock;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.ISSFData;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class CTNHPredicates {

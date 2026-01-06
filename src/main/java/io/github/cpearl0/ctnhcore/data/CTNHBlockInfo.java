@@ -10,7 +10,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.GrassBlock;
 
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
-import static io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks.*;
+import static io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks.ASTRAL_DIRT;
+import static io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks.ASTRAL_GRASS_BLOCK;
 
 @SuppressWarnings("removal")
 public class CTNHBlockInfo {

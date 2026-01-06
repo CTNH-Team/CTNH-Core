@@ -1,9 +1,7 @@
 package io.github.cpearl0.ctnhcore.client.model;
 
 import lombok.Getter;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 
 @Getter
 public class ModelBase{

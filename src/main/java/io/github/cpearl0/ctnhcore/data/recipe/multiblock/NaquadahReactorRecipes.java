@@ -17,7 +17,6 @@ import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMachines.NAQUADAH_REACTOR;
-import static twilightforest.init.custom.Restrictions.asStack;
 
 public class NaquadahReactorRecipes {
     public static void init(Consumer<FinishedRecipe> provider){

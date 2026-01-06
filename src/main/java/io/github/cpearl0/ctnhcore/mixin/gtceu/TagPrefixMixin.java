@@ -1,15 +1,7 @@
 package io.github.cpearl0.ctnhcore.mixin.gtceu;
 
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
-
-import java.util.function.Supplier;
 
 @Mixin(value = TagPrefix.class, remap = false)
 public abstract class TagPrefixMixin {

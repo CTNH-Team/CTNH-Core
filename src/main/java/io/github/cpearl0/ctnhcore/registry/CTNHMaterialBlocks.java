@@ -17,7 +17,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Blocks;
 
-import static io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes.hyperRotor;
 
 public class CTNHMaterialBlocks {
 

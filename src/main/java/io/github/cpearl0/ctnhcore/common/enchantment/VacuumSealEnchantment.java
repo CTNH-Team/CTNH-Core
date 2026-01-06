@@ -1,16 +1,11 @@
 package io.github.cpearl0.ctnhcore.common.enchantment;
 
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
-import net.minecraft.core.BlockPos;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class VacuumSealEnchantment extends Enchantment {
     public VacuumSealEnchantment() {

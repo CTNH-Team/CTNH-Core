@@ -13,9 +13,8 @@ import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import com.gregtechceu.gtceu.api.pattern.predicates.SimplePredicate;
 import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
-
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
-
+import com.mojang.datafixers.util.Pair;
 import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalBehavior;
 import io.github.cpearl0.ctnhcore.utils.OrientedItem;
@@ -40,8 +39,6 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
 import net.minecraftforge.items.IItemHandler;
-
-import com.mojang.datafixers.util.Pair;
 import org.apache.commons.lang3.ArrayUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -49,11 +46,10 @@ import org.jetbrains.annotations.Nullable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
-import static net.minecraft.core.Direction.*;
+import static net.minecraft.core.Direction.UP;
 import static net.minecraft.world.level.block.Block.UPDATE_CLIENTS;
 
 public class AsynBlockPattern extends BlockPattern {

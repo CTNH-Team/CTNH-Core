@@ -5,11 +5,7 @@ import io.github.cpearl0.ctnhcore.registry.CTNHTags;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.ForgeRegistries;
 import twilightforest.init.TFBiomes;
-
-import java.util.Objects;
 
 public class BiomeTags {
     public static void init(RegistrateTagsProvider<Biome> provider) {

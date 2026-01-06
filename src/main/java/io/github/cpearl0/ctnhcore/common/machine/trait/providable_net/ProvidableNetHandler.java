@@ -1,6 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.trait.providable_net;
 
-import javax.annotation.*;
+import javax.annotation.Nullable;
 
 public class ProvidableNetHandler<MachineType extends IProviableNetHandlerMachine> {
     ProvidableNetInfo<MachineType> netInfo;

@@ -78,7 +78,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         PersonalComputerRecipes.init(provider);
         SlaughterHouseRecipes.init(provider);
         BigDamRecipes.init(provider);
-        DemonWillGeneratorRecipes.init(provider);
+
         ChemConsumerRecipes.init(provider);
         WaterPowerStationRecipes.init(provider);
         MeadowRecipes.init(provider);
@@ -89,13 +89,12 @@ public class CTNHCoreGTAddon implements IGTAddon {
         NuclearRecipes.init(provider);
         TurbineRecipes.init(provider);
         HighPerformanceComputerRecipes.init(provider);
-        ManaCondenserRecipes.init(provider);
-        BotaniaRecipes.init(provider);
+
         HyperRotorRecipes.registerAll(provider);
         PlatinumLine.init(provider);
         OrdinaryRecipes.init(provider);
         AssemblyLineRecipes.init(provider);
-        ManaRecipes.init(provider);
+
         WetwareCircuit.init(provider);
         //移植配方
         NaquadahReactorRecipes.init(provider);

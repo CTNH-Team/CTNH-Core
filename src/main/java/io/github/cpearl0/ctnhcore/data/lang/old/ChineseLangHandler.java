@@ -4,30 +4,27 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
-import com.gregtechceu.gtceu.utils.FormattingUtil;
-import com.moguang.ctnhbio.registry.CBItems;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.data.lang.Chinese.OreLang;
 import io.github.cpearl0.ctnhcore.data.lang.Chinese.VeinLang;
 import io.github.cpearl0.ctnhcore.data.machines.GTNNMachines;
-import io.github.cpearl0.ctnhcore.registry.machines.multiblock.Mechanical;
-import tech.vixhentx.mcmod.ctnhlib.registrate.lang.RegistrateCNLangProvider;
-import io.github.cpearl0.ctnhcore.data.materials.OrdinaryMaterials;
-import io.github.cpearl0.ctnhcore.registry.*;
+import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
+import io.github.cpearl0.ctnhcore.registry.CTNHCreativeModeTabs;
+import io.github.cpearl0.ctnhcore.registry.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.Mechanical;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksC;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
-import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
 import net.minecraftforge.common.data.LanguageProvider;
 import org.jetbrains.annotations.NotNull;
+import tech.vixhentx.mcmod.ctnhlib.registrate.lang.RegistrateCNLangProvider;
 
 import java.lang.reflect.Field;
 import java.util.Map;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static io.github.cpearl0.ctnhcore.data.lang.old.EnglishLangHandler.enLangProvider;
 
 public class ChineseLangHandler {
     public static RegistrateCNLangProvider cnLangProvider;
@@ -175,28 +172,6 @@ public class ChineseLangHandler {
         provider.add("ctnh.common_tooltip.steel_machine.0", "只能使用HV级能源仓及以下等级");
         provider.add("ctnh.common_tooltip.steel_machine.1", "最大并行为32");
 
-        provider.add("ctnh.common_tooltip.mana_machine.0", "魔法，神奇吧");
-        provider.add("ctnh.common_tooltip.mana_machine.2","运行中的每一并行提供1%时间和耗能减免，至多减少75%");
-        provider.add("ctnh.common_tooltip.mana_machine.3","§4运行同电压等级配方时，使配方时间增加50%（魔力组装只增加1%)");
-        provider.add("ctnh.common_tooltip.mana_machine.4","放入§5类星体符文§r以在100次配方内启用§5星体之眼模式§r：并行变为无限，并行不再提供额外的时间与电压减少。启动此模式不消耗类星体符文");
-
-        provider.add("ctnh.common_tooltip.mana_generator.0","机器的基础最大发电量为(配方发电量)*符文提供倍率*转子最大转速*转子发电效率/100*机器自身提供发电量倍率");
-        provider.add("ctnh.common_tooltip.mana_generator.1","机器的实际发电量为(机器当前转子转速/转子最大转子)^2*机器最大发电量");
-        provider.add("ctnh.common_tooltip.mana_generator.2","§c注意：运行时需要额外消耗液态魔力，如果消耗液态魔力不足，则本次发电配方发电量将会除以5，通过机器UI可以获得魔力消耗量");
-        provider.add("ctnh.common_tooltip.mana_generator.3", "在机器内放入符文可以提升发电效率：\n" +
-                "  一级符文：发电量x1.5，魔力消耗量x0.8，每5秒符文消耗概率：0.2\n" +
-                "  二级符文：发电量x2。4，魔力消耗量x1.2，每5秒符文消耗概率：0.1\n" +
-                "  三级符文：发电量x3，魔力消耗量x0.8，每5秒符文消耗概率：0.05\n" +
-                "   四级符文：发电量x4， 魔力消耗量x0.6，每5秒符文消耗概率：0.025\n" +
-                "  五级符文： 发电量x5, 魔力消耗量x0.3， 每5秒符文消耗概率：0.02\n" +
-                "  §5类星体符文§r: 发电量*999, 消耗量*999，§c在被吞噬的星辰中绽放最终的光芒§r");
-        provider.add("ctnh.common_tooltip.basic_mana_consume", "每秒基础消耗4mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
-        provider.add("ctnh.common_tooltip.advanced_mana_consume", "每秒基础消耗10mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
-        provider.add("ctnh.common_tooltip.super_mana_consume", "每秒基础消耗12mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
-
-        provider.add("ctnh.common_tooltip.zenith_machine.0","§5超越魔法");
-        provider.add("ctnh.common_tooltip.zenith_machine.1","在达到LUV电压后，如果§5天顶源质§r足够，每次运行会消耗(60*(当前电压等级-6))的天顶源质，获得2^(当前电压等级-6)的并行数，最大并行数取决于当前电压。但是不输入天顶源质会损失4并行数。");
-        provider.add("ctnh.common_tooltip.zenith_machine.2","注意，源质的消耗与当前你输入的物品数无关，即使没有并行，我也会克扣你的天顶源质，当并行达到上限后仍然会消耗天顶源质，但是消耗量固定为60");
 
         //Machine Info
         provider.add("ctnh.multiblock.underfloor_heating_system.info.efficiency", "效率：%d");
@@ -226,13 +201,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.naq_reactor.info.nickel_consumption", "镍等离子体消耗量: %d");
         provider.add("ctnh.multiblock.naq_reactor.info.parallel_count", "发电并行数: %d");
 
-        provider.add("ctnh.multiblock.demon_generator.info.default","专精强化：无");
-        provider.add("ctnh.multiblock.demon_generator.info.vengeful","专精强化：复仇");
-        provider.add("ctnh.multiblock.demon_generator.info.corrosive","专精强化：腐蚀");
-        provider.add("ctnh.multiblock.demon_generator.info.steadfast","专精强化：坚韧");
-        provider.add("ctnh.multiblock.demon_generator.info.destructive","专精强化：破坏");
-        provider.add("ctnh.multiblock.demon_generator.info.1","浓度差异：%s");
-        provider.add("ctnh.multiblock.demon_generator.info.boosted","§4血祭模式开启，生命源质强化中");
+
 
         provider.add("ctnh.multiblock.sweat_shop.info.villager_count","员工数量：%s");
         provider.add("ctnh.multiblock.sweat_shop.info.basic_rate","基础效率：x%s");
@@ -261,34 +230,14 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.industrial_altar.info.current_lp","当前含有lp量:%d");
         provider.add("ctnh.multiblock.industrial_altar.info.max_lp","最大lp量:%d");
 
-        provider.add("ctnh.multiblock.quasar_eye.info.rune_energy","符文能量：%.2f");
-        provider.add("ctnh.multiblock.quasar_eye.info.rune_consumption","当前消耗符文能量速率:%.2f /100tick");
-        provider.add("ctnh.multiblock.quasar_eye.info.mana_model","当前魔力燃料等级:%d");
-        provider.add("ctnh.multiblock.quasar_eye.info.mana_production","当前发电效率:%.2f");
-        provider.add("ctnh.multiblock.quasar_eye.info.quasar_parallel","时间并行:%.2f");
-        provider.add("ctnh.multiblock.quasar_eye.info.consumption_parallel","能源消耗率:%.2f");
-        provider.add("ctnh.multiblock.quasar_eye.info.0","积累的能量:%s");
 
-        provider.add("ctnh.multiblock.hellforge.info.will", "意志：%s");
 
         provider.add("ctnh.multiblock.astronomical.info.invalid", "只能在夜晚使用");
 
         provider.add("ctnh.multiblock.sinope_chemical.info.level","线圈加速倍率:%d");
         provider.add("ctnh.multiblock.sinope_chemical.info.parallel","并行数:%d");
 
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.overload","§c警告：机器过载！！！");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.overload_1","§c机器过载度:%d/%d");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.crash","§c机器已损坏");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.mana","当前魔力量:%.4fM");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.twist_consumption","扭曲符文消耗概率:%.2f");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.starlight_consumption","星光符文消耗概率:%.2f");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.overload_2","§c！！！警告：能量溢出！！！");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.max_mana","魔力上限:%.4fM");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.mana_required","魔力需求:%.2fM");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.mana_consumption","消耗魔力:%.2fM");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.time","运行时间倍率:%.2f");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.eut_consumption","消耗能源倍率:%.2f");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.info.stable","魔力稳定值:%.2f");
+
 
         provider.add("ctnh.multiblock.wide_accelerator.info.nu_speed","中子速度:%.2fMev");
         provider.add("ctnh.multiblock.wide_accelerator.info.proton_speed","质子速度:%.2fMev");
@@ -305,8 +254,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.arcgenerator.info.2","支持最大效率:%.2f%%");
         provider.add("ctnh.multiblock.arcgenerator.info.3","当前效率:%.2f%%");
 
-        provider.add("ctnh.eternalgarden.info.fire","当前烧煤花温度:%.1f");
-        provider.add("ctnh.eternalgarden.info.eat","当前彼方兰营养值:%d");
+
 
         provider.add("ctnh.spacephotovoltaicbasestation.jei.error.pv_block","§c必须使用同种光伏方块");
 
@@ -341,7 +289,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.recipe_type.info", "配方类型：%s");
         provider.add("ctnh.recipe_type.list", "%s, %s");
 
-        provider.add("ctnh.copyright.magic.info","§bCTNH：工业魔力学");
+
 
 
         provider.add("ctnh.multiblock.plasma_condenser.tooltip.1", "氤氲之气，凝为霜露");
@@ -436,33 +384,6 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.underfloor_heating_system.tooltip.2", "铜砖瓦会生锈，生锈后地暖系统的供暖能力会减弱");
         provider.add("ctnh.multiblock.underfloor_heating_system.tooltip.3", "可以调节速率，以降低供暖功率并减少蒸汽消耗，最低降至25%");
 
-        provider.add("ctnh.multiblock.mana_generator_turbine_tier1.tooltip.0", "简易魔力转换器");
-        provider.add("ctnh.multiblock.mana_generator_turbine_tier1.tooltip.1", "转子支架等级不能超过§bMV§r");
-        provider.add("ctnh.multiblock.mana_generator_turbine_tier1.tooltip.2", "运行基础产能小于64的配方时，产生双倍发电");
-        provider.add("ctnh.mutiblock.mana_generator_turbine.base","运行时会根据能量产出额外消耗液态魔力，请确保液态魔力供应充足，在液态魔力供应不足时最终产能/5");
-
-        provider.add("ctnh.multiblock.mana_generator_turbine_tier2.tooltip.0", "进阶魔力转换器");
-        provider.add("ctnh.multiblock.mana_generator_turbine_tier2.tooltip.1", "转子支架等级不能超过§5EV§r");
-        provider.add("ctnh.multiblock.mana_generator_turbine_tier2.tooltip.2","运行时消耗2.25倍燃料，获得4倍的发电量");
-        provider.add("ctnh.multiblock.mana_generator_turbine_tier2.tooltip.3", "运行基础产能小于64的配方时，产生双倍发电");
-
-        provider.add("ctnh.multiblock.mana_generator_turbine_tier3.tooltip.0", "精密魔力转换器");
-        provider.add("ctnh.multiblock.mana_generator_turbine_tier3.tooltip.1", "转子支架等级不能超过§dLuV§r");
-        provider.add("ctnh.multiblock.mana_generator_turbine_tier3.tooltip.2","运行时消耗4倍燃料，获得16倍的发电量");
-        provider.add("ctnh.multiblock.mana_generator_turbine_tier3.tooltip.3", "最终发电量额外乘以（1.2^(基础产能/32))");
-
-        provider.add("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.0", "神奇的能量守恒");
-        provider.add("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.1", "转子支架等级不能超过§cUV§r");
-        provider.add("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.2","运行时消耗4倍燃料，获得64倍的发电量");
-        provider.add("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.3", "最终发电量额外乘以（1.5^(基础产能/32))");
-
-        provider.add("ctnh.multiblock.mana_generator_turbine_tier4.tooltip.4","只能使用激光仓");
-
-        provider.add("ctnh.multiblock.zenith_laser.tooltip.0","允许使用§5反相蚀刻§r，消耗§5天顶源质§r来将芯片制成晶圆");
-
-        provider.add("ctnh.multiblock.zenith_circuit_assember.tooltip.0","允许使用§5魔力共振电路组装§r，以更低电压和特殊材料组装共振电路");
-
-        provider.add("ctnh.multiblock.super_ebf.tooltip.0", "所有配方耗时减半");
 
         provider.add("ctnh.multiblock.mega_lcr.tooltip.0","机器运行时每有一实际并行，能源消耗减少2%（至多75%）。运行时间减少2%(至多75%)");
         provider.add("ctnh.multiblock.mega_lcr.tooltip.1","线圈温度大于3600K时，每额外的1800K温度额外提供25%的速度加成");
@@ -518,10 +439,6 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.martial_morality_eye.tooltip.5", "结构中心似乎存在着神秘力量，充满危险的气息，请远离！");
         provider.add("ctnh.multiblock.martial_morality_eye.tooltip.6", "结构来源:Twist Space Technology");
 
-        provider.add("ctnh.multiblock.industrial_altar.tooltip.0","§4血魔法，就在你家门口！");
-        provider.add("ctnh.multiblock.industrial_altar.tooltip.1","与血祭坛相同，该结构有输入LP上限，同时你§4必须通过特定配方来增加其lp§r\n详见JEI以查询增加的配方");
-        provider.add("ctnh.multiblock.industrial_altar.tooltip.2","电压每超过HV一级，就增加10000可存储LP上限，达到LUV后每级额外增加30000");
-        provider.add("ctnh.multiblock.industrial_altar.tooltip.3","每一个增容符文增加2500LP上限，强化增容符文增加5000,达到LUV后每级额外增加1000000/2000000LP上限");
 
         provider.add("ctnh.multiblock.quasar_eye.tooltip.0","§9魔力§r的§c终极奥秘§r，足以制造§5类星体§r的装置掌握在§6你§r的手中");
         provider.add("ctnh.multiblock.quasar_eye.tooltip.1","该机器启动需要§r初始魔力燃料消耗§R，查阅JEI以查找消耗量");
@@ -538,32 +455,7 @@ public class ChineseLangHandler {
 
         provider.add("ctnh.multiblock.large_miner_zpm.tooltip.0", "听说你很担心矿物的来源？");
 
-        provider.add("ctnh.multiblock.eternal_well_of_suffer.tooltip.0", "§8撒旦一觉醒来发现自己掉到榜二了§r");
-        provider.add("ctnh.multiblock.eternal_well_of_suffer.tooltip.1", "享受生灵痛苦的嘶吼吧。§r");
-        provider.add("ctnh.multiblock.eternal_well_of_suffer.tooltip.2", "配方时间始终固定在1s。提高电压等级会提高产出生命源质的产出，等效于无损超频。§r");
-        provider.add("ctnh.multiblock.eternal_well_of_suffer.tooltip.3", "使用残缺的数据模型不会产出任何东西，模型等级越高，产出越多");
-        provider.add("ctnh.multiblock.eternal_well_of_suffer.tooltip.4", "§b灵魂模式：§r");
-        provider.add("ctnh.multiblock.eternal_well_of_suffer.tooltip.5", "灵魂模式下，机器不生产生命源质，而是为下方的§b工业狱火锻炉§r提供意志。");
-        provider.add("ctnh.multiblock.eternal_well_of_suffer.tooltip.6", "两台机器需要共用岩浆池，且控制器必须位于狱火锻炉的正上方。请查阅JEI以获得更多信息。");
-        provider.add("ctnh.multiblock.eternal_well_of_suffer.tooltip.7", "产出生命源质量（mB）/100000的意志。");
 
-        provider.add("ctnh.multiblock.hellforge.tooltip.0", "§8机器也会有灵魂吗？§r");
-        provider.add("ctnh.multiblock.hellforge.tooltip.1", "运行狱火锻炉的配方，需要满足配方的最小意志条件。§r");
-        provider.add("ctnh.multiblock.hellforge.tooltip.2", "如何向机器内填充意志：§r");
-        provider.add("ctnh.multiblock.hellforge.tooltip.3", "1.在控制器附近用§b感知之剑§r杀死一只浸泡于§c生命源质§r的怪物。获得基于怪物最大生命值的意志。");
-        provider.add("ctnh.multiblock.hellforge.tooltip.4", "§8到控制器的曼哈顿距离小于8即可，不用非得是中间的血杯§r");
-        provider.add("ctnh.multiblock.hellforge.tooltip.5", "2.在控制器附近丢出一块魂石。机器会自动吸取其中的意志。");
-        provider.add("ctnh.multiblock.hellforge.tooltip.6", "3.使用§4永恒苦难之井§r。请查阅对应机器的tooltip§r");
-
-        provider.add("ctnh.multiblock.twisted_fusion_mk1.tooltip.0", "§8以不可思议的伟力。§r");
-        provider.add("ctnh.multiblock.twisted_fusion_mk1.tooltip.1", "§e核聚变反应堆模式：§r");
-        provider.add("ctnh.multiblock.twisted_fusion_mk1.tooltip.2", "不需要启动电量，不限制仓室等级，进行4/2超频。提供取决于配方启动电量的并行：");
-        provider.add("ctnh.multiblock.twisted_fusion_mk1.tooltip.3", "小于160MEU：16+16*反应堆等级并行");
-        provider.add("ctnh.multiblock.twisted_fusion_mk1.tooltip.4", "大于160MEU，小于320MEU：4+4*聚变反应堆等级并行");
-        provider.add("ctnh.multiblock.twisted_fusion_mk1.tooltip.5", "大于320MEU，小于480MEU：1+聚变反应堆等级并行");
-        provider.add("ctnh.multiblock.twisted_fusion_mk1.tooltip.6", "§5扭曲聚变反应堆模式：§r");
-        provider.add("ctnh.multiblock.twisted_fusion_mk1.tooltip.7", "遵循字母守恒定律的反应。");
-        provider.add("ctnh.multiblock.twisted_fusion_mk1.tooltip.8", "或许可以用来生产一些§9奇怪的东西§r...");
 
         provider.add("ctnh.multiblock.astronomical.tooltip.0", "知天易，逆天难");
         provider.add("ctnh.multiblock.astronomical.tooltip.1", "无法在阳光直射下工作，工作时会自动为芯片总线中的芯片收集数据");
@@ -601,28 +493,6 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.coke_tower.tooltip.0", "拥有强大的焦化产能来支撑你的木化产线！");
         provider.add("ctnh.multiblock.coke_tower.tooltip.1", "有着如同工业熔炉一般的速度");
 
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.0","§9魔枢巨星，重构万物尺度");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.1","允许使用并行控制仓，§c其不会为配方提供并行§r，只修改每秒输入魔力量");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.2","插入机器的几种§9五级符文§r决定了该机器的各种能力");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.3","§9星空符文§r的能量降低了能源消耗并增强了机器稳定性");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.4","§c扭曲符文§r的能量降低了所用时间并增大了机器魔力注入频率，§c但会让机器更加不稳定");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.5","§d视域符文§r的能量极大增大了魔力上限和魔力使用效率");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.6","§5类星体符文§r的能量太过强大，它会直接让机器进入§c不稳定状态，但是同样使配方的消耗，产出，电压需求翻10倍");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.7","§c扭曲§r与§9星空§r的对抗决定了机器的稳定性");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.8","稳定性公式:-((twist_power /3)+((mana/100000)*(Math.max(twist_power/9,1))))+starlight_power*4+5+tier,当稳定性低于0时机器会开始过载！");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.9","§c过载度§r每秒提升1且在机器拥有过载度时下§c配方时间会翻1倍§r");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.10","在不处于过载状态下每3秒减少1过载度，§c过载度积累满时机器将会爆炸§r");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.11","§c扭曲符文§r消耗概率公式:每次运行有Math.max((twist_power-3)/3,1)*0.01+(Math.max(starlight_power-twist_power,0)*0.01)+(Math.max((100-mana/100000)*0.0005,0))概率消耗");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.12","§9星空符文§r消耗概率公式:每次运行有Math.max((starlight_power-3)/3,1)*0.01+(Math.max(twist_power-starlight_power,0)*0.01)+(mana/100000*0.005)概率消耗");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.13","§d视域符文§r消耗概率公式：每次运行有0.0025*(horizen_power)概率消耗");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.14","该机器无法超频");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.15","运行时每运行1秒，固定消耗100*并行Kmb(B)液态魔力来为光束注能，可以使用只消耗冷却液的非需求魔力配方来为机器注能");
-        provider.add("ctnh.multiblock.nicoll_dyson_beams.tooltip.16","注意：如果你在输入魔力时超过了魔力上限，则超过上限的魔力不会被返还。如果你的魔力量超过了上限，则运行时不会减少多出于魔力上限的魔力");
-
-        provider.add("ctnh.multiblock.twisted_fusion_mk_infinity.tooltip.0","§8无穷无尽的扭曲之力§r");
-        provider.add("ctnh.multiblock.twisted_fusion_mk_infinity.tooltip.1","可以使用激光仓");
-        provider.add("ctnh.multiblock.twisted_fusion_mk_infinity.tooltip.2","对所有配方都有§8无法理喻§r的并行数,所有配方能耗和运行时间减少75%");
-        provider.add("ctnh.multiblock.twisted_fusion_mk_infinity.tooltip.3","§5想制作这台机器的你疯的不轻，当然这台机器也同样疯狂至极§r");
 
         provider.add("ctnh.multiblock.wide_accelerator.tooltip.0","粒子加速集成者");
         provider.add("ctnh.multiblock.wide_accelerator.tooltip.1","允许§9使用激光仓§r和§a变电仓§r");
@@ -683,18 +553,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.boss_summoner.use", "右键长按蓄力掷出，在落点处召唤一只神化boss，每次使用有五分之一的概率消耗");
         provider.add("ctnh.mechanical_lathe.structure", "结构中的车床必须严格依照JEI结构信息页面展示的位置和方向摆放");
 
-        provider.add("ctnh.gtceu.tooltip.tfmkalephzero.1","§4不，这不可能，你到底是怎么做出来这个东西的？§r");
-        provider.add("ctnh.gtceu.tooltip.tfmkalephzero.2","§c你到底是无聊到什么地步能凑到这么多材料和算力，只为了这点并行和速度？§r");
-        provider.add("ctnh.gtceu.tooltip.tfmkalephzero.3","§8好吧，我不管你是开创还是怎么回事的，你确实和你的AE征服我了§r");
-        provider.add("ctnh.gtceu.tooltip.tfmkalephzero.4","§7并行数为2147483637，配方时间乘以0.0001，无损超频，满意了吧？§r");
 
-        provider.add("ctnh.multiblock.eternalgarden.tooltip.1","§b万物在这世间绽放的永恒的一瞥§r");
-        provider.add("ctnh.multiblock.eternalgarden.tooltip.2","无法超频，但是机器自身电压每比配方电压高一级就使最终产出乘以1.25,通过在输入总线内加入五级符文来增大这个系数");
-        provider.add("ctnh.multiblock.eternalgarden.tooltip.3","每朵花都有自己独特的机制，机制太复杂了！请参阅§5魔力飞升§r章节来获取各种花的机制");
-        provider.add("ctnh.multiblock.eternalgarden.tooltip.unknown","§5......等待着永恒的紫罗兰如今在何方？");
-        //
-        provider.add("ctnh.anti_inf_matter.1","-∞");
-        provider.add("ctnh.anti_inf_matter.2","它到底是怎么在现实世界存在的......");
         //
         provider.add("ctnh.multiblock.plasma_alloy.tooltip.1","§4转底炉的复仇");
         provider.add("ctnh.multiblock.plasma_alloy.tooltip.11","允许使用§b激光仓§r，使用激光仓时最终速度将除以4，速度低于原速度时拒绝运行");
@@ -815,10 +674,6 @@ public class ChineseLangHandler {
         provider.add("ctnhcore.recipe_logic.insufficient_cwut","算力不足");
         provider.add("zenith_machine_sp","§5灵能灯塔屹立不倒！");
         // NOT FINISHED
-        provider.add("zenith_extruder","配方类型：压膜机/§5天顶灵压塑形");
-        provider.add("zenith_extruder.1","允许使用§5天顶灵压塑形§r，其以每个形态1mb§5天顶源质§5r的代价来一次性塑造大部分锭的各种形态");
-        provider.add("zenith_extruder.2","允许塑形的形态包括：§7板，杆，小型齿轮，齿轮，转子，环，螺栓，§4不允许塑形南瓜派！");
-
 
         provider.add("ctnh.multiblock.wide_accelerator.info.power","存储的电量：%.2f E/%.2f E");
         provider.add("ctnh.eternal_engine.1","当前发电量:%d EU /tick");
@@ -846,16 +701,11 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.wind_array.tooltip10", "§f润滑油会从风力网络中抽取.");
         provider.add("ctnh.multiblock.wind_array.tooltip11", "§5顺应风力网络的工作规律,以抵挡自然之力的摧残");
 
-        provider.add("ctnh.multiblock.mana_condenser.tooltips.0", "反熵物质转化！");
-        provider.add("ctnh.multiblock.mana_condenser.tooltips.1", "可以将魔力转化为液态魔力，或者将液态魔力转化为魔力，后者所需的能量更多");
-        provider.add("ctnh.multiblock.mana_condenser.tooltips.2", "所有魔力输入输出均通过结构中心的魔力池进行");
 
         provider.add("config.jade.plugin_ctnhcore.thread_status_provider", "线程信息");
         provider.add("config.jade.plugin_ctnhcore.recipe_logic_provider", "配方耗电信息");
 
-        provider.add("ritual.ctnh.chargerRitual", "充能仪式");
-        provider.add("ctnh.terminal.multiblockhelper.tips","第一次右键选择第一个方块，第二次右键选择第二个方块，使用shift+右键启用多方块构建\nshift+右键后将清除原坐标\n选择的方块请按照：底部西北角出发，前往顶部东南角来选择不然无法输出完整结构");
-        // NOT USED
+         // NOT USED
         provider.add("ctnh.u_sinope.story.1","在战争没有开始前，人们曾团结在一起，一齐建造这工业的巴别巨塔");
         provider.add("ctnh.u_sinope.story.2","直到那场永恒的战争，这座真空巨塔化为永恒的残骸，随着战争的双方破碎在真空中");
         provider.add("ctnh.u_sinope.story.3","你已无法再知晓那场战争的双方是否已经相互毁灭，但你直到，这座巨型结构将宣告着人类的复兴");
@@ -896,14 +746,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMachines.ASYNC_THREAD_HATCH[LuV].getBlock(), "§r异步线程控制仓");
         provider.add(CTNHMachines.STERILE_CLEANROOM_MAINTENANCE_HATCH.getBlock(), "无菌超净间维护仓");
 
-        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[LV].getBlock(), "基础数字化苦难之井");
-        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[MV].getBlock(), "§b进阶数字化苦难之井§r");
-        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[HV].getBlock(), "§6进阶数字化苦难之井 II§r");
-        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[EV].getBlock(), "§5进阶数字化苦难之井 III§r");
-        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[IV].getBlock(), "§9精英数字化苦难之井§r");
-        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[LuV].getBlock(), "§d精英数字化苦难之井 II§r");
-        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[ZPM].getBlock(), "§c数字化猩红深渊§r");
-        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[UV].getBlock(), "§3数字化猩红深渊 II§r");
+
         provider.add(CTNHMachines.DRONEHOLDER.getBlock(),"无人机支架");
 
         provider.add(CTNHMachines.DEHYDRATOR[MV].getBlock(), "§b高级脱水机 §r");
@@ -970,26 +813,19 @@ public class ChineseLangHandler {
         provider.add(MultiblocksA.BIG_DAM.getBlock(), "三峡大坝");
         provider.add(MultiblocksA.COKE_TOWER.getBlock(), "焦化塔");
         provider.add(MultiblocksA.PLASMA_CONDENSER.getBlock(),"等离子冷凝器");
-        provider.add(MultiblocksA.ZENITH_LASER.getBlock(), "§5天顶激光蚀刻机");
+
         provider.add(MultiblocksA.BEDROCK_DRILLING_RIGS.getBlock(), "基岩钻机");
         provider.add(MultiblocksA.NAQ_REACTOR_MK3.getBlock(),"超级硅岩反应堆");
         provider.add(MultiblocksA.SWEATSHOP.getBlock(),"§4血汗工厂");
-        provider.add(MultiblocksA.DEMON_WILL_GENERATOR.getBlock(),"§b恶魔意志发电机");
+
         provider.add(MultiblocksA.MEADOW.getBlock(),"§6牧场");
         provider.add(MultiblocksA.FERMENTING_TANK.getBlock(), "发酵罐");
         provider.add(MultiblocksA.LARGE_FERMENTING_TANK.getBlock(), "大型发酵罐");
         provider.add(MultiblocksA.DIGESTION_TANK.getBlock(),"化粪池");
         provider.add(MultiblocksA.BLAZE_BLAST_FURNACE.getBlock(), "§c炽焱高炉");
-        provider.add(MultiblocksA.MANA_MACERATOR.getBlock(),"§b魔力粉碎机");
-        provider.add(MultiblocksA.MANA_BENDER.getBlock(),"§b魔力卷板机");
-        provider.add(MultiblocksA.MANA_WIREMILL.getBlock(),"§b魔力线材轧机");
-        provider.add(MultiblocksA.MANA_LATHE.getBlock(),"§b魔力车床");
-        provider.add(MultiblocksA.MANA_ASSEMBLER.getBlock(),"§b魔力组装机");
+
         provider.add(MultiblocksA.LARGE_BOTTLE.getBlock(), "发酵瓶");
-        provider.add(MultiblocksA.MANA_GENERATOR_TIER1.getBlock(), "魔力涡轮发电机MK1");
-        provider.add(MultiblocksA.MANA_GENERATOR_TIER2.getBlock(), "魔力涡轮发电机MK2");
-        provider.add(MultiblocksA.MANA_GENERATOR_TIER3.getBlock(), "魔力涡轮发电机MK3");
-        provider.add(MultiblocksA.MANA_GENERATOR_TIER4.getBlock(), "魔力涡轮发电机MK4");
+
         provider.add(MultiblocksA.SUPER_EBF.getBlock(),"超级电力高炉");
         provider.add(MultiblocksA.MEGA_LCR.getBlock(), "巨型化学反应釜");
         provider.add(MultiblocksA.EV_CHEMICAL_GENERATOR.getBlock(), "化学能发电机");
@@ -1011,33 +847,22 @@ public class ChineseLangHandler {
         provider.add(MultiblocksA.FUEL_REFINING_FACTORY.getBlock(), "燃料精炼厂");
         provider.add(MultiblocksA.VACUUM_SINTERING_TOWER.getBlock(), "真空烧结厂");
         provider.add(MultiblocksA.CRYSTALLIZER.getBlock(), "结晶器");
-        provider.add(MultiblocksA.WATER_POWER_STATION.getBlock(), "水电站");
+
         provider.add(MultiblocksA.SEAWATER_DESALTING_FACTORY.getBlock(), "海水晒盐工厂");
         provider.add(MultiblocksA.BIO_REACTOR.getBlock(), "生物反应器");
-        provider.add(MultiblocksA.MANA_MIXER.getBlock(),"§b魔力搅拌机");
+
         provider.add(MultiblocksA.SUPER_CENTRIFUGE.getBlock(), "超速离心机");
         provider.add(MultiblocksA.ULTRASONIC_APPARATUS.getBlock(), "超声破碎仪");
         provider.add(MultiblocksA.ULTIMATE_COMBUSTION_ENGINE.getBlock(), "无尽内燃引擎");
-        provider.add(MultiblocksB.ZENITH_CIRCUIT_ASSEMBLER.getBlock(), "§5天顶电路组装机§r");
-        provider.add(MultiblocksB.ZENITH_DISTILLATION_TOWER.getBlock(),"§5天顶聚焦蒸馏塔");
-        provider.add(MultiblocksB.SCALABLE_RESERVOIR_COMPUTING.getBlock(), "§j突触凝练机");
+
         provider.add(MultiblocksB.SILICA_ROCK_FUEL_REFINERY.getBlock(),"硅岩燃料精炼厂");
-        provider.add(MultiblocksB.INDUSTRIAL_ALTAR.getBlock(), "§b工业血之祭坛");
-        provider.add(MultiblocksB.EYE_OF_QUASAR.getBlock(), "§5类星体§r§1之§c眼");
-        provider.add(MultiblocksB.ETERNAL_WELL_OF_SUFFER.getBlock(), "§4永恒苦难之井§r");
-        provider.add(MultiblocksB.HELLFORGE.getBlock(), "§b工业狱火锻炉§r");
-        provider.add(MultiblocksB.NICOLL_DYSON_BEAMS.getBlock(), "§9尼魔尔—戴森光束");
+
         provider.add(MultiblocksB.NANOGENERATOR.getBlock(), "纳米摩擦发电机");
-        provider.add(MultiblocksB.TWISTED_FUSION_MK1.getBlock(),"扭曲聚变反应堆mk1");
-        provider.add(MultiblocksB.TWISTED_FUSION_MK2.getBlock(),"扭曲聚变反应堆mk2");
-        provider.add(MultiblocksB.TWISTED_FUSION_MK3.getBlock(),"扭曲聚变反应堆mk3");
-        provider.add(MultiblocksB.TWISTED_FUSION_MKINFINITY.getBlock(),"扭曲聚变反应堆mk∞");
-        provider.add(MultiblocksB.TWISTED_FUSION_MKALEPHNULL.getBlock(), "扭曲聚变反应恒星ℵ₀");
-        provider.add(MultiblocksB.MAGIC_FUEL_GENERATOR.getBlock(),"魔导燃料精炼场");
+
+
         provider.add(MultiblocksB.FOREST_SEA_TREE_FARM.getBlock(), "林海树场");
         provider.add(MultiblocksB.SINOPE_CHEMICAL.getBlock(), "SINOPE化工厂");
         provider.add(MultiblocksB.WIDE_PARTICLE_ACCELERATOR.getBlock(), "广粒子加速器");
-        provider.add(MultiblocksB.MANA_REACTOR.getBlock(),"魔力反应器");
         provider.add(MultiblocksB.ARC_GENERATOR.getBlock(),"电弧撕裂者");
         provider.add(MultiblocksB.ARC_REACTOR.getBlock(),"电弧发生器");
         provider.add(MultiblocksB.ADVANCED_ASSEMBLY_LINE.getBlock(), "进阶装配线");
@@ -1048,7 +873,7 @@ public class ChineseLangHandler {
         provider.add(Mechanical.MECHANICAL_MIXER.getBlock(), "机械搅拌厂");
         provider.add(Mechanical.MECHANICAL_SIFTER.getBlock(), "机械筛选厂");
         provider.add(Mechanical.MECHANICAL_PRESSOR.getBlock(), "机械辊压厂");
-        provider.add(MultiblocksB.ETERNAL_GARDEN.getBlock(), "芙蕾雅的永恒花园");
+
         provider.add(MultiblocksB.SUPERCONDUCTING_PENNING_TRAP.getBlock(), "超导潘宁势阱");
         provider.add(MultiblocksB.ARC_GENERATOR_MK1.getBlock(),"超压电弧撕裂者MK1");
         provider.add(MultiblocksB.ARC_GENERATOR_MK2.getBlock(),"过载电弧撕裂者MK1");
@@ -1064,17 +889,16 @@ public class ChineseLangHandler {
         provider.add(MultiblocksB.CRYOTHEUMFREEZER.getBlock(),"凛冰冷冻机");
         provider.add(MultiblocksB.HYPER_PLASMA_TURBINE.getBlock(), "超極等离子涡轮");
         provider.add(MultiblocksB.NERUOMATRIXCOMPILER.getBlock(),"神经矩阵编译器");
-        provider.add(MultiblocksB.HYBRID_POWER_MIXER.getBlock(),"混合动力搅拌机");
-        provider.add(MultiblocksB.ZENITH_EXTRUDER.getBlock(),"§5天顶灵能塑形者");
+        //provider.add(MultiblocksB.HYBRID_POWER_MIXER.getBlock(),"混合动力搅拌机");
+
         provider.add(MultiblocksB.FLUID_DRILLING_INF[UHV].getBlock(),"无尽流体钻机");
         provider.add(MultiblocksB.INF_LARGE_MINER.getBlock(), "无尽钻机");
-        provider.add(MultiblocksB.MANA_CONDENSER.getBlock(), "魔力凝缩器");
+
         provider.add(MultiblocksB.COMPONENT_ASSEMBLY_LINE_CT.getBlock(),"应力部件装配线");
 
-        provider.add(MultiblocksC.MANA_SEPERATOR.getBlock(), "魔力分选器");
-        provider.add(MultiblocksC.GAIA_REACTOR.getBlock(), "盖亚反应器");
+
         provider.add(MultiblocksC.GREENHOUSE.getBlock(), "温室");
-        provider.add(MultiblocksC.METEOR_CAPTURER.getBlock(), "§4坠星操纵者§r");
+
         provider.add(MultiblocksC.CNC_ALLOY_SMELTER.getBlock(), "数控合金冶炼炉");
 
 
