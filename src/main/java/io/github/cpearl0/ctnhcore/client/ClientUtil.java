@@ -14,8 +14,6 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.client.model.data.ModelData;
 import org.jetbrains.annotations.Nullable;
 
-import static wayoftime.bloodmagic.util.handler.event.ClientHandler.minecraft;
-
 public class ClientUtil {
     public static void renderStatic(ItemStack itemStack, ItemDisplayContext itemDisplayContext, int combinedLight, int combinedOverlay, PoseStack poseStack, MultiBufferSource bufferSource, @Nullable Level pLevel, int pSeed) {
         Minecraft.getInstance().getItemRenderer().renderStatic(itemStack, itemDisplayContext, combinedLight, combinedOverlay, poseStack, bufferSource, pLevel, pSeed);

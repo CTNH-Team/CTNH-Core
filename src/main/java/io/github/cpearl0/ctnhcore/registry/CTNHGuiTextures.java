@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry;
 
-import com.gregtechceu.gtceu.api.gui.SteamTexture;
 import com.lowdragmc.lowdraglib.gui.texture.ResourceBorderTexture;
 import com.lowdragmc.lowdraglib.gui.texture.ResourceTexture;
 

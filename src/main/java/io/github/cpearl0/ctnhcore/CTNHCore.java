@@ -12,7 +12,6 @@ import io.github.cpearl0.ctnhcore.client.ClientProxy;
 import io.github.cpearl0.ctnhcore.common.CommonProxy;
 import io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalItem;
 import io.github.cpearl0.ctnhcore.event.EventHandler;
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundEvents;
 import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHOverworldRegion;

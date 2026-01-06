@@ -20,14 +20,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
-
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Water;
 
 public class DefaultRecipes {
     private static final Map<Integer, Pair<Supplier<Item>, Supplier<Item>>> HEAVY_PLATE_TIERS = Map.of(

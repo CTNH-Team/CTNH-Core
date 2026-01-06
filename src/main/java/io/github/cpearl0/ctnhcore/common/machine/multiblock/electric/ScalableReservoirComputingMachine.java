@@ -5,16 +5,13 @@ import com.gregtechceu.gtceu.api.capability.IOpticalComputationProvider;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
-import io.github.cpearl0.ctnhcore.client.renderer.utils.RenderUtils;
 import io.github.cpearl0.ctnhcore.common.machine.trait.ScalableReservoirComputingLogic;
 import lombok.Getter;
-import lombok.Setter;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3i;
-import org.joml.Vector3ic;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Collection;

@@ -2,11 +2,7 @@ package io.github.cpearl0.ctnhcore.registry.worldgen;
 
 import com.gregtechceu.gtceu.api.data.worldgen.BiomeWeightModifier;
 import com.gregtechceu.gtceu.api.data.worldgen.modifier.BiomePlacement;
-import com.gregtechceu.gtceu.common.data.GTBlocks;
-import com.gregtechceu.gtceu.common.worldgen.modifier.RubberTreeChancePlacement;
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
-import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHConfiguredFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;

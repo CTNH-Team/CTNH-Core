@@ -1,9 +1,8 @@
 package io.github.cpearl0.ctnhcore.data.recipe.multiblock;
 
 import com.gregtechceu.gtceu.GTCEu;
-import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.mo_guang.ctpp.recipe.CTPPRecipeBuilder;
+import com.mo_guang.ctpp.common.data.recipe.builder.CTPPRecipeBuilder;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import net.minecraft.data.recipes.FinishedRecipe;
 

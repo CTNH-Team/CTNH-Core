@@ -7,7 +7,6 @@ import com.gregtechceu.gtceu.common.block.CoilBlock;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 public class CoilTierHelper {
     private static final Map<Integer, Map<ICoilType, Supplier<CoilBlock>>> COILS_BY_TIER = new HashMap<>();

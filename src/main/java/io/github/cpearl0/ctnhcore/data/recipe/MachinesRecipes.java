@@ -7,7 +7,6 @@ import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.common.machine.multiblock.part.ObjectHolderMachine;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.data.recipe.CraftingComponent;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
@@ -18,7 +17,7 @@ import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluids;
-import tech.vixhentx.mcmod.ctnhlib.registrate.builders.CTNHTagPrefix;
+
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
@@ -29,7 +28,7 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.machines.GTResearchMachines.OBJECT_HOLDER;
 import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.*;
 import static com.gregtechceu.gtceu.data.recipe.misc.MetaTileEntityLoader.registerMachineRecipe;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMachines.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHMachines.DRONEHOLDER;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR;
 import static twilightforest.init.TFItems.STEELEAF_INGOT;
@@ -86,15 +85,7 @@ public class MachinesRecipes {
                 .inputItems(dust, Apatite, 4)
                 .outputItems(FERTILIZER,16)
                 .save(provider);
-        CTNHRecipeTypes.QUASAR_EYE.recipeBuilder("generator1")
-                .circuitMeta(0)
-                .inputFluids(CTNHMaterials.Mana.getFluid(100000))
-                .EUt(-33554432*2)
-                .duration(200)
-                .addData("consumption",1000000)
-                .addData("tier",1)
-                .addData("active",1)
-                .save(provider);
+
         CTNHRecipeTypes.ARC_REACTOR.recipeBuilder("test")
                 .EUt(8192)
                 .duration(20)
@@ -110,12 +101,7 @@ public class MachinesRecipes {
                 .duration(20*100)
                 .circuitMeta(1)
                 .save(provider);
-        CTNHRecipeTypes.MANA_GENERATOR.recipeBuilder("mana1")
-                .EUt(-32)
-                .duration(100)
-                .circuitMeta(1)
-                .inputFluids(CTNHMaterials.Mana.getFluid(1000))
-                .save(provider);
+
         CTNHRecipeTypes.PVDRONE.recipeBuilder("blank")
                 .duration(100)
                 .circuitMeta(1)
@@ -165,27 +151,7 @@ public class MachinesRecipes {
                 new MaterialEntry(frameGt, GTMaterials.NaquadahAlloy), 'G',
                 new MaterialEntry(gear, GTMaterials.NaquadahAlloy));
 
-        ASSEMBLER_RECIPES.recipeBuilder("manasteel_gearbox_casing")
-                .inputItems(plate, CTNHMaterials.ManaSteel, 4)
-                .inputItems(gear, CTNHMaterials.ManaSteel, 2)
-                .inputItems(frameGt, CTNHMaterials.ManaSteel)
-                .circuitMeta(4)
-                .outputItems(CTNHBlocks.CASING_MANASTEEL_GEARBOX.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
-                .duration(50).EUt(16).save(provider);
-        VanillaRecipeHelper.addShapedRecipe(provider, true, "casing_manasteel_gearbox",
-                CTNHBlocks.CASING_MANASTEEL_GEARBOX.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft), "PhP", "GFG",
-                "PwP", 'P', new MaterialEntry(TagPrefix.plate, CTNHMaterials.ManaSteel), 'F',
-                new MaterialEntry(frameGt, CTNHMaterials.ManaSteel), 'G',
-                new MaterialEntry(gear, CTNHMaterials.ManaSteel));
 
-        CTNHRecipeTypes.BEAMS.recipeBuilder("test")
-                .circuitMeta(24)
-                .inputFluids(PCBCoolant.getFluid(100))
-                .EUt(1)
-                .duration(100)
-                .addData("required_mana",0)
-                .addData("mana",0)
-                .save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("empty_program")
                 .inputItems(wireFine,RedAlloy,8)
                 .inputItems(plate,Steel,2)

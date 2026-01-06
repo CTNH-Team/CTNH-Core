@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.data.recipe.multiblock;
 
-import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import net.minecraft.data.recipes.FinishedRecipe;
 

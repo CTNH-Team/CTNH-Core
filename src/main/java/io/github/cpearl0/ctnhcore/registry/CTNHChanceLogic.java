@@ -1,19 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry;
 
-import com.google.common.collect.ImmutableList;
-import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.recipe.chance.boost.ChanceBoostFunction;
-import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
-import com.gregtechceu.gtceu.api.recipe.content.Content;
-import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import net.minecraft.network.chat.Component;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.jetbrains.annotations.Unmodifiable;
-
-import java.util.Collections;
-import java.util.List;
-
 public class CTNHChanceLogic {
 //    public static final ChanceLogic BASIC = new ChanceLogic("basic") {
 //        @Override

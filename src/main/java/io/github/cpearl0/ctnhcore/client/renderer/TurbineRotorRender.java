@@ -1,34 +1,25 @@
 package io.github.cpearl0.ctnhcore.client.renderer;
 
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
-import com.lowdragmc.lowdraglib.client.renderer.impl.IModelRenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.model.TurbineRotorModel;
+import io.github.cpearl0.ctnhcore.client.renderer.utils.RenderUtils;
 import io.github.cpearl0.ctnhcore.common.block.TurbineRotorBlock;
 import io.github.cpearl0.ctnhcore.common.blockentity.TurbineRotorBE;
 import lombok.Getter;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.*;
-
-import javax.annotation.*;
-
-import io.github.cpearl0.ctnhcore.client.renderer.utils.RenderUtils;
 
 public class TurbineRotorRender implements IRenderer {
 

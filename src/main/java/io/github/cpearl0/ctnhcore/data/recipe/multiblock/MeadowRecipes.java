@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe.multiblock;
 
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
-import com.mo_guang.ctpp.recipe.CTPPRecipeBuilder;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.recipe.builder.CTNHRecipeBuilder;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
@@ -10,7 +9,6 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.fluids.FluidStack;
 
 import java.util.function.Consumer;
 

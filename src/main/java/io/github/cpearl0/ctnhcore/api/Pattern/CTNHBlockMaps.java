@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.api.Pattern;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
-import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.ISSFData;

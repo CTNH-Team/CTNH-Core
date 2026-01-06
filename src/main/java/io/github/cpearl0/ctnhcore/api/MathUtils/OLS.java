@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.api.MathUtils;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 /**
  * 多元线性回归(OLS)实现

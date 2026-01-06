@@ -1,30 +1,19 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
-import com.gregtechceu.gtceu.api.capability.IObjectHolder;
 import com.gregtechceu.gtceu.api.capability.IParallelHatch;
-import com.gregtechceu.gtceu.api.capability.forge.GTCapability;
-import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
-import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
-import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
-import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
-import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
-import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import earth.terrarium.adastra.api.planets.Planet;
 import io.github.cpearl0.ctnhcore.common.item.IDroneItem;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.LaserSorter;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.DroneHolderMachine;
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import lombok.Getter;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
@@ -32,7 +21,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine {
 

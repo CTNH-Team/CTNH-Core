@@ -1,9 +1,7 @@
 package io.github.cpearl0.ctnhcore.registry;
 
-import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.api.block.ICoilType;
-import com.gregtechceu.gtceu.api.block.IFilterType;
 import com.gregtechceu.gtceu.api.block.property.GTBlockStateProperties;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
@@ -15,13 +13,11 @@ import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.block.PhotovoltaicBlock;
 import io.github.cpearl0.ctnhcore.common.block.SpaceStructuralFramework;
-import io.github.cpearl0.ctnhcore.common.block.TurbineRotorBlock;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.MAINTENANCE_TAPED_OVERLAY;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.tieredHullTextures;

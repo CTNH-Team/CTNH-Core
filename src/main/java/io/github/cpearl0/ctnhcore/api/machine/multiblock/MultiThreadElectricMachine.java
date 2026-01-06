@@ -154,4 +154,9 @@ public class MultiThreadElectricMachine extends WorkableElectricMultiblockMachin
                 .filter(RecipeLogic::isWorking)
                 .count();
     }
+
+    @Override
+    public boolean keepSubscribing() {
+        return getRecipeLogic().isWorking();
+    }
 }

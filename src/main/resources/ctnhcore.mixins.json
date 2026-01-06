@@ -6,7 +6,6 @@
   "mixins": [
     "ChunkMixin",
     "ChunkSerializerMixin",
-    "ManaPoolBlockEntityMixin",
     "TagLoaderMixin",
     "adastra.OxygenApilmplMixin",
     "adastra.TemperatureApilmplMixin",
@@ -25,19 +24,17 @@
     "gtceu.OreRecipeHandlerMixin",
     "gtceu.RecyclingRecipesMixin",
     "gtceu.TagPrefixMixin",
+    "gtceu.orevein.ClientProxyAccessor",
+    "gtceu.recipe.RecipeLogicMixin",
     "ldlib.ModularUIContainerMixin",
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MobMixin",
     "mc.MonsterMixin",
-    "mc.ServerPlayerMixin",
     "mc.WorldLoaderPackConfigMixin",
-
     "vintageimprovements.LatheRotatingBlockMixin"
   ],
   "client": [
     "gtceu.ContentMixin",
-    "gtceu.OreVeinElementRendererMixin",
-    "gtceu.OreVeinElementRendererWorldMixin",
     "sophisticatedcore.SyncContainerStacksMessageMixin",
     "sophisticatedcore.SyncSlotStackMessageMixin"
   ],

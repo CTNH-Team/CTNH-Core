@@ -2,8 +2,6 @@ package io.github.cpearl0.ctnhcore.data.lang.Chinese;
 
 import tech.vixhentx.mcmod.ctnhlib.registrate.lang.RegistrateCNLangProvider;
 
-import static io.github.cpearl0.ctnhcore.data.lang.Chinese.OreLang.initDimensionLang;
-
 public class VeinLang {
     public static void init(RegistrateCNLangProvider provider) {
         provider.add("ctnhcore:chromite_vein", "铬铁矿脉");

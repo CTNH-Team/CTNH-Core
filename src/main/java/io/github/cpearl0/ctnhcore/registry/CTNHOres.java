@@ -7,8 +7,6 @@ import com.gregtechceu.gtceu.api.data.worldgen.generator.indicators.SurfaceIndic
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHDimensions;
-import mythicbotany.register.ModBlocks;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.block.Blocks;
@@ -701,28 +699,28 @@ public class CTNHOres {
                     .radius(5)
             )
     );
-    public static GTOreDefinition MANA_FUSED_VEIN = create(CTNHCore.id("mana_fused_vein"), vein ->
-        vein.weight(80)
-        .clusterSize(40)
-        .density(0.25F)
-        .discardChanceOnAirExposure(0)
-        .layer(CTNHWorldgenLayers.ALFHEIM)
-        .dimensions(ALFHEIM)
-        .heightRangeUniform(20, 40)
-        .layeredVeinGenerator(generator -> generator
-                .buildLayerPattern(pattern -> pattern
-                .layer(l -> l.weight(3).mat(CTNHMaterials.ManaFused).size(2, 4))
-                .layer(l -> l.weight(2).block(() -> ModBlocks.goldOre).size(1, 1))
-                .layer(l -> l.weight(1).block(() -> ModBlocks.dragonstoneOre).size(1, 1))
-            )
-        )
-        .surfaceIndicatorGenerator(indicator -> indicator
-                .surfaceRock(GTMaterials.Gold)
-                .placement(ABOVE)
-                .density(0.4F)
-                .radius(5)
-        )
-    );
+//    public static GTOreDefinition MANA_FUSED_VEIN = create(CTNHCore.id("mana_fused_vein"), vein ->
+//        vein.weight(80)
+//        .clusterSize(40)
+//        .density(0.25F)
+//        .discardChanceOnAirExposure(0)
+//        .layer(CTNHWorldgenLayers.ALFHEIM)
+//        .dimensions(ALFHEIM)
+//        .heightRangeUniform(20, 40)
+//        .layeredVeinGenerator(generator -> generator
+//                .buildLayerPattern(pattern -> pattern
+//                .layer(l -> l.weight(3).mat(CTNHMaterials.ManaFused).size(2, 4))
+//                .layer(l -> l.weight(2).block(() -> ModBlocks.goldOre).size(1, 1))
+//                .layer(l -> l.weight(1).block(() -> ModBlocks.dragonstoneOre).size(1, 1))
+//            )
+//        )
+//        .surfaceIndicatorGenerator(indicator -> indicator
+//                .surfaceRock(GTMaterials.Gold)
+//                .placement(ABOVE)
+//                .density(0.4F)
+//                .radius(5)
+//        )
+//    );
     public static final GTOreDefinition KAOLINITE_VEIN = create(
             CTNHCore.id("kaolinite_vein"),
             vein -> {

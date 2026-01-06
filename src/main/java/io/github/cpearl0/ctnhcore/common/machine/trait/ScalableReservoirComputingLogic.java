@@ -16,9 +16,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 
 
 public class ScalableReservoirComputingLogic extends RecipeLogic {

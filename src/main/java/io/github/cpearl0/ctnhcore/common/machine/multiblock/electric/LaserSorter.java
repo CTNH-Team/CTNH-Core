@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.stream.Collectors;
 
-import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.api.GTValues.IV;
 
 public class LaserSorter extends MultiblockComputationMachine{
     public LaserSorter(IMachineBlockEntity holder) {

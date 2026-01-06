@@ -4,7 +4,6 @@ import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
 import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
-import io.github.cpearl0.ctnhcore.common.recipe.TierCasingCondition;
 
 public class CTNHRecipeConditions {
     public static RecipeConditionType<PlantCasingCondition> PLANT_CASING = GTRegistries.RECIPE_CONDITIONS.register(

@@ -1,9 +1,5 @@
 package io.github.cpearl0.ctnhcore.data.materials;
 
-import com.gregtechceu.gtceu.GTCEu;
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.OreProperty;
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.CTNHElements;
 

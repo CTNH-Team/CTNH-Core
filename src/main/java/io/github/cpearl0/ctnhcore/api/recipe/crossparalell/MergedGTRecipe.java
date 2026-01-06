@@ -8,7 +8,10 @@ import com.gregtechceu.gtceu.api.recipe.content.Content;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MergedGTRecipe extends GTRecipe {
 

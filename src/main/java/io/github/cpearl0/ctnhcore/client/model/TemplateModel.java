@@ -1,12 +1,7 @@
 package io.github.cpearl0.ctnhcore.client.model;
 
-import io.github.cpearl0.ctnhcore.CTNHCore;
 import lombok.Getter;
-import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
 
 //导入BlockBench的模型
 @Getter

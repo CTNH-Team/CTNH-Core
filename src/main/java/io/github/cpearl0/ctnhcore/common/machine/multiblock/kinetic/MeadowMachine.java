@@ -4,7 +4,7 @@ import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.mo_guang.ctpp.common.data.CTPPRecipeHelper;
+import com.mo_guang.ctpp.common.data.recipe.builder.CTPPRecipeHelper;
 import com.mo_guang.ctpp.common.machine.multiblock.KineticWorkableMultiblockMachine;
 import com.moguang.ctnhbio.api.machine.trait.NotifiableEntityContainer;
 import io.github.cpearl0.ctnhcore.CTNHCore;

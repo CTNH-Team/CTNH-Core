@@ -1,23 +1,16 @@
 package io.github.cpearl0.ctnhcore.registry.worldgen;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
-import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.SurfaceRuleData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
-import net.minecraft.world.level.levelgen.synth.NormalNoise;
 import net.minecraft.world.level.material.Fluids;
 
-import java.lang.reflect.Field;
 import java.util.List;
-import java.util.stream.Stream;
 
 import static net.minecraft.world.level.levelgen.NoiseRouterData.*;
 

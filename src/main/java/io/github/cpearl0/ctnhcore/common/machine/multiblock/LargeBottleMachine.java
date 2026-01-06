@@ -9,7 +9,6 @@ import com.lowdragmc.lowdraglib.syncdata.annotation.RequireRerender;
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Vec3i;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;

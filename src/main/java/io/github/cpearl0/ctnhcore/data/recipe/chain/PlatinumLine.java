@@ -12,7 +12,6 @@ import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.util.function.Consumer;

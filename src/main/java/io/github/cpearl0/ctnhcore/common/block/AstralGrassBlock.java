@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.block;
 
-import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;

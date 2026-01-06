@@ -1,9 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.item;
 
 import com.gregtechceu.gtceu.api.item.ComponentItem;
-import com.gregtechceu.gtceu.api.item.component.IAddInformation;
-import com.gregtechceu.gtceu.api.item.component.IItemComponent;
-import com.gregtechceu.gtceu.common.item.TooltipBehavior;
 import lombok.Getter;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;

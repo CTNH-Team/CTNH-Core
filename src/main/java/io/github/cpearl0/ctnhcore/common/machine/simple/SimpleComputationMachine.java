@@ -1,7 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.simple;
 
-import com.gregtechceu.gtceu.api.capability.IOpticalComputationProvider;
-import com.gregtechceu.gtceu.api.capability.IOpticalComputationReceiver;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.SimpleTieredMachine;
 import io.github.cpearl0.ctnhcore.common.machine.trait.SimpleComputationContainer;

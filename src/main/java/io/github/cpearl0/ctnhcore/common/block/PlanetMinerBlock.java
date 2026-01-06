@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.block;
 
 import com.gregtechceu.gtceu.api.block.AppearanceBlock;
-import io.github.cpearl0.ctnhcore.common.block.blockdata.ISSFData;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.PlanetMinerData;
 import lombok.Getter;
 import net.minecraft.util.StringRepresentable;

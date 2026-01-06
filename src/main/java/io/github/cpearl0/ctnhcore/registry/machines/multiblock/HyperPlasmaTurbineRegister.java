@@ -16,23 +16,16 @@ import com.gregtechceu.gtceu.common.data.machines.GTResearchMachines;
 import com.simibubi.create.AllBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.renderer.HyperPlasmaTurbineRender;
-import io.github.cpearl0.ctnhcore.client.renderer.ManaCondenserRender;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.HyperPlasmaTurbineMachine;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import static com.gregtechceu.gtceu.api.GTValues.ZPM;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Neutronium;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
-import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.HYPER_PLASMA_TURBINE_ROTOR;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class HyperPlasmaTurbineRegister {

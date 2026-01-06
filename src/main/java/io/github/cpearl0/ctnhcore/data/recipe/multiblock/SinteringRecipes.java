@@ -3,7 +3,7 @@ package io.github.cpearl0.ctnhcore.data.recipe.multiblock;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTMaterialItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.mo_guang.ctpp.recipe.CTPPRecipeBuilder;
+import com.mo_guang.ctpp.common.data.recipe.builder.CTPPRecipeBuilder;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;

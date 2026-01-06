@@ -16,20 +16,13 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.utils.memoization.GTMemoizer;
 import earth.terrarium.adastra.common.registry.ModBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
-import mythicbotany.register.ModItems;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
-import vazkii.botania.common.block.BotaniaBlocks;
-import vazkii.botania.common.item.BotaniaItems;
-
-import java.util.Arrays;
-import java.util.function.Supplier;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
@@ -37,12 +30,12 @@ import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIcon
 import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.HIGHER;
 import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.HIGHEST;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static committee.nova.mods.avaritia.init.registry.ModBlocks.neutron;
+import static committee.nova.mods.avaritia.init.registry.ModItems.neutron_ingot;
+import static committee.nova.mods.avaritia.init.registry.ModItems.neutron_nugget;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes.hyperRotor;
-import static committee.nova.mods.avaritia.init.registry.ModItems.*;
-import static committee.nova.mods.avaritia.init.registry.ModBlocks.*;
-import static wayoftime.bloodmagic.api.compat.EnumDemonWillType.CORROSIVE;
 
 public class CTNHMaterials {
     public static void addFluid(Material material) {
@@ -524,49 +517,7 @@ public class CTNHMaterials {
                     .customStill())
             .color(0x228B22)
             .buildAndRegister();
-    public static final Material Mana = REGISTRATE.material(GTCEu.id("mana"))
-            .cnlang("液态魔力")
-            .liquid()
-            .color(0x43e7ed)
-            .buildAndRegister();
-    public static final Material Zenith_essence = REGISTRATE.material(GTCEu.id("zenith_essence"))
-            .cnlang("§5天顶源质§r")
-            .liquid()
-            .color(0x7D26CD)
-            .secondaryColor(0x836FFF)
-            .buildAndRegister();
-    public static final Material AERIALITE = REGISTRATE.material(GTCEu.id("aerialite"))
-            .cnlang("天空")
-            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
-            .ingot()
-            .color(0x4D66B3)
-            .iconSet(METALLIC)
-            .cableProperties(GTValues.V[HV], 6, 2, false)
-            .buildAndRegister();
-    public static final Material SHADOWIUM = REGISTRATE.material(GTCEu.id("shadowium"))
-            .cnlang("暗影")
-            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
-            .ingot()
-            .color(0x666666)
-            .iconSet(METALLIC)
-            .cableProperties(GTValues.V[HV], 6, 7, false)
-            .buildAndRegister();
-    public static final Material ORICHALCOS = REGISTRATE.material(GTCEu.id("orichalcos"))
-            .cnlang("奥利哈刚")
-            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
-            .ingot()
-            .color(0X8000FF)
-            .iconSet(METALLIC)
-            .cableProperties(GTValues.V[IV], 12, 1, false)
-            .buildAndRegister();
-    public static final Material PHOTONIUM = REGISTRATE.material(GTCEu.id("photonium"))
-            .cnlang("         光子")
-            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
-            .ingot()
-            .color(0XCCCCCC)
-            .iconSet(METALLIC)
-            .cableProperties(GTValues.V[HV], 6, 7, false)
-            .buildAndRegister();
+
 
     public static final Material Ignitium = REGISTRATE.material(GTCEu.id("ignitium"))
             .cnlang("腾炎")
@@ -661,11 +612,7 @@ public class CTNHMaterials {
             .gas()
             .color(0x39cf89)
             .buildAndRegister();
-    public static final Material Livingrock = REGISTRATE.material(GTCEu.id("livingrock"))
-            .cnlang("活石")
-            .dust()
-            .color(0xfafafa)
-            .buildAndRegister();
+
     public static final Material icestone = REGISTRATE.material(GTCEu.id("icestone"))
             .cnlang("冰石")
             .dust()
@@ -679,12 +626,12 @@ public class CTNHMaterials {
             .burnTime(6000)
             .ore()
             .buildAndRegister();
-    public static final Material ManaFused = REGISTRATE.material(GTCEu.id("mana_fused"))
-            .cnlang("蕴魔")
-            .dust()
-            .ore()
-            .color(0x4FC1FF)
-            .buildAndRegister();
+//    public static final Material ManaFused = REGISTRATE.material(GTCEu.id("mana_fused"))
+//            .cnlang("蕴魔")
+//            .dust()
+//            .ore()
+//            .color(0x4FC1FF)
+//            .buildAndRegister();
     public static final Material NQ_END_OF_GASOLINE =REGISTRATE.material(GTCEu.id("nq_end_gasoline"))
             .cnlang("硅岩基终末燃油-NQ")
             .liquid()
@@ -1001,7 +948,7 @@ public class CTNHMaterials {
     public static void init() {
         NuclearMaterials.init();
         CreateMaterials.init();
-        BotaniaMaterials.init();
+
         AdastraMaterials.init();
         SecondMaterials.init();
         PlatinumLineMaterials.init();
@@ -1051,18 +998,7 @@ public class CTNHMaterials {
 
     }
     public static void tagPrefixIgnore() {
-        TagPrefix.ingot.setIgnored(ManaSteel, () -> BotaniaItems.manaSteel);
-        TagPrefix.nugget.setIgnored(ManaSteel, () -> BotaniaItems.manasteelNugget);
-        TagPrefix.block.setIgnored(ManaSteel, () -> BotaniaBlocks.manasteelBlock);
-        TagPrefix.ingot.setIgnored(TerraSteel, () -> BotaniaItems.terrasteel);
-        TagPrefix.nugget.setIgnored(TerraSteel, () -> BotaniaItems.terrasteelNugget);
-        TagPrefix.block.setIgnored(TerraSteel, () -> BotaniaBlocks.terrasteelBlock);
-        TagPrefix.ingot.setIgnored(Elementium, () -> BotaniaItems.elementium);
-        TagPrefix.nugget.setIgnored(Elementium, () -> BotaniaItems.elementiumNugget);
-        TagPrefix.block.setIgnored(Elementium, () -> BotaniaBlocks.elementiumBlock);
-        TagPrefix.ingot.setIgnored(AlfSteel, () -> ModItems.alfsteelIngot);
-        TagPrefix.nugget.setIgnored(AlfSteel, () -> ModItems.alfsteelNugget);
-        TagPrefix.block.setIgnored(AlfSteel, () -> mythicbotany.register.ModBlocks.alfsteelBlock);
+
         TagPrefix.gem.setIgnored(GTMaterials.CertusQuartz, () -> AEItems.CERTUS_QUARTZ_CRYSTAL);
         TagPrefix.block.setIgnored(GTMaterials.CertusQuartz, () -> AEBlocks.QUARTZ_BLOCK);
 
@@ -1086,7 +1022,6 @@ public class CTNHMaterials {
         TagPrefix.ingot.setIgnored(Stratus, DAItems.STRATUS_INGOT);
         TagPrefix.block.setIgnored(Stratus, DABlocks.STRATUS_BLOCK);
 
-        TagPrefix.block.setIgnored(Livingrock, () -> BotaniaBlocks.livingrock);
 
         hyperRotor.setIgnored(Neutronium);
 

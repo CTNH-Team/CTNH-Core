@@ -1,7 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry;
 
-import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
-import io.github.cpearl0.ctnhcore.CTNHCore;
 import net.minecraft.server.packs.FilePackResources;
 import net.minecraft.server.packs.PackResources;
 import org.apache.commons.io.FileUtils;

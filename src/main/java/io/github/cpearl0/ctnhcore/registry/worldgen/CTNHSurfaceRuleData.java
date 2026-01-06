@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry.worldgen;
 
-import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;

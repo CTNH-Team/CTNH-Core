@@ -6,7 +6,6 @@ import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
-import com.gregtechceu.gtceu.utils.GTUtil;
 import com.mo_guang.ctpp.common.machine.IKineticMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.KineticElectricMultiblockMachine;
 import org.jetbrains.annotations.Nullable;

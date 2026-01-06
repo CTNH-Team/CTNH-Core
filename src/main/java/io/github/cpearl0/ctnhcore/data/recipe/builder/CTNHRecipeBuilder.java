@@ -8,7 +8,6 @@ import com.mo_guang.ctpp.common.condition.RPMCondition;
 import com.moguang.ctnhbio.api.capability.recipe.EntityRecipeCapability;
 import com.moguang.ctnhbio.api.capability.recipe.NutrientRecipeCapability;
 import com.moguang.ctnhbio.api.recipe.ingredient.entity.EntityIngredient;
-
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;

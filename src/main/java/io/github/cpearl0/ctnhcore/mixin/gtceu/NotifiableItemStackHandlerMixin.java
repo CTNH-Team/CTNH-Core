@@ -8,25 +8,18 @@ import com.gregtechceu.gtceu.api.recipe.ingredient.IntProviderIngredient;
 import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.utils.GTUtil;
-import com.llamalad7.mixinextras.sugar.Local;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch.HugeItemBusPartMachine;
 import io.github.cpearl0.ctnhcore.utils.IAllowSameContainer;
-import it.unimi.dsi.fastutil.ints.Int2IntMap;
-import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.function.IntFunction;
 
 @Mixin(value = NotifiableItemStackHandler.class, remap = false)
@@ -59,16 +52,6 @@ public abstract class NotifiableItemStackHandlerMixin implements IAllowSameConta
         ctnhcore$allowSameItems = handlerIO.support(IO.OUT);
     }
 
-    @Redirect(
-            method = "handleRecipe",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;getMaxStackSize()I", remap = true)
-    )
-    private static int getMaxStackSize(ItemStack instance, @Local(name = "storage") CustomItemStackHandler storage, @Local(name = "slot") int slot){
-        if(storage instanceof HugeItemBusPartMachine.HugeItemStackHandler hugeItemStackHandler)
-            return hugeItemStackHandler.getStackLimit(slot, instance);
-        else return instance.getMaxStackSize();
-    }
-
     @Override
     public boolean isAllowSame() {
         return ctnhcore$allowSameItems;
@@ -79,8 +62,6 @@ public abstract class NotifiableItemStackHandlerMixin implements IAllowSameConta
         ctnhcore$allowSameItems = b;
         onContentsChanged();
     }
-
-
 
     /**
      * @author
@@ -185,21 +166,19 @@ public abstract class NotifiableItemStackHandlerMixin implements IAllowSameConta
                     ItemStack output = items[0].copyWithCount(amount);
                     // Only try this slot if not visited or if visited with the same type of item
                     if (visited[slot] == null || GTUtil.isSameItemSameTags(visited[slot], output)) {
-                        if (count < output.getMaxStackSize() && count < storage.getSlotLimit(slot)) {
-                            var remainder = getActioned(storage, slot, recipe.ingredientActions);
-                            if (remainder == null){
-                                remainder = storage.insertItem(slot, output, simulate);
+                        var remainder = getActioned(storage, slot, recipe.ingredientActions);
+                        if (remainder == null){
+                            remainder = storage.insertItem(slot, output, simulate);
 
-                            }
-                            if (remainder.getCount() < amount) {
-                                changed = true;
-                                visited[slot] = output.copyWithCount(count + amount - remainder.getCount());
-                            }
-                            amount = remainder.getCount();
-                            if(!ctnhcore$allowSameItems){
-                                if(amount <= 0) it.remove();
-                                break;
-                            }
+                        }
+                        if (remainder.getCount() < amount) {
+                            changed = true;
+                            visited[slot] = output.copyWithCount(count + amount - remainder.getCount());
+                        }
+                        amount = remainder.getCount();
+                        if(!ctnhcore$allowSameItems){
+                            if(amount <= 0) it.remove();
+                            break;
                         }
                     }
                 }

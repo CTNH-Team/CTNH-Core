@@ -2,9 +2,6 @@ package io.github.cpearl0.ctnhcore.common.item;
 
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.IInteractionItem;
-import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.SpacePhotovoltaicBaseStation;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotoVoltaicDroneStation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -15,7 +12,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.AirBlock;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;

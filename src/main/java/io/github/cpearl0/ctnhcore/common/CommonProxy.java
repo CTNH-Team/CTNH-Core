@@ -5,7 +5,6 @@ import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.jade.CTNHJadePlugin;
-import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 

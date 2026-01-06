@@ -1,10 +1,8 @@
 package io.github.cpearl0.ctnhcore.data.recipe.multiblock;
 
-import com.gregtechceu.gtceu.common.data.GTRecipeConditions;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.Consumer;
 

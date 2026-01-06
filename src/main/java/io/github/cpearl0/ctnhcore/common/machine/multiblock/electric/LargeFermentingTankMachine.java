@@ -6,7 +6,6 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.MultiblockTankMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
-import io.github.cpearl0.ctnhcore.registry.CTNHMultiblockMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import net.minecraft.world.level.material.Fluids;
 

@@ -6,7 +6,8 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 public class ProvidableNetInfo <MachineType extends IProviableNetHandlerMachine> {

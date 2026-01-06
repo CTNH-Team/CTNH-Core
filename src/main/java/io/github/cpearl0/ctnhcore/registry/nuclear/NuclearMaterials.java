@@ -1,16 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry.nuclear;
 
-import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
-import io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialBuilder;
-import io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialIconSet;
-import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
-import io.github.cpearl0.ctnhcore.api.data.material.NuclearProperty;
-import io.github.cpearl0.ctnhcore.registry.CTNHElements;
-
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Carbon;
-import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearElements.Th233;
 
 public class NuclearMaterials {
     public static void init() {

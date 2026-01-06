@@ -6,7 +6,6 @@ import com.tterrag.registrate.AbstractRegistrate;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.tterrag.registrate.util.nullness.NonnullType;
-import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
 import net.minecraft.core.Registry;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.PackOutput;
