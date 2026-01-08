@@ -121,6 +121,11 @@ dependencies {
     //Re-Avaritia
     modImplementation("committee.nova.mods:avaritia-forge:${avaritia_version}")
 
+    //tconstruct
+
+    modImplementation("slimeknights.tconstruct:TConstruct:1.20.1-${tcon_version}")
+    modImplementation ("slimeknights.mantle:Mantle:1.20.1-${mantle_version}")
+
 //    modImplementation("curse.maven:xaeros-minimap-263420:6778028")
 //    modImplementation("curse.maven:xaeros-world-map-317780:6778091")
     modImplementation("curse.maven:sophisticated-core-618298:6596375")

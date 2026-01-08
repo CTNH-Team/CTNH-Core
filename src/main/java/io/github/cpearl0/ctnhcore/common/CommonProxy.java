@@ -66,6 +66,7 @@ public class CommonProxy {
         CTNHRegistration.REGISTRATE.registerRegistrate();
         CTNHSoundEvents.SOUND_EVENTS.register(modEventBus);
         CTNHEnchantments.Enchantments.register(modEventBus);
+        CTNHTicModifier.MODIFIERS.register(modEventBus);
         CTNHRecipes.init(modEventBus);
         CTNHTemperatureModifierRegister.init();
         CTNHCoreDatagen.init();

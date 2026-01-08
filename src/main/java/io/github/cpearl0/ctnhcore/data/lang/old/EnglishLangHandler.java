@@ -497,6 +497,9 @@ public class EnglishLangHandler {
         provider.add("ctnh.machine.naquadah_reactor.tooltip", "Efficiency: %s%%");
         provider.add("ctnh.machine.rocket_engine.tooltip", "Efficiency: %s%%");
 
+        //tconstruct
+        provider.add("modifier.ctnhcore.global_traveller", "Global Traveller");
+
         nuclearTranslation(NuclearMaterials.Thorium233, "Thorium 233");
         nuclearTranslation(NuclearMaterials.Thorium232, "Thorium 232");
         nuclearTranslation(NuclearMaterials.Protactinium233, "Protactinium 233");
