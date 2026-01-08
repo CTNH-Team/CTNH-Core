@@ -28,13 +28,12 @@ public class HugeHatchRecipes {
             var dual_output_hatch = HUGE_DUAL_EXPORT_HATCH[tier].asStack();
             var chest = tier <= EV ? SUPER_CHEST[tier] : QUANTUM_CHEST[tier];
             var tank = tier <= EV ? SUPER_TANK[tier] : QUANTUM_TANK[tier];
-            var slotSize = 1 + tier;
             var tankSize = HugeDualHatchPartMachine.getTankSize(tier);
             if (tier != ULV) {
                 ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("huge_import_bus_" + VN[tier].toLowerCase()))
                         .inputItems(CIRCUITS_ARRAY[tier])
                         .inputItems(ITEM_IMPORT_BUS[tier])
-                        .inputItems(chest, slotSize)
+                        .inputItems(chest)
                         .outputItems(import_bus)
                         .EUt(VA[tier])
                         .duration(100)
@@ -43,7 +42,7 @@ public class HugeHatchRecipes {
                 ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("huge_export_bus_" + VN[tier].toLowerCase()))
                         .inputItems(CIRCUITS_ARRAY[tier])
                         .inputItems(ITEM_EXPORT_BUS[tier])
-                        .inputItems(chest, slotSize)
+                        .inputItems(chest)
                         .outputItems(export_bus)
                         .EUt(VA[tier])
                         .duration(100)

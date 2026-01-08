@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.entity.monster.astralslime;
+package io.github.cpearl0.ctnhcore.common.entity.monster.astralslime;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attributes;

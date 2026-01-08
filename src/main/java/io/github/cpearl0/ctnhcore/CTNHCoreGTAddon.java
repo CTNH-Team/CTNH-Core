@@ -88,7 +88,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         Sinope_recipes.init(provider);
         MachinesRecipes.init(provider);
         AcceleratorRecipes.init(provider);
-        NuclearRecipes.init(provider);
+        //NuclearRecipes.init(provider);
         TurbineRecipes.init(provider);
         HighPerformanceComputerRecipes.init(provider);
 

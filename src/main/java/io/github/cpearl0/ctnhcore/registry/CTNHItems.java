@@ -1,6 +1,8 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import io.github.cpearl0.ctnhcore.common.item.*;
+import io.github.cpearl0.ctnhcore.common.item.debug.ReloadItem;
 import io.github.cpearl0.ctnhcore.data.materials.ChemicalItems;
 
 import com.gregtechceu.gtceu.api.item.ComponentItem;
@@ -488,6 +490,11 @@ public class CTNHItems {
     public static ItemEntry<ComponentItem> ADVANCED_RAM_CHIP;
     public static ItemEntry<ComponentItem> PRIMARY_STEW;
     public static ItemEntry<ComponentItem> GALAXY_MEATBALL;
+
+    public static ItemEntry<ReloadItem> RELOAD_ITEM = REGISTRATE
+            .item("recipe_reload_item", ReloadItem::new)
+            .model(NonNullBiConsumer.noop())
+            .register();
 
     public static void init() {
         registerItem();

@@ -53,11 +53,11 @@ public class GTMaterialAddon {
         Rhenium.addFlags(GENERATE_PLATE);
         Calcium.setProperty(PropertyKey.INGOT, new IngotProperty());
         Gadolinium.setProperty(PropertyKey.DUST, new DustProperty());
-        Terbium.setProperty(PropertyKey.DUST, new DustProperty());
+        //Terbium.setProperty(PropertyKey.DUST, new DustProperty());
         Dysprosium.setProperty(PropertyKey.DUST, new DustProperty());
         Dysprosium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         Holmium.setProperty(PropertyKey.DUST, new DustProperty());
-        Erbium.setProperty(PropertyKey.DUST, new DustProperty());
+        //Erbium.setProperty(PropertyKey.DUST, new DustProperty());
         Thulium.setProperty(PropertyKey.DUST, new DustProperty());
         Thulium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         Ytterbium.setProperty(PropertyKey.DUST, new DustProperty());
@@ -158,7 +158,7 @@ public class GTMaterialAddon {
         Actinium.setProperty(PropertyKey.HAZARD, radioactive(1));
         Rutherfordium.setProperty(PropertyKey.DUST, new DustProperty());
         Rutherfordium.setProperty(PropertyKey.HAZARD, radioactive(1));
-        Selenium.setProperty(PropertyKey.DUST, new DustProperty());
+        //Selenium.setProperty(PropertyKey.DUST, new DustProperty());
         Astatine.setProperty(PropertyKey.INGOT, new IngotProperty());
         Astatine.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         Astatine.setProperty(PropertyKey.HAZARD, radioactive(1));

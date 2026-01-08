@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.entity.monster.sightseerspitter;
+package io.github.cpearl0.ctnhcore.common.entity.monster.sightseerspitter;
 
 import io.github.cpearl0.ctnhcore.utils.MathUtils;
 
