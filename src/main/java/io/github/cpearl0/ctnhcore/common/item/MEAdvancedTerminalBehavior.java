@@ -1,6 +1,10 @@
 package io.github.cpearl0.ctnhcore.common.item;
 
-import appeng.api.implementations.blockentities.IWirelessAccessPoint;
+import io.github.cpearl0.ctnhcore.common.gui.terminal.TerminalInputWidget;
+import io.github.cpearl0.ctnhcore.event.BuildTaskManager;
+import io.github.cpearl0.ctnhcore.utils.CoilTierHelper;
+import io.github.cpearl0.ctnhcore.utils.OrientedItem;
+
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.block.IMachineBlock;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
@@ -9,21 +13,14 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
-import com.hepdd.gtmthings.api.gui.widget.TerminalInputWidget;
+
 import com.lowdragmc.lowdraglib.gui.editor.ColorPattern;
 import com.lowdragmc.lowdraglib.gui.factory.HeldItemUIFactory;
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.texture.ResourceBorderTexture;
-import com.lowdragmc.lowdraglib.gui.widget.DraggableScrollableWidgetGroup;
-import com.lowdragmc.lowdraglib.gui.widget.LabelWidget;
-import com.lowdragmc.lowdraglib.gui.widget.Widget;
-import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
+import com.lowdragmc.lowdraglib.gui.widget.*;
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
-import io.github.cpearl0.ctnhcore.event.BuildTaskManager;
-import io.github.cpearl0.ctnhcore.utils.CoilTierHelper;
-import io.github.cpearl0.ctnhcore.utils.OrientedItem;
-import lombok.Getter;
-import lombok.Setter;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -38,6 +35,10 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 
+import appeng.api.implementations.blockentities.IWirelessAccessPoint;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -45,6 +46,7 @@ import java.util.function.Supplier;
 import static io.github.cpearl0.ctnhcore.api.Pattern.AsynBlockPattern.getAdvancedBlockPattern;
 
 public class MEAdvancedTerminalBehavior implements IItemUIFactory {
+
     // 配置键常量
     private static final String COIL_TIER_KEY = "CoilTier";
     private static final String REPEAT_COUNT_KEY = "RepeatCount";
@@ -75,16 +77,14 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
         }
 
         AutoBuildSetting settings = getAutoBuildSetting(player.getMainHandItem());
-        if(context.getItemInHand().getItem() instanceof MEAdvancedTerminalItem terminal)
-        {
+        if (context.getItemInHand().getItem() instanceof MEAdvancedTerminalItem terminal) {
             settings.accessPoint = terminal.getAccessPoint(context.getItemInHand(), context.getLevel());
         }
 
         if (!controller.isFormed() || (machine instanceof WorkableMultiblockMachine workableMachine &&
                 settings.isReplaceCoilMode())) {
             var pattern = getAdvancedBlockPattern(controller.getPattern());
-            if (pattern != null)
-            {
+            if (pattern != null) {
                 pattern.startAutoBuild(player, controller.getMultiblockState(), settings);
                 BuildTaskManager.getInstance().registerTask(player, pattern);
             }
@@ -102,8 +102,7 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
                 tag.getInt(REPLACE_COIL_MODE_KEY),
                 tag.getInt(USE_AE_KEY),
                 tag.getInt(PLACE_FLUID_KEY),
-                tag.getInt(PLACE_IN_FLUID_KEY)
-        );
+                tag.getInt(PLACE_IN_FLUID_KEY));
     }
 
     @Override
@@ -119,9 +118,10 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
                 .setBackground(GuiTextures.DISPLAY)
                 .setYScrollBarWidth(2)
                 .setYBarStyle(null, ColorPattern.T_WHITE.rectTexture().setRadius(1))
-//                .addWidget(new AlignLabelWidget(89, 5, "item.ctnh.me_advanced_terminal.setting.title")
-//                        .setTextAlign(ALIGN_CENTER));
-                .addWidget(new LabelWidget(40, 5, Component.translatable("item.ctnh.me_advanced_terminal.setting.title").getString()));
+                // .addWidget(new AlignLabelWidget(89, 5, "item.ctnh.me_advanced_terminal.setting.title")
+                // .setTextAlign(ALIGN_CENTER));
+                .addWidget(new LabelWidget(40, 5,
+                        Component.translatable("item.ctnh.me_advanced_terminal.setting.title").getString()));
 
         List<SettingConfig> settings = Arrays.asList(
                 new SettingConfig(
@@ -130,8 +130,7 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
                         COIL_TIER_KEY,
                         () -> getTagValue(handItem, COIL_TIER_KEY, 0),
                         value -> setTagValue(handItem, COIL_TIER_KEY, value),
-                        0, GTCEuAPI.HEATING_COILS.size()
-                ),
+                        0, GTCEuAPI.HEATING_COILS.size()),
                 new SettingConfig(
                         "item.ctnh.me_advanced_terminal.setting.2",
                         new ArrayList<>(Collections.singletonList(
@@ -139,8 +138,7 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
                         REPEAT_COUNT_KEY,
                         () -> getTagValue(handItem, REPEAT_COUNT_KEY, 0),
                         value -> setTagValue(handItem, REPEAT_COUNT_KEY, value),
-                        0, 99
-                ),
+                        0, 99),
                 new SettingConfig(
                         "item.ctnh.me_advanced_terminal.setting.3",
                         new ArrayList<>(Collections.singletonList(
@@ -148,8 +146,7 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
                         NO_HATCH_MODE_KEY,
                         () -> getTagValue(handItem, NO_HATCH_MODE_KEY, 1),
                         value -> setTagValue(handItem, NO_HATCH_MODE_KEY, value),
-                        0, 1
-                ),
+                        0, 1),
                 new SettingConfig(
                         "item.ctnh.me_advanced_terminal.setting.4",
                         new ArrayList<>(Collections.singletonList(
@@ -157,8 +154,7 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
                         REPLACE_COIL_MODE_KEY,
                         () -> getTagValue(handItem, REPLACE_COIL_MODE_KEY, 0),
                         value -> setTagValue(handItem, REPLACE_COIL_MODE_KEY, value),
-                        0, 1
-                ),
+                        0, 1),
                 new SettingConfig(
                         "item.ctnh.me_advanced_terminal.setting.5",
                         new ArrayList<>(Collections.singletonList(
@@ -166,8 +162,7 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
                         USE_AE_KEY,
                         () -> getTagValue(handItem, USE_AE_KEY, 0),
                         value -> setTagValue(handItem, USE_AE_KEY, value),
-                        0, 1
-                ),
+                        0, 1),
                 new SettingConfig(
                         "item.ctnh.me_advanced_terminal.setting.6",
                         new ArrayList<>(Collections.singletonList(
@@ -175,8 +170,7 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
                         PLACE_FLUID_KEY,
                         () -> getTagValue(handItem, PLACE_FLUID_KEY, 0),
                         value -> setTagValue(handItem, PLACE_FLUID_KEY, value),
-                        0, 1
-                ),
+                        0, 1),
                 new SettingConfig(
                         "item.ctnh.me_advanced_terminal.setting.7",
                         new ArrayList<>(Collections.singletonList(
@@ -184,9 +178,7 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
                         PLACE_IN_FLUID_KEY,
                         () -> getTagValue(handItem, PLACE_IN_FLUID_KEY, 0),
                         value -> setTagValue(handItem, PLACE_IN_FLUID_KEY, value),
-                        0, 1
-                )
-        );
+                        0, 1));
 
         int rowIndex = 1;
         for (SettingConfig config : settings) {
@@ -227,6 +219,7 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
     @Getter
     @Setter
     public static class AutoBuildSetting {
+
         private final int coilTier;
         private final int repeatCount;
         private final int noHatchMode;
@@ -248,7 +241,6 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
             this.useAEStorage = useAEStorage;
             this.placeFluid = placeFluid;
             this.placeInFluid = placeInFluid;
-
         }
 
         public AutoBuildSetting() {
@@ -259,8 +251,7 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
             List<OrientedItem> candidates = new ArrayList<>();
             if (blockInfos != null) {
                 // 处理线圈方块的特殊逻辑
-                if (Arrays.stream(blockInfos).anyMatch(info ->
-                        info.getBlockState().getBlock() instanceof CoilBlock)) {
+                if (Arrays.stream(blockInfos).anyMatch(info -> info.getBlockState().getBlock() instanceof CoilBlock)) {
 
                     int tier = Math.min(coilTier - 1, blockInfos.length - 1);
                     if (tier == -1) {
@@ -273,15 +264,15 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
                                 .map(BlockInfo::new)
                                 .map(OrientedItem::createOrientedItem)
                                 .forEach(candidates::add);
-                        //candidates.add(OrientedItem.createOrientedItem(coilBlockInfos));
+                        // candidates.add(OrientedItem.createOrientedItem(coilBlockInfos));
                     }
                     return candidates;
                 }
 
                 // 处理普通方块
                 for (BlockInfo info : blockInfos) {
-                    if (info.getBlockState().getBlock() != Blocks.AIR
-                            &&(this.noHatchMode == 0 || !(info.getBlockState().getBlock() instanceof IMachineBlock))) {
+                    if (info.getBlockState().getBlock() != Blocks.AIR &&
+                            (this.noHatchMode == 0 || !(info.getBlockState().getBlock() instanceof IMachineBlock))) {
                         candidates.add(OrientedItem.createOrientedItem(info));
                     }
                 }
@@ -293,13 +284,13 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
             if (this.noHatchMode == 0) return true;
             if (blockInfos != null && blockInfos.length > 0) {
                 return Arrays.stream(blockInfos).noneMatch(b -> b.getBlockState().getBlock() instanceof IMachineBlock);
-//                var blockInfo = blockInfos[0];
-//                if (blockInfo.getBlockState().getBlock() instanceof MetaMachineBlock machineBlock) {
-//                    var id = machineBlock.getDefinition().getName();
-//                    for (String hatchName : HATCH_NAMES) {
-//                        if (id.contains(hatchName)) return false;
-//                    }
-//                }
+                // var blockInfo = blockInfos[0];
+                // if (blockInfo.getBlockState().getBlock() instanceof MetaMachineBlock machineBlock) {
+                // var id = machineBlock.getDefinition().getName();
+                // for (String hatchName : HATCH_NAMES) {
+                // if (id.contains(hatchName)) return false;
+                // }
+                // }
             }
             return true;
         }
@@ -310,6 +301,7 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
     }
 
     private static class SettingConfig {
+
         final String labelKey;
         final List<Component> tooltipKey;
         final String tagKey;

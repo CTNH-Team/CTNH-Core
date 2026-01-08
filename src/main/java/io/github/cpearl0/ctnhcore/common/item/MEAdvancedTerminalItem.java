@@ -1,13 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.item;
 
-import appeng.api.features.IGridLinkableHandler;
-import appeng.api.implementations.blockentities.IWirelessAccessPoint;
-import appeng.api.networking.IGrid;
-import appeng.core.localization.GuiText;
-import appeng.core.localization.PlayerMessages;
-import appeng.core.localization.Tooltips;
-import appeng.util.Platform;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
+
 import net.minecraft.core.GlobalPos;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.chat.Component;
@@ -18,18 +12,25 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import appeng.api.features.IGridLinkableHandler;
+import appeng.api.implementations.blockentities.IWirelessAccessPoint;
+import appeng.api.networking.IGrid;
+import appeng.core.localization.GuiText;
+import appeng.core.localization.PlayerMessages;
+import appeng.core.localization.Tooltips;
+import appeng.util.Platform;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public class MEAdvancedTerminalItem extends ComponentItem {
 
-    //private final MEAdvancedTerminalBehavior handler = new MEAdvancedTerminalBehavior();
+    // private final MEAdvancedTerminalBehavior handler = new MEAdvancedTerminalBehavior();
     public static final IGridLinkableHandler LINKABLE_HANDLER = new MEAdvancedTerminalItem.LinkableHandler();
 
     private static final String TAG_ACCESS_POINT_POS = "accessPoint";
-    //private static final String TAG_BLOCK_PATTERN = "blockPattern";
-
+    // private static final String TAG_BLOCK_PATTERN = "blockPattern";
 
     public MEAdvancedTerminalItem(Properties properties) {
         super(properties);
@@ -46,14 +47,11 @@ public class MEAdvancedTerminalItem extends ComponentItem {
     }
 
     public boolean isUsable(ItemStack item, Player player) {
-        return !item.isEmpty()
-                && item.getItem() == this
-                && getLinkedGrid(item, player.level(), player) != null
-                ;
+        return !item.isEmpty() && item.getItem() == this && getLinkedGrid(item, player.level(), player) != null;
     }
 
     @Nullable
-    public  IWirelessAccessPoint getAccessPoint(ItemStack item, Level level) {
+    public IWirelessAccessPoint getAccessPoint(ItemStack item, Level level) {
         var linkedPos = getLinkedPosition(item);
         if (linkedPos == null) {
 
@@ -68,8 +66,7 @@ public class MEAdvancedTerminalItem extends ComponentItem {
         var be = Platform.getTickingBlockEntity(linkedLevel, linkedPos.pos());
         if (!(be instanceof IWirelessAccessPoint accessPoint)) {
             return null;
-        }
-        else return accessPoint;
+        } else return accessPoint;
     }
 
     @Nullable
@@ -121,6 +118,7 @@ public class MEAdvancedTerminalItem extends ComponentItem {
     }
 
     private static class LinkableHandler implements IGridLinkableHandler {
+
         @Override
         public boolean canLink(ItemStack stack) {
             return stack.getItem() instanceof MEAdvancedTerminalItem;
@@ -138,8 +136,8 @@ public class MEAdvancedTerminalItem extends ComponentItem {
             itemStack.removeTagKey(TAG_ACCESS_POINT_POS);
         }
     }
-//    @Override
-//    public void attachComponents(IItemComponent... components) {
-//        super.atta
-//    }
+    // @Override
+    // public void attachComponents(IItemComponent... components) {
+    // super.atta
+    // }
 }

@@ -6,7 +6,9 @@ import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.IAddInformation;
 import com.gregtechceu.gtceu.api.item.component.ICustomDescriptionId;
 import com.gregtechceu.gtceu.client.renderer.item.TagPrefixItemRenderer;
+
 import com.lowdragmc.lowdraglib.Platform;
+
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -15,19 +17,24 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public class TagPrefixBehavior implements IAddInformation, ICustomDescriptionId {
+
     private TagPrefix tagPrefix;
     private Material material;
+
     public TagPrefixBehavior(TagPrefix tagPrefix, Material material) {
         this.tagPrefix = tagPrefix;
         this.material = material;
     }
+
     @Override
-    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
+    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list,
+                                TooltipFlag tooltipFlag) {
         if (tagPrefix.tooltip() != null) {
             tagPrefix.tooltip().accept(material, list);
         }
@@ -37,8 +44,7 @@ public class TagPrefixBehavior implements IAddInformation, ICustomDescriptionId 
     public void onAttached(Item item) {
         if (Platform.isClient()) {
             TagPrefixItemRenderer.create(
-                    item, tagPrefix.materialIconType(), material.getMaterialIconSet()
-            );
+                    item, tagPrefix.materialIconType(), material.getMaterialIconSet());
         }
     }
 
@@ -46,6 +52,7 @@ public class TagPrefixBehavior implements IAddInformation, ICustomDescriptionId 
     public @Nullable Component getItemName(ItemStack stack) {
         return tagPrefix.getLocalizedName(material);
     }
+
     @OnlyIn(Dist.CLIENT)
     public static ItemColor tintColor() {
         return (itemStack, index) -> {

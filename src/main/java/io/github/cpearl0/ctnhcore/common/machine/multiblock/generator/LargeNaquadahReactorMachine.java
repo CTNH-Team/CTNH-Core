@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
+import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+
 import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -12,14 +15,15 @@ import com.gregtechceu.gtceu.api.recipe.ingredient.EnergyStack;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachine;
+
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
-import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
+
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
+
+import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
@@ -30,25 +34,26 @@ import java.util.Map;
 import java.util.Set;
 
 public class LargeNaquadahReactorMachine extends WorkableElectricMultiblockMachine implements IExplosionMachine {
-    private ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(LargeNaquadahReactorMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
+
+    private ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(LargeNaquadahReactorMachine.class,
+            WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
+
     public LargeNaquadahReactorMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
     }
+
     private Map<Fluid, Integer> activeFluid = Map.of(
             GTMaterials.Caesium.getFluid(), 2,
             GTMaterials.Uranium235.getFluid(), 3,
-            GTMaterials.Naquadah.getFluid(), 4
-            );
+            GTMaterials.Naquadah.getFluid(), 4);
     private Map<Fluid, Integer> activeFluidCost = Map.of(
             GTMaterials.Caesium.getFluid(), 180,
             GTMaterials.Uranium235.getFluid(), 180,
-            GTMaterials.Naquadah.getFluid(), 20
-            );
+            GTMaterials.Naquadah.getFluid(), 20);
     private List<Fluid> fuelFluids = List.of(
             CTNHMaterials.ThoriumBasedLiquidFuelExcited.getFluid(),
             CTNHMaterials.UraniumBasedLiquidFuelExcited.getFluid(),
-            CTNHMaterials.PlutoniumBasedLiquidFuelExcited.getFluid()
-            );
+            CTNHMaterials.PlutoniumBasedLiquidFuelExcited.getFluid());
     private Set<FluidHatchPartMachine> hatchPartMachines = new HashSet<>();
 
     @Persisted
@@ -60,6 +65,7 @@ public class LargeNaquadahReactorMachine extends WorkableElectricMultiblockMachi
     @Persisted
     private int activeFluidPower = 1;
     private Fluid lockFluid = null;
+
     public static ModifierFunction modifyRecipe(MetaMachine machine, GTRecipe recipe) {
         if (recipe.recipeType != CTNHRecipeTypes.LARGE_NAQUADAH_REACTOR_RECIPES) return ModifierFunction.NULL;
         if (machine instanceof LargeNaquadahReactorMachine lmachine) {
@@ -77,7 +83,8 @@ public class LargeNaquadahReactorMachine extends WorkableElectricMultiblockMachi
                     eut = eut * 1.5;
                 }
                 eut *= lmachine.activeFluidPower;
-                copyRecipe.tickOutputs.put(EURecipeCapability.CAP, List.of(new Content(new EnergyStack((long) eut), 1, 1, 0)));
+                copyRecipe.tickOutputs.put(EURecipeCapability.CAP,
+                        List.of(new Content(new EnergyStack((long) eut), 1, 1, 0)));
                 return copyRecipe;
             };
         }
@@ -116,16 +123,18 @@ public class LargeNaquadahReactorMachine extends WorkableElectricMultiblockMachi
             }
         }
     }
+
     @CN("发电倍率: %s")
     @EN("Power: %s")
     static Lang power;
+
     @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
         textList.add(power.translate(getFinalPowerRate()));
     }
     //////////////////////////////////////
-    //******     RECIPE LOGIC    *******//
+    // ****** RECIPE LOGIC *******//
     //////////////////////////////////////
 
     private boolean air(FluidStack fluid, int duration) {
@@ -165,7 +174,7 @@ public class LargeNaquadahReactorMachine extends WorkableElectricMultiblockMachi
     }
 
     //////////////////////////////////////
-    //***    Multiblock LifeCycle    ***//
+    // *** Multiblock LifeCycle ***//
     //////////////////////////////////////
 
     @Override
@@ -200,6 +209,7 @@ public class LargeNaquadahReactorMachine extends WorkableElectricMultiblockMachi
     public boolean alwaysTryModifyRecipe() {
         return true;
     }
+
     public int getFinalPowerRate() {
         var activeFluidPower = this.activeFluidPower;
         if (hasCool) {
@@ -209,7 +219,7 @@ public class LargeNaquadahReactorMachine extends WorkableElectricMultiblockMachi
     }
 
     //////////////////////////////////////
-    //******       NBT SAVE      *******//
+    // ****** NBT SAVE *******//
     //////////////////////////////////////
 
     @Override

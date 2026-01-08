@@ -1,6 +1,8 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
-import com.aetherteam.aether.data.resources.registries.AetherDimensions;
+import io.github.cpearl0.ctnhcore.common.item.IDroneItem;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.DroneHolderMachine;
+
 import com.gregtechceu.gtceu.api.capability.IParallelHatch;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -11,12 +13,13 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
-import earth.terrarium.adastra.api.planets.Planet;
-import io.github.cpearl0.ctnhcore.common.item.IDroneItem;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.DroneHolderMachine;
-import lombok.Getter;
+
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
+
+import com.aetherteam.aether.data.resources.registries.AetherDimensions;
+import earth.terrarium.adastra.api.planets.Planet;
+import lombok.Getter;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -30,30 +33,30 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
 
     private DroneHolderMachine droneholder;
 
-    private boolean orbit=false;
+    private boolean orbit = false;
 
     @Getter
-    private int eut=0;
+    private int eut = 0;
 
-    private double num=0.0;
+    private double num = 0.0;
+
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
         for (IMultiPart part : getParts()) {
             if (part instanceof DroneHolderMachine) {
-                droneholder=(DroneHolderMachine)part;
+                droneholder = (DroneHolderMachine) part;
             }
 
         }
-        if(droneholder==null)
-        {
+        if (droneholder == null) {
             onStructureInvalid();
         }
-
     }
+
     @Override
     public void onStructureInvalid() {
-        droneholder=null;
+        droneholder = null;
         // recheck the ability to make sure it wasn't the one broken
         for (IMultiPart part : getParts()) {
             if (part instanceof DroneHolderMachine holderMachine) {
@@ -62,66 +65,56 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
         }
         super.onStructureInvalid();
     }
-    private List<Integer> GetValidDrone()
-    {
+
+    private List<Integer> GetValidDrone() {
         List<Integer> droneList = new ArrayList<>();
-        for(int slot=0;slot<=14;slot++)
-        {
-            if(!droneholder.getHeldItem(slot).isEmpty())
-            {
+        for (int slot = 0; slot <= 14; slot++) {
+            if (!droneholder.getHeldItem(slot).isEmpty()) {
                 droneList.add(slot);
             }
         }
         return droneList;
     }
-    private void ConsumeDrone()
-    {
-        var drone=GetValidDrone();
-        if(drone.isEmpty())return;
-        var x=sigmoid(drone.size(),0.25,9);
-        num=x;
-        for(int i=0;i<drone.size();i++)
-        {
-            if(Math.random()<x)
-            {
+
+    private void ConsumeDrone() {
+        var drone = GetValidDrone();
+        if (drone.isEmpty()) return;
+        var x = sigmoid(drone.size(), 0.25, 9);
+        num = x;
+        for (int i = 0; i < drone.size(); i++) {
+            if (Math.random() < x) {
                 droneholder.consumeItem(drone.get(i));
             }
         }
     }
-    public int GetDronePower()
-    {
-        var drone=GetValidDrone();
-        if(drone.isEmpty())return 1;
-        int x=0;
-        for(int i=0;i<drone.size();i++)
-        {
-            var holder=droneholder.getHeldItem(drone.get(i));
-            var item=(IDroneItem)holder.getItem();
-            x=x+item.eut;
+
+    public int GetDronePower() {
+        var drone = GetValidDrone();
+        if (drone.isEmpty()) return 1;
+        int x = 0;
+        for (int i = 0; i < drone.size(); i++) {
+            var holder = droneholder.getHeldItem(drone.get(i));
+            var item = (IDroneItem) holder.getItem();
+            x = x + item.eut;
         }
         return x;
     }
+
     public double dimension_check() {
         var level = getLevel();
         var dimension = level.dimension();
-        orbit=false;
+        orbit = false;
         double rate = 1;
-        if(dimension== Planet.MOON_ORBIT
-                || dimension == Planet.VENUS_ORBIT
-                || dimension == Planet.MERCURY_ORBIT
-                || dimension == Planet.MARS_ORBIT
-                || dimension == Planet.GLACIO_ORBIT
-                || dimension == Planet.EARTH_ORBIT
-        )
-        {
-            orbit=true;
-            rate*=4;
+        if (dimension == Planet.MOON_ORBIT || dimension == Planet.VENUS_ORBIT || dimension == Planet.MERCURY_ORBIT ||
+                dimension == Planet.MARS_ORBIT || dimension == Planet.GLACIO_ORBIT || dimension == Planet.EARTH_ORBIT) {
+            orbit = true;
+            rate *= 4;
         }
 
-        if (dimension == Level.OVERWORLD || dimension.location().getPath().equals("twilightforest:twilight_forest") || dimension.location().getPath().equals("mythicbotany:alfheim")) {
+        if (dimension == Level.OVERWORLD || dimension.location().getPath().equals("twilightforest:twilight_forest") ||
+                dimension.location().getPath().equals("mythicbotany:alfheim")) {
             rate *= 0.5;
-        }
-        else if (dimension == AetherDimensions.AETHER_LEVEL) {
+        } else if (dimension == AetherDimensions.AETHER_LEVEL) {
             rate *= 1;
         } else if (dimension == Planet.MOON || dimension == Planet.MOON_ORBIT) {
             rate *= 2;
@@ -137,6 +130,7 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
 
         return rate;
     }
+
     @Override
     public boolean onWorking() {
         if (getOffsetTimer() % 100 == 0) {
@@ -144,11 +138,13 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
         }
         return super.onWorking();
     }
+
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
         droneholder.setLocked(true);
         return super.beforeWorking(recipe);
     }
+
     @Override
     public void afterWorking() {
         ConsumeDrone();
@@ -160,11 +156,11 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
     public static double sigmoid(double x, double k, double c) {
         return 1.0 / (1.0 + Math.exp(-k * (x - c)));
     }
-    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
 
+    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (machine instanceof PhotoVoltaicDroneStation lmachine) {
-            var eut=lmachine.GetDronePower()* lmachine.dimension_check();
-            var pa=1;
+            var eut = lmachine.GetDronePower() * lmachine.dimension_check();
+            var pa = 1;
             if (lmachine.isFormed()) {
                 int parallels = (Integer) lmachine.getParallelHatch()
                         .map(IParallelHatch::getCurrentParallel)
@@ -174,10 +170,10 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
                 }
 
             }
-            if(RecipeHelper.getOutputContents(recipe, ItemRecipeCapability.CAP).isEmpty())
-                //运行非挖矿配方时对光伏进行强化
-                lmachine.eut=(int)eut;
-            else if(!lmachine.orbit)  //只能在轨道维度挖矿
+            if (RecipeHelper.getOutputContents(recipe, ItemRecipeCapability.CAP).isEmpty())
+                // 运行非挖矿配方时对光伏进行强化
+                lmachine.eut = (int) eut;
+            else if (!lmachine.orbit)  // 只能在轨道维度挖矿
                 return ModifierFunction.NULL;
             else {
                 return ModifierFunction.builder()
@@ -192,9 +188,12 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
 
         return ModifierFunction.NULL;
     }
+
     public void addDisplayText(List<Component> textList) {
-        textList.add(textList.size(),Component.translatable("ctnh.multiblock.pvdrone.info.t1",String.format("%d",eut)));
-        textList.add(textList.size(),Component.translatable("ctnh.multiblock.pvdrone.info.t2",String.format("%.4f",num)));
+        textList.add(textList.size(),
+                Component.translatable("ctnh.multiblock.pvdrone.info.t1", String.format("%d", eut)));
+        textList.add(textList.size(),
+                Component.translatable("ctnh.multiblock.pvdrone.info.t2", String.format("%.4f", num)));
         super.addDisplayText(textList);
     }
 }

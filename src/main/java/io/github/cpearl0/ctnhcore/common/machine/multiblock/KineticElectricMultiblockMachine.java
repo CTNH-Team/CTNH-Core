@@ -21,28 +21,34 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
 import com.gregtechceu.gtceu.api.misc.EnergyContainerList;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.utils.GTUtil;
+
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.widget.*;
-import com.mo_guang.ctpp.common.machine.IKineticMachine;
-import com.mo_guang.ctpp.common.machine.multiblock.part.KineticPartMachine;
-import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
-import it.unimi.dsi.fastutil.longs.LongSet;
-import it.unimi.dsi.fastutil.longs.LongSets;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+
+import com.mo_guang.ctpp.common.machine.IKineticMachine;
+import com.mo_guang.ctpp.common.machine.multiblock.part.KineticPartMachine;
+import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
+import it.unimi.dsi.fastutil.longs.LongSet;
+import it.unimi.dsi.fastutil.longs.LongSets;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class KineticElectricMultiblockMachine extends WorkableMultiblockMachine implements IFancyUIMachine, IDisplayUIMachine, ITieredMachine,IOverclockMachine{
+public class KineticElectricMultiblockMachine extends WorkableMultiblockMachine implements IFancyUIMachine,
+                                              IDisplayUIMachine, ITieredMachine, IOverclockMachine {
+
     public KineticElectricMultiblockMachine(IMachineBlockEntity holder) {
         super(holder, new Object[0]);
     }
+
     protected EnergyContainerList energyContainer;
     public float maxTorque = 0.0F;
     public int parallels = 1;
@@ -51,8 +57,9 @@ public class KineticElectricMultiblockMachine extends WorkableMultiblockMachine 
     public float previousSpeed = 0.0F;
     public List<BlockPos> inputPartsMax = new ArrayList();
     public int tier;
-    public int Ktier=0;
-    protected boolean isGenerator=false;
+    public int Ktier = 0;
+    protected boolean isGenerator = false;
+
     //////////////////////////////////////
     // *** Multiblock Lifecycle ***//
     //////////////////////////////////////
@@ -68,18 +75,18 @@ public class KineticElectricMultiblockMachine extends WorkableMultiblockMachine 
         super.onStructureFormed();
         this.energyContainer = getEnergyContainer();
         getKineticContainer();
-        this.rotateBlocks = (LongSet)this.getMultiblockState().getMatchContext().getOrDefault("roBlocks", LongSets.emptySet());
+        this.rotateBlocks = (LongSet) this.getMultiblockState().getMatchContext().getOrDefault("roBlocks",
+                LongSets.emptySet());
         this.updateActiveBlocks(this.recipeLogic.isWorking());
-
 
         this.tier = getTier();
     }
-    public int getTier() {
 
-        var Ktier=this.Ktier;
-        if(this.speed>=256)Ktier+=1.0;
-        var Etier=GTUtil.getFloorTierByVoltage(getMaxVoltage());
-        return Math.min(Ktier,Etier);
+    public int getTier() {
+        var Ktier = this.Ktier;
+        if (this.speed >= 256) Ktier += 1.0;
+        var Etier = GTUtil.getFloorTierByVoltage(getMaxVoltage());
+        return Math.min(Ktier, Etier);
     }
 
     @Override
@@ -88,6 +95,7 @@ public class KineticElectricMultiblockMachine extends WorkableMultiblockMachine 
         this.energyContainer = null;
         this.tier = 0;
     }
+
     //////////////////////////////////////
     // ********** ACTIVE ***********//
     //////////////////////////////////////
@@ -100,21 +108,20 @@ public class KineticElectricMultiblockMachine extends WorkableMultiblockMachine 
         if (this.rotateBlocks != null) {
             var a = this.rotateBlocks.iterator();
 
-            while(a.hasNext()) {
+            while (a.hasNext()) {
                 Long pos = a.next();
                 BlockPos blockPos = BlockPos.of(pos);
-                BlockEntity blockEntity = ((Level)Objects.requireNonNull(this.getLevel())).getBlockEntity(blockPos);
+                BlockEntity blockEntity = ((Level) Objects.requireNonNull(this.getLevel())).getBlockEntity(blockPos);
                 this.updateRotateBlock(active, blockEntity);
             }
         }
-
     }
 
     public void updateRotateBlock(boolean active, BlockEntity blockEntity) {
         if (blockEntity instanceof KineticBlockEntity kineticBlockEntity) {
             if (active) {
-                kineticBlockEntity.setSpeed(this.speed-1);
-                kineticBlockEntity.onSpeedChanged(this.previousSpeed-1);
+                kineticBlockEntity.setSpeed(this.speed - 1);
+                kineticBlockEntity.onSpeedChanged(this.previousSpeed - 1);
                 kineticBlockEntity.sendData();
             } else {
                 kineticBlockEntity.setSpeed(0.0F);
@@ -122,7 +129,6 @@ public class KineticElectricMultiblockMachine extends WorkableMultiblockMachine 
                 kineticBlockEntity.sendData();
             }
         }
-
     }
 
     //////////////////////////////////////
@@ -183,18 +189,18 @@ public class KineticElectricMultiblockMachine extends WorkableMultiblockMachine 
             part.attachFancyTooltipsToController(this, tooltipsPanel);
         }
     }
+
     //////////////////////////////////////
     // ****** RECIPE LOGIC *******//
     //////////////////////////////////////
-    public void getKineticContainer()
-    {
+    public void getKineticContainer() {
         // 只限输入不能输出
-        for(IMultiPart part : this.getParts()) {
+        for (IMultiPart part : this.getParts()) {
             if (part instanceof KineticPartMachine kineticPart) {
                 if (kineticPart.getIO() == IO.IN) {
                     this.speed = Math.min(256, Math.abs(kineticPart.getKineticHolder().getSpeed()));
                     if (kineticPart.getKineticDefinition().torque > this.maxTorque) {
-                        this.Ktier=Math.max(((KineticPartMachine) part).getTier(),Ktier);
+                        this.Ktier = Math.max(((KineticPartMachine) part).getTier(), Ktier);
                         this.maxTorque = kineticPart.getKineticDefinition().torque;
 
                         this.inputPartsMax.clear();
@@ -206,6 +212,7 @@ public class KineticElectricMultiblockMachine extends WorkableMultiblockMachine 
             }
         }
     }
+
     public EnergyContainerList getEnergyContainer() {
         List<IEnergyContainer> containers = new ArrayList<>();
         var handlers = getCapabilitiesFlat(IO.IN, EURecipeCapability.CAP);
@@ -217,12 +224,13 @@ public class KineticElectricMultiblockMachine extends WorkableMultiblockMachine 
         }
         return new EnergyContainerList(containers);
     }
+
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
         boolean result = super.beforeWorking(recipe);
         this.previousSpeed = this.speed;
         this.speed = 256.0F;
 
-        for(IMultiPart part : this.getParts()) {
+        for (IMultiPart part : this.getParts()) {
             if (part instanceof IKineticMachine kineticPart) {
                 if (this.inputPartsMax.contains(kineticPart.getKineticHolder().getBlockPos())) {
                     this.speed = Math.min(256, Math.abs(kineticPart.getKineticHolder().getSpeed()));
@@ -233,13 +241,13 @@ public class KineticElectricMultiblockMachine extends WorkableMultiblockMachine 
         if (this.speed != this.previousSpeed) {
             this.updateRotateBlocks(result);
         }
-        if(this.speed<64)
-        {
+        if (this.speed < 64) {
             return false;
         }
 
         return result;
     }
+
     @Override
     public long getMaxVoltage() {
         if (this.energyContainer == null) {
@@ -270,6 +278,7 @@ public class KineticElectricMultiblockMachine extends WorkableMultiblockMachine 
             }
         }
     }
+
     public int getOverclockTier() {
         return getTier();
     }

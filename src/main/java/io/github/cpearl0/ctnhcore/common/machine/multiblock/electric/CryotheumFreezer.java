@@ -1,5 +1,9 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import io.github.cpearl0.ctnhcore.common.gui.MachineModeFancyConfiguratorTest;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+
 import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.gui.fancy.TabsWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -14,38 +18,44 @@ import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.ingredient.EnergyStack;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
+
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-import io.github.cpearl0.ctnhcore.common.gui.MachineModeFancyConfiguratorTest;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.function.DoubleSupplier;
 
 public class CryotheumFreezer extends WorkableElectricMultiblockMachine implements ITieredMachine, IFancyUIMachine {
+
     public CryotheumFreezer(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
     }
+
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             CryotheumFreezer.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     @Persisted
     public int a = 3;
-    @Persisted public double speed_up=1.0;
-    @Persisted public double energy_muti=1.0;
-    @Persisted public int parallel_muti=1;
-    public DoubleSupplier JEIProgress = () -> (double) Math.abs(speed_up-1) / (double) 2.5F;
-    public DoubleSupplier JEIProgress2 = () -> (double) Math.abs(energy_muti-1) / (double) 2.5F;
+    @Persisted
+    public double speed_up = 1.0;
+    @Persisted
+    public double energy_muti = 1.0;
+    @Persisted
+    public int parallel_muti = 1;
+    public DoubleSupplier JEIProgress = () -> (double) Math.abs(speed_up - 1) / (double) 2.5F;
+    public DoubleSupplier JEIProgress2 = () -> (double) Math.abs(energy_muti - 1) / (double) 2.5F;
     public DoubleSupplier JEIProgress3 = () -> (double) Math.abs(parallel_muti) / (double) 10F;
     @Persisted
-    public long used_energy=0;
+    public long used_energy = 0;
 
-    public long store_energy_now=0;
+    public long store_energy_now = 0;
     @Persisted
-    public long target=100000L;
+    public long target = 100000L;
+
     public MutableComponent provider_a() {
         return Component.translatable("ctnh.multiblock.cryotheum_freezer.ui.0", a);
     }
@@ -53,33 +63,34 @@ public class CryotheumFreezer extends WorkableElectricMultiblockMachine implemen
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
         var tier = getTier();
-        if (MachineUtils.inputFluid(CTNHMaterials.Cryotheum.getFluid((int) (Math.pow(4, Math.max((tier - 4),0)) * 10)), this)) {
-            used_energy+= (long) (Math.pow(4, Math.max((tier - 4),0)) )* 10;
-            if(used_energy>=target)
-            {
-                a+=1;
-                used_energy-=target;
-                target*=4;
+        if (MachineUtils.inputFluid(CTNHMaterials.Cryotheum.getFluid((int) (Math.pow(4, Math.max((tier - 4), 0)) * 10)),
+                this)) {
+            used_energy += (long) (Math.pow(4, Math.max((tier - 4), 0))) * 10;
+            if (used_energy >= target) {
+                a += 1;
+                used_energy -= target;
+                target *= 4;
             }
             return super.beforeWorking(recipe);
         }
         getRecipeLogic().interruptRecipe();
         return false;
     }
+
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
         var tier = getTier();
-
     }
 
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
-        if(machine instanceof CryotheumFreezer cmachine) {
-            int parallel = ParallelLogic.getParallelAmount(machine, recipe, (int)(2*Math.pow(2, cmachine.parallel_muti)));
-            var reduce = new ContentModifier(1/ cmachine.energy_muti * parallel, 0);
+        if (machine instanceof CryotheumFreezer cmachine) {
+            int parallel = ParallelLogic.getParallelAmount(machine, recipe,
+                    (int) (2 * Math.pow(2, cmachine.parallel_muti)));
+            var reduce = new ContentModifier(1 / cmachine.energy_muti * parallel, 0);
             if (parallel == 0)
                 return ModifierFunction.NULL;
-            var eut_consume=recipe.getTickInputContents(EURecipeCapability.CAP).stream()
+            var eut_consume = recipe.getTickInputContents(EURecipeCapability.CAP).stream()
                     .map(Content::getContent)
                     .map(EURecipeCapability.CAP::of)
                     .mapToLong(EnergyStack::voltage)
@@ -107,10 +118,12 @@ public class CryotheumFreezer extends WorkableElectricMultiblockMachine implemen
         if (directionalConfigurator != null)
             sideTabs.attachSubTab(directionalConfigurator);
     }
+
     @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
-        textList.add(textList.size(),Component.translatable("ctnh.multiblock.cryotheum_freezer.ui.5",used_energy,target));
+        textList.add(textList.size(),
+                Component.translatable("ctnh.multiblock.cryotheum_freezer.ui.5", used_energy, target));
     }
 
     @Override

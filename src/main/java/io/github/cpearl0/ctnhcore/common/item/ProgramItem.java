@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProgramItem extends Item {
+
     public static final List<ProgramItem> PROGRAMS = new ArrayList<>();
 
     public ProgramItem(Properties properties) {

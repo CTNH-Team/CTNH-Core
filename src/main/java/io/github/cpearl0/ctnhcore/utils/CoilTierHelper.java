@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class CoilTierHelper {
+
     private static final Map<Integer, Map<ICoilType, Supplier<CoilBlock>>> COILS_BY_TIER = new HashMap<>();
 
     // 静态初始化块，在类加载时构建索引表

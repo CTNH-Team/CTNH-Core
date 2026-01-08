@@ -1,15 +1,18 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
-import com.moguang.ctnhbio.registry.CBBlocks;
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+
 import net.minecraft.data.recipes.FinishedRecipe;
+
+import com.moguang.ctnhbio.registry.CBBlocks;
 
 import java.util.function.Consumer;
 
@@ -25,7 +28,8 @@ import static com.gregtechceu.gtceu.common.data.machines.GTResearchMachines.DATA
 import static com.gregtechceu.gtceu.common.data.machines.GTResearchMachines.HIGH_PERFORMANCE_COMPUTING_ARRAY;
 
 public class LuvModifyRecipe {
-    public static void init(Consumer<FinishedRecipe> provider){
+
+    public static void init(Consumer<FinishedRecipe> provider) {
         CTNHRecipeTypes.VACUUM_SINTERING.recipeBuilder(CTNHCore.id("consciousness_sensor_glass"))
                 .notConsumable(GTItems.SHAPE_MOLD_BLOCK)
                 .inputItems(TagPrefix.dust, GTMaterials.BorosilicateGlass, 21)

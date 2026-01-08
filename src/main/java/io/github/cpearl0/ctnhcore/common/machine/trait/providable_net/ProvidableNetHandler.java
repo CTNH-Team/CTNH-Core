@@ -3,32 +3,37 @@ package io.github.cpearl0.ctnhcore.common.machine.trait.providable_net;
 import javax.annotation.Nullable;
 
 public class ProvidableNetHandler<MachineType extends IProviableNetHandlerMachine> {
+
     ProvidableNetInfo<MachineType> netInfo;
-    //不为null表示能输入
+    // 不为null表示能输入
     @Nullable
     ProviderInfo<MachineType> providerData;
     MachineType self;
-    public ProvidableNetHandler(MachineType self){
+
+    public ProvidableNetHandler(MachineType self) {
         this.self = self;
     }
-    public boolean ensureNetInfo(){
-        if(netInfo == null)return false;
-        if(netInfo.dirty) {
+
+    public boolean ensureNetInfo() {
+        if (netInfo == null) return false;
+        if (netInfo.dirty) {
             netInfo = null;
             join();
             return true;
         }
         return true;
     }
-    //读取并更新
-    private ProvidableNetInfo<MachineType> getNetInfo(){
-        if(netInfo==null)return null;
+
+    // 读取并更新
+    private ProvidableNetInfo<MachineType> getNetInfo() {
+        if (netInfo == null) return null;
         return netInfo = netInfo.getFather();
     }
-    public void join(){
-        if (netInfo != null)return;
+
+    public void join() {
+        if (netInfo != null) return;
         netInfo = new ProvidableNetInfo<MachineType>(self.getLevel());
-        if(self.canProvide()){
+        if (self.canProvide()) {
             providerData = new ProviderInfo<>(self);
             netInfo.chainHead = providerData;
             netInfo.chainTail = providerData;
@@ -37,33 +42,38 @@ public class ProvidableNetHandler<MachineType extends IProviableNetHandlerMachin
         var neighbours = self.getNeighbor();
         for (IProviableNetHandlerMachine neighbour : neighbours) {
             @SuppressWarnings("noinspection unchecked")
-            ProvidableNetInfo<MachineType> neighbourNet = (ProvidableNetInfo<MachineType>) neighbour.getNetHandler().getNetInfo();
-            if (neighbourNet!=null && neighbourNet.isAlive()) {
+            ProvidableNetInfo<MachineType> neighbourNet = (ProvidableNetInfo<MachineType>) neighbour.getNetHandler()
+                    .getNetInfo();
+            if (neighbourNet != null && neighbourNet.isAlive()) {
                 netInfo.merge(neighbourNet);
             }
         }
     }
-    public void invalidate(){
-        if(netInfo==null) return;
+
+    public void invalidate() {
+        if (netInfo == null) return;
         netInfo.markDirty();
-        if(providerData != null){
+        if (providerData != null) {
             providerData.removeFromNet(netInfo);
         }
         providerData = null;
         netInfo = null;
     }
-    //对网络的provider进行遍历和消耗,返回是否充足
-    public boolean checkAndConsume(int amount){
+
+    // 对网络的provider进行遍历和消耗,返回是否充足
+    public boolean checkAndConsume(int amount) {
         getNetInfo();
-        if(netInfo.storage < amount)return false;
+        if (netInfo.storage < amount) return false;
         netInfo.storage -= amount;
         return true;
     }
-    public int getNetSize(){
+
+    public int getNetSize() {
         assert netInfo != null;
         return getNetInfo().netSize;
     }
-    public long getDeadTime(){
+
+    public long getDeadTime() {
         assert netInfo != null;
         return getNetInfo().deadTime;
     }

@@ -1,5 +1,11 @@
 package io.github.cpearl0.ctnhcore.data.recipe.chain;
 
+import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
+import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
+
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
@@ -9,14 +15,8 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
-import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
-import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
-import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
+
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Consumer;
 
@@ -24,8 +24,8 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMachines.ROCKET_ENGINE;
 
 public class FuelChain {
-    public static void init(Consumer<FinishedRecipe> provider){
 
+    public static void init(Consumer<FinishedRecipe> provider) {
         GTRecipeTypes.MIXER_RECIPES.recipeBuilder("black_matter")
                 .inputItems(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Lead, 3))
                 .inputItems(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Manganese, 5))
@@ -222,34 +222,31 @@ public class FuelChain {
                 provider, true, "rocket_engine_ev",
                 ROCKET_ENGINE[EV].asStack(),
                 "ABA", "CDC", "EFE",
-                'A', GTItems.ELECTRIC_PISTON_EV, // EV级电动活塞（直接引用）
-                'B', CustomTags.EV_CIRCUITS, // EV级电路（直接引用）
-                'C', GTItems.ELECTRIC_MOTOR_EV, // EV级电动机（直接引用）
-                'D', GTMachines.HULL[EV].asStack(), // EV级机器外壳（直接引用）
-                'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:tungsten_steel_gear")), // 钨钢齿轮
-                'F', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:aluminium_double_cable")) // 双重铝电缆
-        );
+                'A', GTItems.ELECTRIC_PISTON_EV,
+                'B', CustomTags.EV_CIRCUITS,
+                'C', GTItems.ELECTRIC_MOTOR_EV,
+                'D', GTMachines.HULL[EV].asStack(),
+                'E', ChemicalHelper.get(TagPrefix.gear, GTMaterials.TungstenSteel),
+                'F', ChemicalHelper.get(TagPrefix.cableGtDouble, GTMaterials.Aluminium));
         VanillaRecipeHelper.addShapedRecipe(
                 provider, true, "rocket_engine_iv",
                 ROCKET_ENGINE[IV].asStack(),
                 "ABA", "CDC", "EFE",
-                'A', GTItems.ELECTRIC_PISTON_IV, // IV级电动活塞
-                'B', CustomTags.IV_CIRCUITS, // IV级电路
-                'C', GTItems.ELECTRIC_MOTOR_IV, // IV级电动机
-                'D', GTMachines.HULL[IV].asStack(), // IV级机器外壳
-                'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:titanium_gear")), // 钛齿轮
-                'F', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:platinum_double_cable")) // 双重铂电缆
-        );
+                'A', GTItems.ELECTRIC_PISTON_IV,
+                'B', CustomTags.IV_CIRCUITS,
+                'C', GTItems.ELECTRIC_MOTOR_IV,
+                'D', GTMachines.HULL[IV].asStack(),
+                'E', ChemicalHelper.get(TagPrefix.gear, GTMaterials.Titanium),
+                'F', ChemicalHelper.get(TagPrefix.cableGtDouble, GTMaterials.Platinum));
         VanillaRecipeHelper.addShapedRecipe(
                 provider, true, "rocket_engine_luv",
                 ROCKET_ENGINE[LuV].asStack(),
                 "ABA", "CDC", "EFE",
-                'A', GTItems.ELECTRIC_PISTON_LuV, // LuV级电动活塞
-                'B', CustomTags.LuV_CIRCUITS, // LuV级电路
-                'C', GTItems.ELECTRIC_MOTOR_LuV, // LuV级电动机
-                'D', GTMachines.HULL[LuV].asStack(), // LuV级机器外壳
-                'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:zeron_100_gear")), // Zeron-100合金齿轮
-                'F', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:tungsten_double_cable")) // 双重钨电缆
-        );
+                'A', GTItems.ELECTRIC_PISTON_LuV,
+                'B', CustomTags.LuV_CIRCUITS,
+                'C', GTItems.ELECTRIC_MOTOR_LuV,
+                'D', GTMachines.HULL[LuV].asStack(),
+                'E', ChemicalHelper.get(TagPrefix.gear, GTMaterials.Zeron100),
+                'F', ChemicalHelper.get(TagPrefix.cableGtDouble, GTMaterials.Tungsten));
     }
 }

@@ -3,9 +3,11 @@ package io.github.cpearl0.ctnhcore.registry.nuclear;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 
 public class NuclearMaterials {
+
     public static void init() {
         NuclearMaterialsInfo.register();
     }
+
     public static Material Uranium;
     public static Material Plutonium;
     public static Material ThoriumHexafluoride;
@@ -341,7 +343,7 @@ public class NuclearMaterials {
     public static Material Mendelevium263Hexafluoride;
     public static Material Mendelevium263HexafluorideSteamCracked;
 
-    //原gtm特殊
+    // 原gtm特殊
 
     public static Material CarbideUranium235;
     public static Material OxideUranium235;
@@ -366,5 +368,4 @@ public class NuclearMaterials {
     public static Material ZirconiumAlloyPlutonium241;
     public static Material Plutonium241Hexafluoride;
     public static Material Plutonium241HexafluorideSteamCracked;
-
 }

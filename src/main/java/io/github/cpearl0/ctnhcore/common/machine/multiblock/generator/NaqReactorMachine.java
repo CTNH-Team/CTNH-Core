@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
@@ -7,20 +9,21 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
-import lombok.Getter;
-import lombok.Setter;
+
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import lombok.Getter;
+import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
-
 
 @Setter
 @Getter
@@ -127,7 +130,8 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
         int parallelCount = getParallelCount();  // 获取当前并行数
         int fluidConsumption = FLUID_AMOUNT * parallelCount;  // 计算实际消耗量
         textList.add(Component.translatable("ctnh.multiblock.naq_reactor.info.temperature", currentTemperature + "K"));
-        textList.add(Component.translatable("ctnh.multiblock.naq_reactor.info.nickel_consumption", fluidConsumption + "mb"));
+        textList.add(
+                Component.translatable("ctnh.multiblock.naq_reactor.info.nickel_consumption", fluidConsumption + "mb"));
         textList.add(Component.translatable("ctnh.multiblock.naq_reactor.info.parallel_count", getParallelCount()));
     }
 
@@ -147,7 +151,7 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
     @Override
     public void loadCustomPersistedData(@NotNull CompoundTag tag) {
         super.loadCustomPersistedData(tag);
-        currentTemperature= tag.contains(CURRENTTEMPERATURE_STRING) ? tag.getInt(CURRENTTEMPERATURE_STRING) : 0;
+        currentTemperature = tag.contains(CURRENTTEMPERATURE_STRING) ? tag.getInt(CURRENTTEMPERATURE_STRING) : 0;
     }
 
     @Override

@@ -1,11 +1,13 @@
 package io.github.cpearl0.ctnhcore.data.machines;
 
-import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.data.RotationState;
-import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.NeutronAcceleratorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.NeutronSensorMachine;
+
+import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.data.RotationState;
+import com.gregtechceu.gtceu.api.machine.MachineDefinition;
+
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
@@ -15,23 +17,27 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Suffix;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils.registerTieredMachines;
+
 @Prefix("machine")
 @Suffix("tooltip")
 public class GTNNMachines {
+
     public static MachineDefinition[] NEUTRON_ACCELERATOR;
     public static MachineDefinition NEUTRON_SENSOR;
+
     public static void init() {
         NEUTRON_ACCELERATOR = registerTieredMachines(
-                "neutron_accelerator", NeutronAcceleratorMachine::new, (tier, builder) ->
-                        builder.langValue(VNF[tier] + " Neutron Accelerator").rotationState(RotationState.ALL)
-                                .abilities(CTNHPartAbility.NEUTRON_ACCELERATOR)
-                                .tooltips(neutron_accelerator[0].translate())
-                                .tooltips(neutron_accelerator[1].translate(V[tier]))
-                                .tooltips(neutron_accelerator[2].translate(V[tier] * 8 / 10))
-                                .tooltips(neutron_accelerator[3].translate())
-                                .colorOverlayTieredHullModel("overlay_na")
-                                .register(), GTValues.tiersBetween(ULV, UV)
-        );
+                "neutron_accelerator", NeutronAcceleratorMachine::new,
+                (tier, builder) -> builder.langValue(VNF[tier] + " Neutron Accelerator")
+                        .rotationState(RotationState.ALL)
+                        .abilities(CTNHPartAbility.NEUTRON_ACCELERATOR)
+                        .tooltips(neutron_accelerator[0].translate())
+                        .tooltips(neutron_accelerator[1].translate(V[tier]))
+                        .tooltips(neutron_accelerator[2].translate(V[tier] * 8 / 10))
+                        .tooltips(neutron_accelerator[3].translate())
+                        .colorOverlayTieredHullModel("overlay_na")
+                        .register(),
+                GTValues.tiersBetween(ULV, UV));
         NEUTRON_SENSOR = REGISTRATE
                 .machine("neutron_sensor", NeutronSensorMachine::new)
                 .cnLangValue("中子传感器")
@@ -44,6 +50,7 @@ public class GTNNMachines {
                 .tooltips(neutron_sensor[1].translate())
                 .register();
     }
+
     @CN({
             "§o§7输入EU，加速中子!",
             "§6最大EU输入: %s",
@@ -67,4 +74,3 @@ public class GTNNMachines {
     })
     static Lang[] neutron_sensor;
 }
-

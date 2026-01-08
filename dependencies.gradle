@@ -86,7 +86,7 @@ dependencies {
     // Blood Magic
     //modImplementation("maven.modrinth:blood-magic:${bloodmagic_version}")
 
-    modImplementation("curse.maven:gtmthings-1104310:6764930")
+    //modImplementation("curse.maven:gtmthings-1104310:6764930")
 
     //modImplementation("curse.maven:mythicbotany-400058:5101899")
     annotationProcessor "org.moddingx:LibX:${minecraft_version}-${libx_version}"

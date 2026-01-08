@@ -1,22 +1,27 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.fluids.FluidStack;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 public class ForestMachine extends WorkableElectricMultiblockMachine {
+
     // 湿度值
     private int humidity = 0;  // 初始湿度为0%
     private static final int MAX_HUMIDITY = 100;  // 最大湿度为100%
@@ -39,8 +44,7 @@ public class ForestMachine extends WorkableElectricMultiblockMachine {
             // 检查输入仓是否有水
             FluidStack waterFluid = new FluidStack(
                     Fluids.WATER,
-                    FLUID_AMOUNT
-            );
+                    FLUID_AMOUNT);
 
             boolean isFluidSufficient = MachineUtils.inputFluid(waterFluid, this);  // 检查是否有足够流体
 
@@ -110,7 +114,6 @@ public class ForestMachine extends WorkableElectricMultiblockMachine {
     @Override
     public void loadCustomPersistedData(@NotNull CompoundTag tag) {
         super.loadCustomPersistedData(tag);
-        humidity= tag.contains(HUMIDITY) ? tag.getInt(HUMIDITY) : 0;
+        humidity = tag.contains(HUMIDITY) ? tag.getInt(HUMIDITY) : 0;
     }
-
 }

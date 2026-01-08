@@ -10,6 +10,7 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class AdastraMaterials {
+
     public static void init() {
         addOre(Neutronium, NeutroniumMixture);
         addOre(NaquadahEnriched, EnrichedNaquadahOxideMixture);

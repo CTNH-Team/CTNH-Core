@@ -1,15 +1,17 @@
 package io.github.cpearl0.ctnhcore.data.recipe.chain;
 
+import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
+import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
+
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GCYMRecipeTypes;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
-import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
-import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraftforge.fluids.FluidStack;
@@ -21,6 +23,7 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
 
 public class PlatinumLine {
+
     public static void init(Consumer<FinishedRecipe> provider) {
         remove(provider);
         // --- 铂钯催化剂 ---
@@ -44,27 +47,27 @@ public class PlatinumLine {
                 .save(provider);
 
         GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("platinum_slurry_aqua_regia")
-                .inputItems(dust,PlatinumGroupSludge,3) // 单槽位输入
-                .inputFluids(GTMaterials.AquaRegia.getFluid(6000))//2HNO3+4HCL
+                .inputItems(dust, PlatinumGroupSludge, 3) // 单槽位输入
+                .inputFluids(GTMaterials.AquaRegia.getFluid(6000))// 2HNO3+4HCL
                 .outputFluids(CTNHMaterials.GoldPlatinumPalladiumAcidSolution.getFluid(1000))
                 .outputFluids(GTMaterials.NitricOxide.getFluid(1000))
                 .outputFluids(GTMaterials.Water.getFluid(2000))
-                .outputItems(dust,CTNHMaterials.PlatinumGroupResidue,1)
+                .outputItems(dust, CTNHMaterials.PlatinumGroupResidue, 1)
                 .EUt(GTValues.VA[GTValues.HV])
                 .duration(640)
                 .save(provider);
         GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("platinum_slurry_aqua_regia_fix")
-                .inputItems(dust,PlatinumMetal,3) // 单槽位输入
-                .inputFluids(GTMaterials.AquaRegia.getFluid(6000))//2HNO3+4HCL
+                .inputItems(dust, PlatinumMetal, 3) // 单槽位输入
+                .inputFluids(GTMaterials.AquaRegia.getFluid(6000))// 2HNO3+4HCL
                 .outputFluids(CTNHMaterials.GoldPlatinumPalladiumAcidSolution.getFluid(1000))
                 .outputFluids(GTMaterials.NitricOxide.getFluid(1000))
                 .outputFluids(GTMaterials.Water.getFluid(2000))
-                .outputItems(dust,CTNHMaterials.PlatinumGroupResidue,1)
+                .outputItems(dust, CTNHMaterials.PlatinumGroupResidue, 1)
                 .EUt(GTValues.VA[GTValues.HV])
                 .duration(640)
                 .save(provider);
-//溶液线
-        GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("denitrate_gold_platinum_palladium_solution") //反复除硝
+        // 溶液线
+        GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("denitrate_gold_platinum_palladium_solution") // 反复除硝
                 .inputFluids(CTNHMaterials.GoldPlatinumPalladiumAcidSolution.getFluid(1000)) // 单槽位输入：酸性溶液
                 .inputFluids(GTMaterials.HydrochloricAcid.getFluid(2000))                    // 单槽位输入：盐酸
                 .outputFluids(GTMaterials.NitricOxide.getFluid(500))                        // 一氧化氮（1000mb）
@@ -78,13 +81,13 @@ public class PlatinumLine {
                 .inputFluids(CTNHMaterials.DenitratedGoldPlatinumPalladiumSolution.getFluid(1000))  // 除硝后的贵金属酸性溶液（含HCl）
                 .inputFluids(CTNHMaterials.FerrousSulfate.getFluid(1000))                             // 硫酸亚铁溶液（FeSO₄）
                 .outputFluids(CTNHMaterials.FerricSulfate.getFluid(1000))                            // 硫酸铁溶液（Fe₂(SO₄)₃）
-                .outputItems(dust,Gold,1)                                          // 金粉（Au）
+                .outputItems(dust, Gold, 1)                                          // 金粉（Au）
                 .outputFluids(CTNHMaterials.ChloroplatinicChloropalladicSolution.getFluid(1000))    // 氯铂酸-氯钯酸混合溶液
                 .EUt(GTValues.VA[GTValues.MV])     // 低电压（LV级，30 EU/t）
                 .duration(240)                      // 反应时间 10秒（200 ticks）
                 .save(provider);
         GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("palladium_palladium_platinum_oi_new_process")
-                .inputItems(dust,PlatinumOre,7)
+                .inputItems(dust, PlatinumOre, 7)
                 .inputFluids(Chlorine.getFluid(8000))
                 .inputFluids(HydrochloricAcid.getFluid(4000))
                 .outputFluids(CTNHMaterials.ChloroplatinicChloropalladicSolution.getFluid(1000))
@@ -92,35 +95,35 @@ public class PlatinumLine {
                 .duration(360)
                 .save(provider);
         GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("palladium_platinum_oi_new_process")
-                .inputItems(dust,PalladiumOre,7)
+                .inputItems(dust, PalladiumOre, 7)
                 .inputFluids(Chlorine.getFluid(4000))
                 .inputFluids(HydrochloricAcid.getFluid(2000))
-                .inputItems(dust,AmmoniumChloride,10)
+                .inputItems(dust, AmmoniumChloride, 10)
                 .outputFluids(CTNHMaterials.ChloropalladicAcidMixture.getFluid(3000))
                 .EUt(GTValues.VA[GTValues.EV])
                 .duration(400)
                 .save(provider);
         GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("palladium_platinum_oi_new_process_fix")
-                .inputItems(dust,PalladiumMetal,7)
+                .inputItems(dust, PalladiumMetal, 7)
                 .inputFluids(Chlorine.getFluid(4000))
                 .inputFluids(HydrochloricAcid.getFluid(2000))
-                .inputItems(dust,AmmoniumChloride,10)
+                .inputItems(dust, AmmoniumChloride, 10)
                 .outputFluids(CTNHMaterials.ChloropalladicAcidMixture.getFluid(3000))
                 .EUt(GTValues.VA[GTValues.EV])
                 .duration(400)
                 .save(provider);
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("ammonium_chloroplatinate_synthesis")
-                .inputItems(dust,AmmoniumChloride,4)                           // 氯化铵固体（2个，对应2000mb溶液当量）
+                .inputItems(dust, AmmoniumChloride, 4)                           // 氯化铵固体（2个，对应2000mb溶液当量）
                 .inputFluids(CTNHMaterials.ChloroplatinicChloropalladicSolution.getFluid(3000))  // 氯铂酸-氯钯酸混合溶液（含H₂[PtCl₆]）
-                .outputItems(dust,CTNHMaterials.AmmoniumChloroplatinate,9)                // 氯铂酸铵沉淀（(NH₄)₂[PtCl₆]）
+                .outputItems(dust, CTNHMaterials.AmmoniumChloroplatinate, 9)                // 氯铂酸铵沉淀（(NH₄)₂[PtCl₆]）
                 .outputFluids(GTMaterials.HydrochloricAcid.getFluid(2000))                    // 释放的盐酸（2000mb）
-                .outputFluids(CTNHMaterials.ChloropalladicAcidMixture.getFluid(3000)) //氯钯酸混合物
+                .outputFluids(CTNHMaterials.ChloropalladicAcidMixture.getFluid(3000)) // 氯钯酸混合物
                 .EUt(GTValues.VA[GTValues.MV])     // 中电压（MV级，480 EU/t）
                 .duration(400)                     // 反应时间 20秒（400 ticks）
                 .save(provider);
         GTRecipeTypes.BLAST_RECIPES.recipeBuilder("ammonium_chloroplatinate_calcination")
-                .inputItems(dust,CTNHMaterials.AmmoniumChloroplatinate,9)  // 氯铂酸铵粉末（9个）
-                .outputItems(dust,GTMaterials.AmmoniumChloride,4)        // 氯化铵粉末（4个）
+                .inputItems(dust, CTNHMaterials.AmmoniumChloroplatinate, 9)  // 氯铂酸铵粉末（9个）
+                .outputItems(dust, GTMaterials.AmmoniumChloride, 4)        // 氯化铵粉末（4个）
                 .outputItemsRanged(ChemicalHelper.get(dust, CTNHMaterials.SpongePlatinum), UniformInt.of(1, 3))
                 .outputFluids(GTMaterials.Chlorine.getFluid(4000))           // 氯气（4000mb）
                 .blastFurnaceTemp(500)       // 高炉温度500K（227℃）
@@ -128,8 +131,8 @@ public class PlatinumLine {
                 .duration(600)               // 反应时间30秒（600 ticks）
                 .save(provider);
         GTRecipeTypes.BLAST_RECIPES.recipeBuilder("sponge_platinum_calcination")
-                .inputItems(dust,CTNHMaterials.SpongePlatinum,1)  // 海绵铂（1个）
-                .outputItems(TagPrefix.ingot,GTMaterials.Platinum,1)       // 铂锭（1个）
+                .inputItems(dust, CTNHMaterials.SpongePlatinum, 1)  // 海绵铂（1个）
+                .outputItems(TagPrefix.ingot, GTMaterials.Platinum, 1)       // 铂锭（1个）
                 .blastFurnaceTemp(1700)       // 高炉温度1700K（1427℃）
                 .EUt(GTValues.VA[GTValues.HV]) // 极高电压（EV级，30,720 EU/t）
                 .duration(500)               // 反应时间60秒（1200 ticks）
@@ -137,28 +140,29 @@ public class PlatinumLine {
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("palladium_ammonia_precipitation")
                 .inputFluids(CTNHMaterials.ChloropalladicAcidMixture.getFluid(1000)) // 氯钯酸溶液（含H₂[PdCl₆]）
                 .inputFluids(CTNHMaterials.AmmoniaMonohydrate.getFluid(800))           // 氨水（过量）
-                .outputItems(dust,CTNHMaterials.Diamminedichloropalladium,2) // 二氯二氨络亚钯
-                .outputFluidsRanged(new FluidStack(GTMaterials.HydrochloricAcid.getFluid(),1), UniformInt.of(1000, 1200))      // 副产盐酸
+                .outputItems(dust, CTNHMaterials.Diamminedichloropalladium, 2) // 二氯二氨络亚钯
+                .outputFluidsRanged(new FluidStack(GTMaterials.HydrochloricAcid.getFluid(), 1),
+                        UniformInt.of(1000, 1200))      // 副产盐酸
                 .EUt(GTValues.VA[GTValues.HV])     // 中电压（480 EU/t）
                 .duration(320)                     // 10秒
                 .save(provider);
         GTRecipeTypes.BLAST_RECIPES.recipeBuilder("palladium_ammine_hydrogen_reduction")
-                .inputItems(dust,CTNHMaterials.Diamminedichloropalladium,5)  // 二氯二氨络亚钯（5个）
+                .inputItems(dust, CTNHMaterials.Diamminedichloropalladium, 5)  // 二氯二氨络亚钯（5个）
                 .inputFluids(GTMaterials.Hydrogen.getFluid(2000))                 // 氢气（2000mb，过量）
                 .outputItemsRanged(ChemicalHelper.get(dust, CTNHMaterials.SpongePalladium), UniformInt.of(1, 2))          // 海绵钯（1个，纯度>99.7%）SpongePalladium
-                .outputItems(dust,GTMaterials.AmmoniumChloride,4)        // 氯化铵粉末（4个）
+                .outputItems(dust, GTMaterials.AmmoniumChloride, 4)        // 氯化铵粉末（4个）
                 .blastFurnaceTemp(500)
                 .EUt(GTValues.VA[GTValues.HV])
                 .duration(400)
                 .save(provider);
         GTRecipeTypes.BLAST_RECIPES.recipeBuilder("sponge_palladium_smelting")
-                .inputItems(dust, CTNHMaterials.SpongePalladium,1)
-                .outputItems(TagPrefix.ingot, GTMaterials.Palladium,1)
+                .inputItems(dust, CTNHMaterials.SpongePalladium, 1)
+                .outputItems(TagPrefix.ingot, GTMaterials.Palladium, 1)
                 .blastFurnaceTemp(1500)
                 .EUt(GTValues.VA[GTValues.HV])
                 .duration(540)
                 .save(provider);
-//残渣线
+        // 残渣线
         GTRecipeTypes.BLAST_RECIPES.recipeBuilder("platinum_residue_smelting")
                 .inputItems(dust, CTNHMaterials.PlatinumGroupResidue, 1)  // 铂族残渣粉（1个）
                 .inputItems(dust, CTNHMaterials.Litharge, 2)            // 密陀僧粉（1个）
@@ -189,8 +193,8 @@ public class PlatinumLine {
                 .inputItems(dust, CTNHMaterials.EnrichedInertMixture, 2)  // 富集惰性混合物粉（2个）
                 .inputFluids(GTMaterials.SodiumBisulfate.getFluid(144 * 42))            // 熔融硫酸氢钠（3000mb）
                 .outputFluids(GTMaterials.RhodiumSulfate.getFluid(1000))  // 硫酸铑溶液（1000mb）
-                .outputItems(dust,SodiumSulfate, 21)
-                .outputItems(dust,PreciousMetalMixture, 1)
+                .outputItems(dust, SodiumSulfate, 21)
+                .outputItems(dust, PreciousMetalMixture, 1)
                 .blastFurnaceTemp(1200)       // 1200K（实际工业中NaHSO₄熔点为185℃，此处高温模拟反应活化能）
                 .EUt(GTValues.VA[GTValues.HV]) // 高电压（7,680 EU/t）
                 .duration(400)                // 20秒
@@ -206,7 +210,7 @@ public class PlatinumLine {
                 .inputFluids(CTNHMaterials.RhodiumSulfateSolution.getFluid(10000))  // 10000mb Rh₂(SO₄)₃溶液
                 .inputItems(dust, GTMaterials.SodiumHydroxide, 18)        // 6个氢氧化钠粉
                 .outputItems(dust, CTNHMaterials.RhodiumHydroxide, 8)    // 8个氢氧化铑粉
-                .outputItems(dust,SodiumSulfate, 21)       // 21个硫酸钠粉
+                .outputItems(dust, SodiumSulfate, 21)       // 21个硫酸钠粉
                 .EUt(120)            // 电压120 EU/t（LV级）
                 .duration(100)       // 5秒（100 ticks）
                 .save(provider);
@@ -276,7 +280,7 @@ public class PlatinumLine {
                 .inputFluids(CTNHMaterials.SodiumPeroxide.getFluid(144 * 4))           // 槽位2：1000mb熔融过氧化钠
                 .inputFluids(GTMaterials.SodiumHydroxide.getFluid(144 * 6))           // 槽位3：1000mb氢氧化钠溶液
                 .outputFluids(CTNHMaterials.SodiumOsmateRuthenateSolution.getFluid(2000)) // 2000mb混合溶液
-                .outputItems(dust,IridiumDioxide,1)
+                .outputItems(dust, IridiumDioxide, 1)
                 .EUt(GTValues.VA[GTValues.EV])  // 高电压（7,680 EU/t）
                 .duration(200)                   // 20秒（400 ticks）
                 .save(provider);
@@ -402,14 +406,14 @@ public class PlatinumLine {
                 .EUt(GTValues.VA[GTValues.MV])  // 中电压（480 EU/t）
                 .duration(100)           // 10秒（200 ticks）
                 .save(provider);
-        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("nh4_cl")//氯化铵
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("nh4_cl")// 氯化铵
                 .inputFluids(Ammonia.getFluid(1000))
                 .inputFluids(Chlorine.getFluid(1000))
-                .outputItems(dust,AmmoniumChloride,2)
+                .outputItems(dust, AmmoniumChloride, 2)
                 .EUt(GTValues.VA[GTValues.HV])
                 .duration(100)
                 .save(provider);
-        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("nh3_h2o")//一水合氨
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("nh3_h2o")// 一水合氨
                 .inputFluids(Ammonia.getFluid(1000))
                 .inputFluids(Water.getFluid(1000))
                 .outputFluids(AmmoniaMonohydrate.getFluid(1000))
@@ -418,17 +422,18 @@ public class PlatinumLine {
                 .save(provider);
         GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES.recipeBuilder("nh4_cl_solidfication")
                 .inputFluids(AmmoniumChloride.getFluid(500))
-                .outputItems(dust,AmmoniumChloride,1)
+                .outputItems(dust, AmmoniumChloride, 1)
                 .EUt(GTValues.VA[GTValues.LV])
                 .duration(20)
                 .save(provider);
         GTRecipeTypes.EXTRACTOR_RECIPES.recipeBuilder("nh4_cl_extractor")
-                .inputItems(dust,AmmoniumChloride,1)
+                .inputItems(dust, AmmoniumChloride, 1)
                 .outputFluids(AmmoniumChloride.getFluid(500))
                 .EUt(GTValues.VA[GTValues.LV])
                 .duration(20)
                 .save(provider);
     }
+
     private static void remove(Consumer<FinishedRecipe> provider) {
         GCYMRecipeTypes.ALLOY_BLAST_RECIPES.recipeBuilder("sodium_pyrosulfate").save(provider);
         GTRecipeTypes.EXTRACTOR_RECIPES.recipeBuilder("extract_osmium_tetroxide_dust").save(provider);
@@ -454,8 +459,7 @@ public class PlatinumLine {
                         ChemicalHelper.get(TagPrefix.dust, PlatinumOre, 3),
                         ChemicalHelper.get(TagPrefix.dust, GTMaterials.Nickel),
                         ChemicalHelper.get(TagPrefix.dust, GTMaterials.Sulfur),
-                        ChemicalHelper.get(TagPrefix.dust, PalladiumOre)
-                )
+                        ChemicalHelper.get(TagPrefix.dust, PalladiumOre))
                 .EUt(60).save(provider);
     }
 

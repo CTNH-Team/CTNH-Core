@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.registry.worldgen.biome;
 
 import io.github.cpearl0.ctnhcore.registry.sound.CTNHMusics;
 import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHPlacements;
+
 import net.minecraft.core.HolderGetter;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
@@ -9,6 +10,7 @@ import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public class AstralBiomes {
+
     public static Biome baseAstralSetting(BiomeGenerationSettings.Builder builder) {
         MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
         return (new Biome.BiomeBuilder())
@@ -25,6 +27,7 @@ public class AstralBiomes {
                 .mobSpawnSettings(spawnBuilder.build())
                 .generationSettings(builder.build()).build();
     }
+
     public static Biome baseOrbitSetting(BiomeGenerationSettings.Builder builder) {
         MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
         return (new Biome.BiomeBuilder())
@@ -41,8 +44,10 @@ public class AstralBiomes {
                 .mobSpawnSettings(spawnBuilder.build())
                 .generationSettings(builder.build()).build();
     }
-    public static Biome plague_wasteland(HolderGetter<PlacedFeature> holderGetter, HolderGetter<ConfiguredWorldCarver<?>> holderGetter2) {
-        BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(holderGetter,holderGetter2);
+
+    public static Biome plague_wasteland(HolderGetter<PlacedFeature> holderGetter,
+                                         HolderGetter<ConfiguredWorldCarver<?>> holderGetter2) {
+        BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(holderGetter, holderGetter2);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CTNHPlacements.ASTRAL_TREE)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CTNHPlacements.ASTRAL_GRASS)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CTNHPlacements.ASTRAL_FLOWER)
@@ -50,14 +55,18 @@ public class AstralBiomes {
                 .addFeature(GenerationStep.Decoration.LAKES, CTNHPlacements.ASTRAL_LAKE_UNDERGROUND);
         return baseAstralSetting(biomeBuilder);
     }
-    public static Biome plague_desert(HolderGetter<PlacedFeature> holderGetter, HolderGetter<ConfiguredWorldCarver<?>> holderGetter2) {
-        BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(holderGetter,holderGetter2);
+
+    public static Biome plague_desert(HolderGetter<PlacedFeature> holderGetter,
+                                      HolderGetter<ConfiguredWorldCarver<?>> holderGetter2) {
+        BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(holderGetter, holderGetter2);
         biomeBuilder.addFeature(GenerationStep.Decoration.LAKES, CTNHPlacements.ASTRAL_LAKE)
                 .addFeature(GenerationStep.Decoration.LAKES, CTNHPlacements.ASTRAL_LAKE_UNDERGROUND);
         return baseAstralSetting(biomeBuilder);
     }
-    public static Biome astral_orbit(HolderGetter<PlacedFeature> holderGetter, HolderGetter<ConfiguredWorldCarver<?>> holderGetter2) {
-        BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(holderGetter,holderGetter2);
+
+    public static Biome astral_orbit(HolderGetter<PlacedFeature> holderGetter,
+                                     HolderGetter<ConfiguredWorldCarver<?>> holderGetter2) {
+        BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(holderGetter, holderGetter2);
         return baseOrbitSetting(biomeBuilder);
     }
 }

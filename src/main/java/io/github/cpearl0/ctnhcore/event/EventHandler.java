@@ -1,5 +1,11 @@
 package io.github.cpearl0.ctnhcore.event;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
+import io.github.cpearl0.ctnhcore.registry.*;
+import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundDefinitionsProvider;
+import io.github.cpearl0.ctnhcore.registry.worldgen.*;
+
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.DimensionMarker;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
@@ -10,11 +16,7 @@ import com.gregtechceu.gtceu.api.recipe.category.GTRecipeCategory;
 import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
 import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
 import com.gregtechceu.gtceu.data.tags.BiomeTagsLoader;
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
-import io.github.cpearl0.ctnhcore.registry.*;
-import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundDefinitionsProvider;
-import io.github.cpearl0.ctnhcore.registry.worldgen.*;
+
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
@@ -30,6 +32,7 @@ import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = CTNHCore.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EventHandler {
+
     public static void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         CTNHMachines.init();
         CTNHMultiblockMachines.init();
@@ -47,9 +50,11 @@ public class EventHandler {
     public static void registerDimensionMarkers(GTCEuAPI.RegisterEvent<ResourceLocation, DimensionMarker> event) {
         CTNHDimensionMarkers.init();
     }
-    public static void registerChanceLogic(GTCEuAPI.RegisterEvent<ResourceLocation, ChanceLogic> event){
+
+    public static void registerChanceLogic(GTCEuAPI.RegisterEvent<ResourceLocation, ChanceLogic> event) {
         CTNHChanceLogic.init();
     }
+
     @SubscribeEvent
     public static void registerRecipeConditions(GTCEuAPI.RegisterEvent<ResourceLocation, RecipeConditionType> event) {
         CTNHRecipeConditions.init();
@@ -69,22 +74,23 @@ public class EventHandler {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         var registries = event.getLookupProvider();
         if (event.includeClient()) {
-             generator.addProvider(true, new CTNHSoundDefinitionsProvider(packOutput, CTNHCore.MODID, existingFileHelper));
+            generator.addProvider(true,
+                    new CTNHSoundDefinitionsProvider(packOutput, CTNHCore.MODID, existingFileHelper));
         }
         if (event.includeServer()) {
             var set = Set.of(CTNHCore.MODID);
             generator.addProvider(true, new BiomeTagsLoader(packOutput, registries, existingFileHelper));
-                DatapackBuiltinEntriesProvider provider = generator.addProvider(true, new DatapackBuiltinEntriesProvider(
-                        packOutput, registries, new RegistrySetBuilder()
-                        .add(Registries.BIOME, CTNHBiomes::bootstrap)
-                        .add(Registries.CONFIGURED_FEATURE, CTNHConfiguredFeatures::bootstrap)
-                        .add(Registries.PLACED_FEATURE, CTNHPlacements::bootstrap)
-                        .add(Registries.DIMENSION_TYPE, CTNHDimensionTypes::bootstrap)
-                        .add(Registries.LEVEL_STEM, CTNHDimensions::bootstrap)
-                        .add(Registries.NOISE_SETTINGS, CTNHNoiseGenerationSettings::bootstrap)
-                        .add(Registries.DENSITY_FUNCTION, CTNHDensityFunctions::bootstrap)
-                        .add(Registries.DAMAGE_TYPE,CTNHDamageTypes::bootstrap),
-                        set));
+            DatapackBuiltinEntriesProvider provider = generator.addProvider(true, new DatapackBuiltinEntriesProvider(
+                    packOutput, registries, new RegistrySetBuilder()
+                            .add(Registries.BIOME, CTNHBiomes::bootstrap)
+                            .add(Registries.CONFIGURED_FEATURE, CTNHConfiguredFeatures::bootstrap)
+                            .add(Registries.PLACED_FEATURE, CTNHPlacements::bootstrap)
+                            .add(Registries.DIMENSION_TYPE, CTNHDimensionTypes::bootstrap)
+                            .add(Registries.LEVEL_STEM, CTNHDimensions::bootstrap)
+                            .add(Registries.NOISE_SETTINGS, CTNHNoiseGenerationSettings::bootstrap)
+                            .add(Registries.DENSITY_FUNCTION, CTNHDensityFunctions::bootstrap)
+                            .add(Registries.DAMAGE_TYPE, CTNHDamageTypes::bootstrap),
+                    set));
         }
     }
 }

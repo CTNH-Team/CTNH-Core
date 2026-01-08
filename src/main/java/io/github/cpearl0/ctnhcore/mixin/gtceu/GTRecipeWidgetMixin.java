@@ -1,12 +1,15 @@
 package io.github.cpearl0.ctnhcore.mixin.gtceu;
 
+import io.github.cpearl0.ctnhcore.utils.VoltageBorderWidget;
+
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.integration.xei.widgets.GTRecipeWidget;
-import com.llamalad7.mixinextras.sugar.Local;
-import io.github.cpearl0.ctnhcore.utils.VoltageBorderWidget;
+
 import net.minecraft.ChatFormatting;
+
+import com.llamalad7.mixinextras.sugar.Local;
 import org.apache.commons.lang3.mutable.MutableInt;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -36,18 +39,15 @@ public class GTRecipeWidgetMixin {
     @Inject(method = "initializeRecipeTextWidget", at = @At("TAIL"))
     private void injectVoltageBorder(CallbackInfo ci) {
         GTRecipeWidget self = (GTRecipeWidget) (Object) this;
-        if(RecipeHelper.getRealEUt(recipe).voltage() > 0 &&
-                self.widgets.stream().noneMatch(w -> w instanceof VoltageBorderWidget)
-        ){
-            //获取颜色（ARGB）
+        if (RecipeHelper.getRealEUt(recipe).voltage() > 0 &&
+                self.widgets.stream().noneMatch(w -> w instanceof VoltageBorderWidget)) {
+            // 获取颜色（ARGB）
             int color = cTNH_Core$getColorFromVNF(GTValues.VNF[tier]);
 
-            //添加新的边框渲染 widget（放在最底层以确保不会遮挡其他元素）
+            // 添加新的边框渲染 widget（放在最底层以确保不会遮挡其他元素）
             self.widgets.add(new VoltageBorderWidget(
-                    -xOffset, 0, self.getSize().width, self.getSize().height, color
-            ));
+                    -xOffset, 0, self.getSize().width, self.getSize().height, color));
         }
-
     }
 
     @Unique
@@ -65,14 +65,10 @@ public class GTRecipeWidgetMixin {
     }
 
     @ModifyArg(method = "setRecipeWidget",
-            at = @At(value = "INVOKE",
-                    target = "Lcom/lowdragmc/lowdraglib/gui/widget/LabelWidget;<init>(IILjava/lang/String;)V"
-            ),
-            index = 1
-    )
+               at = @At(value = "INVOKE",
+                        target = "Lcom/lowdragmc/lowdraglib/gui/widget/LabelWidget;<init>(IILjava/lang/String;)V"),
+               index = 1)
     private int setRecipeWidget(int y, @Local(name = "yOff") MutableInt yOff) {
         return yOff.addAndGet(LINE_HEIGHT);
     }
-
-
 }

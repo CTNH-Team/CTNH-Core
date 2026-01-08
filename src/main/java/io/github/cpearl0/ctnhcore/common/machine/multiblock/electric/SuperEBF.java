@@ -9,35 +9,43 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
+
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
+
 import org.jetbrains.annotations.NotNull;
 
 public class SuperEBF extends CoilWorkableElectricMultiblockMachine implements ITieredMachine {
+
     public SuperEBF(IMachineBlockEntity holder) {
         super(holder);
     }
+
     @Persisted
-    public int temperature=0;
+    public int temperature = 0;
+
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
         temperature = getCoilType().getCoilTemperature();
     }
+
     public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
-        int pa=1;
+        int pa = 1;
         if (machine instanceof IMultiController controller) {
             if (controller.isFormed()) {
-                int parallels = (Integer)controller.getParallelHatch().map((hatch) -> ParallelLogic.getParallelAmount(machine, recipe, hatch.getCurrentParallel())).orElse(0);
+                int parallels = (Integer) controller.getParallelHatch()
+                        .map((hatch) -> ParallelLogic.getParallelAmount(machine, recipe, hatch.getCurrentParallel()))
+                        .orElse(0);
                 if (parallels > 0) {
-                    pa=parallels;
+                    pa = parallels;
                 }
 
             }
         }
-        if(machine instanceof SuperEBF pmachine) {
-            var speed=1;
-            int parallel= ParallelLogic.getParallelAmount(machine,recipe,pa);
-            return  ModifierFunction.builder()
+        if (machine instanceof SuperEBF pmachine) {
+            var speed = 1;
+            int parallel = ParallelLogic.getParallelAmount(machine, recipe, pa);
+            return ModifierFunction.builder()
                     .parallels(pa)
                     .durationMultiplier(0.5)
                     .inputModifier(ContentModifier.multiplier(pa))
@@ -45,7 +53,5 @@ public class SuperEBF extends CoilWorkableElectricMultiblockMachine implements I
                     .build();
         }
         return ModifierFunction.NULL;
-
     }
-
 }

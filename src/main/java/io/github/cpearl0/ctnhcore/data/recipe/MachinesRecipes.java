@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import io.github.cpearl0.ctnhcore.registry.*;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
+
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
@@ -11,12 +14,12 @@ import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.data.recipe.CraftingComponent;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
-import com.simibubi.create.AllBlocks;
-import io.github.cpearl0.ctnhcore.registry.*;
-import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluids;
+
+import com.simibubi.create.AllBlocks;
 
 import java.util.function.Consumer;
 
@@ -34,6 +37,7 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.PHOTOVOLTAIC_G
 import static twilightforest.init.TFItems.STEELEAF_INGOT;
 
 public class MachinesRecipes {
+
     public static CraftingComponent MONITOR = CraftingComponent.of("monitor", COVER_SCREEN.asStack())
             .add(LV, COVER_SCREEN.asStack())
             .add(MV, COVER_SCREEN.asStack())
@@ -49,6 +53,7 @@ public class MachinesRecipes {
             .add(UXV, COVER_SCREEN.asStack())
             .add(OpV, COVER_SCREEN.asStack())
             .add(MAX, COVER_SCREEN.asStack());
+
     public static void init(Consumer<FinishedRecipe> provider) {
         VanillaRecipeHelper.addShapedRecipe(provider, true, "underfloor_heating_system",
                 MultiblocksA.UNDERFLOOR_HEATING_SYSTEM.asStack(),
@@ -76,14 +81,14 @@ public class MachinesRecipes {
                 .duration(300)
                 .EUt(2)
                 .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
-                .outputItems(STEELEAF_INGOT,1)
+                .outputItems(STEELEAF_INGOT, 1)
                 .save(provider);
         MIXER_RECIPES.recipeBuilder("plantfood")
                 .duration(500)
                 .EUt(28)
                 .inputItems(dust, CTNHMaterials.SpiritAsh, 4)
                 .inputItems(dust, Apatite, 4)
-                .outputItems(FERTILIZER,16)
+                .outputItems(FERTILIZER, 16)
                 .save(provider);
 
         CTNHRecipeTypes.ARC_REACTOR.recipeBuilder("test")
@@ -97,8 +102,8 @@ public class MachinesRecipes {
                 .circuitMeta(1)
                 .save(provider);
         CTNHRecipeTypes.VOID_MINER.recipeBuilder("void")
-                .EUt(32678*64)
-                .duration(20*100)
+                .EUt(32678 * 64)
+                .duration(20 * 100)
                 .circuitMeta(1)
                 .save(provider);
 
@@ -123,13 +128,13 @@ public class MachinesRecipes {
                 .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
                 .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
                 .outputItems(dust, CTNHMaterials.SpiritAsh, 1)
-                .addData("1",48)
-                .addData("2",30)
-                .addData("3",30)
-                .addData("noisea",20)
-                .addData("noiseb",2)
-                .addData("range",120)
-                .duration(20*30)
+                .addData("1", 48)
+                .addData("2", 30)
+                .addData("3", 30)
+                .addData("noisea", 20)
+                .addData("noiseb", 2)
+                .addData("range", 120)
+                .duration(20 * 30)
                 .EUt(1000000)
                 .save(provider);
         COMBUSTION_GENERATOR_FUELS.recipeBuilder("end")
@@ -151,18 +156,17 @@ public class MachinesRecipes {
                 new MaterialEntry(frameGt, GTMaterials.NaquadahAlloy), 'G',
                 new MaterialEntry(gear, GTMaterials.NaquadahAlloy));
 
-
         ASSEMBLER_RECIPES.recipeBuilder("empty_program")
-                .inputItems(wireFine,RedAlloy,8)
-                .inputItems(plate,Steel,2)
+                .inputItems(wireFine, RedAlloy, 8)
+                .inputItems(plate, Steel, 2)
                 .inputFluids(FluidIngredient.of(Fluids.WATER, 1000))
                 .outputItems(CTNHItems.PROGRAM_EMPTY.asStack())
                 .EUt(30)
                 .duration(200)
                 .save(provider);
-        registerMachineRecipe(provider,CTNHMachines.PERSONAL_COMPUTER,"PDP",
-                "CAC", "PBP", 'A', HULL, 'C', ROTOR, 'P', CABLE, 'D', CIRCUIT, 'B' , SENSOR);
-        registerMachineRecipe(provider,CTNHMachines.CIRCUIT_BUS, "A","B", 'A', MONITOR , 'B', HULL);
+        registerMachineRecipe(provider, CTNHMachines.PERSONAL_COMPUTER, "PDP",
+                "CAC", "PBP", 'A', HULL, 'C', ROTOR, 'P', CABLE, 'D', CIRCUIT, 'B', SENSOR);
+        registerMachineRecipe(provider, CTNHMachines.CIRCUIT_BUS, "A", "B", 'A', MONITOR, 'B', HULL);
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("astronomy_circuit")
                 .inputItems(PLASTIC_CIRCUIT_BOARD)
                 .inputItems(CENTRAL_PROCESSING_UNIT, 2)
@@ -181,18 +185,17 @@ public class MachinesRecipes {
                 .save(provider);
         PHOTOVOLTAIC_ASSEMBER.recipeBuilder("test")
                 .duration(20)
-                //.EUt(-1)
+                // .EUt(-1)
                 .circuitMeta(1)
-                .addData("input",32678)
+                .addData("input", 32678)
                 .save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("drone_holder")
                 .duration(100)
-                .EUt(32678*4)
+                .EUt(32678 * 4)
                 .circuitMeta(1)
                 .inputItems(OBJECT_HOLDER)
                 .outputItems(DRONEHOLDER)
                 .inputItems(CustomTags.UV_CIRCUITS, 4)
                 .save(provider);
     }
-
 }

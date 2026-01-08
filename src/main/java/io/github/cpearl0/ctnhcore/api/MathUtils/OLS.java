@@ -5,18 +5,19 @@ import java.util.Map;
 
 /**
  * 多元线性回归(OLS)实现
+ * 
  * @author coshaho
  */
 public class OLS {
 
     /**
      * 多元线性回归(OLS)
+     * 
      * @param X 特征矩阵，每行是一个样本，每列是一个特征
      * @param y 目标值数组
      * @return 包含系数和截距的Map
      */
     public Map<String, double[]> multiLinearRegression(double[][] X, double[] y) {
-
         if (X == null || y == null || X.length != y.length || X.length == 0) {
             throw new IllegalArgumentException("输入数据不合法");
         }
@@ -60,8 +61,8 @@ public class OLS {
 
         Map<String, double[]> result = new HashMap<>();
         result.put("coefficients", coefficients);
-        result.put("intercept", new double[]{intercept});
-        result.put("rSquared", new double[]{rSquared});
+        result.put("intercept", new double[] { intercept });
+        result.put("rSquared", new double[] { rSquared });
 
         return result;
     }
@@ -158,62 +159,62 @@ public class OLS {
         }
         return sum / array.length;
     }
-//
-//    public static void main(String[] args) {
-//        Random random = new Random();
-//
-//        // 生成测试数据
-//        int n = 100; // 样本数量
-//        int k = 3;   // 特征数量
-//
-//        double[][] X = new double[n][k];
-//        double[] y = new double[n];
-//
-//        // 真实系数
-//        double[] trueCoefficients = {2.5, -1.2, 0.8, 3.0}; // 包括截距项
-//
-//        // 生成随机特征数据
-//        for (int i = 0; i < n; i++) {
-//            X[i][0] = random.nextDouble() * 10;
-//            X[i][1] = random.nextDouble() * 5;
-//            X[i][2] = random.nextDouble() * 8;
-//
-//            // 生成目标值(带噪声)
-//            y[i] = trueCoefficients[0] +
-//                    trueCoefficients[1] * X[i][0] +
-//                    trueCoefficients[2] * X[i][1] +
-//                    trueCoefficients[3] * X[i][2] +
-//                    random.nextGaussian() * 0.5; // 添加高斯噪声
-//        }
-//
-//        // 运行回归
-//        OLS regression = new OLS();
-//        Map<String, double[]> result = regression.multiLinearRegression(X, y);
-//
-//        // 输出结果
-//        System.out.println("真实系数(包括截距):");
-//        for (double coef : trueCoefficients) {
-//            System.out.printf("%.4f ", coef);
-//        }
-//        System.out.println("\n");
-//
-//        System.out.println("估计系数:");
-//        System.out.print("截距: ");
-//        for (double val : result.get("intercept")) {
-//            System.out.printf("%.4f ", val);
-//        }
-//        System.out.println();
-//
-//        System.out.print("系数: ");
-//        for (double val : result.get("coefficients")) {
-//            System.out.printf("%.4f ", val);
-//        }
-//        System.out.println();
-//
-//        System.out.print("R平方: ");
-//        for (double val : result.get("rSquared")) {
-//            System.out.printf("%.4f ", val);
-//        }
-//        System.out.println();
-//    }
+    //
+    // public static void main(String[] args) {
+    // Random random = new Random();
+    //
+    // // 生成测试数据
+    // int n = 100; // 样本数量
+    // int k = 3; // 特征数量
+    //
+    // double[][] X = new double[n][k];
+    // double[] y = new double[n];
+    //
+    // // 真实系数
+    // double[] trueCoefficients = {2.5, -1.2, 0.8, 3.0}; // 包括截距项
+    //
+    // // 生成随机特征数据
+    // for (int i = 0; i < n; i++) {
+    // X[i][0] = random.nextDouble() * 10;
+    // X[i][1] = random.nextDouble() * 5;
+    // X[i][2] = random.nextDouble() * 8;
+    //
+    // // 生成目标值(带噪声)
+    // y[i] = trueCoefficients[0] +
+    // trueCoefficients[1] * X[i][0] +
+    // trueCoefficients[2] * X[i][1] +
+    // trueCoefficients[3] * X[i][2] +
+    // random.nextGaussian() * 0.5; // 添加高斯噪声
+    // }
+    //
+    // // 运行回归
+    // OLS regression = new OLS();
+    // Map<String, double[]> result = regression.multiLinearRegression(X, y);
+    //
+    // // 输出结果
+    // System.out.println("真实系数(包括截距):");
+    // for (double coef : trueCoefficients) {
+    // System.out.printf("%.4f ", coef);
+    // }
+    // System.out.println("\n");
+    //
+    // System.out.println("估计系数:");
+    // System.out.print("截距: ");
+    // for (double val : result.get("intercept")) {
+    // System.out.printf("%.4f ", val);
+    // }
+    // System.out.println();
+    //
+    // System.out.print("系数: ");
+    // for (double val : result.get("coefficients")) {
+    // System.out.printf("%.4f ", val);
+    // }
+    // System.out.println();
+    //
+    // System.out.print("R平方: ");
+    // for (double val : result.get("rSquared")) {
+    // System.out.printf("%.4f ", val);
+    // }
+    // System.out.println();
+    // }
 }

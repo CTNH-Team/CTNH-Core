@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.data.recipe.multiblock;
 
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
@@ -9,6 +10,7 @@ import java.util.function.Consumer;
 import static io.github.cpearl0.ctnhcore.registry.CTNHWorlds.THE_AETHER;
 
 public class AstronomicalObservatoryRecipes {
+
     public static void init(Consumer<FinishedRecipe> provider) {
         CTNHRecipeTypes.ASTRONOMICAL_OBSERVATORY.recipeBuilder("observe")
                 .inputItems(CTNHItems.ASTRONOMY_CIRCUIT_1)

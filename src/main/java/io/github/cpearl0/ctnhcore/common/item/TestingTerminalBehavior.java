@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.pattern.MultiblockState;
 import com.gregtechceu.gtceu.api.pattern.error.PatternError;
 import com.gregtechceu.gtceu.api.pattern.error.PatternStringError;
 import com.gregtechceu.gtceu.api.pattern.error.SinglePredicateError;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestingTerminalBehavior implements IInteractionItem {
+
     @Override
     public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
         Player player = context.getPlayer();
@@ -103,8 +105,10 @@ public class TestingTerminalBehavior implements IInteractionItem {
         return errors;
     }
 
-    private void checkPatternAndCollectErrors(BlockPattern pattern, List<PatternError> errors, MultiblockState worldState,
-                                              BlockPos centerPos, Direction direction, Direction upwardsFacing, boolean flip) {
+    private void checkPatternAndCollectErrors(BlockPattern pattern, List<PatternError> errors,
+                                              MultiblockState worldState,
+                                              BlockPos centerPos, Direction direction, Direction upwardsFacing,
+                                              boolean flip) {
         pattern.checkPatternAt(worldState, centerPos, direction, upwardsFacing, flip, false);
         if (worldState.hasError()) {
             errors.add(worldState.error);
@@ -129,10 +133,9 @@ public class TestingTerminalBehavior implements IInteractionItem {
         if (error instanceof SinglePredicateError) {
             List<List<ItemStack>> candidates = error.getCandidates();
             messages.add(Component.translatable("ctnh.test_terminal.lack_error",
-                    Component.translatable("ctnh.test_terminal.position", pos.getX(), pos.getY(), pos.getZ())
-            ));
+                    Component.translatable("ctnh.test_terminal.position", pos.getX(), pos.getY(), pos.getZ())));
 
-        // 遍历所有候选物品列表
+            // 遍历所有候选物品列表
             for (List<ItemStack> candidate : candidates) {
                 if (!candidate.isEmpty()) {
                     // 只取前5个ItemStack
@@ -145,8 +148,8 @@ public class TestingTerminalBehavior implements IInteractionItem {
                         messages.add(
                                 Component.literal(" - ")
                                         .append(itemName)
-                                        .append(Component.translatable("ctnh.test_terminal.error_info", error.getErrorInfo()))
-                        );
+                                        .append(Component.translatable("ctnh.test_terminal.error_info",
+                                                error.getErrorInfo())));
                     }
 
                     // 如果超过5个，显示"..."
@@ -156,10 +159,10 @@ public class TestingTerminalBehavior implements IInteractionItem {
                 }
             }
         } else {
-            messages.add(Component.translatable("ctnh.test_terminal.wrong_error", Component.translatable("ctnh.test_terminal.position", pos.getX(), pos.getY(), pos.getZ())));
+            messages.add(Component.translatable("ctnh.test_terminal.wrong_error",
+                    Component.translatable("ctnh.test_terminal.position", pos.getX(), pos.getY(), pos.getZ())));
             List<List<ItemStack>> candidates = error.getCandidates();
             // 设置每个候选列表最多显示的项目数
-
 
             for (List<ItemStack> candidate : candidates) {
                 if (!candidate.isEmpty()) {
@@ -178,5 +181,4 @@ public class TestingTerminalBehavior implements IInteractionItem {
         }
         return messages;
     }
-
 }

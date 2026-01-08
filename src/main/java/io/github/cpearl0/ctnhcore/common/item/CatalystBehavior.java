@@ -4,12 +4,14 @@ import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.IAddInformation;
 import com.gregtechceu.gtceu.api.item.component.IDurabilityBar;
 import com.gregtechceu.gtceu.api.item.component.IItemComponent;
+
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -19,10 +21,13 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 public class CatalystBehavior implements IItemComponent, IDurabilityBar, IAddInformation {
+
     private int maxDurability;
+
     public CatalystBehavior(int maxDurability) {
         this.maxDurability = maxDurability;
     }
+
     private CompoundTag getCatalystStatsTag(ItemStack itemStack) {
         return itemStack.getTagElement("CTNH.CatalystStats");
     }
@@ -32,13 +37,12 @@ public class CatalystBehavior implements IItemComponent, IDurabilityBar, IAddInf
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
+    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list,
+                                TooltipFlag tooltipFlag) {
         var damage = this.getDamage(itemStack);
         list.add(
                 Component.translatable(
-                        "metaitem.tool.tooltip.durability", maxDurability - damage, maxDurability
-                )
-        );
+                        "metaitem.tool.tooltip.durability", maxDurability - damage, maxDurability));
     }
 
     @Override
@@ -68,9 +72,9 @@ public class CatalystBehavior implements IItemComponent, IDurabilityBar, IAddInf
     }
 
     public void applyDamage(@NotNull ItemStack itemStack, int damageApplied) {
-        if (getMaxDurability(itemStack) < 1){
+        if (getMaxDurability(itemStack) < 1) {
             maxDurability = getMaxDurability(itemStack);
-        return;
+            return;
         }
         var resultDamage = getDamage(itemStack) + damageApplied;
         if (resultDamage >= maxDurability) {
@@ -98,6 +102,7 @@ public class CatalystBehavior implements IItemComponent, IDurabilityBar, IAddInf
     public boolean isBarVisible(@NotNull ItemStack itemStack) {
         return getMaxDurability(itemStack) > 0;
     }
+
     public static CatalystBehavior getBehaviour(ItemStack itemStack) {
         var item = itemStack.getItem();
         if (item instanceof ComponentItem componentItem) {

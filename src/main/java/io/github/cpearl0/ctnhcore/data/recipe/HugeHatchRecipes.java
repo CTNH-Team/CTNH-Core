@@ -1,12 +1,14 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
-
-import appeng.core.definitions.AEItems;
-import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch.HugeDualHatchPartMachine;
+
+import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
+
 import net.minecraft.data.recipes.FinishedRecipe;
+
+import appeng.core.definitions.AEItems;
 
 import java.util.function.Consumer;
 
@@ -17,17 +19,18 @@ import static com.gregtechceu.gtceu.data.recipe.CustomTags.CIRCUITS_ARRAY;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMachines.*;
 
 public class HugeHatchRecipes {
-    public static void init(Consumer<FinishedRecipe> provider){
-        for(var tier: GTValues.tiersBetween(ULV, OpV)){
+
+    public static void init(Consumer<FinishedRecipe> provider) {
+        for (var tier : GTValues.tiersBetween(ULV, OpV)) {
             var import_bus = HUGE_ITEM_IMPORT_BUS[tier].asStack();
             var export_bus = HUGE_ITEM_EXPORT_BUS[tier].asStack();
             var dual_input_hatch = HUGE_DUAL_IMPORT_HATCH[tier].asStack();
             var dual_output_hatch = HUGE_DUAL_EXPORT_HATCH[tier].asStack();
-            var chest = tier <= EV ?  SUPER_CHEST[tier] : QUANTUM_CHEST[tier];
-            var tank = tier <= EV ?  SUPER_TANK[tier] : QUANTUM_TANK[tier];
+            var chest = tier <= EV ? SUPER_CHEST[tier] : QUANTUM_CHEST[tier];
+            var tank = tier <= EV ? SUPER_TANK[tier] : QUANTUM_TANK[tier];
             var slotSize = 1 + tier;
             var tankSize = HugeDualHatchPartMachine.getTankSize(tier);
-            if(tier != ULV){
+            if (tier != ULV) {
                 ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("huge_import_bus_" + VN[tier].toLowerCase()))
                         .inputItems(CIRCUITS_ARRAY[tier])
                         .inputItems(ITEM_IMPORT_BUS[tier])
@@ -36,7 +39,6 @@ public class HugeHatchRecipes {
                         .EUt(VA[tier])
                         .duration(100)
                         .save(provider);
-
 
                 ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("huge_export_bus_" + VN[tier].toLowerCase()))
                         .inputItems(CIRCUITS_ARRAY[tier])
@@ -64,8 +66,7 @@ public class HugeHatchRecipes {
                         .EUt(VA[tier])
                         .duration(100)
                         .save(provider);
-            }
-            else{
+            } else {
                 ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("huge_import_bus_" + VN[tier].toLowerCase()))
                         .inputItems(AEItems.SINGULARITY.asItem())
                         .inputItems(ITEM_IMPORT_BUS[tier])

@@ -1,11 +1,9 @@
 package io.github.cpearl0.ctnhcore.api.Pattern;
 
-import appeng.api.config.Actionable;
-import appeng.api.networking.IGrid;
-import appeng.api.networking.security.IActionSource;
-import appeng.api.stacks.AEFluidKey;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.storage.MEStorage;
+import io.github.cpearl0.ctnhcore.CTNHConfig;
+import io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalBehavior;
+import io.github.cpearl0.ctnhcore.utils.OrientedItem;
+
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.pattern.BlockPattern;
 import com.gregtechceu.gtceu.api.pattern.MultiblockState;
@@ -13,12 +11,9 @@ import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import com.gregtechceu.gtceu.api.pattern.predicates.SimplePredicate;
 import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
+
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
-import com.mojang.datafixers.util.Pair;
-import io.github.cpearl0.ctnhcore.CTNHConfig;
-import io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalBehavior;
-import io.github.cpearl0.ctnhcore.utils.OrientedItem;
-import lombok.Getter;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -39,6 +34,15 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
 import net.minecraftforge.items.IItemHandler;
+
+import appeng.api.config.Actionable;
+import appeng.api.networking.IGrid;
+import appeng.api.networking.security.IActionSource;
+import appeng.api.stacks.AEFluidKey;
+import appeng.api.stacks.AEItemKey;
+import appeng.api.storage.MEStorage;
+import com.mojang.datafixers.util.Pair;
+import lombok.Getter;
 import org.apache.commons.lang3.ArrayUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -56,13 +60,12 @@ public class AsynBlockPattern extends BlockPattern {
 
     private static final int BLOCKS_PER_TICK = CTNHConfig.INSTANCE.terminal.blocksPerTick; // 每tick放置的方块数量
     private static final int BLOCKS_PER_TICK_WITH_AE = CTNHConfig.INSTANCE.terminal.blocksPerTickWithAE;
-    //优先队列，按照y由低到高放置
+    // 优先队列，按照y由低到高放置
     private final Queue<BuildTask> buildQueue = new PriorityQueue<>(
             Comparator.comparingInt((BuildTask task) -> task.pos.getY())
-            .thenComparingInt(task -> task.pos.getX())
-            .thenComparingInt(task -> task.pos.getZ())
-            );
-    //private final Queue<BuildTask> buildQueue = new ConcurrentLinkedQueue<>();
+                    .thenComparingInt(task -> task.pos.getX())
+                    .thenComparingInt(task -> task.pos.getZ()));
+    // private final Queue<BuildTask> buildQueue = new ConcurrentLinkedQueue<>();
     @Getter
     private boolean completed = false;
 
@@ -80,7 +83,8 @@ public class AsynBlockPattern extends BlockPattern {
 
     protected MEAdvancedTerminalBehavior.AutoBuildSetting setting;
 
-    public AsynBlockPattern(TraceabilityPredicate[][][] predicatesIn, RelativeDirection[] structureDir, int[][] aisleRepetitions, int[] centerOffset) {
+    public AsynBlockPattern(TraceabilityPredicate[][][] predicatesIn, RelativeDirection[] structureDir,
+                            int[][] aisleRepetitions, int[] centerOffset) {
         super(predicatesIn, structureDir, aisleRepetitions, centerOffset);
         this.blockMatches = predicatesIn;
         this.fingerLength = predicatesIn.length;
@@ -101,8 +105,6 @@ public class AsynBlockPattern extends BlockPattern {
         }
 
         this.centerOffset = centerOffset;
-
-
     }
 
     public static AsynBlockPattern getAdvancedBlockPattern(BlockPattern blockPattern) {
@@ -111,7 +113,8 @@ public class AsynBlockPattern extends BlockPattern {
             // blockMatches
             Field blockMatchesField = clazz.getDeclaredField("blockMatches");
             blockMatchesField.setAccessible(true);
-            TraceabilityPredicate[][][] blockMatches = (TraceabilityPredicate[][][]) blockMatchesField.get(blockPattern);
+            TraceabilityPredicate[][][] blockMatches = (TraceabilityPredicate[][][]) blockMatchesField
+                    .get(blockPattern);
             // structureDir
             Field structureDirField = clazz.getDeclaredField("structureDir");
             structureDirField.setAccessible(true);
@@ -147,7 +150,6 @@ public class AsynBlockPattern extends BlockPattern {
             throw new RuntimeException(e);
         }
 
-
         if (buildQueue.isEmpty()) {
             completed = true;
 
@@ -173,25 +175,26 @@ public class AsynBlockPattern extends BlockPattern {
         }
 
         // 执行分层构建
-        //executeLayeredBuilding(context, repeatCounts);
+        // executeLayeredBuilding(context, repeatCounts);
 
         // 调整所有方块的朝向
-        //adjustAllBlockFacings(context);
+        // adjustAllBlockFacings(context);
     }
+
     private void generateLayerTasks(BuildContext context, int layerIndex, int z) {
         for (int b = 0, y = -centerOffset[1]; b < this.thumbLength; b++, y++) {
             for (int a = 0, x = -centerOffset[0]; a < this.palmLength; a++, x++) {
                 BlockPos pos = calculateBlockPosition(context, x, y, z);
                 TraceabilityPredicate predicate = this.blockMatches[layerIndex][b][a];
-                if(predicate.isAir() || predicate.isAny()) continue;
+                if (predicate.isAir() || predicate.isAny()) continue;
                 // 创建建造任务并加入队列
                 buildQueue.add(new BuildTask(context, pos, predicate, layerIndex, b, a));
             }
         }
-
     }
 
     private class BuildTask {
+
         private final BuildContext context;
         public final BlockPos pos;
         private final TraceabilityPredicate predicate;
@@ -210,18 +213,16 @@ public class AsynBlockPattern extends BlockPattern {
         }
 
         public void execute() {
-
             updateWorldState(context.worldState, pos, predicate);
 
             if (handleExistingBlock(context, pos, predicate)) return;
-
 
             BlockInfo[] infos = determineRequiredBlockInfo(context, predicate);
             if (infos == null) return;
 
             if (!findSuitableItemStack(context, infos)) return;
 
-            if(!handleCoilReplacement(context, pos)) return;
+            if (!handleCoilReplacement(context, pos)) return;
 
             if (placeBlock(context, pos)) {
                 extractInventory(context);
@@ -281,9 +282,9 @@ public class AsynBlockPattern extends BlockPattern {
                 context.replacingCoil = true;
                 return false; // 继续处理替换逻辑
             }
-            if(existingState.liquid()){
+            if (existingState.liquid()) {
                 context.inFluid = true;
-                if(context.settings.getPlaceInFluid()==1) return false;
+                if (context.settings.getPlaceInFluid() == 1) return false;
             }
 
             // 其他情况直接记录现有方块并跳过
@@ -317,9 +318,9 @@ public class AsynBlockPattern extends BlockPattern {
                     return limit.candidates.get();
                 } else if (cacheLayer.get(limit) < limit.minLayerCount &&
                         (limit.maxLayerCount == -1 || cacheLayer.get(limit) < limit.maxLayerCount)) {
-                    cacheLayer.put(limit, cacheLayer.get(limit) + 1);
-                    return limit.candidates.get();
-                }
+                            cacheLayer.put(limit, cacheLayer.get(limit) + 1);
+                            return limit.candidates.get();
+                        }
             }
         }
 
@@ -331,9 +332,9 @@ public class AsynBlockPattern extends BlockPattern {
                     return limit.candidates.get();
                 } else if (cacheGlobal.get(limit) < limit.minCount &&
                         (limit.maxCount == -1 || cacheGlobal.get(limit) < limit.maxCount)) {
-                    cacheGlobal.put(limit, cacheGlobal.get(limit) + 1);
-                    return limit.candidates.get();
-                }
+                            cacheGlobal.put(limit, cacheGlobal.get(limit) + 1);
+                            return limit.candidates.get();
+                        }
             }
         }
 
@@ -350,10 +351,12 @@ public class AsynBlockPattern extends BlockPattern {
             if (!context.settings.isPlaceHatch(limit.candidates.get())) continue;
 
             if (limit.maxLayerCount != -1 &&
-                    cacheLayer.getOrDefault(limit, Integer.MAX_VALUE) == limit.maxLayerCount) continue;
+                    cacheLayer.getOrDefault(limit, Integer.MAX_VALUE) == limit.maxLayerCount)
+                continue;
 
             if (limit.maxCount != -1 &&
-                    cacheGlobal.getOrDefault(limit, Integer.MAX_VALUE) == limit.maxCount) continue;
+                    cacheGlobal.getOrDefault(limit, Integer.MAX_VALUE) == limit.maxCount)
+                continue;
 
             if (cacheLayer.containsKey(limit)) {
                 cacheLayer.put(limit, cacheLayer.get(limit) + 1);
@@ -398,11 +401,10 @@ public class AsynBlockPattern extends BlockPattern {
             }
         }
         return foundItem(context, candidates);
-
     }
 
     private boolean handleCoilReplacement(BuildContext context, BlockPos pos) {
-        if(context.player.isCreative() || !context.replacingCoil) return true;
+        if (context.player.isCreative() || !context.replacingCoil) return true;
         if (!context.settings.isReplaceCoilMode() || context.coilItemStack == null) return true;
 
         // 检查是否能存放旧线圈
@@ -420,67 +422,56 @@ public class AsynBlockPattern extends BlockPattern {
     }
 
     private boolean placeBlock(BuildContext context, BlockPos pos) {
-        if(context.fluid)
-        {
+        if (context.fluid) {
 
-            return !context.inFluid && context.world.setBlock(pos, context.fluidState.createLegacyBlock(), UPDATE_CLIENTS);
-        }
-        else
-        {
+            return !context.inFluid &&
+                    context.world.setBlock(pos, context.fluidState.createLegacyBlock(), UPDATE_CLIENTS);
+        } else {
             BlockItem itemBlock = (BlockItem) context.foundItemStack.getItem();
-            Direction frontFacing = context.blockFacing != null ? context.blockFacing : context.controller.self().getFrontFacing();
+            Direction frontFacing = context.blockFacing != null ? context.blockFacing :
+                    context.controller.self().getFrontFacing();
 
             BlockPlaceContext placeContext = new BlockPlaceContext(
                     context.world, context.player, InteractionHand.MAIN_HAND,
-                    context.foundItemStack.copy(), BlockHitResult.miss(context.player.getEyePosition(0), frontFacing, pos)
-            );
+                    context.foundItemStack.copy(),
+                    BlockHitResult.miss(context.player.getEyePosition(0), frontFacing, pos));
 
             InteractionResult result = itemBlock.place(placeContext);
             return result != InteractionResult.FAIL;
         }
     }
 
-
-    private void extractInventory(BuildContext context)
-    {
-        if (context.meStorage != null)
-        {
-            if(context.fluid)
-            {
-                context.meStorage.extract(AEFluidKey.of(context.fluidState.getType()), 1000, Actionable.MODULATE, IActionSource.ofMachine(context.settings.getAccessPoint()));
+    private void extractInventory(BuildContext context) {
+        if (context.meStorage != null) {
+            if (context.fluid) {
+                context.meStorage.extract(AEFluidKey.of(context.fluidState.getType()), 1000, Actionable.MODULATE,
+                        IActionSource.ofMachine(context.settings.getAccessPoint()));
+            } else {
+                context.meStorage.extract(AEItemKey.of(context.foundItemStack), 1, Actionable.MODULATE,
+                        IActionSource.ofMachine(context.settings.getAccessPoint()));
             }
-            else {
-                context.meStorage.extract(AEItemKey.of(context.foundItemStack), 1, Actionable.MODULATE, IActionSource.ofMachine(context.settings.getAccessPoint()));
-            }
-        }
-        else {
-            if(context.fluid){
-                if(//context.fluidState.getType() == WATER &&
-                    context.foundFluidHandler != null)
-                {
-                    if(context.foundFluidHandler instanceof FluidBucketWrapper bucketWrapper)
-                    {
-                        ItemStack bucket = bucketWrapper.getContainer().getItem().getCraftingRemainingItem().getDefaultInstance();
+        } else {
+            if (context.fluid) {
+                if (// context.fluidState.getType() == WATER &&
+                context.foundFluidHandler != null) {
+                    if (context.foundFluidHandler instanceof FluidBucketWrapper bucketWrapper) {
+                        ItemStack bucket = bucketWrapper.getContainer().getItem().getCraftingRemainingItem()
+                                .getDefaultInstance();
                         context.foundItemHandler.extractItem(context.foundItemSlot, 1, false);
                         context.foundItemHandler.insertItem(context.foundItemSlot, bucket, false);
-                    }
-                    else context.foundFluidHandler.drain(1000, IFluidHandler.FluidAction.EXECUTE);
+                    } else context.foundFluidHandler.drain(1000, IFluidHandler.FluidAction.EXECUTE);
                 }
-            }
-            else
-            {
-                if(context.foundItemHandler != null)
-                {
+            } else {
+                if (context.foundItemHandler != null) {
                     context.foundItemHandler.extractItem(context.foundItemSlot, 1, false);
                 }
             }
         }
     }
 
-
-
     // 用于保存构建过程中的上下文数据
     public static class BuildContext {
+
         Level world;
         Player player;
         MultiblockState worldState;
@@ -509,8 +500,6 @@ public class AsynBlockPattern extends BlockPattern {
 
         Map<BlockPos, Object> blocks = new HashMap<>();
         Set<BlockPos> placeBlockPos = new HashSet<>();
-
-
     }
 
     private boolean foundItem(BuildContext context, List<OrientedItem> candidates) {
@@ -526,59 +515,52 @@ public class AsynBlockPattern extends BlockPattern {
         context.meStorage = null;
 
         if (!player.isCreative()) {
-            if(context.settings.getUseAEStorage() == 1)
-            {
-                if(searchAEStorage(context, candidates))
+            if (context.settings.getUseAEStorage() == 1) {
+                if (searchAEStorage(context, candidates))
                     return true;
             }
-            return getMatchStackWithHandler(context,candidates, player.getCapability(ForgeCapabilities.ITEM_HANDLER), player);
+            return getMatchStackWithHandler(context, candidates, player.getCapability(ForgeCapabilities.ITEM_HANDLER),
+                    player);
         } else {
             for (var candidate : candidates) {
-                if(candidate.fluidState != null && context.settings.getPlaceFluid() == 1)
-                {
+                if (candidate.fluidState != null && context.settings.getPlaceFluid() == 1) {
                     context.fluid = true;
                     context.fluidState = candidate.fluidState;
                     return true;
-                }
-                else {
+                } else {
                     context.foundItemStack = candidate.itemStack.copy();
 
                     if (!context.foundItemStack.isEmpty() && context.foundItemStack.getItem() instanceof BlockItem) {
                         context.blockFacing = candidate.facing;
                         return true;
                     }
-                    //context.foundItemStack = null;
+                    // context.foundItemStack = null;
                 }
             }
             return false;
         }
-
     }
 
-    private boolean searchAEStorage(BuildContext context, List<OrientedItem> candidates)
-    {
-        if(context.settings.getAccessPoint() != null)
-        {
+    private boolean searchAEStorage(BuildContext context, List<OrientedItem> candidates) {
+        if (context.settings.getAccessPoint() != null) {
             IGrid grid = context.settings.getAccessPoint().getGrid();
-            if(grid == null || grid.getStorageService() == null) return false;
+            if (grid == null || grid.getStorageService() == null) return false;
             MEStorage inventory = grid.getStorageService().getInventory();
             for (var candidate : candidates) {
 
-                if(candidate.fluidState != null  && context.settings.getPlaceFluid() == 1)
-                {
-                    long amount = inventory.extract(AEFluidKey.of(candidate.fluidState.getType()), 1000, Actionable.SIMULATE, IActionSource.ofMachine(context.settings.getAccessPoint()));
-                    if(amount >= 1000)
-                    {
+                if (candidate.fluidState != null && context.settings.getPlaceFluid() == 1) {
+                    long amount = inventory.extract(AEFluidKey.of(candidate.fluidState.getType()), 1000,
+                            Actionable.SIMULATE, IActionSource.ofMachine(context.settings.getAccessPoint()));
+                    if (amount >= 1000) {
                         context.fluid = true;
                         context.fluidState = candidate.fluidState;
                         context.meStorage = inventory;
                         return true;
                     }
-                }
-                else {
-                    long amount = inventory.extract(AEItemKey.of(candidate.itemStack), 1, Actionable.SIMULATE, IActionSource.ofMachine(context.settings.getAccessPoint()));
-                    if(amount >= 1)
-                    {
+                } else {
+                    long amount = inventory.extract(AEItemKey.of(candidate.itemStack), 1, Actionable.SIMULATE,
+                            IActionSource.ofMachine(context.settings.getAccessPoint()));
+                    if (amount >= 1) {
                         context.foundItemStack = candidate.itemStack.copy();
                         context.blockFacing = candidate.facing;
                         context.meStorage = inventory;
@@ -601,9 +583,10 @@ public class AsynBlockPattern extends BlockPattern {
                 if (foundSlot < 0) {
                     foundSlot = i;
                 }
-            } else if (ItemStack.isSameItemSameTags(coilItemStack, stack) && (stack.getCount() + 1) <= stack.getMaxStackSize()) {
-                foundSlot = i;
-            }
+            } else if (ItemStack.isSameItemSameTags(coilItemStack, stack) &&
+                    (stack.getCount() + 1) <= stack.getMaxStackSize()) {
+                        foundSlot = i;
+                    }
         }
 
         return new Pair<>(handler, foundSlot);
@@ -713,10 +696,10 @@ public class AsynBlockPattern extends BlockPattern {
 
     @Nullable
     private static boolean getMatchStackWithHandler(
-            BuildContext context,
-            List<OrientedItem> candidates,
-            LazyOptional<IItemHandler> cap,
-            Player player) {
+                                                    BuildContext context,
+                                                    List<OrientedItem> candidates,
+                                                    LazyOptional<IItemHandler> cap,
+                                                    Player player) {
         IItemHandler handler = cap.orElse(null);
         if (handler == null) {
             return false;
@@ -729,16 +712,13 @@ public class AsynBlockPattern extends BlockPattern {
             @NotNull
             LazyOptional<IItemHandler> stackCap = stack.getCapability(ForgeCapabilities.ITEM_HANDLER);
             if (stackCap.isPresent()) {
-                if(getMatchStackWithHandler(context, candidates, stackCap, player)) return true;
-            } else
-            {
-                for(var candidate: candidates)
-                {
-                    if(candidate.fluidState != null && context.settings.getPlaceFluid() == 1)
-                    {
+                if (getMatchStackWithHandler(context, candidates, stackCap, player)) return true;
+            } else {
+                for (var candidate : candidates) {
+                    if (candidate.fluidState != null && context.settings.getPlaceFluid() == 1) {
                         var fluidStack = FluidUtil.getFluidContained(stack);
-                        if(fluidStack.isPresent() && fluidStack.get().getAmount() >= 1000 && fluidStack.get().getFluid() == candidate.fluidState.getType())
-                        {
+                        if (fluidStack.isPresent() && fluidStack.get().getAmount() >= 1000 &&
+                                fluidStack.get().getFluid() == candidate.fluidState.getType()) {
                             context.fluidState = candidate.fluidState;
                             context.fluid = true;
                             context.foundFluidHandler = FluidUtil.getFluidHandler(stack).resolve().get();
@@ -747,14 +727,13 @@ public class AsynBlockPattern extends BlockPattern {
                             context.foundItemHandler = handler;
                             return true;
                         }
-                    }
-                    else {
-                        if(ItemStack.isSameItemSameTags(candidate.itemStack, stack) &&
-                                !stack.isEmpty() && stack.getItem() instanceof BlockItem)
-                        {
+                    } else {
+                        if (ItemStack.isSameItemSameTags(candidate.itemStack, stack) &&
+                                !stack.isEmpty() && stack.getItem() instanceof BlockItem) {
                             context.foundItemSlot = i;
                             context.foundItemHandler = handler;
-                            context.foundItemStack = context.foundItemHandler.getStackInSlot(context.foundItemSlot).copy();
+                            context.foundItemStack = context.foundItemHandler.getStackInSlot(context.foundItemSlot)
+                                    .copy();
                             context.blockFacing = candidate.facing;
                             return true;
                         }

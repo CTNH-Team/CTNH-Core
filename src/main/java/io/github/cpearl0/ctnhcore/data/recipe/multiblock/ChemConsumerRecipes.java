@@ -1,31 +1,37 @@
 package io.github.cpearl0.ctnhcore.data.recipe.multiblock;
 
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
 public class ChemConsumerRecipes {
+
     public static class Fuel {
+
         public int duration;
         public int amount;
         public Material material;
         public String name;
+
         public Fuel(String name, Material material, int amount, int duration) {
             this.name = name;
             this.material = material;
             this.amount = amount;
             this.duration = duration;
         }
-
     }
+
     private static ArrayList<Fuel> Fuels;
+
     public static void init(Consumer<FinishedRecipe> provider) {
         fuelsArrayInit();
-        for(Fuel fuelType : Fuels){
+        for (Fuel fuelType : Fuels) {
             int duration = fuelType.duration;
             int amount = fuelType.amount;
             var Fuel = fuelType.material.getFluid(amount);

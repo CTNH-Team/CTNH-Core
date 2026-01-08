@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.common.item;
 
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.IInteractionItem;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -12,12 +13,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
 public class MultiblockHelper extends ComponentItem implements IInteractionItem {
+
     public static class BlockData {
+
         int x, y, z;
         char symbol;
 
@@ -28,24 +32,27 @@ public class MultiblockHelper extends ComponentItem implements IInteractionItem 
             this.symbol = symbol;
         }
     }
+
     public MultiblockHelper(Properties properties) {
         super(properties);
     }
+
     public Level level;
-    public int state=0;
-    public boolean check_form(CompoundTag nbt)
-    {
+    public int state = 0;
+
+    public boolean check_form(CompoundTag nbt) {
         String blockid;
         List<BlockData> blockArray = new ArrayList<>(); // 使用 ArrayList 代替 JavaScript 数组
-        Map<String, Character> legend = new HashMap<>(); legend = new HashMap<>(); // 使用 HashMap 代替 JavaScript 对象
+        Map<String, Character> legend = new HashMap<>();
+        legend = new HashMap<>(); // 使用 HashMap 代替 JavaScript 对象
         String SYMBOLS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#@";
         int symbolIndex = 0;
-        int locatex=1;
-        int locatey=1;
-        int locatez=1;
-        var x1=nbt.getInt("block_x_f");
-        var x2=nbt.getInt("block_x_s");
-        if(x1>x2)locatex=-1;
+        int locatex = 1;
+        int locatey = 1;
+        int locatez = 1;
+        var x1 = nbt.getInt("block_x_f");
+        var x2 = nbt.getInt("block_x_s");
+        if (x1 > x2) locatex = -1;
 
         var y1 = nbt.getInt("block_y_f");
         var y2 = nbt.getInt("block_y_s");
@@ -57,13 +64,13 @@ public class MultiblockHelper extends ComponentItem implements IInteractionItem 
         int stepY = (y2 > y1) ? 1 : -1;
         int stepZ = (z2 > z1) ? 1 : -1;
 
-// 遍历所有点
-        for (int z = z1; z<=z2; z += 1) {
-            for (int y = y1; y<=y2; y += 1) {
-                for (int x = x1; x<=x2; x += 1) {
+        // 遍历所有点
+        for (int z = z1; z <= z2; z += 1) {
+            for (int y = y1; y <= y2; y += 1) {
+                for (int x = x1; x <= x2; x += 1) {
                     // 处理点 (x, y, z)
-                    var Block = Objects.requireNonNull(level).getBlockState(new BlockPos(x,y,z)).getBlock();
-                    var state=Objects.requireNonNull(level).getBlockState(new BlockPos(x,y,z));
+                    var Block = Objects.requireNonNull(level).getBlockState(new BlockPos(x, y, z)).getBlock();
+                    var state = Objects.requireNonNull(level).getBlockState(new BlockPos(x, y, z));
                     String blockId = Block.toString().split("\\{|\\}")[1];
 
                     if (!legend.containsKey(blockId)) {
@@ -84,11 +91,11 @@ public class MultiblockHelper extends ComponentItem implements IInteractionItem 
         List<String> slices = new ArrayList<>();
 
         // 1. 生成每一层 (z 轴) 的字符串
-        for (int z = z1; z<=z2; z += 1) {
+        for (int z = z1; z <= z2; z += 1) {
             StringBuilder slice = new StringBuilder();
-            for (int y = y1;y<=y2; y += 1) {
+            for (int y = y1; y <= y2; y += 1) {
                 StringBuilder row = new StringBuilder();
-                for (int x = x1; x<=x2; x += 1) {
+                for (int x = x1; x <= x2; x += 1) {
                     // 查找当前坐标的方块符号
                     int finalX = x;
                     int finalY = y;
@@ -131,19 +138,19 @@ public class MultiblockHelper extends ComponentItem implements IInteractionItem 
                     pred = "    .where(\"#\", Predicates.any())\n";
                     break;
                 default:
-                    pred = String.format("    .where(\"%c\", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(\"%s\"))))\n", symbol, blockId);
+                    pred = String.format(
+                            "    .where(\"%c\", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(\"%s\"))))\n",
+                            symbol, blockId);
                     break;
             }
             finalString.append(pred);
         }
         finalString.append("    .build())");
 
-
-
-
         System.out.println(finalString);
         return true;
     }
+
     @Override
     public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
         Player player = context.getPlayer();
@@ -155,54 +162,53 @@ public class MultiblockHelper extends ComponentItem implements IInteractionItem 
         BlockPos blockPos = context.getClickedPos();
         CompoundTag nbt = stack.getOrCreateTag();
         if (context.getPlayer() != null && context.getPlayer().isShiftKeyDown()) {
-            if(state!=2) {
+            if (state != 2) {
                 CompoundTag newTag = new CompoundTag();
                 stack.setTag(newTag);
                 player.displayClientMessage(Component.translatable("ctnh.terminal.success_clear"), true);
-            }
-            else
-            {
+            } else {
                 check_form(nbt);
                 CompoundTag newTag = new CompoundTag();
                 stack.setTag(newTag);
-                state=0;
+                state = 0;
             }
             // 也可以在这里处理右键点击方块的逻辑
             return InteractionResult.PASS;
         }
-        if(state==0)
-        {
+        if (state == 0) {
             nbt.putInt("block_x_f", blockPos.getX());
             nbt.putInt("block_y_f", blockPos.getY());
             nbt.putInt("block_z_f", blockPos.getZ());
             player.displayClientMessage(Component.translatable("ctnh.terminal.success_get"), true);
-            state=1;
-        }
-        else if (state==1) {
+            state = 1;
+        } else if (state == 1) {
             nbt.putInt("block_x_s", blockPos.getX());
             nbt.putInt("block_y_s", blockPos.getY());
             nbt.putInt("block_z_s", blockPos.getZ());
             player.displayClientMessage(Component.translatable("ctnh.terminal.success_get"), true);
-            state=2;
+            state = 2;
         }
 
         return InteractionResult.SUCCESS;
     }
+
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents,
+                                TooltipFlag isAdvanced) {
         CompoundTag nbt = stack.getOrCreateTag();
         tooltipComponents.add(Component.translatable("ctnh.terminal.multiblockhelper.tips"));
-        if(nbt.contains("block_x_f"))
-        {
+        if (nbt.contains("block_x_f")) {
 
-            tooltipComponents.add(Component.translatable("ctnh.terminal.location",String.format("%d",nbt.getInt("block_x_f")),String.format("%d",nbt.getInt("block_y_f")),String.format("%d",nbt.getInt("block_y_f"))));
+            tooltipComponents.add(Component.translatable("ctnh.terminal.location",
+                    String.format("%d", nbt.getInt("block_x_f")), String.format("%d", nbt.getInt("block_y_f")),
+                    String.format("%d", nbt.getInt("block_y_f"))));
         }
-        if(nbt.contains("block_x_s"))
-        {
+        if (nbt.contains("block_x_s")) {
 
-            tooltipComponents.add(Component.translatable("ctnh.terminal.location",String.format("%d",nbt.getInt("block_x_s")),String.format("%d",nbt.getInt("block_y_s")),String.format("%d",nbt.getInt("block_y_s"))));
+            tooltipComponents.add(Component.translatable("ctnh.terminal.location",
+                    String.format("%d", nbt.getInt("block_x_s")), String.format("%d", nbt.getInt("block_y_s")),
+                    String.format("%d", nbt.getInt("block_y_s"))));
         }
         super.appendHoverText(stack, level, tooltipComponents, isAdvanced); // 调用父类方法以处理原版提示信息
-
     }
 }

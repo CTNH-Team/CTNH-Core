@@ -8,6 +8,7 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
 
 public class OreUtils {
+
     public static Map<Material, Material> ORE_REPLACEMENTS = Map.of(
             Platinum, PlatinumOre,
             Palladium, PalladiumOre,

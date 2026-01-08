@@ -1,15 +1,18 @@
 package io.github.cpearl0.ctnhcore.registry;
 
-import com.gregtechceu.gtceu.api.item.ComponentItem;
-import com.gregtechceu.gtceu.common.item.TooltipBehavior;
-import com.tterrag.registrate.util.entry.ItemEntry;
 import io.github.cpearl0.ctnhcore.common.item.*;
 import io.github.cpearl0.ctnhcore.data.materials.ChemicalItems;
+
+import com.gregtechceu.gtceu.api.item.ComponentItem;
+import com.gregtechceu.gtceu.common.item.TooltipBehavior;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
+
+import com.tterrag.registrate.util.entry.ItemEntry;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
@@ -20,6 +23,7 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 @Suffix("tooltip")
 public class CTNHItems {
+
     static {
         REGISTRATE.creativeModeTab(() -> CTNHCreativeModeTabs.ITEM);
     }
@@ -59,6 +63,7 @@ public class CTNHItems {
     @CN("§7§o用于制作4阶火箭")
     @EN("§7Used for making Rocket T4")
     static Lang chip_t4;
+
     public static void registerItem() {
         GREAT_ASTRONOMY_CIRCUIT_1 = REGISTRATE
                 .item("great_astronomy_circuit_1", Item::new)
@@ -70,7 +75,8 @@ public class CTNHItems {
                 .cnlang("简易营养餐")
                 .lang("Simple Nutritious meal")
                 .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.translatable("ctnh.simple_nutritious_meal.tooltip.1").withStyle(ChatFormatting.GRAY));
+                    list.add(Component.translatable("ctnh.simple_nutritious_meal.tooltip.1")
+                            .withStyle(ChatFormatting.GRAY));
                 })))
                 .register();
         ECOLOGICAL_STAR = REGISTRATE
@@ -90,23 +96,23 @@ public class CTNHItems {
                 })))
                 .register();
         ANIMAL_EXCRETA = REGISTRATE
-                .item("animal_excreta",Item::new)
+                .item("animal_excreta", Item::new)
                 .cnlang("动物排泄物")
                 .lang("Animal Excreta")
                 .register();
         TUMOR = REGISTRATE
-                .item("tumor",Item::new)
+                .item("tumor", Item::new)
                 .cnlang("肿瘤")
                 .lang("Tumor")
                 .register();
         REFINED_IRON_INGOT = REGISTRATE
-                .item("refined_iron_ingot",Item::new)
+                .item("refined_iron_ingot", Item::new)
                 .cnlang("精炼铁方坯")
                 .lang("Refined Iron Ingot")
                 .register();
 
-        ANTI_INF_MATTER =REGISTRATE
-                .item("anti_inf_matter",ComponentItem::create)
+        ANTI_INF_MATTER = REGISTRATE
+                .item("anti_inf_matter", ComponentItem::create)
                 .cnlang("§0反无穷聚合体")
                 .lang("§0Anti Inf Matter")
                 .onRegister(attach(new TooltipBehavior(list -> {
@@ -115,7 +121,7 @@ public class CTNHItems {
                 })))
                 .register();
         TESTING_TERMINAL = REGISTRATE
-                .item("testing_terminal",ComponentItem::create)
+                .item("testing_terminal", ComponentItem::create)
                 .cnlang("检测终端")
                 .lang("Test Terminal")
                 .properties(p -> p.stacksTo(1))
@@ -127,17 +133,17 @@ public class CTNHItems {
                 .register();
         ME_ADVANCED_TERMINAL = REGISTRATE
                 .item("me_advanced_terminal",
-                        MEAdvancedTerminalItem::new
-                )
+                        MEAdvancedTerminalItem::new)
                 .cnlang("GT-MBST-A v7.0.1")
                 .lang("GT-MBST-A v7.0.1")
                 .properties(p -> p.stacksTo(1))
                 .onRegister(attach(new MEAdvancedTerminalBehavior()))
-//            .model((ctx, prov) -> prov.generated(ctx))
+                // .model((ctx, prov) -> prov.generated(ctx))
                 .onRegister(attach(new TooltipBehavior(list -> {
                     list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.1"));
-                    list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.2").withStyle(ChatFormatting.GRAY));
-                    //list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.3"));
+                    list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.2")
+                            .withStyle(ChatFormatting.GRAY));
+                    // list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.3"));
                 })))
                 .register();
         BOSS_SUMMONER = REGISTRATE
@@ -159,36 +165,36 @@ public class CTNHItems {
                 })))
                 .register();
         PV_DRONE_PROTOTYPE = REGISTRATE
-                .item("photovoltaic_drone_prototype",holder->new IDroneItem(holder,0,512,16, () -> Items.AIR))
+                .item("photovoltaic_drone_prototype", holder -> new IDroneItem(holder, 0, 512, 16, () -> Items.AIR))
                 .cnlang("光伏无人机原型")
                 .lang("pv_drone_prototype")
                 .register();
         PV_DRONE_TIER1 = REGISTRATE
-                .item("photovoltaic_drone_tier1",holder->new IDroneItem(holder,1,8192*2,64, () -> Items.AIR))
+                .item("photovoltaic_drone_tier1", holder -> new IDroneItem(holder, 1, 8192 * 2, 64, () -> Items.AIR))
                 .cnlang("标准化光伏无人机")
                 .lang("pv_drone_tier1")
                 .register();
         PV_DRONE_TIER2 = REGISTRATE
-                .item("photovoltaic_drone_tier2",holder->new IDroneItem(holder,2,32678*2,256, () -> Items.AIR))
+                .item("photovoltaic_drone_tier2", holder -> new IDroneItem(holder, 2, 32678 * 2, 256, () -> Items.AIR))
                 .cnlang("共振结构化光伏无人机")
                 .lang("pv_drone_tier2")
                 .register();
         PV_TERMINAL = REGISTRATE
-                .item("pv_terminal",holder->new ConnectTerminalItem(holder))
+                .item("pv_terminal", holder -> new ConnectTerminalItem(holder))
                 .cnlang("光伏绑定终端")
                 .lang("pv_terminal")
                 .register();
         multiblockHelper = REGISTRATE
-                .item("mutiblock_helper",holder->new MultiblockHelper(holder))
+                .item("mutiblock_helper", holder -> new MultiblockHelper(holder))
                 .lang("mutiblock_helper")
                 .register();
         RESEARCH_DATASET = REGISTRATE
-                .item("research_dataset",holder->new IDataItem(holder))
+                .item("research_dataset", holder -> new IDataItem(holder))
                 .cnlang("研究数据集")
                 .lang("research_dataset")
                 .register();
         RESEARCH_DATASET_LIVING_MATERIAL = REGISTRATE
-                .item("research_dataset_lm",holder->new IDataItem(holder))
+                .item("research_dataset_lm", holder -> new IDataItem(holder))
                 .cnlang("研究数据集：活体金属")
                 .lang("research_dataset_lm")
                 .register();
@@ -197,108 +203,84 @@ public class CTNHItems {
                 .cnlang("T1重型锭")
                 .lang("Heavy Alloy Ingot T1")
                 .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text ->
-                        text.add(heavy_ingot_t1.translate())
-                )))
+                .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_ingot_t1.translate()))))
                 .register();
         HEAVY_INGOT_T2 = REGISTRATE
                 .item("heavy_ingot_t2", ComponentItem::create)
                 .cnlang("T2重型锭")
                 .lang("Heavy Alloy Ingot T2")
                 .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text ->
-                        text.add(heavy_ingot_t2.translate())
-                )))
+                .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_ingot_t2.translate()))))
                 .register();
         HEAVY_INGOT_T3 = REGISTRATE
                 .item("heavy_ingot_t3", ComponentItem::create)
                 .cnlang("T3重型锭")
                 .lang("Heavy Alloy Ingot T3")
                 .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text ->
-                        text.add(heavy_ingot_t3.translate())
-                )))
+                .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_ingot_t3.translate()))))
                 .register();
         HEAVY_INGOT_T4 = REGISTRATE
                 .item("heavy_ingot_t4", ComponentItem::create)
                 .cnlang("T4重型锭")
                 .lang("Heavy Alloy Ingot T4")
                 .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text ->
-                        text.add(heavy_ingot_t4.translate())
-                )))
+                .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_ingot_t4.translate()))))
                 .register();
         HEAVY_PLATE_T1 = REGISTRATE
                 .item("heavy_plate_t1", ComponentItem::create)
                 .cnlang("T1重型合金板")
                 .lang("Heavy Alloy Plate T1")
                 .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text ->
-                        text.add(heavy_plate_t1.translate())
-                )))
+                .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_plate_t1.translate()))))
                 .register();
         HEAVY_PLATE_T2 = REGISTRATE
                 .item("heavy_plate_t2", ComponentItem::create)
                 .cnlang("T2重型合金板")
                 .lang("Heavy Alloy Plate T2")
                 .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text ->
-                        text.add(heavy_plate_t2.translate())
-                )))
+                .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_plate_t2.translate()))))
                 .register();
         HEAVY_PLATE_T3 = REGISTRATE
                 .item("heavy_plate_t3", ComponentItem::create)
                 .cnlang("T3重型合金板")
                 .lang("Heavy Alloy Plate T3")
                 .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text ->
-                        text.add(heavy_plate_t3.translate())
-                )))
+                .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_plate_t3.translate()))))
                 .register();
         HEAVY_PLATE_T4 = REGISTRATE
                 .item("heavy_plate_t4", ComponentItem::create)
                 .cnlang("T4重型合金板")
                 .lang("Heavy Alloy Plate T4")
                 .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text ->
-                        text.add(heavy_plate_t4.translate())
-                )))
+                .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_plate_t4.translate()))))
                 .register();
         CHIP_T1 = REGISTRATE
                 .item("t1_chip", ComponentItem::create)
                 .cnlang("T1芯片")
                 .lang("Chip T1")
                 .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text ->
-                        text.add(chip_t1.translate())
-                )))
+                .onRegister(attach(new TooltipBehavior(text -> text.add(chip_t1.translate()))))
                 .register();
         CHIP_T2 = REGISTRATE
                 .item("t2_chip", ComponentItem::create)
                 .cnlang("T2芯片")
                 .lang("Chip T2")
                 .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text ->
-                        text.add(chip_t2.translate())
-                )))
+                .onRegister(attach(new TooltipBehavior(text -> text.add(chip_t2.translate()))))
                 .register();
         CHIP_T3 = REGISTRATE
                 .item("t3_chip", ComponentItem::create)
                 .cnlang("T3芯片")
                 .lang("Chip T3")
                 .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text ->
-                        text.add(chip_t3.translate())
-                )))
+                .onRegister(attach(new TooltipBehavior(text -> text.add(chip_t3.translate()))))
                 .register();
         CHIP_T4 = REGISTRATE
                 .item("t4_chip", ComponentItem::create)
                 .cnlang("T4芯片")
                 .lang("Chip T4")
                 .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text ->
-                        text.add(chip_t4.translate())
-                )))
+                .onRegister(attach(new TooltipBehavior(text -> text.add(chip_t4.translate()))))
                 .register();
         ADVANCED_RAM_WAFER = REGISTRATE
                 .item("advanced_ram_wafer", ComponentItem::create)
@@ -306,7 +288,8 @@ public class CTNHItems {
                 .lang("Advanced Ram Wafer")
                 .properties(p -> new Item.Properties().rarity(Rarity.UNCOMMON))
                 .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.translatable("ctnh.advanced_ram_wafer.tooltip").withStyle(ChatFormatting.YELLOW));
+                    list.add(
+                            Component.translatable("ctnh.advanced_ram_wafer.tooltip").withStyle(ChatFormatting.YELLOW));
                 })))
                 .register();
         ADVANCED_RAM_CHIP = REGISTRATE
@@ -323,18 +306,17 @@ public class CTNHItems {
                 .cnlang("初级煲")
                 .lang("Primary Stew")
                 .properties(p -> new Item.Properties().rarity(Rarity.EPIC))
-                .onRegister(attach(new TooltipBehavior(list -> {
-                })))
+                .onRegister(attach(new TooltipBehavior(list -> {})))
                 .register();
         GALAXY_MEATBALL = REGISTRATE
                 .item("galaxy_meatball", ComponentItem::create)
                 .cnlang("银河肉丸")
                 .lang("Galaxy Meatball")
                 .properties(p -> new Item.Properties().rarity(Rarity.EPIC))
-                .onRegister(attach(new TooltipBehavior(list -> {
-                })))
+                .onRegister(attach(new TooltipBehavior(list -> {})))
                 .register();
     }
+
     public static ItemEntry<Item> GREAT_ASTRONOMY_CIRCUIT_1;
     public static ItemEntry<ComponentItem> SIMPLE_NUTRITIOUS_MEAL;
     public static ItemEntry<ComponentItem> ECOLOGICAL_STAR;
@@ -353,7 +335,8 @@ public class CTNHItems {
     public static ItemEntry<ComponentItem> TESTING_TERMINAL;
     public static ItemEntry<MEAdvancedTerminalItem> ME_ADVANCED_TERMINAL;
     public static ItemEntry<AstronomyCircuitItem> ASTRONOMY_CIRCUIT_1 = REGISTRATE
-            .item("astronomy_circuit_1", properties -> new AstronomyCircuitItem(properties, 1, GREAT_ASTRONOMY_CIRCUIT_1))
+            .item("astronomy_circuit_1",
+                    properties -> new AstronomyCircuitItem(properties, 1, GREAT_ASTRONOMY_CIRCUIT_1))
             .cnlang("一阶航天数据芯片")
             .lang("Astronomy Circuit I")
             .register();
@@ -372,8 +355,8 @@ public class CTNHItems {
             .cnlang("核废料")
             .lang("Nuclear Waste")
             .register();
-    public static ItemEntry<Item> LEVEL_ITEM=REGISTRATE
-            .item("level",Item::new)
+    public static ItemEntry<Item> LEVEL_ITEM = REGISTRATE
+            .item("level", Item::new)
             .lang("level")
             .register();
     public static ItemEntry<ProgramItem> PROGRAM_EMPTY = REGISTRATE
@@ -505,6 +488,7 @@ public class CTNHItems {
     public static ItemEntry<ComponentItem> ADVANCED_RAM_CHIP;
     public static ItemEntry<ComponentItem> PRIMARY_STEW;
     public static ItemEntry<ComponentItem> GALAXY_MEATBALL;
+
     public static void init() {
         registerItem();
         ChemicalItems.init();

@@ -8,9 +8,11 @@ import java.util.List;
 import java.util.Stack;
 
 public class StructureUtils {
+
     public static List<MultiblockShapeInfo> getMatchingShapes(BlockPattern blockPattern, int maxIndex) {
         int[][] aisleRepetitions = blockPattern.aisleRepetitions;
-        List<MultiblockShapeInfo> pages = repetitionCandidates(blockPattern, new ArrayList<>(), aisleRepetitions, new Stack<>());
+        List<MultiblockShapeInfo> pages = repetitionCandidates(blockPattern, new ArrayList<>(), aisleRepetitions,
+                new Stack<>());
 
         if (pages.size() < maxIndex) {
             int[] repetition = new int[aisleRepetitions.length];
@@ -25,12 +27,12 @@ public class StructureUtils {
 
         return pages;
     }
+
     private static List<MultiblockShapeInfo> repetitionCandidates(
-            BlockPattern pattern,
-            List<MultiblockShapeInfo> pages,
-            int[][] aisleRepetitions,
-            Stack<Integer> repetitionStack
-    ) {
+                                                                  BlockPattern pattern,
+                                                                  List<MultiblockShapeInfo> pages,
+                                                                  int[][] aisleRepetitions,
+                                                                  Stack<Integer> repetitionStack) {
         if (repetitionStack.size() == aisleRepetitions.length) {
             int[] repetition = new int[repetitionStack.size()];
             for (int i = 0; i < repetitionStack.size(); i++) {

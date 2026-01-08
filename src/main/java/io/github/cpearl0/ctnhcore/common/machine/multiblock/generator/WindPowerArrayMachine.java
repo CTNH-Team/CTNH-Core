@@ -1,5 +1,10 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+import io.github.cpearl0.ctnhcore.common.machine.trait.providable_net.IProviableNetHandlerMachine;
+import io.github.cpearl0.ctnhcore.common.machine.trait.providable_net.ProvidableNetHandler;
+import io.github.cpearl0.ctnhcore.utils.MathUtils;
+
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.block.MetaMachineBlock;
 import com.gregtechceu.gtceu.api.capability.IEnergyContainer;
@@ -19,16 +24,12 @@ import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
 import com.gregtechceu.gtceu.api.misc.EnergyContainerList;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachine;
+
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.widget.*;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
-import io.github.cpearl0.ctnhcore.common.machine.trait.providable_net.IProviableNetHandlerMachine;
-import io.github.cpearl0.ctnhcore.common.machine.trait.providable_net.ProvidableNetHandler;
-import io.github.cpearl0.ctnhcore.utils.MathUtils;
-import lombok.Getter;
-import lombok.Setter;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -36,32 +37,40 @@ import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
+
+import lombok.Getter;
+import lombok.Setter;
 import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class WindPowerArrayMachine extends MultiblockControllerMachine implements IProviableNetHandlerMachine,IFancyUIMachine, IDisplayUIMachine, IWorkable {
+import javax.annotation.Nonnull;
+
+public class WindPowerArrayMachine extends MultiblockControllerMachine implements IProviableNetHandlerMachine,
+                                   IFancyUIMachine, IDisplayUIMachine, IWorkable {
+
     public static final Material fluidMaterial = GTMaterials.Lubricant;
     private EnergyContainerList energyContainer;
     private List<FluidHatchPartMachine> fluidParts;
 
     long basicRate;
     final int fluidAmount;
-    public WindPowerArrayMachine(IMachineBlockEntity holder,int tier) {
+
+    public WindPowerArrayMachine(IMachineBlockEntity holder, int tier) {
         super(holder);
         this.basicRate = GTValues.V[tier];
         this.fluidAmount = tier;
     }
 
     ////////////////////
-    /// 生命周期      ///
+    /// 生命周期 ///
     /// ///////////////
     @Nullable
     protected TickableSubscription tickSubs;
+
     protected void updateTickSubscription() {
         if (isFormed && isWorkingEnabled) {
             tickSubs = subscribeServerTick(tickSubs, this::tick);
@@ -70,6 +79,7 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
             tickSubs = null;
         }
     }
+
     @Override
     public void onLoad() {
         super.onLoad();
@@ -88,9 +98,10 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
             tickSubs.unsubscribe();
             tickSubs = null;
         }
-        if(getLevel() instanceof ServerLevel)
+        if (getLevel() instanceof ServerLevel)
             quitNet();
     }
+
     @Override
     public void onStructureInvalid() {
         super.onStructureInvalid();
@@ -99,12 +110,12 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
             tickSubs = null;
         }
         isActive = false;
-        if(fluidParts!=null){
+        if (fluidParts != null) {
             fluidParts.clear();
             fluidParts = null;
         }
         energyContainer = null;
-        if(getLevel() instanceof ServerLevel)
+        if (getLevel() instanceof ServerLevel)
             quitNet();
     }
 
@@ -132,34 +143,34 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
 
         energyContainer = new EnergyContainerList(containers);
     }
+
     public void updateFluidParts() {
         fluidParts = getParts().stream()
-               .filter(part -> part instanceof FluidHatchPartMachine fpm
-                       && fpm.tank.getCapabilityIO() == IO.IN)
-               .map(part -> (FluidHatchPartMachine) part)
-               .collect(Collectors.toList());
+                .filter(part -> part instanceof FluidHatchPartMachine fpm && fpm.tank.getCapabilityIO() == IO.IN)
+                .map(part -> (FluidHatchPartMachine) part)
+                .collect(Collectors.toList());
     }
-    public static HashMap<String,Integer> dimentionRate = new HashMap<>();
-    static{
-        dimentionRate.put("minecraft:overworld",1);
-        dimentionRate.put("minecraft:nether",2);
-        dimentionRate.put("aether:the_aether",2);
-        dimentionRate.put("minecraft:the_end",4);
-        dimentionRate.put("ad_astra:mars",0);
-        dimentionRate.put("ad_astra:venus",16);
-        dimentionRate.put("ad_astra:mercury",0);
+
+    public static HashMap<String, Integer> dimentionRate = new HashMap<>();
+    static {
+        dimentionRate.put("minecraft:overworld", 1);
+        dimentionRate.put("minecraft:nether", 2);
+        dimentionRate.put("aether:the_aether", 2);
+        dimentionRate.put("minecraft:the_end", 4);
+        dimentionRate.put("ad_astra:mars", 0);
+        dimentionRate.put("ad_astra:venus", 16);
+        dimentionRate.put("ad_astra:mercury", 0);
     }
+
     public void updateBasicRate() {
         assert getLevel() != null;
         var dimension = getLevel().dimension().location().toString();
 
         basicRate *= (long) dimentionRate.getOrDefault(dimension, 1);
-
-
     }
 
     /// ////////////////////////////////
-    ////////  风电网络           ////////
+    //////// 风电网络 ////////
     //////// ///////////////////////
     @Override
     @SuppressWarnings("DataFlowIssue")
@@ -169,9 +180,9 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
         // B@B
         List<IProviableNetHandlerMachine> ret = new ArrayList<>();
         BlockPos center = getPos().relative(getFrontFacing().getOpposite());
-        for(Direction direction : Direction.values()) {
+        for (Direction direction : Direction.values()) {
             int ibegin = 2, iend = 4;
-            if(!direction.getAxis().isHorizontal()){
+            if (!direction.getAxis().isHorizontal()) {
                 ibegin = 5;
                 iend = 6;
             }
@@ -179,10 +190,9 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
                 BlockPos targetCenter = center.relative(direction, i);
                 for (Direction neighbourFacing : Direction.values()) {
                     BlockPos targetPos = targetCenter.relative(neighbourFacing);
-                    if (getLevel().getBlockState(targetPos).getBlock() instanceof MetaMachineBlock machineBlock
-                            && machineBlock.getMachine(getLevel(), targetPos) instanceof WindPowerArrayMachine target
-                            && target.isFormed()
-                            && target.getFrontFacing() == neighbourFacing)
+                    if (getLevel().getBlockState(targetPos).getBlock() instanceof MetaMachineBlock machineBlock &&
+                            machineBlock.getMachine(getLevel(), targetPos) instanceof WindPowerArrayMachine target &&
+                            target.isFormed() && target.getFrontFacing() == neighbourFacing)
                         ret.add(target);
                 }
             }
@@ -196,55 +206,58 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
 
     @Override
     public boolean canProvide() {
-        return fluidParts!=null && !fluidParts.isEmpty();
+        return fluidParts != null && !fluidParts.isEmpty();
     }
 
     @Override
     public int getStorage() {
         assert canProvide();
-        return fluidParts!=null ? MachineUtils.getFluidStorageBrute(fluidMaterial.getFluid(),fluidParts) : 0;
+        return fluidParts != null ? MachineUtils.getFluidStorageBrute(fluidMaterial.getFluid(), fluidParts) : 0;
     }
 
     @Override
     public int checkAndConsume(int amount) {
         assert canProvide();
-        return fluidParts!=null ? MachineUtils.inputFluidBrute(fluidMaterial.getFluid(amount),fluidParts) : amount;
+        return fluidParts != null ? MachineUtils.inputFluidBrute(fluidMaterial.getFluid(amount), fluidParts) : amount;
     }
-    void joinNet(){
+
+    void joinNet() {
         netHandler.join();
     }
+
     void quitNet() {
         netHandler.invalidate();
     }
 
     /// ///////////////////////////////
-    /// /        运行逻辑/       ////
+    /// / 运行逻辑/ ////
     /// //////////////////////////
     boolean needFluid = true;
     float altitude_boost = 1.0f;
-    private float getEfficiency(){
+
+    private float getEfficiency() {
         assert getLevel() != null;
         int weather_boost = 1;
-        if(getLevel().isRaining())
+        if (getLevel().isRaining())
             weather_boost = 2;
-        if(getLevel().isThundering())
+        if (getLevel().isThundering())
             weather_boost = 4;
-        return (1+0.3f*MathUtils.fastLog2(netHandler.getNetSize()))
-                        * weather_boost
-                        * altitude_boost;
+        return (1 + 0.3f * MathUtils.fastLog2(netHandler.getNetSize())) * weather_boost * altitude_boost;
     }
-    private void updateEfficiencyPara(){
-        altitude_boost = 1.0f + (Mth.clamp(getPos().getY(), 64, 256)-64) / (256f-64f);
+
+    private void updateEfficiencyPara() {
+        altitude_boost = 1.0f + (Mth.clamp(getPos().getY(), 64, 256) - 64) / (256f - 64f);
     }
+
     @SuppressWarnings("DataFlowIssue")
-    public void tick(){
-        if(!isWorkingEnabled || !netHandler.ensureNetInfo())return;
+    public void tick() {
+        if (!isWorkingEnabled || !netHandler.ensureNetInfo()) return;
         long time = getLevel().getGameTime();
-        if(time%20==0) {
+        if (time % 20 == 0) {
             isActive = !needFluid || netHandler.checkAndConsume(fluidAmount);
             needFluid = true;
         }
-        if(isActive) {
+        if (isActive) {
             needFluid = energyContainer.addEnergy((long) (basicRate * getEfficiency())) != 0;
         }
     }
@@ -253,16 +266,20 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
     public void addDisplayText(List<Component> textList) {
         if (isFormed && getLevel() instanceof ServerLevel) {
             MultiblockDisplayText.builder(textList, isFormed())
-                    .setWorkingStatus(isWorkingEnabled,isActive)
+                    .setWorkingStatus(isWorkingEnabled, isActive)
                     .addWorkingStatusLine()
-                    .addCurrentEnergyProductionLine(needFluid?(long) (basicRate * getEfficiency()):0)
-                    .addEnergyProductionLine(basicRate,(long) (basicRate * getEfficiency()));
-            textList.add(Component.translatable("ctnh.mutliblock.wind_power_array.info.network_machine", netHandler.getNetSize()));
-            textList.add(Component.translatable("ctnh.mutliblock.wind_power_array.info.network_machine_efficiency", String.format("%.1f",getEfficiency())));
-            if(netHandler.getDeadTime()!=-1)
-                textList.add(Component.translatable("ctnh.mutliblock.wind_power_array.info.network_dirty", (netHandler.getDeadTime() - getLevel().getGameTime())/ 20 ));
+                    .addCurrentEnergyProductionLine(needFluid ? (long) (basicRate * getEfficiency()) : 0)
+                    .addEnergyProductionLine(basicRate, (long) (basicRate * getEfficiency()));
+            textList.add(Component.translatable("ctnh.mutliblock.wind_power_array.info.network_machine",
+                    netHandler.getNetSize()));
+            textList.add(Component.translatable("ctnh.mutliblock.wind_power_array.info.network_machine_efficiency",
+                    String.format("%.1f", getEfficiency())));
+            if (netHandler.getDeadTime() != -1)
+                textList.add(Component.translatable("ctnh.mutliblock.wind_power_array.info.network_dirty",
+                        (netHandler.getDeadTime() - getLevel().getGameTime()) / 20));
         }
     }
+
     @Override
     @SuppressWarnings("DataFlowIssue")
     public Widget createUIWidget() {
@@ -276,6 +293,7 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
         group.setBackground(GuiTextures.BACKGROUND_INVERSE);
         return group;
     }
+
     @Override
     public ModularUI createUI(Player entityPlayer) {
         return new ModularUI(198, 208, this, entityPlayer).widget(new FancyMachineUIWidget(this, 198, 208));
@@ -284,24 +302,25 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
     @Override
     @SuppressWarnings("DataFlowIssue")
     public int getProgress() {
-        return isFormed()?(int) (getLevel().getGameTime() % 20):0;
+        return isFormed() ? (int) (getLevel().getGameTime() % 20) : 0;
     }
 
     @Override
     public int getMaxProgress() {
-        return isFormed()?20:0;
+        return isFormed() ? 20 : 0;
     }
 
     @DescSynced
     private boolean isActive = false;
+
     @Override
-    public boolean isActive(){
+    public boolean isActive() {
         return isActive && needFluid;
     }
 
-    @Getter @Setter
+    @Getter
+    @Setter
     @DescSynced
     @Persisted
     boolean isWorkingEnabled = true;
-
 }

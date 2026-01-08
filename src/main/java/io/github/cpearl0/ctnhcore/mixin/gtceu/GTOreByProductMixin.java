@@ -4,7 +4,9 @@ import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.integration.xei.widgets.GTOreByProduct;
+
 import net.minecraft.world.item.ItemStack;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,6 +17,7 @@ import static io.github.cpearl0.ctnhcore.utils.OreUtils.ORE_REPLACEMENTS;
 
 @Mixin(GTOreByProduct.class)
 public abstract class GTOreByProductMixin {
+
     @Shadow(remap = false)
     protected abstract void addToOutputs(ItemStack stack);
 

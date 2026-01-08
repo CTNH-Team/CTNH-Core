@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.event;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.integration.legendary.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.player.Player;
@@ -24,7 +25,7 @@ public class ForgeEventHandler {
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
-    public static void postLevelTickBus(TickEvent.LevelTickEvent event){
+    public static void postLevelTickBus(TickEvent.LevelTickEvent event) {
         ProvidableNetEventHandler.onPostTick(event);
         ProvidableNetEventHandler.onPreTick(event);
     }
@@ -34,15 +35,16 @@ public class ForgeEventHandler {
         if (event.getEntity() instanceof Player player) {
             if (player.isCreative() || player.isSpectator()) return;
             player.getArmorSlots().forEach(armor -> {
-                if (armor.getAllEnchantments().get(CTNHEnchantments.VACUUM_SEAL.get()) == null){
+                if (armor.getAllEnchantments().get(CTNHEnchantments.VACUUM_SEAL.get()) == null) {
                     return;
                 }
                 player.setTicksFrozen(0);
-                if (player.isEyeInFluid(FluidTags.WATER) && !player.level().getBlockState(BlockPos.containing(player.getX(), player.getEyeY(), player.getZ())).is(Blocks.BUBBLE_COLUMN)) {
+                if (player.isEyeInFluid(FluidTags.WATER) && !player.level()
+                        .getBlockState(BlockPos.containing(player.getX(), player.getEyeY(), player.getZ()))
+                        .is(Blocks.BUBBLE_COLUMN)) {
                     player.setAirSupply(Math.min(player.getMaxAirSupply(), player.getAirSupply() + 4 * 10));
                 }
             });
         }
     }
-
 }
