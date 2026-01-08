@@ -192,6 +192,11 @@ public class LargeNaquadahReactorMachine extends WorkableElectricMultiblockMachi
     }
 
     @Override
+    public boolean regressWhenWaiting() {
+        return false;
+    }
+
+    @Override
     public boolean alwaysTryModifyRecipe() {
         return true;
     }
