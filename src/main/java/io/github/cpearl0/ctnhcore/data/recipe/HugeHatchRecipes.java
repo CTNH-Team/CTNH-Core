@@ -16,7 +16,7 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLER_RECIPES;
 import static com.gregtechceu.gtceu.data.recipe.CustomTags.CIRCUITS_ARRAY;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMachines.*;
+import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.*;
 
 public class HugeHatchRecipes {
 

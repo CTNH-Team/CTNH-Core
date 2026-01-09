@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.registry;
+package io.github.cpearl0.ctnhcore.registry.material;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlag;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;

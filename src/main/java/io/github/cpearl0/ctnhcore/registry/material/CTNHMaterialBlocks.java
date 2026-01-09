@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.registry;
+package io.github.cpearl0.ctnhcore.registry.material;
 
 import io.github.cpearl0.ctnhcore.common.block.MaterialTurbineRotorBlock;
 import io.github.cpearl0.ctnhcore.common.block.TurbineRotorBlock;

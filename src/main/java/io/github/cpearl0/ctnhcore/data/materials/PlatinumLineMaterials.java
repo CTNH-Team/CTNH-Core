@@ -11,7 +11,7 @@ import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlag
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys.CATALYST;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class PlatinumLineMaterials {

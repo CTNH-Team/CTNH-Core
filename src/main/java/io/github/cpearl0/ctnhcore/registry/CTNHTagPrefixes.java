@@ -5,6 +5,8 @@ import io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialIconType;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.data.CTNHMaterialFlags;
 import io.github.cpearl0.ctnhcore.data.materials.ChemicalItems;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialBlocks;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
 
 import com.gregtechceu.gtceu.api.GTValues;
@@ -30,7 +32,7 @@ import earth.terrarium.adastra.common.registry.ModBlocks;
 import java.util.List;
 
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.Plutonium;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.Uranium;

@@ -1,5 +1,9 @@
-package io.github.cpearl0.ctnhcore.registry;
+package io.github.cpearl0.ctnhcore.registry.material;
 
+import appeng.core.definitions.AEBlocks;
+import appeng.core.definitions.AEItems;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import io.github.cpearl0.ctnhcore.data.CTNHMaterialFlags;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
@@ -9,6 +13,9 @@ import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static committee.nova.mods.avaritia.init.registry.ModBlocks.neutron;
+import static committee.nova.mods.avaritia.init.registry.ModItems.neutron_ingot;
+import static committee.nova.mods.avaritia.init.registry.ModItems.neutron_nugget;
 
 public class GTMaterialAddon {
 
@@ -220,5 +227,14 @@ public class GTMaterialAddon {
 
         Netherite.addFlags(GENERATE_FRAME, GENERATE_GEAR, GENERATE_PLATE, GENERATE_BOLT_SCREW, GENERATE_SPRING,
                 GENERATE_SPRING_SMALL);
+    }
+
+    public static void tagPrefixIgnore() {
+        TagPrefix.gem.setIgnored(GTMaterials.CertusQuartz, () -> AEItems.CERTUS_QUARTZ_CRYSTAL);
+        TagPrefix.block.setIgnored(GTMaterials.CertusQuartz, () -> AEBlocks.QUARTZ_BLOCK);
+
+        TagPrefix.ingot.setIgnored(GTMaterials.Neutronium, neutron_ingot);
+        TagPrefix.nugget.setIgnored(GTMaterials.Neutronium, neutron_nugget);
+        TagPrefix.block.setIgnored(GTMaterials.Neutronium, neutron);
     }
 }

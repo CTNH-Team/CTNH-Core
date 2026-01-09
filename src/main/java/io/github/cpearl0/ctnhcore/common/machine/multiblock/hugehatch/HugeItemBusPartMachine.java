@@ -4,7 +4,7 @@ import io.github.cpearl0.ctnhcore.common.gui.HugeSlotWidget;
 import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.IRCFancyUIProvider;
 import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.RCUIWidget;
 import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.RightConfiguratorPanel;
-import io.github.cpearl0.ctnhcore.registry.CTNHMachines;
+import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.utils.HugeBusTransferHelper;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;

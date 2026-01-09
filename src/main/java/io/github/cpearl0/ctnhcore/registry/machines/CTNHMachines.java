@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.registry;
+package io.github.cpearl0.ctnhcore.registry.machines;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch.HugeDualHatchPartMachine;
@@ -23,6 +23,10 @@ import com.gregtechceu.gtceu.common.machine.multiblock.part.*;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
+import io.github.cpearl0.ctnhcore.registry.CTNHCreativeModeTabs;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 
@@ -69,9 +73,9 @@ public class CTNHMachines {
             .colorOverlayTieredHullModel("overlay_catalyst_in", null, "overlay_catalyst_hatch")
             .tooltips()
             .register();
-    public static final MachineDefinition[] DEHYDRATOR = registerSimpleMachines("dehydrator",
+    public static final MachineDefinition[] DEHYDRATOR = CTNHMachineUtils.registerSimpleMachines("dehydrator",
             CTNHRecipeTypes.DEHYDRATOR_RECIPES, GTValues.tiersBetween(MV, ZPM));
-    public static final MachineDefinition[] NAQUADAH_REACTOR = registerEfficiencyGeneratorMachines(
+    public static final MachineDefinition[] NAQUADAH_REACTOR = CTNHMachineUtils.registerEfficiencyGeneratorMachines(
             "naquadah_reactor",
             CTNHRecipeTypes.NAQUADAH_REACTOR_RECIPES,
             CTNHRecipeModifiers::naquadahReactor,

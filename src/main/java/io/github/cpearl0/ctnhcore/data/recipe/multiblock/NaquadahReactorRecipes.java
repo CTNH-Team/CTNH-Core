@@ -18,7 +18,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMachines.NAQUADAH_REACTOR;
+import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.NAQUADAH_REACTOR;
 
 public class NaquadahReactorRecipes {
 

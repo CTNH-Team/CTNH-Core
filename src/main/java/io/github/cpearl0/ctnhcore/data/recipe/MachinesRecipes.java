@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
 import io.github.cpearl0.ctnhcore.registry.*;
+import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
@@ -15,6 +16,7 @@ import com.gregtechceu.gtceu.data.recipe.CraftingComponent;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluids;
@@ -31,7 +33,7 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.machines.GTResearchMachines.OBJECT_HOLDER;
 import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.*;
 import static com.gregtechceu.gtceu.data.recipe.misc.MetaTileEntityLoader.registerMachineRecipe;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMachines.DRONEHOLDER;
+import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.DRONEHOLDER;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR;
 import static twilightforest.init.TFItems.STEELEAF_INGOT;
@@ -60,7 +62,8 @@ public class MachinesRecipes {
                 "SPS", "IwI", "SPS",
                 'S', new ItemStack(AllBlocks.COPPER_SHINGLES.getStandard().get()),
                 'P', GTBlocks.CASING_BRONZE_PIPE.asStack(),
-                'I', new MaterialEntry(TagPrefix.plate, GTMaterials.Iron));
+                'I', new MaterialEntry(TagPrefix.plate, Gold));
+
         VanillaRecipeHelper.addShapedRecipe(provider, true, "ultimate_engine_intake_casing",
                 CTNHBlocks.CASING_ULTIMATE_ENGINE_INTAKE.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft), "PhP",
                 "RFR", "PwP", 'R', new MaterialEntry(TagPrefix.rotor, GTMaterials.NaquadahAlloy), 'F',

@@ -29,8 +29,8 @@ import static com.moguang.ctnhbio.data.recipe.multi.HostileObservationRecipes.ad
 import static com.moguang.ctnhbio.registry.CBItems.*;
 import static dev.shadowsoffire.hostilenetworks.data.ModelTier.ADVANCED;
 import static dev.shadowsoffire.hostilenetworks.data.ModelTier.SUPERIOR;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.HiddenAlloy;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.SterileBiologicalCultureMediumStockSolution;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.HiddenAlloy;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.SterileBiologicalCultureMediumStockSolution;
 import static net.minecraft.world.entity.EntityType.*;
 
 public class WetwareCircuit {

@@ -4,6 +4,7 @@ import io.github.cpearl0.ctnhcore.common.blockentity.TurbineRotorBE;
 
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialBlocks;
 
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 

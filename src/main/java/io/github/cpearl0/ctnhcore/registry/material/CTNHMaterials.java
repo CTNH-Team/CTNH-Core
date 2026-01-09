@@ -1,8 +1,10 @@
-package io.github.cpearl0.ctnhcore.registry;
+package io.github.cpearl0.ctnhcore.registry.material;
 
+import earth.terrarium.adastra.common.registry.ModFluids;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
+import io.github.cpearl0.ctnhcore.registry.CTNHElements;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 
 import com.gregtechceu.gtceu.GTCEu;
@@ -18,8 +20,6 @@ import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
-import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
 import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.item.AetherItems;
 import earth.terrarium.adastra.common.registry.ModBlocks;
@@ -32,10 +32,7 @@ import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIcon
 import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.HIGHER;
 import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.HIGHEST;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static committee.nova.mods.avaritia.init.registry.ModBlocks.neutron;
-import static committee.nova.mods.avaritia.init.registry.ModItems.neutron_ingot;
-import static committee.nova.mods.avaritia.init.registry.ModItems.neutron_nugget;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes.hyperRotor;
 
@@ -972,6 +969,7 @@ public class CTNHMaterials {
         PlatinumLineMaterials.init();
         NaquadahMaterials.init();
         BrineChain.init();
+        EnderIOMaterials.init();
 
         OrdinaryMaterials.init();
         CombustibleIce.setFormula("(CH4)(H2O)", true);
@@ -1000,6 +998,9 @@ public class CTNHMaterials {
         adjustAluminium(Mica);
         adjustAluminium(Zeolite);
 
+        //GTFluids.handleNonMaterialFluids(Oxygen, ModFluids.OXYGEN);
+        Oxygen.getProperty(PropertyKey.FLUID).getStorage().store(FluidStorageKeys.GAS, ModFluids.OXYGEN, null);
+
         var oreProp = Naquadah.getProperty(PropertyKey.ORE);
         oreProp.getOreByProducts().clear();
         oreProp.setOreByProducts(Sulfur, Barite, EnrichedNaquadahOxideMixture);
@@ -1015,8 +1016,7 @@ public class CTNHMaterials {
     }
 
     public static void tagPrefixIgnore() {
-        TagPrefix.gem.setIgnored(GTMaterials.CertusQuartz, () -> AEItems.CERTUS_QUARTZ_CRYSTAL);
-        TagPrefix.block.setIgnored(GTMaterials.CertusQuartz, () -> AEBlocks.QUARTZ_BLOCK);
+
 
         TagPrefix.block.setIgnored(Moonstone, ModBlocks.MOON_STONE);
         TagPrefix.block.setIgnored(Marsstone, ModBlocks.MARS_STONE);
@@ -1040,9 +1040,7 @@ public class CTNHMaterials {
 
         hyperRotor.setIgnored(Neutronium);
 
-        TagPrefix.ingot.setIgnored(GTMaterials.Neutronium, neutron_ingot);
-        TagPrefix.nugget.setIgnored(GTMaterials.Neutronium, neutron_nugget);
-        TagPrefix.block.setIgnored(GTMaterials.Neutronium, neutron);
+
     }
 
     public static class MaterialIcons {

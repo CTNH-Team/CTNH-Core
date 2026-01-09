@@ -1,6 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe.multiblock;
 
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 
 import com.gregtechceu.gtceu.api.GTValues;

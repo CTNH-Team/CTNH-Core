@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.data.worldgen.generator.indicators.SurfaceIndic
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.block.Blocks;
@@ -20,7 +21,7 @@ import static com.gregtechceu.gtceu.api.data.worldgen.WorldGenLayers.ENDSTONE;
 import static com.gregtechceu.gtceu.api.data.worldgen.WorldGenLayers.STONE;
 import static com.gregtechceu.gtceu.api.data.worldgen.generator.indicators.SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE;
 import static com.gregtechceu.gtceu.common.data.GTOres.*;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHWorlds.*;
 
 public class CTNHOres {

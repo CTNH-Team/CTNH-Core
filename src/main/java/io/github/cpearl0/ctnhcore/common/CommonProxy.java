@@ -21,6 +21,10 @@ import io.github.cpearl0.ctnhcore.registry.jade.CTNHJadePlugin;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
 
+import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
+import io.github.cpearl0.ctnhcore.registry.machines.GTMachineModify;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.registry.material.GTMaterialAddon;
 import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundDefinitionsProvider;
 import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundEvents;
 import io.github.cpearl0.ctnhcore.registry.worldgen.*;
@@ -122,6 +126,7 @@ public class CommonProxy {
         MaterialProperties.addBaseType(CTNHPropertyKeys.NUCLEAR);
         CTNHMaterials.init();
         CTNHMaterials.tagPrefixIgnore();
+        GTMaterialAddon.tagPrefixIgnore();
     }
 
     @SubscribeEvent

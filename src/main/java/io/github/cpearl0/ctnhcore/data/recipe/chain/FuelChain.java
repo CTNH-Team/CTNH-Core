@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe.chain;
 
 import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
@@ -21,7 +21,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMachines.ROCKET_ENGINE;
+import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.ROCKET_ENGINE;
 
 public class FuelChain {
 
