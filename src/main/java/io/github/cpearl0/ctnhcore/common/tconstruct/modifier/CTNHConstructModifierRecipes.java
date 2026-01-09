@@ -1,21 +1,20 @@
 package io.github.cpearl0.ctnhcore.common.tconstruct.modifier;
 
 
-import com.simibubi.create.AllItems;
-import io.github.cpearl0.ctnhcore.utils.CTNHTICRecipeProvider;
+import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
+import io.github.cpearl0.ctnhcore.utils.CTNHConstructRecipeProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.world.item.Items;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.recipe.modifiers.adding.ModifierRecipeBuilder;
 import slimeknights.tconstruct.library.tools.SlotType;
-import io.github.cpearl0.ctnhcore.registry.CTNHTicModifier;
+import io.github.cpearl0.ctnhcore.registry.CTNHConstructModifier;
 
 import java.util.function.Consumer;
 
-public class CTNHModifierRecipes extends CTNHTICRecipeProvider {
+public class CTNHConstructModifierRecipes extends CTNHConstructRecipeProvider {
 
-    public CTNHModifierRecipes(PackOutput output) {
+    public CTNHConstructModifierRecipes(PackOutput output) {
         super(output);
     }
 
@@ -32,14 +31,11 @@ public class CTNHModifierRecipes extends CTNHTICRecipeProvider {
     private void abilityRecipes(Consumer<FinishedRecipe> consumer) {
         String folder = "ability/";
 
-        ModifierRecipeBuilder.modifier(CTNHTicModifier.Ids.GLOBALTRAVELLER)
-                .addInput(AllItems.ANDESITE_ALLOY)
-                .addInput(AllItems.ANDESITE_ALLOY)
-                .addInput(Items.IRON_NUGGET)
-                .addInput(Items.IRON_NUGGET)
+        ModifierRecipeBuilder.modifier(CTNHConstructModifier.Ids.GLOBALTRAVELLER)
+                .addInput(ItemsRegistry.STABLE_WARP_SCROLL)
                 .exactLevel(1)
-                .setSlots(SlotType.UPGRADE, 1)
-                .setTools(TinkerTags.Items.BOOTS)
+                .setSlots(SlotType.ABILITY, 1)
+                .setTools(TinkerTags.Items.DURABILITY)
                 .disallowCrystal()
                 .save(consumer, location(folder + "global_traveller"));
     }

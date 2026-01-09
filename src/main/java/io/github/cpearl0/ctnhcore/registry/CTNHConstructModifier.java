@@ -8,7 +8,7 @@ import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.modifiers.util.ModifierDeferredRegister;
 import slimeknights.tconstruct.library.modifiers.util.StaticModifier;
 
-public class CTNHTicModifier extends TinkerModule {
+public class CTNHConstructModifier extends TinkerModule {
 
     public static final ModifierDeferredRegister MODIFIERS = ModifierDeferredRegister.create(CTNHCore.MODID);
 

@@ -7,8 +7,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import slimeknights.mantle.recipe.data.IRecipeHelper;
 
-public abstract class CTNHTICRecipeProvider extends RecipeProvider implements IConditionBuilder, IRecipeHelper {
-    public CTNHTICRecipeProvider(PackOutput output) {
+public abstract class CTNHConstructRecipeProvider extends RecipeProvider implements IConditionBuilder, IRecipeHelper {
+    public CTNHConstructRecipeProvider(PackOutput output) {
         super(output);
     }
 
@@ -19,7 +19,7 @@ public abstract class CTNHTICRecipeProvider extends RecipeProvider implements IC
 
     @Override
     public String getName() {
-        return "TG Recipe[" + getType() + "]";
+        return "CTNH Recipe[" + getType() + "]";
     }
 
     @Override

@@ -14,6 +14,7 @@ import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalItem;
+import io.github.cpearl0.ctnhcore.common.tconstruct.modifier.CTNHConstructModifierRecipes;
 import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
@@ -27,6 +28,7 @@ import io.github.cpearl0.ctnhcore.registry.worldgen.*;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
@@ -41,6 +43,8 @@ import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;
 
 import java.util.Set;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.ME_ADVANCED_TERMINAL;
 
@@ -66,7 +70,7 @@ public class CommonProxy {
         CTNHRegistration.REGISTRATE.registerRegistrate();
         CTNHSoundEvents.SOUND_EVENTS.register(modEventBus);
         CTNHEnchantments.Enchantments.register(modEventBus);
-        CTNHTicModifier.MODIFIERS.register(modEventBus);
+        CTNHConstructModifier.MODIFIERS.register(modEventBus);
         CTNHRecipes.init(modEventBus);
         CTNHTemperatureModifierRegister.init();
         CTNHCoreDatagen.init();
@@ -150,5 +154,22 @@ public class CommonProxy {
                     .add(Registries.DAMAGE_TYPE, CTNHDamageTypes::bootstrap),
                     set));
         }
+    }
+
+    @SubscribeEvent
+    public static void GenerateTicRecipes(GatherDataEvent event) {
+        DataGenerator generator = event.getGenerator();
+        PackOutput output = generator.getPackOutput();
+
+        Consumer<Function<PackOutput, ? extends DataProvider>> add = (func) -> {
+            generator.addProvider(event.includeServer(), func.apply(output));
+        };
+
+        ticRecipes(add);
+    }
+
+    private static void ticRecipes(Consumer<Function<PackOutput, ? extends DataProvider>> consumer) {
+        // Modifiers
+        consumer.accept(CTNHConstructModifierRecipes::new);
     }
 }
