@@ -1,6 +1,8 @@
 package io.github.cpearl0.ctnhcore.registry.material;
 
+import com.gregtechceu.gtceu.common.data.GTFluids;
 import earth.terrarium.adastra.common.registry.ModFluids;
+import fr.lucreeper74.createmetallurgy.registries.CMFluids;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
@@ -998,8 +1000,8 @@ public class CTNHMaterials {
         adjustAluminium(Mica);
         adjustAluminium(Zeolite);
 
-        //GTFluids.handleNonMaterialFluids(Oxygen, ModFluids.OXYGEN);
         Oxygen.getProperty(PropertyKey.FLUID).getStorage().store(FluidStorageKeys.GAS, ModFluids.OXYGEN, null);
+        GTFluids.handleNonMaterialFluids(Steel, () -> CMFluids.MOLTEN_STEEL.get().getSource());
 
         var oreProp = Naquadah.getProperty(PropertyKey.ORE);
         oreProp.getOreByProducts().clear();

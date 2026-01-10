@@ -52,7 +52,7 @@ public class HugeSlotWidget extends SlotWidget {
     @Override
     public List<Component> getTooltipTexts() {
         List<Component> tooltips = super.getTooltipTexts();
-        if (slotReference != null && slotReference.getItem().getMaxStackSize() != 0 &&
+        if (slotReference != null && slotReference.getMaxStackSize() != 0 &&
                 slotReference.getItem().getMaxStackSize() != slotReference.getMaxStackSize(slotReference.getItem())) {
             tooltips.add(
                     item_amount.translate(

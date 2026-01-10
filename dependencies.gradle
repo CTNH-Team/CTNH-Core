@@ -33,6 +33,15 @@ dependencies {
     modImplementation("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}")
     modImplementation("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}")
 
+
+    // Create addons
+    modImplementation("curse.maven:createmetallurgy-1007404:6741785")
+    modImplementation("curse.maven:createvintage-1255448:6635459")
+    modImplementation("curse.maven:create-liquid-fuel-840734:5217310")
+    //modImplementation("com.hlysine.create_connected:create_connected:26.1")
+    modImplementation("extra-mods:create_connected-26.1-all")
+    modImplementation("curse.maven:create-ore-excavation-649832:6633054")
+
     //season
     modImplementation("curse.maven:glitchcore-955399:5787839")
     modImplementation("curse.maven:ecliptic_season-1118306:6752783")
@@ -97,9 +106,6 @@ dependencies {
     modImplementation("curse.maven:attributelib-898963:5634071")
     modImplementation("curse.maven:placebo-283644:6274231")
 
-    // Create Metallurgy & Create Vintage
-    modImplementation("curse.maven:createmetallurgy-1007404:6741785")
-    modImplementation("curse.maven:createvintage-1255448:6635459")
 
     // Twilight forest
     modImplementation("curse.maven:twilight_forest-227639:5468648")
