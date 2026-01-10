@@ -16,26 +16,24 @@ import java.util.List;
 
 @Mixin(value = CreateMetallurgyJEI.class, remap = false)
 public class CreateMetallurgyJEIMixin {
+
     @Final
     @Shadow
     private List<CreateRecipeCategory<?>> allCategories;
 
     @Inject(
             method = "registerRecipeCatalysts",
-            at = @At("TAIL")
-    )
+            at = @At("TAIL"))
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration, CallbackInfo ci) {
         allCategories.forEach(
                 c -> {
                     var path = c.getRecipeType().getUid().getPath();
-                    if(path.equals("melting") || path.equals("alloying")){
+                    if (path.equals("melting") || path.equals("alloying")) {
                         registration.addRecipeCatalysts(
                                 c.getRecipeType(),
                                 CMBlocks.INDUSTRIAL_CRUCIBLE,
-                                CMItems.FOUNDRY_UNIT
-                        );
+                                CMItems.FOUNDRY_UNIT);
                     }
-                }
-        );
+                });
     }
 }

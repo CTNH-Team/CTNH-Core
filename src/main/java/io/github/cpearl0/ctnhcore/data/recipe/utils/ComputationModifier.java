@@ -4,8 +4,9 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 
 public class ComputationModifier {
-    public static ModifierFunction append(int cwut){
-        return r->new GTRecipeBuilder(r,r.getType())
+
+    public static ModifierFunction append(int cwut) {
+        return r -> new GTRecipeBuilder(r, r.getType())
                 .CWUt(cwut)
                 .buildRawRecipe();
     }

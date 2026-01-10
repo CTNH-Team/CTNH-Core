@@ -7,8 +7,10 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableComputationContainer;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.utils.GTUtil;
+
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.entity.BlockEntity;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -17,7 +19,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class SimpleComputationContainer extends NotifiableComputationContainer {
-    //Notifiable
+
+    // Notifiable
     protected long lastTimeStamp;
     private int currentOutputCWU = 0;
     private int lastOutputCWU = 0;
@@ -28,7 +31,6 @@ public class SimpleComputationContainer extends NotifiableComputationContainer {
     public SimpleComputationContainer(MetaMachine machine) {
         super(machine, IO.IN, false);
     }
-
 
     @Override
     public int requestCWUt(int cwut, boolean simulate, @NotNull Collection<IOpticalComputationProvider> seen) {
@@ -58,12 +60,12 @@ public class SimpleComputationContainer extends NotifiableComputationContainer {
 
     @Override
     public IOpticalComputationProvider getComputationProvider() {
-        if(computationProvider !=null)return computationProvider;
+        if (computationProvider != null) return computationProvider;
         updateComputationProvider();
         return computationProvider;
     }
 
-    //GTM你干的好事GTM你干的好事GTM你干的好事GTM你干的好事GTM你干的好事GTM你干的好事GTM你干的好事GTM你干的好事GTM你干的好事GTM你干的好事GTM你干的好事
+    // GTM你干的好事GTM你干的好事GTM你干的好事GTM你干的好事GTM你干的好事GTM你干的好事GTM你干的好事GTM你干的好事GTM你干的好事GTM你干的好事GTM你干的好事
     @Override
     public List<Integer> handleRecipeInner(IO io, GTRecipe recipe, List<Integer> left,
                                            boolean simulate) {
@@ -85,14 +87,14 @@ public class SimpleComputationContainer extends NotifiableComputationContainer {
         return lastOutputCWU;
     }
 
-    public void updateComputationProvider()
-    {
-        /*这里有隔空连算力的bug，先不急（*/
+    public void updateComputationProvider() {
+        /* 这里有隔空连算力的bug，先不急（ */
         for (Direction direction : GTUtil.DIRECTIONS) {
             BlockEntity blockEntity = machine.getLevel().getBlockEntity(machine.getPos().relative(direction));
             if (blockEntity == null) continue;
-            computationProvider = blockEntity.getCapability(GTCapability.CAPABILITY_COMPUTATION_PROVIDER, direction.getOpposite()).orElse(null);
-            if(computationProvider !=null) return;
+            computationProvider = blockEntity
+                    .getCapability(GTCapability.CAPABILITY_COMPUTATION_PROVIDER, direction.getOpposite()).orElse(null);
+            if (computationProvider != null) return;
         }
     }
 }

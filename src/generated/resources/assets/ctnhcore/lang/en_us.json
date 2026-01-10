@@ -683,6 +683,7 @@
   "item.ctnhcore.pv_terminal": "pv_terminal",
   "item.ctnhcore.quark_core": "Quark Core",
   "item.ctnhcore.radioactive_waste": "Radioactive Waste",
+  "item.ctnhcore.recipe_reload_item": "Recipe Reload Item",
   "item.ctnhcore.refined_iron_ingot": "Refined Iron Ingot",
   "item.ctnhcore.research_dataset": "research_dataset",
   "item.ctnhcore.research_dataset_lm": "research_dataset_lm",

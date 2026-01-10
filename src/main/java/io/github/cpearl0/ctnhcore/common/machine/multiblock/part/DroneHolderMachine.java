@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.part;
 
+import io.github.cpearl0.ctnhcore.common.item.IDroneItem;
+
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.gui.widget.BlockableSlotWidget;
@@ -9,20 +11,24 @@ import com.gregtechceu.gtceu.api.machine.feature.IMachineLife;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.MultiblockPartMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
+
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-import io.github.cpearl0.ctnhcore.common.item.IDroneItem;
+
+import net.minecraft.world.item.ItemStack;
+
 import lombok.Getter;
 import lombok.Setter;
-import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class DroneHolderMachine extends MultiblockPartMachine implements IMachineLife {
+
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(DroneHolderMachine.class,
             MultiblockPartMachine.MANAGED_FIELD_HOLDER);
+
     @Override
     public ManagedFieldHolder getFieldHolder() {
         return MANAGED_FIELD_HOLDER;
@@ -40,20 +46,21 @@ public class DroneHolderMachine extends MultiblockPartMachine implements IMachin
         super(holder);
         heldItems = new DroneHolderMachine.DroneHolderHandler(this);
     }
+
     @Override
     public Widget createUIWidget() {
         var group = new WidgetGroup(0, 0, 0, 0);
         var container = new WidgetGroup(4, 4, 26, 26);
         int index = 0;
-        for(int i=0;i<=4;i++)
-        {
-            for(int j=0;j<=2;j++)
-                group.addWidget(new BlockableSlotWidget(heldItems, i*3+j, -45+18*i, -24+18*j)
+        for (int i = 0; i <= 4; i++) {
+            for (int j = 0; j <= 2; j++)
+                group.addWidget(new BlockableSlotWidget(heldItems, i * 3 + j, -45 + 18 * i, -24 + 18 * j)
                         .setIsBlocked(this::isLocked)
                         .setBackground(GuiTextures.SLOT, GuiTextures.RESEARCH_STATION_OVERLAY));
         }
         return group;
     }
+
     @Override
     public void onMachineRemoved() {
         clearInventory(this.heldItems.storage);
@@ -64,23 +71,21 @@ public class DroneHolderMachine extends MultiblockPartMachine implements IMachin
         ItemStack stackInSlot = heldItems.getStackInSlot(slot);
         return stackInSlot;
     }
-    public void consumeItem(int slot)
-    {
-        var stack=heldItems.getStackInSlot(slot);
-        if(!stack.isEmpty())
-        {
-            var c=stack.getItem().getMaxDamage(stack);
 
-            var d=stack.isDamaged();
-            stack.setDamageValue(stack.getDamageValue()+1);
-            if(stack.getDamageValue()>=c)heldItems.setStackInSlot(slot,ItemStack.EMPTY);
-            else heldItems.setStackInSlot(slot,stack);
+    public void consumeItem(int slot) {
+        var stack = heldItems.getStackInSlot(slot);
+        if (!stack.isEmpty()) {
+            var c = stack.getItem().getMaxDamage(stack);
+
+            var d = stack.isDamaged();
+            stack.setDamageValue(stack.getDamageValue() + 1);
+            if (stack.getDamageValue() >= c) heldItems.setStackInSlot(slot, ItemStack.EMPTY);
+            else heldItems.setStackInSlot(slot, stack);
         }
     }
 
-
-
     private class DroneHolderHandler extends NotifiableItemStackHandler {
+
         public DroneHolderHandler(MetaMachine metaTileEntity) {
             super(metaTileEntity, 15, IO.IN, IO.BOTH, size -> new CustomItemStackHandler(size) {
 
@@ -97,17 +102,15 @@ public class DroneHolderMachine extends MultiblockPartMachine implements IMachin
             return 1;
         }
 
-
         // prevent extracting the item while running
         @NotNull
         @Override
         public ItemStack extractItem(int slot, int amount, boolean simulate) {
-            if (!isLocked()||this.getStackInSlot(slot).isEmpty()) {
+            if (!isLocked() || this.getStackInSlot(slot).isEmpty()) {
                 return super.extractItem(slot, amount, simulate);
             }
             return ItemStack.EMPTY;
         }
-
 
         // only allow data items in the second slot
         @Override
@@ -118,11 +121,11 @@ public class DroneHolderMachine extends MultiblockPartMachine implements IMachin
 
             boolean isDataItem = false;
 
-            var p=stack.getItem();
+            var p = stack.getItem();
             if (true) {
                 isDataItem = true;
             }
-            if(stack.getItem() instanceof IDroneItem) return true;
+            if (stack.getItem() instanceof IDroneItem) return true;
             else return false;
         }
     }

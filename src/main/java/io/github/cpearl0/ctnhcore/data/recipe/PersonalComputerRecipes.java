@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.data.recipe;
 import io.github.cpearl0.ctnhcore.common.item.ProgramItem;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.FinishedRecipe;
 
@@ -12,6 +13,7 @@ import static com.gregtechceu.gtceu.api.GTValues.HV;
 import static com.gregtechceu.gtceu.api.GTValues.VA;
 
 public class PersonalComputerRecipes {
+
     public static void init(Consumer<FinishedRecipe> provider) {
         for (var program : ProgramItem.PROGRAMS) {
             var name = BuiltInRegistries.ITEM.getKey(program).getPath();
@@ -36,14 +38,14 @@ public class PersonalComputerRecipes {
                 .EUt(30)
                 .save(provider);
 
-//        CTNHRecipeTypes.PERSONAL_COMPUTER.recipeBuilder("astronomy_circuit_force")
-//                .circuitMeta(3)
-//                .inputItems(CTNHItems.ASTRONOMY_CIRCUIT_1)
-//                .duration(60)
-//                .EUt(VA[HV])
-//                .CWUt(1)
-//                .outputItems(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1)
-//                .save(provider);
+        // CTNHRecipeTypes.PERSONAL_COMPUTER.recipeBuilder("astronomy_circuit_force")
+        // .circuitMeta(3)
+        // .inputItems(CTNHItems.ASTRONOMY_CIRCUIT_1)
+        // .duration(60)
+        // .EUt(VA[HV])
+        // .CWUt(1)
+        // .outputItems(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1)
+        // .save(provider);
 
         CTNHRecipeTypes.PERSONAL_COMPUTER.recipeBuilder("program_rocket_1_force")
                 .circuitMeta(3)

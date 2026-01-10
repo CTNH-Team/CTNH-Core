@@ -6,8 +6,10 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableEnergyContainer;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.EnergyHatchPartMachine;
+
 import com.lowdragmc.lowdraglib.syncdata.ISubscription;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
+
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.BlockHitResult;
@@ -15,15 +17,17 @@ import net.minecraft.world.phys.BlockHitResult;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class NeutronAcceleratorMachine extends EnergyHatchPartMachine {
+
     private final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(NeutronAcceleratorMachine.class,
-    EnergyHatchPartMachine.MANAGED_FIELD_HOLDER);
+            EnergyHatchPartMachine.MANAGED_FIELD_HOLDER);
     private ISubscription powerListener = null;
     private TickableSubscription powerSubs = null;
+
     public NeutronAcceleratorMachine(IMachineBlockEntity holder, int tier) {
         super(holder, tier, IO.IN, 1);
     }
     //////////////////////////////////////
-    //*****     Initialization    ******//
+    // ***** Initialization ******//
     //////////////////////////////////////
 
     @Override
@@ -33,16 +37,16 @@ public class NeutronAcceleratorMachine extends EnergyHatchPartMachine {
                 this,
                 maxCapacity,
                 GTValues.V[tier],
-                amperage
-        );
+                amperage);
         container.setSideInputCondition(direction -> direction == this.getFrontFacing() && this.isWorkingEnabled());
         container.setCapabilityValidator(direction -> direction == null || direction == this.getFrontFacing());
         return container;
     }
 
-    public long consumeEnergy(){
+    public long consumeEnergy() {
         if (this.isWorkingEnabled() && this.energyContainer.getEnergyStored() > 0) {
-            return Math.abs(this.energyContainer.changeEnergy(-getMaxEUConsume())) * (10 + ThreadLocalRandom.current().nextInt(11));
+            return Math.abs(this.energyContainer.changeEnergy(-getMaxEUConsume())) *
+                    (10 + ThreadLocalRandom.current().nextInt(11));
         } else {
             return 0;
         }
@@ -80,9 +84,8 @@ public class NeutronAcceleratorMachine extends EnergyHatchPartMachine {
     }
 
     //////////////////////////////////////
-    //**********     GUI     ***********//
+    // ********** GUI ***********//
     //////////////////////////////////////
-
 
     @Override
     public boolean shouldOpenUI(Player player, InteractionHand hand, BlockHitResult hit) {
@@ -90,7 +93,7 @@ public class NeutronAcceleratorMachine extends EnergyHatchPartMachine {
     }
 
     //////////////////////////////////////
-    //**********     Data     **********//
+    // ********** Data **********//
     //////////////////////////////////////
 
     private long getMaxEUConsume() {
@@ -101,5 +104,4 @@ public class NeutronAcceleratorMachine extends EnergyHatchPartMachine {
     public ManagedFieldHolder getFieldHolder() {
         return MANAGED_FIELD_HOLDER;
     }
-
 }

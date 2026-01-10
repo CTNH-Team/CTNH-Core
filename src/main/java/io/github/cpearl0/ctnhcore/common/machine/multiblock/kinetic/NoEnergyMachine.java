@@ -11,8 +11,10 @@ import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDisplayUIMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
+
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.widget.*;
+
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 
@@ -21,6 +23,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class NoEnergyMachine extends WorkableMultiblockMachine implements IFancyUIMachine, IDisplayUIMachine {
+
     public NoEnergyMachine(IMachineBlockEntity holder) {
         super(holder);
     }
@@ -45,6 +48,7 @@ public class NoEnergyMachine extends WorkableMultiblockMachine implements IFancy
         getDefinition().getAdditionalDisplay().accept(this, textList);
         IDisplayUIMachine.super.addDisplayText(textList);
     }
+
     @Override
     public Widget createUIWidget() {
         var group = new WidgetGroup(0, 0, 182 + 8, 117 + 8);

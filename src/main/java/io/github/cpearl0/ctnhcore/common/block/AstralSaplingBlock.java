@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.block;
 
 import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.SaplingBlock;

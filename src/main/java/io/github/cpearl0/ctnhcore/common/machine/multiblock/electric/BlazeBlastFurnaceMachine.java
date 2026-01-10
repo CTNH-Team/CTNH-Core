@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -11,18 +14,19 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
+
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMachine {
+
     public BlazeBlastFurnaceMachine(IMachineBlockEntity holder) {
         super(holder);
     }
@@ -31,18 +35,18 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
     public boolean onWorking() {
         if (getOffsetTimer() % 20 == 0) {
             var tier = getTier();
-            if (MachineUtils.inputFluid(CTNHMaterials.Pyrotheum.getFluid((int) (Math.pow(2, (tier - 2)) * 5)),this)) {
+            if (MachineUtils.inputFluid(CTNHMaterials.Pyrotheum.getFluid((int) (Math.pow(2, (tier - 2)) * 5)), this)) {
                 return super.onWorking();
-            }
-            else{
+            } else {
                 getRecipeLogic().setProgress(0);
             }
         }
         return super.onWorking();
     }
+
     public void listAllOreVeins() {
         // 获取矿脉注册表 仅测试使用，不要使用此函数
-        //Registry<GTOreDefinition> oreVeinRegistry = GTRegistries.ORE_VEINS;
+        // Registry<GTOreDefinition> oreVeinRegistry = GTRegistries.ORE_VEINS;
 
         // 遍历所有注册的矿脉定义
         GTRegistries.ORE_VEINS.forEach(oreDefinition -> {
@@ -50,17 +54,18 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
             ResourceLocation veinId = GTRegistries.ORE_VEINS.getKey(oreDefinition);
 
             // 提取关键信息
-            String dimensions=oreDefinition.dimensions().toString();
-            String ore=oreDefinition.layer().toString();
+            String dimensions = oreDefinition.dimensions().toString();
+            String ore = oreDefinition.layer().toString();
             System.out.println(dimensions);
             System.out.println(ore);
             System.out.println(veinId.toString());
         });
     }
+
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
         var tier = getTier();
-        if (MachineUtils.canInputFluid(CTNHMaterials.Pyrotheum.getFluid((int) (Math.pow(2, (tier - 2)) * 5)),this)){
+        if (MachineUtils.canInputFluid(CTNHMaterials.Pyrotheum.getFluid((int) (Math.pow(2, (tier - 2)) * 5)), this)) {
             return super.beforeWorking(recipe);
         }
         getRecipeLogic().interruptRecipe();
@@ -75,28 +80,29 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
             if (part instanceof FluidHatchPartMachine) {
                 part.getRecipeHandlers().forEach((handlerList) -> {
                     if (handlerList.getHandlerIO() == IO.IN) {
-                        handlerList.getCapability(FluidRecipeCapability.CAP).forEach((iRecipeHandler) ->
-                            iRecipeHandler.getContents().forEach((contents) -> {
-                                if (contents instanceof FluidStack FluidContents) {
-                                    if (FluidContents.getFluid().equals(CTNHMaterials.Pyrotheum.getFluid())) {
-                                        current.addAndGet(FluidContents.getAmount());
+                        handlerList.getCapability(FluidRecipeCapability.CAP)
+                                .forEach((iRecipeHandler) -> iRecipeHandler.getContents().forEach((contents) -> {
+                                    if (contents instanceof FluidStack FluidContents) {
+                                        if (FluidContents.getFluid().equals(CTNHMaterials.Pyrotheum.getFluid())) {
+                                            current.addAndGet(FluidContents.getAmount());
+                                        }
                                     }
-                                }
-                            }));
+                                }));
                     }
                 });
             }
         });
         if (isFormed()) {
-            textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
+            textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature",
+                    Component.literal(getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
             textList.add(Component.translatable("ctnh.multiblock.blaze_blast_furnace.info.pyrotheum", current));
         }
     }
 
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
-        int parallel = ParallelLogic.getParallelAmount(machine,recipe,8);
-        var reduce = new ContentModifier(0.5 * parallel,0);
-        if(parallel==0)
+        int parallel = ParallelLogic.getParallelAmount(machine, recipe, 8);
+        var reduce = new ContentModifier(0.5 * parallel, 0);
+        if (parallel == 0)
             return ModifierFunction.NULL;
         return ModifierFunction.builder()
                 .eutModifier(reduce)

@@ -1,16 +1,19 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.recipe.crossparalell.MergedGTRecipe;
+
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+
+import net.minecraft.core.Direction;
+import net.minecraft.world.phys.AABB;
+
 import com.mo_guang.ctpp.common.data.recipe.builder.CTPPRecipeHelper;
 import com.mo_guang.ctpp.common.machine.multiblock.KineticWorkableMultiblockMachine;
 import com.moguang.ctnhbio.api.machine.trait.NotifiableEntityContainer;
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.api.recipe.crossparalell.MergedGTRecipe;
-import net.minecraft.core.Direction;
-import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
@@ -30,14 +33,13 @@ public class MeadowMachine extends KineticWorkableMultiblockMachine {
         final Direction u = Direction.UP;
 
         return new AABB(
-                getPos().relative(b,0).relative(l,5).relative(u,0),
-                getPos().relative(b,10).relative(l,-5).relative(u,6)
-        );
+                getPos().relative(b, 0).relative(l, 5).relative(u, 0),
+                getPos().relative(b, 10).relative(l, -5).relative(u, 6));
     }
 
     @Override
     public MeadowRecipeLogic getRecipeLogic() {
-        return (MeadowRecipeLogic)super.getRecipeLogic();
+        return (MeadowRecipeLogic) super.getRecipeLogic();
     }
 
     @Override
@@ -53,17 +55,16 @@ public class MeadowMachine extends KineticWorkableMultiblockMachine {
     @Override
     public GTRecipe fullModifyRecipe(GTRecipe recipe) {
         var newRecipe = super.fullModifyRecipe(recipe);
-        if(newRecipe != null)
+        if (newRecipe != null)
             availableStress -= CTPPRecipeHelper.getInputStress(newRecipe);
         return newRecipe;
     }
 
-    public class MeadowRecipeLogic extends KineticRecipeLogic{
+    public class MeadowRecipeLogic extends KineticRecipeLogic {
 
         public MergedGTRecipe mergedRecipe = new MergedGTRecipe(getRecipeType(),
                 getRecipeType().getCategory(),
-                CTNHCore.id(getRecipeType().registryName.getPath() + "/merged/" + this.hashCode())
-        );
+                CTNHCore.id(getRecipeType().registryName.getPath() + "/merged/" + this.hashCode()));
 
         public MeadowRecipeLogic(IRecipeLogicMachine machine) {
             super(machine);
@@ -78,7 +79,7 @@ public class MeadowMachine extends KineticWorkableMultiblockMachine {
         @Override
         protected void handleSearchingRecipes(@NotNull Iterator<GTRecipe> matches) {
             mergedRecipe.clear();
-            if(machine instanceof KineticWorkableMultiblockMachine kmachine)
+            if (machine instanceof KineticWorkableMultiblockMachine kmachine)
                 kmachine.resetAvailableStress();
             while (matches.hasNext()) {
                 GTRecipe match = matches.next();
@@ -87,9 +88,8 @@ public class MeadowMachine extends KineticWorkableMultiblockMachine {
                 // If a new recipe was found, merge found recipe.
                 checkMatchedRecipeAvailable(match);
             }
-            if(mergedRecipe.isAvailable())
+            if (mergedRecipe.isAvailable())
                 setupRecipe(mergedRecipe);
-
         }
 
         @Override

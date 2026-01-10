@@ -1,11 +1,13 @@
 package io.github.cpearl0.ctnhcore.client;
 
-import com.lowdragmc.lowdraglib.client.renderer.ATESRRendererProvider;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.model.ModelDefinition;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlockEntities;
 import io.github.cpearl0.ctnhcore.registry.CTNHModelLayers;
 import io.github.cpearl0.ctnhcore.registry.CTNHRegistration;
+
+import com.lowdragmc.lowdraglib.client.renderer.ATESRRendererProvider;
+
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -13,6 +15,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = CTNHCore.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientRegister {
+
     @Deprecated
     @SubscribeEvent
     public static void onRegisterLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
@@ -23,6 +26,7 @@ public class ClientRegister {
             event.registerLayerDefinition(model.LAYER_LOCATION, model.createBodyLayer);
         }
     }
+
     @Deprecated
     @SubscribeEvent
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {

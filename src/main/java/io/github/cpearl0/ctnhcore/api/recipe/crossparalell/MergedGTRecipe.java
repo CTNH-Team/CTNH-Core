@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.category.GTRecipeCategory;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
+
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 
@@ -15,9 +16,9 @@ import java.util.Map;
 
 public class MergedGTRecipe extends GTRecipe {
 
-    //public List<GTRecipe> recipes = new ArrayList<>();
+    // public List<GTRecipe> recipes = new ArrayList<>();
 
-    public MergedGTRecipe(GTRecipeType recipeType, GTRecipeCategory recipeCategory, ResourceLocation id){
+    public MergedGTRecipe(GTRecipeType recipeType, GTRecipeCategory recipeCategory, ResourceLocation id) {
         super(recipeType,
                 id,
                 new RecipeContentMap(),
@@ -37,11 +38,11 @@ public class MergedGTRecipe extends GTRecipe {
         parallels = 0;
     }
 
-    public void add(GTRecipe recipe){
-        ((RecipeContentMap)inputs).mergeFrom(recipe.inputs);
-        ((RecipeContentMap)outputs).mergeFrom(recipe.outputs);
-        ((RecipeContentMap)tickInputs).mergeFrom(recipe.tickInputs);
-        ((RecipeContentMap)tickOutputs).mergeFrom(recipe.tickOutputs);
+    public void add(GTRecipe recipe) {
+        ((RecipeContentMap) inputs).mergeFrom(recipe.inputs);
+        ((RecipeContentMap) outputs).mergeFrom(recipe.outputs);
+        ((RecipeContentMap) tickInputs).mergeFrom(recipe.tickInputs);
+        ((RecipeContentMap) tickOutputs).mergeFrom(recipe.tickOutputs);
 
         inputChanceLogics.putAll(recipe.inputChanceLogics);
         outputChanceLogics.putAll(recipe.outputChanceLogics);
@@ -55,7 +56,7 @@ public class MergedGTRecipe extends GTRecipe {
         parallels += recipe.parallels;
     }
 
-    public void clear(){
+    public void clear() {
         inputs.clear();
         outputs.clear();
         tickInputs.clear();
@@ -72,7 +73,7 @@ public class MergedGTRecipe extends GTRecipe {
         parallels = 0;
     }
 
-    public boolean isAvailable(){
+    public boolean isAvailable() {
         return parallels != 0;
     }
 
@@ -101,5 +102,4 @@ public class MergedGTRecipe extends GTRecipe {
             }
         }
     }
-
 }

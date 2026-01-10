@@ -1,16 +1,20 @@
 package io.github.cpearl0.ctnhcore.common.machine.simple;
 
+import io.github.cpearl0.ctnhcore.common.machine.trait.SimpleComputationContainer;
+
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.SimpleTieredMachine;
-import io.github.cpearl0.ctnhcore.common.machine.trait.SimpleComputationContainer;
-import it.unimi.dsi.fastutil.ints.Int2IntFunction;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.Block;
+
+import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import org.jetbrains.annotations.NotNull;
 
 public class SimpleComputationMachine extends SimpleTieredMachine {
 
-    public SimpleComputationMachine(IMachineBlockEntity holder, int tier, Int2IntFunction tankScalingFunction, Object... args) {
+    public SimpleComputationMachine(IMachineBlockEntity holder, int tier, Int2IntFunction tankScalingFunction,
+                                    Object... args) {
         super(holder, tier, tankScalingFunction, args);
     }
 

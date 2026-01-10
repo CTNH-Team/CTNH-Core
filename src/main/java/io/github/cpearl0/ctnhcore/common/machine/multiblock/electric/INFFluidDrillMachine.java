@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
+
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.IEnergyContainer;
 import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
@@ -15,10 +18,7 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.machine.trait.FluidDrillLogic;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
-import com.tterrag.registrate.util.entry.BlockEntry;
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
-import lombok.Getter;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
@@ -26,6 +26,9 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
+
+import com.tterrag.registrate.util.entry.BlockEntry;
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -52,7 +55,7 @@ public class INFFluidDrillMachine extends WorkableElectricMultiblockMachine impl
     }
 
     public int getEnergyTier() {
-        var energyContainer = (List)this.getCapabilitiesFlat(IO.IN, EURecipeCapability.CAP);
+        var energyContainer = (List) this.getCapabilitiesFlat(IO.IN, EURecipeCapability.CAP);
         if (energyContainer == null) return this.tier;
         var energyCont = new EnergyContainerList(energyContainer.stream().filter(IEnergyContainer.class::isInstance)
                 .map(IEnergyContainer.class::cast).toList());
@@ -123,7 +126,8 @@ public class INFFluidDrillMachine extends WorkableElectricMultiblockMachine impl
 
     @SuppressWarnings("DataFlowIssue")
     public static Block getFrameState(int tier) {
-        return (Block)((BlockEntry)GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.Neutronium)).get();
+        return (Block) ((BlockEntry) GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.Neutronium))
+                .get();
     }
 
     public static ResourceLocation getBaseTexture(int tier) {

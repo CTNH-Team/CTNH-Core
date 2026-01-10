@@ -10,11 +10,13 @@ import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
-import lombok.Generated;
+
 import net.minecraft.core.SectionPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
+
+import lombok.Generated;
 import org.jetbrains.annotations.Nullable;
 
 public class INFFluidDrillLogic extends RecipeLogic {
@@ -26,9 +28,8 @@ public class INFFluidDrillLogic extends RecipeLogic {
         super(machine);
     }
 
-
     public INFFluidDrillMachine getMachine() {
-        return (INFFluidDrillMachine)super.getMachine();
+        return (INFFluidDrillMachine) super.getMachine();
     }
 
     public void findAndHandleRecipe() {
@@ -48,20 +49,25 @@ public class INFFluidDrillLogic extends RecipeLogic {
             }
 
             GTRecipe match = this.getFluidDrillRecipe();
-            if (match != null && RecipeHelper.matchRecipe(this.machine, match).isSuccess() && RecipeHelper.matchTickRecipe(this.machine, match).isSuccess()) {
+            if (match != null && RecipeHelper.matchRecipe(this.machine, match).isSuccess() &&
+                    RecipeHelper.matchTickRecipe(this.machine, match).isSuccess()) {
                 this.setupRecipe(match);
             }
         }
-
     }
 
     private @Nullable GTRecipe getFluidDrillRecipe() {
-
         if (getMachine().getLevel() instanceof ServerLevel serverLevel) {
             if (this.veinFluid != null) {
                 BedrockFluidVeinSavedData data = BedrockFluidVeinSavedData.getOrCreate(serverLevel);
-                GTRecipe recipe = GTRecipeBuilder.ofRaw().duration(20).EUt((long)GTValues.VA[this.getMachine().getEnergyTier()]).outputFluids(new FluidStack(this.veinFluid, this.getFluidToProduce(data.getFluidVeinWorldEntry(this.getChunkX(), this.getChunkZ())))).buildRawRecipe();
-                if (RecipeHelper.matchRecipe(this.getMachine(), recipe).isSuccess() && RecipeHelper.matchTickRecipe(this.getMachine(), recipe).isSuccess()) {
+                GTRecipe recipe = GTRecipeBuilder.ofRaw().duration(20)
+                        .EUt((long) GTValues.VA[this.getMachine().getEnergyTier()])
+                        .outputFluids(new FluidStack(this.veinFluid,
+                                this.getFluidToProduce(
+                                        data.getFluidVeinWorldEntry(this.getChunkX(), this.getChunkZ()))))
+                        .buildRawRecipe();
+                if (RecipeHelper.matchRecipe(this.getMachine(), recipe).isSuccess() &&
+                        RecipeHelper.matchTickRecipe(this.getMachine(), recipe).isSuccess()) {
                     return recipe;
                 }
             }
@@ -102,13 +108,14 @@ public class INFFluidDrillLogic extends RecipeLogic {
     public void onRecipeFinish() {
         this.machine.afterWorking();
         if (this.lastRecipe != null) {
-//            this.lastRecipe.postWorking(this.machine);
+            // this.lastRecipe.postWorking(this.machine);
             RecipeHelper.handleRecipeIO(this.machine, this.lastRecipe, IO.OUT, this.chanceCaches);
         }
 
         this.depleteVein();
         GTRecipe match = this.getFluidDrillRecipe();
-        if (match != null && RecipeHelper.matchRecipe(this.machine, match).isSuccess() && RecipeHelper.matchTickRecipe(this.machine, match).isSuccess()) {
+        if (match != null && RecipeHelper.matchRecipe(this.machine, match).isSuccess() &&
+                RecipeHelper.matchTickRecipe(this.machine, match).isSuccess()) {
             this.setupRecipe(match);
         } else {
             if (this.suspendAfterFinish) {
@@ -127,11 +134,10 @@ public class INFFluidDrillLogic extends RecipeLogic {
         if (getMachine().getLevel() instanceof ServerLevel serverLevel) {
             int chance = INFFluidDrillMachine.getDepletionChance(this.getMachine().getTier());
             BedrockFluidVeinSavedData data = BedrockFluidVeinSavedData.getOrCreate(serverLevel);
-            if (1==2) {
+            if (1 == 2) {
                 data.depleteVein(this.getChunkX(), this.getChunkZ(), 0, false);
             }
         }
-
     }
 
     protected boolean isOverclocked() {

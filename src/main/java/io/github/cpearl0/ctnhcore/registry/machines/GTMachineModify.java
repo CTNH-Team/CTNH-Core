@@ -1,4 +1,7 @@
-package io.github.cpearl0.ctnhcore.registry;
+package io.github.cpearl0.ctnhcore.registry.machines;
+
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -12,9 +15,11 @@ import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifierList;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.machines.GCYMMachines;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.CleanroomMachine;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
+
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
@@ -38,7 +43,9 @@ import static io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips.PERFECT_OVERCL
 @Suffix("tooltip")
 public class GTMachineModify {
 
-    public static BiConsumer<ItemStack, List<Component>> REDUCTION_INFO = (itemStack, list) -> list.add(Component.translatable("ctnh.gcym.reduction").withStyle(ChatFormatting.GREEN));
+    public static BiConsumer<ItemStack, List<Component>> REDUCTION_INFO = (itemStack, list) -> list
+            .add(Component.translatable("ctnh.gcym.reduction").withStyle(ChatFormatting.GREEN));
+
     public static void init() {
         List<MachineDefinition> gcymMachinesToModify = Arrays.asList(
                 GCYMMachines.LARGE_ARC_SMELTER,
@@ -62,14 +69,12 @@ public class GTMachineModify {
                 GCYMMachines.LARGE_SIFTING_FUNNEL,
                 GCYMMachines.LARGE_WIREMILL,
                 GCYMMachines.MEGA_BLAST_FURNACE,
-                GCYMMachines.MEGA_VACUUM_FREEZER
-        );
+                GCYMMachines.MEGA_VACUUM_FREEZER);
         RecipeModifierList commonModifier = new RecipeModifierList(
                 CTNHRecipeModifiers.GCYM_REDUCTION,
                 GTRecipeModifiers.PARALLEL_HATCH,
                 GTRecipeModifiers.OC_NON_PERFECT_SUBTICK,
-                GTRecipeModifiers.BATCH_MODE
-        );
+                GTRecipeModifiers.BATCH_MODE);
         for (MachineDefinition machine : gcymMachinesToModify) {
             machine.setRecipeModifier(commonModifier);
             machine.setTooltipBuilder(machine.getTooltipBuilder().andThen(REDUCTION_INFO));
@@ -78,9 +83,7 @@ public class GTMachineModify {
                 LARGE_CHEMICAL_REACTOR.getTooltipBuilder().andThen(
                         (stack, tooltip) -> {
                             tooltip.add(PERFECT_OVERCLOCK);
-                        }
-                )
-        );
+                        }));
         modifyGTAssembly();
         modifyCleanroom();
     }
@@ -94,6 +97,7 @@ public class GTMachineModify {
             "NOTE: Parallelization is not possible in precision assembly mode"
     })
     static Lang[] precision_assembly;
+
     private static void modifyGTAssembly() {
         var lASB = GCYMMachines.LARGE_ASSEMBLER;
         var lASBRecipeTypes = new java.util.ArrayList<>(Arrays.stream(lASB.getRecipeTypes()).toList());
@@ -103,9 +107,8 @@ public class GTMachineModify {
             components.add(Component.translatable("ctnh.gcym.reduction").withStyle(ChatFormatting.GREEN));
             components.add(precision_assembly[0].translate());
             components.add(precision_assembly[1].translate());
-        }
-        ));
-        //lASB.setMachineSupplier(MultiblockComputationMachine::new);
+        }));
+        // lASB.setMachineSupplier(MultiblockComputationMachine::new);
         lASB.setPatternFactory(() -> FactoryBlockPattern.start()
                 .aisle("XXXXXXXXX", "XXXXXXXXX", "XXXXXXXXX")
                 .aisle("XXXXXXXXX", "XAAAXAAAX", "XGGGXXXXX")
@@ -116,36 +119,34 @@ public class GTMachineModify {
                                 true))
                         .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setExactLimit(1))
                         .or(Predicates.autoAbilities(true, false, true))
-                        .or(Predicates.abilities(PartAbility.COMPUTATION_DATA_RECEPTION).setMaxGlobalLimited(1).setPreviewCount(1)
-                ))
+                        .or(Predicates.abilities(PartAbility.COMPUTATION_DATA_RECEPTION).setMaxGlobalLimited(1)
+                                .setPreviewCount(1)))
                 .where('G', Predicates.blocks(CASING_TEMPERED_GLASS.get()))
                 .where('A', Predicates.air())
                 .where('#', Predicates.any())
                 .build());
 
-
         lASB.setRecipeModifier(
                 new RecipeModifierList(
                         CTNHRecipeModifiers.GCYM_REDUCTION,
                         GTMachineModify::assemblyRecipeModifier,
-                        GTRecipeModifiers.BATCH_MODE
-                )
-        );
+                        GTRecipeModifiers.BATCH_MODE));
     }
+
     private static ModifierFunction assemblyRecipeModifier(MetaMachine machine, GTRecipe gtRecipe) {
         if (gtRecipe.recipeType == CTNHRecipeTypes.PRECISION_ASSEMBLY_RECIPES) {
-            return  GTRecipeModifiers.OC_NON_PERFECT_SUBTICK.getModifier(machine, gtRecipe);
+            return GTRecipeModifiers.OC_NON_PERFECT_SUBTICK.getModifier(machine, gtRecipe);
         } else {
             return new RecipeModifierList(
                     GTRecipeModifiers.PARALLEL_HATCH,
-                    GTRecipeModifiers.OC_NON_PERFECT_SUBTICK
-            ).getModifier(machine, gtRecipe);
+                    GTRecipeModifiers.OC_NON_PERFECT_SUBTICK).getModifier(machine, gtRecipe);
         }
     }
 
     @CN("高度大于长度或宽度时，将会停止工作")
     @EN("Stop working if height is greater than length or wight")
     static Lang cleanroom_restriction;
+
     private static void modifyCleanroom() {
         CLEANROOM.setBeforeWorking(
                 (machine, recipe) -> {
@@ -188,12 +189,10 @@ public class GTMachineModify {
                         }
                     }
                     return true;
-                }
-        );
+                });
         CLEANROOM.setTooltipBuilder(CLEANROOM.getTooltipBuilder().andThen(
                 (stack, tooltip) -> {
                     tooltip.add(cleanroom_restriction.translate());
-                }
-        ));
+                }));
     }
 }

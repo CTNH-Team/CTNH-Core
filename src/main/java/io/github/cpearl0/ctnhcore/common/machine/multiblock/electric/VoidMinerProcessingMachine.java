@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -9,12 +11,11 @@ import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
-import lombok.Getter;
-import lombok.Setter;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -24,6 +25,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import lombok.Getter;
+import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -85,9 +89,6 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
                 nextCryotheumAmount = FLUID_AMOUNT;
             }
 
-
-
-
         }
         return super.onWorking();
     }
@@ -101,9 +102,9 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
 
             // 创建 Pyrotheum 流体
             FluidStack pyrotheumFluid = new FluidStack(
-                    Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(ResourceLocation.tryParse("gtceu:pyrotheum"))),
-                    currentFluidAmount
-            );
+                    Objects.requireNonNull(
+                            ForgeRegistries.FLUIDS.getValue(ResourceLocation.tryParse("gtceu:pyrotheum"))),
+                    currentFluidAmount);
 
             // 检查输入仓是否有足够流体
             boolean isFluidSufficient = MachineUtils.inputFluid(pyrotheumFluid, this);
@@ -126,9 +127,9 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
 
             // 创建 Cryotheum 流体
             FluidStack cryotheumFluid = new FluidStack(
-                    Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(ResourceLocation.tryParse("gtceu:cryotheum"))),
-                    currentFluidAmount
-            );
+                    Objects.requireNonNull(
+                            ForgeRegistries.FLUIDS.getValue(ResourceLocation.tryParse("gtceu:cryotheum"))),
+                    currentFluidAmount);
 
             // 检查输入仓是否有足够流体
             boolean isFluidSufficient = MachineUtils.inputFluid(cryotheumFluid, this);
@@ -157,11 +158,15 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
         super.addDisplayText(textList);
 
         if (isOverheated) {
-            textList.add(Component.translatable("ctnh.multiblock.void_miner.info.overheat").withStyle(ChatFormatting.RED));
+            textList.add(
+                    Component.translatable("ctnh.multiblock.void_miner.info.overheat").withStyle(ChatFormatting.RED));
         }
-        textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(currentTemperature + "K").withStyle(ChatFormatting.RED)));
-        textList.add(Component.translatable("ctnh.multiblock.void_miner.info.pyrotheum", nextPyrotheumAmount + " mB").withStyle(ChatFormatting.GOLD));
-        textList.add(Component.translatable("ctnh.multiblock.void_miner.info.cryotheum", nextCryotheumAmount + " mB").withStyle(ChatFormatting.AQUA));
+        textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature",
+                Component.literal(currentTemperature + "K").withStyle(ChatFormatting.RED)));
+        textList.add(Component.translatable("ctnh.multiblock.void_miner.info.pyrotheum", nextPyrotheumAmount + " mB")
+                .withStyle(ChatFormatting.GOLD));
+        textList.add(Component.translatable("ctnh.multiblock.void_miner.info.cryotheum", nextCryotheumAmount + " mB")
+                .withStyle(ChatFormatting.AQUA));
     }
 
     public int getParallelCount() {
@@ -182,8 +187,7 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
 
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (machine instanceof VoidMinerProcessingMachine reactorMachine) {
-            if(!MachineUtils.inputFluid(GTMaterials.DrillingFluid.getFluid(100000000),reactorMachine))
-            {
+            if (!MachineUtils.inputFluid(GTMaterials.DrillingFluid.getFluid(100000000), reactorMachine)) {
                 return ModifierFunction.NULL;
             }
             int parallelCount = reactorMachine.getParallelCount();
@@ -237,11 +241,10 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
 
     // 获取所有带有 '#c:raw_ores' 标签的物品，排除黑名单物品
     private static List<ItemStack> getRawOreItems() {
-
-        if(rawOreItems == null)
-        {
+        if (rawOreItems == null) {
             rawOreItems = new ArrayList<>();
-            TagKey<Item> rawOresTag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), ResourceLocation.tryBuild("forge", "raw_materials"));
+            TagKey<Item> rawOresTag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(),
+                    ResourceLocation.tryBuild("forge", "raw_materials"));
 
             // 黑名单物品列表（需要排除的物品）
             Set<Item> blacklist = getBlacklistedItems();
@@ -272,7 +275,8 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
         blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_starmetal")));
         blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_jasper")));
         blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_flowing_amber_gold")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_special_composite_steel_m77")));
+        blacklist.add(
+                ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_special_composite_steel_m77")));
         blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_hidden_alloy")));
         blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_iridium")));
         blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_osmium")));
@@ -285,5 +289,3 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
         return super.alwaysTryModifyRecipe();
     }
 }
-
-

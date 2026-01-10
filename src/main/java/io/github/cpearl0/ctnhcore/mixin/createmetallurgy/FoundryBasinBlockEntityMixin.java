@@ -10,17 +10,16 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(value = FoundryBasinBlockEntity.class, remap = false)
 public class FoundryBasinBlockEntityMixin {
+
     @Redirect(
-            method = "addBehaviours",
-            at = @At(
-                    value = "NEW",
-                    target = "(Lcom/simibubi/create/foundation/blockEntity/behaviour/BehaviourType;Lcom/simibubi/create/foundation/blockEntity/SmartBlockEntity;IIZ)Lcom/simibubi/create/foundation/blockEntity/behaviour/fluid/SmartFluidTankBehaviour;"
-            )
-    )
+              method = "addBehaviours",
+              at = @At(
+                       value = "NEW",
+                       target = "(Lcom/simibubi/create/foundation/blockEntity/behaviour/BehaviourType;Lcom/simibubi/create/foundation/blockEntity/SmartBlockEntity;IIZ)Lcom/simibubi/create/foundation/blockEntity/behaviour/fluid/SmartFluidTankBehaviour;"))
     private SmartFluidTankBehaviour modifyTankCapacity(
-            BehaviourType<SmartFluidTankBehaviour> type, SmartBlockEntity be, int tanks,
-            int tankCapacity, boolean enforceVariety
-    ) {
+                                                       BehaviourType<SmartFluidTankBehaviour> type, SmartBlockEntity be,
+                                                       int tanks,
+                                                       int tankCapacity, boolean enforceVariety) {
         return new SmartFluidTankBehaviour(type, be, tanks, 3000, enforceVariety);
     }
 }

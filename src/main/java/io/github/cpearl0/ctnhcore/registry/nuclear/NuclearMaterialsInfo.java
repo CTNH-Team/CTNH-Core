@@ -1,14 +1,15 @@
 package io.github.cpearl0.ctnhcore.registry.nuclear;
 
+import io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialBuilder;
+import io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialIconSet;
+import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
+import io.github.cpearl0.ctnhcore.data.CTNHMaterialFlags;
+
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialBuilder;
-import io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialIconSet;
-import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
-import io.github.cpearl0.ctnhcore.data.CTNHMaterialFlags;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,17 +23,20 @@ import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearElements.*;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.*;
 
 public class NuclearMaterialsInfo {
+
     public static Set<Material> fertileMaterial = new HashSet<>();
     public static Set<Material> decayMaterial = new HashSet<>();
+
     public static void register() {
-        //basic material
+        // basic material
         Uranium = REGISTRATE.material(GTCEu.id("uranium_raw"))
                 .cnlang("铀")
                 .ingot()
                 .ore()
                 .color(0x1c991c)
                 .element(U)
-                .flags(CTNHMaterialFlags.GENERATE_WASTE,GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD, GENERATE_FOIL, GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_SMALL_GEAR)
+                .flags(CTNHMaterialFlags.GENERATE_WASTE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD, GENERATE_FOIL,
+                        GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_SMALL_GEAR)
                 .iconSet(MaterialIconSet.SHINY)
                 .radioactiveHazard(1)
                 .register();
@@ -42,7 +46,8 @@ public class NuclearMaterialsInfo {
                 .ore()
                 .color(0x9e1616)
                 .element(Pu)
-                .flags(CTNHMaterialFlags.GENERATE_WASTE,GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD, GENERATE_FOIL, GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_SMALL_GEAR)
+                .flags(CTNHMaterialFlags.GENERATE_WASTE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD, GENERATE_FOIL,
+                        GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_SMALL_GEAR)
                 .iconSet(MaterialIconSet.SHINY)
                 .radioactiveHazard(1)
                 .register();
@@ -113,16 +118,16 @@ public class NuclearMaterialsInfo {
                 .flags(DISABLE_DECOMPOSITION)
                 .register();
 
-        //thorium
+        // thorium
         Thorium233 = new CTNHMaterialBuilder(GTCEu.id("thorium_233"))
-                .nuclear(false,false)
+                .nuclear(false, false)
                 .color(0x474242)
                 .element(Th233)
                 .iconSet(CTNHMaterialIconSet.BASIC)
                 .radioactiveHazard(1)
                 .register();
         CarbideThorium233 = new CTNHMaterialBuilder(GTCEu.id("carbide_thorium_233"))
-                .nuclear(false,false)
+                .nuclear(false, false)
                 .color(0x474242)
                 .components(Thorium233, 1, Carbon, 1)
                 .iconSet(CTNHMaterialIconSet.CARBIDE)
@@ -130,7 +135,7 @@ public class NuclearMaterialsInfo {
                 .flags(DISABLE_DECOMPOSITION).register();
         Thorium233.getProperty(CTNHPropertyKeys.NUCLEAR).setCarbideMaterial(CarbideThorium233);
         OxideThorium233 = new CTNHMaterialBuilder(GTCEu.id("oxide_thorium_233"))
-                .nuclear(false,false)
+                .nuclear(false, false)
                 .color(0x474242)
                 .components(Thorium233, 1, Oxygen, 2)
                 .iconSet(CTNHMaterialIconSet.OXIDE)
@@ -138,7 +143,7 @@ public class NuclearMaterialsInfo {
                 .flags(DISABLE_DECOMPOSITION).register();
         Thorium233.getProperty(CTNHPropertyKeys.NUCLEAR).setOxideMaterial(OxideThorium233);
         NitrideThorium233 = new CTNHMaterialBuilder(GTCEu.id("nitride_thorium_233"))
-                .nuclear(false,false)
+                .nuclear(false, false)
                 .color(0x474242)
                 .components(Thorium233, 3, Nitrogen, 2)
                 .iconSet(CTNHMaterialIconSet.NITRIDE)
@@ -146,7 +151,7 @@ public class NuclearMaterialsInfo {
                 .flags(DISABLE_DECOMPOSITION).register();
         Thorium233.getProperty(CTNHPropertyKeys.NUCLEAR).setNitrideMaterial(NitrideThorium233);
         ZirconiumAlloyThorium233 = new CTNHMaterialBuilder(GTCEu.id("zirconium_alloy_thorium_233"))
-                .nuclear(false,false)
+                .nuclear(false, false)
                 .color(0x474242)
                 .components(Thorium233, 1, Zirconium, 1)
                 .iconSet(CTNHMaterialIconSet.ZIRCON_ALLOY)
@@ -221,8 +226,7 @@ public class NuclearMaterialsInfo {
                 .radioactiveHazard(1)
                 .register();
 
-
-// protactinium_233
+        // protactinium_233
         Protactinium233 = new CTNHMaterialBuilder(GTCEu.id("protactinium_233"))
                 .nuclear(false, false)
                 .color(10585446)
@@ -272,13 +276,14 @@ public class NuclearMaterialsInfo {
                 .components(Protactinium233, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Protactinium233HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("protactinium_233_hexafluoride_steam_cracked"))
+        Protactinium233HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("protactinium_233_hexafluoride_steam_cracked"))
                 .gas()
                 .color(10585466)
                 .radioactiveHazard(1)
                 .register();
 
-// uranium_233
+        // uranium_233
         Uranium233 = new CTNHMaterialBuilder(GTCEu.id("uranium_233"))
                 .nuclear(false, true)
                 .color(2135584)
@@ -336,7 +341,7 @@ public class NuclearMaterialsInfo {
                 .radioactiveHazard(1)
                 .register();
 
-// uranium_234
+        // uranium_234
         Uranium234 = new CTNHMaterialBuilder(GTCEu.id("uranium_234"))
                 .nuclear(true, false)
                 .color(1940509)
@@ -393,8 +398,7 @@ public class NuclearMaterialsInfo {
                 .radioactiveHazard(1)
                 .register();
 
-
-// uranium_239
+        // uranium_239
         Uranium239 = new CTNHMaterialBuilder(GTCEu.id("uranium_239"))
                 .nuclear(false, false)
                 .color(885261)
@@ -450,7 +454,7 @@ public class NuclearMaterialsInfo {
                 .radioactiveHazard(1)
                 .register();
 
-// uranium_238
+        // uranium_238
         Uranium238.getProperties().ensureSet(CTNHPropertyKeys.NUCLEAR);
         fertileMaterial.add(Uranium238);
         CarbideUranium238 = new CTNHMaterialBuilder(GTCEu.id("carbide_uranium_238"))
@@ -490,7 +494,7 @@ public class NuclearMaterialsInfo {
         Uranium238.getProperty(CTNHPropertyKeys.NUCLEAR)
                 .setZirconiumAlloyMaterial(ZirconiumAlloyUranium238);
 
-// uranium_235
+        // uranium_235
         Uranium235.getProperties().ensureSet(CTNHPropertyKeys.NUCLEAR);
         Uranium235.getProperty(CTNHPropertyKeys.NUCLEAR)
                 .setHeat(10);
@@ -531,7 +535,7 @@ public class NuclearMaterialsInfo {
         Uranium235.getProperty(CTNHPropertyKeys.NUCLEAR)
                 .setZirconiumAlloyMaterial(ZirconiumAlloyUranium235);
 
-// neptunium_235
+        // neptunium_235
         Neptunium235 = new CTNHMaterialBuilder(GTCEu.id("neptunium_235"))
                 .nuclear(false, false)
                 .color(2839687)
@@ -581,13 +585,14 @@ public class NuclearMaterialsInfo {
                 .components(Neptunium235, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Neptunium235HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("neptunium_235_hexafluoride_steam_cracked"))
+        Neptunium235HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("neptunium_235_hexafluoride_steam_cracked"))
                 .gas()
                 .color(2839707)
                 .radioactiveHazard(1)
                 .register();
 
-// neptunium_237
+        // neptunium_237
         Neptunium237 = new CTNHMaterialBuilder(GTCEu.id("neptunium_237"))
                 .nuclear(false, true)
                 .color(2445445)
@@ -639,13 +644,14 @@ public class NuclearMaterialsInfo {
                 .components(Neptunium237, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Neptunium237HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("neptunium_237_hexafluoride_steam_cracked"))
+        Neptunium237HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("neptunium_237_hexafluoride_steam_cracked"))
                 .gas()
                 .color(2445465)
                 .radioactiveHazard(1)
                 .register();
 
-// neptunium_239
+        // neptunium_239
         Neptunium239 = new CTNHMaterialBuilder(GTCEu.id("neptunium_239"))
                 .nuclear(false, false)
                 .color(2050944)
@@ -695,13 +701,14 @@ public class NuclearMaterialsInfo {
                 .components(Neptunium239, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Neptunium239HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("neptunium_239_hexafluoride_steam_cracked"))
+        Neptunium239HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("neptunium_239_hexafluoride_steam_cracked"))
                 .gas()
                 .color(2050964)
                 .radioactiveHazard(1)
                 .register();
 
-// plutonium_240
+        // plutonium_240
         Plutonium240 = new CTNHMaterialBuilder(GTCEu.id("plutonium_240"))
                 .nuclear(true, false)
                 .color(10559006)
@@ -752,13 +759,14 @@ public class NuclearMaterialsInfo {
                 .components(Plutonium240, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Plutonium240HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("plutonium_240_hexafluoride_steam_cracked"))
+        Plutonium240HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("plutonium_240_hexafluoride_steam_cracked"))
                 .gas()
                 .color(10559026)
                 .radioactiveHazard(1)
                 .register();
 
-// plutonium_244
+        // plutonium_244
         Plutonium244 = new CTNHMaterialBuilder(GTCEu.id("plutonium_244"))
                 .nuclear(true, false)
                 .color(9705496)
@@ -809,13 +817,14 @@ public class NuclearMaterialsInfo {
                 .components(Plutonium244, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Plutonium244HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("plutonium_244_hexafluoride_steam_cracked"))
+        Plutonium244HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("plutonium_244_hexafluoride_steam_cracked"))
                 .gas()
                 .color(9705516)
                 .radioactiveHazard(1)
                 .register();
 
-// plutonium_245
+        // plutonium_245
         Plutonium245 = new CTNHMaterialBuilder(GTCEu.id("plutonium_245"))
                 .nuclear(false, false)
                 .color(10229013)
@@ -865,13 +874,14 @@ public class NuclearMaterialsInfo {
                 .components(Plutonium245, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Plutonium245HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("plutonium_245_hexafluoride_steam_cracked"))
+        Plutonium245HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("plutonium_245_hexafluoride_steam_cracked"))
                 .gas()
                 .color(10229033)
                 .radioactiveHazard(1)
                 .register();
 
-// plutonium_239
+        // plutonium_239
         Plutonium239.getProperties().ensureSet(CTNHPropertyKeys.NUCLEAR);
         Plutonium239.getProperty(CTNHPropertyKeys.NUCLEAR)
                 .setHeat(10);
@@ -917,13 +927,14 @@ public class NuclearMaterialsInfo {
                 .components(Plutonium239, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Plutonium239HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("plutonium_239_hexafluoride_steam_cracked"))
+        Plutonium239HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("plutonium_239_hexafluoride_steam_cracked"))
                 .gas()
                 .color(Plutonium239.getMaterialRGB())
                 .radioactiveHazard(1)
                 .register();
 
-// plutonium_241
+        // plutonium_241
         Plutonium241.getProperties().ensureSet(CTNHPropertyKeys.NUCLEAR);
         Plutonium241.getProperty(CTNHPropertyKeys.NUCLEAR)
                 .setHeat(13);
@@ -969,13 +980,14 @@ public class NuclearMaterialsInfo {
                 .components(Plutonium241, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Plutonium241HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("plutonium_241_hexafluoride_steam_cracked"))
+        Plutonium241HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("plutonium_241_hexafluoride_steam_cracked"))
                 .gas()
                 .color(Plutonium241.getMaterialRGB())
                 .radioactiveHazard(1)
                 .register();
 
-// americium_241
+        // americium_241
         Americium241 = new CTNHMaterialBuilder(GTCEu.id("americium_241"))
                 .nuclear(false, false)
                 .color(2522476)
@@ -1025,13 +1037,14 @@ public class NuclearMaterialsInfo {
                 .components(Americium241, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Americium241HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("americium_241_hexafluoride_steam_cracked"))
+        Americium241HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("americium_241_hexafluoride_steam_cracked"))
                 .gas()
                 .color(2522496)
                 .radioactiveHazard(1)
                 .register();
 
-// americium_243
+        // americium_243
         Americium243 = new CTNHMaterialBuilder(GTCEu.id("americium_243"))
                 .nuclear(false, true)
                 .color(2325867)
@@ -1083,13 +1096,14 @@ public class NuclearMaterialsInfo {
                 .components(Americium243, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Americium243HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("americium_243_hexafluoride_steam_cracked"))
+        Americium243HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("americium_243_hexafluoride_steam_cracked"))
                 .gas()
                 .color(2325887)
                 .radioactiveHazard(1)
                 .register();
 
-// americium_245
+        // americium_245
         Americium245 = new CTNHMaterialBuilder(GTCEu.id("americium_245"))
                 .nuclear(false, false)
                 .color(1996902)
@@ -1139,13 +1153,14 @@ public class NuclearMaterialsInfo {
                 .components(Americium245, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Americium245HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("americium_245_hexafluoride_steam_cracked"))
+        Americium245HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("americium_245_hexafluoride_steam_cracked"))
                 .gas()
                 .color(1996922)
                 .radioactiveHazard(1)
                 .register();
 
-// curium_245
+        // curium_245
         Curium245 = new CTNHMaterialBuilder(GTCEu.id("curium_245"))
                 .nuclear(false, true)
                 .color(7227202)
@@ -1203,7 +1218,7 @@ public class NuclearMaterialsInfo {
                 .radioactiveHazard(1)
                 .register();
 
-// curium_246
+        // curium_246
         Curium246 = new CTNHMaterialBuilder(GTCEu.id("curium_246"))
                 .nuclear(true, false)
                 .color(7029566)
@@ -1260,7 +1275,7 @@ public class NuclearMaterialsInfo {
                 .radioactiveHazard(1)
                 .register();
 
-// curium_247
+        // curium_247
         Curium247 = new CTNHMaterialBuilder(GTCEu.id("curium_247"))
                 .nuclear(false, true)
                 .color(6372407)
@@ -1318,7 +1333,7 @@ public class NuclearMaterialsInfo {
                 .radioactiveHazard(1)
                 .register();
 
-// curium_250
+        // curium_250
         Curium250 = new CTNHMaterialBuilder(GTCEu.id("curium_250"))
                 .nuclear(true, false)
                 .color(6043442)
@@ -1375,7 +1390,7 @@ public class NuclearMaterialsInfo {
                 .radioactiveHazard(1)
                 .register();
 
-// curium_251
+        // curium_251
         Curium251 = new CTNHMaterialBuilder(GTCEu.id("curium_251"))
                 .nuclear(false, false)
                 .color(5188905)
@@ -1431,7 +1446,7 @@ public class NuclearMaterialsInfo {
                 .radioactiveHazard(1)
                 .register();
 
-// berkelium_247
+        // berkelium_247
         Berkelium247 = new CTNHMaterialBuilder(GTCEu.id("berkelium_247"))
                 .nuclear(false, false)
                 .color(5590136)
@@ -1481,13 +1496,14 @@ public class NuclearMaterialsInfo {
                 .components(Berkelium247, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Berkelium247HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("berkelium_247_hexafluoride_steam_cracked"))
+        Berkelium247HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("berkelium_247_hexafluoride_steam_cracked"))
                 .gas()
                 .color(5590156)
                 .radioactiveHazard(1)
                 .register();
 
-// berkelium_249
+        // berkelium_249
         Berkelium249 = new CTNHMaterialBuilder(GTCEu.id("berkelium_249"))
                 .nuclear(false, true)
                 .color(5260915)
@@ -1539,13 +1555,14 @@ public class NuclearMaterialsInfo {
                 .components(Berkelium249, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Berkelium249HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("berkelium_249_hexafluoride_steam_cracked"))
+        Berkelium249HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("berkelium_249_hexafluoride_steam_cracked"))
                 .gas()
                 .color(5260935)
                 .radioactiveHazard(1)
                 .register();
 
-// berkelium_251
+        // berkelium_251
         Berkelium251 = new CTNHMaterialBuilder(GTCEu.id("berkelium_251"))
                 .nuclear(false, false)
                 .color(4866158)
@@ -1595,13 +1612,14 @@ public class NuclearMaterialsInfo {
                 .components(Berkelium251, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Berkelium251HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("berkelium_251_hexafluoride_steam_cracked"))
+        Berkelium251HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("berkelium_251_hexafluoride_steam_cracked"))
                 .gas()
                 .color(4866178)
                 .radioactiveHazard(1)
                 .register();
 
-// californium_251
+        // californium_251
         Californium251 = new CTNHMaterialBuilder(GTCEu.id("californium_251"))
                 .nuclear(false, true)
                 .color(10704144)
@@ -1653,13 +1671,14 @@ public class NuclearMaterialsInfo {
                 .components(Californium251, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Californium251HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("californium_251_hexafluoride_steam_cracked"))
+        Californium251HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("californium_251_hexafluoride_steam_cracked"))
                 .gas()
                 .color(10704164)
                 .radioactiveHazard(1)
                 .register();
 
-// californium_252
+        // californium_252
         Californium252 = new CTNHMaterialBuilder(GTCEu.id("californium_252"))
                 .nuclear(true, false)
                 .color(10244109)
@@ -1710,13 +1729,14 @@ public class NuclearMaterialsInfo {
                 .components(Californium252, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Californium252HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("californium_252_hexafluoride_steam_cracked"))
+        Californium252HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("californium_252_hexafluoride_steam_cracked"))
                 .gas()
                 .color(10244129)
                 .radioactiveHazard(1)
                 .register();
 
-// californium_253
+        // californium_253
         Californium253 = new CTNHMaterialBuilder(GTCEu.id("californium_253"))
                 .nuclear(false, true)
                 .color(9193226)
@@ -1768,13 +1788,14 @@ public class NuclearMaterialsInfo {
                 .components(Californium253, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Californium253HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("californium_253_hexafluoride_steam_cracked"))
+        Californium253HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("californium_253_hexafluoride_steam_cracked"))
                 .gas()
                 .color(9193246)
                 .radioactiveHazard(1)
                 .register();
 
-// californium_256
+        // californium_256
         Californium256 = new CTNHMaterialBuilder(GTCEu.id("californium_256"))
                 .nuclear(true, false)
                 .color(8536327)
@@ -1825,13 +1846,14 @@ public class NuclearMaterialsInfo {
                 .components(Californium256, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Californium256HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("californium_256_hexafluoride_steam_cracked"))
+        Californium256HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("californium_256_hexafluoride_steam_cracked"))
                 .gas()
                 .color(8536347)
                 .radioactiveHazard(1)
                 .register();
 
-// californium_257
+        // californium_257
         Californium257 = new CTNHMaterialBuilder(GTCEu.id("californium_257"))
                 .nuclear(false, false)
                 .color(7879687)
@@ -1881,13 +1903,14 @@ public class NuclearMaterialsInfo {
                 .components(Californium257, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Californium257HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("californium_257_hexafluoride_steam_cracked"))
+        Californium257HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("californium_257_hexafluoride_steam_cracked"))
                 .gas()
                 .color(7879707)
                 .radioactiveHazard(1)
                 .register();
 
-// einsteinium_253
+        // einsteinium_253
         Einsteinium253 = new CTNHMaterialBuilder(GTCEu.id("einsteinium_253"))
                 .nuclear(false, false)
                 .color(11897601)
@@ -1937,13 +1960,14 @@ public class NuclearMaterialsInfo {
                 .components(Einsteinium253, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Einsteinium253HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("einsteinium_253_hexafluoride_steam_cracked"))
+        Einsteinium253HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("einsteinium_253_hexafluoride_steam_cracked"))
                 .gas()
                 .color(11897621)
                 .radioactiveHazard(1)
                 .register();
 
-// einsteinium_255
+        // einsteinium_255
         Einsteinium255 = new CTNHMaterialBuilder(GTCEu.id("einsteinium_255"))
                 .nuclear(false, true)
                 .color(10911488)
@@ -1995,13 +2019,14 @@ public class NuclearMaterialsInfo {
                 .components(Einsteinium255, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Einsteinium255HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("einsteinium_255_hexafluoride_steam_cracked"))
+        Einsteinium255HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("einsteinium_255_hexafluoride_steam_cracked"))
                 .gas()
                 .color(10911508)
                 .radioactiveHazard(1)
                 .register();
 
-// einsteinium_257
+        // einsteinium_257
         Einsteinium257 = new CTNHMaterialBuilder(GTCEu.id("einsteinium_257"))
                 .nuclear(false, false)
                 .color(10254080)
@@ -2051,13 +2076,14 @@ public class NuclearMaterialsInfo {
                 .components(Einsteinium257, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Einsteinium257HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("einsteinium_257_hexafluoride_steam_cracked"))
+        Einsteinium257HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("einsteinium_257_hexafluoride_steam_cracked"))
                 .gas()
                 .color(10254100)
                 .radioactiveHazard(1)
                 .register();
 
-// fermium_257
+        // fermium_257
         Fermium257 = new CTNHMaterialBuilder(GTCEu.id("fermium_257"))
                 .nuclear(false, true)
                 .color(12292313)
@@ -2115,7 +2141,7 @@ public class NuclearMaterialsInfo {
                 .radioactiveHazard(1)
                 .register();
 
-// fermium_258
+        // fermium_258
         Fermium258 = new CTNHMaterialBuilder(GTCEu.id("fermium_258"))
                 .nuclear(true, false)
                 .color(11437260)
@@ -2172,7 +2198,7 @@ public class NuclearMaterialsInfo {
                 .radioactiveHazard(1)
                 .register();
 
-// fermium_259
+        // fermium_259
         Fermium259 = new CTNHMaterialBuilder(GTCEu.id("fermium_259"))
                 .nuclear(false, true)
                 .color(10779330)
@@ -2230,7 +2256,7 @@ public class NuclearMaterialsInfo {
                 .radioactiveHazard(1)
                 .register();
 
-// fermium_262
+        // fermium_262
         Fermium262 = new CTNHMaterialBuilder(GTCEu.id("fermium_262"))
                 .nuclear(true, false)
                 .color(10318778)
@@ -2287,7 +2313,7 @@ public class NuclearMaterialsInfo {
                 .radioactiveHazard(1)
                 .register();
 
-// fermium_263
+        // fermium_263
         Fermium263 = new CTNHMaterialBuilder(GTCEu.id("fermium_263"))
                 .nuclear(false, false)
                 .color(9463725)
@@ -2343,7 +2369,7 @@ public class NuclearMaterialsInfo {
                 .radioactiveHazard(1)
                 .register();
 
-// mendelevium_259
+        // mendelevium_259
         Mendelevium259 = new CTNHMaterialBuilder(GTCEu.id("mendelevium_259"))
                 .nuclear(false, false)
                 .color(1590719)
@@ -2393,13 +2419,14 @@ public class NuclearMaterialsInfo {
                 .components(Mendelevium259, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Mendelevium259HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("mendelevium_259_hexafluoride_steam_cracked"))
+        Mendelevium259HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("mendelevium_259_hexafluoride_steam_cracked"))
                 .gas()
                 .color(1590739)
                 .radioactiveHazard(1)
                 .register();
 
-// mendelevium_261
+        // mendelevium_261
         Mendelevium261 = new CTNHMaterialBuilder(GTCEu.id("mendelevium_261"))
                 .nuclear(false, true)
                 .color(1392304)
@@ -2451,13 +2478,14 @@ public class NuclearMaterialsInfo {
                 .components(Mendelevium261, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Mendelevium261HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("mendelevium_261_hexafluoride_steam_cracked"))
+        Mendelevium261HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("mendelevium_261_hexafluoride_steam_cracked"))
                 .gas()
                 .color(1392324)
                 .radioactiveHazard(1)
                 .register();
 
-// mendelevium_263
+        // mendelevium_263
         Mendelevium263 = new CTNHMaterialBuilder(GTCEu.id("mendelevium_263"))
                 .nuclear(false, false)
                 .color(1194662)
@@ -2507,7 +2535,8 @@ public class NuclearMaterialsInfo {
                 .components(Mendelevium263, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
                 .radioactiveHazard(1)
                 .register();
-        Mendelevium263HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("mendelevium_263_hexafluoride_steam_cracked"))
+        Mendelevium263HexafluorideSteamCracked = new CTNHMaterialBuilder(
+                GTCEu.id("mendelevium_263_hexafluoride_steam_cracked"))
                 .gas()
                 .color(1194682)
                 .radioactiveHazard(1)
@@ -2557,48 +2586,27 @@ public class NuclearMaterialsInfo {
         Mendelevium261.getProperty(CTNHPropertyKeys.NUCLEAR).setBasicMaterial(Mendelevium);
         Mendelevium263.getProperty(CTNHPropertyKeys.NUCLEAR).setBasicMaterial(Mendelevium);
 
-        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Thorium233, 100);
-        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Protactinium233, 1000);
-        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Uranium233, 8900);
-        Thorium233.getProperty(CTNHPropertyKeys.NUCLEAR)
-                        .fertileDecay.put(Protactinium233, 9000);
-        Protactinium233.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Uranium233, 9000);
-        Uranium239.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Neptunium239, 9000);
-        Plutonium245.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Americium245, 9000);
-        Americium243.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Neptunium239, 9000);
-        Americium245.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Curium245, 9000);
-        Americium241.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Plutonium241, 9000);
-        Curium251.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Americium245, 9000);
-        Berkelium249.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Americium245, 9000);
-        Berkelium251.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Californium251, 9000);
-        Berkelium247.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Curium247, 9000);
-        Californium257.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Einsteinium257, 9000);
-        Einsteinium255.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Berkelium251, 9000);
-        Einsteinium257.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Fermium257, 9000);
-        Einsteinium253.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Californium253, 9000);
-        Fermium263.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Mendelevium263, 9000);
-        Mendelevium261.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Einsteinium257, 9000);
-        Mendelevium259.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Fermium259, 9000);
+        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Thorium233, 100);
+        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Protactinium233, 1000);
+        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Uranium233, 8900);
+        Thorium233.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Protactinium233, 9000);
+        Protactinium233.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Uranium233, 9000);
+        Uranium239.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Neptunium239, 9000);
+        Plutonium245.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Americium245, 9000);
+        Americium243.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Neptunium239, 9000);
+        Americium245.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Curium245, 9000);
+        Americium241.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Plutonium241, 9000);
+        Curium251.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Americium245, 9000);
+        Berkelium249.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Americium245, 9000);
+        Berkelium251.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Californium251, 9000);
+        Berkelium247.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Curium247, 9000);
+        Californium257.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Einsteinium257, 9000);
+        Einsteinium255.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Berkelium251, 9000);
+        Einsteinium257.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Fermium257, 9000);
+        Einsteinium253.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Californium253, 9000);
+        Fermium263.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Mendelevium263, 9000);
+        Mendelevium261.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Einsteinium257, 9000);
+        Mendelevium259.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Fermium259, 9000);
         decayMaterial.add(Thorium233);
         decayMaterial.add(Protactinium233);
         decayMaterial.add(Uranium239);
@@ -2618,43 +2626,24 @@ public class NuclearMaterialsInfo {
         decayMaterial.add(Mendelevium261);
         decayMaterial.add(Mendelevium259);
 
-        Uranium234.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Uranium235, 9000);
-        Uranium238.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Uranium239, 100);
-        Uranium238.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Plutonium239, 8900);
-        Uranium238.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Neptunium239, 1000);
-        Plutonium240.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Plutonium241, 9000);
-        Plutonium244.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Plutonium245, 100);
-        Plutonium244.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Americium245, 1000);
-        Plutonium244.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Curium245, 8900);
-        Curium246.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Curium247, 9000);
-        Curium250.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Curium251, 100);
-        Curium250.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Berkelium251, 1000);
-        Curium250.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Californium251, 8900);
-        Californium252.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Californium253, 9000);
-        Californium256.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Californium257, 100);
-        Californium256.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Einsteinium257, 1000);
-        Californium256.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Fermium257, 8900);
-        Fermium258.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Fermium259, 9000);
-        Fermium262.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Fermium263, 1000);
-        Fermium262.getProperty(CTNHPropertyKeys.NUCLEAR)
-                .fertileDecay.put(Mendelevium263, 9000);
+        Uranium234.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Uranium235, 9000);
+        Uranium238.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Uranium239, 100);
+        Uranium238.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Plutonium239, 8900);
+        Uranium238.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Neptunium239, 1000);
+        Plutonium240.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Plutonium241, 9000);
+        Plutonium244.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Plutonium245, 100);
+        Plutonium244.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Americium245, 1000);
+        Plutonium244.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Curium245, 8900);
+        Curium246.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Curium247, 9000);
+        Curium250.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Curium251, 100);
+        Curium250.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Berkelium251, 1000);
+        Curium250.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Californium251, 8900);
+        Californium252.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Californium253, 9000);
+        Californium256.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Californium257, 100);
+        Californium256.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Einsteinium257, 1000);
+        Californium256.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Fermium257, 8900);
+        Fermium258.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Fermium259, 9000);
+        Fermium262.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Fermium263, 1000);
+        Fermium262.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.put(Mendelevium263, 9000);
     }
 }

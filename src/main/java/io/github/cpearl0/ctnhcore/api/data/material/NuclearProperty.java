@@ -1,5 +1,10 @@
 package io.github.cpearl0.ctnhcore.api.data.material;
 
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterialsInfo;
+
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.IMaterialProperty;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.MaterialProperties;
@@ -8,14 +13,12 @@ import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterialItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
-import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
-import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterialsInfo;
-import lombok.Getter;
-import lombok.Setter;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +29,7 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.Thorium232;
 
 public class NuclearProperty implements IMaterialProperty {
+
     @Getter
     @Setter
     private Material oxideMaterial;
@@ -51,16 +55,18 @@ public class NuclearProperty implements IMaterialProperty {
     @Setter
     private boolean fertile;
     public Map<Material, Integer> fertileDecay = new HashMap<>();
-    @Override
-    public void verifyProperty(MaterialProperties materialProperties) {
 
-    }
+    @Override
+    public void verifyProperty(MaterialProperties materialProperties) {}
+
     public ItemStack getDepletedFuel(Material material) {
         return GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.DepletedFuel, material).asStack();
     }
+
     public ItemStack getFuel(Material material) {
         return GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.fuel, material).asStack();
     }
+
     public void generateRecipes(Consumer<FinishedRecipe> provider, Material thisMaterial) {
         String name = thisMaterial.getName();
         // 8F + C? + C?? + Fuel TRISO = Depleted Fuel + SiF4 + CF4
@@ -79,7 +85,8 @@ public class NuclearProperty implements IMaterialProperty {
                 .inputItems(getDepletedFuel(getZirconiumAlloyMaterial()))
                 .inputFluids(GTMaterials.Chlorine.getFluid(4000))
                 .outputItems(getDepletedFuel(thisMaterial))
-                .outputItems(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust ,CTNHMaterials.zirconiumTetrachloride).asStack(5))
+                .outputItems(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, CTNHMaterials.zirconiumTetrachloride)
+                        .asStack(5))
                 .EUt(30)
                 .duration(300)
                 .save(provider);
@@ -93,14 +100,15 @@ public class NuclearProperty implements IMaterialProperty {
                 .duration(300)
                 .save(provider);
 
-        // HNO3 + [Fuel + O] + O = [Fuel + NO3 + H2O] & [Fuel + NO3 + H2O] + N2H4 + RP1 + C12H27O4P = Fuel2N3 + Red Oil [N2H4 + RP1 + C12H27O4P]
+        // HNO3 + [Fuel + O] + O = [Fuel + NO3 + H2O] & [Fuel + NO3 + H2O] + N2H4 + RP1 + C12H27O4P = Fuel2N3 + Red Oil
+        // [N2H4 + RP1 + C12H27O4P]
         GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("depleted_fuel_nitrate_" + name)
                 .notConsumable(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, GTMaterials.Boron).asStack())
                 .inputItems(getDepletedFuel(getOxideMaterial()))
                 .inputFluids(GTMaterials.NitricAcid.getFluid(1000))
                 .notConsumableFluid(CTNHMaterials.Hydrazine.getFluid(1000))
                 .notConsumableFluid(CTNHMaterials.RP1.getFluid(1000))
-                //.notConsumable(Fluid.of("")TributylPhosphate.getFluid(1000))
+                // .notConsumable(Fluid.of("")TributylPhosphate.getFluid(1000))
                 .notConsumable(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, GTMaterials.FerriteMixture).asStack())
                 .outputItems(getDepletedFuel(getNitrideMaterial()))
                 .outputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.waste, getBasicMaterial()).asStack())
@@ -121,54 +129,53 @@ public class NuclearProperty implements IMaterialProperty {
         GTRecipeTypes.ALLOY_SMELTER_RECIPES.recipeBuilder("zirconium_alloy_" + name)
                 .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, thisMaterial).asStack())
                 .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, GTMaterials.Zirconium).asStack())
-                .outputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, getZirconiumAlloyMaterial()).asStack())
+                .outputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, getZirconiumAlloyMaterial())
+                        .asStack())
                 .EUt(30).duration(300)
                 .save(provider);
 
         // [Fuel + Zr] + 4Cl = Fuel + ZrCl4
-        if (thisMaterial.equals(GTMaterials.Uranium238)
-                || thisMaterial.equals(GTMaterials.Plutonium239)
-                || thisMaterial.equals(Uranium235)
-                || thisMaterial.equals(Plutonium241)
-                || thisMaterial.equals(Thorium232)
-                || thisMaterial.equals(Thorium)) {
+        if (thisMaterial.equals(GTMaterials.Uranium238) || thisMaterial.equals(GTMaterials.Plutonium239) ||
+                thisMaterial.equals(Uranium235) || thisMaterial.equals(Plutonium241) ||
+                thisMaterial.equals(Thorium232) || thisMaterial.equals(Thorium)) {
             GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder(name)
-                    .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, getZirconiumAlloyMaterial()).asStack())
+                    .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, getZirconiumAlloyMaterial())
+                            .asStack())
                     .outputItems(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, thisMaterial).asStack())
-                    .outputItems(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, CTNHMaterials.zirconiumTetrachloride).asStack(5))
+                    .outputItems(GTMaterialItems.MATERIAL_ITEMS
+                            .get(TagPrefix.dust, CTNHMaterials.zirconiumTetrachloride).asStack(5))
                     .inputFluids(GTMaterials.Chlorine.getFluid(3000))
                     .EUt(30).duration(300)
                     .save(provider);
-        }
-        else {
+        } else {
             GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder(name)
-                    .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, getZirconiumAlloyMaterial()).asStack())
+                    .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, getZirconiumAlloyMaterial())
+                            .asStack())
                     .outputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, thisMaterial).asStack())
-                    .outputItems(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, CTNHMaterials.zirconiumTetrachloride).asStack(5))
+                    .outputItems(GTMaterialItems.MATERIAL_ITEMS
+                            .get(TagPrefix.dust, CTNHMaterials.zirconiumTetrachloride).asStack(5))
                     .inputFluids(GTMaterials.Chlorine.getFluid(3000))
                     .EUt(30).duration(300)
                     .save(provider);
         }
 
         // Fuel + O = [Fuel + O]
-        if(thisMaterial.equals(GTMaterials.Uranium238)
-                || thisMaterial.equals(GTMaterials.Plutonium239)
-                || thisMaterial.equals(Uranium235)
-                || thisMaterial.equals(Plutonium241)
-                || thisMaterial.equals(Thorium232)
-                || thisMaterial.equals(Thorium)){
+        if (thisMaterial.equals(GTMaterials.Uranium238) || thisMaterial.equals(GTMaterials.Plutonium239) ||
+                thisMaterial.equals(Uranium235) || thisMaterial.equals(Plutonium241) ||
+                thisMaterial.equals(Thorium232) || thisMaterial.equals(Thorium)) {
             GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("oxide_" + name)
                     .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, thisMaterial).asStack())
                     .inputFluids(GTMaterials.Oxygen.getFluid(1000))
-                    .outputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, getOxideMaterial()).asStack())
+                    .outputItems(
+                            GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, getOxideMaterial()).asStack())
                     .EUt(30).duration(300)
                     .save(provider);
-        }
-        else{
+        } else {
             GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("oxide_" + name)
                     .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, thisMaterial).asStack())
                     .inputFluids(GTMaterials.Oxygen.getFluid(1000))
-                    .outputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, getOxideMaterial()).asStack())
+                    .outputItems(
+                            GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, getOxideMaterial()).asStack())
                     .EUt(30).duration(300)
                     .save(provider);
         }
@@ -177,7 +184,8 @@ public class NuclearProperty implements IMaterialProperty {
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("carbide_" + name)
                 .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, getOxideMaterial()).asStack())
                 .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, GTMaterials.Carbon).asStack(2))
-                .outputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, getCarbideMaterial()).asStack())
+                .outputItems(
+                        GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, getCarbideMaterial()).asStack())
                 .outputFluids(GTMaterials.CarbonMonoxide.getFluid(1000))
                 .EUt(30).duration(300)
                 .save(provider);
@@ -189,14 +197,15 @@ public class NuclearProperty implements IMaterialProperty {
                 .inputFluids(GTMaterials.Oxygen.getFluid(4000))
                 .outputFluids(GTMaterials.CarbonDioxide.getFluid(1000))
                 .blastFurnaceTemp(1000).EUt(120).duration(2000)
-                        .save(provider);
+                .save(provider);
 
         // [Fuel + O] + [Fuel + C] + 3N = Fuel2N3 + CO
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("nitride_" + name)
                 .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, getCarbideMaterial()).asStack())
                 .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, getOxideMaterial()).asStack())
                 .inputFluids(GTMaterials.Nitrogen.getFluid(3000))
-                .outputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, getNitrideMaterial()).asStack())
+                .outputItems(
+                        GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, getNitrideMaterial()).asStack())
                 .outputFluids(GTMaterials.CarbonMonoxide.getFluid(1000))
                 .EUt(30).duration(300)
                 .save(provider);
@@ -224,8 +233,10 @@ public class NuclearProperty implements IMaterialProperty {
                 .save(provider);
 
         GTRecipeTypes.ALLOY_SMELTER_RECIPES.recipeBuilder("fuel_zirconium_alloy_" + name)
-                .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, getZirconiumAlloyMaterial()).asStack())
-                .outputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.fuel, getZirconiumAlloyMaterial()).asStack())
+                .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, getZirconiumAlloyMaterial())
+                        .asStack())
+                .outputItems(
+                        GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.fuel, getZirconiumAlloyMaterial()).asStack())
                 .notConsumable(GTItems.SHAPE_MOLD_BALL.asStack())
                 .EUt(30).duration(200)
                 .save(provider);
@@ -250,7 +261,7 @@ public class NuclearProperty implements IMaterialProperty {
                 .notConsumable(GTItems.SHAPE_MOLD_BALL.asStack())
                 .EUt(30).duration(200)
                 .save(provider);
-        if(isFissile()) {
+        if (isFissile()) {
             List<Integer> counts = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
             counts.forEach(count -> {
                 CTNHRecipeTypes.NUCLEAR_REACTOR_RECIPES.recipeBuilder("fuel_triso_" + name + count)
@@ -289,7 +300,8 @@ public class NuclearProperty implements IMaterialProperty {
                         .addData("heat", (getHeat() + count) * count * 2)
                         .save(provider);
                 NuclearMaterialsInfo.fertileMaterial.forEach(material -> {
-                    CTNHRecipeTypes.NUCLEAR_REACTOR_RECIPES.recipeBuilder("fertile_fuel_triso_" + name + count + "_" + material.getName())
+                    CTNHRecipeTypes.NUCLEAR_REACTOR_RECIPES
+                            .recipeBuilder("fertile_fuel_triso_" + name + count + "_" + material.getName())
                             .duration(40000)
                             .EUt((long) ((getHeat() + count) * count / 2 * 0.8))
                             .circuitMeta(count)
@@ -300,7 +312,8 @@ public class NuclearProperty implements IMaterialProperty {
                             .addData("heat", (getHeat() + count) * count)
                             .save(provider);
 
-                    CTNHRecipeTypes.NUCLEAR_REACTOR_RECIPES.recipeBuilder("fertile_fuel_oxide_" + name + count + "_" + material.getName())
+                    CTNHRecipeTypes.NUCLEAR_REACTOR_RECIPES
+                            .recipeBuilder("fertile_fuel_oxide_" + name + count + "_" + material.getName())
                             .duration(16000)
                             .EUt((long) ((getHeat() + count) * count / 2 * 1.05))
                             .circuitMeta(count)
@@ -311,7 +324,8 @@ public class NuclearProperty implements IMaterialProperty {
                             .addData("heat", (getHeat() + count) * count)
                             .save(provider);
 
-                    CTNHRecipeTypes.NUCLEAR_REACTOR_RECIPES.recipeBuilder("fertile_fuel_nitride_" + name + count + "_" + material.getName())
+                    CTNHRecipeTypes.NUCLEAR_REACTOR_RECIPES
+                            .recipeBuilder("fertile_fuel_nitride_" + name + count + "_" + material.getName())
                             .duration(20000)
                             .EUt((long) ((getHeat() + count) * count / 2 * 1.1))
                             .circuitMeta(count)
@@ -322,7 +336,8 @@ public class NuclearProperty implements IMaterialProperty {
                             .addData("heat", (getHeat() + count) * count)
                             .save(provider);
 
-                    CTNHRecipeTypes.NUCLEAR_REACTOR_RECIPES.recipeBuilder("fertile_fuel_zirconium_alloy_" + name + count + "_" + material.getName())
+                    CTNHRecipeTypes.NUCLEAR_REACTOR_RECIPES
+                            .recipeBuilder("fertile_fuel_zirconium_alloy_" + name + count + "_" + material.getName())
                             .duration(30000)
                             .EUt((long) ((getHeat() + count) * count / 2 * 1.2))
                             .circuitMeta(count)
@@ -333,7 +348,8 @@ public class NuclearProperty implements IMaterialProperty {
                             .addData("heat", (getHeat() + count) * count)
                             .save(provider);
 
-                    var builder1 = CTNHRecipeTypes.NUCLEAR_REACTOR_RECIPES.recipeBuilder("fertile_fuel_triso_" + name + count + "_" + material.getName() + "_decay")
+                    var builder1 = CTNHRecipeTypes.NUCLEAR_REACTOR_RECIPES
+                            .recipeBuilder("fertile_fuel_triso_" + name + count + "_" + material.getName() + "_decay")
                             .duration(10000)
                             .EUt((long) ((getHeat() + count) * count * 0.8))
                             .circuitMeta(count + 10)
@@ -342,7 +358,8 @@ public class NuclearProperty implements IMaterialProperty {
                             .outputItems(getDepletedFuel(getCarbideMaterial()).copyWithCount(count))
                             .addData("heat", (getHeat() + count) * count / 5);
 
-                    var builder2 = CTNHRecipeTypes.NUCLEAR_REACTOR_RECIPES.recipeBuilder("fertile_fuel_oxide_" + name + count + "_" + material.getName() + "_decay")
+                    var builder2 = CTNHRecipeTypes.NUCLEAR_REACTOR_RECIPES
+                            .recipeBuilder("fertile_fuel_oxide_" + name + count + "_" + material.getName() + "_decay")
                             .duration(4000)
                             .EUt((long) ((getHeat() + count) * count * 1.05))
                             .circuitMeta(count + 10)
@@ -351,7 +368,8 @@ public class NuclearProperty implements IMaterialProperty {
                             .outputItems(getDepletedFuel(getOxideMaterial()).copyWithCount(count))
                             .addData("heat", (getHeat() + count) * count / 5);
 
-                    var builder3 = CTNHRecipeTypes.NUCLEAR_REACTOR_RECIPES.recipeBuilder("fertile_fuel_nitride_" + name + count + "_" + material.getName() + "_decay")
+                    var builder3 = CTNHRecipeTypes.NUCLEAR_REACTOR_RECIPES
+                            .recipeBuilder("fertile_fuel_nitride_" + name + count + "_" + material.getName() + "_decay")
                             .duration(5000)
                             .EUt((long) ((getHeat() + count) * count * 1.1))
                             .circuitMeta(count + 10)
@@ -360,7 +378,9 @@ public class NuclearProperty implements IMaterialProperty {
                             .outputItems(getDepletedFuel(getNitrideMaterial()).copyWithCount(count))
                             .addData("heat", (getHeat() + count) * count / 5);
 
-                    var builder4 = CTNHRecipeTypes.NUCLEAR_REACTOR_RECIPES.recipeBuilder("fertile_fuel_zirconium_alloy_" + name + count + "_" + material.getName() + "_decay")
+                    var builder4 = CTNHRecipeTypes.NUCLEAR_REACTOR_RECIPES
+                            .recipeBuilder("fertile_fuel_zirconium_alloy_" + name + count + "_" + material.getName() +
+                                    "_decay")
                             .duration(7500)
                             .EUt((long) ((getHeat() + count) * count * 1.2))
                             .circuitMeta(count + 10)
@@ -370,10 +390,10 @@ public class NuclearProperty implements IMaterialProperty {
                             .addData("heat", (getHeat() + count) * count / 5);
 
                     material.getProperty(CTNHPropertyKeys.NUCLEAR).fertileDecay.forEach((material1, amount) -> {
-                            builder1.chancedOutput(getDepletedFuel(material1).copyWithCount(9), amount, 100).save(provider);
-                            builder2.chancedOutput(getDepletedFuel(material1).copyWithCount(9), amount, 100).save(provider);
-                            builder3.chancedOutput(getDepletedFuel(material1).copyWithCount(9), amount, 100).save(provider);
-                            builder4.chancedOutput(getDepletedFuel(material1).copyWithCount(9), amount, 100).save(provider);
+                        builder1.chancedOutput(getDepletedFuel(material1).copyWithCount(9), amount, 100).save(provider);
+                        builder2.chancedOutput(getDepletedFuel(material1).copyWithCount(9), amount, 100).save(provider);
+                        builder3.chancedOutput(getDepletedFuel(material1).copyWithCount(9), amount, 100).save(provider);
+                        builder4.chancedOutput(getDepletedFuel(material1).copyWithCount(9), amount, 100).save(provider);
                     });
                 });
             });

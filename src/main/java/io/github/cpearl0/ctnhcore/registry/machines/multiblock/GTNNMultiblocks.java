@@ -1,5 +1,16 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.Pattern.CTNHPredicates;
+import io.github.cpearl0.ctnhcore.client.renderer.DynamicCasingRender;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ChemicalPlantMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.NeutronActivatorMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.LargeNaquadahReactorMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
+import io.github.cpearl0.ctnhcore.registry.*;
+import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -16,14 +27,7 @@ import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.models.GTMachineModels;
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.api.Pattern.CTNHPredicates;
-import io.github.cpearl0.ctnhcore.client.renderer.DynamicCasingRender;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ChemicalPlantMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.NeutronActivatorMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.LargeNaquadahReactorMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
-import io.github.cpearl0.ctnhcore.registry.*;
+
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
@@ -34,13 +38,15 @@ import java.util.Comparator;
 
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
+
 @Prefix("multiblock")
 @Suffix("tooltip")
 public class GTNNMultiblocks {
+
     public static void init() {
         CHEMICAL_PLANT = REGISTRATE.multiblock(
-                        "exxonmobil_chemical_plant",
-                        ChemicalPlantMachine::new)
+                "exxonmobil_chemical_plant",
+                ChemicalPlantMachine::new)
                 .cnLangValue("埃克森美孚化工厂")
                 .rotationState(RotationState.NON_Y_AXIS)
                 .tooltips(chemical_plant[0].translate(),
@@ -74,25 +80,25 @@ public class GTNNMultiblocks {
                         .where("B", CTNHPredicates.machineCasing)
                         .where("#", Predicates.any())
                         .build())
-//            .shapeInfos(definition ->{
-//                int maxSize = Ints.max(
-//                CTNHBlockMaps.CasingBlock.size(),
-//                CTNHBlockMaps.PipeBlock.size(),
-//                CTNHBlockMaps.MachineCasingBlock.size(),
-//                CTNHBlockMaps.CoilBlock.size()
-//                );
-//                return StructureUtils.getMatchingShapes(
-//                        definition.getPatternFactory().get(),
-//                        maxSize
-//                );
-//            })
+                // .shapeInfos(definition ->{
+                // int maxSize = Ints.max(
+                // CTNHBlockMaps.CasingBlock.size(),
+                // CTNHBlockMaps.PipeBlock.size(),
+                // CTNHBlockMaps.MachineCasingBlock.size(),
+                // CTNHBlockMaps.CoilBlock.size()
+                // );
+                // return StructureUtils.getMatchingShapes(
+                // definition.getPatternFactory().get(),
+                // maxSize
+                // );
+                // })
                 .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
                 .model(GTMachineModels.createWorkableCasingMachineModel(
                         GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
-                        CTNHCore.id("block/multiblock/chemical_plant")).andThen(b ->
-                        b.addDynamicRenderer(() -> new DynamicCasingRender(
-                                GTBlocks.CASING_BRONZE_BRICKS.getDefaultState(), DynamicCasingRender.ModelType.ChemicalPlant) )
-                ))
+                        CTNHCore.id("block/multiblock/chemical_plant"))
+                        .andThen(b -> b.addDynamicRenderer(() -> new DynamicCasingRender(
+                                GTBlocks.CASING_BRONZE_BRICKS.getDefaultState(),
+                                DynamicCasingRender.ModelType.ChemicalPlant))))
                 .register();
         NEUTRON_ACTIVATOR = REGISTRATE.multiblock("neutron_activator", NeutronActivatorMachine::new)
                 .cnLangValue("中子活化器")
@@ -105,26 +111,28 @@ public class GTNNMultiblocks {
                         neutron_activator[4].translate(),
                         neutron_activator[5].translate())
                 .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
-                .pattern(definition ->
-                        FactoryBlockPattern.start(RelativeDirection.RIGHT, RelativeDirection.BACK, RelativeDirection.UP)
-                                .aisle("AASAA", "ABBBA", "ABBBA", "ABBBA", "AAAAA")
-                                .aisle("C###C", "#DDD#", "#DED#", "#DDD#", "C###C").setRepeatable(4, 34)
-                                .aisle("VVVVV", "VBBBV", "VBBBV", "VBBBV", "VVVVV")
-                                .where("S", controller(blocks(definition.get())))
-                                .where(
-                                        "V",
-                                        blocks(GTBlocks.CASING_STAINLESS_CLEAN.get()).or(abilities(PartAbility.IMPORT_FLUIDS))
-                                                .or(abilities(PartAbility.IMPORT_ITEMS))
-                                ).where(
-                                        "A",
-                                        blocks(GTBlocks.CASING_STAINLESS_CLEAN.get()).or(abilities(PartAbility.EXPORT_FLUIDS))
-                                                .or(abilities(PartAbility.EXPORT_ITEMS)).or(abilities(CTNHPartAbility.NEUTRON_ACCELERATOR))
-                                                .or(abilities(CTNHPartAbility.NEUTRON_SENSOR)).or(autoAbilities(true, false, false))
-                                ).where("B", blocks(CTNHBlocks.PROCESS_MACHINE_CASING.get()))
-                                .where("C", blocks(ChemicalHelper.getBlock(TagPrefix.frameGt, GTMaterials.Steel)))
-                                .where("D", blocks(GTBlocks.CASING_LAMINATED_GLASS.get()))
-                                .where("E", blocks(CTNHMachines.HIGH_SPEED_PIPE_BLOCK.get().self()))
-                                .where("#", any()).build()
+                .pattern(definition -> FactoryBlockPattern
+                        .start(RelativeDirection.RIGHT, RelativeDirection.BACK, RelativeDirection.UP)
+                        .aisle("AASAA", "ABBBA", "ABBBA", "ABBBA", "AAAAA")
+                        .aisle("C###C", "#DDD#", "#DED#", "#DDD#", "C###C").setRepeatable(4, 34)
+                        .aisle("VVVVV", "VBBBV", "VBBBV", "VBBBV", "VVVVV")
+                        .where("S", controller(blocks(definition.get())))
+                        .where(
+                                "V",
+                                blocks(GTBlocks.CASING_STAINLESS_CLEAN.get()).or(abilities(PartAbility.IMPORT_FLUIDS))
+                                        .or(abilities(PartAbility.IMPORT_ITEMS)))
+                        .where(
+                                "A",
+                                blocks(GTBlocks.CASING_STAINLESS_CLEAN.get()).or(abilities(PartAbility.EXPORT_FLUIDS))
+                                        .or(abilities(PartAbility.EXPORT_ITEMS))
+                                        .or(abilities(CTNHPartAbility.NEUTRON_ACCELERATOR))
+                                        .or(abilities(CTNHPartAbility.NEUTRON_SENSOR))
+                                        .or(autoAbilities(true, false, false)))
+                        .where("B", blocks(CTNHBlocks.PROCESS_MACHINE_CASING.get()))
+                        .where("C", blocks(ChemicalHelper.getBlock(TagPrefix.frameGt, GTMaterials.Steel)))
+                        .where("D", blocks(GTBlocks.CASING_LAMINATED_GLASS.get()))
+                        .where("E", blocks(CTNHMachines.HIGH_SPEED_PIPE_BLOCK.get().self()))
+                        .where("#", any()).build()
 
                 )
                 .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
@@ -144,28 +152,29 @@ public class GTNNMultiblocks {
                         large_naquadah_reactor[7].translate(),
                         large_naquadah_reactor[8].translate())
                 .recipeModifier(LargeNaquadahReactorMachine::modifyRecipe)
-                .appearanceBlock(CTNHBlocks.RADIATION_PROOF_MACHINE_CASING).pattern(definition ->
-                        FactoryBlockPattern.start()
-                                .aisle("AAAAAAA", "VBBBBBV", "VVVVVVV", "B#####B", "B#####B", "B#####B", "B#####B", "VVVVVVV")
-                                .aisle("AAAAAAA", "B#####B", "V#####V", "#######", "#######", "#######", "#######", "VVVVVVV")
-                                .aisle("AAAAAAA", "B#CCC#B", "V#CCC#V", "##CCC##", "##CCC##", "##CCC##", "##CCC##", "VVVVVVV")
-                                .aisle("AAAAAAA", "B#CCC#B", "V#CDC#V", "##CDC##", "##CDC##", "##CDC##", "##CDC##", "VVVVVVV")
-                                .aisle("AAAAAAA", "B#CCC#B", "V#CCC#V", "##CCC##", "##CCC##", "##CCC##", "##CCC##", "VVVVVVV")
-                                .aisle("AAAAAAA", "B#####B", "V#####V", "#######", "#######", "#######", "#######", "VVVVVVV")
-                                .aisle("AAASAAA", "VBBBBBV", "VVVVVVV", "B#####B", "B#####B", "B#####B", "B#####B", "VVVVVVV")
-                                .where("S", controller(blocks(definition.get())))
-                                .where("V", blocks(CTNHBlocks.RADIATION_PROOF_MACHINE_CASING.get())).where(
-                                        "A", blocks(CTNHBlocks.RADIATION_PROOF_MACHINE_CASING.get()).or(
-                                                        autoAbilities(
-                                                                true, false, false
-                                                        )
-                                                ).or(abilities(PartAbility.OUTPUT_ENERGY, PartAbility.OUTPUT_LASER).setMinGlobalLimited(1, 1).setMaxGlobalLimited(6))
-                                                .or(abilities(PartAbility.IMPORT_FLUIDS).setPreviewCount(1))
-                                                .or(abilities(PartAbility.EXPORT_FLUIDS).setPreviewCount(1))
-                                ).where("B", blocks(ChemicalHelper.getBlock(TagPrefix.frameGt, CTNHMaterials.RadiationProtection)))
-                                .where("C", blocks(CTNHBlocks.FIELD_RESTRICTION_CASING.get()))
-                                .where("D", blocks(GTBlocks.CASING_TUNGSTENSTEEL_PIPE.get())).where("#", air())
-                                .build())
+                .appearanceBlock(CTNHBlocks.RADIATION_PROOF_MACHINE_CASING)
+                .pattern(definition -> FactoryBlockPattern.start()
+                        .aisle("AAAAAAA", "VBBBBBV", "VVVVVVV", "B#####B", "B#####B", "B#####B", "B#####B", "VVVVVVV")
+                        .aisle("AAAAAAA", "B#####B", "V#####V", "#######", "#######", "#######", "#######", "VVVVVVV")
+                        .aisle("AAAAAAA", "B#CCC#B", "V#CCC#V", "##CCC##", "##CCC##", "##CCC##", "##CCC##", "VVVVVVV")
+                        .aisle("AAAAAAA", "B#CCC#B", "V#CDC#V", "##CDC##", "##CDC##", "##CDC##", "##CDC##", "VVVVVVV")
+                        .aisle("AAAAAAA", "B#CCC#B", "V#CCC#V", "##CCC##", "##CCC##", "##CCC##", "##CCC##", "VVVVVVV")
+                        .aisle("AAAAAAA", "B#####B", "V#####V", "#######", "#######", "#######", "#######", "VVVVVVV")
+                        .aisle("AAASAAA", "VBBBBBV", "VVVVVVV", "B#####B", "B#####B", "B#####B", "B#####B", "VVVVVVV")
+                        .where("S", controller(blocks(definition.get())))
+                        .where("V", blocks(CTNHBlocks.RADIATION_PROOF_MACHINE_CASING.get())).where(
+                                "A", blocks(CTNHBlocks.RADIATION_PROOF_MACHINE_CASING.get()).or(
+                                        autoAbilities(
+                                                true, false, false))
+                                        .or(abilities(PartAbility.OUTPUT_ENERGY, PartAbility.OUTPUT_LASER)
+                                                .setMinGlobalLimited(1, 1).setMaxGlobalLimited(6))
+                                        .or(abilities(PartAbility.IMPORT_FLUIDS).setPreviewCount(1))
+                                        .or(abilities(PartAbility.EXPORT_FLUIDS).setPreviewCount(1)))
+                        .where("B",
+                                blocks(ChemicalHelper.getBlock(TagPrefix.frameGt, CTNHMaterials.RadiationProtection)))
+                        .where("C", blocks(CTNHBlocks.FIELD_RESTRICTION_CASING.get()))
+                        .where("D", blocks(GTBlocks.CASING_TUNGSTENSTEEL_PIPE.get())).where("#", air())
+                        .build())
                 .workableCasingModel(
                         CTNHCore.id("block/casings/solid/radiation_proof_machine_casing"),
                         CTNHCore.id("block/multiblock/large_naquadah_reactor"))
@@ -177,35 +186,31 @@ public class GTNNMultiblocks {
                 .recipeModifiers(
                         GTRecipeModifiers.DEFAULT_ENVIRONMENT_REQUIREMENT,
                         GTRecipeModifiers.PARALLEL_HATCH,
-                        GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK)
-                )
+                        GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
                 .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
-                .pattern(definition ->
-                        FactoryBlockPattern.start()
-                                .aisle("XXX", "CCC", "CCC", "CCC", "XXX")
-                                .aisle("XXX", "C#C", "C#C", "C#C", "XXX")
-                                .aisle("XSX", "CCC", "CCC", "CCC", "XXX")
-                                .where('S', controller(blocks(definition.getBlock())))
-                                .where(
-                                        'X', blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()).setMinGlobalLimited(9)
-                                                .or(autoAbilities(definition.getRecipeTypes()))
-                                                .or(autoAbilities(true, false, true))
-                                )
-                                .where('C', blocks(GTBlocks.COIL_NAQUADAH.get()))
-                                .where('#', air())
-                                .build())
+                .pattern(definition -> FactoryBlockPattern.start()
+                        .aisle("XXX", "CCC", "CCC", "CCC", "XXX")
+                        .aisle("XXX", "C#C", "C#C", "C#C", "XXX")
+                        .aisle("XSX", "CCC", "CCC", "CCC", "XXX")
+                        .where('S', controller(blocks(definition.getBlock())))
+                        .where(
+                                'X', blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()).setMinGlobalLimited(9)
+                                        .or(autoAbilities(definition.getRecipeTypes()))
+                                        .or(autoAbilities(true, false, true)))
+                        .where('C', blocks(GTBlocks.COIL_NAQUADAH.get()))
+                        .where('#', air())
+                        .build())
                 .workableCasingModel(
                         GTCEu.id("block/casings/gcym/high_temperature_smelting_casing"),
-                        GTCEu.id("block/multiblock/gcym/large_assembler")
-                )
+                        GTCEu.id("block/multiblock/gcym/large_assembler"))
                 .register();
     }
+
     public static MultiblockMachineDefinition CHEMICAL_PLANT;
 
     public static MultiblockMachineDefinition NEUTRON_ACTIVATOR;
 
     public static MultiblockMachineDefinition LARGE_DEHYDRATOR;
-
 
     public static MultiblockMachineDefinition LARGE_NAQUADAH_REACTOR;
     @CN({

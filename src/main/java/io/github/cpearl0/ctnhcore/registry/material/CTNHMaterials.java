@@ -1,9 +1,11 @@
-package io.github.cpearl0.ctnhcore.registry;
+package io.github.cpearl0.ctnhcore.registry.material;
 
-import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
-import com.aetherteam.aether.block.AetherBlocks;
-import com.aetherteam.aether.item.AetherItems;
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.data.materials.*;
+import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
+import io.github.cpearl0.ctnhcore.registry.CTNHElements;
+import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
+
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.GTValues;
@@ -15,12 +17,14 @@ import com.gregtechceu.gtceu.api.data.chemical.material.registry.MaterialRegistr
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
+import com.gregtechceu.gtceu.common.data.GTFluids;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+
+import com.aetherteam.aether.block.AetherBlocks;
+import com.aetherteam.aether.item.AetherItems;
 import earth.terrarium.adastra.common.registry.ModBlocks;
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.data.materials.*;
-import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
-import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
+import earth.terrarium.adastra.common.registry.ModFluids;
+import fr.lucreeper74.createmetallurgy.registries.CMFluids;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
 
@@ -30,24 +34,24 @@ import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIcon
 import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.HIGHER;
 import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.HIGHEST;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static committee.nova.mods.avaritia.init.registry.ModBlocks.neutron;
-import static committee.nova.mods.avaritia.init.registry.ModItems.neutron_ingot;
-import static committee.nova.mods.avaritia.init.registry.ModItems.neutron_nugget;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes.hyperRotor;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
 
 public class CTNHMaterials {
+
     public static void addFluid(Material material) {
         if (!material.hasProperty(PropertyKey.FLUID)) {
             material.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         }
     }
+
     public static void addDust(Material material) {
         if (!material.hasProperty(PropertyKey.DUST)) {
             material.setProperty(PropertyKey.DUST, new DustProperty());
         }
     }
+
     public static void addOre(Material... materials) {
         materials[0].setProperty(PropertyKey.ORE, new OreProperty());
         if (materials.length == 2 && materials[1] != null) {
@@ -57,22 +61,24 @@ public class CTNHMaterials {
             oreProperty.setSeparatedInto(materials[1]);
         }
     }
+
     public static void addGas(Material material) {
         if (!material.hasProperty(PropertyKey.FLUID)) {
             material.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.GAS, new FluidBuilder()));
         }
     }
+
     public static void adjustAluminium(Material raw) {
         var ores = raw.getProperty(PropertyKey.ORE).getOreByProducts();
         var newOre = ores.stream().map(ore -> {
             if (ore.equals(Aluminium)) {
                 return Alumina;
-            }
-            else return ore;
+            } else return ore;
         }).toList();
         raw.getProperty(PropertyKey.ORE).getOreByProducts().clear();
         raw.getProperty(PropertyKey.ORE).setOreByProducts(newOre);
     }
+
     // Ad Astra
     public static final Material Moonstone = REGISTRATE.material(CTNHCore.id("moon_stone"))
             .cnlang("月石")
@@ -166,26 +172,29 @@ public class CTNHMaterials {
             .ingot()
             .liquid()
             .color(0x6e3204)
-            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL,
+                    GENERATE_FRAME, GENERATE_RING)
             .iconSet(METALLIC)
             .blastTemp(1048)
-            .components(Invar,5, Iron,4, Kanthal,1, Sulfur,1, Silver,1, Carbon,1)
+            .components(Invar, 5, Iron, 4, Kanthal, 1, Sulfur, 1, Silver, 1, Carbon, 1)
             .buildAndRegister();
     public static final Material Inconel625 = REGISTRATE.material(GTCEu.id("inconel_625"))
             .cnlang("镍铬基合金-625")
             .ingot()
             .liquid()
             .color(0x6eab6c)
-            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL,
+                    GENERATE_FRAME, GENERATE_RING)
             .iconSet(METALLIC)
             .blastTemp(6200)
-            .components(Nickel,2,Aluminium,2, Niobium,1,Nichrome,1)
+            .components(Nickel, 2, Aluminium, 2, Niobium, 1, Nichrome, 1)
             .buildAndRegister();
     public static final Material Abyssalalloy = REGISTRATE.material(GTCEu.id("abyssalalloy"))
             .cnlang("渊狱合金")
             .ingot().liquid()
             .blastTemp(10800, HIGHER, GTValues.VA[GTValues.UV], 1800)
-            .components(StainlessSteel, 5,TungstenCarbide,5, Nichrome,5,Bronze,5,IncoloyMA956,5, Iodine, 1,Germanium,1,Radon,1 ,Hafnium,1)
+            .components(StainlessSteel, 5, TungstenCarbide, 5, Nichrome, 5, Bronze, 5, IncoloyMA956, 5, Iodine, 1,
+                    Germanium, 1, Radon, 1, Hafnium, 1)
             .color(0x9e706a)
             .iconSet(METALLIC)
             .flags(GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
@@ -195,7 +204,7 @@ public class CTNHMaterials {
             .cnlang("泰坦钢")
             .ingot().liquid()
             .blastTemp(12600, HIGHER, GTValues.VA[GTValues.UHV], 1200)
-            .components(TitaniumTungstenCarbide,4,Plutonium241,1, Einsteinium, 2,Rhenium,1, Erbium,1, Jasper,3)
+            .components(TitaniumTungstenCarbide, 4, Plutonium241, 1, Einsteinium, 2, Rhenium, 1, Erbium, 1, Jasper, 3)
             .color(0xe60000)
             .iconSet(METALLIC)
             .flags(GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
@@ -207,7 +216,8 @@ public class CTNHMaterials {
             .liquid()
             .radioactiveHazard(3)
             .blastTemp(14400, HIGHER)
-            .components(Inconel625,8, Eglinalloy,5, EnrichedNaquadahWaste,4, TungstenSteel,4, Cerium,3, Antimony,2, Platinum,2 ,Ytterbium,1)
+            .components(Inconel625, 8, Eglinalloy, 5, EnrichedNaquadahWaste, 4, TungstenSteel, 4, Cerium, 3, Antimony,
+                    2, Platinum, 2, Ytterbium, 1)
             .color(0x67abff)
             .iconSet(METALLIC)
             .flags(GENERATE_FINE_WIRE)
@@ -218,7 +228,8 @@ public class CTNHMaterials {
             .ingot()
             .liquid()
             .blastTemp(16200, HIGHEST, GTValues.VA[GTValues.UXV], 1400)
-            .components(Titanium,26, Lanthanum,6, Tungsten,4, Cobalt,3, Manganese,2, Phosphorus,2, Palladium,2, Niobium,1, Argon,5)
+            .components(Titanium, 26, Lanthanum, 6, Tungsten, 4, Cobalt, 3, Manganese, 2, Phosphorus, 2, Palladium, 2,
+                    Niobium, 1, Argon, 5)
             .color(0x6C003B)
             .iconSet(DULL)
             .flags(GENERATE_ROD, GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
@@ -227,7 +238,7 @@ public class CTNHMaterials {
     public static final Material Starmetal = REGISTRATE.material(GTCEu.id("starmetal"))
             .cnlang("炫星")
             .ingot()
-            .liquid(new FluidBuilder().textures(true,true).block())
+            .liquid(new FluidBuilder().textures(true, true).block())
             .plasma()
             .addOreByproducts(GTMaterials.Sapphire, GTMaterials.Polonium)
             .radioactiveHazard(6)
@@ -235,7 +246,8 @@ public class CTNHMaterials {
             .element(CTNHElements.STARMETAL)
             .color(0xf4f4f4)
             .iconSet(MaterialIcons.StarsteelIcon)
-            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_ROTOR)
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL,
+                    GENERATE_ROTOR)
             .cableProperties(GTValues.V[GTValues.OpV], 4, 256)
             .buildAndRegister();
     public static final Material Infinity = REGISTRATE.material(GTCEu.id("my_infinity"))
@@ -258,11 +270,11 @@ public class CTNHMaterials {
             .flags(GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
             .cableProperties(GTValues.V[GTValues.UHV], 4, 64)
             .buildAndRegister();
-    public static  final Material COMPRESSED_ADAMANTITE= REGISTRATE.material(GTCEu.id("compressed_adamantite"))
+    public static final Material COMPRESSED_ADAMANTITE = REGISTRATE.material(GTCEu.id("compressed_adamantite"))
             .cnlang("压缩精金")
             .plasma()
             .buildAndRegister();
-    public static  final Material COMPRESSED_AETHER = REGISTRATE.material(GTCEu.id("compressed_aether"))
+    public static final Material COMPRESSED_AETHER = REGISTRATE.material(GTCEu.id("compressed_aether"))
             .cnlang("精炼超能以太")
             .plasma()
             .buildAndRegister();
@@ -300,7 +312,7 @@ public class CTNHMaterials {
             .addOreByproducts(GTMaterials.SiliconDioxide, GTMaterials.Yttrium)
             .color(0xEB9E3F)
             .iconSet(GEM_VERTICAL)
-            .components(Zirconium,1, Silicon,1, Oxygen,4)
+            .components(Zirconium, 1, Silicon, 1, Oxygen, 4)
             .buildAndRegister();
     public static final Material Zirkelite = REGISTRATE.material(GTCEu.id("zirkelite"))
             .cnlang("钛锆钍石")
@@ -308,7 +320,7 @@ public class CTNHMaterials {
             .ore()
             .addOreByproducts(Thorium)
             .color(0x525e50)
-            .components(Calcium,2, Thorium,2, Cerium,1, Zirconium,7, Rutile,2, Niobium,4, Oxygen,10)
+            .components(Calcium, 2, Thorium, 2, Cerium, 1, Zirconium, 7, Rutile, 2, Niobium, 4, Oxygen, 10)
             .buildAndRegister();
     public static final Material Nickeline = REGISTRATE.material(GTCEu.id("nickeline"))
             .cnlang("红砷镍")
@@ -316,7 +328,7 @@ public class CTNHMaterials {
             .ore()
             .addOreByproducts(GTMaterials.ArsenicTrioxide)
             .color(0xe8a3a3)
-            .components(Nickel,1, Arsenic,1)
+            .components(Nickel, 1, Arsenic, 1)
             .buildAndRegister();
     public static final Material TrisodiumPhosphate = REGISTRATE.material(GTCEu.id("trisodium_phosphate"))
             .cnlang("磷酸三钠")
@@ -324,7 +336,7 @@ public class CTNHMaterials {
             .color(0xdbff67)
             .ore()
             .addOreByproducts(GTMaterials.Phosphate, GTMaterials.Salt)
-            .components(Sodium,3, Phosphate,1)
+            .components(Sodium, 3, Phosphate, 1)
             .buildAndRegister();
     public static final Material FlowingAmberGold = REGISTRATE.material(GTCEu.id("flowing_amber_gold"))
             .cnlang("通流琥珀金")
@@ -344,7 +356,7 @@ public class CTNHMaterials {
                     .blastStats(VA[GTValues.UV], 6000)
                     .vacuumStats(VA[LuV]))
             .addOreByproducts(GTMaterials.HSSS, GTMaterials.Trinium)
-            .components(Redstone,9, BlueSteel,4, HSSS,12, Trinium,5, Indium,3, Electrum,16)
+            .components(Redstone, 9, BlueSteel, 4, HSSS, 12, Trinium, 5, Indium, 3, Electrum, 16)
             .buildAndRegister();
     public static final Material SpecialCompositeSteelM77 = REGISTRATE.material(GTCEu.id("special_composite_steel_m77"))
             .cnlang("特种复合钢-M77")
@@ -364,7 +376,7 @@ public class CTNHMaterials {
                     .blastStats(VA[GTValues.ZPM], 4000)
                     .vacuumStats(VA[LuV]))
             .addOreByproducts(GTMaterials.Vanadium, GTMaterials.TungstenSteel)
-            .components(HSLASteel,18, TungstenSteel,12, Vanadium,5, Ultimet,7, Naquadria,4)
+            .components(HSLASteel, 18, TungstenSteel, 12, Vanadium, 5, Ultimet, 7, Naquadria, 4)
             .buildAndRegister();
     public static final Material HiddenAlloy = REGISTRATE.material(GTCEu.id("hidden_alloy"))
             .cnlang("幽匿合金")
@@ -384,7 +396,7 @@ public class CTNHMaterials {
                     .blastStats(VA[GTValues.LuV], 2000)
                     .vacuumStats(VA[IV]))
             .addOreByproducts(GTMaterials.EchoShard, GTMaterials.Sculk)
-            .components(EchoShard,10, Sculk,6, RedAlloy,4, BlueAlloy,4, Apatite,4)
+            .components(EchoShard, 10, Sculk, 6, RedAlloy, 4, BlueAlloy, 4, Apatite, 4)
             .buildAndRegister();
     public static final Material SpiritAsh = REGISTRATE.material(GTCEu.id("spirit_ash"))
             .cnlang("巫师之骨")
@@ -393,7 +405,7 @@ public class CTNHMaterials {
             .secondaryColor(0x306080)
             .ore()
             .addOreByproducts(TricalciumPhosphate, Phosphate)
-            .components(CalciumChloride,1, Redstone,1, Biotite,1)
+            .components(CalciumChloride, 1, Redstone, 1, Biotite, 1)
             .buildAndRegister();
     public static final Material SteelLeaf = REGISTRATE.material(GTCEu.id("steel_leaf"))
             .cnlang("钢叶")
@@ -402,7 +414,7 @@ public class CTNHMaterials {
             .secondaryColor(0x306080)
             .ore()
             .addOreByproducts(TricalciumPhosphate, Phosphate)
-            .components(Uvarovite,1, Malachite,1, Olivine,1, Carbon,1)
+            .components(Uvarovite, 1, Malachite, 1, Olivine, 1, Carbon, 1)
             .buildAndRegister();
     public static final Material EclipseShadow = REGISTRATE.material(GTCEu.id("eclipse_shadow"))
             .cnlang("幽影")
@@ -503,14 +515,16 @@ public class CTNHMaterials {
                     .customStill())
             .color(0x34daf7)
             .buildAndRegister();
-    public static final Material BiologicalCultureMediumStockSolution = REGISTRATE.material(GTCEu.id("biologicalculturemediumstocksolution"))
+    public static final Material BiologicalCultureMediumStockSolution = REGISTRATE
+            .material(GTCEu.id("biologicalculturemediumstocksolution"))
             .cnlang("生物培养基原液")
             .liquid(new FluidBuilder()
                     .temperature(303)
                     .customStill())
             .color(0x228B22)
             .buildAndRegister();
-    public static final Material SterileBiologicalCultureMediumStockSolution = REGISTRATE.material(GTCEu.id("sterilebiologicalculturemediumstocksolution"))
+    public static final Material SterileBiologicalCultureMediumStockSolution = REGISTRATE
+            .material(GTCEu.id("sterilebiologicalculturemediumstocksolution"))
             .cnlang("无菌生物培养基原液")
             .liquid(new FluidBuilder()
                     .temperature(403)
@@ -518,10 +532,10 @@ public class CTNHMaterials {
             .color(0x228B22)
             .buildAndRegister();
 
-
     public static final Material Ignitium = REGISTRATE.material(GTCEu.id("ignitium"))
             .cnlang("腾炎")
-            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL,
+                    GENERATE_FRAME, GENERATE_RING)
             .ingot()
             .color(0xffd919)
             .iconSet(METALLIC)
@@ -545,7 +559,8 @@ public class CTNHMaterials {
             .liquid()
             .dust()
             .ingot()
-            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL,
+                    GENERATE_FRAME, GENERATE_RING)
             .plasma()
             .element(CTNHElements.SUNNARIUM)
             .color(0XFFFF01)
@@ -558,32 +573,33 @@ public class CTNHMaterials {
                     .customStill())
             .dust()
             .ingot()
-            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL,
+                    GENERATE_FRAME, GENERATE_RING)
             .plasma()
             .element(CTNHElements.HIKARIUM)
             .color(0XFFAA00)
             .buildAndRegister();
     public static final Material starlight = REGISTRATE.material(GTCEu.id("starlight"))
             .cnlang("星能液")
-            .liquid(new FluidBuilder().temperature(50).textures(true,true).block())
+            .liquid(new FluidBuilder().temperature(50).textures(true, true).block())
             .buildAndRegister();
     public static final Material siliconFluoride = REGISTRATE.material(GTCEu.id("silicon_fluoride"))
             .cnlang("氟化硅")
             .liquid()
             .color(0x76868a)
-            .components(Silicon,1 , Fluorine, 4)
+            .components(Silicon, 1, Fluorine, 4)
             .buildAndRegister();
     public static final Material carbonFluoride = REGISTRATE.material(GTCEu.id("carbon_fluoride"))
             .cnlang("氟化碳")
             .liquid()
             .color(0xb8956d)
-            .components(Carbon,1 , Fluorine, 4)
+            .components(Carbon, 1, Fluorine, 4)
             .buildAndRegister();
     public static final Material zirconiumTetrachloride = REGISTRATE.material(GTCEu.id("zirconium_tetrachloride"))
             .cnlang("四氯化锆")
             .dust()
             .color(0xd0db7d)
-            .components(Zirconium,1 , Chlorine, 4)
+            .components(Zirconium, 1, Chlorine, 4)
             .flags(DISABLE_DECOMPOSITION)
             .buildAndRegister();
     public static final Material siliconCarbide = REGISTRATE.material(GTCEu.id("silicon_carbide"))
@@ -626,19 +642,19 @@ public class CTNHMaterials {
             .burnTime(6000)
             .ore()
             .buildAndRegister();
-//    public static final Material ManaFused = REGISTRATE.material(GTCEu.id("mana_fused"))
-//            .cnlang("蕴魔")
-//            .dust()
-//            .ore()
-//            .color(0x4FC1FF)
-//            .buildAndRegister();
-    public static final Material NQ_END_OF_GASOLINE =REGISTRATE.material(GTCEu.id("nq_end_gasoline"))
+    // public static final Material ManaFused = REGISTRATE.material(GTCEu.id("mana_fused"))
+    // .cnlang("蕴魔")
+    // .dust()
+    // .ore()
+    // .color(0x4FC1FF)
+    // .buildAndRegister();
+    public static final Material NQ_END_OF_GASOLINE = REGISTRATE.material(GTCEu.id("nq_end_gasoline"))
             .cnlang("硅岩基终末燃油-NQ")
             .liquid()
             .color(0x000000)
             .element(CTNHElements.END_OF_OIL)
             .buildAndRegister();
-    public static final Material LIVING_METAL=REGISTRATE.material(GTCEu.id("living_metal"))
+    public static final Material LIVING_METAL = REGISTRATE.material(GTCEu.id("living_metal"))
             .cnlang("活体金属")
             .liquid()
             .color(0x000000)
@@ -649,7 +665,7 @@ public class CTNHMaterials {
             .liquid()
             .color(0x4ded1c)
             .buildAndRegister();
-    public static  final Material COLORFUL_GEM = REGISTRATE.material(GTCEu.id("colorful_gem"))
+    public static final Material COLORFUL_GEM = REGISTRATE.material(GTCEu.id("colorful_gem"))
             .cnlang("异彩（无材质版）")
             .gem()
             .element(CTNHElements.COLORFUL_GEM)
@@ -817,10 +833,6 @@ public class CTNHMaterials {
             .addOreByproducts(Molybdenum, Copper, Platinum)
             .buildAndRegister();
 
-    public static Material AndesiteAlloy;
-    public static Material Desh;
-    public static Material Ostrum;
-    public static Material Calorite;
     public static Material SpaceNeutronium;
     public static Material InfinityCatalyst;
     public static Material RP1;
@@ -850,35 +862,8 @@ public class CTNHMaterials {
     public static Material TerraSteel;
     public static Material Elementium;
     public static Material AlfSteel;
-    public static Material RefinedRadiance;
-    public static Material ShadowSteel;
     public static Material Kaolinite;
     public static Material Dolomite;
-    public static Material IridiumDioxide;
-    public static Material NaquadahOxideMixture;
-    public static Material EnrichedNaquadahOxideMixture;
-    public static Material NaquadriaOxideMixture;
-    public static Material HexafluorideEnrichedNaquadahSolution;
-    public static Material XenonHexafluoroEnrichedNaquadate;
-    public static Material PalladiumOnCarbon;
-    public static Material GoldTrifluoride;
-    public static Material EnrichedNaquadahResidueSolution;
-    public static Material XenoauricFluoroantimonicAcid;
-    public static Material GoldChloride;
-    public static Material BromineTrifluoride;
-    public static Material HexafluorideNaquadriaSolution;
-    public static Material RadonDifluoride;
-    public static Material RadonNaquadriaOctafluoride;
-    public static Material NaquadriaResidueSolution;
-    public static Material CaesiumFluoride;
-    public static Material XenonTrioxide;
-    public static Material CaesiumXenontrioxideFluoride;
-    public static Material NaquadriaCaesiumXenonnonfluoride;
-    public static Material RadonTrioxide;
-    public static Material NaquadriaCaesiumfluoride;
-    public static Material NitrosoniumOctafluoroxenate;
-    public static Material NitrylFluoride;
-    public static Material AcidicNaquadriaCaesiumfluoride;
     public static Material GraphiteUraniumMixture;
     public static Material UraniumCarbideThoriumMixture;
     public static Material PlutoniumOxideUraniumMixture;
@@ -906,45 +891,8 @@ public class CTNHMaterials {
     public static Material DebrominatedWater;
     public static Material NeutroniumMixture;
     public static Material MARM200Steel;
-    //旧铂线
-    public static Material PalladiumMetal;
-    public static Material PlatinumMetal;
-    //新铂线
-    public static Material PlatinumOre;
-    public static Material PalladiumOre;
-    public static Material GoldPlatinumPalladiumAcidSolution;
-    public static Material DenitratedGoldPlatinumPalladiumSolution;
-    public static Material FerricSulfate;
-    public static Material FerrousSulfate;
-    public static Material ChloroplatinicChloropalladicSolution;
-    public static Material AmmoniumChloroplatinate;
-    public static Material AmmoniaMonohydrate;
-    public static Material Diamminedichloropalladium;
-    public static Material SpongePalladium;
-    public static Material SpongePlatinum;
-    public static Material ChloropalladicAcidMixture;
-    public static Material PlatinumGroupResidue;     // 铂族贵金属残渣
-    public static Material Litharge;                // 密陀僧（PbO）
-    public static Material NobleLead;               // 贵铅（Pb/Ag/Au）
-    public static Material NitricLeachSolution;    // 硝酸浸没溶液
-    public static Material EnrichedInertMixture;    // 富集惰性混合物（Rh/Ir/Ru）
-    public static Material RhodiumSulfateSolution; // 含硫酸铑水溶液
-    public static Material RhodiumHydroxide;       // 氢氧化铑
-    public static Material ChlororhodicAcid;       // 氯铑酸（H₃[RhCl₆]）
-    public static Material ConcentratedAmmoniumChlororhodate; // 浓缩氯铑酸铵溶液
-    public static Material AmmoniumChlororhodate;  // 氯铑酸铵（(NH₄)₃[RhCl₆]）
-    public static Material SpongeRhodium;          // 海绵铑
-    public static Material PreciousMetalMixture;
-    public static Material AmmoniumChlororhodateSolution;
-    public static Material SodiumOsmateRuthenateSolution;
-    public static Material SodiumPeroxide;
-    public static Material ChlorosmicAcidGas;
-    public static Material ChlororuthenicAcidGas;
-    public static Material AmmoniumChlorosmate;
-    public static Material AmmoniumChlororuthenate;
-    public static Material SodiumOsmateRuthenateChlorideSolution;
-    public static Material Acetaldehyde;
     public static Material Seawater;
+
     public static void init() {
         NuclearMaterials.init();
         CreateMaterials.init();
@@ -954,8 +902,9 @@ public class CTNHMaterials {
         PlatinumLineMaterials.init();
         NaquadahMaterials.init();
         BrineChain.init();
+        EnderIOMaterials.init();
 
-        OrdinaryMaterials.init();
+        WetWareLineMaterials.init();
         CombustibleIce.setFormula("(CH4)(H2O)", true);
 
         var ore = new OreProperty();
@@ -968,7 +917,6 @@ public class CTNHMaterials {
         addFluid(Caesium);
         addFluid(AmmoniumChloride);
         addDust(Praseodymium);
-
 
         adjustAluminium(Almandine);
         adjustAluminium(Emerald);
@@ -983,25 +931,24 @@ public class CTNHMaterials {
         adjustAluminium(Mica);
         adjustAluminium(Zeolite);
 
+        Oxygen.getProperty(PropertyKey.FLUID).getStorage().store(FluidStorageKeys.GAS, ModFluids.OXYGEN, null);
+        GTFluids.handleNonMaterialFluids(Steel, () -> CMFluids.MOLTEN_STEEL.get().getSource());
+
         var oreProp = Naquadah.getProperty(PropertyKey.ORE);
         oreProp.getOreByProducts().clear();
-        oreProp.setOreByProducts(Sulfur, Barite, EnrichedNaquadahOxideMixture);
+        oreProp.setOreByProducts(Sulfur, Barite, NaquadahMaterials.EnrichedNaquadahOxideMixture);
         oreProp.getSeparatedInto().clear();
-        oreProp.setSeparatedInto(EnrichedNaquadahOxideMixture);
+        oreProp.setSeparatedInto(NaquadahMaterials.EnrichedNaquadahOxideMixture);
 
-        //Enable Dense Plate for Hyper Rotor
+        // Enable Dense Plate for Hyper Rotor
         for (MaterialRegistry registry : GTCEuAPI.materialManager.getRegistries())
             for (Material material : registry.getAllMaterials())
-                if (material.hasAnyOfFlags(MaterialFlags.GENERATE_ROTOR, GENERATE_HYPER_ROTOR)
-                        && !material.hasFlag(GENERATE_DENSE))
+                if (material.hasAnyOfFlags(MaterialFlags.GENERATE_ROTOR, GENERATE_HYPER_ROTOR) &&
+                        !material.hasFlag(GENERATE_DENSE))
                     material.addFlags(GENERATE_DENSE);
-
     }
+
     public static void tagPrefixIgnore() {
-
-        TagPrefix.gem.setIgnored(GTMaterials.CertusQuartz, () -> AEItems.CERTUS_QUARTZ_CRYSTAL);
-        TagPrefix.block.setIgnored(GTMaterials.CertusQuartz, () -> AEBlocks.QUARTZ_BLOCK);
-
         TagPrefix.block.setIgnored(Moonstone, ModBlocks.MOON_STONE);
         TagPrefix.block.setIgnored(Marsstone, ModBlocks.MARS_STONE);
         TagPrefix.block.setIgnored(Venusstone, ModBlocks.VENUS_STONE);
@@ -1022,16 +969,11 @@ public class CTNHMaterials {
         TagPrefix.ingot.setIgnored(Stratus, DAItems.STRATUS_INGOT);
         TagPrefix.block.setIgnored(Stratus, DABlocks.STRATUS_BLOCK);
 
-
         hyperRotor.setIgnored(Neutronium);
-
-        TagPrefix.ingot.setIgnored(GTMaterials.Neutronium, neutron_ingot);
-        TagPrefix.nugget.setIgnored(GTMaterials.Neutronium, neutron_nugget);
-        TagPrefix.block.setIgnored(GTMaterials.Neutronium, neutron);
     }
 
     public static class MaterialIcons {
+
         public static MaterialIconSet StarsteelIcon = new MaterialIconSet("starsteel", METALLIC);
     }
-
 }

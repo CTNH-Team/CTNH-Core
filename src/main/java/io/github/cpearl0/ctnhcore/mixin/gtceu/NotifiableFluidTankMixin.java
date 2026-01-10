@@ -1,8 +1,11 @@
 package io.github.cpearl0.ctnhcore.mixin.gtceu;
 
-import com.gregtechceu.gtceu.api.machine.trait.NotifiableFluidTank;
-import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import io.github.cpearl0.ctnhcore.utils.IAllowSameContainer;
+
+import com.gregtechceu.gtceu.api.machine.trait.NotifiableFluidTank;
+
+import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 

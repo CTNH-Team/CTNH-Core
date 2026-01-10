@@ -1,31 +1,36 @@
 package io.github.cpearl0.ctnhcore.data.recipe.multiblock;
 
+import io.github.cpearl0.ctnhcore.data.materials.NaquadahMaterials;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
+
 public class Sinope_recipes {
-    public static void init(Consumer<FinishedRecipe> provider){
+
+    public static void init(Consumer<FinishedRecipe> provider) {
         CTNHRecipeTypes.SINOPE.recipeBuilder("impure_enriched_naquadah_solution1")
                 .inputFluids(GTMaterials.AcidicNaquadriaSolution.getFluid(3000))
                 .outputFluids(GTMaterials.NaquadriaWaste.getFluid(1000))
                 .outputFluids(GTMaterials.ImpureEnrichedNaquadahSolution.getFluid(1000))
                 .EUt(GTValues.VA[GTValues.HV])
                 .duration(1000)
-                //.blastFurnaceTemp(1280)
+                // .blastFurnaceTemp(1280)
                 .save(provider);
         CTNHRecipeTypes.SINOPE.recipeBuilder("enriched_naquadah_residue_solution1")
-                .inputItems(TagPrefix.dust, CTNHMaterials.GoldTrifluoride, 4)
-                .inputFluids(CTNHMaterials.XenonHexafluoroEnrichedNaquadate.getFluid(1000))
+                .inputItems(TagPrefix.dust, NaquadahMaterials.GoldTrifluoride, 4)
+                .inputFluids(NaquadahMaterials.XenonHexafluoroEnrichedNaquadate.getFluid(1000))
                 .inputFluids(GTMaterials.FluoroantimonicAcid.getFluid(1000))
                 .inputFluids(GTMaterials.Hydrogen.getFluid(9000))
                 .outputFluids(GTMaterials.EnrichedNaquadahSolution.getFluid(1000))
-                .outputFluids(CTNHMaterials.EnrichedNaquadahResidueSolution.getFluid(1000))
+                .outputFluids(NaquadahMaterials.EnrichedNaquadahResidueSolution.getFluid(1000))
                 .outputFluids(GTMaterials.HydrofluoricAcid.getFluid(8000))
                 .EUt(GTValues.VA[GTValues.LuV])
                 .duration(1200)
@@ -89,6 +94,5 @@ public class Sinope_recipes {
                 .outputFluids(CTNHMaterials.MethylhydrazineNitrateRocketFuel.getFluid(2000))
                 .circuitMeta(3)
                 .duration(1000).EUt(GTValues.VA[GTValues.HV]).save(provider);
-
     }
 }

@@ -1,12 +1,14 @@
 package io.github.cpearl0.ctnhcore.integration.legendary;
 
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
+
 import net.minecraft.world.entity.player.Player;
+
 import sfiomn.legendarysurvivaloverhaul.api.temperature.DynamicModifierBase;
 
 public class ArmorModifier extends DynamicModifierBase {
-    public ArmorModifier() {
-    }
+
+    public ArmorModifier() {}
 
     @Override
     public float applyDynamicPlayerInfluence(Player player, float currentTemperature, float currentResistance) {
@@ -23,8 +25,7 @@ public class ArmorModifier extends DynamicModifierBase {
         float tempDiff = currentTemperature - currentResistance;
         if (tempDiff >= 0) {
             return -tempDiff * Math.min(1, sumCooling / 20);
-        }
-        else {
+        } else {
             return -tempDiff * Math.min(1, sumWarming / 20);
         }
     }

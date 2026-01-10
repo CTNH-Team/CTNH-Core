@@ -1,20 +1,23 @@
 package io.github.cpearl0.ctnhcore.data.recipe.cogniassembly;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.data.materials.WetWareLineMaterials;
+import io.github.cpearl0.ctnhcore.registry.CTNHItems;
+
+import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.world.item.Items;
+import net.minecraftforge.fluids.FluidStack;
+
 import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.entity.AetherEntityTypes;
 import com.enderio.base.common.init.EIOFluids;
 import com.github.elenterius.biomancy.init.ModEntityTypes;
-import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
-import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.moguang.ctnhbio.data.recipe.CogniRecipeBuilder;
 import com.moguang.ctnhbio.registry.CBRecipeTypes;
 import committee.nova.mods.avaritia.init.registry.ModItems;
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.data.materials.OrdinaryMaterials;
-import io.github.cpearl0.ctnhcore.registry.CTNHItems;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.world.item.Items;
-import net.minecraftforge.fluids.FluidStack;
 
 import java.util.function.Consumer;
 
@@ -26,11 +29,12 @@ import static com.moguang.ctnhbio.data.recipe.multi.HostileObservationRecipes.ad
 import static com.moguang.ctnhbio.registry.CBItems.*;
 import static dev.shadowsoffire.hostilenetworks.data.ModelTier.ADVANCED;
 import static dev.shadowsoffire.hostilenetworks.data.ModelTier.SUPERIOR;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.HiddenAlloy;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.SterileBiologicalCultureMediumStockSolution;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.HiddenAlloy;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.SterileBiologicalCultureMediumStockSolution;
 import static net.minecraft.world.entity.EntityType.*;
 
 public class WetwareCircuit {
+
     public static void init(Consumer<FinishedRecipe> provider) {
         CogniAssembly("cogni_wetware_super_computer")
                 .EUt(VA[ZPM])
@@ -43,20 +47,17 @@ public class WetwareCircuit {
                 .MIFStep(
                         ADVANCED, SLIME,
                         WETWARE_PROCESSOR_ASSEMBLY_ZPM, 1,
-                        Healing_Compound.getFluid(1000)
-                )
+                        Healing_Compound.getFluid(1000))
                 .MIFStep(ADVANCED, GUARDIAN,
                         WETWARE_DIODE, 16,
                         Organic_Compound.getFluid(1000))
                 .MIFStep(ADVANCED, SPIDER,
                         CTNHItems.ADVANCED_RAM_CHIP, 16,
                         Toxin_Extract.getFluid(1000))
-                .IFStep(ChemicalHelper.get(TagPrefix.wireFine, OrdinaryMaterials.BIO_FLEXIBLE, 64),
-                        OrdinaryMaterials.POLYPYRROLE.getFluid(432)
-                )
-                .IFStep(ChemicalHelper.get(TagPrefix.cableGtDouble, OrdinaryMaterials.BLUE_TITANIUM_ALLOY, 8),
-                        Polybenzimidazole.getFluid(432)
-                )
+                .IFStep(ChemicalHelper.get(TagPrefix.wireFine, WetWareLineMaterials.BIO_FLEXIBLE, 64),
+                        WetWareLineMaterials.POLYPYRROLE.getFluid(432))
+                .IFStep(ChemicalHelper.get(TagPrefix.cableGtDouble, WetWareLineMaterials.BLUE_TITANIUM_ALLOY, 8),
+                        Polybenzimidazole.getFluid(432))
                 .save(provider);
 
         CogniAssembly("cogni_wetware_processor_mainframe")
@@ -71,36 +72,28 @@ public class WetwareCircuit {
                 .MIFStep(
                         SUPERIOR, SLIME,
                         WETWARE_SUPER_COMPUTER_UV, 2,
-                        Healing_Compound.getFluid(1000)
-                )
+                        Healing_Compound.getFluid(1000))
                 .MIFStep(
                         SUPERIOR, WITHER_SKELETON,
                         WETWARE_CAPACITOR, 16,
-                        Withering_Ooze.getFluid(1000)
-                )
+                        Withering_Ooze.getFluid(1000))
                 .MIFStep(
                         SUPERIOR, ELDER_GUARDIAN,
                         WETWARE_TRANSISTOR, 16,
-                        Primordial_Serum.getFluid(200)
-                )
+                        Primordial_Serum.getFluid(200))
                 .MIFStep(
                         SUPERIOR, GLOW_SQUID,
                         WETWARE_RESISTOR, 32,
-                        DiethylenetriaminePentaacetonitrile.getFluid(1000)
-                )
+                        DiethylenetriaminePentaacetonitrile.getFluid(1000))
                 .MIFStep(
                         SUPERIOR, SHULKER,
                         ChemicalHelper.get(TagPrefix.plate, Duranium, 8),
-                        EnderPearl.getFluid(1152)
-                )
-                .IFStep(ChemicalHelper.get(TagPrefix.wireFine, OrdinaryMaterials.BIO_FLEXIBLE, 64),
-                        OrdinaryMaterials.POLYPYRROLE.getFluid(432)
-                )
-                .IFStep(ChemicalHelper.get(TagPrefix.cableGtDouble, OrdinaryMaterials.BLUE_TITANIUM_ALLOY, 8),
-                        Polybenzimidazole.getFluid(432)
-                )
+                        EnderPearl.getFluid(1152))
+                .IFStep(ChemicalHelper.get(TagPrefix.wireFine, WetWareLineMaterials.BIO_FLEXIBLE, 64),
+                        WetWareLineMaterials.POLYPYRROLE.getFluid(432))
+                .IFStep(ChemicalHelper.get(TagPrefix.cableGtDouble, WetWareLineMaterials.BLUE_TITANIUM_ALLOY, 8),
+                        Polybenzimidazole.getFluid(432))
                 .save(provider);
-
 
         CogniAssembly("sculk_cell")
                 .EUt(VA[UV])
@@ -110,45 +103,38 @@ public class WetwareCircuit {
                 .MIFStep(
                         SUPERIOR, ModEntityTypes.PRIMORDIAL_FLESH_BLOB.get(),
                         STEM_CELLS, 64,
-                        Primordial_Serum.getFluid(500)
-                )
+                        Primordial_Serum.getFluid(500))
                 .MIFStep(
                         SUPERIOR, SLIME,
                         HIGHLY_ADVANCED_SOC, 16,
-                        Mutagen.getFluid(500)
-                )
+                        Mutagen.getFluid(500))
                 .MIFStep(
                         SUPERIOR, GLOW_SQUID,
-                        ChemicalHelper.get(TagPrefix.wireFine, OrdinaryMaterials.BIO_FLEXIBLE, 64),
-                        SterileBiologicalCultureMediumStockSolution.getFluid(500)
-                )
+                        ChemicalHelper.get(TagPrefix.wireFine, WetWareLineMaterials.BIO_FLEXIBLE, 64),
+                        SterileBiologicalCultureMediumStockSolution.getFluid(500))
                 .MIFStep(
                         SUPERIOR, AetherEntityTypes.AERWHALE.get(),
                         ModItems.crystal_matrix_ingot, 1,
-                        Polybenzimidazole.getFluid(432)
-                )
+                        Polybenzimidazole.getFluid(432))
                 .MIFStep(
                         SUPERIOR, SHULKER,
                         ChemicalHelper.get(TagPrefix.bolt, HiddenAlloy, 64),
-                        Rejuvenation_Serum.getFluid(1000)
-                )
+                        Rejuvenation_Serum.getFluid(1000))
                 .MIFStep(
                         SUPERIOR, WARDEN,
                         () -> Items.SCULK_VEIN, 64,
-                        new FluidStack(EIOFluids.XP_JUICE.get().getSource(), 1000)
-                )
+                        new FluidStack(EIOFluids.XP_JUICE.get().getSource(), 1000))
                 .save(provider);
 
-        addEntityTypeWithItem(ModEntityTypes.PRIMORDIAL_FLESH_BLOB.get(), (com.github.elenterius.biomancy.init.ModItems.LIVING_FLESH.get()), provider);
+        addEntityTypeWithItem(ModEntityTypes.PRIMORDIAL_FLESH_BLOB.get(),
+                (com.github.elenterius.biomancy.init.ModItems.LIVING_FLESH.get()), provider);
         addEntityTypeWithItem(AetherEntityTypes.AERWHALE.get(), AetherBlocks.BLUE_AERCLOUD.get().asItem(), provider);
     }
 
-
-    public static CogniRecipeBuilder CogniAssembly(String id){
+    public static CogniRecipeBuilder CogniAssembly(String id) {
         return CogniRecipeBuilder.start(
                 CTNHCore.id(id),
                 CBRecipeTypes.COGNI_ASSEMBLY,
-                CBRecipeTypes.COGNI_ASSEMBLY_STEP
-        );
+                CBRecipeTypes.COGNI_ASSEMBLY_STEP);
     }
 }

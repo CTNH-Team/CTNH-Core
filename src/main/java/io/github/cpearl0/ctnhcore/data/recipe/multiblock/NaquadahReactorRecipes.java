@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe.multiblock;
 
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
@@ -8,7 +10,7 @@ import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -16,10 +18,11 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMachines.NAQUADAH_REACTOR;
+import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.NAQUADAH_REACTOR;
 
 public class NaquadahReactorRecipes {
-    public static void init(Consumer<FinishedRecipe> provider){
+
+    public static void init(Consumer<FinishedRecipe> provider) {
         CTNHRecipeTypes.NAQUADAH_REACTOR_RECIPES.recipeBuilder("naquadah_reactor_i")
                 .inputItems(TagPrefix.bolt, GTMaterials.NaquadahEnriched)
                 .outputItems(TagPrefix.bolt, GTMaterials.Naquadah)
@@ -99,9 +102,9 @@ public class NaquadahReactorRecipes {
                     'B', CustomTags.UHV_CIRCUITS, // UHV级电路
                     'C', GTItems.FIELD_GENERATOR_UV, // UV级场发生器
                     'D', GTMachines.HULL[GTValues.UV].asStack(), // UV级机器外壳
-                    'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:enriched_naquadah_trinium_europium_duranide_hex_wire")) // 四重富集镎-铕-三钛合金电缆
+                    'E', ForgeRegistries.ITEMS.getValue(
+                            ResourceLocation.parse("gtceu:enriched_naquadah_trinium_europium_duranide_hex_wire")) // 四重富集镎-铕-三钛合金电缆
             );
         }
     }
 }
-

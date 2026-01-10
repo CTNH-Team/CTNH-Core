@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.entity.monster.astralslime;
+package io.github.cpearl0.ctnhcore.common.entity.monster.astralslime;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -32,8 +32,8 @@ public class AstralSlime extends Slime {
     @Override
     protected void jumpFromGround() {
         Vec3 vec3 = this.getDeltaMovement();
-        float f = (float)this.getSize() * 0.1F;
-        this.setDeltaMovement(vec3.x, (double)(this.getJumpPower() + f), vec3.z);
+        float f = (float) this.getSize() * 0.1F;
+        this.setDeltaMovement(vec3.x, (double) (this.getJumpPower() + f), vec3.z);
         this.hasImpulse = true;
         ForgeHooks.onLivingJump(this);
     }
