@@ -1,15 +1,16 @@
 package io.github.cpearl0.ctnhcore.registry.material;
 
-import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
-import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
 import io.github.cpearl0.ctnhcore.data.CTNHMaterialFlags;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
+
+import appeng.core.definitions.AEBlocks;
+import appeng.core.definitions.AEItems;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
@@ -60,11 +61,11 @@ public class GTMaterialAddon {
         Rhenium.addFlags(GENERATE_PLATE);
         Calcium.setProperty(PropertyKey.INGOT, new IngotProperty());
         Gadolinium.setProperty(PropertyKey.DUST, new DustProperty());
-        //Terbium.setProperty(PropertyKey.DUST, new DustProperty());
+        // Terbium.setProperty(PropertyKey.DUST, new DustProperty());
         Dysprosium.setProperty(PropertyKey.DUST, new DustProperty());
         Dysprosium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         Holmium.setProperty(PropertyKey.DUST, new DustProperty());
-        //Erbium.setProperty(PropertyKey.DUST, new DustProperty());
+        // Erbium.setProperty(PropertyKey.DUST, new DustProperty());
         Thulium.setProperty(PropertyKey.DUST, new DustProperty());
         Thulium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         Ytterbium.setProperty(PropertyKey.DUST, new DustProperty());
@@ -165,7 +166,7 @@ public class GTMaterialAddon {
         Actinium.setProperty(PropertyKey.HAZARD, radioactive(1));
         Rutherfordium.setProperty(PropertyKey.DUST, new DustProperty());
         Rutherfordium.setProperty(PropertyKey.HAZARD, radioactive(1));
-        //Selenium.setProperty(PropertyKey.DUST, new DustProperty());
+        // Selenium.setProperty(PropertyKey.DUST, new DustProperty());
         Astatine.setProperty(PropertyKey.INGOT, new IngotProperty());
         Astatine.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         Astatine.setProperty(PropertyKey.HAZARD, radioactive(1));

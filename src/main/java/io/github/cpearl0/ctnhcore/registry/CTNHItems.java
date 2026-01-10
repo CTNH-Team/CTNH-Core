@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry;
 
-import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import io.github.cpearl0.ctnhcore.common.item.*;
 import io.github.cpearl0.ctnhcore.common.item.debug.ReloadItem;
 import io.github.cpearl0.ctnhcore.data.materials.ChemicalItems;
@@ -15,6 +14,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 
 import com.tterrag.registrate.util.entry.ItemEntry;
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;

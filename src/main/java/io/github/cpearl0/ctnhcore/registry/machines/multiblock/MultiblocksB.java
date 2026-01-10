@@ -10,9 +10,9 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotoVolta
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.Hybrid_Power_Mixer;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 import io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils;
 
@@ -51,8 +51,8 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.DUMMY_RECIPES;
 import static committee.nova.mods.avaritia.init.registry.ModBlocks.neutron;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
-import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.HIGH_SPEED_PIPE_BLOCK;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
+import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.HIGH_SPEED_PIPE_BLOCK;
 import static net.minecraft.world.level.block.Blocks.*;
 
 public class MultiblocksB {

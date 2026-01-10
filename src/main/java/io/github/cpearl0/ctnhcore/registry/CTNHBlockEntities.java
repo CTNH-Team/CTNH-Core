@@ -1,10 +1,10 @@
 package io.github.cpearl0.ctnhcore.registry;
 
 import io.github.cpearl0.ctnhcore.common.blockentity.TurbineRotorBE;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialBlocks;
 
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialBlocks;
 
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 

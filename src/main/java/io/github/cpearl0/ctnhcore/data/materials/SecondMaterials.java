@@ -12,8 +12,8 @@ import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import static io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys.CATALYST;
-import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 
 public class SecondMaterials {
 
@@ -120,20 +120,21 @@ public class SecondMaterials {
                 .iconSet(MaterialIconSet.ROUGH)
                 .flags(MaterialFlags.DISABLE_DECOMPOSITION).buildAndRegister();
 
-//        GraphiteUraniumMixture = REGISTRATE.material(CTNHCore.id("graphite_uranium_mixture")).cnlang("石墨-铀混合物").dust()
-//                .components(GTMaterials.Graphite, 3, GTMaterials.Uranium238, 1).color(0x2f734c)
-//                .iconSet(MaterialIconSet.METALLIC).buildAndRegister();
-//
-//        PlutoniumOxideUraniumMixture = REGISTRATE.material(CTNHCore.id("plutonium_oxide_uranium_mixture"))
-//                .cnlang("氧化钚-铀混合物").dust().components(
-//                        GTMaterials.Plutonium239, 10, GTMaterials.Oxygen, 12, GTMaterials.Uranium238, 2,
-//                        GTMaterials.Carbon, 8)
-//                .color(0xc51d46).iconSet(MaterialIconSet.METALLIC).buildAndRegister();
-//
-//        UraniumCarbideThoriumMixture = REGISTRATE.material(CTNHCore.id("uranium_carbide_thorium_mixture"))
-//                .cnlang("碳化铀-钍混合物").dust().components(
-//                        GTMaterials.Thorium, 11, Thorium232, 1, GTMaterials.Uranium235, 1, GTMaterials.Carbon, 3)
-//                .color(0x15231b).iconSet(MaterialIconSet.METALLIC).buildAndRegister();
+        // GraphiteUraniumMixture =
+        // REGISTRATE.material(CTNHCore.id("graphite_uranium_mixture")).cnlang("石墨-铀混合物").dust()
+        // .components(GTMaterials.Graphite, 3, GTMaterials.Uranium238, 1).color(0x2f734c)
+        // .iconSet(MaterialIconSet.METALLIC).buildAndRegister();
+        //
+        // PlutoniumOxideUraniumMixture = REGISTRATE.material(CTNHCore.id("plutonium_oxide_uranium_mixture"))
+        // .cnlang("氧化钚-铀混合物").dust().components(
+        // GTMaterials.Plutonium239, 10, GTMaterials.Oxygen, 12, GTMaterials.Uranium238, 2,
+        // GTMaterials.Carbon, 8)
+        // .color(0xc51d46).iconSet(MaterialIconSet.METALLIC).buildAndRegister();
+        //
+        // UraniumCarbideThoriumMixture = REGISTRATE.material(CTNHCore.id("uranium_carbide_thorium_mixture"))
+        // .cnlang("碳化铀-钍混合物").dust().components(
+        // GTMaterials.Thorium, 11, Thorium232, 1, GTMaterials.Uranium235, 1, GTMaterials.Carbon, 3)
+        // .color(0x15231b).iconSet(MaterialIconSet.METALLIC).buildAndRegister();
 
         ThoriumBasedLiquidFuel = REGISTRATE.material(CTNHCore.id("thorium_based_liquid_fuel")).cnlang("钍基流体燃料").fluid()
                 .color(0x3b264d).iconSet(MaterialIconSet.METALLIC)

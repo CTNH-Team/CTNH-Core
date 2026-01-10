@@ -7,6 +7,10 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
 import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.HighPerformanceComputerMachine;
 import io.github.cpearl0.ctnhcore.data.machines.GTNNMachines;
+import io.github.cpearl0.ctnhcore.registry.CTNHCreativeModeTabs;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
@@ -23,10 +27,6 @@ import com.gregtechceu.gtceu.common.machine.multiblock.part.*;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
-import io.github.cpearl0.ctnhcore.registry.CTNHCreativeModeTabs;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
-import io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 

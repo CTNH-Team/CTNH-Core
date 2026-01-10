@@ -1,6 +1,10 @@
 package io.github.cpearl0.ctnhcore.registry;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials;
+import io.github.cpearl0.ctnhcore.data.materials.NaquadahMaterials;
+import io.github.cpearl0.ctnhcore.data.materials.PlatinumLineMaterials;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
@@ -9,7 +13,6 @@ import com.gregtechceu.gtceu.api.data.worldgen.generator.indicators.SurfaceIndic
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
-import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.block.Blocks;
@@ -21,8 +24,8 @@ import static com.gregtechceu.gtceu.api.data.worldgen.WorldGenLayers.ENDSTONE;
 import static com.gregtechceu.gtceu.api.data.worldgen.WorldGenLayers.STONE;
 import static com.gregtechceu.gtceu.api.data.worldgen.generator.indicators.SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE;
 import static com.gregtechceu.gtceu.common.data.GTOres.*;
-import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHWorlds.*;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 
 public class CTNHOres {
 
@@ -435,10 +438,10 @@ public class CTNHOres {
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(3).mat(GTMaterials.Bornite).size(2, 4))
                                     .layer(l -> l.weight(2).mat(GTMaterials.Cooperite).size(1, 1))
-                                    .layer(l -> l.weight(2).mat(CTNHMaterials.PlatinumOre).size(1, 1))
-                                    .layer(l -> l.weight(1).mat(CTNHMaterials.PalladiumOre).size(1, 1))))
+                                    .layer(l -> l.weight(2).mat(PlatinumLineMaterials.PlatinumOre).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(PlatinumLineMaterials.PalladiumOre).size(1, 1))))
                     .surfaceIndicatorGenerator(indicator -> indicator
-                            .surfaceRock(CTNHMaterials.PlatinumOre)
+                            .surfaceRock(PlatinumLineMaterials.PlatinumOre)
                             .placement(ABOVE)
                             .density(0.4F)
                             .radius(5)));
@@ -858,7 +861,7 @@ public class CTNHOres {
                         .heightRangeUniform(5, 40).discardChanceOnAirExposure(0f)
                         .layeredVeinGenerator(generator -> {
                             generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(3).mat(Desh).size(2, 3))
+                                pattern.layer(l -> l.weight(3).mat(AdastraMaterials.Desh).size(2, 3))
                                         .layer(l -> l.weight(1).mat(ArcaneCrystal).size(1, 2));
                             });
                         });
@@ -871,7 +874,7 @@ public class CTNHOres {
                         .heightRangeUniform(5, 40).discardChanceOnAirExposure(0f)
                         .layeredVeinGenerator(generator -> {
                             generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(3).mat(Ostrum).size(2, 3))
+                                pattern.layer(l -> l.weight(3).mat(AdastraMaterials.Ostrum).size(2, 3))
                                         .layer(l -> l.weight(1).mat(GTMaterials.Scheelite).size(1, 2))
                                         .layer(l -> l.weight(1).mat(GTMaterials.Tungstate).size(1, 1));
                             });
@@ -1054,9 +1057,10 @@ public class CTNHOres {
                         .heightRangeUniform(10, 90).discardChanceOnAirExposure(0f)
                         .layeredVeinGenerator(generator -> {
                             generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(3).mat(CTNHMaterials.NaquadahOxideMixture).size(2, 4))
-                                        .layer(l -> l.weight(1).mat(CTNHMaterials.EnrichedNaquadahOxideMixture).size(1,
-                                                2));
+                                pattern.layer(l -> l.weight(3).mat(NaquadahMaterials.NaquadahOxideMixture).size(2, 4))
+                                        .layer(l -> l.weight(1).mat(NaquadahMaterials.EnrichedNaquadahOxideMixture)
+                                                .size(1,
+                                                        2));
                             });
                         });
             });
@@ -1108,7 +1112,7 @@ public class CTNHOres {
                         .heightRangeUniform(-5, 25).discardChanceOnAirExposure(0f)
                         .layeredVeinGenerator(generator -> {
                             generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(3).mat(CTNHMaterials.PlatinumOre).size(1, 3))
+                                pattern.layer(l -> l.weight(3).mat(PlatinumLineMaterials.PlatinumOre).size(1, 3))
                                         .layer(l -> l.weight(2).mat(GTMaterials.Chromite).size(1, 2))
                                         .layer(l -> l.weight(1).mat(GTMaterials.Cooperite).size(1, 2));
                             });
@@ -1192,7 +1196,7 @@ public class CTNHOres {
                         .heightRangeUniform(5, 40).discardChanceOnAirExposure(0f)
                         .layeredVeinGenerator(generator -> {
                             generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(3).mat(Calorite).size(2, 3))
+                                pattern.layer(l -> l.weight(3).mat(AdastraMaterials.Calorite).size(2, 3))
                                         .layer(l -> l.weight(1).mat(GTMaterials.Amethyst).size(1, 2));
                             });
                         });
@@ -1219,7 +1223,7 @@ public class CTNHOres {
                             generator.buildLayerPattern(pattern -> {
                                 pattern.layer(l -> l.weight(2).mat(GTMaterials.Nickel).size(2, 3))
                                         .layer(l -> l.weight(1).mat(CTNHMaterials.MeteoricTroilite).size(1, 2))
-                                        .layer(l -> l.weight(1).mat(CTNHMaterials.PalladiumOre).size(1, 2));
+                                        .layer(l -> l.weight(1).mat(PlatinumLineMaterials.PalladiumOre).size(1, 2));
                             });
                         });
             });
@@ -1244,9 +1248,10 @@ public class CTNHOres {
                         .heightRangeUniform(10, 90).discardChanceOnAirExposure(0f)
                         .layeredVeinGenerator(generator -> {
                             generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(3).mat(CTNHMaterials.NaquadahOxideMixture).size(2, 3))
-                                        .layer(l -> l.weight(1).mat(CTNHMaterials.EnrichedNaquadahOxideMixture).size(1,
-                                                2));
+                                pattern.layer(l -> l.weight(3).mat(NaquadahMaterials.NaquadahOxideMixture).size(2, 3))
+                                        .layer(l -> l.weight(1).mat(NaquadahMaterials.EnrichedNaquadahOxideMixture)
+                                                .size(1,
+                                                        2));
                             });
                         });
             });

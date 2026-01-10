@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe.cogniassembly;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.data.materials.OrdinaryMaterials;
+import io.github.cpearl0.ctnhcore.data.materials.WetWareLineMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -54,9 +54,9 @@ public class WetwareCircuit {
                 .MIFStep(ADVANCED, SPIDER,
                         CTNHItems.ADVANCED_RAM_CHIP, 16,
                         Toxin_Extract.getFluid(1000))
-                .IFStep(ChemicalHelper.get(TagPrefix.wireFine, OrdinaryMaterials.BIO_FLEXIBLE, 64),
-                        OrdinaryMaterials.POLYPYRROLE.getFluid(432))
-                .IFStep(ChemicalHelper.get(TagPrefix.cableGtDouble, OrdinaryMaterials.BLUE_TITANIUM_ALLOY, 8),
+                .IFStep(ChemicalHelper.get(TagPrefix.wireFine, WetWareLineMaterials.BIO_FLEXIBLE, 64),
+                        WetWareLineMaterials.POLYPYRROLE.getFluid(432))
+                .IFStep(ChemicalHelper.get(TagPrefix.cableGtDouble, WetWareLineMaterials.BLUE_TITANIUM_ALLOY, 8),
                         Polybenzimidazole.getFluid(432))
                 .save(provider);
 
@@ -89,9 +89,9 @@ public class WetwareCircuit {
                         SUPERIOR, SHULKER,
                         ChemicalHelper.get(TagPrefix.plate, Duranium, 8),
                         EnderPearl.getFluid(1152))
-                .IFStep(ChemicalHelper.get(TagPrefix.wireFine, OrdinaryMaterials.BIO_FLEXIBLE, 64),
-                        OrdinaryMaterials.POLYPYRROLE.getFluid(432))
-                .IFStep(ChemicalHelper.get(TagPrefix.cableGtDouble, OrdinaryMaterials.BLUE_TITANIUM_ALLOY, 8),
+                .IFStep(ChemicalHelper.get(TagPrefix.wireFine, WetWareLineMaterials.BIO_FLEXIBLE, 64),
+                        WetWareLineMaterials.POLYPYRROLE.getFluid(432))
+                .IFStep(ChemicalHelper.get(TagPrefix.cableGtDouble, WetWareLineMaterials.BLUE_TITANIUM_ALLOY, 8),
                         Polybenzimidazole.getFluid(432))
                 .save(provider);
 
@@ -110,7 +110,7 @@ public class WetwareCircuit {
                         Mutagen.getFluid(500))
                 .MIFStep(
                         SUPERIOR, GLOW_SQUID,
-                        ChemicalHelper.get(TagPrefix.wireFine, OrdinaryMaterials.BIO_FLEXIBLE, 64),
+                        ChemicalHelper.get(TagPrefix.wireFine, WetWareLineMaterials.BIO_FLEXIBLE, 64),
                         SterileBiologicalCultureMediumStockSolution.getFluid(500))
                 .MIFStep(
                         SUPERIOR, AetherEntityTypes.AERWHALE.get(),

@@ -70,6 +70,5 @@ public class LuvModifyRecipe {
                 .duration(800)
                 .addMaterialInfo(true, true)
                 .save(provider);
-
     }
 }

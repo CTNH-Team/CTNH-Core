@@ -1,7 +1,8 @@
 package io.github.cpearl0.ctnhcore.data.recipe.multiblock;
 
-import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.data.materials.NaquadahMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -24,12 +25,12 @@ public class Sinope_recipes {
                 // .blastFurnaceTemp(1280)
                 .save(provider);
         CTNHRecipeTypes.SINOPE.recipeBuilder("enriched_naquadah_residue_solution1")
-                .inputItems(TagPrefix.dust, CTNHMaterials.GoldTrifluoride, 4)
-                .inputFluids(CTNHMaterials.XenonHexafluoroEnrichedNaquadate.getFluid(1000))
+                .inputItems(TagPrefix.dust, NaquadahMaterials.GoldTrifluoride, 4)
+                .inputFluids(NaquadahMaterials.XenonHexafluoroEnrichedNaquadate.getFluid(1000))
                 .inputFluids(GTMaterials.FluoroantimonicAcid.getFluid(1000))
                 .inputFluids(GTMaterials.Hydrogen.getFluid(9000))
                 .outputFluids(GTMaterials.EnrichedNaquadahSolution.getFluid(1000))
-                .outputFluids(CTNHMaterials.EnrichedNaquadahResidueSolution.getFluid(1000))
+                .outputFluids(NaquadahMaterials.EnrichedNaquadahResidueSolution.getFluid(1000))
                 .outputFluids(GTMaterials.HydrofluoricAcid.getFluid(8000))
                 .EUt(GTValues.VA[GTValues.LuV])
                 .duration(1200)

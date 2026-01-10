@@ -1,8 +1,8 @@
 package io.github.cpearl0.ctnhcore.api.data.material;
 
-import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterialsInfo;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;

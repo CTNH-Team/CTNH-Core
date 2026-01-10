@@ -1,13 +1,12 @@
 package io.github.cpearl0.ctnhcore.event;
 
-import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
-import com.gregtechceu.gtceu.api.registry.GTRegistries;
-import com.gregtechceu.gtceu.common.data.GTRecipes;
-import com.gregtechceu.gtceu.data.pack.GTDynamicDataPack;
-import com.mojang.brigadier.CommandDispatcher;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.integration.legendary.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
+
+import com.gregtechceu.gtceu.api.registry.GTRegistries;
+import com.gregtechceu.gtceu.common.data.GTRecipes;
+import com.gregtechceu.gtceu.data.pack.GTDynamicDataPack;
 
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -15,7 +14,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
@@ -23,7 +21,8 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
+
+import com.mojang.brigadier.CommandDispatcher;
 
 @Mod.EventBusSubscriber(modid = CTNHCore.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeEventHandler {
@@ -72,18 +71,15 @@ public class ForgeEventHandler {
                             // === 你的逻辑 ===
 
                             GTRegistries.RECIPE_TYPES.forEach(
-                                    r -> r.getLookup().removeAllRecipes()
-                            );
+                                    r -> r.getLookup().removeAllRecipes());
                             GTRecipes.recipeRemoval();
                             GTRecipes.recipeAddition(GTDynamicDataPack::addRecipe);
 
                             source.sendSuccess(
                                     () -> Component.literal("配方重载完毕"),
-                                    false
-                            );
+                                    false);
 
                             return 1; // 返回执行结果
-                        })
-        );
+                        }));
     }
 }

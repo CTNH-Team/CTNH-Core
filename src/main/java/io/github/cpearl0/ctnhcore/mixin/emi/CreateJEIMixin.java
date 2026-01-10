@@ -1,15 +1,17 @@
 package io.github.cpearl0.ctnhcore.mixin.emi;
 
-import com.simibubi.create.compat.jei.CreateJEI;
-import mezz.jei.api.registration.IExtraIngredientRegistration;
+import io.github.cpearl0.ctnhcore.utils.CreateJeiRecipeCache;
+
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
+
+import com.simibubi.create.compat.jei.CreateJEI;
+import mezz.jei.api.registration.IExtraIngredientRegistration;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-import io.github.cpearl0.ctnhcore.utils.CreateJeiRecipeCache;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -26,8 +28,9 @@ import java.util.function.Supplier;
 @SuppressWarnings("all")
 @Mixin(value = CreateJEI.class, remap = false)
 public class CreateJEIMixin {
+
     @Inject(method = "loadCategories", at = @At("HEAD"), remap = false)
-    void invalidCache(CallbackInfo ci){
+    void invalidCache(CallbackInfo ci) {
         CreateJeiRecipeCache.invalidate();
     }
 
@@ -40,8 +43,7 @@ public class CreateJEIMixin {
 
     @Overwrite
     public static <T extends Recipe<?>> void consumeTypedRecipes(
-            Consumer<T> consumer, RecipeType<?> type
-    ) {
+                                                                 Consumer<T> consumer, RecipeType<?> type) {
         for (Recipe<?> recipe : CreateJeiRecipeCache.recipesByType(type)) {
             consumer.accept((T) recipe);
         }
@@ -53,9 +55,7 @@ public class CreateJEIMixin {
     }
 
     @Overwrite
-    public void registerExtraIngredients(IExtraIngredientRegistration registration) {
-
-    }
+    public void registerExtraIngredients(IExtraIngredientRegistration registration) {}
 
     @Mixin(targets = "com.simibubi.create.compat.jei.CreateJEI$CategoryBuilder", remap = false)
     public static abstract class CategoryBuilderMixin<T extends Recipe<?>> {
@@ -65,7 +65,9 @@ public class CreateJEIMixin {
         private List<Consumer<List<T>>> recipeListConsumers;
 
         @Inject(method = "addTypedRecipesExcluding", at = @At("HEAD"), cancellable = true)
-        public void addTypedRecipesExcluding(Supplier<RecipeType<? extends T>> recipeType, Supplier<RecipeType<? extends T>> excluded, CallbackInfoReturnable<Object> cir){
+        public void addTypedRecipesExcluding(Supplier<RecipeType<? extends T>> recipeType,
+                                             Supplier<RecipeType<? extends T>> excluded,
+                                             CallbackInfoReturnable<Object> cir) {
             recipeListConsumers.add(
                     recipes -> {
                         var excludedRecipes = CreateJeiRecipeCache.recipesByType(excluded.get());
@@ -91,8 +93,7 @@ public class CreateJEIMixin {
                                 recipes.add((T) recipe);
                             }
                         }
-                    }
-            );
+                    });
 
             cir.setReturnValue(this);
         }

@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
@@ -38,22 +39,22 @@ public class AdAstraRecipes {
                 .duration(300).EUt(GTValues.VA[GTValues.HV]).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("heavy_ingot_t2")
                 .inputItems(CTNHItems.HEAVY_INGOT_T1)
-                .inputItems(plateDense, CTNHMaterials.Desh, 2)
+                .inputItems(plateDense, AdastraMaterials.Desh, 2)
                 .outputItems(CTNHItems.HEAVY_INGOT_T2)
                 .inputFluids(TungstenSteel.getFluid(72))
                 .circuitMeta(1)
                 .duration(300).EUt(GTValues.VA[GTValues.EV]).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("heavy_ingot_t3")
                 .inputItems(CTNHItems.HEAVY_INGOT_T2)
-                .inputItems(plateDense, CTNHMaterials.Ostrum, 4)
+                .inputItems(plateDense, AdastraMaterials.Ostrum, 4)
                 .outputItems(CTNHItems.HEAVY_INGOT_T3)
                 .inputFluids(Platinum.getFluid(72))
                 .circuitMeta(1)
                 .duration(300).EUt(GTValues.VA[GTValues.IV]).save(provider);
         ASSEMBLY_LINE_RECIPES.recipeBuilder("heavy_ingot_t4")
                 .inputItems(CTNHItems.HEAVY_INGOT_T3)
-                .inputItems(plateDense, CTNHMaterials.Calorite, 3)
-                .inputItems(plateDense, CTNHMaterials.Calorite, 3)
+                .inputItems(plateDense, AdastraMaterials.Calorite, 3)
+                .inputItems(plateDense, AdastraMaterials.Calorite, 3)
                 .inputItems(bolt, Ruridit, 4)
                 .outputItems(CTNHItems.HEAVY_INGOT_T4)
                 .inputFluids(CTNHMaterials.Cerrobase140.getFluid(36))
@@ -283,10 +284,9 @@ public class AdAstraRecipes {
                 "ad_astra:oxygen_distributor"
         };
 
-        for(var rl: toRemove){
+        for (var rl : toRemove) {
             DataFilterPack.removeRecipe(rl);
         }
-
-
+        DataFilterPack.removeRecipeType("ad_astra:*");
     }
 }

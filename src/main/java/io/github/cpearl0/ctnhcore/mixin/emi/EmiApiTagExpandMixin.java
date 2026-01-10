@@ -27,9 +27,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import javax.annotation.Nullable;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
+
+import javax.annotation.Nullable;
 
 import static dev.emi.emi.api.EmiApi.focusRecipe;
 
@@ -82,8 +82,7 @@ public abstract class EmiApiTagExpandMixin {
 
             recipes.addAll(pruneSources(
                     EmiApi.getRecipeManager().getRecipesByOutput(fluidStack),
-                    fluidStack
-            ));
+                    fluidStack));
             recipes.addAll(pruneSources(EmiApi.getRecipeManager().getRecipesByOutput(es), es));
 
             if (!recipes.isEmpty()) {
@@ -96,7 +95,6 @@ public abstract class EmiApiTagExpandMixin {
 
         List<EmiStack> stacks = new ArrayList<>();
 
-
         ItemStack is = es.getItemStack();
 
         if (!is.isEmpty()) {
@@ -106,7 +104,6 @@ public abstract class EmiApiTagExpandMixin {
         if (!stacks.isEmpty()) {
             stacks.add(es);
             EmiIngredient newIngredient = EmiIngredient.of(stacks);
-
 
             for (EmiStack s : stacks) {
                 recipes.addAll(EmiApi.getRecipeManager().getRecipesByOutput(s));
@@ -129,16 +126,13 @@ public abstract class EmiApiTagExpandMixin {
         List<EmiRecipe> uses = new ArrayList<>();
         uses.addAll(pruneUses(
                 EmiApi.getRecipeManager().getRecipesByInput(fluidStack),
-                fluid
-        ));
+                fluid));
         uses.addAll(pruneUses(EmiApi.getRecipeManager().getRecipesByInput(zero), zero));
         if (!uses.isEmpty()) {
             setPages(mapRecipes(uses), stack);
             ci.cancel();
         }
-
     }
-
 
     @Unique
     private static List<EmiStack> ctnhcore$extendByRelatedTags(ItemStack stack) {
@@ -216,5 +210,4 @@ public abstract class EmiApiTagExpandMixin {
 
         return null;
     }
-
 }

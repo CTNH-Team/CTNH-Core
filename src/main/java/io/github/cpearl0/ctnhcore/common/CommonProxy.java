@@ -1,15 +1,5 @@
 package io.github.cpearl0.ctnhcore.common;
 
-import appeng.api.features.GridLinkables;
-import com.gregtechceu.gtceu.api.GTCEuAPI;
-import com.gregtechceu.gtceu.api.data.DimensionMarker;
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.MaterialProperties;
-import com.gregtechceu.gtceu.api.machine.MachineDefinition;
-import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
-import com.gregtechceu.gtceu.api.recipe.category.GTRecipeCategory;
-import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
-import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
-import com.gregtechceu.gtceu.data.tags.BiomeTagsLoader;
 import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
@@ -18,9 +8,6 @@ import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import io.github.cpearl0.ctnhcore.registry.jade.CTNHJadePlugin;
-
-import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
-
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.GTMachineModify;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
@@ -28,6 +15,18 @@ import io.github.cpearl0.ctnhcore.registry.material.GTMaterialAddon;
 import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundDefinitionsProvider;
 import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundEvents;
 import io.github.cpearl0.ctnhcore.registry.worldgen.*;
+
+import com.gregtechceu.gtceu.api.GTCEuAPI;
+import com.gregtechceu.gtceu.api.data.DimensionMarker;
+import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
+import com.gregtechceu.gtceu.api.data.chemical.material.properties.MaterialProperties;
+import com.gregtechceu.gtceu.api.machine.MachineDefinition;
+import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
+import com.gregtechceu.gtceu.api.recipe.category.GTRecipeCategory;
+import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
+import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
+import com.gregtechceu.gtceu.data.tags.BiomeTagsLoader;
+
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
@@ -41,6 +40,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+import appeng.api.features.GridLinkables;
 import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;
 
@@ -120,7 +121,6 @@ public class CommonProxy {
         GridLinkables.register(ME_ADVANCED_TERMINAL, MEAdvancedTerminalItem.LINKABLE_HANDLER);
     }
 
-
     @SubscribeEvent
     public static void registerMaterials(MaterialEvent event) {
         MaterialProperties.addBaseType(CTNHPropertyKeys.NUCLEAR);
@@ -144,14 +144,14 @@ public class CommonProxy {
             generator.addProvider(true, new BiomeTagsLoader(packOutput, registries, existingFileHelper));
             DatapackBuiltinEntriesProvider provider = generator.addProvider(true, new DatapackBuiltinEntriesProvider(
                     packOutput, registries, new RegistrySetBuilder()
-                    .add(Registries.BIOME, CTNHBiomes::bootstrap)
-                    .add(Registries.CONFIGURED_FEATURE, CTNHConfiguredFeatures::bootstrap)
-                    .add(Registries.PLACED_FEATURE, CTNHPlacements::bootstrap)
-                    .add(Registries.DIMENSION_TYPE, CTNHDimensionTypes::bootstrap)
-                    .add(Registries.LEVEL_STEM, CTNHDimensions::bootstrap)
-                    .add(Registries.NOISE_SETTINGS, CTNHNoiseGenerationSettings::bootstrap)
-                    .add(Registries.DENSITY_FUNCTION, CTNHDensityFunctions::bootstrap)
-                    .add(Registries.DAMAGE_TYPE, CTNHDamageTypes::bootstrap),
+                            .add(Registries.BIOME, CTNHBiomes::bootstrap)
+                            .add(Registries.CONFIGURED_FEATURE, CTNHConfiguredFeatures::bootstrap)
+                            .add(Registries.PLACED_FEATURE, CTNHPlacements::bootstrap)
+                            .add(Registries.DIMENSION_TYPE, CTNHDimensionTypes::bootstrap)
+                            .add(Registries.LEVEL_STEM, CTNHDimensions::bootstrap)
+                            .add(Registries.NOISE_SETTINGS, CTNHNoiseGenerationSettings::bootstrap)
+                            .add(Registries.DENSITY_FUNCTION, CTNHDensityFunctions::bootstrap)
+                            .add(Registries.DAMAGE_TYPE, CTNHDamageTypes::bootstrap),
                     set));
         }
     }

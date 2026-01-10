@@ -1,8 +1,10 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
@@ -16,7 +18,6 @@ import com.gregtechceu.gtceu.data.recipe.CraftingComponent;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
-import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluids;
@@ -33,9 +34,9 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.machines.GTResearchMachines.OBJECT_HOLDER;
 import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.*;
 import static com.gregtechceu.gtceu.data.recipe.misc.MetaTileEntityLoader.registerMachineRecipe;
-import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.DRONEHOLDER;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR;
+import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.DRONEHOLDER;
 import static twilightforest.init.TFItems.STEELEAF_INGOT;
 
 public class MachinesRecipes {
@@ -118,9 +119,9 @@ public class MachinesRecipes {
         CTNHRecipeTypes.PVDRONE.recipeBuilder("meteorite_capture")
                 .duration(1000)
                 .circuitMeta(2)
-                .outputItems(CTNHTagPrefixes.oreMoonStone, CTNHMaterials.Desh)
-                .outputItems(CTNHTagPrefixes.oreVenusStone, CTNHMaterials.Calorite)
-                .outputItems(CTNHTagPrefixes.oreMarsStone, CTNHMaterials.Ostrum)
+                .outputItems(CTNHTagPrefixes.oreMoonStone, AdastraMaterials.Desh)
+                .outputItems(CTNHTagPrefixes.oreVenusStone, AdastraMaterials.Calorite)
+                .outputItems(CTNHTagPrefixes.oreMarsStone, AdastraMaterials.Ostrum)
                 .EUt(VA[LuV])
                 .save(provider);
 

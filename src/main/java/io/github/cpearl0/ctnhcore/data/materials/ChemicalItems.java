@@ -35,7 +35,8 @@ public class ChemicalItems {
                 if (material.hasProperty(CTNHPropertyKeys.CATALYST)) {
                     builder.put(catalyst,
                             material,
-                            REGISTRATE.item(catalyst.idPattern().format(material.getName()), ComponentItem::create)
+
+                            REGISTRATE.item(String.format(material.getName()), ComponentItem::create)
                                     .setData(ProviderType.LANG, NonNullBiConsumer.noop())
                                     .transform(GTItems.unificationItem(catalyst, material))
                                     .properties(p -> p.stacksTo(catalyst.maxStackSize()))

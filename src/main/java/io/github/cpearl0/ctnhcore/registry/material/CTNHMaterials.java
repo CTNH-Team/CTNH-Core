@@ -1,8 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry.material;
 
-import com.gregtechceu.gtceu.common.data.GTFluids;
-import earth.terrarium.adastra.common.registry.ModFluids;
-import fr.lucreeper74.createmetallurgy.registries.CMFluids;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
@@ -20,11 +17,14 @@ import com.gregtechceu.gtceu.api.data.chemical.material.registry.MaterialRegistr
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
+import com.gregtechceu.gtceu.common.data.GTFluids;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.item.AetherItems;
 import earth.terrarium.adastra.common.registry.ModBlocks;
+import earth.terrarium.adastra.common.registry.ModFluids;
+import fr.lucreeper74.createmetallurgy.registries.CMFluids;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
 
@@ -34,9 +34,9 @@ import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIcon
 import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.HIGHER;
 import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.HIGHEST;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes.hyperRotor;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
 
 public class CTNHMaterials {
 
@@ -833,10 +833,6 @@ public class CTNHMaterials {
             .addOreByproducts(Molybdenum, Copper, Platinum)
             .buildAndRegister();
 
-    public static Material AndesiteAlloy;
-    public static Material Desh;
-    public static Material Ostrum;
-    public static Material Calorite;
     public static Material SpaceNeutronium;
     public static Material InfinityCatalyst;
     public static Material RP1;
@@ -866,35 +862,8 @@ public class CTNHMaterials {
     public static Material TerraSteel;
     public static Material Elementium;
     public static Material AlfSteel;
-    public static Material RefinedRadiance;
-    public static Material ShadowSteel;
     public static Material Kaolinite;
     public static Material Dolomite;
-    public static Material IridiumDioxide;
-    public static Material NaquadahOxideMixture;
-    public static Material EnrichedNaquadahOxideMixture;
-    public static Material NaquadriaOxideMixture;
-    public static Material HexafluorideEnrichedNaquadahSolution;
-    public static Material XenonHexafluoroEnrichedNaquadate;
-    public static Material PalladiumOnCarbon;
-    public static Material GoldTrifluoride;
-    public static Material EnrichedNaquadahResidueSolution;
-    public static Material XenoauricFluoroantimonicAcid;
-    public static Material GoldChloride;
-    public static Material BromineTrifluoride;
-    public static Material HexafluorideNaquadriaSolution;
-    public static Material RadonDifluoride;
-    public static Material RadonNaquadriaOctafluoride;
-    public static Material NaquadriaResidueSolution;
-    public static Material CaesiumFluoride;
-    public static Material XenonTrioxide;
-    public static Material CaesiumXenontrioxideFluoride;
-    public static Material NaquadriaCaesiumXenonnonfluoride;
-    public static Material RadonTrioxide;
-    public static Material NaquadriaCaesiumfluoride;
-    public static Material NitrosoniumOctafluoroxenate;
-    public static Material NitrylFluoride;
-    public static Material AcidicNaquadriaCaesiumfluoride;
     public static Material GraphiteUraniumMixture;
     public static Material UraniumCarbideThoriumMixture;
     public static Material PlutoniumOxideUraniumMixture;
@@ -922,44 +891,6 @@ public class CTNHMaterials {
     public static Material DebrominatedWater;
     public static Material NeutroniumMixture;
     public static Material MARM200Steel;
-    // 旧铂线
-    public static Material PalladiumMetal;
-    public static Material PlatinumMetal;
-    // 新铂线
-    public static Material PlatinumOre;
-    public static Material PalladiumOre;
-    public static Material GoldPlatinumPalladiumAcidSolution;
-    public static Material DenitratedGoldPlatinumPalladiumSolution;
-    public static Material FerricSulfate;
-    public static Material FerrousSulfate;
-    public static Material ChloroplatinicChloropalladicSolution;
-    public static Material AmmoniumChloroplatinate;
-    public static Material AmmoniaMonohydrate;
-    public static Material Diamminedichloropalladium;
-    public static Material SpongePalladium;
-    public static Material SpongePlatinum;
-    public static Material ChloropalladicAcidMixture;
-    public static Material PlatinumGroupResidue;     // 铂族贵金属残渣
-    public static Material Litharge;                // 密陀僧（PbO）
-    public static Material NobleLead;               // 贵铅（Pb/Ag/Au）
-    public static Material NitricLeachSolution;    // 硝酸浸没溶液
-    public static Material EnrichedInertMixture;    // 富集惰性混合物（Rh/Ir/Ru）
-    public static Material RhodiumSulfateSolution; // 含硫酸铑水溶液
-    public static Material RhodiumHydroxide;       // 氢氧化铑
-    public static Material ChlororhodicAcid;       // 氯铑酸（H₃[RhCl₆]）
-    public static Material ConcentratedAmmoniumChlororhodate; // 浓缩氯铑酸铵溶液
-    public static Material AmmoniumChlororhodate;  // 氯铑酸铵（(NH₄)₃[RhCl₆]）
-    public static Material SpongeRhodium;          // 海绵铑
-    public static Material PreciousMetalMixture;
-    public static Material AmmoniumChlororhodateSolution;
-    public static Material SodiumOsmateRuthenateSolution;
-    public static Material SodiumPeroxide;
-    public static Material ChlorosmicAcidGas;
-    public static Material ChlororuthenicAcidGas;
-    public static Material AmmoniumChlorosmate;
-    public static Material AmmoniumChlororuthenate;
-    public static Material SodiumOsmateRuthenateChlorideSolution;
-    public static Material Acetaldehyde;
     public static Material Seawater;
 
     public static void init() {
@@ -973,7 +904,7 @@ public class CTNHMaterials {
         BrineChain.init();
         EnderIOMaterials.init();
 
-        OrdinaryMaterials.init();
+        WetWareLineMaterials.init();
         CombustibleIce.setFormula("(CH4)(H2O)", true);
 
         var ore = new OreProperty();
@@ -1005,9 +936,9 @@ public class CTNHMaterials {
 
         var oreProp = Naquadah.getProperty(PropertyKey.ORE);
         oreProp.getOreByProducts().clear();
-        oreProp.setOreByProducts(Sulfur, Barite, EnrichedNaquadahOxideMixture);
+        oreProp.setOreByProducts(Sulfur, Barite, NaquadahMaterials.EnrichedNaquadahOxideMixture);
         oreProp.getSeparatedInto().clear();
-        oreProp.setSeparatedInto(EnrichedNaquadahOxideMixture);
+        oreProp.setSeparatedInto(NaquadahMaterials.EnrichedNaquadahOxideMixture);
 
         // Enable Dense Plate for Hyper Rotor
         for (MaterialRegistry registry : GTCEuAPI.materialManager.getRegistries())
@@ -1018,8 +949,6 @@ public class CTNHMaterials {
     }
 
     public static void tagPrefixIgnore() {
-
-
         TagPrefix.block.setIgnored(Moonstone, ModBlocks.MOON_STONE);
         TagPrefix.block.setIgnored(Marsstone, ModBlocks.MARS_STONE);
         TagPrefix.block.setIgnored(Venusstone, ModBlocks.VENUS_STONE);
@@ -1041,8 +970,6 @@ public class CTNHMaterials {
         TagPrefix.block.setIgnored(Stratus, DABlocks.STRATUS_BLOCK);
 
         hyperRotor.setIgnored(Neutronium);
-
-
     }
 
     public static class MaterialIcons {

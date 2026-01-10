@@ -15,7 +15,7 @@ import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIcon
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
-public class OrdinaryMaterials {
+public class WetWareLineMaterials {
 
     public static Material PYRROLE;
     public static Material FENTONS_REAGENT;

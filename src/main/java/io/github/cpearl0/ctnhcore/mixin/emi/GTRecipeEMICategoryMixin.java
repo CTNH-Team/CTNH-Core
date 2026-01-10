@@ -64,8 +64,7 @@ public class GTRecipeEMICategoryMixin {
                     CACHED_BUCKETS
                             .computeIfAbsent(
                                     emiCat,
-                                    c -> new CTNHMachineUtils.CategoryBuckets()
-                            )
+                                    c -> new CTNHMachineUtils.CategoryBuckets())
                             .addMachine(machine);
                 }
             }
@@ -80,8 +79,7 @@ public class GTRecipeEMICategoryMixin {
     public static void registerWorkStations(EmiRegistry registry) {
         buildBucketsIfNeeded();
 
-        for (Map.Entry<EmiRecipeCategory, CTNHMachineUtils.CategoryBuckets> e
-                : CACHED_BUCKETS.entrySet()) {
+        for (Map.Entry<EmiRecipeCategory, CTNHMachineUtils.CategoryBuckets> e : CACHED_BUCKETS.entrySet()) {
 
             EmiRecipeCategory category = e.getKey();
             CTNHMachineUtils.CategoryBuckets buckets = e.getValue();
@@ -94,18 +92,15 @@ public class GTRecipeEMICategoryMixin {
 
                 registry.addWorkstation(
                         category,
-                        EmiIngredient.of(mergedList)
-                );
+                        EmiIngredient.of(mergedList));
             }
 
             // 多方块：逐个
             for (MachineDefinition m : buckets.multiblocks) {
                 registry.addWorkstation(
                         category,
-                        MACHINE_STACK_CACHE.get(m)
-                );
+                        MACHINE_STACK_CACHE.get(m));
             }
         }
     }
 }
-

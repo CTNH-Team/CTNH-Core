@@ -32,8 +32,8 @@ import earth.terrarium.adastra.common.registry.ModBlocks;
 import java.util.List;
 
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.Plutonium;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.Uranium;
 import static io.github.cpearl0.ctnhcore.utils.ModUtils.AdAstraRL;

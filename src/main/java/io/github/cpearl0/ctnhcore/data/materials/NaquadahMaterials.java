@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.data.materials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.data.material.CatalystProperty;
 
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
@@ -11,10 +12,34 @@ import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import static io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys.CATALYST;
-import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class NaquadahMaterials {
+
+    public static Material NaquadahOxideMixture;
+    public static Material EnrichedNaquadahOxideMixture;
+    public static Material NaquadriaOxideMixture;
+    public static Material HexafluorideEnrichedNaquadahSolution;
+    public static Material XenonHexafluoroEnrichedNaquadate;
+    public static Material PalladiumOnCarbon;
+    public static Material GoldTrifluoride;
+    public static Material EnrichedNaquadahResidueSolution;
+    public static Material XenoauricFluoroantimonicAcid;
+    public static Material GoldChloride;
+    public static Material BromineTrifluoride;
+    public static Material HexafluorideNaquadriaSolution;
+    public static Material RadonDifluoride;
+    public static Material RadonNaquadriaOctafluoride;
+    public static Material NaquadriaResidueSolution;
+    public static Material CaesiumFluoride;
+    public static Material XenonTrioxide;
+    public static Material CaesiumXenontrioxideFluoride;
+    public static Material NaquadriaCaesiumXenonnonfluoride;
+    public static Material RadonTrioxide;
+    public static Material NaquadriaCaesiumfluoride;
+    public static Material NitrosoniumOctafluoroxenate;
+    public static Material NitrylFluoride;
+    public static Material AcidicNaquadriaCaesiumfluoride;
 
     public static void init() {
         NaquadahOxideMixture = REGISTRATE.material(CTNHCore.id("naquadah_oxide_mixture")).cnlang("氧化硅岩混合物").ore().dust()

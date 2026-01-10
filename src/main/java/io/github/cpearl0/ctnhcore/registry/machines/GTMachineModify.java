@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.registry.machines;
 
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
@@ -13,8 +16,6 @@ import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.machines.GCYMMachines;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.CleanroomMachine;
 
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;

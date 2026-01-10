@@ -2,7 +2,7 @@ package io.github.cpearl0.ctnhcore.data.recipe.chain;
 
 import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
 import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
-import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.data.materials.NaquadahMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
 
@@ -42,16 +42,16 @@ public class NaquadahLine {
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("hexafluoride_enriched_naquadah")
                 .inputFluids(GTMaterials.ImpureEnrichedNaquadahSolution.getFluid(1000))
                 .inputFluids(GTMaterials.Fluorine.getFluid(6000))
-                .outputFluids(CTNHMaterials.HexafluorideEnrichedNaquadahSolution.getFluid(1000))
+                .outputFluids(NaquadahMaterials.HexafluorideEnrichedNaquadahSolution.getFluid(1000))
                 .EUt(GTValues.VA[GTValues.IV])
                 .duration(400)
                 .save(provider);
 
         // --- 氙化合物合成 ---
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("xenon_hexafluoro_naquadate")
-                .inputFluids(CTNHMaterials.HexafluorideEnrichedNaquadahSolution.getFluid(1000))
+                .inputFluids(NaquadahMaterials.HexafluorideEnrichedNaquadahSolution.getFluid(1000))
                 .inputFluids(GTMaterials.Xenon.getFluid(1000))
-                .outputFluids(CTNHMaterials.XenonHexafluoroEnrichedNaquadate.getFluid(1000))
+                .outputFluids(NaquadahMaterials.XenonHexafluoroEnrichedNaquadate.getFluid(1000))
                 .EUt(GTValues.VA[GTValues.HV])
                 .duration(200)
                 .cleanroom(CleanroomType.CLEANROOM)
@@ -61,7 +61,7 @@ public class NaquadahLine {
         GTRecipeTypes.MIXER_RECIPES.recipeBuilder("palladium_on_carbon")
                 .inputItems(TagPrefix.dust, GTMaterials.Carbon)
                 .inputItems(TagPrefix.dust, GTMaterials.Palladium)
-                .outputItems(CTNHTagPrefixes.catalyst, CTNHMaterials.PalladiumOnCarbon)
+                .outputItems(CTNHTagPrefixes.catalyst, NaquadahMaterials.PalladiumOnCarbon)
                 .circuitMeta(32)
                 .duration(160)
                 .EUt(GTValues.VA[GTValues.HV])
@@ -69,13 +69,13 @@ public class NaquadahLine {
 
         // --- 主还原反应（化学工厂）---
         CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder("enriched_naquadah_reduction")
-                .inputItems(CTNHTagPrefixes.catalyst, CTNHMaterials.PalladiumOnCarbon)
-                .inputItems(TagPrefix.dust, CTNHMaterials.GoldTrifluoride, 4)
-                .inputFluids(CTNHMaterials.XenonHexafluoroEnrichedNaquadate.getFluid(1000))
+                .inputItems(CTNHTagPrefixes.catalyst, NaquadahMaterials.PalladiumOnCarbon)
+                .inputItems(TagPrefix.dust, NaquadahMaterials.GoldTrifluoride, 4)
+                .inputFluids(NaquadahMaterials.XenonHexafluoroEnrichedNaquadate.getFluid(1000))
                 .inputFluids(GTMaterials.FluoroantimonicAcid.getFluid(1000))
                 .inputFluids(GTMaterials.Hydrogen.getFluid(9000))
                 .outputFluids(GTMaterials.EnrichedNaquadahSolution.getFluid(1000))
-                .outputFluids(CTNHMaterials.EnrichedNaquadahResidueSolution.getFluid(1000))
+                .outputFluids(NaquadahMaterials.EnrichedNaquadahResidueSolution.getFluid(1000))
                 .outputFluids(GTMaterials.HydrofluoricAcid.getFluid(8000))
                 .EUt(GTValues.VA[GTValues.LuV])
                 .duration(1200)
@@ -84,18 +84,18 @@ public class NaquadahLine {
 
         // --- 废液处理 ---
         CTNHRecipeTypes.DEHYDRATOR_RECIPES.recipeBuilder("xenoauric_acid_production")
-                .inputFluids(CTNHMaterials.EnrichedNaquadahResidueSolution.getFluid(2000))
+                .inputFluids(NaquadahMaterials.EnrichedNaquadahResidueSolution.getFluid(2000))
                 .outputItemsRanged(ChemicalHelper.get(dust, GTMaterials.TriniumSulfide), UniformInt.of(1, 3))
-                .outputFluids(CTNHMaterials.XenoauricFluoroantimonicAcid.getFluid(1000))
+                .outputFluids(NaquadahMaterials.XenoauricFluoroantimonicAcid.getFluid(1000))
                 .EUt(GTValues.VA[GTValues.EV])
                 .duration(240)
                 .save(provider);
 
         // --- 金化合物循环 ---
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("gold_trifluoride_synthesis")
-                .inputFluids(CTNHMaterials.GoldChloride.getFluid(1000))
-                .inputFluids(CTNHMaterials.BromineTrifluoride.getFluid(2000))
-                .outputItems(TagPrefix.dust, CTNHMaterials.GoldTrifluoride, 8)
+                .inputFluids(NaquadahMaterials.GoldChloride.getFluid(1000))
+                .inputFluids(NaquadahMaterials.BromineTrifluoride.getFluid(2000))
+                .outputItems(TagPrefix.dust, NaquadahMaterials.GoldTrifluoride, 8)
                 .outputFluids(GTMaterials.Bromine.getFluid(2000))
                 .outputFluids(GTMaterials.Chlorine.getFluid(6000))
                 .EUt(GTValues.VA[GTValues.MV])
@@ -106,7 +106,7 @@ public class NaquadahLine {
         GTRecipeTypes.MIXER_RECIPES.recipeBuilder("palladium_on_carbon")
                 .inputItems(TagPrefix.dust, GTMaterials.Carbon)
                 .inputItems(TagPrefix.dust, GTMaterials.Palladium)
-                .outputItems(CTNHTagPrefixes.catalyst, CTNHMaterials.PalladiumOnCarbon)
+                .outputItems(CTNHTagPrefixes.catalyst, NaquadahMaterials.PalladiumOnCarbon)
                 .circuitMeta(32)
                 .duration(160) // 8秒 = 160 ticks
                 .EUt(GTValues.VA[GTValues.HV]) // 480 EU/t
@@ -114,7 +114,7 @@ public class NaquadahLine {
 
         // --- 金氟锑酸循环处理 ---
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("xenoauric_fluoroantimonic_acid_recycle")
-                .inputFluids(CTNHMaterials.XenoauricFluoroantimonicAcid.getFluid(1000))
+                .inputFluids(NaquadahMaterials.XenoauricFluoroantimonicAcid.getFluid(1000))
                 .outputItems(TagPrefix.dust, GTMaterials.Gold)
                 .outputItems(TagPrefix.dust, GTMaterials.AntimonyTrifluoride, 8)
                 .outputFluids(GTMaterials.Xenon.getFluid(2000))
@@ -128,7 +128,7 @@ public class NaquadahLine {
                 .inputFluids(GTMaterials.Bromine.getFluid(1000))
                 .inputFluids(GTMaterials.Fluorine.getFluid(3000))
                 .circuitMeta(3)  // 标识反应类型
-                .outputFluids(CTNHMaterials.BromineTrifluoride.getFluid(1000))
+                .outputFluids(NaquadahMaterials.BromineTrifluoride.getFluid(1000))
                 .EUt(GTValues.VA[GTValues.LV])  // 30 EU/t
                 .duration(120)  // 6秒
                 .save(provider);
@@ -137,7 +137,7 @@ public class NaquadahLine {
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("gold_chloride_synthesis")
                 .inputItems(TagPrefix.dust, GTMaterials.Gold, 2)
                 .inputFluids(GTMaterials.Chlorine.getFluid(6000))
-                .outputFluids(CTNHMaterials.GoldChloride.getFluid(1000))
+                .outputFluids(NaquadahMaterials.GoldChloride.getFluid(1000))
                 .EUt(GTValues.VA[GTValues.MV]) // 480 EU/t
                 .duration(360) // 18秒
                 .save(provider);
@@ -146,7 +146,7 @@ public class NaquadahLine {
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("naquadria_hexafluoridation")
                 .inputFluids(GTMaterials.ImpureNaquadriaSolution.getFluid(1000))
                 .inputFluids(GTMaterials.Fluorine.getFluid(6000))
-                .outputFluids(CTNHMaterials.HexafluorideNaquadriaSolution.getFluid(1000))
+                .outputFluids(NaquadahMaterials.HexafluorideNaquadriaSolution.getFluid(1000))
                 .EUt(GTValues.VA[GTValues.IV]) // 1920 EU/t
                 .duration(400) // 20秒
                 .save(provider);
@@ -156,17 +156,17 @@ public class NaquadahLine {
                 .inputFluids(GTMaterials.Radon.getFluid(1000))
                 .inputFluids(GTMaterials.Fluorine.getFluid(2000))
                 .circuitMeta(2) // 标识二氟化反应
-                .outputFluids(CTNHMaterials.RadonDifluoride.getFluid(1000))
+                .outputFluids(NaquadahMaterials.RadonDifluoride.getFluid(1000))
                 .EUt(GTValues.VA[GTValues.MV]) // 480 EU/t
                 .duration(100) // 5秒
                 .save(provider);
 
         // 六氟化Naquadria溶液 + 二氟化氡 -> 八氟化氡Naquadria + Naquadria残液
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("radon_naquadria_octafluoride")
-                .inputFluids(CTNHMaterials.HexafluorideNaquadriaSolution.getFluid(1000))
-                .inputFluids(CTNHMaterials.RadonDifluoride.getFluid(1000))
-                .outputFluids(CTNHMaterials.RadonNaquadriaOctafluoride.getFluid(1000))
-                .outputFluids(CTNHMaterials.NaquadriaResidueSolution.getFluid(1000))
+                .inputFluids(NaquadahMaterials.HexafluorideNaquadriaSolution.getFluid(1000))
+                .inputFluids(NaquadahMaterials.RadonDifluoride.getFluid(1000))
+                .outputFluids(NaquadahMaterials.RadonNaquadriaOctafluoride.getFluid(1000))
+                .outputFluids(NaquadahMaterials.NaquadriaResidueSolution.getFluid(1000))
                 .EUt(GTValues.VA[GTValues.HV]) // 480 EU/t
                 .duration(800) // 40秒
                 .cleanroom(CleanroomType.CLEANROOM) // 需要洁净环境
@@ -177,23 +177,23 @@ public class NaquadahLine {
                 .inputItems(TagPrefix.dust, GTMaterials.Caesium)
                 .inputFluids(GTMaterials.Fluorine.getFluid(1000))
                 .circuitMeta(1)  // 标识单氟化反应
-                .outputFluids(CTNHMaterials.CaesiumFluoride.getFluid(1000))
+                .outputFluids(NaquadahMaterials.CaesiumFluoride.getFluid(1000))
                 .EUt(GTValues.VA[GTValues.MV])  // 480 EU/t
                 .duration(100)  // 5秒
                 .save(provider);
 
         // 氟化铯 + 三氧化氙 -> 氟化铯氙三氧化物
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("caesium_xenontrioxide_fluoride")
-                .inputFluids(CTNHMaterials.CaesiumFluoride.getFluid(1000))
-                .inputFluids(CTNHMaterials.XenonTrioxide.getFluid(1000))
-                .outputFluids(CTNHMaterials.CaesiumXenontrioxideFluoride.getFluid(1000))
+                .inputFluids(NaquadahMaterials.CaesiumFluoride.getFluid(1000))
+                .inputFluids(NaquadahMaterials.XenonTrioxide.getFluid(1000))
+                .outputFluids(NaquadahMaterials.CaesiumXenontrioxideFluoride.getFluid(1000))
                 .EUt(GTValues.VA[GTValues.MV])  // 480 EU/t
                 .duration(480)  // 24秒
                 .save(provider);
 
         // Naquadria残液 -> 磷化铟 + Naquadria溶液 (高温熔炼)
         GTRecipeTypes.BLAST_RECIPES.recipeBuilder("naquadria_solution_recovery")
-                .inputFluids(CTNHMaterials.NaquadriaResidueSolution.getFluid(2000))
+                .inputFluids(NaquadahMaterials.NaquadriaResidueSolution.getFluid(2000))
                 .outputItems(TagPrefix.dust, GTMaterials.IndiumPhosphide)
                 .outputFluids(GTMaterials.NaquadriaSolution.getFluid(1000))
                 .EUt(GTValues.VA[GTValues.IV])  // 1920 EU/t
@@ -214,17 +214,17 @@ public class NaquadahLine {
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("xenon_trioxide_synthesis")
                 .inputFluids(GTMaterials.Xenon.getFluid(1000))
                 .inputFluids(GTMaterials.Oxygen.getFluid(3000))
-                .outputFluids(CTNHMaterials.XenonTrioxide.getFluid(1000))
+                .outputFluids(NaquadahMaterials.XenonTrioxide.getFluid(1000))
                 .EUt(GTValues.VA[GTValues.MV])  // 480 EU/t
                 .duration(100)  // 5秒
                 .save(provider);
 
         // 八氟化氡Naquadria + 氟化铯氙三氧化物 -> Naquadria铯氙九氟化物 + 三氧化氡 (洁净室)
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("naquadria_caesium_xenonnonfluoride")
-                .inputFluids(CTNHMaterials.RadonNaquadriaOctafluoride.getFluid(1000))
-                .inputFluids(CTNHMaterials.CaesiumXenontrioxideFluoride.getFluid(1000))
-                .outputFluids(CTNHMaterials.NaquadriaCaesiumXenonnonfluoride.getFluid(1000))
-                .outputFluids(CTNHMaterials.RadonTrioxide.getFluid(1000))
+                .inputFluids(NaquadahMaterials.RadonNaquadriaOctafluoride.getFluid(1000))
+                .inputFluids(NaquadahMaterials.CaesiumXenontrioxideFluoride.getFluid(1000))
+                .outputFluids(NaquadahMaterials.NaquadriaCaesiumXenonnonfluoride.getFluid(1000))
+                .outputFluids(NaquadahMaterials.RadonTrioxide.getFluid(1000))
                 .EUt(GTValues.VA[GTValues.IV])  // 1920 EU/t
                 .duration(800)  // 40秒
                 .cleanroom(CleanroomType.CLEANROOM)  // 需要洁净环境
@@ -234,7 +234,7 @@ public class NaquadahLine {
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("nitryl_fluoride_synthesis")
                 .inputFluids(GTMaterials.NitrogenDioxide.getFluid(1000))
                 .inputFluids(GTMaterials.Fluorine.getFluid(1000))
-                .outputFluids(CTNHMaterials.NitrylFluoride.getFluid(1000))
+                .outputFluids(NaquadahMaterials.NitrylFluoride.getFluid(1000))
                 .EUt(GTValues.VA[GTValues.MV])  // 480 EU/t
                 .duration(160)  // 8秒
                 .save(provider);
@@ -242,18 +242,18 @@ public class NaquadahLine {
         // 硫酸 + Naquadria铯氟化物 -> 酸性Naquadria铯氟化物
         GTRecipeTypes.MIXER_RECIPES.recipeBuilder("acidic_naquadria_caesiumfluoride")
                 .inputFluids(GTMaterials.SulfuricAcid.getFluid(2000))
-                .inputFluids(CTNHMaterials.NaquadriaCaesiumfluoride.getFluid(1000))
-                .outputFluids(CTNHMaterials.AcidicNaquadriaCaesiumfluoride.getFluid(3000))
+                .inputFluids(NaquadahMaterials.NaquadriaCaesiumfluoride.getFluid(1000))
+                .outputFluids(NaquadahMaterials.AcidicNaquadriaCaesiumfluoride.getFluid(3000))
                 .EUt(GTValues.VA[GTValues.IV])  // 1920 EU/t
                 .duration(360)  // 18秒
                 .save(provider);
 
         // Naquadria铯氙九氟化物 + 硝酰氟 -> Naquadria铯氟化物 + 硝酰八氟氙酸盐 (洁净室)
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("nitrosonium_octafluoroxenate")
-                .inputFluids(CTNHMaterials.NaquadriaCaesiumXenonnonfluoride.getFluid(1000))
-                .inputFluids(CTNHMaterials.NitrylFluoride.getFluid(2000))
-                .outputFluids(CTNHMaterials.NaquadriaCaesiumfluoride.getFluid(1000))
-                .outputFluids(CTNHMaterials.NitrosoniumOctafluoroxenate.getFluid(1000))
+                .inputFluids(NaquadahMaterials.NaquadriaCaesiumXenonnonfluoride.getFluid(1000))
+                .inputFluids(NaquadahMaterials.NitrylFluoride.getFluid(2000))
+                .outputFluids(NaquadahMaterials.NaquadriaCaesiumfluoride.getFluid(1000))
+                .outputFluids(NaquadahMaterials.NitrosoniumOctafluoroxenate.getFluid(1000))
                 .EUt(GTValues.VA[GTValues.EV])  // 7680 EU/t
                 .duration(400)  // 20秒
                 .cleanroom(CleanroomType.CLEANROOM)
@@ -271,7 +271,7 @@ public class NaquadahLine {
 
         // Naquadria处理 (酸性Naquadria铯氟化物 -> Naquadria硫酸盐)
         CTNHRecipeTypes.NEUTRON_ACTIVATOR_RECIPES.recipeBuilder("naquadria_activation")
-                .inputFluids(CTNHMaterials.AcidicNaquadriaCaesiumfluoride.getFluid(9000))
+                .inputFluids(NaquadahMaterials.AcidicNaquadriaCaesiumfluoride.getFluid(9000))
                 .outputItems(TagPrefix.dust, GTMaterials.NaquadriaSulfate, 3)
                 .outputItems(TagPrefix.dust, GTMaterials.Caesium, 3)
                 .outputFluids(GTMaterials.Fluorine.getFluid(18000))
@@ -290,7 +290,7 @@ public class NaquadahLine {
 
         // Naquadah直接活化 (氧化物混合物 -> 纯Naquadah)-完美循环
         CTNHRecipeTypes.NEUTRON_ACTIVATOR_RECIPES.recipeBuilder("naquadah_direct_activation")
-                .inputItems(TagPrefix.dust, CTNHMaterials.NaquadahOxideMixture, 16)
+                .inputItems(TagPrefix.dust, NaquadahMaterials.NaquadahOxideMixture, 16)
                 .inputFluids(GTMaterials.FluoroantimonicAcid.getFluid(6000))
                 .outputItems(TagPrefix.dust, GTMaterials.TitaniumTrifluoride, 32)
                 .outputItems(TagPrefix.dust, GTMaterials.Naquadah, 2)
@@ -301,7 +301,7 @@ public class NaquadahLine {
                 .save(provider);
 
         CTNHRecipeTypes.ACCELERATOR_UP.recipeBuilder("naquadah_direct_activation_acc_up")
-                .inputItems(TagPrefix.dust, CTNHMaterials.NaquadahOxideMixture, 16)
+                .inputItems(TagPrefix.dust, NaquadahMaterials.NaquadahOxideMixture, 16)
                 .inputFluids(GTMaterials.FluoroantimonicAcid.getFluid(6000))
                 .outputItems(TagPrefix.dust, GTMaterials.TitaniumTrifluoride, 32)
                 .outputItems(TagPrefix.dust, GTMaterials.Naquadah, 2)
@@ -315,7 +315,7 @@ public class NaquadahLine {
 
         // 浓缩Naquadah氧化物混合物 + 氟锑酸 -> 三氧化二锑 + 三氟化钛 + 不纯浓缩溶液-半循环
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("enriched_naquadah_oxide_decomposition")
-                .inputItems(TagPrefix.dust, CTNHMaterials.EnrichedNaquadahOxideMixture, 7)
+                .inputItems(TagPrefix.dust, NaquadahMaterials.EnrichedNaquadahOxideMixture, 7)
                 .inputFluids(GTMaterials.FluoroantimonicAcid.getFluid(3000))
                 .outputItems(TagPrefix.dust, GTMaterials.AntimonyTrioxide, 7)
                 .outputItems(TagPrefix.dust, GTMaterials.TitaniumTrifluoride, 14)
@@ -327,7 +327,7 @@ public class NaquadahLine {
 
         // Naquadria氧化物混合物 + 氟锑酸 -> 三氧化二锑 + 三氟化钛 + 不纯Naquadria溶液-四分之一循环
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("naquadria_oxide_decomposition")
-                .inputItems(TagPrefix.dust, CTNHMaterials.NaquadriaOxideMixture, 14)
+                .inputItems(TagPrefix.dust, NaquadahMaterials.NaquadriaOxideMixture, 14)
                 .inputFluids(GTMaterials.FluoroantimonicAcid.getFluid(3000))
                 .outputItems(TagPrefix.dust, GTMaterials.AntimonyTrioxide, 5)
                 .outputItems(TagPrefix.dust, GTMaterials.TitaniumTrifluoride, 7)
