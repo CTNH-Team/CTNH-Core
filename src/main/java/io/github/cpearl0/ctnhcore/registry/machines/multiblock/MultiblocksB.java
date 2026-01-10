@@ -52,7 +52,6 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.DUMMY_RECIPES;
 import static committee.nova.mods.avaritia.init.registry.ModBlocks.neutron;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
-import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.HIGH_SPEED_PIPE_BLOCK;
 import static net.minecraft.world.level.block.Blocks.*;
 
 public class MultiblocksB {

@@ -601,7 +601,7 @@ public class DefaultRecipes {
                 .inputItems(TagPrefix.wireGtSingle, GTMaterials.MercuryBariumCalciumCuprate, 32)
                 .inputItems(TagPrefix.plate, GTMaterials.Beryllium, 32)
                 .inputItems(CustomTags.IV_CIRCUITS)
-                .outputItems(CTNHMachines.HIGH_SPEED_PIPE_BLOCK.asStack())
+                .outputItems(CTNHBlocks.HIGH_SPEED_PIPE_BLOCK.asStack())
                 .EUt(GTValues.VA[GTValues.EV]) // 1920 EU/t
                 .duration(300) // 15秒
                 .save(provider);

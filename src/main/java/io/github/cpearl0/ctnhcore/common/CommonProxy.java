@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.common;
 
+import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
+import com.gregtechceu.gtceu.common.unification.material.MaterialRegistryManager;
 import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
@@ -80,6 +82,11 @@ public class CommonProxy {
     }
 
     @SubscribeEvent
+    public static void registerMaterial(MaterialRegistryEvent event) {
+        MaterialRegistryManager.getInstance().createRegistry(CTNHCore.MODID);
+    }
+
+    @SubscribeEvent
     public static void addMaterialFlag(MaterialEvent event) {
         GTMaterialAddon.init();
     }
@@ -106,7 +113,7 @@ public class CommonProxy {
         CTNHChanceLogic.init();
     }
 
-    public static void registerRecipeConditions(GTCEuAPI.RegisterEvent<ResourceLocation, RecipeConditionType> event) {
+    public static void registerRecipeConditions(GTCEuAPI.RegisterEvent<ResourceLocation, RecipeConditionType<?>> event) {
         CTNHRecipeConditions.init();
     }
 

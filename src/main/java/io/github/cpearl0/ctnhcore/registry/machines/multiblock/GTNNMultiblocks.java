@@ -131,7 +131,7 @@ public class GTNNMultiblocks {
                         .where("B", blocks(CTNHBlocks.PROCESS_MACHINE_CASING.get()))
                         .where("C", blocks(ChemicalHelper.getBlock(TagPrefix.frameGt, GTMaterials.Steel)))
                         .where("D", blocks(GTBlocks.CASING_LAMINATED_GLASS.get()))
-                        .where("E", blocks(CTNHMachines.HIGH_SPEED_PIPE_BLOCK.get().self()))
+                        .where("E", blocks(CTNHBlocks.HIGH_SPEED_PIPE_BLOCK.get()))
                         .where("#", any()).build()
 
                 )
