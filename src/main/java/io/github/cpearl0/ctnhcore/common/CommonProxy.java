@@ -83,7 +83,7 @@ public class CommonProxy {
 
     @SubscribeEvent
     public static void registerMaterial(MaterialRegistryEvent event) {
-        MaterialRegistryManager.getInstance().createRegistry(CTNHCore.MODID);
+        //MaterialRegistryManager.getInstance().createRegistry(CTNHCore.MODID);
     }
 
     @SubscribeEvent
