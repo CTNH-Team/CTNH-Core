@@ -42,8 +42,7 @@ public class CreateJEIMixin {
     }
 
     @Overwrite
-    public static <T extends Recipe<?>> void consumeTypedRecipes(
-                                                                 Consumer<T> consumer, RecipeType<?> type) {
+    public static <T extends Recipe<?>> void consumeTypedRecipes(Consumer<T> consumer, RecipeType<?> type) {
         for (Recipe<?> recipe : CreateJeiRecipeCache.recipesByType(type)) {
             consumer.accept((T) recipe);
         }

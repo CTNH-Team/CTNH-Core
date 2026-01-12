@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.data.materials;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import io.github.cpearl0.ctnhcore.CTNHCore;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.METALLIC;
@@ -24,7 +25,7 @@ public class EnderIOMaterials {
     public static Material StellarAlloy;
 
     public static void init() {
-        EnergeticAlloy = REGISTRATE.material(GTCEu.id("energetic_alloy"))
+        EnergeticAlloy = REGISTRATE.material(CTNHCore.id("energetic_alloy"))
                 .cnlang("充能合金")
                 .ingot()
                 .liquid()
@@ -35,7 +36,7 @@ public class EnderIOMaterials {
                 .iconSet(METALLIC)
                 .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FINE_WIRE)
                 .buildAndRegister();
-        ConductiveAlloy = REGISTRATE.material(GTCEu.id("conductive_alloy"))
+        ConductiveAlloy = REGISTRATE.material(CTNHCore.id("conductive_alloy"))
                 .cnlang("导电合金")
                 .ingot()
                 .liquid()
@@ -44,7 +45,7 @@ public class EnderIOMaterials {
                 .iconSet(METALLIC)
                 .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FINE_WIRE)
                 .buildAndRegister();
-        VibrantAlloy = REGISTRATE.material(GTCEu.id("vibrant_alloy"))
+        VibrantAlloy = REGISTRATE.material(CTNHCore.id("vibrant_alloy"))
                 .cnlang("振动合金")
                 .ingot()
                 .liquid()
@@ -55,7 +56,7 @@ public class EnderIOMaterials {
                 .iconSet(METALLIC)
                 .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FINE_WIRE)
                 .buildAndRegister();
-        DarkSteel = REGISTRATE.material(GTCEu.id("dark_steel"))
+        DarkSteel = REGISTRATE.material(CTNHCore.id("dark_steel"))
                 .ingot()
                 .liquid()
                 .components(Steel, 1, Obsidian, 1)
@@ -64,7 +65,7 @@ public class EnderIOMaterials {
                 .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR)
                 .buildAndRegister();
 
-        EndSteel = REGISTRATE.material(GTCEu.id("end_steel"))
+        EndSteel = REGISTRATE.material(CTNHCore.id("end_steel"))
                 .cnlang("末地钢")
                 .ingot()
                 .liquid()
@@ -75,7 +76,7 @@ public class EnderIOMaterials {
                 .iconSet(METALLIC)
                 .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FINE_WIRE)
                 .buildAndRegister();
-        ChorusiteAlloy = REGISTRATE.material(GTCEu.id("chorusite_alloy"))
+        ChorusiteAlloy = REGISTRATE.material(CTNHCore.id("chorusite_alloy"))
                 .cnlang("振动合金")
                 .ingot()
                 .liquid()
@@ -83,7 +84,7 @@ public class EnderIOMaterials {
                 .blastTemp(3000, LOW, 480, 260)
                 .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR)
                 .buildAndRegister();
-        MelodicAlloy = REGISTRATE.material(GTCEu.id("melodic_alloy"))
+        MelodicAlloy = REGISTRATE.material(CTNHCore.id("melodic_alloy"))
                 .cnlang("旋律合金")
                 .ingot()
                 .liquid()
@@ -94,7 +95,7 @@ public class EnderIOMaterials {
                 .iconSet(METALLIC)
                 .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FINE_WIRE)
                 .buildAndRegister();
-        StellarAlloy = REGISTRATE.material(GTCEu.id("stellar_alloy"))
+        StellarAlloy = REGISTRATE.material(CTNHCore.id("stellar_alloy"))
                 .cnlang("恒星合金")
                 .ingot()
                 .liquid()

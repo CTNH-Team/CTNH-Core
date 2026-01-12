@@ -197,6 +197,19 @@ public class CTNHBlocks {
             PhotovoltaicBlock.PhotovoltaicType.PHOTON_PRESS_COND_BLOCK,
             "block/photon_press_cond_block", "光压传导光伏方块");
 
+    public static final BlockEntry<Block> HIGH_SPEED_PIPE_BLOCK = REGISTRATE
+            .block("high_speed_pipe_block", Block::new)
+            .cnlang("高速管道方块")
+            .initialProperties(() -> Blocks.IRON_BLOCK)
+            .blockstate((ctx, prov) -> {
+                prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(ctx.getName(), CTNHCore.id("block/speedingpipe")));
+            })
+            .tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
+            .item(BlockItem::new)
+            .build()
+            .register();
+
+
     private static BlockEntry<ActiveBlock> createFireboxCasing(BoilerFireboxType type) {
         var block = REGISTRATE
                 .block("%s_casing".formatted(type.name()), ActiveBlock::new)
