@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.utils;
+package io.github.cpearl0.ctnhcore.utils.emi;
 
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.utils.Position;

@@ -1,6 +1,6 @@
 package io.github.cpearl0.ctnhcore.mixin.emi;
 
-import io.github.cpearl0.ctnhcore.utils.CreateJeiRecipeCache;
+import io.github.cpearl0.ctnhcore.utils.emi.CreateJeiRecipeCache;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;

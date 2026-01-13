@@ -98,7 +98,7 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
             }
         }
         length = len;
-        getPattern()
+        //getPattern()
         super.onStructureFormed();
     }
 

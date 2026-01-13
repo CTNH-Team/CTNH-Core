@@ -41,7 +41,7 @@ public class GTRecipeEMICategoryMixin {
      * 构建 bucket（仅一次）
      */
     @Unique
-    private static void buildBucketsIfNeeded() {
+    private static void ctnhcore$buildBucketsIfNeeded() {
         if (CACHED_BUCKETS != null) return;
 
         CACHED_BUCKETS = new HashMap<>();
@@ -77,7 +77,7 @@ public class GTRecipeEMICategoryMixin {
      */
     @Overwrite
     public static void registerWorkStations(EmiRegistry registry) {
-        buildBucketsIfNeeded();
+        ctnhcore$buildBucketsIfNeeded();
 
         for (Map.Entry<EmiRecipeCategory, CTNHMachineUtils.CategoryBuckets> e : CACHED_BUCKETS.entrySet()) {
 

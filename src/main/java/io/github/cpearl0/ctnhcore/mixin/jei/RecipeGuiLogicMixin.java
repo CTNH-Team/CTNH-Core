@@ -1,7 +1,7 @@
 // package io.github.cpearl0.ctnhcore.mixin.jei;
 //
 // import com.mojang.logging.LogUtils;
-// import io.github.cpearl0.ctnhcore.utils.TagRelationGraph;
+// import io.github.cpearl0.ctnhcore.utils.emi.TagRelationGraph;
 // import mezz.jei.api.constants.VanillaTypes;
 // import mezz.jei.api.recipe.IFocus;
 // import mezz.jei.api.recipe.IFocusFactory;

@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.utils;
+package io.github.cpearl0.ctnhcore.utils.emi;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.crafting.Recipe;
