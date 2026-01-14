@@ -1,6 +1,6 @@
 package io.github.cpearl0.ctnhcore.mixin.emi;
 
-import io.github.cpearl0.ctnhcore.utils.TagRelationGraph;
+import io.github.cpearl0.ctnhcore.utils.emi.TagRelationGraph;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;

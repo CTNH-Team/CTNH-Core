@@ -1,6 +1,6 @@
 package io.github.cpearl0.ctnhcore.mixin.gtceu;
 
-import io.github.cpearl0.ctnhcore.utils.VoltageBorderWidget;
+import io.github.cpearl0.ctnhcore.utils.emi.VoltageBorderWidget;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
