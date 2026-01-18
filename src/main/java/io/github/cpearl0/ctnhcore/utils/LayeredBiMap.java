@@ -2,6 +2,8 @@ package io.github.cpearl0.ctnhcore.utils;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ForwardingMap;
+import com.mojang.logging.LogUtils;
+import org.slf4j.Logger;
 
 import java.util.*;
 
@@ -13,6 +15,8 @@ public final class LayeredBiMap<K, V>
     private final Map<K, V> fallback;
 
     private BiMap<V, K> inverse;
+
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public LayeredBiMap(BiMap<K, V> primary, Map<K, V> fallback) {
         this.primary = Objects.requireNonNull(primary);
@@ -27,7 +31,18 @@ public final class LayeredBiMap<K, V>
 
             @Override
             public V get(Object key) {
-                return primary.containsKey(key) ? primary.get(key) : fallback.get(key);
+                if (primary.containsKey(key)) {
+                    return primary.get(key);
+                }
+
+                V value = fallback.get(key);
+                if (value != null) {
+                    LOGGER.info(
+                            "[LayeredBiMap] primary miss, fallback hit: key={}, value={}",
+                            key, value
+                    );
+                }
+                return value;
             }
 
             @Override
@@ -98,13 +113,20 @@ public final class LayeredBiMap<K, V>
                     if (k != null) {
                         return k;
                     }
+
                     for (Entry<K, V> e : fallback.entrySet()) {
                         if (Objects.equals(e.getValue(), value)) {
+                            LOGGER.info(
+                                    "[LayeredBiMap:inverse] primary miss, fallback hit: value={}, key={}",
+                                    value, e.getKey()
+                            );
                             return e.getKey();
                         }
                     }
                     return null;
                 }
+
+
 
                 @Override
                 public boolean containsKey(Object value) {
