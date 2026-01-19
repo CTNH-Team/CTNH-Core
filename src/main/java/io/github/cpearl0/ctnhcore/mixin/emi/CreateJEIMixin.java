@@ -34,6 +34,10 @@ public class CreateJEIMixin {
         CreateJeiRecipeCache.invalidate();
     }
 
+    /**
+     * @author lucky_block
+     * @reason
+     */
     @Overwrite
     public static void consumeAllRecipes(Consumer<Recipe<?>> consumer) {
         for (Recipe<?> recipe : CreateJeiRecipeCache.allRecipes()) {
@@ -41,6 +45,10 @@ public class CreateJEIMixin {
         }
     }
 
+    /**
+     * @author lucky_block
+     * @reason
+     */
     @Overwrite
     public static <T extends Recipe<?>> void consumeTypedRecipes(Consumer<T> consumer, RecipeType<?> type) {
         for (Recipe<?> recipe : CreateJeiRecipeCache.recipesByType(type)) {
@@ -48,11 +56,19 @@ public class CreateJEIMixin {
         }
     }
 
+    /**
+     * @author lucky_block
+     * @reason
+     */
     @Overwrite
     public static List<Recipe<?>> getTypedRecipes(RecipeType<?> type) {
         return new ArrayList<>(CreateJeiRecipeCache.recipesByType(type));
     }
 
+    /**
+     * @author lucky_block
+     * @reason
+     */
     @Overwrite
     public void registerExtraIngredients(IExtraIngredientRegistration registration) {}
 
