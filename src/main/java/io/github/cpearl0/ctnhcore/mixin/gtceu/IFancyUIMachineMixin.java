@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.mixin.gtceu;
 
-import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.IRCFancyUIProvider;
-import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.RCUIWidget;
+import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.IAllowSameUIProvider;
+import tech.vixhentx.mcmod.ctnhlib.client.gui.RCUIWidget;
 
 import com.gregtechceu.gtceu.api.gui.fancy.IFancyUIProvider;
 import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 @Mixin(value = IFancyUIMachine.class, remap = false)
-public interface IFancyUIMachineMixin extends IRCFancyUIProvider, IUIMachine, IFancyUIProvider {
+public interface IFancyUIMachineMixin extends IAllowSameUIProvider, IUIMachine, IFancyUIProvider {
 
     /**
      * @author

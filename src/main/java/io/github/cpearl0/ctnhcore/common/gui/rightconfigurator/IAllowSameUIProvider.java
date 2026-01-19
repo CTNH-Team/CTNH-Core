@@ -12,15 +12,16 @@ import com.lowdragmc.lowdraglib.gui.texture.ResourceTexture;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import tech.vixhentx.mcmod.ctnhlib.client.gui.IRCFancyUIProvider;
+import tech.vixhentx.mcmod.ctnhlib.client.gui.RightConfiguratorPanel;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
 
 import java.util.List;
 
 import static io.github.cpearl0.ctnhcore.api.CTNHLangValues.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHGuiTextures.*;
 
-public interface IRCFancyUIProvider {
+public interface IAllowSameUIProvider extends IRCFancyUIProvider {
 
     default void attachRightConfigurators(RightConfiguratorPanel panel) {
         if (!(this instanceof MetaMachine machine)) return;
