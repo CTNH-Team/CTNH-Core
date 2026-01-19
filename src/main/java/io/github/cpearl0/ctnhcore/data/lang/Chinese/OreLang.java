@@ -98,6 +98,6 @@ public class OreLang {
         provider.add("dimension.ad_astra:glacio", "霜原星");
         provider.add("dimension.twilightforest:twilight_forest", "暮色森林");
         provider.add("dimension.aether:the_aether", "天境");
-        provider.add("dimension.mythicbotany:alfheim", "亚尔夫海姆");
+        //provider.add("dimension.mythicbotany:alfheim", "亚尔夫海姆");
     }
 }
