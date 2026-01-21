@@ -92,7 +92,7 @@ public class ThreadRecipeLogic extends RecipeLogic {
             // lastOriginRecipe = null;
             setupRecipe(recipe);
         } else if (!lockRecipe) { // try to find and handle a new recipe if not locked
-            // lastRecipe = null;
+            lastRecipe = null;
             // lastOriginRecipe = null;
             handleSearchingRecipes(searchRecipe());
         }
