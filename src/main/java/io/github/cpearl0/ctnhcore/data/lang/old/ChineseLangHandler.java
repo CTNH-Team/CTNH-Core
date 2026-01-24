@@ -71,6 +71,7 @@ public class ChineseLangHandler {
 
         provider.add("ctnh.testing_terminal.tooltip.1", "用于检测多方块搭建时产生的错误");
         provider.add("ctnh.testing_terminal.tooltip.2", "右键多方块的主方块以显示错误信息");
+        provider.add("ctnh.testing_terminal.tooltip.3", "按住Shift右键切换普通/翻转模式");
         provider.add("ctnh.me_advanced_terminal.tooltip.1", "§l格雷科技-多方块结构终端-异步成型模式");
         provider.add("ctnh.me_advanced_terminal.tooltip.2", "复刻了曾经的旗舰款，终端屏幕上闪烁着久违的画面");
         provider.add("ctnh.me_advanced_terminal.tooltip.3", "通过ME无线访问点链接到网络");

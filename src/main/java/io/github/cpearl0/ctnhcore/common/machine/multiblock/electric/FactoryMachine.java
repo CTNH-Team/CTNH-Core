@@ -88,6 +88,7 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
 
     @Override
     public void onStructureFormed() {
+        // TODO： Fix this
         int len = 1;
         while (true) {
             var pos = MachineUtils.getOffset(this, 0, 0, len);

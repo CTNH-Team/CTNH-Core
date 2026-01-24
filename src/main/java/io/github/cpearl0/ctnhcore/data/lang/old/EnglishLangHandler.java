@@ -60,6 +60,7 @@ public class EnglishLangHandler {
 
         provider.add("ctnh.testing_terminal.tooltip.1", "Use to check the error when building the multiblock");
         provider.add("ctnh.testing_terminal.tooltip.2", "Right-click the controller to show the error info");
+        provider.add("ctnh.testing_terminal.tooltip.3", "Right-click with Shift to change between Normal/Flipped mode");
         provider.add("ctnh.me_advanced_terminal.tooltip.1",
                 "Can build multiblock structures using items from the ME network");
         provider.add("ctnh.me_advanced_terminal.tooltip.2", "Connects to the network via ME Wireless Access Point");

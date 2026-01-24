@@ -131,6 +131,7 @@ public class CTNHItems {
                 .onRegister(attach(new TooltipBehavior(list -> {
                     list.add(Component.translatable("ctnh.testing_terminal.tooltip.1").withStyle(ChatFormatting.GRAY));
                     list.add(Component.translatable("ctnh.testing_terminal.tooltip.2"));
+                    list.add(Component.translatable("ctnh.testing_terminal.tooltip.3"));
                 })))
                 .register();
         ME_ADVANCED_TERMINAL = REGISTRATE

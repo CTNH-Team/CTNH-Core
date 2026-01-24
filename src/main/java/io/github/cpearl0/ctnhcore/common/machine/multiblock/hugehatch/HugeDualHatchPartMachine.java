@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch;
 
 import io.github.cpearl0.ctnhcore.common.gui.HugeSlotWidget;
-import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.RightConfiguratorPanel;
+import tech.vixhentx.mcmod.ctnhlib.client.gui.RightConfiguratorPanel;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
