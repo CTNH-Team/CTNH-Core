@@ -39,8 +39,7 @@ public final class LayeredBiMap<K, V>
                 if (value != null) {
                     LOGGER.info(
                             "[LayeredBiMap] primary miss, fallback hit: key={}, value={}",
-                            key, value
-                    );
+                            key, value);
                 }
                 return value;
             }
@@ -118,15 +117,12 @@ public final class LayeredBiMap<K, V>
                         if (Objects.equals(e.getValue(), value)) {
                             LOGGER.info(
                                     "[LayeredBiMap:inverse] primary miss, fallback hit: value={}, key={}",
-                                    value, e.getKey()
-                            );
+                                    value, e.getKey());
                             return e.getKey();
                         }
                     }
                     return null;
                 }
-
-
 
                 @Override
                 public boolean containsKey(Object value) {

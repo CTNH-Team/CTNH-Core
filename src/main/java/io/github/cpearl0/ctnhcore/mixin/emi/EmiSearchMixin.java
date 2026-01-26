@@ -1,19 +1,16 @@
 package io.github.cpearl0.ctnhcore.mixin.emi;
 
-import dev.emi.emi.api.stack.EmiIngredient;
-import dev.emi.emi.runtime.EmiLog;
-import dev.emi.emi.screen.EmiScreenManager;
 import net.minecraft.network.chat.Component;
 
+import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
+import dev.emi.emi.screen.EmiScreenManager;
 import dev.emi.emi.search.EmiSearch;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,43 +76,42 @@ public class EmiSearchMixin {
         // 立即应用快速结果
         synchronized (EmiSearch.class) {
             EmiSearch.stacks = fastResult;
-            ctnhcore$searchVersion ++;
+            ctnhcore$searchVersion++;
         }
 
         // ===== Phase 2: 后台慢匹配 =====
-        Thread slowThread = new Thread(() -> {
-            try {
-                ArrayList<EmiIngredient> finalResult = new ArrayList<>(fastResult);
-                var version = ctnhcore$searchVersion;
-                for (EmiIngredient ingredient : slowCandidates) {
-                    if(version != ctnhcore$searchVersion)
-                        return;
-                    List<EmiStack> stacks = ingredient.getEmiStacks();
-                    if (stacks.size() != 1) {
-                        continue;
-                    }
-
-                    EmiStack stack = stacks.get(0);
-
-                    if (compiled.fullQuery.matchesUnbaked(stack)) {
-                        finalResult.add(ingredient);
-                    }
-                }
-
-                // 原子替换结果
-                synchronized (EmiSearch.class) {
-                    // 确保 query 未发生变化
-                    if (EmiSearch.compiledQuery == compiled) {
-                        EmiSearch.stacks = finalResult;
-                    }
-                }
-            } catch (Exception e) {
-                EmiLog.error("Error during async EMI search:", e);
-            }
-        }, "EMI-Search-Unbaked");
-
-        slowThread.setDaemon(true);
-        slowThread.start();
+        // Thread slowThread = new Thread(() -> {
+        // try {
+        // ArrayList<EmiIngredient> finalResult = new ArrayList<>(fastResult);
+        // var version = ctnhcore$searchVersion;
+        // for (EmiIngredient ingredient : slowCandidates) {
+        // if(version != ctnhcore$searchVersion)
+        // return;
+        // List<EmiStack> stacks = ingredient.getEmiStacks();
+        // if (stacks.size() != 1) {
+        // continue;
+        // }
+        //
+        // EmiStack stack = stacks.get(0);
+        //
+        // if (compiled.fullQuery.matchesUnbaked(stack)) {
+        // finalResult.add(ingredient);
+        // }
+        // }
+        //
+        // // 原子替换结果
+        // synchronized (EmiSearch.class) {
+        // // 确保 query 未发生变化
+        // if (EmiSearch.compiledQuery == compiled) {
+        // EmiSearch.stacks = finalResult;
+        // }
+        // }
+        // } catch (Exception e) {
+        // EmiLog.error("Error during async EMI search:", e);
+        // }
+        // }, "EMI-Search-Unbaked");
+        //
+        // slowThread.setDaemon(true);
+        // slowThread.start();
     }
-
 }

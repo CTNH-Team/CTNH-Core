@@ -12,5 +12,5 @@ public class CTNHWorlds {
     public static final ResourceLocation MERCURY = ResourceLocation.tryBuild("ad_astra", "mercury");
     public static final ResourceLocation GLACIO = ResourceLocation.tryBuild("ad_astra", "glacio");
     public static final ResourceLocation THE_AETHER = ResourceLocation.tryBuild("aether", "the_aether");
-    //public static final ResourceLocation ALFHEIM = ResourceLocation.tryBuild("mythicbotany", "alfheim");
+    // public static final ResourceLocation ALFHEIM = ResourceLocation.tryBuild("mythicbotany", "alfheim");
 }

@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch;
 
 import io.github.cpearl0.ctnhcore.common.gui.HugeSlotWidget;
-import tech.vixhentx.mcmod.ctnhlib.client.gui.RightConfiguratorPanel;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
@@ -28,6 +27,7 @@ import net.minecraftforge.fluids.FluidType;
 
 import lombok.Getter;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.client.gui.RightConfiguratorPanel;
 
 import java.util.List;
 

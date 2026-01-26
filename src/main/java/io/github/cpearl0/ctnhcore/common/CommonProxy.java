@@ -1,7 +1,5 @@
 package io.github.cpearl0.ctnhcore.common;
 
-import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
-import com.gregtechceu.gtceu.common.unification.material.MaterialRegistryManager;
 import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
@@ -21,6 +19,7 @@ import io.github.cpearl0.ctnhcore.registry.worldgen.*;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.DimensionMarker;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
+import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.MaterialProperties;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
@@ -83,7 +82,7 @@ public class CommonProxy {
 
     @SubscribeEvent
     public static void registerMaterial(MaterialRegistryEvent event) {
-        //MaterialRegistryManager.getInstance().createRegistry(CTNHCore.MODID);
+        // MaterialRegistryManager.getInstance().createRegistry(CTNHCore.MODID);
     }
 
     @SubscribeEvent

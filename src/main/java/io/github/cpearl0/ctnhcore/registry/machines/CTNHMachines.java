@@ -22,7 +22,6 @@ import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
-import com.gregtechceu.gtceu.common.data.models.GTModels;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.*;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -49,6 +48,7 @@ import static io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils.*;
 @Prefix("machine")
 @Suffix("tooltip")
 public class CTNHMachines {
+
     static {
         REGISTRATE.creativeModeTab(() -> CTNHCreativeModeTabs.MACHINE);
     }
@@ -74,7 +74,7 @@ public class CTNHMachines {
 
     public static void init() {
         GTNNMachines.init();
-        
+
         CATALYST_HATCH = REGISTRATE
                 .machine("catalyst_hatch", CatalystHatchPartMachine::new)
                 .cnLangValue("催化剂仓")
@@ -239,10 +239,12 @@ public class CTNHMachines {
                 "high_performance_computer",
                 HighPerformanceComputerMachine::new,
                 (tier, builder) -> builder.langValue("%s High Performance Computer".formatted(VNF[tier]))
-                        .langValue("%s %s %s".formatted(VLVH[tier], toEnglishName("high_performance_computer"), VLVT[tier]))
+                        .langValue("%s %s %s".formatted(VLVH[tier], toEnglishName("high_performance_computer"),
+                                VLVT[tier]))
                         .rotationState(RotationState.NON_Y_AXIS)
                         .workableTieredHullModel(
-                                GTCEu.id("block/machines/high_performance_computer/" + VN[tier].toLowerCase(Locale.ROOT)))
+                                GTCEu.id("block/machines/high_performance_computer/" +
+                                        VN[tier].toLowerCase(Locale.ROOT)))
                         .tooltips(Component.translatable("ctnhcore.machine.high_performance_computer.tooltip.0"),
                                 Component.translatable("ctnhcore.machine.high_performance_computer.tooltip.1",
                                         (tier >= GTValues.HV ? 1 << (tier - GTValues.HV) : 0)),

@@ -169,7 +169,7 @@ public class CTNHBlocks {
     public static final BlockEntry<CoilBlock> COIL_BLACKTITANIUM = createCoilBlock(CoilType.BLACKTITANIUM);
     public static final BlockEntry<CoilBlock> COIL_STARMETAL = createCoilBlock(CoilType.STARMETAL);
     public static final BlockEntry<CoilBlock> COIL_INFINITY = createCoilBlock(CoilType.INFINITYY);
-    public static final BlockEntry<CoilBlock> COIL_ULTRA_MANA = createCoilBlock(CoilType.ULTRA_MANA);
+    // public static final BlockEntry<CoilBlock> COIL_ULTRA_MANA = createCoilBlock(CoilType.ULTRA_MANA);
 
     public static final BlockEntry<Block> BRONZE_FRAMED_GLASS = createGlassCasingBlock(
             "bronze_framed_glass", "青铜镶边玻璃", CTNHCore.id("block/casings/bronze_framed_glass"),
@@ -202,13 +202,13 @@ public class CTNHBlocks {
             .cnlang("高速管道方块")
             .initialProperties(() -> Blocks.IRON_BLOCK)
             .blockstate((ctx, prov) -> {
-                prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(ctx.getName(), CTNHCore.id("block/speedingpipe")));
+                prov.simpleBlock(ctx.getEntry(),
+                        prov.models().cubeAll(ctx.getName(), CTNHCore.id("block/speedingpipe")));
             })
             .tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
             .item(BlockItem::new)
             .build()
             .register();
-
 
     private static BlockEntry<ActiveBlock> createFireboxCasing(BoilerFireboxType type) {
         var block = REGISTRATE

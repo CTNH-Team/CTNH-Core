@@ -376,12 +376,6 @@ public class CTNHRecipeTypes {
             .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.TURBINE);
-    public static final GTRecipeType MANAREACTOR = REGISTRATE.recipeType(GTCEu.id("mana_reactor"), ELECTRIC)
-            .cnlang("魔力反应").setMaxIOSize(6, 6, 3, 3)
-            .setEUIO(IO.IN)
-            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType ACCELERATOR_UP = REGISTRATE.recipeType(GTCEu.id("accelerator_upmode"), ELECTRIC)
             .cnlang("粒子加速").setMaxIOSize(9, 9, 3, 3)
             .setEUIO(IO.IN)
