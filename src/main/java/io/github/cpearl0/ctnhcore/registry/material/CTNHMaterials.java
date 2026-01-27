@@ -1008,7 +1008,7 @@ public class CTNHMaterials {
         CrudeGoldRefiningMaterials.init();
         AviationFabricMaterials.init();
         BauxiteProcessingMaterials.init();
-        UncategorizedMaterials.init();
+
         BedrockMaterials.init();
         BiodieselFertileSoilMaterials.init();
         ExtraterrestrialAtmosphereMaterials.init();
@@ -1020,6 +1020,7 @@ public class CTNHMaterials {
         StonePowderMaterials.init();
         YeastRelatedMaterials.init();
         ZrHfSeparationMaterials.init();
+        UncategorizedMaterials.init();
 
         WetWareLineMaterials.init();
         CombustibleIce.setFormula("(CH4)(H2O)", true);
