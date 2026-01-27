@@ -227,6 +227,8 @@ public class CTNHMaterials {
     public static Material NeutroniumMixture;
     public static Material MARM200Steel;
     public static Material Seawater;
+    public static Material STABALLOY;
+    public static Material SNOW_STEEL ;
 
     public static void init() {
         // Ad Astra
@@ -643,6 +645,7 @@ public class CTNHMaterials {
                 .buildAndRegister();
         Alumina = REGISTRATE.material(GTCEu.id("alumina"))
                 .cnlang("氧化铝")
+                .formula("Al2O3")
                 .dust()
                 .color(0x09474A)
                 .ore()
@@ -795,6 +798,7 @@ public class CTNHMaterials {
                 .buildAndRegister();
         CombustibleIce = REGISTRATE.material(GTCEu.id("combustible_ice"))
                 .cnlang("可燃冰")
+                .formula("(CH4)(H2O)")
                 .gem()
                 .iconSet(LIGNITE)
                 .color(0xebfbfc)
@@ -1001,6 +1005,21 @@ public class CTNHMaterials {
         NaquadahMaterials.init();
         BrineChain.init();
         EnderIOMaterials.init();
+        CrudeGoldRefiningMaterials.init();
+        AviationFabricMaterials.init();
+        BauxiteProcessingMaterials.init();
+        UncategorizedMaterials.init();
+        BedrockMaterials.init();
+        BiodieselFertileSoilMaterials.init();
+        ExtraterrestrialAtmosphereMaterials.init();
+        GrapheneProductionLineMaterials.init();
+        NewExplosivesProductionMaterials.init();
+        NiobiumTantalumJointProcessingMaterials.init();
+        PitchblendeRefiningMaterials.init();
+        RareEarthMaterials.init();
+        StonePowderMaterials.init();
+        YeastRelatedMaterials.init();
+        ZrHfSeparationMaterials.init();
 
         WetWareLineMaterials.init();
         CombustibleIce.setFormula("(CH4)(H2O)", true);
