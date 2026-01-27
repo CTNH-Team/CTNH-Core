@@ -7,6 +7,7 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
 
 @Prefix("gui")
 public class CTNHLangValues {
+
     @CN("§a已启用")
     @EN("§aEnabled")
     public static Lang ENABLED;
@@ -42,5 +43,4 @@ public class CTNHLangValues {
     @CN("不")
     @EN("NOT ")
     public static Lang not_allow;
-
 }

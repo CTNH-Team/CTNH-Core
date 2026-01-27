@@ -825,7 +825,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.COIL_BLACKTITANIUM, "黑钛合金线圈");
         provider.addBlock(CTNHBlocks.COIL_STARMETAL, "星辉线圈");
         provider.addBlock(CTNHBlocks.COIL_INFINITY, "无尽线圈");
-        provider.addBlock(CTNHBlocks.COIL_ULTRA_MANA, "类星体魔力线圈方块");
+        // provider.addBlock(CTNHBlocks.COIL_ULTRA_MANA, "类星体魔力线圈方块");
         provider.addBlock(CTNHBlocks.TEST_CASING, "测试方块");
         provider.addBlock(CTNHBlocks.ATOMS_SPLIT_BLOCKS, "原子裂解方块");
 

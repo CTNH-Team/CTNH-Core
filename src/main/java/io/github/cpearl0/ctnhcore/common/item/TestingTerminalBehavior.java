@@ -21,6 +21,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+
 import tech.vixhentx.mcmod.ctnhlib.client.render.ColorData;
 import tech.vixhentx.mcmod.ctnhlib.client.render.highlight.HighlightHandler;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
@@ -31,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestingTerminalBehavior implements IInteractionItem {
+
     public boolean isFlipped = false;
     @CN("翻转模式启动")
     @EN("Flip Mode is On")
@@ -38,6 +40,7 @@ public class TestingTerminalBehavior implements IInteractionItem {
     @CN("普通模式启动")
     @EN("Normal Mode is On")
     static Lang normalmode;
+
     @Override
     public InteractionResultHolder<ItemStack> use(Item item, Level level, Player player, InteractionHand usedHand) {
         if (level.isClientSide) {
@@ -149,7 +152,8 @@ public class TestingTerminalBehavior implements IInteractionItem {
             player.sendSystemMessage(((PatternStringError) error).getErrorInfo());
             return;
         }
-        HighlightHandler.highlight(error.getPos(), error.getWorld().dimension(), System.currentTimeMillis() + 5000, ColorData.RED);
+        HighlightHandler.highlight(error.getPos(), error.getWorld().dimension(), System.currentTimeMillis() + 5000,
+                ColorData.RED);
         List<Component> show = generateErrorMessages(error, flip);
         show.forEach(player::sendSystemMessage);
     }

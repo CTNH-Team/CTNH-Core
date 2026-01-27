@@ -2,8 +2,6 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch;
 
 import io.github.cpearl0.ctnhcore.common.gui.HugeSlotWidget;
 import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.IAllowSameUIProvider;
-import tech.vixhentx.mcmod.ctnhlib.client.gui.RCUIWidget;
-import tech.vixhentx.mcmod.ctnhlib.client.gui.RightConfiguratorPanel;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.utils.HugeBusTransferHelper;
 
@@ -41,6 +39,8 @@ import net.minecraftforge.items.ItemHandlerHelper;
 
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
+import tech.vixhentx.mcmod.ctnhlib.client.gui.RCUIWidget;
+import tech.vixhentx.mcmod.ctnhlib.client.gui.RightConfiguratorPanel;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;

@@ -322,7 +322,8 @@ public class CTNHMaterials {
                 .ingot()
                 .liquid()
                 .color(0x6e3204)
-                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL,
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW,
+                        GENERATE_FOIL,
                         GENERATE_FRAME, GENERATE_RING)
                 .iconSet(METALLIC)
                 .blastTemp(1048)
@@ -333,7 +334,8 @@ public class CTNHMaterials {
                 .ingot()
                 .liquid()
                 .color(0x6eab6c)
-                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL,
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW,
+                        GENERATE_FOIL,
                         GENERATE_FRAME, GENERATE_RING)
                 .iconSet(METALLIC)
                 .blastTemp(6200)
@@ -354,7 +356,8 @@ public class CTNHMaterials {
                 .cnlang("泰坦钢")
                 .ingot().liquid()
                 .blastTemp(12600, HIGHER, GTValues.VA[GTValues.UHV], 1200)
-                .components(TitaniumTungstenCarbide, 4, Plutonium241, 1, Einsteinium, 2, Rhenium, 1, Erbium, 1, Jasper, 3)
+                .components(TitaniumTungstenCarbide, 4, Plutonium241, 1, Einsteinium, 2, Rhenium, 1, Erbium, 1, Jasper,
+                        3)
                 .color(0xe60000)
                 .iconSet(METALLIC)
                 .flags(GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
@@ -366,7 +369,8 @@ public class CTNHMaterials {
                 .liquid()
                 .radioactiveHazard(3)
                 .blastTemp(14400, HIGHER)
-                .components(Inconel625, 8, Eglinalloy, 5, EnrichedNaquadahWaste, 4, TungstenSteel, 4, Cerium, 3, Antimony,
+                .components(Inconel625, 8, Eglinalloy, 5, EnrichedNaquadahWaste, 4, TungstenSteel, 4, Cerium, 3,
+                        Antimony,
                         2, Platinum, 2, Ytterbium, 1)
                 .color(0x67abff)
                 .iconSet(METALLIC)
@@ -378,7 +382,8 @@ public class CTNHMaterials {
                 .ingot()
                 .liquid()
                 .blastTemp(16200, HIGHEST, GTValues.VA[GTValues.UXV], 1400)
-                .components(Titanium, 26, Lanthanum, 6, Tungsten, 4, Cobalt, 3, Manganese, 2, Phosphorus, 2, Palladium, 2,
+                .components(Titanium, 26, Lanthanum, 6, Tungsten, 4, Cobalt, 3, Manganese, 2, Phosphorus, 2, Palladium,
+                        2,
                         Niobium, 1, Argon, 5)
                 .color(0x6C003B)
                 .iconSet(DULL)
@@ -396,7 +401,8 @@ public class CTNHMaterials {
                 .element(CTNHElements.STARMETAL)
                 .color(0xf4f4f4)
                 .iconSet(MaterialIcons.StarsteelIcon)
-                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL,
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW,
+                        GENERATE_FOIL,
                         GENERATE_ROTOR)
                 .cableProperties(GTValues.V[GTValues.OpV], 4, 256)
                 .buildAndRegister();
@@ -411,15 +417,15 @@ public class CTNHMaterials {
                 .flags(GENERATE_FRAME)
                 .cableProperties(GTValues.V[GTValues.MAX], 8192, 0, true)
                 .buildAndRegister();
-        QUASER_MANA = REGISTRATE.material(GTCEu.id("quaser_mana"))
-                .cnlang("类星体魔力")
-                .ingot().liquid()
-                .blastTemp(10800, HIGHER, GTValues.VA[GTValues.UV], 1800)
-                .color(0x00007F)
-                .iconSet(METALLIC)
-                .flags(GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
-                .cableProperties(GTValues.V[GTValues.UHV], 4, 64)
-                .buildAndRegister();
+        // QUASER_MANA = REGISTRATE.material(GTCEu.id("quaser_mana"))
+        // .cnlang("类星体魔力")
+        // .ingot().liquid()
+        // .blastTemp(10800, HIGHER, GTValues.VA[GTValues.UV], 1800)
+        // .color(0x00007F)
+        // .iconSet(METALLIC)
+        // .flags(GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
+        // .cableProperties(GTValues.V[GTValues.UHV], 4, 64)
+        // .buildAndRegister();
         COMPRESSED_ADAMANTITE = REGISTRATE.material(GTCEu.id("compressed_adamantite"))
                 .cnlang("压缩精金")
                 .plasma()
@@ -684,7 +690,8 @@ public class CTNHMaterials {
 
         Ignitium = REGISTRATE.material(GTCEu.id("ignitium"))
                 .cnlang("腾炎")
-                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL,
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW,
+                        GENERATE_FOIL,
                         GENERATE_FRAME, GENERATE_RING)
                 .ingot()
                 .color(0xffd919)
@@ -709,7 +716,8 @@ public class CTNHMaterials {
                 .liquid()
                 .dust()
                 .ingot()
-                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL,
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW,
+                        GENERATE_FOIL,
                         GENERATE_FRAME, GENERATE_RING)
                 .plasma()
                 .element(CTNHElements.SUNNARIUM)
@@ -723,7 +731,8 @@ public class CTNHMaterials {
                         .customStill())
                 .dust()
                 .ingot()
-                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL,
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW,
+                        GENERATE_FOIL,
                         GENERATE_FRAME, GENERATE_RING)
                 .plasma()
                 .element(CTNHElements.HIKARIUM)
@@ -1062,6 +1071,7 @@ public class CTNHMaterials {
     }
 
     public static class MaterialIcons {
+
         public static MaterialIconSet StarsteelIcon = new MaterialIconSet("starsteel", METALLIC);
     }
 }

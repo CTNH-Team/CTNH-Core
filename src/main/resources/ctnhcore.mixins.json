@@ -19,6 +19,7 @@
     "emi.CreateJEIMixin$CategoryBuilderMixin",
     "emi.EmiApiTagExpandMixin",
     "emi.EmiRecipesMixin",
+    "emi.EmiScreenManagerMixin",
     "emi.EmiSearchMixin",
     "emi.GTRecipeEMICategoryMixin",
     "emi.VanillaPluginMixin",

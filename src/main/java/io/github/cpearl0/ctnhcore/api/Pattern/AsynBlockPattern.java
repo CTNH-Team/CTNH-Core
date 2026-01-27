@@ -73,20 +73,19 @@ public class AsynBlockPattern extends BlockPattern {
             Direction.DOWN };
     static Direction[] FACINGS_H = { Direction.SOUTH, Direction.NORTH, Direction.WEST, Direction.EAST };
 
-//    public final int[][] aisleRepetitions;
-//    public final RelativeDirection[] structureDir;
-//    protected final TraceabilityPredicate[][][] blockMatches; // [z][y][x]
-//    protected final int fingerLength; // z size
-//    protected final int thumbLength; // y size
-//    protected final int palmLength; // x size
-//    protected final int[] centerOffset; // x, y, z, minZ, maxZ
+    // public final int[][] aisleRepetitions;
+    // public final RelativeDirection[] structureDir;
+    // protected final TraceabilityPredicate[][][] blockMatches; // [z][y][x]
+    // protected final int fingerLength; // z size
+    // protected final int thumbLength; // y size
+    // protected final int palmLength; // x size
+    // protected final int[] centerOffset; // x, y, z, minZ, maxZ
 
     protected MEAdvancedTerminalBehavior.AutoBuildSetting setting;
 
     public AsynBlockPattern(TraceabilityPredicate[][][] predicatesIn, RelativeDirection[] structureDir,
                             int[][] aisleRepetitions, int[] centerOffset) {
         super(predicatesIn, structureDir, aisleRepetitions, centerOffset);
-
     }
 
     public static AsynBlockPattern getAdvancedBlockPattern(BlockPattern blockPattern) {
@@ -110,7 +109,7 @@ public class AsynBlockPattern extends BlockPattern {
             centerOffsetField.setAccessible(true);
             int[] centerOffset = (int[]) centerOffsetField.get(blockPattern);
 
-            return new AsynBlockPattern( blockMatches, structureDir, aisleRepetitions, centerOffset);
+            return new AsynBlockPattern(blockMatches, structureDir, aisleRepetitions, centerOffset);
         } catch (Exception ignored) {}
         return null;
     }
