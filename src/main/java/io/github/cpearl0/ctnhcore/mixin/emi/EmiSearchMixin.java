@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.mixin.emi;
 
+import dev.emi.emi.registry.EmiStackList;
+import io.github.cpearl0.ctnhcore.utils.emi.TooltipBakeQueue;
 import net.minecraft.network.chat.Component;
 
 import dev.emi.emi.api.stack.EmiIngredient;
@@ -10,7 +12,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +29,12 @@ public class EmiSearchMixin {
               at = @At(value = "INVOKE", target = "Ldev/emi/emi/api/stack/EmiStack;getTooltipText()Ljava/util/List;"))
     private static List<Component> noTooltip(EmiStack instance) {
         return null;
+    }
+
+    @Inject(method = "bake", at = @At("TAIL"))
+    private static void startTooltipQueue(CallbackInfo ci){
+        TooltipBakeQueue.INSTANCE = new TooltipBakeQueue(EmiStackList.stacks);
+        TooltipBakeQueue.ready = false;
     }
 
     /**
@@ -48,7 +58,7 @@ public class EmiSearchMixin {
 
         // ===== Phase 1: 主线程快速匹配 =====
         final ArrayList<EmiIngredient> fastResult = new ArrayList<>(source.size());
-        final ArrayList<EmiIngredient> slowCandidates = new ArrayList<>();
+        //final ArrayList<EmiIngredient> slowCandidates = new ArrayList<>();
 
         final boolean bakedReady = EmiSearch.bakedStacks != null;
 
@@ -69,7 +79,7 @@ public class EmiSearchMixin {
             if (matched) {
                 fastResult.add(ingredient);
             } else {
-                slowCandidates.add(ingredient);
+                //slowCandidates.add(ingredient);
             }
         }
 
