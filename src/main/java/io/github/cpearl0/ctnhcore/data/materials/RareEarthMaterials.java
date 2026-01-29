@@ -1,7 +1,8 @@
 package io.github.cpearl0.ctnhcore.data.materials;
 
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
@@ -148,19 +149,22 @@ public class RareEarthMaterials {
                 .color(0xE1E3A0)
                 .buildAndRegister();
 
-        LANTHANUM_CERIUM_PRASEODYMIUM_NEODYMIUM_OXYGEN_MIXTURE = REGISTRATE.material(CTNHCore.id("lanthanum_cerium_praseodymium_neodymium_oxygen_mixture"))
+        LANTHANUM_CERIUM_PRASEODYMIUM_NEODYMIUM_OXYGEN_MIXTURE = REGISTRATE
+                .material(CTNHCore.id("lanthanum_cerium_praseodymium_neodymium_oxygen_mixture"))
                 .cnlang("轻稀土单质氧化混合物")
                 .dust()
                 .color(0xEAEBD1)
                 .buildAndRegister();
 
-        EUROPIUM_GADOLINIUM_TERBIUM_DYSPROSIUM_OXYGEN_MIXTURE = REGISTRATE.material(CTNHCore.id("europium_gadolinium_terbium_dysprosium_oxygen_mixture"))
+        EUROPIUM_GADOLINIUM_TERBIUM_DYSPROSIUM_OXYGEN_MIXTURE = REGISTRATE
+                .material(CTNHCore.id("europium_gadolinium_terbium_dysprosium_oxygen_mixture"))
                 .cnlang("中稀土单质氧化混合物")
                 .dust()
                 .color(0xE7EA8F)
                 .buildAndRegister();
 
-        YTTRIUM_HOLMIUM_ERBIUM_THULIUM_YTTERBIUM_OXYGEN_LUTETIUM_MIXTURE = REGISTRATE.material(CTNHCore.id("yttrium_holmium_erbium_thulium_ytterbium_oxygen_lutetium_mixture"))
+        YTTRIUM_HOLMIUM_ERBIUM_THULIUM_YTTERBIUM_OXYGEN_LUTETIUM_MIXTURE = REGISTRATE
+                .material(CTNHCore.id("yttrium_holmium_erbium_thulium_ytterbium_oxygen_lutetium_mixture"))
                 .cnlang("重稀土单质氧化混合物")
                 .dust()
                 .color(0x9AA108)

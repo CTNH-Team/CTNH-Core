@@ -1,9 +1,10 @@
 package io.github.cpearl0.ctnhcore.data.materials;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty;
-import io.github.cpearl0.ctnhcore.CTNHCore;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.*;
@@ -99,7 +100,8 @@ public class UncategorizedMaterials {
                 .ingot()
                 .color(0xFFD700)
                 .liquid()
-                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW,
+                        GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
                 .buildAndRegister();
 
         CRACKING_SILICA_ROCK_BASED_FUEL = REGISTRATE.material(CTNHCore.id("cracking_silica_rock_based_fuel"))
@@ -108,31 +110,36 @@ public class UncategorizedMaterials {
                 .color(0x5ABCC)
                 .buildAndRegister();
 
-        CRACKING_ENRICHED_SILICA_ROCK_BASED_FUEL = REGISTRATE.material(CTNHCore.id("cracking_enriched_silica_rock_based_fuel"))
+        CRACKING_ENRICHED_SILICA_ROCK_BASED_FUEL = REGISTRATE
+                .material(CTNHCore.id("cracking_enriched_silica_rock_based_fuel"))
                 .cnlang("氙裂化富集硅岩基燃料")
                 .liquid()
                 .color(0x6BCCA)
                 .buildAndRegister();
 
-        CRACKING_SUPER_ENERGY_SILICA_ROCK_BASED_FUEL = REGISTRATE.material(CTNHCore.id("cracking_super_energy_silica_rock_based_fuel"))
+        CRACKING_SUPER_ENERGY_SILICA_ROCK_BASED_FUEL = REGISTRATE
+                .material(CTNHCore.id("cracking_super_energy_silica_rock_based_fuel"))
                 .cnlang("裂化超能硅岩基燃料")
                 .liquid()
                 .color(0x7BACB)
                 .buildAndRegister();
 
-        CHARGED_SILICA_ROCK_BASED_FLUID_FUEL_MK_I = REGISTRATE.material(CTNHCore.id("charged_silica_rock_based_fluid_fuel_mk_i"))
+        CHARGED_SILICA_ROCK_BASED_FLUID_FUEL_MK_I = REGISTRATE
+                .material(CTNHCore.id("charged_silica_rock_based_fluid_fuel_mk_i"))
                 .cnlang("充能硅岩基流体燃料Mk-I")
                 .liquid()
                 .color(0x55555)
                 .buildAndRegister();
 
-        CHARGED_SILICA_ROCK_BASED_FLUID_FUEL_MK_II = REGISTRATE.material(CTNHCore.id("charged_silica_rock_based_fluid_fuel_mk_ii"))
+        CHARGED_SILICA_ROCK_BASED_FLUID_FUEL_MK_II = REGISTRATE
+                .material(CTNHCore.id("charged_silica_rock_based_fluid_fuel_mk_ii"))
                 .cnlang("充能硅岩基流体燃料Mk-II")
                 .liquid()
                 .color(0x55555)
                 .buildAndRegister();
 
-        CHARGED_SILICA_ROCK_BASED_FLUID_FUEL_MK_III = REGISTRATE.material(CTNHCore.id("charged_silica_rock_based_fluid_fuel_mk_iii"))
+        CHARGED_SILICA_ROCK_BASED_FLUID_FUEL_MK_III = REGISTRATE
+                .material(CTNHCore.id("charged_silica_rock_based_fluid_fuel_mk_iii"))
                 .cnlang("充能硅岩基流体燃料Mk-III")
                 .liquid()
                 .color(0x55555)
@@ -229,7 +236,8 @@ public class UncategorizedMaterials {
                 .iconSet(METALLIC)
                 .components(Cadmium, 1, Sulfur, 1)
                 .color(0xFFFACD)
-                .flags(GENERATE_DENSE, GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING, GENERATE_LONG_ROD)
+                .flags(GENERATE_DENSE, GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR,
+                        GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING, GENERATE_LONG_ROD)
                 .buildAndRegister();
 
         HEAT_RESISTANT_FERROCHROME_ALLOY_DS = REGISTRATE.material(CTNHCore.id("heat_resistant_ferrochrome_alloy_ds"))
@@ -240,7 +248,8 @@ public class UncategorizedMaterials {
                 .color(0x8A9B7A)
                 .components(Iron, 23, Cobalt, 9, Chromium, 9, Nickel, 9)
                 .blastTemp(3600, BlastProperty.GasTier.LOW, GTValues.VA[GTValues.HV], 500)
-                .flags(GENERATE_DENSE, GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING, GENERATE_LONG_ROD)
+                .flags(GENERATE_DENSE, GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR,
+                        GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING, GENERATE_LONG_ROD)
                 .buildAndRegister();
 
         HEAT_RESISTANT_FERROCHROME_ALLOY_020 = REGISTRATE.material(CTNHCore.id("heat_resistant_ferrochrome_alloy_020"))
@@ -251,10 +260,12 @@ public class UncategorizedMaterials {
                 .components(Iron, 10, Copper, 1, Chromium, 5, Nickel, 9)
                 .blastTemp(5400, BlastProperty.GasTier.MID, GTValues.VA[GTValues.EV], 800)
                 .color(0x4E7D6D)
-                .flags(GENERATE_DENSE, GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING, GENERATE_LONG_ROD)
+                .flags(GENERATE_DENSE, GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR,
+                        GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING, GENERATE_LONG_ROD)
                 .buildAndRegister();
 
-        OPTICAL_HEAT_RESISTANT_FERROCHROME_ALLOY_080 = REGISTRATE.material(CTNHCore.id("optical_heat_resistant_ferrochrome_alloy_080"))
+        OPTICAL_HEAT_RESISTANT_FERROCHROME_ALLOY_080 = REGISTRATE
+                .material(CTNHCore.id("optical_heat_resistant_ferrochrome_alloy_080"))
                 .cnlang("光性耐热铬铁合金-080")
                 .ingot()
                 .dust()
@@ -262,10 +273,12 @@ public class UncategorizedMaterials {
                 .components(Iron, 10, Chromium, 5, Nickel, 9, Titanium, 4, SUNNARIUM, 9)
                 .blastTemp(7200, BlastProperty.GasTier.MID, GTValues.VA[GTValues.LuV], 1000)
                 .color(0x4E7D9D)
-                .flags(GENERATE_DENSE, GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING, GENERATE_LONG_ROD)
+                .flags(GENERATE_DENSE, GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR,
+                        GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING, GENERATE_LONG_ROD)
                 .buildAndRegister();
 
-        NAQUADAH_HEAT_RESISTANT_FERROCHROME_ALLOY_792 = REGISTRATE.material(CTNHCore.id("naquadah_heat_resistant_ferrochrome_alloy_792"))
+        NAQUADAH_HEAT_RESISTANT_FERROCHROME_ALLOY_792 = REGISTRATE
+                .material(CTNHCore.id("naquadah_heat_resistant_ferrochrome_alloy_792"))
                 .cnlang("硅岩基耐热铬铁合金-792")
                 .ingot()
                 .dust()
@@ -273,7 +286,8 @@ public class UncategorizedMaterials {
                 .components(Iron, 70, Chromium, 20, Nickel, 5, Manganese, 5, Naquadah, 10)
                 .blastTemp(7200, BlastProperty.GasTier.MID, GTValues.VA[GTValues.LuV], 3000)
                 .color(0x2A2A1A)
-                .flags(GENERATE_DENSE, GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING, GENERATE_LONG_ROD)
+                .flags(GENERATE_DENSE, GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR,
+                        GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING, GENERATE_LONG_ROD)
                 .buildAndRegister();
 
         RADIATION_SIGHT_ALLOY_X = REGISTRATE.material(CTNHCore.id("radiation_sight_alloy_x"))
@@ -281,10 +295,12 @@ public class UncategorizedMaterials {
                 .ingot()
                 .dust()
                 .liquid()
-                .components(Iridium, 9, Dysprosium, 4, STABALLOY, 6, UraniumRhodiumDinaquadide, 8, Neptunium, 7, Mendelevium, 2)
+                .components(Iridium, 9, Dysprosium, 4, STABALLOY, 6, UraniumRhodiumDinaquadide, 8, Neptunium, 7,
+                        Mendelevium, 2)
                 .blastTemp(9000, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.ZPM], 1000)
                 .color(0x2D3A2A)
-                .flags(GENERATE_DENSE, GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING, GENERATE_LONG_ROD)
+                .flags(GENERATE_DENSE, GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR,
+                        GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING, GENERATE_LONG_ROD)
                 .buildAndRegister();
 
         QUANTUM_ALLOY = REGISTRATE.material(CTNHCore.id("quantum_alloy"))
@@ -292,10 +308,12 @@ public class UncategorizedMaterials {
                 .ingot()
                 .dust()
                 .liquid()
-                .components(Ultimet, 3, Lapotron, 3, Americium, 3, siliconCarbide, 7, Palladium, 2, AETHER, 1, Germanium, 4, Neutronium, 2)
+                .components(Ultimet, 3, Lapotron, 3, Americium, 3, siliconCarbide, 7, Palladium, 2, AETHER, 1,
+                        Germanium, 4, Neutronium, 2)
                 .blastTemp(10800, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.UV], 33333)
                 .color(0x808080)
-                .flags(GENERATE_DENSE, GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING, GENERATE_LONG_ROD)
+                .flags(GENERATE_DENSE, GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR,
+                        GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING, GENERATE_LONG_ROD)
                 .buildAndRegister();
 
         RADIATION_SIGHT_ALLOY_INF = REGISTRATE.material(CTNHCore.id("radiation_sight_alloy_inf"))
@@ -303,10 +321,12 @@ public class UncategorizedMaterials {
                 .ingot()
                 .dust()
                 .liquid()
-                .components(QUANTUM_ALLOY, 3, RADIATION_SIGHT_ALLOY_X, 2, Naquadria, 7, HiddenAlloy, 2, BOUNDLESS, 3, AETERNIUM, 3, ADAMANTITE, 2)
+                .components(QUANTUM_ALLOY, 3, RADIATION_SIGHT_ALLOY_X, 2, Naquadria, 7, HiddenAlloy, 2, BOUNDLESS, 3,
+                        AETERNIUM, 3, ADAMANTITE, 2)
                 .blastTemp(12600, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.UHV], 2500)
                 .color(0x2D3A2A)
-                .flags(GENERATE_DENSE, GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING, GENERATE_LONG_ROD)
+                .flags(GENERATE_DENSE, GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR,
+                        GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING, GENERATE_LONG_ROD)
                 .buildAndRegister();
 
         NAMI_C = REGISTRATE.material(CTNHCore.id("nami_c"))

@@ -1,10 +1,11 @@
 package io.github.cpearl0.ctnhcore.data.materials;
 
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 
-import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class YeastRelatedMaterials {
 
@@ -226,7 +227,8 @@ public class YeastRelatedMaterials {
                 .color(0x46661A)
                 .buildAndRegister();
 
-        RADIATION_MUTATED_YEAST_EXTRACT_LIQUID = REGISTRATE.material(CTNHCore.id("radiation_mutated_yeast_extract_liquid"))
+        RADIATION_MUTATED_YEAST_EXTRACT_LIQUID = REGISTRATE
+                .material(CTNHCore.id("radiation_mutated_yeast_extract_liquid"))
                 .cnlang("辐射突变酵母提取液")
                 .liquid()
                 .color(0x466916)

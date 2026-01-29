@@ -212,7 +212,9 @@ public class SecondMaterials {
                 .liquid()
                 .color(0x444B42)
                 .iconSet(METALLIC)
-                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_BOLT_SCREW, MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_RING)
+                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_GEAR,
+                        MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_BOLT_SCREW,
+                        MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_RING)
                 .components(GTMaterials.Uranium238, 9, GTMaterials.Titanium, 1)
                 .blastTemp(3450, BlastProperty.GasTier.MID, GTValues.VA[GTValues.EV], 300)
                 .buildAndRegister();
@@ -223,7 +225,8 @@ public class SecondMaterials {
                 .ingot()
                 .liquid()
                 .color(0x00FFFF)
-                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_BOLT_SCREW)
+                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_ROD,
+                        MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_BOLT_SCREW)
                 .buildAndRegister();
 
         OrangeMetal.setProperty(CATALYST, new CatalystProperty(100));

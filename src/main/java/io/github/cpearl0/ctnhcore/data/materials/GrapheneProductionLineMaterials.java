@@ -1,7 +1,8 @@
 package io.github.cpearl0.ctnhcore.data.materials;
 
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_PLATE;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;

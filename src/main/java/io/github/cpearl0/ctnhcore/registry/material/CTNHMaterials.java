@@ -228,7 +228,7 @@ public class CTNHMaterials {
     public static Material MARM200Steel;
     public static Material Seawater;
     public static Material STABALLOY;
-    public static Material SNOW_STEEL ;
+    public static Material SNOW_STEEL;
 
     public static void init() {
         // Ad Astra

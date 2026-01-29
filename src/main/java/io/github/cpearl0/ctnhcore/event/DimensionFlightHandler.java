@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.event;
 
-import dev.shadowsoffire.attributeslib.api.ALObjects;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -12,17 +12,18 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import dev.shadowsoffire.attributeslib.api.ALObjects;
+
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = CTNHCore.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class DimensionFlightHandler {
 
-    private static final UUID FLIGHT_UUID =
-            UUID.fromString("9d7cbb6e-4c62-4f0c-b6c4-8e66f1d8a111");
+    private static final UUID FLIGHT_UUID = UUID.fromString("9d7cbb6e-4c62-4f0c-b6c4-8e66f1d8a111");
 
     // 你的目标维度
-    private static final ResourceKey<Level> TARGET_DIM =
-            ResourceKey.create(Registries.DIMENSION, ResourceLocation.tryBuild("javd", "void"));
+    private static final ResourceKey<Level> TARGET_DIM = ResourceKey.create(Registries.DIMENSION,
+            ResourceLocation.tryBuild("javd", "void"));
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
@@ -32,16 +33,14 @@ public class DimensionFlightHandler {
         boolean inTargetDim = player.level().dimension().equals(TARGET_DIM);
 
         var attr = player.getAttribute(
-                ALObjects.Attributes.CREATIVE_FLIGHT.get()
-        );
+                ALObjects.Attributes.CREATIVE_FLIGHT.get());
         if (attr == null) return;
 
         AttributeModifier modifier = new AttributeModifier(
                 FLIGHT_UUID,
                 "dimension_flight",
                 1.0D,
-                AttributeModifier.Operation.ADDITION
-        );
+                AttributeModifier.Operation.ADDITION);
 
         if (inTargetDim) {
             if (!attr.hasModifier(modifier)) {

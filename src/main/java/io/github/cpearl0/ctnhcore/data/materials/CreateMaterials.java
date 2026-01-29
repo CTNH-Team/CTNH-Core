@@ -6,9 +6,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.MAGNETIC;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static io.github.cpearl0.ctnhcore.data.materials.ZrHfSeparationMaterials.CUBIC_ZIRCONIA;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 
@@ -27,7 +25,7 @@ public class CreateMaterials {
     public static Material CRIMSITE_SLURRY;
     public static Material OCHRUM_SLURRY;
     public static Material VERIDIUM_SLURRY;
-//    public static Material MAGNETO_RESONATIC;
+    // public static Material MAGNETO_RESONATIC;
     public static Material QUARTZ_GLASS;
     public static Material AMMONIUM_FLUORIDE;
     public static Material DIBISMUTHHYDROBORAT;
@@ -125,13 +123,13 @@ public class CreateMaterials {
                 .color(0x43B567)
                 .buildAndRegister();
 
-//        MAGNETO_RESONATIC = REGISTRATE.material(CTNHCore.id("magneto_resonatic"))
-//                .cnlang("共振紫晶")
-//                .gem()
-//                .color(0xFF97FF)
-//                .iconSet(MAGNETIC)
-//                .components(Zanite, 1, Ambrosium, 1, Skyjade, 1, CUBIC_ZIRCONIA, 1, MagneticSteel, 1)
-//                .buildAndRegister();
+        // MAGNETO_RESONATIC = REGISTRATE.material(CTNHCore.id("magneto_resonatic"))
+        // .cnlang("共振紫晶")
+        // .gem()
+        // .color(0xFF97FF)
+        // .iconSet(MAGNETIC)
+        // .components(Zanite, 1, Ambrosium, 1, Skyjade, 1, CUBIC_ZIRCONIA, 1, MagneticSteel, 1)
+        // .buildAndRegister();
 
         QUARTZ_GLASS = REGISTRATE.material(CTNHCore.id("quartz_glass"))
                 .cnlang("石英玻璃")

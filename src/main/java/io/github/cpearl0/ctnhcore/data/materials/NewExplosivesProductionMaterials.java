@@ -1,13 +1,14 @@
 package io.github.cpearl0.ctnhcore.data.materials;
 
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.DISABLE_DECOMPOSITION;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.METALLIC;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Potassium;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 public class NewExplosivesProductionMaterials {
 
@@ -290,7 +291,8 @@ public class NewExplosivesProductionMaterials {
                 .components(Palladium, 1, Chlorine, 2)
                 .buildAndRegister();
 
-        DIBENZYL_TETRAACETYLHEXAAZAISOWURTZITANE = REGISTRATE.material(CTNHCore.id("dibenzyl_tetraacetylhexaazaisowurtzitane"))
+        DIBENZYL_TETRAACETYLHEXAAZAISOWURTZITANE = REGISTRATE
+                .material(CTNHCore.id("dibenzyl_tetraacetylhexaazaisowurtzitane"))
                 .cnlang("二苄基四乙酰六氮杂异纤锌烷")
                 .dust()
                 .color(0x8EA268)
@@ -324,7 +326,8 @@ public class NewExplosivesProductionMaterials {
                 .components(Nitrogen, 1, Oxygen, 1, Boron, 1, Fluorine, 4)
                 .buildAndRegister();
 
-        TETRAACETYLDINITROSOHEXAAZAISOWURTZITANE = REGISTRATE.material(CTNHCore.id("tetraacetyldinitrosohexaazaisowurtzitane"))
+        TETRAACETYLDINITROSOHEXAAZAISOWURTZITANE = REGISTRATE
+                .material(CTNHCore.id("tetraacetyldinitrosohexaazaisowurtzitane"))
                 .cnlang("四乙酰二硝基六氮杂异戊二烯")
                 .dust()
                 .color(0x500449)

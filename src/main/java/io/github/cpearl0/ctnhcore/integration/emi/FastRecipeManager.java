@@ -117,8 +117,7 @@ public class FastRecipeManager implements EmiRecipeManager {
     }
 
     @Override
-    public List<EmiIngredient> getWorkstations(
-                                               EmiRecipeCategory category) {
+    public List<EmiIngredient> getWorkstations(EmiRecipeCategory category) {
         return workstations.getOrDefault(category, List.of());
     }
 
@@ -128,26 +127,22 @@ public class FastRecipeManager implements EmiRecipeManager {
     }
 
     @Override
-    public List<EmiRecipe> getRecipes(
-                                      EmiRecipeCategory category) {
+    public List<EmiRecipe> getRecipes(EmiRecipeCategory category) {
         return byCategory.getOrDefault(category, List.of());
     }
 
     @Override
-    public @Nullable EmiRecipe getRecipe(
-                                         ResourceLocation id) {
+    public @Nullable EmiRecipe getRecipe(ResourceLocation id) {
         return byId.get(id);
     }
 
     @Override
-    public List<EmiRecipe> getRecipesByInput(
-                                             EmiStack stack) {
+    public List<EmiRecipe> getRecipesByInput(EmiStack stack) {
         return byInput.getOrDefault(stack, List.of());
     }
 
     @Override
-    public List<EmiRecipe> getRecipesByOutput(
-                                              EmiStack stack) {
+    public List<EmiRecipe> getRecipesByOutput(EmiStack stack) {
         return byOutput.getOrDefault(stack, List.of());
     }
 }

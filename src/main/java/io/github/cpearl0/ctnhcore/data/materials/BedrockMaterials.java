@@ -1,15 +1,15 @@
 package io.github.cpearl0.ctnhcore.data.materials;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import io.github.cpearl0.ctnhcore.CTNHCore;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.MAGNETIC;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.METALLIC;
-import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-
+import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class BedrockMaterials {
 
@@ -368,7 +368,8 @@ public class BedrockMaterials {
                 .color(0xFF5733)
                 .buildAndRegister();
 
-        NEUTRON_IRRADIATION_OF_RADIOACTIVE_WASTE = REGISTRATE.material(CTNHCore.id("neutron_irradiation_of_radioactive_waste"))
+        NEUTRON_IRRADIATION_OF_RADIOACTIVE_WASTE = REGISTRATE
+                .material(CTNHCore.id("neutron_irradiation_of_radioactive_waste"))
                 .cnlang("中子照射放射性废料")
                 .liquid()
                 .color(0x33FF57)
@@ -404,13 +405,15 @@ public class BedrockMaterials {
                 .color(0xAA33FF)
                 .buildAndRegister();
 
-        CONCENTRATED_LOW_LEVEL_RADIOACTIVE_DUST = REGISTRATE.material(CTNHCore.id("concentrated_low_level_radioactive_dust"))
+        CONCENTRATED_LOW_LEVEL_RADIOACTIVE_DUST = REGISTRATE
+                .material(CTNHCore.id("concentrated_low_level_radioactive_dust"))
                 .cnlang("浓缩低放射性尘埃")
                 .gas()
                 .color(0x33AAFF)
                 .buildAndRegister();
 
-        CONCENTRATED_HIGH_LEVEL_RADIOACTIVE_DUST = REGISTRATE.material(CTNHCore.id("concentrated_high_level_radioactive_dust"))
+        CONCENTRATED_HIGH_LEVEL_RADIOACTIVE_DUST = REGISTRATE
+                .material(CTNHCore.id("concentrated_high_level_radioactive_dust"))
                 .cnlang("浓缩高放射性尘埃")
                 .gas()
                 .color(0xFFFF33)
@@ -461,7 +464,8 @@ public class BedrockMaterials {
                 .color(0xFF3333)
                 .buildAndRegister();
 
-        TARANIUM_ENRICHED_DIRTY_HELIUM_PLASMA = REGISTRATE.material(CTNHCore.id("taranium_enriched_dirty_helium_plasma"))
+        TARANIUM_ENRICHED_DIRTY_HELIUM_PLASMA = REGISTRATE
+                .material(CTNHCore.id("taranium_enriched_dirty_helium_plasma"))
                 .cnlang("富塔兰金属的污浊氦")
                 .plasma()
                 .color(0x33FFFF)
@@ -571,7 +575,8 @@ public class BedrockMaterials {
                 .color(0x16477A)
                 .buildAndRegister();
 
-        SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY = REGISTRATE.material(CTNHCore.id("samarium_dysprosium_terbium_permanent_magnet_alloy"))
+        SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY = REGISTRATE
+                .material(CTNHCore.id("samarium_dysprosium_terbium_permanent_magnet_alloy"))
                 .cnlang("未磁化钐镝铽合金")
                 .ingot()
                 .blastTemp(10200)
@@ -579,10 +584,12 @@ public class BedrockMaterials {
                 .cableProperties(GTValues.V[GTValues.UV], 16, 1)
                 .components(Samarium, 1, Dysprosium, 1, Terbium, 1)
                 .color(0x124435)
-                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING, GENERATE_LONG_ROD)
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW,
+                        GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING, GENERATE_LONG_ROD)
                 .buildAndRegister();
 
-        SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC = REGISTRATE.material(CTNHCore.id("samarium_dysprosium_terbium_permanent_magnet_alloy_magnetic"))
+        SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC = REGISTRATE
+                .material(CTNHCore.id("samarium_dysprosium_terbium_permanent_magnet_alloy_magnetic"))
                 .cnlang("磁化钐镝铽合金")
                 .ingot()
                 .blastTemp(10200)
@@ -590,7 +597,8 @@ public class BedrockMaterials {
                 .cableProperties(GTValues.V[GTValues.UV], 16, 1)
                 .components(Samarium, 1, Dysprosium, 1, Terbium, 1)
                 .color(0x148072)
-                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING, GENERATE_LONG_ROD)
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW,
+                        GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING, GENERATE_LONG_ROD)
                 .buildAndRegister();
 
         ADAMANTITE = REGISTRATE.material(CTNHCore.id("adamantite"))

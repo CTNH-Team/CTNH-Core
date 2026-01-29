@@ -1,14 +1,15 @@
 package io.github.cpearl0.ctnhcore.data.materials;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
-import io.github.cpearl0.ctnhcore.CTNHCore;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.DISABLE_DECOMPOSITION;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.DULL;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.LIGNITE;
-import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class BiodieselFertileSoilMaterials {
 
