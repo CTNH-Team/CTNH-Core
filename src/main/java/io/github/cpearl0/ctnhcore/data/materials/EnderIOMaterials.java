@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.DULL;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.METALLIC;
 import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.LOW;
 import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.MID;
@@ -17,7 +18,11 @@ public class EnderIOMaterials {
 
     public static Material EnergeticAlloy;
     public static Material ConductiveAlloy;
+    public static Material PulsatingAlloy;
     public static Material VibrantAlloy;
+    public static Material Soularium;
+    public static Material CopperAlloy;
+    public static Material RedstoneAlloy;
     public static Material DarkSteel;
     public static Material EndSteel;
     public static Material ChorusiteAlloy;
@@ -40,6 +45,7 @@ public class EnderIOMaterials {
                 .cnlang("导电合金")
                 .ingot()
                 .liquid()
+                .components(Iron, 1, Redstone, 2)
                 .cableProperties(GTValues.V[GTValues.LV], 1, 0, true)
                 .color(0xf5c4bd)
                 .iconSet(METALLIC)
@@ -55,6 +61,37 @@ public class EnderIOMaterials {
                 .color(0xbbe87c)
                 .iconSet(METALLIC)
                 .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FINE_WIRE)
+                .buildAndRegister();
+        PulsatingAlloy = REGISTRATE.material(CTNHCore.id("pulsating_alloy"))
+                .cnlang("脉冲合金")
+                .ingot()
+                .liquid()
+                .components(Iron, 1, EnderPearl, 1)
+                .color(0x9AEBAD).iconSet(METALLIC)
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR)
+                .buildAndRegister();
+
+        Soularium = REGISTRATE.material(CTNHCore.id("soularium"))
+                .cnlang("魂金")
+                .ingot()
+                .liquid()
+                .color(0x6C5A34).iconSet(DULL)
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR)
+                .buildAndRegister();
+        CopperAlloy = REGISTRATE.material(CTNHCore.id("copper_alloy"))
+                .cnlang("铜合金")
+                .ingot()
+                .liquid()
+                .color(0xBB8418).iconSet(METALLIC)
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR)
+                .buildAndRegister();
+        RedstoneAlloy = REGISTRATE.material(CTNHCore.id("redstone_alloy"))
+                .cnlang("红石合金")
+                .ingot()
+                .liquid()
+                .color(0xed3b50)
+                .iconSet(METALLIC)
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR)
                 .buildAndRegister();
         DarkSteel = REGISTRATE.material(CTNHCore.id("dark_steel"))
                 .ingot()

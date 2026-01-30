@@ -1,15 +1,17 @@
 package io.github.cpearl0.ctnhcore.utils.emi;
 
+import net.minecraft.client.searchtree.SuffixArray;
+import net.minecraft.network.chat.Component;
+
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.runtime.EmiLog;
 import dev.emi.emi.search.SearchStack;
-import net.minecraft.client.searchtree.SuffixArray;
-import net.minecraft.network.chat.Component;
 
 import java.util.Iterator;
 import java.util.List;
 
 public class TooltipBakeQueue {
+
     private final Iterator<EmiStack> iterator;
     private final int batchSize = 128;
     public SuffixArray<SearchStack> tooltips = new SuffixArray();
@@ -36,8 +38,7 @@ public class TooltipBakeQueue {
                         if (c != null) {
                             tooltips.add(
                                     searchStack,
-                                    c.getString().toLowerCase()
-                            );
+                                    c.getString().toLowerCase());
                         }
                     }
                 }
@@ -49,4 +50,3 @@ public class TooltipBakeQueue {
         return !iterator.hasNext();
     }
 }
-

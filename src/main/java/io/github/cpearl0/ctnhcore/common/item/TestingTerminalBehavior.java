@@ -152,7 +152,7 @@ public class TestingTerminalBehavior implements IInteractionItem {
             player.sendSystemMessage(((PatternStringError) error).getErrorInfo());
             return;
         }
-        HighlightHandler.highlight(error.getPos(), error.getWorld().dimension(), System.currentTimeMillis() + 5000,
+        HighlightHandler.highlight(error.getPos(), error.getWorld().dimension(), System.currentTimeMillis() + 10000,
                 ColorData.RED);
         List<Component> show = generateErrorMessages(error, flip);
         show.forEach(player::sendSystemMessage);
