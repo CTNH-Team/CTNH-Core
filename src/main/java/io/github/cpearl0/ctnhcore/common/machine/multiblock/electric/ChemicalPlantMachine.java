@@ -3,12 +3,9 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps;
 import io.github.cpearl0.ctnhcore.api.machine.feature.IDynamicCasing;
 
-import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
-import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
@@ -46,7 +43,6 @@ public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine impl
     @DescSynced
     public int coilTier = 0;
 
-
     public ChemicalPlantMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
     }
@@ -82,11 +78,12 @@ public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine impl
         return MANAGED_FIELD_HOLDER;
     }
 
-    @CN("§5并行: %s")
-    @EN("§bParallel: %s")
-    static Lang coil;
     @CN("§6提速: %s%%")
     @EN("§6Speed: %s%%")
+    static Lang coil;
+
+    @CN("§5并行: %s")
+    @EN("§bParallel: %s")
     static Lang parallel;
     @CN("§6催化剂消耗概率: %s%%")
     @EN("§6Catalyst consumption probability:\n%s%%")

@@ -226,9 +226,9 @@ public class EnglishLangHandler {
 
         provider.add("ctnh.multiblock.meadow.tooltip.0", "Automated Pasture");
         provider.add("ctnh.multiblock.meadow.tooltip.1",
-                "Can only raise chickens, cows, pigs and sheep. Cows produce leather, sheep produce wool, pigs produce pork and chickens produce eggs.");
+                "Gains n parallel processing when provided with n× the required stress.");
         provider.add("ctnh.multiblock.meadow.tooltip.2",
-                "The more animals in the pasture, the more waste they generate. The more animals you have, the more byproducts are produced.");
+                "Allows breeding of different animals at the same time.");
         provider.add("ctnh.multiblock.meadow.tooltip.3",
                 "Only when the animals run away can you know that you are not farming!");
 

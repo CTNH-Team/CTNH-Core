@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.api.jade;
 
-import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.recipe.multithread.MultiThreadRecipeLogic;
 
@@ -9,6 +8,7 @@ import com.gregtechceu.gtceu.api.blockentity.MetaMachineBlockEntity;
 import com.gregtechceu.gtceu.api.capability.GTCapabilityHelper;
 import com.gregtechceu.gtceu.api.machine.SimpleGeneratorMachine;
 import com.gregtechceu.gtceu.api.machine.SimpleTieredMachine;
+import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.steam.SimpleSteamMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
@@ -172,8 +172,7 @@ public class MultithreadRecipeLogicProvider extends CapabilityBlockProvider<Reci
                                             .withStyle(ChatFormatting.AQUA)));
                 }
             }
-        }
-        else {
+        } else {
             if (blockEntity instanceof MetaMachineBlockEntity mbe &&
                     mbe.metaMachine instanceof IRecipeLogicMachine rlm) {
                 var logic = rlm.getRecipeLogic();

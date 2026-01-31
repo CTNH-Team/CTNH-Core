@@ -1,12 +1,12 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic;
 
-import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.recipe.crossparalell.MergedGTRecipe;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
+import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 
 import net.minecraft.core.Direction;
@@ -96,8 +96,7 @@ public class MeadowMachine extends KineticWorkableMultiblockMachine {
                     mergedRecipe.add(modified);
                     lastOriginRecipe = match;
                     return true;
-                }
-                else {
+                } else {
                     RecipeLogic.putFailureReason(this, match, recipeMatch.reason());
                 }
             }

@@ -33,6 +33,7 @@
     "gtceu.RecyclingRecipesMixin",
     "gtceu.WorkableTieredMachineMixin",
     "gtceu.orevein.ClientProxyAccessor",
+    "gtceu.recipe.RecipeLogicMixin",
     "ldlib.ModularUIContainerMixin",
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MobMixin",
