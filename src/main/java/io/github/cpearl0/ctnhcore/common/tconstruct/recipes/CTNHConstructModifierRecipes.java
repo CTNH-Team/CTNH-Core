@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.common.tconstruct.modifier;
+package io.github.cpearl0.ctnhcore.common.tconstruct.recipes;
 
 
 import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
@@ -14,8 +14,8 @@ import java.util.function.Consumer;
 
 public class CTNHConstructModifierRecipes extends CTNHConstructRecipeProvider {
 
-    public CTNHConstructModifierRecipes(PackOutput output) {
-        super(output);
+    public CTNHConstructModifierRecipes(PackOutput generator) {
+        super(generator);
     }
 
     @Override

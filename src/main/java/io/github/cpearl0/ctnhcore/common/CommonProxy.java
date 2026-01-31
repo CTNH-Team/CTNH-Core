@@ -14,7 +14,9 @@ import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalItem;
-import io.github.cpearl0.ctnhcore.common.tconstruct.modifier.CTNHConstructModifierRecipes;
+import io.github.cpearl0.ctnhcore.common.tconstruct.recipes.CTNHConstructCastingRecipes;
+import io.github.cpearl0.ctnhcore.common.tconstruct.recipes.CTNHConstructMeltingRecipes;
+import io.github.cpearl0.ctnhcore.common.tconstruct.recipes.CTNHConstructModifierRecipes;
 import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
@@ -171,5 +173,9 @@ public class CommonProxy {
     private static void ticRecipes(Consumer<Function<PackOutput, ? extends DataProvider>> consumer) {
         // Modifiers
         consumer.accept(CTNHConstructModifierRecipes::new);
+        //Melting
+        consumer.accept(CTNHConstructMeltingRecipes::new);
+        //Casting
+        consumer.accept(CTNHConstructCastingRecipes::new);
     }
 }

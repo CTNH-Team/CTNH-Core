@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": {
+    "item": "tconstruct:ingot_cast"
+  },
+  "cooling_time": 80,
+  "fluid": {
+    "amount": 144,
+    "fluid": "gtceu:andesite_alloy"
+  },
+  "result": "gtceu:andesite_alloy_ingot"
+}
