@@ -37,6 +37,15 @@ public class ChineseLangHandler {
         cnLangProvider = provider;
         OreLang.init(provider);
         VeinLang.init(provider);
+
+        provider.add("gtceu.recipe_logic.setup_fail", "配方启动失败：");
+        provider.add("gtceu.recipe_logic.recipe_waiting", "配方等待中：");
+        provider.add("gtceu.recipe_modifier.default_fail", "配方修改失败");
+        provider.add("gtceu.recipe_modifier.insufficient_voltage", "电压等级过低！");
+        provider.add("gtceu.recipe_modifier.insufficient_eu_to_start_fusion",
+                "缺少足够能量以启动核聚变反应");
+        provider.add("gtceu.recipe_modifier.coil_temperature_too_low", "线圈温度过低！");
+
         // Config
         provider.add("config.ctnhcore.option.ftbPlugin", "FTB相关");
         provider.add("config.ctnhcore.option.kinetic", "应力相关");

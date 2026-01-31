@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.api.jade;
 
+import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.recipe.multithread.MultiThreadRecipeLogic;
 
@@ -169,6 +170,21 @@ public class MultithreadRecipeLogicProvider extends CapabilityBlockProvider<Reci
                             Component.translatable("ctpp.top.stress_" + (isInputStress ? "consumption" : "production"))
                                     .append(Component.literal(FormattingUtil.formatNumbers(stress) + " su")
                                             .withStyle(ChatFormatting.AQUA)));
+                }
+            }
+        }
+        else {
+            if (blockEntity instanceof MetaMachineBlockEntity mbe &&
+                    mbe.metaMachine instanceof IRecipeLogicMachine rlm) {
+                var logic = rlm.getRecipeLogic();
+
+                if (logic.showFancyTooltip() && logic.isWorkingEnabled()) {
+                    Component status = logic.isWaiting() ?
+                            Component.translatable("gtceu.recipe_logic.recipe_waiting")
+                                    .withStyle(ChatFormatting.YELLOW) :
+                            Component.translatable("gtceu.recipe_logic.setup_fail").withStyle(ChatFormatting.RED);
+                    tooltip.add(status);
+                    logic.getFancyTooltip().forEach(tooltip::add);
                 }
             }
         }

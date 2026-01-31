@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic;
 
+import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.recipe.crossparalell.MergedGTRecipe;
 
@@ -71,12 +72,6 @@ public class MeadowMachine extends KineticWorkableMultiblockMachine {
         }
 
         @Override
-        public void findAndHandleRecipe() {
-            super.findAndHandleRecipe();
-            markLastRecipeDirty();
-        }
-
-        @Override
         protected void handleSearchingRecipes(@NotNull Iterator<GTRecipe> matches) {
             mergedRecipe.clear();
             if (machine instanceof KineticWorkableMultiblockMachine kmachine)
@@ -102,8 +97,17 @@ public class MeadowMachine extends KineticWorkableMultiblockMachine {
                     lastOriginRecipe = match;
                     return true;
                 }
+                else {
+                    RecipeLogic.putFailureReason(this, match, recipeMatch.reason());
+                }
             }
             return false;
+        }
+
+        @Override
+        public void onRecipeFinish() {
+            markLastRecipeDirty();
+            super.onRecipeFinish();
         }
     }
 }

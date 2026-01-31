@@ -31,7 +31,6 @@
     "gtceu.NotifiableFluidTankMixin",
     "gtceu.NotifiableItemStackHandlerMixin",
     "gtceu.RecyclingRecipesMixin",
-    "gtceu.TagPrefixMixin",
     "gtceu.WorkableTieredMachineMixin",
     "gtceu.orevein.ClientProxyAccessor",
     "ldlib.ModularUIContainerMixin",

@@ -45,9 +45,7 @@ public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine impl
     @Persisted
     @DescSynced
     public int coilTier = 0;
-    @Persisted
-    @DescSynced
-    public int voltageTier = 0;
+
 
     public ChemicalPlantMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
@@ -60,13 +58,7 @@ public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine impl
         this.coilTier = context.getOrDefault("CoilType", 0);
         this.casingTier = context.getOrDefault("PlantCasing", 0);
         this.pipeTier = context.getOrDefault("Pipe", 0);
-        this.voltageTier = context.getOrDefault("MachineCasing", 0);
-        // var LOGGER = CTNHCore.LOGGER;
-        // LOGGER.debug("调试信息 - 机器参数:");
-        // LOGGER.debug("线圈等级: {}", this.coilTier);
-        // LOGGER.debug("外壳等级: {}", this.casingTier);
-        // LOGGER.debug("管道等级: {}", this.pipeTier);
-        // LOGGER.debug("电压等级: {}", this.voltageTier);
+        this.tier = Math.min(tier, context.getOrDefault("MachineCasing", 0));
     }
 
     @Override
@@ -75,7 +67,6 @@ public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine impl
         coilTier = 0;
         pipeTier = 0;
         casingTier = 0;
-        voltageTier = 0;
     }
 
     public int getSpeedMultiplier() {
@@ -84,27 +75,6 @@ public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine impl
 
     public int getMaxParallel() {
         return Math.max(((pipeTier) - 1) * 2 + 1, 1);
-    }
-
-    @Override
-    public long getMaxVoltage() {
-        return GTValues.V[voltageTier];
-    }
-
-    @Override
-    protected @Nullable GTRecipe getRealRecipe(GTRecipe recipe) {
-        if (voltageTier < GTValues.UHV && RecipeHelper.getRecipeEUtTier(recipe) > voltageTier) {
-            return null;
-        }
-        var modified = super.getRealRecipe(recipe);
-        if (casingTier > 0) {
-            var copied = recipe == modified ? modified.copy() : modified;
-            if (copied != null) {
-                copied.duration = (int) (copied.duration / (1 + coilTier * 0.5));
-            }
-            return copied;
-        }
-        return modified;
     }
 
     @Override
@@ -118,9 +88,6 @@ public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine impl
     @CN("§6提速: %s%%")
     @EN("§6Speed: %s%%")
     static Lang parallel;
-    @CN("§e配方电压最大支持: %s")
-    @EN("§eRecipe voltage maximum support:\n%s")
-    static Lang tier;
     @CN("§6催化剂消耗概率: %s%%")
     @EN("§6Catalyst consumption probability:\n%s%%")
     static Lang chance;
@@ -133,8 +100,6 @@ public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine impl
                     coil.translate(coilTier * 50));
             textList.add(
                     parallel.translate(pipeTier * 2));
-            textList.add(
-                    tier.translate(GTValues.VNF[voltageTier]));
             textList.add(
                     chance.translate(getChance()));
         }
