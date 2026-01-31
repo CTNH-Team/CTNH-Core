@@ -37,6 +37,15 @@ public class ChineseLangHandler {
         cnLangProvider = provider;
         OreLang.init(provider);
         VeinLang.init(provider);
+
+        provider.add("gtceu.recipe_logic.setup_fail", "配方启动失败：");
+        provider.add("gtceu.recipe_logic.recipe_waiting", "配方等待中：");
+        provider.add("gtceu.recipe_modifier.default_fail", "配方修改失败");
+        provider.add("gtceu.recipe_modifier.insufficient_voltage", "电压等级过低！");
+        provider.add("gtceu.recipe_modifier.insufficient_eu_to_start_fusion",
+                "缺少足够能量以启动核聚变反应");
+        provider.add("gtceu.recipe_modifier.coil_temperature_too_low", "线圈温度过低！");
+
         // Config
         provider.add("config.ctnhcore.option.ftbPlugin", "FTB相关");
         provider.add("config.ctnhcore.option.kinetic", "应力相关");
@@ -331,10 +340,10 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.naq_reactor_mk3.tooltip.3", "机器构型中必须有一个动力仓");
         provider.add("ctnh.multiblock.naq_reactor_mk3.tooltip.4", "随着内核温度上升,发电效率增大");
 
-        provider.add("ctnh.multiblock.meadow.tooltip.0", "自动化放牧");
-        provider.add("ctnh.multiblock.meadow.tooltip.1", "只能养鸡牛羊猪，牛会产生皮革，羊会产生羊毛，鸡会产生鸡蛋，猪会产生猪肉");
-        provider.add("ctnh.multiblock.meadow.tooltip.2", "牧场里每多一只动物，产生的排泄物数量就会提升，养的动物越多，产物越多");
-        provider.add("ctnh.multiblock.meadow.tooltip.3", "只有动物跑出去时，你才知道你不是在种菜！");
+        provider.add("ctnh.multiblock.meadow.tooltip.0", "§7自动化放牧");
+        provider.add("ctnh.multiblock.meadow.tooltip.1", "输入配方所需n倍应力时，获得n并行");
+        provider.add("ctnh.multiblock.meadow.tooltip.2", "可以同时养殖不同动物");
+        provider.add("ctnh.multiblock.meadow.tooltip.3", "§7只有动物跑出去时，你才知道你不是在种菜！");
 
         provider.add("ctnh.multiblock.fermenting_tank.tooltip.0", "一个专为微生物提供的生长罐，注意时刻关注他！");
         provider.add("ctnh.multiblock.fermenting_tank.tooltip.1", "发酵罐的生物生长机制：");

@@ -70,7 +70,7 @@ public class NeutronAcceleratorMachine extends EnergyHatchPartMachine {
 
     private void updateSubscription() {
         if (energyContainer.getEnergyStored() > 0) {
-            powerSubs = subscribeServerTick(this::energyChanged);
+            powerSubs = subscribeServerTick(powerSubs, this::energyChanged);
         } else if (powerSubs != null) {
             powerSubs.unsubscribe();
             powerSubs = null;

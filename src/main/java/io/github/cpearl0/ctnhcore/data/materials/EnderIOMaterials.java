@@ -94,6 +94,7 @@ public class EnderIOMaterials {
                 .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR)
                 .buildAndRegister();
         DarkSteel = REGISTRATE.material(CTNHCore.id("dark_steel"))
+                .cnlang("玄钢")
                 .ingot()
                 .liquid()
                 .components(Steel, 1, Obsidian, 1)

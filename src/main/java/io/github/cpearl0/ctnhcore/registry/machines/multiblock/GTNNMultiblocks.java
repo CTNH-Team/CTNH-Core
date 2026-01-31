@@ -47,12 +47,9 @@ public class GTNNMultiblocks {
                 "exxonmobil_chemical_plant",
                 ChemicalPlantMachine::new)
                 .cnLangValue("埃克森美孚化工厂")
-                .rotationState(RotationState.NON_Y_AXIS)
-                .tooltips(chemical_plant[0].translate(),
-                        chemical_plant[1].translate(),
-                        chemical_plant[2].translate(),
-                        chemical_plant[3].translate())
                 .recipeTypes(CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES)
+                .rotationState(RotationState.NON_Y_AXIS)
+                .tooltips(chemical_plant)
                 .recipeModifiers(CTNHRecipeModifiers::chemicalPlantModifier, GTRecipeModifiers.OC_NON_PERFECT)
                 .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
                 .pattern(definition -> FactoryBlockPattern.start()
@@ -213,16 +210,18 @@ public class GTNNMultiblocks {
 
     public static MultiblockMachineDefinition LARGE_NAQUADAH_REACTOR;
     @CN({
-            "§o§7重工业，现在就在你家门口！",
             "§6线圈：§e+50%§6 速度/级",
             "§b管道方块：§e+2§b 并行 及 §e-20%§b 催化剂消耗概率/级",
-            "§5机械方块：配方电压支持等级"
+            "§5电压机械方块：配方电压支持等级",
+            "§1外壳机械方块：提供配方条件",
+            "§o§7重工业，现在就在你家门口！"
     })
     @EN({
-            "§o§7Heavy industry, right at your doorstep now!",
-            "§6Coil：§e+50%§6 speed/tier",
-            "§bPipe：§e+2§b parallel and §e-20%§b catalyst consumption/tier",
-            "§5MachineCasing：Recipe voltage support level"
+            "§6Coil: §e+50%§6 speed/tier",
+            "§bPipe: §e+2§b parallel and §e-20%§b catalyst consumption/tier",
+            "§5Voltage Casing: Recipe voltage support level",
+            "§1Machine Casing: Provide recipe condition",
+            "§o§7Heavy industry, right at your doorstep now!"
     })
     static Lang[] chemical_plant;
     @CN({
