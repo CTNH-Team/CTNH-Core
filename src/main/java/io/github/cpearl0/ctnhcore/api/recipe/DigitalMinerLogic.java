@@ -23,7 +23,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -33,6 +36,7 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
@@ -120,6 +124,11 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
     @Getter
     private ItemFilter itemFilter;
 
+    private static final TagKey<Item> RAW_MATERIALS_TAG = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(),
+        ResourceLocation.fromNamespaceAndPath("forge", "raw_materials"));
+
+    private final Map<net.minecraft.world.level.block.Block, Boolean> rawOreFilterCache = new IdentityHashMap<>();
+
     public DigitalMinerLogic(@NotNull IRecipeLogicMachine machine, int maximumRadius, int minHeight, int maxHeight,
                              int silk, ItemFilter itemFilter, int speed) {
         super(machine);
@@ -160,6 +169,7 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
         this.minHeight = minHeight;
         this.maxHeight = maxHeight;
         this.itemFilter = itemFilter;
+        this.rawOreFilterCache.clear();
         this.blocksToMine.clear();
         this.oreAmount = 0;
         this.resetRecipeLogic();
@@ -459,6 +469,9 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
     private LinkedList<BlockPos> getBlocksToMine() {
         LinkedList<BlockPos> blocks = new LinkedList<>();
 
+        Level level = getMachine().getLevel();
+        ServerLevel serverLevel = level instanceof ServerLevel sl ? sl : null;
+
         // determine how many blocks to retrieve this time
         double quotient = getQuotient(getMeanTickTime(getMachine().getLevel()));
         // int calcAmount = quotient < 1 ? 1 : (int) (Math.min(quotient, Short.MAX_VALUE));
@@ -477,13 +490,13 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
                     // check every block along the x-axis
                     if (x <= startX + currentRadius * 2) {
                         BlockPos blockPos = new BlockPos(x, y, z);
-                        BlockState state = getMachine().getLevel().getBlockState(blockPos);
+                        BlockState state = level.getBlockState(blockPos);
                         if (state.getBlock().defaultDestroyTime() >= 0 &&
-                                getMachine().getLevel().getBlockEntity(blockPos) == null &&
+                                level.getBlockEntity(blockPos) == null &&
                                 state.is(Tags.Blocks.ORES)) {
                             if (itemFilter == null) {
                                 blocks.addLast(blockPos);
-                            } else if (itemFilter.test(state.getBlock().asItem().getDefaultInstance())) {
+                            } else if (matchesItemFilter(serverLevel, blockPos, state)) {
                                 blocks.addLast(blockPos);
                             }
                         }
@@ -507,6 +520,42 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
                 calculated = blocks.size();
         }
         return blocks;
+    }
+
+    private boolean matchesItemFilter(@Nullable ServerLevel serverLevel, @NotNull BlockPos pos, @NotNull BlockState state) {
+        if (itemFilter == null) return true;
+        if (itemFilter.test(state.getBlock().asItem().getDefaultInstance())) return true;
+        if (isSilkTouchMode()) return false;
+        if (serverLevel == null) return false;
+        return matchesRawOreDrops(serverLevel, pos, state);
+    }
+
+    private boolean matchesRawOreDrops(@NotNull ServerLevel serverLevel, @NotNull BlockPos pos, @NotNull BlockState state) {
+        var block = state.getBlock();
+        Boolean cached = rawOreFilterCache.get(block);
+        if (cached != null) return cached;
+
+        NonNullList<ItemStack> predictedDrops = NonNullList.create();
+        LootParams.Builder builder = new LootParams.Builder(serverLevel)
+                .withParameter(LootContextParams.BLOCK_STATE, state)
+                .withParameter(LootContextParams.ORIGIN, Vec3.atLowerCornerOf(pos))
+                .withParameter(LootContextParams.TOOL, getPickaxeTool());
+
+        getRegularBlockDrops(predictedDrops, state, builder);
+        if (!predictedDrops.isEmpty() && hasPostProcessing()) {
+            doPostProcessing(predictedDrops, state, builder);
+        }
+
+        boolean matches = false;
+        for (ItemStack drop : predictedDrops) {
+            if (!drop.isEmpty() && drop.is(RAW_MATERIALS_TAG) && itemFilter.test(drop)) {
+                matches = true;
+                break;
+            }
+        }
+
+        rawOreFilterCache.put(block, matches);
+        return matches;
     }
 
     /**
