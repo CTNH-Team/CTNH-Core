@@ -144,22 +144,26 @@ public class CTNHRecipeModifiers {
     }
 
     public static ModifierFunction naquadahReactor(MetaMachine machine, GTRecipe recipe) {
-        if (machine instanceof EfficiencyGeneratorMachine efficiencyGeneratorMachine) {
-            return ModifierFunction.builder()
-                    .durationMultiplier((double) efficiencyGeneratorMachine.efficiency / 100)
-                    .build();
+        if (!(machine instanceof EfficiencyGeneratorMachine generator)) {
+            return RecipeModifier.nullWrongType(EfficiencyGeneratorMachine.class, machine);
         }
-        return ModifierFunction.NULL;
+
+        long recipeEUt = recipe.getOutputEUt().getTotalEU();
+        if (recipeEUt <= 0) return ModifierFunction.NULL;
+
+        int maxParallel = (int) (generator.getOverclockVoltage() / recipeEUt);
+        if (maxParallel <= 0) return ModifierFunction.NULL;
+
+        int multiplier = ParallelLogic.getParallelAmountFast(generator, recipe, maxParallel);
+        if (multiplier <= 0) return ModifierFunction.NULL;
+
+        return ModifierFunction.builder()
+                .eutMultiplier(multiplier)
+                .durationMultiplier(((double) generator.efficiency / 100) / multiplier)
+                .build();
     }
 
     public static ModifierFunction rocketEngine(MetaMachine machine, GTRecipe recipe) {
-        ModifierFunction recipeModifier = naquadahReactor(machine, recipe);
-        GTRecipe modifiedRecipe = recipeModifier.apply(recipe);
-
-        if (modifiedRecipe != null) {
-            return recipeModifier;
-        } else {
-            return ModifierFunction.NULL;
-        }
+        return EfficiencyGeneratorMachine.recipeModifier(machine, recipe);
     }
 }
