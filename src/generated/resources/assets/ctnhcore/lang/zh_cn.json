@@ -2194,5 +2194,8 @@
   "ultrasonic_apparatus": "超声破碎",
   "uranium238_vein_ad": "铀238矿脉",
   "wollastonite_vein": "白云石矿脉",
+  "block.ctnhcore.lv_digital_miner": "数字型采矿机",
+  "block.ctnhcore.mv_digital_miner": "§b进阶数字型采矿机§r",
+  "block.ctnhcore.hv_digital_miner": "§6进阶数字型采矿机 II§r",
   "zenith_machine_sp": "§5灵能灯塔屹立不倒！"
 }

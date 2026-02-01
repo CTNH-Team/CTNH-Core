@@ -1103,5 +1103,8 @@
   "tetrahedrite_vein_ad": "Tetrahedrite Vein Ad",
   "tuff_uraninite_vein_ad": "Tuff Uraninite Vein Ad",
   "uranium238_vein_ad": "Uranium238 Vein Ad",
+  "block.ctnhcore.lv_digital_miner": "Digital Miner",
+  "block.ctnhcore.mv_digital_miner": "§bAdvanced Digital miner§r",
+  "block.ctnhcore.hv_digital_miner": "§6Advanced Digital miner II§r",
   "wollastonite_vein": "Wollastonite Vein"
 }
