@@ -177,5 +177,7 @@ public class CommonProxy {
         consumer.accept(CTNHConstructMeltingRecipes::new);
         //Casting
         consumer.accept(CTNHConstructCastingRecipes::new);
+        //Fuel
+        consumer.accept(CTNHConstructFuel::new);
     }
 }

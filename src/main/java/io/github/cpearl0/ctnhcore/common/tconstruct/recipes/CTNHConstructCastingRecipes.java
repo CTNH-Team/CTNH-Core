@@ -41,7 +41,6 @@ public final class CTNHConstructCastingRecipes extends CTNHConstructRecipeProvid
     }
 
     private void andesiteAlloyCasting(Consumer<FinishedRecipe> consumer) {
-        // 输入: 144mB gtceu:andesite_alloy流体, 模具: tconstruct:ingot_cast, 输出: gtceu:andesite_alloy_ingot, 冷却时间: 90
         ItemCastingRecipeBuilder.tableRecipe(Objects.requireNonNull(MATERIAL_ITEMS.get(TagPrefix.ingot, CTNHMaterials.AndesiteAlloy)))
                 .setCast(TinkerSmeltery.ingotCast.get(), false)
                 .setFluidAndTime(new FluidStack(CTNHMaterials.AndesiteAlloy.getFluid(), 144))
@@ -49,7 +48,6 @@ public final class CTNHConstructCastingRecipes extends CTNHConstructRecipeProvid
     }
 
     private void foundryUnitCasting(Consumer<FinishedRecipe> consumer) {
-        // 输入: 144mB gtceu:wrought_iron流体, 模具: createdieselgenerators:distillation_controller, 输出: createmetallurgy:foundry_unit, 冷却时间: 90
         ItemCastingRecipeBuilder.tableRecipe(CMItems.FOUNDRY_UNIT)
                 .setCast(CDGItems.DISTILLATION_CONTROLLER.get(), false)
                 .setFluidAndTime(new FluidStack(GTMaterials.WroughtIron.getFluid(), 144))
@@ -57,7 +55,6 @@ public final class CTNHConstructCastingRecipes extends CTNHConstructRecipeProvid
     }
 
     private void rubberCasting(Consumer<FinishedRecipe> consumer) {
-        // 输入: 144mB gtceu:rubber流体, 模具: tconstruct:ingot_cast, 输出: gtceu:rubber_ingot, 冷却时间: 90
         ItemCastingRecipeBuilder.tableRecipe(Objects.requireNonNull(MATERIAL_ITEMS.get(TagPrefix.ingot, GTMaterials.Rubber)))
                 .setCast(TinkerSmeltery.ingotCast.get(), false)
                 .setFluidAndTime(new FluidStack(GTMaterials.Rubber.getFluid(), 144))
@@ -73,7 +70,6 @@ public final class CTNHConstructCastingRecipes extends CTNHConstructRecipeProvid
     //}
 
     private void wroughtIronCasting(Consumer<FinishedRecipe> consumer) {
-        // 输入: 144mB gtceu:wrought_iron流体, 模具: tconstruct:ingot_cast, 输出: gtceu:wrought_iron_ingot, 冷却时间: 90
         ItemCastingRecipeBuilder.tableRecipe(Objects.requireNonNull(MATERIAL_ITEMS.get(TagPrefix.ingot, GTMaterials.WroughtIron)))
                 .setCast(TinkerSmeltery.ingotCast.get(), false)
                 .setFluidAndTime(new FluidStack(GTMaterials.WroughtIron.getFluid(), 144))
@@ -81,7 +77,6 @@ public final class CTNHConstructCastingRecipes extends CTNHConstructRecipeProvid
     }
 
     private void wroughtIronBlockCasting(Consumer<FinishedRecipe> consumer) {
-        // 输入: 1296mB gtceu:wrought_iron流体, 无模具, 输出: gtceu:wrought_iron_block, 冷却时间: 180
         ItemCastingRecipeBuilder.basinRecipe(Objects.requireNonNull(MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.WroughtIron)))
                 .setFluidAndTime(new FluidStack(GTMaterials.WroughtIron.getFluid(), 144 * 9))
                 .save(consumer, location("wrought_iron_block"));

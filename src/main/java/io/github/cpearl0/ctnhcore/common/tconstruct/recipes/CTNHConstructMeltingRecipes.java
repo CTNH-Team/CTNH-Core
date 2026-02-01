@@ -42,7 +42,6 @@ public final class CTNHConstructMeltingRecipes extends CTNHConstructRecipeProvid
     }
 
     private void clayRecipes(Consumer<FinishedRecipe> consumer) {
-        // 输入: gtceu:fireclay_dust, 输出: 125mB tconstruct:clay流体, 温度: 1000, 时间: 200
         MeltingRecipeBuilder.melting(
                 Ingredient.of(MATERIAL_ITEMS.get(TagPrefix.dust, GTMaterials.Fireclay)),
                 new FluidStack(TinkerFluids.moltenClay.get(), 125),
@@ -60,7 +59,6 @@ public final class CTNHConstructMeltingRecipes extends CTNHConstructRecipeProvid
     //}
 
     private void glassRecipes(Consumer<FinishedRecipe> consumer) {
-        // 输入: gtceu:glass_dust, 输出: 72mB gtceu:glass流体, 温度: 800, 时间: 90
         MeltingRecipeBuilder.melting(
                 Ingredient.of(MATERIAL_ITEMS.get(TagPrefix.dust, GTMaterials.Glass)),
                 new FluidStack(GTMaterials.Glass.getFluid(), 72),
@@ -69,14 +67,12 @@ public final class CTNHConstructMeltingRecipes extends CTNHConstructRecipeProvid
     }
 
     private void wroughtIronRecipes(Consumer<FinishedRecipe> consumer) {
-        // 输入: minecraft:iron_nugget, 输出: 32mB gtceu:wrought_iron流体, 温度: 600, 时间: 10
         MeltingRecipeBuilder.melting(
                 Ingredient.of(Items.IRON_NUGGET),
                 new FluidStack(GTMaterials.WroughtIron.getFluid(), 32),
                 600, 10
         ).save(consumer, location("wrought_iron_from_iron_nugget"));
 
-        // 输入: gtceu:wrought_iron_nugget, 输出: 16mB gtceu:wrought_iron流体, 温度: 600, 时间: 5
         MeltingRecipeBuilder.melting(
                 Ingredient.of(MATERIAL_ITEMS.get(TagPrefix.nugget, GTMaterials.WroughtIron)),
                 new FluidStack(GTMaterials.WroughtIron.getFluid(), 16),
@@ -85,7 +81,6 @@ public final class CTNHConstructMeltingRecipes extends CTNHConstructRecipeProvid
     }
 
     private void preciousMetalRecipes(Consumer<FinishedRecipe> consumer) {
-        // 输入: gtceu:precious_alloy_ingot, 输出: 64mB gtceu:gold流体, 温度: 800, 时间: 40
         MeltingRecipeBuilder.melting(
                 Ingredient.of(MATERIAL_ITEMS.get(TagPrefix.ingot, CTNHMaterials.PreciousAlloy)),
                 new FluidStack(GTMaterials.Gold.getFluid(), 64),
