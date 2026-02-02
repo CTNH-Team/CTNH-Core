@@ -120,6 +120,9 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
 
     @Override
     public void onMachineRemoved() {
+        if (!isRemote()) {
+            getRecipeLogic().ensureChunkUnforced();
+        }
         clearInventory(exportItems.storage);
         clearInventory(filterInventory);
     }
@@ -149,6 +152,9 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
 
     @Override
     public void onUnload() {
+        if (!isRemote()) {
+            getRecipeLogic().ensureChunkUnforced();
+        }
         super.onUnload();
         if (exportItemSubs != null) {
             exportItemSubs.unsubscribe();

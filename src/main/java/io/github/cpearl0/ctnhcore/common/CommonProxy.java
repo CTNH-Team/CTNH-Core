@@ -15,6 +15,7 @@ import io.github.cpearl0.ctnhcore.registry.material.GTMaterialAddon;
 import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundDefinitionsProvider;
 import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundEvents;
 import io.github.cpearl0.ctnhcore.registry.worldgen.*;
+import io.github.cpearl0.ctnhcore.common.world.CTNHChunkLoading;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.DimensionMarker;
@@ -123,6 +124,9 @@ public class CommonProxy {
             Regions.register(new CTNHOverworldRegion(2));
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, CTNHCore.MODID,
                     CTNHSurfaceRuleData.customSurface());
+
+            // Clean up stale Forge persistent chunk tickets for ctnhcore on load
+            CTNHChunkLoading.registerValidationCallback();
         });
         GridLinkables.register(ME_ADVANCED_TERMINAL, MEAdvancedTerminalItem.LINKABLE_HANDLER);
     }

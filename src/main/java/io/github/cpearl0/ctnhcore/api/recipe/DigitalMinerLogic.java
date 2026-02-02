@@ -29,6 +29,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -36,6 +37,7 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.world.ForgeChunkManager;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
@@ -48,6 +50,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import io.github.cpearl0.ctnhcore.api.machine.feature.IDigitalMiner;
+import io.github.cpearl0.ctnhcore.CTNHCore;
 
 import java.util.*;
 
@@ -129,6 +132,11 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
 
     private final Map<net.minecraft.world.level.block.Block, Boolean> rawOreFilterCache = new IdentityHashMap<>();
 
+    private boolean isChunkForced;
+    private BlockPos forcedChunkOwner;
+    private int forcedChunkX = Integer.MIN_VALUE;
+    private int forcedChunkZ = Integer.MIN_VALUE;
+
     public DigitalMinerLogic(@NotNull IRecipeLogicMachine machine, int maximumRadius, int minHeight, int maxHeight,
                              int silk, ItemFilter itemFilter, int speed) {
         super(machine);
@@ -184,6 +192,13 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
     public void inValid() {
         super.inValid();
         this.cachedItemTransfer = null;
+        ensureChunkUnforced();
+    }
+
+    public void ensureChunkUnforced() {
+        if (getMachine().getLevel() instanceof ServerLevel serverLevel) {
+            setChunkForced(serverLevel, false);
+        }
     }
 
     private static BlockState findMiningReplacementBlock(Level level) {
@@ -202,7 +217,11 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
      * Call this method every tick in update
      */
     public void serverTick() {
-        if (!isSuspend() && getMachine().getLevel() instanceof ServerLevel serverLevel && checkCanMine()) {
+        if (!(getMachine().getLevel() instanceof ServerLevel serverLevel)) return;
+
+        setChunkForced(serverLevel, isWorkingEnabled() && !isDone);
+
+        if (!isSuspend() && checkCanMine()) {
             // if the inventory is not full, drain energy etc. from the miner
             // the storages have already been checked earlier
             if (!isInventoryFull()) {
@@ -277,6 +296,32 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
                 subscription.unsubscribe();
                 subscription = null;
             }
+        }
+    }
+
+    private void setChunkForced(@NotNull ServerLevel serverLevel, boolean shouldForce) {
+        BlockPos ownerPos = getMachine().getPos();
+        ChunkPos chunkPos = new ChunkPos(ownerPos);
+
+        if (shouldForce) {
+            if (!isChunkForced || forcedChunkX != chunkPos.x || forcedChunkZ != chunkPos.z || forcedChunkOwner == null || !forcedChunkOwner.equals(ownerPos)) {
+                if (isChunkForced && forcedChunkOwner != null) {
+                    ForgeChunkManager.forceChunk(serverLevel, CTNHCore.MODID, forcedChunkOwner, forcedChunkX, forcedChunkZ, false, true);
+                }
+                ForgeChunkManager.forceChunk(serverLevel, CTNHCore.MODID, ownerPos, chunkPos.x, chunkPos.z, true, true);
+                isChunkForced = true;
+                forcedChunkOwner = ownerPos;
+                forcedChunkX = chunkPos.x;
+                forcedChunkZ = chunkPos.z;
+            }
+        } else if (isChunkForced) {
+            if (forcedChunkOwner != null) {
+                ForgeChunkManager.forceChunk(serverLevel, CTNHCore.MODID, forcedChunkOwner, forcedChunkX, forcedChunkZ, false, true);
+            }
+            isChunkForced = false;
+            forcedChunkOwner = null;
+            forcedChunkX = Integer.MIN_VALUE;
+            forcedChunkZ = Integer.MIN_VALUE;
         }
     }
 
