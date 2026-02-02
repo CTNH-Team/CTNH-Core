@@ -58,6 +58,7 @@ public class RecipeRemoval {
                 "gtceu:electrolyzer/sugar_electrolysis",
                 "gtceu:chemical_reactor/saltpeter",
                 "gtceu:large_chemical_reactor/saltpeter",
+                "gtceu:shaped/casing_hsse_sturdy",
                 // 数据模块
                 "gtceu:circuit_assembler/data_module",
                 "gtceu:circuit_assembler/data_module_soldering_alloy",

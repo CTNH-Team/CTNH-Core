@@ -138,4 +138,5 @@ dependencies {
     //modImplementation("maven.modrinth:pneumaticcraft-repressurized:${pneumaticcraft_version}")
     //modImplementation("curse.maven:compressedcreativity-549381:6603441")
     //modImplementation("curse.maven:appliedpneumatics-1355087:7124464")
+    modImplementation("curse.maven:omni-cells-1359517:7152251")
 }
