@@ -714,6 +714,11 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1", "提供%d算力以达到基础功率，每提供%d算力，输出功率翻一倍");
         provider.add("ctnhcore.recipe_logic.insufficient_cwut", "算力不足");
         provider.add("zenith_machine_sp", "§5灵能灯塔屹立不倒！");
+
+        provider.add("ctnhcore.machine.digital_miner.tooltip.0", "§7来自GTMThings的挖矿黑科技，速度更快且无采矿管道，仅挖取矿石");
+        provider.add("ctnhcore.machine.digital_miner.tooltip.1", "§b工作时自带自身区块强加载");
+        provider.add("ctnhcore.machine.digital_miner.tooltip.2", "工作时消耗§f%d EU/t§7，每个方块需要§f%d§7刻");
+
         // NOT FINISHED
 
         provider.add("ctnh.multiblock.wide_accelerator.info.power", "存储的电量：%.2f E/%.2f E");

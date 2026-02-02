@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.cover.filter.ItemFilter;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.gui.widget.SlotWidget;
+import com.gregtechceu.gtceu.api.gui.widget.ToggleButtonWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.machine.WorkableTieredMachine;
@@ -18,6 +19,9 @@ import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import com.gregtechceu.gtceu.common.item.PortableScannerBehavior;
+import com.gregtechceu.gtceu.config.ConfigHolder;
+import com.gregtechceu.gtceu.data.lang.LangHandler;
+import com.gregtechceu.gtceu.api.capability.GTCapabilityHelper;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -62,15 +66,20 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
     @Nullable
     protected TickableSubscription autoOutputSubs;
     @Nullable
+    protected TickableSubscription batterySubs;
+    @Nullable
     protected ISubscription exportItemSubs, energySubs;
     @Persisted
     protected final CustomItemStackHandler filterInventory;
+    @Getter
+    @Persisted
+    protected final CustomItemStackHandler chargerInventory;
     @Getter
     protected ItemFilter itemFilter;
     // widget
     protected SlotWidget filterSlot;
     protected ButtonWidget resetButton;
-    protected ButtonWidget silkButton;
+    protected ToggleButtonWidget silkButton;
     protected ButtonWidget fortuneButton;
     protected ButtonWidget overClockButton;
     // miner property
@@ -86,6 +95,7 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
     @Setter
     @Persisted
     private int maxHeight;
+    @Persisted
     private int silkLevel;
     private int fortuneLevel;
 
@@ -93,6 +103,7 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
         super(holder, tier, GTMachineUtils.defaultTankSizeFunction, args);
         this.energyPerTick = GTValues.VEX[tier - 1];
         this.filterInventory = createFilterItemHandler();
+        this.chargerInventory = createChargerItemHandler(args);
         this.fortuneLevel = 1;
         this.silkLevel = 0;
         this.minHeight = 0;
@@ -112,6 +123,20 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
         return transfer;
     }
 
+    protected CustomItemStackHandler createChargerItemHandler(Object... args) {
+        var handler = new CustomItemStackHandler() {
+
+            @Override
+            public int getSlotLimit(int slot) {
+                return 1;
+            }
+        };
+        handler.setFilter(item -> GTCapabilityHelper.getElectricItem(item) != null ||
+                (ConfigHolder.INSTANCE.compat.energy.nativeEUToFE &&
+                        GTCapabilityHelper.getForgeEnergyItem(item) != null));
+        return handler;
+    }
+
     @Override
     protected RecipeLogic createRecipeLogic(Object... args) {
         return new DigitalMinerLogic(this, minerRadius, minHeight, maxHeight, silkLevel, itemFilter,
@@ -125,6 +150,7 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
         }
         clearInventory(exportItems.storage);
         clearInventory(filterInventory);
+        clearInventory(chargerInventory);
     }
 
     @Override
@@ -146,7 +172,10 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
             if (getLevel() instanceof ServerLevel serverLevel) {
                 serverLevel.getServer().tell(new TickTask(0, this::updateAutoOutputSubscription));
             }
+            updateBatterySubscription();
             exportItemSubs = exportItems.addChangedListener(this::updateAutoOutputSubscription);
+            energySubs = energyContainer.addChangedListener(this::updateBatterySubscription);
+            chargerInventory.setOnContentsChanged(this::updateBatterySubscription);
         }
     }
 
@@ -156,6 +185,10 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
             getRecipeLogic().ensureChunkUnforced();
         }
         super.onUnload();
+        if (batterySubs != null) {
+            batterySubs.unsubscribe();
+            batterySubs = null;
+        }
         if (exportItemSubs != null) {
             exportItemSubs.unsubscribe();
             exportItemSubs = null;
@@ -164,6 +197,21 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
         if (energySubs != null) {
             energySubs.unsubscribe();
             energySubs = null;
+        }
+    }
+
+    protected void updateBatterySubscription() {
+        if (energyContainer.dischargeOrRechargeEnergyContainers(chargerInventory, 0, true)) {
+            batterySubs = subscribeServerTick(batterySubs, this::chargeBattery);
+        } else if (batterySubs != null) {
+            batterySubs.unsubscribe();
+            batterySubs = null;
+        }
+    }
+
+    protected void chargeBattery() {
+        if (!energyContainer.dischargeOrRechargeEnergyContainers(chargerInventory, 0, false)) {
+            updateBatterySubscription();
         }
     }
 
@@ -202,15 +250,17 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
     public Widget createUIWidget() {
         int rowSize = 3;
         int colSize = 9;
-        int width = colSize * 18 + 16;
+        int width = colSize * 18 + 2;
         int height = rowSize * 18 + 76 + 4;
         int index = 0;
+
+        int leftPadding = 1;
 
         WidgetGroup group = new WidgetGroup(0, 0, width, height);
 
         // information screen
         var componentPanel = new ComponentPanelWidget(4, 5, this::addDisplayText).setMaxWidthLimit(110);
-        var container = new WidgetGroup(8, 0, 87, 76);
+        var container = new WidgetGroup(leftPadding, 0, 84, 76);
         container.addWidget(new DraggableScrollableWidgetGroup(4, 4, container.getSize().width - 8,
                 container.getSize().height - 8)
                 .setBackground(GuiTextures.DISPLAY)
@@ -219,7 +269,7 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
         group.addWidget(container);
 
         // output slots
-        WidgetGroup slots = new WidgetGroup(8, 76 + 4 / 2, colSize * 18, rowSize * 18);
+        WidgetGroup slots = new WidgetGroup(leftPadding, 76 + 4 / 2, colSize * 18, rowSize * 18);
         for (int y = 0; y < rowSize; y++) {
             for (int x = 0; x < colSize; x++) {
                 var slot = new SlotWidget(exportItems, index++, x * 18, y * 18, true, false)
@@ -230,38 +280,45 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
         group.addWidget(slots);
 
         // filter slot
-        this.filterSlot = new SlotWidget(this.filterInventory, 0, 117, 4, true, true);
+        this.filterSlot = new SlotWidget(this.filterInventory, 0, 110, 4, true, true);
         this.filterSlot.setChangeListener(this::filterChange)
                 .setBackground(GuiTextures.SLOT, GuiTextures.FILTER_SLOT_OVERLAY);
         group.addWidget(filterSlot);
 
+        // battery slot (charger)
+        var batterySlot = new SlotWidget(this.chargerInventory, 0, 128, 4, true, true)
+            .setBackground(GuiTextures.SLOT, GuiTextures.CHARGER_OVERLAY)
+            .setHoverTooltips(LangHandler.getMultiLang("gtceu.gui.charger_slot.tooltip",
+            GTValues.VNF[getTier()], GTValues.VNF[getTier()]).toArray(Component[]::new));
+        group.addWidget(batterySlot);
+
         // Radius
-        group.addWidget(new LabelWidget(99, 26, "水平范围:"));
-        group.addWidget(new SimpleNumberInputWidget(140, 24, 24, 12, this::getMinerRadius, this::setMinerRadius)
+        group.addWidget(new LabelWidget(88, 26, "水平范围:"));
+        group.addWidget(new SimpleNumberInputWidget(132, 24, 30, 12, this::getMinerRadius, this::setMinerRadius)
                 .setMin(1).setMax((int) (8 * Math.pow(2, getTier()))));
 
         // Min height
-        group.addWidget(new LabelWidget(99, 44, "最小高度:"));
-        group.addWidget(new SimpleNumberInputWidget(140, 42, 24, 12, this::getMinHeight, this::setMinHeight)
+        group.addWidget(new LabelWidget(88, 44, "最小高度:"));
+        group.addWidget(new SimpleNumberInputWidget(132, 42, 30, 12, this::getMinHeight, this::setMinHeight)
                 .setMin(getLevel().getMinBuildHeight()).setMax(getLevel().getMaxBuildHeight()));
 
         // Max height
-        group.addWidget(new LabelWidget(99, 62, "最大高度:"));
-        group.addWidget(new SimpleNumberInputWidget(140, 60, 24, 12, this::getMaxHeight, this::setMaxHeight)
+        group.addWidget(new LabelWidget(88, 62, "最大高度:"));
+        group.addWidget(new SimpleNumberInputWidget(132, 60, 30, 12, this::getMaxHeight, this::setMaxHeight)
                 .setMin(getLevel().getMinBuildHeight()).setMax(getLevel().getMaxBuildHeight()));
 
         // reset button
-        this.resetButton = new ButtonWidget(16, 46 + BORDER_WIDTH, 18, 16 - BORDER_WIDTH,
+        this.resetButton = new ButtonWidget(9, 54 + BORDER_WIDTH, 18, 16 - BORDER_WIDTH,
                 new TextTexture("重置").setDropShadow(false).setColor(ChatFormatting.GRAY.getColor()), this::reset);
         this.resetButton.setHoverTooltips(Component.literal("修改配置后必须重置才能生效。"));
         group.addWidget(this.resetButton);
 
         // silk button
-        this.silkButton = new ButtonWidget(36, 46 + BORDER_WIDTH, 18, 16 - BORDER_WIDTH,
-                new TextTexture("精准")
-                        .setDropShadow(false)
-                        .setColor(silkLevel == 0 ? ChatFormatting.GRAY.getColor() : ChatFormatting.GREEN.getColor()),
-                this::setSilk);
+        this.silkButton = new ToggleButtonWidget(29, 54 + BORDER_WIDTH, 18, 16 - BORDER_WIDTH,
+            () -> silkLevel != 0, this::setSilkEnabled);
+        this.silkButton.setTexture(
+            new TextTexture("精准").setDropShadow(false).setColor(ChatFormatting.GRAY.getColor()),
+            new TextTexture("精准").setDropShadow(false).setColor(ChatFormatting.GREEN.getColor()));
         this.silkButton.setHoverTooltips(Component.literal("开启精准采集模式，4倍耗电。"));
         group.addWidget(this.silkButton);
 
@@ -284,18 +341,10 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
         resetRecipe();
     }
 
-    private void setSilk(ClickData clickData) {
-        if (silkLevel == 0) {
-            silkLevel = 1;
-            this.silkButton.setButtonTexture(
-                    new TextTexture("精准").setDropShadow(false).setColor(ChatFormatting.GREEN.getColor()));
-            energyPerTick = GTValues.VEX[getTier() - 1] * 4;
-        } else {
-            silkLevel = 0;
-            this.silkButton.setButtonTexture(
-                    new TextTexture("精准").setDropShadow(false).setColor(ChatFormatting.GRAY.getColor()));
-            energyPerTick = GTValues.VEX[getTier() - 1];
-        }
+    private void setSilkEnabled(boolean enabled) {
+        if (isRemote()) return;
+        silkLevel = enabled ? 1 : 0;
+        energyPerTick = GTValues.VEX[getTier() - 1] * (enabled ? 4 : 1);
         resetRecipe();
     }
 

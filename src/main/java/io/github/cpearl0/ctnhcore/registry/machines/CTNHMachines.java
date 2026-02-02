@@ -148,9 +148,9 @@ public class CTNHMachines {
                         .tooltipBuilder((stack, tooltip) -> {
                             int maxArea = (int) (8 * Math.pow(2, tier));
                             long energyPerTick = VEX[tier - 1];
-                            tooltip.add(Component.translatable("gtceu.universal.tooltip.uses_per_tick", energyPerTick)
-                                    .append(Component.literal(", ").withStyle(ChatFormatting.GRAY))
-                                    .append(Component.literal("§7每个方块需要§f" + (int) (40 / Math.pow(2, tier)) + "§7刻。")));
+                            tooltip.add(Component.translatable("ctnhcore.machine.digital_miner.tooltip.0"));
+                            tooltip.add(Component.translatable("ctnhcore.machine.digital_miner.tooltip.1"));
+                            tooltip.add(Component.translatable("ctnhcore.machine.digital_miner.tooltip.2", energyPerTick, (int) (40 / Math.pow(2, tier))));
                             tooltip.add(Component.translatable("gtceu.universal.tooltip.voltage_in",
                                     FormattingUtil.formatNumbers(VEX[tier]), GTValues.VNF[tier]));
                             tooltip.add(Component.translatable("gtceu.universal.tooltip.working_area_max", maxArea, maxArea));
