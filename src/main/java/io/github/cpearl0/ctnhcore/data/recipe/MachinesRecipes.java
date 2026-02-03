@@ -201,5 +201,44 @@ public class MachinesRecipes {
                 .outputItems(DRONEHOLDER)
                 .inputItems(CustomTags.UV_CIRCUITS, 4)
                 .save(provider);
+
+        ASSEMBLER_RECIPES.recipeBuilder("lv_digital_miner")
+                .inputItems(GTMachines.MINER[LV].asStack())
+                .inputItems(CONVEYOR_MODULE_LV.asStack(2))
+                .inputItems(ROBOT_ARM_LV.asStack(2))
+                .inputItems(EMITTER_LV.asStack())
+                .inputItems(SENSOR_LV.asStack())
+                .inputItems(CustomTags.MV_CIRCUITS, 2)
+                .inputFluids(GTMaterials.SolderingAlloy.getFluid(144))
+                .outputItems(CTNHMachines.DIGITAL_MINER[LV].asStack())
+                .duration(200)
+                .EUt(VA[LV])
+                .save(provider);
+
+        ASSEMBLER_RECIPES.recipeBuilder("mv_digital_miner")
+                .inputItems(GTMachines.MINER[MV].asStack())
+                .inputItems(CONVEYOR_MODULE_MV.asStack(2))
+                .inputItems(ROBOT_ARM_MV.asStack(2))
+                .inputItems(EMITTER_MV.asStack())
+                .inputItems(SENSOR_MV.asStack())
+                .inputItems(CustomTags.HV_CIRCUITS, 2)
+                .inputFluids(GTMaterials.SolderingAlloy.getFluid(144))
+                .outputItems(CTNHMachines.DIGITAL_MINER[MV].asStack())
+                .duration(200)
+                .EUt(VA[MV])
+                .save(provider);
+
+        ASSEMBLER_RECIPES.recipeBuilder("hv_digital_miner")
+                .inputItems(GTMachines.MINER[HV].asStack())
+                .inputItems(CONVEYOR_MODULE_HV.asStack(2))
+                .inputItems(ROBOT_ARM_HV.asStack(2))
+                .inputItems(EMITTER_HV.asStack())
+                .inputItems(SENSOR_HV.asStack())
+                .inputItems(CustomTags.EV_CIRCUITS, 2)
+                .inputFluids(GTMaterials.SolderingAlloy.getFluid(144))
+                .outputItems(CTNHMachines.DIGITAL_MINER[HV].asStack())
+                .duration(200)
+                .EUt(VA[HV])
+                .save(provider);
     }
 }

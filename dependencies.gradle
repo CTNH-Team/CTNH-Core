@@ -138,9 +138,5 @@ dependencies {
     //modImplementation("maven.modrinth:pneumaticcraft-repressurized:${pneumaticcraft_version}")
     //modImplementation("curse.maven:compressedcreativity-549381:6603441")
     //modImplementation("curse.maven:appliedpneumatics-1355087:7124464")
-
-
-    //lendercataclysm
-    modImplementation("curse.maven:lendercataclysm-551586:6906993")
-    modImplementation("curse.maven:lionfish-api-1001614:5922047")
+    modImplementation("curse.maven:omni-cells-1359517:7152251")
 }

@@ -531,7 +531,7 @@ public class CTNHMaterials {
                 .fluidPipeProperties(7788, 12000, true)
                 .cableProperties(V[UV], 32, 4)
                 .blast(b -> b.temp(7200, BlastProperty.GasTier.HIGH)
-                        .blastStats(VA[GTValues.ZPM], 4000)
+                        .blastStats(VA[GTValues.ZPM], 200)
                         .vacuumStats(VA[LuV]))
                 .addOreByproducts(GTMaterials.Vanadium, GTMaterials.TungstenSteel)
                 .components(HSLASteel, 18, TungstenSteel, 12, Vanadium, 5, Ultimet, 7, Naquadria, 4)

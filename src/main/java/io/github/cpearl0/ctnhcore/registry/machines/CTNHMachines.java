@@ -4,6 +4,7 @@ import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch.HugeDualHatchPartMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch.HugeItemBusPartMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
+import io.github.cpearl0.ctnhcore.common.machine.simple.DigitalMiner;
 import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.HighPerformanceComputerMachine;
 import io.github.cpearl0.ctnhcore.data.machines.GTNNMachines;
@@ -71,6 +72,7 @@ public class CTNHMachines {
     public static MachineDefinition[] HUGE_ITEM_EXPORT_BUS;
     public static MachineDefinition[] HUGE_DUAL_IMPORT_HATCH;
     public static MachineDefinition[] HUGE_DUAL_EXPORT_HATCH;
+        public static MachineDefinition[] DIGITAL_MINER;
 
     public static void init() {
         GTNNMachines.init();
@@ -137,6 +139,25 @@ public class CTNHMachines {
 
         PERSONAL_COMPUTER = registerSimpleComputationMachines("personal_computer",
                 CTNHRecipeTypes.PERSONAL_COMPUTER);
+
+        DIGITAL_MINER = registerTieredMachines("digital_miner",
+                DigitalMiner::new,
+                (tier, builder) -> builder
+                        .langValue("%s Digital Miner %s".formatted(VLVH[tier], VLVT[tier]))
+                        .rotationState(RotationState.NON_Y_AXIS)
+                        .tooltipBuilder((stack, tooltip) -> {
+                            int maxArea = (int) (8 * Math.pow(2, tier));
+                            long energyPerTick = VEX[tier - 1];
+                            tooltip.add(Component.translatable("ctnhcore.machine.digital_miner.tooltip.0"));
+                            tooltip.add(Component.translatable("ctnhcore.machine.digital_miner.tooltip.1"));
+                            tooltip.add(Component.translatable("ctnhcore.machine.digital_miner.tooltip.2", energyPerTick, (int) (40 / Math.pow(2, tier))));
+                            tooltip.add(Component.translatable("gtceu.universal.tooltip.voltage_in",
+                                    FormattingUtil.formatNumbers(VEX[tier]), GTValues.VNF[tier]));
+                            tooltip.add(Component.translatable("gtceu.universal.tooltip.working_area_max", maxArea, maxArea));
+                        })
+                        .recipeType(CTNHRecipeTypes.DIGITAL_MINER)
+                        .register(),
+                LV, MV, HV);
 
         ASYNC_THREAD_HATCH = registerTieredMachines("async_thread_hatch",
                 AsynThreadHatchMachine::new,

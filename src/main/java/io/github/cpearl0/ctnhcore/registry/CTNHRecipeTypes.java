@@ -57,6 +57,14 @@ public class CTNHRecipeTypes {
             .setMaxTooltips(4)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT);
 
+    public static final GTRecipeType DIGITAL_MINER = REGISTRATE
+            .recipeType(GTCEu.id("digital_miner"), GTRecipeTypes.ELECTRIC)
+            .cnlang("数字型采矿")
+            .setMaxIOSize(0, 27, 0, 0)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SLOT)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT);
+
     public static final GTRecipeType SLAUGHTER_HOUSE = REGISTRATE
             .recipeType(GTCEu.id("slaughter_house"), GTRecipeTypes.ELECTRIC)
             .cnlang("屠宰场")

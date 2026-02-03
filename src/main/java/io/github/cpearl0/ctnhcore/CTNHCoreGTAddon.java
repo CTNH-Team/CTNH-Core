@@ -106,6 +106,9 @@ public class CTNHCoreGTAddon implements IGTAddon {
         AdAstraRecipes.init(provider);
         NaquadahLine.init(provider);
 
+        CasingRecipes.init(provider);
+        QuantumOmniRecipes.init(provider);
+
         LuvModifyRecipe.init(provider);
         HugeHatchRecipes.init(provider);
     }
