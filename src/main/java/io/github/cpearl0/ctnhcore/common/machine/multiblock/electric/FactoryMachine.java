@@ -35,6 +35,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FactoryMachine extends WorkableElectricMultiblockMachine implements IMachineModifyDrops {
@@ -88,18 +89,11 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
 
     @Override
     public void onStructureFormed() {
-        // TODO： Fix this
-        int len = 1;
-        while (true) {
-            var pos = MachineUtils.getOffset(this, 0, 0, len);
-            if (getLevel().getBlockState(pos).getBlock().equals(AllBlocks.ANDESITE_CASING.get())) {
-                len++;
-            } else {
-                break;
-            }
+        int[] formedRepetitionCount = getMultiblockState().getMatchContext().get("formedRepetitionCount");
+        if(formedRepetitionCount != null){
+            Arrays.stream(formedRepetitionCount).max().ifPresent(m -> length = m);
         }
-        length = len;
-        // getPattern()
+
         super.onStructureFormed();
     }
 

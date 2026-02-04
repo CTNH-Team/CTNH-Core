@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.mixin.gtceu;
+package io.github.cpearl0.ctnhcore.mixin.gtceu.fix;
 
 import com.gregtechceu.gtceu.api.recipe.content.Content;
 

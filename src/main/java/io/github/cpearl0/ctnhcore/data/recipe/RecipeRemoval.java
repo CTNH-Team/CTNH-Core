@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
 import net.minecraft.resources.ResourceLocation;
+import tech.vixhentx.mcmod.ctnhlib.data.DataFilterPack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,8 @@ public class RecipeRemoval {
         maceratorRecipeRemovals();
         // 放最后
         ctnhRemovals(registry);
+
+        eioRemovals();
     }
 
     public static void centrifugeRecipeRemovals() {
@@ -84,12 +87,17 @@ public class RecipeRemoval {
                 "gtceu:circuit_assembler/wetware_processor_assembly_zpm",
                 "gtceu:circuit_assembler/wetware_processor_assembly_zpm_soldering_alloy",
                 "gtceu:assembly_line/wetware_super_computer_uv",
-                "gtceu:assembly_line/wetware_mainframe_uhv"
-
+                "gtceu:assembly_line/wetware_mainframe_uhv",
+                "gtceu:research_station/1x_gtceu_wetware_processor_assembly",
+                "gtceu:research_station/1x_gtceu_wetware_processor_computer"
         ));
 
         for (String path : recipePaths) {
             registry.accept(ResourceLocation.parse(path));
         }
+    }
+
+    public static void eioRemovals(){
+        DataFilterPack.removeRecipe("enderio:alloy_smelter");
     }
 }
