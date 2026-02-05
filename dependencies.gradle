@@ -15,7 +15,9 @@ dependencies {
     jarJar(project(":modules:CTNH-Energy")){transitive = false}
     implementation(project(":modules:CTNH-Mana"))
     jarJar(project(":modules:CTNH-Mana")){transitive = false}
-    //modImplementation(project(":modules:CTNH-Mana"))
+
+    jarJar(modImplementation("extra-mods:gtceu-1.20.1:7.4.1-ctnh-slim")){transitive = false}
+
     // JEI, EMI, Jade
     //modCompileOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
     //modCompileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")

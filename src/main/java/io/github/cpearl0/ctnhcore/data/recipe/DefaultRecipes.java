@@ -674,13 +674,14 @@ public class DefaultRecipes {
                 .EUt(GTValues.VA[GTValues.LV]) // 98304 EU/t
                 .duration(320) // 30秒
                 .save(provider);
-        // 2. 催化剂舱口（组装机）
+        // 2. 催化剂仓
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("catalyst_hatch")
                 .inputItems(CustomTags.MV_CIRCUITS)
                 .inputItems(GTMachines.ITEM_IMPORT_BUS[GTValues.HV])
                 .inputItems(GTMachines.ITEM_EXPORT_BUS[GTValues.HV])
                 .inputItems(GTBlocks.MACHINE_CASING_EV)
                 .circuitMeta(1)
+                .outputItems(CTNHMachines.CATALYST_HATCH)
                 .EUt(GTValues.VA[GTValues.HV])
                 .duration(300)
                 .save(provider);

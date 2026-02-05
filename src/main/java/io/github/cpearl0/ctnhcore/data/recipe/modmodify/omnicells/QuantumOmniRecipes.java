@@ -1,9 +1,7 @@
-package io.github.cpearl0.ctnhcore.data.recipe;
+package io.github.cpearl0.ctnhcore.data.recipe.modmodify.omnicells;
 
 import appeng.core.definitions.AEItems;
-import com.enderio.EnderIO;
 import com.enderio.base.common.init.EIOItems;
-import com.enderio.base.common.item.misc.EnderiosItem;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
@@ -13,17 +11,15 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import io.github.cpearl0.ctnhcore.data.materials.EnderIOMaterials;
-import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import net.minecraft.data.recipes.FinishedRecipe;
 import com.wintercogs.ae2omnicells.common.init.OCItems;
-import net.minecraft.world.level.ItemLike;
-import tech.luckyblock.mcmod.ctnhenergy.mixin.omni.OCItemsMixin;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.VA;
-import static com.ibm.icu.impl.CurrencyData.provider;
+import static io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval.removePaths;
 
 public class QuantumOmniRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
@@ -204,4 +200,9 @@ public class QuantumOmniRecipes {
 //                .duration(40)
 //                .save(provider);
 //    }
+    public static void omniRemovals(){
+        removePaths.addAll(List.of(
+                "ae2omnicells:charged_ender_ingot"
+        ));
+    }
 }

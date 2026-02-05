@@ -819,6 +819,10 @@ public class ChineseLangHandler {
         provider.add(GTNNMachines.NEUTRON_ACCELERATOR[ZPM].getBlock(), "§cZPM 中子加速器");
         provider.add(GTNNMachines.NEUTRON_ACCELERATOR[UV].getBlock(), "§3UV 中子加速器");
 
+        provider.add(CTNHMachines.DIGITAL_MINER[LV].getBlock(), "数字型采矿机");
+        provider.add(CTNHMachines.DIGITAL_MINER[MV].getBlock(), "§b进阶数字型采矿机§r");
+        provider.add(CTNHMachines.DIGITAL_MINER[HV].getBlock(), "§6进阶数字型采矿机 II§r");
+
         provider.add(CTNHCreativeModeTabs.MACHINE.get(), "CTNH机器");
         provider.add(CTNHCreativeModeTabs.ITEM.get(), "CTNH物品");
         provider.add(CTNHCreativeModeTabs.BLOCK.get(), "CTNH方块");

@@ -271,6 +271,7 @@ public class MultiblocksA {
     public static final MultiblockMachineDefinition BIG_DAM = REGISTRATE.multiblock("big_dam",
             BigDamMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
+            .allowExtendedFacing(false)
             .recipeType(CTNHRecipeTypes.BIG_DAM)
             .noRecipeModifier()
             .appearanceBlock(() -> Blocks.STONE_BRICKS)

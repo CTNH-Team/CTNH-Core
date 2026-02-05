@@ -84,6 +84,7 @@
   "block.ctnhcore.hot_coolant_turbine": "热冷却涡轮",
   "block.ctnhcore.hv_circuit_bus": "§6HV§r芯片总线",
   "block.ctnhcore.hv_dehydrator": "§6高级脱水机 II§r",
+  "block.ctnhcore.hv_digital_miner": "§6进阶数字型采矿机 II§r",
   "block.ctnhcore.hv_energy_output_hatch_4a": "4安§6HV§r动力仓",
   "block.ctnhcore.hv_high_performance_computer": "§6HV§r高性能计算机",
   "block.ctnhcore.hv_huge_dual_input_hatch": "§6HV§r巨型输入总成",
@@ -132,6 +133,7 @@
   "block.ctnhcore.luv_personal_computer": "§dLuV§r个人计算机",
   "block.ctnhcore.luv_rocket_engine": "§d精英火箭引擎发电机 III",
   "block.ctnhcore.lv_circuit_bus": "§7LV§r芯片总线",
+  "block.ctnhcore.lv_digital_miner": "数字型采矿机",
   "block.ctnhcore.lv_energy_output_hatch_4a": "4安§7LV§r动力仓",
   "block.ctnhcore.lv_huge_dual_input_hatch": "§7LV§r巨型输入总成",
   "block.ctnhcore.lv_huge_dual_output_hatch": "§7LV§r巨型输出总成",
@@ -159,6 +161,7 @@
   "block.ctnhcore.mega_oil_cracking_unit": "巨型原油裂解厂",
   "block.ctnhcore.mv_circuit_bus": "§bMV§r芯片总线",
   "block.ctnhcore.mv_dehydrator": "§b高级脱水机 §r",
+  "block.ctnhcore.mv_digital_miner": "§b进阶数字型采矿机§r",
   "block.ctnhcore.mv_energy_output_hatch_4a": "4安§bMV§r动力仓",
   "block.ctnhcore.mv_huge_dual_input_hatch": "§bMV§r巨型输入总成",
   "block.ctnhcore.mv_huge_dual_output_hatch": "§bMV§r巨型输出总成",
@@ -2198,8 +2201,5 @@
   "ultrasonic_apparatus": "超声破碎",
   "uranium238_vein_ad": "铀238矿脉",
   "wollastonite_vein": "白云石矿脉",
-  "block.ctnhcore.lv_digital_miner": "数字型采矿机",
-  "block.ctnhcore.mv_digital_miner": "§b进阶数字型采矿机§r",
-  "block.ctnhcore.hv_digital_miner": "§6进阶数字型采矿机 II§r",
   "zenith_machine_sp": "§5灵能灯塔屹立不倒！"
 }

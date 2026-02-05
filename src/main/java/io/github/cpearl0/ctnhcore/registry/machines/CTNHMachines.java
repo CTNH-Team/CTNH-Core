@@ -81,7 +81,7 @@ public class CTNHMachines {
                 .machine("catalyst_hatch", CatalystHatchPartMachine::new)
                 .cnLangValue("催化剂仓")
                 .langValue("Catalyst Hatch")
-                .tier(IV)
+                .tier(EV)
                 .rotationState(RotationState.ALL)
                 .abilities(CTNHPartAbility.CATALYST)
                 .colorOverlayTieredHullModel("overlay_catalyst_in", null, "overlay_catalyst_hatch")
@@ -156,6 +156,7 @@ public class CTNHMachines {
                             tooltip.add(Component.translatable("gtceu.universal.tooltip.working_area_max", maxArea, maxArea));
                         })
                         .recipeType(CTNHRecipeTypes.DIGITAL_MINER)
+                        .workableTieredHullModel(CTNHCore.id("block/machines/digital_miner"))
                         .register(),
                 LV, MV, HV);
 
