@@ -15,6 +15,7 @@
     "createmetallurgy.FoundryBasinBlockEntityMixin",
     "dategen.CCDatagenMixin",
     "dategen.CreateOreExcavationDategenMixin",
+    "eio.MachinesJEIMixin",
     "emi.CreateJEIMixin",
     "emi.CreateJEIMixin$CategoryBuilderMixin",
     "emi.EmiApiTagExpandMixin",

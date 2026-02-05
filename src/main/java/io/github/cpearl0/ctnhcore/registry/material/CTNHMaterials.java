@@ -135,7 +135,7 @@ public class CTNHMaterials {
     public static Material Ignitium;
     public static Material O_bar;
     public static Material H_bar;
-    public static Material SUNNARIUM;
+    public static Material Sunnarium;
     public static Material HIKARIUM;
     public static Material starlight;
     public static Material siliconFluoride;
@@ -714,7 +714,7 @@ public class CTNHMaterials {
                         .customStill())
                 .color(0XFFFF00)
                 .buildAndRegister();
-        SUNNARIUM = REGISTRATE.material((GTCEu.id("sunnarium")))
+        Sunnarium = REGISTRATE.material((GTCEu.id("sunnarium")))
                 .cnlang("阳光化合物")
                 .liquid()
                 .dust()

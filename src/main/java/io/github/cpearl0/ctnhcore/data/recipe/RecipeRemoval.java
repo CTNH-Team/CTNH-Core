@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import io.github.cpearl0.ctnhcore.data.recipe.modmodify.EIORecipes;
 import net.minecraft.resources.ResourceLocation;
 import tech.vixhentx.mcmod.ctnhlib.data.DataFilterPack;
 
@@ -9,19 +10,18 @@ import java.util.function.Consumer;
 
 public class RecipeRemoval {
 
-    public static List<String> recipePaths = new ArrayList<>();
+    public static List<String> removePaths = new ArrayList<>();
 
     public static void init(Consumer<ResourceLocation> registry) {
         centrifugeRecipeRemovals();
         maceratorRecipeRemovals();
+        EIORecipes.eioRemovals();
         // 放最后
         ctnhRemovals(registry);
-
-        eioRemovals();
     }
 
     public static void centrifugeRecipeRemovals() {
-        recipePaths.addAll(List.of(
+        removePaths.addAll(List.of(
                 "gtceu:centrifuge/ruby_slurry_centrifuging",
                 "gtceu:centrifuge/pgs_separation",
                 "gtceu:centrifuge/impure_enriched_naquadah_solution_separation",
@@ -34,18 +34,18 @@ public class RecipeRemoval {
     }
 
     public static void maceratorRecipeRemovals() {
-        recipePaths.addAll(List.of(
+        removePaths.addAll(List.of(
                 "gtceu:centrifuge/platinum_group_sludge_dust"));
     }
 
     public static void benderRecipeRemovals() {
-        recipePaths.addAll(List.of(
+        removePaths.addAll(List.of(
                 "gtceu:bender/bend_graphite_ir_plate_ingot_to_double_plate",
                 "gtceu:bender/bend_graphite_ir_plate_plate_to_double_plate"));
     }
 
     public static void ctnhRemovals(Consumer<ResourceLocation> registry) {
-        recipePaths.addAll(List.of(
+        removePaths.addAll(List.of(
                 "gtceu:electrolyzer/raw_platinum_separation",
                 "gtceu:chemical_reactor/raw_palladium_separation",
                 "gtceu:large_chemical_reactor/inert_metal_mixture_separation",
@@ -77,8 +77,6 @@ public class RecipeRemoval {
                 "gtceu:assembler/coil_trinium",
                 // 模拟室
                 "hostilenetworks:sim_chamber",
-                // me总成
-                "gtmthings:assembler/me_export_buffer",
                 // 编程电路卡
                 "pccard:item/card_programmed_circuit",
                 // 湿件
@@ -92,12 +90,8 @@ public class RecipeRemoval {
                 "gtceu:research_station/1x_gtceu_wetware_processor_computer"
         ));
 
-        for (String path : recipePaths) {
+        for (String path : removePaths) {
             registry.accept(ResourceLocation.parse(path));
         }
-    }
-
-    public static void eioRemovals(){
-        DataFilterPack.removeRecipe("enderio:alloy_smelter");
     }
 }

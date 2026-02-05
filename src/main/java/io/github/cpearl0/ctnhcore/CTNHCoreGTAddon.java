@@ -9,6 +9,7 @@ import io.github.cpearl0.ctnhcore.data.recipe.chain.NaquadahLine;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.PlatinumLine;
 import io.github.cpearl0.ctnhcore.data.recipe.cogniassembly.WetwareCircuit;
 import io.github.cpearl0.ctnhcore.data.recipe.generated.HyperRotorRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.modmodify.EIORecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.multiblock.*;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
@@ -98,6 +99,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         AssemblyLineRecipes.init(provider);
 
         WetwareCircuit.init(provider);
+        EIORecipes.init(provider);
         // 移植配方
         NaquadahReactorRecipes.init(provider);
         DefaultRecipes.init(provider);

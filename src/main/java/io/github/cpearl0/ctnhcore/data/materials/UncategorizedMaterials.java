@@ -270,7 +270,7 @@ public class UncategorizedMaterials {
                 .ingot()
                 .dust()
                 .liquid()
-                .components(Iron, 10, Chromium, 5, Nickel, 9, Titanium, 4, SUNNARIUM, 9)
+                .components(Iron, 10, Chromium, 5, Nickel, 9, Titanium, 4, Sunnarium, 9)
                 .blastTemp(7200, BlastProperty.GasTier.MID, GTValues.VA[GTValues.LuV], 1000)
                 .color(0x4E7D9D)
                 .flags(GENERATE_DENSE, GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR,
