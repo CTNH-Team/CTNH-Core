@@ -248,45 +248,7 @@ public class AdAstraRecipes {
     }
 
     public static void remove(Consumer<ResourceLocation> consumer) {
-        String[] toRemove = {
-                "ad_astra:space_helmet",
-                "ad_astra:space_suit",
-                "ad_astra:space_pants",
-                "ad_astra:space_boots",
-                "ad_astra:netherite_space_helmet",
-                "ad_astra:netherite_space_suit",
-                "ad_astra:netherite_space_pants",
-                "ad_astra:netherite_space_boots",
-                "ad_astra:jet_suit_helmet",
-                "ad_astra:jet_suit",
-                "ad_astra:jet_suit_pants",
-                "ad_astra:jet_suit_boots",
-                "ad_astra:steel_engine",
-                "ad_astra:rocket_nose_cone",
-                "ad_astra:rocket_fin",
-                "ad_astra:steel_tank",
-                "ad_astra:nasa_workbench/tier_1_rocket_from_nasa_workbench",
-                "ad_astra:nasa_workbench/tier_2_rocket_from_nasa_workbench",
-                "ad_astra:nasa_workbench/tier_3_rocket_from_nasa_workbench",
-                "ad_astra:nasa_workbench/tier_4_rocket_from_nasa_workbench",
-                "ad_astra:desh_engine",
-                "ad_astra:desh_tank",
-                "ad_astra:ostrum_engine",
-                "ad_astra:ostrum_tank",
-                "ad_astra:calorite_engine",
-                "ad_astra:calorite_tank",
-                "ad_astra:oxygen_gear",
-                "ad_astra:oxygen_tank",
-                "ad_astra:fan",
-                "ad_astra:gas_tank",
-                "ad_astra:oxygen_loader",
-                "ad_astra:gravity_normalizer",
-                "ad_astra:oxygen_distributor"
-        };
 
-        for (var rl : toRemove) {
-            DataFilterPack.removeRecipe(rl);
-        }
         DataFilterPack.removeRecipeType("ad_astra:*");
     }
 }

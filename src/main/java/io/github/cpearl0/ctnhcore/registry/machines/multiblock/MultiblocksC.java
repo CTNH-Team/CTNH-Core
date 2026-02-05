@@ -106,7 +106,7 @@ public class MultiblocksC {
                             .or(Predicates.abilities(CTNHPartAbility.THREAD_HATCH).setMaxGlobalLimited(1).setPreviewCount(1))
                             .or(Predicates.autoAbilities(definition.getRecipeTypes(),false, false, true, true, true,
                                     true))
-                            .or(Predicates.autoAbilities(true, true, true))
+                            .or(Predicates.autoAbilities(true, false, true))
                             .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1)
                                     .setMaxGlobalLimited(4).setPreviewCount(4))
                     )
