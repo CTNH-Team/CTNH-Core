@@ -480,15 +480,6 @@ public class DefaultRecipes {
                 .duration(400) // 20秒
                 .save(provider);
 
-        // 8. 致密镧板
-        GTRecipeTypes.BENDER_RECIPES.recipeBuilder("dense_lanthanum_plate")
-                .inputItems(TagPrefix.plate, GTMaterials.Lanthanum, 9)
-                .outputItems(TagPrefix.plateDense, GTMaterials.Lanthanum)
-                .circuitMeta(9)
-                .EUt(96) // LV级
-                .duration(1242) // 62.1秒
-                .save(provider);
-
         // 9. Naquadah基液体燃料
         GTRecipeTypes.MIXER_RECIPES.recipeBuilder("naquadah_based_liquid_fuel")
                 .inputItems(TagPrefix.dust, GTMaterials.Naquadria, 42)

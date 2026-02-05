@@ -32,6 +32,7 @@
     "gtceu.NotifiableItemStackHandlerMixin",
     "gtceu.RecyclingRecipesMixin",
     "gtceu.WorkableTieredMachineMixin",
+    "gtceu.fix.BlockPatternMixin",
     "gtceu.orevein.ClientProxyAccessor",
     "gtceu.recipe.RecipeLogicMixin",
     "ldlib.ModularUIContainerMixin",
@@ -42,7 +43,7 @@
     "vintageimprovements.LatheRotatingBlockMixin"
   ],
   "client": [
-    "gtceu.ContentMixin",
+    "gtceu.fix.ContentMixin",
     "sophisticatedcore.SyncContainerStacksMessageMixin",
     "sophisticatedcore.SyncSlotStackMessageMixin"
   ],

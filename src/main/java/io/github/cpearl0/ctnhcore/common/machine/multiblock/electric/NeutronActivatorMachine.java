@@ -45,6 +45,7 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -116,7 +117,11 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine
                 acceleratorMachines = acceleratorMachines != null ? acceleratorMachines : new HashSet<>();
                 acceleratorMachines.add(neutronAcceleratorMachine);
             }
-            if (part instanceof HighSpeedPipeBlock) height++;
+        }
+
+        int[] formedRepetitionCount = getMultiblockState().getMatchContext().get("formedRepetitionCount");
+        if(formedRepetitionCount != null){
+            Arrays.stream(formedRepetitionCount).max().ifPresent(m -> height = m);
         }
 
         neutronEnergySubs.initialize(getLevel());
