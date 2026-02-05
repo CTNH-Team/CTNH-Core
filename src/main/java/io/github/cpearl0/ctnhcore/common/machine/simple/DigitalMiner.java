@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.common.machine.simple;
 
 import io.github.cpearl0.ctnhcore.api.machine.feature.IDigitalMiner;
 import io.github.cpearl0.ctnhcore.api.recipe.DigitalMinerLogic;
+import io.github.cpearl0.ctnhcore.common.gui.HugeSlotWidget;
 import io.github.cpearl0.ctnhcore.common.gui.SimpleNumberInputWidget;
 
 import com.gregtechceu.gtceu.api.GTValues;
@@ -107,8 +108,12 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
         this.fortuneLevel = 1;
         this.silkLevel = 0;
         this.minHeight = 0;
-        this.maxHeight = 64;
-        this.minerRadius = 32;
+        this.maxHeight = 256;
+        this.minerRadius = getRange(tier);
+    }
+
+    public static int getRange(int tier){
+        return 1 << (tier + 3);//  (int) (8 * Math.pow(2, tier));
     }
 
     @Override
@@ -272,7 +277,7 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
         WidgetGroup slots = new WidgetGroup(leftPadding, 76 + 4 / 2, colSize * 18, rowSize * 18);
         for (int y = 0; y < rowSize; y++) {
             for (int x = 0; x < colSize; x++) {
-                var slot = new SlotWidget(exportItems, index++, x * 18, y * 18, true, false)
+                var slot = new HugeSlotWidget(exportItems, index++, x * 18, y * 18, true, false)
                         .setBackground(GuiTextures.SLOT);
                 slots.addWidget(slot);
             }
@@ -295,7 +300,7 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
         // Radius
         group.addWidget(new LabelWidget(88, 26, "水平范围:"));
         group.addWidget(new SimpleNumberInputWidget(132, 24, 30, 12, this::getMinerRadius, this::setMinerRadius)
-                .setMin(1).setMax((int) (8 * Math.pow(2, getTier()))));
+                .setMin(1).setMax(getRange(getTier())));
 
         // Min height
         group.addWidget(new LabelWidget(88, 44, "最小高度:"));

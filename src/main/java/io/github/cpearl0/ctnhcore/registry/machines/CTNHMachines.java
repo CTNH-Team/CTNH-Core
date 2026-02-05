@@ -146,7 +146,7 @@ public class CTNHMachines {
                         .langValue("%s Digital Miner %s".formatted(VLVH[tier], VLVT[tier]))
                         .rotationState(RotationState.NON_Y_AXIS)
                         .tooltipBuilder((stack, tooltip) -> {
-                            int maxArea = (int) (8 * Math.pow(2, tier));
+                            int maxArea = DigitalMiner.getRange(tier);
                             long energyPerTick = VEX[tier - 1];
                             tooltip.add(Component.translatable("ctnhcore.machine.digital_miner.tooltip.0"));
                             tooltip.add(Component.translatable("ctnhcore.machine.digital_miner.tooltip.1"));

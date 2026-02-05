@@ -87,17 +87,6 @@ public class ChineseLangHandler {
         provider.add("ctnh.advanced_ram_wafer.tooltip", "更好的内存原料");
         provider.add("ctnh.advanced_ram_chip.tooltip", "更好的随机存取存储器");
 
-        // "item.gtmthings.advanced_terminal": "§b高级终端",
-        // "item.gtmthings.advanced_terminal.setting.title": "高级终端设置",
-        // "item.gtmthings.advanced_terminal.setting.1": "线圈等级",
-        // "item.gtmthings.advanced_terminal.setting.1.tooltip": "设置优先自动放置的线圈等级。",
-        // "item.gtmthings.advanced_terminal.setting.2": "重复结构次数",
-        // "item.gtmthings.advanced_terminal.setting.2.tooltip": "用于设置可重复结构(蒸馏塔、装配线等)的重复部分放置次数",
-        // "item.gtmthings.advanced_terminal.setting.3": "无仓室模式",
-        // "item.gtmthings.advanced_terminal.setting.3.tooltip": "是否启用无仓室模式(0:不启用,1:启用)\n启用无仓室模式后不会在非唯一时放置各种仓室。",
-        // "item.gtmthings.advanced_terminal.setting.4": "线圈替换模式",
-        // "item.gtmthings.advanced_terminal.setting.4.tooltip": "是否启用线圈替换模式(0:不启用,1:启用)\n启用线圈替换模式会将所有线圈替换为线圈等级中指定的线圈。",
-
         provider.add("item.ctnh.me_advanced_terminal.setting.title", "多方块结构成型配置");
         provider.add("item.ctnh.me_advanced_terminal.setting.1", "线圈等级");
         provider.add("item.ctnh.me_advanced_terminal.setting.1.tooltip", "设置自动放置的线圈等级(0:不指定等级)\n设置后会忽略结构本身的要求");
