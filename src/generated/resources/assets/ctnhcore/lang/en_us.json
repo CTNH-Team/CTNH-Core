@@ -582,11 +582,11 @@
   "ctnh.tooltips.simplecomputationmachine": "Requires 2^(recipe level - HV) CWU/t when handling recipes which tier is no lower than HV",
   "ctnhcore.copyright.info": "Added by CTNH",
   "ctnhcore.flipmode": "Flip Mode is On",
-  "ctnhcore.machine.high_performance_computer.tooltip.0": "§3Fetal OVERCLOCKING?",
-  "ctnhcore.machine.high_performance_computer.tooltip.1": "§rProvider %d computation when energy is sufficient.",
   "ctnhcore.machine.digital_miner.tooltip.0": "§7From GTMThings, faster speed and no mining pipes, only mining ores",
   "ctnhcore.machine.digital_miner.tooltip.1": "§bForce loading self chunk while working",
   "ctnhcore.machine.digital_miner.tooltip.2": "Uses §f%d EU/t §7while working, each block takes §f%d§7 ticks",
+  "ctnhcore.machine.high_performance_computer.tooltip.0": "§3Fetal OVERCLOCKING?",
+  "ctnhcore.machine.high_performance_computer.tooltip.1": "§rProvider %d computation when energy is sufficient.",
   "ctnhcore.normalmode": "Normal Mode is On",
   "ctnhcore.power": "Power: %s",
   "ctnhcore.recipe_logic.insufficient_cwut": "Insufficient Computation",
@@ -1106,8 +1106,5 @@
   "tetrahedrite_vein_ad": "Tetrahedrite Vein Ad",
   "tuff_uraninite_vein_ad": "Tuff Uraninite Vein Ad",
   "uranium238_vein_ad": "Uranium238 Vein Ad",
-  "block.ctnhcore.lv_digital_miner": "Digital Miner",
-  "block.ctnhcore.mv_digital_miner": "§bAdvanced Digital miner§r",
-  "block.ctnhcore.hv_digital_miner": "§6Advanced Digital miner II§r",
   "wollastonite_vein": "Wollastonite Vein"
 }

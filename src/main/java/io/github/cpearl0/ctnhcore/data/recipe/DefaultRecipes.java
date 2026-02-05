@@ -677,10 +677,12 @@ public class DefaultRecipes {
         // 2. 催化剂舱口（组装机）
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("catalyst_hatch")
                 .inputItems(CustomTags.MV_CIRCUITS)
-                .inputItems(GTMachines.ITEM_IMPORT_BUS[GTValues.MV])
-                .outputItems(CTNHMachines.CATALYST_HATCH)
-                .EUt(GTValues.VA[GTValues.MV]) // 120 EU/t
-                .duration(300) // 15秒
+                .inputItems(GTMachines.ITEM_IMPORT_BUS[GTValues.HV])
+                .inputItems(GTMachines.ITEM_EXPORT_BUS[GTValues.HV])
+                .inputItems(GTBlocks.MACHINE_CASING_EV)
+                .circuitMeta(1)
+                .EUt(GTValues.VA[GTValues.HV])
+                .duration(300)
                 .save(provider);
 
         // 3. 大型Naquadah脱水机（组装机）
