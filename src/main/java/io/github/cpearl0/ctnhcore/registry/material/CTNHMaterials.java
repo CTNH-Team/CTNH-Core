@@ -1,10 +1,10 @@
 package io.github.cpearl0.ctnhcore.registry.material;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialBuilder;
 import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
 import io.github.cpearl0.ctnhcore.registry.CTNHElements;
-import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
@@ -229,6 +229,7 @@ public class CTNHMaterials {
     public static Material Seawater;
     public static Material STABALLOY;
     public static Material SNOW_STEEL;
+    public static Material Thorium232;
 
     public static void init() {
         // Ad Astra
@@ -995,8 +996,13 @@ public class CTNHMaterials {
                 .components(Rhenium, 1, Sulfur, 2)
                 .addOreByproducts(Molybdenum, Copper, Platinum)
                 .buildAndRegister();
+        Thorium232 = new CTNHMaterialBuilder(GTCEu.id("thorium_232"))
+                .ingot(3)
+                .liquid(new FluidBuilder().temperature(1405))
+                .color(0x2c9f2c)
+                .secondaryColor(0x33342c).iconSet(MaterialIconSet.RADIOACTIVE).appendFlags(GTMaterials.EXT_METAL)
+                .element(CTNHElements.Th232).buildAndRegister();
 
-        NuclearMaterials.init();
         CreateMaterials.init();
 
         AdastraMaterials.init();

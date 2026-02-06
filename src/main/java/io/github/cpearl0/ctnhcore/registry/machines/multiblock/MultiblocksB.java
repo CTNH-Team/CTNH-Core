@@ -1025,29 +1025,6 @@ public class MultiblocksB {
                     .build())
             .workableCasingModel(GTCEu.id("block/casings/mechanic/machine_casing_turbine_titanium"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
-    public static final MultiblockMachineDefinition NUCLEAR_REACTOR = REGISTRATE.multiblock("nuclear_reactor", NuclearReactorMachine::new)
-            .rotationState(RotationState.ALL)
-            .recipeType(CTNHRecipeTypes.NUCLEAR_REACTOR_RECIPES)
-            .tooltips(Component.translatable("nuclear_reactor").withStyle(ChatFormatting.GRAY),
-                    Component.translatable("ctnh.nuclear_reactor.basic"),
-                    Component.translatable("ctnh.nuclear_reactor.coolant"),
-                    Component.translatable("ctnh.nuclear_reactor.overclock"),
-                    Component.translatable("ctnh.nuclear_reactor.safe"))
-            .recipeModifier(NuclearReactorMachine::recipeModifier)
-            .appearanceBlock(CASING_SHIELDED_REACTOR)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("DDD", "ABA", "ABA", "ABA", "ABA", "ABA", "ABA", "ABA", "DDD")
-                    .aisle("DDD", "BCB", "BCB", "BCB", "BCB", "BCB", "BCB", "BCB", "DDD")
-                    .aisle("D@D", "ABA", "ABA", "ABA", "ABA", "ABA", "ABA", "ABA", "DDD")
-                    .where("A", Predicates.blocks(CASING_SHIELDED_REACTOR.get()))
-                    .where("B", Predicates.blocks(CASING_TEMPERED_GLASS.get()))
-                    .where("C", CTNHPredicates.reactorCore())
-                    .where("D", Predicates.blocks(CASING_SHIELDED_REACTOR.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build())
-            .workableCasingModel(CTNHCore.id("block/casings/shielded_reactor_casing"), GTCEu.id("block/machines/nuclear_reactor"))
-            .register();
     public final static MultiblockMachineDefinition  CRYOTHEUMFREEZER = REGISTRATE.multiblock("cryotheum_freezer", CryotheumFreezer::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.VACUUM_RECIPES)

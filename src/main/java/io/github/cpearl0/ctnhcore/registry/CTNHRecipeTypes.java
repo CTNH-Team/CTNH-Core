@@ -74,13 +74,6 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
 
-    public static final GTRecipeType BIG_DAM = REGISTRATE.recipeType(GTCEu.id("big_dam"), GTRecipeTypes.ELECTRIC)
-            .cnlang("三峡大坝")
-            .setMaxIOSize(0, 0, 1, 0)
-            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.COOLING);
-
     public static final GTRecipeType FERMENTING = REGISTRATE
             .recipeType(GTCEu.id("fermenting"), GTRecipeTypes.MULTIBLOCK)
             .cnlang("发酵罐")
