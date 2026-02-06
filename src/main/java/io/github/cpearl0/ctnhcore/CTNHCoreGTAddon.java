@@ -114,6 +114,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
 
         LuvModifyRecipe.init(provider);
         HugeHatchRecipes.init(provider);
+        TwistedFusionRecipes.init(provider);
     }
 
     @Override
