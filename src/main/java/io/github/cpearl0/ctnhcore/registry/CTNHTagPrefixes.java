@@ -2,15 +2,12 @@ package io.github.cpearl0.ctnhcore.registry;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialIconType;
-import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
-import io.github.cpearl0.ctnhcore.data.CTNHMaterialFlags;
 import io.github.cpearl0.ctnhcore.data.materials.ChemicalItems;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialBlocks;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
 
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconType;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
@@ -29,18 +26,12 @@ import com.aetherteam.aether.block.AetherBlockStateProperties;
 import com.aetherteam.aether.block.AetherBlocks;
 import earth.terrarium.adastra.common.registry.ModBlocks;
 
-import java.util.List;
-
-import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
-import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.Plutonium;
-import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.Uranium;
 import static io.github.cpearl0.ctnhcore.utils.ModUtils.AdAstraRL;
 
 public class CTNHTagPrefixes {
 
-    public static List<Material> nuclears = List.of(Uranium238, Uranium235, Plutonium239, Plutonium241);
     public static TagPrefix oreHolystone;
     public static TagPrefix oreMossyHolystone;
 
@@ -186,47 +177,6 @@ public class CTNHTagPrefixes {
         oreIcestone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.icestone, TagPrefix.dust.materialAmount()));
         oreAstralStone
                 .addSecondaryMaterial(new MaterialStack(CTNHMaterials.AstralStone, TagPrefix.dust.materialAmount()));
-
-        nuclear = REGISTRATE.tagPrefix("nuclear")
-                .cnlang("%s")
-                .lang("%s")
-                .idPattern("%s")
-                .materialAmount(GTValues.M)
-                .materialIconType(CTNHMaterialIconType.NUCLEAR)
-                .unificationEnabled(true)
-                .generateItem(true)
-                .generationCondition(
-                        material -> material.hasProperty(CTNHPropertyKeys.NUCLEAR) || nuclears.contains(material));
-        fuel = REGISTRATE.tagPrefix("fuel")
-                .cnlang("%s燃料")
-                .lang("%s Fuel")
-                .idPattern("%s_fuel")
-                .materialAmount(GTValues.M)
-                .materialIconType(new MaterialIconType("fuel"))
-                .unificationEnabled(true)
-                .generateItem(true)
-                .generationCondition(
-                        material -> material.hasProperty(CTNHPropertyKeys.NUCLEAR) || nuclears.contains(material));
-        DepletedFuel = REGISTRATE.tagPrefix("depleted_fuel")
-                .cnlang("%s枯竭燃料")
-                .lang("%s Depleted Fuel")
-                .idPattern("depleted_%s_fuel")
-                .materialAmount(GTValues.M)
-                .materialIconType(new MaterialIconType("depleted_fuel"))
-                .unificationEnabled(true)
-                .generateItem(true)
-                .generationCondition(
-                        material -> material.hasProperty(CTNHPropertyKeys.NUCLEAR) || nuclears.contains(material));
-        waste = REGISTRATE.tagPrefix("waste")
-                .cnlang("%s废料")
-                .lang("%s Waste")
-                .idPattern("%s_waste")
-                .materialAmount(GTValues.M)
-                .materialIconType(new MaterialIconType("waste"))
-                .unificationEnabled(true)
-                .generateItem(true)
-                .generationCondition(material -> material.hasFlag(CTNHMaterialFlags.GENERATE_WASTE) ||
-                        material.equals(Uranium) || material.equals(Plutonium));
 
         catalyst = REGISTRATE.tagPrefix("catalyst")
                 .cnlang("%s催化剂")
