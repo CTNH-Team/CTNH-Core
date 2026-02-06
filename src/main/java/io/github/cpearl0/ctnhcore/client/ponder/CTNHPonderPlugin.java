@@ -1,4 +1,19 @@
-package io.github.cpearl0.ctnhcore.client;
+package io.github.cpearl0.ctnhcore.client.ponder;
 
-public class CTNHPonderPlugin {
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import net.createmod.ponder.api.registration.PonderPlugin;
+import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
+import net.minecraft.resources.ResourceLocation;
+
+public class CTNHPonderPlugin implements PonderPlugin {
+
+    @Override
+    public String getModId() {
+        return CTNHCore.MODID;
+    }
+
+    @Override
+    public void registerScenes(PonderSceneRegistrationHelper<ResourceLocation> helper) {
+        CTNHPonderScenes.register(helper);
+    }
 }
