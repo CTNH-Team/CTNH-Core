@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.item.component.ElectricStats;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import io.github.cpearl0.ctnhcore.common.item.*;
 import io.github.cpearl0.ctnhcore.common.item.debug.ReloadItem;
+import io.github.cpearl0.ctnhcore.data.item.CrystalItems;
 import io.github.cpearl0.ctnhcore.data.materials.ChemicalItems;
 
 import com.gregtechceu.gtceu.api.item.ComponentItem;
@@ -493,63 +494,7 @@ public class CTNHItems {
             .properties(properties -> properties.rarity(Rarity.RARE))
             .register();
 
-    public static ItemEntry<ComponentItem> PURE_CERTUS_ENERGIUM_CRYSTAL = REGISTRATE.item("pure_certus_energy_crystal", ComponentItem::create)
-            .cnlang("高纯能量水晶")
-            .lang("Pure Certus Energium Crystal")
-//            .model(overrideModel(GTCEu.id("battery"), 8))
-//            .onRegister(modelPredicate(GTCEu.id("battery"), ElectricStats::getStoredPredicate))
-            .onRegister(attach(ElectricStats.createRechargeableBattery(50_000_000L, GTValues.HV)))
-            .tag(CustomTags.HV_BATTERIES).register();
 
-    public static ItemEntry<ComponentItem> PURE_CERTUS_LAPOTRON_CRYSTAL = REGISTRATE.item("pure_certus_lapotron_crystal", ComponentItem::create)
-            .cnlang("高纯兰波顿水晶")
-            .lang("Pure Certus Lapotron Crystal")
-            // .model(overrideModel(GTCEu.id("battery"), 8))  // 复用电池模型
-            // .onRegister(modelPredicate(GTCEu.id("battery"), ElectricStats::getStoredPredicate))  // 电量显示
-             .onRegister(attach(ElectricStats.createRechargeableBattery(100_000_000L, GTValues.EV)))  // 25M EV级（按图片）
-            .tag(CustomTags.EV_BATTERIES)
-            .register();
-
-    public static ItemEntry<ComponentItem> RESONANCE_CRYSTAL = REGISTRATE.item("resonance_crystal", ComponentItem::create)
-            .cnlang("共振水晶")
-            .lang("Resonance Crystal")
-            // .model(overrideModel(GTCEu.id("battery"), 8))
-            // .onRegister(modelPredicate(GTCEu.id("battery"), ElectricStats::getStoredPredicate))
-             .onRegister(attach(ElectricStats.createRechargeableBattery(500_000_000L, GTValues.IV)))
-            .tag(CustomTags.IV_BATTERIES)
-            .register();
-
-    public static ItemEntry<ComponentItem> PURE_CERTUS_RESONANCE_CRYSTAL = REGISTRATE.item("pure_certus_resonance_crystal", ComponentItem::create)
-            .cnlang("高纯共振水晶")
-            .lang("Pure Certus Resonance Crystal")
-            // .model(overrideModel(GTCEu.id("battery"), 8))
-            // .onRegister(modelPredicate(GTCEu.id("battery"), ElectricStats::getStoredPredicate))
-             .onRegister(attach(ElectricStats.createRechargeableBattery(1_000_000_000L, GTValues.IV)))
-            .tag(CustomTags.IV_BATTERIES)
-            .register();
-
-    public static ItemEntry<ComponentItem> ECHO_CRYSTAL = REGISTRATE.item("echo_crystal", ComponentItem::create)
-            .cnlang("回响水晶")
-            .lang("Echo Crystal")
-//            .model(overrideModel(GTCEu.id("battery"), 8))
-//            .onRegister(modelPredicate(GTCEu.id("battery"), ElectricStats::getStoredPredicate))
-            .onRegister(attach(ElectricStats.createRechargeableBattery(40_000_000_000L, GTValues.LuV)))
-            .tag(CustomTags.LuV_BATTERIES)
-            .register();
-
-    public static ItemEntry<ComponentItem> PURE_CERTUS_ECHO_CRYSTAL = REGISTRATE.item("pure_certus_echo_crystal", ComponentItem::create)
-            .cnlang("高纯回响水晶")
-            .lang("Pure Certus Echo Crystal")
-//            .model(overrideModel(GTCEu.id("battery"), 8))
-//            .onRegister(modelPredicate(GTCEu.id("battery"), ElectricStats::getStoredPredicate))
-            .onRegister(attach(ElectricStats.createRechargeableBattery(160_000_000_000L, GTValues.LuV)))
-            .tag(CustomTags.LuV_BATTERIES)
-            .register();
-
-    public static ItemEntry<ComponentItem> RESONANCE_CRYSTAL_BLANK = REGISTRATE.item("resonance_crystal_blank", ComponentItem::create)
-            .cnlang("共振水晶粗胚")
-            .lang("Resonance Crystal Blank")
-            .register();
 
     public static ItemEntry<ComponentItem> ADVANCED_RAM_WAFER;
     public static ItemEntry<ComponentItem> ADVANCED_RAM_CHIP;
@@ -564,5 +509,6 @@ public class CTNHItems {
     public static void init() {
         registerItem();
         ChemicalItems.init();
+        CrystalItems.init();
     }
 }
