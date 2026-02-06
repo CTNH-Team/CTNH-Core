@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import appeng.core.definitions.AEParts;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
@@ -26,7 +27,9 @@ import com.moguang.ctnhbio.registry.CBBlocks;
 import com.moguang.ctnhbio.registry.CBItems;
 import com.moguang.ctnhbio.registry.CBMachines;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEBlocks;
+import tech.luckyblock.mcmod.ctnhenergy.registry.CEItems;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines;
+import tech.vixhentx.mcmod.ctnhlib.registrate.builders.CTNHMaterial;
 
 import java.util.function.Consumer;
 
@@ -34,10 +37,9 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.OPTICAL_PIPES;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
-import static com.gregtechceu.gtceu.common.data.GTMachines.HULL;
+import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLY_LINE_RECIPES;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.CIRCUIT_ASSEMBLER_RECIPES;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.moguang.ctnhbio.registry.CBItems.WETWARE_PRINTED_CIRCUIT_BOARD;
 import static io.github.cpearl0.ctnhcore.data.materials.WetWareLineMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.ADVANCED_RAM_CHIP;
@@ -158,7 +160,7 @@ public class OrdinaryRecipes {
                 .cleanroom(CleanroomType.CLEANROOM)
                 .save(provider);
         // 组装机
-        CBRecipeBuilder.of(CTNHCore.id("neural_network_casing"), GTRecipeTypes.ASSEMBLER_RECIPES)
+        CBRecipeBuilder.of(CTNHCore.id("neural_network_casing"), ASSEMBLER_RECIPES)
                 .inputItems(CTNHBlocks.CASING_POLYBENZIMIDAZOLE_PIPE, 1)
                 .inputItems(CustomTags.IV_CIRCUITS, 4)
                 .inputItems(EMITTER_IV, 4)
@@ -170,7 +172,7 @@ public class OrdinaryRecipes {
                 .duration(600)
                 .EUt(30720)
                 .save(provider);
-        CBRecipeBuilder.of(CTNHCore.id("neural_model_accessor"), GTRecipeTypes.ASSEMBLER_RECIPES)
+        CBRecipeBuilder.of(CTNHCore.id("neural_model_accessor"), ASSEMBLER_RECIPES)
                 .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("hostilenetworks:sim_chamber")), 1)
                 .inputItems(OPTICAL_PIPES[0].asStack(64))
                 .inputItems(TOOL_DATA_STICK, 64)
@@ -180,10 +182,10 @@ public class OrdinaryRecipes {
                 .duration(800)
                 .EUt(30720)
                 .save(provider);
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("card_programmed_circuit")
+        ASSEMBLER_RECIPES.recipeBuilder("card_programmed_circuit")
                 .inputItems(AEItems.BASIC_CARD.asItem(), 1)
                 .inputItems(GTMachines.STAINLESS_STEEL_CRATE, 1)
-                .inputItems(CBItems.META_CORE, 1)
+                .inputItems(CBItems.SYNET_CORE, 1)
                 .inputItems(COVER_SCREEN, 32)
                 .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 1440))
                 .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("pccard:card_programmed_circuit")),
@@ -191,7 +193,7 @@ public class OrdinaryRecipes {
                 .EUt(GTValues.VA[GTValues.HV])
                 .duration(200)
                 .save(provider);
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("me_dual_output_hatch")
+        ASSEMBLER_RECIPES.recipeBuilder("me_dual_output_hatch")
                 .inputItems(HULL[IV])
                 .inputItems(GTAEMachines.ITEM_EXPORT_BUS_ME, 1)
                 .inputItems(GTAEMachines.FLUID_EXPORT_HATCH_ME, 1)
@@ -200,7 +202,7 @@ public class OrdinaryRecipes {
                 .EUt(GTValues.VA[GTValues.IV])
                 .duration(500)
                 .save(provider);
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("quantum_computer_casing")
+        ASSEMBLER_RECIPES.recipeBuilder("quantum_computer_casing")
                 .inputItems(GTBlocks.SUPERCONDUCTING_COIL, 1)
                 .inputItems(CustomTags.LuV_CIRCUITS, 4)
                 .inputItems(CustomTags.IV_CIRCUITS, 4)
@@ -217,7 +219,7 @@ public class OrdinaryRecipes {
                 .EUt(GTValues.VA[LuV])
                 .duration(1000)
                 .save(provider);
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("quantum_computer_me_network_port")
+        ASSEMBLER_RECIPES.recipeBuilder("quantum_computer_me_network_port")
                 .inputItems(CEBlocks.STEADY_STATE_COMPUTING_MATRIX_SHELL, 1)
                 .inputItems(AEBlocks.INTERFACE.asItem(), 1)
                 .inputItems(AEBlocks.PATTERN_PROVIDER.asItem(), 1)
@@ -229,7 +231,7 @@ public class OrdinaryRecipes {
                 .EUt(GTValues.VA[LuV])
                 .duration(1000)
                 .save(provider);
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("quantum_pointing_block")
+        ASSEMBLER_RECIPES.recipeBuilder("quantum_pointing_block")
                 .inputItems(CEBlocks.STEADY_STATE_COMPUTING_MATRIX_SHELL, 1)
                 .inputItems(plate, TungstenSteel, 16)
                 .inputItems(pipeSmallItem, Osmium, 4)
@@ -240,7 +242,7 @@ public class OrdinaryRecipes {
                 .EUt(GTValues.VA[IV])
                 .duration(400)
                 .save(provider);
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("steady_state_computing_matrix_shell")
+        ASSEMBLER_RECIPES.recipeBuilder("steady_state_computing_matrix_shell")
                 .inputItems(HULL[LuV], 1)
                 .inputItems(CustomTags.LuV_CIRCUITS, 2)
                 .inputItems(round, Osmiridium, 64)
@@ -253,14 +255,14 @@ public class OrdinaryRecipes {
                 .EUt(GTValues.VA[EV])
                 .duration(200)
                 .save(provider);
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("ctnh_assembler_matrix_wall")
+        ASSEMBLER_RECIPES.recipeBuilder("ctnh_assembler_matrix_wall")
                 .inputItems(ForgeRegistries.ITEMS
                         .getValue(ResourceLocation.parse("expatternprovider:assembler_matrix_wall")), 1)
                 .outputItems(CEBlocks.ASSEMBLER_MATRIX_WALL, 1)
                 .EUt(GTValues.VA[LV])
                 .duration(20)
                 .save(provider);
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("ctnh_assembler_matrix_frame")
+        ASSEMBLER_RECIPES.recipeBuilder("ctnh_assembler_matrix_frame")
                 .inputItems(ForgeRegistries.ITEMS
                         .getValue(ResourceLocation.parse("expatternprovider:assembler_matrix_frame")), 1)
                 .outputItems(CEBlocks.ASSEMBLER_MATRIX_FRAME, 1)
@@ -435,5 +437,8 @@ public class OrdinaryRecipes {
                 .solderMultiplier(2)
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .duration(100).EUt(38400).save(provider);
+
+
+
     }
 }

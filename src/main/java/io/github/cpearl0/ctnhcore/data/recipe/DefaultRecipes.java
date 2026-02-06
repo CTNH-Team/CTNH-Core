@@ -25,6 +25,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.ForgeRegistries;
+import tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines;
+import tech.luckyblock.mcmod.ctnhenergy.registry.CEMultiblock;
 
 import java.util.Map;
 import java.util.function.Consumer;
@@ -965,6 +967,11 @@ public class DefaultRecipes {
                 'A', CTNHItems.NeutronSource,
                 'B', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:tungsten_frame")),
                 'C', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:naquadah_plate")));
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "power_substation_ctnh",
+                CEMultiblock.POWER_SUBSTATION.asStack(),
+                "LPL", "CBC", "LPL", 'L', GTItems.LAPOTRON_CRYSTAL, 'P', GTItems.POWER_INTEGRATED_CIRCUIT, 'C',
+                CustomTags.LuV_CIRCUITS, 'B', GTBlocks.CASING_PALLADIUM_SUBSTATION.asStack());
+
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("charged_certus_quartz_crystal")
                 .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:certus_quartz_crystal")))
                 .outputItems(
