@@ -12,7 +12,6 @@ import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 
 public class CreateMaterials {
 
-    public static Material AndesiteAlloy;
     public static Material RefinedRadiance;
     public static Material ShadowSteel;
     public static Material SLAG;
@@ -34,14 +33,6 @@ public class CreateMaterials {
     public static Material TUNGSTEN_TRIOXIDE;
 
     public static void init() {
-        AndesiteAlloy = REGISTRATE.material(CTNHCore.id("andesite_alloy"))
-                .cnlang("安山合金")
-                .color(0xA7AD9F)
-                .ingot()
-                .liquid()
-                .iconSet(MaterialIconSet.DULL)
-                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR)
-                .buildAndRegister().setFormula("(Mg3Si2H4O9)4(KNO3)Fe");
 
         RefinedRadiance = REGISTRATE.material(CTNHCore.id("refined_radiance"))
                 .cnlang("光辉石")

@@ -133,7 +133,6 @@ public class CommonProxy {
 
     @SubscribeEvent
     public static void registerMaterials(MaterialEvent event) {
-        MaterialProperties.addBaseType(CTNHPropertyKeys.NUCLEAR);
         CTNHMaterials.init();
         CTNHMaterials.tagPrefixIgnore();
         GTMaterialAddon.tagPrefixIgnore();

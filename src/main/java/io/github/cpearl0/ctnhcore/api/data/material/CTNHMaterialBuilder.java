@@ -18,21 +18,6 @@ public class CTNHMaterialBuilder extends Material.Builder {
         super(resourceLocation);
     }
 
-    public CTNHMaterialBuilder nuclear(boolean isFertile, boolean isFissile) {
-        MaterialProperties properties = new MaterialProperties();
-        try {
-            Field field = Material.Builder.class.getDeclaredField("properties");
-            field.setAccessible(true); // 关闭访问检查
-            properties = (MaterialProperties) field.get(this); // 获取值
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        properties.ensureSet(CTNHPropertyKeys.NUCLEAR);
-        properties.getProperty(CTNHPropertyKeys.NUCLEAR).setFertile(isFertile);
-        properties.getProperty(CTNHPropertyKeys.NUCLEAR).setFissile(isFissile);
-        return (CTNHMaterialBuilder) this;
-    }
-
     public static CTNHMaterialBuilder Builder(String name) {
         return new CTNHMaterialBuilder(CTNHCore.id(name));
     }

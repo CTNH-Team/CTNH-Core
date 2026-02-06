@@ -1,14 +1,12 @@
 package io.github.cpearl0.ctnhcore.registry;
 
-import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearElements;
-
 import com.gregtechceu.gtceu.api.data.chemical.Element;
 import com.gregtechceu.gtceu.common.data.GTElements;
 
 public class CTNHElements {
 
     public static void init() {
-        NuclearElements.init();
+
     }
 
     public static final Element STARMETAL = new Element(120, 138, -1, null, "starmetal", "St", false);
@@ -37,4 +35,5 @@ public class CTNHElements {
     public static final Element Ds = GTElements.createAndRegister(150, 144, -1, null, "Desh", "Ds", false);
     public static final Element Ot = GTElements.createAndRegister(151, 156, -1, null, "Ostrum", "Os", false);
     public static final Element Ct = GTElements.createAndRegister(152, 162, -1, null, "Calorite", "Ct", false);
+    public static final Element Th232 = GTElements.createAndRegister(90, 142, -1, null, "Thorium-232", "Th-232", true);
 }

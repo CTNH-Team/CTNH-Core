@@ -10,7 +10,6 @@ import io.github.cpearl0.ctnhcore.common.block.TurbineRotorBlock;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.ISSFData;
 import io.github.cpearl0.ctnhcore.common.item.TurbineRotorItem;
-import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
@@ -235,29 +234,6 @@ public class CTNHBlocks {
             "block/nq_excite_carbon_carbon_nanofiber_structural_block");
 
     public static void init() {
-        ReactorCoreBlock.put(0, () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Thorium).get());
-        ReactorCoreBlock.put(1,
-                () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Protactinium).get());
-        ReactorCoreBlock.put(2,
-                () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, NuclearMaterials.Uranium).get());
-        ReactorCoreBlock.put(7,
-                () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Neptunium).get());
-        ReactorCoreBlock.put(10,
-                () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, NuclearMaterials.Plutonium).get());
-        ReactorCoreBlock.put(15,
-                () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Americium).get());
-        ReactorCoreBlock.put(25, () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Curium).get());
-        ReactorCoreBlock.put(35,
-                () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Berkelium).get());
-        ReactorCoreBlock.put(50,
-                () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Californium).get());
-        ReactorCoreBlock.put(75,
-                () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Einsteinium).get());
-        ReactorCoreBlock.put(100,
-                () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Fermium).get());
-        ReactorCoreBlock.put(200,
-                () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Mendelevium).get());
-
         generateHyperRotorBlocks();
     }
 

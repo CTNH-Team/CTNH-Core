@@ -8,7 +8,6 @@ import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
-import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -424,8 +423,8 @@ public class DefaultRecipes {
         // 3. 钍基耗尽燃料离心
         GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder("thorium_based_liquid_fuel_depleted_centrifuge")
                 .inputFluids(CTNHMaterials.ThoriumBasedLiquidFuelDepleted.getFluid(500))
-                .outputItems(TagPrefix.dust, NuclearMaterials.Thorium232, 32) // 固定输出
-                .chancedOutput(TagPrefix.dust, NuclearMaterials.Thorium232, 8, 8000, 0) // 80%额外
+                .outputItems(TagPrefix.dust, CTNHMaterials.Thorium232, 32) // 固定输出
+                .chancedOutput(TagPrefix.dust, CTNHMaterials.Thorium232, 8, 8000, 0) // 80%额外
                 .outputItems(TagPrefix.dust, GTMaterials.Praseodymium, 32)
                 .chancedOutput(TagPrefix.dust, GTMaterials.Praseodymium, 16, 8000, 0)
                 .chancedOutput(TagPrefix.dust, GTMaterials.Boron, 3, 3000, 0) // 30%概率
@@ -528,8 +527,8 @@ public class DefaultRecipes {
                 .inputFluids(GTMaterials.DistilledWater.getFluid(2000))
                 .inputFluids(GTMaterials.HydrochloricAcid.getFluid(1000))
                 .outputItems(TagPrefix.dustSmall, GTMaterials.Thorium, 32)
-                .outputItems(TagPrefix.dust, NuclearMaterials.Thorium232, 2)
-                .chancedOutput(TagPrefix.dustSmall, NuclearMaterials.Thorium232, 2, 1000, 0) // 10%概率
+                .outputItems(TagPrefix.dust, CTNHMaterials.Thorium232, 2)
+                .chancedOutput(TagPrefix.dustSmall, CTNHMaterials.Thorium232, 2, 1000, 0) // 10%概率
                 .addCondition(new PlantCasingCondition(5)) // T5化工厂
                 .circuitMeta(1)
                 .EUt(GTValues.VA[GTValues.EV]) // 1920 EU/t
