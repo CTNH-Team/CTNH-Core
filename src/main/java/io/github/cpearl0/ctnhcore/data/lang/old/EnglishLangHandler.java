@@ -497,6 +497,9 @@ public class EnglishLangHandler {
         provider.add("ctnh.machine.naquadah_reactor.tooltip", "Efficiency: %s%%");
         provider.add("ctnh.machine.rocket_engine.tooltip", "Efficiency: %s%%");
 
+        //tconstruct
+        provider.add("modifier.ctnhcore.global_traveller", "Global Traveller");
+      
         provider.add("ctnhcore.machine.digital_miner.tooltip.0", "§7From GTMThings, faster speed and no mining pipes, only mining ores");     
         provider.add("ctnhcore.machine.digital_miner.tooltip.1", "§bForce loading self chunk while working");
         provider.add("ctnhcore.machine.digital_miner.tooltip.2", "Uses §f%d EU/t §7while working, each block takes §f%d§7 ticks");

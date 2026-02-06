@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": {
+    "item": "gtceu:precious_alloy_ingot"
+  },
+  "result": {
+    "amount": 64,
+    "fluid": "gtceu:gold"
+  },
+  "temperature": 800,
+  "time": 40
+}
