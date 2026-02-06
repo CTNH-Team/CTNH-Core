@@ -56,7 +56,7 @@ dependencies {
 
     //ars
     modImplementation("software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}")
-    modImplementation("com.hollingsworth.ars_nouveau:ars_nouveau-${minecraft_version}:${arsnouveau_version}")
+    //modImplementation("com.hollingsworth.ars_nouveau:ars_nouveau-${minecraft_version}:${arsnouveau_version}")
 
     //ad
     modImplementation("com.teamresourceful.resourcefullib:resourcefullib-forge-${minecraft_version}:${resourcefullib_version}")
