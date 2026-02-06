@@ -3,8 +3,8 @@ package io.github.cpearl0.ctnhcore.common.tconstruct.recipes;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.jesz.createdieselgenerators.CDGItems;
+import com.mo_guang.ctpp.registry.CTPPMaterials;
 import fr.lucreeper74.createmetallurgy.registries.CMItems;
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.utils.CTNHConstructRecipeProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -41,9 +41,9 @@ public final class CTNHConstructCastingRecipes extends CTNHConstructRecipeProvid
     }
 
     private void andesiteAlloyCasting(Consumer<FinishedRecipe> consumer) {
-        ItemCastingRecipeBuilder.tableRecipe(Objects.requireNonNull(MATERIAL_ITEMS.get(TagPrefix.ingot, CTNHMaterials.AndesiteAlloy)))
+        ItemCastingRecipeBuilder.tableRecipe(Objects.requireNonNull(MATERIAL_ITEMS.get(TagPrefix.ingot, CTPPMaterials.AndesiteAlloy)))
                 .setCast(TinkerSmeltery.ingotCast.get(), false)
-                .setFluidAndTime(new FluidStack(CTNHMaterials.AndesiteAlloy.getFluid(), 144))
+                .setFluidAndTime(new FluidStack(CTPPMaterials.AndesiteAlloy.getFluid(), 144))
                 .save(consumer, location("andesite_alloy_ingot"));
     }
 

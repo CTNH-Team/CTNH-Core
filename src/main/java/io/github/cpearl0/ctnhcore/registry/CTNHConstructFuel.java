@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.registry;
 
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.utils.CTNHConstructRecipeProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;

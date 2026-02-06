@@ -1,10 +1,12 @@
 package io.github.cpearl0.ctnhcore.common.tconstruct.recipes;
 
 
-import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
+//import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
 import io.github.cpearl0.ctnhcore.utils.CTNHConstructRecipeProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.recipe.modifiers.adding.ModifierRecipeBuilder;
 import slimeknights.tconstruct.library.tools.SlotType;
@@ -32,7 +34,7 @@ public class CTNHConstructModifierRecipes extends CTNHConstructRecipeProvider {
         String folder = "ability/";
 
         ModifierRecipeBuilder.modifier(CTNHConstructModifier.Ids.GLOBALTRAVELLER)
-                .addInput(ItemsRegistry.STABLE_WARP_SCROLL)
+                .addInput(ForgeRegistries.ITEMS.getValue(new ResourceLocation("ars_nouveau:stable_warp_scroll")))
                 .exactLevel(1)
                 .setSlots(SlotType.ABILITY, 1)
                 .setTools(TinkerTags.Items.DURABILITY)
