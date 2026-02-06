@@ -12,7 +12,6 @@ import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
-import com.gregtechceu.gtceu.api.gui.fancy.IFancyUIProvider;
 import com.gregtechceu.gtceu.api.gui.fancy.TooltipsPanel;
 import com.gregtechceu.gtceu.api.machine.ConditionalSubscriptionHandler;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -46,9 +45,9 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Prefix("info.multiblock.neutron_activator")
 public class NeutronActivatorMachine extends WorkableMultiblockMachine
@@ -118,7 +117,11 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine
                 acceleratorMachines = acceleratorMachines != null ? acceleratorMachines : new HashSet<>();
                 acceleratorMachines.add(neutronAcceleratorMachine);
             }
-            if (part instanceof HighSpeedPipeBlock) height++;
+        }
+
+        int[] formedRepetitionCount = getMultiblockState().getMatchContext().get("formedRepetitionCount");
+        if(formedRepetitionCount != null){
+            Arrays.stream(formedRepetitionCount).max().ifPresent(m -> height = m);
         }
 
         neutronEnergySubs.initialize(getLevel());
@@ -266,20 +269,6 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine
     }
 
     @Override
-    public boolean isRemote() {
-        return super.isRemote();
-    }
-
-    @Override
-    public List<IFancyUIProvider> getSubTabs() {
-        return getParts().stream()
-                .filter(e -> !(e instanceof HighSpeedPipeBlock))
-                .filter(IFancyUIProvider.class::isInstance)
-                .map(IFancyUIProvider.class::cast)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public void attachTooltips(TooltipsPanel tooltipsPanel) {
         for (var part : getParts()) {
             part.attachFancyTooltipsToController(this, tooltipsPanel);
@@ -305,11 +294,6 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine
     //////////////////////////////////////
     // ****** RECIPE LOGIC *******//
     //////////////////////////////////////
-
-    @Override
-    public boolean alwaysTryModifyRecipe() {
-        return true;
-    }
 
     @Override
     protected @Nullable GTRecipe getRealRecipe(GTRecipe recipe) {

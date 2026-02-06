@@ -44,8 +44,8 @@ import java.util.function.Supplier;
 
 import static com.gregtechceu.gtceu.common.data.GTBlocks.ALL_FIREBOXES;
 import static io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps.ReactorCoreBlock;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMaterialBlocks.generateHyperRotorBlocks;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialBlocks.generateHyperRotorBlocks;
 
 @SuppressWarnings("removal")
 public class CTNHBlocks {
@@ -169,7 +169,7 @@ public class CTNHBlocks {
     public static final BlockEntry<CoilBlock> COIL_BLACKTITANIUM = createCoilBlock(CoilType.BLACKTITANIUM);
     public static final BlockEntry<CoilBlock> COIL_STARMETAL = createCoilBlock(CoilType.STARMETAL);
     public static final BlockEntry<CoilBlock> COIL_INFINITY = createCoilBlock(CoilType.INFINITYY);
-    public static final BlockEntry<CoilBlock> COIL_ULTRA_MANA = createCoilBlock(CoilType.ULTRA_MANA);
+    // public static final BlockEntry<CoilBlock> COIL_ULTRA_MANA = createCoilBlock(CoilType.ULTRA_MANA);
 
     public static final BlockEntry<Block> BRONZE_FRAMED_GLASS = createGlassCasingBlock(
             "bronze_framed_glass", "青铜镶边玻璃", CTNHCore.id("block/casings/bronze_framed_glass"),
@@ -196,6 +196,19 @@ public class CTNHBlocks {
     public static final BlockEntry<PhotovoltaicBlock> PHOTON_PRESS_COND_BLOCK = createPhotovoltaicBlock(
             PhotovoltaicBlock.PhotovoltaicType.PHOTON_PRESS_COND_BLOCK,
             "block/photon_press_cond_block", "光压传导光伏方块");
+
+    public static final BlockEntry<Block> HIGH_SPEED_PIPE_BLOCK = REGISTRATE
+            .block("high_speed_pipe_block", Block::new)
+            .cnlang("高速管道方块")
+            .initialProperties(() -> Blocks.IRON_BLOCK)
+            .blockstate((ctx, prov) -> {
+                prov.simpleBlock(ctx.getEntry(),
+                        prov.models().cubeAll(ctx.getName(), CTNHCore.id("block/speedingpipe")));
+            })
+            .tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
+            .item(BlockItem::new)
+            .build()
+            .register();
 
     private static BlockEntry<ActiveBlock> createFireboxCasing(BoilerFireboxType type) {
         var block = REGISTRATE

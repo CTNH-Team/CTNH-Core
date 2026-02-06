@@ -6,8 +6,8 @@ import io.github.cpearl0.ctnhcore.data.lang.Chinese.VeinLang;
 import io.github.cpearl0.ctnhcore.data.machines.GTNNMachines;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHCreativeModeTabs;
-import io.github.cpearl0.ctnhcore.registry.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
+import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.Mechanical;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
@@ -37,6 +37,15 @@ public class ChineseLangHandler {
         cnLangProvider = provider;
         OreLang.init(provider);
         VeinLang.init(provider);
+
+        provider.add("gtceu.recipe_logic.setup_fail", "配方启动失败：");
+        provider.add("gtceu.recipe_logic.recipe_waiting", "配方等待中：");
+        provider.add("gtceu.recipe_modifier.default_fail", "配方修改失败");
+        provider.add("gtceu.recipe_modifier.insufficient_voltage", "电压等级过低！");
+        provider.add("gtceu.recipe_modifier.insufficient_eu_to_start_fusion",
+                "缺少足够能量以启动核聚变反应");
+        provider.add("gtceu.recipe_modifier.coil_temperature_too_low", "线圈温度过低！");
+
         // Config
         provider.add("config.ctnhcore.option.ftbPlugin", "FTB相关");
         provider.add("config.ctnhcore.option.kinetic", "应力相关");
@@ -71,22 +80,12 @@ public class ChineseLangHandler {
 
         provider.add("ctnh.testing_terminal.tooltip.1", "用于检测多方块搭建时产生的错误");
         provider.add("ctnh.testing_terminal.tooltip.2", "右键多方块的主方块以显示错误信息");
+        provider.add("ctnh.testing_terminal.tooltip.3", "按住Shift右键切换普通/翻转模式");
         provider.add("ctnh.me_advanced_terminal.tooltip.1", "§l格雷科技-多方块结构终端-异步成型模式");
         provider.add("ctnh.me_advanced_terminal.tooltip.2", "复刻了曾经的旗舰款，终端屏幕上闪烁着久违的画面");
         provider.add("ctnh.me_advanced_terminal.tooltip.3", "通过ME无线访问点链接到网络");
         provider.add("ctnh.advanced_ram_wafer.tooltip", "更好的内存原料");
         provider.add("ctnh.advanced_ram_chip.tooltip", "更好的随机存取存储器");
-
-        // "item.gtmthings.advanced_terminal": "§b高级终端",
-        // "item.gtmthings.advanced_terminal.setting.title": "高级终端设置",
-        // "item.gtmthings.advanced_terminal.setting.1": "线圈等级",
-        // "item.gtmthings.advanced_terminal.setting.1.tooltip": "设置优先自动放置的线圈等级。",
-        // "item.gtmthings.advanced_terminal.setting.2": "重复结构次数",
-        // "item.gtmthings.advanced_terminal.setting.2.tooltip": "用于设置可重复结构(蒸馏塔、装配线等)的重复部分放置次数",
-        // "item.gtmthings.advanced_terminal.setting.3": "无仓室模式",
-        // "item.gtmthings.advanced_terminal.setting.3.tooltip": "是否启用无仓室模式(0:不启用,1:启用)\n启用无仓室模式后不会在非唯一时放置各种仓室。",
-        // "item.gtmthings.advanced_terminal.setting.4": "线圈替换模式",
-        // "item.gtmthings.advanced_terminal.setting.4.tooltip": "是否启用线圈替换模式(0:不启用,1:启用)\n启用线圈替换模式会将所有线圈替换为线圈等级中指定的线圈。",
 
         provider.add("item.ctnh.me_advanced_terminal.setting.title", "多方块结构成型配置");
         provider.add("item.ctnh.me_advanced_terminal.setting.1", "线圈等级");
@@ -330,10 +329,10 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.naq_reactor_mk3.tooltip.3", "机器构型中必须有一个动力仓");
         provider.add("ctnh.multiblock.naq_reactor_mk3.tooltip.4", "随着内核温度上升,发电效率增大");
 
-        provider.add("ctnh.multiblock.meadow.tooltip.0", "自动化放牧");
-        provider.add("ctnh.multiblock.meadow.tooltip.1", "只能养鸡牛羊猪，牛会产生皮革，羊会产生羊毛，鸡会产生鸡蛋，猪会产生猪肉");
-        provider.add("ctnh.multiblock.meadow.tooltip.2", "牧场里每多一只动物，产生的排泄物数量就会提升，养的动物越多，产物越多");
-        provider.add("ctnh.multiblock.meadow.tooltip.3", "只有动物跑出去时，你才知道你不是在种菜！");
+        provider.add("ctnh.multiblock.meadow.tooltip.0", "§7自动化放牧");
+        provider.add("ctnh.multiblock.meadow.tooltip.1", "输入配方所需n倍应力时，获得n并行");
+        provider.add("ctnh.multiblock.meadow.tooltip.2", "可以同时养殖不同动物");
+        provider.add("ctnh.multiblock.meadow.tooltip.3", "§7只有动物跑出去时，你才知道你不是在种菜！");
 
         provider.add("ctnh.multiblock.fermenting_tank.tooltip.0", "一个专为微生物提供的生长罐，注意时刻关注他！");
         provider.add("ctnh.multiblock.fermenting_tank.tooltip.1", "发酵罐的生物生长机制：");
@@ -704,6 +703,11 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1", "提供%d算力以达到基础功率，每提供%d算力，输出功率翻一倍");
         provider.add("ctnhcore.recipe_logic.insufficient_cwut", "算力不足");
         provider.add("zenith_machine_sp", "§5灵能灯塔屹立不倒！");
+
+        provider.add("ctnhcore.machine.digital_miner.tooltip.0", "§7来自GTMThings的挖矿黑科技，速度更快且无采矿管道，仅挖取矿石");
+        provider.add("ctnhcore.machine.digital_miner.tooltip.1", "§b工作时自带自身区块强加载");
+        provider.add("ctnhcore.machine.digital_miner.tooltip.2", "工作时消耗§f%d EU/t§7，每个方块需要§f%d§7刻");
+
         // NOT FINISHED
 
         provider.add("ctnh.multiblock.wide_accelerator.info.power", "存储的电量：%.2f E/%.2f E");
@@ -808,6 +812,10 @@ public class ChineseLangHandler {
         provider.add(GTNNMachines.NEUTRON_ACCELERATOR[ZPM].getBlock(), "§cZPM 中子加速器");
         provider.add(GTNNMachines.NEUTRON_ACCELERATOR[UV].getBlock(), "§3UV 中子加速器");
 
+        provider.add(CTNHMachines.DIGITAL_MINER[LV].getBlock(), "数字型采矿机");
+        provider.add(CTNHMachines.DIGITAL_MINER[MV].getBlock(), "§b进阶数字型采矿机§r");
+        provider.add(CTNHMachines.DIGITAL_MINER[HV].getBlock(), "§6进阶数字型采矿机 II§r");
+
         provider.add(CTNHCreativeModeTabs.MACHINE.get(), "CTNH机器");
         provider.add(CTNHCreativeModeTabs.ITEM.get(), "CTNH物品");
         provider.add(CTNHCreativeModeTabs.BLOCK.get(), "CTNH方块");
@@ -828,7 +836,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.COIL_BLACKTITANIUM, "黑钛合金线圈");
         provider.addBlock(CTNHBlocks.COIL_STARMETAL, "星辉线圈");
         provider.addBlock(CTNHBlocks.COIL_INFINITY, "无尽线圈");
-        provider.addBlock(CTNHBlocks.COIL_ULTRA_MANA, "类星体魔力线圈方块");
+        // provider.addBlock(CTNHBlocks.COIL_ULTRA_MANA, "类星体魔力线圈方块");
         provider.addBlock(CTNHBlocks.TEST_CASING, "测试方块");
         provider.addBlock(CTNHBlocks.ATOMS_SPLIT_BLOCKS, "原子裂解方块");
 

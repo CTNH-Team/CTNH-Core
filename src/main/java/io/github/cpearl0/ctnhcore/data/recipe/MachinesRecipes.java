@@ -1,7 +1,10 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials;
 import io.github.cpearl0.ctnhcore.registry.*;
+import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
@@ -31,9 +34,9 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.machines.GTResearchMachines.OBJECT_HOLDER;
 import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.*;
 import static com.gregtechceu.gtceu.data.recipe.misc.MetaTileEntityLoader.registerMachineRecipe;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMachines.DRONEHOLDER;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR;
+import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.DRONEHOLDER;
 import static twilightforest.init.TFItems.STEELEAF_INGOT;
 
 public class MachinesRecipes {
@@ -60,7 +63,8 @@ public class MachinesRecipes {
                 "SPS", "IwI", "SPS",
                 'S', new ItemStack(AllBlocks.COPPER_SHINGLES.getStandard().get()),
                 'P', GTBlocks.CASING_BRONZE_PIPE.asStack(),
-                'I', new MaterialEntry(TagPrefix.plate, GTMaterials.Iron));
+                'I', new MaterialEntry(TagPrefix.plate, Gold));
+
         VanillaRecipeHelper.addShapedRecipe(provider, true, "ultimate_engine_intake_casing",
                 CTNHBlocks.CASING_ULTIMATE_ENGINE_INTAKE.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft), "PhP",
                 "RFR", "PwP", 'R', new MaterialEntry(TagPrefix.rotor, GTMaterials.NaquadahAlloy), 'F',
@@ -115,9 +119,9 @@ public class MachinesRecipes {
         CTNHRecipeTypes.PVDRONE.recipeBuilder("meteorite_capture")
                 .duration(1000)
                 .circuitMeta(2)
-                .outputItems(CTNHTagPrefixes.oreMoonStone, CTNHMaterials.Desh)
-                .outputItems(CTNHTagPrefixes.oreVenusStone, CTNHMaterials.Calorite)
-                .outputItems(CTNHTagPrefixes.oreMarsStone, CTNHMaterials.Ostrum)
+                .outputItems(CTNHTagPrefixes.oreMoonStone, AdastraMaterials.Desh)
+                .outputItems(CTNHTagPrefixes.oreVenusStone, AdastraMaterials.Calorite)
+                .outputItems(CTNHTagPrefixes.oreMarsStone, AdastraMaterials.Ostrum)
                 .EUt(VA[LuV])
                 .save(provider);
 
@@ -196,6 +200,45 @@ public class MachinesRecipes {
                 .inputItems(OBJECT_HOLDER)
                 .outputItems(DRONEHOLDER)
                 .inputItems(CustomTags.UV_CIRCUITS, 4)
+                .save(provider);
+
+        ASSEMBLER_RECIPES.recipeBuilder("lv_digital_miner")
+                .inputItems(GTMachines.MINER[LV].asStack())
+                .inputItems(CONVEYOR_MODULE_LV.asStack(2))
+                .inputItems(ROBOT_ARM_LV.asStack(2))
+                .inputItems(EMITTER_LV.asStack())
+                .inputItems(SENSOR_LV.asStack())
+                .inputItems(CustomTags.MV_CIRCUITS, 2)
+                .inputFluids(GTMaterials.SolderingAlloy.getFluid(144))
+                .outputItems(CTNHMachines.DIGITAL_MINER[LV].asStack())
+                .duration(200)
+                .EUt(VA[LV])
+                .save(provider);
+
+        ASSEMBLER_RECIPES.recipeBuilder("mv_digital_miner")
+                .inputItems(GTMachines.MINER[MV].asStack())
+                .inputItems(CONVEYOR_MODULE_MV.asStack(2))
+                .inputItems(ROBOT_ARM_MV.asStack(2))
+                .inputItems(EMITTER_MV.asStack())
+                .inputItems(SENSOR_MV.asStack())
+                .inputItems(CustomTags.HV_CIRCUITS, 2)
+                .inputFluids(GTMaterials.SolderingAlloy.getFluid(144))
+                .outputItems(CTNHMachines.DIGITAL_MINER[MV].asStack())
+                .duration(200)
+                .EUt(VA[MV])
+                .save(provider);
+
+        ASSEMBLER_RECIPES.recipeBuilder("hv_digital_miner")
+                .inputItems(GTMachines.MINER[HV].asStack())
+                .inputItems(CONVEYOR_MODULE_HV.asStack(2))
+                .inputItems(ROBOT_ARM_HV.asStack(2))
+                .inputItems(EMITTER_HV.asStack())
+                .inputItems(SENSOR_HV.asStack())
+                .inputItems(CustomTags.EV_CIRCUITS, 2)
+                .inputFluids(GTMaterials.SolderingAlloy.getFluid(144))
+                .outputItems(CTNHMachines.DIGITAL_MINER[HV].asStack())
+                .duration(200)
+                .EUt(VA[HV])
                 .save(provider);
     }
 }

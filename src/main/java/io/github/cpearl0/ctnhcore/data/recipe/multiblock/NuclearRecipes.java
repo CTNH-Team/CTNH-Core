@@ -4,6 +4,7 @@ import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.data.recipe.utils.NuclearComposition;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterialsInfo;
 

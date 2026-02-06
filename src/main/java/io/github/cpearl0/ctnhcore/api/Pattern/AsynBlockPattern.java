@@ -73,38 +73,19 @@ public class AsynBlockPattern extends BlockPattern {
             Direction.DOWN };
     static Direction[] FACINGS_H = { Direction.SOUTH, Direction.NORTH, Direction.WEST, Direction.EAST };
 
-    public final int[][] aisleRepetitions;
-    public final RelativeDirection[] structureDir;
-    protected final TraceabilityPredicate[][][] blockMatches; // [z][y][x]
-    protected final int fingerLength; // z size
-    protected final int thumbLength; // y size
-    protected final int palmLength; // x size
-    protected final int[] centerOffset; // x, y, z, minZ, maxZ
+    // public final int[][] aisleRepetitions;
+    // public final RelativeDirection[] structureDir;
+    // protected final TraceabilityPredicate[][][] blockMatches; // [z][y][x]
+    // protected final int fingerLength; // z size
+    // protected final int thumbLength; // y size
+    // protected final int palmLength; // x size
+    // protected final int[] centerOffset; // x, y, z, minZ, maxZ
 
     protected MEAdvancedTerminalBehavior.AutoBuildSetting setting;
 
     public AsynBlockPattern(TraceabilityPredicate[][][] predicatesIn, RelativeDirection[] structureDir,
                             int[][] aisleRepetitions, int[] centerOffset) {
         super(predicatesIn, structureDir, aisleRepetitions, centerOffset);
-        this.blockMatches = predicatesIn;
-        this.fingerLength = predicatesIn.length;
-        this.structureDir = structureDir;
-        this.aisleRepetitions = aisleRepetitions;
-
-        if (this.fingerLength > 0) {
-            this.thumbLength = predicatesIn[0].length;
-
-            if (this.thumbLength > 0) {
-                this.palmLength = predicatesIn[0][0].length;
-            } else {
-                this.palmLength = 0;
-            }
-        } else {
-            this.thumbLength = 0;
-            this.palmLength = 0;
-        }
-
-        this.centerOffset = centerOffset;
     }
 
     public static AsynBlockPattern getAdvancedBlockPattern(BlockPattern blockPattern) {

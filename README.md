@@ -3,11 +3,8 @@ Mod for the modpack Create: New Horizon
 
 ## Credits
 
-[GregTech-Addon-Template]
-https://github.com/JuiceyBeans/GregTech-Addon-Template    
-Some machines from [GTNN]https://github.com/Arborsm/GT--  
-
-
+- [GregTech-Addon-Template](https://github.com/JuiceyBeans/GregTech-Addon-Template) 
+- Some machines from [GTNN](https://github.com/Arborsm/GT--) and [GTMThings](https://github.com/liansishen/GTMThings)
 
 
 ## License

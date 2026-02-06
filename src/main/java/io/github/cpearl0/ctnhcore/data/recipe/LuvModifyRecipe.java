@@ -45,7 +45,7 @@ public class LuvModifyRecipe {
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("high_performance_computing_array_modified"))
                 .inputItems(DATA_BANK)
                 .inputItems(CustomTags.ZPM_CIRCUITS, 4)
-                .inputItems(FIELD_GENERATOR_LuV, 8)
+                .inputItems(FIELD_GENERATOR_IV, 8)
                 .inputItems(TOOL_DATA_ORB)
                 .inputItems(COVER_SCREEN)
                 .inputItems(CBBlocks.CONSCIOUSNESS_SENSOR_GLASS, 16)
@@ -63,10 +63,10 @@ public class LuvModifyRecipe {
 
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("coil_trinium_modified"))
                 .EUt(VA[ZPM])
-                .inputItems(wireGtDouble, Trinium, 8)
+                .inputItems(wireGtDouble, Trinium, 3)
                 .inputItems(foil, NaquadahEnriched, 8)
                 .inputFluids(Duranium, GTValues.L)
-                .outputItems(GTBlocks.COIL_TRINIUM.asStack())
+                .outputItems(GTBlocks.COIL_TRINIUM)
                 .duration(800)
                 .addMaterialInfo(true, true)
                 .save(provider);

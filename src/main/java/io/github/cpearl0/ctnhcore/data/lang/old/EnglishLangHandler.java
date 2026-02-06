@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.lang.old;
 
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
@@ -60,6 +60,7 @@ public class EnglishLangHandler {
 
         provider.add("ctnh.testing_terminal.tooltip.1", "Use to check the error when building the multiblock");
         provider.add("ctnh.testing_terminal.tooltip.2", "Right-click the controller to show the error info");
+        provider.add("ctnh.testing_terminal.tooltip.3", "Right-click with Shift to change between Normal/Flipped mode");
         provider.add("ctnh.me_advanced_terminal.tooltip.1",
                 "Can build multiblock structures using items from the ME network");
         provider.add("ctnh.me_advanced_terminal.tooltip.2", "Connects to the network via ME Wireless Access Point");
@@ -225,9 +226,9 @@ public class EnglishLangHandler {
 
         provider.add("ctnh.multiblock.meadow.tooltip.0", "Automated Pasture");
         provider.add("ctnh.multiblock.meadow.tooltip.1",
-                "Can only raise chickens, cows, pigs and sheep. Cows produce leather, sheep produce wool, pigs produce pork and chickens produce eggs.");
+                "Gains n parallel processing when provided with n× the required stress.");
         provider.add("ctnh.multiblock.meadow.tooltip.2",
-                "The more animals in the pasture, the more waste they generate. The more animals you have, the more byproducts are produced.");
+                "Allows breeding of different animals at the same time.");
         provider.add("ctnh.multiblock.meadow.tooltip.3",
                 "Only when the animals run away can you know that you are not farming!");
 
@@ -499,6 +500,10 @@ public class EnglishLangHandler {
 
         //tconstruct
         provider.add("modifier.ctnhcore.global_traveller", "Global Traveller");
+      
+        provider.add("ctnhcore.machine.digital_miner.tooltip.0", "§7From GTMThings, faster speed and no mining pipes, only mining ores");     
+        provider.add("ctnhcore.machine.digital_miner.tooltip.1", "§bForce loading self chunk while working");
+        provider.add("ctnhcore.machine.digital_miner.tooltip.2", "Uses §f%d EU/t §7while working, each block takes §f%d§7 ticks");
 
         nuclearTranslation(NuclearMaterials.Thorium233, "Thorium 233");
         nuclearTranslation(NuclearMaterials.Thorium232, "Thorium 232");

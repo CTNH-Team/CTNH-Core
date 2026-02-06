@@ -1,10 +1,10 @@
 package io.github.cpearl0.ctnhcore.data.recipe.chain;
 
 import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -21,7 +21,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMachines.ROCKET_ENGINE;
+import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.ROCKET_ENGINE;
 
 public class FuelChain {
 
@@ -196,11 +196,12 @@ public class FuelChain {
                 .circuitMeta(3)
                 .duration(45).EUt(480).save(provider);
 
-        CTNHRecipeTypes.ROCKET_ENGINE_RECIPES.recipeBuilder("rp1fuel_ele")
+        CTNHRecipeTypes.ROCKET_ENGINE_RECIPES.recipeBuilder("rp_1_mixed_fuel")
                 .inputFluids(CTNHMaterials.RP1.getFluid(4))
                 .EUt(-GTValues.V[EV])
                 .duration(3)
                 .save(provider);
+
         CTNHRecipeTypes.ROCKET_ENGINE_RECIPES.recipeBuilder("dense_hydrazine_mixed_fuel")
                 .inputFluids(CTNHMaterials.DenseHydrazineMixedFuel.getFluid(2))
                 .EUt(-GTValues.V[EV])
@@ -218,6 +219,7 @@ public class FuelChain {
                 .EUt(-GTValues.V[EV])
                 .duration(6)
                 .save(provider);
+
         VanillaRecipeHelper.addShapedRecipe(
                 provider, true, "rocket_engine_ev",
                 ROCKET_ENGINE[EV].asStack(),

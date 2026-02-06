@@ -3,18 +3,25 @@ package io.github.cpearl0.ctnhcore.data.materials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.CTNHElements;
 
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.METALLIC;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.NeutroniumMixture;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.addOre;
 
 public class AdastraMaterials {
 
+    public static Material Desh;
+    public static Material Ostrum;
+    public static Material Calorite;
+
     public static void init() {
         addOre(Neutronium, NeutroniumMixture);
-        addOre(NaquadahEnriched, EnrichedNaquadahOxideMixture);
-        addOre(Naquadria, NaquadriaOxideMixture);
+        addOre(NaquadahEnriched, NaquadahMaterials.EnrichedNaquadahOxideMixture);
+        addOre(Naquadria, NaquadahMaterials.NaquadriaOxideMixture);
         addOre(Perlite);
         addOre(Uvarovite);
         addOre(Andradite);

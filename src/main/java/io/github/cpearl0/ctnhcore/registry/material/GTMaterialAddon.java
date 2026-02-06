@@ -1,0 +1,241 @@
+package io.github.cpearl0.ctnhcore.registry.material;
+
+import io.github.cpearl0.ctnhcore.data.CTNHMaterialFlags;
+
+import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
+import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
+
+import appeng.core.definitions.AEBlocks;
+import appeng.core.definitions.AEItems;
+
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static committee.nova.mods.avaritia.init.registry.ModBlocks.neutron;
+import static committee.nova.mods.avaritia.init.registry.ModItems.neutron_ingot;
+import static committee.nova.mods.avaritia.init.registry.ModItems.neutron_nugget;
+
+public class GTMaterialAddon {
+
+    public static HazardProperty radioactive(float multiplier) {
+        return new HazardProperty(HazardProperty.HazardTrigger.ANY,
+                GTMedicalConditions.CARCINOGEN, multiplier, true);
+    }
+
+    public static void init() {
+        Duranium.addFlags(GENERATE_FRAME);
+        Naquadria.addFlags(GENERATE_FRAME);
+        NaquadahEnriched.addFlags(GENERATE_FRAME);
+        Naquadah.addFlags(GENERATE_FRAME);
+        Osmiridium.addFlags(GENERATE_FRAME);
+        Sulfur.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));;
+        Iodine.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));;
+        TreatedWood.addFlags(GENERATE_BOLT_SCREW, GENERATE_RING);
+        Zinc.setProperty(PropertyKey.ORE, new OreProperty());
+        Brass.addFlags(GENERATE_SMALL_GEAR, GENERATE_GEAR);
+        Magnalium.addFlags(GENERATE_GEAR);
+        Silver.addFlags(GENERATE_FRAME);
+        StainlessSteel.addFlags(GENERATE_DENSE);
+        VanadiumSteel.addFlags(GENERATE_DENSE);
+        Stellite100.addFlags(GENERATE_GEAR);
+        NaquadahAlloy.addFlags(GENERATE_FINE_WIRE);
+        RutheniumTriniumAmericiumNeutronate.addFlags(GENERATE_FINE_WIRE);
+        TitaniumTungstenCarbide.addFlags(GENERATE_GEAR);
+        Trinium.addFlags(GENERATE_FRAME);
+        Europium.addFlags(GENERATE_SPRING_SMALL);
+        Germanium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Germanium.addFlags(GENERATE_PLATE);
+        Sodium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Seaborgium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Seaborgium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Seaborgium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Seaborgium.addFlags(GENERATE_ROTOR, GENERATE_FRAME);
+        Dubnium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Dubnium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Dubnium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Dubnium.addFlags(GENERATE_FINE_WIRE);
+        Rhenium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Rhenium.addFlags(GENERATE_PLATE);
+        Calcium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Gadolinium.setProperty(PropertyKey.DUST, new DustProperty());
+        // Terbium.setProperty(PropertyKey.DUST, new DustProperty());
+        Dysprosium.setProperty(PropertyKey.DUST, new DustProperty());
+        Dysprosium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Holmium.setProperty(PropertyKey.DUST, new DustProperty());
+        // Erbium.setProperty(PropertyKey.DUST, new DustProperty());
+        Thulium.setProperty(PropertyKey.DUST, new DustProperty());
+        Thulium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Ytterbium.setProperty(PropertyKey.DUST, new DustProperty());
+        Scandium.setProperty(PropertyKey.DUST, new DustProperty());
+        Scandium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Naquadria.addFlags(GENERATE_FRAME);
+        NaquadahEnriched.addFlags(GENERATE_FRAME);
+        NickelZincFerrite.addFlags(GENERATE_FOIL);
+        Promethium.setProperty(PropertyKey.DUST, new DustProperty());
+        Polonium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Polonium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Polonium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Hafnium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Hafnium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        EnderEye.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        EnderPearl.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Protactinium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Protactinium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Protactinium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Protactinium.addFlags(CTNHMaterialFlags.GENERATE_WASTE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD,
+                GENERATE_FOIL, GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE,
+                GENERATE_SMALL_GEAR);
+        Thorium.addFlags(CTNHMaterialFlags.GENERATE_WASTE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD, GENERATE_FOIL,
+                GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_SMALL_GEAR);
+        Thorium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Americium.addFlags(CTNHMaterialFlags.GENERATE_WASTE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD, GENERATE_FOIL,
+                GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_SMALL_GEAR);
+        Americium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Neptunium.addFlags(CTNHMaterialFlags.GENERATE_WASTE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD, GENERATE_FOIL,
+                GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_SMALL_GEAR);
+        Neptunium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Neptunium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Neptunium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Curium.addFlags(CTNHMaterialFlags.GENERATE_WASTE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD, GENERATE_FOIL,
+                GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_SMALL_GEAR);
+        Curium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Curium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Curium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Berkelium.addFlags(CTNHMaterialFlags.GENERATE_WASTE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD, GENERATE_FOIL,
+                GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_SMALL_GEAR);
+        Berkelium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Berkelium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Berkelium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Einsteinium.addFlags(CTNHMaterialFlags.GENERATE_WASTE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD,
+                GENERATE_FOIL, GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE,
+                GENERATE_SMALL_GEAR);
+        Einsteinium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Einsteinium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Einsteinium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Californium.addFlags(CTNHMaterialFlags.GENERATE_WASTE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD,
+                GENERATE_FOIL, GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE,
+                GENERATE_SMALL_GEAR);
+        Californium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Californium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Fermium.addFlags(CTNHMaterialFlags.GENERATE_WASTE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD, GENERATE_FOIL,
+                GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_SMALL_GEAR);
+        Fermium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Fermium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Fermium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Mendelevium.addFlags(CTNHMaterialFlags.GENERATE_WASTE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD,
+                GENERATE_FOIL, GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE,
+                GENERATE_SMALL_GEAR);
+        Mendelevium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Mendelevium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Mendelevium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Oganesson.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Oganesson.setProperty(PropertyKey.HAZARD, radioactive(1.5F));
+        Oganesson.addFlags(GENERATE_PLATE);
+        Flerovium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Flerovium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Flerovium.setProperty(PropertyKey.HAZARD, radioactive(1.5F));
+        Nobelium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Nobelium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Lawrencium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Lawrencium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Nobelium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Lawrencium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Hassium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Hassium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Hassium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Hassium.addFlags(GENERATE_PLATE);
+        Rubidium.setProperty(PropertyKey.DUST, new DustProperty());
+        Rubidium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Technetium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Technetium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Technetium.addFlags(GENERATE_PLATE);
+        Francium.setProperty(PropertyKey.DUST, new DustProperty());
+        Francium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Strontium.setProperty(PropertyKey.DUST, new DustProperty());
+        Zirconium.setProperty(PropertyKey.DUST, new DustProperty());
+        Zirconium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Radium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Radium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Radium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Tellurium.setProperty(PropertyKey.DUST, new DustProperty());
+        Actinium.setProperty(PropertyKey.DUST, new DustProperty());
+        Actinium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Actinium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Rutherfordium.setProperty(PropertyKey.DUST, new DustProperty());
+        Rutherfordium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        // Selenium.setProperty(PropertyKey.DUST, new DustProperty());
+        Astatine.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Astatine.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Astatine.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Bohrium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Bohrium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Bohrium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Thallium.setProperty(PropertyKey.DUST, new DustProperty());
+        Thallium.setProperty(PropertyKey.HAZARD,
+                new HazardProperty(HazardProperty.HazardTrigger.INHALATION, GTMedicalConditions.POISON, 1, false));
+        Meitnerium.setProperty(PropertyKey.DUST, new DustProperty());
+        Meitnerium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Meitnerium.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Roentgenium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Copernicium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Nihonium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Moscovium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Livermorium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Tennessine.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Roentgenium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Copernicium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Nihonium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Moscovium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Livermorium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Tennessine.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Roentgenium.setProperty(PropertyKey.HAZARD, radioactive(1.5F));
+        Copernicium.setProperty(PropertyKey.HAZARD, radioactive(1.5F));
+        Nihonium.setProperty(PropertyKey.HAZARD, radioactive(1.5F));
+        Moscovium.setProperty(PropertyKey.HAZARD, radioactive(1.5F));
+        Livermorium.setProperty(PropertyKey.HAZARD, radioactive(1.5F));
+        Tennessine.setProperty(PropertyKey.HAZARD, radioactive(1.5F));
+        ReinforcedEpoxyResin.addFlags(GENERATE_ROD);
+        Phosphorus.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+
+        RefineryGas.getProperty(PropertyKey.FLUID).getQueuedBuilder(FluidStorageKeys.GAS).density(-10).block();
+
+        Neutronium.setProperty(
+                PropertyKey.BLAST,
+                new BlastProperty(9000, BlastProperty.GasTier.HIGHEST, 491250, 144 * 20, -1, -1));
+        Neutronium.setMaterialARGB(0x161616);
+        NaquadahEnriched.addFlags(GENERATE_BOLT_SCREW);
+        Europium.addFlags(GENERATE_BOLT_SCREW);
+        Brass.addFlags(GENERATE_DENSE);
+        Aluminium.addFlags(GENERATE_DENSE);
+        Steel.addFlags(GENERATE_DENSE);
+        Lanthanum.addFlags(GENERATE_DENSE);
+        Iridium.addFlags(GENERATE_DENSE);
+        Lead.addFlags(GENERATE_DENSE);
+        SteelMagnetic.addFlags(GENERATE_PLATE);
+        NeodymiumMagnetic.addFlags(GENERATE_PLATE);
+        NaquadahEnriched.addFlags(GENERATE_LONG_ROD);
+        NickelZincFerrite.addFlags(GENERATE_LONG_ROD);
+        BlueAlloy.addFlags(GENERATE_FRAME);
+        Polybenzimidazole.addFlags(GENERATE_FRAME);
+        Nichrome.addFlags(GENERATE_GEAR);
+        Zeron100.addFlags(GENERATE_GEAR);
+        Aluminium.addFlags(GENERATE_ROTOR);
+        Iridium.addFlags(GENERATE_ROTOR);
+        Iridium.addFlags(GENERATE_SMALL_GEAR);
+
+        Netherite.addFlags(GENERATE_FRAME, GENERATE_GEAR, GENERATE_PLATE, GENERATE_BOLT_SCREW, GENERATE_SPRING,
+                GENERATE_SPRING_SMALL);
+    }
+
+    public static void tagPrefixIgnore() {
+        TagPrefix.gem.setIgnored(GTMaterials.CertusQuartz, () -> AEItems.CERTUS_QUARTZ_CRYSTAL);
+        TagPrefix.block.setIgnored(GTMaterials.CertusQuartz, () -> AEBlocks.QUARTZ_BLOCK);
+
+        TagPrefix.ingot.setIgnored(GTMaterials.Neutronium, neutron_ingot);
+        TagPrefix.nugget.setIgnored(GTMaterials.Neutronium, neutron_nugget);
+        TagPrefix.block.setIgnored(GTMaterials.Neutronium, neutron);
+    }
+}

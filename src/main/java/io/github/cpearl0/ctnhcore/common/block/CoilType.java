@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.block;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
@@ -26,9 +26,9 @@ public enum CoilType implements StringRepresentable, ICoilType {
     STARMETAL("starmetal", 21600, 64, 13, 9, CTNHMaterials.Starmetal,
             CTNHCore.id("block/casings/coils/starmetal_coil_block")),
     INFINITYY("infinity", 36000, 128, 14, 9, CTNHMaterials.Infinity,
-            CTNHCore.id("block/casings/coils/infinity_coil_block")),
-    ULTRA_MANA("ulta_mana", 7201, 16, 5, 6, CTNHMaterials.QUASER_MANA,
-            CTNHCore.id("block/casings/coils/ultra_mana_coil_block"));
+            CTNHCore.id("block/casings/coils/infinity_coil_block"));
+    // ULTRA_MANA("ulta_mana", 7201, 16, 5, 6, CTNHMaterials.QUASER_MANA,
+    // CTNHCore.id("block/casings/coils/ultra_mana_coil_block"));
 
     @NotNull
     private final String name;

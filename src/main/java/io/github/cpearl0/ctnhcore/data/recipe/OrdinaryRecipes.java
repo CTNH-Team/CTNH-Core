@@ -3,8 +3,8 @@ package io.github.cpearl0.ctnhcore.data.recipe;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
@@ -39,7 +39,7 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLY_LINE_RECIPES;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.CIRCUIT_ASSEMBLER_RECIPES;
 import static com.moguang.ctnhbio.registry.CBItems.WETWARE_PRINTED_CIRCUIT_BOARD;
-import static io.github.cpearl0.ctnhcore.data.materials.OrdinaryMaterials.*;
+import static io.github.cpearl0.ctnhcore.data.materials.WetWareLineMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.ADVANCED_RAM_CHIP;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.HEAVY_PLATE_T3;
 

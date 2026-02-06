@@ -11,10 +11,10 @@ import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.METALLIC;
 import static io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys.CATALYST;
-import static io.github.cpearl0.ctnhcore.registry.CTNHMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
-import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.Thorium232;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 
 public class SecondMaterials {
 
@@ -84,7 +84,7 @@ public class SecondMaterials {
 
         VanadiumPentoxide = REGISTRATE.material(CTNHCore.id("vanadium_pentoxide")).cnlang("五氧化二钒").dust()
                 .components(GTMaterials.Vanadium, 2, GTMaterials.Oxygen, 5).color(0xB5730F)
-                .iconSet(MaterialIconSet.METALLIC).buildAndRegister();
+                .iconSet(METALLIC).buildAndRegister();
 
         BlackMatter = REGISTRATE.material(CTNHCore.id("black_matter")).cnlang("黑物质").dust().ingot().fluid()
                 .components(GTMaterials.Lead, 3, GTMaterials.Manganese, 5, GTMaterials.Carbon, 12).color(0x000000)
@@ -93,13 +93,13 @@ public class SecondMaterials {
 
         Cerrobase140 = REGISTRATE.material(CTNHCore.id("cerrobase_140")).cnlang("铋铅合金140").dust().fluid().components(
                 GTMaterials.Bismuth, 47, GTMaterials.Lead, 25, GTMaterials.Tin, 13, GTMaterials.Cadmium, 10,
-                GTMaterials.Indium, 5).color(0x9e9e9e).iconSet(MaterialIconSet.METALLIC).blastTemp(1230)
+                GTMaterials.Indium, 5).color(0x9e9e9e).iconSet(METALLIC).blastTemp(1230)
                 .buildAndRegister();
 
         PotassiumPyrosulfate = REGISTRATE.material(CTNHCore.id("potassium_pyrosulfate")).cnlang("焦硫酸钾").dust()
                 .fluid(FluidStorageKeys.MOLTEN, new FluidBuilder())
                 .components(GTMaterials.Potassium, 2, GTMaterials.Sulfur, 2, GTMaterials.Oxygen, 7).color(0xff9900)
-                .iconSet(MaterialIconSet.METALLIC).buildAndRegister();
+                .iconSet(METALLIC).buildAndRegister();
 
         SodiumSulfate = REGISTRATE.material(CTNHCore.id("sodium_sulfate")).cnlang("硫酸钠").dust()
                 .components(GTMaterials.Sodium, 2, GTMaterials.Sulfur, 1, GTMaterials.Oxygen, 4).color(0xF9F6CF)
@@ -121,76 +121,77 @@ public class SecondMaterials {
                 .iconSet(MaterialIconSet.ROUGH)
                 .flags(MaterialFlags.DISABLE_DECOMPOSITION).buildAndRegister();
 
-        GraphiteUraniumMixture = REGISTRATE.material(CTNHCore.id("graphite_uranium_mixture")).cnlang("石墨-铀混合物").dust()
-                .components(GTMaterials.Graphite, 3, GTMaterials.Uranium238, 1).color(0x2f734c)
-                .iconSet(MaterialIconSet.METALLIC).buildAndRegister();
-
-        PlutoniumOxideUraniumMixture = REGISTRATE.material(CTNHCore.id("plutonium_oxide_uranium_mixture"))
-                .cnlang("氧化钚-铀混合物").dust().components(
-                        GTMaterials.Plutonium239, 10, GTMaterials.Oxygen, 12, GTMaterials.Uranium238, 2,
-                        GTMaterials.Carbon, 8)
-                .color(0xc51d46).iconSet(MaterialIconSet.METALLIC).buildAndRegister();
-
-        UraniumCarbideThoriumMixture = REGISTRATE.material(CTNHCore.id("uranium_carbide_thorium_mixture"))
-                .cnlang("碳化铀-钍混合物").dust().components(
-                        GTMaterials.Thorium, 11, Thorium232, 1, GTMaterials.Uranium235, 1, GTMaterials.Carbon, 3)
-                .color(0x15231b).iconSet(MaterialIconSet.METALLIC).buildAndRegister();
+        // GraphiteUraniumMixture =
+        // REGISTRATE.material(CTNHCore.id("graphite_uranium_mixture")).cnlang("石墨-铀混合物").dust()
+        // .components(GTMaterials.Graphite, 3, GTMaterials.Uranium238, 1).color(0x2f734c)
+        // .iconSet(MaterialIconSet.METALLIC).buildAndRegister();
+        //
+        // PlutoniumOxideUraniumMixture = REGISTRATE.material(CTNHCore.id("plutonium_oxide_uranium_mixture"))
+        // .cnlang("氧化钚-铀混合物").dust().components(
+        // GTMaterials.Plutonium239, 10, GTMaterials.Oxygen, 12, GTMaterials.Uranium238, 2,
+        // GTMaterials.Carbon, 8)
+        // .color(0xc51d46).iconSet(MaterialIconSet.METALLIC).buildAndRegister();
+        //
+        // UraniumCarbideThoriumMixture = REGISTRATE.material(CTNHCore.id("uranium_carbide_thorium_mixture"))
+        // .cnlang("碳化铀-钍混合物").dust().components(
+        // GTMaterials.Thorium, 11, Thorium232, 1, GTMaterials.Uranium235, 1, GTMaterials.Carbon, 3)
+        // .color(0x15231b).iconSet(MaterialIconSet.METALLIC).buildAndRegister();
 
         ThoriumBasedLiquidFuel = REGISTRATE.material(CTNHCore.id("thorium_based_liquid_fuel")).cnlang("钍基流体燃料").fluid()
-                .color(0x3b264d).iconSet(MaterialIconSet.METALLIC)
+                .color(0x3b264d).iconSet(METALLIC)
                 .buildAndRegister().setFormula("Th432Li4D2Hg");
 
         ThoriumBasedLiquidFuelExcited = REGISTRATE.material(CTNHCore.id("thorium_based_liquid_fuel_excited"))
                 .cnlang("钍基流体燃料(激发态)").fluid().color(0x3f2850)
-                .iconSet(MaterialIconSet.METALLIC).buildAndRegister().setFormula("*(Th432Li4D2HG)*");
+                .iconSet(METALLIC).buildAndRegister().setFormula("*(Th432Li4D2HG)*");
 
         ThoriumBasedLiquidFuelDepleted = REGISTRATE.material(CTNHCore.id("thorium_based_liquid_fuel_depleted"))
                 .cnlang("钍基流体燃料(枯竭态)").fluid().color(0x5d5166)
-                .iconSet(MaterialIconSet.METALLIC).buildAndRegister().setFormula("Th?Pr?B?In?");
+                .iconSet(METALLIC).buildAndRegister().setFormula("Th?Pr?B?In?");
 
         UraniumBasedLiquidFuel = REGISTRATE.material(CTNHCore.id("uranium_based_liquid_fuel")).cnlang("铀基流体燃料").fluid()
-                .color(0x02ba05).iconSet(MaterialIconSet.METALLIC)
+                .color(0x02ba05).iconSet(METALLIC)
                 .buildAndRegister().setFormula("U36K8Qt4Rn");
 
         UraniumBasedLiquidFuelExcited = REGISTRATE.material(CTNHCore.id("uranium_based_liquid_fuel_excited"))
                 .cnlang("铀基流体燃料(激发态)").fluid().color(0x04bc04)
-                .iconSet(MaterialIconSet.METALLIC).buildAndRegister().setFormula("*(U36K8Qt4Rn)*");
+                .iconSet(METALLIC).buildAndRegister().setFormula("*(U36K8Qt4Rn)*");
 
         UraniumBasedLiquidFuelDepleted = REGISTRATE.material(CTNHCore.id("uranium_based_liquid_fuel_depleted"))
                 .cnlang("铀基流体燃料(枯竭态)").fluid().color(0x576d31)
-                .iconSet(MaterialIconSet.METALLIC).buildAndRegister().setFormula("PB?Bi?Ba?Xe?");
+                .iconSet(METALLIC).buildAndRegister().setFormula("PB?Bi?Ba?Xe?");
 
         PlutoniumBasedLiquidFuel = REGISTRATE.material(CTNHCore.id("plutonium_based_liquid_fuel")).cnlang("钚基流体燃料")
                 .fluid().color(0xb71213)
-                .iconSet(MaterialIconSet.METALLIC).buildAndRegister().setFormula("Pu45Nt8Cs16Nq2");
+                .iconSet(METALLIC).buildAndRegister().setFormula("Pu45Nt8Cs16Nq2");
 
         PlutoniumBasedLiquidFuelExcited = REGISTRATE.material(CTNHCore.id("plutonium_based_liquid_fuel_excited"))
                 .cnlang("钚基流体燃料(激发态)").fluid().color(0xb81312)
-                .iconSet(MaterialIconSet.METALLIC).buildAndRegister().setFormula("*(Pu45Nt8Cs16Nq2)*");
+                .iconSet(METALLIC).buildAndRegister().setFormula("*(Pu45Nt8Cs16Nq2)*");
 
         PlutoniumBasedLiquidFuelDepleted = REGISTRATE.material(CTNHCore.id("plutonium_based_liquid_fuel_depleted"))
                 .cnlang("钚基流体燃料(枯竭态)").fluid().color(0x4e1414)
-                .iconSet(MaterialIconSet.METALLIC).buildAndRegister().setFormula("Th?Ce?Au?Kr?");
+                .iconSet(METALLIC).buildAndRegister().setFormula("Th?Ce?Au?Kr?");
 
         RadiationProtection = REGISTRATE.material(CTNHCore.id("radiation_protection")).cnlang("防辐射").dust()
                 .flags(MaterialFlags.GENERATE_FRAME).color(0x4C4C4B)
-                .iconSet(MaterialIconSet.METALLIC).buildAndRegister();
+                .iconSet(METALLIC).buildAndRegister();
 
         NaquadahBasedLiquidFuel = REGISTRATE.material(CTNHCore.id("naquadah_based_liquid_fuel")).cnlang("硅岩流体燃料")
                 .fluid().color(0x43b54a)
-                .iconSet(MaterialIconSet.METALLIC).buildAndRegister().setFormula("Nq42Ce16Nd16");
+                .iconSet(METALLIC).buildAndRegister().setFormula("Nq42Ce16Nd16");
 
         NaquadahBasedLiquidFuelExcited = REGISTRATE.material(CTNHCore.id("naquadah_based_liquid_fuel_excited"))
                 .cnlang("硅岩流体燃料(激发态)").fluid().color(0x41b349)
-                .iconSet(MaterialIconSet.METALLIC).buildAndRegister().setFormula("*(Nq42Ce16Nd16)*");
+                .iconSet(METALLIC).buildAndRegister().setFormula("*(Nq42Ce16Nd16)*");
 
         NaquadahBasedLiquidFuelDepleted = REGISTRATE.material(CTNHCore.id("naquadah_based_liquid_fuel_depleted"))
                 .cnlang("硅岩流体燃料(枯竭态)").fluid().color(0x215825)
-                .iconSet(MaterialIconSet.METALLIC).buildAndRegister().setFormula("Nq?Ke?Nd?");
+                .iconSet(METALLIC).buildAndRegister().setFormula("Nq?Ke?Nd?");
 
         NeutroniumMixture = REGISTRATE.material(CTNHCore.id("neutronium_mixture")).cnlang("中子素混合物").dust()
                 .color(0xFFFFFF).secondaryColor(0x000000)
-                .iconSet(MaterialIconSet.METALLIC).buildAndRegister().setFormula("?Nt?");
+                .iconSet(METALLIC).buildAndRegister().setFormula("?Nt?");
 
         MARM200Steel = REGISTRATE.material(CTNHCore.id("mar_m_200_steel")).cnlang("MAR-M200特种钢")
                 .ingot()
@@ -203,6 +204,29 @@ public class SecondMaterials {
                         18)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROTOR,
                         MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME)
+                .buildAndRegister();
+
+        STABALLOY = REGISTRATE.material(CTNHCore.id("staballoy"))
+                .cnlang("贫铀合金")
+                .ingot()
+                .liquid()
+                .color(0x444B42)
+                .iconSet(METALLIC)
+                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_GEAR,
+                        MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_BOLT_SCREW,
+                        MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_RING)
+                .components(GTMaterials.Uranium238, 9, GTMaterials.Titanium, 1)
+                .blastTemp(3450, BlastProperty.GasTier.MID, GTValues.VA[GTValues.EV], 300)
+                .buildAndRegister();
+
+        SNOW_STEEL = REGISTRATE.material(CTNHCore.id("snow_steel"))
+                .cnlang("雪城钢")
+                .formula("SNOWCITY")
+                .ingot()
+                .liquid()
+                .color(0x00FFFF)
+                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_ROD,
+                        MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_BOLT_SCREW)
                 .buildAndRegister();
 
         OrangeMetal.setProperty(CATALYST, new CatalystProperty(100));

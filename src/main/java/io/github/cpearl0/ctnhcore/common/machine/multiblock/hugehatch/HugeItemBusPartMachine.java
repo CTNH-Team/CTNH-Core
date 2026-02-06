@@ -1,10 +1,8 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch;
 
 import io.github.cpearl0.ctnhcore.common.gui.HugeSlotWidget;
-import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.IRCFancyUIProvider;
-import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.RCUIWidget;
-import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.RightConfiguratorPanel;
-import io.github.cpearl0.ctnhcore.registry.CTNHMachines;
+import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.IAllowSameUIProvider;
+import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.utils.HugeBusTransferHelper;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
@@ -41,6 +39,8 @@ import net.minecraftforge.items.ItemHandlerHelper;
 
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
+import tech.vixhentx.mcmod.ctnhlib.client.gui.RCUIWidget;
+import tech.vixhentx.mcmod.ctnhlib.client.gui.RightConfiguratorPanel;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
@@ -50,7 +50,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Suffix("tooltip")
-public class HugeItemBusPartMachine extends ItemBusPartMachine implements IRCFancyUIProvider {
+public class HugeItemBusPartMachine extends ItemBusPartMachine implements IAllowSameUIProvider {
 
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             HugeItemBusPartMachine.class,
@@ -167,7 +167,7 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IRCFan
 
     @Override
     public void attachRightConfigurators(RightConfiguratorPanel configuratorPanel) {
-        IRCFancyUIProvider.super.attachRightConfigurators(configuratorPanel);
+        IAllowSameUIProvider.super.attachRightConfigurators(configuratorPanel);
         if (io != IO.IN) return;
         configuratorPanel.attachConfigurators(new FancyInvConfigurator(
                 shareInventory.storage, Component.translatable("gui.gtceu.share_inventory.title"))

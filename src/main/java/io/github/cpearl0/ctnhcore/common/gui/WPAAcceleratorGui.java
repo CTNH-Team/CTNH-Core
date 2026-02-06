@@ -105,7 +105,7 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
         group.setBackground(CTNHGuiTextures.FREEZE_BACKGROUND);
         group.addWidget(new TextTextureWidget(10, 20, 120, 20)
                 .setText(() -> get_mode()));
-        // group.addWidget(new TextFieldWidget(10, 70, 150, 10, () -> String.valueOf(machine.nu_value),
+        // group.addWidget(new MultiLineTextFieldWidget(10, 70, 150, 10, () -> String.valueOf(machine.nu_value),
         // this::set_nu_value)
         // .setMaxStringLength(11)
         // .setNumbersOnly(0, 100)

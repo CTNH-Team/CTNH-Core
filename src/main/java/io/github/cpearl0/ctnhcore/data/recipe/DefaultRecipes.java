@@ -3,8 +3,11 @@ package io.github.cpearl0.ctnhcore.data.recipe;
 import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
 import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
 import io.github.cpearl0.ctnhcore.data.machines.GTNNMachines;
+import io.github.cpearl0.ctnhcore.data.materials.PlatinumLineMaterials;
 import io.github.cpearl0.ctnhcore.registry.*;
+import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 
 import com.gregtechceu.gtceu.api.GTValues;
@@ -192,87 +195,87 @@ public class DefaultRecipes {
                 .duration(100)  // 5秒
                 .save(provider);
 
-        // 石墨 + 铀238 -> 铀石墨混合物
-        GTRecipeTypes.MIXER_RECIPES.recipeBuilder("graphite_uranium_mixture")
-                .inputItems(TagPrefix.dust, GTMaterials.Graphite, 3)
-                .inputItems(TagPrefix.dust, GTMaterials.Uranium238)
-                .outputItems(TagPrefix.dust, CTNHMaterials.GraphiteUraniumMixture, 4)
-                .EUt(GTValues.VA[GTValues.LV])  // 30 EU/t
-                .duration(34)  // 1.7秒
-                .save(provider);
-
-        // 铀石墨混合物 + 碳化钨箔 -> 封装铀
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("encapsulated_uranium")
-                .inputItems(TagPrefix.dust, CTNHMaterials.GraphiteUraniumMixture, 4)
-                .inputItems(TagPrefix.foil, GTMaterials.TungstenCarbide, 2)
-                .outputItems(CTNHItems.EncapsulatedUranium)
-                .EUt(GTValues.VA[GTValues.HV])  // 480 EU/t
-                .duration(1400)  // 70秒
-                .save(provider);
-
-        // 钍 + 铀235 + 碳 -> 铀碳化钍混合物
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("uranium_carbide_thorium_mixture")
-                .inputItems(TagPrefix.dust, GTMaterials.Thorium, 11)
-                .inputItems(TagPrefix.dust, NuclearMaterials.Thorium232)
-                .inputItems(TagPrefix.dust, GTMaterials.Uranium235)
-                .inputItems(TagPrefix.dust, GTMaterials.Carbon, 3)
-                .outputItems(TagPrefix.dust, CTNHMaterials.UraniumCarbideThoriumMixture, 16)
-                .EUt(GTValues.VA[GTValues.LV])  // 30 EU/t
-                .duration(47)  // 2.35秒
-                .save(provider);
-        // 1. 封装钍
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("encapsulated_thorium")
-                .inputItems(TagPrefix.dust, CTNHMaterials.UraniumCarbideThoriumMixture, 64)
-                .inputItems(TagPrefix.foil, GTMaterials.TungstenSteel, 4)
-                .outputItems(CTNHItems.EncapsulatedThorium)
-                .EUt(GTValues.VA[GTValues.HV]) // 480 EU/t
-                .duration(300) // 15秒
-                .save(provider);
-
-        // 2. 钚氧化物铀混合物
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("plutonium_oxide_uranium_mixture")
-                .inputItems(TagPrefix.dust, GTMaterials.Plutonium239, 10)
-                .inputItems(TagPrefix.dust, GTMaterials.Uranium238, 2)
-                .inputItems(TagPrefix.dust, GTMaterials.Carbon, 8)
-                .inputFluids(GTMaterials.Oxygen.getFluid(12000))
-                .outputItems(TagPrefix.dust, CTNHMaterials.PlutoniumOxideUraniumMixture, 32)
-                .EUt(GTValues.VA[GTValues.LV]) // 30 EU/t
-                .duration(25) // 1.25秒
-                .save(provider);
-
-        // 3. 封装钚
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("encapsulated_plutonium")
-                .inputItems(TagPrefix.dust, CTNHMaterials.PlutoniumOxideUraniumMixture, 8)
-                .inputItems(TagPrefix.foil, GTMaterials.HSSS, 4)
-                .outputItems(CTNHItems.EncapsulatedPlutonium)
-                .EUt(GTValues.VA[GTValues.HV]) // 480 EU/t
-                .duration(1400) // 70秒
-                .save(provider);
-
-        // 4. 浓缩铀锭
-        GTRecipeTypes.COMPRESSOR_RECIPES.recipeBuilder("enriched_uranium_ingot")
-                .inputItems(CTNHItems.EnrichedUraniumNugget.asStack(9))
-                .outputItems(CTNHItems.EnrichedUranium)
-                .EUt(GTValues.VA[GTValues.HV]) // 480 EU/t
-                .duration(600) // 30秒
-                .save(provider);
-
-        // 5. 浓缩钍锭
-        GTRecipeTypes.COMPRESSOR_RECIPES.recipeBuilder("enriched_thorium_ingot")
-                .inputItems(CTNHItems.EnrichedThoriumNugget.asStack(9))
-                .outputItems(CTNHItems.EnrichedThorium)
-                .EUt(GTValues.VA[GTValues.MV]) // 120 EU/t
-                .duration(200) // 10秒
-                .save(provider);
-
-        // 6. 浓缩钚锭
-        GTRecipeTypes.COMPRESSOR_RECIPES.recipeBuilder("enriched_plutonium_ingot")
-                .inputItems(CTNHItems.EnrichedPlutoniumNugget.asStack(9))
-                .outputItems(CTNHItems.EnrichedPlutonium)
-                .EUt(GTValues.VA[GTValues.MV]) // 120 EU/t
-                .duration(1200) // 60秒
-                .save(provider);
-
+        // // 石墨 + 铀238 -> 铀石墨混合物
+        // GTRecipeTypes.MIXER_RECIPES.recipeBuilder("graphite_uranium_mixture")
+        // .inputItems(TagPrefix.dust, GTMaterials.Graphite, 3)
+        // .inputItems(TagPrefix.dust, GTMaterials.Uranium238)
+        // .outputItems(TagPrefix.dust, CTNHMaterials.GraphiteUraniumMixture, 4)
+        // .EUt(GTValues.VA[GTValues.LV]) // 30 EU/t
+        // .duration(34) // 1.7秒
+        // .save(provider);
+        //
+        // // 铀石墨混合物 + 碳化钨箔 -> 封装铀
+        // GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("encapsulated_uranium")
+        // .inputItems(TagPrefix.dust, CTNHMaterials.GraphiteUraniumMixture, 4)
+        // .inputItems(TagPrefix.foil, GTMaterials.TungstenCarbide, 2)
+        // .outputItems(CTNHItems.EncapsulatedUranium)
+        // .EUt(GTValues.VA[GTValues.HV]) // 480 EU/t
+        // .duration(1400) // 70秒
+        // .save(provider);
+        //
+        // // 钍 + 铀235 + 碳 -> 铀碳化钍混合物
+        // GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("uranium_carbide_thorium_mixture")
+        // .inputItems(TagPrefix.dust, GTMaterials.Thorium, 11)
+        // .inputItems(TagPrefix.dust, NuclearMaterials.Thorium232)
+        // .inputItems(TagPrefix.dust, GTMaterials.Uranium235)
+        // .inputItems(TagPrefix.dust, GTMaterials.Carbon, 3)
+        // .outputItems(TagPrefix.dust, CTNHMaterials.UraniumCarbideThoriumMixture, 16)
+        // .EUt(GTValues.VA[GTValues.LV]) // 30 EU/t
+        // .duration(47) // 2.35秒
+        // .save(provider);
+        // // 1. 封装钍
+        // GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("encapsulated_thorium")
+        // .inputItems(TagPrefix.dust, CTNHMaterials.UraniumCarbideThoriumMixture, 64)
+        // .inputItems(TagPrefix.foil, GTMaterials.TungstenSteel, 4)
+        // .outputItems(CTNHItems.EncapsulatedThorium)
+        // .EUt(GTValues.VA[GTValues.HV]) // 480 EU/t
+        // .duration(300) // 15秒
+        // .save(provider);
+        //
+        // // 2. 钚氧化物铀混合物
+        // GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("plutonium_oxide_uranium_mixture")
+        // .inputItems(TagPrefix.dust, GTMaterials.Plutonium239, 10)
+        // .inputItems(TagPrefix.dust, GTMaterials.Uranium238, 2)
+        // .inputItems(TagPrefix.dust, GTMaterials.Carbon, 8)
+        // .inputFluids(GTMaterials.Oxygen.getFluid(12000))
+        // .outputItems(TagPrefix.dust, CTNHMaterials.PlutoniumOxideUraniumMixture, 32)
+        // .EUt(GTValues.VA[GTValues.LV]) // 30 EU/t
+        // .duration(25) // 1.25秒
+        // .save(provider);
+        //
+        // // 3. 封装钚
+        // GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("encapsulated_plutonium")
+        // .inputItems(TagPrefix.dust, CTNHMaterials.PlutoniumOxideUraniumMixture, 8)
+        // .inputItems(TagPrefix.foil, GTMaterials.HSSS, 4)
+        // .outputItems(CTNHItems.EncapsulatedPlutonium)
+        // .EUt(GTValues.VA[GTValues.HV]) // 480 EU/t
+        // .duration(1400) // 70秒
+        // .save(provider);
+        //
+        // // 4. 浓缩铀锭
+        // GTRecipeTypes.COMPRESSOR_RECIPES.recipeBuilder("enriched_uranium_ingot")
+        // .inputItems(CTNHItems.EnrichedUraniumNugget.asStack(9))
+        // .outputItems(CTNHItems.EnrichedUranium)
+        // .EUt(GTValues.VA[GTValues.HV]) // 480 EU/t
+        // .duration(600) // 30秒
+        // .save(provider);
+        //
+        // // 5. 浓缩钍锭
+        // GTRecipeTypes.COMPRESSOR_RECIPES.recipeBuilder("enriched_thorium_ingot")
+        // .inputItems(CTNHItems.EnrichedThoriumNugget.asStack(9))
+        // .outputItems(CTNHItems.EnrichedThorium)
+        // .EUt(GTValues.VA[GTValues.MV]) // 120 EU/t
+        // .duration(200) // 10秒
+        // .save(provider);
+        //
+        // // 6. 浓缩钚锭
+        // GTRecipeTypes.COMPRESSOR_RECIPES.recipeBuilder("enriched_plutonium_ingot")
+        // .inputItems(CTNHItems.EnrichedPlutoniumNugget.asStack(9))
+        // .outputItems(CTNHItems.EnrichedPlutonium)
+        // .EUt(GTValues.VA[GTValues.MV]) // 120 EU/t
+        // .duration(1200) // 60秒
+        // .save(provider);
+        //
         // 7. 锎生产（聚变）
         GTRecipeTypes.FUSION_RECIPES.recipeBuilder("californium_production")
                 .inputFluids(GTMaterials.Plutonium239.getFluid(48))
@@ -477,15 +480,6 @@ public class DefaultRecipes {
                 .duration(400) // 20秒
                 .save(provider);
 
-        // 8. 致密镧板
-        GTRecipeTypes.BENDER_RECIPES.recipeBuilder("dense_lanthanum_plate")
-                .inputItems(TagPrefix.plate, GTMaterials.Lanthanum, 9)
-                .outputItems(TagPrefix.plateDense, GTMaterials.Lanthanum)
-                .circuitMeta(9)
-                .EUt(96) // LV级
-                .duration(1242) // 62.1秒
-                .save(provider);
-
         // 9. Naquadah基液体燃料
         GTRecipeTypes.MIXER_RECIPES.recipeBuilder("naquadah_based_liquid_fuel")
                 .inputItems(TagPrefix.dust, GTMaterials.Naquadria, 42)
@@ -598,7 +592,7 @@ public class DefaultRecipes {
                 .inputItems(TagPrefix.wireGtSingle, GTMaterials.MercuryBariumCalciumCuprate, 32)
                 .inputItems(TagPrefix.plate, GTMaterials.Beryllium, 32)
                 .inputItems(CustomTags.IV_CIRCUITS)
-                .outputItems(CTNHMachines.HIGH_SPEED_PIPE_BLOCK.asStack())
+                .outputItems(CTNHBlocks.HIGH_SPEED_PIPE_BLOCK.asStack())
                 .EUt(GTValues.VA[GTValues.EV]) // 1920 EU/t
                 .duration(300) // 15秒
                 .save(provider);
@@ -656,10 +650,10 @@ public class DefaultRecipes {
         // 11.5 谢尔顿矿粉电解
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("cooperite_dust")
                 .inputItems(TagPrefix.dust, GTMaterials.Cooperite, 6)
-                .outputItems(TagPrefix.dust, CTNHMaterials.PlatinumOre, 3)
+                .outputItems(TagPrefix.dust, PlatinumLineMaterials.PlatinumOre, 3)
                 .outputItems(TagPrefix.dust, GTMaterials.Nickel)
                 .outputItems(TagPrefix.dust, GTMaterials.Sulfur)
-                .outputItems(TagPrefix.dust, CTNHMaterials.PalladiumOre)
+                .outputItems(TagPrefix.dust, PlatinumLineMaterials.PalladiumOre)
                 .EUt(GTValues.VA[GTValues.MV]) // 98304 EU/t
                 .duration(600) // 30秒
                 .save(provider);
@@ -680,13 +674,16 @@ public class DefaultRecipes {
                 .EUt(GTValues.VA[GTValues.LV]) // 98304 EU/t
                 .duration(320) // 30秒
                 .save(provider);
-        // 2. 催化剂舱口（组装机）
+        // 2. 催化剂仓
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("catalyst_hatch")
                 .inputItems(CustomTags.MV_CIRCUITS)
-                .inputItems(GTMachines.ITEM_IMPORT_BUS[GTValues.MV])
+                .inputItems(GTMachines.ITEM_IMPORT_BUS[GTValues.HV])
+                .inputItems(GTMachines.ITEM_EXPORT_BUS[GTValues.HV])
+                .inputItems(GTBlocks.MACHINE_CASING_EV)
+                .circuitMeta(1)
                 .outputItems(CTNHMachines.CATALYST_HATCH)
-                .EUt(GTValues.VA[GTValues.MV]) // 120 EU/t
-                .duration(300) // 15秒
+                .EUt(GTValues.VA[GTValues.HV])
+                .duration(300)
                 .save(provider);
 
         // 3. 大型Naquadah脱水机（组装机）

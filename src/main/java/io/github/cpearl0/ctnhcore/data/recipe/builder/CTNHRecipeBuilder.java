@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.data.recipe.builder;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
@@ -22,6 +23,10 @@ public class CTNHRecipeBuilder extends GTRecipeBuilder {
 
     public static CTNHRecipeBuilder of(ResourceLocation id, GTRecipeType recipeType) {
         return new CTNHRecipeBuilder(id, recipeType);
+    }
+
+    public static CTNHRecipeBuilder of(String path, GTRecipeType recipeType) {
+        return of(CTNHCore.id(path), recipeType);
     }
 
     public CTNHRecipeBuilder inputStress(float stress) {

@@ -13,16 +13,47 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+
+import tech.vixhentx.mcmod.ctnhlib.client.render.ColorData;
+import tech.vixhentx.mcmod.ctnhlib.client.render.highlight.HighlightHandler;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestingTerminalBehavior implements IInteractionItem {
+
+    public boolean isFlipped = false;
+    @CN("翻转模式启动")
+    @EN("Flip Mode is On")
+    static Lang flipmode;
+    @CN("普通模式启动")
+    @EN("Normal Mode is On")
+    static Lang normalmode;
+
+    @Override
+    public InteractionResultHolder<ItemStack> use(Item item, Level level, Player player, InteractionHand usedHand) {
+        if (level.isClientSide) {
+            return InteractionResultHolder.pass(player.getItemInHand(usedHand));
+        }
+        if (player.isShiftKeyDown()) {
+            isFlipped = !isFlipped;
+            Component info = isFlipped ? flipmode.translate().withStyle(ChatFormatting.RED) : normalmode.translate();
+            player.sendSystemMessage(info);
+            return InteractionResultHolder.success(player.getItemInHand(usedHand));
+        }
+        return IInteractionItem.super.use(item, level, player, usedHand);
+    }
 
     @Override
     public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
@@ -59,11 +90,11 @@ public class TestingTerminalBehavior implements IInteractionItem {
     }
 
     private void handleUnformedController(Player player, IMultiController controller) {
-        if (true || !controller.self().allowFlip()) {
+        if (!controller.self().allowFlip()) {
             MultiblockState multiblockState = controller.getMultiblockState();
             PatternError error = multiblockState.error;
             if (error != null) {
-                showError(player, error, false);
+                showError(player, error, this.isFlipped);
             }
         } else {
             detectPatternErrors(player, controller);
@@ -74,7 +105,7 @@ public class TestingTerminalBehavior implements IInteractionItem {
         BlockPattern pattern = controller.getPattern();
         List<PatternError> errors = check(controller, pattern);
         for (int i = 0; i < errors.size(); i++) {
-            showError(player, errors.get(i), (i == 1));
+            showError(player, errors.get(i), isFlipped);
         }
     }
 
@@ -94,10 +125,11 @@ public class TestingTerminalBehavior implements IInteractionItem {
         MultiblockState worldState = new MultiblockState(controller.self().getLevel(), controller.self().getPos());
 
         for (Direction direction : facings) {
-            checkPatternAndCollectErrors(pattern, errors, worldState, centerPos, direction, upwardsFacing, false);
-            if (allowsFlip) {
+            if (!isFlipped) {
+                checkPatternAndCollectErrors(pattern, errors, worldState, centerPos, direction, upwardsFacing, false);
+            }
+            if (allowsFlip && isFlipped) {
                 // 检查翻转状态
-                worldState = new MultiblockState(worldState.getWorld(), worldState.getPos());
                 checkPatternAndCollectErrors(pattern, errors, worldState, centerPos, direction, upwardsFacing, true);
             }
         }
@@ -120,7 +152,8 @@ public class TestingTerminalBehavior implements IInteractionItem {
             player.sendSystemMessage(((PatternStringError) error).getErrorInfo());
             return;
         }
-
+        HighlightHandler.highlight(error.getPos(), error.getWorld().dimension(), System.currentTimeMillis() + 10000,
+                ColorData.RED);
         List<Component> show = generateErrorMessages(error, flip);
         show.forEach(player::sendSystemMessage);
     }

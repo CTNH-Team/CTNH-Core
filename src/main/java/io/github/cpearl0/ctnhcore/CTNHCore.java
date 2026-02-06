@@ -4,10 +4,8 @@ import io.github.cpearl0.ctnhcore.client.ClientProxy;
 import io.github.cpearl0.ctnhcore.common.CommonProxy;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import com.mojang.logging.LogUtils;
 import org.slf4j.Logger;
@@ -28,7 +26,6 @@ public class CTNHCore {
         langProcessor.processAll();
 
         DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
-
     }
 
     public static ResourceLocation asResource(String path) {

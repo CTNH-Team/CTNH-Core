@@ -52,7 +52,7 @@ public class HugeSlotWidget extends SlotWidget {
     @Override
     public List<Component> getTooltipTexts() {
         List<Component> tooltips = super.getTooltipTexts();
-        if (slotReference != null && slotReference.getItem().getMaxStackSize() != 0 &&
+        if (slotReference != null && slotReference.getMaxStackSize(slotReference.getItem()) != 0 &&
                 slotReference.getItem().getMaxStackSize() != slotReference.getMaxStackSize(slotReference.getItem())) {
             tooltips.add(
                     item_amount.translate(
@@ -86,8 +86,10 @@ public class HugeSlotWidget extends SlotWidget {
             }
 
             if (!itemStack.isEmpty()) {
-                DrawerHelper.drawItemStack(graphics, itemStack, pos.x + 1, pos.y + 1, -1,
-                        TextFormattingUtil.formatLongToCompactString(itemStack.getCount(), 3));
+                String text = slotReference.getMaxStackSize(slotReference.getItem()) == 0 ?
+                        null :
+                        TextFormattingUtil.formatLongToCompactString(itemStack.getCount(), 3);
+                DrawerHelper.drawItemStack(graphics, itemStack, pos.x + 1, pos.y + 1, -1, text);
             }
         }
 

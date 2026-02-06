@@ -8,6 +8,7 @@ import io.github.cpearl0.ctnhcore.common.CommonProxy;
 
 import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderManager;
 
+// @Mod.EventBusSubscriber(modid = CTNHCore.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientProxy extends CommonProxy {
 
     public ClientProxy() {
