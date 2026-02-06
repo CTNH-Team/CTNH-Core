@@ -49,6 +49,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -58,7 +62,40 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
+@Prefix("gui.digital_miner")
 public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner, IFancyUIMachine, IDataInfoProvider {
+
+    @CN("水平范围:")
+    @EN("Horizontal Range:")
+    static Lang horizontal_range;
+
+    @CN("最小高度:")
+    @EN("Min Height:")
+    static Lang min_height;
+
+    @CN("最大高度:")
+    @EN("Max Height:")
+    static Lang max_height;
+
+    @CN("重置")
+    @EN("Reset")
+    static Lang reset;
+
+    @CN("修改配置后必须重置才能生效。")
+    @EN("You must reset for changes to take effect.")
+    static Lang reset_tooltip;
+
+    @CN("精准")
+    @EN("Silk")
+    static Lang silk;
+
+    @CN("开启精准采集模式，4倍耗电。")
+    @EN("Enable Silk Touch mode. Uses 4x energy.")
+    static Lang silk_tooltip;
+
+    @CN("挖掘: ")
+    @EN("Mined: ")
+    static Lang mined_prefix;
 
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(DigitalMiner.class,
             WorkableTieredMachine.MANAGED_FIELD_HOLDER);
@@ -298,33 +335,43 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
         group.addWidget(batterySlot);
 
         // Radius
-        group.addWidget(new LabelWidget(88, 26, "水平范围:"));
+        group.addWidget(new LabelWidget(88, 26, horizontal_range.translate()));
         group.addWidget(new SimpleNumberInputWidget(132, 24, 30, 12, this::getMinerRadius, this::setMinerRadius)
                 .setMin(1).setMax(getRange(getTier())));
 
         // Min height
-        group.addWidget(new LabelWidget(88, 44, "最小高度:"));
+        group.addWidget(new LabelWidget(88, 44, min_height.translate()));
         group.addWidget(new SimpleNumberInputWidget(132, 42, 30, 12, this::getMinHeight, this::setMinHeight)
                 .setMin(getLevel().getMinBuildHeight()).setMax(getLevel().getMaxBuildHeight()));
 
         // Max height
-        group.addWidget(new LabelWidget(88, 62, "最大高度:"));
+        group.addWidget(new LabelWidget(88, 62, max_height.translate()));
         group.addWidget(new SimpleNumberInputWidget(132, 60, 30, 12, this::getMaxHeight, this::setMaxHeight)
                 .setMin(getLevel().getMinBuildHeight()).setMax(getLevel().getMaxBuildHeight()));
 
         // reset button
         this.resetButton = new ButtonWidget(9, 54 + BORDER_WIDTH, 18, 16 - BORDER_WIDTH,
-                new TextTexture("重置").setDropShadow(false).setColor(ChatFormatting.GRAY.getColor()), this::reset);
-        this.resetButton.setHoverTooltips(Component.literal("修改配置后必须重置才能生效。"));
+            new TextTexture("")
+                .setSupplier(() -> reset.translate().getString())
+                .setDropShadow(false)
+                .setColor(ChatFormatting.GRAY.getColor()),
+            this::reset);
+        this.resetButton.setHoverTooltips(reset_tooltip.translate());
         group.addWidget(this.resetButton);
 
         // silk button
         this.silkButton = new ToggleButtonWidget(29, 54 + BORDER_WIDTH, 18, 16 - BORDER_WIDTH,
             () -> silkLevel != 0, this::setSilkEnabled);
         this.silkButton.setTexture(
-            new TextTexture("精准").setDropShadow(false).setColor(ChatFormatting.GRAY.getColor()),
-            new TextTexture("精准").setDropShadow(false).setColor(ChatFormatting.GREEN.getColor()));
-        this.silkButton.setHoverTooltips(Component.literal("开启精准采集模式，4倍耗电。"));
+            new TextTexture("")
+                .setSupplier(() -> silk.translate().getString())
+                .setDropShadow(false)
+                .setColor(ChatFormatting.GRAY.getColor()),
+            new TextTexture("")
+                .setSupplier(() -> silk.translate().getString())
+                .setDropShadow(false)
+                .setColor(ChatFormatting.GREEN.getColor()));
+        this.silkButton.setHoverTooltips(silk_tooltip.translate());
         group.addWidget(this.silkButton);
 
         return group;
@@ -354,7 +401,7 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
     }
 
     private void addDisplayText(@NotNull List<Component> textList) {
-        textList.add(Component.literal("挖掘: ").append(String.valueOf(getRecipeLogic().getOreAmount())));
+        textList.add(mined_prefix.translate().append(String.valueOf(getRecipeLogic().getOreAmount())));
         if (getRecipeLogic().isDone())
             textList.add(Component.translatable("gtceu.multiblock.large_miner.done")
                     .setStyle(Style.EMPTY.withColor(ChatFormatting.GREEN)));
