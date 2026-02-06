@@ -2,6 +2,8 @@ package io.github.cpearl0.ctnhcore.client.ponder;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.common.data.GTItems;
+import com.mo_guang.ctpp.common.machine.multiblock.BigDamMachine;
+import com.mo_guang.ctpp.registry.CTPPMultiblockMachines;
 import com.simibubi.create.AllBlocks;
 import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.CTNHCore;
@@ -21,7 +23,7 @@ public final class CTNHPonderTags {
     @EN("CTNH Kinetic Machine Ponders")
     static Lang KineticDesc;
 
-    @CN("CTNH电力")
+    @CN("CTNH电力机器")
     @EN("CTNH Electric Machine")
     static Lang ElectricTitle;
     @CN("CTNH电力机器思索")
@@ -35,19 +37,19 @@ public final class CTNHPonderTags {
         helper.registerTag(Kinetic)
                 .addToIndex()
                 .item(AllBlocks.COGWHEEL.asItem(), true, false)
-                .title(KineticTitle.translate().getString())
-                .description(KineticDesc.translate().getString())
+                .title(KineticTitle.translate().getContents().toString())
+                .description(KineticDesc.translate().getContents().toString())
                 .register();
 
         helper.registerTag(Electric)
                 .addToIndex()
-                .item(GTItems.WIRELESS.asItem(), true, false)
-                .title(ElectricTitle.translate().getString())
-                .description(ElectricDesc.translate().getString())
+                .item(GTItems.COVER_WIRELESS_TRANSMITTER.asItem(), true, false)
+                .title(ElectricTitle.translate().getContents().toString())
+                .description(ElectricDesc.translate().getContents().toString())
                 .register();
 
         helper.addToTag(Kinetic)
-                .add(GTCEu.id("big_dam"));
+                .add(CTPPMultiblockMachines.BIG_DAM.getId());
 
 
         helper.addToTag(Electric);
