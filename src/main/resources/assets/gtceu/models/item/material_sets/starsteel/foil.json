@@ -1,6 +1,6 @@
 {
-  "parent": "gtceu:item/material_sets/shiny/foil",
+  "parent": "item/generated",
   "textures": {
-    "layer1": "gtceu:item/material_sets/starsteel/foil"
+    "layer0": "gtceu:item/material_sets/starsteel/foil"
   }
 }
