@@ -755,6 +755,10 @@ public class ChineseLangHandler {
 
         provider.add("ctnh.machine.naquadah_reactor.tooltip", "效率: %s%%");
         provider.add("ctnh.machine.rocket_engine.tooltip", "效率: %s%%");
+
+        //tconstruct
+        provider.add("modifier.ctnhcore.global_traveller", "环球旅行者");
+
         //
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");

@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": {
+    "item": "createdieselgenerators:distillation_controller"
+  },
+  "cooling_time": 108,
+  "fluid": {
+    "amount": 144,
+    "fluid": "gtceu:wrought_iron"
+  },
+  "result": "createmetallurgy:foundry_unit"
+}
