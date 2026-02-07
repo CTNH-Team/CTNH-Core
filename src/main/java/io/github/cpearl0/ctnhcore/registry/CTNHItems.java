@@ -1,7 +1,12 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.item.component.ElectricStats;
+import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import io.github.cpearl0.ctnhcore.common.item.*;
 import io.github.cpearl0.ctnhcore.common.item.debug.ReloadItem;
+import io.github.cpearl0.ctnhcore.data.item.CrystalItems;
 import io.github.cpearl0.ctnhcore.data.materials.ChemicalItems;
 
 import com.gregtechceu.gtceu.api.item.ComponentItem;
@@ -21,6 +26,8 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Suffix;
 
 import static com.gregtechceu.gtceu.common.data.GTItems.attach;
+import static com.gregtechceu.gtceu.common.data.GTItems.modelPredicate;
+import static com.gregtechceu.gtceu.common.data.models.GTModels.overrideModel;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 @Suffix("tooltip")
@@ -487,6 +494,8 @@ public class CTNHItems {
             .properties(properties -> properties.rarity(Rarity.RARE))
             .register();
 
+
+
     public static ItemEntry<ComponentItem> ADVANCED_RAM_WAFER;
     public static ItemEntry<ComponentItem> ADVANCED_RAM_CHIP;
     public static ItemEntry<ComponentItem> PRIMARY_STEW;
@@ -500,5 +509,6 @@ public class CTNHItems {
     public static void init() {
         registerItem();
         ChemicalItems.init();
+        CrystalItems.init();
     }
 }
