@@ -5,12 +5,12 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Key;
 
-public class PonderTagsLang {
+public class CTNHPonderTagsLang {
     @Key("ponder.tag.kinetic")
     @CN("CTNH机械机器")
     @EN("CTNH Kinetic Machine")
     static Lang Kinetic;
-    @Key("ponder.tag.kinetic")
+    @Key("ponder.tag.electric")
     @CN("CTNH电力机器")
     @EN("CTNH Electric Machine")
     static Lang Electric;
@@ -18,7 +18,7 @@ public class PonderTagsLang {
     @CN("CTNH机械机器思索")
     @EN("CTNH Kinetic Machine Ponders")
     static Lang KineticDescription;
-    @Key("ponder.tag.kinetic.description")
+    @Key("ponder.tag.electric.description")
     @CN("CTNH电力机器思索")
     @EN("CTNH Electric Machine Ponders")
     static Lang ElectricDescription;
