@@ -71,6 +71,26 @@ public class CrystalItems {
             .lang("Resonance Crystal Blank")
             .register();
 
+    public static ItemEntry<ComponentItem> ENERGY_CRYSTAL_GRANULE = REGISTRATE.item("energy_crystal_granule", ComponentItem::create)
+            .cnlang("能量水晶晶粒")
+            .lang("Energy Crystal Granule")
+            .register();
+
+    public static ItemEntry<ComponentItem> LAPOTRON_CRYSTAL_GRANULE = REGISTRATE.item("lapotron_crystal_granule", ComponentItem::create)
+            .cnlang("兰波顿水晶晶粒")
+            .lang("Lapotron Crystal Granule")
+            .register();
+
+    public static ItemEntry<ComponentItem> RESONANCE_CRYSTAL_GRANULE = REGISTRATE.item("resonance_crystal_granule", ComponentItem::create)
+            .cnlang("共振水晶晶粒")
+            .lang("Resonance Crystal Granule")
+            .register();
+
+    public static ItemEntry<ComponentItem> ECHO_CRYSTAL_GRANULE = REGISTRATE.item("echo_crystal_granule", ComponentItem::create)
+            .cnlang("回响水晶晶粒")
+            .lang("Echo Crystal Granule")
+            .register();
+
     public static void init(){
 
     }
