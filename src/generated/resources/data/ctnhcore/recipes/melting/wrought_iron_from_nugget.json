@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": {
+    "item": "gtceu:wrought_iron_nugget"
+  },
+  "result": {
+    "amount": 16,
+    "fluid": "gtceu:wrought_iron"
+  },
+  "temperature": 600,
+  "time": 5
+}

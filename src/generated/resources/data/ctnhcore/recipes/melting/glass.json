@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": {
+    "item": "gtceu:glass_dust"
+  },
+  "result": {
+    "amount": 72,
+    "fluid": "gtceu:glass"
+  },
+  "temperature": 800,
+  "time": 90
+}

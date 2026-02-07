@@ -28,6 +28,10 @@ public class CTNHCore {
         DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
     }
 
+    public static ResourceLocation asResource(String path) {
+        return ResourceLocation.tryBuild(CTNHCore.MODID, path);
+    }
+
     public static ResourceLocation id(String name) {
         return ResourceLocation.tryBuild(MODID, name);
     }

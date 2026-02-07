@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry.material;
 
+import com.gregtechceu.gtceu.data.pack.GTDynamicResourcePack;
 import io.github.cpearl0.ctnhcore.data.CTNHMaterialFlags;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
@@ -15,8 +16,7 @@ import appeng.core.definitions.AEItems;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static committee.nova.mods.avaritia.init.registry.ModBlocks.neutron;
-import static committee.nova.mods.avaritia.init.registry.ModItems.neutron_ingot;
-import static committee.nova.mods.avaritia.init.registry.ModItems.neutron_nugget;
+import static committee.nova.mods.avaritia.init.registry.ModItems.*;
 
 public class GTMaterialAddon {
 
@@ -205,7 +205,8 @@ public class GTMaterialAddon {
         Neutronium.setProperty(
                 PropertyKey.BLAST,
                 new BlastProperty(9000, BlastProperty.GasTier.HIGHEST, 491250, 144 * 20, -1, -1));
-        Neutronium.setMaterialARGB(0x161616);
+        Neutronium.setMaterialARGB(0xf4f4f4);
+        Neutronium.setMaterialIconSet(CTNHMaterials.MaterialIcons.Neutron);
         NaquadahEnriched.addFlags(GENERATE_BOLT_SCREW);
         Europium.addFlags(GENERATE_BOLT_SCREW);
         Brass.addFlags(GENERATE_DENSE);
@@ -237,5 +238,6 @@ public class GTMaterialAddon {
         TagPrefix.ingot.setIgnored(GTMaterials.Neutronium, neutron_ingot);
         TagPrefix.nugget.setIgnored(GTMaterials.Neutronium, neutron_nugget);
         TagPrefix.block.setIgnored(GTMaterials.Neutronium, neutron);
+        TagPrefix.gear.setIgnored(Neutronium, neutron_gear);
     }
 }

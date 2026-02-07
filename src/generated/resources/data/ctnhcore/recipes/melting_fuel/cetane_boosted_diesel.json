@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:melting_fuel",
+  "duration": 200,
+  "fluid": {
+    "amount": 1,
+    "fluid": "gtceu:cetane_boosted_diesel"
+  },
+  "rate": 75,
+  "temperature": 5000
+}

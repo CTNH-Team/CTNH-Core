@@ -1003,6 +1003,7 @@ public class CTNHMaterials {
                 .secondaryColor(0x33342c).iconSet(MaterialIconSet.RADIOACTIVE).appendFlags(GTMaterials.EXT_METAL)
                 .element(CTNHElements.Th232).buildAndRegister();
 
+
         CreateMaterials.init();
 
         AdastraMaterials.init();
@@ -1029,6 +1030,7 @@ public class CTNHMaterials {
         UncategorizedMaterials.init();
 
         WetWareLineMaterials.init();
+        SpecialMaterials.init();
         CombustibleIce.setFormula("(CH4)(H2O)", true);
 
         var ore = new OreProperty();
@@ -1099,5 +1101,6 @@ public class CTNHMaterials {
     public static class MaterialIcons {
 
         public static MaterialIconSet StarsteelIcon = new MaterialIconSet("starsteel", METALLIC);
+        public static MaterialIconSet Neutron = new MaterialIconSet("neutron", DULL);
     }
 }
