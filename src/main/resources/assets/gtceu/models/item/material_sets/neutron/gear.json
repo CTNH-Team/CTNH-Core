@@ -1,7 +1,7 @@
 {
-  "parent": "minecraft:item/generated",
+  "parent": "item/generated",
   "textures": {
-    "layer0": "avaritia_integration:item/neutron/neutron_bolt",
+    "layer0": "gtceu:item/material_sets/neutron/gear",
     "halo": "avaritia:misc/halo_noise"
   },
   "loader": "avaritia:halo",

@@ -1099,5 +1099,6 @@ public class CTNHMaterials {
     public static class MaterialIcons {
 
         public static MaterialIconSet StarsteelIcon = new MaterialIconSet("starsteel", METALLIC);
+        public static MaterialIconSet Neutron = new MaterialIconSet("neutron", DULL);
     }
 }

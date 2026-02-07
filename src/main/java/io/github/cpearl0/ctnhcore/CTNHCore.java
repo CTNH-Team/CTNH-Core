@@ -29,7 +29,7 @@ public class CTNHCore {
     }
 
     public static ResourceLocation asResource(String path) {
-        return new ResourceLocation(CTNHCore.MODID, path);
+        return ResourceLocation.tryBuild(CTNHCore.MODID, path);
     }
 
     public static ResourceLocation id(String name) {

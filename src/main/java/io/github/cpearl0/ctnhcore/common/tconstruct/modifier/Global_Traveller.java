@@ -86,10 +86,10 @@ public class Global_Traveller extends Modifier implements TooltipModifierHook, B
     static Lang global_none;
 
     public static final Capability<IItemHandler> ITEM_HANDLER_CAPABILITY = ForgeCapabilities.ITEM_HANDLER;
-    private final ResourceLocation X = new ResourceLocation(CTNHCore.MODID, "global_traveller_x");
-    private final ResourceLocation Y = new ResourceLocation(CTNHCore.MODID, "global_traveller_y");
-    private final ResourceLocation Z = new ResourceLocation(CTNHCore.MODID, "global_traveller_z");
-    private final ResourceLocation WORLD = new ResourceLocation(CTNHCore.MODID, "global_traveller_dimension");
+    private final ResourceLocation X = ResourceLocation.tryBuild(CTNHCore.MODID, "global_traveller_x");
+    private final ResourceLocation Y = ResourceLocation.tryBuild(CTNHCore.MODID, "global_traveller_y");
+    private final ResourceLocation Z = ResourceLocation.tryBuild(CTNHCore.MODID, "global_traveller_z");
+    private final ResourceLocation WORLD = ResourceLocation.tryBuild(CTNHCore.MODID, "global_traveller_dimension");
 
     // 不再使用 TConstruct.makeTranslation，直接使用 Lang 对象
 
@@ -155,7 +155,7 @@ public class Global_Traveller extends Modifier implements TooltipModifierHook, B
         ModDataNBT persistentData = tool.getPersistentData();
         if (persistentData.contains(X, 3) && persistentData.contains(Y, 3) && persistentData.contains(Z, 3) && persistentData.contains(WORLD, 8)) {
             BlockPos pos = new BlockPos(persistentData.getInt(X), persistentData.getInt(Y), persistentData.getInt(Z));
-            ServerLevel level = context.getLevel().getServer().getLevel(ResourceKey.create(Registries.DIMENSION, new ResourceLocation(persistentData.getString(WORLD))));
+            ServerLevel level = context.getLevel().getServer().getLevel(ResourceKey.create(Registries.DIMENSION, ResourceLocation.tryParse(persistentData.getString(WORLD))));
             if (level != null) {
                 BlockEntity block = level.getBlockEntity(pos);
                 if (block != null) {

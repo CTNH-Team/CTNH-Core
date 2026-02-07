@@ -1,6 +1,6 @@
 {
-  "parent": "gtceu:item/material_sets/shiny/dust",
+  "parent": "item/generated",
   "textures": {
-    "layer1": "gtceu:item/material_sets/starsteel/dust_overlay"
+    "layer0": "gtceu:item/material_sets/starsteel/dust_overlay"
   }
 }

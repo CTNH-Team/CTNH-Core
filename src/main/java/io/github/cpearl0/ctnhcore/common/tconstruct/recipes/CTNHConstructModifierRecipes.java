@@ -34,7 +34,7 @@ public class CTNHConstructModifierRecipes extends CTNHConstructRecipeProvider {
         String folder = "ability/";
 
         ModifierRecipeBuilder.modifier(CTNHConstructModifier.Ids.GLOBALTRAVELLER)
-                .addInput(ForgeRegistries.ITEMS.getValue(new ResourceLocation("ars_nouveau:stable_warp_scroll")))
+                .addInput(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("ars_nouveau:stable_warp_scroll")))
                 .exactLevel(1)
                 .setSlots(SlotType.ABILITY, 1)
                 .setTools(TinkerTags.Items.DURABILITY)
