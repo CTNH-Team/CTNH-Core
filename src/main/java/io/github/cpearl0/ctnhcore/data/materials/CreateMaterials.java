@@ -25,12 +25,7 @@ public class CreateMaterials {
     public static Material OCHRUM_SLURRY;
     public static Material VERIDIUM_SLURRY;
     // public static Material MAGNETO_RESONATIC;
-    public static Material QUARTZ_GLASS;
-    public static Material AMMONIUM_FLUORIDE;
-    public static Material DIBISMUTHHYDROBORAT;
-    public static Material BISMUTH_TELLURITE;
-    public static Material CIRCUIT_COMPOUND;
-    public static Material TUNGSTEN_TRIOXIDE;
+
 
     public static void init() {
 
@@ -122,46 +117,6 @@ public class CreateMaterials {
         // .components(Zanite, 1, Ambrosium, 1, Skyjade, 1, CUBIC_ZIRCONIA, 1, MagneticSteel, 1)
         // .buildAndRegister();
 
-        QUARTZ_GLASS = REGISTRATE.material(CTNHCore.id("quartz_glass"))
-                .cnlang("石英玻璃")
-                .dust()
-                .components(Glass, 1, CertusQuartz, 1)
-                .color(0xD1F1FA)
-                .buildAndRegister();
 
-        AMMONIUM_FLUORIDE = REGISTRATE.material(CTNHCore.id("ammonium_fluoride"))
-                .cnlang("氟化铵")
-                .formula("NH4F")
-                .liquid()
-                .color(0xFFCCCC)
-                .buildAndRegister();
-
-        DIBISMUTHHYDROBORAT = REGISTRATE.material(CTNHCore.id("dibismuthhydroborat"))
-                .cnlang("硼氢二铋")
-                .dust()
-                .color(0x0ED138)
-                .components(Boron, 1, Hydrogen, 1, Bismuth, 2)
-                .buildAndRegister();
-
-        BISMUTH_TELLURITE = REGISTRATE.material(CTNHCore.id("bismuth_tellurite"))
-                .cnlang("亚碲酸铋")
-                .dust()
-                .color(0x95EB88)
-                .components(Bismuth, 2, Tellurium, 3)
-                .buildAndRegister();
-
-        CIRCUIT_COMPOUND = REGISTRATE.material(CTNHCore.id("circuit_compound"))
-                .cnlang("电路板化合物")
-                .dust()
-                .color(0x4A4A4A)
-                .components(DIBISMUTHHYDROBORAT, 3, BISMUTH_TELLURITE, 2, IndiumGalliumPhosphide, 1)
-                .buildAndRegister();
-
-        TUNGSTEN_TRIOXIDE = REGISTRATE.material(CTNHCore.id("tungsten_trioxide"))
-                .cnlang("三氧化钨")
-                .formula("WO3")
-                .dust()
-                .color(0x474444)
-                .buildAndRegister();
     }
 }

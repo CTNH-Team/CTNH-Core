@@ -87,7 +87,15 @@ public class RecipeRemoval {
                 "gtceu:assembly_line/wetware_super_computer_uv",
                 "gtceu:assembly_line/wetware_mainframe_uhv",
                 "gtceu:research_station/1x_gtceu_wetware_processor_assembly",
-                "gtceu:research_station/1x_gtceu_wetware_processor_computer"
+                "gtceu:research_station/1x_gtceu_wetware_processor_computer",
+                //原版样板总成
+                "gtceu:assembly_line/me_pattern_buffer",
+                "gtceu:assembly_line/me_pattern_buffer_proxy",
+                //ME库存输入总线
+                "gtceu:assembler/me_stocking_import_bus",
+                //变电站
+                "gtceu:shaped/power_substation"
+
         ));
 
         for (String path : removePaths) {
