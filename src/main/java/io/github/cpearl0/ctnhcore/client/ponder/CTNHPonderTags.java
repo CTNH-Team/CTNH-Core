@@ -15,21 +15,6 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 
 public final class CTNHPonderTags {
 
-    //Translates
-    @CN("CTNH机械机器")
-    @EN("CTNH Kinetic Machine")
-    static Lang KineticTitle;
-    @CN("CTNH机械机器思索")
-    @EN("CTNH Kinetic Machine Ponders")
-    static Lang KineticDesc;
-
-    @CN("CTNH电力机器")
-    @EN("CTNH Electric Machine")
-    static Lang ElectricTitle;
-    @CN("CTNH电力机器思索")
-    @EN("CTNH Electric Machine Ponders")
-    static Lang ElectricDesc;
-
     public static final ResourceLocation Kinetic = ResourceLocation.tryBuild(CTNHCore.MODID, "kinetic");
     public static final ResourceLocation Electric = ResourceLocation.tryBuild(CTNHCore.MODID, "electric");
 
@@ -37,15 +22,11 @@ public final class CTNHPonderTags {
         helper.registerTag(Kinetic)
                 .addToIndex()
                 .item(AllBlocks.COGWHEEL.asItem(), true, false)
-                .title(KineticTitle.translate().getContents().toString())
-                .description(KineticDesc.translate().getContents().toString())
                 .register();
 
         helper.registerTag(Electric)
                 .addToIndex()
                 .item(GTItems.COVER_WIRELESS_TRANSMITTER.asItem(), true, false)
-                .title(ElectricTitle.translate().getContents().toString())
-                .description(ElectricDesc.translate().getContents().toString())
                 .register();
 
         helper.addToTag(Kinetic)
