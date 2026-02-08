@@ -136,7 +136,7 @@ dependencies {
     modImplementation("slimeknights.tconstruct:TConstruct:1.20.1-${tcon_version}")
     modImplementation ("slimeknights.mantle:Mantle:1.20.1-${mantle_version}")
     //加快匠魂材料渲染
-    modImplementation ("curse.maven:too-many-tinkers-1437457:7488907")
+    modRuntimeOnly ("curse.maven:too-many-tinkers-1437457:7488907")
 
 //    modImplementation("curse.maven:xaeros-minimap-263420:6778028")
 //    modImplementation("curse.maven:xaeros-world-map-317780:6778091")

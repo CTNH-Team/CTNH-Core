@@ -79,4 +79,64 @@ public class CTNHKineticPondersLang {
     @CN("现在你可以正常使用粉碎工厂了。请注意，此机器不会产生任何研磨副产物")
     @EN("Now you can use the smashing factory normally. Please note that this machine does not produce any grinding by-products")
     static Lang SmashingFactoryText8;
+    @Key("ponder.meadow_common.title")
+    @CN("牧场")
+    @EN("Meadow")
+    static Lang MeadowTitle;
+    @Key("ponder.meadow_common.header")
+    @CN("如何搭建牧场")
+    @EN("How to build Meadow")
+    static Lang MeadowHeader;
+    @Key("ponder.meadow_common.text_1")
+    @CN("首先，你需要一个牧场主方块")
+    @EN("First, you need a meadow main block")
+    static Lang MeadowText1;
+    @Key("ponder.meadow_common.text_2")
+    @CN("使用终端一键放置")
+    @EN("One click placement using the terminal")
+    static Lang MeadowText2;
+    @Key("ponder.meadow_common.text_3")
+    @CN("睡莲和水不能自动放置，记得手动填充")
+    @EN("Lily pad and water can not automatically place, remember to manually fill them in")
+    static Lang MeadowText3;
+    @Key("ponder.meadow_common.text_4")
+    @CN("确保有足够的空间用于输出物品和液体")
+    @EN("Ensure sufficient space for output items and liquids")
+    static Lang MeadowText4;
+    @Key("ponder.meadow_common.text_5")
+    @CN("别忘了将电路设置为0")
+    @EN("Don't forget to set the circuit to 0")
+    static Lang MeadowText5;
+    @Key("ponder.meadow_common.text_6")
+    @CN("接入应力")
+    @EN("Access stress")
+    static Lang MeadowText6;
+    @Key("ponder.meadow_common.text_7")
+    @CN("放入动物，动物越多，产量越高")
+    @EN("Put in animals, the more animals there are, the more they produce")
+    static Lang MeadowText7;
+    @Key("ponder.meadow_common.text_8")
+    @CN("牛的产出是牛奶和皮革")
+    @EN("The output of cows is milk and leather")
+    static Lang MeadowText8;
+    @Key("ponder.meadow_common.text_9")
+    @CN("羊的产出是羊毛")
+    @EN("The output of sheep is wool")
+    static Lang MeadowText9;
+    @Key("ponder.meadow_common.text_10")
+    @CN("猪的产出是猪肉")
+    @EN("The output of pigs is pork")
+    static Lang MeadowText10;
+    @Key("ponder.meadow_common.text_11")
+    @CN("鸡的产出是鸡蛋")
+    @EN("The output of chickens is eggs")
+    static Lang MeadowText11;
+    @Key("ponder.meadow_common.text_12")
+    @CN("所有动物都产生粪便")
+    @EN("All animals produce feces")
+    static Lang MeadowText12;
+    @Key("ponder.meadow_common.text_13")
+    @CN("最后，放置容器，你就可以完美使用牧场了，如果无法运行，试着多加几个输出口！")
+    @EN("Finally, place the container and you can use the meadow perfectly,if it doesn't work, try adding more output ports!")
+    static Lang MeadowText13;
 }
