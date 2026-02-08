@@ -23,7 +23,9 @@ public final class CTNHPonderTags {
                 .register();
 
         helper.addToTag(Kinetic)
-                .add(CTPPMultiblockMachines.BIG_DAM.getId());
+                .add(CTPPMultiblockMachines.BIG_DAM.getId())
+                .add(CTPPMultiblockMachines.SMASHING_FACTORY.getId());
+
 
 
         helper.addToTag(Electric);
