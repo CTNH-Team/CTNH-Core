@@ -3,9 +3,16 @@ package io.github.cpearl0.ctnhcore.data.recipe;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import appeng.core.definitions.AEParts;
+import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
+import com.gregtechceu.gtceu.common.data.GTItems;
+import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
+import com.gregtechceu.gtceu.data.recipe.GTCraftingComponents;
+import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.moguang.ctnhbio.registry.CBItems;
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.item.CrystalItems;
 import io.github.cpearl0.ctnhcore.data.materials.SpecialMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
@@ -15,8 +22,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
+import tech.luckyblock.mcmod.ctnhenergy.common.item.DynamoCardItem;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEItems;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines;
+import tech.luckyblock.mcmod.ctnhenergy.registry.CEMultiblock;
 
 import java.util.function.Consumer;
 
@@ -28,15 +37,16 @@ import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.moguang.ctnhbio.data.materials.OrganicMaterials.Organic_Compound;
+import static com.moguang.ctnhbio.registry.CBRecipeTypes.BIOELECTRIC_FORGE_RECIPES;
 import static io.github.cpearl0.ctnhcore.data.materials.SpecialMaterials.RESONANCE_CRYSTAL;
 import static io.github.cpearl0.ctnhcore.data.materials.SpecialMaterials.STELLAR_ENERGY;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.*;
 import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.starlight;
 
-public class CTNHEnergyCellRecipes {
+public class EUCellRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("me_pattern_buffer_ctnh")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("me_pattern_buffer"))
                 .inputItems(DUAL_IMPORT_HATCH[LuV], 1)
                 .inputItems(EMITTER_LuV, 1)
                 .inputItems(CustomTags.LuV_CIRCUITS, 4)
@@ -55,7 +65,7 @@ public class CTNHEnergyCellRecipes {
                         .EUt(VA[IV]))
                 .duration(600).EUt(VA[LuV]).save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("me_pattern_buffer_proxy_ctnh")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("me_pattern_buffer_proxy"))
                 .inputItems(HULL[LuV], 1)
                 .inputItems(SENSOR_LuV, 2)
                 .inputItems(CustomTags.LuV_CIRCUITS, 1)
@@ -72,7 +82,7 @@ public class CTNHEnergyCellRecipes {
                         .EUt(VA[IV]))
                 .duration(600).EUt(VA[LuV]).save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("me_tag_stocking_input_bus_ctnh")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("me_tag_stocking_input_bus"))
                 .inputItems(CEMachines.STOCKING_IMPORT_BUS_ME, 1)
                 .inputItems(CustomTags.LuV_CIRCUITS, 4)
                 .inputItems(CBItems.META_CORE, 4)
@@ -93,7 +103,7 @@ public class CTNHEnergyCellRecipes {
                         .EUt(VA[IV]))
                 .duration(600).EUt(VA[LuV]).save(provider);
 
-        ASSEMBLER_RECIPES.recipeBuilder("me_stocking_import_bus_ctnh")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("me_stocking_import_bus"))
                 .inputItems(ITEM_IMPORT_BUS[IV])
                 .inputItems(AEParts.INTERFACE.stack(1))
                 .inputItems(CONVEYOR_MODULE_IV)
@@ -103,7 +113,7 @@ public class CTNHEnergyCellRecipes {
                 .duration(300).EUt(VA[IV])
                 .addMaterialInfo(true).save(provider);
 
-        ASSEMBLER_RECIPES.recipeBuilder("me_substation_hatch_ctnh")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("me_substation_hatch"))
                 .inputItems(ENERGY_INPUT_HATCH_4A)
                 .inputItems(ENERGY_OUTPUT_HATCH_4A)
                 .inputItems(AEBlocks.INTERFACE,4)
@@ -116,7 +126,7 @@ public class CTNHEnergyCellRecipes {
                 .duration(2000).EUt(VA[IV])
                 .addMaterialInfo(true).save(provider);
 
-        ASSEMBLER_RECIPES.recipeBuilder("superconducting_coil_ctnh")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("superconducting_coil"))
                 .inputItems(wireGtDouble,SamariumIronArsenicOxide,64)
                 .inputItems(foil,NiobiumTitanium,64)
                 .inputFluids(Trinium.getFluid(L*64))
@@ -124,33 +134,7 @@ public class CTNHEnergyCellRecipes {
                 .duration(100).EUt(VA[IV])
                 .addMaterialInfo(true).save(provider);
 
-//        ASSEMBLER_RECIPES.recipeBuilder("dynamo_card_lv_ctnh")
-//                .inputItems(AEItems.ADVANCED_CARD)
-//                .inputItems(AEItems.CAPACITY_CARD)
-//                .inputItems(AEItems.SPEED_CARD)
-//                .inputItems(AEItems.ENERGY_CARD)
-//                .inputItems(CustomTags.LV_CIRCUITS,3)
-//                .inputItems(EMITTER_LV,4)
-//                .inputItems(SENSOR_LV,4)
-//                .inputItems(GTBlocks.SUPERCONDUCTING_COIL,1)
-//                .inputFluids(Trinium.getFluid(L*LV))
-//              .outputItems(CEItems.DYNAMO_CARD,1)  把LV改成各个电压的，除了ULV以外,ULV在下面被注释了
-//                .duration(600).EUt(VA[LV])
-//                .addMaterialInfo(true).save(provider);
-//        VanillaRecipeHelper.addShapedRecipe(
-//                provider, "dynamo_card_ulv_ctnh",
-//                CEItems.DYNAMO_CARD,
-//                "ABC", "DED", "FGH",
-//                'A', AEItems.CAPACITY_CARD,
-//                'B', EMITTER_LV,
-//                'C', AEItems.SPEED_CARD,
-//                'D', TREATED_WOOD_BOAT,
-//                'E', GTBlocks.SUPERCONDUCTING_COIL,
-//                'F', AEItems.ADVANCED_CARD,
-//                'G', SENSOR_LV,
-//                'H', AEItems.ENERGY_CARD);
-
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("me_energy_input_hatch_ctnh")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("me_energy_input_hatch"))
                 .inputItems(ENERGY_INPUT_HATCH_4A[UV],4)
                 .inputItems(TRANSFORMER[UV],4)
                 .inputItems(GTBlocks.FUSION_COIL,16)
@@ -175,7 +159,7 @@ public class CTNHEnergyCellRecipes {
                 .stationResearch(b -> b.researchStack(ENERGY_INPUT_HATCH_4A[UV].asStack()).CWUt(64).EUt(VA[UV]))
                 .duration(1200).EUt(VA[UV]).save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("me_energy_output_hatch_ctnh")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("me_energy_output_hatch"))
                 .inputItems(ENERGY_OUTPUT_HATCH_4A[UV],4)
                 .inputItems(TRANSFORMER[UV],4)
                 .inputItems(GTBlocks.FUSION_COIL,16)
@@ -200,13 +184,13 @@ public class CTNHEnergyCellRecipes {
                 .stationResearch(b -> b.researchStack(ENERGY_OUTPUT_HATCH_4A[UV].asStack()).CWUt(64).EUt(VA[UV]))
                 .duration(1200).EUt(VA[UV]).save(provider);
 
-        AUTOCLAVE_RECIPES.recipeBuilder("pure_certus_energy_crystal_autoclave_ctnh")
+        AUTOCLAVE_RECIPES.recipeBuilder(CTNHCore.id("pure_certus_energy_crystal_autoclave"))
                 .inputItems(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED,1)
                 .inputItems(ENERGIUM_DUST,63)
                 .inputFluids(STELLAR_ENERGY.getFluid(144))
                 .chancedOutput(CrystalItems.PURE_CERTUS_ENERGIUM_CRYSTAL.asStack(),2500,250)
                 .duration(2400).EUt(VA[EV]).save(provider);
-        CRYSTALLIZER.recipeBuilder("pure_certus_energy_crystal_crystallizer_ctnh")
+        CRYSTALLIZER.recipeBuilder(CTNHCore.id("pure_certus_energy_crystal_crystallizer"))
                 .inputItems(CrystalItems.ENERGY_CRYSTAL_GRANULE,1)
                 .inputItems(ENERGIUM_DUST,62)
                 .inputItems(dust,NetherStar,10)
@@ -214,18 +198,18 @@ public class CTNHEnergyCellRecipes {
                 .chancedOutput(CrystalItems.PURE_CERTUS_ENERGIUM_CRYSTAL.asStack(),7500,500)
                 .blastFurnaceTemp(3200)
                 .duration(2400).EUt(VA[IV]).save(provider);
-        FORGE_HAMMER_RECIPES.recipeBuilder("pure_certus_energy_crystal_forge_hammer_ctnh")
+        FORGE_HAMMER_RECIPES.recipeBuilder(CTNHCore.id("pure_certus_energy_crystal_forge_hammer"))
                 .inputItems(CrystalItems.PURE_CERTUS_ENERGIUM_CRYSTAL,1)
                 .outputItems(CrystalItems.ENERGY_CRYSTAL_GRANULE,8)
                 .duration(200).EUt(VA[IV]).save(provider);
 
-        AUTOCLAVE_RECIPES.recipeBuilder("pure_certus_lapotron_crystal_autoclave_ctnh")
+        AUTOCLAVE_RECIPES.recipeBuilder(CTNHCore.id("pure_certus_lapotron_crystal_autoclave"))
                 .inputItems(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED,1)
                 .inputItems(dust,Lapotron,126)
                 .inputFluids(STELLAR_ENERGY.getFluid(288))
                 .chancedOutput(CrystalItems.PURE_CERTUS_LAPOTRON_CRYSTAL.asStack(),2000,500)
                 .duration(4800).EUt(VA[IV]).save(provider);
-        CRYSTALLIZER.recipeBuilder("pure_certus_lapotron_crystal_crystallizer_ctnh")
+        CRYSTALLIZER.recipeBuilder(CTNHCore.id("pure_certus_lapotron_crystal_crystallizer"))
                 .inputItems(CrystalItems.LAPOTRON_CRYSTAL_GRANULE,1)
                 .inputItems(dust,Lapotron,125)
                 .inputItems(dust,NetherStar,20)
@@ -233,12 +217,12 @@ public class CTNHEnergyCellRecipes {
                 .chancedOutput(CrystalItems.PURE_CERTUS_LAPOTRON_CRYSTAL.asStack(),7000,500)
                 .blastFurnaceTemp(5100)
                 .duration(4800).EUt(VA[LuV]).save(provider);
-        FORGE_HAMMER_RECIPES.recipeBuilder("pure_certus_lapotron_crystal_forge_hammer_ctnh")
+        FORGE_HAMMER_RECIPES.recipeBuilder(CTNHCore.id("pure_certus_lapotron_crystal_forge_hammer"))
                 .inputItems(CrystalItems.PURE_CERTUS_LAPOTRON_CRYSTAL,1)
                 .outputItems(CrystalItems.LAPOTRON_CRYSTAL_GRANULE,6)
                 .duration(400).EUt(VA[LuV]).save(provider);
 
-        MIXER_RECIPES.recipeBuilder("resonance_crystal_dust_ctnh")
+        MIXER_RECIPES.recipeBuilder(CTNHCore.id("resonance_crystal_dust"))
                 .inputItems(dust,CTNHMaterials.LightningPattern,5)
                 .inputItems(dust, Amethyst,5)
                 .inputItems(ENERGIUM_DUST,5)
@@ -247,23 +231,23 @@ public class CTNHEnergyCellRecipes {
                 .inputItems(dust,CTNHMaterials.Skyjade,5)
                 .outputItems(dust, RESONANCE_CRYSTAL,30)
                 .duration(1200).EUt(VA[IV]).save(provider);
-        AUTOCLAVE_RECIPES.recipeBuilder("resonance_crystal_autoclave_ctnh")
+        AUTOCLAVE_RECIPES.recipeBuilder(CTNHCore.id("resonance_crystal_autoclave"))
                 .inputItems(dust, RESONANCE_CRYSTAL,60)
                 .inputFluids(STELLAR_ENERGY.getFluid(576))
                 .outputItems(CrystalItems.RESONANCE_CRYSTAL_BLANK,1)
                 .duration(2400).EUt(VA[IV]).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("resonance_crystal_blank_assembler_ctnh")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("resonance_crystal_blank_assembler"))
                 .inputItems(CrystalItems.RESONANCE_CRYSTAL_BLANK,1)
                 .inputItems(CustomTags.EV_CIRCUITS,2)
                 .outputItems(CrystalItems.RESONANCE_CRYSTAL,1)
                 .duration(2400).EUt(VA[IV]).save(provider);
-        AUTOCLAVE_RECIPES.recipeBuilder("pure_certus_resonance_crystal_autoclave_ctnh")
+        AUTOCLAVE_RECIPES.recipeBuilder(CTNHCore.id("pure_certus_resonance_crystal_autoclave"))
                 .inputItems(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED,1)
                 .inputItems(dust,RESONANCE_CRYSTAL,120)
                 .inputFluids(STELLAR_ENERGY.getFluid(576))
                 .chancedOutput(CrystalItems.PURE_CERTUS_RESONANCE_CRYSTAL.asStack(),1500,750)
                 .duration(9600).EUt(VA[LuV]).save(provider);
-        CRYSTALLIZER.recipeBuilder("pure_certus_resonance_crystal_crystallizer_ctnh")
+        CRYSTALLIZER.recipeBuilder(CTNHCore.id("pure_certus_resonance_crystal_crystallizer"))
                 .inputItems(CrystalItems.RESONANCE_CRYSTAL_GRANULE,1)
                 .inputItems(dust,RESONANCE_CRYSTAL,120)
                 .inputItems(dust,NetherStar,30)
@@ -271,82 +255,115 @@ public class CTNHEnergyCellRecipes {
                 .chancedOutput(CrystalItems.PURE_CERTUS_RESONANCE_CRYSTAL.asStack(),6500,750)
                 .blastFurnaceTemp(7200)
                 .duration(9600).EUt(VA[ZPM]).save(provider);
-        FORGE_HAMMER_RECIPES.recipeBuilder("pure_certus_resonance_crystal_forge_hammer_ctnh")
+        FORGE_HAMMER_RECIPES.recipeBuilder(CTNHCore.id("pure_certus_resonance_crystal_forge_hammer"))
                 .inputItems(CrystalItems.PURE_CERTUS_RESONANCE_CRYSTAL,1)
                 .outputItems(CrystalItems.RESONANCE_CRYSTAL_GRANULE,4)
                 .duration(800).EUt(VA[ZPM]).save(provider);
-//回响水晶放大后期，下面是EU盘配方
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("eu_cell_housing_ctnh")
+
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("eu_cell_housing"))
                 .inputItems(plateDense,RhodiumPlatedPalladium,4)
                 .inputItems(plateDense,TungstenSteel,4)
                 .inputItems(GTBlocks.FUSION_GLASS,2)
-                .inputItems(CrystalItems.PURE_CERTUS_ENERGIUM_CRYSTAL)
-                .inputItems(CrystalItems.PURE_CERTUS_LAPOTRON_CRYSTAL)
-                .inputItems(CrystalItems.PURE_CERTUS_RESONANCE_CRYSTAL)
                 .inputFluids(SpecialMaterials.ENERGY_ESSENCE_SECRETION.getFluid(144))
                 .outputItems(CEItems.EU_CELL_HOUSING,1)
-                .duration(400).EUt(VA[UV]).save(provider);
+                .duration(400).EUt(VA[LuV]).save(provider);
 
-//        ASSEMBLY_LINE_RECIPES.recipeBuilder("ulv_eu_cell_ctnh")   这里名字随制作出的元件等级改变
-//                .inputItems(CEItems.EU_CELL_HOUSING,1)
-//                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:fluix_glass_cable")),16)
-//                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:fluix_smart_cable")),16)
-//                .inputItems(CEItems.DYNAMO_CARD)
-//                .inputItems(CustomTags.ULV_CIRCUITS,4)   这里是元件等级的电路板
-//                .inputItems(CustomTags.LV_CIRCUITS,4)    这里是元件等级+1的电路板
-//                .inputItems(VOLTAGE_COIL_ULV,4)          这里是元件等级的线圈（做能源仓的那个）
-//                .inputItems(GTBlocks.SUPERCONDUCTING_COIL,4)
-//                .inputItems(GTBlocks.FUSION_COIL,4)
-//                .inputItems(GTMultiMachines.ACTIVE_TRANSFORMER.asStack(),1)
-//                .inputItems(CEMultiblock.POWER_SUBSTATION.asStack(),1)
-//                .inputItems(CEMachines.ME_SUBSTATION_HATCH.asStack(),1)
-//                .inputItems(CrystalItems.PURE_CERTUS_ENERGIUM_CRYSTAL,1)     这是里高纯水晶，到IV后加一个高纯兰波顿，到UV后加一个高纯共振，到UIV后加一个高纯回响
-//                .inputFluids(Neutronium.getFluid(5760))
-//                .inputFluids(SpecialMaterials.ENERGY_ESSENCE_SECRETION.getFluid(5760))
-//                .outputItems(CEItems.EU_CELL[ULV])    输出的电压等级对应的元件
-//                .stationResearch(b -> b.researchStack(CEItems.EU_CELL_HOUSING.asStack()).CWUt(32).EUt(VA[UV]))   这里第一个扫描的是空外壳，后续等级的由前一个等级扫描获得
-//                .duration(2400).EUt(VA[UV]).save(provider);
-
-        FERMENTING.recipeBuilder("energy_essence_secretion_ctnh_1")
+        FERMENTING.recipeBuilder(CTNHCore.id("energy_essence_secretion_1"))
                 .circuitMeta(1)
                 .notConsumableFluid(STELLAR_ENERGY.getFluid(100))
                 .inputFluids(Organic_Compound.getFluid(144))
                 .outputFluids(SpecialMaterials.ENERGY_ESSENCE_SECRETION.getFluid(1000))
                 .EUt(3600).duration(500).save(provider);
-        FERMENTING.recipeBuilder("energy_essence_secretion_ctnh_2")
+        FERMENTING.recipeBuilder(CTNHCore.id("energy_essence_secretion_2"))
                 .circuitMeta(2)
                 .notConsumableFluid(STELLAR_ENERGY.getFluid(1000))
                 .inputFluids(Organic_Compound.getFluid(576))
                 .outputFluids(SpecialMaterials.ENERGY_ESSENCE_SECRETION.getFluid(10000))
                 .EUt(36000).duration(500).save(provider);
-        FERMENTING.recipeBuilder("energy_essence_secretion_ctnh_3")
+        FERMENTING.recipeBuilder(CTNHCore.id("energy_essence_secretion_3"))
                 .circuitMeta(3)
                 .notConsumableFluid(STELLAR_ENERGY.getFluid(10000))
                 .inputFluids(Organic_Compound.getFluid(2304))
                 .outputFluids(SpecialMaterials.ENERGY_ESSENCE_SECRETION.getFluid(100000))
                 .EUt(360000).duration(500).save(provider);
-        FERMENTING.recipeBuilder("energy_essence_secretion_ctnh_4")
+        FERMENTING.recipeBuilder(CTNHCore.id("energy_essence_secretion_4"))
                 .circuitMeta(4)
                 .notConsumableFluid(STELLAR_ENERGY.getFluid(100000))
                 .inputFluids(Organic_Compound.getFluid(4608))
                 .outputFluids(SpecialMaterials.ENERGY_ESSENCE_SECRETION.getFluid(1000000))
                 .EUt(3600000).duration(500).save(provider);
-        FERMENTING.recipeBuilder("energy_essence_secretion_ctnh_5")
+        FERMENTING.recipeBuilder(CTNHCore.id("energy_essence_secretion_5"))
                 .circuitMeta(5)
                 .notConsumableFluid(STELLAR_ENERGY.getFluid(1000000))
                 .inputFluids(Organic_Compound.getFluid(4608*2))
                 .outputFluids(SpecialMaterials.ENERGY_ESSENCE_SECRETION.getFluid(10000000))
                 .EUt(36000000).duration(500).save(provider);
 
-        CULTIVATION_ROOM.recipeBuilder("stellar_energy_ctnh_ulv")
-                .inputItems(CustomTags.ULV_CIRCUITS,10)
-                .inputFluids(STELLAR_ENERGY.getFluid(144))
-                .outputFluidsRanged(new FluidStack(STELLAR_ENERGY.getFluid(), 100), UniformInt.of(144, 144 * LV))
-                .EUt(1920 * LV).duration(2000).save(provider);  //这里需要批量注册为吃的电路板+1的最大输出量
-
-        DIFFERENTIAL_CENTRIFUGE_RECIPES.recipeBuilder("stellar_energy_ctnh_produce")
+        DIFFERENTIAL_CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("stellar_energy_produce"))
                 .inputFluids(starlight.getFluid(1000))
                 .outputFluidsRanged(new FluidStack(STELLAR_ENERGY.getFluid(), 1), UniformInt.of(2, 4))
-                .EUt(6304).duration(1000).save(provider);
+                .EUt(VA[EV]).duration(1000).save(provider);
+
+        for(var tier: tiersBetween(LV, OpV)){
+
+            CULTIVATION_ROOM.recipeBuilder(CTNHCore.id("stellar_energy" + VN[tier].toLowerCase()))
+                    .inputItems(CustomTags.CIRCUITS_ARRAY[tier],10)
+                    .inputFluids(STELLAR_ENERGY.getFluid(144))
+                    .outputFluidsRanged(new FluidStack(STELLAR_ENERGY.getFluid(), 100), UniformInt.of(144, 144 * (tier + 1)))
+                    .EUt(1920 * LV)
+                    .duration(2000)
+                    .save(provider);
+
+            ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("dynamo_card" + VN[tier].toLowerCase()))
+                    .inputItems(AEItems.ADVANCED_CARD)
+                    .inputItems(AEItems.CAPACITY_CARD)
+                    .inputItems(AEItems.SPEED_CARD)
+                    .inputItems(AEItems.ENERGY_CARD)
+                    .inputItems(CustomTags.CIRCUITS_ARRAY[tier],3)
+                    .inputItems(GTCraftingComponents.EMITTER.get(tier),4)
+                    .inputItems(GTCraftingComponents.SENSOR.get(tier),4)
+                    .inputItems(AEItems.ENERGY_CARD,1)
+                    .inputFluids((CTNHCraftingComponents.GT_SUPERCONDUCTING_MATERIAL.getOrDefault(tier, Neutronium)).getFluid(L * 5))
+                    .outputItems(DynamoCardItem.getInstanceByTier(tier),1)
+                    .duration(600).EUt(VA[Math.max(tier, EV)])
+                    .save(provider);
+
+            var recipeType = tier >= LuV ? ASSEMBLY_LINE_RECIPES : BIOELECTRIC_FORGE_RECIPES;
+            var euCellBuilder = recipeType.recipeBuilder(CTNHCore.id("eu_cell" + VN[tier].toLowerCase()))
+                    .inputItems(CEItems.EU_CELL_HOUSING,1)
+                    .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:fluix_glass_cable")),16)
+                    .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:fluix_smart_cable")),16)
+                    .inputItems(DynamoCardItem.getInstanceByTier(tier))
+                    .inputItems(CustomTags.CIRCUITS_ARRAY[tier],4)
+                    .inputItems(CustomTags.CIRCUITS_ARRAY[tier + 1],4)
+                    .inputItems(GTCraftingComponents.VOLTAGE_COIL.get(tier),4)
+                    .inputFluids(SpecialMaterials.ENERGY_ESSENCE_SECRETION.getFluid(5760))
+                    .outputItems(CEItems.EU_CELL[tier])
+                    .duration(2400)
+                    .EUt(VA[Math.max(tier, EV)]);
+
+            if(tier >= IV) euCellBuilder.inputItems(GTBlocks.SUPERCONDUCTING_COIL,4);
+
+            if (tier >= LuV) {
+                euCellBuilder.inputItems(GTMultiMachines.ACTIVE_TRANSFORMER.asStack(),1)
+                        .inputItems(CEMultiblock.POWER_SUBSTATION.asStack(),1)
+                        .inputItems(CEMachines.ME_SUBSTATION_HATCH.asStack(),1)
+                        .inputItems(CrystalItems.PURE_CERTUS_ENERGIUM_CRYSTAL,1);
+
+                var researchStack = CEItems.EU_CELL[tier - 1].asStack();
+                euCellBuilder.stationResearch(b -> b.researchStack(researchStack).CWUt(1 << (tier - IV)).EUt(VA[UV]));
+
+                if(tier >= UV){
+                    euCellBuilder.inputItems(CrystalItems.PURE_CERTUS_RESONANCE_CRYSTAL, 1);
+                }
+
+                if (tier >= UIV){
+                    euCellBuilder.inputItems(CrystalItems.PURE_CERTUS_ECHO_CRYSTAL, 1);
+                }
+            }
+
+            euCellBuilder.save(provider);
+        }
+
     }
 }

@@ -10,27 +10,32 @@ import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.EnderIOMaterials;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import net.minecraft.data.recipes.FinishedRecipe;
 import com.wintercogs.ae2omnicells.common.init.OCItems;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
 import java.util.function.Consumer;
 
-import static com.gregtechceu.gtceu.api.GTValues.VA;
+import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.data.recipe.CustomTags.*;
 import static io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval.removePaths;
 
 public class QuantumOmniRecipes {
+
     public static void init(Consumer<FinishedRecipe> provider) {
-        GTRecipeTypes.ALLOY_SMELTER_RECIPES.recipeBuilder("ender_ingot_ctnh")
-                .inputItems(EnderIOMaterials.VibrantAlloy)
-                .inputItems(EnderIOMaterials.EndSteel)
+        GTRecipeTypes.ALLOY_SMELTER_RECIPES.recipeBuilder(CTNHCore.id("ender_ingot"))
+                .inputItems(TagPrefix.ingot, EnderIOMaterials.VibrantAlloy)
+                .inputItems(TagPrefix.ingot, EnderIOMaterials.EndSteel)
                 .outputItems(OCItems.ENDER_INGOT,2)
                 .EUt(VA[GTValues.HV])
                 .duration(200)
                 .save(provider);
-        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("charged_ender_ingot_ctnh")
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("charged_ender_ingot"))
                 .inputItems(OCItems.ENDER_INGOT)
                 .inputItems(EIOItems.ENDER_CRYSTAL)
                 .inputFluids(GTMaterials.EnderEye.getFluid(144))
@@ -38,7 +43,7 @@ public class QuantumOmniRecipes {
                 .EUt(VA[GTValues.HV])
                 .duration(150)
                 .save(provider);
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("quantum_omni_cell_housing_ctnh")
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("quantum_omni_cell_housing"))
                 .inputItems(OCItems.CHARGED_ENDER_INGOT,4)
                 .inputItems(GTBlocks.CASING_LAMINATED_GLASS,2)
                 .inputItems(GTItems.QUANTUM_EYE,2)
@@ -49,7 +54,7 @@ public class QuantumOmniRecipes {
                 .EUt(VA[GTValues.HV])
                 .duration(100)
                 .save(provider);
-        GTRecipeTypes.LASER_ENGRAVER_RECIPES.recipeBuilder("multidimensional_expansion_print_press_ctnh")
+        GTRecipeTypes.LASER_ENGRAVER_RECIPES.recipeBuilder(CTNHCore.id("multidimensional_expansion_print_press"))
                 .inputItems(TagPrefix.block,GTMaterials.Stellite100,1)
                 .notConsumable(TagPrefix.lens,CTNHMaterials.SolarFlareBlackDiamond,1)
                 .outputItems(OCItems.MULTIDIMENSIONAL_EXPANSION_PRINT_PRESS)
@@ -57,15 +62,15 @@ public class QuantumOmniRecipes {
                 .EUt(VA[GTValues.IV])
                 .duration(4000)
                 .save(provider);
-        GTRecipeTypes.EXTRUDER_RECIPES.recipeBuilder("multidimensional_expansion_circuit_print_ctnh")
-                .inputItems(AEItems.SINGULARITY,1)
+        GTRecipeTypes.EXTRUDER_RECIPES.recipeBuilder(CTNHCore.id("multidimensional_expansion_circuit_print"))
+                .inputItems(AEItems.SINGULARITY.stack(),1)
                 .notConsumable(OCItems.MULTIDIMENSIONAL_EXPANSION_PRINT_PRESS)
                 .outputItems(OCItems.MULTIDIMENSIONAL_EXPANSION_CIRCUIT_PRINT,1)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .EUt(VA[GTValues.LuV])
                 .duration(600)
                 .save(provider);
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("multidimensional_expansion_processor_ctnh")
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("multidimensional_expansion_processor"))
                 .inputItems(OCItems.MULTIDIMENSIONAL_EXPANSION_CIRCUIT_PRINT,1)
                 .inputItems(TagPrefix.plate,CTNHMaterials.SolarFlareBlackDiamond,4)
                 .inputItems(GTItems.HIGHLY_ADVANCED_SOC,16)
@@ -74,8 +79,9 @@ public class QuantumOmniRecipes {
                 .EUt(VA[GTValues.IV])
                 .duration(200)
                 .save(provider);
+
         //例子-1
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("quantum_omni_cell_1k_ctnh")
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("quantum_omni_cell_1k"))
                 .inputItems(OCItems.QUANTUM_OMNI_CELL_HOUSING,1)
                 .inputItems(OCItems.QUANTUM_OMNI_CELL_COMPONENT_1K,1)
                 .inputItems(OCItems.COMPLEX_OMNI_CELL_COMPONENT_1K,1)
@@ -83,11 +89,11 @@ public class QuantumOmniRecipes {
                 .inputFluids(EnderIOMaterials.PulsatingAlloy.getFluid(144))
                 .outputItems(OCItems.QUANTUM_OMNI_CELL_1K)
                 .cleanroom(CleanroomType.CLEANROOM)
-                .EUt(VA[GTValues.EV])
+                .EUt(VA[EV])
                 .duration(40)
                 .save(provider);
         //例子-2
-        GTRecipeTypes.CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("quantum_omni_cell_component_1k_ctnh")
+        GTRecipeTypes.CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("quantum_omni_cell_component_1k"))
                 .inputItems(GTItems.CARBON_MESH,16)
                 .inputItems(TagPrefix.plateDense,GTMaterials.TungstenSteel,4)
                 .inputItems(CustomTags.IV_CIRCUITS,3) //这里需要改
@@ -100,19 +106,27 @@ public class QuantumOmniRecipes {
                 .duration(200)
                 .save(provider);
     }
-//    private static final Object[][] QUANTUM_OMNI_COMPONENT_TIERS = {
-//            // {高等级电路常量, 低等级电路常量, 输出物品, 配方名称后缀}
-//            {GTValues.IV, GTValues.EV, OCItems.QUANTUM_OMNI_CELL_COMPONENT_1K, "1k"},
-//            {GTValues.LuV, GTValues.IV, OCItems.QUANTUM_OMNI_CELL_COMPONENT_4K, "4k"},
-//            {GTValues.ZPM, GTValues.LuV, OCItems.QUANTUM_OMNI_CELL_COMPONENT_16K, "16k"},
-//            {GTValues.UV, GTValues.ZPM, OCItems.QUANTUM_OMNI_CELL_COMPONENT_64K, "64k"},
-//            {GTValues.UHV, GTValues.UV, OCItems.QUANTUM_OMNI_CELL_COMPONENT_256K, "256k"},
-//            {GTValues.UEV, GTValues.UHV, OCItems.QUANTUM_OMNI_CELL_COMPONENT_1M, "1m"},
-//            {GTValues.UIV, GTValues.UEV, OCItems.QUANTUM_OMNI_CELL_COMPONENT_4M, "4m"},
-//            {GTValues.UXV, GTValues.UIV, OCItems.QUANTUM_OMNI_CELL_COMPONENT_16M, "16m"},
-//            {GTValues.OpV, GTValues.UXV, OCItems.QUANTUM_OMNI_CELL_COMPONENT_64M, "64m"},
-//            {GTValues.MAX, GTValues.OpV, OCItems.QUANTUM_OMNI_CELL_COMPONENT_256M, "256m"}
-//    };
+    private static final RegistryObject<?>[] QUANTUM_OMNI_COMPONENTS = {
+            // {高等级电路常量, 低等级电路常量, 输出物品, 配方名称后缀}
+            OCItems.QUANTUM_OMNI_CELL_COMPONENT_1K,
+            OCItems.QUANTUM_OMNI_CELL_COMPONENT_4K,
+            OCItems.QUANTUM_OMNI_CELL_COMPONENT_16K,
+            OCItems.QUANTUM_OMNI_CELL_COMPONENT_64K,
+            OCItems.QUANTUM_OMNI_CELL_COMPONENT_256K,
+            OCItems.QUANTUM_OMNI_CELL_COMPONENT_1M,
+            OCItems.QUANTUM_OMNI_CELL_COMPONENT_4M,
+            OCItems.QUANTUM_OMNI_CELL_COMPONENT_16M,
+            OCItems.QUANTUM_OMNI_CELL_COMPONENT_64M,
+            OCItems.QUANTUM_OMNI_CELL_COMPONENT_256M
+    };
+
+
+//    void registerComponentRecipes(){
+//        for(int i = 0; i< QUANTUM_OMNI_COMPONENTS.length; i++){
+//            var lowTierCircuit = CIRCUITS_ARRAY[EV + i];
+//            var high
+//        }
+//    }
 //
 // 批量注册量子元件配方
 //for (int i = 0; i < QUANTUM_OMNI_COMPONENT_TIERS.length; i++) {

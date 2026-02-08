@@ -77,6 +77,8 @@ public class CTNHCoreGTAddon implements IGTAddon {
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
+        CTNHCraftingComponents.init();
+
         UnderfloorHeatingSystemRecipes.init(provider);
         AstronomicalObservatoryRecipes.init(provider);
         PersonalComputerRecipes.init(provider);
@@ -111,7 +113,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
 
         CasingRecipes.init(provider);
         QuantumOmniRecipes.init(provider);
-        CTNHEnergyCellRecipes.init(provider);
+        EUCellRecipes.init(provider);
 
         LuvModifyRecipe.init(provider);
         HugeHatchRecipes.init(provider);
