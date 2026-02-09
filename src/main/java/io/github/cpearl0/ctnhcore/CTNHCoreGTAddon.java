@@ -10,6 +10,7 @@ import io.github.cpearl0.ctnhcore.data.recipe.chain.PlatinumLine;
 import io.github.cpearl0.ctnhcore.data.recipe.cogniassembly.WetwareCircuit;
 import io.github.cpearl0.ctnhcore.data.recipe.generated.HyperRotorRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.EIORecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.modmodify.omnicells.QuantumOmniRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.multiblock.*;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
@@ -76,11 +77,13 @@ public class CTNHCoreGTAddon implements IGTAddon {
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
+        CTNHCraftingComponents.init();
+
         UnderfloorHeatingSystemRecipes.init(provider);
         AstronomicalObservatoryRecipes.init(provider);
         PersonalComputerRecipes.init(provider);
         SlaughterHouseRecipes.init(provider);
-        BigDamRecipes.init(provider);
+        com.mo_guang.ctpp.common.data.recipe.BigDamRecipes.init(provider);
 
         ChemConsumerRecipes.init(provider);
         WaterPowerStationRecipes.init(provider);
@@ -110,9 +113,11 @@ public class CTNHCoreGTAddon implements IGTAddon {
 
         CasingRecipes.init(provider);
         QuantumOmniRecipes.init(provider);
+        EUCellRecipes.init(provider);
 
         LuvModifyRecipe.init(provider);
         HugeHatchRecipes.init(provider);
+        TwistedFusionRecipes.init(provider);
     }
 
     @Override

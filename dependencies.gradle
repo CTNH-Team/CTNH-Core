@@ -15,7 +15,9 @@ dependencies {
     jarJar(project(":modules:CTNH-Energy")){transitive = false}
     implementation(project(":modules:CTNH-Mana"))
     jarJar(project(":modules:CTNH-Mana")){transitive = false}
-    //modImplementation(project(":modules:CTNH-Mana"))
+
+    jarJar(modImplementation("extra-mods:gtceu-1.20.1:7.4.1-ctnh-slim")){transitive = false}
+
     // JEI, EMI, Jade
     //modCompileOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
     //modCompileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
@@ -129,12 +131,18 @@ dependencies {
     //Re-Avaritia
     modImplementation("committee.nova.mods:avaritia-forge:${avaritia_version}")
 
-    //modRuntimeOnly("curse.maven:xaeros-minimap-263420:6778028")
-    //modRuntimeOnly("curse.maven:xaeros-world-map-317780:6778091")
-    modImplementation("curse.maven:sophisticated-core-618298:6596375")
+    //tconstruct
+
+    modImplementation("slimeknights.tconstruct:TConstruct:1.20.1-${tcon_version}")
+    modImplementation ("slimeknights.mantle:Mantle:1.20.1-${mantle_version}")
+
+//    modImplementation("curse.maven:xaeros-minimap-263420:6778028")
+//    modImplementation("curse.maven:xaeros-world-map-317780:6778091")
 
     modImplementation("curse.maven:javd-370890:4803995")
     modImplementation("curse.maven:trenzalore-870210:4848244")
+    modImplementation("curse.maven:sophisticated-core-618298:6596375")
+    modImplementation("curse.maven:create-diesel-generators-869316:7350909")
     //modImplementation("maven.modrinth:pneumaticcraft-repressurized:${pneumaticcraft_version}")
     //modImplementation("curse.maven:compressedcreativity-549381:6603441")
     //modImplementation("curse.maven:appliedpneumatics-1355087:7124464")

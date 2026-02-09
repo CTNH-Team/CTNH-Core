@@ -8,7 +8,6 @@ import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
-import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -26,6 +25,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.ForgeRegistries;
+import tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines;
+import tech.luckyblock.mcmod.ctnhenergy.registry.CEMultiblock;
 
 import java.util.Map;
 import java.util.function.Consumer;
@@ -424,8 +425,8 @@ public class DefaultRecipes {
         // 3. 钍基耗尽燃料离心
         GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder("thorium_based_liquid_fuel_depleted_centrifuge")
                 .inputFluids(CTNHMaterials.ThoriumBasedLiquidFuelDepleted.getFluid(500))
-                .outputItems(TagPrefix.dust, NuclearMaterials.Thorium232, 32) // 固定输出
-                .chancedOutput(TagPrefix.dust, NuclearMaterials.Thorium232, 8, 8000, 0) // 80%额外
+                .outputItems(TagPrefix.dust, CTNHMaterials.Thorium232, 32) // 固定输出
+                .chancedOutput(TagPrefix.dust, CTNHMaterials.Thorium232, 8, 8000, 0) // 80%额外
                 .outputItems(TagPrefix.dust, GTMaterials.Praseodymium, 32)
                 .chancedOutput(TagPrefix.dust, GTMaterials.Praseodymium, 16, 8000, 0)
                 .chancedOutput(TagPrefix.dust, GTMaterials.Boron, 3, 3000, 0) // 30%概率
@@ -528,8 +529,8 @@ public class DefaultRecipes {
                 .inputFluids(GTMaterials.DistilledWater.getFluid(2000))
                 .inputFluids(GTMaterials.HydrochloricAcid.getFluid(1000))
                 .outputItems(TagPrefix.dustSmall, GTMaterials.Thorium, 32)
-                .outputItems(TagPrefix.dust, NuclearMaterials.Thorium232, 2)
-                .chancedOutput(TagPrefix.dustSmall, NuclearMaterials.Thorium232, 2, 1000, 0) // 10%概率
+                .outputItems(TagPrefix.dust, CTNHMaterials.Thorium232, 2)
+                .chancedOutput(TagPrefix.dustSmall, CTNHMaterials.Thorium232, 2, 1000, 0) // 10%概率
                 .addCondition(new PlantCasingCondition(5)) // T5化工厂
                 .circuitMeta(1)
                 .EUt(GTValues.VA[GTValues.EV]) // 1920 EU/t
@@ -674,13 +675,14 @@ public class DefaultRecipes {
                 .EUt(GTValues.VA[GTValues.LV]) // 98304 EU/t
                 .duration(320) // 30秒
                 .save(provider);
-        // 2. 催化剂舱口（组装机）
+        // 2. 催化剂仓
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("catalyst_hatch")
                 .inputItems(CustomTags.MV_CIRCUITS)
                 .inputItems(GTMachines.ITEM_IMPORT_BUS[GTValues.HV])
                 .inputItems(GTMachines.ITEM_EXPORT_BUS[GTValues.HV])
                 .inputItems(GTBlocks.MACHINE_CASING_EV)
                 .circuitMeta(1)
+                .outputItems(CTNHMachines.CATALYST_HATCH)
                 .EUt(GTValues.VA[GTValues.HV])
                 .duration(300)
                 .save(provider);
@@ -965,6 +967,11 @@ public class DefaultRecipes {
                 'A', CTNHItems.NeutronSource,
                 'B', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:tungsten_frame")),
                 'C', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:naquadah_plate")));
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "power_substation_ctnh",
+                CEMultiblock.POWER_SUBSTATION.asStack(),
+                "LPL", "CBC", "LPL", 'L', GTItems.LAPOTRON_CRYSTAL, 'P', GTItems.POWER_INTEGRATED_CIRCUIT, 'C',
+                CustomTags.LuV_CIRCUITS, 'B', GTBlocks.CASING_PALLADIUM_SUBSTATION.asStack());
+
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("charged_certus_quartz_crystal")
                 .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:certus_quartz_crystal")))
                 .outputItems(

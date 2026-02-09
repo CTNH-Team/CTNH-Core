@@ -35,7 +35,7 @@ public class CatalystHatchPartMachine extends TieredIOPartMachine {
     ResourceTexture SMALL_ARROW_OVERLAY = new ResourceTexture("ctnhcore:textures/gui/arrows/small_arrow_overlay.png");
 
     public CatalystHatchPartMachine(IMachineBlockEntity holder) {
-        super(holder, GTValues.IV, IO.IN);
+        super(holder, GTValues.EV, IO.IN);
     }
 
     @Persisted

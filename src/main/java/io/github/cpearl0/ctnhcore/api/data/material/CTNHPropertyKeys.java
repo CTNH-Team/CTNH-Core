@@ -6,6 +6,5 @@ public class CTNHPropertyKeys {
 
     public static void init() {}
 
-    public static final PropertyKey<NuclearProperty> NUCLEAR = new PropertyKey<>("nuclear", NuclearProperty.class);
     public static final PropertyKey<CatalystProperty> CATALYST = new PropertyKey<>("catalyst", CatalystProperty.class);
 }

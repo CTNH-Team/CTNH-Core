@@ -12,7 +12,6 @@ import io.github.cpearl0.ctnhcore.registry.machines.multiblock.Mechanical;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksC;
-import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
@@ -86,17 +85,6 @@ public class ChineseLangHandler {
         provider.add("ctnh.me_advanced_terminal.tooltip.3", "通过ME无线访问点链接到网络");
         provider.add("ctnh.advanced_ram_wafer.tooltip", "更好的内存原料");
         provider.add("ctnh.advanced_ram_chip.tooltip", "更好的随机存取存储器");
-
-        // "item.gtmthings.advanced_terminal": "§b高级终端",
-        // "item.gtmthings.advanced_terminal.setting.title": "高级终端设置",
-        // "item.gtmthings.advanced_terminal.setting.1": "线圈等级",
-        // "item.gtmthings.advanced_terminal.setting.1.tooltip": "设置优先自动放置的线圈等级。",
-        // "item.gtmthings.advanced_terminal.setting.2": "重复结构次数",
-        // "item.gtmthings.advanced_terminal.setting.2.tooltip": "用于设置可重复结构(蒸馏塔、装配线等)的重复部分放置次数",
-        // "item.gtmthings.advanced_terminal.setting.3": "无仓室模式",
-        // "item.gtmthings.advanced_terminal.setting.3.tooltip": "是否启用无仓室模式(0:不启用,1:启用)\n启用无仓室模式后不会在非唯一时放置各种仓室。",
-        // "item.gtmthings.advanced_terminal.setting.4": "线圈替换模式",
-        // "item.gtmthings.advanced_terminal.setting.4.tooltip": "是否启用线圈替换模式(0:不启用,1:启用)\n启用线圈替换模式会将所有线圈替换为线圈等级中指定的线圈。",
 
         provider.add("item.ctnh.me_advanced_terminal.setting.title", "多方块结构成型配置");
         provider.add("item.ctnh.me_advanced_terminal.setting.1", "线圈等级");
@@ -767,6 +755,10 @@ public class ChineseLangHandler {
 
         provider.add("ctnh.machine.naquadah_reactor.tooltip", "效率: %s%%");
         provider.add("ctnh.machine.rocket_engine.tooltip", "效率: %s%%");
+
+        //tconstruct
+        provider.add("modifier.ctnhcore.global_traveller", "环球旅行者");
+
         //
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
@@ -819,6 +811,10 @@ public class ChineseLangHandler {
         provider.add(GTNNMachines.NEUTRON_ACCELERATOR[ZPM].getBlock(), "§cZPM 中子加速器");
         provider.add(GTNNMachines.NEUTRON_ACCELERATOR[UV].getBlock(), "§3UV 中子加速器");
 
+        provider.add(CTNHMachines.DIGITAL_MINER[LV].getBlock(), "数字型采矿机");
+        provider.add(CTNHMachines.DIGITAL_MINER[MV].getBlock(), "§b进阶数字型采矿机§r");
+        provider.add(CTNHMachines.DIGITAL_MINER[HV].getBlock(), "§6进阶数字型采矿机 II§r");
+
         provider.add(CTNHCreativeModeTabs.MACHINE.get(), "CTNH机器");
         provider.add(CTNHCreativeModeTabs.ITEM.get(), "CTNH物品");
         provider.add(CTNHCreativeModeTabs.BLOCK.get(), "CTNH方块");
@@ -856,7 +852,6 @@ public class ChineseLangHandler {
         provider.add(MultiblocksA.ADVANCED_WIND_POWER_ARRAY.getBlock(), "进阶风力发电阵列");
         provider.add(MultiblocksA.SUPER_WIND_POWER_ARRAY.getBlock(), "超级风力发电阵列");
         provider.add(MultiblocksA.SLAUGHTER_HOUSE.getBlock(), "屠宰场");
-        provider.add(MultiblocksA.BIG_DAM.getBlock(), "三峡大坝");
         provider.add(MultiblocksA.COKE_TOWER.getBlock(), "焦化塔");
         provider.add(MultiblocksA.PLASMA_CONDENSER.getBlock(), "等离子冷凝器");
 
@@ -929,7 +924,6 @@ public class ChineseLangHandler {
         provider.add(MultiblocksB.LaserSorder.getBlock(), "激光分配仪");
         provider.add(MultiblocksB.PHOTOVOLTAIC_DRONE_STATION.getBlock(), "光伏无人机道标基站");
         provider.add(MultiblocksB.HOT_COOLANT_TURBINE.getBlock(), "热冷却涡轮");
-        provider.add(MultiblocksB.NUCLEAR_REACTOR.getBlock(), "核反应堆");
         provider.add(MultiblocksB.GAS_CENTRIFUGE.getBlock(), "气体离心机");
         provider.add(MultiblocksB.CRYOTHEUMFREEZER.getBlock(), "凛冰冷冻机");
         provider.add(MultiblocksB.HYPER_PLASMA_TURBINE.getBlock(), "超極等离子涡轮");
@@ -944,56 +938,6 @@ public class ChineseLangHandler {
         provider.add(MultiblocksC.GREENHOUSE.getBlock(), "温室");
 
         provider.add(MultiblocksC.CNC_ALLOY_SMELTER.getBlock(), "数控合金冶炼炉");
-
-        nuclearTranslation(NuclearMaterials.Thorium233, "钍233");
-        nuclearTranslation(NuclearMaterials.Thorium232, "钍232");
-        nuclearTranslation(NuclearMaterials.Protactinium233, "镤233");
-        nuclearTranslation(NuclearMaterials.Uranium233, "铀233");
-        nuclearTranslation(NuclearMaterials.Uranium234, "铀234");
-        nuclearTranslation(NuclearMaterials.Uranium239, "铀239");
-        nuclearTranslation(NuclearMaterials.Neptunium235, "镎235");
-        nuclearTranslation(NuclearMaterials.Neptunium237, "镎237");
-        nuclearTranslation(NuclearMaterials.Neptunium239, "镎239");
-        nuclearTranslation(NuclearMaterials.Plutonium240, "钋240");
-        nuclearTranslation(NuclearMaterials.Plutonium244, "钋244");
-        nuclearTranslation(NuclearMaterials.Plutonium245, "钋245");
-        nuclearTranslation(NuclearMaterials.Americium241, "镅241");
-        nuclearTranslation(NuclearMaterials.Americium243, "镅243");
-        nuclearTranslation(NuclearMaterials.Americium245, "镅245");
-        nuclearTranslation(NuclearMaterials.Curium245, "锔245");
-        nuclearTranslation(NuclearMaterials.Curium246, "锔246");
-        nuclearTranslation(NuclearMaterials.Curium247, "锔247");
-        nuclearTranslation(NuclearMaterials.Curium250, "锔250");
-        nuclearTranslation(NuclearMaterials.Curium251, "锔251");
-        nuclearTranslation(NuclearMaterials.Berkelium247, "锫247");
-        nuclearTranslation(NuclearMaterials.Berkelium249, "锫249");
-        nuclearTranslation(NuclearMaterials.Berkelium251, "锫251");
-        nuclearTranslation(NuclearMaterials.Californium251, "锎251");
-        nuclearTranslation(NuclearMaterials.Californium252, "锎252");
-        nuclearTranslation(NuclearMaterials.Californium253, "锎253");
-        nuclearTranslation(NuclearMaterials.Californium256, "锎256");
-        nuclearTranslation(NuclearMaterials.Californium257, "锎257");
-        nuclearTranslation(NuclearMaterials.Einsteinium253, "锿253");
-        nuclearTranslation(NuclearMaterials.Einsteinium255, "锿255");
-        nuclearTranslation(NuclearMaterials.Einsteinium257, "锿257");
-        nuclearTranslation(NuclearMaterials.Fermium257, "镄257");
-        nuclearTranslation(NuclearMaterials.Fermium258, "镄258");
-        nuclearTranslation(NuclearMaterials.Fermium259, "镄259");
-        nuclearTranslation(NuclearMaterials.Fermium262, "镄262");
-        nuclearTranslation(NuclearMaterials.Fermium263, "镄263");
-        nuclearTranslation(NuclearMaterials.Mendelevium259, "钔259");
-        nuclearTranslation(NuclearMaterials.Mendelevium261, "钔261");
-        nuclearTranslation(NuclearMaterials.Mendelevium263, "钔263");
-        translateMaterial(NuclearMaterials.CarbideUranium235, "碳化铀235");
-        translateMaterial(NuclearMaterials.OxideUranium235, "氧化铀235");
-        translateMaterial(NuclearMaterials.NitrideUranium235, "氮化铀235");
-        translateMaterial(NuclearMaterials.ZirconiumAlloyUranium235, "锆合金铀235");
-        translateMaterial(NuclearMaterials.CarbideUranium238, "碳化铀238");
-        translateMaterial(NuclearMaterials.OxideUranium238, "氧化铀238");
-        translateMaterial(NuclearMaterials.NitrideUranium238, "氮化铀238");
-        translateMaterial(NuclearMaterials.ZirconiumAlloyUranium238, "锆合金铀238");
-        nuclearTranslation2(GTMaterials.Plutonium239, "钚239");
-        nuclearTranslation2(GTMaterials.Plutonium241, "钚241");
 
         translateOreVein("kaolinite_vein", "高岭石矿脉");
         translateOreVein("wollastonite_vein", "白云石矿脉");
@@ -1072,32 +1016,6 @@ public class ChineseLangHandler {
         cnLangProvider.add(material.getUnlocalizedName(), cn);
     }
 
-    public static void nuclearTranslation(Material material, String name) {
-        var nuclearProperty = material.getProperty(CTNHPropertyKeys.NUCLEAR);
-        translateMaterial(material, name);
-        translateMaterial(nuclearProperty.getCarbideMaterial(), "碳化" + name);
-        translateMaterial(nuclearProperty.getOxideMaterial(), "氧化" + name);
-        translateMaterial(nuclearProperty.getNitrideMaterial(), "氮化" + name);
-        translateMaterial(nuclearProperty.getZirconiumAlloyMaterial(), "锆合金" + name);
-        translateMaterial(GTMaterials.get(material.getName() + "_hexafluoride"), "六氟化" + name);
-        translateMaterial(GTMaterials.get(material.getName() + "_hexafluoride_steam_cracked"), "蒸汽裂解的六氟化" + name);
-    }
-
-    public static void nuclearTranslation2(Material material, String name) {
-        var nuclearProperty = material.getProperty(CTNHPropertyKeys.NUCLEAR);
-        translateMaterial(nuclearProperty.getCarbideMaterial(), "碳化" + name);
-        translateMaterial(nuclearProperty.getOxideMaterial(), "氧化" + name);
-        translateMaterial(nuclearProperty.getNitrideMaterial(), "氮化" + name);
-        translateMaterial(nuclearProperty.getZirconiumAlloyMaterial(), "锆合金" + name);
-        if (material.equals(GTMaterials.Plutonium239)) {
-            translateMaterial(GTMaterials.get(material.getName() + "_239_hexafluoride"), "六氟化" + name);
-            translateMaterial(GTMaterials.get(material.getName() + "_239_hexafluoride_steam_cracked"),
-                    "蒸汽裂解的六氟化" + name);
-        } else {
-            translateMaterial(GTMaterials.get(material.getName() + "_hexafluoride"), "六氟化" + name);
-            translateMaterial(GTMaterials.get(material.getName() + "_hexafluoride_steam_cracked"), "蒸汽裂解的六氟化" + name);
-        }
-    }
 
     private static void translateOreVein(String key, String cn) {
         cnLangProvider.add(key, cn);

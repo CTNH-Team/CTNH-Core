@@ -121,11 +121,14 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
     @Getter
     protected final Map<IO, Map<RecipeCapability<?>, List<IRecipeHandler<?>>>> capabilitiesFlat;
     private final ItemRecipeHandler inputItemHandler, outputItemHandler;
-    private final IgnoreEnergyRecipeHandler inputEnergyHandler;
     @Getter
     private int oreAmount;
     @Getter
     private ItemFilter itemFilter;
+
+    @Getter
+    @Persisted
+    boolean workingEnabled;
 
     private static final TagKey<Item> RAW_MATERIALS_TAG = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(),
         ResourceLocation.fromNamespaceAndPath("forge", "raw_materials"));
@@ -157,8 +160,7 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
                 machine.getRecipeType().getMaxInputs(ItemRecipeCapability.CAP));
         this.outputItemHandler = new ItemRecipeHandler(IO.OUT,
                 machine.getRecipeType().getMaxOutputs(ItemRecipeCapability.CAP));
-        this.inputEnergyHandler = new IgnoreEnergyRecipeHandler();
-        addHandlerList(RecipeHandlerList.of(IO.IN, inputItemHandler, inputEnergyHandler));
+        addHandlerList(RecipeHandlerList.of(IO.IN, inputItemHandler, new IgnoreEnergyRecipeHandler()));
         addHandlerList(RecipeHandlerList.of(IO.OUT, outputItemHandler));
     }
 
@@ -168,6 +170,12 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
         resetArea(false);
         this.cachedItemTransfer = null;
         this.setWorkingEnabled(false);
+    }
+
+    @Override
+    public void setWorkingEnabled(boolean workingEnabled) {
+        this.workingEnabled = workingEnabled;
+        updateTickSubscription();
     }
 
     public void resetRecipeLogic(int maximumRadius, int minHeight, int maxHeight, int silk, ItemFilter itemFilter) {
@@ -221,7 +229,7 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
 
         setChunkForced(serverLevel, isWorkingEnabled() && !isDone);
 
-        if (!isSuspend() && checkCanMine()) {
+        if (isWorkingEnabled() && checkCanMine()) {
             // if the inventory is not full, drain energy etc. from the miner
             // the storages have already been checked earlier
             if (!isInventoryFull()) {

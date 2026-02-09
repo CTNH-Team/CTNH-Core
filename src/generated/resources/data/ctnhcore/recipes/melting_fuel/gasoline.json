@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:melting_fuel",
+  "duration": 100,
+  "fluid": {
+    "amount": 25,
+    "fluid": "gtceu:gasoline"
+  },
+  "rate": 125,
+  "temperature": 3800
+}
