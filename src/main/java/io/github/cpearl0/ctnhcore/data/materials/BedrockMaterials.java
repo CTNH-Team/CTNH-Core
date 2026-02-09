@@ -91,6 +91,7 @@ public class BedrockMaterials {
     public static Material SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC;
     public static Material ADAMANTITE;
     public static Material ADAMANTITELIQUID;
+    public static Material TARANIUM;
 
     public static void init() {
         SUPERFUELMK1 = REGISTRATE.material(CTNHCore.id("superfuelmk1"))
@@ -624,6 +625,13 @@ public class BedrockMaterials {
                 .cnlang("液态精金")
                 .liquid()
                 .color(0x125555)
+                .buildAndRegister();
+
+        TARANIUM = REGISTRATE.material(CTNHCore.id("taranium"))
+                .cnlang("塔兰")
+                .dust()
+                .ingot()
+                .color(0x8B7E66)
                 .buildAndRegister();
     }
 }
