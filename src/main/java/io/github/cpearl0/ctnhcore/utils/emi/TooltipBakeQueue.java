@@ -13,7 +13,7 @@ import java.util.List;
 public class TooltipBakeQueue {
 
     private final Iterator<EmiStack> iterator;
-    private final int batchSize = 128;
+    private final int batchSize = 32;
     public SuffixArray<SearchStack> tooltips = new SuffixArray();
 
     public static boolean ready = false;
