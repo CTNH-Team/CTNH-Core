@@ -1,0 +1,56 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "ctnhcore:item/pure_certus_resonance_crystal/0",
+      "predicate": {
+        "gtceu:battery": 0.0
+      }
+    },
+    {
+      "model": "ctnhcore:item/pure_certus_resonance_crystal/1",
+      "predicate": {
+        "gtceu:battery": 0.01
+      }
+    },
+    {
+      "model": "ctnhcore:item/pure_certus_resonance_crystal/2",
+      "predicate": {
+        "gtceu:battery": 0.02
+      }
+    },
+    {
+      "model": "ctnhcore:item/pure_certus_resonance_crystal/3",
+      "predicate": {
+        "gtceu:battery": 0.03
+      }
+    },
+    {
+      "model": "ctnhcore:item/pure_certus_resonance_crystal/4",
+      "predicate": {
+        "gtceu:battery": 0.04
+      }
+    },
+    {
+      "model": "ctnhcore:item/pure_certus_resonance_crystal/5",
+      "predicate": {
+        "gtceu:battery": 0.05
+      }
+    },
+    {
+      "model": "ctnhcore:item/pure_certus_resonance_crystal/6",
+      "predicate": {
+        "gtceu:battery": 0.06
+      }
+    },
+    {
+      "model": "ctnhcore:item/pure_certus_resonance_crystal/7",
+      "predicate": {
+        "gtceu:battery": 0.07
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "ctnhcore:item/pure_certus_resonance_crystal/1"
+  }
+}
