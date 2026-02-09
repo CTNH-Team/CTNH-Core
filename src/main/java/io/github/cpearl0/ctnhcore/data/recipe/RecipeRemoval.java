@@ -96,7 +96,9 @@ public class RecipeRemoval {
                 //ME库存输入总线
                 "gtceu:assembler/me_stocking_import_bus",
                 //变电站
-                "gtceu:shaped/power_substation"
+                "gtceu:shaped/power_substation",
+                //氯化铵
+                "gtceu:extractor/extract_ammonium_chloride_dust"
 
         ));
 

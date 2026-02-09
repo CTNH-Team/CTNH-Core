@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
 import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
 import io.github.cpearl0.ctnhcore.data.machines.GTNNMachines;
@@ -52,55 +53,60 @@ public class DefaultRecipes {
             ItemStack plate = new ItemStack(items.getSecond().get());
 
             // TNT爆破版
-            GTRecipeTypes.IMPLOSION_RECIPES.recipeBuilder("implode_heavy_plate_t" + level + "_tnt")
-                    .inputItems(ingot)
-                    .outputItems(plate)
-                    .chancedOutput(TagPrefix.dust, GTMaterials.DarkAsh, 2500, 0)
-                    .explosivesType(new ItemStack(Items.TNT, level * 2))
-                    .duration(200 - 20 * level)
-                    .save(provider);
+                    // 普通TNT版
+                    GTRecipeTypes.IMPLOSION_RECIPES.recipeBuilder(CTNHCore.id("implode_heavy_plate_t" + level + "_tnt"))
+                            .inputItems(ingot)
+                            .outputItems(plate)
+                            .chancedOutput(TagPrefix.dust, GTMaterials.DarkAsh, 2500, 0)
+                            .explosivesType(new ItemStack(Items.TNT, level * 2))
+                            .duration(200 - 20 * level)
+                            .save(provider);
 
-            // 工业TNT版
-            GTRecipeTypes.IMPLOSION_RECIPES.recipeBuilder("implode_heavy_plate_t" + level + "_itnt")
-                    .inputItems(ingot)
-                    .outputItems(plate)
-                    .chancedOutput(TagPrefix.dust, GTMaterials.DarkAsh, 2500, 0)
-                    .explosivesType(new ItemStack(GTBlocks.INDUSTRIAL_TNT.get(), level))
-                    .duration(100 - 10 * level)
-                    .save(provider);
+                    // 工业TNT版
+                    GTRecipeTypes.IMPLOSION_RECIPES.recipeBuilder(CTNHCore.id("implode_heavy_plate_t" + level + "_itnt"))
+                            .inputItems(ingot)
+                            .outputItems(plate)
+                            .chancedOutput(TagPrefix.dust, GTMaterials.DarkAsh, 2500, 0)
+                            .explosivesType(new ItemStack(GTBlocks.INDUSTRIAL_TNT.get(), level))
+                            .duration(100 - 10 * level)
+                            .save(provider);
 
-            // 火药桶版
-            GTRecipeTypes.IMPLOSION_RECIPES.recipeBuilder("implode_heavy_plate_t" + level + "_powderbarrel")
-                    .inputItems(ingot)
-                    .outputItems(plate)
-                    .chancedOutput(TagPrefix.dust, GTMaterials.DarkAsh, 2500, 0)
-                    .explosivesType(new ItemStack(GTBlocks.POWDERBARREL, level * 3))
-                    .duration(150 - 15 * level)
-                    .save(provider);
-            // 炸药
-            GTRecipeTypes.IMPLOSION_RECIPES.recipeBuilder("implode_" + level + "_dynamite")
-                    .inputItems(ingot)
-                    .outputItems(plate)
-                    .chancedOutput(TagPrefix.dust, GTMaterials.DarkAsh, 2500, 0)
-                    .explosivesType(GTItems.DYNAMITE.asStack(level * 4))
-                    .duration(200 - 20 * level)
-                    .save(provider);
-        });
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("lightning_rod_assembler")
-                .inputItems(TagPrefix.rodLong, GTMaterials.Copper, 2)
-                .inputItems(TagPrefix.plate, GTMaterials.Copper, 3)
-                .outputItems(new ItemStack(Items.LIGHTNING_ROD))
-                .EUt(GTValues.VA[GTValues.LV])
-                .duration(50)
-                .circuitMeta(9)
-                .save(provider);
+                    // 火药桶版
+                    GTRecipeTypes.IMPLOSION_RECIPES.recipeBuilder(CTNHCore.id("implode_heavy_plate_t" + level + "_powderbarrel"))
+                            .inputItems(ingot)
+                            .outputItems(plate)
+                            .chancedOutput(TagPrefix.dust, GTMaterials.DarkAsh, 2500, 0)
+                            .explosivesType(new ItemStack(GTBlocks.POWDERBARREL, level * 3))
+                            .duration(150 - 15 * level)
+                            .save(provider);
+
+                    // 炸药版
+                    GTRecipeTypes.IMPLOSION_RECIPES.recipeBuilder(CTNHCore.id("implode_heavy_plate_t" + level + "_dynamite"))
+                            .inputItems(ingot)
+                            .outputItems(plate)
+                            .chancedOutput(TagPrefix.dust, GTMaterials.DarkAsh, 2500, 0)
+                            .explosivesType(GTItems.DYNAMITE.asStack(level * 4))
+                            .duration(200 - 20 * level)
+                            .save(provider);
+                });
+
+                GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("lightning_rod_assembler"))
+                        .inputItems(TagPrefix.rodLong, GTMaterials.Copper, 2)
+                        .inputItems(TagPrefix.plate, GTMaterials.Copper, 3)
+                        .outputItems(new ItemStack(Items.LIGHTNING_ROD))
+                        .EUt(GTValues.VA[GTValues.LV])
+                        .duration(50)
+                        .circuitMeta(9)
+                        .save(provider);
+
         VanillaRecipeHelper.addShapedRecipe(provider, "lightning_rod_hand",
                 new ItemStack(Items.LIGHTNING_ROD),
                 "hAf", "ABA", "dBs",
                 'A', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Copper),
                 'B', ChemicalHelper.get(TagPrefix.rodLong, GTMaterials.Copper));
-        // T1芯片
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("t1_chip")
+
+// T1芯片
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("t1_chip"))
                 .inputItems(CTNHItems.COMPUTER.asStack())
                 .inputItems(GTItems.COVER_SCREEN.asStack())
                 .inputItems(GTItems.SENSOR_HV.asStack())
@@ -113,8 +119,8 @@ public class DefaultRecipes {
                 .EUt(GTValues.VA[GTValues.HV])
                 .save(provider);
 
-        // T2芯片
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("t2_chip")
+// T2芯片
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("t2_chip"))
                 .inputItems(CTNHItems.COMPUTER.asStack())
                 .inputItems(GTItems.COVER_SCREEN.asStack())
                 .inputItems(GTItems.FIELD_GENERATOR_EV.asStack(2))
@@ -126,8 +132,8 @@ public class DefaultRecipes {
                 .EUt(GTValues.VA[GTValues.EV])
                 .save(provider);
 
-        // T3芯片
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("t3_chip")
+// T3芯片
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("t3_chip"))
                 .inputItems(CTNHItems.COMPUTER.asStack())
                 .inputItems(GTItems.COVER_SCREEN.asStack())
                 .inputItems(GTItems.SENSOR_IV.asStack())
@@ -139,8 +145,9 @@ public class DefaultRecipes {
                 .duration(600)
                 .EUt(GTValues.VA[GTValues.IV])
                 .save(provider);
-        // T4芯片（需要高级计算机）
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("t4_chip")
+
+// T4芯片（需要高级计算机）
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("t4_chip"))
                 .inputItems(CTNHItems.COMPUTER_ADVANCED.asStack())
                 .inputItems(GTItems.COVER_SCREEN.asStack())
                 .inputItems(GTItems.SENSOR_LuV.asStack())
@@ -152,8 +159,9 @@ public class DefaultRecipes {
                 .duration(600)
                 .EUt(GTValues.VA[GTValues.LuV])
                 .save(provider);
-        // ============== 普通计算机（MV级） ==============
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("computer_normal")
+
+// ============== 普通计算机（MV级） ==============
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("computer_normal"))
                 .inputItems(GTBlocks.MACHINE_CASING_MV.asStack(2)) // 2个MV机器外壳
                 .inputItems(TagPrefix.plate, GTMaterials.Aluminium, 2) // 2铝板
                 .inputItems(TagPrefix.wireFine, GTMaterials.Aluminium, 2) // 2铝细线
@@ -166,8 +174,8 @@ public class DefaultRecipes {
                 .EUt(GTValues.VA[GTValues.MV]) // MV电压（120 EU/t）
                 .save(provider);
 
-        // ============== 高级计算机（HV级） ==============
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("computer_advanced")
+// ============== 高级计算机（HV级） ==============
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("computer_advanced"))
                 .inputItems(GTBlocks.MACHINE_CASING_HV.asStack()) // 1个HV机器外壳
                 .inputItems(TagPrefix.plate, GTMaterials.Aluminium, 2) // 2铝板
                 .inputItems(TagPrefix.wireFine, GTMaterials.Tantalum, 2) // 2钽细线（升级材料）
@@ -180,8 +188,8 @@ public class DefaultRecipes {
                 .EUt(GTValues.VA[GTValues.HV]) // HV电压（480 EU/t）
                 .save(provider);
 
-        // ==== 夸克核心组装 ====
-        CTNHRecipeTypes.PRECISION_ASSEMBLY_RECIPES.recipeBuilder("quark_core_assembly")
+// ==== 夸克核心组装 ====
+        CTNHRecipeTypes.PRECISION_ASSEMBLY_RECIPES.recipeBuilder(CTNHCore.id("quark_core_assembly"))
                 .inputItems(CustomTags.IV_CIRCUITS, 2)
                 .inputItems(TagPrefix.lens, GTMaterials.Diamond, 8)
                 .inputItems(GTItems.NAND_MEMORY_CHIP.asStack(16))
@@ -278,7 +286,7 @@ public class DefaultRecipes {
         // .save(provider);
         //
         // 7. 锎生产（聚变）
-        GTRecipeTypes.FUSION_RECIPES.recipeBuilder("californium_production")
+        GTRecipeTypes.FUSION_RECIPES.recipeBuilder(CTNHCore.id("californium_production"))
                 .inputFluids(GTMaterials.Plutonium239.getFluid(48))
                 .inputFluids(GTMaterials.Beryllium.getFluid(48))
                 .outputFluids(GTMaterials.Californium.getFluid(48))
@@ -287,8 +295,8 @@ public class DefaultRecipes {
                 .duration(240) // 12秒
                 .save(provider);
 
-        // 8. 气奥生产（聚变）
-        GTRecipeTypes.FUSION_RECIPES.recipeBuilder("oganesson_production")
+// 8. 气奥生产（聚变）
+        GTRecipeTypes.FUSION_RECIPES.recipeBuilder(CTNHCore.id("oganesson_production"))
                 .inputFluids(GTMaterials.Californium.getFluid(32))
                 .inputFluids(GTMaterials.Calcium.getFluid(720))
                 .outputFluids(GTMaterials.Oganesson.getFluid(720))
@@ -297,8 +305,8 @@ public class DefaultRecipes {
                 .duration(240) // 12秒
                 .save(provider);
 
-        // 9. 逆变器组装
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("inverter_assembly")
+// 9. 逆变器组装
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("inverter_assembly"))
                 .inputItems(TagPrefix.plate, GTMaterials.NetherQuartz, 2)
                 .inputItems(CustomTags.MV_CIRCUITS)
                 .inputItems(GTItems.COVER_SCREEN)
@@ -309,8 +317,9 @@ public class DefaultRecipes {
                 .EUt(GTValues.VA[GTValues.MV]) // 120 EU/t
                 .duration(240) // 12秒
                 .save(provider);
-        // 1. 钍基液体燃料
-        GTRecipeTypes.MIXER_RECIPES.recipeBuilder("thorium_based_liquid_fuel")
+
+// 1. 钍基液体燃料
+        GTRecipeTypes.MIXER_RECIPES.recipeBuilder(CTNHCore.id("thorium_based_liquid_fuel"))
                 .inputItems(CTNHItems.EnrichedThorium)
                 .inputItems(TagPrefix.dust, GTMaterials.Lithium, 4)
                 .inputFluids(GTMaterials.Mercury.getFluid(1000))
@@ -320,8 +329,8 @@ public class DefaultRecipes {
                 .duration(3000) // 150秒
                 .save(provider);
 
-        // 2. 铀基液体燃料
-        GTRecipeTypes.MIXER_RECIPES.recipeBuilder("uranium_based_liquid_fuel")
+// 2. 铀基液体燃料
+        GTRecipeTypes.MIXER_RECIPES.recipeBuilder(CTNHCore.id("uranium_based_liquid_fuel"))
                 .inputItems(CTNHItems.EnrichedUranium)
                 .inputItems(TagPrefix.dust, GTMaterials.Potassium, 8)
                 .inputFluids(GTMaterials.Radon.getFluid(1000))
@@ -331,8 +340,8 @@ public class DefaultRecipes {
                 .duration(200) // 10秒
                 .save(provider);
 
-        // 3. 钚基液体燃料
-        GTRecipeTypes.MIXER_RECIPES.recipeBuilder("plutonium_based_liquid_fuel")
+// 3. 钚基液体燃料
+        GTRecipeTypes.MIXER_RECIPES.recipeBuilder(CTNHCore.id("plutonium_based_liquid_fuel"))
                 .inputItems(CTNHItems.EnrichedPlutonium)
                 .inputItems(TagPrefix.dust, GTMaterials.Neutronium, 8)
                 .inputItems(TagPrefix.dust, GTMaterials.Caesium, 16)
@@ -343,8 +352,8 @@ public class DefaultRecipes {
                 .duration(360) // 18秒
                 .save(provider);
 
-        // 4. 激发态钍基燃料
-        GTRecipeTypes.MIXER_RECIPES.recipeBuilder("thorium_based_liquid_fuel_excited")
+// 4. 激发态钍基燃料
+        GTRecipeTypes.MIXER_RECIPES.recipeBuilder(CTNHCore.id("thorium_based_liquid_fuel_excited"))
                 .inputFluids(CTNHMaterials.ThoriumBasedLiquidFuel.getFluid(1000))
                 .inputFluids(GTMaterials.Helium.getFluid(250))
                 .outputFluids(CTNHMaterials.ThoriumBasedLiquidFuelExcited.getFluid(1000))
@@ -353,8 +362,8 @@ public class DefaultRecipes {
                 .duration(120) // 6秒
                 .save(provider);
 
-        // 5. 中子活化铀基燃料（激发态）
-        CTNHRecipeTypes.NEUTRON_ACTIVATOR_RECIPES.recipeBuilder("uranium_based_liquid_fuel_excited")
+// 5. 中子活化铀基燃料（激发态）
+        CTNHRecipeTypes.NEUTRON_ACTIVATOR_RECIPES.recipeBuilder(CTNHCore.id("uranium_based_liquid_fuel_excited"))
                 .notConsumable(TagPrefix.plate, GTMaterials.Tungsten)
                 .inputFluids(CTNHMaterials.UraniumBasedLiquidFuel.getFluid(100))
                 .outputFluids(CTNHMaterials.UraniumBasedLiquidFuelExcited.getFluid(100))
@@ -362,8 +371,8 @@ public class DefaultRecipes {
                 .duration(80) // 4秒
                 .save(provider);
 
-        // 6. 聚变激发铀基燃料
-        GTRecipeTypes.FUSION_RECIPES.recipeBuilder("uranium_based_liquid_fuel_excited_fusion")
+// 6. 聚变激发铀基燃料
+        GTRecipeTypes.FUSION_RECIPES.recipeBuilder(CTNHCore.id("uranium_based_liquid_fuel_excited_fusion"))
                 .inputFluids(CTNHMaterials.UraniumBasedLiquidFuel.getFluid(10))
                 .inputFluids(GTMaterials.Hydrogen.getFluid(100))
                 .outputFluids(CTNHMaterials.UraniumBasedLiquidFuelExcited.getFluid(10))
@@ -372,8 +381,8 @@ public class DefaultRecipes {
                 .duration(40) // 2秒
                 .save(provider);
 
-        // 7. 中子活化钚基燃料（激发态）
-        CTNHRecipeTypes.NEUTRON_ACTIVATOR_RECIPES.recipeBuilder("plutonium_based_liquid_fuel_excited")
+// 7. 中子活化钚基燃料（激发态）
+        CTNHRecipeTypes.NEUTRON_ACTIVATOR_RECIPES.recipeBuilder(CTNHCore.id("plutonium_based_liquid_fuel_excited"))
                 .notConsumable(TagPrefix.plate, GTMaterials.Tritanium)
                 .inputFluids(CTNHMaterials.PlutoniumBasedLiquidFuel.getFluid(100))
                 .outputFluids(CTNHMaterials.PlutoniumBasedLiquidFuelExcited.getFluid(100))
@@ -381,8 +390,8 @@ public class DefaultRecipes {
                 .duration(80) // 4秒
                 .save(provider);
 
-        // 8. 聚变激发钚基燃料
-        GTRecipeTypes.FUSION_RECIPES.recipeBuilder("plutonium_based_liquid_fuel_excited_fusion")
+// 8. 聚变激发钚基燃料
+        GTRecipeTypes.FUSION_RECIPES.recipeBuilder(CTNHCore.id("plutonium_based_liquid_fuel_excited_fusion"))
                 .inputFluids(GTMaterials.Lutetium.getFluid(16))
                 .inputFluids(CTNHMaterials.PlutoniumBasedLiquidFuel.getFluid(20))
                 .outputFluids(CTNHMaterials.PlutoniumBasedLiquidFuelExcited.getFluid(20))
@@ -391,39 +400,40 @@ public class DefaultRecipes {
                 .duration(20) // 1秒
                 .save(provider);
 
-        // 9. 钍基燃料耗尽（中子活化）
-        CTNHRecipeTypes.NEUTRON_ACTIVATOR_RECIPES.recipeBuilder("thorium_based_liquid_fuel_depleted")
+// 9. 钍基燃料耗尽（中子活化）
+        CTNHRecipeTypes.NEUTRON_ACTIVATOR_RECIPES.recipeBuilder(CTNHCore.id("thorium_based_liquid_fuel_depleted"))
                 .inputFluids(CTNHMaterials.ThoriumBasedLiquidFuelExcited.getFluid(200))
                 .outputFluids(CTNHMaterials.ThoriumBasedLiquidFuelDepleted.getFluid(200))
                 .addCondition(new NeutronActivatorCondition(500, 700))
                 .duration(10000) // 500秒
                 .save(provider);
 
-        // 10. 钍基燃料耗尽（大型反应堆）
-        CTNHRecipeTypes.LARGE_NAQUADAH_REACTOR_RECIPES.recipeBuilder("thorium_based_liquid_fuel_depleted_reactor")
+// 10. 钍基燃料耗尽（大型反应堆）
+        CTNHRecipeTypes.LARGE_NAQUADAH_REACTOR_RECIPES.recipeBuilder(CTNHCore.id("thorium_based_liquid_fuel_depleted_reactor"))
                 .inputFluids(CTNHMaterials.ThoriumBasedLiquidFuelExcited.getFluid(1000))
                 .outputFluids(CTNHMaterials.ThoriumBasedLiquidFuelDepleted.getFluid(1000))
                 .EUt(-2200) // 输出功率
                 .duration(500) // 25秒
                 .save(provider);
-        // 1. 铀基耗尽燃料（大型反应堆）
-        CTNHRecipeTypes.LARGE_NAQUADAH_REACTOR_RECIPES.recipeBuilder("uranium_based_liquid_fuel_depleted")
+
+// 1. 铀基耗尽燃料（大型反应堆）
+        CTNHRecipeTypes.LARGE_NAQUADAH_REACTOR_RECIPES.recipeBuilder(CTNHCore.id("uranium_based_liquid_fuel_depleted"))
                 .inputFluids(CTNHMaterials.UraniumBasedLiquidFuelExcited.getFluid(1000))
                 .outputFluids(CTNHMaterials.UraniumBasedLiquidFuelDepleted.getFluid(1000))
                 .EUt(-12960) // 输出12,960 EU/t
                 .duration(100) // 5秒
                 .save(provider);
 
-        // 2. 钚基耗尽燃料（大型反应堆）
-        CTNHRecipeTypes.LARGE_NAQUADAH_REACTOR_RECIPES.recipeBuilder("plutonium_based_liquid_fuel_depleted")
+// 2. 钚基耗尽燃料（大型反应堆）
+        CTNHRecipeTypes.LARGE_NAQUADAH_REACTOR_RECIPES.recipeBuilder(CTNHCore.id("plutonium_based_liquid_fuel_depleted"))
                 .inputFluids(CTNHMaterials.PlutoniumBasedLiquidFuelExcited.getFluid(1000))
                 .outputFluids(CTNHMaterials.PlutoniumBasedLiquidFuelDepleted.getFluid(1000))
                 .EUt(-32400) // 输出32,400 EU/t
                 .duration(150) // 7.5秒
                 .save(provider);
 
-        // 3. 钍基耗尽燃料离心
-        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder("thorium_based_liquid_fuel_depleted_centrifuge")
+// 3. 钍基耗尽燃料离心
+        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("thorium_based_liquid_fuel_depleted_centrifuge"))
                 .inputFluids(CTNHMaterials.ThoriumBasedLiquidFuelDepleted.getFluid(500))
                 .outputItems(TagPrefix.dust, CTNHMaterials.Thorium232, 32) // 固定输出
                 .chancedOutput(TagPrefix.dust, CTNHMaterials.Thorium232, 8, 8000, 0) // 80%额外
@@ -436,8 +446,8 @@ public class DefaultRecipes {
                 .duration(750) // 37.5秒
                 .save(provider);
 
-        // 4. 铀基耗尽燃料离心
-        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder("uranium_based_liquid_fuel_depleted_centrifuge")
+// 4. 铀基耗尽燃料离心
+        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("uranium_based_liquid_fuel_depleted_centrifuge"))
                 .inputFluids(CTNHMaterials.UraniumBasedLiquidFuelDepleted.getFluid(1000))
                 .chancedOutput(TagPrefix.dust, GTMaterials.Lead, 16, 6000, 0) // 60%概率
                 .chancedOutput(TagPrefix.dust, GTMaterials.Bismuth, 1, 1000, 0) // 10%概率
@@ -447,8 +457,8 @@ public class DefaultRecipes {
                 .duration(1000) // 50秒
                 .save(provider);
 
-        // 5. 钚基耗尽燃料离心
-        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder("plutonium_based_liquid_fuel_depleted_centrifuge")
+// 5. 钚基耗尽燃料离心
+        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("plutonium_based_liquid_fuel_depleted_centrifuge"))
                 .inputFluids(CTNHMaterials.PlutoniumBasedLiquidFuelDepleted.getFluid(1000))
                 .chancedOutput(TagPrefix.dust, GTMaterials.Tritanium, 9, 5000, 0) // 50%概率
                 .chancedOutput(TagPrefix.dust, GTMaterials.Cerium, 4, 8000, 0) // 80%概率
@@ -459,8 +469,8 @@ public class DefaultRecipes {
                 .duration(2500) // 125秒
                 .save(provider);
 
-        // 6. 辐射防护板（铱版）
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("radiation_protection_plate_iridium")
+// 6. 辐射防护板（铱版）
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("radiation_protection_plate_iridium"))
                 .inputItems(TagPrefix.plateDense, GTMaterials.Iridium, 8)
                 .inputItems(TagPrefix.plateDense, GTMaterials.NaquadahAlloy, 8)
                 .inputFluids(GTMaterials.Lead.getFluid(1152))
@@ -470,8 +480,8 @@ public class DefaultRecipes {
                 .duration(400) // 20秒
                 .save(provider);
 
-        // 7. 辐射防护板（镧版）
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("radiation_protection_plate_lanthanum")
+// 7. 辐射防护板（镧版）
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("radiation_protection_plate_lanthanum"))
                 .inputItems(TagPrefix.plateDense, GTMaterials.Lanthanum, 4)
                 .inputItems(TagPrefix.plateDense, GTMaterials.NaquadahAlloy, 8)
                 .inputFluids(GTMaterials.Lead.getFluid(1152))
@@ -481,8 +491,8 @@ public class DefaultRecipes {
                 .duration(400) // 20秒
                 .save(provider);
 
-        // 9. Naquadah基液体燃料
-        GTRecipeTypes.MIXER_RECIPES.recipeBuilder("naquadah_based_liquid_fuel")
+// 9. Naquadah基液体燃料
+        GTRecipeTypes.MIXER_RECIPES.recipeBuilder(CTNHCore.id("naquadah_based_liquid_fuel"))
                 .inputItems(TagPrefix.dust, GTMaterials.Naquadria, 42)
                 .inputItems(TagPrefix.dust, GTMaterials.Cerium, 16)
                 .inputItems(TagPrefix.dust, GTMaterials.Neodymium, 16)
@@ -491,8 +501,8 @@ public class DefaultRecipes {
                 .duration(300) // 15秒
                 .save(provider);
 
-        // 10. Naquadah基激发态燃料（聚变）
-        GTRecipeTypes.FUSION_RECIPES.recipeBuilder("naquadah_based_liquid_fuel_excited")
+// 10. Naquadah基激发态燃料（聚变）
+        GTRecipeTypes.FUSION_RECIPES.recipeBuilder(CTNHCore.id("naquadah_based_liquid_fuel_excited"))
                 .inputFluids(CTNHMaterials.NaquadahBasedLiquidFuel.getFluid(800))
                 .inputFluids(GTMaterials.Radon.getFluid(200))
                 .outputFluids(CTNHMaterials.NaquadahBasedLiquidFuelExcited.getFluid(100))
@@ -501,16 +511,16 @@ public class DefaultRecipes {
                 .duration(500) // 25秒
                 .save(provider);
 
-        // 11. Naquadah基耗尽燃料（大型反应堆）
-        CTNHRecipeTypes.LARGE_NAQUADAH_REACTOR_RECIPES.recipeBuilder("naquadah_based_liquid_fuel_depleted")
+// 11. Naquadah基耗尽燃料（大型反应堆）
+        CTNHRecipeTypes.LARGE_NAQUADAH_REACTOR_RECIPES.recipeBuilder(CTNHCore.id("naquadah_based_liquid_fuel_depleted"))
                 .inputFluids(CTNHMaterials.NaquadahBasedLiquidFuelExcited.getFluid(1))
                 .outputFluids(CTNHMaterials.NaquadahBasedLiquidFuelDepleted.getFluid(1))
                 .EUt(-975_000) // 输出975,000 EU/t
                 .duration(60) // 3秒
                 .save(provider);
 
-        // 12. Naquadah基耗尽燃料离心
-        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder("naquadah_based_liquid_fuel_depleted_centrifuge")
+// 12. Naquadah基耗尽燃料离心
+        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("naquadah_based_liquid_fuel_depleted_centrifuge"))
                 .inputFluids(CTNHMaterials.NaquadahBasedLiquidFuelDepleted.getFluid(125))
                 .chancedOutput(TagPrefix.dust, GTMaterials.Naquadah, 8, 9000, 0) // 90%概率
                 .chancedOutput(TagPrefix.dust, GTMaterials.Naquadah, 6, 8500, 0) // 85%概率
@@ -522,8 +532,8 @@ public class DefaultRecipes {
                 .duration(600) // 30秒
                 .save(provider);
 
-        // 13. 钍232生产（化工厂）
-        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder("thorium232_production")
+// 13. 钍232生产（化工厂）
+        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder(CTNHCore.id("thorium232_production"))
                 .inputItems(TagPrefix.dust, GTMaterials.Thorium, 16)
                 .inputItems(TagPrefix.dust, GTMaterials.Borax, 12)
                 .inputFluids(GTMaterials.DistilledWater.getFluid(2000))
@@ -565,7 +575,7 @@ public class DefaultRecipes {
                 'C', TagPrefix.frameGt, GTMaterials.Polybenzimidazole);
 
         // 4. 高级过滤外壳（组装机）
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("advanced_filter_casing")
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("advanced_filter_casing"))
                 .inputItems(TagPrefix.frameGt, GTMaterials.Iridium)
                 .inputItems(GTItems.ELECTRIC_MOTOR_UV)
                 .inputItems(TagPrefix.rotor, GTMaterials.Iridium)
@@ -576,8 +586,8 @@ public class DefaultRecipes {
                 .duration(600) // 30秒
                 .save(provider);
 
-        // 5. 铱机器外壳（组装机）
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("iridium_machine_casing_assembler")
+// 5. 铱机器外壳（组装机）
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("iridium_machine_casing_assembler"))
                 .inputItems(TagPrefix.plate, GTMaterials.Iridium, 6)
                 .inputItems(TagPrefix.screw, GTMaterials.Iridium, 2)
                 .inputItems(TagPrefix.gearSmall, GTMaterials.Iridium, 1)
@@ -586,8 +596,8 @@ public class DefaultRecipes {
                 .duration(200) // 10秒
                 .save(provider);
 
-        // 6. 高速管道方块（组装机）
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("high_speed_pipe_block")
+// 6. 高速管道方块（组装机）
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("high_speed_pipe_block"))
                 .inputItems(TagPrefix.pipeHugeFluid, GTMaterials.StainlessSteel)
                 .inputItems(TagPrefix.frameGt, GTMaterials.BlueAlloy, 32)
                 .inputItems(TagPrefix.wireGtSingle, GTMaterials.MercuryBariumCalciumCuprate, 32)
@@ -598,17 +608,17 @@ public class DefaultRecipes {
                 .duration(300) // 15秒
                 .save(provider);
 
-        // 7. 锇硼硅玻璃（流体固化）
-        // GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES.recipeBuilder("osmium_borosilicate_glass")
-        // .inputItems(TagPrefix.block, GTMaterials.BorosilicateGlass)
-        // .inputFluids(GTMaterials.Osmium.getFluid(1152))
-        // .outputItems(CTNHBlocks.OSMIUM_BOROSILICATE_GLASS.asStack())
-        // .EUt(GTValues.VA[GTValues.ZPM]) // 98304 EU/t
-        // .duration(800) // 40秒
-        // .save(provider);
+// 7. 锇硼硅玻璃（流体固化）
+// GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES.recipeBuilder(CTNHCore.id("osmium_borosilicate_glass"))
+// .inputItems(TagPrefix.block, GTMaterials.BorosilicateGlass)
+// .inputFluids(GTMaterials.Osmium.getFluid(1152))
+// .outputItems(CTNHBlocks.OSMIUM_BOROSILICATE_GLASS.asStack())
+// .EUt(GTValues.VA[GTValues.ZPM]) // 98304 EU/t
+// .duration(800) // 40秒
+// .save(provider);
 
-        // 8. 防辐射机器外壳（组装机）
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("radiation_proof_machine_casing")
+// 8. 防辐射机器外壳（组装机）
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("radiation_proof_machine_casing"))
                 .inputItems(TagPrefix.plateDense, GTMaterials.Lead, 6)
                 .inputItems(TagPrefix.frameGt, GTMaterials.TungstenSteel)
                 .inputFluids(GTMaterials.Concrete.getFluid(1296))
@@ -617,8 +627,8 @@ public class DefaultRecipes {
                 .duration(40) // 2秒
                 .save(provider);
 
-        // 9. MAR辐射防护外壳（组装机）
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("field_restriction_casing")
+// 9. MAR辐射防护外壳（组装机）
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("field_restriction_casing"))
                 .inputItems(CTNHItems.PlateRadiationProtection.asStack(6))
                 .inputItems(TagPrefix.frameGt, GTMaterials.Europium)
                 .inputItems(GTItems.FIELD_GENERATOR_MV)
@@ -628,8 +638,8 @@ public class DefaultRecipes {
                 .duration(400) // 20秒
                 .save(provider);
 
-        // 10. 防辐射框架（组装机）
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("frame_radiation")
+// 10. 防辐射框架（组装机）
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("frame_radiation"))
                 .inputItems(TagPrefix.rodLong, GTMaterials.NaquadahAlloy, 8)
                 .inputItems(TagPrefix.frameGt, GTMaterials.HSSE, 4)
                 .outputItems(TagPrefix.frameGt, CTNHMaterials.RadiationProtection)
@@ -638,18 +648,19 @@ public class DefaultRecipes {
                 .duration(320) // 16秒
                 .save(provider);
 
-        // 11. 中子混合物处理（混合机）
-        GTRecipeTypes.MIXER_RECIPES.recipeBuilder("neutronium_mixture")
+// 11. 中子混合物处理（混合机）
+        GTRecipeTypes.MIXER_RECIPES.recipeBuilder(CTNHCore.id("neutronium_mixture"))
                 .inputItems(TagPrefix.dust, CTNHMaterials.NeutroniumMixture, 4)
                 .inputFluids(GTMaterials.Americium.getFluid(FluidStorageKeys.PLASMA, 144))
                 .inputFluids(GTMaterials.Naquadria.getFluid(144))
                 .outputItems(TagPrefix.dust, GTMaterials.Neutronium)
                 .circuitMeta(1)
                 .EUt(GTValues.VA[GTValues.ZPM]) // 98304 EU/t
-                .duration(200) // 10
+                .duration(200) // 10秒
                 .save(provider);
-        // 11.5 谢尔顿矿粉电解
-        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("cooperite_dust")
+
+// 11.5 谢尔顿矿粉电解
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("cooperite_dust"))
                 .inputItems(TagPrefix.dust, GTMaterials.Cooperite, 6)
                 .outputItems(TagPrefix.dust, PlatinumLineMaterials.PlatinumOre, 3)
                 .outputItems(TagPrefix.dust, GTMaterials.Nickel)
@@ -659,15 +670,16 @@ public class DefaultRecipes {
                 .duration(600) // 30秒
                 .save(provider);
 
-        // 12. 中子矿离心（无序合成）
+// 12. 中子矿离心（无序合成）
         VanillaRecipeHelper.addShapelessRecipe(
                 provider,
                 "centrifuged_ore_to_dust_neutronium",
                 ChemicalHelper.get(TagPrefix.dust, CTNHMaterials.NeutroniumMixture),
                 'h',
                 ChemicalHelper.get(TagPrefix.crushedRefined, GTMaterials.Neutronium));
-        // 1. 电解糖
-        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("sugar_ele")
+
+// 1. 电解糖
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("sugar_ele"))
                 .inputItems(Items.SUGAR, 24)
                 .outputItems(TagPrefix.dust, GTMaterials.Coal, 6)
                 .outputFluids(GTMaterials.Hydrogen.getFluid(12000))
@@ -675,8 +687,9 @@ public class DefaultRecipes {
                 .EUt(GTValues.VA[GTValues.LV]) // 98304 EU/t
                 .duration(320) // 30秒
                 .save(provider);
-        // 2. 催化剂仓
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("catalyst_hatch")
+
+// 2. 催化剂仓
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("catalyst_hatch"))
                 .inputItems(CustomTags.MV_CIRCUITS)
                 .inputItems(GTMachines.ITEM_IMPORT_BUS[GTValues.HV])
                 .inputItems(GTMachines.ITEM_EXPORT_BUS[GTValues.HV])
@@ -687,8 +700,8 @@ public class DefaultRecipes {
                 .duration(300)
                 .save(provider);
 
-        // 3. 大型Naquadah脱水机（组装机）
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("large_naquadah_reactor_casing")
+// 3. 大型Naquadah脱水机（组装机）
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("large_naquadah_reactor_casing"))
                 .inputItems(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.asItem())
                 .inputItems(TagPrefix.wireGtHex, GTMaterials.IndiumTinBariumTitaniumCuprate, 4)
                 .inputItems(GTItems.BATTERY_LuV_VANADIUM.asStack(1))
@@ -701,8 +714,8 @@ public class DefaultRecipes {
                 .duration(2400) // 120秒
                 .save(provider);
 
-        // 4. 大型Naquadah反应堆（装配线）
-        GTRecipeTypes.ASSEMBLY_LINE_RECIPES.recipeBuilder("large_naquadah_reactor")
+// 4. 大型Naquadah反应堆（装配线）
+        GTRecipeTypes.ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("large_naquadah_reactor"))
                 .inputItems(TagPrefix.frameGt, GTMaterials.Neutronium, 8)
                 .inputItems(CTNHItems.PlateRadiationProtection.asStack(16))
                 .inputItems(GTItems.FIELD_GENERATOR_ZPM.asStack(2))
@@ -717,7 +730,8 @@ public class DefaultRecipes {
                 .EUt(GTValues.VA[GTValues.ZPM])   // 98304 EU/t
                 .duration(4200) // 210秒
                 .save(provider);
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("neutron_sensor")
+
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("neutron_sensor"))
                 .inputItems(GTBlocks.MACHINE_CASING_IV.asStack())
                 .inputItems(GTItems.COVER_ACTIVITY_DETECTOR)
                 .inputItems(GTItems.COVER_SCREEN)
@@ -730,8 +744,8 @@ public class DefaultRecipes {
                 .duration(300) // 15秒
                 .save(provider);
 
-        // 13. 中子活化器（精密装配）
-        CTNHRecipeTypes.PRECISION_ASSEMBLY_RECIPES.recipeBuilder("neutron_activator")
+// 13. 中子活化器（精密装配）
+        CTNHRecipeTypes.PRECISION_ASSEMBLY_RECIPES.recipeBuilder(CTNHCore.id("neutron_activator"))
                 .inputItems(CTNHItems.QuarkCore.asStack(2))
                 .inputItems(GTItems.SENSOR_EV.asStack(2))
                 .inputItems(CTNHItems.NeutronSource)
@@ -742,7 +756,7 @@ public class DefaultRecipes {
                 .duration(100) // 5秒
                 .save(provider);
 
-        // 14. 中子源（工作台）
+// 14. 中子源（工作台）
         VanillaRecipeHelper.addShapedRecipe(
                 provider, true, "neutron_source",
                 CTNHItems.NeutronSource.asStack(),
@@ -751,8 +765,8 @@ public class DefaultRecipes {
                 'B', CTNHItems.EnrichedUranium.asStack() // 富集铀（直接引用）
         );
 
-        // MV中子加速器
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("neutron_accelerator_mv")
+// MV中子加速器
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("neutron_accelerator_mv"))
                 .inputItems(CTNHItems.INVERTER.asStack())
                 .inputItems(GTMachines.HULL[GTValues.MV].asStack())
                 .inputItems(TagPrefix.cableGtSingle, GTMaterials.Copper, 2)
@@ -764,8 +778,8 @@ public class DefaultRecipes {
                 .duration(300) // 15秒
                 .save(provider);
 
-        // HV中子加速器
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("neutron_accelerator_hv")
+// HV中子加速器
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("neutron_accelerator_hv"))
                 .inputItems(CTNHItems.INVERTER.asStack())
                 .inputItems(GTMachines.HULL[GTValues.HV].asStack())
                 .inputItems(TagPrefix.cableGtSingle, GTMaterials.Gold, 2)
@@ -777,8 +791,8 @@ public class DefaultRecipes {
                 .duration(300) // 15秒
                 .save(provider);
 
-        // EV中子加速器
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("neutron_accelerator_ev")
+// EV中子加速器
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("neutron_accelerator_ev"))
                 .inputItems(CTNHItems.INVERTER.asStack())
                 .inputItems(GTMachines.HULL[GTValues.EV].asStack())
                 .inputItems(TagPrefix.cableGtSingle, GTMaterials.Aluminium, 2)
@@ -791,8 +805,8 @@ public class DefaultRecipes {
                 .duration(300) // 15秒
                 .save(provider);
 
-        // IV中子加速器
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("neutron_accelerator_iv")
+// IV中子加速器
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("neutron_accelerator_iv"))
                 .inputItems(CTNHItems.INVERTER.asStack())
                 .inputItems(GTMachines.HULL[GTValues.IV].asStack())
                 .inputItems(TagPrefix.cableGtSingle, GTMaterials.Tungsten, 2)
@@ -805,8 +819,8 @@ public class DefaultRecipes {
                 .duration(300) // 15秒
                 .save(provider);
 
-        // LuV中子加速器（装配线）
-        GTRecipeTypes.ASSEMBLY_LINE_RECIPES.recipeBuilder("neutron_accelerator_luv")
+// LuV中子加速器（装配线）
+        GTRecipeTypes.ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("neutron_accelerator_luv"))
                 .inputItems(CTNHItems.INVERTER.asStack(2))
                 .inputItems(GTMachines.HULL[GTValues.LuV].asStack())
                 .inputItems(TagPrefix.cableGtSingle, GTMaterials.YttriumBariumCuprate, 2)
@@ -821,8 +835,8 @@ public class DefaultRecipes {
                 .duration(300) // 15秒
                 .save(provider);
 
-        // ZPM中子加速器（装配线）
-        GTRecipeTypes.ASSEMBLY_LINE_RECIPES.recipeBuilder("neutron_accelerator_zpm")
+// ZPM中子加速器（装配线）
+        GTRecipeTypes.ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("neutron_accelerator_zpm"))
                 .inputItems(CTNHItems.INVERTER.asStack(2))
                 .inputItems(GTMachines.HULL[GTValues.ZPM].asStack())
                 .inputItems(TagPrefix.cableGtSingle, GTMaterials.VanadiumGallium, 2)
@@ -838,8 +852,8 @@ public class DefaultRecipes {
                 .duration(300) // 15秒
                 .save(provider);
 
-        // UV中子加速器（装配线）
-        GTRecipeTypes.ASSEMBLY_LINE_RECIPES.recipeBuilder("neutron_accelerator_uv")
+// UV中子加速器（装配线）
+        GTRecipeTypes.ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("neutron_accelerator_uv"))
                 .inputItems(CTNHItems.INVERTER.asStack(4))
                 .inputItems(GTMachines.HULL[GTValues.UV].asStack())
                 .inputItems(TagPrefix.cableGtSingle, GTMaterials.NaquadahAlloy, 2)
@@ -972,7 +986,7 @@ public class DefaultRecipes {
                 "LPL", "CBC", "LPL", 'L', GTItems.LAPOTRON_CRYSTAL, 'P', GTItems.POWER_INTEGRATED_CIRCUIT, 'C',
                 CustomTags.LuV_CIRCUITS, 'B', GTBlocks.CASING_PALLADIUM_SUBSTATION.asStack());
 
-        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("charged_certus_quartz_crystal")
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("charged_certus_quartz_crystal"))
                 .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:certus_quartz_crystal")))
                 .outputItems(
                         ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:charged_certus_quartz_crystal")))
@@ -980,7 +994,7 @@ public class DefaultRecipes {
                 .duration(100)
                 .save(provider);
 
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("naquadah_firebox_casing_two")
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("naquadah_firebox_casing_two"))
                 .inputItems(CTNHItems.NeutronSource, 3)
                 .inputItems(TagPrefix.plate, GTMaterials.Naquadah, 3)
                 .inputItems(TagPrefix.frameGt, GTMaterials.Tungsten)

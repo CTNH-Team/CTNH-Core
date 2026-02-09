@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
@@ -70,7 +71,7 @@ public class MachinesRecipes {
                 "RFR", "PwP", 'R', new MaterialEntry(TagPrefix.rotor, GTMaterials.NaquadahAlloy), 'F',
                 CTNHBlocks.CASING_NAQUADAH_BLOCK.asStack(), 'P',
                 new MaterialEntry(TagPrefix.pipeNormalFluid, GTMaterials.NaquadahAlloy));
-        ASSEMBLER_RECIPES.recipeBuilder("zpm_large_miner")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("zpm_large_miner"))
                 .inputItems(GTMachines.HULL[ZPM])
                 .inputItems(frameGt, Osmiridium, 4)
                 .inputItems(CustomTags.ZPM_CIRCUITS, 4)
@@ -81,13 +82,15 @@ public class MachinesRecipes {
                 .circuitMeta(2)
                 .outputItems(MultiblocksA.ZPM_LARGE_MINER)
                 .duration(400).EUt(VA[ZPM]).save(provider);
-        COMPRESSOR_RECIPES.recipeBuilder("steelleaf")
+
+        COMPRESSOR_RECIPES.recipeBuilder(CTNHCore.id("steelleaf"))
                 .duration(300)
                 .EUt(2)
                 .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
                 .outputItems(STEELEAF_INGOT, 1)
                 .save(provider);
-        MIXER_RECIPES.recipeBuilder("plantfood")
+
+        MIXER_RECIPES.recipeBuilder(CTNHCore.id("plantfood"))
                 .duration(500)
                 .EUt(28)
                 .inputItems(dust, CTNHMaterials.SpiritAsh, 4)
@@ -95,28 +98,30 @@ public class MachinesRecipes {
                 .outputItems(FERTILIZER, 16)
                 .save(provider);
 
-        CTNHRecipeTypes.ARC_REACTOR.recipeBuilder("test")
+        CTNHRecipeTypes.ARC_REACTOR.recipeBuilder(CTNHCore.id("test"))
                 .EUt(8192)
                 .duration(20)
                 .circuitMeta(1)
                 .save(provider);
-        CTNHRecipeTypes.TRAP_ENERGY.recipeBuilder("test")
+
+        CTNHRecipeTypes.TRAP_ENERGY.recipeBuilder(CTNHCore.id("test"))
                 .EUt(1)
                 .duration(10)
                 .circuitMeta(1)
                 .save(provider);
-        CTNHRecipeTypes.VOID_MINER.recipeBuilder("void")
+
+        CTNHRecipeTypes.VOID_MINER.recipeBuilder(CTNHCore.id("void"))
                 .EUt(32678 * 64)
                 .duration(20 * 100)
                 .circuitMeta(1)
                 .save(provider);
 
-        CTNHRecipeTypes.PVDRONE.recipeBuilder("blank")
+        CTNHRecipeTypes.PVDRONE.recipeBuilder(CTNHCore.id("blank"))
                 .duration(100)
                 .circuitMeta(1)
                 .save(provider);
 
-        CTNHRecipeTypes.PVDRONE.recipeBuilder("meteorite_capture")
+        CTNHRecipeTypes.PVDRONE.recipeBuilder(CTNHCore.id("meteorite_capture"))
                 .duration(1000)
                 .circuitMeta(2)
                 .outputItems(CTNHTagPrefixes.oreMoonStone, AdastraMaterials.Desh)
@@ -125,7 +130,7 @@ public class MachinesRecipes {
                 .EUt(VA[LuV])
                 .save(provider);
 
-        CTNHRecipeTypes.COMPILER_RECIPE.recipeBuilder("test")
+        CTNHRecipeTypes.COMPILER_RECIPE.recipeBuilder(CTNHCore.id("test"))
                 .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
                 .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
                 .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
@@ -141,26 +146,28 @@ public class MachinesRecipes {
                 .duration(20 * 30)
                 .EUt(1000000)
                 .save(provider);
-        COMBUSTION_GENERATOR_FUELS.recipeBuilder("end")
+
+        COMBUSTION_GENERATOR_FUELS.recipeBuilder(CTNHCore.id("end"))
                 .inputFluids(CTNHMaterials.NQ_END_OF_GASOLINE.getFluid(1))
                 .duration(1000)
                 .EUt(-320)
                 .save(provider);
 
-        ASSEMBLER_RECIPES.recipeBuilder("naquadah_gearbox_casing")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("naquadah_gearbox_casing"))
                 .inputItems(plate, NaquadahAlloy, 4)
                 .inputItems(gear, NaquadahAlloy, 2)
                 .inputItems(frameGt, NaquadahAlloy)
                 .circuitMeta(4)
                 .outputItems(CTNHBlocks.CASING_NAQUADAH_GEARBOX.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
                 .duration(50).EUt(16).save(provider);
+
         VanillaRecipeHelper.addShapedRecipe(provider, true, "casing_naquadah_alloy_gearbox",
                 CTNHBlocks.CASING_NAQUADAH_GEARBOX.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft), "PhP", "GFG",
                 "PwP", 'P', new MaterialEntry(TagPrefix.plate, GTMaterials.NaquadahAlloy), 'F',
                 new MaterialEntry(frameGt, GTMaterials.NaquadahAlloy), 'G',
                 new MaterialEntry(gear, GTMaterials.NaquadahAlloy));
 
-        ASSEMBLER_RECIPES.recipeBuilder("empty_program")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("empty_program"))
                 .inputItems(wireFine, RedAlloy, 8)
                 .inputItems(plate, Steel, 2)
                 .inputFluids(FluidIngredient.of(Fluids.WATER, 1000))
@@ -168,10 +175,14 @@ public class MachinesRecipes {
                 .EUt(30)
                 .duration(200)
                 .save(provider);
+
+// registerMachineRecipe 可能是一个自定义方法，这里不修改
         registerMachineRecipe(provider, CTNHMachines.PERSONAL_COMPUTER, "PDP",
                 "CAC", "PBP", 'A', HULL, 'C', ROTOR, 'P', CABLE, 'D', CIRCUIT, 'B', SENSOR);
+
         registerMachineRecipe(provider, CTNHMachines.CIRCUIT_BUS, "A", "B", 'A', MONITOR, 'B', HULL);
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("astronomy_circuit")
+
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("astronomy_circuit"))
                 .inputItems(PLASTIC_CIRCUIT_BOARD)
                 .inputItems(CENTRAL_PROCESSING_UNIT, 2)
                 .inputItems(NAND_MEMORY_CHIP, 32)
@@ -182,18 +193,21 @@ public class MachinesRecipes {
                 .solderMultiplier(2)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .duration(400).EUt(90).save(provider);
-        PHOTOVOLTAIC_GENERATOR.recipeBuilder("test")
+
+        PHOTOVOLTAIC_GENERATOR.recipeBuilder(CTNHCore.id("test"))
                 .duration(20)
                 .EUt(-1)
                 .circuitMeta(1)
                 .save(provider);
-        PHOTOVOLTAIC_ASSEMBER.recipeBuilder("test")
+
+        PHOTOVOLTAIC_ASSEMBER.recipeBuilder(CTNHCore.id("test"))
                 .duration(20)
                 // .EUt(-1)
                 .circuitMeta(1)
                 .addData("input", 32678)
                 .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("drone_holder")
+
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("drone_holder"))
                 .duration(100)
                 .EUt(32678 * 4)
                 .circuitMeta(1)
@@ -202,7 +216,7 @@ public class MachinesRecipes {
                 .inputItems(CustomTags.UV_CIRCUITS, 4)
                 .save(provider);
 
-        ASSEMBLER_RECIPES.recipeBuilder("lv_digital_miner")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("lv_digital_miner"))
                 .inputItems(GTMachines.MINER[LV].asStack())
                 .inputItems(CONVEYOR_MODULE_LV.asStack(2))
                 .inputItems(ROBOT_ARM_LV.asStack(2))
@@ -215,7 +229,7 @@ public class MachinesRecipes {
                 .EUt(VA[LV])
                 .save(provider);
 
-        ASSEMBLER_RECIPES.recipeBuilder("mv_digital_miner")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("mv_digital_miner"))
                 .inputItems(GTMachines.MINER[MV].asStack())
                 .inputItems(CONVEYOR_MODULE_MV.asStack(2))
                 .inputItems(ROBOT_ARM_MV.asStack(2))
@@ -228,7 +242,7 @@ public class MachinesRecipes {
                 .EUt(VA[MV])
                 .save(provider);
 
-        ASSEMBLER_RECIPES.recipeBuilder("hv_digital_miner")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("hv_digital_miner"))
                 .inputItems(GTMachines.MINER[HV].asStack())
                 .inputItems(CONVEYOR_MODULE_HV.asStack(2))
                 .inputItems(ROBOT_ARM_HV.asStack(2))
