@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
 
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
@@ -22,7 +23,7 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.NEUTRONIUM_REINFORC
 public class TurbineRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("hyper_plasma_turbine")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("hyper_plasma_turbine"))
                 .inputItems(GTMultiMachines.LARGE_PLASMA_TURBINE)
                 .inputItems(CustomTags.UV_CIRCUITS, 16)
                 .inputItems(GTBlocks.SUPERCONDUCTING_COIL, 4)
@@ -37,7 +38,7 @@ public class TurbineRecipes {
                 .EUt(VA[ZPM])
                 .save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("neutronium_reinforced_turbine_casing")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("neutronium_reinforced_turbine_casing"))
                 .inputItems(GTBlocks.CASING_TUNGSTENSTEEL_TURBINE)
                 .inputItems(TagPrefix.plate, Osmiridium, 6)
                 .inputFluids(Neutronium.getFluid(144 * 16))
@@ -50,7 +51,7 @@ public class TurbineRecipes {
                 .EUt(VA[ZPM])
                 .save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("hyper_plasma_turbine_rotor")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("hyper_plasma_turbine_rotor"))
                 .inputItems(TagPrefix.block, Neutronium)
                 .inputItems(TagPrefix.plateDouble, Neutronium, 4)
                 .inputItems(TagPrefix.plateDouble, Neutronium, 4)
