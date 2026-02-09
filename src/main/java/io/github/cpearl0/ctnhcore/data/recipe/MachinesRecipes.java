@@ -41,21 +41,7 @@ import static twilightforest.init.TFItems.STEELEAF_INGOT;
 
 public class MachinesRecipes {
 
-    public static CraftingComponent MONITOR = CraftingComponent.of("monitor", COVER_SCREEN.asStack())
-            .add(LV, COVER_SCREEN.asStack())
-            .add(MV, COVER_SCREEN.asStack())
-            .add(HV, COVER_SCREEN.asStack())
-            .add(EV, COVER_SCREEN.asStack())
-            .add(IV, COVER_SCREEN.asStack())
-            .add(LuV, COVER_SCREEN.asStack())
-            .add(ZPM, COVER_SCREEN.asStack())
-            .add(UV, COVER_SCREEN.asStack())
-            .add(UHV, COVER_SCREEN.asStack())
-            .add(UEV, COVER_SCREEN.asStack())
-            .add(UIV, COVER_SCREEN.asStack())
-            .add(UXV, COVER_SCREEN.asStack())
-            .add(OpV, COVER_SCREEN.asStack())
-            .add(MAX, COVER_SCREEN.asStack());
+    public static CraftingComponent MONITOR = CraftingComponent.of("monitor", COVER_SCREEN.asStack());
 
     public static void init(Consumer<FinishedRecipe> provider) {
         VanillaRecipeHelper.addShapedRecipe(provider, true, "underfloor_heating_system",

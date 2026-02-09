@@ -1,6 +1,8 @@
 package io.github.cpearl0.ctnhcore.event;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.common.capability.EIOCapacitorProvider;
+import io.github.cpearl0.ctnhcore.data.recipe.CTNHCraftingComponents;
 import io.github.cpearl0.ctnhcore.integration.legendary.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 
@@ -12,9 +14,12 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -68,8 +73,6 @@ public class ForgeEventHandler {
                         .executes(context -> {
                             CommandSourceStack source = context.getSource();
 
-                            // === 你的逻辑 ===
-
                             GTRegistries.RECIPE_TYPES.forEach(
                                     r -> r.getLookup().removeAllRecipes());
                             GTRecipes.recipeRemoval();
@@ -81,5 +84,14 @@ public class ForgeEventHandler {
 
                             return 1; // 返回执行结果
                         }));
+    }
+
+    @SubscribeEvent
+    public static void attachItemStack(AttachCapabilitiesEvent<ItemStack> event) {
+        var stack = event.getObject();
+        Integer base = CTNHCraftingComponents.CAPACITOR_BASE_MAP.get(stack.getItem());
+        if(base != null){
+            event.addCapability(CTNHCore.id("eio_capacitor"), new EIOCapacitorProvider(base));
+        }
     }
 }
