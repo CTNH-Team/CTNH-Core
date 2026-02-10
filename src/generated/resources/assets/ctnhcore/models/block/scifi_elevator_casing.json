@@ -1,8 +1,8 @@
 {
   "parent": "gtceu:block/cube/tinted/bottom_top",
   "textures": {
-    "bottom": "ctnhcore:block/casings/space_elevator/dark_gray_elevator_casing",
+    "bottom": "ctnhcore:block/casings/space_elevator/scifi_elevator_casing_top",
     "side": "ctnhcore:block/casings/space_elevator/scifi_elevator_casing",
-    "top": "ctnhcore:block/casings/space_elevator/dark_gray_elevator_casing"
+    "top": "ctnhcore:block/casings/space_elevator/scifi_elevator_casing_top"
   }
 }
