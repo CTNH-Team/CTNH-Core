@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.item.ProgramItem;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
@@ -18,7 +19,7 @@ public class PersonalComputerRecipes {
         for (var program : ProgramItem.PROGRAMS) {
             var name = BuiltInRegistries.ITEM.getKey(program).getPath();
             if (program != CTNHItems.PROGRAM_EMPTY.get()) {
-                CTNHRecipeTypes.PERSONAL_COMPUTER.recipeBuilder("copy_" + name)
+                CTNHRecipeTypes.PERSONAL_COMPUTER.recipeBuilder(CTNHCore.id("copy_" + name))
                         .circuitMeta(10)
                         .inputItems(CTNHItems.PROGRAM_EMPTY)
                         .notConsumable(program)
@@ -28,7 +29,7 @@ public class PersonalComputerRecipes {
                         .save(provider);
             }
         }
-        CTNHRecipeTypes.PERSONAL_COMPUTER.recipeBuilder("program_rocket_1")
+        CTNHRecipeTypes.PERSONAL_COMPUTER.recipeBuilder(CTNHCore.id("program_rocket_1"))
                 .circuitMeta(0)
                 .inputItems(CTNHItems.PROGRAM_EMPTY)
                 .notConsumable(CTNHItems.PROGRAM_ROCKET_CORE_1)
@@ -47,7 +48,7 @@ public class PersonalComputerRecipes {
         // .outputItems(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1)
         // .save(provider);
 
-        CTNHRecipeTypes.PERSONAL_COMPUTER.recipeBuilder("program_rocket_1_force")
+        CTNHRecipeTypes.PERSONAL_COMPUTER.recipeBuilder(CTNHCore.id("program_rocket_1_force"))
                 .circuitMeta(3)
                 .inputItems(CTNHItems.PROGRAM_EMPTY)
                 .notConsumable(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1)

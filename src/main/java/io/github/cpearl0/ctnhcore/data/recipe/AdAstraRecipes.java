@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
@@ -29,7 +30,7 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLY_LINE_RECI
 public class AdAstraRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        ASSEMBLER_RECIPES.recipeBuilder("heavy_ingot_t1")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("heavy_ingot_t1"))
                 .inputItems(plateDense, Brass)
                 .inputItems(plateDense, Aluminium)
                 .inputItems(plateDense, Steel)
@@ -37,21 +38,21 @@ public class AdAstraRecipes {
                 .inputFluids(StainlessSteel.getFluid(72))
                 .circuitMeta(1)
                 .duration(300).EUt(GTValues.VA[GTValues.HV]).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("heavy_ingot_t2")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("heavy_ingot_t2"))
                 .inputItems(CTNHItems.HEAVY_INGOT_T1)
                 .inputItems(plateDense, AdastraMaterials.Desh, 2)
                 .outputItems(CTNHItems.HEAVY_INGOT_T2)
                 .inputFluids(TungstenSteel.getFluid(72))
                 .circuitMeta(1)
                 .duration(300).EUt(GTValues.VA[GTValues.EV]).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("heavy_ingot_t3")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("heavy_ingot_t3"))
                 .inputItems(CTNHItems.HEAVY_INGOT_T2)
                 .inputItems(plateDense, AdastraMaterials.Ostrum, 4)
                 .outputItems(CTNHItems.HEAVY_INGOT_T3)
                 .inputFluids(Platinum.getFluid(72))
                 .circuitMeta(1)
                 .duration(300).EUt(GTValues.VA[GTValues.IV]).save(provider);
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("heavy_ingot_t4")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("heavy_ingot_t4"))
                 .inputItems(CTNHItems.HEAVY_INGOT_T3)
                 .inputItems(plateDense, AdastraMaterials.Calorite, 3)
                 .inputItems(plateDense, AdastraMaterials.Calorite, 3)
@@ -59,17 +60,17 @@ public class AdAstraRecipes {
                 .outputItems(CTNHItems.HEAVY_INGOT_T4)
                 .inputFluids(CTNHMaterials.Cerrobase140.getFluid(36))
                 .duration(300).EUt(GTValues.VA[GTValues.LuV]).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("space_helmet")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("space_helmet"))
                 .inputItems(Items.CHAINMAIL_HELMET.getDefaultInstance(), ChemicalHelper.get(plate, Glass))
                 .outputItems(ModItems.SPACE_HELMET)
                 .inputFluids(Glue.getFluid(72))
                 .EUt(GTValues.VA[GTValues.MV]).duration(400).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("netherite_space_helmet")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("netherite_space_helmet"))
                 .inputItems(ModItems.SPACE_HELMET.get().getDefaultInstance(), CTNHItems.HEAVY_PLATE_T3.asStack(5))
                 .outputItems(ModItems.NETHERITE_SPACE_HELMET)
                 .inputFluids(StainlessSteel.getFluid(72))
                 .EUt(GTValues.VA[GTValues.HV]).duration(200).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("netherite_space_suit")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("netherite_space_suit"))
                 .inputItems(
                         ModItems.SPACE_SUIT.get().getDefaultInstance(),
                         new ItemStack(ModItems.STEEL_TANK.get(), 2),
@@ -77,23 +78,23 @@ public class AdAstraRecipes {
                 .outputItems(ModItems.NETHERITE_SPACE_SUIT)
                 .inputFluids(StainlessSteel.getFluid(72))
                 .EUt(GTValues.VA[GTValues.HV]).duration(200).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("netherite_space_pants")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("netherite_space_pants"))
                 .inputItems(ModItems.SPACE_PANTS.get().getDefaultInstance(), CTNHItems.HEAVY_PLATE_T3.asStack(7))
                 .outputItems(ModItems.NETHERITE_SPACE_PANTS)
                 .inputFluids(StainlessSteel.getFluid(72))
                 .EUt(GTValues.VA[GTValues.HV]).duration(200).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("netherite_space_boots")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("netherite_space_boots"))
                 .inputItems(ModItems.SPACE_BOOTS.get().getDefaultInstance(), CTNHItems.HEAVY_PLATE_T3.asStack(4))
                 .outputItems(ModItems.NETHERITE_SPACE_BOOTS)
                 .inputFluids(StainlessSteel.getFluid(72))
                 .EUt(GTValues.VA[GTValues.HV]).duration(200).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("jet_suit_helmet")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("jet_suit_helmet"))
                 .inputItems(ModItems.NETHERITE_SPACE_HELMET.get().getDefaultInstance(),
                         CTNHItems.HEAVY_PLATE_T4.asStack(5))
                 .outputItems(ModItems.JET_SUIT_HELMET)
                 .inputFluids(Titanium.getFluid(144))
                 .EUt(GTValues.VA[GTValues.EV]).duration(200).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("jet_suit")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("jet_suit"))
                 .inputItems(
                         ModItems.NETHERITE_SPACE_SUIT.get().getDefaultInstance(),
                         new ItemStack(ModItems.OSTRUM_TANK.get(), 2),
@@ -101,26 +102,26 @@ public class AdAstraRecipes {
                 .outputItems(ModItems.JET_SUIT)
                 .inputFluids(Titanium.getFluid(144))
                 .EUt(GTValues.VA[GTValues.EV]).duration(200).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("jet_suit_pants")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("jet_suit_pants"))
                 .inputItems(ModItems.NETHERITE_SPACE_PANTS.get().getDefaultInstance(),
                         CTNHItems.HEAVY_PLATE_T4.asStack(7))
                 .outputItems(ModItems.JET_SUIT_PANTS)
                 .inputFluids(Titanium.getFluid(144))
                 .EUt(GTValues.VA[GTValues.EV]).duration(200).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("jet_suit_boots")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("jet_suit_boots"))
                 .inputItems(ModItems.NETHERITE_SPACE_BOOTS.get().getDefaultInstance(),
                         CTNHItems.HEAVY_PLATE_T4.asStack(4))
                 .outputItems(ModItems.JET_SUIT_BOOTS)
                 .inputFluids(Titanium.getFluid(144))
                 .EUt(GTValues.VA[GTValues.EV]).duration(200).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("desh_engine")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("desh_engine"))
                 .inputItems(
                         new ItemStack(ModItems.STEEL_TANK.get(), 3), CTNHItems.HEAVY_PLATE_T2.asStack(2),
                         new ItemStack(ModItems.STEEL_ENGINE.get(), 2), CTNHItems.CHIP_T2.asStack())
                 .outputItems(ModItems.DESH_ENGINE)
                 .inputFluids(Polyethylene.getFluid(144))
                 .EUt(GTValues.VA[GTValues.EV]).duration(200).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("ostrum_engine")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("ostrum_engine"))
                 .inputItems(
                         new ItemStack(ModItems.OSTRUM_TANK.get(), 4),
                         CTNHItems.HEAVY_PLATE_T3.asStack(4),
@@ -130,7 +131,7 @@ public class AdAstraRecipes {
                 .outputItems(ModItems.OSTRUM_ENGINE)
                 .inputFluids(Polytetrafluoroethylene.getFluid(144))
                 .EUt(GTValues.VA[GTValues.IV]).duration(200).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("ostrum_tank")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("ostrum_tank"))
                 .inputItems(
                         ModItems.STEEL_TANK.get().getDefaultInstance(),
                         ChemicalHelper.get(plateDouble, Titanium, 5),
@@ -139,43 +140,36 @@ public class AdAstraRecipes {
                 .outputItems(ModItems.OSTRUM_TANK)
                 .inputFluids(StainlessSteel.getFluid(144))
                 .EUt(GTValues.VA[GTValues.HV]).duration(200).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("steel_tank")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("steel_tank"))
                 .inputItems(GTItems.FLUID_CELL_LARGE_STEEL.asStack(), CTNHItems.CHIP_T1.asStack(2))
                 .inputFluids(StainlessSteel.getFluid(72))
                 .outputItems(ModItems.STEEL_TANK)
                 .circuitMeta(1)
                 .EUt(GTValues.VA[GTValues.LV]).duration(20).save(provider);
-        VanillaRecipeHelper.addShapedRecipe(
-                provider, "steel_tank", new ItemStack(ModItems.STEEL_TANK.get()),
-                "DhD", "ABA", "DdD",
-                'A', CTNHItems.CHIP_T1.asStack(),
-                'B', GTItems.FLUID_CELL_LARGE_STEEL.asStack(),
-                'D', new MaterialEntry(screw, StainlessSteel));
-        ASSEMBLER_RECIPES.recipeBuilder("rocket_nose_cone")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("calorite_engine"))
+                .inputItems(CTNHItems.HEAVY_PLATE_T4.asStack(32), CTNHItems.HEAVY_PLATE_T3.asStack(16))
+                .inputItems(new ItemStack(ModItems.OSTRUM_ENGINE.get(), 8), CTNHItems.CHIP_T4.asStack(2))
+                .inputItems(new ItemStack(ModItems.OSTRUM_TANK.get(), 8))
+                .outputItems(ModItems.CALORITE_ENGINE)
+                .inputFluids(Platinum.getFluid(4032))
+                .inputFluids(Iridium.getFluid(2016))
+                .inputFluids(Palladium.getFluid(1008))
+                .inputFluids(Osmium.getFluid(504))
+                .EUt(GTValues.VA[GTValues.LuV]).duration(600).save(provider);
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("rocket_nose_cone"))
                 .inputItems(CTNHItems.HEAVY_PLATE_T1.asStack(4), new ItemStack(Items.LIGHTNING_ROD))
                 .inputFluids(StainlessSteel.getFluid(36))
                 .outputItems(ModItems.ROCKET_NOSE_CONE)
                 .circuitMeta(4)
                 .EUt(GTValues.VA[GTValues.LV]).duration(50).save(provider);
-        VanillaRecipeHelper.addShapedRecipe(
-                provider, "rocket_nose_cone", new ItemStack(ModItems.ROCKET_NOSE_CONE.get()),
-                "dBh", "ADA", "DDD",
-                'A', new MaterialEntry(screw, StainlessSteel),
-                'B', new ItemStack(Items.LIGHTNING_ROD),
-                'D', CTNHItems.HEAVY_PLATE_T1.asStack());
-        ASSEMBLER_RECIPES.recipeBuilder("rocket_fin")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("rocket_fin"))
                 .inputItems(plateDouble, Steel, 2)
                 .inputItems(CTNHItems.HEAVY_PLATE_T1.asStack(4))
                 .inputItems(ModItems.ROCKET_NOSE_CONE)
                 .outputItems(ModItems.ROCKET_FIN)
                 .circuitMeta(5)
                 .EUt(GTValues.VA[GTValues.LV]).duration(50).save(provider);
-        VanillaRecipeHelper.addShapedRecipe(
-                provider, "rocket_fin", new ItemStack(ModItems.ROCKET_FIN.get()),
-                "hAf", "BAB", "BsB",
-                'A', new MaterialEntry(plateDouble, StainlessSteel),
-                'B', CTNHItems.HEAVY_PLATE_T1.asStack());
-        ASSEMBLER_RECIPES.recipeBuilder("steel_engine")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("steel_engine"))
                 .inputItems(CTNHItems.HEAVY_PLATE_T1.asStack(4), new ItemStack(ModItems.STEEL_TANK.get(), 2))
                 .inputItems(
                         GTBlocks.FIREBOX_STEEL.asStack(),
@@ -183,6 +177,23 @@ public class AdAstraRecipes {
                         CTNHItems.CHIP_T1.asStack())
                 .outputItems(ModItems.STEEL_ENGINE)
                 .EUt(GTValues.VA[GTValues.LV]).duration(100).save(provider);
+        VanillaRecipeHelper.addShapedRecipe(
+                provider, "steel_tank", new ItemStack(ModItems.STEEL_TANK.get()),
+                "DhD", "ABA", "DdD",
+                'A', CTNHItems.CHIP_T1.asStack(),
+                'B', GTItems.FLUID_CELL_LARGE_STEEL.asStack(),
+                'D', new MaterialEntry(screw, StainlessSteel));
+        VanillaRecipeHelper.addShapedRecipe(
+                provider, "rocket_nose_cone", new ItemStack(ModItems.ROCKET_NOSE_CONE.get()),
+                "dBh", "ADA", "DDD",
+                'A', new MaterialEntry(screw, StainlessSteel),
+                'B', new ItemStack(Items.LIGHTNING_ROD),
+                'D', CTNHItems.HEAVY_PLATE_T1.asStack());
+        VanillaRecipeHelper.addShapedRecipe(
+                provider, "rocket_fin", new ItemStack(ModItems.ROCKET_FIN.get()),
+                "hAf", "BAB", "BsB",
+                'A', new MaterialEntry(plateDouble, StainlessSteel),
+                'B', CTNHItems.HEAVY_PLATE_T1.asStack());
         VanillaRecipeHelper.addShapedRecipe(
                 provider, "steel_engine", new ItemStack(ModItems.STEEL_ENGINE.get()),
                 "DED", "CBC", "DAD",
@@ -235,16 +246,6 @@ public class AdAstraRecipes {
                 'E', GTItems.ELECTRIC_MOTOR_HV.asStack(),
                 'F', new MaterialEntry(plateDouble, Aluminium),
                 'G', new MaterialEntry(cableGtDouble, Aluminium));
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("calorite_engine")
-                .inputItems(CTNHItems.HEAVY_PLATE_T4.asStack(32), CTNHItems.HEAVY_PLATE_T3.asStack(16))
-                .inputItems(new ItemStack(ModItems.OSTRUM_ENGINE.get(), 8), CTNHItems.CHIP_T4.asStack(2))
-                .inputItems(new ItemStack(ModItems.OSTRUM_TANK.get(), 8))
-                .outputItems(ModItems.CALORITE_ENGINE)
-                .inputFluids(Platinum.getFluid(4032))
-                .inputFluids(Iridium.getFluid(2016))
-                .inputFluids(Palladium.getFluid(1008))
-                .inputFluids(Osmium.getFluid(504))
-                .EUt(GTValues.VA[GTValues.LuV]).duration(600).save(provider);
     }
 
     public static void remove(Consumer<ResourceLocation> consumer) {

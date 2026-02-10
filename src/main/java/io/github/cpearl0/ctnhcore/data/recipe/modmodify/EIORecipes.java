@@ -169,7 +169,11 @@ public class EIORecipes {
                 "enderio:pressurized_fluid_tank",
                 "enderio:primitive_alloy_smelter",
                 "enderio:alloy_smelter",
-                "enderio:stirling_generator"
+                "enderio:stirling_generator",
+                "enderio:vibrant_capacitor_bank_upgrade",
+                "enderio:basic_capacitor",
+                "enderio:double_layer_capacitor",
+                "enderio:octadic_capacitor"
         ));
     }
 

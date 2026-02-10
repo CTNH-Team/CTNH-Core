@@ -392,7 +392,7 @@ public class PlatinumLine {
                 .save(provider);
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("nh4_cl")// 氯化铵
                 .inputFluids(Ammonia.getFluid(1000))
-                .inputFluids(Chlorine.getFluid(1000))
+                .inputFluids(HydrochloricAcid.getFluid(1000))
                 .outputItems(dust, AmmoniumChloride, 2)
                 .EUt(GTValues.VA[GTValues.HV])
                 .duration(100)

@@ -85,6 +85,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         SlaughterHouseRecipes.init(provider);
         com.mo_guang.ctpp.common.data.recipe.BigDamRecipes.init(provider);
 
+        PhotovoltaicStationRecipes.init(provider);
         ChemConsumerRecipes.init(provider);
         WaterPowerStationRecipes.init(provider);
         MeadowRecipes.init(provider);
