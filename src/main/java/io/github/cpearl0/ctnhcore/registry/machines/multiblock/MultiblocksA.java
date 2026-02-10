@@ -1,7 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 
-import com.mo_guang.ctpp.api.pattern.FactoryStaticBlockPattern;
-import com.mo_guang.ctpp.common.machine.multiblock.BigDamMachine;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.machine.multiblock.MultiThreadElectricMachine;
 import io.github.cpearl0.ctnhcore.client.renderer.MartialMoralityEyeRender;
@@ -17,7 +15,6 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.Photovolta
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.IndustrialPrimitiveBlastFurnaceMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.MeadowMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
-import io.github.cpearl0.ctnhcore.data.materials.CreateMaterials;
 import io.github.cpearl0.ctnhcore.integration.legendary.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
@@ -58,8 +55,7 @@ import net.minecraft.world.phys.AABB;
 
 import com.enderio.base.common.init.EIOBlocks;
 import com.mo_guang.ctpp.api.CTPPPartAbility;
-import com.mo_guang.ctpp.common.data.recipe.CTPPRecipeModifiers;
-import com.mo_guang.ctpp.common.machine.multiblock.KineticOutputMachine;
+import com.mo_guang.ctpp.registry.CTPPRecipeModifiers;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
 import com.simibubi.create.foundation.block.CopperBlockSet;

@@ -17,7 +17,7 @@ import net.minecraft.network.chat.Component;
 
 import com.mo_guang.ctpp.CTPP;
 import com.mo_guang.ctpp.api.CTPPPartAbility;
-import com.mo_guang.ctpp.common.data.recipe.CTPPRecipeModifiers;
+import com.mo_guang.ctpp.registry.CTPPRecipeModifiers;
 import com.mo_guang.ctpp.common.machine.multiblock.KineticWorkableMultiblockMachine;
 import com.mo_guang.ctpp.util.CommonTooltips;
 import com.negodya1.vintageimprovements.VintageBlocks;
