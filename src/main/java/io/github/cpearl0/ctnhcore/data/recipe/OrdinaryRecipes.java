@@ -114,7 +114,7 @@ public class OrdinaryRecipes {
 
 // 蒸馏室
         CBRecipeBuilder.of(CTNHCore.id("coal_tar_distillation"), GTRecipeTypes.DISTILLERY_RECIPES)  // 修改了ID避免重复
-                .circuitMeta(5)
+                .circuitMeta(6)
                 .inputFluids(new FluidStack(CoalTar.getFluid(), 1000))
                 .outputFluids(new FluidStack(PYRROLE.getFluid(), 800))
                 .duration(120)
