@@ -41,6 +41,8 @@ legacyForge {
         minecraftVersion = project.minecraft_version
     }
 
+    accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg')
+
     runs {
         configureEach {
             // Recommended logging data for a userdev environment

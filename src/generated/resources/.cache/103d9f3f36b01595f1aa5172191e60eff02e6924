@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-02T10:40:54.9864148	Registries
+// 1.20.1	2026-02-10T19:39:13.827282	Registries
 ffd0481f4f4b5abcc11506d4d8ed0be9af26f7e6 data/ctnhcore/damage_type/computation_sacrifice.json
 6cc75e99eed5a42311778967df12c6da972c1de0 data/ctnhcore/dimension/astral_orbit.json
 cca4727d31c59fde0afa4bbff10a3b576b4e1ea4 data/ctnhcore/dimension/astral_planet.json
@@ -28,3 +28,5 @@ a729f64940f4517cff6c1daaf7efee8724d11d59 data/ctnhcore/worldgen/density_function
 f1b4f88f04ae1815571bc02f7271a1931307d1fc data/ctnhcore/worldgen/placed_feature/astral_tree.json
 2bdb5ef2987444b13a58b5c8201f22da8a4b134b data/ctnhcore/worldgen/placed_feature/gas_sprout.json
 9cc2c8da91d8f7cbf3d6bf7126e9d63890b24705 data/ctnhcore/worldgen/placed_feature/venus_ochrum.json
+c5433e79cd4165cf99274d2e05f0e783c5b292b5 data/ctnhcore/worldgen/structure/meteorite.json
+2d5efbfd78f5f8f51099cf3b6cdc3a229686511d data/ctnhcore/worldgen/structure_set/meteorite.json

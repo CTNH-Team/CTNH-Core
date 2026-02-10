@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.registry.worldgen.biome;
 
 import io.github.cpearl0.ctnhcore.registry.sound.CTNHMusics;
-import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHPlacements;
+import io.github.cpearl0.ctnhcore.registry.worldgen.feature.CTNHPlacements;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.world.level.biome.*;

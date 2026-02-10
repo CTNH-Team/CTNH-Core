@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.registry;
 
 import com.gregtechceu.gtceu.api.data.tag.TagUtil;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
@@ -16,4 +17,7 @@ public class CTNHTags {
     public static TagKey<Biome> TWILIGHT_TIER1 = TagUtil.createTag(Registries.BIOME, "twilight_tier1", true);
     public static TagKey<Biome> TWILIGHT_TIER2 = TagUtil.createTag(Registries.BIOME, "twilight_tier1", true);
     public static TagKey<Biome> TWILIGHT_TIER3 = TagUtil.createTag(Registries.BIOME, "twilight_tier1", true);
+
+    public static final TagKey<Biome> HAS_ASTRAL_METEORITES = TagKey.create(Registries.BIOME,
+            CTNHCore.id("astral_meteorites"));
 }
