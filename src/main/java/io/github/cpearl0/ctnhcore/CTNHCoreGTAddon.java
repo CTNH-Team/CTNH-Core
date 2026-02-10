@@ -84,6 +84,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         PersonalComputerRecipes.init(provider);
         SlaughterHouseRecipes.init(provider);
 
+        PhotovoltaicStationRecipes.init(provider);
         ChemConsumerRecipes.init(provider);
         WaterPowerStationRecipes.init(provider);
         MeadowRecipes.init(provider);

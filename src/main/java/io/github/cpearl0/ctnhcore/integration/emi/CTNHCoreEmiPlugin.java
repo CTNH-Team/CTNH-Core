@@ -45,7 +45,10 @@ public class CTNHCoreEmiPlugin implements EmiPlugin {
                 MachineBlocks.ALLOY_SMELTER::asItem,
                 MachineBlocks.PRIMITIVE_ALLOY_SMELTER::asItem,
                 MachineBlocks.STIRLING_GENERATOR::asItem,
-                MachineBlocks.SOUL_ENGINE::asItem
+                MachineBlocks.SOUL_ENGINE::asItem,
+                EIOItems.BASIC_CAPACITOR::asItem,
+                EIOItems.DOUBLE_LAYER_CAPACITOR::asItem,
+                EIOItems.OCTADIC_CAPACITOR::asItem
         ));
         for(SolarPanelTier tier : SolarPanelTier.values()){
             disabled.add(MachineBlocks.SOLAR_PANELS.get(tier)::asItem);
