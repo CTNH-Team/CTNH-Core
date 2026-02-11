@@ -138,7 +138,7 @@ public class TwistedFusionRecipes {
                 .EUt(1330/2)
                 .duration(200)
                 .save(provider);
-        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("uns")//不稳定超富集魔力粉
+        GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("uns")//不稳定超富集魔力粉
                 .inputItems(ChemicalHelper.get(dust,Plus_Mana))
                 .notConsumable(TERRA_CATALYST)
                 .inputFluids(Mana.getFluid(10000))
@@ -153,7 +153,7 @@ public class TwistedFusionRecipes {
                 .output(ChemicalHelper.get(dust,Infused_Plus_Mana).getItem())
                 .mana(50000)
                 .save(provider);
-        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("unknown_super_mana")//混沌态临界魔力粉
+        GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("unknown_super_mana")//混沌态临界魔力粉
                 .inputItems(ChemicalHelper.get(dust,Super_Plus_Mana),2)
                 .inputFluids(Mana.getFluid(1000))
                 .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 1000))
