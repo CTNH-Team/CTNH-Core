@@ -226,8 +226,9 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
             }
             GTRecipe newRecipe = recipe.copy();
             // 修改配方
+            var fluid  = FluidRecipeCapability.CAP.of(GTMaterials.DrillingFluid.getFluid(100000000));
             if (!itemList.isEmpty()) {
-                newRecipe.inputs.put(FluidRecipeCapability.CAP, List.of(new Content(GTMaterials.DrillingFluid.getFluid(100000000), 10000, 10000, 0)));
+                newRecipe.inputs.put(FluidRecipeCapability.CAP, List.of(new Content(fluid, 10000, 10000, 0)));
                 newRecipe.outputs.put(ItemRecipeCapability.CAP, itemList);
             }
 
