@@ -47,7 +47,7 @@ public class QuantumOmniRecipes {
                 .inputItems(OCItems.CHARGED_ENDER_INGOT,4)
                 .inputItems(GTBlocks.CASING_LAMINATED_GLASS,2)
                 .inputItems(GTItems.QUANTUM_EYE,2)
-                .inputItems(AEItems.SINGULARITY,1)
+                .inputItems(AEItems.SINGULARITY.stack(),1)
                 .inputFluids(EnderIOMaterials.PulsatingAlloy.getFluid(288))
                 .outputItems(OCItems.QUANTUM_OMNI_CELL_HOUSING)
                 .cleanroom(CleanroomType.CLEANROOM)

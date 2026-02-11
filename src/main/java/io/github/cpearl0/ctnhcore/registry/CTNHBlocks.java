@@ -156,6 +156,9 @@ public class CTNHBlocks {
     public static final BlockEntry<Block> CABLE_ELEVATOR_CASING = createCasingBlock(
             "cable_elevator_casing", "电梯线缆机械方块", CTNHCore.id("block/casings/space_elevator/cable_elevator_casing"));
 
+    public static final BlockEntry<Block> WHITE_CONTAINER_BLOCK = createCasingBlock(
+            "white_container_block", "白色集装箱方块", CTNHCore.id("block/casings/space_elevator/white_container_block"));
+
     public static final BlockEntry<Block> SCIFI_ELEVATOR_CASING = REGISTRATE.block("scifi_elevator_casing", Block::new)
             .cnlang("科幻风机械方块")
             .initialProperties(() -> Blocks.IRON_BLOCK)
@@ -163,8 +166,8 @@ public class CTNHBlocks {
             .addLayer(() -> RenderType::cutoutMipped)
             .blockstate((ctx, prov) -> {
                 BlockModelBuilder model = prov.models().withExistingParent(ctx.getName(), GTCEu.id("block/cube/tinted/bottom_top"))
-                        .texture("top", CTNHCore.id("block/casings/space_elevator/dark_gray_elevator_casing"))
-                        .texture("bottom",CTNHCore.id("block/casings/space_elevator/dark_gray_elevator_casing"))
+                        .texture("top", CTNHCore.id("block/casings/space_elevator/scifi_elevator_casing_top"))
+                        .texture("bottom",CTNHCore.id("block/casings/space_elevator/scifi_elevator_casing_top"))
                         .texture("side", CTNHCore.id("block/casings/space_elevator/scifi_elevator_casing"));
                 prov.simpleBlock(ctx.getEntry(), model);
             })
@@ -181,8 +184,8 @@ public class CTNHBlocks {
             .addLayer(() -> RenderType::cutoutMipped)
             .blockstate((ctx, prov) -> {
                 BlockModelBuilder model = prov.models().withExistingParent(ctx.getName(), GTCEu.id("block/cube/tinted/bottom_top"))
-                        .texture("top", CTNHCore.id("block/casings/space_elevator/dark_gray_elevator_casing"))
-                        .texture("bottom",CTNHCore.id("block/casings/space_elevator/dark_gray_elevator_casing"))
+                        .texture("top", CTNHCore.id("block/casings/space_elevator/elevator_struct_casing_top"))
+                        .texture("bottom",CTNHCore.id("block/casings/space_elevator/elevator_struct_casing_top"))
                         .texture("side", CTNHCore.id("block/casings/space_elevator/elevator_struct_casing"));
                 prov.simpleBlock(ctx.getEntry(), model);
             })
