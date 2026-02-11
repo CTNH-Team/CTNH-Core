@@ -557,7 +557,6 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.arcreactor.tooltip.2", "机器基础每次运行配方产生10电弧强度，无法超频，高等级机器具有更高并行数");
         provider.add("ctnh.multiblock.arcreactor.tooltip.t1", "该机器并行数:1");
 
-        provider.add("ctnh.advanceassemblyline.1", "更好的装配线,但是有序输入");
         provider.add("ctnh.magic.generator", "精炼天地之魔精");
         provider.add("ctnh.magic.generator.1", "具有8并行，每秒基础消耗12mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
         provider.add("ctnh.gcym.reduction", "配方耗时x0.8，配方耗能x0.6");
@@ -755,10 +754,6 @@ public class ChineseLangHandler {
         //tconstruct
         provider.add("modifier.ctnhcore.global_traveller", "环球旅行者");
 
-        //
-        for (var tier : GTMachineUtils.ALL_TIERS) {
-            provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
-        }
         for (var tier : GTMachineUtils.ELECTRIC_TIERS) {
             provider.add(CTNHMachines.PERSONAL_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + "§r个人计算机");
         }
@@ -772,7 +767,7 @@ public class ChineseLangHandler {
         for (int tier : GTValues.tiersBetween(ULV, MV)) {
             provider.add(CTNHMachines.ROTOR_HOLDER_EXTEND[tier].getBlock(), GTValues.VNF[tier] + "§r转子支架");
         }
-        for (int tier : GTValues.tiersBetween(ZPM, MAX)) {
+        for (int tier : GTValues.tiersBetween(UV, UEV)) {
             provider.add(CTNHMachines.COMPILERMACHINE[tier].getBlock(), GTValues.VNF[tier] + "§r神经拟合仓");
         }
         for (int tier : GTValues.tiersBetween(HV, IV)) {
@@ -914,7 +909,7 @@ public class ChineseLangHandler {
         provider.add(MultiblocksB.ARC_GENERATOR_MK1.getBlock(), "超压电弧撕裂者MK1");
         provider.add(MultiblocksB.ARC_GENERATOR_MK2.getBlock(), "过载电弧撕裂者MK1");
         provider.add(MultiblocksB.PLASMA_ALLOY_BLAST_SMELTER.getBlock(), "等离子合金冶炼转底炉");
-        provider.add(MultiblocksB.UNIVERSE_SINOPE.getBlock(), "中石化宇宙处理中心");
+//        provider.add(MultiblocksB.UNIVERSE_SINOPE.getBlock(), "中石化宇宙处理中心");
         provider.add(MultiblocksB.COMBINED_VAPOR_DEPOSITION_FACILITY.getBlock(), "集成沉积工厂");
         provider.add(MultiblocksB.SPACEPHOTOVOLTAICBASESTATION.getBlock(), "太空光伏基站");
         provider.add(MultiblocksB.LaserSorder.getBlock(), "激光分配仪");
@@ -927,9 +922,9 @@ public class ChineseLangHandler {
         // provider.add(MultiblocksB.HYBRID_POWER_MIXER.getBlock(),"混合动力搅拌机");
 
         provider.add(MultiblocksB.FLUID_DRILLING_INF[UHV].getBlock(), "无尽流体钻机");
-        provider.add(MultiblocksB.INF_LARGE_MINER.getBlock(), "无尽钻机");
+//        provider.add(MultiblocksB.INF_LARGE_MINER.getBlock(), "无尽钻机");
 
-        provider.add(MultiblocksB.COMPONENT_ASSEMBLY_LINE_CT.getBlock(), "应力部件装配线");
+//        provider.add(MultiblocksB.COMPONENT_ASSEMBLY_LINE_CT.getBlock(), "应力部件装配线");
 
         provider.add(MultiblocksC.GREENHOUSE.getBlock(), "温室");
 

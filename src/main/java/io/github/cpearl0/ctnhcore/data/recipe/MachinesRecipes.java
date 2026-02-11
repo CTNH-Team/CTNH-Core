@@ -162,11 +162,19 @@ public class MachinesRecipes {
                 .duration(200)
                 .save(provider);
 
-// registerMachineRecipe 可能是一个自定义方法，这里不修改
+
         registerMachineRecipe(provider, CTNHMachines.PERSONAL_COMPUTER, "PDP",
                 "CAC", "PBP", 'A', HULL, 'C', ROTOR, 'P', CABLE, 'D', CIRCUIT, 'B', SENSOR);
 
-        registerMachineRecipe(provider, CTNHMachines.CIRCUIT_BUS, "A", "B", 'A', MONITOR, 'B', HULL);
+        VanillaRecipeHelper.addShapedRecipe(
+                provider,
+                CTNHCore.id("circuit_bus"),
+                CTNHMachines.CIRCUIT_BUS.asStack(),
+                "A",
+                "B",
+                'A', MONITOR.get(0),
+                'B', GTBlocks.CASING_STAINLESS_CLEAN.asStack()
+        );
 
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("astronomy_circuit"))
                 .inputItems(PLASTIC_CIRCUIT_BOARD)

@@ -161,7 +161,7 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
             textList.add(
                     Component.translatable("ctnh.multiblock.void_miner.info.overheat").withStyle(ChatFormatting.RED));
         }
-        textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature",
+        textList.add(Component.translatable("ctnh.multiblock.naq_reactor.info.temperature",
                 Component.literal(currentTemperature + "K").withStyle(ChatFormatting.RED)));
         textList.add(Component.translatable("ctnh.multiblock.void_miner.info.pyrotheum", nextPyrotheumAmount + " mB")
                 .withStyle(ChatFormatting.GOLD));

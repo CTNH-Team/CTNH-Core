@@ -87,7 +87,6 @@ public class AssemblyLineRecipes {
                 .inputItems(ModItems.CREATOR_MIX, 4)
                 .inputItems(TagPrefix.plate, CommonMaterials.BLOODSTEEL, 16)
                 .inputItems(CustomTags.LuV_CIRCUITS, 4)
-                .inputItems(CTNHMachines.CIRCUIT_BUS[IV], 2)
                 .inputItems(GTMachines.ITEM_IMPORT_BUS[ZPM], 1)
                 .inputItems(GTMachines.ITEM_EXPORT_BUS[ZPM], 1)
                 .inputFluids(new FluidStack(Primordial_Serum.getFluid(), 144 * 20))

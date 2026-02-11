@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.part;
 
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.gui.widget.BlockableSlotWidget;
@@ -42,8 +43,8 @@ public class CircuitBusPartMachine extends TieredIOPartMachine implements IDisti
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(CircuitBusPartMachine.class,
             TieredIOPartMachine.MANAGED_FIELD_HOLDER);
 
-    public CircuitBusPartMachine(IMachineBlockEntity holder, int tier) {
-        super(holder, tier, IO.IN);
+    public CircuitBusPartMachine(IMachineBlockEntity holder) {
+        super(holder, GTValues.HV, IO.IN);
         inventory = new NotifiableItemStackHandler(this, 1, IO.IN, IO.BOTH);
     }
 
