@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import com.gregtechceu.gtceu.api.transfer.fluid.IFluidHandlerModifiable;
+import com.simibubi.create.foundation.fluid.CombinedTankWrapper;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
@@ -20,6 +22,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -44,24 +47,6 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
         return super.onWorking();
     }
 
-    public void listAllOreVeins() {
-        // 获取矿脉注册表 仅测试使用，不要使用此函数
-        // Registry<GTOreDefinition> oreVeinRegistry = GTRegistries.ORE_VEINS;
-
-        // 遍历所有注册的矿脉定义
-        GTRegistries.ORE_VEINS.forEach(oreDefinition -> {
-            // 获取矿脉ID（如：gtceu:copper_vein）
-            ResourceLocation veinId = GTRegistries.ORE_VEINS.getKey(oreDefinition);
-
-            // 提取关键信息
-            String dimensions = oreDefinition.dimensions().toString();
-            String ore = oreDefinition.layer().toString();
-            System.out.println(dimensions);
-            System.out.println(ore);
-            System.out.println(veinId.toString());
-        });
-    }
-
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
         var tier = getTier();
@@ -73,25 +58,21 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
     }
 
     @Override
-    public void addDisplayText(List<Component> textList) {
+    public void addDisplayText(@NotNull List<Component> textList) {
         super.addDisplayText(textList);
-        AtomicInteger current = new AtomicInteger();
-        getParts().forEach((part) -> {
-            if (part instanceof FluidHatchPartMachine) {
-                part.getRecipeHandlers().forEach((handlerList) -> {
-                    if (handlerList.getHandlerIO() == IO.IN) {
-                        handlerList.getCapability(FluidRecipeCapability.CAP)
-                                .forEach((iRecipeHandler) -> iRecipeHandler.getContents().forEach((contents) -> {
-                                    if (contents instanceof FluidStack FluidContents) {
-                                        if (FluidContents.getFluid().equals(CTNHMaterials.Pyrotheum.getFluid())) {
-                                            current.addAndGet(FluidContents.getAmount());
-                                        }
-                                    }
-                                }));
-                    }
-                });
-            }
-        });
+        var fluidHandlers = getCapabilitiesFlat(IO.IN, FluidRecipeCapability.CAP).stream()
+                .filter(IFluidHandlerModifiable.class::isInstance)
+                .map(IFluidHandlerModifiable.class::cast)
+                .toArray(IFluidHandlerModifiable[]::new);
+
+        var inputFluids = new CombinedTankWrapper(fluidHandlers);
+        int current = 0;
+        for(int i=0; i< inputFluids.getTanks(); i++){
+            if(inputFluids.getFluidInTank(i).getFluid().isSame(CTNHMaterials.Pyrotheum.getFluid()))
+                current += inputFluids.getFluidInTank(i).getAmount();
+
+        }
+
         if (isFormed()) {
             textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature",
                     Component.literal(getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));

@@ -71,9 +71,8 @@ public class MultiblocksC {
             .multiblock("cnc_alloy_smelter", CNCAlloySmelter::new)
             .langValue("CNC ALLOY Smelter")
             .recipeType(ALLOY_BLAST_RECIPES)
-            .tooltips(Component.literal("§b具有4个异步线程§r"),
-                    Component.literal("使用§d异步线程控制仓§r以配置多线程运行模式")
-                    //,Component.literal("多线程模式下需要消耗算力")
+            .tooltips(Component.literal("ctnh.multiblock.mega_lcr.tooltip.0"),
+                    Component.literal("ctnh.multiblock.mega_lcr.tooltip.1")
             )
             .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
             .tooltips(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.0"),

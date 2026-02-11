@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
 import appeng.core.definitions.AEParts;
+import com.wintercogs.ae2omnicells.common.init.OCItems;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
@@ -223,11 +224,8 @@ public class OrdinaryRecipes {
                 .inputItems(AEItems.CALCULATION_PROCESSOR.asItem(), 16)
                 .inputItems(AEItems.ENGINEERING_PROCESSOR.asItem(), 16)
                 .inputItems(AEItems.LOGIC_PROCESSOR.asItem(), 16)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2omnicells:omni_link_processor")),
-                        16)
-                .inputItems(
-                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2omnicells:complex_link_processor")),
-                        16)
+                .inputItems(OCItems.COMPLEX_LINK_PROCESSOR, 16)
+                .inputItems(OCItems.COMPLEX_LINK_PROCESSOR, 16)
                 .inputFluids(new FluidStack(BlueAlloy.getFluid(), 576))
                 .outputItems(CEBlocks.QUANTUM_COMPUTER_CASING, 16)
                 .EUt(GTValues.VA[LuV])

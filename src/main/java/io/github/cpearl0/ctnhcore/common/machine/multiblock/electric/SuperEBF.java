@@ -31,7 +31,7 @@ public class SuperEBF extends CoilWorkableElectricMultiblockMachine implements I
 
     public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         int pa = 1;
-        if (machine instanceof IMultiController controller) {
+        if (machine instanceof SuperEBF controller) {
             if (controller.isFormed()) {
                 int parallels = (Integer) controller.getParallelHatch()
                         .map((hatch) -> ParallelLogic.getParallelAmount(machine, recipe, hatch.getCurrentParallel()))
@@ -41,10 +41,6 @@ public class SuperEBF extends CoilWorkableElectricMultiblockMachine implements I
                 }
 
             }
-        }
-        if (machine instanceof SuperEBF pmachine) {
-            var speed = 1;
-            int parallel = ParallelLogic.getParallelAmount(machine, recipe, pa);
             return ModifierFunction.builder()
                     .parallels(pa)
                     .durationMultiplier(0.5)

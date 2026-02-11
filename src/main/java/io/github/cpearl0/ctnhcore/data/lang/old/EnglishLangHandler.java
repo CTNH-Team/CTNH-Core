@@ -113,9 +113,6 @@ public class EnglishLangHandler {
 
         provider.add("ctnh.multiblock.slaughter_house.info.mobcount", "Mob Types: %d (%s)");
 
-        provider.add("ctnh.multiblock.fermenting_tank.info.growing_temperature", "Growth Temperature：§2%d°C§r");
-        provider.add("ctnh.multiblock.fermenting_tank.info.growth_efficiency", "Growth Efficiency：%d%%");
-
         provider.add("ctnh.multiblock.mana_turbine.info.efficiency", "Generating Efficiency：%d%%");
         provider.add("ctnh.multiblock.mana_turbine.info.consumption_rate", "Consumption Rate：%d");
 
@@ -240,24 +237,24 @@ public class EnglishLangHandler {
         provider.add("ctnh.multiblock.fermenting_tank.tooltip.3",
                 "Microbial growth follows the logistic equation. When the liquid volume in the input tank is half of its capacity, §2growth efficiency doubles§r. Efficiency is lowest when the tank is full or empty, with a minimum of 20%.");
 
-        provider.add("ctnh.multiblock.void_miner.tooltip.0",
-                "Harvesting heaven’s materials, digging the earth’s essence");
-        provider.add("ctnh.multiblock.void_miner.tooltip.1",
-                "The Void Miner automatically generates and extracts ores");
-        provider.add("ctnh.multiblock.void_miner.tooltip.2",
-                "If you have a huge demand for minerals, the Void Miner is an essential helper");
-        provider.add("ctnh.multiblock.void_miner.tooltip.3",
-                "Input 100,000,000mB of drilling fluid at once, Cryotheum and Pyrotheum will be consumed during temperature adjustment");
-        provider.add("ctnh.multiblock.void_miner.tooltip.4",
-                "When the temperature reaches 25,000K, the Void Miner will enter forced cooling mode. Please alternate between inputting Pyrotheum and Cryotheum to control the temperature");
-        provider.add("ctnh.multiblock.void_miner.tooltip.5",
-                "When the temperature drops to 0K, the Void Miner will return to normal operation mode");
-        provider.add("ctnh.multiblock.void_miner.tooltip.6",
-                "Initial Pyrotheum consumption is 100mb. If successfully consumed, the energy will increase by ⌊(Pyrotheum / 100)⌋, then Pyrotheum will multiply by 1.02");
-        provider.add("ctnh.multiblock.void_miner.tooltip.7",
-                "Initial Cryotheum consumption is 100mb. If successfully consumed, the energy will decrease by ⌊(Cryotheum / 100)⌋, then Cryotheum will multiply by 1.02");
-        provider.add("ctnh.multiblock.void_miner.tooltip.8",
-                "The higher the temperature, the higher the efficiency of the Void Miner");
+//        provider.add("ctnh.multiblock.void_miner.tooltip.0",
+//                "Harvesting heaven’s materials, digging the earth’s essence");
+//        provider.add("ctnh.multiblock.void_miner.tooltip.1",
+//                "The Void Miner automatically generates and extracts ores");
+//        provider.add("ctnh.multiblock.void_miner.tooltip.2",
+//                "If you have a huge demand for minerals, the Void Miner is an essential helper");
+//        provider.add("ctnh.multiblock.void_miner.tooltip.3",
+//                "Input 100,000,000mB of drilling fluid at once, Cryotheum and Pyrotheum will be consumed during temperature adjustment");
+//        provider.add("ctnh.multiblock.void_miner.tooltip.4",
+//                "When the temperature reaches 25,000K, the Void Miner will enter forced cooling mode. Please alternate between inputting Pyrotheum and Cryotheum to control the temperature");
+//        provider.add("ctnh.multiblock.void_miner.tooltip.5",
+//                "When the temperature drops to 0K, the Void Miner will return to normal operation mode");
+//        provider.add("ctnh.multiblock.void_miner.tooltip.6",
+//                "Initial Pyrotheum consumption is 100mb. If successfully consumed, the energy will increase by ⌊(Pyrotheum / 100)⌋, then Pyrotheum will multiply by 1.02");
+//        provider.add("ctnh.multiblock.void_miner.tooltip.7",
+//                "Initial Cryotheum consumption is 100mb. If successfully consumed, the energy will decrease by ⌊(Cryotheum / 100)⌋, then Cryotheum will multiply by 1.02");
+//        provider.add("ctnh.multiblock.void_miner.tooltip.8",
+//                "The higher the temperature, the higher the efficiency of the Void Miner");
 
         provider.add("ctnh.multiblock.large_fermenting_tank.tooltip.0", "Efficient Industrial Fermentation");
         provider.add("ctnh.multiblock.large_fermenting_tank.tooltip.1",
@@ -306,11 +303,6 @@ public class EnglishLangHandler {
                 "Adjustable rate allows reducing heating power and steam consumption, with minimum setting at 25%");
 
         provider.add("ctnh.multiblock.super_ebf.tooltip.0", "All recipes are 50% faster!");
-
-        provider.add("ctnh.multiblock.mega_lcr.tooltip.0",
-                "For each actual parallel operation, reduces energy consumption by 2% (up to 75% max) and processing time by 2% (up to 75% max) while the machine is running");
-        provider.add("ctnh.multiblock.mega_lcr.tooltip.1",
-                "When coil temperature exceeds 3600K, every additional 1800K provides an extra 25% speed boost");
 
         provider.add("ctnh.multiblock.slaughter_house.tooltip.0", "A merciless killing machine");
         provider.add("ctnh.multiblock.slaughter_house.tooltip.1",

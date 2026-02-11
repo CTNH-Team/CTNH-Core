@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
@@ -75,7 +76,7 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
 
             if (isOverheated) {
                 // 降温逻辑
-                temperature = Math.max(MIN_TEMP, temperature - 100); // 每个游戏刻降温1K
+                temperature = Math.max(MIN_TEMP, temperature - 100);
                 setCurrentTemperature(temperature);
                 if (temperature == MIN_TEMP) {
                     isOverheated = false; // 降温结束，恢复正常状态
@@ -94,8 +95,7 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
     }
 
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
-        // 设定所需的流体量（100,000,000 mb）
-        int requiredAmount = 100000000;
+
         int temperature = getCurrentTemperature();
         if (fluidCycle == 1) {  // 偶数次使用 Pyrotheum
             int currentFluidAmount = nextPyrotheumAmount;  // 使用更新后的流体量
@@ -186,10 +186,8 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
     }
 
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
-        if (machine instanceof VoidMinerProcessingMachine reactorMachine) {
-            if (!MachineUtils.inputFluid(GTMaterials.DrillingFluid.getFluid(100000000), reactorMachine)) {
-                return ModifierFunction.NULL;
-            }
+        if (machine instanceof VoidMinerProcessingMachine reactorMachine && ! reactorMachine.isOverheated) {
+
             int parallelCount = reactorMachine.getParallelCount();
 
             // 每种物品的基础数量
@@ -223,16 +221,16 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
                     SizedIngredient ingredient = SizedIngredient.create(Ingredient.of(rawOreItem), adjustedAmount);
 
                     // 使用 SizedIngredient 创建 Content，并确保数量正确
-                    itemList.add(new Content(ingredient, adjustedAmount, adjustedAmount, 0));
+                    itemList.add(new Content(ingredient, 10000, 10000, 0));
                 }
             }
             GTRecipe newRecipe = recipe.copy();
-            // 修改配方的输出
+            // 修改配方
             if (!itemList.isEmpty()) {
+                newRecipe.inputs.put(FluidRecipeCapability.CAP, List.of(new Content(GTMaterials.DrillingFluid.getFluid(100000000), 10000, 10000, 0)));
                 newRecipe.outputs.put(ItemRecipeCapability.CAP, itemList);
             }
 
-            // 继续处理配方逻辑
             return recipe1 -> newRecipe;
         }
 
@@ -284,8 +282,4 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
         return blacklist;
     }
 
-    @Override
-    public boolean alwaysTryModifyRecipe() {
-        return super.alwaysTryModifyRecipe();
-    }
 }
