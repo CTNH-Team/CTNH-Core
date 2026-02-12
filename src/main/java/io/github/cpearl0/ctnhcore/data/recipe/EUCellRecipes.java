@@ -260,6 +260,12 @@ public class EUCellRecipes {
                 .outputItems(CrystalItems.RESONANCE_CRYSTAL_GRANULE,4)
                 .duration(800).EUt(VA[ZPM]).save(provider);
 
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("echo_crystal_blank_assembler"))
+                .inputItems(CrystalItems.ECHO_CRYSTAL_BLANK,1)
+                .inputItems(CustomTags.IV_CIRCUITS,2)
+                .outputItems(CrystalItems.ECHO_CRYSTAL,1)
+                .duration(4800).EUt(VA[LuV]).save(provider);
+
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("eu_cell_housing"))
                 .inputItems(plateDense,RhodiumPlatedPalladium,4)
                 .inputItems(plateDense,TungstenSteel,4)
