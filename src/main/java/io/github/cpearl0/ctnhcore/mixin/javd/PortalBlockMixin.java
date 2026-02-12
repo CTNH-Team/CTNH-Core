@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.injection.Inject;
 
-@Mixin(value = PortalBlock.class, remap = false)
+@Mixin(value = PortalBlock.class)
 public class PortalBlockMixin {
     /**
      * @author
