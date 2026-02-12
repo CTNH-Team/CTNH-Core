@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import appeng.core.definitions.AEItems;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
 import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
@@ -1001,6 +1002,16 @@ public class DefaultRecipes {
                 .outputItems(CTNHBlocks.NAQUADAH_FIREBOX.asStack())
                 .EUt(GTValues.VA[GTValues.IV])
                 .duration(400)
+                .save(provider);
+
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("gt_mbst_a"))
+                .inputItems(GTItems.TERMINAL)
+                .inputItems(AEItems.WIRELESS_TERMINAL.stack())
+                .inputItems(TagPrefix.screw, GTMaterials.Aluminium, 2)
+                .inputItems(CustomTags.MV_CIRCUITS)
+                .outputItems(CTNHItems.ME_ADVANCED_TERMINAL)
+                .EUt(GTValues.VA[GTValues.MV])
+                .duration(200)
                 .save(provider);
     }
 }
