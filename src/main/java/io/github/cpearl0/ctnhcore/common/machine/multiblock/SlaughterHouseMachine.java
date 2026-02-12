@@ -247,17 +247,15 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
 
     public void resetMobList() {
         mobList.clear();
-        var mobs = new LinkedHashSet<String>();
         MachineUtils.applyContents(this, contents -> {
             if (contents instanceof ItemStack item) {
                 if (item.is(MachineBlocks.POWERED_SPAWNER.asItem()) && item.hasTag()) {
                     var mob = item.getTag().getCompound("BlockEntityTag").getCompound("EntityStorage")
                             .getCompound("Entity").getString("id");
-                    if (!mob.isEmpty()) mobs.add(mob);
+                    if (!mob.isEmpty() && !mobList.contains(mob)) mobList.add(mob);
                 }
             }
         }, ItemRecipeCapability.CAP, IO.IN);
-        mobList.addAll(mobs);
     }
 
     private void markMobListDirty() {
@@ -393,6 +391,13 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
             }
         }
 
+        if (repeatTimes > 1) {
+            totalExperience = Math.multiplyExact(totalExperience, repeatTimes);
+            for (var entry : lootCounts.entrySet()) {
+                entry.setValue(Math.multiplyExact(entry.getValue(), (long) repeatTimes));
+            }
+        }
+
         var mergedStacks = new ArrayList<ItemStack>(lootCounts.size());
         for (var entry : lootCounts.entrySet()) {
             long totalCount = entry.getValue();
@@ -427,8 +432,6 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
             if (machine.getLevel() instanceof ServerLevel level) {
                 smachine.ensureLootCacheUpToDate(level);
                 if (!smachine.mobList.isEmpty()) {
-                    int repeatTimes = smachine.lootCacheRepeatTimes;
-
                     var itemList = smachine.lootCacheStacks.stream()
                             .map(stack -> new Content(SizedIngredient.create(stack.copy()), 1, 1, 0))
                             .collect(Collectors.toCollection(ArrayList::new));
@@ -439,7 +442,6 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
                                             smachine.lootCacheTotalExperience)),
                                     1, 1, 0)));
                     newrecipe.duration = smachine.lootCacheDuration;
-                    ContentModifier.multiplier(repeatTimes).applyContents(newrecipe.outputs);
                 }
             }
         }

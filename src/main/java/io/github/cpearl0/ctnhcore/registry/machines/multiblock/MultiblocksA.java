@@ -244,7 +244,7 @@ public class MultiblocksA {
                     Component.translatable("ctnh.multiblock.slaughter_house.tooltip.3").withStyle(ChatFormatting.RED),
                     Component.translatable("ctnh.multiblock.slaughter_house.tooltip.4").withStyle(ChatFormatting.GREEN),
                     Component.translatable("ctnh.multiblock.slaughter_house.tooltip.5"))
-            .recipeModifier(SlaughterHouseMachine::recipeModifier)
+            .recipeModifiers(SlaughterHouseMachine::recipeModifier, GTRecipeModifiers.BATCH_MODE)
             .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("ABBBA", "ABBBA", "CCCCC", "CCCCC", "CCCCC", "CCCCC", "ABBBA")
