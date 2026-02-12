@@ -98,7 +98,9 @@ public class RecipeRemoval {
                 //变电站
                 "gtceu:shaped/power_substation",
                 //氯化铵
-                "gtceu:extractor/extract_ammonium_chloride_dust"
+                "gtceu:extractor/extract_ammonium_chloride_dust",
+                //电解水
+                "gtceu:electrolyzer/water_electrolysis"
 
         ));
 
