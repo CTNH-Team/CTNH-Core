@@ -817,8 +817,7 @@ public class ChineseLangHandler {
         provider.add("enchantment.ctnhcore.warming.desc", "增强御暑能力");
         provider.add("enchantment.ctnhcore.cooling.desc", "增强御寒能力");
 
-        // provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T1,"戴森云无人机蜂群MKI");
-        // provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T2,"戴森云无人机蜂群MKII");
+        provider.add("message.ctnhcore.portal.invalid_dimension", "该传送门只能在主世界使用");
 
         provider.addBlock(CTNHBlocks.COIL_ABYSALALLOY, "渊狱合金线圈");
         provider.addBlock(CTNHBlocks.COIL_TITANSTEEL, "泰坦钢线圈");

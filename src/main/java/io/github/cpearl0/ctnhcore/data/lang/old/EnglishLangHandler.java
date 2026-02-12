@@ -28,6 +28,8 @@ public class EnglishLangHandler {
         LangHandler.replace(provider, CTNHMaterials.Skyjade.getUnlocalizedName(), "Skyjade");
         LangHandler.replace(provider, CTNHMaterials.Stratus.getUnlocalizedName(), "Stratus");
 
+        provider.add("message.ctnhcore.portal.invalid_dimension", "This portal can only be used in the Overworld");
+
         provider.add("enchantment.kubejs.vacuum_seal.desc",
                 "Protects you from vacuum damage. Note: All equipped items must have this enchantment to take effect");
         provider.add("enchantment.kubejs.warming.desc", "Enhance your hot defending ability");

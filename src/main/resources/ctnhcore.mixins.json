@@ -36,6 +36,7 @@
     "gtceu.fix.BlockPatternMixin",
     "gtceu.orevein.ClientProxyAccessor",
     "gtceu.recipe.RecipeLogicMixin",
+    "javd.PortalBlockMixin",
     "ldlib.ModularUIContainerMixin",
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MobMixin",
