@@ -123,7 +123,7 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
         var dimension = getLevel().dimension();
         var str = dimension.location().toString();
         if (dimension == Level.OVERWORLD || str.equals("twilightforest:twilight_forest") ||
-                str.equals("mythicbotany:alfheim") || str.equals("javd:void")) {
+                str.equals("mythicbotany:alfheim")) {
             rate_mul = 1;
         } else if (dimension == AetherDimensions.AETHER_LEVEL) {
             rate_mul = 2;

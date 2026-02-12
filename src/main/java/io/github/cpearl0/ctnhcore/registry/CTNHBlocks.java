@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import com.gregtechceu.gtceu.GTCEu;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBoilerFireboxType;
@@ -38,6 +39,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import net.minecraftforge.client.model.generators.BlockModelBuilder;
 
 import java.util.function.Supplier;
 
@@ -139,6 +141,60 @@ public class CTNHBlocks {
     public static final BlockEntry<Block> ADVANCED_FILTER_CASING = createCasingBlock(
             "advanced_filter_casing", "高级过滤器机械方块", CTNHCore.id("block/casings/solid/advanced_filter_casing"));
 
+    public static final BlockEntry<Block> WHITE_ELEVATOR_CASING = createCasingBlock(
+            "white_elevator_casing", "白色电梯机械方块", CTNHCore.id("block/casings/space_elevator/white_elevator_casing"));
+
+    public static final BlockEntry<Block> DARK_BLUE_ELEVATOR_CASING = createCasingBlock(
+            "dark_blue_elevator_casing", "深蓝色电梯机械方块", CTNHCore.id("block/casings/space_elevator/dark_blue_elevator_casing"));
+
+    public static final BlockEntry<Block> LIGHT_BLUE_ELEVATOR_CASING = createCasingBlock(
+            "light_blue_elevator_casing", "浅蓝色电梯机械方块", CTNHCore.id("block/casings/space_elevator/light_blue_elevator_casing"));
+
+    public static final BlockEntry<Block> DARK_GRAY_ELEVATOR_CASING = createCasingBlock(
+            "dark_gray_elevator_casing", "深灰色电梯机械方块", CTNHCore.id("block/casings/space_elevator/dark_gray_elevator_casing"));
+
+    public static final BlockEntry<Block> CABLE_ELEVATOR_CASING = createCasingBlock(
+            "cable_elevator_casing", "电梯线缆机械方块", CTNHCore.id("block/casings/space_elevator/cable_elevator_casing"));
+
+    public static final BlockEntry<Block> WHITE_CONTAINER_BLOCK = createCasingBlock(
+            "white_container_block", "白色集装箱方块", CTNHCore.id("block/casings/space_elevator/white_container_block"));
+
+    public static final BlockEntry<Block> SCIFI_ELEVATOR_CASING = REGISTRATE.block("scifi_elevator_casing", Block::new)
+            .cnlang("科幻风机械方块")
+            .initialProperties(() -> Blocks.IRON_BLOCK)
+            .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
+            .addLayer(() -> RenderType::cutoutMipped)
+            .blockstate((ctx, prov) -> {
+                BlockModelBuilder model = prov.models().withExistingParent(ctx.getName(), GTCEu.id("block/cube/tinted/bottom_top"))
+                        .texture("top", CTNHCore.id("block/casings/space_elevator/scifi_elevator_casing_top"))
+                        .texture("bottom",CTNHCore.id("block/casings/space_elevator/scifi_elevator_casing_top"))
+                        .texture("side", CTNHCore.id("block/casings/space_elevator/scifi_elevator_casing"));
+                prov.simpleBlock(ctx.getEntry(), model);
+            })
+            .tag(TagKey.create(BuiltInRegistries.BLOCK.key(),
+                    ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+            .item(BlockItem::new)
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> ELEVATOR_STRUCT_CASING = REGISTRATE.block("elevator_struct_casing", Block::new)
+            .cnlang("太空电梯结构支持方块")
+            .initialProperties(() -> Blocks.IRON_BLOCK)
+            .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
+            .addLayer(() -> RenderType::cutoutMipped)
+            .blockstate((ctx, prov) -> {
+                BlockModelBuilder model = prov.models().withExistingParent(ctx.getName(), GTCEu.id("block/cube/tinted/bottom_top"))
+                        .texture("top", CTNHCore.id("block/casings/space_elevator/elevator_struct_casing_top"))
+                        .texture("bottom",CTNHCore.id("block/casings/space_elevator/elevator_struct_casing_top"))
+                        .texture("side", CTNHCore.id("block/casings/space_elevator/elevator_struct_casing"));
+                prov.simpleBlock(ctx.getEntry(), model);
+            })
+            .tag(TagKey.create(BuiltInRegistries.BLOCK.key(),
+                    ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+            .item(BlockItem::new)
+            .build()
+            .register();
+
     public static final BlockEntry<ActiveBlock> SUPERCOOLED_BLOCK = createActiveCasing("supercooled_bloock", "超级冷冻机械线圈",
             "block/flux/plasma_cooled_core");
     public static final BlockEntry<ActiveBlock> RESERVOIR_COMPUTING_CASING = createActiveCasing(
@@ -172,6 +228,14 @@ public class CTNHBlocks {
 
     public static final BlockEntry<Block> BRONZE_FRAMED_GLASS = createGlassCasingBlock(
             "bronze_framed_glass", "青铜镶边玻璃", CTNHCore.id("block/casings/bronze_framed_glass"),
+            () -> RenderType::cutoutMipped);
+
+    public static final BlockEntry<Block> BRASS_FRAMED_GLASS = createGlassCasingBlock(
+            "brass_framed_glass", "黄铜镶边玻璃", CTNHCore.id("block/casings/space_elevator/brass_framed_glass"),
+            () -> RenderType::cutoutMipped);
+
+    public static final BlockEntry<Block> BLUE_FRAMED_GLASS = createGlassCasingBlock(
+            "blue_framed_glass", "蓝色镶边玻璃", CTNHCore.id("block/casings/space_elevator/blue_framed_glass"),
             () -> RenderType::cutoutMipped);
 
     public static final BlockEntry<RotatedPillarBlock> TEST_CASING = createRotateCasing("test_machine_casing", "t1");

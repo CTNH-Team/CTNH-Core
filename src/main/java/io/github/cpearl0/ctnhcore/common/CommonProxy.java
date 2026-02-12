@@ -2,12 +2,12 @@ package io.github.cpearl0.ctnhcore.common;
 
 import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalItem;
 import io.github.cpearl0.ctnhcore.common.tconstruct.recipes.CTNHConstructCastingRecipes;
 import io.github.cpearl0.ctnhcore.common.tconstruct.recipes.CTNHConstructMeltingRecipes;
 import io.github.cpearl0.ctnhcore.common.tconstruct.recipes.CTNHConstructModifierRecipes;
 import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
+import io.github.cpearl0.ctnhcore.data.tags.CTNHBiomeTagsProvider;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import io.github.cpearl0.ctnhcore.registry.jade.CTNHJadePlugin;
@@ -24,7 +24,6 @@ import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.DimensionMarker;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.MaterialProperties;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.category.GTRecipeCategory;
@@ -32,6 +31,11 @@ import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
 import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
 import com.gregtechceu.gtceu.data.tags.BiomeTagsLoader;
 
+import io.github.cpearl0.ctnhcore.registry.worldgen.feature.CTNHConfiguredFeatures;
+import io.github.cpearl0.ctnhcore.registry.worldgen.feature.CTNHPlacements;
+import io.github.cpearl0.ctnhcore.registry.worldgen.sturcture.AstralMeteorStructure;
+import io.github.cpearl0.ctnhcore.registry.worldgen.sturcture.CTNHStructureSets;
+import io.github.cpearl0.ctnhcore.registry.worldgen.sturcture.CTNHStructures;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
@@ -48,6 +52,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import appeng.api.features.GridLinkables;
+import net.minecraftforge.registries.RegisterEvent;
 import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;
 
@@ -74,6 +79,7 @@ public class CommonProxy {
         modEventBus.addGenericListener(GTRecipeCategory.class, CommonProxy::onRecipeCategoryRegister);
         modEventBus.addGenericListener(ChanceLogic.class, CommonProxy::registerChanceLogic);
         modEventBus.addGenericListener(RecipeConditionType.class, CommonProxy::registerRecipeConditions);
+        modEventBus.addListener((RegisterEvent event) -> AstralMeteorStructure.init());
 
         CTNHCreativeModeTabs.init();
         CTNHRegistration.REGISTRATE.registerRegistrate();
@@ -154,6 +160,8 @@ public class CommonProxy {
         if (event.includeClient()) {
             generator.addProvider(true,
                     new CTNHSoundDefinitionsProvider(packOutput, CTNHCore.MODID, existingFileHelper));
+//            generator.addProvider(true,
+//                    new CTNHBiomeTagsProvider(packOutput, registries, existingFileHelper));
         }
         if (event.includeServer()) {
             var set = Set.of(CTNHCore.MODID);
@@ -167,7 +175,9 @@ public class CommonProxy {
                             .add(Registries.LEVEL_STEM, CTNHDimensions::bootstrap)
                             .add(Registries.NOISE_SETTINGS, CTNHNoiseGenerationSettings::bootstrap)
                             .add(Registries.DENSITY_FUNCTION, CTNHDensityFunctions::bootstrap)
-                            .add(Registries.DAMAGE_TYPE, CTNHDamageTypes::bootstrap),
+                            .add(Registries.DAMAGE_TYPE, CTNHDamageTypes::bootstrap)
+                            .add(Registries.STRUCTURE, CTNHStructures::bootstrap)
+                            .add(Registries.STRUCTURE_SET, CTNHStructureSets::bootstrap),
                     set));
         }
     }

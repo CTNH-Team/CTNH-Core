@@ -17,11 +17,11 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes.hyperRotor;
 public class HyperRotorRecipes {
 
     public static void registerAll(@NotNull Consumer<FinishedRecipe> provider) {
-        for (Material material : GTCEuAPI.materialManager.getRegisteredMaterials()) {
-            if (hyperRotor.generationCondition().test(material)) {
-                registerSingle(provider, material);
-            }
-        }
+//        for (Material material : GTCEuAPI.materialManager.getRegisteredMaterials()) {
+//            if (hyperRotor.generationCondition().test(material)) {
+//                registerSingle(provider, material);
+//            }
+//        }
     }
 
     private static void registerSingle(@NotNull Consumer<FinishedRecipe> provider, Material material) {

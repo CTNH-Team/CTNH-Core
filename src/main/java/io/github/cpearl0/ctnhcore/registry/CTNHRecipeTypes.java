@@ -166,7 +166,7 @@ public class CTNHRecipeTypes {
     public static final GTRecipeType VOID_MINER = REGISTRATE.recipeType(GTCEu.id("void_miner"), GENERATOR)
             .cnlang("虚空采矿")
             .setEUIO(IO.IN)
-            .setMaxIOSize(3, 42, 3, 3)
+            .setMaxIOSize(1, 6, 3, 0)
             .setSlotOverlay(false, false, GuiTextures.BOX_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_BATH, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COMBUSTION);

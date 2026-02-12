@@ -1,7 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 
-import com.mo_guang.ctpp.api.pattern.FactoryStaticBlockPattern;
-import com.mo_guang.ctpp.common.machine.multiblock.BigDamMachine;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.machine.multiblock.MultiThreadElectricMachine;
 import io.github.cpearl0.ctnhcore.client.renderer.MartialMoralityEyeRender;
@@ -17,7 +15,6 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.Photovolta
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.IndustrialPrimitiveBlastFurnaceMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.MeadowMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
-import io.github.cpearl0.ctnhcore.data.materials.CreateMaterials;
 import io.github.cpearl0.ctnhcore.integration.legendary.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
@@ -58,8 +55,7 @@ import net.minecraft.world.phys.AABB;
 
 import com.enderio.base.common.init.EIOBlocks;
 import com.mo_guang.ctpp.api.CTPPPartAbility;
-import com.mo_guang.ctpp.common.data.recipe.CTPPRecipeModifiers;
-import com.mo_guang.ctpp.common.machine.multiblock.KineticOutputMachine;
+import com.mo_guang.ctpp.registry.CTPPRecipeModifiers;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
 import com.simibubi.create.foundation.block.CopperBlockSet;
@@ -75,6 +71,7 @@ import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterialBlocks.MATERIAL_BLOCKS;
 import static com.gregtechceu.gtceu.common.data.GTMaterialItems.MATERIAL_ITEMS;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.DUMMY_RECIPES;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
@@ -273,7 +270,7 @@ public class MultiblocksA {
             .recipeType(GTRecipeTypes.PYROLYSE_RECIPES)
             .tooltips(Component.translatable("ctnh.multiblock.coke_tower.tooltip.0").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.multiblock.coke_tower.tooltip.1"))
-            .recipeModifiers(GTRecipeModifiers::multiSmelterParallel)
+            .recipeModifiers(GTRecipeModifiers::multiSmelterParallel, BATCH_MODE)
             .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("ABBBA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "#ACA#")
@@ -331,7 +328,7 @@ public class MultiblocksA {
             .workableCasingModel(CTNHCore.id("block/casings/tungstencu_diamond_plating_casing"),
                     GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
-    public final static MultiblockMachineDefinition NAQ_REACTOR_MK3 = REGISTRATE.multiblock("naq_reactor_mk3", holder -> new NaqReactorMachine(holder))
+    public final static MultiblockMachineDefinition NAQ_REACTOR_MK3 = REGISTRATE.multiblock("naq_reactor_mk3", NaqReactorMachine::new)
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.NAQ_MK1)
             .generator(true)
@@ -476,7 +473,7 @@ public class MultiblocksA {
             .recipeTypes(GTRecipeTypes.CENTRIFUGE_RECIPES, GTRecipeTypes.LATHE_RECIPES, GTRecipeTypes.BENDER_RECIPES,
                     GTRecipeTypes.MACERATOR_RECIPES, GTRecipeTypes.MIXER_RECIPES, GTRecipeTypes.EXTRACTOR_RECIPES,
                     GTRecipeTypes.WIREMILL_RECIPES, GTRecipeTypes.LASER_ENGRAVER_RECIPES, GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES)
-            .recipeModifiers(FactoryMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+            .recipeModifiers(FactoryMachine::recipeModifier, OC_NON_PERFECT_SUBTICK, BATCH_MODE)
             .tooltips(Component.translatable("ctnh.multiblock.sweat_shop.tooltip.0").withStyle(ChatFormatting.GRAY))
             .tooltips(Component.translatable("ctnh.multiblock.sweat_shop.tooltip.1"))
             .tooltips(Component.translatable("ctnh.multiblock.sweat_shop.tooltip.2"))
@@ -506,7 +503,7 @@ public class MultiblocksA {
     public final static MultiblockMachineDefinition PLASMA_CONDENSER = REGISTRATE.multiblock("plasma_condenser", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(CTNHRecipeTypes.PLASMA_CONDENSER_RECIPES)
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_NON_PERFECT_SUBTICK, BATCH_MODE)
             .tooltips(Component.translatable("ctnh.multiblock.plasma_condenser.tooltip.1").withStyle(ChatFormatting.GRAY),
                     Component.translatable("gtceu.multiblock.laser.tooltip"),
                     Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
@@ -697,7 +694,7 @@ public class MultiblocksA {
             .tooltips(Component.translatable("ctnh.multiblock.digestion_tank.tooltip.0").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.multiblock.digestion_tank.tooltip.1").withStyle(ChatFormatting.GREEN),
                     Component.translatable("ctnh.multiblock.digestion_tank.tooltip.2"))
-            .recipeModifiers(BioMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+            .recipeModifiers(BioMachine::recipeModifier, OC_NON_PERFECT_SUBTICK, BATCH_MODE)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("CCCCC", "CAAAC", "CCCCC")
                     .aisle("CCCCC", "AWWWA", "CDDDC")
@@ -718,7 +715,7 @@ public class MultiblocksA {
     public final static MultiblockMachineDefinition BLAZE_BLAST_FURNACE = REGISTRATE.multiblock("blaze_blast_furnace", BlazeBlastFurnaceMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.BLAST_RECIPES)
-            .recipeModifiers(BlazeBlastFurnaceMachine::recipeModifier, GTRecipeModifiers::ebfOverclock)
+            .recipeModifiers(BlazeBlastFurnaceMachine::recipeModifier, GTRecipeModifiers::ebfOverclock, BATCH_MODE)
             .appearanceBlock(CTNHBlocks.BLAZE_BLAST_FURNACE_CASING)
             .tooltips(Component.translatable("ctnh.multiblock.blaze_blast_furnace.tooltip.0").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.multiblock.blaze_blast_furnace.tooltip.1"),
@@ -744,17 +741,12 @@ public class MultiblocksA {
             .workableCasingModel(CTNHCore.id("block/casings/blaze_blast_furnace_casing"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
 
-
-
-
-
-
     // Come from GTCA
     public static final MultiblockMachineDefinition SUPER_EBF = REGISTRATE
-            .multiblock("super_ebf", SuperEBF::new)
+            .multiblock("super_ebf", CoilWorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.BLAST_RECIPES)
-            .recipeModifiers(SuperEBF::recipeModifier, GTRecipeModifiers::ebfOverclock)
+            .recipeModifiers(PARALLEL_HATCH, (m ,r) -> ModifierFunction.builder().durationMultiplier(0.5).build(), GTRecipeModifiers::ebfOverclock, BATCH_MODE)
             .appearanceBlock(CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("XXXXXXX", "FFXXXFF", "F#####F", "F#####F", "F#####F", "FFXXXFF", "XXXVXXX", "##XXX##", "#######")
@@ -797,8 +789,7 @@ public class MultiblocksA {
             .multiblock("mega_oil_cracking_unit", CoilWorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.CRACKING_RECIPES)
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH,
-                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK), GTRecipeModifiers::crackerOverclock)
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers::crackerOverclock, BATCH_MODE)
             .appearanceBlock(CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("HHHHHHHHHHHHH", "#H#########H#", "#H#########H#", "#H#########H#", "#H#########H#", "#H#########H#", "#H#########H#")
@@ -839,8 +830,7 @@ public class MultiblocksA {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.LARGE_CHEMICAL_RECIPES)
             .appearanceBlock(CASING_PTFE_INERT)
-            .recipeModifiers(//GTRecipeModifiers.PARALLEL_HATCH,
-                    GTRecipeModifiers.OC_PERFECT_SUBTICK, GTRecipeModifiers.BATCH_MODE)
+            .recipeModifiers(GTRecipeModifiers.OC_PERFECT_SUBTICK, GTRecipeModifiers.BATCH_MODE)
             .pattern(definition ->
                     FactoryBlockPattern.start()
                             .aisle("CCCCC", "CCCCC", "CCCCC", "CCCCC", "CCCCC")
@@ -870,14 +860,10 @@ public class MultiblocksA {
             .workableCasingModel(
                     GTCEu.id("block/casings/solid/machine_casing_inert_ptfe"),
                     CTNHCore.id("block/overlay/super_ebf"))
-            .tooltips(Component.literal("§b具有4个异步线程§r"),
-                    Component.literal("使用§d异步线程控制仓§r以配置多线程运行模式")
-                    //,Component.literal("多线程模式下需要消耗算力")
-            )
             .tooltips(
-                    CTNHCommonTooltips.PERFECT_OVERCLOCK
-                    //Component.translatable("ctnh.multiblock.mega_lcr.tooltip.0"),
-                    //Component.translatable("ctnh.multiblock.mega_lcr.tooltip.1")
+                    CTNHCommonTooltips.PERFECT_OVERCLOCK,
+                    Component.translatable("ctnh.multiblock.mega_lcr.tooltip.0"),
+                    Component.translatable("ctnh.multiblock.mega_lcr.tooltip.1")
             )
             .register();
     public static final MultiblockMachineDefinition IV_CHEMICAL_GENERATOR = registerChemicalGenerator(
@@ -951,7 +937,7 @@ public class MultiblocksA {
                     Component.translatable("ctnh.multiblock.industrial_primitive_blast_furnace.tooltip.1"),
                     Component.translatable("ctnh.multiblock.industrial_primitive_blast_furnace.tooltip.2").withStyle(ChatFormatting.GREEN),
                     Component.translatable("ctnh.multiblock.industrial_primitive_blast_furnace.tooltip.3").withStyle(ChatFormatting.GREEN))
-            .recipeModifier(IndustrialPrimitiveBlastFurnaceMachine::recipeModifier)
+            .recipeModifiers(IndustrialPrimitiveBlastFurnaceMachine::recipeModifier, BATCH_MODE)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("CAAAC", " CCC ", " CCC ", " CCC ", "  C  ", "  C  ", "  C  ")
                     .aisle("ABBBA", "C   C", "C   C", "C   C", " C C ", " C C ", " C C ")
@@ -983,7 +969,7 @@ public class MultiblocksA {
                     Component.translatable("ctnh.multiblock.void_miner.tooltip.6").withStyle(ChatFormatting.GOLD),
                     Component.translatable("ctnh.multiblock.void_miner.tooltip.7").withStyle(ChatFormatting.AQUA),
                     Component.translatable("ctnh.multiblock.void_miner.tooltip.8"))
-            .recipeModifiers(VoidMinerProcessingMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK))
+            .recipeModifiers(VoidMinerProcessingMachine::recipeModifier, OC_NON_PERFECT_SUBTICK)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("CCCCCCC", "XF   FX", "XF   FX", "XXXXXXX", "XF   FX", "XF   FX", "XF   FX", " F   F ", "       ", "       ", "       ", "       ")
                     .aisle("CCCCCCC", "F     F", "F     F", "X     X", "F     F", "F     F", "FX   XF", "FX   XF", " FFFFF ", "       ", "       ", "       ")
@@ -993,7 +979,7 @@ public class MultiblocksA {
                     .aisle("CCCCCCC", "F     F", "F     F", "X     X", "F     F", "F     F", "FX   XF", "FX   XF", " FFFFF ", "       ", "       ", "       ")
                     .aisle("CCCCCCC", "XF   FX", "XF   FX", "XXXYXXX", "XF   FX", "XF   FX", "XF   FX", " F   F ", "       ", "       ", "       ", "       ")
                     .where("C", Predicates.blocks(DARK_CONCRETE.get()))
-                    .where("B", Predicates.blocks(Blocks.DEEPSLATE_TILES))
+                    .where("B", Predicates.blocks(REINFORCED_DEEPSLATE))
                     .where("A", Predicates.blocks(CTNHBlocks.CASING_TUNGSTENCU_DIAMOND_PLATING.get()))
                     .where("V", Predicates.blocks(HEAT_VENT.get()))
                     .where("F", Predicates.frames(GTMaterials.TungstenSteel))
@@ -1049,7 +1035,7 @@ public class MultiblocksA {
     public static final MultiblockMachineDefinition CHEMICAL_VAPOR_DEPOSITION_MACHINE = REGISTRATE.multiblock("chemical_vapor_deposition_machine", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.CHEMICAL_VAPOR_DEPOSITION)
-            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+            .recipeModifiers(OC_NON_PERFECT_SUBTICK, BATCH_MODE)
             .appearanceBlock(CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAA", "AAABBBA", "AAABBBA")
@@ -1068,7 +1054,7 @@ public class MultiblocksA {
             .register();
 
     public static final MultiblockMachineDefinition MARTIAL_MORALITY_EYE = REGISTRATE.multiblock("martial_morality_eye", MartialMoralityEyeMachine::new)
-            .rotationState(RotationState.ALL)
+            .allowExtendedFacing(false)
             .recipeType(CTNHRecipeTypes.MARTIAL_MORALITY_EYE)
             .appearanceBlock(CASING_BRONZE_BRICKS)
             .tooltips(Component.translatable("ctnh.multiblock.martial_morality_eye.tooltip.0").withStyle(ChatFormatting.GRAY),
@@ -1162,7 +1148,7 @@ public class MultiblocksA {
     public static final MultiblockMachineDefinition DIMENSIONAL_GAS_COLLECTION_CHAMBER = REGISTRATE.multiblock("dimensional_gas_collection_chamber", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(CTNHRecipeTypes.DIMENSIONAL_GAS_COLLECTION)
-            .recipeModifiers(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK))
+            .recipeModifiers(OC_PERFECT_SUBTICK, BATCH_MODE)
             .appearanceBlock(PLASTCRETE)
             .tooltips(
                     Component.translatable("ctnh.multiblock.large_gas_collection_chamber.tooltip.0").withStyle(ChatFormatting.GRAY),
@@ -1190,8 +1176,9 @@ public class MultiblocksA {
             .register();
 
     public static final MultiblockMachineDefinition CONDENSING_DISCRETE = REGISTRATE.multiblock("condensing_discrete", CoilWorkableElectricMultiblockMachine::new)
-            .rotationState(RotationState.NON_Y_AXIS)
+            .allowExtendedFacing(false)
             .recipeType(CTNHRecipeTypes.CONDENSING_DISCRETE)
+            .recipeModifiers(OC_NON_PERFECT_SUBTICK, BATCH_MODE)
             .appearanceBlock(CASING_ALUMINIUM_FROSTPROOF)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("A###A", "BBCBB", "BBBBB", "#BDB#", "#BDB#", "#BDB#", "#BDB#", "#BDB#", "#BDB#", "#BDB#", "BBBBB", "CCCCC")
@@ -1219,6 +1206,7 @@ public class MultiblocksA {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ION_EXCHANGER)
             .tooltips(Component.translatable("ctnh.multiblock.ion_exchanger.tooltip.0").withStyle(ChatFormatting.GRAY))
+            .recipeModifiers(OC_NON_PERFECT_SUBTICK, BATCH_MODE)
             .appearanceBlock(CASING_HSSE_STURDY)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#AAAAA#", "AABBBAA", "ABBBBBA", "AABBBAA", "#AAAAA#", "#######")
@@ -1442,7 +1430,7 @@ public class MultiblocksA {
                     Component.translatable("ctnh.multiblock.crystallizer.tooltip.2"),
                     Component.translatable("ctnh.multiblock.crystallizer.tooltip.3"),
                     Component.translatable("ctnh.multiblock.crystallizer.tooltip.4"))
-            .recipeModifiers((machine, recipe) -> CTNHRecipeModifiers.accurateParallel(machine, recipe, 16), GTRecipeModifiers::ebfOverclock)
+            .recipeModifiers((machine, recipe) -> CTNHRecipeModifiers.accurateParallel(machine, recipe, 16), GTRecipeModifiers::ebfOverclock, BATCH_MODE)
             .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("##AAAAA##", "###BCB###", "###BBB###", "#########", "#########", "#########", "#########", "#########", "#########")
@@ -1481,7 +1469,7 @@ public class MultiblocksA {
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.0"),
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"))
-            .recipeModifier(GTRecipeModifiers::ebfOverclock)
+            .recipeModifiers(GTRecipeModifiers::ebfOverclock, BATCH_MODE)
             .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("C   C", "C   C", "CGGGC", " GGG ")
@@ -1511,7 +1499,7 @@ public class MultiblocksA {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.BIO_REACTOR)
             .tooltips(Component.translatable("ctnh.multiblock.bio_reactor.tooltip.0").withStyle(ChatFormatting.GRAY))
-            .recipeModifiers(BioMachine::recipeModifier, GTRecipeModifiers.OC_NON_PERFECT_SUBTICK)
+            .recipeModifiers(BioMachine::recipeModifier, OC_NON_PERFECT_SUBTICK, BATCH_MODE)
             .appearanceBlock(BIO_REACTOR_CASING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "ABBBA", "ABBBA", "ABBBA", "AAAAA")
@@ -1539,7 +1527,7 @@ public class MultiblocksA {
                     return CTNHRecipeModifiers.accurateParallel(metaMachine, gtRecipe, 8);
                 }
                 return ModifierFunction.IDENTITY;
-            }, GTRecipeModifiers.OC_NON_PERFECT_SUBTICK)
+            }, OC_NON_PERFECT_SUBTICK)
             .tooltips(Component.translatable("super_centrifuge").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.super_centrifuge.parallel"))
             .pattern(definition -> FactoryBlockPattern.start()

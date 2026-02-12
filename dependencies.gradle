@@ -56,7 +56,7 @@ dependencies {
 
     //ars
     modImplementation("software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}")
-    //modImplementation("com.hollingsworth.ars_nouveau:ars_nouveau-${minecraft_version}:${arsnouveau_version}")
+    modImplementation("com.hollingsworth.ars_nouveau:ars_nouveau-${minecraft_version}:${arsnouveau_version}")
 
     //ad
     modImplementation("com.teamresourceful.resourcefullib:resourcefullib-forge-${minecraft_version}:${resourcefullib_version}")
@@ -75,7 +75,7 @@ dependencies {
     modImplementation("curse.maven:ftb-ultimine-forge-386134:5363345")
 
     modImplementation("curse.maven:patchouli-306770:4966125")
-    //modImplementation("vazkii.botania:Botania:${botania_version}")
+    modImplementation("vazkii.botania:Botania:${botania_version}")
 
     modRuntimeOnly("curse.maven:modernfix-790626:6719008")
 
@@ -97,11 +97,11 @@ dependencies {
 
 
     // Blood Magic
-    //modImplementation("maven.modrinth:blood-magic:${bloodmagic_version}")
+    modImplementation("maven.modrinth:blood-magic:${bloodmagic_version}")
 
     //modImplementation("curse.maven:gtmthings-1104310:6764930")
-
-    //modImplementation("curse.maven:mythicbotany-400058:5101899")
+    modImplementation("curse.maven:extrabotany-reburn-1271869:6818025")//额外植物学
+    modImplementation("curse.maven:mythicbotany-400058:5101899")
     annotationProcessor "org.moddingx:LibX:${minecraft_version}-${libx_version}"
     modImplementation("org.moddingx:LibX:${minecraft_version}-${libx_version}")
 

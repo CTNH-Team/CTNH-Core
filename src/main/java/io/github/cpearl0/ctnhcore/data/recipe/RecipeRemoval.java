@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.EIORecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.modmodify.omnicells.QuantumOmniRecipes;
 import net.minecraft.resources.ResourceLocation;
 import tech.vixhentx.mcmod.ctnhlib.data.DataFilterPack;
 
@@ -16,6 +17,7 @@ public class RecipeRemoval {
         centrifugeRecipeRemovals();
         maceratorRecipeRemovals();
         EIORecipes.eioRemovals();
+        QuantumOmniRecipes.omniRemovals();
         // 放最后
         ctnhRemovals(registry);
     }
@@ -94,7 +96,9 @@ public class RecipeRemoval {
                 //ME库存输入总线
                 "gtceu:assembler/me_stocking_import_bus",
                 //变电站
-                "gtceu:shaped/power_substation"
+                "gtceu:shaped/power_substation",
+                //氯化铵
+                "gtceu:extractor/extract_ammonium_chloride_dust"
 
         ));
 

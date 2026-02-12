@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
+import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -29,13 +30,15 @@ import java.util.Objects;
 @Getter
 public class NaqReactorMachine extends WorkableElectricMultiblockMachine implements ITieredMachine {
 
-    // 设置当前温度
+    public static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(NaqReactorMachine.class,
+            WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
+
+    @Persisted
     private int currentTemperature = 0;  // 初始温度为0K
     private static final int MAX_TEMP = 80000;  // 温度最高为80000K
     private static final int MIN_TEMP = 0;     // 温度最低为0K
     private static final int HEAT_SPEED = 10;  // 每次运行配方后温度上升1000K
 
-    private String CURRENTTEMPERATURE_STRING = "currentTemperature";
     // 流体消耗量（单位：mB）
     private static final int FLUID_AMOUNT = 40;  // 每次消耗40mb的镍等离子体
     private int inactiveTimer = 0;  // 记录停止工作时的计时器
@@ -110,14 +113,14 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (machine instanceof NaqReactorMachine reactorMachine) {
             int parallelCount = reactorMachine.getParallelCount();
-            double eutMultiplier = parallelCount; // 并行数影响Eut输出量
+            // 并行数影响Eut输出量
 
             return ModifierFunction.builder()
                     .inputModifier(ContentModifier.multiplier(parallelCount))  // 输入不变
                     .outputModifier(ContentModifier.multiplier(parallelCount))  // 输出不变
                     .durationMultiplier(1)  // 使用时间不变
                     .parallels(parallelCount)  // 根据温度调整并行数
-                    .eutMultiplier(eutMultiplier)  // 根据并行数调整Eut输出
+                    .eutMultiplier(parallelCount)  // 根据并行数调整Eut输出
                     .build();
         }
         return ModifierFunction.IDENTITY;
@@ -137,21 +140,7 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
 
     @Override
     public ManagedFieldHolder getFieldHolder() {
-        return new ManagedFieldHolder(NaqReactorMachine.class, super.getFieldHolder());
-    }
-
-    @Override
-    public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {
-        super.saveCustomPersistedData(tag, forDrop);
-        if (!forDrop) {
-            tag.putInt(CURRENTTEMPERATURE_STRING, currentTemperature);
-        }
-    }
-
-    @Override
-    public void loadCustomPersistedData(@NotNull CompoundTag tag) {
-        super.loadCustomPersistedData(tag);
-        currentTemperature = tag.contains(CURRENTTEMPERATURE_STRING) ? tag.getInt(CURRENTTEMPERATURE_STRING) : 0;
+        return MANAGED_FIELD_HOLDER;
     }
 
     @Override

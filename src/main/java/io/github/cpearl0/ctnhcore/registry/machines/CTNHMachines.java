@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry.machines;
 
+import com.gregtechceu.gtceu.common.data.models.GTMachineModels;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch.HugeDualHatchPartMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch.HugeItemBusPartMachine;
@@ -58,7 +59,7 @@ public class CTNHMachines {
     public static MachineDefinition[] DEHYDRATOR;
     public static MachineDefinition[] NAQUADAH_REACTOR;
     public static MachineDefinition[] ROCKET_ENGINE;
-    public static MachineDefinition[] CIRCUIT_BUS;
+    public static MachineDefinition CIRCUIT_BUS;
     public static MachineDefinition DRONEHOLDER;
     public static MachineDefinition[] COMPILERMACHINE;
     public static MachineDefinition[] PERSONAL_COMPUTER;
@@ -103,28 +104,34 @@ public class CTNHMachines {
                 tier -> tier * 32000,
                 EfficiencyGeneratorMachine::rocketEngine,
                 tiersBetween(EV, LuV));
-        CIRCUIT_BUS = registerTieredMachines("circuit_bus",
-                CircuitBusPartMachine::new,
-                (tier, builder) -> builder
-                        .langValue(GTValues.VNF[tier] + " Circuit Bus")
-                        .rotationState(RotationState.ALL)
-                        .abilities(CTNHPartAbility.CIRCUIT)
-                        .modelProperty(IS_FORMED, false)
-                        .colorOverlayTieredHullModel(GTCEu.id("block/overlay/machine/overlay_pipe_in"), null,
-                                GTCEu.id("block/overlay/machine/" + OVERLAY_ITEM_HATCH))
-                        .register(),
-                GTMachineUtils.ALL_TIERS);
-        DRONEHOLDER = REGISTRATE.machine("drone_holder", DroneHolderMachine::new)
+//        CIRCUIT_BUS = registerTieredMachines("circuit_bus",
+//                CircuitBusPartMachine::new,
+//                (tier, builder) -> builder
+//                        .langValue(GTValues.VNF[tier] + " Circuit Bus")
+//                        .rotationState(RotationState.ALL)
+//                        .abilities(CTNHPartAbility.CIRCUIT)
+//                        .modelProperty(IS_FORMED, false)
+//                        .colorOverlayTieredHullModel(GTCEu.id("block/multiblock/central_monitor"), null, null)
+//                        .register(),
+//                HV);
+        CIRCUIT_BUS = REGISTRATE.machine("circuit_bus", CircuitBusPartMachine::new)
+                .cnLangValue("芯片总线")
+                .tier(HV)
+                .allowExtendedFacing(false)
+                .abilities(CTNHPartAbility.CIRCUIT)
+                .modelProperty(GTMachineModelProperties.IS_FORMED, false)
+                .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
+                        GTCEu.id("block/multiblock/central_monitor"))
+                .register();
+
+                DRONEHOLDER = REGISTRATE.machine("drone_holder", DroneHolderMachine::new)
                 .langValue("drone Holder")
                 .tier(UV)
                 .rotationState(RotationState.ALL)
                 .abilities(CTNHPartAbility.DRONE)
                 .modelProperty(IS_FORMED, false)
                 .modelProperty(GTMachineModelProperties.RECIPE_LOGIC_STATUS, RecipeLogic.Status.IDLE)
-                .model(createWorkableTieredHullMachineModel(GTCEu.id("block/machines/object_holder"))
-                        .andThen((ctx, prov, model) -> {
-                            model.addReplaceableTextures("bottom", "top", "side");
-                        }))
+                .model(GTMachineModels.createWorkableTieredHullMachineModel(GTCEu.id("block/machines/object_holder")))
                 .register();
         COMPILERMACHINE = registerTieredMachines("neuro_compiler",
                 CompilerMachine::new,
@@ -132,10 +139,9 @@ public class CTNHMachines {
                         .langValue(GTValues.VNF[tier] + " Neuro Compiler")
                         .rotationState(RotationState.ALL)
                         .abilities(CTNHPartAbility.COMPILER)
-                        .colorOverlayTieredHullModel(GTCEu.id("block/overlay/machine/overlay_pipe_in"), null,
-                                GTCEu.id("block/overlay/machine/" + OVERLAY_ITEM_HATCH))
+                        .colorOverlayTieredHullModel("huge_bus_in", null, null)
                         .register(),
-                GTMachineUtils.ALL_TIERS);
+                GTValues.tiersBetween(UV, UEV));
 
         PERSONAL_COMPUTER = registerSimpleComputationMachines("personal_computer",
                 CTNHRecipeTypes.PERSONAL_COMPUTER);

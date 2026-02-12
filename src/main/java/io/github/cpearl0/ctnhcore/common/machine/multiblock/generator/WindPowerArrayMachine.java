@@ -166,7 +166,7 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
         assert getLevel() != null;
         var dimension = getLevel().dimension().location().toString();
 
-        basicRate *= (long) dimentionRate.getOrDefault(dimension, 1);
+        basicRate *= (long) dimentionRate.getOrDefault(dimension, 0);
     }
 
     /// ////////////////////////////////

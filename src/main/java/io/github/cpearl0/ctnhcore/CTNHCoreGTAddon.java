@@ -77,12 +77,14 @@ public class CTNHCoreGTAddon implements IGTAddon {
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
+        CTNHCraftingComponents.init();
+
         UnderfloorHeatingSystemRecipes.init(provider);
         AstronomicalObservatoryRecipes.init(provider);
         PersonalComputerRecipes.init(provider);
         SlaughterHouseRecipes.init(provider);
-        com.mo_guang.ctpp.common.data.recipe.BigDamRecipes.init(provider);
 
+        PhotovoltaicStationRecipes.init(provider);
         ChemConsumerRecipes.init(provider);
         WaterPowerStationRecipes.init(provider);
         MeadowRecipes.init(provider);
@@ -111,11 +113,12 @@ public class CTNHCoreGTAddon implements IGTAddon {
 
         CasingRecipes.init(provider);
         QuantumOmniRecipes.init(provider);
-        CTNHEnergyCellRecipes.init(provider);
+        EUCellRecipes.init(provider);
 
         LuvModifyRecipe.init(provider);
         HugeHatchRecipes.init(provider);
         TwistedFusionRecipes.init(provider);
+        EternalGardenRecipes.init(provider);
     }
 
     @Override

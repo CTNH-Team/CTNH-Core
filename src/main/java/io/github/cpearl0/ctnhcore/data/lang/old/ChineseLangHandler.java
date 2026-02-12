@@ -198,11 +198,7 @@ public class ChineseLangHandler {
 
         provider.add("ctnh.multiblock.slaughter_house.info.mobcount", "怪物种类：%d (%s)");
 
-        provider.add("ctnh.multiblock.fermenting_tank.info.growing_temperature", "生长温度：§2%d°C§r");
-        provider.add("ctnh.multiblock.fermenting_tank.info.growth_efficiency", "生长效率：%d%%");
 
-        provider.add("ctnh.multiblock.mana_turbine.info.efficiency", "发电效率：%d%%");
-        provider.add("ctnh.multiblock.mana_turbine.info.consumption_rate", "运行魔力消耗量：%d mb");
 
         provider.add("ctnh.multiblock.naq_reactor.info.temperature", "§c内核温度: %d");
         provider.add("ctnh.multiblock.naq_reactor.info.nickel_consumption", "镍等离子体消耗量: %d");
@@ -343,14 +339,14 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.void_miner.tooltip.0", "取天材，掘地精");
         provider.add("ctnh.multiblock.void_miner.tooltip.1", "虚空采矿场自动生成并提取矿石");
         provider.add("ctnh.multiblock.void_miner.tooltip.2", "如果你对矿物需求极大，虚空采矿机是必不可少的帮手");
-        provider.add("ctnh.multiblock.void_miner.tooltip.3", "一次性输入100,000,000mB的钻井液，极寒之凛冰和烈焰之炽焱会在升降温度时消耗");
-        provider.add("ctnh.multiblock.void_miner.tooltip.4", "当温度达到25000K时，虚空采矿机将进入强制降温模式，请交替输入烈焰之炽焱和极寒之凛冰来控制温度");
-        provider.add("ctnh.multiblock.void_miner.tooltip.5", "当温度降至0K时，虚空采矿机将恢复正常工作模式");
-        provider.add("ctnh.multiblock.void_miner.tooltip.6",
-                "在奇数次运行前，机器会试图消耗烈焰之炽焱来升温。初始烈焰之炽焱消耗量为1000mb,若成功消耗,则\uD835\uDC47 将会增加 ⌊(\uD835\uDC49 ÷ 100)⌋,接着\uD835\uDC49 将会自乘以 1.02");
-        provider.add("ctnh.multiblock.void_miner.tooltip.7",
-                "在偶数次运行前，机器会试图消耗极寒之凛冰来见降温。初始极寒之凛冰消耗量为1000mb,若成功消耗,则 \uD835\uDC47 将会降低 ⌊(\uD835\uDC49 ÷ 100)⌋,接着\uD835\uDC49 将会自乘以 1.02");
-        provider.add("ctnh.multiblock.void_miner.tooltip.8", "温度越高，虚空采矿场的工作效率越高");
+        provider.add("ctnh.multiblock.void_miner.tooltip.3", "每次工作消耗100,000B钻井液，升降温度时消耗极寒之凛冰和烈焰之炽焱");
+        provider.add("ctnh.multiblock.void_miner.tooltip.4",
+                "在奇数次运行前，机器会试图消耗烈焰之炽焱来升温。初始烈焰之炽焱消耗量为1000mb,若成功消耗,则温度将会增加 ⌊(消耗量 ÷ 100)⌋,接着消耗量将会自乘以 1.02");
+        provider.add("ctnh.multiblock.void_miner.tooltip.5",
+                "在偶数次运行前，机器会试图消耗极寒之凛冰来降温。初始极寒之凛冰消耗量为1000mb,若成功消耗,则温度将会降低 ⌊(消耗量 ÷ 100)⌋,接着消耗量将会自乘以 1.02");
+        provider.add("ctnh.multiblock.void_miner.tooltip.6", "温度越高，虚空采矿场的产出倍率越高");
+        provider.add("ctnh.multiblock.void_miner.tooltip.7", "当温度达到25000K时，虚空采矿机将进入强制降温模式，直至温度降至0K时，恢复正常工作模式");
+        provider.add("ctnh.multiblock.void_miner.tooltip.8", "请交替输入烈焰之炽焱和极寒之凛冰来控制温度");
 
         provider.add("ctnh.multiblock.large_fermenting_tank.tooltip.0", "高效工业化发酵生产");
         provider.add("ctnh.multiblock.large_fermenting_tank.tooltip.1",
@@ -390,8 +386,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.underfloor_heating_system.tooltip.2", "铜砖瓦会生锈，生锈后地暖系统的供暖能力会减弱");
         provider.add("ctnh.multiblock.underfloor_heating_system.tooltip.3", "可以调节速率，以降低供暖功率并减少蒸汽消耗，最低降至25%");
 
-        provider.add("ctnh.multiblock.mega_lcr.tooltip.0", "机器运行时每有一实际并行，能源消耗减少2%（至多75%）。运行时间减少2%(至多75%)");
-        provider.add("ctnh.multiblock.mega_lcr.tooltip.1", "线圈温度大于3600K时，每额外的1800K温度额外提供25%的速度加成");
+        provider.add("ctnh.multiblock.mega_lcr.tooltip.0", "§b具有4个异步线程§r");
+        provider.add("ctnh.multiblock.mega_lcr.tooltip.1", "使用§d异步线程控制仓§r以配置多线程运行模式");
 
         provider.add("ctnh.multiblock.slaughter_house.tooltip.0", "无情的杀戮机器");
         provider.add("ctnh.multiblock.slaughter_house.tooltip.1", "输入总线放入电动刷怪笼后，机器会自动输出对应怪物的战利品，可放入多个电动刷怪笼");
@@ -561,7 +557,6 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.arcreactor.tooltip.2", "机器基础每次运行配方产生10电弧强度，无法超频，高等级机器具有更高并行数");
         provider.add("ctnh.multiblock.arcreactor.tooltip.t1", "该机器并行数:1");
 
-        provider.add("ctnh.advanceassemblyline.1", "更好的装配线,但是有序输入");
         provider.add("ctnh.magic.generator", "精炼天地之魔精");
         provider.add("ctnh.magic.generator.1", "具有8并行，每秒基础消耗12mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
         provider.add("ctnh.gcym.reduction", "配方耗时x0.8，配方耗能x0.6");
@@ -775,7 +770,7 @@ public class ChineseLangHandler {
         for (int tier : GTValues.tiersBetween(ULV, MV)) {
             provider.add(CTNHMachines.ROTOR_HOLDER_EXTEND[tier].getBlock(), GTValues.VNF[tier] + "§r转子支架");
         }
-        for (int tier : GTValues.tiersBetween(ZPM, MAX)) {
+        for (int tier : GTValues.tiersBetween(UV, UEV)) {
             provider.add(CTNHMachines.COMPILERMACHINE[tier].getBlock(), GTValues.VNF[tier] + "§r神经拟合仓");
         }
         for (int tier : GTValues.tiersBetween(HV, IV)) {
@@ -825,8 +820,7 @@ public class ChineseLangHandler {
         provider.add("enchantment.ctnhcore.warming.desc", "增强御暑能力");
         provider.add("enchantment.ctnhcore.cooling.desc", "增强御寒能力");
 
-        // provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T1,"戴森云无人机蜂群MKI");
-        // provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T2,"戴森云无人机蜂群MKII");
+        provider.add("message.ctnhcore.portal.invalid_dimension", "该传送门只能在主世界使用");
 
         provider.addBlock(CTNHBlocks.COIL_ABYSALALLOY, "渊狱合金线圈");
         provider.addBlock(CTNHBlocks.COIL_TITANSTEEL, "泰坦钢线圈");
@@ -917,7 +911,7 @@ public class ChineseLangHandler {
         provider.add(MultiblocksB.ARC_GENERATOR_MK1.getBlock(), "超压电弧撕裂者MK1");
         provider.add(MultiblocksB.ARC_GENERATOR_MK2.getBlock(), "过载电弧撕裂者MK1");
         provider.add(MultiblocksB.PLASMA_ALLOY_BLAST_SMELTER.getBlock(), "等离子合金冶炼转底炉");
-        provider.add(MultiblocksB.UNIVERSE_SINOPE.getBlock(), "中石化宇宙处理中心");
+//        provider.add(MultiblocksB.UNIVERSE_SINOPE.getBlock(), "中石化宇宙处理中心");
         provider.add(MultiblocksB.COMBINED_VAPOR_DEPOSITION_FACILITY.getBlock(), "集成沉积工厂");
         provider.add(MultiblocksB.SPACEPHOTOVOLTAICBASESTATION.getBlock(), "太空光伏基站");
         provider.add(MultiblocksB.LaserSorder.getBlock(), "激光分配仪");
@@ -930,9 +924,9 @@ public class ChineseLangHandler {
         // provider.add(MultiblocksB.HYBRID_POWER_MIXER.getBlock(),"混合动力搅拌机");
 
         provider.add(MultiblocksB.FLUID_DRILLING_INF[UHV].getBlock(), "无尽流体钻机");
-        provider.add(MultiblocksB.INF_LARGE_MINER.getBlock(), "无尽钻机");
+//        provider.add(MultiblocksB.INF_LARGE_MINER.getBlock(), "无尽钻机");
 
-        provider.add(MultiblocksB.COMPONENT_ASSEMBLY_LINE_CT.getBlock(), "应力部件装配线");
+//        provider.add(MultiblocksB.COMPONENT_ASSEMBLY_LINE_CT.getBlock(), "应力部件装配线");
 
         provider.add(MultiblocksC.GREENHOUSE.getBlock(), "温室");
 
