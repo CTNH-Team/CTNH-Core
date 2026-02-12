@@ -100,7 +100,10 @@ public class RecipeRemoval {
                 //氯化铵
                 "gtceu:extractor/extract_ammonium_chloride_dust",
                 //电解水
-                "gtceu:electrolyzer/water_electrolysis"
+                "gtceu:electrolyzer/water_electrolysis",
+                //侯氏制碱法
+                "gtceu:large_chemical_reactor/sodium_bicarbonate_from_salt",
+                "gtceu:chemical_reactor/sodium_bicarbonate_from_salt"
 
         ));
 
