@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 
+import com.mo_guang.ctpp.api.pattern.FactoryStaticBlockPattern;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.machine.multiblock.MultiThreadElectricMachine;
 import io.github.cpearl0.ctnhcore.client.renderer.MartialMoralityEyeRender;
@@ -212,19 +213,23 @@ public class MultiblocksA {
                 .appearanceBlock(CTNHBlocks.CASING_REFLECT_LIGHT)
                 .allowExtendedFacing(false)
                 .allowFlip(false)
-                .pattern(definition -> FactoryBlockPattern.start()
-                        .aisle("AAAAAAA")
-                        .aisle("ABBBBBA")
-                        .aisle("ABBBBBA")
-                        .aisle("ABBBBBA")
-                        .aisle("ABBBBBA")
-                        .aisle("ABBBBBA")
-                        .aisle("AAA@AAA")
-                        .where("A", Predicates.blocks(CTNHBlocks.CASING_REFLECT_LIGHT.get())
-                                .or(Predicates.abilities(PartAbility.OUTPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(2))
-                                .or(Predicates.abilities(PartAbility.IMPORT_ITEMS)))
-                        .where("B", Predicates.blocks(photovoltaicBlock.get()))
+                .pattern(definition -> FactoryStaticBlockPattern.start()
+                        .aisle("#AAAAAAA#", "#########", "#AAAAAAA#", "####B####", "####B####", "####B####", "#########")
+                        .aisle("AAAAAAAAA", "##AAAAA##", "AAAAAAAAA", "#########", "#########", "##CCCCC##", "#CC###CC#")
+                        .aisle("AAAAAAAAA", "#AA###AA#", "AAADDDAAA", "#########", "#########", "##CEEEC##", "#CE###EC#")
+                        .aisle("AAAAAAAAA", "#A#####A#", "AADDDDDAA", "#########", "#########", "##CEEEC##", "#CE###EC#")
+                        .aisle("AAAAAAAAA", "#A#####A#", "AADDDDDAA", "#########", "#########", "##CEEEC##", "#CE###EC#")
+                        .aisle("AAAAAAAAA", "#A#####A#", "AADDDDDAA", "#########", "#########", "##CEEEC##", "#CE###EC#")
+                        .aisle("AAAAAAAAA", "#AA###AA#", "AAADDDAAA", "#########", "#########", "##CEEEC##", "#CE###EC#")
+                        .aisle("AAAAAAAAA", "##AAAAA##", "AAAAAAAAA", "#########", "#########", "##CCCCC##", "#CC###CC#")
+                        .aisle("#AAA@AAA#", "#########", "#AAAAAAA#", "####B####", "####B####", "####B####", "#########")
                         .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                        .where("A", Predicates.blocks(CASING_REFLECT_LIGHT.get()))
+                        .where("B", Predicates.blocks(AllBlocks.METAL_GIRDER.get()))
+                        .where("#", Predicates.any())
+                        .where("D", Predicates.blocks(CASING_TEMPERED_GLASS.get()))
+                        .where("E", Predicates.blocks(photovoltaicBlock.get()), false)
+                        .where("C", Predicates.blocks(CASING_REFLECT_LIGHT.get()), false)
                         .build())
                 .workableCasingModel(CTNHCore.id("block/casings/reflect_light_casing"),
                         GTCEu.id("block/multiblock/generator/large_steam_turbine"))
