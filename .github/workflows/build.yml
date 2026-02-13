@@ -39,6 +39,7 @@ jobs:
               - 'dependencies.gradle'
               - 'gradlew'
               - 'gradlew.bat'
+              - '.github/**'
 
       - name: Prepare Workspace
         if: steps.filter.outputs.code == 'true' || github.event_name == 'release' || github.event_name == 'workflow_dispatch'
