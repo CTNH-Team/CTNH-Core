@@ -12,6 +12,7 @@ on:
       - 'dependencies.gradle'
       - 'gradlew'
       - 'gradlew.bat'
+      - '.github/**'
   pull_request:
     paths:
       - 'src/**'
@@ -23,6 +24,7 @@ on:
       - 'dependencies.gradle'
       - 'gradlew'
       - 'gradlew.bat'
+      - '.github/**'
   release:
     types: [published]
 
