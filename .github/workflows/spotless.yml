@@ -1,0 +1,43 @@
+name: Spotless
+
+on:
+  push:
+    paths:
+      - 'src/**'
+      - 'spotless/**'
+      - 'gradle/**'
+      - '**/*.gradle'
+      - 'settings.gradle'
+      - 'gradle.properties'
+      - 'dependencies.gradle'
+      - 'gradlew'
+      - 'gradlew.bat'
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'spotless/**'
+      - 'gradle/**'
+      - '**/*.gradle'
+      - 'settings.gradle'
+      - 'gradle.properties'
+      - 'dependencies.gradle'
+      - 'gradlew'
+      - 'gradlew.bat'
+
+jobs:
+  spotless:
+    runs-on: ubuntu-latest
+
+    env:
+      MODULE_NAME: CTNH-Core
+
+    steps:
+      - name: Prepare Workspace
+        uses: ./.github/actions/ctnh_prepare_workspace
+        with:
+          token: ${{ github.token }}
+          module_name: ${{ env.MODULE_NAME }}
+
+      - name: Spotless Check
+        working-directory: CTNH-Modules
+        run: ./gradlew :modules:${{ env.MODULE_NAME }}:spotlessCheck --warning-mode all

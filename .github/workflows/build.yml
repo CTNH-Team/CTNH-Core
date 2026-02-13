@@ -1,0 +1,84 @@
+name: Build
+
+on:
+  push:
+    paths:
+      - 'src/**'
+      - 'spotless/**'
+      - 'gradle/**'
+      - '**/*.gradle'
+      - 'settings.gradle'
+      - 'gradle.properties'
+      - 'dependencies.gradle'
+      - 'gradlew'
+      - 'gradlew.bat'
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'spotless/**'
+      - 'gradle/**'
+      - '**/*.gradle'
+      - 'settings.gradle'
+      - 'gradle.properties'
+      - 'dependencies.gradle'
+      - 'gradlew'
+      - 'gradlew.bat'
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    env:
+      MODULE_NAME: CTNH-Core
+
+    steps:
+      - name: Prepare Workspace
+        uses: ./.github/actions/ctnh_prepare_workspace
+        with:
+          token: ${{ github.token }}
+          module_name: ${{ env.MODULE_NAME }}
+
+      - name: Build
+        working-directory: CTNH-Modules
+        run: ./gradlew :modules:${{ env.MODULE_NAME }}:build
+
+      - name: Version Suffix
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${GITHUB_EVENT_NAME}" == "pull_request" ]]; then
+            echo "VERSION_SUFFIX=PR-${{ github.event.number }}" >> "$GITHUB_ENV"
+          elif [[ "${GITHUB_EVENT_NAME}" == "push" ]]; then
+            echo "VERSION_SUFFIX=$(echo \"${GITHUB_SHA}\" | cut -c 1-7)" >> "$GITHUB_ENV"
+          else
+            echo "VERSION_SUFFIX=" >> "$GITHUB_ENV"
+          fi
+
+      - name: Rename Jars
+        if: github.event_name == 'push' || github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          libs_dir="CTNH-Modules/modules/${MODULE_NAME}/build/libs"
+          for file in "$libs_dir"/*.jar; do
+            [[ -e "$file" ]] || continue
+            mv "$file" "${file/.jar/-${VERSION_SUFFIX}.jar}"
+          done
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.MODULE_NAME }}-jars
+          path: CTNH-Modules/modules/${{ env.MODULE_NAME }}/build/libs/*.jar
+          if-no-files-found: error
+          retention-days: 15
+
+      - name: Upload to Release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: CTNH-Modules/modules/${{ env.MODULE_NAME }}/build/libs/*.jar
