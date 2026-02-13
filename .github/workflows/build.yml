@@ -36,6 +36,9 @@ jobs:
       MODULE_NAME: CTNH-Core
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Prepare Workspace
         uses: ./.github/actions/ctnh_prepare_workspace
         with:
