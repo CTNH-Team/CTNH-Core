@@ -1,29 +1,28 @@
-package io.github.cpearl0.ctnhcore.data.recipe;
+package io.github.cpearl0.ctnhcore.data.recipe.mana;
 
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
-import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
-import com.gregtechceu.gtceu.common.block.explosive.IndustrialTNTBlock;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.moguang.ctnhmana.common.recipe.builder.ElfPlateRecipeBuilder;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
-import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import net.minecraft.data.recipes.FinishedRecipe;
 import wayoftime.bloodmagic.common.fluid.BloodMagicFluids;
 
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.common.data.GTBlocks.INDUSTRIAL_TNT;
+import static com.moguang.ctnhmana.registry.CMBlocks.TERMINAL_TWISTED_COIL;
+import static com.moguang.ctnhmana.registry.multiblock.misc.*;
+import static com.moguang.ctnhmana.registry.multiblock.misc.TWISTED_FUSION_MK3;
+import static io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA.COMPRESSED_FUSION_REACTOR;
 import static mythicbotany.register.ModItems.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.FERTILIZER;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.moguang.ctnhmana.registry.CMItems.*;
 import static com.moguang.ctnhmana.registry.CMMaterials.*;
-import static com.moguang.ctnhmana.registry.CMRecipeTypes.*;
 import static com.moguang.ctnhmana.registry.CMRecipeTypes.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.*;
@@ -219,6 +218,7 @@ public class TwistedFusionRecipes {
                 .duration(1000)
                 .save(provider);
         GREENHOUSE_RECIPES.recipeBuilder("proliferation_rune2")//增殖符文增殖
+                .inputItems(BROKEN_RUNE.asStack())
                 .inputItems(overgrowthSeed)
                 .inputItems(FERTILIZER,64)
                 .inputItems(RADIOACTIVE_WASTE,64)
@@ -227,6 +227,19 @@ public class TwistedFusionRecipes {
                 .outputItems(PROLIFERATION_RUNE,3)
                 .EUt(24444)
                 .duration(1000)
+                .save(provider);
+        ElfPlateRecipeBuilder.builder("twist_reactor_inf")
+                .input(TWISTED_FUSION_MK1.getItem())
+                .input(TWISTED_FUSION_MK2.getItem())
+                .input(TWISTED_FUSION_MK3.getItem())
+                .input(COMPRESSED_FUSION_REACTOR[GTValues.LuV].getItem())
+                .input(COMPRESSED_FUSION_REACTOR[GTValues.ZPM].getItem())
+                .input(COMPRESSED_FUSION_REACTOR[GTValues.UV].getItem())
+                .input(TERMINAL_TWISTED_COIL.asItem())
+                .input(CRYSTAL_CATALYST)
+                .input(QUASAR_RUNE.asItem())
+                .output(TWISTED_FUSION_MKINFINITY.asStack())
+                .mana(Integer.MAX_VALUE)
                 .save(provider);
     }
 }
