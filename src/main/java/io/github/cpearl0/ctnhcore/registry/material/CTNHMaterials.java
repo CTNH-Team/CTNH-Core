@@ -1058,7 +1058,7 @@ public class CTNHMaterials {
         adjustAluminium(Zeolite);
 
         Oxygen.getProperty(PropertyKey.FLUID).getStorage().store(FluidStorageKeys.GAS, ModFluids.OXYGEN, null);
-        GTFluids.handleNonMaterialFluids(Steel, () -> CMFluids.MOLTEN_STEEL.get().getSource());
+        //GTFluids.handleNonMaterialFluids(Steel, () -> CMFluids.MOLTEN_STEEL.get().getSource());
 
         var oreProp = Naquadah.getProperty(PropertyKey.ORE);
         oreProp.getOreByProducts().clear();
