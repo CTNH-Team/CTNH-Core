@@ -37,6 +37,9 @@ public class ChineseLangHandler {
         OreLang.init(provider);
         VeinLang.init(provider);
 
+        provider.add("block.gtceu.starlight", "星能液");
+        provider.add("block.gtceu。sulfuric_acid", "硫酸");
+
         provider.add("gtceu.recipe_logic.setup_fail", "配方启动失败：");
         provider.add("gtceu.recipe_logic.recipe_waiting", "配方等待中：");
         provider.add("gtceu.recipe_modifier.default_fail", "配方修改失败");

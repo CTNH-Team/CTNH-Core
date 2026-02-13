@@ -257,7 +257,7 @@ public class AstralMeteorPlacer {
         final int maxY = level.getSeaLevel() - 1;
         MutableBlockPos blockPos = new MutableBlockPos();
 
-        for (int j = y - 5; j <= maxY; j++) {
+        for (int j = y - 5; j <= y; j++) {
             blockPos.setY(j);
 
             for (int i = boundingBox.minX(); i <= boundingBox.maxX(); i++) {
