@@ -5,7 +5,6 @@ import com.mo_guang.ctpp.common.machine.multiblock.BigDamMachine;
 import com.mo_guang.ctpp.registry.CTPPMultiblockMachines;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.ponder.Kinetic.*;
-import io.github.cpearl0.ctnhcore.client.ponder.Electric.*;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.minecraft.resources.ResourceLocation;

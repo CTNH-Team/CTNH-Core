@@ -1,6 +1,6 @@
 {
   "animation":{
-    "frametime":5
+    "frametime":1
   },
   "ldlib": {
       "connection": "ctnhcore:block/casings/space_elevator/blue_framed_glass_ctm"

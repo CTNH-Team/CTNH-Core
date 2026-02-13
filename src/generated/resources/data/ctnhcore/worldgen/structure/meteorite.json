@@ -1,6 +1,6 @@
 {
   "type": "minecraft:ctnh_meteor",
-  "biomes": "ctnhcore:plague_wasteland",
+  "biomes": "#ctnhcore:astral_meteor",
   "spawn_overrides": {},
   "step": "top_layer_modification"
 }

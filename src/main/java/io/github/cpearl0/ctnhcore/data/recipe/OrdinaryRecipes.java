@@ -62,6 +62,7 @@ public class OrdinaryRecipes {
 
 // 小化反
         CBRecipeBuilder.of(CTNHCore.id("fenton_reagent_mixing"), GTRecipeTypes.CHEMICAL_RECIPES)
+                .circuitMeta(3)
                 .inputFluids(GTMaterials.Iron2Chloride, 1000)
                 .inputFluids(HydrogenPeroxide, 1000)
                 .outputFluids(new FluidStack(FENTONS_REAGENT.getFluid(), 2000))
@@ -79,6 +80,7 @@ public class OrdinaryRecipes {
                 .save(provider);
 
         CBRecipeBuilder.of(CTNHCore.id("ferric_to_ferrous_chloride"), GTRecipeTypes.CHEMICAL_RECIPES)
+                .circuitMeta(3)
                 .inputFluids(new FluidStack(GTMaterials.Iron3Chloride.getFluid(), 2000))
                 .inputItems(dust, Iron)
                 .outputFluids(new FluidStack(GTMaterials.Iron2Chloride.getFluid(), 3000))
@@ -105,7 +107,7 @@ public class OrdinaryRecipes {
                 .EUt(960)
                 .save(provider);
 
-        CBRecipeBuilder.of(CTNHCore.id("ferric_to_ferrous_chloride_large"), GTRecipeTypes.LARGE_CHEMICAL_RECIPES)  // 修改了ID避免重复
+        CBRecipeBuilder.of(CTNHCore.id("ferric_to_ferrous_chloride_large"), GTRecipeTypes.LARGE_CHEMICAL_RECIPES)
                 .inputFluids(new FluidStack(GTMaterials.Iron3Chloride.getFluid(), 2000))
                 .inputItems(dust, Iron)
                 .outputFluids(new FluidStack(GTMaterials.Iron2Chloride.getFluid(), 3000))
@@ -114,7 +116,7 @@ public class OrdinaryRecipes {
                 .save(provider);
 
 // 蒸馏室
-        CBRecipeBuilder.of(CTNHCore.id("coal_tar_distillation"), GTRecipeTypes.DISTILLERY_RECIPES)  // 修改了ID避免重复
+        CBRecipeBuilder.of(CTNHCore.id("coal_tar_distillation"), GTRecipeTypes.DISTILLERY_RECIPES)
                 .circuitMeta(6)
                 .inputFluids(new FluidStack(CoalTar.getFluid(), 1000))
                 .outputFluids(new FluidStack(PYRROLE.getFluid(), 800))
@@ -455,7 +457,12 @@ public class OrdinaryRecipes {
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .duration(100).EUt(38400).save(provider);
 
-
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("water_electrolysis"))
+                .circuitMeta(1)
+                .inputFluids(Water.getFluid(1000))
+                .outputFluids(Hydrogen.getFluid(2000))
+                .outputFluids(Oxygen.getFluid(1000))
+                .duration(750).EUt(VA[LV]).save(provider);
 
     }
 }

@@ -24,9 +24,9 @@ public class CrystalItems {
     public static ItemEntry<ComponentItem> PURE_CERTUS_LAPOTRON_CRYSTAL = REGISTRATE.item("pure_certus_lapotron_crystal", ComponentItem::create)
             .cnlang("高纯兰波顿水晶")
             .lang("Pure Certus Lapotron Crystal")
-            .model(overrideModel(GTCEu.id("battery"), 8))  // 复用电池模型
-            .onRegister(modelPredicate(GTCEu.id("battery"), ElectricStats::getStoredPredicate))  // 电量显示
-            .onRegister(attach(ElectricStats.createRechargeableBattery(100_000_000L, GTValues.EV)))  // 25M EV级（按图片）
+            .model(overrideModel(GTCEu.id("battery"), 8))
+            .onRegister(modelPredicate(GTCEu.id("battery"), ElectricStats::getStoredPredicate))
+            .onRegister(attach(ElectricStats.createRechargeableBattery(100_000_000L, GTValues.EV)))
             .tag(CustomTags.EV_BATTERIES)
             .register();
 
@@ -69,6 +69,11 @@ public class CrystalItems {
     public static ItemEntry<ComponentItem> RESONANCE_CRYSTAL_BLANK = REGISTRATE.item("resonance_crystal_blank", ComponentItem::create)
             .cnlang("共振水晶粗胚")
             .lang("Resonance Crystal Blank")
+            .register();
+
+    public static ItemEntry<ComponentItem> ECHO_CRYSTAL_BLANK = REGISTRATE.item("echo_crystal_blank", ComponentItem::create)
+            .cnlang("回响水晶粗胚")
+            .lang("Echo Crystal Blank")
             .register();
 
     public static ItemEntry<ComponentItem> ENERGY_CRYSTAL_GRANULE = REGISTRATE.item("energy_crystal_granule", ComponentItem::create)

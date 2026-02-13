@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTItems;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.GTCraftingComponents;
@@ -233,7 +234,7 @@ public class EUCellRecipes {
                 .duration(1200).EUt(VA[IV]).save(provider);
         AUTOCLAVE_RECIPES.recipeBuilder(CTNHCore.id("resonance_crystal_autoclave"))
                 .inputItems(dust, RESONANCE_CRYSTAL,60)
-                .inputFluids(STELLAR_ENERGY.getFluid(576))
+                .inputFluids(HSSE.getFluid(576))
                 .outputItems(CrystalItems.RESONANCE_CRYSTAL_BLANK,1)
                 .duration(2400).EUt(VA[IV]).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("resonance_crystal_blank_assembler"))
@@ -259,6 +260,12 @@ public class EUCellRecipes {
                 .inputItems(CrystalItems.PURE_CERTUS_RESONANCE_CRYSTAL,1)
                 .outputItems(CrystalItems.RESONANCE_CRYSTAL_GRANULE,4)
                 .duration(800).EUt(VA[ZPM]).save(provider);
+
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("echo_crystal_blank_assembler"))
+                .inputItems(CrystalItems.ECHO_CRYSTAL_BLANK,1)
+                .inputItems(CustomTags.IV_CIRCUITS,2)
+                .outputItems(CrystalItems.ECHO_CRYSTAL,1)
+                .duration(4800).EUt(VA[LuV]).save(provider);
 
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("eu_cell_housing"))
                 .inputItems(plateDense,RhodiumPlatedPalladium,4)

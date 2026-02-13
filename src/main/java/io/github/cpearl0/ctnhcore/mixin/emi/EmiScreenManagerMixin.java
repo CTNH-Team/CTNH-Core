@@ -55,7 +55,7 @@ public abstract class EmiScreenManagerMixin {
                 // }
                 var container = GTItems.FLUID_CELL.asStack();
                 container.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(
-                        p -> p.fill(new FluidStack(fluid, 1000), IFluidHandler.FluidAction.EXECUTE));
+                        p -> p.fill(new FluidStack(fluid, 1000, fluidEmiStack.getNbt()), IFluidHandler.FluidAction.EXECUTE));
                 realStack = container;
             }
         } else {
