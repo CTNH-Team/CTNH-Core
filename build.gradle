@@ -51,7 +51,7 @@ legacyForge {
             // "REGISTRIES": For firing of registry events.
             // "REGISTRYDUMP": For getting the contents of all registries.
             systemProperty 'forge.logging.markers', 'REGISTRIES'
-//            jvmArgument("-XX:+AllowEnhancedClassRedefinition")
+            // jvmArgument("-XX:+AllowEnhancedClassRedefinition")
             jvmArgument("-DnetworkTimeout=6000000")
             // Recommended logging level for the console
             // You can set various levels here.
@@ -90,19 +90,20 @@ legacyForge {
         }
     }
 }
+
 jar {
     manifest.attributes([
-            "MixinConfigs": "${mod_id}.mixins.json"
+        "MixinConfigs": "${mod_id}.mixins.json"
     ])
 }
 
-//apply from: "$rootDir/gradle/scripts/spotless.gradle"
-//idea {
-//    module {
-//        downloadSources = true
-//        downloadJavadoc = true
-//    }
-//}
+// apply from: "$rootDir/gradle/scripts/spotless.gradle"
+// idea {
+//     module {
+//         downloadSources = true
+//         downloadJavadoc = true
+//     }
+// }
 
 
 // See com.example.examplemod.mixin.DummyMixin for information about mixins
@@ -113,16 +114,16 @@ mixin {
 
 tasks.named('processResources', ProcessResources).configure {
     var properties = [
-            "mod_license": mod_license,
-            "mod_id": mod_id,
-            "mod_version": mod_version,
-            "mod_name": mod_name,
-            "mod_url": mod_url,
-            "mod_author": mod_author,
-            "mod_description": mod_description,
-            "forge_version": forge_version.split("\\.")[0], // only specify major version of forge
-            "minecraft_version": minecraft_version,
-            "gtceu_version": gtceu_version,
+        "mod_license": mod_license,
+        "mod_id": mod_id,
+        "mod_version": mod_version,
+        "mod_name": mod_name,
+        "mod_url": mod_url,
+        "mod_author": mod_author,
+        "mod_description": mod_description,
+        "forge_version": forge_version.split("\\.")[0], // only specify major version of forge
+        "minecraft_version": minecraft_version,
+        "gtceu_version": gtceu_version,
     ]
     inputs.properties(properties)
 
@@ -145,23 +146,3 @@ tasks.withType(JavaCompile).configureEach {
 lombok {
     version = "1.18.38"
 }
-
-//// === 自动复制构建产物到指定目录 ===
-//
-//// 自定义目标路径（可以改成绝对路径）
-//def outputDir = file("E:\\gtnh\\versions\\ctnh-dev\\mods")  // 目标目录
-//
-//// 创建一个新的任务
-//tasks.register('copyModJar', Copy) {
-//    dependsOn build // 先执行 build 任务
-//    from(tasks.named("reobfJar").get().archiveFile) // 获取 jar 输出文件
-//    into(outputDir) // 输出目录
-//    doFirst {
-//        println "复制 mod jar 到: ${outputDir}"
-//    }
-//}
-//
-//// 当执行 `build` 时自动执行复制任务
-//tasks.named("build").configure {
-//    finalizedBy("copyModJar")
-//}
