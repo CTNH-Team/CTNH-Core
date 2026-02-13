@@ -152,3 +152,6 @@ runs:
 
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4
+      with:
+        cache-read-only: ${{ github.event_name == 'pull_request' }}
+        gradle-home-cache-cleanup: true
