@@ -61,7 +61,7 @@ public final class CTNHConstructMeltingRecipes extends CTNHConstructRecipeProvid
     private void glassRecipes(Consumer<FinishedRecipe> consumer) {
         MeltingRecipeBuilder.melting(
                 Ingredient.of(MATERIAL_ITEMS.get(TagPrefix.dust, GTMaterials.Glass)),
-                new FluidStack(GTMaterials.Glass.getFluid(), 72),
+                new FluidStack(GTMaterials.Glass.getFluid(), 288),
                 800, 90
         ).save(consumer, location("glass"));
     }

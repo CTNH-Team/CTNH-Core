@@ -564,7 +564,7 @@
   "ctnhcore.ponder.big_dam_common.text_2": "Use any terminal, sneak down, and right-click for one-click placement",
   "ctnhcore.ponder.big_dam_common.title": "Big Dam",
   "ctnhcore.ponder.big_dam_work.header": "How to make the Big Dam work",
-  "ctnhcore.ponder.big_dam_work.text_1": "You can place interfaces in these places, such as fluid input hatch, kinetic output hatch, etc",
+  "ctnhcore.ponder.big_dam_work.text_1": "You can place interfaces at the location of the stone bricks, such as input bins, stress output bins, etc",
   "ctnhcore.ponder.big_dam_work.text_2": "However, it should be noted that if you do not place enough kinetic output hatch, the stress of the Big Dam will not be fully outputted",
   "ctnhcore.ponder.big_dam_work.text_3": "Now, just by inputting lubricating oil, the Big Dam can output stress",
   "ctnhcore.ponder.carbon_brushes.header": "Magneto generated electricity",

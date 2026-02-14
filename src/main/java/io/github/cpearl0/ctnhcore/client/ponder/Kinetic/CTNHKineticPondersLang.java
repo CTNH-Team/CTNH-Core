@@ -28,8 +28,8 @@ public class CTNHKineticPondersLang {
     @EN("How to make the Big Dam work")
     static Lang BigDamWorkHeader;
     @Key("ponder.big_dam_work.text_1")
-    @CN("你可以这些地方放置接口，如输入仓，应力输出仓等")
-    @EN("You can place interfaces in these places, such as fluid input hatch, kinetic output hatch, etc")
+    @CN("你可以在石砖的位置放置接口，如输入仓，应力输出仓等")
+    @EN("You can place interfaces at the location of the stone bricks, such as input bins, stress output bins, etc")
     static Lang BigDamWorkText1;
     @Key("ponder.big_dam_work.text_2")
     @CN("不过需要注意的是，如果你没有放置足够的应力输出仓，三峡大坝的应力不会被完全输出")

@@ -786,7 +786,7 @@
   "ctnhcore.ponder.big_dam_common.text_2": "使用任意终端蹲下右键进行一键放置",
   "ctnhcore.ponder.big_dam_common.title": "三峡大坝",
   "ctnhcore.ponder.big_dam_work.header": "如何使三峡大坝工作",
-  "ctnhcore.ponder.big_dam_work.text_1": "你可以这些地方放置接口，如输入仓，应力输出仓等",
+  "ctnhcore.ponder.big_dam_work.text_1": "你可以在石砖的位置放置接口，如输入仓，应力输出仓等",
   "ctnhcore.ponder.big_dam_work.text_2": "不过需要注意的是，如果你没有放置足够的应力输出仓，三峡大坝的应力不会被完全输出",
   "ctnhcore.ponder.big_dam_work.text_3": "现在只需要输入润滑油，就能使三峡大坝输出应力了",
   "ctnhcore.ponder.carbon_brushes.header": "磁电机发电",
