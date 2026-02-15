@@ -33,9 +33,10 @@ public class CTNHConstructModifierRecipes extends CTNHConstructRecipeProvider {
     private void abilityRecipes(Consumer<FinishedRecipe> consumer) {
         String folder = "ability/";
 
-        ModifierRecipeBuilder.modifier(CTNHConstructModifier.Ids.GLOBALTRAVELLER)
+        ModifierRecipeBuilder.modifier(CTNHConstructModifier.Ids.GLOBAL_TRAVELLER)
                 .addInput(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("ars_nouveau:stable_warp_scroll")))
                 .exactLevel(1)
+                .setMaxLevel(1)
                 .setSlots(SlotType.ABILITY, 1)
                 .setTools(TinkerTags.Items.DURABILITY)
                 .disallowCrystal()

@@ -48,7 +48,7 @@ public final class CTNHConstructMeltingRecipes extends CTNHConstructRecipeProvid
                 1000, 200
         ).save(consumer, location("clay"));
     }
-    //ToDo
+
     //private void rubberRecipes(Consumer<FinishedRecipe> consumer) {
     //    // 输入: kubejs:rubber_powder, 输出: 144mB gtceu:rubber流体, 温度: 400, 时间: 90
     //    MeltingRecipeBuilder.melting(

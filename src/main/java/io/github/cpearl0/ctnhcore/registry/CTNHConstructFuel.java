@@ -63,10 +63,9 @@ public class CTNHConstructFuel extends CTNHConstructRecipeProvider {
                 .rate(500)
                 .save(consumer, location("creosote"));
 
-        //ToDo
         //雪城钢: duration=114514, rate=1919, temperature=8100, amount=999
-        //MeltingFuelBuilder.fuel(new FluidStack(CTNHMaterials.SnowSteel.getFluid(), 999), 114514)
-        //        .rate(1919)
-        //        .save(consumer, location("snow_steel"));
+        MeltingFuelBuilder.fuel(new FluidStack(CTNHMaterials.SNOW_STEEL.getFluid(), 999), 114514)
+                .rate(1919)
+                .save(consumer, location("snow_steel"));
     }
 }

@@ -13,13 +13,14 @@ public class CTNHConstructModifier extends TinkerModule {
     public static final ModifierDeferredRegister MODIFIERS = ModifierDeferredRegister.create(CTNHCore.MODID);
 
     public static final class Ids {
-        public static final ModifierId GLOBALTRAVELLER = id("global_traveller");
+        public static final ModifierId GLOBAL_TRAVELLER = id("global_traveller");
+        public static final ModifierId SnowCity = id("snow_city");
 
         private static ModifierId id(String id) {
             return ModifierId.tryBuild(CTNHCore.MODID, id);
         }
     }
 
-    public static final StaticModifier<Modifier> GLOBAL_TRAVELLER =
-            MODIFIERS.register("global_traveller", Global_Traveller::new);
+    public static final StaticModifier<Modifier> GLOBAL_TRAVELLER = MODIFIERS.register("global_traveller", Global_Traveller::new);
+
 }

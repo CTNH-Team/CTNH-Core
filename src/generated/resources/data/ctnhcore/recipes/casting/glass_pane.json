@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:casting_table",
+  "cooling_time": 40,
+  "fluid": {
+    "amount": 36,
+    "fluid": "gtceu:glass"
+  },
+  "result": "minecraft:glass_pane"
+}

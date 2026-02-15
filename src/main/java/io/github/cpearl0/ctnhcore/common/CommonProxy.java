@@ -3,11 +3,12 @@ package io.github.cpearl0.ctnhcore.common;
 import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalItem;
+import io.github.cpearl0.ctnhcore.common.tconstruct.materials.CTNHConstructMaterialRecipes;
 import io.github.cpearl0.ctnhcore.common.tconstruct.recipes.CTNHConstructCastingRecipes;
 import io.github.cpearl0.ctnhcore.common.tconstruct.recipes.CTNHConstructMeltingRecipes;
 import io.github.cpearl0.ctnhcore.common.tconstruct.recipes.CTNHConstructModifierRecipes;
+import io.github.cpearl0.ctnhcore.data.provider.*;
 import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
-import io.github.cpearl0.ctnhcore.data.tags.CTNHBiomeTagsProvider;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import io.github.cpearl0.ctnhcore.registry.jade.CTNHJadePlugin;
@@ -53,6 +54,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import appeng.api.features.GridLinkables;
 import net.minecraftforge.registries.RegisterEvent;
+import slimeknights.tconstruct.tools.data.sprite.TinkerMaterialSpriteProvider;
 import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;
 
@@ -86,6 +88,7 @@ public class CommonProxy {
         CTNHSoundEvents.SOUND_EVENTS.register(modEventBus);
         CTNHEnchantments.Enchantments.register(modEventBus);
         CTNHConstructModifier.MODIFIERS.register(modEventBus);
+
         CTNHRecipes.init(modEventBus);
         CTNHTemperatureModifierRegister.init();
         CTNHCoreDatagen.init();
@@ -183,25 +186,38 @@ public class CommonProxy {
     }
 
     @SubscribeEvent
-    public static void GenerateTicRecipes(GatherDataEvent event) {
+    public static void GenerateCTNHConstruct(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
         PackOutput output = generator.getPackOutput();
+        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+        boolean client = event.includeClient();
+
+        CTNHConstructMaterialSpriteProvider materialSprites = new CTNHConstructMaterialSpriteProvider();
+        generator.addProvider(client, new CTNHConstructMaterialRenderInfoProvider(output, materialSprites, existingFileHelper));
 
         Consumer<Function<PackOutput, ? extends DataProvider>> add = (func) -> {
             generator.addProvider(event.includeServer(), func.apply(output));
         };
 
-        ticRecipes(add);
+        CTNHConstruct(add);
     }
 
-    private static void ticRecipes(Consumer<Function<PackOutput, ? extends DataProvider>> consumer) {
+    private static void CTNHConstruct(Consumer<Function<PackOutput, ? extends DataProvider>> consumer) {
+        //Tools
+        consumer.accept(CTNHConstructMaterialsDataProvider::new);
+        consumer.accept(CTNHConstructMaterialsTraitsProvider::new);
+        consumer.accept(CTNHConstructMaterialStatsProvider::new);
+        consumer.accept(CTNHConstructToolDefinitionDataProvider::new);
+        consumer.accept(CTNHConstructMaterialRecipes::new);
         // Modifiers
         consumer.accept(CTNHConstructModifierRecipes::new);
+        consumer.accept(CTNHConstructModifierProvider::new);
         //Melting
         consumer.accept(CTNHConstructMeltingRecipes::new);
         //Casting
         consumer.accept(CTNHConstructCastingRecipes::new);
         //Fuel
         consumer.accept(CTNHConstructFuel::new);
+
     }
 }
