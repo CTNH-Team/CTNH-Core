@@ -32,6 +32,5 @@ public final class CTNHConstructMaterialRecipes extends CTNHConstructRecipeProvi
             materialRecipe(consumer, CTNHConstructMaterials.Ids.SNOW_STEEL, Ingredient.of(MATERIAL_ITEMS.get(TagPrefix.ingot, CTNHMaterials.SNOW_STEEL)), 1, 1, "snow_steel/ingot");
             materialRecipe(consumer, CTNHConstructMaterials.Ids.SNOW_STEEL, Ingredient.of(MATERIAL_BLOCKS.get(TagPrefix.block, CTNHMaterials.SNOW_STEEL)), 9, 1, "snow_steel/block");
             //materialMeltingCasting(consumer, CTNHConstructMaterials.Ids.SNOW_STEEL, CTNHMaterials.SNOW_STEEL.getFluid(), "snow_steel/fluid");
-
         }
 }
