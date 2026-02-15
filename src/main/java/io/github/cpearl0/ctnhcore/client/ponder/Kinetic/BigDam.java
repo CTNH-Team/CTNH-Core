@@ -123,6 +123,8 @@ public class BigDam {
                 .text(BigDamWorkText3.translate().getContents().toString())
                 .pointAt(InputHatchVec)
                 .attachKeyFrame();
+        scene.overlay().showText(20);
+        scene.world().setKineticSpeed(util.select().position(22,2,1), 512);
 
         for (ElementLink<WorldSectionElement> link : waterLinks) {
             scene.world().rotateSection(link, 360, 0, 0, 400);

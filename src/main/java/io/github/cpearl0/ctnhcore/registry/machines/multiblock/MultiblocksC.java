@@ -45,7 +45,7 @@ public class MultiblocksC {
     public static void init() {}
 
     public static final MultiblockMachineDefinition GREENHOUSE = REGISTRATE.multiblock("greenhouse", WorkableElectricMultiblockMachine::new)
-            .rotationState(RotationState.NON_Y_AXIS)
+            .allowExtendedFacing(false)
             .recipeType(CTNHRecipeTypes.GREENHOUSE_RECIPES)
             .recipeModifiers(GTRecipeModifiers.OC_NON_PERFECT_SUBTICK, GTRecipeModifiers.BATCH_MODE)
             .tooltips(Component.translatable("ctnh.multiblock.greenhouse.tooltip.0").withStyle(ChatFormatting.GRAY))

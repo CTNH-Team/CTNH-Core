@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:melting_fuel",
+  "duration": 200,
+  "fluid": {
+    "amount": 50,
+    "fluid": "gtceu:creosote"
+  },
+  "rate": 500,
+  "temperature": 800
+}

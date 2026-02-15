@@ -9,6 +9,7 @@
     "TagLoaderMixin",
     "adastra.OxygenApilmplMixin",
     "adastra.TemperatureApilmplMixin",
+    "alexcaves.MagnetUtilMixin",
     "apotheosis.EarthsBoonEnchantMixin",
     "createmetallurgy.CreateMetallurgyJEIMixin",
     "createmetallurgy.CrucibleBlockEntityMixin",

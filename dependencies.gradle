@@ -17,7 +17,7 @@ dependencies {
     jarJar(project(":modules:CTNH-Mana")){transitive = false}
 
     jarJar(modImplementation("extra-mods:gtceu-1.20.1:7.4.1-ctnh-slim")){transitive = false}
-
+    //jarJar(modImplementation("extra-mods:ae2pw:0.26.1")){transitive = false}
     // JEI, EMI, Jade
     //modCompileOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
     //modCompileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
@@ -149,4 +149,8 @@ dependencies {
     //modImplementation("curse.maven:compressedcreativity-549381:6603441")
     //modImplementation("curse.maven:appliedpneumatics-1355087:7124464")
     modImplementation("curse.maven:omni-cells-1359517:7152251")
+
+    modImplementation("curse.maven:alexs-caves-924854:5848216")
+    modImplementation("curse.maven:citadel-331936:7476570")
+    modImplementation("curse.maven:create-new-age-905861:6482827")
 }
