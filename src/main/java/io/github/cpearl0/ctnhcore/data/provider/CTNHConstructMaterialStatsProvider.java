@@ -1,8 +1,7 @@
-package io.github.cpearl0.ctnhcore.common.tconstruct.tool.stats;
+package io.github.cpearl0.ctnhcore.data.provider;
 
 import io.github.cpearl0.ctnhcore.common.tconstruct.material.CTNHConstructMaterials;
-import io.github.cpearl0.ctnhcore.common.tconstruct.tool.CTNHConstructPartMaterialStats;
-import io.github.cpearl0.ctnhcore.data.provider.CTNHConstructMaterialsDataProvider;
+import io.github.cpearl0.ctnhcore.common.tconstruct.materials.CTNHConstructPartMaterialStats;
 import net.minecraft.data.PackOutput;
 import slimeknights.tconstruct.library.data.material.AbstractMaterialStatsDataProvider;
 import slimeknights.tconstruct.tools.data.material.MaterialIds;
@@ -10,8 +9,8 @@ import slimeknights.tconstruct.tools.stats.*;
 
 import static net.minecraft.world.item.Tiers.*;
 
-public final class CTNHConstructMaterialStats extends AbstractMaterialStatsDataProvider {
-    public CTNHConstructMaterialStats(PackOutput packOutput) {
+public final class CTNHConstructMaterialStatsProvider extends AbstractMaterialStatsDataProvider {
+    public CTNHConstructMaterialStatsProvider(PackOutput packOutput) {
         super(packOutput, CTNHConstructMaterialsDataProvider.INSTANCE);
     }
 
@@ -22,13 +21,16 @@ public final class CTNHConstructMaterialStats extends AbstractMaterialStatsDataP
 
     @Override
     protected void addMaterialStats() {
-        addMaterialStats(MaterialIds.wood, CTNHConstructPartMaterialStats.values());
 
         addMaterialStats(CTNHConstructMaterials.Ids.SNOW_STEEL,
-                new HeadMaterialStats(220, 5.5F, NETHERITE, 1.5F),
-                new HandleMaterialStats(0.15F, 0F, 0F, -0.05F),
-                new LimbMaterialStats(220, -0.2F, 0.1F, 0.0F),
-                new GripMaterialStats(0.1F, 0.0F, 1.5F),
+                new HeadMaterialStats(114514, 19.19F, NETHERITE, 8.1F),
+                new HandleMaterialStats(114514, 2, 2, 2),
+                new LimbMaterialStats(114514, 2, 2, 2),
+                new GripMaterialStats(114514, 2, 2),
+                new PlatingMaterialStats(PlatingMaterialStats.HELMET, 114514 , 19.19F, 8.1F,1),
+                new PlatingMaterialStats(PlatingMaterialStats.CHESTPLATE, 114514 , 19.19F, 8.1F,1),
+                new PlatingMaterialStats(PlatingMaterialStats.LEGGINGS, 114514 , 19.19F, 8.1F,1),
+                new PlatingMaterialStats(PlatingMaterialStats.BOOTS, 114514 , 19.19F, 8.1F,1),
                 StatlessMaterialStats.BINDING,
                 StatlessMaterialStats.ARROW_HEAD
         );

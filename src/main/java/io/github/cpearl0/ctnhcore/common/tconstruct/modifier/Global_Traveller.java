@@ -31,6 +31,7 @@ import slimeknights.tconstruct.library.modifiers.hook.behavior.ProcessLootModifi
 import slimeknights.tconstruct.library.modifiers.hook.display.TooltipModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.interaction.BlockInteractionModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.interaction.InteractionSource;
+import slimeknights.tconstruct.library.modifiers.impl.NoLevelsModifier;
 import slimeknights.tconstruct.library.module.ModuleHookMap;
 import slimeknights.tconstruct.library.tools.helper.ToolDamageUtil;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
@@ -47,7 +48,7 @@ import java.util.List;
         value = "modifier",
         root = "ctnhcore"
 )
-public class Global_Traveller extends Modifier implements TooltipModifierHook, BlockInteractionModifierHook, ProcessLootModifierHook {
+public class Global_Traveller extends NoLevelsModifier implements TooltipModifierHook, BlockInteractionModifierHook, ProcessLootModifierHook {
     @Key("flavor")
     @EN("Travel the world.")
     @CN("全世界折返。")
@@ -91,8 +92,6 @@ public class Global_Traveller extends Modifier implements TooltipModifierHook, B
     private final ResourceLocation Z = ResourceLocation.tryBuild(CTNHCore.MODID, "global_traveller_z");
     private final ResourceLocation WORLD = ResourceLocation.tryBuild(CTNHCore.MODID, "global_traveller_dimension");
 
-    // 不再使用 TConstruct.makeTranslation，直接使用 Lang 对象
-
     @Override
     protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
         hookBuilder.addHook(this, ModifierHooks.TOOLTIP, ModifierHooks.BLOCK_INTERACT, ModifierHooks.PROCESS_LOOT);
@@ -122,14 +121,12 @@ public class Global_Traveller extends Modifier implements TooltipModifierHook, B
                             persistentData.remove(Y);
                             persistentData.remove(Z);
                             persistentData.remove(WORLD);
-                            // 使用 .translate() 方法
                             player.displayClientMessage(global_unlink.translate(pos.toShortString(), world.dimension().location().getPath()), true);
                         } else {
                             persistentData.putInt(X, pos.getX());
                             persistentData.putInt(Y, pos.getY());
                             persistentData.putInt(Z, pos.getZ());
                             persistentData.putString(WORLD, world.dimension().location().getPath());
-                            // 使用 .translate() 方法
                             player.displayClientMessage(global_link.translate(pos.toShortString(), world.dimension().location().getPath()), true);
                         }
                     } else {
@@ -137,7 +134,6 @@ public class Global_Traveller extends Modifier implements TooltipModifierHook, B
                         persistentData.putInt(Y, pos.getY());
                         persistentData.putInt(Z, pos.getZ());
                         persistentData.putString(WORLD, world.dimension().location().getPath());
-                        // 使用 .translate() 方法
                         player.displayClientMessage(global_link.translate(pos.toShortString(), world.dimension().location().getPath()), true);
                     }
                     player.getCooldowns().addCooldown(tool.getItem(), 40);
@@ -182,12 +178,11 @@ public class Global_Traveller extends Modifier implements TooltipModifierHook, B
                 BlockPos pos = new BlockPos(persistentData.getInt(X), persistentData.getInt(Y), persistentData.getInt(Z));
                 Level world = player.getCommandSenderWorld();
 
-                // 这里直接使用 pos.translate() 替换原来的 GLOBAL_POS
                 tooltip.add(Component.literal(MoreObjects.toStringHelper("").add("X", pos.getX()).add(" Y", pos.getY()).add(" Z", pos.getZ()).toString())
                         .append(" ")
                         .append(persistentData.getString(WORLD))
                         .append(" ")
-                        .append(global_pos.translate()) // 使用 Lang 注解生成的文本
+                        .append(global_pos.translate())
                         .withStyle(style -> style.withColor(TextColor.fromRgb(0xE29AEC))));
 
                 if(world.dimension().location().getPath().equals(persistentData.getString(WORLD))) {

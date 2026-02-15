@@ -1,0 +1,22 @@
+{
+  "perStat": {
+    "tconstruct:melee_harvest": [
+      {
+        "level": 1,
+        "name": "ctnhcore:global_traveller"
+      },
+      {
+        "level": 1,
+        "name": "tconstruct:enhanced"
+      },
+      {
+        "level": 1,
+        "name": "tconstruct:luck"
+      },
+      {
+        "level": 1,
+        "name": "tconstruct:lightweight"
+      }
+    ]
+  }
+}

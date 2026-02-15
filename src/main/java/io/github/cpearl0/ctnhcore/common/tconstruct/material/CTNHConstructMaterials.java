@@ -1,12 +1,18 @@
 package io.github.cpearl0.ctnhcore.common.tconstruct.material;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import net.minecraft.resources.ResourceLocation;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
 
-public class CTNHConstructMaterialIds {
-    // 雪城钢材料ID
-    public static final MaterialId SNOW_STEEL = new MaterialId(ResourceLocation.tryParse(CTNHCore.MODID + ":snow_steel"));
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class CTNHConstructMaterials {
 
-    private CTNHConstructMaterialIds() {}
+    public static final class Ids {
+        public static final MaterialId SNOW_STEEL = id("snow_steel");
+
+        private static MaterialId id(String name) {
+            return new MaterialId(CTNHCore.MODID, name);
+        }
+    }
 }
