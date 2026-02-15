@@ -24,9 +24,9 @@ public final class CTNHConstructMaterialStatsProvider extends AbstractMaterialSt
 
         addMaterialStats(CTNHConstructMaterials.Ids.SNOW_STEEL,
                 new HeadMaterialStats(114514, 19.19F, NETHERITE, 8.1F),
-                new HandleMaterialStats(114514, 2, 2, 2),
-                new LimbMaterialStats(114514, 2, 2, 2),
-                new GripMaterialStats(114514, 2, 2),
+                new HandleMaterialStats(1, 2, 2, 3),
+                new LimbMaterialStats(1, 2, 2, 2),
+                new GripMaterialStats(1, 2, 3),
                 new PlatingMaterialStats(PlatingMaterialStats.HELMET, 114514 , 19.19F, 8.1F,1),
                 new PlatingMaterialStats(PlatingMaterialStats.CHESTPLATE, 114514 , 19.19F, 8.1F,1),
                 new PlatingMaterialStats(PlatingMaterialStats.LEGGINGS, 114514 , 19.19F, 8.1F,1),

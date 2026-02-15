@@ -16,6 +16,10 @@
       {
         "level": 1,
         "name": "tconstruct:lightweight"
+      },
+      {
+        "level": 1,
+        "name": "tconstruct:reach"
       }
     ]
   }

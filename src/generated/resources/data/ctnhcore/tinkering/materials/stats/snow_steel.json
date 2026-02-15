@@ -4,12 +4,12 @@
     "tconstruct:binding": {},
     "tconstruct:grip": {
       "accuracy": 2.0,
-      "durability": 114514.0,
-      "melee_damage": 2.0
+      "durability": 1.0,
+      "melee_damage": 3.0
     },
     "tconstruct:handle": {
-      "durability": 114514.0,
-      "melee_damage": 2.0,
+      "durability": 1.0,
+      "melee_damage": 3.0,
       "melee_speed": 2.0,
       "mining_speed": 2.0
     },
@@ -22,7 +22,7 @@
     "tconstruct:limb": {
       "accuracy": 2.0,
       "draw_speed": 2.0,
-      "durability": 114514,
+      "durability": 1,
       "velocity": 2.0
     },
     "tconstruct:plating_boots": {
