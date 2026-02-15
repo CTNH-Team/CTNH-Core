@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.moguang.ctnhmana.common.recipe.builder.ElfPlateRecipeBuilder;
+import com.moguang.ctnhmana.common.recipe.builder.botania.RuneRitualRecipeBuilder;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -12,11 +13,16 @@ import wayoftime.bloodmagic.common.fluid.BloodMagicFluids;
 
 import java.util.function.Consumer;
 
+import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.INDUSTRIAL_TNT;
 import static com.moguang.ctnhmana.registry.CMBlocks.TERMINAL_TWISTED_COIL;
 import static com.moguang.ctnhmana.registry.multiblock.misc.*;
 import static com.moguang.ctnhmana.registry.multiblock.misc.TWISTED_FUSION_MK3;
+import static com.wintercogs.ae2omnicells.common.init.OCItems.*;
+
 import static io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA.COMPRESSED_FUSION_REACTOR;
+import static io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA.ZPM_LARGE_MINER;
+import static mythicbotany.register.ModBlocks.mjoellnir;
 import static mythicbotany.register.ModItems.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.FERTILIZER;
@@ -26,6 +32,9 @@ import static com.moguang.ctnhmana.registry.CMMaterials.*;
 import static com.moguang.ctnhmana.registry.CMRecipeTypes.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.*;
+import static net.minecraft.world.item.Items.GOLD_INGOT;
+import static net.minecraft.world.item.Items.POLISHED_ANDESITE;
+import static tech.luckyblock.mcmod.ctnhenergy.registry.CEItems.*;
 import static vazkii.botania.common.item.BotaniaItems.overgrowthSeed;
 import static vazkii.botania.common.item.BotaniaItems.*;
 
@@ -233,7 +242,7 @@ public class TwistedFusionRecipes {
                 .input(TWISTED_FUSION_MK2.getItem())
                 .input(TWISTED_FUSION_MK3.getItem())
                 .input(COMPRESSED_FUSION_REACTOR[GTValues.LuV].getItem())
-                .input(COMPRESSED_FUSION_REACTOR[GTValues.ZPM].getItem())
+                .input(COMPRESSED_FUSION_REACTOR[ZPM].getItem())
                 .input(COMPRESSED_FUSION_REACTOR[GTValues.UV].getItem())
                 .input(TERMINAL_TWISTED_COIL.asItem())
                 .input(CRYSTAL_CATALYST)
@@ -241,5 +250,37 @@ public class TwistedFusionRecipes {
                 .output(TWISTED_FUSION_MKINFINITY.asStack())
                 .mana(Integer.MAX_VALUE)
                 .save(provider);
+        RuneRitualRecipeBuilder.builder("quasar_rune")
+                .center(mjoellnir.asItem())
+                .rune2(HORIZEN_RUNE.asItem(), 2, -2,true)
+                .rune2(STARLIGHT_RUNE.asItem(),-3,3,true)
+                .rune2(TWIST_RUNE.asItem(), -4, 4,true)
+                .rune2(PROLIFERATION_RUNE.asItem(), -5, 5,true)
+                .rune(OMNI_CELL_COMPONENT_1M.get().asItem(),0,2)
+                .rune(OMNI_CELL_COMPONENT_1M.get().asItem(),1,2)
+                .rune(OMNI_CELL_COMPONENT_1M.get().asItem(),-1,2)
+                .rune(COMPLEX_OMNI_CELL_COMPONENT_1M.get().asItem(),0,-2)
+                .rune(COMPLEX_OMNI_CELL_COMPONENT_1M.get().asItem(),1,-2)
+                .rune(COMPLEX_OMNI_CELL_COMPONENT_1M.get().asItem(),-1,-2)
+                .rune(QUANTUM_OMNI_CELL_COMPONENT_1K.get().asItem(),2,0)
+                .rune(QUANTUM_OMNI_CELL_COMPONENT_1K.get().asItem(),2,1)
+                .rune(QUANTUM_OMNI_CELL_COMPONENT_1K.get().asItem(),2,-1)
+                .rune(EU_CELL[ZPM].get().asItem(),-2,0)
+                .rune(EU_CELL[ZPM].get().asItem(),-2,1)
+                .rune(EU_CELL[ZPM].get().asItem(),-2,-1)
+                .input(midgardRune)
+                .input(niflheimRune)
+                .input(Zenith_essence.getBucket())
+                .input(alfheimRune)
+                .input(helheimRune)
+                .input(vanaheimRune)
+                .input(joetunheimRune)
+                .input(muspelheimRune)
+                .input(nidavellirRune)
+                .input(asgardRune)
+                .output(QUASAR_RUNE.asItem())
+                .mana(5000000)
+                .save(provider);
+
     }
 }
