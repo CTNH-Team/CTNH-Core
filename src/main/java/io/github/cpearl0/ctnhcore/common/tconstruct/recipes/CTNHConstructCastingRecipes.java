@@ -9,6 +9,7 @@ import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.utils.CTNHConstructRecipeProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.fluids.FluidStack;
 import slimeknights.tconstruct.library.recipe.FluidValues;
 import slimeknights.tconstruct.library.recipe.casting.ItemCastingRecipeBuilder;
@@ -38,6 +39,7 @@ public final class CTNHConstructCastingRecipes extends CTNHConstructRecipeProvid
         this.rubberCasting(consumer);
         this.snowSteelCasting(consumer);
         this.wroughtIronCasting(consumer);
+        this.glassCasting(consumer);
     }
 
     private void andesiteAlloyCasting(Consumer<FinishedRecipe> consumer) {
@@ -60,6 +62,16 @@ public final class CTNHConstructCastingRecipes extends CTNHConstructRecipeProvid
                 .setFluidAndTime(new FluidStack(GTMaterials.Rubber.getFluid(), 144))
                 .save(consumer, location("rubber_ingot"));
     }
+
+    private void glassCasting(Consumer<FinishedRecipe> consumer) {
+        ItemCastingRecipeBuilder.tableRecipe(Items.GLASS_PANE)
+                .setFluidAndTime(new FluidStack(GTMaterials.Glass.getFluid(), 36))
+                .save(consumer, location("glass_pane"));
+        ItemCastingRecipeBuilder.basinRecipe(Items.GLASS)
+                .setFluidAndTime(new FluidStack(GTMaterials.Glass.getFluid(), 144))
+                .save(consumer, location("glass"));
+    }
+
     private void snowSteelCasting(Consumer<FinishedRecipe> consumer) {
         ItemCastingRecipeBuilder.tableRecipe(Objects.requireNonNull(MATERIAL_ITEMS.get(TagPrefix.ingot, CTNHMaterials.SNOW_STEEL)))
                 .setCast(TinkerSmeltery.ingotCast.get(), false)

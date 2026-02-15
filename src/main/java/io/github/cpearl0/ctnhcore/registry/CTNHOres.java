@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import com.moguang.ctnhmana.data.materials.BotaniaMaterials;
+import com.moguang.ctnhmana.registry.CMMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.NaquadahMaterials;
@@ -610,28 +612,26 @@ public class CTNHOres {
                             .placement(ABOVE)
                             .density(0.2F)
                             .radius(5)));
-    // public static GTOreDefinition MANA_FUSED_VEIN = create(CTNHCore.id("mana_fused_vein"), vein ->
-    // vein.weight(80)
-    // .clusterSize(40)
-    // .density(0.25F)
-    // .discardChanceOnAirExposure(0)
-    // .layer(CTNHWorldgenLayers.ALFHEIM)
-    // .dimensions(ALFHEIM)
-    // .heightRangeUniform(20, 40)
-    // .layeredVeinGenerator(generator -> generator
-    // .buildLayerPattern(pattern -> pattern
-    // .layer(l -> l.weight(3).mat(CTNHMaterials.ManaFused).size(2, 4))
-    // .layer(l -> l.weight(2).block(() -> ModBlocks.goldOre).size(1, 1))
-    // .layer(l -> l.weight(1).block(() -> ModBlocks.dragonstoneOre).size(1, 1))
-    // )
-    // )
-    // .surfaceIndicatorGenerator(indicator -> indicator
-    // .surfaceRock(GTMaterials.Gold)
-    // .placement(ABOVE)
-    // .density(0.4F)
-    // .radius(5)
-    // )
-    // );
+     public static GTOreDefinition MANA_FUSED_VEIN = create(CTNHCore.id("mana_fused_vein"),
+             vein -> vein.weight(80)
+                     .clusterSize(40)
+                     .density(0.25F)
+                     .discardChanceOnAirExposure(0)
+                     .layer(CTNHWorldgenLayers.ALFHEIM)
+                     .dimensions(ALFHEIM)
+                     .heightRangeUniform(20, 40)
+                     .layeredVeinGenerator(generator -> generator
+                                     .buildLayerPattern(pattern -> pattern
+                                             .layer(l -> l.weight(3).mat(CMMaterials.Fused_Mana).size(2, 4))
+                                             .layer(l -> l.weight(2).mat(GTMaterials.Gold).size(1, 1))
+                                     )
+                     )
+                     .surfaceIndicatorGenerator(indicator -> indicator
+                                     .surfaceRock(GTMaterials.Gold)
+                                     .placement(ABOVE)
+                                     .density(0.4F)
+                             .radius(5)
+                     ));
     public static final GTOreDefinition KAOLINITE_VEIN = create(
             CTNHCore.id("kaolinite_vein"),
             vein -> {
