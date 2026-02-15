@@ -10,6 +10,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import com.aetherteam.aether.block.AetherBlocks;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import earth.terrarium.adastra.common.registry.ModBlocks;
+import vazkii.botania.common.block.BotaniaBlocks;
 
 import java.util.Objects;
 
@@ -22,7 +23,7 @@ public class StoneTags {
                 Blocks.DEEPSLATE, Blocks.SOUL_SOIL);
         create(provider, CTNHTags.AETHER_STONES, AetherBlocks.HOLYSTONE.get(), AetherBlocks.MOSSY_HOLYSTONE.get(),
                 AetherBlocks.ICESTONE.get());
-        // create(provider, CTNHTags.ALFHEIM_STONES, BotaniaBlocks.livingrock);
+        create(provider, CTNHTags.ALFHEIM_STONES, BotaniaBlocks.livingrock);
     }
 
     public static void create(RegistrateTagsProvider<Block> provider, TagKey<Block> tagKey, Block... rls) {
