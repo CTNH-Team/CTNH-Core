@@ -214,7 +214,7 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
                 case NORTH -> {
                     for (var x = -2; x <= 2; x++) {
                         for (var z = 1; z < 6; z++) {
-                            if (!getLevel().canSeeSky(pos.offset(x, 1, z))) {
+                            if (!getLevel().canSeeSky(pos.offset(x, 7, z))) {
                                 return lastStatus = Status.INVALID;
                             }
                         }
@@ -223,7 +223,7 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
                 case SOUTH -> {
                     for (var x = -2; x <= 2; x++) {
                         for (var z = -5; z < 0; z++) {
-                            if (!getLevel().canSeeSky(pos.offset(x, 1, z))) {
+                            if (!getLevel().canSeeSky(pos.offset(x, 7, z))) {
                                 return lastStatus = Status.INVALID;
                             }
                         }
@@ -232,7 +232,7 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
                 case WEST -> {
                     for (var x = 1; x < 6; x++) {
                         for (var z = -2; z <= 2; z++) {
-                            if (!getLevel().canSeeSky(pos.offset(x, 1, z))) {
+                            if (!getLevel().canSeeSky(pos.offset(x, 7, z))) {
                                 return lastStatus = Status.INVALID;
                             }
                         }
@@ -241,7 +241,7 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
                 case EAST -> {
                     for (var x = -5; x < 0; x++) {
                         for (var z = -2; z <= 2; z++) {
-                            if (!getLevel().canSeeSky(pos.offset(x, 1, z))) {
+                            if (!getLevel().canSeeSky(pos.offset(x, 7, z))) {
                                 return lastStatus = Status.INVALID;
                             }
                         }
