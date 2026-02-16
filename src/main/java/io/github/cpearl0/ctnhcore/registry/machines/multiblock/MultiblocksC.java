@@ -86,13 +86,13 @@ public class MultiblocksC {
             .multiblock("cnc_alloy_smelter", CNCAlloySmelter::new)
             .langValue("CNC ALLOY Smelter")
             .recipeType(ALLOY_BLAST_RECIPES)
-            .tooltips(Component.literal("ctnh.multiblock.mega_lcr.tooltip.0"),
-                    Component.literal("ctnh.multiblock.mega_lcr.tooltip.1")
-            )
-            .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
-            .tooltips(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.0"),
+            .tooltips(Component.translatable("ctnh.multiblock.mega_lcr.tooltip.0"),
+                    Component.translatable("ctnh.multiblock.mega_lcr.tooltip.1"),
+                    Component.translatable("gtceu.multiblock.parallelizable.tooltip"),
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.0"),
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
-                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"))
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2")
+            )
             .allowExtendedFacing(false)
             .allowFlip(false)
             //.rotationState(RotationState.NON_Y_AXIS)
