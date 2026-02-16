@@ -3,11 +3,14 @@ package io.github.cpearl0.ctnhcore.data.recipe.mana;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
+import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.moguang.ctnhmana.common.recipe.builder.ElfPlateRecipeBuilder;
 import com.moguang.ctnhmana.common.recipe.builder.botania.RuneRitualRecipeBuilder;
+import com.moguang.ctnhmana.registry.CMBlocks;
+import com.moguang.ctnhmana.registry.CMMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -323,6 +326,14 @@ public class TwistedFusionRecipes {
                 .outputItems(ChemicalHelper.get(ore,Neutronium),8)
                 .duration(400)
                 .EUt(528000*4)
+                .save(provider);
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("twist")
+                .inputItems(ChemicalHelper.get(plate, Ultra_Mana),2)
+                .inputItems(GTBlocks.FUSION_CASING,2)
+                .inputItems(ChemicalHelper.get(plateDouble, AlfSteel),2)
+                .outputItems(TWISTED_FUSION_CASING)
+                .duration(400)
+                .EUt(GTValues.VA[LuV])
                 .save(provider);
     }
 }

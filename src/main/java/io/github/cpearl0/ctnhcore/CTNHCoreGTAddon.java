@@ -9,6 +9,7 @@ import io.github.cpearl0.ctnhcore.data.recipe.chain.NaquadahLine;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.PlatinumLine;
 import io.github.cpearl0.ctnhcore.data.recipe.cogniassembly.WetwareCircuit;
 import io.github.cpearl0.ctnhcore.data.recipe.generated.HyperRotorRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.mana.EternalGardenRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.TwistedFusionRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.EIORecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.omnicells.QuantumOmniRecipes;
