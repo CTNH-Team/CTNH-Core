@@ -735,6 +735,7 @@ public class ChineseLangHandler {
 
         provider.add("config.jade.plugin_ctnhcore.thread_status_provider", "线程信息");
         provider.add("config.jade.plugin_ctnhcore.recipe_logic_provider", "配方耗电信息");
+        provider.add("config.jade.plugin_ctnhcore.recipe_output_provider", "配方输出信息");
 
         // NOT USED
         provider.add("ctnh.u_sinope.story.1", "在战争没有开始前，人们曾团结在一起，一齐建造这工业的巴别巨塔");
