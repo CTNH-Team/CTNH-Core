@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.registry.jade;
 
 import io.github.cpearl0.ctnhcore.api.jade.MultithreadRecipeLogicProvider;
+import io.github.cpearl0.ctnhcore.api.jade.MultithreadRecipeOutputProvider;
 import io.github.cpearl0.ctnhcore.api.jade.ThreadStatusProvider;
 
 import net.minecraft.world.level.block.Block;
@@ -36,5 +37,16 @@ public class CTNHJadePlugin {
                 BlockEntity.class,
                 1250,
                 "thread_status_component");
+        
+        JadePriorityManager.registerBlockComponent(
+                new MultithreadRecipeOutputProvider(),
+                Block.class,
+                1650,
+                "multithread_recipe_output_data");
+        JadePriorityManager.registerBlockData(
+                new MultithreadRecipeOutputProvider(),
+                BlockEntity.class,
+                1650,
+                "multithread_recipe_output_component");
     }
 }
