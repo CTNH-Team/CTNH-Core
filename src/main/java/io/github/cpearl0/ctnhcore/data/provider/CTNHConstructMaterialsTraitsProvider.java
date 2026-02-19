@@ -22,6 +22,7 @@ public final class CTNHConstructMaterialsTraitsProvider extends AbstractMaterial
 
     @Override
     protected void addMaterialTraits() {
-        addTraits(CTNHConstructMaterials.Ids.SNOW_STEEL, MELEE_HARVEST, CTNHConstructModifier.Ids.GLOBAL_TRAVELLER, ModifierIds.enhanced, ModifierIds.luck, ModifierIds.lightweight, ModifierIds.reach);
+        addTraits(CTNHConstructMaterials.Ids.SNOW_STEEL, MELEE_HARVEST, CTNHConstructModifier.Ids.GLOBAL_TRAVELLER, ModifierIds.enhanced, ModifierIds.luck, ModifierIds.lightweight, ModifierIds.reach, ModifierIds.shiny);
+        addTraits(CTNHConstructMaterials.Ids.SNOW_STEEL, ARMOR, ModifierIds.enhanced, ModifierIds.revitalizing, ModifierIds.shiny, ModifierIds.reach, ModifierIds.strength, ModifierIds.protection, ModifierIds.protection, ModifierIds.protection, ModifierIds.protection);
     }
 }

@@ -31,6 +31,7 @@ public final class CTNHConstructMaterialStatsProvider extends AbstractMaterialSt
                 new PlatingMaterialStats(PlatingMaterialStats.CHESTPLATE, 114514 , 19.19F, 8.1F,1),
                 new PlatingMaterialStats(PlatingMaterialStats.LEGGINGS, 114514 , 19.19F, 8.1F,1),
                 new PlatingMaterialStats(PlatingMaterialStats.BOOTS, 114514 , 19.19F, 8.1F,1),
+                new PlatingMaterialStats(PlatingMaterialStats.SHIELD, 114514 , 1.25F, 1.25F,1.25F),
                 StatlessMaterialStats.BINDING,
                 StatlessMaterialStats.ARROW_HEAD,
                 StatlessMaterialStats.SHIELD_CORE
