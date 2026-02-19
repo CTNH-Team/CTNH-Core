@@ -12,6 +12,7 @@ import com.gregtechceu.gtceu.api.pattern.error.SinglePredicateError;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -33,7 +34,7 @@ import java.util.List;
 
 public class TestingTerminalBehavior implements IInteractionItem {
 
-    public boolean isFlipped = false;
+    private static final String TAG_FLIPPED = "IsFlipped";
     @CN("翻转模式启动")
     @EN("Flip Mode is On")
     static Lang flipmode;
@@ -41,16 +42,30 @@ public class TestingTerminalBehavior implements IInteractionItem {
     @EN("Normal Mode is On")
     static Lang normalmode;
 
+    private boolean isFlipped(ItemStack stack) {
+        if (stack.hasTag()) {
+            CompoundTag tag = stack.getTag();
+            return tag != null && tag.getBoolean(TAG_FLIPPED);
+        }
+        return false;
+    }
+
+    private void setFlipped(ItemStack stack, boolean flipped) {
+        stack.getOrCreateTag().putBoolean(TAG_FLIPPED, flipped);
+    }
+
     @Override
     public InteractionResultHolder<ItemStack> use(Item item, Level level, Player player, InteractionHand usedHand) {
-        if (level.isClientSide) {
-            return InteractionResultHolder.pass(player.getItemInHand(usedHand));
-        }
+        var stack = player.getItemInHand(usedHand);
         if (player.isShiftKeyDown()) {
-            isFlipped = !isFlipped;
-            Component info = isFlipped ? flipmode.translate().withStyle(ChatFormatting.RED) : normalmode.translate();
+            if (level.isClientSide) {
+                return InteractionResultHolder.success(stack);
+            }
+            boolean newState = !isFlipped(stack);
+            setFlipped(stack, newState);
+            Component info = newState ? flipmode.translate().withStyle(ChatFormatting.RED) : normalmode.translate();
             player.sendSystemMessage(info);
-            return InteractionResultHolder.success(player.getItemInHand(usedHand));
+            return InteractionResultHolder.success(stack);
         }
         return IInteractionItem.super.use(item, level, player, usedHand);
     }
@@ -61,21 +76,25 @@ public class TestingTerminalBehavior implements IInteractionItem {
         if (player == null) return InteractionResult.PASS;
 
         Level level = context.getLevel();
-        if (level.isClientSide()) {
-            return InteractionResult.PASS;  // 客户端不进行实际操作
-        }
-
         BlockPos blockPos = context.getClickedPos();
         IMultiController controller = getMachineController(level, blockPos);
-        if (controller == null) return InteractionResult.PASS;
-
-        // 处理机器是否成型
-        if (controller.isFormed()) {
-            sendSuccessMessage(player);
-        } else {
-            handleUnformedController(player, controller);
+        if (level.isClientSide()) {
+            if (controller != null && !controller.isFormed()) {
+                handleClientHighlight(controller, isFlipped(stack));
+            }
+            return InteractionResult.SUCCESS;
         }
-        return InteractionResult.SUCCESS;
+        else {
+            if (controller == null) return InteractionResult.PASS;
+
+            // 处理机器是否成型
+            if (controller.isFormed()) {
+                sendSuccessMessage(player);
+            } else {
+                handleUnformedController(player, controller, isFlipped(stack));
+            }
+            return InteractionResult.SUCCESS;
+        }
     }
 
     private IMultiController getMachineController(Level level, BlockPos blockPos) {
@@ -88,28 +107,56 @@ public class TestingTerminalBehavior implements IInteractionItem {
     private void sendSuccessMessage(Player player) {
         player.sendSystemMessage(Component.translatable("ctnh.test_terminal.success").withStyle(ChatFormatting.GREEN));
     }
-
-    private void handleUnformedController(Player player, IMultiController controller) {
+    // 客户端专用的高亮处理逻辑
+    private void handleClientHighlight(IMultiController controller, boolean isFlipped) {
         if (!controller.self().allowFlip()) {
             MultiblockState multiblockState = controller.getMultiblockState();
             PatternError error = multiblockState.error;
             if (error != null) {
-                showError(player, error, this.isFlipped);
+                highlightError(error);
             }
         } else {
-            detectPatternErrors(player, controller);
+            BlockPattern pattern = controller.getPattern();
+            List<PatternError> errors = check(controller, pattern, isFlipped);
+            for (PatternError error : errors) {
+                highlightError(error);
+            }
         }
     }
 
-    private void detectPatternErrors(Player player, IMultiController controller) {
+    // 仅在客户端执行高亮
+    private void highlightError(PatternError error) {
+        if (error.getPos() != null && error.getWorld() != null) {
+            HighlightHandler.highlight(
+                    error.getPos(),
+                    error.getWorld().dimension(),
+                    System.currentTimeMillis() + 10000,
+                    ColorData.RED
+            );
+        }
+    }
+
+    private void handleUnformedController(Player player, IMultiController controller, boolean isFlipped) {
+        if (!controller.self().allowFlip()) {
+            MultiblockState multiblockState = controller.getMultiblockState();
+            PatternError error = multiblockState.error;
+            if (error != null) {
+                showError(player, error, isFlipped);
+            }
+        } else {
+            detectPatternErrors(player, controller, isFlipped);
+        }
+    }
+
+    private void detectPatternErrors(Player player, IMultiController controller, boolean isFlipped) {
         BlockPattern pattern = controller.getPattern();
-        List<PatternError> errors = check(controller, pattern);
+        List<PatternError> errors = check(controller, pattern, isFlipped);
         for (int i = 0; i < errors.size(); i++) {
             showError(player, errors.get(i), isFlipped);
         }
     }
 
-    private List<PatternError> check(IMultiController controller, BlockPattern pattern) {
+    private List<PatternError> check(IMultiController controller, BlockPattern pattern, boolean isFlipped) {
         List<PatternError> errors = new ArrayList<>();
         if (controller == null) {
             errors.add(new PatternStringError("no controller found"));

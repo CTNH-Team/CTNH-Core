@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.PRIMITIVE_BLAST_FURNACE;
+
 @EmiEntrypoint
 public class CTNHCoreEmiPlugin implements EmiPlugin {
     public static List<Supplier<? extends Item>> disabled = new ArrayList<>();
@@ -48,7 +50,8 @@ public class CTNHCoreEmiPlugin implements EmiPlugin {
                 MachineBlocks.SOUL_ENGINE::asItem,
                 EIOItems.BASIC_CAPACITOR::asItem,
                 EIOItems.DOUBLE_LAYER_CAPACITOR::asItem,
-                EIOItems.OCTADIC_CAPACITOR::asItem
+                EIOItems.OCTADIC_CAPACITOR::asItem,
+                PRIMITIVE_BLAST_FURNACE::getItem
         ));
         for(SolarPanelTier tier : SolarPanelTier.values()){
             disabled.add(MachineBlocks.SOLAR_PANELS.get(tier)::asItem);

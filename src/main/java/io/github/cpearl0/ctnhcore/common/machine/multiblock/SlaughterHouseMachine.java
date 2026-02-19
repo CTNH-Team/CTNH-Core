@@ -369,7 +369,7 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
             var mobId = ResourceLocation.tryParse(mob);
             if (mobId == null) continue;
 
-            var lootTableId = new ResourceLocation(mobId.getNamespace(), "entities/" + mobId.getPath());
+            var lootTableId = ResourceLocation.tryBuild(mobId.getNamespace(), "entities/" + mobId.getPath());
             var lootTable = getOrCacheLootTable(server, lootTableId);
             var lootParams = new LootParams.Builder(level)
                     .withParameter(LootContextParams.LAST_DAMAGE_PLAYER, fakePlayer)

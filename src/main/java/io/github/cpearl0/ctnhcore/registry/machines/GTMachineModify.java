@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry.machines;
 
+import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 
@@ -35,8 +36,7 @@ import static com.gregtechceu.gtceu.api.pattern.Predicates.blocks;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.controller;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.CASING_LARGE_SCALE_ASSEMBLING;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_TEMPERED_GLASS;
-import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.CLEANROOM;
-import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.LARGE_CHEMICAL_REACTOR;
+import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.*;
 import static io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips.PERFECT_OVERCLOCK;
 
 @Prefix("multiblock")
@@ -86,6 +86,9 @@ public class GTMachineModify {
                         }));
         modifyGTAssembly();
         modifyCleanroom();
+
+        PRIMITIVE_BLAST_FURNACE.setRecipeTypes(new GTRecipeType[]{GTRecipeTypes.DUMMY_RECIPES});
+
     }
 
     @CN({

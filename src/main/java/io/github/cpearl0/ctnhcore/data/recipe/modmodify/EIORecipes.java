@@ -75,7 +75,7 @@ public class EIORecipes {
         CTNHRecipeBuilder.of("vibrant_alloy", MIXER_RECIPES)
                 .inputItems(dust, EnergeticAlloy, 1)
                 .inputItems(dust, EnderPearl, 1)
-                .outputItems(dust, EnergeticAlloy, 1)
+                .outputItems(dust, VibrantAlloy, 1)
                 .EUt(120)
                 .duration(100)
                 .save(provider);

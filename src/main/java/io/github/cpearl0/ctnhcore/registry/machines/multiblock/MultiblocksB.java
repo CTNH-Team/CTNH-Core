@@ -100,7 +100,7 @@ public class MultiblocksB {
                     .aisle("###B###", "###C###", "###C###", "###C###", "###C###", "###C###", "###D###", "###D###", "###D###", "###D###", "###E###", "###F###", "###F###", "###D###")
                     .aisle("##EEE##", "##B#B##", "##C#C##", "##C#C##", "##C#C##", "##C#C##", "##C#C##", "##D#D##", "##D#D##", "##DED##", "##E#E##", "##F#F##", "##F#F##", "##DDD##")
                     .aisle("#EEEEE#", "#GHHHI#", "#BHHHB#", "#CHHHC#", "#CHHHC#", "#CHHHC#", "#CHHHC#", "#CHHHC#", "#DHHHD#", "#DHHHD#", "#E###E#", "#F###F#", "#F###F#", "#DJJJD#")
-                    .aisle("EEEEEEE", "K#HLH#M", "N#HLH#G", "B#HLH#B", "C#HLH#C", "C#HLH#C", "C#HLH#C", "C#HLH#C", "C#HLH#C", "DEHLHEO", "E##P##E", "F#####F", "F#####F", "DDJJJDD")
+                    .aisle("EEEEEEE", "K#HLH#M", "N#HLH#G", "B#HLH#B", "C#HLH#C", "C#HLH#C", "C#HLH#C", "C#HLH#C", "C#HLH#C", "DEHLHEO", "E#####E", "F#####F", "F#####F", "DDJJJDD")
                     .aisle("#EEEEE#", "#GHHHI#", "#BHHHB#", "#CHHHC#", "#CHHHC#", "#CHHHC#", "#CHHHC#", "#CHHHC#", "#DHHHD#", "#DHHHD#", "#E###E#", "#F###F#", "#F###F#", "#DJJJD#")
                     .aisle("##EEE##", "##B#B##", "##C#C##", "##C#C##", "##C#C##", "##C#C##", "##C#C##", "##D#D##", "##D#D##", "##DED##", "##E#E##", "##F#F##", "##F#F##", "##DDD##")
                     .aisle("###B###", "###C###", "###C###", "###C###", "###C###", "###C###", "###D###", "###D###", "###D###", "###D###", "###E###", "###F###", "###F###", "###D###")
@@ -118,7 +118,6 @@ public class MultiblocksB {
                     .where("L", (Predicates.any()))
                     .where("M", abilities(PartAbility.MAINTENANCE))
                     .where("N", abilities(PartAbility.EXPORT_ITEMS))
-                    .where("P", abilities(CTPPPartAbility.OUTPUT_KINETIC))
                     .where("O", Predicates.controller(Predicates.blocks(definition.get())))
 
                     .build())

@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry.material;
 
-import com.gregtechceu.gtceu.data.pack.GTDynamicResourcePack;
 import io.github.cpearl0.ctnhcore.data.CTNHMaterialFlags;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
@@ -49,10 +48,6 @@ public class GTMaterialAddon {
         Germanium.setProperty(PropertyKey.INGOT, new IngotProperty());
         Germanium.addFlags(GENERATE_PLATE);
         Sodium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
-        Seaborgium.setProperty(PropertyKey.INGOT, new IngotProperty());
-        Seaborgium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
-        Seaborgium.setProperty(PropertyKey.HAZARD, radioactive(1));
-        Seaborgium.addFlags(GENERATE_ROTOR, GENERATE_FRAME);
         Dubnium.setProperty(PropertyKey.INGOT, new IngotProperty());
         Dubnium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         Dubnium.setProperty(PropertyKey.HAZARD, radioactive(1));
