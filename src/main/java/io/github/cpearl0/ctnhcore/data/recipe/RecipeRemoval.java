@@ -103,7 +103,11 @@ public class RecipeRemoval {
                 "gtceu:electrolyzer/water_electrolysis",
                 //侯氏制碱法
                 "gtceu:large_chemical_reactor/sodium_bicarbonate_from_salt",
-                "gtceu:chemical_reactor/sodium_bicarbonate_from_salt"
+                "gtceu:chemical_reactor/sodium_bicarbonate_from_salt",
+                //石墨烯
+                "gtceu:mixer/graphene",
+                //钨钢
+                "gtceu:mixer/tungstensteel"
 
         ));
 
