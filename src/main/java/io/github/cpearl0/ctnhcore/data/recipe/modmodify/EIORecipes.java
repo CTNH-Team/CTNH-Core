@@ -31,7 +31,7 @@ public class EIORecipes {
                 .duration(40)
                 .save(provider);
 
-        CTNHRecipeBuilder.of("conductive_alloy_ingot", ALLOY_SMELTER_RECIPES)
+        CTNHRecipeBuilder.of("pulsating_alloy_ingot", ALLOY_SMELTER_RECIPES)
                 .inputItems(ingot, Iron, 1)
                 .inputItems(dust, EnderPearl, 1)
                 .outputItems(ingot, PulsatingAlloy, 1)
