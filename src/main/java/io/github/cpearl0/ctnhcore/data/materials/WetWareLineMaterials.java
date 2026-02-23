@@ -65,7 +65,7 @@ public class WetWareLineMaterials {
                         GENERATE_SPRING,
                         GENERATE_FINE_WIRE)
                 .blast(b -> b.temp(6000, BlastProperty.GasTier.HIGH)
-                        .blastStats(VA[GTValues.LuV], 3000)
+                        .blastStats(VA[GTValues.LuV], 300)
                         .vacuumStats(VA[LuV]))
                 .cableProperties(2048, 8, 16)
                 .buildAndRegister();
