@@ -768,8 +768,12 @@ public class CTNHMaterials {
         siliconCarbide = REGISTRATE.material(GTCEu.id("silicon_carbide"))
                 .cnlang("碳化硅")
                 .dust()
+                .liquid(new FluidBuilder().temperature(3200))
                 .color(0x6edade)
                 .components(Silicon, 1, Carbon, 1)
+                .blast(b -> b.temp(3000, BlastProperty.GasTier.MID)
+                        .blastStats(VA[GTValues.EV])
+                        .vacuumStats(VA[HV]))
                 .buildAndRegister();
         HotSteam = REGISTRATE.material(GTCEu.id("hot_steam"))
                 .cnlang("过热蒸汽")
