@@ -130,7 +130,7 @@ dependencies {
     // annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
     // Re-Avaritia
-    modImplementation("committee.nova.mods:avaritia-forge:${avaritia_version}")
+    modImplementation("curse.maven:re-avaritia-623969:7224119")
 
     // tconstruct
 
