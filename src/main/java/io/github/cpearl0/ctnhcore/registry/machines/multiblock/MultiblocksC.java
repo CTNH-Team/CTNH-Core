@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 
+import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
+import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
+import com.gregtechceu.gtceu.client.renderer.machine.impl.GrowingPlantRender;
 import io.github.cpearl0.ctnhcore.api.machine.feature.ICoilMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.multithread.CNCAlloySmelter;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
@@ -26,11 +29,15 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.world.level.block.Blocks;
 
 import appeng.core.definitions.AEBlocks;
+import org.joml.Vector3f;
+
+import java.util.List;
 
 import static com.gregtechceu.gtceu.api.pattern.Predicates.abilities;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.heatingCoils;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING;
 import static com.gregtechceu.gtceu.common.data.GCYMRecipeTypes.ALLOY_BLAST_RECIPES;
+import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 // spotless:off
@@ -38,8 +45,9 @@ public class MultiblocksC {
     public static void init() {}
 
     public static final MultiblockMachineDefinition GREENHOUSE = REGISTRATE.multiblock("greenhouse", WorkableElectricMultiblockMachine::new)
-            .rotationState(RotationState.NON_Y_AXIS)
+            .allowExtendedFacing(false)
             .recipeType(CTNHRecipeTypes.GREENHOUSE_RECIPES)
+            .recipeModifiers(GTRecipeModifiers.OC_NON_PERFECT_SUBTICK, GTRecipeModifiers.BATCH_MODE)
             .tooltips(Component.translatable("ctnh.multiblock.greenhouse.tooltip.0").withStyle(ChatFormatting.GRAY))
             .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -56,7 +64,21 @@ public class MultiblocksC {
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
                     .where("C", Predicates.blocks(Blocks.GRASS_BLOCK))
                     .build())
-            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"))
+            .modelProperty(GTMachineModelProperties.RECIPE_LOGIC_STATUS, RecipeLogic.Status.IDLE)
+            .model(createWorkableCasingMachineModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
+                    GTCEu.id("block/multiblock/implosion_compressor"))
+                    .andThen(b -> b.addDynamicRenderer(() -> new GrowingPlantRender(List.of(
+                            new Vector3f(-1, 1, -1),
+                            new Vector3f(-1, 1, -2),
+                            new Vector3f(-1, 1, -3),
+                            new Vector3f(0, 1, -1),
+                            new Vector3f(0, 1, -2),
+                            new Vector3f(0, 1, -3),
+                            new Vector3f(1, 1, -1),
+                            new Vector3f(1, 1, -2),
+                            new Vector3f(1, 1, -3)
+                    ))))
+            )
             .register();
 
 
@@ -64,13 +86,13 @@ public class MultiblocksC {
             .multiblock("cnc_alloy_smelter", CNCAlloySmelter::new)
             .langValue("CNC ALLOY Smelter")
             .recipeType(ALLOY_BLAST_RECIPES)
-            .tooltips(Component.literal("ctnh.multiblock.mega_lcr.tooltip.0"),
-                    Component.literal("ctnh.multiblock.mega_lcr.tooltip.1")
-            )
-            .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
-            .tooltips(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.0"),
+            .tooltips(Component.translatable("ctnh.multiblock.mega_lcr.tooltip.0"),
+                    Component.translatable("ctnh.multiblock.mega_lcr.tooltip.1"),
+                    Component.translatable("gtceu.multiblock.parallelizable.tooltip"),
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.0"),
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
-                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"))
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2")
+            )
             .allowExtendedFacing(false)
             .allowFlip(false)
             //.rotationState(RotationState.NON_Y_AXIS)

@@ -41,6 +41,7 @@ public class EnglishLangHandler {
 
         provider.add("config.jade.plugin_ctnhcore.thread_status_provider", "Thread Info");
         provider.add("config.jade.plugin_ctnhcore.recipe_logic_provider", "Recipe Logic Info");
+        provider.add("config.jade.plugin_ctnhcore.recipe_output_provider", "Recipe Output Info");
 
         // Recipe Types
         provider.add("gtceu.underfloor_heating_system", "Underfloor Heating");

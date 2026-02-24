@@ -512,7 +512,7 @@ public class CTNHMaterials {
                 .fluidPipeProperties(13100, 50000, true)
                 .cableProperties(V[UIV], 128, 8)
                 .blast(b -> b.temp(12500, BlastProperty.GasTier.HIGH)
-                        .blastStats(VA[GTValues.UV], 6000)
+                        .blastStats(VA[GTValues.UV], 600)
                         .vacuumStats(VA[LuV]))
                 .addOreByproducts(GTMaterials.HSSS, GTMaterials.Trinium)
                 .components(Redstone, 9, BlueSteel, 4, HSSS, 12, Trinium, 5, Indium, 3, Electrum, 16)
@@ -552,7 +552,7 @@ public class CTNHMaterials {
                 .fluidPipeProperties(9500, 20000, true)
                 .cableProperties(V[ZPM], 64, 2)
                 .blast(b -> b.temp(9001, BlastProperty.GasTier.HIGH)
-                        .blastStats(VA[GTValues.LuV], 2000)
+                        .blastStats(VA[GTValues.LuV], 200)
                         .vacuumStats(VA[IV]))
                 .addOreByproducts(GTMaterials.EchoShard, GTMaterials.Sculk)
                 .components(EchoShard, 10, Sculk, 6, RedAlloy, 4, BlueAlloy, 4, Apatite, 4)
@@ -768,8 +768,12 @@ public class CTNHMaterials {
         siliconCarbide = REGISTRATE.material(GTCEu.id("silicon_carbide"))
                 .cnlang("碳化硅")
                 .dust()
+                .liquid(new FluidBuilder().temperature(3200))
                 .color(0x6edade)
                 .components(Silicon, 1, Carbon, 1)
+                .blast(b -> b.temp(3000, BlastProperty.GasTier.MID)
+                        .blastStats(VA[GTValues.EV])
+                        .vacuumStats(VA[HV]))
                 .buildAndRegister();
         HotSteam = REGISTRATE.material(GTCEu.id("hot_steam"))
                 .cnlang("过热蒸汽")
@@ -1058,7 +1062,7 @@ public class CTNHMaterials {
         adjustAluminium(Zeolite);
 
         Oxygen.getProperty(PropertyKey.FLUID).getStorage().store(FluidStorageKeys.GAS, ModFluids.OXYGEN, null);
-        GTFluids.handleNonMaterialFluids(Steel, () -> CMFluids.MOLTEN_STEEL.get().getSource());
+        //GTFluids.handleNonMaterialFluids(Steel, () -> CMFluids.MOLTEN_STEEL.get().getSource());
 
         var oreProp = Naquadah.getProperty(PropertyKey.ORE);
         oreProp.getOreByProducts().clear();

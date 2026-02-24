@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": {
+    "item": "tconstruct:ingot_cast"
+  },
+  "cooling_time": 80,
+  "fluid": {
+    "amount": 144,
+    "fluid": "gtceu:snow_steel"
+  },
+  "result": "gtceu:snow_steel_ingot"
+}

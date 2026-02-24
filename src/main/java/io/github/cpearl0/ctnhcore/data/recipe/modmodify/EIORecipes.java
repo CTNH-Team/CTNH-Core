@@ -31,7 +31,7 @@ public class EIORecipes {
                 .duration(40)
                 .save(provider);
 
-        CTNHRecipeBuilder.of("conductive_alloy_ingot", ALLOY_SMELTER_RECIPES)
+        CTNHRecipeBuilder.of("pulsating_alloy_ingot", ALLOY_SMELTER_RECIPES)
                 .inputItems(ingot, Iron, 1)
                 .inputItems(dust, EnderPearl, 1)
                 .outputItems(ingot, PulsatingAlloy, 1)
@@ -75,7 +75,7 @@ public class EIORecipes {
         CTNHRecipeBuilder.of("vibrant_alloy", MIXER_RECIPES)
                 .inputItems(dust, EnergeticAlloy, 1)
                 .inputItems(dust, EnderPearl, 1)
-                .outputItems(dust, EnergeticAlloy, 1)
+                .outputItems(dust, VibrantAlloy, 1)
                 .EUt(120)
                 .duration(100)
                 .save(provider);

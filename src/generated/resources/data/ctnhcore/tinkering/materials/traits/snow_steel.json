@@ -1,0 +1,68 @@
+{
+  "perStat": {
+    "tconstruct:armor": [
+      {
+        "level": 1,
+        "name": "tconstruct:enhanced"
+      },
+      {
+        "level": 1,
+        "name": "tconstruct:revitalizing"
+      },
+      {
+        "level": 1,
+        "name": "tconstruct:shiny"
+      },
+      {
+        "level": 1,
+        "name": "tconstruct:reach"
+      },
+      {
+        "level": 1,
+        "name": "tconstruct:strength"
+      },
+      {
+        "level": 1,
+        "name": "tconstruct:protection"
+      },
+      {
+        "level": 1,
+        "name": "tconstruct:protection"
+      },
+      {
+        "level": 1,
+        "name": "tconstruct:protection"
+      },
+      {
+        "level": 1,
+        "name": "tconstruct:protection"
+      }
+    ],
+    "tconstruct:melee_harvest": [
+      {
+        "level": 1,
+        "name": "ctnhcore:global_traveller"
+      },
+      {
+        "level": 1,
+        "name": "tconstruct:enhanced"
+      },
+      {
+        "level": 1,
+        "name": "tconstruct:luck"
+      },
+      {
+        "level": 1,
+        "name": "tconstruct:lightweight"
+      },
+      {
+        "level": 1,
+        "name": "tconstruct:reach"
+      },
+      {
+        "level": 1,
+        "name": "tconstruct:shiny"
+      }
+    ]
+  }
+}

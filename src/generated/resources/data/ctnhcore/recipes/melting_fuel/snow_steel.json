@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:melting_fuel",
+  "duration": 114514,
+  "fluid": {
+    "amount": 999,
+    "fluid": "gtceu:snow_steel"
+  },
+  "rate": 1919,
+  "temperature": 900
+}

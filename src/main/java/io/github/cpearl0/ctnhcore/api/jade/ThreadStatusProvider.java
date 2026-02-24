@@ -22,12 +22,26 @@ import org.jetbrains.annotations.Nullable;
 import snownee.jade.api.BlockAccessor;
 import snownee.jade.api.ITooltip;
 import snownee.jade.api.config.IPluginConfig;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Key;
 
 public class ThreadStatusProvider extends CapabilityBlockProvider<MultiThreadRecipeLogic> {
 
     public ThreadStatusProvider() {
         super(CTNHCore.id("thread_status_provider"));
     }
+
+    @Key("jade.thread_enabled")
+    @CN("已启用%s个线程")
+    @EN("%s threads enabled")
+    static Lang thread_enabled;
+
+    @Key("jade.thread_active")
+    @CN("%s个线程正在工作")
+    @EN("%s threads are working")
+    static Lang thread_active;
 
     @Override
     protected @Nullable MultiThreadRecipeLogic getCapability(Level level, BlockPos pos, @Nullable Direction side) {
@@ -54,11 +68,11 @@ public class ThreadStatusProvider extends CapabilityBlockProvider<MultiThreadRec
             if (active != 0) {
                 Component actives = Component.literal(FormattingUtil.formatNumbers(active))
                         .withStyle(ChatFormatting.DARK_PURPLE);
-                tooltip.add(Component.translatable("%s个线程正在工作", actives));
+                tooltip.add(thread_active.translate(actives));
             } else if (enabled != 0) {
                 Component enableds = Component.literal(FormattingUtil.formatNumbers(enabled))
                         .withStyle(ChatFormatting.DARK_PURPLE);
-                tooltip.add(Component.translatable("已启用%s个线程", enableds));
+                tooltip.add(thread_enabled.translate(enableds));
             }
         }
     }

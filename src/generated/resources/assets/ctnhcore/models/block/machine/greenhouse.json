@@ -1,5 +1,57 @@
 {
   "parent": "minecraft:block/block",
+  "dynamic_renders": [
+    {
+      "type": "gtceu:growing_plant",
+      "offsets": [
+        [
+          -1.0,
+          1.0,
+          -1.0
+        ],
+        [
+          -1.0,
+          1.0,
+          -2.0
+        ],
+        [
+          -1.0,
+          1.0,
+          -3.0
+        ],
+        [
+          0.0,
+          1.0,
+          -1.0
+        ],
+        [
+          0.0,
+          1.0,
+          -2.0
+        ],
+        [
+          0.0,
+          1.0,
+          -3.0
+        ],
+        [
+          1.0,
+          1.0,
+          -1.0
+        ],
+        [
+          1.0,
+          1.0,
+          -2.0
+        ],
+        [
+          1.0,
+          1.0,
+          -3.0
+        ]
+      ]
+    }
+  ],
   "loader": "gtceu:machine",
   "machine": "ctnhcore:greenhouse",
   "texture_overrides": {

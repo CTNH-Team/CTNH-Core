@@ -1,32 +1,54 @@
-package io.github.cpearl0.ctnhcore.data.recipe;
+package io.github.cpearl0.ctnhcore.data.recipe.mana;
 
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
-import com.gregtechceu.gtceu.common.block.explosive.IndustrialTNTBlock;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
+import com.gregtechceu.gtceu.data.recipe.CustomTags;
+import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.moguang.ctnhmana.common.recipe.builder.ElfPlateRecipeBuilder;
+import com.moguang.ctnhmana.common.recipe.builder.bloodmagic.BloodAltarRecipeBuilder;
+import com.moguang.ctnhmana.common.recipe.builder.botania.RuneRitualRecipeBuilder;
+import com.moguang.ctnhmana.registry.CMBlocks;
+import com.moguang.ctnhmana.registry.CMMaterials;
+import com.moguang.ctnhmana.registry.CMRecipeTypes;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import net.minecraft.data.recipes.FinishedRecipe;
+import tech.vixhentx.mcmod.ctnhlib.registrate.builders.CTNHMaterial;
 import wayoftime.bloodmagic.common.fluid.BloodMagicFluids;
 
 import java.util.function.Consumer;
 
+import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.INDUSTRIAL_TNT;
+import static com.gregtechceu.gtceu.common.data.GTItems.*;
+import static com.gregtechceu.gtceu.common.data.GTItems.ROBOT_ARM_MV;
+import static com.moguang.ctnhmana.registry.CMBlocks.*;
+import static com.moguang.ctnhmana.registry.multiblock.ManaMachine.MANA_BENDER;
+import static com.moguang.ctnhmana.registry.multiblock.misc.*;
+import static com.moguang.ctnhmana.registry.multiblock.misc.TWISTED_FUSION_MK3;
+import static com.wintercogs.ae2omnicells.common.init.OCItems.*;
+
+import static earth.terrarium.adastra.common.registry.ModItems.*;
+import static io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials.*;
+import static io.github.cpearl0.ctnhcore.data.materials.PlatinumLineMaterials.PlatinumGroupResidue;
+import static io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA.COMPRESSED_FUSION_REACTOR;
+import static io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA.ZPM_LARGE_MINER;
+import static mythicbotany.register.ModBlocks.mjoellnir;
 import static mythicbotany.register.ModItems.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
-import static com.gregtechceu.gtceu.common.data.GTItems.FERTILIZER;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.moguang.ctnhmana.registry.CMItems.*;
 import static com.moguang.ctnhmana.registry.CMMaterials.*;
 import static com.moguang.ctnhmana.registry.CMRecipeTypes.*;
-import static com.moguang.ctnhmana.registry.CMRecipeTypes.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.*;
+import static net.minecraft.world.item.Items.*;
+import static tech.luckyblock.mcmod.ctnhenergy.registry.CEItems.*;
 import static vazkii.botania.common.item.BotaniaItems.overgrowthSeed;
 import static vazkii.botania.common.item.BotaniaItems.*;
 
@@ -219,14 +241,113 @@ public class TwistedFusionRecipes {
                 .duration(1000)
                 .save(provider);
         GREENHOUSE_RECIPES.recipeBuilder("proliferation_rune2")//增殖符文增殖
+                .inputItems(BROKEN_RUNE.asStack())
                 .inputItems(overgrowthSeed)
                 .inputItems(FERTILIZER,64)
                 .inputItems(RADIOACTIVE_WASTE,64)
                 .inputFluids(Water.getFluid(10000))
                 .circuitMeta(20)
-                .outputItems(PROLIFERATION_RUNE,3)
+                .outputItems(PROLIFERATION_RUNE.asItem(),3)
                 .EUt(24444)
                 .duration(1000)
+                .save(provider);
+        ElfPlateRecipeBuilder.builder("twist_reactor_inf")
+                .input(TWISTED_FUSION_MK1.getItem())
+                .input(TWISTED_FUSION_MK2.getItem())
+                .input(TWISTED_FUSION_MK3.getItem())
+                .input(COMPRESSED_FUSION_REACTOR[LuV].getItem())
+                .input(COMPRESSED_FUSION_REACTOR[ZPM].getItem())
+                .input(COMPRESSED_FUSION_REACTOR[UV].getItem())
+                .input(TERMINAL_TWISTED_COIL.asItem())
+                .input(CRYSTAL_CATALYST.asItem())
+                .input(QUASAR_RUNE.asItem())
+                .output(TWISTED_FUSION_MKINFINITY.asStack())
+                .mana(Integer.MAX_VALUE)
+                .save(provider);
+        RuneRitualRecipeBuilder.builder("quasar_rune")//类星体符文
+                .center(mjoellnir.asItem())
+                .rune2(HORIZEN_RUNE.asItem(), 2, -2,true)
+                .rune2(STARLIGHT_RUNE.asItem(),-3,3,true)
+                .rune2(TWIST_RUNE.asItem(), -4, 4,true)
+                .rune2(PROLIFERATION_RUNE.asItem(), -5, 5,true)
+                .rune(OMNI_CELL_COMPONENT_1M.get().asItem(),0,2)
+                .rune(OMNI_CELL_COMPONENT_1M.get().asItem(),1,2)
+                .rune(OMNI_CELL_COMPONENT_1M.get().asItem(),-1,2)
+                .rune(COMPLEX_OMNI_CELL_COMPONENT_1M.get().asItem(),0,-2)
+                .rune(COMPLEX_OMNI_CELL_COMPONENT_1M.get().asItem(),1,-2)
+                .rune(COMPLEX_OMNI_CELL_COMPONENT_1M.get().asItem(),-1,-2)
+                .rune(QUANTUM_OMNI_CELL_COMPONENT_1K.get().asItem(),2,0)
+                .rune(QUANTUM_OMNI_CELL_COMPONENT_1K.get().asItem(),2,1)
+                .rune(QUANTUM_OMNI_CELL_COMPONENT_1K.get().asItem(),2,-1)
+                .rune(EU_CELL[ZPM].get().asItem(),-2,0)
+                .rune(EU_CELL[ZPM].get().asItem(),-2,1)
+                .rune(EU_CELL[ZPM].get().asItem(),-2,-1)
+                .input(midgardRune)
+                .input(niflheimRune)
+                .input(Zenith_essence.getBucket())
+                .input(alfheimRune)
+                .input(helheimRune)
+                .input(vanaheimRune)
+                .input(joetunheimRune)
+                .input(muspelheimRune)
+                .input(nidavellirRune)
+                .input(asgardRune)
+                .output(QUASAR_RUNE.asItem())
+                .mana(5000000)
+                .save(provider);
+        VanillaRecipeHelper.addShapedRecipe(//精灵催化剂
+                provider, "elf_catalyst",
+                ELF_CATALYST.asStack(1),
+                "AAA",
+                "ABA",
+                "AAA",
+                'A', ChemicalHelper.get(rawOreBlock,Fused_Mana).getItem().asItem(),
+                'B', ChemicalHelper.get(block,AlfSteel).getItem().asItem()
+        );
+        METEOR_CAPTURER_RECIPES.recipeBuilder("desh")//戴斯
+                .chancedInput(TIER_1_ROCKET.get().getDefaultInstance(),(int)5f,1)
+                .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 1000*128))
+                .outputItems(ChemicalHelper.get(ore,Desh),512)
+                .duration(400)
+                .EUt(2048)
+                .save(provider);
+        METEOR_CAPTURER_RECIPES.recipeBuilder("ostrum")//紫金
+                .chancedInput(TIER_2_ROCKET.get().getDefaultInstance(),(int)5f,1)
+                .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 1000*256))
+                .outputItems(ChemicalHelper.get(ore,Ostrum),256)
+                .duration(400)
+                .EUt(8196)
+                .save(provider);
+        METEOR_CAPTURER_RECIPES.recipeBuilder("calorite")//耐热金属
+                .chancedInput(TIER_3_ROCKET.get().getDefaultInstance(),(int)5f,1)
+                .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 1000*512))
+                .outputItems(ChemicalHelper.get(ore,Calorite),128)
+                .duration(400)
+                .EUt(8196*4)
+                .save(provider);
+        METEOR_CAPTURER_RECIPES.recipeBuilder("neutronium")//中子素
+                .chancedInput(TIER_4_ROCKET.get().getDefaultInstance(),(int)5f,1)
+                .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 1000*1024))
+                .outputItems(ChemicalHelper.get(ore,Neutronium),8)
+                .duration(400)
+                .EUt(528000*4)
+                .save(provider);
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("twist")
+                .inputItems(ChemicalHelper.get(plate, Ultra_Mana),2)
+                .inputItems(GTBlocks.FUSION_CASING,2)
+                .inputItems(ChemicalHelper.get(plateDouble, AlfSteel),2)
+                .outputItems(TWISTED_FUSION_CASING)
+                .duration(400)
+                .EUt(GTValues.VA[LuV])
+                .save(provider);
+        BloodAltarRecipeBuilder.builder("bloodygold_dust_2")//血铂B
+                .input(ChemicalHelper.get(TagPrefix.dust, PlatinumGroupResidue,1))
+                .output(ChemicalHelper.get(TagPrefix.dust, HEMOPLATINUM,1))
+                .circuitMeta(1)
+                .syphon(20000)
+                .minimumTier(5)
+                .consumeRate(100)
+                .drainRate(100)
                 .save(provider);
     }
 }

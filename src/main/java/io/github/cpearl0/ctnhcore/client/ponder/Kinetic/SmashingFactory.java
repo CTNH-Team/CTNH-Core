@@ -83,6 +83,7 @@ public class SmashingFactory {
                 .text(SmashingFactoryText5.translate().getContents().toString())
                 .pointAt(util.vector().blockSurface(util.grid().at(3, 1, 2), Direction.WEST))
                 .attachKeyFrame();
+        scene.world().setKineticSpeed(util.select().position(3, 1, 2), 128);
         scene.world().rotateSection(crushingWheelLinks[0], 0,0,-360,   400);
         scene.world().rotateSection(crushingWheelLinks[1], 0, 0, 360, 400);
         scene.overlay().showOutline(PonderPalette.RED, "", util.select().position(2, 2, 1), 80);

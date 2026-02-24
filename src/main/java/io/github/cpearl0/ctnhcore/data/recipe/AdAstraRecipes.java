@@ -250,6 +250,6 @@ public class AdAstraRecipes {
 
     public static void remove(Consumer<ResourceLocation> consumer) {
 
-        DataFilterPack.removeRecipeType("ad_astra:*");
+        //DataFilterPack.removeRecipeType("ad_astra:*");
     }
 }

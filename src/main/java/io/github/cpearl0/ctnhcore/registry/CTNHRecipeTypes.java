@@ -78,7 +78,7 @@ public class CTNHRecipeTypes {
             .recipeType(GTCEu.id("fermenting"), GTRecipeTypes.MULTIBLOCK)
             .cnlang("发酵罐")
             .setEUIO(IO.IN)
-            .setMaxIOSize(4, 4, 1, 1)
+            .setMaxIOSize(4, 4, 2, 1)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL)

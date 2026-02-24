@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:material_melting",
+  "input": "ctnhcore:snow_steel",
+  "result": {
+    "amount": 144,
+    "tag": "forge:snow_steel"
+  },
+  "temperature": 605
+}
