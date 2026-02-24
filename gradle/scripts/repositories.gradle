@@ -82,7 +82,6 @@ repositories {
             includeGroup "dev.latvian.apps"
         }
     }
-
     maven {
         url 'https://jitpack.io'
         content {

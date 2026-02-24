@@ -17,22 +17,22 @@ dependencies {
     jarJar(project(":modules:CTNH-Mana")){transitive = false}
 
     jarJar(modImplementation("extra-mods:gtceu-1.20.1:7.4.1-ctnh-slim")){transitive = false}
-    //jarJar(modImplementation("extra-mods:ae2pw:0.26.1")){transitive = false}
+    // jarJar(modImplementation("extra-mods:ae2pw:0.26.1")){transitive = false}
     // JEI, EMI, Jade
-    //modCompileOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
-    //modCompileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
-    //modRuntimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
-    //modCompileOnly("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
-    //modRuntimeOnly("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
+    // modCompileOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+    // modCompileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+    // modRuntimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+    // modCompileOnly("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
+    // modRuntimeOnly("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
     modImplementation("curse.maven:jade-324717:6855440")
 
     // GregTech and dependencies
-    //modImplementation("com.gregtechceu.gtceu:gtceu-${minecraft_version}:${gtceu_version}:slim") { transitive = false }
+    // modImplementation("com.gregtechceu.gtceu:gtceu-${minecraft_version}:${gtceu_version}:slim") { transitive = false }
     modImplementation("com.lowdragmc.ldlib:ldlib-forge-${minecraft_version}:${ldlib_version}") { transitive = false }
     modImplementation("com.tterrag.registrate:Registrate:${registrate_version}")
     modImplementation("dev.toma.configuration:configuration-forge-${minecraft_version}:${configuration_version}")
 
-    //Create
+    // Create
     modImplementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
     modImplementation("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}")
     modImplementation("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}")
@@ -42,11 +42,11 @@ dependencies {
     modImplementation("curse.maven:createmetallurgy-1007404:6741785")
     modImplementation("curse.maven:createvintage-1255448:6635459")
     modImplementation("curse.maven:create-liquid-fuel-840734:5217310")
-    //modImplementation("com.hlysine.create_connected:create_connected:26.1")
+    // modImplementation("com.hlysine.create_connected:create_connected:26.1")
     modImplementation("extra-mods:create_connected-26.1-all")
     modImplementation("curse.maven:create-ore-excavation-649832:6633054")
 
-    //season
+    // season
     modImplementation("curse.maven:glitchcore-955399:5787839")
     modImplementation("curse.maven:ecliptic_season-1118306:6752783")
 
@@ -54,11 +54,11 @@ dependencies {
     modRuntimeOnly("top.theillusivec4.curios:curios-forge:${curios_version}")
     modCompileOnly("top.theillusivec4.curios:curios-forge:${curios_version}:api")
 
-    //ars
+    // ars
     modImplementation("software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}")
     modImplementation("com.hollingsworth.ars_nouveau:ars_nouveau-${minecraft_version}:${arsnouveau_version}")
 
-    //ad
+    // ad
     modImplementation("com.teamresourceful.resourcefullib:resourcefullib-forge-${minecraft_version}:${resourcefullib_version}")
     modImplementation("com.teamresourceful.resourcefulconfig:resourcefulconfig-forge-${minecraft_version}:${resourcefulconfig_version}")
     modImplementation("earth.terrarium.botarium:botarium-forge-${minecraft_version}:${botarium_version}")
@@ -99,7 +99,7 @@ dependencies {
     // Blood Magic
     modImplementation("maven.modrinth:blood-magic:${bloodmagic_version}")
 
-    //modImplementation("curse.maven:gtmthings-1104310:6764930")
+    // modImplementation("curse.maven:gtmthings-1104310:6764930")
     modImplementation("curse.maven:extrabotany-reburn-1271869:6818025")//额外植物学
     modImplementation("curse.maven:mythicbotany-400058:5101899")
     annotationProcessor "org.moddingx:LibX:${minecraft_version}-${libx_version}"
@@ -122,32 +122,33 @@ dependencies {
     modImplementation("curse.maven:bio-factory-1136762:6293100")
 
     modRuntimeOnly("curse.maven:constructionwand-399558:4684054")
-    //modRuntimeOnly("curse.maven:just-enough-characters-250702:6680042")
-    //modRuntimeOnly("curse.maven:not-enough-crashes-forge-442354:6598273")
-    // lombok
-    //compileOnly 'org.projectlombok:lombok:1.18.24'
-    //annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    // modRuntimeOnly("curse.maven:just-enough-characters-250702:6680042")
+    // modRuntimeOnly("curse.maven:not-enough-crashes-forge-442354:6598273")
 
-    //Re-Avaritia
+    // lombok
+    // compileOnly 'org.projectlombok:lombok:1.18.24'
+    // annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    // Re-Avaritia
     modImplementation("curse.maven:re-avaritia-623969:7224119")
 
-    //tconstruct
+    // tconstruct
 
     modImplementation("slimeknights.tconstruct:TConstruct:1.20.1-${tcon_version}")
     modImplementation ("slimeknights.mantle:Mantle:1.20.1-${mantle_version}")
-    //加快匠魂材料渲染
+    // 加快匠魂材料渲染
     modRuntimeOnly ("curse.maven:too-many-tinkers-1437457:7488907")
 
-//    modImplementation("curse.maven:xaeros-minimap-263420:6778028")
-//    modImplementation("curse.maven:xaeros-world-map-317780:6778091")
+    // modImplementation("curse.maven:xaeros-minimap-263420:6778028")
+    // modImplementation("curse.maven:xaeros-world-map-317780:6778091")
 
     modImplementation("curse.maven:javd-370890:4803995")
     modImplementation("curse.maven:trenzalore-870210:4848244")
     modImplementation("curse.maven:sophisticated-core-618298:6596375")
     modImplementation("curse.maven:create-diesel-generators-869316:7350909")
-    //modImplementation("maven.modrinth:pneumaticcraft-repressurized:${pneumaticcraft_version}")
-    //modImplementation("curse.maven:compressedcreativity-549381:6603441")
-    //modImplementation("curse.maven:appliedpneumatics-1355087:7124464")
+    // modImplementation("maven.modrinth:pneumaticcraft-repressurized:${pneumaticcraft_version}")
+    // modImplementation("curse.maven:compressedcreativity-549381:6603441")
+    // modImplementation("curse.maven:appliedpneumatics-1355087:7124464")
     modImplementation("curse.maven:omni-cells-1359517:7152251")
 
     modImplementation("curse.maven:alexs-caves-924854:5848216")

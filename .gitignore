@@ -26,3 +26,6 @@ forge*changelog.txt
 
 src/generated/resources/.cache/*
 src/test/*
+
+# macOS
+.DS_Store
