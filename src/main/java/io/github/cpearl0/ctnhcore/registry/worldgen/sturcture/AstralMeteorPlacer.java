@@ -139,9 +139,9 @@ public class AstralMeteorPlacer {
         this.placeMeteoriteAstralStone();
 
         // If the meteorite's center is within the BB of the current placer, place the chest
-        if (boundingBox.isInside(pos)) {
-            placeChest();
-        }
+//        if (boundingBox.isInside(pos)) {
+//            placeChest();
+//        }
     }
 
     private void placeChest() {
