@@ -24,6 +24,8 @@ import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlag
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static dev.engine_room.flywheel.impl.visualization.storage.Transaction.remove;
+import static io.github.cpearl0.ctnhcore.data.materials.BauxiteProcessingMaterials.*;
+import static io.github.cpearl0.ctnhcore.data.materials.CrudeGoldRefiningMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 
@@ -216,6 +218,122 @@ public class AlumiumChain {
                 .outputFluids(Oxygen.getFluid(3000))
                 .EUt(GTValues.VA[GTValues.MV])
                 .duration(200)
+                .save(provider);
+
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("electrolyzing_blue_topaz")
+                .inputItems(dust, Clay,14)//粘土
+                .outputItems(dust, Alumina,5)
+                .outputItems(dust, SiliconDioxide,6)
+                .outputItems(dust, Sodium,2)
+                .outputItems(dust, Lithium,1)
+                .outputFluids(Water.getFluid(6000))
+                .EUt(GTValues.VA[GTValues.MV])
+                .duration(180)
+                .save(provider);
+
+        //高压电解
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("electrolyzing_topaz")
+                .inputItems(dust, Topaz,6)//黄玉
+                .outputItems(dust, Aluminium,2)
+                .outputItems(dust, Silicon)
+                .outputFluids(Hydrogen.getFluid(2000))
+                .outputFluids(Fluorine.getFluid(1000))
+                .EUt(GTValues.VA[GTValues.EV])
+                .duration(200)
+                .save(provider);
+
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("electrolyzing_sodalite")
+                .inputItems(dust, Sodalite,11)//方钠石
+                .outputItems(dust, Aluminium,3)
+                .outputItems(dust, Silicon,3)
+                .outputItems(dust, Sodium,4)
+                .outputFluids(Chlorine.getFluid(1000))
+                .EUt(GTValues.VA[GTValues.EV])
+                .duration(390)
+                .save(provider);
+
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("electrolyzing_lazurite")
+                .inputItems(dust, Lazurite,14)//蓝金石
+                .outputItems(dust, Aluminium,3)
+                .outputItems(dust, Silicon,3)
+                .outputItems(dust, Sodium,4)
+                .outputItems(dust, Calcium,4)
+                .EUt(GTValues.VA[GTValues.EV])
+                .duration(460)
+                .save(provider);
+
+        //电解氧化铝
+        //LV
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("electrolyzing_alumina_lv")
+                .inputItems(dust, Alumina,10)
+                .inputFluids(SODIUM_HEXAFLUOROALUMINATE.getFluid(1000))
+                .outputItems(dust, Aluminium,4)
+                .outputItems(dust, SODIUM_FLUORIDE,6)
+                .outputItems(dust, ALUMINIUM_TRIFLUORIDE,4)
+                .outputFluids(Oxygen.getFluid(6000))
+                .EUt(GTValues.VA[GTValues.LV])
+                .duration(200)
+                .save(provider);
+        //HV
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("electrolyzing_alumina_hv")
+                .inputItems(dust, Alumina,10)
+                .outputItems(dust, Aluminium,4)
+                .outputFluids(Oxygen.getFluid(6000))
+                .EUt(GTValues.VA[GTValues.HV])
+                .duration(400)
+                .save(provider);
+
+        //六氟铝酸钠
+        //冰晶石
+        GTRecipeTypes.EXTRACTOR_RECIPES.recipeBuilder("sodium_hexafluoroaluminate_3")
+                .inputItems(dust, Cryolite,10)
+                .outputFluids(SODIUM_HEXAFLUOROALUMINATE.getFluid(1000))
+                .EUt(GTValues.VA[GTValues.LV])
+                .duration(100)
+                .save(provider);
+        //合成
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("sodium_hexafluoroaluminate")
+                .inputItems(dust, SodiumHydroxide,18)
+                .inputItems(dust, Alumina,5)
+                .inputFluids(HydrofluoricAcid.getFluid(12000))
+                .outputFluids(SODIUM_HEXAFLUOROALUMINATE.getFluid(2000))
+                .outputFluids(Water.getFluid(9000))
+                .EUt(GTValues.VA[GTValues.MV])
+                .duration(400)
+                .save(provider);
+        // 回收
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("sodium_hexafluoroaluminate")
+                .inputItems(dust, SODIUM_FLUORIDE,6)
+                .inputItems(dust, ALUMINIUM_TRIFLUORIDE,4)
+                .outputFluids(SODIUM_HEXAFLUOROALUMINATE.getFluid(1000))
+                .EUt(GTValues.VA[GTValues.MV])
+                .duration(200)
+                .save(provider);
+
+        //铝土线
+        //碱浸
+        GTRecipeTypes.MIXER_RECIPES.recipeBuilder("alkali_leach_bauxite")
+                .inputItems(dust, Bauxite,13)
+                .inputFluids(SODIUM_HYDROXIDE_SOLUTION.getFluid(8000))
+                .outputFluids(SODIUM_HYDROXIDE_BAUXITE.getFluid(8000))
+                .EUt(GTValues.VA[GTValues.LV])
+                .duration(80)
+                .save(provider);
+        //碱溶液
+        GTRecipeTypes.MIXER_RECIPES.recipeBuilder("sodium_hydroxide_solution")
+                .inputItems(dust, SodiumHydroxide,3)
+                .inputFluids(Water.getFluid(1000))
+                .outputFluids(SODIUM_HYDROXIDE_SOLUTION.getFluid(1000))
+                .circuitMeta(0)
+                .EUt(GTValues.VA[GTValues.LV])
+                .duration(200)
+                .save(provider);
+        //加热
+        GTRecipeTypes.FLUID_HEATER_RECIPES.recipeBuilder("impure_aluminum_hydroxide_solution")
+                .inputFluids(SODIUM_HYDROXIDE_BAUXITE.getFluid(8000))
+                .outputFluids(IMPURE_ALUMINIUM_HYDROXIDE_SOLUTION.getFluid(8000))
+                .EUt(GTValues.VA[GTValues.LV])
+                .duration(80)
                 .save(provider);
     }
 }
