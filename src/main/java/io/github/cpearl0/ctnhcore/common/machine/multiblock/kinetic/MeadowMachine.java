@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic;
 
+import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
+import com.mo_guang.ctpp.api.CTPPModifierFunction;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.recipe.crossparalell.MergedGTRecipe;
 
@@ -53,14 +55,6 @@ public class MeadowMachine extends KineticWorkableMultiblockMachine {
         return false;
     }
 
-    @Override
-    public GTRecipe fullModifyRecipe(GTRecipe recipe) {
-        var newRecipe = super.fullModifyRecipe(recipe);
-        if (newRecipe != null)
-            availableStress -= CTPPRecipeHelper.getInputStress(newRecipe);
-        return newRecipe;
-    }
-
     public class MeadowRecipeLogic extends KineticRecipeLogic {
 
         public MergedGTRecipe mergedRecipe = new MergedGTRecipe(getRecipeType(),
@@ -74,8 +68,6 @@ public class MeadowMachine extends KineticWorkableMultiblockMachine {
         @Override
         protected void handleSearchingRecipes(@NotNull Iterator<GTRecipe> matches) {
             mergedRecipe.clear();
-            if (machine instanceof KineticWorkableMultiblockMachine kmachine)
-                kmachine.resetAvailableStress();
             while (matches.hasNext()) {
                 GTRecipe match = matches.next();
                 if (match == null) continue;
@@ -89,7 +81,11 @@ public class MeadowMachine extends KineticWorkableMultiblockMachine {
 
         @Override
         public boolean checkMatchedRecipeAvailable(GTRecipe match) {
-            var modified = machine.fullModifyRecipe(match);
+
+            float usingStress = CTPPRecipeHelper.getInputStress(mergedRecipe);
+            int maxParallel = usingStress == 0 ? Integer.MAX_VALUE : (int) (getTotalInputStress() /  usingStress);
+            var modified = CTPPModifierFunction.accurateParallel(getMachine(), match, maxParallel - mergedRecipe.parallels).apply(match);
+
             if (modified != null) {
                 var recipeMatch = checkRecipe(modified);
                 if (recipeMatch.isSuccess()) {

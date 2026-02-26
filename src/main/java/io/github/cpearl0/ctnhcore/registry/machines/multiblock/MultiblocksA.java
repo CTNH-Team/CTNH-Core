@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.mo_guang.ctpp.api.pattern.FactoryStaticBlockPattern;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.machine.multiblock.MultiThreadElectricMachine;
@@ -554,7 +555,7 @@ public class MultiblocksA {
     public final static MultiblockMachineDefinition MEADOW = REGISTRATE.multiblock("meadow", MeadowMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.MEADOW)
-            .recipeModifier(CTPPRecipeModifiers.KINETIC_PERFECT_PARALLEL)
+            .recipeModifier(RecipeModifier.NO_MODIFIER)
             .tooltips(Component.translatable("ctnh.multiblock.meadow.tooltip.0"),
                     Component.translatable("ctnh.multiblock.meadow.tooltip.1"),
                     Component.translatable("ctnh.multiblock.meadow.tooltip.2"),

@@ -19,7 +19,7 @@ public class MeadowRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         CTNHRecipeBuilder.of(CTNHCore.id("pig"), CTNHRecipeTypes.MEADOW)
                 .inputStress(256)
-                .inputEntity(EntityType.PIG, 1, 100)
+                .inputEntity(EntityType.PIG, 1, 0)
                 .chancedInput(Items.POTATO.getDefaultInstance(), 100, 0)
                 .outputItems(Items.PORKCHOP)
                 .outputItems(CTNHItems.ANIMAL_EXCRETA)
@@ -28,7 +28,7 @@ public class MeadowRecipes {
 
         CTNHRecipeBuilder.of(CTNHCore.id("sheep"), CTNHRecipeTypes.MEADOW)
                 .inputStress(256)
-                .inputEntity(EntityType.SHEEP, 1, 100)
+                .inputEntity(EntityType.SHEEP, 1, 0)
                 .chancedInput(Items.WHEAT.getDefaultInstance(), 100, 0)
                 .outputItems(Items.WHITE_WOOL)
                 .outputItems(CTNHItems.ANIMAL_EXCRETA)
@@ -37,7 +37,7 @@ public class MeadowRecipes {
 
         CTNHRecipeBuilder.of(CTNHCore.id("cow"), CTNHRecipeTypes.MEADOW)
                 .inputStress(256)
-                .inputEntity(EntityType.COW, 1, 100)
+                .inputEntity(EntityType.COW, 1, 0)
                 .chancedInput(Items.HAY_BLOCK.getDefaultInstance(), 50, 0)
                 .outputItems(Items.LEATHER)
                 .outputFluids(FluidIngredient.of(Tags.Fluids.MILK, 1000))
@@ -47,7 +47,7 @@ public class MeadowRecipes {
 
         CTNHRecipeBuilder.of(CTNHCore.id("chicken"), CTNHRecipeTypes.MEADOW)
                 .inputStress(256)
-                .inputEntity(EntityType.CHICKEN, 1, 100)
+                .inputEntity(EntityType.CHICKEN, 1, 0)
                 .chancedInput(Items.WHEAT_SEEDS.getDefaultInstance(), 100, 0)
                 .outputItems(Items.EGG)
                 .outputItems(CTNHItems.ANIMAL_EXCRETA)
@@ -56,7 +56,7 @@ public class MeadowRecipes {
 
         CTNHRecipeBuilder.of(CTNHCore.id("rabbit"), CTNHRecipeTypes.MEADOW)
                 .inputStress(256)
-                .inputEntity(EntityType.RABBIT, 1, 100)
+                .inputEntity(EntityType.RABBIT, 1, 0)
                 .chancedInput(Items.CARROT.getDefaultInstance(), 100, 0)
                 .outputItems(Items.RABBIT)
                 .outputItems(CTNHItems.ANIMAL_EXCRETA)
