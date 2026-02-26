@@ -174,5 +174,48 @@ public class AlumiumChain {
                 .EUt(GTValues.VA[GTValues.MV])
                 .duration(260)
                 .save(provider);
+
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("electrolyzing_blue_topaz")
+                .inputItems(dust, BlueTopaz,13)//蓝黄玉
+                .outputItems(dust, Alumina,5)
+                .outputItems(dust, SiliconDioxide,3)
+                .outputFluids(Oxygen.getFluid(1000))
+                .outputFluids(Hydrogen.getFluid(2000))
+                .outputFluids(Fluorine.getFluid(2000))
+                .EUt(GTValues.VA[GTValues.MV])
+                .duration(100)
+                .save(provider);
+
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("electrolyzing_biotite")
+                .inputItems(dust, Biotite,44)//黑云母
+                .outputItems(dust, Alumina,15)
+                .outputItems(dust, Lithium,18)
+                .outputItems(dust, Potassium,2)
+                .outputItems(dust, Manganese,6)
+                .outputFluids(Fluorine.getFluid(4000))
+                .EUt(GTValues.VA[GTValues.MV])
+                .duration(440)
+                .save(provider);
+
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("electrolyzing_alunite")
+                .inputItems(dust, Alunite,52)//明矾石
+                .outputItems(dust, Alumina,15)
+                .outputItems(dust, Lithium,12)
+                .outputItems(dust, Potassium,2)
+                .outputFluids(Oxygen.getFluid(11000))
+                .outputFluids(Hydrogen.getFluid(12000))
+                .EUt(GTValues.VA[GTValues.MV])
+                .duration(520)
+                .save(provider);
+
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("electrolyzing_almandine")
+                .inputItems(dust, Almandine,20)//铁铝榴石
+                .outputItems(dust, Alumina,5)
+                .outputItems(dust, SiliconDioxide,9)
+                .outputItems(dust, Iron,3)
+                .outputFluids(Oxygen.getFluid(3000))
+                .EUt(GTValues.VA[GTValues.MV])
+                .duration(200)
+                .save(provider);
     }
 }
