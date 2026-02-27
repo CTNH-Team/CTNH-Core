@@ -19,7 +19,8 @@ public class CrystalItems {
             .model(overrideModel(GTCEu.id("battery"), 8))
             .onRegister(modelPredicate(GTCEu.id("battery"), ElectricStats::getStoredPredicate))
             .onRegister(attach(ElectricStats.createRechargeableBattery(50_000_000L, GTValues.HV)))
-            .tag(CustomTags.HV_BATTERIES).register();
+            .tag(CustomTags.HV_BATTERIES)
+            .register();
 
     public static ItemEntry<ComponentItem> PURE_CERTUS_LAPOTRON_CRYSTAL = REGISTRATE.item("pure_certus_lapotron_crystal", ComponentItem::create)
             .cnlang("高纯兰波顿水晶")

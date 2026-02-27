@@ -3,10 +3,7 @@ package io.github.cpearl0.ctnhcore;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps;
 import io.github.cpearl0.ctnhcore.data.CTNHBlockInfo;
 import io.github.cpearl0.ctnhcore.data.recipe.*;
-import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
-import io.github.cpearl0.ctnhcore.data.recipe.chain.FuelChain;
-import io.github.cpearl0.ctnhcore.data.recipe.chain.NaquadahLine;
-import io.github.cpearl0.ctnhcore.data.recipe.chain.PlatinumLine;
+import io.github.cpearl0.ctnhcore.data.recipe.chain.*;
 import io.github.cpearl0.ctnhcore.data.recipe.cogniassembly.WetwareCircuit;
 import io.github.cpearl0.ctnhcore.data.recipe.generated.HyperRotorRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.EternalGardenRecipes;
@@ -89,6 +86,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         PhotovoltaicStationRecipes.init(provider);
         ChemConsumerRecipes.init(provider);
         WaterPowerStationRecipes.init(provider);
+        ArcGeneratorRecipes.init(provider);
         MeadowRecipes.init(provider);
         SinteringRecipes.init(provider);
         Sinope_recipes.init(provider);
@@ -99,7 +97,6 @@ public class CTNHCoreGTAddon implements IGTAddon {
         HighPerformanceComputerRecipes.init(provider);
 
         HyperRotorRecipes.registerAll(provider);
-        PlatinumLine.init(provider);
         OrdinaryRecipes.init(provider);
         AssemblyLineRecipes.init(provider);
 
@@ -108,6 +105,8 @@ public class CTNHCoreGTAddon implements IGTAddon {
         // 移植配方
         NaquadahReactorRecipes.init(provider);
         DefaultRecipes.init(provider);
+        AlumiumChain.init(provider);
+        PlatinumLine.init(provider);
         BrineChain.init(provider);
         FuelChain.init(provider);
         AdAstraRecipes.init(provider);

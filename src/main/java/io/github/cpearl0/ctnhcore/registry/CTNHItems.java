@@ -1,9 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry;
 
-import com.gregtechceu.gtceu.GTCEu;
-import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.item.component.ElectricStats;
-import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import io.github.cpearl0.ctnhcore.common.item.*;
 import io.github.cpearl0.ctnhcore.common.item.debug.ReloadItem;
 import io.github.cpearl0.ctnhcore.data.item.CrystalItems;
@@ -27,7 +23,6 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Suffix;
 
 import static com.gregtechceu.gtceu.common.data.GTItems.attach;
 import static com.gregtechceu.gtceu.common.data.GTItems.modelPredicate;
-import static com.gregtechceu.gtceu.common.data.models.GTModels.overrideModel;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 @Suffix("tooltip")
@@ -334,7 +329,11 @@ public class CTNHItems {
     public static ItemEntry<Item> ANIMAL_EXCRETA;
     public static ItemEntry<Item> TUMOR;
     public static ItemEntry<Item> REFINED_IRON_INGOT;
-
+    public static ItemEntry<Item> BAUXITE_PROCESS_CATALYST = REGISTRATE
+            .item("bauxite_process_catalyst", Item::new)
+            .cnlang("铝土矿处理催化剂")
+            .lang("Bauxite Process Catalyst")
+            .register();
     public static ItemEntry<Item> CRYSTAL_CATALYST = REGISTRATE
             .item("crystal_catalyst", Item::new)
             .cnlang("水晶催化剂")
