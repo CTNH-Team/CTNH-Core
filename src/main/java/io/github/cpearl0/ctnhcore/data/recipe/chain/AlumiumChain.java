@@ -2,19 +2,19 @@ package io.github.cpearl0.ctnhcore.data.recipe.chain;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
-
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
-import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+import static com.gregtechceu.gtceu.api.GTValues.VA;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static dev.engine_room.flywheel.impl.visualization.storage.Transaction.remove;
 import static io.github.cpearl0.ctnhcore.data.materials.BauxiteProcessingMaterials.*;
-import static io.github.cpearl0.ctnhcore.data.materials.CrudeGoldRefiningMaterials.*;
-import static io.github.cpearl0.ctnhcore.registry.CTNHItems.*;
-import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
+import static io.github.cpearl0.ctnhcore.data.materials.CrudeGoldRefiningMaterials.SODIUM_HEXAFLUOROALUMINATE;
+import static io.github.cpearl0.ctnhcore.registry.CTNHItems.BAUXITE_PROCESS_CATALYST;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.Alumina;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.Cryolite;
 
 
 public class AlumiumChain {
@@ -279,7 +279,7 @@ public class AlumiumChain {
                 .duration(100)
                 .save(provider);
         //合成
-        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("sodium_hexafluoroaluminate")
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("sodium_hexafluoroaluminate_from_na")
                 .inputItems(dust, SodiumHydroxide,18)
                 .inputItems(dust, Alumina,5)
                 .inputFluids(HydrofluoricAcid.getFluid(12000))
@@ -289,7 +289,7 @@ public class AlumiumChain {
                 .duration(400)
                 .save(provider);
         // 回收
-        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("sodium_hexafluoroaluminate")
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("sodium_hexafluoroaluminate_from_al")
                 .inputItems(dust, SODIUM_FLUORIDE,6)
                 .inputItems(dust, ALUMINIUM_TRIFLUORIDE,4)
                 .outputFluids(SODIUM_HEXAFLUOROALUMINATE.getFluid(1000))
