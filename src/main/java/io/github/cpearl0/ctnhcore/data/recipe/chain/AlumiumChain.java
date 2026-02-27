@@ -1,32 +1,19 @@
 package io.github.cpearl0.ctnhcore.data.recipe.chain;
 
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
-
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
-import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
-import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
-import com.gregtechceu.gtceu.api.fluids.attribute.FluidAttributes;
-import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 
-import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import net.minecraft.data.recipes.FinishedRecipe;
-import tech.vixhentx.mcmod.ctnhlib.registrate.builders.CTNHMaterial;
 
 import java.util.function.Consumer;
 
-import static com.gregtechceu.gtceu.api.GTValues.VA;
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.DISABLE_DECOMPOSITION;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
+import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static dev.engine_room.flywheel.impl.visualization.storage.Transaction.remove;
 import static io.github.cpearl0.ctnhcore.data.materials.BauxiteProcessingMaterials.*;
 import static io.github.cpearl0.ctnhcore.data.materials.CrudeGoldRefiningMaterials.*;
-import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
+import static io.github.cpearl0.ctnhcore.registry.CTNHItems.*;
 import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 
 
@@ -448,7 +435,7 @@ public class AlumiumChain {
         //催化剂处理铝土
         GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("catalyst_bauxite")
                 .inputItems(dust,Bauxite,39)
-                .notConsumable(dust, GTMaterials.Bauxite)
+                .notConsumable(BAUXITE_PROCESS_CATALYST)
                 .inputFluids(HydrochloricAcid.getFluid(24000))
                 .outputFluids(TITANIUM_TETRACHLORIDE_V.getFluid(3000))
                 .outputFluids(FERRIC_REE_CHLORIDE.getFluid(1000))
