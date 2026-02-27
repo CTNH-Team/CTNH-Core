@@ -253,6 +253,7 @@ public class AlumiumChain {
         //电解氧化铝
         //LV
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_alumina_lv"))
+                .circuitMeta(0)
                 .inputItems(dust, Alumina,10)
                 .inputFluids(SODIUM_HEXAFLUOROALUMINATE.getFluid(1000))
                 .outputItems(dust, Aluminium,4)
