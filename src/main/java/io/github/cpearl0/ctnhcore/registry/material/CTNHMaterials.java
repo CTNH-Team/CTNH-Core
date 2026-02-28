@@ -1019,6 +1019,8 @@ public class CTNHMaterials {
         CrudeGoldRefiningMaterials.init();
         AviationFabricMaterials.init();
         BauxiteProcessingMaterials.init();
+        AeCrystalScienceMaterials.init();
+        AeOmniMaterials.init();
 
         BedrockMaterials.init();
         BiodieselFertileSoilMaterials.init();

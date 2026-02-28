@@ -100,8 +100,12 @@ public class CTNHCoreGTAddon implements IGTAddon {
         OrdinaryRecipes.init(provider);
         AssemblyLineRecipes.init(provider);
 
+        //兼容mod配方
         WetwareCircuit.init(provider);
         EIORecipes.init(provider);
+        AeCrystalScienceRecipes.init(provider);
+        QuantumOmniRecipes.init(provider);
+        EUCellRecipes.init(provider);
         // 移植配方
         NaquadahReactorRecipes.init(provider);
         DefaultRecipes.init(provider);
@@ -113,8 +117,6 @@ public class CTNHCoreGTAddon implements IGTAddon {
         NaquadahLine.init(provider);
 
         CasingRecipes.init(provider);
-        QuantumOmniRecipes.init(provider);
-        EUCellRecipes.init(provider);
 
         LuvModifyRecipe.init(provider);
         HugeHatchRecipes.init(provider);

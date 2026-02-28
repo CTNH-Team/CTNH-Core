@@ -7,6 +7,8 @@ import io.github.cpearl0.ctnhcore.common.tconstruct.materials.CTNHConstructMater
 import io.github.cpearl0.ctnhcore.common.tconstruct.recipes.CTNHConstructCastingRecipes;
 import io.github.cpearl0.ctnhcore.common.tconstruct.recipes.CTNHConstructMeltingRecipes;
 import io.github.cpearl0.ctnhcore.common.tconstruct.recipes.CTNHConstructModifierRecipes;
+import io.github.cpearl0.ctnhcore.data.materials.AeCrystalScienceMaterials;
+import io.github.cpearl0.ctnhcore.data.materials.AeOmniMaterials;
 import io.github.cpearl0.ctnhcore.data.provider.*;
 import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
 import io.github.cpearl0.ctnhcore.registry.*;
@@ -152,6 +154,8 @@ public class CommonProxy {
         CTNHMaterials.init();
         CTNHMaterials.tagPrefixIgnore();
         GTMaterialAddon.tagPrefixIgnore();
+        AeOmniMaterials.tagPrefixIgnore();
+        AeCrystalScienceMaterials.tagPrefixIgnore();
     }
 
     @SubscribeEvent
