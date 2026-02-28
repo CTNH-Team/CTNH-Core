@@ -100,7 +100,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         OrdinaryRecipes.init(provider);
         AssemblyLineRecipes.init(provider);
 
-        //兼容mod配方
+        // 兼容 mod 配方
         WetwareCircuit.init(provider);
         EIORecipes.init(provider);
         AeCrystalScienceRecipes.init(provider);

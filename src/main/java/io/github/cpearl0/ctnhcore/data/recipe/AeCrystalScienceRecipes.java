@@ -331,8 +331,8 @@ public class AeCrystalScienceRecipes {
                 'B', AECSItems.RESONATING_PROCESSOR,
                 'F', AECSItems.RESONATING_DUST
         );
-        //高纯水晶
-        //末影水晶
+        // 高纯水晶
+        // 末影水晶
         CHEMICAL_BATH_RECIPES.recipeBuilder(CTNHCore.id("ender_quartz_seed"))
                 .inputItems(AECSItems.NETHER_QUARTZ_SEED,1)
                 .inputItems(EIOItems.ENDER_CRYSTAL,1)
@@ -353,7 +353,7 @@ public class AeCrystalScienceRecipes {
                 .blastFurnaceTemp(5100)
                 .EUt(VA[IV]).duration(300)
                 .save(provider);
-        //赛特斯石英
+        // 赛特斯石英
         ALLOY_SMELTER_RECIPES.recipeBuilder(CTNHCore.id("certus_quartz_seed"))
                 .inputItems(TagPrefix.dustSmall,CertusQuartz,5)
                 .inputItems(TagPrefix.dustSmall,SiliconDioxide,4)
@@ -373,7 +373,7 @@ public class AeCrystalScienceRecipes {
                 .blastFurnaceTemp(2700)
                 .EUt(VA[IV]).duration(100)
                 .save(provider);
-        //主世界石英
+        // 主世界石英
         ALLOY_SMELTER_RECIPES.recipeBuilder(CTNHCore.id("nether_quartz_seed"))
                 .inputItems(TagPrefix.dustSmall,NetherQuartz,5)
                 .inputItems(TagPrefix.dustSmall,SiliconDioxide,4)
@@ -393,7 +393,7 @@ public class AeCrystalScienceRecipes {
                 .blastFurnaceTemp(5500)
                 .EUt(VA[IV]).duration(100)
                 .save(provider);
-        //福水晶
+        // 福水晶
         BLAST_RECIPES.recipeBuilder(CTNHCore.id("fluix_quartz_seed"))
                 .inputItems(AECSItems.NETHER_QUARTZ_SEED,1)
                 .inputItems(AECSItems.CERTUS_QUARTZ_SEED,1)
@@ -415,7 +415,7 @@ public class AeCrystalScienceRecipes {
                 .blastFurnaceTemp(5500)
                 .EUt(VA[IV]).duration(150)
                 .save(provider);
-        //陨石水晶
+        // 陨石水晶
         BLAST_RECIPES.recipeBuilder(CTNHCore.id("meteor_seed"))
                 .inputItems(AEItems.SKY_DUST,1)
                 .inputItems(TagPrefix.dust,CertusQuartz,1)
@@ -437,7 +437,7 @@ public class AeCrystalScienceRecipes {
                 .blastFurnaceTemp(5500)
                 .EUt(VA[IV]).duration(150)
                 .save(provider);
-        //谐振水晶
+        // 谐振水晶
         MIXER_RECIPES.recipeBuilder(CTNHCore.id("mix_crystal_sand"))
                 .inputItems(TagPrefix.dust,PURIFIED_ENDER_QUARTZ,1)
                 .inputItems(TagPrefix.dust,PURIFIED_METEOR_CRYSTAL,1)

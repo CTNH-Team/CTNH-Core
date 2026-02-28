@@ -6,18 +6,18 @@ dependencies {
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.0-rc.3"))
 
     implementation(project(":modules:CTNH-Bio"))
-    jarJar(project(":modules:CTNH-Bio")){transitive = false}
+    jarJar(project(":modules:CTNH-Bio")){ transitive = false }
     implementation(project(":modules:CTPP"))
-    jarJar(project(":modules:CTPP")){transitive = false}
-    modImplementation(project(":modules:CTNH-Lib")){transitive = false}
-    jarJar(project(":modules:CTNH-Lib")){transitive = false}
+    jarJar(project(":modules:CTPP")){ transitive = false }
+    modImplementation(project(":modules:CTNH-Lib")){ transitive = false }
+    jarJar(project(":modules:CTNH-Lib")){ transitive = false }
     implementation(project(":modules:CTNH-Energy"))
-    jarJar(project(":modules:CTNH-Energy")){transitive = false}
+    jarJar(project(":modules:CTNH-Energy")){ transitive = false }
     implementation(project(":modules:CTNH-Mana"))
-    jarJar(project(":modules:CTNH-Mana")){transitive = false}
+    jarJar(project(":modules:CTNH-Mana")){ transitive = false }
 
-    jarJar("extra-mods:gtceu-1.20.1:7.4.1-ctnh-slim"){transitive = false}
-    // jarJar(modImplementation("extra-mods:ae2pw:0.26.1")){transitive = false}
+    jarJar("extra-mods:gtceu-1.20.1:7.4.1-ctnh-slim"){ transitive = false }
+    // jarJar(modImplementation("extra-mods:ae2pw:0.26.1")){ transitive = false }
     // JEI, EMI, Jade
     // modCompileOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
     // modCompileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
@@ -38,8 +38,8 @@ dependencies {
     modImplementation("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}")
 
     // AE2CS
-    modImplementation("extra-mods:ae2cs-1.20.1-forge-1.1.1"){transitive=false}
-    //EAE
+    modImplementation("extra-mods:ae2cs-1.20.1-forge-1.1.1"){ transitive = false }
+    // EAE
     modImplementation("curse.maven:glodium-957920:5226922")
     modImplementation("curse.maven:ex-pattern-provider-892005:7472662")
 
@@ -99,13 +99,11 @@ dependencies {
     modImplementation("curse.maven:guideme-1173950:6679102")
     modImplementation("curse.maven:legendary_survival_overhaul-840254:6750561")
 
-
-
     // Blood Magic
     modImplementation("maven.modrinth:blood-magic:${bloodmagic_version}")
 
     // modImplementation("curse.maven:gtmthings-1104310:6764930")
-    modImplementation("curse.maven:extrabotany-reburn-1271869:6818025")//额外植物学
+    modImplementation("curse.maven:extrabotany-reburn-1271869:6818025") // 额外植物学
     modImplementation("curse.maven:mythicbotany-400058:5101899")
     annotationProcessor "org.moddingx:LibX:${minecraft_version}-${libx_version}"
     modImplementation("org.moddingx:LibX:${minecraft_version}-${libx_version}")
@@ -115,11 +113,10 @@ dependencies {
     modImplementation("curse.maven:attributelib-898963:5634071")
     modImplementation("curse.maven:placebo-283644:6274231")
 
-
     // Twilight forest
     modImplementation("curse.maven:twilight_forest-227639:5468648")
 
-    //Hostile Neural NetWork
+    // Hostile Neural NetWork
     modImplementation("curse.maven:hostile_neural_network-552574:5895036")
 
     // Biomancy
@@ -138,11 +135,10 @@ dependencies {
     modImplementation("curse.maven:re-avaritia-623969:7224119")
 
     // tconstruct
-
     modImplementation("slimeknights.tconstruct:TConstruct:1.20.1-${tcon_version}")
-    modImplementation ("slimeknights.mantle:Mantle:1.20.1-${mantle_version}")
+    modImplementation("slimeknights.mantle:Mantle:1.20.1-${mantle_version}")
     // 加快匠魂材料渲染
-    modRuntimeOnly ("curse.maven:too-many-tinkers-1437457:7488907")
+    modRuntimeOnly("curse.maven:too-many-tinkers-1437457:7488907")
 
     // modImplementation("curse.maven:xaeros-minimap-263420:6778028")
     // modImplementation("curse.maven:xaeros-world-map-317780:6778091")
