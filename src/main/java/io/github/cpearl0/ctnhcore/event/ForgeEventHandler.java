@@ -1,5 +1,10 @@
 package io.github.cpearl0.ctnhcore.event;
 
+import com.gregtechceu.gtceu.GTCEu;
+import com.moguang.ctnhbio.CTNHBio;
+import com.moguang.ctnhmana.CTNHMana;
+import dev.latvian.mods.kubejs.KubeJS;
+import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.capability.EIOCapacitorProvider;
 import io.github.cpearl0.ctnhcore.data.recipe.CTNHCraftingComponents;
@@ -13,7 +18,9 @@ import com.gregtechceu.gtceu.data.pack.GTDynamicDataPack;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.player.Player;
@@ -28,6 +35,14 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import com.mojang.brigadier.CommandDispatcher;
+import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.MissingMappingsEvent;
+import tech.luckyblock.mcmod.ctnhenergy.CTNHEnergy;
+
+import java.util.List;
+import java.util.Set;
+
+import static io.github.cpearl0.ctnhcore.CTNHCore.LOGGER;
 
 @Mod.EventBusSubscriber(modid = CTNHCore.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeEventHandler {
@@ -92,6 +107,58 @@ public class ForgeEventHandler {
         Integer base = EIOCapacitorProvider.getCapacitorBaseMap().get(stack.getItem());
         if(base != null){
             event.addCapability(CTNHCore.id("eio_capacitor"), new EIOCapacitorProvider(base));
+        }
+    }
+
+    @SubscribeEvent
+    public static void remapIds(MissingMappingsEvent event) {
+        if(CTNHConfig.INSTANCE.migration.migrationMode){
+            remapUnsafe(event);
+        }
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    private static <T> void remapUnsafe(MissingMappingsEvent event) {
+
+        IForgeRegistry<T> registry =
+                (IForgeRegistry<T>) event.getRegistry();
+
+        ResourceKey<? extends Registry<T>> key =
+                (ResourceKey<? extends Registry<T>>) event.getKey();
+
+        List<MissingMappingsEvent.Mapping<T>> mappings =
+                event.getAllMappings(key);
+
+        Set<String> namespaces = Set.of(
+                CTNHCore.MODID,
+                CTNHMana.MODID,
+                CTNHBio.MODID,
+                CTNHEnergy.MODID,
+                GTCEu.MOD_ID,
+                KubeJS.MOD_ID
+        );
+
+        for (MissingMappingsEvent.Mapping<T> mapping : mappings) {
+
+            ResourceLocation missing = mapping.getKey();
+
+            if (!namespaces.contains(missing.getNamespace()))
+                continue;
+
+            String path = missing.getPath();
+
+            for (String ns : namespaces) {
+
+                if (ns.equals(missing.getNamespace()))
+                    continue;
+
+                ResourceLocation candidate = ResourceLocation.tryBuild(ns, path);
+
+                if (registry.containsKey(candidate)) {
+                    mapping.remap(registry.getValue(candidate));
+                    break;
+                }
+            }
         }
     }
 }

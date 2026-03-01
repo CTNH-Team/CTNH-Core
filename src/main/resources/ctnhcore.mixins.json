@@ -5,7 +5,6 @@
   "refmap": "mixins.ctnhcore.refmap.json",
   "mixins": [
     "ChunkMixin",
-    "ChunkSerializerMixin",
     "TagLoaderMixin",
     "adastra.OxygenApilmplMixin",
     "adastra.TemperatureApilmplMixin",
