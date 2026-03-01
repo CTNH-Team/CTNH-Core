@@ -15,7 +15,7 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 public class CTNHCraftingComponents {
     public static final Map<Integer, Material> GT_SUPERCONDUCTING_MATERIAL = new HashMap<>();
-    public static final Map<Item, Integer> CAPACITOR_BASE_MAP = new HashMap<>();
+
     public static CraftingComponent CTNH_SUPERCONDUCTING_MATERIAL;
 
     public static void init(){
@@ -30,15 +30,6 @@ public class CTNHCraftingComponents {
         GT_SUPERCONDUCTING_MATERIAL.put(UHV, RutheniumTriniumAmericiumNeutronate);
 
 
-        CAPACITOR_BASE_MAP.putAll(Map.of(
-                GTItems.CAPACITOR.get(), 1,
-                GTItems.SMD_CAPACITOR.get(), 2,
-                GTItems.ADVANCED_SMD_CAPACITOR.get(), 4,
-                CBItems.WETWARE_CAPACITOR.get(), 8,
-                CMItems.MANA_CAPACITOR.get(), 2,
-                CMItems.ADVANCED_MANA_CAPACITOR.get(), 3,
-                CMItems.BLOOD_CAPACITOR.get(), 4,
-                CMItems.WILL_CAPACITOR.get(), 6
-        ));
+
     }
 }

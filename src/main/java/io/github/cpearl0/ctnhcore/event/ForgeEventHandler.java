@@ -89,7 +89,7 @@ public class ForgeEventHandler {
     @SubscribeEvent
     public static void attachItemStack(AttachCapabilitiesEvent<ItemStack> event) {
         var stack = event.getObject();
-        Integer base = CTNHCraftingComponents.CAPACITOR_BASE_MAP.get(stack.getItem());
+        Integer base = EIOCapacitorProvider.getCapacitorBaseMap().get(stack.getItem());
         if(base != null){
             event.addCapability(CTNHCore.id("eio_capacitor"), new EIOCapacitorProvider(base));
         }
