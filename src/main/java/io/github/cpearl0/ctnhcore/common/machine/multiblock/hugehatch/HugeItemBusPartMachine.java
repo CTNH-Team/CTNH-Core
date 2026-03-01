@@ -5,6 +5,7 @@ import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.IAllowSameUIProvi
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.utils.HugeBusTransferHelper;
 
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
@@ -91,8 +92,7 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IAllow
     }
 
     public static int getSlotMultiplier(int tier) {
-        if (tier == 0) return Integer.MAX_VALUE;
-        return tier < 11 ? 1 << (4 + 2 * tier) : Integer.MAX_VALUE;
+        return Integer.MAX_VALUE;
     }
 
     int getSlotMultiplier() {
@@ -101,13 +101,18 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IAllow
 
     @Override
     protected int getInventorySize() {
-        return 1 + getTier();
+        return getInventorySize(getTier());
+    }
+
+    public static int getInventorySize(int tier) {
+        if (tier < GTValues.EV) return 1 + tier;
+        else return (1 + tier) * 2;
     }
 
     @Override
     public @NotNull Widget createUIWidget() {
         int inventorySize = getInventorySize();
-        inventorySize = Math.min(inventorySize, 16); // 限制最大16个
+        inventorySize = Math.min(inventorySize, 25); // 限制最大25个
 
         // 智能计算行列数
         int[] layout = calculateOptimalLayout(inventorySize);
@@ -203,10 +208,14 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IAllow
             // 5-9个：3x3网格
             cols = 3;
             rows = (int) Math.ceil(slotCount / 3.0);
-        } else {
+        } else if (slotCount <= 16) {
             // 10-16个：4x4网格
             cols = 4;
             rows = (int) Math.ceil(slotCount / 4.0);
+        } else {
+            // 16-25个：5x5网格
+            cols = 5;
+            rows = (int) Math.ceil(slotCount / 5.0);
         }
 
         return new int[] { cols, rows };

@@ -64,18 +64,11 @@ public class HugeDualHatchPartMachine extends HugeItemBusPartMachine {
     }
 
     public static int getTankSize(int tier) {
-        return switch (tier) {
-            case HV, EV, IV -> 2;
-            case LuV, ZPM, UV -> 3;
-            case UHV, UEV, UIV -> 4;
-            case UXV, OpV, MAX -> 5;
-            default -> 1;
-        };
+        return tier + 1;
     }
 
     public static int getTankCapacity(int initialCapacity, int tier) {
-        if (tier == 0) return Integer.MAX_VALUE;
-        return tier < MAX ? initialCapacity * (1 << (tier + 2)) : Integer.MAX_VALUE;
+        return Integer.MAX_VALUE;
     }
 
     protected NotifiableFluidTank createTank(int initialCapacity, int slots, Object... args) {
@@ -183,19 +176,23 @@ public class HugeDualHatchPartMachine extends HugeItemBusPartMachine {
     @Override
     public Widget createUIWidget() {
         int inventorySize = getInventorySize();
-        inventorySize = Math.min(inventorySize, 16);
+        inventorySize = Math.min(inventorySize, 25);
 
         int fluidTankCount = getTankSize();
-        fluidTankCount = Math.min(fluidTankCount, 5);
+        fluidTankCount = Math.min(fluidTankCount, 10);
+
+        // 流体槽布局
+        int fluidCols = Math.min(fluidTankCount, 5);
+        int fluidRows = fluidTankCount <= 5 ? 1 : 2;
 
         // 计算物品槽布局
         int[] itemLayout = calculateOptimalLayout(inventorySize);
-        int itemCols = itemLayout[0];
-        int itemRows = itemLayout[1];
+        int itemCols = Math.max(fluidCols, itemLayout[0]);
+        int itemRows = (int) Math.ceil(inventorySize / (float) itemCols);
 
         // 计算总布局
-        int totalCols = Math.max(itemCols, fluidTankCount); // 取最大列数
-        int totalRows = itemRows + 1; // 物品槽行数 + 流体槽行
+        int totalCols = Math.max(itemCols, fluidCols); // 取最大列数
+        int totalRows = itemRows + fluidRows; // 物品槽行数 + 流体槽行
 
         var group = new WidgetGroup(0, 0, 18 * totalCols + 16, 18 * totalRows + 16);
         var container = new WidgetGroup(4, 4, 18 * totalCols + 8, 18 * totalRows + 8);
@@ -215,16 +212,21 @@ public class HugeDualHatchPartMachine extends HugeItemBusPartMachine {
             }
         }
 
-        // 渲染流体槽（底部水平排列，居中显示）
-        int startX = (totalCols - fluidTankCount) / 2; // 居中
-        for (int i = 0; i < fluidTankCount; i++) {
-            container.addWidget(new TankWidget(
-                    tank.getStorages()[i],
-                    4 + (startX + i) * 18, // 水平排列
-                    4 + itemRows * 18,      // 在物品槽下方
-                    true,
-                    io.support(IO.IN))
-                    .setBackground(GuiTextures.FLUID_SLOT));
+        // 渲染流体槽
+        int fluidIndex = 0;
+        for (int y = 0; y < fluidRows; y++) {
+            for (int x = 0; x < fluidCols; x++) {
+                if (fluidIndex < fluidTankCount) {
+                    container.addWidget(new TankWidget(
+                        tank.getStorages()[fluidIndex],
+                        4 + x * 18,
+                        4 + itemRows * 18 + y * 18,
+                        true,
+                        io.support(IO.IN))
+                        .setBackground(GuiTextures.FLUID_SLOT));
+                    fluidIndex++;
+                }
+            }
         }
 
         container.setBackground(GuiTextures.BACKGROUND_INVERSE);

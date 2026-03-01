@@ -294,7 +294,8 @@ public class CTNHMachines {
                         .modelProperty(IS_FORMED, false)
                         .colorOverlayTieredHullModel("huge_bus_in", null, null)
                         .tooltips(Component.translatable("gtceu.machine.item_bus.import.tooltip"),
-                                Component.translatable("gtceu.universal.tooltip.item_storage_capacity", 1 + tier),
+                                Component.translatable("gtceu.universal.tooltip.item_storage_capacity",
+                                        FormattingUtil.formatNumbers(HugeItemBusPartMachine.getInventorySize(tier))),
                                 REGISTRATE.genLang("ctnhcore.universal.tooltip.item_storage_multiplier",
                                         "§6Item Stack Multiplier: §f%d",
                                         "§6物品堆叠倍数：§f%d",
@@ -314,7 +315,8 @@ public class CTNHMachines {
                         .modelProperty(IS_FORMED, false)
                         .colorOverlayTieredHullModel("huge_bus_out", null, null)
                         .tooltips(Component.translatable("gtceu.machine.item_bus.export.tooltip"),
-                                Component.translatable("gtceu.universal.tooltip.item_storage_capacity", 1 + tier),
+                                Component.translatable("gtceu.universal.tooltip.item_storage_capacity",
+                                        FormattingUtil.formatNumbers(HugeItemBusPartMachine.getInventorySize(tier))),
                                 Component.translatable("ctnhcore.universal.tooltip.item_storage_multiplier",
                                         FormattingUtil.formatNumbers(HugeItemBusPartMachine.getSlotMultiplier(tier))))
                         .allowCoverOnFront(true)
@@ -333,7 +335,8 @@ public class CTNHMachines {
                         .colorOverlayTieredHullModel("huge_dual_hatch_in", null, null)
                         .tooltips(
                                 Component.translatable("gtceu.machine.dual_hatch.import.tooltip"),
-                                Component.translatable("gtceu.universal.tooltip.item_storage_capacity", (1 + tier)),
+                                Component.translatable("gtceu.universal.tooltip.item_storage_capacity",
+                                        FormattingUtil.formatNumbers(HugeItemBusPartMachine.getInventorySize(tier))),
                                 Component.translatable("ctnhcore.universal.tooltip.item_storage_multiplier",
                                         FormattingUtil.formatNumbers(HugeItemBusPartMachine.getSlotMultiplier(tier))),
                                 Component.translatable(
@@ -344,6 +347,7 @@ public class CTNHMachines {
                                                 tier))))
                         .register(),
                 ALL_TIERS);
+
         HUGE_DUAL_EXPORT_HATCH = registerTieredMachines(
                 "huge_dual_output_hatch",
                 "§r巨型输出总成",
@@ -356,7 +360,8 @@ public class CTNHMachines {
                         .colorOverlayTieredHullModel("huge_dual_hatch_out", null, null)
                         .tooltips(
                                 Component.translatable("gtceu.machine.dual_hatch.export.tooltip"),
-                                Component.translatable("gtceu.universal.tooltip.item_storage_capacity", (1 + tier)),
+                                Component.translatable("gtceu.universal.tooltip.item_storage_capacity",
+                                        FormattingUtil.formatNumbers(HugeItemBusPartMachine.getInventorySize(tier))),
                                 Component.translatable("ctnhcore.universal.tooltip.item_storage_multiplier",
                                         FormattingUtil.formatNumbers(HugeItemBusPartMachine.getSlotMultiplier(tier))),
                                 Component.translatable(
