@@ -13,11 +13,14 @@ import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.wintercogs.ae2omnicells.common.init.OCItems;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.data.item.CrystalItems;
 import io.github.cpearl0.ctnhcore.data.materials.BedrockMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
+import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.lounode.ae2cs.common.init.AECSBlocks;
 import io.github.lounode.ae2cs.common.init.AECSItems;
+import io.github.lounode.ae2cs.common.init.AECSParts;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -28,6 +31,7 @@ import java.util.function.Consumer;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.lens;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
+import static com.gregtechceu.gtceu.common.data.GTMachines.DUAL_IMPORT_HATCH;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static io.github.cpearl0.ctnhcore.data.materials.AeCrystalScienceMaterials.*;
@@ -38,7 +42,6 @@ public class AeCrystalScienceRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("ender_emitter"))
                 .circuitMeta(15)
-                .inputItems(AECSBlocks.PURE_ENDER_QUARTZ_BLOCK,1)
                 .inputItems(AEBlocks.DENSE_ENERGY_CELL.asItem(),1)
                 .inputItems(EMITTER_HV,4)
                 .inputItems(SENSOR_HV,4)
@@ -50,28 +53,28 @@ public class AeCrystalScienceRecipes {
                 .outputItems(AECSBlocks.ENDER_EMITTER_BLOCK,1)
                 .EUt(VA[HV]).duration(1200)
                 .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("integrated_interface"))
-                .circuitMeta(15)
-                .inputItems(TagPrefix.ring, StainlessSteel,4)
-                .inputItems(TagPrefix.gear, StainlessSteel,1)
-                .inputItems(AECSItems.RESONATING_PROCESSOR, 2)
-                .inputItems(AEBlocks.PATTERN_PROVIDER.asItem(),1)
-                .inputItems(AEBlocks.INTERFACE.asItem(),1)
-                .inputFluids(SolderingAlloy.getFluid(L * 2))
-                .outputItems(AECSBlocks.INTEGRATED_INTERFACE_BLOCK,1)
-                .EUt(VA[HV]).duration(300)
-                .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("ex_integrated_interface"))
-                .circuitMeta(15)
-                .inputItems(TagPrefix.ring, StainlessSteel,4)
-                .inputItems(TagPrefix.gear, StainlessSteel,1)
-                .inputItems(AECSItems.RESONATING_PROCESSOR, 2)
-                .inputItems(EPPItemAndBlock.EX_PATTERN_PROVIDER.asItem(),1)
-                .inputItems(EPPItemAndBlock.EX_INTERFACE.asItem(),1)
-                .inputFluids(SolderingAlloy.getFluid(L * 2))
-                .outputItems(AECSBlocks.EX_INTEGRATED_INTERFACE_BLOCK,1)
-                .EUt(VA[HV]).duration(300)
-                .save(provider);
+//        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("integrated_interface"))
+//                .circuitMeta(15)
+//                .inputItems(TagPrefix.ring, StainlessSteel,4)
+//                .inputItems(TagPrefix.gear, StainlessSteel,1)
+//                .inputItems(AECSItems.RESONATING_PROCESSOR, 2)
+//                .inputItems(AEBlocks.PATTERN_PROVIDER.asItem(),1)
+//                .inputItems(AEBlocks.INTERFACE.asItem(),1)
+//                .inputFluids(SolderingAlloy.getFluid(L * 2))
+//                .outputItems(AECSBlocks.INTEGRATED_INTERFACE_BLOCK,1)
+//                .EUt(VA[HV]).duration(300)
+//                .save(provider);
+//        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("ex_integrated_interface"))
+//                .circuitMeta(15)
+//                .inputItems(TagPrefix.ring, StainlessSteel,4)
+//                .inputItems(TagPrefix.gear, StainlessSteel,1)
+//                .inputItems(AECSItems.RESONATING_PROCESSOR, 2)
+//                .inputItems(EPPItemAndBlock.EX_PATTERN_PROVIDER.asItem(),1)
+//                .inputItems(EPPItemAndBlock.EX_INTERFACE.asItem(),1)
+//                .inputFluids(SolderingAlloy.getFluid(L * 2))
+//                .outputItems(AECSBlocks.EX_INTEGRATED_INTERFACE_BLOCK,1)
+//                .EUt(VA[HV]).duration(300)
+//                .save(provider);
         FORMING_PRESS_RECIPES.recipeBuilder(CTNHCore.id("blank_print_press"))
                 .inputItems(TagPrefix.plateDense, Iron,1)
                 .inputItems(AECSItems.SIMPLE_CIRCUIT_PRINT,4)
@@ -153,26 +156,45 @@ public class AeCrystalScienceRecipes {
                 .outputItems(AECSItems.RESONATING_PRINT_PRESS.asItem())
                 .EUt(VA[HV]).duration(360)
                 .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("resonating_pattern_provider"))
-                .circuitMeta(15)
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("resonating_pattern_provider"))
                 .inputItems(AECSItems.RESONATING_PROCESSOR,4)
-                .inputItems(CustomTags.EV_CIRCUITS,2)
-                .inputItems(AEBlocks.PATTERN_PROVIDER.asItem(),1)
-                .inputItems(AECSBlocks.ENDER_INTERFACE_BLOCK,1)
-                .outputItems(AECSBlocks.RESONATING_PATTERN_PROVIDER_BLOCK,1)
-                .EUt(VA[HV]).duration(200)
-                .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("extended_resonating_pattern_provider"))
-                .circuitMeta(15)
-                .inputItems(AECSItems.RESONATING_PROCESSOR,4)
+                .inputItems(OCItems.OMNI_LINK_PROCESSOR,4)
+                .inputItems(OCItems.COMPLEX_LINK_PROCESSOR,4)
+                .inputItems(AEItems.CALCULATION_PROCESSOR.asItem(),4)
+                .inputItems(AEItems.LOGIC_PROCESSOR.asItem(),4)
+                .inputItems(AEItems.ENGINEERING_PROCESSOR.asItem(),4)
+                .inputItems(AECSBlocks.ENDER_INTERFACE_BLOCK.asItem())
+                .inputItems(AEBlocks.PATTERN_PROVIDER.asItem())
+                .inputItems(CustomTags.LuV_CIRCUITS,2)
                 .inputItems(CustomTags.IV_CIRCUITS,2)
+                .inputItems(ROBOT_ARM_LuV,2)
+                .inputItems(FLUID_REGULATOR_LuV,2)
+                .inputFluids(ENDER_STEEL.getFluid(L * 4))
+                .inputFluids(SolderingAlloy.getFluid(L * 4))
+                .outputItems(AECSBlocks.RESONATING_PATTERN_PROVIDER_BLOCK,1)
+                .scannerResearch(b -> b
+                        .researchStack(AECSBlocks.ENDER_INTERFACE_BLOCK.toStack())
+                        .duration(3000)
+                        .EUt(VA[IV]))
+                .EUt(VA[LuV]).duration(1200)
+                .save(provider);
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("extended_resonating_pattern_provider"))
                 .inputItems(AECSBlocks.RESONATING_PATTERN_PROVIDER_BLOCK,2)
-                .inputItems(AEBlocks.CRAFTING_ACCELERATOR.asItem(),2)
-                .inputItems(AEItems.CAPACITY_CARD.asItem(),2)
-                .inputItems(ELECTRIC_PISTON_EV,2)
-                .inputItems(CONVEYOR_MODULE_EV,2)
+                .inputItems(CustomTags.ZPM_CIRCUITS,2)
+                .inputItems(CustomTags.LuV_CIRCUITS,2)
+                .inputItems(CustomTags.IV_CIRCUITS,2)
+                .inputItems(AEBlocks.CRAFTING_ACCELERATOR.asItem(),8)
+                .inputItems(CrystalItems.PURE_CERTUS_ENERGIUM_CRYSTAL.asItem(),2)
+                .inputItems(CrystalItems.PURE_CERTUS_LAPOTRON_CRYSTAL.asItem(),2)
+                .inputItems(AEItems.CAPACITY_CARD.asItem(),4)
+                .inputItems(ROBOT_ARM_LuV,2)
+                .inputItems(FLUID_REGULATOR_LuV,2)
                 .outputItems(AECSBlocks.EX_RESONATING_PATTERN_PROVIDER_BLOCK.asItem(),1)
-                .EUt(VA[EV]).duration(500)
+                .scannerResearch(b -> b
+                        .researchStack(AECSBlocks.RESONATING_PATTERN_PROVIDER_BLOCK.toStack())
+                        .duration(3000)
+                        .EUt(VA[IV]))
+                .EUt(VA[LuV]).duration(1200)
                 .save(provider);
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("ender_interface"))
                 .circuitMeta(15)
@@ -216,17 +238,17 @@ public class AeCrystalScienceRecipes {
                 .outputItems(AECSItems.PATTERN_PROVIDER_UPGRADE,1)
                 .EUt(VA[HV]).duration(200)
                 .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("integrated_interface_upgrade"))
-                .circuitMeta(16)
-                .inputItems(TagPrefix.plate,StainlessSteel,4)
-                .inputItems(TagPrefix.gearSmall,StainlessSteel,2)
-                .inputItems(ROBOT_ARM_HV,2)
-                .inputItems(CONVEYOR_MODULE_HV,2)
-                .inputItems(AEItems.ENGINEERING_PROCESSOR.asItem(),2)
-                .inputItems(AECSItems.RESONATING_PROCESSOR.asItem(),2)
-                .outputItems(AECSItems.INTEGRATED_INTERFACE_UPGRADE,2)
-                .EUt(VA[HV]).duration(200)
-                .save(provider);
+//        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("integrated_interface_upgrade"))
+//                .circuitMeta(16)
+//                .inputItems(TagPrefix.plate,StainlessSteel,4)
+//                .inputItems(TagPrefix.gearSmall,StainlessSteel,2)
+//                .inputItems(ROBOT_ARM_HV,2)
+//                .inputItems(CONVEYOR_MODULE_HV,2)
+//                .inputItems(AEItems.ENGINEERING_PROCESSOR.asItem(),2)
+//                .inputItems(AECSItems.RESONATING_PROCESSOR.asItem(),2)
+//                .outputItems(AECSItems.INTEGRATED_INTERFACE_UPGRADE,2)
+//                .EUt(VA[HV]).duration(200)
+//                .save(provider);
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("ender_interface_upgrade"))
                 .circuitMeta(16)
                 .inputItems(AECSItems.RESONATING_PROCESSOR,2)
@@ -249,53 +271,72 @@ public class AeCrystalScienceRecipes {
                 .outputItems(AECSItems.EX_ENDER_INTERFACE_UPGRADE.asItem(),1)
                 .EUt(VA[EV]).duration(500)
                 .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("resonating_pattern_provider_upgrade"))
-                .circuitMeta(16)
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("resonating_pattern_provider_upgrade"))
                 .inputItems(AECSItems.RESONATING_PROCESSOR,4)
-                .inputItems(CustomTags.EV_CIRCUITS,2)
-                .inputItems(AEItems.BLANK_PATTERN.asItem(),1)
-                .inputItems(AECSBlocks.ENDER_INTERFACE_BLOCK,1)
-                .outputItems(AECSItems.RESONATING_PATTERN_PROVIDER_UPGRADE,1)
-                .EUt(VA[HV]).duration(200)
-                .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("extended_resonating_pattern_provider_upgrade"))
-                .circuitMeta(16)
-                .inputItems(AECSItems.RESONATING_PROCESSOR,4)
+                .inputItems(OCItems.OMNI_LINK_PROCESSOR,4)
+                .inputItems(OCItems.COMPLEX_LINK_PROCESSOR,4)
+                .inputItems(AEItems.CALCULATION_PROCESSOR.asItem(),4)
+                .inputItems(AEItems.LOGIC_PROCESSOR.asItem(),4)
+                .inputItems(AEItems.ENGINEERING_PROCESSOR.asItem(),4)
+                .inputItems(AEItems.BLANK_PATTERN.asItem(),8)
+                .inputItems(CustomTags.LuV_CIRCUITS,2)
                 .inputItems(CustomTags.IV_CIRCUITS,2)
-                .inputItems(AEItems.BLANK_PATTERN.asItem(),2)
-                .inputItems(AEBlocks.CRAFTING_ACCELERATOR.asItem(),2)
-                .inputItems(AEItems.CAPACITY_CARD.asItem(),2)
-                .inputItems(ELECTRIC_PISTON_EV,2)
-                .inputItems(CONVEYOR_MODULE_EV,2)
+                .inputItems(ROBOT_ARM_LuV,2)
+                .inputItems(FLUID_REGULATOR_LuV,2)
+                .inputFluids(ENDER_STEEL.getFluid(L * 4))
+                .inputFluids(SolderingAlloy.getFluid(L * 4))
+                .outputItems(AECSItems.RESONATING_PATTERN_PROVIDER_UPGRADE,1)
+                .scannerResearch(b -> b
+                        .researchStack(AECSItems.ENDER_INTERFACE_UPGRADE.toStack())
+                        .duration(3000)
+                        .EUt(VA[IV]))
+                .EUt(VA[LuV]).duration(1200)
+                .save(provider);
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("extended_resonating_pattern_provider_upgrade"))
+                .inputItems(AEItems.BLANK_PATTERN.asItem(),16)
+                .inputItems(CustomTags.ZPM_CIRCUITS,2)
+                .inputItems(CustomTags.LuV_CIRCUITS,2)
+                .inputItems(CustomTags.IV_CIRCUITS,2)
+                .inputItems(AEBlocks.CRAFTING_ACCELERATOR.asItem(),8)
+                .inputItems(CrystalItems.PURE_CERTUS_ENERGIUM_CRYSTAL.asItem(),2)
+                .inputItems(CrystalItems.PURE_CERTUS_LAPOTRON_CRYSTAL.asItem(),2)
+                .inputItems(AEItems.CAPACITY_CARD.asItem(),4)
+                .inputItems(ROBOT_ARM_LuV,2)
+                .inputItems(FLUID_REGULATOR_LuV,2)
                 .outputItems(AECSItems.EX_RESONATING_PATTERN_PROVIDER_UPGRADE.asItem(),1)
-                .EUt(VA[EV]).duration(500)
+                .scannerResearch(b -> b
+                        .researchStack(AECSItems.RESONATING_PATTERN_PROVIDER_UPGRADE.toStack())
+                        .duration(3000)
+                        .EUt(VA[IV]))
+                .EUt(VA[LuV]).duration(1200)
                 .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("meteorite_pattern_provider"))
-                .circuitMeta(15)
-                .inputItems(EPPItemAndBlock.EX_ASSEMBLER.asItem())
-                .inputItems(ROBOT_ARM_EV,2)
-                .inputItems(CONVEYOR_MODULE_EV,2)
-                .inputItems(AEItems.SINGULARITY.asItem(),2)
-                .inputItems(OCItems.OMNI_CELL_COMPONENT_256K,1)
-                .inputItems(AECSItems.RESONATING_PROCESSOR,3)
-                .inputItems(OCItems.OMNI_LINK_PROCESSOR,3)
-                .inputItems(AEBlocks.PATTERN_PROVIDER.asItem(),1)
-                .outputItems(AECSBlocks.METEORITE_PATTERN_PROVIDER_BLOCK.asItem(),1)
-                .EUt(VA[EV]).duration(750)
-                .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("meteorite_pattern_provider_upgrade"))
-                .circuitMeta(16)
-                .inputItems(EPPItemAndBlock.EX_ASSEMBLER.asItem())
-                .inputItems(ROBOT_ARM_EV,2)
-                .inputItems(CONVEYOR_MODULE_EV,2)
-                .inputItems(AEItems.SINGULARITY.asItem(),2)
-                .inputItems(OCItems.OMNI_CELL_COMPONENT_256K,1)
-                .inputItems(AECSItems.RESONATING_PROCESSOR,3)
-                .inputItems(OCItems.OMNI_LINK_PROCESSOR,3)
-                .inputItems(AEItems.BLANK_PATTERN.asItem(),1)
-                .outputItems(AECSItems.METEOR_PATTERN_PROVIDER_UPGRADE.asItem(),1)
-                .EUt(VA[EV]).duration(750)
-                .save(provider);
+//        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("meteorite_pattern_provider"))
+//                .circuitMeta(15)
+//                .inputItems(EPPItemAndBlock.EX_ASSEMBLER.asItem())
+//                .inputItems(ROBOT_ARM_EV,2)
+//                .inputItems(CONVEYOR_MODULE_EV,2)
+//                .inputItems(AEItems.SINGULARITY.asItem(),2)
+//                .inputItems(OCItems.OMNI_CELL_COMPONENT_256K,1)
+//                .inputItems(AECSItems.RESONATING_PROCESSOR,3)
+//                .inputItems(OCItems.OMNI_LINK_PROCESSOR,3)
+//                .inputItems(AEBlocks.PATTERN_PROVIDER.asItem(),1)
+//                .outputItems(AECSBlocks.METEORITE_PATTERN_PROVIDER_BLOCK.asItem(),1)
+//                .EUt(VA[EV]).duration(750)
+//                .save(provider);
+//        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("meteorite_pattern_provider_upgrade"))
+//                .circuitMeta(16)
+//                .inputItems(EPPItemAndBlock.EX_ASSEMBLER.asItem())
+//                .inputItems(ROBOT_ARM_EV,2)
+//                .inputItems(CONVEYOR_MODULE_EV,2)
+//                .inputItems(AEItems.SINGULARITY.asItem(),2)
+//                .inputItems(OCItems.OMNI_CELL_COMPONENT_256K,1)
+//                .inputItems(AECSItems.RESONATING_PROCESSOR,3)
+//                .inputItems(OCItems.OMNI_LINK_PROCESSOR,3)
+//                .inputItems(AEItems.BLANK_PATTERN.asItem(),1)
+//                .outputItems(AECSItems.METEOR_PATTERN_PROVIDER_UPGRADE.asItem(),1)
+//                .EUt(VA[EV]).duration(750)
+//                .save(provider);
+        // 合成表配方
         VanillaRecipeHelper.addShapedRecipe(provider, true, "simple_pattern_provider",
                 AECSBlocks.SIMPLE_PATTERN_PROVIDER_BLOCK.toStack(),
                 "ABA",
@@ -330,6 +371,88 @@ public class AeCrystalScienceRecipes {
                 'D', CustomTags.HV_CIRCUITS,
                 'B', AECSItems.RESONATING_PROCESSOR,
                 'F', AECSItems.RESONATING_DUST
+        );
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "quartz_oscillator_clock",
+                AECSBlocks.QUARTZ_OSCILLATOR_CLOCK_BLOCK.toStack(),
+                "ABA",
+                "EDE",
+                "FCF",
+                'A', new MaterialEntry(TagPrefix.plate, RedAlloy),
+                'E', Items.COMPARATOR.asItem(),
+                'C', AECSBlocks.SIMPLE_PATTERN_PROVIDER_BLOCK.asItem(),
+                'D', CustomTags.LV_CIRCUITS,
+                'B', Items.CLOCK.asItem(),
+                'F', AECSItems.RESONATING_PROCESSOR.asItem()
+        );
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "simple_pattern_provider_part",
+                AECSParts.SIMPLE_PATTERN_PROVIDER_PART.toStack(),
+                "A  ",
+                "   ",
+                "   ",
+                'A', AECSBlocks.SIMPLE_PATTERN_PROVIDER_BLOCK.asItem()
+        );
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "ender_interface_part",
+                AECSParts.ENDER_INTERFACE_PART.toStack(),
+                "A  ",
+                "   ",
+                "   ",
+                'A', AECSBlocks.ENDER_INTERFACE_BLOCK.asItem()
+        );
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "ex_ender_interface_part",
+                AECSParts.EX_ENDER_INTERFACE_PART.toStack(),
+                "A  ",
+                "   ",
+                "   ",
+                'A', AECSBlocks.EX_ENDER_INTERFACE_BLOCK.asItem()
+        );
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "resonating_pattern_provider_part",
+                AECSParts.RESONATING_PATTERN_PROVIDER_PART.toStack(),
+                "A  ",
+                "   ",
+                "   ",
+                'A', AECSBlocks.RESONATING_PATTERN_PROVIDER_BLOCK.asItem()
+        );
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "ex_resonating_pattern_provider_part",
+                AECSParts.EX_RESONATING_PATTERN_PROVIDER_PART.toStack(),
+                "A  ",
+                "   ",
+                "   ",
+                'A', AECSBlocks.EX_RESONATING_PATTERN_PROVIDER_BLOCK.asItem()
+        );
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "quartz_oscillator_clock_part",
+                AECSParts.QUARTZ_OSCILLATOR_CLOCK_PART.toStack(),
+                "A  ",
+                "   ",
+                "   ",
+                'A', AECSBlocks.QUARTZ_OSCILLATOR_CLOCK_BLOCK.asItem()
+        );
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "meteorite_pattern_provider_part",
+                AECSParts.METEORITE_PATTERN_PROVIDER_PART.toStack(),
+                "A  ",
+                "   ",
+                "   ",
+                'A', AECSBlocks.METEORITE_PATTERN_PROVIDER_BLOCK.asItem()
+        );
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "integrated_interface_part",
+                AECSParts.INTEGRATE_INTERFACE_PART.toStack(),
+                "A  ",
+                "   ",
+                "   ",
+                'A', AECSBlocks.INTEGRATED_INTERFACE_BLOCK.asItem()
+        );
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "ex_integrated_interface_part",
+                AECSParts.EX_INTEGRATE_INTERFACE_PART.toStack(),
+                "A  ",
+                "   ",
+                "   ",
+                'A', AECSBlocks.EX_INTEGRATED_INTERFACE_BLOCK.asItem()
         );
         // 高纯水晶
         // 末影水晶
@@ -380,13 +503,13 @@ public class AeCrystalScienceRecipes {
                 .outputItems(AECSItems.NETHER_QUARTZ_SEED,4)
                 .EUt(VA[LV]).duration(500)
                 .save(provider);
-        AUTOCLAVE_RECIPES.recipeBuilder(CTNHCore.id("purified_fluix_crystal"))
+        AUTOCLAVE_RECIPES.recipeBuilder(CTNHCore.id("purified_nether_quartz_crystal"))
                 .inputItems(AECSItems.NETHER_QUARTZ_SEED,1)
                 .inputFluids(DistilledWater.getFluid(100))
                 .outputItems(AECSItems.PURE_NETHER_QUARTZ_CRYSTAL,1)
                 .EUt(VA[MV]).duration(200)
                 .save(provider);
-        CRYSTALLIZER.recipeBuilder(CTNHCore.id("purified_fluix_crystal"))
+        CRYSTALLIZER.recipeBuilder(CTNHCore.id("purified_nether_quartz_crystal"))
                 .inputItems(AECSItems.NETHER_QUARTZ_SEED,8)
                 .inputFluids(DistilledWater.getFluid(100))
                 .outputItems(AECSItems.PURE_NETHER_QUARTZ_CRYSTAL,8)

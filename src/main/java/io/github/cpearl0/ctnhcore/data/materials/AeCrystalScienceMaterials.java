@@ -17,12 +17,16 @@ public class AeCrystalScienceMaterials {
     public static Material CRYSTAL_SAND;
     public static Material PURIFIED_METEOR_CRYSTAL;
     public static Material PURIFIED_ENDER_QUARTZ;
+    public static Material PURIFIED_RESONATING_CRYSTAL;
 
     public static void tagPrefixIgnore() {
         TagPrefix.gem.setIgnored(PURIFIED_ENDER_QUARTZ, () -> AECSItems.PURE_ENDER_QUARTZ.get().asItem());
         TagPrefix.gem.setIgnored(PURIFIED_METEOR_CRYSTAL, () -> AECSItems.PURE_METEOR_CRYSTAL.get().asItem());
+        TagPrefix.gem.setIgnored(PURIFIED_RESONATING_CRYSTAL, () -> AECSItems.PURE_RESONATING_CRYSTAL.get().asItem());
         TagPrefix.block.setIgnored(PURIFIED_ENDER_QUARTZ, () -> AECSBlocks.PURE_ENDER_QUARTZ_BLOCK.get().asItem());
         TagPrefix.block.setIgnored(PURIFIED_METEOR_CRYSTAL, () -> AECSBlocks.PURE_METEOR_CRYSTAL_BLOCK.get().asItem());
+        TagPrefix.block.setIgnored(PURIFIED_RESONATING_CRYSTAL, () -> AECSBlocks.PURE_RESONATING_CRYSTAL_BLOCK.get().asItem());
+        TagPrefix.dust.setIgnored(PURIFIED_RESONATING_CRYSTAL, () -> AECSItems.RESONATING_DUST.get().asItem());
     }
 
     public static void init() {
@@ -39,7 +43,7 @@ public class AeCrystalScienceMaterials {
                 .dust() // 粉末形态
                 .color(0x258273) // 主色调：淡紫色/薰衣草色，接近图片中的颜色
                 .secondaryColor(0x2BCBAF) // 次级色调：中紫色，增加层次感
-                .flags(DISABLE_DECOMPOSITION,EXCLUDE_BLOCK_CRAFTING_BY_HAND_RECIPES)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         PURIFIED_METEOR_CRYSTAL = REGISTRATE.material(CTNHCore.id("purified_meteor_crystal"))
                 .cnlang("高纯陨石水晶")
@@ -47,7 +51,15 @@ public class AeCrystalScienceMaterials {
                 .dust() // 粉末形态
                 .color(0x414445) // 主色调：淡青色/粉蓝，接近图片中的颜色
                 .secondaryColor(0x97FCCB) // 次级色调：钢蓝色，增加层次感
-                .flags(DISABLE_DECOMPOSITION,EXCLUDE_BLOCK_CRAFTING_BY_HAND_RECIPES)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+        PURIFIED_RESONATING_CRYSTAL = REGISTRATE.material(CTNHCore.id("purified_resonating_crystal"))
+                .cnlang("高纯谐振水晶")
+                .gem()
+                .dust()
+                .color(0xB0E0E6)
+                .secondaryColor(0x4682B4)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
     }
 }
