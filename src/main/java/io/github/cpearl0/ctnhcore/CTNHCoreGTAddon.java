@@ -7,6 +7,7 @@ import io.github.cpearl0.ctnhcore.data.recipe.chain.*;
 import io.github.cpearl0.ctnhcore.data.recipe.cogniassembly.WetwareCircuit;
 import io.github.cpearl0.ctnhcore.data.recipe.generated.HyperRotorRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.EternalGardenRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.mana.MiscManaRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.TwistedFusionRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.EIORecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.omnicells.QuantumOmniRecipes;
@@ -100,8 +101,12 @@ public class CTNHCoreGTAddon implements IGTAddon {
         OrdinaryRecipes.init(provider);
         AssemblyLineRecipes.init(provider);
 
+        // 兼容 mod 配方
         WetwareCircuit.init(provider);
         EIORecipes.init(provider);
+        AeCrystalScienceRecipes.init(provider);
+        QuantumOmniRecipes.init(provider);
+        EUCellRecipes.init(provider);
         // 移植配方
         NaquadahReactorRecipes.init(provider);
         DefaultRecipes.init(provider);
@@ -113,13 +118,12 @@ public class CTNHCoreGTAddon implements IGTAddon {
         NaquadahLine.init(provider);
 
         CasingRecipes.init(provider);
-        QuantumOmniRecipes.init(provider);
-        EUCellRecipes.init(provider);
 
         LuvModifyRecipe.init(provider);
         HugeHatchRecipes.init(provider);
         TwistedFusionRecipes.init(provider);
         EternalGardenRecipes.init(provider);
+        MiscManaRecipes.init(provider);
     }
 
     @Override

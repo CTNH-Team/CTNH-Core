@@ -13,6 +13,7 @@ import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.EnderIOMaterials;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+import io.github.lounode.ae2cs.common.init.AECSItems;
 import net.minecraft.data.recipes.FinishedRecipe;
 import com.wintercogs.ae2omnicells.common.init.OCItems;
 import net.minecraft.world.item.Item;
@@ -55,9 +56,25 @@ public class QuantumOmniRecipes {
                 .duration(100)
                 .save(provider);
         GTRecipeTypes.LASER_ENGRAVER_RECIPES.recipeBuilder(CTNHCore.id("multidimensional_expansion_print_press"))
-                .inputItems(TagPrefix.block,GTMaterials.Stellite100,1)
+                .inputItems(AECSItems.ENDER_BLANK_PRINT_PRESS.asItem())
                 .notConsumable(TagPrefix.lens,CTNHMaterials.SolarFlareBlackDiamond,1)
                 .outputItems(OCItems.MULTIDIMENSIONAL_EXPANSION_PRINT_PRESS)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .EUt(VA[GTValues.IV])
+                .duration(4000)
+                .save(provider);
+        GTRecipeTypes.LASER_ENGRAVER_RECIPES.recipeBuilder(CTNHCore.id("omni_link_print_press"))
+                .inputItems(AECSItems.ENDER_BLANK_PRINT_PRESS.asItem())
+                .notConsumable(TagPrefix.lens,CTNHMaterials.ArcaneCrystal,1)
+                .outputItems(OCItems.OMNI_LINK_PRINT_PRESS)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .EUt(VA[GTValues.IV])
+                .duration(4000)
+                .save(provider);
+        GTRecipeTypes.LASER_ENGRAVER_RECIPES.recipeBuilder(CTNHCore.id("omplex_link_print_press"))
+                .inputItems(AECSItems.ENDER_BLANK_PRINT_PRESS.asItem())
+                .notConsumable(TagPrefix.lens,CTNHMaterials.ToxicSwampAmber,1)
+                .outputItems(OCItems.COMPLEX_LINK_PRINT_PRESS)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .EUt(VA[GTValues.IV])
                 .duration(4000)

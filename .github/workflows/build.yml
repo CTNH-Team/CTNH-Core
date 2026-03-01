@@ -65,26 +65,14 @@ jobs:
           fi
 
       - name: Rename Jars
-        if: steps.filter.outputs.code == 'true' || github.event_name == 'release' || github.event_name == 'workflow_dispatch'
+        if: github.event_name != 'release' && (steps.filter.outputs.code == 'true' || github.event_name == 'workflow_dispatch')
         shell: bash
         run: |
           set -euo pipefail
           libs_dir="CTNH-Modules/modules/${MODULE_NAME}/build/libs"
           for file in "$libs_dir"/*.jar; do
             [[ -e "$file" ]] || continue
-
-            dir="$(dirname "$file")"
-            base="$(basename "$file")"
-            base_norm="${base// /-}"
-
-            if [[ "${GITHUB_EVENT_NAME}" != "release" ]]; then
-              base_norm="${base_norm%.jar}-${VERSION_SUFFIX}.jar"
-            fi
-
-            new_path="${dir}/${base_norm}"
-            if [[ "$file" != "$new_path" ]]; then
-              mv "$file" "$new_path"
-            fi
+            mv "$file" "${file/.jar/-${VERSION_SUFFIX}.jar}"
           done
 
       - name: Upload Artifacts
