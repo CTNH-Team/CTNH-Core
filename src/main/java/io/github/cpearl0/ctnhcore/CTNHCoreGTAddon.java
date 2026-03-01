@@ -7,6 +7,7 @@ import io.github.cpearl0.ctnhcore.data.recipe.chain.*;
 import io.github.cpearl0.ctnhcore.data.recipe.cogniassembly.WetwareCircuit;
 import io.github.cpearl0.ctnhcore.data.recipe.generated.HyperRotorRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.EternalGardenRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.mana.MiscManaRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.TwistedFusionRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.EIORecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.omnicells.QuantumOmniRecipes;
@@ -122,6 +123,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         HugeHatchRecipes.init(provider);
         TwistedFusionRecipes.init(provider);
         EternalGardenRecipes.init(provider);
+        MiscManaRecipes.init(provider);
     }
 
     @Override

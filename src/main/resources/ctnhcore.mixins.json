@@ -16,6 +16,7 @@
     "createmetallurgy.FaucetBlockEntityMixin",
     "createmetallurgy.FoundryBasinBlockEntityMixin",
     "createmetallurgy.SmartBlockEntityAccessor",
+    "dategen.AECSDatagenMixin",
     "dategen.CCDatagenMixin",
     "dategen.CreateOreExcavationDategenMixin",
     "eio.MachinesJEIMixin",
