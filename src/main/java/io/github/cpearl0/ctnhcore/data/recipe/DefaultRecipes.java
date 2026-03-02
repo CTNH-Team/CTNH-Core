@@ -113,6 +113,7 @@ public class DefaultRecipes {
                 .inputItems(GTItems.SENSOR_HV.asStack())
                 .inputItems(GTItems.EMITTER_HV.asStack())
                 .inputItems(CTNHItems.HEAVY_PLATE_T1.asStack())
+                .inputItems(CTNHItems.PROGRAM_ROCKET_1)
                 .inputFluids(GTMaterials.SolderingAlloy.getFluid(576))
                 .outputItems(CTNHItems.CHIP_T1.asStack())
                 .cleanroom(CleanroomType.CLEANROOM)
