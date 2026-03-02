@@ -115,7 +115,7 @@ public class EnderIOMaterials {
                 .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FINE_WIRE)
                 .buildAndRegister();
         ChorusiteAlloy = REGISTRATE.material(CTNHCore.id("chorusite_alloy"))
-                .cnlang("振动合金")
+                .cnlang("紫颂合金")
                 .ingot()
                 .liquid()
                 .color(0xc576ed)
