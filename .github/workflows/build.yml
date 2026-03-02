@@ -91,9 +91,10 @@ jobs:
           files: CTNH-Modules/modules/${{ env.MODULE_NAME }}/build/libs/*.jar
 
       - name: Publish to CurseForge
+        if: github.event_name == 'release'
         uses: Kir-Antipov/mc-publish@v3.3.0
         with:
-          curseforge-id: 1474916
+          curseforge-id: 1095612
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
           files: |
             CTNH-Modules/modules/${{ env.MODULE_NAME }}/build/libs/*.jar
