@@ -7,10 +7,6 @@ on:
     types: [published]
   workflow_dispatch:
 
-concurrency:
-  group: build-${{ github.ref }}
-  cancel-in-progress: false
-
 jobs:
   build:
     runs-on: ubuntu-latest
