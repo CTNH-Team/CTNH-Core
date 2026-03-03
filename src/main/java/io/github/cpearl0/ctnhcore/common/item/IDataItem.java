@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.item;
 
 import com.gregtechceu.gtceu.api.item.ComponentItem;
-import com.gregtechceu.gtceu.api.item.component.IInteractionItem;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -14,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class IDataItem extends ComponentItem implements IInteractionItem {
+public class IDataItem extends ComponentItem {
 
     public IDataItem(Properties properties) {
         super(properties
