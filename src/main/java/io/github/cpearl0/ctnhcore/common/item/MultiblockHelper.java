@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.item;
 
 import com.gregtechceu.gtceu.api.item.ComponentItem;
-import com.gregtechceu.gtceu.api.item.component.IInteractionItem;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -18,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class MultiblockHelper extends ComponentItem implements IInteractionItem {
+public class MultiblockHelper extends ComponentItem {
 
     public static class BlockData {
 

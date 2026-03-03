@@ -4,7 +4,6 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.SpacePhotov
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotoVoltaicDroneStation;
 
 import com.gregtechceu.gtceu.api.item.ComponentItem;
-import com.gregtechceu.gtceu.api.item.component.IInteractionItem;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
@@ -26,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ConnectTerminalItem extends ComponentItem implements IInteractionItem {
+public class ConnectTerminalItem extends ComponentItem {
 
     public ConnectTerminalItem(Properties properties) {
         super(properties
