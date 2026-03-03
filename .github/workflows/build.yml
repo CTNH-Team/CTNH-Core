@@ -84,15 +84,6 @@ jobs:
           if-no-files-found: error
           retention-days: 15
 
-      - name: Upload build
-        if: steps.filter.outputs.code == 'true' || github.event_name == 'release' || github.event_name == 'workflow_dispatch'
-        uses: actions/upload-artifact@v4
-        with:
-          name: build
-          path: CTNH-Modules/modules/${{ env.MODULE_NAME }}/build/
-          if-no-files-found: error
-          retention-days: 15
-
       - name: Upload to Release
         if: github.event_name == 'release'
         uses: softprops/action-gh-release@v2
