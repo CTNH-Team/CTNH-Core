@@ -51,7 +51,7 @@ jobs:
       - name: Build
         if: steps.filter.outputs.code == 'true' || github.event_name == 'release' || github.event_name == 'workflow_dispatch'
         working-directory: CTNH-Modules
-        run: ./gradlew :modules:${{ env.MODULE_NAME }}:build
+        run: ./gradlew :modules:${{ env.MODULE_NAME }}:build --max-workers 1
 
       - name: Version Suffix
         if: github.event_name != 'release' && (steps.filter.outputs.code == 'true' || github.event_name == 'workflow_dispatch')
