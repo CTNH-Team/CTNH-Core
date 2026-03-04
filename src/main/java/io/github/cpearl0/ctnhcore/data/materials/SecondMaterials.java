@@ -121,10 +121,9 @@ public class SecondMaterials {
                 .iconSet(MaterialIconSet.ROUGH)
                 .flags(MaterialFlags.DISABLE_DECOMPOSITION).buildAndRegister();
 
-        // GraphiteUraniumMixture =
-        // REGISTRATE.material(CTNHCore.id("graphite_uranium_mixture")).cnlang("石墨-铀混合物").dust()
-        // .components(GTMaterials.Graphite, 3, GTMaterials.Uranium238, 1).color(0x2f734c)
-        // .iconSet(MaterialIconSet.METALLIC).buildAndRegister();
+        GraphiteUraniumMixture = REGISTRATE.material(CTNHCore.id("graphite_uranium_mixture")).cnlang("石墨-铀混合物").dust()
+                .components(GTMaterials.Graphite, 3, GTMaterials.Uranium238, 1).color(0x2f734c)
+                .iconSet(MaterialIconSet.METALLIC).buildAndRegister();
         //
         // PlutoniumOxideUraniumMixture = REGISTRATE.material(CTNHCore.id("plutonium_oxide_uranium_mixture"))
         // .cnlang("氧化钚-铀混合物").dust().components(

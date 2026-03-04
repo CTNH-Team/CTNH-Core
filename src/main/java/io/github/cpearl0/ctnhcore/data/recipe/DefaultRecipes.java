@@ -206,23 +206,23 @@ public class DefaultRecipes {
                 .duration(100)  // 5秒
                 .save(provider);
 
-        // // 石墨 + 铀238 -> 铀石墨混合物
-        // GTRecipeTypes.MIXER_RECIPES.recipeBuilder("graphite_uranium_mixture")
-        // .inputItems(TagPrefix.dust, GTMaterials.Graphite, 3)
-        // .inputItems(TagPrefix.dust, GTMaterials.Uranium238)
-        // .outputItems(TagPrefix.dust, CTNHMaterials.GraphiteUraniumMixture, 4)
-        // .EUt(GTValues.VA[GTValues.LV]) // 30 EU/t
-        // .duration(34) // 1.7秒
-        // .save(provider);
-        //
-        // // 铀石墨混合物 + 碳化钨箔 -> 封装铀
-        // GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("encapsulated_uranium")
-        // .inputItems(TagPrefix.dust, CTNHMaterials.GraphiteUraniumMixture, 4)
-        // .inputItems(TagPrefix.foil, GTMaterials.TungstenCarbide, 2)
-        // .outputItems(CTNHItems.EncapsulatedUranium)
-        // .EUt(GTValues.VA[GTValues.HV]) // 480 EU/t
-        // .duration(1400) // 70秒
-        // .save(provider);
+        // 石墨 + 铀238 -> 铀石墨混合物
+        GTRecipeTypes.MIXER_RECIPES.recipeBuilder("graphite_uranium_mixture")
+                .inputItems(TagPrefix.dust, GTMaterials.Graphite, 3)
+                .inputItems(TagPrefix.dust, GTMaterials.Uranium238)
+                .outputItems(TagPrefix.dust, CTNHMaterials.GraphiteUraniumMixture, 4)
+                .EUt(GTValues.VA[GTValues.LV]) // 30 EU/t
+                .duration(34) // 1.7秒
+                .save(provider);
+        
+        // 铀石墨混合物 + 碳化钨箔 -> 封装铀
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("encapsulated_uranium")
+                .inputItems(TagPrefix.dust, CTNHMaterials.GraphiteUraniumMixture, 4)
+                .inputItems(TagPrefix.foil, GTMaterials.TungstenCarbide, 2)
+                .outputItems(CTNHItems.EncapsulatedUranium)
+                .EUt(GTValues.VA[GTValues.HV]) // 480 EU/t
+                .duration(1400) // 70秒
+                .save(provider);
         //
         // // 钍 + 铀235 + 碳 -> 铀碳化钍混合物
         // GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("uranium_carbide_thorium_mixture")
@@ -263,13 +263,13 @@ public class DefaultRecipes {
         // .duration(1400) // 70秒
         // .save(provider);
         //
-        // // 4. 浓缩铀锭
-        // GTRecipeTypes.COMPRESSOR_RECIPES.recipeBuilder("enriched_uranium_ingot")
-        // .inputItems(CTNHItems.EnrichedUraniumNugget.asStack(9))
-        // .outputItems(CTNHItems.EnrichedUranium)
-        // .EUt(GTValues.VA[GTValues.HV]) // 480 EU/t
-        // .duration(600) // 30秒
-        // .save(provider);
+        // 4. 浓缩铀锭
+        GTRecipeTypes.COMPRESSOR_RECIPES.recipeBuilder("enriched_uranium_ingot")
+                .inputItems(CTNHItems.EnrichedUraniumNugget.asStack(9))
+                .outputItems(CTNHItems.EnrichedUranium)
+                .EUt(GTValues.VA[GTValues.HV]) // 480 EU/t
+                .duration(600) // 30秒
+                .save(provider);
         //
         // // 5. 浓缩钍锭
         // GTRecipeTypes.COMPRESSOR_RECIPES.recipeBuilder("enriched_thorium_ingot")
