@@ -253,7 +253,6 @@ public class AlumiumChain {
         //电解氧化铝
         //LV
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_alumina_lv"))
-                .circuitMeta(0)
                 .inputItems(dust, Alumina,10)
                 .inputFluids(SODIUM_HEXAFLUOROALUMINATE.getFluid(1000))
                 .outputItems(dust, Aluminium,4)
@@ -265,6 +264,7 @@ public class AlumiumChain {
                 .save(provider);
         //HV
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_alumina_hv"))
+                .circuitMeta(1)
                 .inputItems(dust, Alumina,10)
                 .outputItems(dust, Aluminium,4)
                 .outputFluids(Oxygen.getFluid(6000))
@@ -281,7 +281,7 @@ public class AlumiumChain {
                 .duration(100)
                 .save(provider);
         //合成
-        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("sodium_hexafluoroaluminate_from_na"))
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("sodium_hexafluoroaluminate_comp"))
                 .inputItems(dust, SodiumHydroxide,18)
                 .inputItems(dust, Alumina,5)
                 .inputFluids(HydrofluoricAcid.getFluid(12000))
@@ -291,10 +291,19 @@ public class AlumiumChain {
                 .duration(400)
                 .save(provider);
         // 回收
-        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("sodium_hexafluoroaluminate_from_al"))
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("sodium_hexafluoroaluminate_recy"))
                 .inputItems(dust, SODIUM_FLUORIDE,6)
                 .inputItems(dust, ALUMINIUM_TRIFLUORIDE,4)
                 .outputFluids(SODIUM_HEXAFLUOROALUMINATE.getFluid(1000))
+                .EUt(VA[GTValues.MV])
+                .duration(200)
+                .save(provider);
+        //电解
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_sodium_hexafluoroaluminate"))
+                .circuitMeta(1)
+                .inputFluids(SODIUM_HEXAFLUOROALUMINATE.getFluid(1000))
+                .outputItems(dust, SODIUM_FLUORIDE,6)
+                .outputItems(dust, ALUMINIUM_TRIFLUORIDE,4)
                 .EUt(VA[GTValues.MV])
                 .duration(200)
                 .save(provider);
