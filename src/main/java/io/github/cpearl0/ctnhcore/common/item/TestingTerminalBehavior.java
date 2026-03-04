@@ -22,15 +22,17 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerPlayer;
 
-import tech.vixhentx.mcmod.ctnhlib.client.render.ColorData;
-import tech.vixhentx.mcmod.ctnhlib.client.render.highlight.HighlightHandler;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
+import tech.vixhentx.mcmod.ctnhlib.network.packets.BlockHighlightPacket;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.lowdragmc.lowdraglib.networking.LDLNetworking.NETWORK;
 
 public class TestingTerminalBehavior implements IInteractionItem {
 
@@ -79,9 +81,6 @@ public class TestingTerminalBehavior implements IInteractionItem {
         BlockPos blockPos = context.getClickedPos();
         IMultiController controller = getMachineController(level, blockPos);
         if (level.isClientSide()) {
-            if (controller != null && !controller.isFormed()) {
-                handleClientHighlight(controller, isFlipped(stack));
-            }
             return InteractionResult.SUCCESS;
         }
         else {
@@ -107,41 +106,16 @@ public class TestingTerminalBehavior implements IInteractionItem {
     private void sendSuccessMessage(Player player) {
         player.sendSystemMessage(Component.translatable("ctnh.test_terminal.success").withStyle(ChatFormatting.GREEN));
     }
-    // 客户端专用的高亮处理逻辑
-    private void handleClientHighlight(IMultiController controller, boolean isFlipped) {
-        if (!controller.self().allowFlip()) {
-            MultiblockState multiblockState = controller.getMultiblockState();
-            PatternError error = multiblockState.error;
-            if (error != null) {
-                highlightError(error);
-            }
-        } else {
-            BlockPattern pattern = controller.getPattern();
-            List<PatternError> errors = check(controller, pattern, isFlipped);
-            for (PatternError error : errors) {
-                highlightError(error);
-            }
-        }
-    }
-
-    // 仅在客户端执行高亮
-    private void highlightError(PatternError error) {
-        if (error.getPos() != null && error.getWorld() != null) {
-            HighlightHandler.highlight(
-                    error.getPos(),
-                    error.getWorld().dimension(),
-                    System.currentTimeMillis() + 10000,
-                    ColorData.RED
-            );
-        }
-    }
 
     private void handleUnformedController(Player player, IMultiController controller, boolean isFlipped) {
         if (!controller.self().allowFlip()) {
             MultiblockState multiblockState = controller.getMultiblockState();
+            if (multiblockState == null) {
+                return;
+            }
             PatternError error = multiblockState.error;
             if (error != null) {
-                showError(player, error, isFlipped);
+                showError(player, error, isFlipped, controller.self().getPos(), controller.self().getLevel());
             }
         } else {
             detectPatternErrors(player, controller, isFlipped);
@@ -152,7 +126,7 @@ public class TestingTerminalBehavior implements IInteractionItem {
         BlockPattern pattern = controller.getPattern();
         List<PatternError> errors = check(controller, pattern, isFlipped);
         for (int i = 0; i < errors.size(); i++) {
-            showError(player, errors.get(i), isFlipped);
+            showError(player, errors.get(i), isFlipped, null, null);
         }
     }
 
@@ -194,24 +168,30 @@ public class TestingTerminalBehavior implements IInteractionItem {
         }
     }
 
-    private void showError(Player player, PatternError error, boolean flip) {
+    private void showError(Player player, PatternError error, boolean flip, BlockPos fallbackPos, Level fallbackWorld) {
         if (error instanceof PatternStringError) {
             player.sendSystemMessage(((PatternStringError) error).getErrorInfo());
             return;
         }
-        HighlightHandler.highlight(error.getPos(), error.getWorld().dimension(), System.currentTimeMillis() + 10000,
-                ColorData.RED);
-        List<Component> show = generateErrorMessages(error, flip);
+        BlockPos pos = safeGetPos(error, fallbackPos);
+        if (player instanceof ServerPlayer serverPlayer && pos != null) {
+            NETWORK.sendToPlayer(new BlockHighlightPacket(pos), serverPlayer);
+        }
+
+        List<Component> show = generateErrorMessages(error, flip, pos);
         show.forEach(player::sendSystemMessage);
     }
 
-    private List<Component> generateErrorMessages(PatternError error, boolean flip) {
+    private List<Component> generateErrorMessages(PatternError error, boolean flip, BlockPos fallbackPos) {
         List<Component> messages = new ArrayList<>();
-        var pos = error.getPos();
+        BlockPos pos = safeGetPos(error, fallbackPos);
+        if (pos == null) {
+            pos = BlockPos.ZERO;
+        }
 
         final int MAX_ITEMS_PER_CANDIDATE = 5;
         if (error instanceof SinglePredicateError) {
-            List<List<ItemStack>> candidates = error.getCandidates();
+            List<List<ItemStack>> candidates = safeGetCandidates(error);
             messages.add(Component.translatable("ctnh.test_terminal.lack_error",
                     Component.translatable("ctnh.test_terminal.position", pos.getX(), pos.getY(), pos.getZ())));
 
@@ -229,7 +209,7 @@ public class TestingTerminalBehavior implements IInteractionItem {
                                 Component.literal(" - ")
                                         .append(itemName)
                                         .append(Component.translatable("ctnh.test_terminal.error_info",
-                                                error.getErrorInfo())));
+                                    safeGetErrorInfo(error))));
                     }
 
                     // 如果超过5个，显示"..."
@@ -241,7 +221,7 @@ public class TestingTerminalBehavior implements IInteractionItem {
         } else {
             messages.add(Component.translatable("ctnh.test_terminal.wrong_error",
                     Component.translatable("ctnh.test_terminal.position", pos.getX(), pos.getY(), pos.getZ())));
-            List<List<ItemStack>> candidates = error.getCandidates();
+            List<List<ItemStack>> candidates = safeGetCandidates(error);
             // 设置每个候选列表最多显示的项目数
 
             for (List<ItemStack> candidate : candidates) {
@@ -260,5 +240,53 @@ public class TestingTerminalBehavior implements IInteractionItem {
             }
         }
         return messages;
+    }
+
+    private BlockPos safeGetPos(PatternError error, BlockPos fallbackPos) {
+        if (error != null) {
+            try {
+                BlockPos pos = error.getPos();
+                if (pos != null) {
+                    return pos;
+                }
+            } catch (Exception ignored) {}
+        }
+        return fallbackPos;
+    }
+
+    private Level safeGetWorld(PatternError error, Level fallbackWorld) {
+        if (error != null) {
+            try {
+                Level world = error.getWorld();
+                if (world != null) {
+                    return world;
+                }
+            } catch (Exception ignored) {}
+        }
+        return fallbackWorld;
+    }
+
+    private Component safeGetErrorInfo(PatternError error) {
+        if (error != null) {
+            try {
+                Component info = error.getErrorInfo();
+                if (info != null) {
+                    return info;
+                }
+            } catch (Exception ignored) {}
+        }
+        return Component.translatable("ctnh.test_terminal.error_info", Component.literal("unknown"));
+    }
+
+    private List<List<ItemStack>> safeGetCandidates(PatternError error) {
+        if (error != null) {
+            try {
+                List<List<ItemStack>> candidates = error.getCandidates();
+                if (candidates != null) {
+                    return candidates;
+                }
+            } catch (Exception ignored) {}
+        }
+        return List.of();
     }
 }
