@@ -46,10 +46,6 @@ public class TestingTerminalBehavior implements IInteractionItem {
     @EN("Normal Mode is On")
     static Lang normalmode;
 
-    /* ============================= */
-    /*           NBT 状态            */
-    /* ============================= */
-
     private boolean isFlipped(ItemStack stack) {
         CompoundTag tag = stack.getTag();
         return tag != null && tag.getBoolean(TAG_FLIPPED);
@@ -58,10 +54,6 @@ public class TestingTerminalBehavior implements IInteractionItem {
     private void setFlipped(ItemStack stack, boolean flipped) {
         stack.getOrCreateTag().putBoolean(TAG_FLIPPED, flipped);
     }
-
-    /* ============================= */
-    /*         右键空气切换模式       */
-    /* ============================= */
 
     @Override
     public InteractionResultHolder<ItemStack> use(Item item, Level level, Player player, InteractionHand hand) {
@@ -85,10 +77,6 @@ public class TestingTerminalBehavior implements IInteractionItem {
         player.sendSystemMessage(info);
         return InteractionResultHolder.success(stack);
     }
-
-    /* ============================= */
-    /*           右键机器检测         */
-    /* ============================= */
 
     @Override
     public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
@@ -124,20 +112,12 @@ public class TestingTerminalBehavior implements IInteractionItem {
         return InteractionResult.SUCCESS;
     }
 
-    /* ============================= */
-    /*        Controller 获取         */
-    /* ============================= */
-
     private IMultiController getController(Level level, BlockPos pos) {
         if (MetaMachine.getMachine(level, pos) instanceof IMultiController controller) {
             return controller;
         }
         return null;
     }
-
-    /* ============================= */
-    /*        Multiblock 检测         */
-    /* ============================= */
 
     private List<PatternError> detectErrors(IMultiController controller, boolean flipped) {
 
@@ -174,10 +154,6 @@ public class TestingTerminalBehavior implements IInteractionItem {
 
         return errors;
     }
-
-    /* ============================= */
-    /*           错误展示逻辑         */
-    /* ============================= */
 
     private void showError(Player player, PatternError error) {
 
