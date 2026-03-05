@@ -79,6 +79,28 @@ public class CTNHMaterials {
         raw.getProperty(PropertyKey.ORE).setOreByProducts(newOre);
     }
 
+    public static void adjustPreciousAlloy(Material raw) {
+        var property = raw.getProperty(PropertyKey.ORE);
+        var ores = property.getOreByProducts();
+        var newOre = ores.stream().map(ore -> {
+            if (ore.equals(Gold)) {
+                return PreciousAlloy;
+            } else return ore;
+        }).toList();
+        property.getOreByProducts().clear();
+        property.setOreByProducts(newOre);
+        if (property.getSeparatedInto() != null && !property.getSeparatedInto().isEmpty()) {
+            var sep = property.getSeparatedInto();
+            var newSep = sep.stream().map(ore -> {
+                if (ore.equals(Gold)) {
+                    return PreciousAlloy;
+                } else return ore;
+            }).toArray(Material[]::new);
+            property.getSeparatedInto().clear();
+            property.setSeparatedInto(newSep);
+        }
+    }
+
     // Ad Astra
     public static Material Moonstone;
     public static Material Marsstone;
@@ -1063,10 +1085,25 @@ public class CTNHMaterials {
         adjustAluminium(Mica);
         adjustAluminium(Zeolite);
 
+        adjustPreciousAlloy(Bornite);
+        adjustPreciousAlloy(Chalcopyrite);
+        adjustPreciousAlloy(Copper);
+        adjustPreciousAlloy(Iron);
+        adjustPreciousAlloy(Magnetite);
+        adjustPreciousAlloy(Silver);
+        adjustPreciousAlloy(Tarkianite);
+        adjustPreciousAlloy(GraniticMineralSand);
+        adjustPreciousAlloy(VanadiumMagnetite);
+        adjustPreciousAlloy(BasalticMineralSand);
+
+        var oreProp = Ruby.getProperty(PropertyKey.ORE);
+        oreProp.getOreByProducts().clear();
+        oreProp.setOreByProducts(Chromite, GarnetRed, Chromite);
+
         // Oxygen.getProperty(PropertyKey.FLUID).getStorage().store(FluidStorageKeys.GAS, ModFluids.OXYGEN, null);
         //GTFluids.handleNonMaterialFluids(Steel, () -> CMFluids.MOLTEN_STEEL.get().getSource());
 
-        var oreProp = Naquadah.getProperty(PropertyKey.ORE);
+        oreProp = Naquadah.getProperty(PropertyKey.ORE);
         oreProp.getOreByProducts().clear();
         oreProp.setOreByProducts(Sulfur, Barite, NaquadahMaterials.EnrichedNaquadahOxideMixture);
         oreProp.getSeparatedInto().clear();
