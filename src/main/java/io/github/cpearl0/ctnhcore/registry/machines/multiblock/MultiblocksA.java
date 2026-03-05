@@ -1,7 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 
-import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
-import com.mo_guang.ctpp.api.pattern.FactoryStaticBlockPattern;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.machine.multiblock.MultiThreadElectricMachine;
 import io.github.cpearl0.ctnhcore.client.renderer.MartialMoralityEyeRender;
@@ -40,6 +38,7 @@ import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.LargeMinerMachine;
@@ -57,7 +56,7 @@ import net.minecraft.world.phys.AABB;
 
 import com.enderio.base.common.init.EIOBlocks;
 import com.mo_guang.ctpp.api.CTPPPartAbility;
-import com.mo_guang.ctpp.registry.CTPPRecipeModifiers;
+import com.mo_guang.ctpp.api.pattern.FactoryStaticBlockPattern;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
 import com.simibubi.create.foundation.block.CopperBlockSet;

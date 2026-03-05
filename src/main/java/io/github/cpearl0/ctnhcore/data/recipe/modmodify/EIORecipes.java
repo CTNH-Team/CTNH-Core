@@ -1,16 +1,19 @@
 package io.github.cpearl0.ctnhcore.data.recipe.modmodify;
 
-import com.enderio.base.common.init.EIOItems;
-import com.gregtechceu.gtceu.common.data.GTBlocks;
 import io.github.cpearl0.ctnhcore.data.materials.CreateMaterials;
 import io.github.cpearl0.ctnhcore.data.recipe.builder.CTNHRecipeBuilder;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+
+import com.gregtechceu.gtceu.common.data.GTBlocks;
+
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.crafting.Ingredient;
+
+import com.enderio.base.common.init.EIOItems;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -22,6 +25,7 @@ import static io.github.cpearl0.ctnhcore.data.materials.EnderIOMaterials.*;
 import static io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval.removePaths;
 
 public class EIORecipes {
+
     public static void init(Consumer<FinishedRecipe> provider) {
         CTNHRecipeBuilder.of("conductive_alloy_ingot", ALLOY_SMELTER_RECIPES)
                 .inputItems(ingot, Iron, 1)
@@ -41,7 +45,8 @@ public class EIORecipes {
 
         CTNHRecipeBuilder.of("soularium_ingot", ALLOY_SMELTER_RECIPES)
                 .inputItems(ingot, Gold, 1)
-                .inputItems(Ingredient.of(new TagKey<>(Registries.ITEM, ResourceLocation.tryBuild("minecraft", "soul_fire_base_blocks"))))
+                .inputItems(Ingredient.of(
+                        new TagKey<>(Registries.ITEM, ResourceLocation.tryBuild("minecraft", "soul_fire_base_blocks"))))
                 .outputItems(ingot, Soularium, 1)
                 .EUt(120)
                 .duration(60)
@@ -154,8 +159,7 @@ public class EIORecipes {
                 .save(provider);
     }
 
-
-    public static void eioRemovals(){
+    public static void eioRemovals() {
         removePaths.addAll(List.of(
                 "enderio:energy_conduit",
                 "enderio:photovoltaic_composite",
@@ -173,8 +177,6 @@ public class EIORecipes {
                 "enderio:vibrant_capacitor_bank_upgrade",
                 "enderio:basic_capacitor",
                 "enderio:double_layer_capacitor",
-                "enderio:octadic_capacitor"
-        ));
+                "enderio:octadic_capacitor"));
     }
-
 }

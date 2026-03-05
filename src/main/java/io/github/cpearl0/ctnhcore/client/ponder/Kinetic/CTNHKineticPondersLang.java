@@ -6,7 +6,8 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Key;
 
 public class CTNHKineticPondersLang {
-    //在思索内写的Lang转换成字符串时会变成滚木翻译键
+
+    // 在思索内写的Lang转换成字符串时会变成滚木翻译键
     @Key("ponder.big_dam_common.title")
     @CN("三峡大坝")
     @EN("Big Dam")

@@ -70,9 +70,7 @@ public class TestingTerminalBehavior implements IInteractionItem {
         boolean newState = !isFlipped(stack);
         setFlipped(stack, newState);
 
-        Component info = newState
-                ? flipmode.translate().withStyle(ChatFormatting.RED)
-                : normalmode.translate();
+        Component info = newState ? flipmode.translate().withStyle(ChatFormatting.RED) : normalmode.translate();
 
         player.sendSystemMessage(info);
         return InteractionResultHolder.success(stack);
@@ -80,7 +78,6 @@ public class TestingTerminalBehavior implements IInteractionItem {
 
     @Override
     public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
-
         Level level = context.getLevel();
 
         // 客户端不执行任何逻辑
@@ -97,8 +94,7 @@ public class TestingTerminalBehavior implements IInteractionItem {
         if (controller.isFormed()) {
             player.sendSystemMessage(
                     Component.translatable("ctnh.test_terminal.success")
-                            .withStyle(ChatFormatting.GREEN)
-            );
+                            .withStyle(ChatFormatting.GREEN));
             return InteractionResult.SUCCESS;
         }
 
@@ -120,7 +116,6 @@ public class TestingTerminalBehavior implements IInteractionItem {
     }
 
     private List<PatternError> detectErrors(IMultiController controller, boolean flipped) {
-
         List<PatternError> errors = new ArrayList<>();
 
         // 不允许翻转时，直接读取已有状态
@@ -137,9 +132,8 @@ public class TestingTerminalBehavior implements IInteractionItem {
         Level level = controller.self().getLevel();
         Direction up = controller.self().getUpwardsFacing();
 
-        Direction[] facings = controller.hasFrontFacing()
-                ? new Direction[]{controller.self().getFrontFacing()}
-                : new Direction[]{Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST};
+        Direction[] facings = controller.hasFrontFacing() ? new Direction[] { controller.self().getFrontFacing() } :
+                new Direction[] { Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST };
 
         for (Direction facing : facings) {
 
@@ -156,7 +150,6 @@ public class TestingTerminalBehavior implements IInteractionItem {
     }
 
     private void showError(Player player, PatternError error) {
-
         if (error instanceof PatternStringError stringError) {
             player.sendSystemMessage(stringError.getErrorInfo());
             return;
@@ -172,7 +165,6 @@ public class TestingTerminalBehavior implements IInteractionItem {
     }
 
     private List<Component> generateErrorMessages(PatternError error) {
-
         List<Component> messages = new ArrayList<>();
         BlockPos pos = error.getPos() != null ? error.getPos() : BlockPos.ZERO;
 
@@ -183,16 +175,14 @@ public class TestingTerminalBehavior implements IInteractionItem {
             messages.add(Component.translatable(
                     "ctnh.test_terminal.lack_error",
                     Component.translatable("ctnh.test_terminal.position",
-                            pos.getX(), pos.getY(), pos.getZ())
-            ));
+                            pos.getX(), pos.getY(), pos.getZ())));
 
         } else {
 
             messages.add(Component.translatable(
                     "ctnh.test_terminal.wrong_error",
                     Component.translatable("ctnh.test_terminal.position",
-                            pos.getX(), pos.getY(), pos.getZ())
-            ));
+                            pos.getX(), pos.getY(), pos.getZ())));
         }
 
         List<List<ItemStack>> candidates = error.getCandidates();
@@ -203,8 +193,7 @@ public class TestingTerminalBehavior implements IInteractionItem {
                 for (int i = 0; i < Math.min(MAX, list.size()); i++) {
                     messages.add(
                             Component.literal(" - ")
-                                    .append(list.get(i).getHoverName())
-                    );
+                                    .append(list.get(i).getHoverName()));
                 }
 
                 if (list.size() > MAX) {

@@ -6,6 +6,7 @@ import io.github.cpearl0.ctnhcore.common.gui.HugeSlotWidget;
 import io.github.cpearl0.ctnhcore.common.gui.SimpleNumberInputWidget;
 
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.capability.GTCapabilityHelper;
 import com.gregtechceu.gtceu.api.cover.filter.ItemFilter;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.gui.widget.SlotWidget;
@@ -22,7 +23,14 @@ import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import com.gregtechceu.gtceu.common.item.PortableScannerBehavior;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
-import com.gregtechceu.gtceu.api.capability.GTCapabilityHelper;
+
+import com.lowdragmc.lowdraglib.gui.texture.TextTexture;
+import com.lowdragmc.lowdraglib.gui.util.ClickData;
+import com.lowdragmc.lowdraglib.gui.widget.*;
+import com.lowdragmc.lowdraglib.side.item.ItemTransferHelper;
+import com.lowdragmc.lowdraglib.syncdata.ISubscription;
+import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
+import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -37,13 +45,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.BlockHitResult;
 
-import com.lowdragmc.lowdraglib.gui.texture.TextTexture;
-import com.lowdragmc.lowdraglib.gui.util.ClickData;
-import com.lowdragmc.lowdraglib.gui.widget.*;
-import com.lowdragmc.lowdraglib.side.item.ItemTransferHelper;
-import com.lowdragmc.lowdraglib.syncdata.ISubscription;
-import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import com.mojang.blaze3d.MethodsReturnNonnullByDefault;
 import lombok.Getter;
 import lombok.Setter;
@@ -149,8 +150,8 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
         this.minerRadius = getRange(tier);
     }
 
-    public static int getRange(int tier){
-        return 1 << (tier + 3);//  (int) (8 * Math.pow(2, tier));
+    public static int getRange(int tier) {
+        return 1 << (tier + 3);// (int) (8 * Math.pow(2, tier));
     }
 
     @Override
@@ -329,9 +330,9 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
 
         // battery slot (charger)
         var batterySlot = new SlotWidget(this.chargerInventory, 0, 128, 4, true, true)
-            .setBackground(GuiTextures.SLOT, GuiTextures.CHARGER_OVERLAY)
-            .setHoverTooltips(LangHandler.getMultiLang("gtceu.gui.charger_slot.tooltip",
-            GTValues.VNF[getTier()], GTValues.VNF[getTier()]).toArray(Component[]::new));
+                .setBackground(GuiTextures.SLOT, GuiTextures.CHARGER_OVERLAY)
+                .setHoverTooltips(LangHandler.getMultiLang("gtceu.gui.charger_slot.tooltip",
+                        GTValues.VNF[getTier()], GTValues.VNF[getTier()]).toArray(Component[]::new));
         group.addWidget(batterySlot);
 
         // Radius
@@ -351,26 +352,26 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
 
         // reset button
         this.resetButton = new ButtonWidget(9, 54 + BORDER_WIDTH, 18, 16 - BORDER_WIDTH,
-            new TextTexture("")
-                .setSupplier(() -> reset.translate().getString())
-                .setDropShadow(false)
-                .setColor(ChatFormatting.GRAY.getColor()),
-            this::reset);
+                new TextTexture("")
+                        .setSupplier(() -> reset.translate().getString())
+                        .setDropShadow(false)
+                        .setColor(ChatFormatting.GRAY.getColor()),
+                this::reset);
         this.resetButton.setHoverTooltips(reset_tooltip.translate());
         group.addWidget(this.resetButton);
 
         // silk button
         this.silkButton = new ToggleButtonWidget(29, 54 + BORDER_WIDTH, 18, 16 - BORDER_WIDTH,
-            () -> silkLevel != 0, this::setSilkEnabled);
+                () -> silkLevel != 0, this::setSilkEnabled);
         this.silkButton.setTexture(
-            new TextTexture("")
-                .setSupplier(() -> silk.translate().getString())
-                .setDropShadow(false)
-                .setColor(ChatFormatting.GRAY.getColor()),
-            new TextTexture("")
-                .setSupplier(() -> silk.translate().getString())
-                .setDropShadow(false)
-                .setColor(ChatFormatting.GREEN.getColor()));
+                new TextTexture("")
+                        .setSupplier(() -> silk.translate().getString())
+                        .setDropShadow(false)
+                        .setColor(ChatFormatting.GRAY.getColor()),
+                new TextTexture("")
+                        .setSupplier(() -> silk.translate().getString())
+                        .setDropShadow(false)
+                        .setColor(ChatFormatting.GREEN.getColor()));
         this.silkButton.setHoverTooltips(silk_tooltip.translate());
         group.addWidget(this.silkButton);
 

@@ -1,16 +1,20 @@
 package io.github.cpearl0.ctnhcore.client.ponder;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
+
 import com.gregtechceu.gtceu.common.data.GTItems;
+
+import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;
+import net.minecraft.resources.ResourceLocation;
+
 import com.mo_guang.ctpp.registry.CTPPMachines;
 import com.mo_guang.ctpp.registry.CTPPMultiblockMachines;
 import com.simibubi.create.AllBlocks;
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
-import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;
-import net.minecraft.resources.ResourceLocation;
 import org.antarcticgardens.newage.NewAgeBlocks;
 
 public final class CTNHPonderTags {
+
     public static final ResourceLocation Kinetic = ResourceLocation.tryBuild(CTNHCore.MODID, "kinetic");
     public static final ResourceLocation Electric = ResourceLocation.tryBuild(CTNHCore.MODID, "electric");
 

@@ -1,12 +1,12 @@
 package io.github.cpearl0.ctnhcore.registry.worldgen.feature;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
+import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHBiomes;
 
 import com.gregtechceu.gtceu.api.data.worldgen.BiomeWeightModifier;
 import com.gregtechceu.gtceu.api.data.worldgen.modifier.BiomePlacement;
 
-import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
-import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHBiomes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;

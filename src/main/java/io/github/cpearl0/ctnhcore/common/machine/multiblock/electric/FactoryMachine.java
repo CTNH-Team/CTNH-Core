@@ -30,7 +30,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
 
-import com.simibubi.create.AllBlocks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -90,7 +89,7 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
     @Override
     public void onStructureFormed() {
         int[] formedRepetitionCount = getMultiblockState().getMatchContext().get("formedRepetitionCount");
-        if(formedRepetitionCount != null){
+        if (formedRepetitionCount != null) {
             Arrays.stream(formedRepetitionCount).max().ifPresent(m -> length = m);
         }
 

@@ -1,8 +1,9 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+
 import com.gregtechceu.gtceu.api.data.tag.TagUtil;
 
-import io.github.cpearl0.ctnhcore.CTNHCore;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;

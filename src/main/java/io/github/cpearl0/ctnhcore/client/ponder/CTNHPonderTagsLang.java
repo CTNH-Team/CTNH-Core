@@ -6,6 +6,7 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Key;
 
 public class CTNHPonderTagsLang {
+
     @Key("ponder.tag.kinetic")
     @CN("CTNH机械机器")
     @EN("CTNH Kinetic Machine")

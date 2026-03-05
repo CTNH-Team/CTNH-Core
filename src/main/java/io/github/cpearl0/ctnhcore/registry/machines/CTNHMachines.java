@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry.machines;
 
-import com.gregtechceu.gtceu.common.data.models.GTMachineModels;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch.HugeDualHatchPartMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch.HugeItemBusPartMachine;
@@ -23,7 +22,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
-import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
+import com.gregtechceu.gtceu.common.data.models.GTMachineModels;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.*;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -73,7 +72,7 @@ public class CTNHMachines {
     public static MachineDefinition[] HUGE_ITEM_EXPORT_BUS;
     public static MachineDefinition[] HUGE_DUAL_IMPORT_HATCH;
     public static MachineDefinition[] HUGE_DUAL_EXPORT_HATCH;
-        public static MachineDefinition[] DIGITAL_MINER;
+    public static MachineDefinition[] DIGITAL_MINER;
 
     public static void init() {
         GTNNMachines.init();
@@ -104,16 +103,16 @@ public class CTNHMachines {
                 tier -> tier * 32000,
                 EfficiencyGeneratorMachine::rocketEngine,
                 tiersBetween(EV, LuV));
-//        CIRCUIT_BUS = registerTieredMachines("circuit_bus",
-//                CircuitBusPartMachine::new,
-//                (tier, builder) -> builder
-//                        .langValue(GTValues.VNF[tier] + " Circuit Bus")
-//                        .rotationState(RotationState.ALL)
-//                        .abilities(CTNHPartAbility.CIRCUIT)
-//                        .modelProperty(IS_FORMED, false)
-//                        .colorOverlayTieredHullModel(GTCEu.id("block/multiblock/central_monitor"), null, null)
-//                        .register(),
-//                HV);
+        // CIRCUIT_BUS = registerTieredMachines("circuit_bus",
+        // CircuitBusPartMachine::new,
+        // (tier, builder) -> builder
+        // .langValue(GTValues.VNF[tier] + " Circuit Bus")
+        // .rotationState(RotationState.ALL)
+        // .abilities(CTNHPartAbility.CIRCUIT)
+        // .modelProperty(IS_FORMED, false)
+        // .colorOverlayTieredHullModel(GTCEu.id("block/multiblock/central_monitor"), null, null)
+        // .register(),
+        // HV);
         CIRCUIT_BUS = REGISTRATE.machine("circuit_bus", CircuitBusPartMachine::new)
                 .cnLangValue("芯片总线")
                 .tier(HV)
@@ -124,7 +123,7 @@ public class CTNHMachines {
                         GTCEu.id("block/multiblock/central_monitor"))
                 .register();
 
-                DRONEHOLDER = REGISTRATE.machine("drone_holder", DroneHolderMachine::new)
+        DRONEHOLDER = REGISTRATE.machine("drone_holder", DroneHolderMachine::new)
                 .langValue("drone Holder")
                 .tier(UV)
                 .rotationState(RotationState.ALL)
@@ -156,10 +155,12 @@ public class CTNHMachines {
                             long energyPerTick = VEX[tier - 1];
                             tooltip.add(Component.translatable("ctnhcore.machine.digital_miner.tooltip.0"));
                             tooltip.add(Component.translatable("ctnhcore.machine.digital_miner.tooltip.1"));
-                            tooltip.add(Component.translatable("ctnhcore.machine.digital_miner.tooltip.2", energyPerTick, (int) (40 / Math.pow(2, tier))));
+                            tooltip.add(Component.translatable("ctnhcore.machine.digital_miner.tooltip.2",
+                                    energyPerTick, (int) (40 / Math.pow(2, tier))));
                             tooltip.add(Component.translatable("gtceu.universal.tooltip.voltage_in",
                                     FormattingUtil.formatNumbers(VEX[tier]), GTValues.VNF[tier]));
-                            tooltip.add(Component.translatable("gtceu.universal.tooltip.working_area_max", maxArea, maxArea));
+                            tooltip.add(Component.translatable("gtceu.universal.tooltip.working_area_max", maxArea,
+                                    maxArea));
                         })
                         .recipeType(CTNHRecipeTypes.DIGITAL_MINER)
                         .workableTieredHullModel(CTNHCore.id("block/machines/digital_miner"))

@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.provider;
 
 import io.github.cpearl0.ctnhcore.common.tconstruct.material.CTNHConstructMaterials;
-import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+
 import slimeknights.tconstruct.library.client.data.material.AbstractMaterialSpriteProvider;
 import slimeknights.tconstruct.library.client.data.spritetransformer.GreyToColorMapping;
 
@@ -29,6 +29,5 @@ public class CTNHConstructMaterialSpriteProvider extends AbstractMaterialSpriteP
                         .addARGB(216, 0xFF4BD7DD)
                         .addARGB(255, 0xFFA6F4F9)
                         .build());
-
     }
 }

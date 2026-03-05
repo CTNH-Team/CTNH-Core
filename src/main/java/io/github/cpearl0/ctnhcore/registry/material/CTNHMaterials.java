@@ -17,14 +17,11 @@ import com.gregtechceu.gtceu.api.data.chemical.material.registry.MaterialRegistr
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
-import com.gregtechceu.gtceu.common.data.GTFluids;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.item.AetherItems;
 import earth.terrarium.adastra.common.registry.ModBlocks;
-import earth.terrarium.adastra.common.registry.ModFluids;
-import fr.lucreeper74.createmetallurgy.registries.CMFluids;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
 
@@ -1029,7 +1026,6 @@ public class CTNHMaterials {
                 .secondaryColor(0x33342c).iconSet(MaterialIconSet.RADIOACTIVE).appendFlags(GTMaterials.EXT_METAL)
                 .element(CTNHElements.Th232).buildAndRegister();
 
-
         CreateMaterials.init();
 
         AdastraMaterials.init();
@@ -1101,7 +1097,7 @@ public class CTNHMaterials {
         oreProp.setOreByProducts(Chromite, GarnetRed, Chromite);
 
         // Oxygen.getProperty(PropertyKey.FLUID).getStorage().store(FluidStorageKeys.GAS, ModFluids.OXYGEN, null);
-        //GTFluids.handleNonMaterialFluids(Steel, () -> CMFluids.MOLTEN_STEEL.get().getSource());
+        // GTFluids.handleNonMaterialFluids(Steel, () -> CMFluids.MOLTEN_STEEL.get().getSource());
 
         oreProp = Naquadah.getProperty(PropertyKey.ORE);
         oreProp.getOreByProducts().clear();

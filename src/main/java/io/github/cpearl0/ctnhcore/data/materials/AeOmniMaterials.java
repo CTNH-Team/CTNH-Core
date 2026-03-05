@@ -1,12 +1,12 @@
 package io.github.cpearl0.ctnhcore.data.materials;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+
 import com.wintercogs.ae2omnicells.common.init.OCBlocks;
 import com.wintercogs.ae2omnicells.common.init.OCItems;
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.lounode.ae2cs.common.init.AECSItems;
-import vazkii.botania.common.item.BotaniaItems;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.METALLIC;

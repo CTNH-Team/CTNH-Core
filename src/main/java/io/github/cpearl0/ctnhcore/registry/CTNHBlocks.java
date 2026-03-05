@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry;
 
-import com.gregtechceu.gtceu.GTCEu;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBoilerFireboxType;
@@ -12,15 +11,13 @@ import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.ISSFData;
 import io.github.cpearl0.ctnhcore.common.item.TurbineRotorItem;
 
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.api.block.ICoilType;
-import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import com.gregtechceu.gtceu.common.block.BoilerFireboxType;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
-import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.models.GTModels;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 
@@ -35,16 +32,15 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.GlassBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraftforge.client.model.generators.BlockModelBuilder;
 
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
-import net.minecraftforge.client.model.generators.BlockModelBuilder;
 
 import java.util.function.Supplier;
 
 import static com.gregtechceu.gtceu.common.data.GTBlocks.ALL_FIREBOXES;
-import static io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps.ReactorCoreBlock;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialBlocks.generateHyperRotorBlocks;
 
@@ -145,13 +141,16 @@ public class CTNHBlocks {
             "white_elevator_casing", "白色电梯机械方块", CTNHCore.id("block/casings/space_elevator/white_elevator_casing"));
 
     public static final BlockEntry<Block> DARK_BLUE_ELEVATOR_CASING = createCasingBlock(
-            "dark_blue_elevator_casing", "深蓝色电梯机械方块", CTNHCore.id("block/casings/space_elevator/dark_blue_elevator_casing"));
+            "dark_blue_elevator_casing", "深蓝色电梯机械方块",
+            CTNHCore.id("block/casings/space_elevator/dark_blue_elevator_casing"));
 
     public static final BlockEntry<Block> LIGHT_BLUE_ELEVATOR_CASING = createCasingBlock(
-            "light_blue_elevator_casing", "浅蓝色电梯机械方块", CTNHCore.id("block/casings/space_elevator/light_blue_elevator_casing"));
+            "light_blue_elevator_casing", "浅蓝色电梯机械方块",
+            CTNHCore.id("block/casings/space_elevator/light_blue_elevator_casing"));
 
     public static final BlockEntry<Block> DARK_GRAY_ELEVATOR_CASING = createCasingBlock(
-            "dark_gray_elevator_casing", "深灰色电梯机械方块", CTNHCore.id("block/casings/space_elevator/dark_gray_elevator_casing"));
+            "dark_gray_elevator_casing", "深灰色电梯机械方块",
+            CTNHCore.id("block/casings/space_elevator/dark_gray_elevator_casing"));
 
     public static final BlockEntry<Block> CABLE_ELEVATOR_CASING = createCasingBlock(
             "cable_elevator_casing", "电梯线缆机械方块", CTNHCore.id("block/casings/space_elevator/cable_elevator_casing"));
@@ -165,9 +164,10 @@ public class CTNHBlocks {
             .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
             .addLayer(() -> RenderType::cutoutMipped)
             .blockstate((ctx, prov) -> {
-                BlockModelBuilder model = prov.models().withExistingParent(ctx.getName(), GTCEu.id("block/cube/tinted/bottom_top"))
+                BlockModelBuilder model = prov.models()
+                        .withExistingParent(ctx.getName(), GTCEu.id("block/cube/tinted/bottom_top"))
                         .texture("top", CTNHCore.id("block/casings/space_elevator/scifi_elevator_casing_top"))
-                        .texture("bottom",CTNHCore.id("block/casings/space_elevator/scifi_elevator_casing_top"))
+                        .texture("bottom", CTNHCore.id("block/casings/space_elevator/scifi_elevator_casing_top"))
                         .texture("side", CTNHCore.id("block/casings/space_elevator/scifi_elevator_casing"));
                 prov.simpleBlock(ctx.getEntry(), model);
             })
@@ -177,15 +177,17 @@ public class CTNHBlocks {
             .build()
             .register();
 
-    public static final BlockEntry<Block> ELEVATOR_STRUCT_CASING = REGISTRATE.block("elevator_struct_casing", Block::new)
+    public static final BlockEntry<Block> ELEVATOR_STRUCT_CASING = REGISTRATE
+            .block("elevator_struct_casing", Block::new)
             .cnlang("太空电梯结构支持方块")
             .initialProperties(() -> Blocks.IRON_BLOCK)
             .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
             .addLayer(() -> RenderType::cutoutMipped)
             .blockstate((ctx, prov) -> {
-                BlockModelBuilder model = prov.models().withExistingParent(ctx.getName(), GTCEu.id("block/cube/tinted/bottom_top"))
+                BlockModelBuilder model = prov.models()
+                        .withExistingParent(ctx.getName(), GTCEu.id("block/cube/tinted/bottom_top"))
                         .texture("top", CTNHCore.id("block/casings/space_elevator/elevator_struct_casing_top"))
-                        .texture("bottom",CTNHCore.id("block/casings/space_elevator/elevator_struct_casing_top"))
+                        .texture("bottom", CTNHCore.id("block/casings/space_elevator/elevator_struct_casing_top"))
                         .texture("side", CTNHCore.id("block/casings/space_elevator/elevator_struct_casing"));
                 prov.simpleBlock(ctx.getEntry(), model);
             })

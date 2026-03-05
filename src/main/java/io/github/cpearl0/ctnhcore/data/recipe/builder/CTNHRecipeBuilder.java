@@ -1,9 +1,10 @@
 package io.github.cpearl0.ctnhcore.data.recipe.builder;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 
-import io.github.cpearl0.ctnhcore.CTNHCore;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;

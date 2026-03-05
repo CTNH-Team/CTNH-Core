@@ -14,7 +14,6 @@ import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
@@ -26,8 +25,8 @@ import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
-import net.minecraft.network.chat.Component;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -41,8 +40,8 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fluids.FluidStack;
@@ -50,21 +49,19 @@ import net.minecraftforge.fluids.FluidStack;
 import com.enderio.base.common.init.EIOFluids;
 import com.enderio.machines.common.init.MachineBlocks;
 import com.mojang.authlib.GameProfile;
+import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
 
 public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine implements IMachineModifyDrops {
 
@@ -101,7 +98,8 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
         }
     };
 
-    private final LinkedHashMap<ResourceLocation, LootTable> lootTableCache = new LinkedHashMap<>(LOOT_TABLE_CACHE_LIMIT,
+    private final LinkedHashMap<ResourceLocation, LootTable> lootTableCache = new LinkedHashMap<>(
+            LOOT_TABLE_CACHE_LIMIT,
             0.75f, true) {
 
         @Override
@@ -317,8 +315,7 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
         return livingEntity.getMaxHealth();
     }
 
-    private record ItemKey(net.minecraft.world.item.Item item, @Nullable CompoundTag tag) {
-    }
+    private record ItemKey(net.minecraft.world.item.Item item, @Nullable CompoundTag tag) {}
 
     private LootTable getOrCacheLootTable(MinecraftServer server, ResourceLocation tableId) {
         return lootTableCache.computeIfAbsent(tableId, id -> server.getLootData().getLootTable(id));

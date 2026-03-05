@@ -2,13 +2,13 @@ package io.github.cpearl0.ctnhcore.registry.worldgen.feature;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
 
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTFeatures;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.worldgen.feature.configurations.FluidSproutConfiguration;
 
-import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;

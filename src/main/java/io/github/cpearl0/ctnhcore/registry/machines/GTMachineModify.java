@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry.machines;
 
-import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 
@@ -14,6 +13,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifierList;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
+import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.machines.GCYMMachines;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.CleanroomMachine;
 
@@ -87,8 +87,7 @@ public class GTMachineModify {
         modifyGTAssembly();
         modifyCleanroom();
 
-        PRIMITIVE_BLAST_FURNACE.setRecipeTypes(new GTRecipeType[]{GTRecipeTypes.DUMMY_RECIPES});
-
+        PRIMITIVE_BLAST_FURNACE.setRecipeTypes(new GTRecipeType[] { GTRecipeTypes.DUMMY_RECIPES });
     }
 
     @CN({

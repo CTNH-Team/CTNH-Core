@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.common.world;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.common.machine.simple.DigitalMiner;
+
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 
@@ -9,9 +12,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.world.ForgeChunkManager;
 
 import org.jetbrains.annotations.NotNull;
-
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.common.machine.simple.DigitalMiner;
 
 import java.util.ArrayList;
 
@@ -28,7 +28,8 @@ public final class CTNHChunkLoading {
         ForgeChunkManager.setForcedChunkLoadingCallback(CTNHCore.MODID, CTNHChunkLoading::validateTickets);
     }
 
-    private static void validateTickets(@NotNull ServerLevel level, @NotNull ForgeChunkManager.TicketHelper ticketHelper) {
+    private static void validateTickets(@NotNull ServerLevel level,
+                                        @NotNull ForgeChunkManager.TicketHelper ticketHelper) {
         var owners = new ArrayList<>(ticketHelper.getBlockTickets().keySet());
         for (BlockPos ownerPos : owners) {
             if (!shouldKeepBlockOwner(level, ownerPos)) {

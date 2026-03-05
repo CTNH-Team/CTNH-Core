@@ -1,14 +1,14 @@
 package io.github.cpearl0.ctnhcore.client.ponder.Kinetic;
 
-import com.gregtechceu.gtceu.common.data.GTItems;
 import io.github.cpearl0.ctnhcore.client.ponder.CTNHPonderSceneBuilder;
+
+import com.gregtechceu.gtceu.common.data.GTItems;
+
 import net.createmod.catnip.math.Pointing;
 import net.createmod.ponder.api.PonderPalette;
-import net.createmod.ponder.api.element.EntityElement;
 import net.createmod.ponder.api.scene.SceneBuilder;
 import net.createmod.ponder.api.scene.SceneBuildingUtil;
 import net.createmod.ponder.api.scene.Selection;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -17,13 +17,13 @@ import net.minecraft.world.phys.Vec3;
 import static io.github.cpearl0.ctnhcore.client.ponder.Kinetic.CTNHKineticPondersLang.*;
 
 public class Meadow {
-    private Meadow() {
-    }
+
+    private Meadow() {}
 
     public static void Common(SceneBuilder builder, SceneBuildingUtil util) {
         Selection mainBlock = util.select().position(6, 1, 1);
         Vec3 mainBlockVec = util.vector().blockSurface(util.grid().at(6, 1, 1), Direction.WEST);
-        
+
         CTNHPonderSceneBuilder scene = new CTNHPonderSceneBuilder(builder);
         scene.title("meadow_common", MeadowHeader.translate().getContents().toString());
         scene.initAll(util);

@@ -5,12 +5,12 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.common.data.GTRecipeCapabilities;
 
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.items.ItemHandlerHelper;
+
 import io.netty.util.internal.UnstableApi;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
-import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -22,6 +22,7 @@ public class CTNHRecipeHelper extends RecipeHelper {
         return recipe.tickInputs.getOrDefault(GTRecipeCapabilities.CWU, new ArrayList<>())
                 .stream().mapToInt(i -> (int) i.content).sum();
     }
+
     public static ItemStack insertItemToOutput(NotifiableItemStackHandler handler, ItemStack stack, boolean simulate) {
         if (handler == null || stack.isEmpty()) {
             return stack;

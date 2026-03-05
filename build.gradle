@@ -26,6 +26,7 @@ sourceSets {
 
 apply from: "./dependencies.gradle"
 apply from: "./gradle/scripts/repositories.gradle"
+apply from: "./gradle/scripts/spotless.gradle"
 
 
 version = mod_version

@@ -7,10 +7,11 @@ import io.github.cpearl0.ctnhcore.common.tconstruct.materials.CTNHConstructMater
 import io.github.cpearl0.ctnhcore.common.tconstruct.recipes.CTNHConstructCastingRecipes;
 import io.github.cpearl0.ctnhcore.common.tconstruct.recipes.CTNHConstructMeltingRecipes;
 import io.github.cpearl0.ctnhcore.common.tconstruct.recipes.CTNHConstructModifierRecipes;
+import io.github.cpearl0.ctnhcore.common.world.CTNHChunkLoading;
+import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
 import io.github.cpearl0.ctnhcore.data.materials.AeCrystalScienceMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.AeOmniMaterials;
 import io.github.cpearl0.ctnhcore.data.provider.*;
-import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import io.github.cpearl0.ctnhcore.registry.jade.CTNHJadePlugin;
@@ -21,7 +22,11 @@ import io.github.cpearl0.ctnhcore.registry.material.GTMaterialAddon;
 import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundDefinitionsProvider;
 import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundEvents;
 import io.github.cpearl0.ctnhcore.registry.worldgen.*;
-import io.github.cpearl0.ctnhcore.common.world.CTNHChunkLoading;
+import io.github.cpearl0.ctnhcore.registry.worldgen.feature.CTNHConfiguredFeatures;
+import io.github.cpearl0.ctnhcore.registry.worldgen.feature.CTNHPlacements;
+import io.github.cpearl0.ctnhcore.registry.worldgen.sturcture.AstralMeteorStructure;
+import io.github.cpearl0.ctnhcore.registry.worldgen.sturcture.CTNHStructureSets;
+import io.github.cpearl0.ctnhcore.registry.worldgen.sturcture.CTNHStructures;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.DimensionMarker;
@@ -34,11 +39,6 @@ import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
 import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
 import com.gregtechceu.gtceu.data.tags.BiomeTagsLoader;
 
-import io.github.cpearl0.ctnhcore.registry.worldgen.feature.CTNHConfiguredFeatures;
-import io.github.cpearl0.ctnhcore.registry.worldgen.feature.CTNHPlacements;
-import io.github.cpearl0.ctnhcore.registry.worldgen.sturcture.AstralMeteorStructure;
-import io.github.cpearl0.ctnhcore.registry.worldgen.sturcture.CTNHStructureSets;
-import io.github.cpearl0.ctnhcore.registry.worldgen.sturcture.CTNHStructures;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
@@ -53,10 +53,9 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.RegisterEvent;
 
 import appeng.api.features.GridLinkables;
-import net.minecraftforge.registries.RegisterEvent;
-import slimeknights.tconstruct.tools.data.sprite.TinkerMaterialSpriteProvider;
 import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;
 
@@ -167,8 +166,8 @@ public class CommonProxy {
         if (event.includeClient()) {
             generator.addProvider(true,
                     new CTNHSoundDefinitionsProvider(packOutput, CTNHCore.MODID, existingFileHelper));
-//            generator.addProvider(true,
-//                    new CTNHBiomeTagsProvider(packOutput, registries, existingFileHelper));
+            // generator.addProvider(true,
+            // new CTNHBiomeTagsProvider(packOutput, registries, existingFileHelper));
         }
         if (event.includeServer()) {
             var set = Set.of(CTNHCore.MODID);
@@ -197,7 +196,8 @@ public class CommonProxy {
         boolean client = event.includeClient();
 
         CTNHConstructMaterialSpriteProvider materialSprites = new CTNHConstructMaterialSpriteProvider();
-        generator.addProvider(client, new CTNHConstructMaterialRenderInfoProvider(output, materialSprites, existingFileHelper));
+        generator.addProvider(client,
+                new CTNHConstructMaterialRenderInfoProvider(output, materialSprites, existingFileHelper));
 
         Consumer<Function<PackOutput, ? extends DataProvider>> add = (func) -> {
             generator.addProvider(event.includeServer(), func.apply(output));
@@ -207,7 +207,7 @@ public class CommonProxy {
     }
 
     private static void CTNHConstruct(Consumer<Function<PackOutput, ? extends DataProvider>> consumer) {
-        //Tools
+        // Tools
         consumer.accept(CTNHConstructMaterialsDataProvider::new);
         consumer.accept(CTNHConstructMaterialsTraitsProvider::new);
         consumer.accept(CTNHConstructMaterialStatsProvider::new);
@@ -216,12 +216,11 @@ public class CommonProxy {
         // Modifiers
         consumer.accept(CTNHConstructModifierRecipes::new);
         consumer.accept(CTNHConstructModifierProvider::new);
-        //Melting
+        // Melting
         consumer.accept(CTNHConstructMeltingRecipes::new);
-        //Casting
+        // Casting
         consumer.accept(CTNHConstructCastingRecipes::new);
-        //Fuel
+        // Fuel
         consumer.accept(CTNHConstructFuel::new);
-
     }
 }

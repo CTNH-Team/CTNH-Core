@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.data.lang.old;
 
-import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.data.lang.Chinese.OreLang;
 import io.github.cpearl0.ctnhcore.data.lang.Chinese.VeinLang;
 import io.github.cpearl0.ctnhcore.data.machines.GTNNMachines;
@@ -15,7 +14,6 @@ import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksC;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 
 import net.minecraftforge.common.data.LanguageProvider;
@@ -200,8 +198,6 @@ public class ChineseLangHandler {
         provider.add("ctnh.mutliblock.wind_power_array.info.network_dirty", "网络将在%d秒后重建");
 
         provider.add("ctnh.multiblock.slaughter_house.info.mobcount", "怪物种类：%d (%s)");
-
-
 
         provider.add("ctnh.multiblock.naq_reactor.info.temperature", "§c内核温度: %d");
         provider.add("ctnh.multiblock.naq_reactor.info.nickel_consumption", "镍等离子体消耗量: %d");
@@ -755,7 +751,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.machine.naquadah_reactor.tooltip", "效率: %s%%");
         provider.add("ctnh.machine.rocket_engine.tooltip", "效率: %s%%");
 
-        //tconstruct
+        // tconstruct
         provider.add("modifier.ctnhcore.global_traveller", "环球旅行者");
 
         for (var tier : GTMachineUtils.ELECTRIC_TIERS) {
@@ -912,7 +908,7 @@ public class ChineseLangHandler {
         provider.add(MultiblocksB.ARC_GENERATOR_MK1.getBlock(), "超压电弧撕裂者MK1");
         provider.add(MultiblocksB.ARC_GENERATOR_MK2.getBlock(), "过载电弧撕裂者MK1");
         provider.add(MultiblocksB.PLASMA_ALLOY_BLAST_SMELTER.getBlock(), "等离子合金冶炼转底炉");
-//        provider.add(MultiblocksB.UNIVERSE_SINOPE.getBlock(), "中石化宇宙处理中心");
+        // provider.add(MultiblocksB.UNIVERSE_SINOPE.getBlock(), "中石化宇宙处理中心");
         provider.add(MultiblocksB.COMBINED_VAPOR_DEPOSITION_FACILITY.getBlock(), "集成沉积工厂");
         provider.add(MultiblocksB.SPACEPHOTOVOLTAICBASESTATION.getBlock(), "太空光伏基站");
         provider.add(MultiblocksB.LaserSorder.getBlock(), "激光分配仪");
@@ -925,9 +921,9 @@ public class ChineseLangHandler {
         // provider.add(MultiblocksB.HYBRID_POWER_MIXER.getBlock(),"混合动力搅拌机");
 
         provider.add(MultiblocksB.FLUID_DRILLING_INF[UHV].getBlock(), "无尽流体钻机");
-//        provider.add(MultiblocksB.INF_LARGE_MINER.getBlock(), "无尽钻机");
+        // provider.add(MultiblocksB.INF_LARGE_MINER.getBlock(), "无尽钻机");
 
-//        provider.add(MultiblocksB.COMPONENT_ASSEMBLY_LINE_CT.getBlock(), "应力部件装配线");
+        // provider.add(MultiblocksB.COMPONENT_ASSEMBLY_LINE_CT.getBlock(), "应力部件装配线");
 
         provider.add(MultiblocksC.GREENHOUSE.getBlock(), "温室");
 
@@ -1009,7 +1005,6 @@ public class ChineseLangHandler {
         if (material == null) return;
         cnLangProvider.add(material.getUnlocalizedName(), cn);
     }
-
 
     private static void translateOreVein(String key, String cn) {
         cnLangProvider.add(key, cn);

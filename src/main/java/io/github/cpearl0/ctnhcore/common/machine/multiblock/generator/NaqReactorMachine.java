@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
-import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -11,9 +10,9 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 
+import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
@@ -21,7 +20,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;

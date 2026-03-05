@@ -1,11 +1,13 @@
 package io.github.cpearl0.ctnhcore.client.ponder;
 
-import com.simibubi.create.foundation.ponder.CreateSceneBuilder;
 import net.createmod.ponder.api.scene.SceneBuilder;
 import net.createmod.ponder.api.scene.SceneBuildingUtil;
 import net.minecraft.core.Direction;
 
+import com.simibubi.create.foundation.ponder.CreateSceneBuilder;
+
 public class CTNHPonderSceneBuilder extends CreateSceneBuilder {
+
     public CTNHPonderSceneBuilder(SceneBuilder builder) {
         super(builder);
     }

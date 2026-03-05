@@ -6,10 +6,10 @@ import io.github.cpearl0.ctnhcore.common.block.AstralFlowerBlock;
 import io.github.cpearl0.ctnhcore.common.block.AstralGrassBlock;
 import io.github.cpearl0.ctnhcore.common.block.AstralSaplingBlock;
 import io.github.cpearl0.ctnhcore.common.block.AstralTallGrassBlock;
+import io.github.cpearl0.ctnhcore.registry.worldgen.feature.CTNHConfiguredFeatures;
 
 import com.gregtechceu.gtceu.common.data.models.GTModels;
 
-import io.github.cpearl0.ctnhcore.registry.worldgen.feature.CTNHConfiguredFeatures;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;

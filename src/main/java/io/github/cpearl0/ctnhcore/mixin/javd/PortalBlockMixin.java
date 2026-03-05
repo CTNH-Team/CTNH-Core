@@ -1,8 +1,5 @@
 package io.github.cpearl0.ctnhcore.mixin.javd;
 
-import com.unrealdinnerbone.javd.JAVDRegistry;
-import com.unrealdinnerbone.javd.block.PortalBlock;
-import com.unrealdinnerbone.javd.util.TelerportUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -11,12 +8,16 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+
+import com.unrealdinnerbone.javd.JAVDRegistry;
+import com.unrealdinnerbone.javd.block.PortalBlock;
+import com.unrealdinnerbone.javd.util.TelerportUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.injection.Inject;
 
 @Mixin(value = PortalBlock.class)
 public class PortalBlockMixin {
+
     /**
      * @author
      * @reason
@@ -25,7 +26,6 @@ public class PortalBlockMixin {
     public InteractionResult use(BlockState state, Level level, BlockPos pos,
                                  Player player, InteractionHand hand,
                                  BlockHitResult hit) {
-
         // ---- 客户端直接吞掉交互 防止误放 ----
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;
@@ -47,11 +47,9 @@ public class PortalBlockMixin {
             // ---- 其他维度禁止 ----
             player.displayClientMessage(
                     Component.translatable("message.ctnhcore.portal.invalid_dimension"),
-                    true
-            );
+                    true);
         }
 
         return InteractionResult.CONSUME;
     }
-
 }

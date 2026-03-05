@@ -1,7 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-import com.gregtechceu.gtceu.api.transfer.fluid.IFluidHandlerModifiable;
-import com.simibubi.create.foundation.fluid.CombinedTankWrapper;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
@@ -14,19 +12,16 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
-import com.gregtechceu.gtceu.api.registry.GTRegistries;
-import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachine;
+import com.gregtechceu.gtceu.api.transfer.fluid.IFluidHandlerModifiable;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.fluids.FluidStack;
 
+import com.simibubi.create.foundation.fluid.CombinedTankWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMachine {
 
@@ -67,8 +62,8 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
 
         var inputFluids = new CombinedTankWrapper(fluidHandlers);
         int current = 0;
-        for(int i=0; i< inputFluids.getTanks(); i++){
-            if(inputFluids.getFluidInTank(i).getFluid().isSame(CTNHMaterials.Pyrotheum.getFluid()))
+        for (int i = 0; i < inputFluids.getTanks(); i++) {
+            if (inputFluids.getFluidInTank(i).getFluid().isSame(CTNHMaterials.Pyrotheum.getFluid()))
                 current += inputFluids.getFluidInTank(i).getAmount();
 
         }

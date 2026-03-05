@@ -22,7 +22,6 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Suffix;
 
 import static com.gregtechceu.gtceu.common.data.GTItems.attach;
-import static com.gregtechceu.gtceu.common.data.GTItems.modelPredicate;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 @Suffix("tooltip")
@@ -492,8 +491,6 @@ public class CTNHItems {
             .lang("Advanced Computer Chip")
             .properties(properties -> properties.rarity(Rarity.RARE))
             .register();
-
-
 
     public static ItemEntry<ComponentItem> ADVANCED_RAM_WAFER;
     public static ItemEntry<ComponentItem> ADVANCED_RAM_CHIP;

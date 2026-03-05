@@ -1,25 +1,27 @@
 package io.github.cpearl0.ctnhcore.common.tconstruct.recipes;
 
-import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
-import com.jesz.createdieselgenerators.CDGItems;
-import com.mo_guang.ctpp.registry.CTPPMaterials;
-import fr.lucreeper74.createmetallurgy.registries.CMItems;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.utils.CTNHConstructRecipeProvider;
+
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
+
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.fluids.FluidStack;
-import slimeknights.tconstruct.library.recipe.FluidValues;
+
+import com.jesz.createdieselgenerators.CDGItems;
+import com.mo_guang.ctpp.registry.CTPPMaterials;
+import fr.lucreeper74.createmetallurgy.registries.CMItems;
 import slimeknights.tconstruct.library.recipe.casting.ItemCastingRecipeBuilder;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 
-import static com.gregtechceu.gtceu.common.data.GTMaterialBlocks.MATERIAL_BLOCKS;
-import static com.gregtechceu.gtceu.common.data.GTMaterialItems.MATERIAL_ITEMS;
-
 import java.util.Objects;
 import java.util.function.Consumer;
+
+import static com.gregtechceu.gtceu.common.data.GTMaterialBlocks.MATERIAL_BLOCKS;
+import static com.gregtechceu.gtceu.common.data.GTMaterialItems.MATERIAL_ITEMS;
 
 public final class CTNHConstructCastingRecipes extends CTNHConstructRecipeProvider {
 
@@ -43,7 +45,8 @@ public final class CTNHConstructCastingRecipes extends CTNHConstructRecipeProvid
     }
 
     private void andesiteAlloyCasting(Consumer<FinishedRecipe> consumer) {
-        ItemCastingRecipeBuilder.tableRecipe(Objects.requireNonNull(MATERIAL_ITEMS.get(TagPrefix.ingot, CTPPMaterials.AndesiteAlloy)))
+        ItemCastingRecipeBuilder
+                .tableRecipe(Objects.requireNonNull(MATERIAL_ITEMS.get(TagPrefix.ingot, CTPPMaterials.AndesiteAlloy)))
                 .setCast(TinkerSmeltery.ingotCast.get(), false)
                 .setFluidAndTime(new FluidStack(CTPPMaterials.AndesiteAlloy.getFluid(), 144))
                 .save(consumer, location("andesite_alloy_ingot"));
@@ -57,7 +60,8 @@ public final class CTNHConstructCastingRecipes extends CTNHConstructRecipeProvid
     }
 
     private void rubberCasting(Consumer<FinishedRecipe> consumer) {
-        ItemCastingRecipeBuilder.tableRecipe(Objects.requireNonNull(MATERIAL_ITEMS.get(TagPrefix.ingot, GTMaterials.Rubber)))
+        ItemCastingRecipeBuilder
+                .tableRecipe(Objects.requireNonNull(MATERIAL_ITEMS.get(TagPrefix.ingot, GTMaterials.Rubber)))
                 .setCast(TinkerSmeltery.ingotCast.get(), false)
                 .setFluidAndTime(new FluidStack(GTMaterials.Rubber.getFluid(), 144))
                 .save(consumer, location("rubber_ingot"));
@@ -73,21 +77,25 @@ public final class CTNHConstructCastingRecipes extends CTNHConstructRecipeProvid
     }
 
     private void snowSteelCasting(Consumer<FinishedRecipe> consumer) {
-        ItemCastingRecipeBuilder.tableRecipe(Objects.requireNonNull(MATERIAL_ITEMS.get(TagPrefix.ingot, CTNHMaterials.SNOW_STEEL)))
+        ItemCastingRecipeBuilder
+                .tableRecipe(Objects.requireNonNull(MATERIAL_ITEMS.get(TagPrefix.ingot, CTNHMaterials.SNOW_STEEL)))
                 .setCast(TinkerSmeltery.ingotCast.get(), false)
                 .setFluidAndTime(new FluidStack(CTNHMaterials.SNOW_STEEL.getFluid(), 144))
                 .save(consumer, location("snow_steel_ingot"));
-        ItemCastingRecipeBuilder.basinRecipe(Objects.requireNonNull(MATERIAL_BLOCKS.get(TagPrefix.block, CTNHMaterials.SNOW_STEEL)))
+        ItemCastingRecipeBuilder
+                .basinRecipe(Objects.requireNonNull(MATERIAL_BLOCKS.get(TagPrefix.block, CTNHMaterials.SNOW_STEEL)))
                 .setFluidAndTime(new FluidStack(CTNHMaterials.SNOW_STEEL.getFluid(), 1296))
                 .save(consumer, location("snow_steel_block"));
     }
 
     private void wroughtIronCasting(Consumer<FinishedRecipe> consumer) {
-        ItemCastingRecipeBuilder.tableRecipe(Objects.requireNonNull(MATERIAL_ITEMS.get(TagPrefix.ingot, GTMaterials.WroughtIron)))
+        ItemCastingRecipeBuilder
+                .tableRecipe(Objects.requireNonNull(MATERIAL_ITEMS.get(TagPrefix.ingot, GTMaterials.WroughtIron)))
                 .setCast(TinkerSmeltery.ingotCast.get(), false)
                 .setFluidAndTime(new FluidStack(GTMaterials.WroughtIron.getFluid(), 144))
                 .save(consumer, location("wrought_iron_ingot"));
-        ItemCastingRecipeBuilder.basinRecipe(Objects.requireNonNull(MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.WroughtIron)))
+        ItemCastingRecipeBuilder
+                .basinRecipe(Objects.requireNonNull(MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.WroughtIron)))
                 .setFluidAndTime(new FluidStack(GTMaterials.WroughtIron.getFluid(), 144 * 9))
                 .save(consumer, location("wrought_iron_block"));
     }

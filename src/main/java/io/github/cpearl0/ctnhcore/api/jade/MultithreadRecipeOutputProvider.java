@@ -3,7 +3,6 @@ package io.github.cpearl0.ctnhcore.api.jade;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.recipe.multithread.MultiThreadRecipeLogic;
 
-import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.capability.GTCapabilityHelper;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
@@ -18,8 +17,8 @@ import com.gregtechceu.gtceu.integration.jade.GTElementHelper;
 import com.gregtechceu.gtceu.integration.jade.provider.CapabilityBlockProvider;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
-import net.minecraft.Util;
 import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -31,25 +30,22 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentUtils;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-
-import snownee.jade.api.BlockAccessor;
-import snownee.jade.api.ITooltip;
-import snownee.jade.api.config.IPluginConfig;
-import snownee.jade.api.fluid.JadeFluidObject;
-import snownee.jade.api.ui.IElementHelper;
-import snownee.jade.api.ui.BoxStyle;
-import snownee.jade.util.FluidTextHelper;
 
 import com.google.gson.JsonObject;
 import com.mojang.serialization.JsonOps;
 import org.jetbrains.annotations.Nullable;
+import snownee.jade.api.BlockAccessor;
+import snownee.jade.api.ITooltip;
+import snownee.jade.api.config.IPluginConfig;
+import snownee.jade.api.fluid.JadeFluidObject;
+import snownee.jade.api.ui.BoxStyle;
+import snownee.jade.api.ui.IElementHelper;
+import snownee.jade.util.FluidTextHelper;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
@@ -191,7 +187,8 @@ public class MultithreadRecipeOutputProvider extends CapabilityBlockProvider<Rec
             if (!t.getBoolean("Active")) continue;
 
             int index = t.getInt("Index");
-            Component indexComponent = Component.literal(String.valueOf(index + 1)).withStyle(ChatFormatting.DARK_PURPLE);
+            Component indexComponent = Component.literal(String.valueOf(index + 1))
+                    .withStyle(ChatFormatting.DARK_PURPLE);
             tooltip.add(recipe_output.translate(indexComponent).withStyle(ChatFormatting.GRAY));
 
             int currentProgress = t.getInt("Progress");

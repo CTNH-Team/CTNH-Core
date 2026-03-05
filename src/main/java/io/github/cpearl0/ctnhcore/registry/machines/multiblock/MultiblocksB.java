@@ -7,12 +7,10 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.Arc_Genera
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.Arc_Reactor;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.NanoscaleTriboelectricGenerator;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotoVoltaicDroneStation;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.Hybrid_Power_Mixer;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
-import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 import io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils;
 
@@ -28,7 +26,6 @@ import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.AssemblyLineMachine;
-import com.gregtechceu.gtceu.common.machine.multiblock.electric.LargeMinerMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.generator.LargeTurbineMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
@@ -36,10 +33,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import com.mo_guang.ctpp.CTPP;
-import com.mo_guang.ctpp.api.CTPPPartAbility;
-import com.simibubi.create.AllBlocks;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;

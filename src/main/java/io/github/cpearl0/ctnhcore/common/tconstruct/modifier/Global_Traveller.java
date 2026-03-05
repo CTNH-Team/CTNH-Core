@@ -1,8 +1,8 @@
-//“This mod contains code derived from ‘TinkersCalibration’ by Jamesdsj. The original code is licensed under LGPL 2.1.”
+// “This mod contains code derived from ‘TinkersCalibration’ by Jamesdsj. The original code is licensed under LGPL 2.1.”
 package io.github.cpearl0.ctnhcore.common.tconstruct.modifier;
 
-import com.google.common.base.MoreObjects;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -22,9 +22,10 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
+
+import com.google.common.base.MoreObjects;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.common.TinkerTags;
-import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.hook.behavior.ProcessLootModifierHook;
@@ -39,16 +40,18 @@ import slimeknights.tconstruct.library.tools.nbt.ModDataNBT;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.*;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 @Domain(
         value = "modifier",
-        root = "ctnhcore"
-)
-public class Global_Traveller extends NoLevelsModifier implements TooltipModifierHook, BlockInteractionModifierHook, ProcessLootModifierHook {
+        root = "ctnhcore")
+public class Global_Traveller extends NoLevelsModifier
+                              implements TooltipModifierHook, BlockInteractionModifierHook, ProcessLootModifierHook {
+
     @Key("flavor")
     @EN("Travel the world.")
     @CN("全世界折返。")
@@ -103,11 +106,14 @@ public class Global_Traveller extends NoLevelsModifier implements TooltipModifie
     }
 
     @Override
-    public @NotNull InteractionResult afterBlockUse(IToolStackView tool, ModifierEntry modifier, UseOnContext context, InteractionSource source) {
+    public @NotNull InteractionResult afterBlockUse(IToolStackView tool, ModifierEntry modifier, UseOnContext context,
+                                                    InteractionSource source) {
         boolean isRanged = tool.hasTag(TinkerTags.Items.RANGED);
-        boolean isCorrectClick = (isRanged && source == InteractionSource.LEFT_CLICK) || (!isRanged && source == InteractionSource.RIGHT_CLICK);
+        boolean isCorrectClick = (isRanged && source == InteractionSource.LEFT_CLICK) ||
+                (!isRanged && source == InteractionSource.RIGHT_CLICK);
 
-        if (isCorrectClick && tool.getCurrentDurability() >= 10 && context.getPlayer() != null && context.getPlayer().isCrouching()) {
+        if (isCorrectClick && tool.getCurrentDurability() >= 10 && context.getPlayer() != null &&
+                context.getPlayer().isCrouching()) {
             Player player = context.getPlayer();
             if (!player.getCommandSenderWorld().isClientSide) {
                 Level world = context.getLevel();
@@ -115,26 +121,34 @@ public class Global_Traveller extends NoLevelsModifier implements TooltipModifie
                 BlockEntity block = world.getBlockEntity(pos);
                 if (block != null && block.getCapability(ITEM_HANDLER_CAPABILITY).isPresent()) {
                     ModDataNBT persistentData = tool.getPersistentData();
-                    if (persistentData.contains(X, 3) && persistentData.contains(Y, 3) && persistentData.contains(Z, 3) && persistentData.contains(WORLD, 8)) {
-                        if (persistentData.getInt(X) == pos.getX() && persistentData.getInt(Y) == pos.getY() && persistentData.getInt(Z) == pos.getZ() && persistentData.getString(WORLD).equals(world.dimension().location().getPath())) {
+                    if (persistentData.contains(X, 3) && persistentData.contains(Y, 3) &&
+                            persistentData.contains(Z, 3) && persistentData.contains(WORLD, 8)) {
+                        if (persistentData.getInt(X) == pos.getX() && persistentData.getInt(Y) == pos.getY() &&
+                                persistentData.getInt(Z) == pos.getZ() &&
+                                persistentData.getString(WORLD).equals(world.dimension().location().getPath())) {
                             persistentData.remove(X);
                             persistentData.remove(Y);
                             persistentData.remove(Z);
                             persistentData.remove(WORLD);
-                            player.displayClientMessage(global_unlink.translate(pos.toShortString(), world.dimension().location().getPath()), true);
+                            player.displayClientMessage(global_unlink.translate(pos.toShortString(),
+                                    world.dimension().location().getPath()), true);
                         } else {
                             persistentData.putInt(X, pos.getX());
                             persistentData.putInt(Y, pos.getY());
                             persistentData.putInt(Z, pos.getZ());
                             persistentData.putString(WORLD, world.dimension().location().getPath());
-                            player.displayClientMessage(global_link.translate(pos.toShortString(), world.dimension().location().getPath()), true);
+                            player.displayClientMessage(
+                                    global_link.translate(pos.toShortString(), world.dimension().location().getPath()),
+                                    true);
                         }
                     } else {
                         persistentData.putInt(X, pos.getX());
                         persistentData.putInt(Y, pos.getY());
                         persistentData.putInt(Z, pos.getZ());
                         persistentData.putString(WORLD, world.dimension().location().getPath());
-                        player.displayClientMessage(global_link.translate(pos.toShortString(), world.dimension().location().getPath()), true);
+                        player.displayClientMessage(
+                                global_link.translate(pos.toShortString(), world.dimension().location().getPath()),
+                                true);
                     }
                     player.getCooldowns().addCooldown(tool.getItem(), 40);
                     ToolDamageUtil.damageAnimated(tool, 5, player);
@@ -147,11 +161,14 @@ public class Global_Traveller extends NoLevelsModifier implements TooltipModifie
     }
 
     @Override
-    public void processLoot(IToolStackView tool, ModifierEntry modifier, List<ItemStack> generatedLoot, LootContext context) {
+    public void processLoot(IToolStackView tool, ModifierEntry modifier, List<ItemStack> generatedLoot,
+                            LootContext context) {
         ModDataNBT persistentData = tool.getPersistentData();
-        if (persistentData.contains(X, 3) && persistentData.contains(Y, 3) && persistentData.contains(Z, 3) && persistentData.contains(WORLD, 8)) {
+        if (persistentData.contains(X, 3) && persistentData.contains(Y, 3) && persistentData.contains(Z, 3) &&
+                persistentData.contains(WORLD, 8)) {
             BlockPos pos = new BlockPos(persistentData.getInt(X), persistentData.getInt(Y), persistentData.getInt(Z));
-            ServerLevel level = context.getLevel().getServer().getLevel(ResourceKey.create(Registries.DIMENSION, ResourceLocation.tryParse(persistentData.getString(WORLD))));
+            ServerLevel level = context.getLevel().getServer().getLevel(ResourceKey.create(Registries.DIMENSION,
+                    ResourceLocation.tryParse(persistentData.getString(WORLD))));
             if (level != null) {
                 BlockEntity block = level.getBlockEntity(pos);
                 if (block != null) {
@@ -167,44 +184,48 @@ public class Global_Traveller extends NoLevelsModifier implements TooltipModifie
                 }
             }
         }
-
     }
 
     @Override
-    public void addTooltip(IToolStackView tool, ModifierEntry modifier, @Nullable Player player, List<Component> tooltip, slimeknights.mantle.client.TooltipKey tooltipKey, TooltipFlag tooltipFlag) {
+    public void addTooltip(IToolStackView tool, ModifierEntry modifier, @Nullable Player player,
+                           List<Component> tooltip, slimeknights.mantle.client.TooltipKey tooltipKey,
+                           TooltipFlag tooltipFlag) {
         ModDataNBT persistentData = tool.getPersistentData();
         if (player != null) {
             if (persistentData.contains(X, 3) && persistentData.contains(Y, 3) && persistentData.contains(Z, 3)) {
-                BlockPos pos = new BlockPos(persistentData.getInt(X), persistentData.getInt(Y), persistentData.getInt(Z));
+                BlockPos pos = new BlockPos(persistentData.getInt(X), persistentData.getInt(Y),
+                        persistentData.getInt(Z));
                 Level world = player.getCommandSenderWorld();
 
-                tooltip.add(Component.literal(MoreObjects.toStringHelper("").add("X", pos.getX()).add(" Y", pos.getY()).add(" Z", pos.getZ()).toString())
+                tooltip.add(Component
+                        .literal(MoreObjects.toStringHelper("").add("X", pos.getX()).add(" Y", pos.getY())
+                                .add(" Z", pos.getZ()).toString())
                         .append(" ")
                         .append(persistentData.getString(WORLD))
                         .append(" ")
                         .append(global_pos.translate())
                         .withStyle(style -> style.withColor(TextColor.fromRgb(0xE29AEC))));
 
-                if(world.dimension().location().getPath().equals(persistentData.getString(WORLD))) {
+                if (world.dimension().location().getPath().equals(persistentData.getString(WORLD))) {
                     BlockEntity block = world.getBlockEntity(pos);
                     if (block != null) {
                         if (block.getCapability(ITEM_HANDLER_CAPABILITY).isPresent()) {
-                            tooltip.add(global_valid.translate().withStyle(style -> style.withColor(TextColor.fromRgb(0xE29AEC))));
+                            tooltip.add(global_valid.translate()
+                                    .withStyle(style -> style.withColor(TextColor.fromRgb(0xE29AEC))));
+                        } else {
+                            tooltip.add(global_invalid.translate()
+                                    .withStyle(style -> style.withColor(TextColor.fromRgb(0xE29AEC))));
                         }
-                        else {
-                            tooltip.add(global_invalid.translate().withStyle(style -> style.withColor(TextColor.fromRgb(0xE29AEC))));
-                        }
+                    } else {
+                        tooltip.add(global_invalid.translate()
+                                .withStyle(style -> style.withColor(TextColor.fromRgb(0xE29AEC))));
                     }
-                    else {
-                        tooltip.add(global_invalid.translate().withStyle(style -> style.withColor(TextColor.fromRgb(0xE29AEC))));
-                    }
-                }
-                else {
-                    tooltip.add(global_different_dimension.translate().withStyle(style -> style.withColor(TextColor.fromRgb(0xE29AEC))));
+                } else {
+                    tooltip.add(global_different_dimension.translate()
+                            .withStyle(style -> style.withColor(TextColor.fromRgb(0xE29AEC))));
 
                 }
-            }
-            else {
+            } else {
                 tooltip.add(global_none.translate().withStyle(style -> style.withColor(TextColor.fromRgb(0xE29AEC))));
             }
         }

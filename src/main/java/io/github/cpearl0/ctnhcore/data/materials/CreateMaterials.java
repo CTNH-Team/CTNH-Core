@@ -26,9 +26,7 @@ public class CreateMaterials {
     public static Material VERIDIUM_SLURRY;
     // public static Material MAGNETO_RESONATIC;
 
-
     public static void init() {
-
         RefinedRadiance = REGISTRATE.material(CTNHCore.id("refined_radiance"))
                 .cnlang("光辉石")
                 .ingot()
@@ -116,7 +114,5 @@ public class CreateMaterials {
         // .iconSet(MAGNETIC)
         // .components(Zanite, 1, Ambrosium, 1, Skyjade, 1, CUBIC_ZIRCONIA, 1, MagneticSteel, 1)
         // .buildAndRegister();
-
-
     }
 }

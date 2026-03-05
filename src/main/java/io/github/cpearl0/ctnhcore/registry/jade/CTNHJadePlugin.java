@@ -37,7 +37,7 @@ public class CTNHJadePlugin {
                 BlockEntity.class,
                 1250,
                 "thread_status_component");
-        
+
         JadePriorityManager.registerBlockComponent(
                 new MultithreadRecipeOutputProvider(),
                 Block.class,
