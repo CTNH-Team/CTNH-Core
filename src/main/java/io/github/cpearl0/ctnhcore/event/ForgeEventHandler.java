@@ -1,16 +1,12 @@
 package io.github.cpearl0.ctnhcore.event;
 
-import com.gregtechceu.gtceu.GTCEu;
-import com.moguang.ctnhbio.CTNHBio;
-import com.moguang.ctnhmana.CTNHMana;
-import dev.latvian.mods.kubejs.KubeJS;
 import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.capability.EIOCapacitorProvider;
-import io.github.cpearl0.ctnhcore.data.recipe.CTNHCraftingComponents;
 import io.github.cpearl0.ctnhcore.integration.legendary.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTRecipes;
 import com.gregtechceu.gtceu.data.pack.GTDynamicDataPack;
@@ -33,16 +29,17 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import com.mojang.brigadier.CommandDispatcher;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.MissingMappingsEvent;
+
+import com.moguang.ctnhbio.CTNHBio;
+import com.moguang.ctnhmana.CTNHMana;
+import com.mojang.brigadier.CommandDispatcher;
+import dev.latvian.mods.kubejs.KubeJS;
 import tech.luckyblock.mcmod.ctnhenergy.CTNHEnergy;
 
 import java.util.List;
 import java.util.Set;
-
-import static io.github.cpearl0.ctnhcore.CTNHCore.LOGGER;
 
 @Mod.EventBusSubscriber(modid = CTNHCore.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeEventHandler {
@@ -105,29 +102,25 @@ public class ForgeEventHandler {
     public static void attachItemStack(AttachCapabilitiesEvent<ItemStack> event) {
         var stack = event.getObject();
         Integer base = EIOCapacitorProvider.getCapacitorBaseMap().get(stack.getItem());
-        if(base != null){
+        if (base != null) {
             event.addCapability(CTNHCore.id("eio_capacitor"), new EIOCapacitorProvider(base));
         }
     }
 
     @SubscribeEvent
     public static void remapIds(MissingMappingsEvent event) {
-        if(CTNHConfig.INSTANCE.migration.migrationMode){
+        if (CTNHConfig.INSTANCE.migration.migrationMode) {
             remapUnsafe(event);
         }
     }
 
-    @SuppressWarnings({"unchecked", "rawtypes"})
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     private static <T> void remapUnsafe(MissingMappingsEvent event) {
+        IForgeRegistry<T> registry = (IForgeRegistry<T>) event.getRegistry();
 
-        IForgeRegistry<T> registry =
-                (IForgeRegistry<T>) event.getRegistry();
+        ResourceKey<? extends Registry<T>> key = (ResourceKey<? extends Registry<T>>) event.getKey();
 
-        ResourceKey<? extends Registry<T>> key =
-                (ResourceKey<? extends Registry<T>>) event.getKey();
-
-        List<MissingMappingsEvent.Mapping<T>> mappings =
-                event.getAllMappings(key);
+        List<MissingMappingsEvent.Mapping<T>> mappings = event.getAllMappings(key);
 
         Set<String> namespaces = Set.of(
                 CTNHCore.MODID,
@@ -135,8 +128,7 @@ public class ForgeEventHandler {
                 CTNHBio.MODID,
                 CTNHEnergy.MODID,
                 GTCEu.MOD_ID,
-                KubeJS.MOD_ID
-        );
+                KubeJS.MOD_ID);
 
         for (MissingMappingsEvent.Mapping<T> mapping : mappings) {
 

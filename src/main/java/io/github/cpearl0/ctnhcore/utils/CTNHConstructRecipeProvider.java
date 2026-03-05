@@ -1,13 +1,16 @@
 package io.github.cpearl0.ctnhcore.utils;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
+
 import slimeknights.mantle.recipe.data.IRecipeHelper;
 
 public abstract class CTNHConstructRecipeProvider extends RecipeProvider implements IConditionBuilder, IRecipeHelper {
+
     public CTNHConstructRecipeProvider(PackOutput output) {
         super(output);
     }

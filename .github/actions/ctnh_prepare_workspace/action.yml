@@ -72,6 +72,15 @@ inputs:
     required: false
     default: dev
 
+  gtm_repository:
+    description: GTM repository.
+    required: false
+    default: CTNH-Team/GregTech-Modern
+  gtm_ref:
+    description: GTM ref.
+    required: false
+    default: dev
+
 runs:
   using: composite
   steps:
@@ -143,6 +152,15 @@ runs:
         repository: ${{ inputs.ctpp_repository }}
         ref: ${{ inputs.ctpp_ref }}
         path: CTNH-Modules/modules/CTPP
+
+    - name: Checkout GTM
+      if: ${{ inputs.module_name != 'GregTech-Modern' }}
+      uses: actions/checkout@v4
+      with:
+        token: ${{ inputs.token }}
+        repository: ${{ inputs.gtm_repository }}
+        ref: ${{ inputs.gtm_ref }}
+        path: CTNH-Modules/modules/GregTech-Modern
 
     - name: Setup Java 17
       uses: actions/setup-java@v4

@@ -17,14 +17,11 @@ import com.gregtechceu.gtceu.api.data.chemical.material.registry.MaterialRegistr
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
-import com.gregtechceu.gtceu.common.data.GTFluids;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.item.AetherItems;
 import earth.terrarium.adastra.common.registry.ModBlocks;
-import earth.terrarium.adastra.common.registry.ModFluids;
-import fr.lucreeper74.createmetallurgy.registries.CMFluids;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
 
@@ -77,6 +74,28 @@ public class CTNHMaterials {
         }).toList();
         raw.getProperty(PropertyKey.ORE).getOreByProducts().clear();
         raw.getProperty(PropertyKey.ORE).setOreByProducts(newOre);
+    }
+
+    public static void adjustPreciousAlloy(Material raw) {
+        var property = raw.getProperty(PropertyKey.ORE);
+        var ores = property.getOreByProducts();
+        var newOre = ores.stream().map(ore -> {
+            if (ore.equals(Gold)) {
+                return PreciousAlloy;
+            } else return ore;
+        }).toList();
+        property.getOreByProducts().clear();
+        property.setOreByProducts(newOre);
+        if (property.getSeparatedInto() != null && !property.getSeparatedInto().isEmpty()) {
+            var sep = property.getSeparatedInto();
+            var newSep = sep.stream().map(ore -> {
+                if (ore.equals(Gold)) {
+                    return PreciousAlloy;
+                } else return ore;
+            }).toArray(Material[]::new);
+            property.getSeparatedInto().clear();
+            property.setSeparatedInto(newSep);
+        }
     }
 
     // Ad Astra
@@ -1007,7 +1026,6 @@ public class CTNHMaterials {
                 .secondaryColor(0x33342c).iconSet(MaterialIconSet.RADIOACTIVE).appendFlags(GTMaterials.EXT_METAL)
                 .element(CTNHElements.Th232).buildAndRegister();
 
-
         CreateMaterials.init();
 
         AdastraMaterials.init();
@@ -1063,10 +1081,25 @@ public class CTNHMaterials {
         adjustAluminium(Mica);
         adjustAluminium(Zeolite);
 
-        // Oxygen.getProperty(PropertyKey.FLUID).getStorage().store(FluidStorageKeys.GAS, ModFluids.OXYGEN, null);
-        //GTFluids.handleNonMaterialFluids(Steel, () -> CMFluids.MOLTEN_STEEL.get().getSource());
+        adjustPreciousAlloy(Bornite);
+        adjustPreciousAlloy(Chalcopyrite);
+        adjustPreciousAlloy(Copper);
+        adjustPreciousAlloy(Iron);
+        adjustPreciousAlloy(Magnetite);
+        adjustPreciousAlloy(Silver);
+        adjustPreciousAlloy(Tarkianite);
+        adjustPreciousAlloy(GraniticMineralSand);
+        adjustPreciousAlloy(VanadiumMagnetite);
+        adjustPreciousAlloy(BasalticMineralSand);
 
-        var oreProp = Naquadah.getProperty(PropertyKey.ORE);
+        var oreProp = Ruby.getProperty(PropertyKey.ORE);
+        oreProp.getOreByProducts().clear();
+        oreProp.setOreByProducts(Chromite, GarnetRed, Chromite);
+
+        // Oxygen.getProperty(PropertyKey.FLUID).getStorage().store(FluidStorageKeys.GAS, ModFluids.OXYGEN, null);
+        // GTFluids.handleNonMaterialFluids(Steel, () -> CMFluids.MOLTEN_STEEL.get().getSource());
+
+        oreProp = Naquadah.getProperty(PropertyKey.ORE);
         oreProp.getOreByProducts().clear();
         oreProp.setOreByProducts(Sulfur, Barite, NaquadahMaterials.EnrichedNaquadahOxideMixture);
         oreProp.getSeparatedInto().clear();

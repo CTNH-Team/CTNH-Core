@@ -218,12 +218,12 @@ public class HugeDualHatchPartMachine extends HugeItemBusPartMachine {
             for (int x = 0; x < fluidCols; x++) {
                 if (fluidIndex < fluidTankCount) {
                     container.addWidget(new TankWidget(
-                        tank.getStorages()[fluidIndex],
-                        4 + x * 18,
-                        4 + itemRows * 18 + y * 18,
-                        true,
-                        io.support(IO.IN))
-                        .setBackground(GuiTextures.FLUID_SLOT));
+                            tank.getStorages()[fluidIndex],
+                            4 + x * 18,
+                            4 + itemRows * 18 + y * 18,
+                            true,
+                            io.support(IO.IN))
+                            .setBackground(GuiTextures.FLUID_SLOT));
                     fluidIndex++;
                 }
             }

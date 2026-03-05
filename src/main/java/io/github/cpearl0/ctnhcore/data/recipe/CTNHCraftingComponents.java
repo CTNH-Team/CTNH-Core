@@ -1,11 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.data.recipe.CraftingComponent;
-import com.moguang.ctnhbio.registry.CBItems;
-import com.moguang.ctnhmana.registry.CMItems;
-import net.minecraft.world.item.Item;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,11 +10,12 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 public class CTNHCraftingComponents {
+
     public static final Map<Integer, Material> GT_SUPERCONDUCTING_MATERIAL = new HashMap<>();
 
     public static CraftingComponent CTNH_SUPERCONDUCTING_MATERIAL;
 
-    public static void init(){
+    public static void init() {
         GT_SUPERCONDUCTING_MATERIAL.put(LV, ManganesePhosphide);
         GT_SUPERCONDUCTING_MATERIAL.put(MV, MagnesiumDiboride);
         GT_SUPERCONDUCTING_MATERIAL.put(HV, MercuryBariumCalciumCuprate);
@@ -28,8 +25,5 @@ public class CTNHCraftingComponents {
         GT_SUPERCONDUCTING_MATERIAL.put(ZPM, UraniumRhodiumDinaquadide);
         GT_SUPERCONDUCTING_MATERIAL.put(UV, EnrichedNaquadahTriniumEuropiumDuranide);
         GT_SUPERCONDUCTING_MATERIAL.put(UHV, RutheniumTriniumAmericiumNeutronate);
-
-
-
     }
 }

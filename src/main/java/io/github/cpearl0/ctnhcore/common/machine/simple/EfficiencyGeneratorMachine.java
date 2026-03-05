@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.simple;
 
-import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
+import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.SimpleGeneratorMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
@@ -10,7 +10,6 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
-
 import org.jetbrains.annotations.NotNull;
 
 public class EfficiencyGeneratorMachine extends SimpleGeneratorMachine {

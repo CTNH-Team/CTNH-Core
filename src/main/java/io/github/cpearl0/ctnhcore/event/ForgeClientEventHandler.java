@@ -1,9 +1,9 @@
 package io.github.cpearl0.ctnhcore.event;
 
-import com.gregtechceu.gtceu.api.GTValues;
-import com.unrealdinnerbone.javd.JAVDRegistry;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.utils.emi.TooltipBakeQueue;
+
+import com.gregtechceu.gtceu.api.GTValues;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
@@ -11,6 +11,7 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import com.unrealdinnerbone.javd.JAVDRegistry;
 import dev.emi.emi.search.EmiSearch;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
@@ -18,7 +19,6 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
 
 import java.util.Arrays;
-import java.util.List;
 
 @Prefix("tooltip")
 @Mod.EventBusSubscriber(modid = CTNHCore.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
@@ -55,10 +55,9 @@ public class ForgeClientEventHandler {
     })
     static Lang[] void_feature;
 
-
     @SubscribeEvent
     public static void onItemTooltip(ItemTooltipEvent event) {
-        if(event.getItemStack().is(JAVDRegistry.PORTAL_BLOCK_ITEM.get())){
+        if (event.getItemStack().is(JAVDRegistry.PORTAL_BLOCK_ITEM.get())) {
             Arrays.stream(void_feature).forEach(t -> event.getToolTip().add(t.translate()));
         }
     }

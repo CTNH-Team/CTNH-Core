@@ -2,8 +2,8 @@ package io.github.cpearl0.ctnhcore.data.recipe;
 
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.EIORecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.omnicells.QuantumOmniRecipes;
+
 import net.minecraft.resources.ResourceLocation;
-import tech.vixhentx.mcmod.ctnhlib.data.DataFilterPack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,23 +90,23 @@ public class RecipeRemoval {
                 "gtceu:assembly_line/wetware_mainframe_uhv",
                 "gtceu:research_station/1x_gtceu_wetware_processor_assembly",
                 "gtceu:research_station/1x_gtceu_wetware_processor_computer",
-                //原版样板总成
+                // 原版样板总成
                 "gtceu:assembly_line/me_pattern_buffer",
                 "gtceu:assembly_line/me_pattern_buffer_proxy",
-                //ME库存输入总线
+                // ME库存输入总线
                 "gtceu:assembler/me_stocking_import_bus",
-                //变电站
+                // 变电站
                 "gtceu:shaped/power_substation",
-                //氯化铵
+                // 氯化铵
                 "gtceu:extractor/extract_ammonium_chloride_dust",
-                //电解水
+                // 电解水
                 "gtceu:electrolyzer/water_electrolysis",
-                //侯氏制碱法
+                // 侯氏制碱法
                 "gtceu:large_chemical_reactor/sodium_bicarbonate_from_salt",
                 "gtceu:chemical_reactor/sodium_bicarbonate_from_salt",
-                //石墨烯
+                // 石墨烯
                 "gtceu:mixer/graphene",
-                //钨钢
+                // 钨钢
                 "gtceu:mixer/tungstensteel"
 
         ));

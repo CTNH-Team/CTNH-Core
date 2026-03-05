@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.api.recipe;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.machine.feature.IDigitalMiner;
+
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.capability.recipe.*;
 import com.gregtechceu.gtceu.api.cover.filter.ItemFilter;
@@ -17,6 +20,9 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.GTTransferUtils;
 import com.gregtechceu.gtceu.utils.GTUtil;
+
+import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
+import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.commands.arguments.blocks.BlockStateParser;
 import net.minecraft.core.BlockPos;
@@ -38,19 +44,14 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.world.ForgeChunkManager;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.registries.ForgeRegistries;
 
-import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import io.github.cpearl0.ctnhcore.api.machine.feature.IDigitalMiner;
-import io.github.cpearl0.ctnhcore.CTNHCore;
 
 import java.util.*;
 
@@ -131,7 +132,7 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
     boolean workingEnabled;
 
     private static final TagKey<Item> RAW_MATERIALS_TAG = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(),
-        ResourceLocation.fromNamespaceAndPath("forge", "raw_materials"));
+            ResourceLocation.fromNamespaceAndPath("forge", "raw_materials"));
 
     private final Map<net.minecraft.world.level.block.Block, Boolean> rawOreFilterCache = new IdentityHashMap<>();
 
@@ -312,9 +313,11 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
         ChunkPos chunkPos = new ChunkPos(ownerPos);
 
         if (shouldForce) {
-            if (!isChunkForced || forcedChunkX != chunkPos.x || forcedChunkZ != chunkPos.z || forcedChunkOwner == null || !forcedChunkOwner.equals(ownerPos)) {
+            if (!isChunkForced || forcedChunkX != chunkPos.x || forcedChunkZ != chunkPos.z ||
+                    forcedChunkOwner == null || !forcedChunkOwner.equals(ownerPos)) {
                 if (isChunkForced && forcedChunkOwner != null) {
-                    ForgeChunkManager.forceChunk(serverLevel, CTNHCore.MODID, forcedChunkOwner, forcedChunkX, forcedChunkZ, false, true);
+                    ForgeChunkManager.forceChunk(serverLevel, CTNHCore.MODID, forcedChunkOwner, forcedChunkX,
+                            forcedChunkZ, false, true);
                 }
                 ForgeChunkManager.forceChunk(serverLevel, CTNHCore.MODID, ownerPos, chunkPos.x, chunkPos.z, true, true);
                 isChunkForced = true;
@@ -324,7 +327,8 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
             }
         } else if (isChunkForced) {
             if (forcedChunkOwner != null) {
-                ForgeChunkManager.forceChunk(serverLevel, CTNHCore.MODID, forcedChunkOwner, forcedChunkX, forcedChunkZ, false, true);
+                ForgeChunkManager.forceChunk(serverLevel, CTNHCore.MODID, forcedChunkOwner, forcedChunkX, forcedChunkZ,
+                        false, true);
             }
             isChunkForced = false;
             forcedChunkOwner = null;
@@ -430,7 +434,9 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
 
     protected NotifiableAccountedInvWrapper getCachedItemTransfer() {
         if (cachedItemTransfer == null) {
-            cachedItemTransfer = new NotifiableAccountedInvWrapper(machine.getCapabilitiesFlat(IO.OUT, ItemRecipeCapability.CAP).stream().map(IItemHandlerModifiable.class::cast).toArray(IItemHandlerModifiable[]::new));
+            cachedItemTransfer = new NotifiableAccountedInvWrapper(
+                    machine.getCapabilitiesFlat(IO.OUT, ItemRecipeCapability.CAP).stream()
+                            .map(IItemHandlerModifiable.class::cast).toArray(IItemHandlerModifiable[]::new));
         }
         return cachedItemTransfer;
     }
@@ -575,7 +581,8 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
         return blocks;
     }
 
-    private boolean matchesItemFilter(@Nullable ServerLevel serverLevel, @NotNull BlockPos pos, @NotNull BlockState state) {
+    private boolean matchesItemFilter(@Nullable ServerLevel serverLevel, @NotNull BlockPos pos,
+                                      @NotNull BlockState state) {
         if (itemFilter == null) return true;
         if (itemFilter.test(state.getBlock().asItem().getDefaultInstance())) return true;
         if (isSilkTouchMode()) return false;
@@ -583,7 +590,8 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
         return matchesRawOreDrops(serverLevel, pos, state);
     }
 
-    private boolean matchesRawOreDrops(@NotNull ServerLevel serverLevel, @NotNull BlockPos pos, @NotNull BlockState state) {
+    private boolean matchesRawOreDrops(@NotNull ServerLevel serverLevel, @NotNull BlockPos pos,
+                                       @NotNull BlockState state) {
         var block = state.getBlock();
         Boolean cached = rawOreFilterCache.get(block);
         if (cached != null) return cached;

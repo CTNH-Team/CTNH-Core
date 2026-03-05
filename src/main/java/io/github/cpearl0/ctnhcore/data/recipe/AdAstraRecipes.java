@@ -18,7 +18,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 import earth.terrarium.adastra.common.registry.ModItems;
-import tech.vixhentx.mcmod.ctnhlib.data.DataFilterPack;
 
 import java.util.function.Consumer;
 
@@ -249,7 +248,6 @@ public class AdAstraRecipes {
     }
 
     public static void remove(Consumer<ResourceLocation> consumer) {
-
-        //DataFilterPack.removeRecipeType("ad_astra:*");
+        // DataFilterPack.removeRecipeType("ad_astra:*");
     }
 }

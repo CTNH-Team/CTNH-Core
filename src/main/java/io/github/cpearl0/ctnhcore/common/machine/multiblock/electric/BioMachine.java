@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
+
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
@@ -41,7 +42,7 @@ public class BioMachine extends WorkableElectricMultiblockMachine {
     @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
-        if(isFormed){
+        if (isFormed) {
             machineTemperature = getWorldTemperature(Objects.requireNonNull(getLevel()), getPos());
             if (machineTemperature >= 36 && machineTemperature <= 38) {
                 efficiency = 1.2;

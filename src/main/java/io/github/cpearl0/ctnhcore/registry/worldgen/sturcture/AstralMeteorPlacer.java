@@ -1,12 +1,14 @@
 package io.github.cpearl0.ctnhcore.registry.worldgen.sturcture;
 
-import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
-import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
-import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
+
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
+
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.level.LevelAccessor;
@@ -15,9 +17,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.core.BlockPos.MutableBlockPos;
 
 public class AstralMeteorPlacer {
+
     public static void place(LevelAccessor level, BlockPos pos, float radius, BoundingBox boundingBox,
                              RandomSource random) {
         var placer = new AstralMeteorPlacer(level, pos, radius, boundingBox, random);
@@ -39,7 +41,7 @@ public class AstralMeteorPlacer {
     private final BoundingBox boundingBox;
 
     private AstralMeteorPlacer(LevelAccessor level, BlockPos pos, float radius, BoundingBox boundingBox,
-                            RandomSource random) {
+                               RandomSource random) {
         this.boundingBox = boundingBox;
         this.level = level;
         this.random = random;
@@ -139,13 +141,14 @@ public class AstralMeteorPlacer {
         this.placeMeteoriteAstralStone();
 
         // If the meteorite's center is within the BB of the current placer, place the chest
-//        if (boundingBox.isInside(pos)) {
-//            placeChest();
-//        }
+        // if (boundingBox.isInside(pos)) {
+        // placeChest();
+        // }
     }
 
     private void placeChest() {
-        this.putter.put(level, pos, GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, CTNHMaterials.Starmetal).getDefaultState());
+        this.putter.put(level, pos,
+                GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, CTNHMaterials.Starmetal).getDefaultState());
     }
 
     private void placeMeteoriteAstralStone() {
@@ -171,12 +174,13 @@ public class AstralMeteorPlacer {
                             var rand = random.nextDouble();
                             if (rand >= 0.5) {
                                 this.putter.put(level, pos, astralStone);
+                            } else {
+                                this.putter.put(level, pos,
+                                        GTMaterialBlocks.MATERIAL_BLOCKS
+                                                .get(CTNHTagPrefixes.oreAstralStone, CTNHMaterials.Starmetal)
+                                                .getDefaultState());
                             }
-                            else {
-                                this.putter.put(level, pos, GTMaterialBlocks.MATERIAL_BLOCKS.get(CTNHTagPrefixes.oreAstralStone, CTNHMaterials.Starmetal).getDefaultState());
-                            }
-                            if (dx == 0 && dy == 0 && dz == 0) {
-                            }
+                            if (dx == 0 && dy == 0 && dz == 0) {}
                         } else {
                             this.putter.put(level, pos, astralStone);
                         }
@@ -225,8 +229,8 @@ public class AstralMeteorPlacer {
                             final BlockState xf = level.getBlockState(blockPosDown);
                             if (!xf.canBeReplaced()) {
                                 final double extraRange = random.nextDouble() * 0.6;
-                                final double height = this.crater * (extraRange + 0.2)
-                                        - Math.abs(dist - this.crater * 1.7);
+                                final double height = this.crater * (extraRange + 0.2) -
+                                        Math.abs(dist - this.crater * 1.7);
 
                                 if (!xf.isAir() && height > 0 && random.nextDouble() > 0.6) {
                                     randomShit++;
@@ -274,7 +278,8 @@ public class AstralMeteorPlacer {
                     if (j > h + distanceFrom * 0.02) {
                         BlockState currentBlock = level.getBlockState(blockPos);
                         if (currentBlock.getBlock() == Blocks.AIR) {
-                            this.putter.put(level, blockPos, CTNHMaterials.starlight.getFluid().defaultFluidState().createLegacyBlock());
+                            this.putter.put(level, blockPos,
+                                    CTNHMaterials.starlight.getFluid().defaultFluidState().createLegacyBlock());
                         }
 
                     }
@@ -282,6 +287,7 @@ public class AstralMeteorPlacer {
             }
         }
     }
+
     public void getRandomFall(LevelAccessor level, BlockPos pos) {
         var a = random.nextFloat();
         if (a > 0.9f) {
@@ -311,7 +317,9 @@ public class AstralMeteorPlacer {
             this.putter.put(level, pos, Blocks.AIR.defaultBlockState());
         }
     }
+
     public class MeteoriteBlockPutter {
+
         public boolean put(LevelAccessor level, BlockPos pos, BlockState blk) {
             final BlockState original = level.getBlockState(pos);
 
@@ -322,6 +330,5 @@ public class AstralMeteorPlacer {
             level.setBlock(pos, blk, Block.UPDATE_ALL);
             return true;
         }
-
     }
 }

@@ -6,7 +6,8 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Key;
 
 public class CTNHElectricPondersLang {
-    //碳刷思索语言文件
+
+    // 碳刷思索语言文件
     @Key("ponder.carbon_brushes.title")
     @CN("碳刷")
     @EN("Carbon Brushes")

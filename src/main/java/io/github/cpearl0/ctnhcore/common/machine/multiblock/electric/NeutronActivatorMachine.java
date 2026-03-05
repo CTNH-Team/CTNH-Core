@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.HighSpeedPipeBlock;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.NeutronAcceleratorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.NeutronSensorMachine;
 import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
@@ -120,7 +119,7 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine
         }
 
         int[] formedRepetitionCount = getMultiblockState().getMatchContext().get("formedRepetitionCount");
-        if(formedRepetitionCount != null){
+        if (formedRepetitionCount != null) {
             Arrays.stream(formedRepetitionCount).max().ifPresent(m -> height = m);
         }
 

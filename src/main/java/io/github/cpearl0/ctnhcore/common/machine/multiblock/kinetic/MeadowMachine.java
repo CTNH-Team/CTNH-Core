@@ -1,7 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic;
 
-import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
-import com.mo_guang.ctpp.api.CTPPModifierFunction;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.recipe.crossparalell.MergedGTRecipe;
 
@@ -14,6 +12,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.AABB;
 
+import com.mo_guang.ctpp.api.CTPPModifierFunction;
 import com.mo_guang.ctpp.common.data.recipe.builder.CTPPRecipeHelper;
 import com.mo_guang.ctpp.common.machine.multiblock.KineticWorkableMultiblockMachine;
 import com.moguang.ctnhbio.api.machine.trait.NotifiableEntityContainer;
@@ -81,10 +80,10 @@ public class MeadowMachine extends KineticWorkableMultiblockMachine {
 
         @Override
         public boolean checkMatchedRecipeAvailable(GTRecipe match) {
-
             float usingStress = CTPPRecipeHelper.getInputStress(mergedRecipe);
-            int maxParallel = usingStress == 0 ? Integer.MAX_VALUE : (int) (getTotalInputStress() /  usingStress);
-            var modified = CTPPModifierFunction.accurateParallel(getMachine(), match, maxParallel - mergedRecipe.parallels).apply(match);
+            int maxParallel = usingStress == 0 ? Integer.MAX_VALUE : (int) (getTotalInputStress() / usingStress);
+            var modified = CTPPModifierFunction
+                    .accurateParallel(getMachine(), match, maxParallel - mergedRecipe.parallels).apply(match);
 
             if (modified != null) {
                 var recipeMatch = checkRecipe(modified);

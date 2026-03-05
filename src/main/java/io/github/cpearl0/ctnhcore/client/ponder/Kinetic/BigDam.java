@@ -1,9 +1,10 @@
 package io.github.cpearl0.ctnhcore.client.ponder.Kinetic;
 
+import io.github.cpearl0.ctnhcore.client.ponder.CTNHPonderSceneBuilder;
+
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.mo_guang.ctpp.registry.CTPPMultiblockMachines;
-import io.github.cpearl0.ctnhcore.client.ponder.CTNHPonderSceneBuilder;
+
 import net.createmod.catnip.math.Pointing;
 import net.createmod.ponder.api.PonderPalette;
 import net.createmod.ponder.api.element.ElementLink;
@@ -16,14 +17,15 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 
+import com.mo_guang.ctpp.registry.CTPPMultiblockMachines;
+
 import static io.github.cpearl0.ctnhcore.client.ponder.Kinetic.CTNHKineticPondersLang.*;
 
 public class BigDam {
-    private BigDam() {
-    }
+
+    private BigDam() {}
 
     public static void Common(SceneBuilder builder, SceneBuildingUtil util) {
-
         Selection MainBlock = util.select().position(23, 2, 1);
         Vec3 MainBlockTextVec = util.vector().blockSurface(util.grid().at(24, 2, 1), Direction.WEST);
 
@@ -38,9 +40,9 @@ public class BigDam {
                 .pointAt(MainBlockTextVec)
                 .attachKeyFrame();
         scene.world().showSection(MainBlock, Direction.NORTH);
-        scene.world().setBlocks(MainBlock,CTPPMultiblockMachines.BIG_DAM.defaultBlockState(),false);
+        scene.world().setBlocks(MainBlock, CTPPMultiblockMachines.BIG_DAM.defaultBlockState(), false);
         scene.idle(50);
-        scene.overlay().showControls(MainBlockTextVec, Pointing.RIGHT,40)
+        scene.overlay().showControls(MainBlockTextVec, Pointing.RIGHT, 40)
                 .rightClick()
                 .withItem(GTItems.TERMINAL.asStack())
                 .whileSneaking();
@@ -54,7 +56,6 @@ public class BigDam {
     }
 
     public static void Work(SceneBuilder builder, SceneBuildingUtil util) {
-
         Selection IOPortLeft = util.select().fromTo(40, 2, 1, 24, 2, 1);
         Selection IOPortRight = util.select().fromTo(22, 2, 1, 6, 2, 1);
         Selection MainBlock = util.select().position(23, 2, 1);
@@ -124,7 +125,7 @@ public class BigDam {
                 .pointAt(InputHatchVec)
                 .attachKeyFrame();
         scene.overlay().showText(20);
-        scene.world().setKineticSpeed(util.select().position(22,2,1), 512);
+        scene.world().setKineticSpeed(util.select().position(22, 2, 1), 512);
 
         for (ElementLink<WorldSectionElement> link : waterLinks) {
             scene.world().rotateSection(link, 360, 0, 0, 400);
@@ -133,6 +134,4 @@ public class BigDam {
         scene.idle(50);
         scene.markAsFinished();
     }
-
-
 }

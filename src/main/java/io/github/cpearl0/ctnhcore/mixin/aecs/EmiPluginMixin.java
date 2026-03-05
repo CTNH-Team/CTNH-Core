@@ -7,12 +7,11 @@ import org.spongepowered.asm.mixin.Overwrite;
 
 @Mixin(value = EmiPlugin.class, remap = false)
 public class EmiPluginMixin {
+
     /**
      * @author
      * @reason
      */
     @Overwrite
-    public void register(EmiRegistry registry) {
-
-    }
+    public void register(EmiRegistry registry) {}
 }

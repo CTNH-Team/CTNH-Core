@@ -1,7 +1,5 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
-import appeng.core.definitions.AEParts;
-import com.wintercogs.ae2omnicells.common.init.OCItems;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
@@ -27,10 +25,9 @@ import com.moguang.ctnhbio.data.recipe.CBRecipeBuilder;
 import com.moguang.ctnhbio.registry.CBBlocks;
 import com.moguang.ctnhbio.registry.CBItems;
 import com.moguang.ctnhbio.registry.CBMachines;
+import com.wintercogs.ae2omnicells.common.init.OCItems;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEBlocks;
-import tech.luckyblock.mcmod.ctnhenergy.registry.CEItems;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines;
-import tech.vixhentx.mcmod.ctnhlib.registrate.builders.CTNHMaterial;
 
 import java.util.function.Consumer;
 
@@ -60,7 +57,7 @@ public class OrdinaryRecipes {
                 .EUt(108)
                 .save(provider);
 
-// 小化反
+        // 小化反
         CBRecipeBuilder.of(CTNHCore.id("fenton_reagent_mixing"), GTRecipeTypes.CHEMICAL_RECIPES)
                 .circuitMeta(3)
                 .inputFluids(GTMaterials.Iron2Chloride, 1000)
@@ -88,7 +85,7 @@ public class OrdinaryRecipes {
                 .EUt(480)
                 .save(provider);
 
-// 大化反
+        // 大化反
         CBRecipeBuilder.of(CTNHCore.id("fenton_reagent_mixing_large"), GTRecipeTypes.LARGE_CHEMICAL_RECIPES)  // 修改了ID避免重复
                 .inputFluids(GTMaterials.Iron2Chloride, 1000)
                 .inputFluids(HydrogenPeroxide, 1000)
@@ -115,7 +112,7 @@ public class OrdinaryRecipes {
                 .EUt(480)
                 .save(provider);
 
-// 蒸馏室
+        // 蒸馏室
         CBRecipeBuilder.of(CTNHCore.id("coal_tar_distillation"), GTRecipeTypes.DISTILLERY_RECIPES)
                 .circuitMeta(6)
                 .inputFluids(new FluidStack(CoalTar.getFluid(), 1000))
@@ -124,7 +121,7 @@ public class OrdinaryRecipes {
                 .EUt(384)
                 .save(provider);
 
-// 切割机
+        // 切割机
         CBRecipeBuilder.of(CTNHCore.id("advanced_ram_chip_recipe"), GTRecipeTypes.CUTTER_RECIPES)
                 .inputItems(CTNHItems.ADVANCED_RAM_WAFER.get().getDefaultInstance())
                 .inputFluids(Lubricant, 500)
@@ -134,7 +131,7 @@ public class OrdinaryRecipes {
                 .cleanroom(CleanroomType.CLEANROOM)
                 .save(provider);
 
-// 激光蚀刻
+        // 激光蚀刻
         CBRecipeBuilder.of(CTNHCore.id("advanced_ram_wafer_p_recipe"), GTRecipeTypes.LASER_ENGRAVER_RECIPES)
                 .inputItems(PHOSPHORUS_WAFER.get().getDefaultInstance())
                 .notConsumable(lens, CTNHMaterials.EuropiumFluorite)
@@ -171,7 +168,7 @@ public class OrdinaryRecipes {
                 .cleanroom(CleanroomType.CLEANROOM)
                 .save(provider);
 
-// 组装机
+        // 组装机
         CBRecipeBuilder.of(CTNHCore.id("neural_network_casing"), ASSEMBLER_RECIPES)
                 .inputItems(CTNHBlocks.CASING_POLYBENZIMIDAZOLE_PIPE, 1)
                 .inputItems(CustomTags.IV_CIRCUITS, 4)
@@ -196,7 +193,7 @@ public class OrdinaryRecipes {
                 .EUt(30720)
                 .save(provider);
 
-// 以下使用ASSEMBLER_RECIPES.recipeBuilder的配方需要修改
+        // 以下使用ASSEMBLER_RECIPES.recipeBuilder的配方需要修改
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("card_programmed_circuit"))
                 .inputItems(AEItems.BASIC_CARD.asItem(), 1)
                 .inputItems(GTMachines.STAINLESS_STEEL_CRATE, 1)
@@ -463,6 +460,5 @@ public class OrdinaryRecipes {
                 .outputFluids(Hydrogen.getFluid(2000))
                 .outputFluids(Oxygen.getFluid(1000))
                 .duration(750).EUt(VA[LV]).save(provider);
-
     }
 }

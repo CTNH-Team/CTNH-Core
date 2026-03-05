@@ -13,16 +13,20 @@ import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSeriali
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType;
 
 public class AstralMeteorStructurePiece extends StructurePiece {
+
     public static final StructurePieceType TYPE = StructurePieceType.setPieceId(AstralMeteorStructurePiece::new,
             "ctnhastral_meteor");
     public BlockPos center;
     public float radius;
+
     protected AstralMeteorStructurePiece(BlockPos center, float coreRadius) {
         super(TYPE, 0, createBoundingBox(center));
         this.center = center;
         this.radius = coreRadius;
     }
+
     public static void register() {}
+
     private static BoundingBox createBoundingBox(BlockPos origin) {
         // Assume a normal max height of 128 blocks for most biomes,
         // meteors spawned at about y64 are 9x9 chunks large at most.
@@ -42,13 +46,16 @@ public class AstralMeteorStructurePiece extends StructurePiece {
     }
 
     @Override
-    protected void addAdditionalSaveData(StructurePieceSerializationContext structurePieceSerializationContext, CompoundTag tag) {
+    protected void addAdditionalSaveData(StructurePieceSerializationContext structurePieceSerializationContext,
+                                         CompoundTag tag) {
         tag.putLong("center", this.center.asLong());
         tag.putFloat("radius", this.radius);
     }
 
     @Override
-    public void postProcess(WorldGenLevel worldGenLevel, StructureManager structureManager, ChunkGenerator chunkGenerator, RandomSource randomSource, BoundingBox boundingBox, ChunkPos chunkPos, BlockPos blockPos) {
+    public void postProcess(WorldGenLevel worldGenLevel, StructureManager structureManager,
+                            ChunkGenerator chunkGenerator, RandomSource randomSource, BoundingBox boundingBox,
+                            ChunkPos chunkPos, BlockPos blockPos) {
         AstralMeteorPlacer.place(worldGenLevel, center, radius, boundingBox, randomSource);
     }
 }

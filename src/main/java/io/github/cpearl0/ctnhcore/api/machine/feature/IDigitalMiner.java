@@ -1,9 +1,9 @@
 package io.github.cpearl0.ctnhcore.api.machine.feature;
 
+import io.github.cpearl0.ctnhcore.api.recipe.DigitalMinerLogic;
+
 import com.gregtechceu.gtceu.api.machine.feature.IMachineLife;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
-
-import io.github.cpearl0.ctnhcore.api.recipe.DigitalMinerLogic;
 
 public interface IDigitalMiner extends IRecipeLogicMachine, IMachineLife {
 

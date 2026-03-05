@@ -1,5 +1,15 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials;
+import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
+import io.github.cpearl0.ctnhcore.registry.CTNHItems;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
+import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
@@ -11,19 +21,12 @@ import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.data.recipe.CraftingComponent;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
-import com.simibubi.create.AllBlocks;
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials;
-import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
-import io.github.cpearl0.ctnhcore.registry.CTNHItems;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
-import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
-import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
-import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
-import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluids;
+
+import com.simibubi.create.AllBlocks;
 
 import java.util.function.Consumer;
 
@@ -162,7 +165,6 @@ public class MachinesRecipes {
                 .duration(200)
                 .save(provider);
 
-
         registerMachineRecipe(provider, CTNHMachines.PERSONAL_COMPUTER, "PDP",
                 "CAC", "PBP", 'A', HULL, 'C', ROTOR, 'P', CABLE, 'D', CIRCUIT, 'B', SENSOR);
 
@@ -173,8 +175,7 @@ public class MachinesRecipes {
                 "A",
                 "B",
                 'A', MONITOR.get(0),
-                'B', GTBlocks.CASING_STAINLESS_CLEAN.asStack()
-        );
+                'B', GTBlocks.CASING_STAINLESS_CLEAN.asStack());
 
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("astronomy_circuit"))
                 .inputItems(PLASTIC_CIRCUIT_BOARD)
@@ -248,7 +249,5 @@ public class MachinesRecipes {
                 .duration(200)
                 .EUt(VA[HV])
                 .save(provider);
-
-
     }
 }

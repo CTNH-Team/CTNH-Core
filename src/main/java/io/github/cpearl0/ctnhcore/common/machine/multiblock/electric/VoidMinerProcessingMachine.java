@@ -1,8 +1,8 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 
+import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -95,7 +95,6 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
     }
 
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
-
         int temperature = getCurrentTemperature();
         if (fluidCycle == 1) {  // 偶数次使用 Pyrotheum
             int currentFluidAmount = nextPyrotheumAmount;  // 使用更新后的流体量
@@ -186,7 +185,7 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
     }
 
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
-        if (machine instanceof VoidMinerProcessingMachine reactorMachine && ! reactorMachine.isOverheated) {
+        if (machine instanceof VoidMinerProcessingMachine reactorMachine && !reactorMachine.isOverheated) {
 
             int parallelCount = reactorMachine.getParallelCount();
 
@@ -226,7 +225,7 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
             }
             GTRecipe newRecipe = recipe.copy();
             // 修改配方
-            var fluid  = FluidRecipeCapability.CAP.of(GTMaterials.DrillingFluid.getFluid(100000000));
+            var fluid = FluidRecipeCapability.CAP.of(GTMaterials.DrillingFluid.getFluid(100000000));
             if (!itemList.isEmpty()) {
                 newRecipe.inputs.put(FluidRecipeCapability.CAP, List.of(new Content(fluid, 10000, 10000, 0)));
                 newRecipe.outputs.put(ItemRecipeCapability.CAP, itemList);
@@ -282,5 +281,4 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
 
         return blacklist;
     }
-
 }

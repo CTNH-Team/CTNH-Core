@@ -1,12 +1,13 @@
 package io.github.cpearl0.ctnhcore.registry.worldgen.sturcture;
 
-import com.google.common.math.StatsAccumulator;
-import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
+
+import com.google.common.math.StatsAccumulator;
+import com.mojang.serialization.Codec;
 
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ public class AstralMeteorStructure extends Structure {
     public static final Codec<AstralMeteorStructure> CODEC = simpleCodec(AstralMeteorStructure::new);
 
     public static StructureType<AstralMeteorStructure> TYPE;
+
     public AstralMeteorStructure(StructureSettings settings) {
         super(settings);
     }
@@ -25,6 +27,7 @@ public class AstralMeteorStructure extends Structure {
             generatePieces(structurePiecesBuilder, generationContext);
         });
     }
+
     private static void generatePieces(StructurePiecesBuilder piecesBuilder, GenerationContext context) {
         var chunkPos = context.chunkPos();
         var random = context.random();
@@ -71,6 +74,7 @@ public class AstralMeteorStructure extends Structure {
         piecesBuilder.addPiece(
                 new AstralMeteorStructurePiece(actualPos, meteoriteRadius));
     }
+
     public static void init() {
         AstralMeteorStructurePiece.register();
         AstralMeteorStructure.TYPE = StructureType.register("ctnh_meteor", AstralMeteorStructure.CODEC);

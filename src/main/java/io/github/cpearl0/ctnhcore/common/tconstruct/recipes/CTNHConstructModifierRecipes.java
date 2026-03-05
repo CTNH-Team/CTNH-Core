@@ -1,16 +1,17 @@
 package io.github.cpearl0.ctnhcore.common.tconstruct.recipes;
 
-
-//import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
+// import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
+import io.github.cpearl0.ctnhcore.registry.CTNHConstructModifier;
 import io.github.cpearl0.ctnhcore.utils.CTNHConstructRecipeProvider;
+
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
+
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.recipe.modifiers.adding.ModifierRecipeBuilder;
 import slimeknights.tconstruct.library.tools.SlotType;
-import io.github.cpearl0.ctnhcore.registry.CTNHConstructModifier;
 
 import java.util.function.Consumer;
 

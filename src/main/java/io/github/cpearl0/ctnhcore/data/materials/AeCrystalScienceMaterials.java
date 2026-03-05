@@ -1,10 +1,10 @@
 package io.github.cpearl0.ctnhcore.data.materials;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
-import com.wintercogs.ae2omnicells.common.init.OCBlocks;
-import com.wintercogs.ae2omnicells.common.init.OCItems;
-import io.github.cpearl0.ctnhcore.CTNHCore;
+
 import io.github.lounode.ae2cs.common.init.AECSBlocks;
 import io.github.lounode.ae2cs.common.init.AECSItems;
 
@@ -25,7 +25,8 @@ public class AeCrystalScienceMaterials {
         TagPrefix.gem.setIgnored(PURIFIED_RESONATING_CRYSTAL, () -> AECSItems.PURE_RESONATING_CRYSTAL.get().asItem());
         TagPrefix.block.setIgnored(PURIFIED_ENDER_QUARTZ, () -> AECSBlocks.PURE_ENDER_QUARTZ_BLOCK.get().asItem());
         TagPrefix.block.setIgnored(PURIFIED_METEOR_CRYSTAL, () -> AECSBlocks.PURE_METEOR_CRYSTAL_BLOCK.get().asItem());
-        TagPrefix.block.setIgnored(PURIFIED_RESONATING_CRYSTAL, () -> AECSBlocks.PURE_RESONATING_CRYSTAL_BLOCK.get().asItem());
+        TagPrefix.block.setIgnored(PURIFIED_RESONATING_CRYSTAL,
+                () -> AECSBlocks.PURE_RESONATING_CRYSTAL_BLOCK.get().asItem());
         TagPrefix.dust.setIgnored(PURIFIED_RESONATING_CRYSTAL, () -> AECSItems.RESONATING_DUST.get().asItem());
     }
 

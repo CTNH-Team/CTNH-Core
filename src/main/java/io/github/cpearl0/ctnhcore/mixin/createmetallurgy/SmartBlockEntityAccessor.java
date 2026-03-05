@@ -10,6 +10,7 @@ import java.util.Map;
 
 @Mixin(value = SmartBlockEntity.class, remap = false)
 public interface SmartBlockEntityAccessor {
+
     @Accessor
     Map<BehaviourType<?>, BlockEntityBehaviour> getBehaviours();
 }

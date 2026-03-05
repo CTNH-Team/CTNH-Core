@@ -5,9 +5,7 @@ import com.gregtechceu.gtceu.common.data.GTElements;
 
 public class CTNHElements {
 
-    public static void init() {
-
-    }
+    public static void init() {}
 
     public static final Element STARMETAL = new Element(120, 138, -1, null, "starmetal", "St", false);
     public static final Element ADAMANTINE = new Element(119, 134, -1, null, "adamantine", "Ad", false);
