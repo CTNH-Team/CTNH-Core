@@ -10,6 +10,7 @@ import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.registry.EmiRecipes;
 import dev.emi.emi.registry.EmiStackList;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenCustomHashMap;
+import it.unimi.dsi.fastutil.objects.ObjectOpenCustomHashSet;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
@@ -87,7 +88,12 @@ public class FastRecipeManager implements EmiRecipeManager {
             }
 
             // outputs
+            Set<EmiStack> uniqueOutputs = new ObjectOpenCustomHashSet<>(
+                    new EmiStackList.ComparisonHashStrategy());
             for (EmiStack stack : recipe.getOutputs()) {
+                if (!uniqueOutputs.add(stack)) {
+                    continue;
+                }
                 byOutput.computeIfAbsent(stack, s -> new ArrayList<>())
                         .add(recipe);
             }
