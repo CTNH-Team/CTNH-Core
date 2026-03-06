@@ -1,0 +1,31 @@
+{
+  "type": "ad_astra:space_station_recipe",
+  "dimension": "ad_astra:mars_orbit",
+  "ingredients": [
+    {
+      "count": 32,
+      "ingredient": {
+        "tag": "ad_astra:steel_ingots"
+      }
+    },
+    {
+      "count": 64,
+      "ingredient": {
+        "tag": "ad_astra:steel_plates"
+      }
+    },
+    {
+      "count": 32,
+      "ingredient": {
+        "tag": "ad_astra:ostrum_ingots"
+      }
+    },
+    {
+      "count": 32,
+      "ingredient": {
+        "tag": "ad_astra:ostrum_plates"
+      }
+    }
+  ],
+  "structure": "ad_astra:space_station"
+}

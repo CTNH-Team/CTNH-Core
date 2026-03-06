@@ -245,6 +245,19 @@ public class AdAstraRecipes {
                 'E', GTItems.ELECTRIC_MOTOR_HV.asStack(),
                 'F', new MaterialEntry(plateDouble, Aluminium),
                 'G', new MaterialEntry(cableGtDouble, Aluminium));
+        VanillaRecipeHelper.addShapedRecipe(
+                provider, "nasa_workbench", new ItemStack(ModItems.NASA_WORKBENCH.get()),
+                "ABA", "CDC", "BEB",
+                'A', new MaterialEntry(rod, Iron),
+                'B', new MaterialEntry(plate, Steel),
+                'C', new ItemStack(Items.REDSTONE_TORCH),
+                'D', new ItemStack(Items.CRAFTING_TABLE),
+                'E', new MaterialEntry(block, Steel));
+        VanillaRecipeHelper.addShapedRecipe(
+                provider, "launch_pad", new ItemStack(ModItems.LAUNCH_PAD.get()),
+                "ABA", "BAB", "ABA",
+                'A', new MaterialEntry(plate, Steel),
+                'B', new MaterialEntry(rod, Platinum));
     }
 
     public static void remove(Consumer<ResourceLocation> consumer) {
