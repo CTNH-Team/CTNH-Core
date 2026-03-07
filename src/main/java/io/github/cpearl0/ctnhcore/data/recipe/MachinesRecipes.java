@@ -32,6 +32,7 @@ import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
@@ -40,7 +41,7 @@ import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.*;
 import static com.gregtechceu.gtceu.data.recipe.misc.MetaTileEntityLoader.registerMachineRecipe;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR;
-import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.DRONEHOLDER;
+import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.*;
 import static twilightforest.init.TFItems.STEELEAF_INGOT;
 
 public class MachinesRecipes {
@@ -165,17 +166,20 @@ public class MachinesRecipes {
                 .duration(200)
                 .save(provider);
 
-        registerMachineRecipe(provider, CTNHMachines.PERSONAL_COMPUTER, "PDP",
-                "CAC", "PBP", 'A', HULL, 'C', ROTOR, 'P', CABLE, 'D', CIRCUIT, 'B', SENSOR);
+        registerMachineRecipe(provider,
+                CTNHMachines.PERSONAL_COMPUTER,
+                "PDP",
+                "CAC",
+                "PBP",
+                'A', HULL, 'C', ROTOR, 'P', CABLE, 'D', CIRCUIT, 'B', SENSOR);
 
-        VanillaRecipeHelper.addShapedRecipe(
-                provider,
+        VanillaRecipeHelper.addShapedRecipe(provider,
                 CTNHCore.id("circuit_bus"),
-                CTNHMachines.CIRCUIT_BUS.asStack(),
+                CIRCUIT_BUS.asStack(),
                 "A",
                 "B",
                 'A', MONITOR.get(0),
-                'B', GTBlocks.CASING_STAINLESS_CLEAN.asStack());
+                'B', CASING_STAINLESS_CLEAN.asStack());
 
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("astronomy_circuit"))
                 .inputItems(PLASTIC_CIRCUIT_BOARD)

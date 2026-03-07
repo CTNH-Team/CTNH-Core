@@ -1,27 +1,30 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.data.chemical.material.stack.ItemMaterialInfo;
+import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
+import com.gregtechceu.gtceu.api.item.ComponentItem;
+import com.gregtechceu.gtceu.common.item.TooltipBehavior;
+import com.tterrag.registrate.util.entry.ItemEntry;
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import io.github.cpearl0.ctnhcore.common.item.*;
 import io.github.cpearl0.ctnhcore.common.item.debug.ReloadItem;
 import io.github.cpearl0.ctnhcore.data.item.CrystalItems;
 import io.github.cpearl0.ctnhcore.data.materials.ChemicalItems;
-
-import com.gregtechceu.gtceu.api.item.ComponentItem;
-import com.gregtechceu.gtceu.common.item.TooltipBehavior;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
-
-import com.tterrag.registrate.util.entry.ItemEntry;
-import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Suffix;
 
 import static com.gregtechceu.gtceu.common.data.GTItems.attach;
+import static com.gregtechceu.gtceu.common.data.GTItems.materialInfo;
+import static io.github.cpearl0.ctnhcore.data.materials.BedrockMaterials.ADAMANTITE;
+import static io.github.cpearl0.ctnhcore.data.materials.BedrockMaterials.SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 @Suffix("tooltip")
@@ -500,6 +503,14 @@ public class CTNHItems {
     public static ItemEntry<ReloadItem> RELOAD_ITEM = REGISTRATE
             .item("recipe_reload_item", ReloadItem::new)
             .model(NonNullBiConsumer.noop())
+            .register();
+
+    public static ItemEntry<ComponentItem> VOLTAGE_COIL_UHV = REGISTRATE
+            .item("uhv_voltage_coil", ComponentItem::create)
+            .cnlang("极高压线圈")
+            .lang("Ultra High Voltage Coil")
+            .onRegister(materialInfo(new ItemMaterialInfo(new MaterialStack(ADAMANTITE, GTValues.M * 2),
+                    new MaterialStack(SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC, GTValues.M / 2))))
             .register();
 
     public static void init() {
