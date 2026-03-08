@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry.material;
 
+import com.google.gson.JsonObject;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialBuilder;
 import io.github.cpearl0.ctnhcore.data.materials.*;
@@ -1140,6 +1141,29 @@ public class CTNHMaterials {
     public static class MaterialIcons {
 
         public static MaterialIconSet StarsteelIcon = new MaterialIconSet("starsteel", METALLIC);
-        public static MaterialIconSet Neutron = new MaterialIconSet("neutron", DULL);
+
+
+        public static MaterialIconSet Neutron = new MaterialIconSet("neutron", DULL, helo());
+
+        static JsonObject helo(){
+            JsonObject extra = new JsonObject();
+
+            extra.addProperty("loader", "avaritia:halo");
+
+            JsonObject halo = new JsonObject();
+
+            JsonObject textures = new JsonObject();
+            textures.addProperty("halo", "avaritia:misc/halo_noise");
+            extra.add("textures", textures);
+
+            halo.addProperty("texture", "#halo");
+            halo.addProperty("color", -1711276033);
+            halo.addProperty("size", 6);
+            halo.addProperty("pulse", false);
+
+            extra.add("halo", halo);
+
+            return extra;
+        }
     }
 }

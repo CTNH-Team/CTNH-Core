@@ -322,6 +322,14 @@ public class CTNHItems {
                 .properties(p -> new Item.Properties().rarity(Rarity.EPIC))
                 .onRegister(attach(new TooltipBehavior(list -> {})))
                 .register();
+
+        VOLTAGE_COIL_UHV = REGISTRATE
+                .item("uhv_voltage_coil", ComponentItem::create)
+                .cnlang("极高压线圈")
+                .lang("Ultra High Voltage Coil")
+                .onRegister(materialInfo(new ItemMaterialInfo(new MaterialStack(ADAMANTITE, GTValues.M * 2),
+                        new MaterialStack(SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC, GTValues.M / 2))))
+                .register();
     }
 
     public static ItemEntry<Item> GREAT_ASTRONOMY_CIRCUIT_1;
@@ -505,13 +513,7 @@ public class CTNHItems {
             .model(NonNullBiConsumer.noop())
             .register();
 
-    public static ItemEntry<ComponentItem> VOLTAGE_COIL_UHV = REGISTRATE
-            .item("uhv_voltage_coil", ComponentItem::create)
-            .cnlang("极高压线圈")
-            .lang("Ultra High Voltage Coil")
-            .onRegister(materialInfo(new ItemMaterialInfo(new MaterialStack(ADAMANTITE, GTValues.M * 2),
-                    new MaterialStack(SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC, GTValues.M / 2))))
-            .register();
+    public static ItemEntry<ComponentItem> VOLTAGE_COIL_UHV;
 
     public static void init() {
         registerItem();
