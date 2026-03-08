@@ -15,7 +15,7 @@ public class ChainConveyorRidingHandlerMixin {
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/phys/Vec3;length()D")
     )
-    private static double createhangingonthechain$lengthMixin(Vec3 vec3) {
+    private static double ctnhcore$lengthMixin(Vec3 vec3) {
         // 等效于 diff.length() > 8. “5“ 这个数值并非最优值，更小值应该也能起到相似效果.
         return vec3.length() - 5;
     }
