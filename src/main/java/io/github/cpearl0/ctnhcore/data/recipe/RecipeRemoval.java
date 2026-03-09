@@ -107,7 +107,10 @@ public class RecipeRemoval {
                 // 石墨烯
                 "gtceu:mixer/graphene",
                 // 钨钢
-                "gtceu:mixer/tungstensteel"
+                "gtceu:mixer/tungstensteel",
+                // 原版 UHV 动力仓/能源仓
+                "gtceu:assembly_line/dynamo_hatch_uhv",
+                "gtceu:assembly_line/energy_hatch_uhv"
 
         ));
 

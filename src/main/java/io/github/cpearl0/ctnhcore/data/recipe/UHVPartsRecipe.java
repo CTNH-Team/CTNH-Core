@@ -24,7 +24,7 @@ import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 public class UHVPartsRecipe {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("electric_motor_uhv")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("electric_motor_uhv"))
                 .inputItems(rodLong, SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC)
                 .inputItems(rodLong, ADAMANTITE, 4)
                 .inputItems(ring, ADAMANTITE, 4)
@@ -43,7 +43,7 @@ public class UHVPartsRecipe {
                 .duration(600).EUt(200000)
                 .addMaterialInfo(true).save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("electric_pump_uhv")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("electric_pump_uhv"))
                 .inputItems(ELECTRIC_MOTOR_UHV)
                 .inputItems(pipeLargeFluid, Duranium)
                 .inputItems(plate, ADAMANTITE, 2)
@@ -62,7 +62,7 @@ public class UHVPartsRecipe {
                 .duration(600).EUt(200000)
                 .addMaterialInfo(true).save(provider);
 
-        ASSEMBLER_RECIPES.recipeBuilder("fluid_regulator_uhv")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("fluid_regulator_uhv"))
                 .inputItems(ELECTRIC_PUMP_UHV)
                 .inputItems(CustomTags.UHV_CIRCUITS, 2)
                 .circuitMeta(1)
@@ -71,7 +71,7 @@ public class UHVPartsRecipe {
                 .duration(50)
                 .save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("electric_piston_uhv")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("electric_piston_uhv"))
                 .inputItems(ELECTRIC_MOTOR_UHV)
                 .inputItems(plate, ADAMANTITE, 4)
                 .inputItems(ring, ADAMANTITE, 4)
@@ -91,7 +91,7 @@ public class UHVPartsRecipe {
                 .duration(600).EUt(200000)
                 .addMaterialInfo(true).save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("conveyor_module_uhv")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("conveyor_module_uhv"))
                 .inputItems(ELECTRIC_MOTOR_UHV, 2)
                 .inputItems(plate, ADAMANTITE, 2)
                 .inputItems(ring, ADAMANTITE, 4)
@@ -110,7 +110,7 @@ public class UHVPartsRecipe {
                 .duration(600).EUt(200000)
                 .addMaterialInfo(true).save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("robot_arm_uhv")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("robot_arm_uhv"))
                 .inputItems(rodLong, ADAMANTITE, 4)
                 .inputItems(gear, ADAMANTITE)
                 .inputItems(gearSmall, ADAMANTITE, 3)
@@ -131,7 +131,7 @@ public class UHVPartsRecipe {
                 .duration(600).EUt(200000)
                 .addMaterialInfo(true).save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("sensor_uhv")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("sensor_uhv"))
                 .inputItems(frameGt, ADAMANTITE)
                 .inputItems(ELECTRIC_MOTOR_UHV)
                 .inputItems(plate, ADAMANTITE, 4)
@@ -150,7 +150,7 @@ public class UHVPartsRecipe {
                 .duration(600).EUt(100000)
                 .addMaterialInfo(true).save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("emitter_uhv")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("emitter_uhv"))
                 .inputItems(frameGt, ADAMANTITE)
                 .inputItems(ELECTRIC_MOTOR_UHV)
                 .inputItems(rodLong, ADAMANTITE, 4)
@@ -169,7 +169,7 @@ public class UHVPartsRecipe {
                 .duration(600).EUt(100000)
                 .addMaterialInfo(true).save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("field_generator_uhv")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("field_generator_uhv"))
                 .inputItems(frameGt, ADAMANTITE)
                 .inputItems(plate, ADAMANTITE, 6)
                 .inputItems(GRAVI_STAR)
@@ -188,7 +188,7 @@ public class UHVPartsRecipe {
                 .duration(600).EUt(200000)
                 .addMaterialInfo(true).save(provider);
 
-        ASSEMBLER_RECIPES.recipeBuilder("uhv_voltage_coil")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("uhv_voltage_coil"))
                 .inputItems(rod, SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC)
                 .inputItems(wireFine, ADAMANTITE, 16)
                 .outputItems(VOLTAGE_COIL_UHV)
@@ -196,7 +196,7 @@ public class UHVPartsRecipe {
                 .duration(200)
                 .save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("uhv_energy_output_hatch")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("uhv_energy_output_hatch"))
                 .inputItems(HULL[UHV])
                 .inputItems(spring, Europium, 4)
                 .inputItems(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
@@ -211,7 +211,7 @@ public class UHVPartsRecipe {
                         .EUt(VA[UV]))
                 .duration(1000).EUt(VA[UHV]).save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("uhv_energy_input_hatch")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("uhv_energy_input_hatch"))
                 .inputItems(HULL[UHV])
                 .inputItems(cableGtSingle, Europium, 4)
                 .inputItems(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
@@ -219,14 +219,14 @@ public class UHVPartsRecipe {
                 .inputItems(VOLTAGE_COIL_UHV, 2)
                 .inputFluids(SodiumPotassium, 12000)
                 .inputFluids(SolderingAlloy, 40 * L)
-                .outputItems(ENERGY_OUTPUT_HATCH[UHV])
+                .outputItems(ENERGY_INPUT_HATCH[UHV])
                 .stationResearch(b -> b
                         .researchStack(ENERGY_INPUT_HATCH[UV].asStack())
                         .CWUt(128)
                         .EUt(VA[UV]))
                 .duration(1000).EUt(VA[UHV]).save(provider);
 
-        ASSEMBLER_RECIPES.recipeBuilder("abyssalalloy_coil_block")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("abyssalalloy_coil_block"))
                 .inputItems(wireGtDouble, Abyssalalloy, 8)
                 .inputItems(foil, Trinium, 8)
                 .inputFluids(Trinium.getFluid(144))
