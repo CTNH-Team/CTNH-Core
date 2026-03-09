@@ -1,2 +1,1 @@
-apply from: "$rootDir/gradle/scripts/common.gradle"
 apply from: "$projectDir/dependencies.gradle"
