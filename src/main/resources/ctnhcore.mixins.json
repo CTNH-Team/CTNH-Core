@@ -28,6 +28,7 @@
     "emi.EmiSearchMixin",
     "emi.GTRecipeEMICategoryMixin",
     "emi.VanillaPluginMixin",
+    "ftbchunks.HeightUtilsMixin",
     "gtceu.GTBlocksMixin",
     "gtceu.GTRecipeWidgetMixin",
     "gtceu.IFancyUIMachineMixin",
@@ -45,6 +46,7 @@
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MobMixin",
     "mc.MonsterMixin",
+    "mc.TagKeyMixin",
     "mc.WorldLoaderPackConfigMixin",
     "vintageimprovements.LatheRotatingBlockMixin"
   ],

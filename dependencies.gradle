@@ -56,6 +56,8 @@ dependencies {
     modImplementation(ctnh.architecturyapi)
     modImplementation(ctnh.ftblibrary)
     modImplementation(ctnh.ftbultimine)
+    modImplementation(ctnh.ftbteams)
+    modImplementation(ctnh.ftbchunks)
 
     modImplementation(ctnh.patchouli)
     modImplementation(ctnh.botania)
