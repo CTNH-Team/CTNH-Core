@@ -34,14 +34,14 @@ public class UHVPartsRecipe {
                 .inputItems(wireFine, RutheniumTriniumAmericiumNeutronate, 64)
                 .inputItems(cableGtSingle, Europium, 2)
                 .inputFluids(SolderingAlloy, L * 4)
-                .inputFluids(Lubricant, 1000)
+                .inputFluids(Lubricant, 2000)
                 .inputFluids(Neutronium, L * 4)
                 .outputItems(ELECTRIC_MOTOR_UHV)
                 .stationResearch(b -> b
                         .researchStack(ELECTRIC_MOTOR_UV.asStack())
                         .CWUt(32)
                         .EUt(VA[UV]))
-                .duration(600).EUt(200000)
+                .duration(600).EUt(388000)
                 .addMaterialInfo(true).save(provider);
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("electric_pump_uhv"))
@@ -53,14 +53,14 @@ public class UHVPartsRecipe {
                 .inputItems(rotor, Darmstadtium)
                 .inputItems(cableGtSingle, Europium, 2)
                 .inputFluids(SolderingAlloy, L * 4)
-                .inputFluids(Lubricant, 1000)
+                .inputFluids(Lubricant, 2000)
                 .inputFluids(Neutronium, L * 4)
                 .outputItems(ELECTRIC_PUMP_UHV)
                 .stationResearch(b -> b
                         .researchStack(ELECTRIC_PUMP_UV.asStack())
                         .CWUt(32)
                         .EUt(VA[UV]))
-                .duration(600).EUt(200000)
+                .duration(600).EUt(388000)
                 .addMaterialInfo(true).save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("fluid_regulator_uhv"))
@@ -68,7 +68,7 @@ public class UHVPartsRecipe {
                 .inputItems(CustomTags.UHV_CIRCUITS, 2)
                 .circuitMeta(1)
                 .outputItems(FLUID_REGULATOR_UHV)
-                .EUt(VA[UV])
+                .EUt(VA[UHV])
                 .duration(50)
                 .save(provider);
 
@@ -82,14 +82,14 @@ public class UHVPartsRecipe {
                 .inputItems(gearSmall, Darmstadtium, 2)
                 .inputItems(cableGtSingle, Europium, 2)
                 .inputFluids(SolderingAlloy, L * 4)
-                .inputFluids(Lubricant, 1000)
+                .inputFluids(Lubricant, 2000)
                 .inputFluids(Neutronium, L * 4)
                 .outputItems(ELECTRIC_PISTON_UHV)
                 .stationResearch(b -> b
                         .researchStack(ELECTRIC_PISTON_UV.asStack())
                         .CWUt(32)
                         .EUt(VA[UV]))
-                .duration(600).EUt(200000)
+                .duration(600).EUt(388000)
                 .addMaterialInfo(true).save(provider);
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("conveyor_module_uhv"))
@@ -100,7 +100,7 @@ public class UHVPartsRecipe {
                 .inputItems(screw, ADAMANTITE, 4)
                 .inputItems(cableGtSingle, Europium, 2)
                 .inputFluids(SolderingAlloy, L * 4)
-                .inputFluids(Lubricant, 1000)
+                .inputFluids(Lubricant, 2000)
                 .inputFluids(StyreneButadieneRubber, L * 24)
                 .inputFluids(Neutronium, L * 4)
                 .outputItems(CONVEYOR_MODULE_UHV)
@@ -108,7 +108,7 @@ public class UHVPartsRecipe {
                         .researchStack(CONVEYOR_MODULE_UV.asStack())
                         .CWUt(32)
                         .EUt(VA[UV]))
-                .duration(600).EUt(200000)
+                .duration(600).EUt(388000)
                 .addMaterialInfo(true).save(provider);
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("robot_arm_uhv"))
@@ -122,21 +122,21 @@ public class UHVPartsRecipe {
                 .inputItems(CustomTags.ZPM_CIRCUITS, 4)
                 .inputItems(cableGtSingle, Europium, 4)
                 .inputFluids(SolderingAlloy, L * 12)
-                .inputFluids(Lubricant, 1000)
+                .inputFluids(Lubricant, 2000)
                 .inputFluids(Neutronium, L * 4)
                 .outputItems(ROBOT_ARM_UHV)
                 .stationResearch(b -> b
                         .researchStack(ROBOT_ARM_UV.asStack())
                         .CWUt(32)
                         .EUt(VA[UV]))
-                .duration(600).EUt(200000)
+                .duration(600).EUt(388000)
                 .addMaterialInfo(true).save(provider);
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("sensor_uhv"))
                 .inputItems(frameGt, ADAMANTITE)
                 .inputItems(ELECTRIC_MOTOR_UHV)
                 .inputItems(plate, ADAMANTITE, 4)
-                // .inputItems(GTCraftingComponents.SENSOR_EMITTER_GEM.get(UHV)) // 目前尚无
+                .inputItems(GTCraftingComponents.SENSOR_EMITTER_GEM.get(UV)) // 目前尚无 UHV
                 .inputItems(CustomTags.UHV_CIRCUITS, 2)
                 .inputItems(foil, Tritanium, 64)
                 .inputItems(foil, Tritanium, 32)
@@ -146,16 +146,16 @@ public class UHVPartsRecipe {
                 .outputItems(SENSOR_UHV)
                 .stationResearch(b -> b
                         .researchStack(SENSOR_UV.asStack())
-                        .CWUt(32)
+                        .CWUt(64)
                         .EUt(VA[UV]))
-                .duration(600).EUt(100000)
+                .duration(600).EUt(388000)
                 .addMaterialInfo(true).save(provider);
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("emitter_uhv"))
                 .inputItems(frameGt, ADAMANTITE)
                 .inputItems(ELECTRIC_MOTOR_UHV)
                 .inputItems(rodLong, ADAMANTITE, 4)
-                // .inputItems(GTCraftingComponents.SENSOR_EMITTER_GEM.get(UHV)) // 目前尚无
+                .inputItems(GTCraftingComponents.SENSOR_EMITTER_GEM.get(UV)) // 目前尚无 UHV
                 .inputItems(CustomTags.UHV_CIRCUITS, 2)
                 .inputItems(foil, Tritanium, 64)
                 .inputItems(foil, Tritanium, 32)
@@ -165,9 +165,9 @@ public class UHVPartsRecipe {
                 .outputItems(EMITTER_UHV)
                 .stationResearch(b -> b
                         .researchStack(EMITTER_UV.asStack())
-                        .CWUt(32)
+                        .CWUt(64)
                         .EUt(VA[UV]))
-                .duration(600).EUt(100000)
+                .duration(600).EUt(388000)
                 .addMaterialInfo(true).save(provider);
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("field_generator_uhv"))
@@ -184,16 +184,17 @@ public class UHVPartsRecipe {
                 .outputItems(FIELD_GENERATOR_UHV)
                 .stationResearch(b -> b
                         .researchStack(FIELD_GENERATOR_UV.asStack())
-                        .CWUt(32)
+                        .CWUt(64)
                         .EUt(VA[UV]))
-                .duration(600).EUt(200000)
+                .duration(600).EUt(388000)
                 .addMaterialInfo(true).save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("uhv_voltage_coil"))
                 .inputItems(rod, SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC)
                 .inputItems(wireFine, ADAMANTITE, 16)
                 .outputItems(VOLTAGE_COIL_UHV)
-                .EUt(VA[UV])
+                .circuitMeta(1)
+                .EUt(VA[UHV])
                 .duration(200)
                 .save(provider);
 
@@ -232,7 +233,7 @@ public class UHVPartsRecipe {
                 .inputItems(foil, Trinium, 8)
                 .inputFluids(Trinium.getFluid(144))
                 .outputItems(COIL_ABYSALALLOY)
-                .EUt(VA[UV])
+                .EUt(VA[UHV])
                 .duration(900)
                 .save(provider);
 
