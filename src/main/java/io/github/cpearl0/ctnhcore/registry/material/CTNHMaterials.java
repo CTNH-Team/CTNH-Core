@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry.material;
 
-import com.google.gson.JsonObject;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialBuilder;
 import io.github.cpearl0.ctnhcore.data.materials.*;
@@ -22,6 +21,7 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.item.AetherItems;
+import com.google.gson.JsonObject;
 import earth.terrarium.adastra.common.registry.ModBlocks;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
@@ -1142,10 +1142,9 @@ public class CTNHMaterials {
 
         public static MaterialIconSet StarsteelIcon = new MaterialIconSet("starsteel", METALLIC);
 
-
         public static MaterialIconSet Neutron = new MaterialIconSet("neutron", DULL, helo());
 
-        static JsonObject helo(){
+        static JsonObject helo() {
             JsonObject extra = new JsonObject();
 
             extra.addProperty("loader", "avaritia:halo");

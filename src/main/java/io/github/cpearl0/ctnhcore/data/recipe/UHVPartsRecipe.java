@@ -1,9 +1,11 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.GTCraftingComponents;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
-import io.github.cpearl0.ctnhcore.CTNHCore;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
@@ -22,7 +24,6 @@ import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 public class UHVPartsRecipe {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-
         ASSEMBLY_LINE_RECIPES.recipeBuilder("electric_motor_uhv")
                 .inputItems(rodLong, SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC)
                 .inputItems(rodLong, ADAMANTITE, 4)
@@ -188,7 +189,7 @@ public class UHVPartsRecipe {
                 .addMaterialInfo(true).save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder("uhv_voltage_coil")
-                .inputItems(rod,SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC)
+                .inputItems(rod, SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC)
                 .inputItems(wireFine, ADAMANTITE, 16)
                 .outputItems(VOLTAGE_COIL_UHV)
                 .EUt(VA[UV])
@@ -226,7 +227,7 @@ public class UHVPartsRecipe {
                 .duration(1000).EUt(VA[UHV]).save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder("abyssalalloy_coil_block")
-                .inputItems(wireGtDouble,Abyssalalloy, 8)
+                .inputItems(wireGtDouble, Abyssalalloy, 8)
                 .inputItems(foil, Trinium, 8)
                 .inputFluids(Trinium.getFluid(144))
                 .outputItems(COIL_ABYSALALLOY)
@@ -242,7 +243,6 @@ public class UHVPartsRecipe {
                 "ABA",
                 'A', gearSmall, Neutronium,
                 'B', gear, ADAMANTITE,
-                'C', HULL[UHV].asStack()
-        );
+                'C', HULL[UHV].asStack());
     }
 }

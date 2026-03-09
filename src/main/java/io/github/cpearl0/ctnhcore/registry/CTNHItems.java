@@ -1,21 +1,24 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import io.github.cpearl0.ctnhcore.common.item.*;
+import io.github.cpearl0.ctnhcore.common.item.debug.ReloadItem;
+import io.github.cpearl0.ctnhcore.data.item.CrystalItems;
+import io.github.cpearl0.ctnhcore.data.materials.ChemicalItems;
+
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.ItemMaterialInfo;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.common.item.TooltipBehavior;
-import com.tterrag.registrate.util.entry.ItemEntry;
-import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
-import io.github.cpearl0.ctnhcore.common.item.*;
-import io.github.cpearl0.ctnhcore.common.item.debug.ReloadItem;
-import io.github.cpearl0.ctnhcore.data.item.CrystalItems;
-import io.github.cpearl0.ctnhcore.data.materials.ChemicalItems;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
+
+import com.tterrag.registrate.util.entry.ItemEntry;
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
@@ -328,7 +331,8 @@ public class CTNHItems {
                 .cnlang("极高压线圈")
                 .lang("Ultra High Voltage Coil")
                 .onRegister(materialInfo(new ItemMaterialInfo(new MaterialStack(ADAMANTITE, GTValues.M * 2),
-                        new MaterialStack(SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC, GTValues.M / 2))))
+                        new MaterialStack(SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC,
+                                GTValues.M / 2))))
                 .register();
     }
 
