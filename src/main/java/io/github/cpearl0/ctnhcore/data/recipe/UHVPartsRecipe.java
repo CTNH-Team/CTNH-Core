@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.data.recipe;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 
+import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.GTCraftingComponents;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
@@ -48,7 +49,7 @@ public class UHVPartsRecipe {
                 .inputItems(pipeLargeFluid, Duranium)
                 .inputItems(plate, ADAMANTITE, 2)
                 .inputItems(screw, ADAMANTITE, 8)
-                .inputItems(ring, Silicon, 16)
+                .inputItems(ring, SiliconeRubber, 16)
                 .inputItems(rotor, Darmstadtium)
                 .inputItems(cableGtSingle, Europium, 2)
                 .inputFluids(SolderingAlloy, L * 4)
@@ -135,7 +136,7 @@ public class UHVPartsRecipe {
                 .inputItems(frameGt, ADAMANTITE)
                 .inputItems(ELECTRIC_MOTOR_UHV)
                 .inputItems(plate, ADAMANTITE, 4)
-                .inputItems(GTCraftingComponents.SENSOR_EMITTER_GEM.get(UHV))
+                // .inputItems(GTCraftingComponents.SENSOR_EMITTER_GEM.get(UHV)) // 目前尚无
                 .inputItems(CustomTags.UHV_CIRCUITS, 2)
                 .inputItems(foil, Tritanium, 64)
                 .inputItems(foil, Tritanium, 32)
@@ -154,7 +155,7 @@ public class UHVPartsRecipe {
                 .inputItems(frameGt, ADAMANTITE)
                 .inputItems(ELECTRIC_MOTOR_UHV)
                 .inputItems(rodLong, ADAMANTITE, 4)
-                .inputItems(GTCraftingComponents.SENSOR_EMITTER_GEM.get(UHV))
+                // .inputItems(GTCraftingComponents.SENSOR_EMITTER_GEM.get(UHV)) // 目前尚无
                 .inputItems(CustomTags.UHV_CIRCUITS, 2)
                 .inputItems(foil, Tritanium, 64)
                 .inputItems(foil, Tritanium, 32)
@@ -241,8 +242,8 @@ public class UHVPartsRecipe {
                 "ABA",
                 "BCB",
                 "ABA",
-                'A', gearSmall, Neutronium,
-                'B', gear, ADAMANTITE,
+                'A', new MaterialEntry(gear, Neutronium),
+                'B', new MaterialEntry(gear, ADAMANTITE),
                 'C', HULL[UHV].asStack());
     }
 }
