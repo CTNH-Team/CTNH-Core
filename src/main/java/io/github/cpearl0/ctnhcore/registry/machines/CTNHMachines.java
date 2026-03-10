@@ -242,7 +242,7 @@ public class CTNHMachines {
                         .model(createRotorHolderModel())
                         .tooltips(LangHandler.getFromMultiLang("gtceu.machine.rotor_holder.tooltip", 0),
                                 LangHandler.getFromMultiLang("gtceu.machine.rotor_holder.tooltip", 1),
-                                Component.translatable("gtceu.universal.disabled"))
+                                Component.translatable("gtceu.part_sharing.disabled"))
                         .register(),
                 GTValues.tiersBetween(ULV, MV));
 
@@ -251,7 +251,7 @@ public class CTNHMachines {
                         holder -> new CleaningMaintenanceHatchPartMachine(holder, CleanroomType.STERILE_CLEANROOM))
                 .rotationState(RotationState.ALL)
                 .abilities(PartAbility.MAINTENANCE)
-                .tooltips(Component.translatable("gtceu.universal.disabled"),
+                .tooltips(Component.translatable("gtceu.part_sharing.disabled"),
                         Component.translatable("gtceu.machine.maintenance_hatch_cleanroom_auto.tooltip.0"),
                         Component.translatable("gtceu.machine.maintenance_hatch_cleanroom_auto.tooltip.1"))
                 .tooltipBuilder((stack, tooltips) -> {
