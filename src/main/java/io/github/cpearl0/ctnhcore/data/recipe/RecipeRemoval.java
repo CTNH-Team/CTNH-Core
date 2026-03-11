@@ -94,7 +94,7 @@ public class RecipeRemoval {
                 "gtceu:assembly_line/me_pattern_buffer",
                 "gtceu:assembly_line/me_pattern_buffer_proxy",
                 // ME库存输入总线
-                "gtceu:assembler/me_stocking_import_bus",
+                // "gtceu:assembler/me_stocking_import_bus",
                 // 变电站
                 "gtceu:shaped/power_substation",
                 // 氯化铵
