@@ -19,7 +19,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
-import appeng.core.definitions.AEParts;
 import com.moguang.ctnhbio.registry.CBItems;
 import tech.luckyblock.mcmod.ctnhenergy.common.item.DynamoCardItem;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEItems;
@@ -102,15 +101,15 @@ public class EUCellRecipes {
                         .EUt(VA[IV]))
                 .duration(600).EUt(VA[LuV]).save(provider);
 
-//        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("me_stocking_import_bus"))
-//                .inputItems(ITEM_IMPORT_BUS[IV])
-//                .inputItems(AEParts.INTERFACE.stack(1))
-//                .inputItems(CONVEYOR_MODULE_IV)
-//                .inputItems(SENSOR_IV)
-//                .inputItems(AEItems.SPEED_CARD.stack(4))
-//                .outputItems(CEMachines.STOCKING_IMPORT_BUS_ME)
-//                .duration(300).EUt(VA[IV])
-//                .addMaterialInfo(true).save(provider);
+        // ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("me_stocking_import_bus"))
+        // .inputItems(ITEM_IMPORT_BUS[IV])
+        // .inputItems(AEParts.INTERFACE.stack(1))
+        // .inputItems(CONVEYOR_MODULE_IV)
+        // .inputItems(SENSOR_IV)
+        // .inputItems(AEItems.SPEED_CARD.stack(4))
+        // .outputItems(CEMachines.STOCKING_IMPORT_BUS_ME)
+        // .duration(300).EUt(VA[IV])
+        // .addMaterialInfo(true).save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("me_substation_hatch"))
                 .inputItems(ENERGY_INPUT_HATCH_4A[IV])
