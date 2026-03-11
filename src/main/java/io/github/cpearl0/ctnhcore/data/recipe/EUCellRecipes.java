@@ -278,38 +278,43 @@ public class EUCellRecipes {
                 .notConsumableFluid(STELLAR_ENERGY.getFluid(100))
                 .inputFluids(Organic_Compound.getFluid(144))
                 .outputFluids(SpecialMaterials.ENERGY_ESSENCE_SECRETION.getFluid(1000))
-                .EUt(3600).duration(500).save(provider);
+                .blastFurnaceTemp(4500)
+                .EUt(VA[IV]).duration(500).save(provider);
         FERMENTING.recipeBuilder(CTNHCore.id("energy_essence_secretion_2"))
                 .circuitMeta(2)
-                .notConsumableFluid(STELLAR_ENERGY.getFluid(1000))
+                .notConsumableFluid(STELLAR_ENERGY.getFluid(500))
                 .inputFluids(Organic_Compound.getFluid(576))
-                .outputFluids(SpecialMaterials.ENERGY_ESSENCE_SECRETION.getFluid(10000))
-                .EUt(36000).duration(500).save(provider);
+                .outputFluids(SpecialMaterials.ENERGY_ESSENCE_SECRETION.getFluid(5000))
+                .blastFurnaceTemp(5400)
+                .EUt(VA[LuV]).duration(500).save(provider);
         FERMENTING.recipeBuilder(CTNHCore.id("energy_essence_secretion_3"))
                 .circuitMeta(3)
-                .notConsumableFluid(STELLAR_ENERGY.getFluid(10000))
+                .notConsumableFluid(STELLAR_ENERGY.getFluid(2500))
                 .inputFluids(Organic_Compound.getFluid(2304))
-                .outputFluids(SpecialMaterials.ENERGY_ESSENCE_SECRETION.getFluid(100000))
-                .EUt(360000).duration(500).save(provider);
+                .outputFluids(SpecialMaterials.ENERGY_ESSENCE_SECRETION.getFluid(25000))
+                .blastFurnaceTemp(7200)
+                .EUt(VA[ZPM]).duration(500).save(provider);
         FERMENTING.recipeBuilder(CTNHCore.id("energy_essence_secretion_4"))
                 .circuitMeta(4)
-                .notConsumableFluid(STELLAR_ENERGY.getFluid(100000))
+                .notConsumableFluid(STELLAR_ENERGY.getFluid(10000))
                 .inputFluids(Organic_Compound.getFluid(4608))
-                .outputFluids(SpecialMaterials.ENERGY_ESSENCE_SECRETION.getFluid(1000000))
-                .EUt(3600000).duration(500).save(provider);
+                .outputFluids(SpecialMaterials.ENERGY_ESSENCE_SECRETION.getFluid(100000))
+                .blastFurnaceTemp(9000)
+                .EUt(VA[UV]).duration(500).save(provider);
         FERMENTING.recipeBuilder(CTNHCore.id("energy_essence_secretion_5"))
                 .circuitMeta(5)
-                .notConsumableFluid(STELLAR_ENERGY.getFluid(1000000))
+                .notConsumableFluid(STELLAR_ENERGY.getFluid(40000))
                 .inputFluids(Organic_Compound.getFluid(4608 * 2))
-                .outputFluids(SpecialMaterials.ENERGY_ESSENCE_SECRETION.getFluid(10000000))
-                .EUt(36000000).duration(500).save(provider);
+                .outputFluids(SpecialMaterials.ENERGY_ESSENCE_SECRETION.getFluid(400000))
+                .blastFurnaceTemp(10800)
+                .EUt(VA[UHV]).duration(500).save(provider);
 
         DIFFERENTIAL_CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("stellar_energy_produce"))
                 .inputFluids(starlight.getFluid(1000))
                 .outputFluidsRanged(new FluidStack(STELLAR_ENERGY.getFluid(), 1), UniformInt.of(2, 4))
                 .EUt(VA[EV]).duration(1000).save(provider);
 
-        for (var tier : tiersBetween(LV, OpV)) {
+        for (var tier : tiersBetween(LV, UHV)) {
 
             CULTIVATION_ROOM.recipeBuilder(CTNHCore.id("stellar_energy" + VN[tier].toLowerCase()))
                     .inputItems(CustomTags.CIRCUITS_ARRAY[tier], 10)
