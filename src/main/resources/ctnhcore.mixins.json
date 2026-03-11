@@ -27,6 +27,7 @@
     "emi.EmiRecipesMixin",
     "emi.EmiScreenManagerMixin",
     "emi.EmiSearchMixin",
+    "emi.EmiTagsMixin",
     "emi.GTRecipeEMICategoryMixin",
     "emi.VanillaPluginMixin",
     "ftbchunks.HeightUtilsMixin",
