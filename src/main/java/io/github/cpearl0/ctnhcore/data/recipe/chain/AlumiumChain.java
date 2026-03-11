@@ -406,7 +406,7 @@ public class AlumiumChain {
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("titanium_tetrachloride"))
                 .inputFluids(HydrochloricAcid.getFluid(4000))
                 .inputFluids(TITANYL_SULFATE.getFluid(1000))
-                .outputFluids(TITANIUM_TETRACHLORIDE_V.getFluid(1000))
+                .outputFluids(TitaniumTetrachloride.getFluid(1000))
                 .outputFluids(SulfuricAcid.getFluid(2000))
                 .EUt((long) (0.5 * VA[GTValues.EV]))
                 .duration(160)

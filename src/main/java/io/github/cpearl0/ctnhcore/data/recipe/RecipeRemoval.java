@@ -110,9 +110,10 @@ public class RecipeRemoval {
                 "gtceu:mixer/tungstensteel",
                 // 原版 UHV 动力仓/能源仓
                 "gtceu:assembly_line/dynamo_hatch_uhv",
-                "gtceu:assembly_line/energy_hatch_uhv"
-
-        ));
+                "gtceu:assembly_line/energy_hatch_uhv",
+                // 原版四氯化钛
+                "gtceu:chemical_reactor/titanium_tetrachloride",
+                "gtceu:large_chemical_reactor/titanium_tetrachloride"));
 
         for (String path : removePaths) {
             registry.accept(ResourceLocation.parse(path));
