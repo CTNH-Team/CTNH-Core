@@ -80,8 +80,8 @@ public class MeadowMachine extends KineticWorkableMultiblockMachine {
 
         @Override
         public boolean checkMatchedRecipeAvailable(GTRecipe match) {
-            float usingStress = CTPPRecipeHelper.getInputStress(mergedRecipe);
-            int maxParallel = usingStress == 0 ? Integer.MAX_VALUE : (int) (getTotalInputStress() / usingStress);
+            float recipeStress = CTPPRecipeHelper.getInputStress(match);
+            int maxParallel = recipeStress == 0 ? Integer.MAX_VALUE : (int) (getTotalInputStress() / recipeStress);
             var modified = CTPPModifierFunction
                     .accurateParallel(getMachine(), match, maxParallel - mergedRecipe.parallels).apply(match);
 
