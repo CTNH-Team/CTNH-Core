@@ -47,8 +47,6 @@
     "ldlib.ModularUIContainerMixin",
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MonsterMixin",
-    "mc.TagKeyMixin",
-    "mc.WorldLoaderPackConfigMixin",
     "vintageimprovements.LatheRotatingBlockMixin"
   ],
   "client": [
