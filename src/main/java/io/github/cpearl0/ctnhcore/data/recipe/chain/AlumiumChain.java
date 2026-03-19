@@ -335,6 +335,15 @@ public class AlumiumChain {
                 .EUt(VA[GTValues.LV])
                 .duration(30)
                 .save(provider);
+        // 氯化铝变氢氧化铝
+        GTRecipeTypes.BLAST_RECIPES.recipeBuilder(CTNHCore.id("aluminium_process1s"))
+                .inputItems(dust, ALUMINIUM_CHLORIDE, 4)
+                .inputFluids(Water.getFluid(1500))
+                .outputItems(dust, ALUMINIUM_HYDROXIDE, 7)
+                .blastFurnaceTemp(900)
+                .EUt(96)
+                .duration(40)
+                .save(provider);
         // 分离赤泥
         GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("red_mud"))
                 .inputFluids(IMPURE_ALUMINIUM_HYDROXIDE_SOLUTION.getFluid(3000))
@@ -361,7 +370,7 @@ public class AlumiumChain {
                 .duration(240)
                 .save(provider);
         // 氢氧化铝脱水
-        GTRecipeTypes.FURNACE_RECIPES.recipeBuilder(CTNHCore.id("alumina"))
+        GTRecipeTypes.BLAST_RECIPES.recipeBuilder(CTNHCore.id("alumina"))
                 .inputItems(dust, ALUMINIUM_HYDROXIDE, 14)
                 .outputItems(dust, Alumina, 5)
                 .blastFurnaceTemp(1100)
@@ -437,7 +446,7 @@ public class AlumiumChain {
                 .duration(160)
                 .save(provider);
         // 离心铝土矿
-        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("red_slurry"))
+        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("bauxite_dust"))
                 .inputItems(dust, Bauxite)
                 .outputItems(dust, Alumina)
                 .chancedOutput(dust, Gallium, 2500, 0)
