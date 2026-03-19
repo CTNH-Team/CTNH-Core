@@ -340,6 +340,7 @@ public class AlumiumChain {
                 .inputItems(dust, ALUMINIUM_CHLORIDE, 4)
                 .inputFluids(Water.getFluid(1500))
                 .outputItems(dust, ALUMINIUM_HYDROXIDE, 7)
+                .outputFluids(HydrochloricAcid.getFluid(3000))
                 .blastFurnaceTemp(900)
                 .EUt(96)
                 .duration(40)
@@ -373,6 +374,7 @@ public class AlumiumChain {
         GTRecipeTypes.BLAST_RECIPES.recipeBuilder(CTNHCore.id("alumina"))
                 .inputItems(dust, ALUMINIUM_HYDROXIDE, 14)
                 .outputItems(dust, Alumina, 5)
+                .outputFluids(Water.getFluid(3000))
                 .blastFurnaceTemp(1100)
                 .EUt(VA[GTValues.MV])
                 .duration(200)
@@ -462,6 +464,7 @@ public class AlumiumChain {
                 .outputFluids(TITANIUM_TETRACHLORIDE_V.getFluid(3000))
                 .outputFluids(FERRIC_REE_CHLORIDE.getFluid(1000))
                 .outputFluids(Water.getFluid(12000))
+                .outputItems(dust, Aluminium, 24)
                 .EUt((long) (0.5 * VA[GTValues.EV]))
                 .duration(160)
                 .save(provider);
