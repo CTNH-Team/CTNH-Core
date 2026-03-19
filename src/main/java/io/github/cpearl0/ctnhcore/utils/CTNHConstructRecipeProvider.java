@@ -17,7 +17,7 @@ public abstract class CTNHConstructRecipeProvider extends RecipeProvider impleme
 
     @Override
     public ResourceLocation location(String id) {
-        return CTNHCore.asResource(getType() + "/" + id);
+        return CTNHCore.id(getType() + "/" + id);
     }
 
     @Override

@@ -29,7 +29,7 @@ public enum CTNHConstructPartMaterialStats implements IMaterialStats {
     private final MaterialStatType<CTNHConstructPartMaterialStats> type;
 
     CTNHConstructPartMaterialStats(String name) {
-        this.type = MaterialStatType.singleton(new MaterialStatsId(CTNHCore.asResource(name)), this);
+        this.type = MaterialStatType.singleton(new MaterialStatsId(CTNHCore.id(name)), this);
     }
 
     @Override
