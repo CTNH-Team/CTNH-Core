@@ -165,6 +165,9 @@ public class GTMaterialAddon {
         Astatine.setProperty(PropertyKey.INGOT, new IngotProperty());
         Astatine.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         Astatine.setProperty(PropertyKey.HAZARD, radioactive(1));
+        Seaborgium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Seaborgium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Seaborgium.setProperty(PropertyKey.HAZARD, radioactive(1));
         Bohrium.setProperty(PropertyKey.INGOT, new IngotProperty());
         Bohrium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         Bohrium.setProperty(PropertyKey.HAZARD, radioactive(1));
