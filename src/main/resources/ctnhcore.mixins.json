@@ -47,7 +47,6 @@
     "ldlib.ModularUIContainerMixin",
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MonsterMixin",
-    "tmrv.JEIPluginsMixin",
     "tmrv.RecipeManagerMixin",
     "vintageimprovements.LatheRotatingBlockMixin"
   ],
