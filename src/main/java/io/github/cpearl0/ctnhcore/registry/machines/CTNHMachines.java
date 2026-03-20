@@ -4,6 +4,10 @@ import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch.HugeDualHatchPartMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch.HugeItemBusPartMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CreativeEnergyHatchPartMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CreativeInputBusPartMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CreativeInputHatchPartMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CreativeLaserHatchPartMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.DigitalMiner;
 import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.HighPerformanceComputerMachine;
@@ -39,6 +43,7 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.capability.recipe.IO.IN;
 import static com.gregtechceu.gtceu.api.capability.recipe.IO.OUT;
 import static com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties.IS_FORMED;
+import static com.gregtechceu.gtceu.common.data.GTMachines.CREATIVE_TOOLTIPS;
 import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.DUAL_INPUT_HATCH_ABILITIES;
 import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.DUAL_OUTPUT_HATCH_ABILITIES;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
@@ -73,6 +78,10 @@ public class CTNHMachines {
     public static MachineDefinition[] HUGE_DUAL_IMPORT_HATCH;
     public static MachineDefinition[] HUGE_DUAL_EXPORT_HATCH;
     public static MachineDefinition[] DIGITAL_MINER;
+    public static MachineDefinition CREATIVE_ENERGY_INPUT_HATCH;
+    public static MachineDefinition CREATIVE_ITEM_INPUT_BUS;
+    public static MachineDefinition CREATIVE_FLUID_INPUT_HATCH;
+    public static MachineDefinition CREATIVE_LASER_INPUT_HATCH;
 
     public static void init() {
         GTNNMachines.init();
@@ -373,5 +382,59 @@ public class CTNHMachines {
                                                 tier))))
                         .register(),
                 ALL_TIERS);
+
+        CREATIVE_ENERGY_INPUT_HATCH = REGISTRATE
+                .machine("creative_energy_hatch", CreativeEnergyHatchPartMachine::new)
+                .cnLangValue("创造模式能源仓")
+                .langValue("Creative Energy Input Hatch")
+                .rotationState(RotationState.ALL)
+                .modelProperty(IS_FORMED, false)
+                .overlayTieredHullModel(GTCEu.id("block/machine/part/energy_input_hatch"))
+                .abilities(PartAbility.INPUT_ENERGY)
+                .tier(MAX)
+                .tooltipBuilder(CREATIVE_TOOLTIPS)
+                .register();
+
+        CREATIVE_ITEM_INPUT_BUS = REGISTRATE
+                .machine("creative_item_input_bus", CreativeInputBusPartMachine::new)
+                .cnLangValue("创造模式输入总线")
+                .langValue("Creative Item Input Bus")
+                .rotationState(RotationState.ALL)
+                .modelProperty(IS_FORMED, false)
+                .colorOverlayTieredHullModel(
+                        GTCEu.id("block/overlay/machine/overlay_item_hatch_input"),
+                        GTCEu.id("block/overlay/machine/overlay_pipe"),
+                        GTCEu.id("block/overlay/machine/overlay_pipe_in_emissive"))
+                .abilities(PartAbility.IMPORT_ITEMS)
+                .tier(MAX)
+                .tooltipBuilder(CREATIVE_TOOLTIPS)
+                .register();
+
+        CREATIVE_FLUID_INPUT_HATCH = REGISTRATE
+                .machine("creative_fluid_input_hatch", CreativeInputHatchPartMachine::new)
+                .cnLangValue("创造模式输入仓")
+                .langValue("Creative Fluid Input Hatch")
+                .rotationState(RotationState.ALL)
+                .modelProperty(IS_FORMED, false)
+                .colorOverlayTieredHullModel(
+                        GTCEu.id("block/overlay/machine/overlay_fluid_hatch_input"),
+                        GTCEu.id("block/overlay/machine/overlay_pipe_9x"),
+                        GTCEu.id("block/overlay/machine/overlay_pipe_in_emissive"))
+                .abilities(PartAbility.IMPORT_FLUIDS, PartAbility.IMPORT_FLUIDS_9X)
+                .tier(MAX)
+                .tooltipBuilder(CREATIVE_TOOLTIPS)
+                .register();
+
+        CREATIVE_LASER_INPUT_HATCH = REGISTRATE
+                .machine("creative_laser_hatch", CreativeLaserHatchPartMachine::new)
+                .cnLangValue("创造模式激光靶仓")
+                .langValue("Creative Laser Input Hatch")
+                .rotationState(RotationState.ALL)
+                .modelProperty(IS_FORMED, false)
+                .overlayTieredHullModel(GTCEu.id("block/machine/part/laser_target_hatch"))
+                .abilities(PartAbility.INPUT_LASER)
+                .tier(MAX)
+                .tooltipBuilder(CREATIVE_TOOLTIPS)
+                .register();
     }
 }
