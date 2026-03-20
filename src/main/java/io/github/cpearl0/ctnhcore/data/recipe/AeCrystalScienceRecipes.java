@@ -438,7 +438,6 @@ public class AeCrystalScienceRecipes {
         // 高纯水晶
         // 末影水晶
         CHEMICAL_BATH_RECIPES.recipeBuilder(CTNHCore.id("ender_quartz_seed"))
-                .inputItems(AECSItems.NETHER_QUARTZ_SEED, 1)
                 .inputItems(EIOItems.ENDER_CRYSTAL, 1)
                 .inputFluids(ENDER_STEEL.getFluid(L))
                 .outputItems(AECSItems.ENDER_QUARTZ_SEED, 1)
