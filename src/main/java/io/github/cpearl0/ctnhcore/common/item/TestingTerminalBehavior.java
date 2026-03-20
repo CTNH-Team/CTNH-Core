@@ -23,6 +23,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
@@ -191,9 +193,13 @@ public class TestingTerminalBehavior implements IInteractionItem {
             for (List<ItemStack> list : candidates) {
 
                 for (int i = 0; i < Math.min(MAX, list.size()); i++) {
+                    ItemStack candidate = list.get(i);
+                    Component displayName = FluidUtil.getFluidContained(candidate)
+                            .map(FluidStack::getDisplayName)
+                            .orElse(candidate.getHoverName());
                     messages.add(
                             Component.literal(" - ")
-                                    .append(list.get(i).getHoverName()));
+                                    .append(displayName));
                 }
 
                 if (list.size() > MAX) {
