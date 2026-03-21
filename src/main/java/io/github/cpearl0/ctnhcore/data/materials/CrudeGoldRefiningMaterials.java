@@ -36,7 +36,7 @@ public class CrudeGoldRefiningMaterials {
                 .buildAndRegister();
         COPPER_LEACH = REGISTRATE.material(CTNHCore.id("copper_leach"))
                 .cnlang("铜浸出物")
-                .formula("AuCl3")
+                .formula("(Cu)")
                 .dust()
                 .color(0x70552D)
                 .buildAndRegister();
