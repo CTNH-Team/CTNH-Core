@@ -32,7 +32,7 @@ public class CreateMetallurgyJEIMixin {
                         registration.addRecipeCatalysts(
                                 c.getRecipeType(),
                                 CMBlocks.INDUSTRIAL_CRUCIBLE,
-                                CMItems.FOUNDRY_UNIT);
+                                CMItems.GAUGE_ATTACHMENT);
                     }
                 });
     }

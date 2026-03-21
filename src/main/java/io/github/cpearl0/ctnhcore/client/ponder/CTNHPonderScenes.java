@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 
 import com.mo_guang.ctpp.registry.CTPPMachines;
 import com.mo_guang.ctpp.registry.CTPPMultiblockMachines;
-import org.antarcticgardens.newage.NewAgeBlocks;
+import org.antarcticgardens.cna.CNABlocks;
 
 public final class CTNHPonderScenes {
 
@@ -28,7 +28,7 @@ public final class CTNHPonderScenes {
                 .addStoryBoard("meadow/common", Meadow::Common, CTNHPonderTags.Kinetic);
 
         // Create New Age 碳刷和发电机线圈思索
-        helper.forComponents(NewAgeBlocks.GENERATOR_COIL.getId())
+        helper.forComponents(CNABlocks.GENERATOR_COIL.getId())
                 .addStoryBoard("carbonbrushes/common", CarbonBrushes::ponder, CTNHPonderTags.Electric);
         helper.forComponents(CTPPMachines.CARBON_BRUSHES.getId())
                 .addStoryBoard("carbonbrushes/common", CarbonBrushes::ponder, CTNHPonderTags.Electric);

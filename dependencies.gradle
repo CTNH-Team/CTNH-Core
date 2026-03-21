@@ -11,7 +11,7 @@ dependencies {
     jarJar(project(":modules:CTNH-Mana")){ transitive = false }
     jarJar(project(":modules:GregTech-Modern")){ transitive = false }
 
-    modImplementation("extra-mods:create_connected-26.1-all")
+    //modImplementation("extra-mods:create_connected-26.1-all")
 
     runtimeOnly(ctnh.graphlib)
 
@@ -26,8 +26,8 @@ dependencies {
     // Create addons
     modImplementation(ctnh.createmetallurgy)
     modImplementation(ctnh.createvintage)
-    modImplementation(ctnh.createliquidfuel)
-    modImplementation(ctnh.createoreexcavation)
+//    modImplementation(ctnh.createliquidfuel)
+//    modImplementation(ctnh.createoreexcavation)
     modImplementation(ctnh.creatediesel)
     modImplementation(ctnh.createnewage)
 
@@ -100,6 +100,7 @@ dependencies {
     modImplementation(ctnh.javd)
     modImplementation(ctnh.trenzalore)
     modImplementation(ctnh.sophisticatedcore)
+    modImplementation(ctnh.sophisticatedbackpacks)
     modImplementation(ctnh.alexscaves)
     modImplementation(ctnh.citadel)
 

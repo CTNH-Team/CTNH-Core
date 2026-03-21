@@ -8,7 +8,7 @@ import net.createmod.ponder.api.scene.Selection;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
 
-import org.antarcticgardens.newage.NewAgeBlocks;
+import org.antarcticgardens.cna.CNABlocks;
 
 import static io.github.cpearl0.ctnhcore.client.ponder.Electric.CTNHElectricPondersLang.*;
 
@@ -93,13 +93,13 @@ public class CarbonBrushes {
                 .text(CarbonBrushesText9.translate().getContents().toString())
                 .attachKeyFrame();
         scene.idle(20);
-        BlockState redstoneMagnet = NewAgeBlocks.REDSTONE_MAGNET.getDefaultState();
+        BlockState redstoneMagnet = CNABlocks.REDSTONE_MAGNET.getDefaultState();
         scene.world().replaceBlocks(allMagnets, redstoneMagnet, true);
         scene.idle(20);
-        BlockState fluxuatedMagnetite = NewAgeBlocks.FLUXUATED_MAGNETITE.getDefaultState();
+        BlockState fluxuatedMagnetite = CNABlocks.FLUXUATED_MAGNETITE.getDefaultState();
         scene.world().replaceBlocks(allMagnets, fluxuatedMagnetite, true);
         scene.idle(20);
-        BlockState netheriteMagnet = NewAgeBlocks.NETHERITE_MAGNET.getDefaultState();
+        BlockState netheriteMagnet = CNABlocks.NETHERITE_MAGNET.getDefaultState();
         scene.world().replaceBlocks(allMagnets, netheriteMagnet, true);
         scene.idle(20);
         scene.markAsFinished();
