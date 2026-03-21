@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.registry.machines;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.common.machine.cover.CreativeEnergyCover;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch.HugeDualHatchPartMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch.HugeItemBusPartMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
@@ -19,6 +20,7 @@ import io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.cover.CoverDefinition;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
@@ -26,6 +28,8 @@ import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
+import com.gregtechceu.gtceu.client.renderer.cover.SimpleCoverRenderer;
+import com.gregtechceu.gtceu.common.data.GTCovers;
 import com.gregtechceu.gtceu.common.data.models.GTMachineModels;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.*;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
@@ -82,6 +86,7 @@ public class CTNHMachines {
     public static MachineDefinition CREATIVE_ITEM_INPUT_BUS;
     public static MachineDefinition CREATIVE_FLUID_INPUT_HATCH;
     public static MachineDefinition CREATIVE_LASER_INPUT_HATCH;
+    public static CoverDefinition CREATIVE_ENERGY_COVER_DEF;
 
     public static void init() {
         GTNNMachines.init();
@@ -436,5 +441,12 @@ public class CTNHMachines {
                 .tier(MAX)
                 .tooltipBuilder(CREATIVE_TOOLTIPS)
                 .register();
+    }
+
+    public static void initCovers() {
+        CREATIVE_ENERGY_COVER_DEF = GTCovers.register(
+                CTNHCore.id("creative_energy_cover"),
+                CreativeEnergyCover::new,
+                () -> () -> new SimpleCoverRenderer(CTNHCore.id("block/cover/overlay_creative_energy")));
     }
 }

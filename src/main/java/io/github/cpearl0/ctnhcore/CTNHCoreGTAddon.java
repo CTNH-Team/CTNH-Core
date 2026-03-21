@@ -13,6 +13,7 @@ import io.github.cpearl0.ctnhcore.data.recipe.modmodify.EIORecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.omnicells.QuantumOmniRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.multiblock.*;
 import io.github.cpearl0.ctnhcore.registry.*;
+import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
 
 import com.gregtechceu.gtceu.api.addon.GTAddon;
@@ -38,6 +39,11 @@ public class CTNHCoreGTAddon implements IGTAddon {
         CTNHBlocks.init();
         CTNHBlockEntities.init();
         CTNHBlockMaps.initBlocks();
+    }
+
+    @Override
+    public void registerCovers() {
+        CTNHMachines.initCovers();
     }
 
     @Override

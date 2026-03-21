@@ -9,11 +9,13 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.ItemMaterialInfo;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
+import com.gregtechceu.gtceu.common.item.CoverPlaceBehavior;
 import com.gregtechceu.gtceu.common.item.TooltipBehavior;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 
@@ -26,9 +28,11 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Suffix;
 
 import static com.gregtechceu.gtceu.common.data.GTItems.attach;
 import static com.gregtechceu.gtceu.common.data.GTItems.materialInfo;
+import static com.gregtechceu.gtceu.common.data.GTMachines.CREATIVE_TOOLTIPS;
 import static io.github.cpearl0.ctnhcore.data.materials.BedrockMaterials.ADAMANTITE;
 import static io.github.cpearl0.ctnhcore.data.materials.BedrockMaterials.SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
+import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.CREATIVE_ENERGY_COVER_DEF;
 
 @Suffix("tooltip")
 public class CTNHItems {
@@ -334,6 +338,14 @@ public class CTNHItems {
                         new MaterialStack(SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC,
                                 GTValues.M / 2))))
                 .register();
+
+        CREATIVE_ENERGY_COVER_ITEM = REGISTRATE
+                .item("creative_energy_cover", ComponentItem::create)
+                .cnlang("创造能源覆盖板")
+                .lang("Creative Energy Cover")
+                .onRegister(attach(new CoverPlaceBehavior(CREATIVE_ENERGY_COVER_DEF),
+                        new TooltipBehavior(lines -> CREATIVE_TOOLTIPS.accept(ItemStack.EMPTY, lines))))
+                .register();
     }
 
     public static ItemEntry<Item> GREAT_ASTRONOMY_CIRCUIT_1;
@@ -518,6 +530,7 @@ public class CTNHItems {
             .register();
 
     public static ItemEntry<ComponentItem> VOLTAGE_COIL_UHV;
+    public static ItemEntry<ComponentItem> CREATIVE_ENERGY_COVER_ITEM;
 
     public static void init() {
         registerItem();
