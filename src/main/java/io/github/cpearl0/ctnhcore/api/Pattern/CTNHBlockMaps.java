@@ -17,7 +17,6 @@ public class CTNHBlockMaps {
 
     public static final Map<IPBData, Supplier<io.github.cpearl0.ctnhcore.common.block.PhotovoltaicBlock>> PhotovoltaicBlock = new HashMap();
     public static final Map<ISSFData, Supplier<io.github.cpearl0.ctnhcore.common.block.SpaceStructuralFramework>> SpaceStructuralFramework = new HashMap();
-    public static final Map<Integer, Supplier<Block>> ReactorCoreBlock = new HashMap();
     public static final Map<Integer, Supplier<? extends Block>> CasingBlock = new HashMap<>();
     public static final Map<Integer, Supplier<? extends Block>> PipeBlock = new HashMap<>();
     public static final Map<Integer, Supplier<? extends Block>> CoilBlock = new HashMap<>();
