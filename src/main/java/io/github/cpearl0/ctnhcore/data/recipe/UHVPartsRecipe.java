@@ -26,6 +26,7 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static io.github.cpearl0.ctnhcore.data.materials.BedrockMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.CULTIVATION_ROOM;
 import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 
 public class UHVPartsRecipe {
@@ -270,6 +271,42 @@ public class UHVPartsRecipe {
                 .EUt(VA[UEV])
                 .duration(200000)
                 .blastFurnaceTemp(12600)
+                .save(provider);
+
+        CULTIVATION_ROOM.recipeBuilder(CTNHCore.id("living_metal_pre"))
+                .inputItems(wireGtQuadruple, RutheniumTriniumAmericiumNeutronate, 4)
+                .inputItems(dust, TARANIUM, 4)
+                .inputItems(ELECTRIC_PUMP_ZPM)
+                .inputFluids(SolderingAlloy.getFluid(40000))
+                .inputFluids(UncategorizedMaterials.QUANTUM_ALLOY.getFluid(288))
+                .outputFluids(UncategorizedMaterials.LIVING_METAL_PRE.getFluid(4000))
+                .EUt(VA[UEV])
+                .duration(1000)
+                .save(provider);
+
+        CULTIVATION_ROOM.recipeBuilder(CTNHCore.id("living_metal"))
+                .notConsumable(RESEARCH_DATASET_LIVING_MATERIAL)
+                .inputItems(CustomTags.UHV_CIRCUITS)
+                .inputItems(rodLong, UncategorizedMaterials.RADIATION_SIGHT_ALLOY_INF, 4)
+                .inputFluids(UncategorizedMaterials.LIVING_METAL_PRE.getFluid(8000))
+                .inputFluids(UncategorizedMaterials.CHARGED_SILICA_ROCK_BASED_FLUID_FUEL_MK_III.getFluid(100))
+                .outputFluids(LIVING_METAL.getFluid(8000))
+                .outputFluids(NaquadahBasedLiquidFuelDepleted.getFluid(1000))
+                .EUt(VA[UEV])
+                .duration(1000)
+                .save(provider);
+
+        CULTIVATION_ROOM.recipeBuilder(CTNHCore.id("living_metal_2"))
+                .notConsumable(RESEARCH_DATASET_LIVING_MATERIAL)
+                .inputItems(CustomTags.UHV_CIRCUITS)
+                .inputItems(rodLong, UncategorizedMaterials.RADIATION_SIGHT_ALLOY_INF, 4)
+                .inputFluids(UncategorizedMaterials.LIVING_METAL_PRE.getFluid(8000))
+                .inputFluids(TARANLIQUIDFUEL_L.getFluid(500))
+                .inputFluids(TARANLIQUIDFUEL_M.getFluid(500))
+                .outputFluids(LIVING_METAL.getFluid(8000))
+                .outputFluids(PlutoniumBasedLiquidFuelDepleted.getFluid(1500))
+                .EUt(VA[UEV])
+                .duration(6000)
                 .save(provider);
     }
 }
