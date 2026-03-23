@@ -622,7 +622,7 @@ public class BedrockMaterials {
                 .buildAndRegister();
 
         ADAMANTITELIQUID = REGISTRATE.material(CTNHCore.id("adamantiteliquid"))
-                .cnlang("液态精金")
+                .cnlang("液态精金混合物")
                 .liquid()
                 .color(0x125555)
                 .buildAndRegister();
