@@ -179,12 +179,13 @@ public class AlumiumChain {
                 .save(provider);
 
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_biotite"))
-                .inputItems(dust, Biotite, 44)// 黑云母
-                .outputItems(dust, Alumina, 15)
-                .outputItems(dust, Lithium, 18)
+                .inputItems(dust, Biotite, 21)// 黑云母
+                .outputItems(dust, Magnesium, 6)
+                .outputItems(dust, Alumina, 3)
+                .outputItems(dust, SiliconDioxide, 3)
                 .outputItems(dust, Potassium, 2)
-                .outputItems(dust, Manganese, 6)
-                .outputFluids(Fluorine.getFluid(4000))
+                .outputFluids(Fluorine.getFluid(2000))
+                .outputFluids(Oxygen.getFluid(5000))
                 .EUt(VA[GTValues.MV])
                 .duration(440)
                 .save(provider);
