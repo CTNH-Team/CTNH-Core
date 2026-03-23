@@ -211,7 +211,7 @@ public class AlumiumChain {
                 .duration(200)
                 .save(provider);
 
-        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_blue_topaz"))
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_clay"))
                 .inputItems(dust, Clay, 14)// 粘土
                 .outputItems(dust, Alumina, 5)
                 .outputItems(dust, SiliconDioxide, 6)
