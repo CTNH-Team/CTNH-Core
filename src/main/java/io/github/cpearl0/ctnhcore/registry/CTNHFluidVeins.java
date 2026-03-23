@@ -90,7 +90,7 @@ public class CTNHFluidVeins {
                 .depletedYield(50)
                 .register();
     });
-    public static BedrockFluidDefinition WATER_VEIN_MARS = create(CTNHCore.id("mars_mystery_fluid_vein"), vein -> {
+    public static BedrockFluidDefinition WATER_VEIN_MARS = create(CTNHCore.id("mars_distilled_water_vein"), vein -> {
         vein.dimensions(Set.of(Planet.MARS))
                 .fluid(() -> GTMaterials.DistilledWater.getFluid())
                 .weight(800)
