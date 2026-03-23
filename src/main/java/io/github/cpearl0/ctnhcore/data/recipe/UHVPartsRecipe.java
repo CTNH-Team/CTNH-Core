@@ -1,18 +1,24 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.data.materials.UncategorizedMaterials;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
+import com.gregtechceu.gtceu.common.data.GCYMRecipeTypes;
+import com.gregtechceu.gtceu.common.data.machines.GCYMMachines;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.GTCraftingComponents;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 
+import com.moguang.ctnhmana.registry.CMMaterials;
+
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+import static com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys.PLASMA;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
@@ -246,5 +252,24 @@ public class UHVPartsRecipe {
                 'A', new MaterialEntry(gear, Neutronium),
                 'B', new MaterialEntry(gear, ADAMANTITE),
                 'C', HULL[UHV].asStack());
+
+        GCYMRecipeTypes.ALLOY_BLAST_RECIPES.recipeBuilder(CTNHCore.id("end_to_the_end")) // from 80extend.js
+                .inputItems(dust, SNOW_STEEL, 64)
+                .inputItems(dust, UncategorizedMaterials.QUANTUM_ALLOY, 64)
+                .inputItems(dust, HiddenAlloy, 64)
+                .inputItems(dust, SpecialCompositeSteelM77, 64)
+                .inputItems(dust, CMMaterials.Ultra_Mana, 64)
+                .inputItems(gemExquisite, COLORFUL_GEM, 64)
+                .inputItems(dust, BOUNDLESS, 1)
+                .inputItems(CustomTags.UEV_CIRCUITS, 64)
+                .inputItems(GCYMMachines.MEGA_BLAST_FURNACE)
+                .inputFluids(LIVING_METAL.getFluid(114514))
+                .inputFluids(CMMaterials.Eve_Beam.getFluid(PLASMA, 114514))
+                .inputFluids(SUPERFUELMK1.getFluid(6666))
+                .outputFluids(UncategorizedMaterials.ORACLE.getFluid(1145))
+                .EUt(VA[UEV])
+                .duration(200000)
+                .blastFurnaceTemp(12600)
+                .save(provider);
     }
 }

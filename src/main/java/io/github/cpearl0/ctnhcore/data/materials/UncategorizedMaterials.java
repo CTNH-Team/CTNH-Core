@@ -363,7 +363,7 @@ public class UncategorizedMaterials {
                 .buildAndRegister();
 
         ORACLE = REGISTRATE.material(CTNHCore.id("oracle"))
-                .cnlang("神秘液体")
+                .cnlang("神谕")
                 .formula("THANKS_FOR_YOUR_PLAYING")
                 .dust()
                 .ingot()

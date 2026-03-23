@@ -1,9 +1,9 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.data.materials.UncategorizedMaterials;
-import io.github.cpearl0.ctnhcore.data.materials.AviationFabricMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials;
+import io.github.cpearl0.ctnhcore.data.materials.AviationFabricMaterials;
+import io.github.cpearl0.ctnhcore.data.materials.UncategorizedMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
