@@ -62,8 +62,6 @@ public class CTNHBlocks {
             "tungstencu_diamond_plating_casing", "W-Cu覆膜金刚石机械方块",
             CTNHCore.id("block/casings/tungstencu_diamond_plating_casing"));
 
-    public static final BlockEntry<Block> ZENITH_CASING_BLOCK = createCasingBlock(
-            "zenith_casing", "天顶强化机械方块", CTNHCore.id("block/casings/zenith_casing"));
     public static final BlockEntry<Block> CASING_NAQUADAH_BLOCK = createCasingBlock(
             "naquadah_casing_block", "铿铀强化硅岩铕机械方块", CTNHCore.id("block/casings/nq_casing"));
     public static final BlockEntry<Block> CASING_NAQUADAH_ALLOY_BLOCK = createCasingBlock(

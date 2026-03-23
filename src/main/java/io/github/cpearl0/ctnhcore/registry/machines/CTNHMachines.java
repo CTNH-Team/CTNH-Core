@@ -154,7 +154,7 @@ public class CTNHMachines {
                         .abilities(CTNHPartAbility.COMPILER)
                         .colorOverlayTieredHullModel("huge_bus_in", null, null)
                         .register(),
-                GTValues.tiersBetween(UV, UEV));
+                GTValues.tiersBetween(UV, UHV));
 
         PERSONAL_COMPUTER = registerSimpleComputationMachines("personal_computer",
                 CTNHRecipeTypes.PERSONAL_COMPUTER);

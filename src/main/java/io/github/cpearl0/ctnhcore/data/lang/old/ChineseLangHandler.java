@@ -767,7 +767,7 @@ public class ChineseLangHandler {
         for (int tier : GTValues.tiersBetween(ULV, MV)) {
             provider.add(CTNHMachines.ROTOR_HOLDER_EXTEND[tier].getBlock(), GTValues.VNF[tier] + "§r转子支架");
         }
-        for (int tier : GTValues.tiersBetween(UV, UEV)) {
+        for (int tier : GTValues.tiersBetween(UV, UHV)) {
             provider.add(CTNHMachines.COMPILERMACHINE[tier].getBlock(), GTValues.VNF[tier] + "§r神经拟合仓");
         }
         for (int tier : GTValues.tiersBetween(HV, IV)) {
