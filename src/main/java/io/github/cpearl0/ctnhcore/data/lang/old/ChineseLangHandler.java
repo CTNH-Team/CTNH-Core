@@ -92,6 +92,9 @@ public class ChineseLangHandler {
         provider.add("item.ctnh.me_advanced_terminal.setting.1.tooltip", "设置自动放置的线圈等级(0:不指定等级)\n设置后会忽略结构本身的要求");
         provider.add("item.ctnh.me_advanced_terminal.setting.2", "重复结构次数");
         provider.add("item.ctnh.me_advanced_terminal.setting.2.tooltip", "设置可重复结构(蒸馏塔、装配线等)的重复部分放置次数\n对超净间无效");
+        provider.add("item.ctnh.me_advanced_terminal.setting.10", "工业血之祭坛结构等级");
+        provider.add("item.ctnh.me_advanced_terminal.setting.10.tooltip",
+                "仅对工业血之祭坛自动成型生效\n设置要构建的工业血之祭坛等级(0-4)\n0 对应二阶，4 对应六阶");
         provider.add("item.ctnh.me_advanced_terminal.setting.3", "无仓室模式");
         provider.add("item.ctnh.me_advanced_terminal.setting.3.tooltip", "是否启用无仓室模式(0:不启用,1:启用)\n启用无仓室模式后不会放置任何仓室");
         provider.add("item.ctnh.me_advanced_terminal.setting.4", "线圈替换模式");

@@ -1151,6 +1151,8 @@
   "item.ctnh.ecological_star.desc": "蕴含生态圈的所有精华",
   "item.ctnh.me_advanced_terminal.setting.1": "线圈等级",
   "item.ctnh.me_advanced_terminal.setting.1.tooltip": "设置自动放置的线圈等级(0:不指定等级)\n设置后会忽略结构本身的要求",
+  "item.ctnh.me_advanced_terminal.setting.10": "工业血之祭坛结构等级",
+  "item.ctnh.me_advanced_terminal.setting.10.tooltip": "仅对工业血之祭坛自动成型生效\n设置要构建的工业血之祭坛等级(0-4)\n0 对应二阶，4 对应六阶",
   "item.ctnh.me_advanced_terminal.setting.2": "重复结构次数",
   "item.ctnh.me_advanced_terminal.setting.2.tooltip": "设置可重复结构(蒸馏塔、装配线等)的重复部分放置次数\n对超净间无效",
   "item.ctnh.me_advanced_terminal.setting.3": "无仓室模式",
