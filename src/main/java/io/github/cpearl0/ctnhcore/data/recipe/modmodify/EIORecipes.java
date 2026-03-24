@@ -6,6 +6,7 @@ import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.common.data.GTBlocks;
+import com.gregtechceu.gtceu.common.data.GTRecipeCategories;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -156,6 +157,38 @@ public class EIORecipes {
                 .outputItems(CTNHBlocks.VIBRANT_PHOTOVOLTAIC_BLOCK)
                 .EUt(30)
                 .duration(200)
+                .save(provider);
+
+        CTNHRecipeBuilder.of("energetic_photovoltaic_block_recycling", MACERATOR_RECIPES)
+                .inputItems(CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK.asItem())
+                .outputItems(dust, Gold, 2)
+                .outputItems(dust, Silver, 2)
+                .outputItems(EIOItems.PHOTOVOLTAIC_COMPOSITE, 6)
+                .EUt(30)
+                .duration(100)
+                .category(GTRecipeCategories.MACERATOR_RECYCLING)
+                .save(provider);
+
+        CTNHRecipeBuilder.of("pulsating_photovoltaic_block_recycling", MACERATOR_RECIPES)
+                .inputItems(CTNHBlocks.PULSATING_PHOTOVOLTAIC_BLOCK.asItem())
+                .outputItems(dust, Gold, 2)
+                .outputItems(dust, Silver, 2)
+                .outputItems(dust, PulsatingAlloy, 2)
+                .outputItems(EIOItems.PHOTOVOLTAIC_COMPOSITE, 12)
+                .EUt(30)
+                .duration(100)
+                .category(GTRecipeCategories.MACERATOR_RECYCLING)
+                .save(provider);
+
+        CTNHRecipeBuilder.of("vibrant_photovoltaic_block_recycling", MACERATOR_RECIPES)
+                .inputItems(CTNHBlocks.VIBRANT_PHOTOVOLTAIC_BLOCK.asItem())
+                .outputItems(dust, VibrantAlloy, 2)
+                .outputItems(dust, PulsatingAlloy, 2)
+                .outputItems(dust, CTNHMaterials.Sunnarium, 8)
+                .outputItems(EIOItems.PHOTOVOLTAIC_COMPOSITE, 18)
+                .EUt(30)
+                .duration(100)
+                .category(GTRecipeCategories.MACERATOR_RECYCLING)
                 .save(provider);
     }
 
