@@ -79,7 +79,6 @@ public class AeCrystalScienceRecipes {
         CHEMICAL_BATH_RECIPES.recipeBuilder(CTNHCore.id("ender_blank_print_press"))
                 .inputItems(AECSItems.BLANK_PRINT_PRESS, 1)
                 .inputFluids(ENDER_STEEL.getFluid(L * 4))
-                .circuitMeta(23)
                 .outputItems(AECSItems.ENDER_BLANK_PRINT_PRESS, 1)
                 .EUt(VA[HV]).duration(500)
                 .save(provider);
@@ -520,7 +519,7 @@ public class AeCrystalScienceRecipes {
                 .save(provider);
         // 陨石水晶
         BLAST_RECIPES.recipeBuilder(CTNHCore.id("meteor_seed"))
-                .inputItems(AEItems.SKY_DUST, 1)
+                .inputItems(AEItems.SKY_DUST.asItem(), 1)
                 .inputItems(TagPrefix.dust, CertusQuartz, 1)
                 .inputFluids(Lava.getFluid(1000))
                 .outputItems(AECSItems.METEOR_SEED, 2)

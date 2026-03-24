@@ -12,6 +12,7 @@ import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
+import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
@@ -879,10 +880,10 @@ public class DefaultRecipes {
                 provider, "neutron_accelerator_ulv",
                 GTNNMachines.NEUTRON_ACCELERATOR[GTValues.ULV].asStack(),
                 "ABC", "DEF", "ABC",
-                'A', TagPrefix.cableGtSingle, GTMaterials.Lead,
-                'B', TagPrefix.plate, GTMaterials.Lead,
-                'C', TagPrefix.rotor, GTMaterials.Lead,
-                'D', TagPrefix.plate, GTMaterials.Wood,
+                'A', new MaterialEntry(TagPrefix.cableGtSingle, GTMaterials.Lead),
+                'B', new MaterialEntry(TagPrefix.plate, GTMaterials.Lead),
+                'C', new MaterialEntry(TagPrefix.rotor, GTMaterials.Lead),
+                'D', new MaterialEntry(TagPrefix.plate, GTMaterials.Wood),
                 'E', GTMachines.HULL[GTValues.ULV].asStack(),
                 'F', CTNHItems.INVERTER.asStack());
 
@@ -891,10 +892,10 @@ public class DefaultRecipes {
                 provider, "neutron_accelerator_lv",
                 GTNNMachines.NEUTRON_ACCELERATOR[GTValues.LV].asStack(),
                 "ABC", "DEF", "ABC",
-                'A', TagPrefix.cableGtSingle, GTMaterials.Tin,
-                'B', TagPrefix.plateDouble, GTMaterials.Lead,
+                'A', new MaterialEntry(TagPrefix.cableGtSingle, GTMaterials.Tin),
+                'B', new MaterialEntry(TagPrefix.plateDouble, GTMaterials.Lead),
                 'C', GTItems.ELECTRIC_MOTOR_LV.asStack(),
-                'D', TagPrefix.plate, GTMaterials.Rubber,
+                'D', new MaterialEntry(TagPrefix.plate, GTMaterials.Rubber),
                 'E', GTMachines.HULL[GTValues.LV].asStack(),
                 'F', CTNHItems.INVERTER.asStack());
         // MV脱水机

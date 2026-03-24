@@ -240,7 +240,6 @@ public class TwistedFusionRecipes {
                 .inputItems(FERTILIZER, 64)
                 .inputItems(RADIOACTIVE_WASTE, 64)
                 .inputFluids(Water.getFluid(10000))
-                .circuitMeta(20)
                 .outputItems(PROLIFERATION_RUNE.asItem(), 3)
                 .EUt(24444)
                 .duration(1000)
