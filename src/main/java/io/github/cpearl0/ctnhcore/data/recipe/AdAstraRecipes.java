@@ -12,14 +12,16 @@ import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.data.recipes.*;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import earth.terrarium.adastra.common.registry.ModItems;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
@@ -27,6 +29,8 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLER_RECIPES;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLY_LINE_RECIPES;
 
 public class AdAstraRecipes {
+
+    private static Consumer<FinishedRecipe> output;
 
     public static void init(Consumer<FinishedRecipe> provider) {
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("heavy_ingot_t1"))
@@ -258,9 +262,137 @@ public class AdAstraRecipes {
                 "ABA", "BAB", "ABA",
                 'A', new MaterialEntry(plate, Steel),
                 'B', new MaterialEntry(rod, Platinum));
+
+        stoneRelatedRecipes(provider);
     }
 
-    public static void remove(Consumer<ResourceLocation> consumer) {
-        // DataFilterPack.removeRecipeType("ad_astra:*");
+    private static void stoneRelatedRecipes(Consumer<FinishedRecipe> provider) {
+        output = provider;
+
+        smelt(ModItems.MOON_STONE, ModItems.MOON_COBBLESTONE);
+        smelt(ModItems.MARS_STONE, ModItems.MARS_COBBLESTONE);
+        smelt(ModItems.VENUS_STONE, ModItems.VENUS_COBBLESTONE);
+        smelt(ModItems.MERCURY_STONE, ModItems.MERCURY_COBBLESTONE);
+        smelt(ModItems.GLACIO_STONE, ModItems.GLACIO_COBBLESTONE);
+
+        shaped(ModItems.MOON_STONE_STAIRS, 4, ModItems.MOON_STONE, "#  ", "## ", "###");
+        shaped(ModItems.MARS_STONE_STAIRS, 4, ModItems.MARS_STONE, "#  ", "## ", "###");
+        shaped(ModItems.VENUS_STONE_STAIRS, 4, ModItems.VENUS_STONE, "#  ", "## ", "###");
+        shaped(ModItems.MERCURY_STONE_STAIRS, 4, ModItems.MERCURY_STONE, "#  ", "## ", "###");
+        shaped(ModItems.GLACIO_STONE_STAIRS, 4, ModItems.GLACIO_STONE, "#  ", "## ", "###");
+
+        shaped(ModItems.MOON_STONE_SLAB, 6, ModItems.MOON_STONE, "###");
+        shaped(ModItems.MARS_STONE_SLAB, 6, ModItems.MARS_STONE, "###");
+        shaped(ModItems.VENUS_STONE_SLAB, 6, ModItems.VENUS_STONE, "###");
+        shaped(ModItems.MERCURY_STONE_SLAB, 6, ModItems.MERCURY_STONE, "###");
+        shaped(ModItems.GLACIO_STONE_SLAB, 6, ModItems.GLACIO_STONE, "###");
+
+        shaped(ModItems.MOON_COBBLESTONE_STAIRS, 4, ModItems.MOON_COBBLESTONE, "#  ", "## ", "###");
+        shaped(ModItems.MARS_COBBLESTONE_STAIRS, 4, ModItems.MARS_COBBLESTONE, "#  ", "## ", "###");
+        shaped(ModItems.VENUS_COBBLESTONE_STAIRS, 4, ModItems.VENUS_COBBLESTONE, "#  ", "## ", "###");
+        shaped(ModItems.MERCURY_COBBLESTONE_STAIRS, 4, ModItems.MERCURY_COBBLESTONE, "#  ", "## ", "###");
+        shaped(ModItems.GLACIO_COBBLESTONE_STAIRS, 4, ModItems.GLACIO_COBBLESTONE, "#  ", "## ", "###");
+
+        shaped(ModItems.MOON_COBBLESTONE_SLAB, 6, ModItems.MOON_COBBLESTONE, "###");
+        shaped(ModItems.MARS_COBBLESTONE_SLAB, 6, ModItems.MARS_COBBLESTONE, "###");
+        shaped(ModItems.VENUS_COBBLESTONE_SLAB, 6, ModItems.VENUS_COBBLESTONE, "###");
+        shaped(ModItems.MERCURY_COBBLESTONE_SLAB, 6, ModItems.MERCURY_COBBLESTONE, "###");
+        shaped(ModItems.GLACIO_COBBLESTONE_SLAB, 6, ModItems.GLACIO_COBBLESTONE, "###");
+
+        shaped(ModItems.MOON_STONE_BRICKS, 4, ModItems.MOON_STONE, "##", "##");
+        shaped(ModItems.MARS_STONE_BRICKS, 4, ModItems.MARS_STONE, "##", "##");
+        shaped(ModItems.VENUS_STONE_BRICKS, 4, ModItems.VENUS_STONE, "##", "##");
+        shaped(ModItems.MERCURY_STONE_BRICKS, 4, ModItems.MERCURY_STONE, "##", "##");
+        shaped(ModItems.GLACIO_STONE_BRICKS, 4, ModItems.GLACIO_STONE, "##", "##");
+
+        shaped(ModItems.MOON_STONE_BRICK_STAIRS, 4, ModItems.MOON_STONE_BRICKS, "#  ", "## ", "###");
+        shaped(ModItems.MARS_STONE_BRICK_STAIRS, 4, ModItems.MARS_STONE_BRICKS, "#  ", "## ", "###");
+        shaped(ModItems.VENUS_STONE_BRICK_STAIRS, 4, ModItems.VENUS_STONE_BRICKS, "#  ", "## ", "###");
+        shaped(ModItems.MERCURY_STONE_BRICK_STAIRS, 4, ModItems.MERCURY_STONE_BRICKS, "#  ", "## ", "###");
+        shaped(ModItems.GLACIO_STONE_BRICK_STAIRS, 4, ModItems.GLACIO_STONE_BRICKS, "#  ", "## ", "###");
+
+        shaped(ModItems.MOON_STONE_BRICK_SLAB, 6, ModItems.MOON_STONE_BRICKS, "###");
+        shaped(ModItems.MARS_STONE_BRICK_SLAB, 6, ModItems.MARS_STONE_BRICKS, "###");
+        shaped(ModItems.VENUS_STONE_BRICK_SLAB, 6, ModItems.VENUS_STONE_BRICKS, "###");
+        shaped(ModItems.MERCURY_STONE_BRICK_SLAB, 6, ModItems.MERCURY_STONE_BRICKS, "###");
+        shaped(ModItems.GLACIO_STONE_BRICK_SLAB, 6, ModItems.GLACIO_STONE_BRICKS, "###");
+
+        smelt(ModItems.CRACKED_MOON_STONE_BRICKS, ModItems.MOON_STONE_BRICKS);
+        smelt(ModItems.CRACKED_MARS_STONE_BRICKS, ModItems.MARS_STONE_BRICKS);
+        smelt(ModItems.CRACKED_VENUS_STONE_BRICKS, ModItems.VENUS_STONE_BRICKS);
+        smelt(ModItems.CRACKED_MERCURY_STONE_BRICKS, ModItems.MERCURY_STONE_BRICKS);
+        smelt(ModItems.CRACKED_GLACIO_STONE_BRICKS, ModItems.GLACIO_STONE_BRICKS);
+
+        shaped(ModItems.CHISELED_MOON_STONE_BRICKS, 1, ModItems.MOON_STONE_BRICK_SLAB, "#", "#");
+        shaped(ModItems.CHISELED_MARS_STONE_BRICKS, 1, ModItems.MARS_STONE_BRICK_SLAB, "#", "#");
+        shaped(ModItems.CHISELED_VENUS_STONE_BRICKS, 1, ModItems.VENUS_STONE_BRICK_SLAB, "#", "#");
+        shaped(ModItems.CHISELED_MERCURY_STONE_BRICKS, 1, ModItems.MERCURY_STONE_BRICK_SLAB, "#", "#");
+        shaped(ModItems.CHISELED_GLACIO_STONE_BRICKS, 1, ModItems.GLACIO_STONE_BRICK_SLAB, "#", "#");
+
+        shaped(ModItems.CHISELED_MOON_STONE_STAIRS, 4, ModItems.CHISELED_MOON_STONE_BRICKS, "#  ", "## ", "###");
+        shaped(ModItems.CHISELED_MARS_STONE_STAIRS, 4, ModItems.CHISELED_MARS_STONE_BRICKS, "#  ", "## ", "###");
+        shaped(ModItems.CHISELED_VENUS_STONE_STAIRS, 4, ModItems.CHISELED_VENUS_STONE_BRICKS, "#  ", "## ", "###");
+        shaped(ModItems.CHISELED_MERCURY_STONE_STAIRS, 4, ModItems.CHISELED_MERCURY_STONE_BRICKS, "#  ", "## ", "###");
+        shaped(ModItems.CHISELED_GLACIO_STONE_STAIRS, 4, ModItems.CHISELED_GLACIO_STONE_BRICKS, "#  ", "## ", "###");
+
+        shaped(ModItems.CHISELED_MOON_STONE_SLAB, 6, ModItems.CHISELED_MOON_STONE_BRICKS, "###");
+        shaped(ModItems.CHISELED_MARS_STONE_SLAB, 6, ModItems.CHISELED_MARS_STONE_BRICKS, "###");
+        shaped(ModItems.CHISELED_VENUS_STONE_SLAB, 6, ModItems.CHISELED_VENUS_STONE_BRICKS, "###");
+        shaped(ModItems.CHISELED_MERCURY_STONE_SLAB, 6, ModItems.CHISELED_MERCURY_STONE_BRICKS, "###");
+        shaped(ModItems.CHISELED_GLACIO_STONE_SLAB, 6, ModItems.CHISELED_GLACIO_STONE_BRICKS, "###");
+
+        shaped(ModItems.POLISHED_MOON_STONE, 4, ModItems.MOON_COBBLESTONE, "##", "##");
+        shaped(ModItems.POLISHED_MARS_STONE, 4, ModItems.MARS_COBBLESTONE, "##", "##");
+        shaped(ModItems.POLISHED_VENUS_STONE, 4, ModItems.VENUS_COBBLESTONE, "##", "##");
+        shaped(ModItems.POLISHED_MERCURY_STONE, 4, ModItems.MERCURY_COBBLESTONE, "##", "##");
+        shaped(ModItems.POLISHED_GLACIO_STONE, 4, ModItems.GLACIO_COBBLESTONE, "##", "##");
+
+        shaped(ModItems.POLISHED_MOON_STONE_STAIRS, 4, ModItems.POLISHED_MOON_STONE, "#  ", "## ", "###");
+        shaped(ModItems.POLISHED_MARS_STONE_STAIRS, 4, ModItems.POLISHED_MARS_STONE, "#  ", "## ", "###");
+        shaped(ModItems.POLISHED_VENUS_STONE_STAIRS, 4, ModItems.POLISHED_VENUS_STONE, "#  ", "## ", "###");
+        shaped(ModItems.POLISHED_MERCURY_STONE_STAIRS, 4, ModItems.POLISHED_MERCURY_STONE, "#  ", "## ", "###");
+        shaped(ModItems.POLISHED_GLACIO_STONE_STAIRS, 4, ModItems.POLISHED_GLACIO_STONE, "#  ", "## ", "###");
+
+        shaped(ModItems.POLISHED_MOON_STONE_SLAB, 6, ModItems.POLISHED_MOON_STONE, "###");
+        shaped(ModItems.POLISHED_MARS_STONE_SLAB, 6, ModItems.POLISHED_MARS_STONE, "###");
+        shaped(ModItems.POLISHED_VENUS_STONE_SLAB, 6, ModItems.POLISHED_VENUS_STONE, "###");
+        shaped(ModItems.POLISHED_MERCURY_STONE_SLAB, 6, ModItems.POLISHED_MERCURY_STONE, "###");
+        shaped(ModItems.POLISHED_GLACIO_STONE_SLAB, 6, ModItems.POLISHED_GLACIO_STONE, "###");
+
+        shaped(ModItems.MOON_PILLAR, 2, ModItems.MOON_STONE, "#", "#");
+        shaped(ModItems.MARS_PILLAR, 2, ModItems.MARS_STONE, "#", "#");
+        shaped(ModItems.VENUS_PILLAR, 2, ModItems.VENUS_STONE, "#", "#");
+        shaped(ModItems.MERCURY_PILLAR, 2, ModItems.MERCURY_STONE, "#", "#");
+        shaped(ModItems.GLACIO_PILLAR, 2, ModItems.GLACIO_STONE, "#", "#");
+
+        shaped(ModItems.MOON_STONE_BRICK_WALL, 6, ModItems.MOON_STONE_BRICKS, "###", "###");
+        shaped(ModItems.MARS_STONE_BRICK_WALL, 6, ModItems.MARS_STONE_BRICKS, "###", "###");
+        shaped(ModItems.VENUS_STONE_BRICK_WALL, 6, ModItems.VENUS_STONE_BRICKS, "###", "###");
+        shaped(ModItems.MERCURY_STONE_BRICK_WALL, 6, ModItems.MERCURY_STONE_BRICKS, "###", "###");
+        shaped(ModItems.GLACIO_STONE_BRICK_WALL, 6, ModItems.GLACIO_STONE_BRICKS, "###", "###");
+
+        shaped(ModItems.POLISHED_CONGLOMERATE, 4, ModItems.CONGLOMERATE, "##", "##");
+
+        shaped(ModItems.VENUS_SANDSTONE, 4, ModItems.VENUS_SAND, "##", "##");
+        shaped(ModItems.VENUS_SANDSTONE_BRICKS, 4, ModItems.VENUS_SANDSTONE, "##", "##");
+        shaped(ModItems.VENUS_SANDSTONE_BRICK_STAIRS, 4, ModItems.VENUS_SANDSTONE_BRICKS, "#  ", "## ", "###");
+        shaped(ModItems.VENUS_SANDSTONE_BRICK_SLAB, 6, ModItems.VENUS_SANDSTONE_BRICKS, "###");
+        smelt(ModItems.CRACKED_VENUS_SANDSTONE_BRICKS, ModItems.VENUS_SANDSTONE_BRICKS);
+    }
+
+    private static void smelt(Supplier<Item> result, Supplier<Item> mainItem) {
+        VanillaRecipeHelper.addSmeltingRecipe(
+                output,
+                CTNHCore.id(
+                        "smelting/%s_from_smelting_%s".formatted(ForgeRegistries.ITEMS.getKey(result.get()).getPath(),
+                                ForgeRegistries.ITEMS.getKey(mainItem.get()).getPath())),
+                new ItemStack(mainItem.get()), new ItemStack(result.get()), 0.1f);
+    }
+
+    private static void shaped(Supplier<Item> result, int count, Supplier<Item> mainItem, String... pattern) {
+        VanillaRecipeHelper.addShapedRecipe(
+                output, CTNHCore.id(ForgeRegistries.ITEMS.getKey(result.get()).getPath()),
+                new ItemStack(result.get(), count),
+                pattern, '#', new ItemStack(mainItem.get()));
     }
 }
