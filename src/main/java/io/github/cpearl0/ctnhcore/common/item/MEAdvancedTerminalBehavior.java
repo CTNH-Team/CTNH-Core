@@ -302,7 +302,7 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
             List<OrientedItem> candidates = new ArrayList<>();
             if (blockInfos != null) {
                 // 处理线圈方块的特殊逻辑
-                if (Arrays.stream(blockInfos).anyMatch(info -> info.getBlockState().getBlock() instanceof CoilBlock)) {
+                if (shouldReplaceCoils(blockInfos)) {
 
                     int tier = Math.min(coilTier - 1, blockInfos.length - 1);
                     if (tier == -1) {
@@ -329,6 +329,14 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
                 }
             }
             return candidates;
+        }
+
+        private boolean shouldReplaceCoils(BlockInfo[] blockInfos) {
+            return Arrays.stream(blockInfos)
+                    .filter(info -> info.getBlockState().getBlock() instanceof CoilBlock)
+                    .map(info -> info.getBlockState().getBlock())
+                    .distinct()
+                    .count() > 1;
         }
 
         public boolean isPlaceHatch(BlockInfo[] blockInfos) {
