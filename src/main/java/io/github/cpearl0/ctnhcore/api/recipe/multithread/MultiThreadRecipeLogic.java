@@ -48,7 +48,8 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
 
     private TickableSubscription subscription;
 
-    public static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(MultiThreadRecipeLogic.class);
+    public static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(MultiThreadRecipeLogic.class,
+            RecipeLogic.MANAGED_FIELD_HOLDER);
 
     public boolean isRunningRecipe(GTRecipe recipe, @Nullable RecipeLogic except) {
         for (RecipeLogic worker : threads) {

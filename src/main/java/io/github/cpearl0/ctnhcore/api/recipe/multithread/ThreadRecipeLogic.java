@@ -16,7 +16,8 @@ import lombok.Setter;
 @Setter
 public class ThreadRecipeLogic extends RecipeLogic {
 
-    public static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(ThreadRecipeLogic.class);
+    public static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(ThreadRecipeLogic.class,
+            RecipeLogic.MANAGED_FIELD_HOLDER);
 
     @Persisted
     @DescSynced
