@@ -508,7 +508,7 @@
   "ctnh.multiblock.lasersorter.tooltip.11": "§c如果输入的算力不为整数倍，则以上所有的增益全部无效且最终所需时间*4",
   "ctnh.multiblock.lasersorter.tooltip.2": "本机器需要消耗算力才能运行",
   "ctnh.multiblock.lasersorter.tooltip.3": "————————激光蚀刻模式————————",
-  "ctnh.multiblock.lasersorter.tooltip.4": "LUV及以下的电压固定基础请求8算力，电压每高于LUV一级，请求的基础算力翻倍",
+  "ctnh.multiblock.lasersorter.tooltip.4": "LuV及以下的电压固定基础请求8算力，电压每高于LuV一级，请求的基础算力翻倍",
   "ctnh.multiblock.lasersorter.tooltip.5": "输入的算力如果为基础请求算力的整数倍，则最终输出*1.25，并行等同于⌊(输入的算力/基础请求算力)⌋的三次方",
   "ctnh.multiblock.lasersorter.tooltip.6": "输入的算力每比基础算力多一倍，将一次超频转化为无损超频（即运行速度*2），该效果转化的次数不超过你能超频的等级（即上限为将你所有的有损超频转化为无损）",
   "ctnh.multiblock.lasersorter.tooltip.7": "————————激光分配模式————————",

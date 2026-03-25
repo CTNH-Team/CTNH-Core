@@ -75,6 +75,8 @@ public class RecipeRemoval {
                 "gtceu:assembly_line/crystal_mainframe_uv",
                 // HPCA
                 "gtceu:assembly_line/high_performance_computing_array",
+                // 数据库
+                "gtceu:assembly_line/data_bank",
                 // 凯金线圈
                 "gtceu:assembler/coil_trinium",
                 // 模拟室

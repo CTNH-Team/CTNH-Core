@@ -405,9 +405,9 @@ public class MultiblocksB {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ARC_REACTOR)
             .recipeModifier(Arc_Reactor::recipeModifier)
-            .tooltips(Component.translatable("ctnh.multiblock.tooltip.arcreactor.1"),
-                    Component.translatable("ctnh.multiblock.tooltip.arcreactor.2"),
-                    Component.translatable("ctnh.multiblock.tooltip.arcreactor.t1")
+            .tooltips(Component.translatable("ctnh.multiblock.arcreactor.tooltip.1"),
+                    Component.translatable("ctnh.multiblock.arcreactor.tooltip.2"),
+                    Component.translatable("ctnh.multiblock.arcreactor.tooltip.t1")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#########B########", "#########B########", "#########B########", "#########B########", "#########B########", "#########B########", "##################", "##################")
@@ -584,7 +584,6 @@ public class MultiblocksB {
             .recipeModifiers(Plasma_alloy_blast::recipeModifier, GTRecipeModifiers::ebfOverclock, BATCH_MODE)
             .tooltips(Component.translatable("ctnh.multiblock.plasma_alloy.tooltip.1"),
                     Component.translatable("ctnh.multiblock.plasma_alloy.tooltip.11"),
-                    Component.translatable("ctnh.multiblock.plasma_alloy.tooltip.recipe"),
                     Component.translatable("ctnh.multiblock.plasma_alloy.tooltip.2"),
                     Component.translatable("ctnh.multiblock.plasma_alloy.tooltip.3"),
                     Component.translatable("ctnh.multiblock.plasma_alloy.tooltip.4"),

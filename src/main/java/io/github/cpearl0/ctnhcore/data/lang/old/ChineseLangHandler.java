@@ -606,7 +606,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.lasersorter.tooltip.1", "配方类型：激光分配/激光蚀刻");
         provider.add("ctnh.multiblock.lasersorter.tooltip.2", "本机器需要消耗算力才能运行");
         provider.add("ctnh.multiblock.lasersorter.tooltip.3", "————————激光蚀刻模式————————");
-        provider.add("ctnh.multiblock.lasersorter.tooltip.4", "LUV及以下的电压固定基础请求8算力，电压每高于LUV一级，请求的基础算力翻倍");
+        provider.add("ctnh.multiblock.lasersorter.tooltip.4", "LuV及以下的电压固定基础请求8算力，电压每高于LuV一级，请求的基础算力翻倍");
         provider.add("ctnh.multiblock.lasersorter.tooltip.5",
                 "输入的算力如果为基础请求算力的整数倍，则最终输出*1.25，并行等同于⌊(输入的算力/基础请求算力)⌋的三次方");
         provider.add("ctnh.multiblock.lasersorter.tooltip.6",
