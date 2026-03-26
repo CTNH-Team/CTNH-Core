@@ -26,23 +26,23 @@ public class AlumiumChain {
 
         // 离心
         GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_green_sapphire"))
-                .inputItems(dust, GreenSapphire, 5)// 绿色蓝宝石
+                .inputItems(dust, GreenSapphire, 5) // 绿色蓝宝石 Al2O3
                 .outputItems(dust, Alumina, 5)
                 .EUt(VA[GTValues.HV])
                 .duration(100)
                 .save(provider);
 
         GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_sapphire"))
-                .inputItems(dust, Sapphire, 5)// 蓝宝石
+                .inputItems(dust, Sapphire, 5) // 蓝宝石 Al2O3
                 .outputItems(dust, Alumina, 5)
                 .EUt(VA[GTValues.HV])
                 .duration(100)
                 .save(provider);
 
         GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_ruby"))
-                .inputItems(dust, Ruby, 6)// 红宝石
-                .outputItems(dust, Alumina, 5)
-                .outputItems(dust, ChromiumTrioxide, 1)
+                .inputItems(dust, Ruby, 2) // 红宝石 CrAl2O3
+                .outputItems(dust, Alumina, 1)
+                .outputItems(dust, Chromium, 1)
                 .EUt(VA[GTValues.HV])
                 .duration(100)
                 .save(provider);

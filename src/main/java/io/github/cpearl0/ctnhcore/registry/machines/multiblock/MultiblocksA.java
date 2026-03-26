@@ -9,7 +9,6 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.SlaughterHouseMachin
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.UnderfloorHeatingMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.*;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.ChemicalGeneratorMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.Eternal_Combustion_engine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.NaqReactorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotovoltaicPowerStationMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.IndustrialPrimitiveBlastFurnaceMachine;
@@ -35,7 +34,6 @@ import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
-import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
@@ -1579,27 +1577,6 @@ public class MultiblocksA {
                 .build()
             )
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/implosion_compressor"))
-            .register();
-    public static final MultiblockMachineDefinition ETERNAL_COMBUSTION_ENGINE = REGISTRATE.multiblock("eternal_combustion_engine", Eternal_Combustion_engine::new)
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(DUMMY_RECIPES)
-            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
-            .appearanceBlock(CASING_STEEL_SOLID)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("AAAAAAA", "AAABBBA", "AAABBBA")
-                    .aisle("AAAAAAA", "ACADDDA", "AAABBBA")
-                    .aisle("AAAAAAA", "A@ABBBA", "AAABBBA")
-                    .where("A", Predicates.blocks(CASING_STEEL_SOLID.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(abilities(PartAbility.OUTPUT_ENERGY).setMinGlobalLimited(1))
-                            .or(abilities(PartAbility.IMPORT_FLUIDS)))
-                    .where("B", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
-                    .where("C", Predicates.blocks(GCYMBlocks.MOLYBDENUM_DISILICIDE_COIL_BLOCK.get()))
-                    .where("D", Predicates.blocks(CASING_PTFE_INERT.get()))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build()
-            )
-            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
 }
 // spotless:on

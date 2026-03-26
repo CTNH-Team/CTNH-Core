@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry.material;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialBuilder;
 import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
 import io.github.cpearl0.ctnhcore.registry.CTNHElements;
@@ -1011,7 +1010,8 @@ public class CTNHMaterials {
                 .components(Rhenium, 1, Sulfur, 2)
                 .addOreByproducts(Molybdenum, Copper, Platinum)
                 .buildAndRegister();
-        Thorium232 = new CTNHMaterialBuilder(GTCEu.id("thorium_232"))
+        Thorium232 = REGISTRATE.material(GTCEu.id("thorium_232"))
+                .cnlang("钍-232")
                 .ingot(3)
                 .liquid(new FluidBuilder().temperature(1405))
                 .color(0x2c9f2c)

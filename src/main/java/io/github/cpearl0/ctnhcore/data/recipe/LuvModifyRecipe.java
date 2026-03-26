@@ -17,15 +17,13 @@ import com.moguang.ctnhbio.registry.CBBlocks;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.foil;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.wireGtDouble;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.OPTICAL_PIPES;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLER_RECIPES;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLY_LINE_RECIPES;
-import static com.gregtechceu.gtceu.common.data.machines.GTResearchMachines.DATA_BANK;
-import static com.gregtechceu.gtceu.common.data.machines.GTResearchMachines.HIGH_PERFORMANCE_COMPUTING_ARRAY;
+import static com.gregtechceu.gtceu.common.data.machines.GTResearchMachines.*;
 
 public class LuvModifyRecipe {
 
@@ -41,6 +39,24 @@ public class LuvModifyRecipe {
                 .blastFurnaceTemp(5400)
                 .EUt(GTValues.V[GTValues.LuV])
                 .save(provider);
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("data_bank_modified"))
+                .inputItems(GTBlocks.COMPUTER_CASING.asStack())
+                .inputItems(CustomTags.LuV_CIRCUITS, 8)
+                .inputItems(TOOL_DATA_ORB)
+                .inputItems(wireFine, Cobalt, 64)
+                .inputItems(wireFine, Copper, 64)
+                .inputItems(OPTICAL_PIPES[0].asStack(4))
+                .inputItems(wireGtDouble, SamariumIronArsenicOxide, 16)
+                .inputFluids(SolderingAlloy, L * 2)
+                .inputFluids(Lubricant, 500)
+                .outputItems(DATA_BANK)
+                .scannerResearch(b -> b
+                        .researchStack(DATA_ACCESS_HATCH.asStack())
+                        .duration(2400)
+                        .EUt(VA[EV]))
+                .duration(1200).EUt(6000)
+                .addMaterialInfo(true, true).save(provider);
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("high_performance_computing_array_modified"))
                 .inputItems(DATA_BANK)

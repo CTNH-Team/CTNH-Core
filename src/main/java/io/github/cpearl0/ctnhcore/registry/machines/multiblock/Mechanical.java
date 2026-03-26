@@ -186,6 +186,7 @@ public class Mechanical {
             .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK)
             .tooltips(Component.translatable("ctnh.mechanical_lathe.structure").withStyle(ChatFormatting.DARK_RED))
+            .tooltips(Component.translatable("ctnh.mechanical_lathe.structure.1"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAAA", "AAAAAAAB", "AAACCCCB", "BBBBBBBB", "B######B", "BDDDDDDB", "AAAAAAAA")
                     .aisle("AAAAAAAA", "A#AEFFEA", "ADAGGGGC", "B######B", "########", "D######D", "AAAAAAAA")
