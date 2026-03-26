@@ -333,7 +333,7 @@ public class TwistedFusionRecipes {
                 .EUt(GTValues.VA[LuV])
                 .save(provider);
         BloodAltarRecipeBuilder.builder("bloodygold_dust_2")// 血铂B
-                .input(ChemicalHelper.get(TagPrefix.dust, PlatinumGroupResidue, 1))
+                .input(ChemicalHelper.get(TagPrefix.dust, PlatinumGroupSludge, 1))
                 .output(ChemicalHelper.get(TagPrefix.dust, HEMOPLATINUM, 1))
                 .circuitMeta(1)
                 .syphon(15000)
