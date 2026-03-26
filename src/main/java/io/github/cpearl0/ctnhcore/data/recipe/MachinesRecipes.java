@@ -96,12 +96,6 @@ public class MachinesRecipes {
                 .circuitMeta(1)
                 .save(provider);
 
-        CTNHRecipeTypes.TRAP_ENERGY.recipeBuilder(CTNHCore.id("test"))
-                .EUt(1)
-                .duration(10)
-                .circuitMeta(1)
-                .save(provider);
-
         CTNHRecipeTypes.VOID_MINER.recipeBuilder(CTNHCore.id("void"))
                 .EUt(32678 * 64)
                 .duration(20 * 100)

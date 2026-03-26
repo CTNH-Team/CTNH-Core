@@ -446,12 +446,6 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
-    public static final GTRecipeType TRAP_ENERGY = REGISTRATE.recipeType(GTCEu.id("trap_energy"), ELECTRIC)
-            .cnlang("能量势阱").setMaxIOSize(6, 6, 3, 3)
-            .setEUIO(IO.IN)
-            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType CULTIVATION_ROOM = REGISTRATE.recipeType(GTCEu.id("cultivation_room"), ELECTRIC)
             .cnlang("培养").setMaxIOSize(3, 3, 3, 3)
             .setEUIO(IO.IN)
@@ -582,13 +576,6 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.MACERATOR);
-    public static final GTRecipeType MANA_SEPERATOR_RECIPES = REGISTRATE
-            .recipeType(GTCEu.id("mana_seperator"), MULTIBLOCK)
-            .cnlang("魔力分选").setMaxIOSize(3, 6, 3, 2)
-            .setEUIO(IO.IN)
-            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.CENTRIFUGE);
 
     public static final GTRecipeType GREENHOUSE_RECIPES = REGISTRATE.recipeType(GTCEu.id("greenhouse"), MULTIBLOCK)
             .cnlang("温室").setEUIO(IO.IN).setMaxIOSize(4, 4, 1, 0)

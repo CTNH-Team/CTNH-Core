@@ -100,18 +100,6 @@ public class BedrockMaterials {
                 .color(0xA52A2A)
                 .buildAndRegister();
 
-        SUPERFUELMK2 = REGISTRATE.material(CTNHCore.id("superfuelmk2"))
-                .cnlang("超能燃料MK-II")
-                .liquid()
-                .color(0xFF69B4)
-                .buildAndRegister();
-
-        SUPERFUELMK3 = REGISTRATE.material(CTNHCore.id("superfuelmk3"))
-                .cnlang("超能燃料MK-III")
-                .liquid()
-                .color(0x8A2BE2)
-                .buildAndRegister();
-
         NQ_FUELMK1 = REGISTRATE.material(CTNHCore.id("nq_fuelmk1"))
                 .cnlang("惰性硅岩基燃料")
                 .liquid()
