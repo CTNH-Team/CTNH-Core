@@ -444,7 +444,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.martial_morality_eye.tooltip.6", "结构来源:Twist Space Technology");
 
         provider.add("ctnh.multiblock.quasar_eye.tooltip.0", "§9魔力§r的§c终极奥秘§r，足以制造§5类星体§r的装置掌握在§6你§r的手中");
-        provider.add("ctnh.multiblock.quasar_eye.tooltip.1", "该机器启动需要§r初始魔力燃料消耗§R，查阅JEI以查找消耗量");
+        provider.add("ctnh.multiblock.quasar_eye.tooltip.1", "该机器启动需要§r初始魔力燃料消耗§R，查阅EMI以查找消耗量");
         provider.add("ctnh.multiblock.quasar_eye.tooltip.2", "在能量等级高时启动能量等级低的配方§b不需要启动花费§r");
         provider.add("ctnh.multiblock.quasar_eye.tooltip.3",
                 "§5符文能量§r控制着输出的强度，输入§b五级符文§r来增强符文能量，以加强你的输出,使用§5类星体符文§r产生大量符文能量");
@@ -562,8 +562,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.magic.generator", "精炼天地之魔精");
         provider.add("ctnh.magic.generator.1", "具有8并行，每秒基础消耗12mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
         provider.add("ctnh.gcym.reduction", "配方耗时x0.8，配方耗能x0.6");
-        provider.add("ctnh.boss_summoner.use", "右键长按蓄力掷出，在落点处召唤一只神化boss，每次使用有五分之一的概率消耗");
-        provider.add("ctnh.mechanical_lathe.structure", "结构中的车床必须严格依照JEI结构信息页面展示的位置和方向摆放");
+        provider.add("ctnh.mechanical_lathe.structure", "结构中的车床必须严格依照EMI结构信息页面展示的位置和方向摆放");
+        provider.add("ctnh.mechanical_lathe.structure.1", "§7EMI中显示的车床数量有问题，实际只需要6个");
 
         //
         provider.add("ctnh.multiblock.plasma_alloy.tooltip.1", "§4转底炉的复仇");
@@ -651,7 +651,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.neuro_martix_compiler.tip.1",
                 "该机器的输入由6个神经矩阵研究舱室组成，每个舱室在结构完成时将被编码，所有研究舱室必须为同一等级，编码完成后，每个研究舱室将会显示他们所属的片区（并未实现）现在片区分配固定为：机器主方块左前方为1，右前方为2，左后方为3，右后方为4");
         provider.add("ctnh.multiblock.neuro_martix_compiler.tip.2",
-                "该机器的输入§c必须严格按照JEI的物品顺序§9从左到右§r从第一行到第二行放置在§91-5片区§r，同时在第六片区放置§9研究数据集§r§r,任何错误的放置或者外部舱室的放置都会导致机器故障并在对应舱室显示故障");
+                "该机器的输入§c必须严格按照EMI的物品顺序§9从左到右§r从第一行到第二行放置在§91-5片区§r，同时在第六片区放置§9研究数据集§r§r,任何错误的放置或者外部舱室的放置都会导致机器故障并在对应舱室显示故障");
         provider.add("ctnh.multiblock.neuro_martix_compiler.tip.3", "必须保证所有神经矩阵研究舱室的等级不低于配方等级，否则配方不会运行");
         provider.add("ctnh.multiblock.neuro_martix_compiler.tip.4", "————————机器总体机制————————");
         provider.add("ctnh.multiblock.neuro_martix_compiler.tip.5",
@@ -741,7 +741,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.u_sinope.story.2", "直到那场永恒的战争，这座真空巨塔化为永恒的残骸，随着战争的双方破碎在真空中");
         provider.add("ctnh.u_sinope.story.3", "你已无法再知晓那场战争的双方是否已经相互毁灭，但你直到，这座巨型结构将宣告着人类的复兴");
         provider.add("ctnh.u_sinope.1", "配方类型：蒸馏塔/蒸馏室/裂化机/流体加热机/流体固化机/真空石化处理/???");
-        provider.add("ctnh.u_sinope.2", "§c它那究极的结构已然无法让你的JEI承受，你需要寻求蓝图的帮忙，同时在修改结构时最好直接破坏主方块以避免检测卡死游戏");
+        provider.add("ctnh.u_sinope.2", "§c它那究极的结构已然无法让你的EMI承受，你需要寻求蓝图的帮忙，同时在修改结构时最好直接破坏主方块以避免检测卡死游戏");
         provider.add("ctnh.u_sinope.3", "巨型的结构只能在真空建立，否则巨大的结构将会使周围坍缩（效率减少99.99%）");
         provider.add("ctnh.u_sinope.4", "除非你使用四维工程学材料，否则它无法再承受UIV即以上的线圈，效率将减少99.99%");
         provider.add("ctnh.u_sinope.5", "线圈等级决定了最大的配方等级，你最大只能使用线圈电压等级+1的配方等级，否则效率减少99%");

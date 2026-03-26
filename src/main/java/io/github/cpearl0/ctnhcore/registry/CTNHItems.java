@@ -163,24 +163,6 @@ public class CTNHItems {
                     // list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.3"));
                 })))
                 .register();
-        BOSS_SUMMONER = REGISTRATE
-                .item("boss_summoner", ThrowItem::new)
-                .cnlang("boss召唤器")
-                .lang("Boss Summoner")
-                .onRegister(attach(new BossSummonerBehavior(1)))
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.translatable("ctnh.boss_summoner.use").withStyle(ChatFormatting.RED));
-                })))
-                .register();
-        ADVANCED_BOSS_SUMMONER = REGISTRATE
-                .item("advanced_boss_summoner", ThrowItem::new)
-                .cnlang("进阶boss召唤器")
-                .lang("Advanced Boss Summoner")
-                .onRegister(attach(new BossSummonerBehavior(2)))
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.translatable("ctnh.boss_summoner.use").withStyle(ChatFormatting.DARK_RED));
-                })))
-                .register();
         PV_DRONE_PROTOTYPE = REGISTRATE
                 .item("photovoltaic_drone_prototype", holder -> new IDroneItem(holder, 0, 512, 16, () -> Items.AIR))
                 .cnlang("光伏无人机原型")
@@ -386,8 +368,6 @@ public class CTNHItems {
             .cnlang("一阶航天数据芯片")
             .lang("Astronomy Circuit I")
             .register();
-    public static ItemEntry<ThrowItem> BOSS_SUMMONER;
-    public static ItemEntry<ThrowItem> ADVANCED_BOSS_SUMMONER;
     public static ItemEntry<IDroneItem> PV_DRONE_PROTOTYPE;
     public static ItemEntry<IDroneItem> PV_DRONE_TIER1;
     public static ItemEntry<IDroneItem> PV_DRONE_TIER2;
