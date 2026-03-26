@@ -685,8 +685,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.super_centrifuge.parallel", "普通离心机模式下会获得8并行");
         provider.add("ultrasonic_apparatus", "超声破碎");
 
-        provider.add("ctnhcore.machine.high_performance_computer.tooltip.0", "§3飞龙一般的超频计算");
-        provider.add("ctnhcore.machine.high_performance_computer.tooltip.1", "§r能量充足时,提供%d算力");
+        // provider.add("ctnhcore.machine.high_performance_computer.tooltip.0", "§3飞龙一般的超频计算");
+        // provider.add("ctnhcore.machine.high_performance_computer.tooltip.1", "§r能量充足时,提供%d算力");
         provider.add("ctnh.compiler.error.0", "§c未知错误");
         provider.add("ctnh.compiler.error.1", "§c舱室等级与片区1不匹配");
 
@@ -773,9 +773,9 @@ public class ChineseLangHandler {
         for (int tier : GTValues.tiersBetween(UV, UHV)) {
             provider.add(CTNHMachines.COMPILERMACHINE[tier].getBlock(), GTValues.VNF[tier] + "§r神经拟合仓");
         }
-        for (int tier : GTValues.tiersBetween(HV, IV)) {
-            provider.add(CTNHMachines.HIGH_PERFORMANCE_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + "§r高性能计算机");
-        }
+        // for (int tier : GTValues.tiersBetween(HV, IV)) {
+        // provider.add(CTNHMachines.HIGH_PERFORMANCE_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + "§r高性能计算机");
+        // }
         provider.add(CTNHMachines.ASYNC_THREAD_HATCH[LuV].getBlock(), "§r异步线程控制仓");
         provider.add(CTNHMachines.STERILE_CLEANROOM_MAINTENANCE_HATCH.getBlock(), "无菌超净间维护仓");
 

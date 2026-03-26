@@ -64,18 +64,21 @@ public class CTNHItems {
     @CN("§74阶")
     @EN("§7T4")
     static Lang heavy_plate_t4;
-    @CN("§7§o用于制作1阶火箭")
+    @CN("§7用于制作1阶火箭")
     @EN("§7Used for making Rocket T1")
     static Lang chip_t1;
-    @CN("§7§o用于制作2阶火箭")
+    @CN("§7用于制作2阶火箭")
     @EN("§7Used for making Rocket T2")
     static Lang chip_t2;
-    @CN("§7§o用于制作3阶火箭")
+    @CN("§7用于制作3阶火箭")
     @EN("§7Used for making Rocket T3")
     static Lang chip_t3;
-    @CN("§7§o用于制作4阶火箭")
+    @CN("§7用于制作4阶火箭")
     @EN("§7Used for making Rocket T4")
     static Lang chip_t4;
+    @CN("§7中子活化器在速度不达标时运行配方会产生废料")
+    @EN("§7Neutron Activator will produce waste when the speed is insufficient")
+    static Lang radioactive_waste;
 
     public static void registerItem() {
         GREAT_ASTRONOMY_CIRCUIT_1 = REGISTRATE
@@ -339,6 +342,14 @@ public class CTNHItems {
                                 GTValues.M / 2))))
                 .register();
 
+        RADIOACTIVE_WASTE = REGISTRATE
+                .item("radioactive_waste", ComponentItem::create)
+                .cnlang("放射性废料")
+                .lang("Radioactive Waste")
+                .properties(properties -> properties.rarity(Rarity.UNCOMMON))
+                .onRegister(attach(new TooltipBehavior(text -> text.add(radioactive_waste.translate()))))
+                .register();
+
         CREATIVE_ENERGY_COVER_ITEM = REGISTRATE
                 .item("creative_energy_cover", ComponentItem::create)
                 .cnlang("创造能源覆盖板")
@@ -410,12 +421,7 @@ public class CTNHItems {
             .lang("Tier 1 Rocket Control Program")
             .register();
 
-    public static ItemEntry<Item> RADIOACTIVE_WASTE = REGISTRATE
-            .item("radioactive_waste", Item::new)
-            .cnlang("放射性废料")
-            .lang("Radioactive Waste")
-            .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-            .register();
+    public static ItemEntry<ComponentItem> RADIOACTIVE_WASTE;
     public static ItemEntry<ComponentItem> HEAVY_INGOT_T1;
     public static ItemEntry<ComponentItem> HEAVY_INGOT_T2;
     public static ItemEntry<ComponentItem> HEAVY_INGOT_T3;

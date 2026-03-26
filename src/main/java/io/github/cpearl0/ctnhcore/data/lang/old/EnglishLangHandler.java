@@ -487,9 +487,9 @@ public class EnglishLangHandler {
         provider.add("ctnh.multiblock.wind_array.tooltip11",
                 "§5DO OBEY the rules to resist the DESTRUCTION from nature force.");
 
-        provider.add("ctnhcore.machine.high_performance_computer.tooltip.0", "§3Fetal OVERCLOCKING?");
-        provider.add("ctnhcore.machine.high_performance_computer.tooltip.1",
-                "§rProvider %d computation when energy is sufficient.");
+        // provider.add("ctnhcore.machine.high_performance_computer.tooltip.0", "§3Fetal OVERCLOCKING?");
+        // provider.add("ctnhcore.machine.high_performance_computer.tooltip.1",
+        // "§rProvider %d computation when energy is sufficient.");
 
         provider.add("ctnh.machine.naquadah_reactor.tooltip", "Efficiency: %s%%");
         provider.add("ctnh.machine.rocket_engine.tooltip", "Efficiency: %s%%");

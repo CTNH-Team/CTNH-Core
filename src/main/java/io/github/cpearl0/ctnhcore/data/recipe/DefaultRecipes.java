@@ -803,7 +803,7 @@ public class DefaultRecipes {
                 .inputItems(GTMachines.HULL[GTValues.EV].asStack())
                 .inputItems(TagPrefix.cableGtSingle, GTMaterials.Aluminium, 2)
                 .inputItems(TagPrefix.plate, GTMaterials.StyreneButadieneRubber)
-                .inputItems(TagPrefix.plate, GTMaterials.IronMagnetic, 4)
+                .inputItems(TagPrefix.plate, GTMaterials.SteelMagnetic, 4)
                 .inputItems(TagPrefix.plate, GTMaterials.TungstenCarbide, 2)
                 .inputItems(GTItems.ELECTRIC_MOTOR_EV.asStack(2))
                 .outputItems(GTNNMachines.NEUTRON_ACCELERATOR[GTValues.EV].asStack())
