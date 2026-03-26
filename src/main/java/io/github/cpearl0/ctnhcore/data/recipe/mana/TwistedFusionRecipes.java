@@ -34,7 +34,6 @@ import static com.moguang.ctnhmana.registry.multiblock.misc.TWISTED_FUSION_MK3;
 import static com.wintercogs.ae2omnicells.common.init.OCItems.*;
 import static earth.terrarium.adastra.common.registry.ModItems.*;
 import static io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials.*;
-import static io.github.cpearl0.ctnhcore.data.materials.PlatinumLineMaterials.PlatinumGroupResidue;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.*;
 import static io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA.COMPRESSED_FUSION_REACTOR;
