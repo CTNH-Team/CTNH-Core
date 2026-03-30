@@ -11,6 +11,7 @@ dependencies {
     jarJar(project(":modules:CTNH-Mana")){ transitive = false }
     jarJar(project(":modules:GregTech-Modern")){ transitive = false }
 
+    jarJar("extra-mods:scg-ctnh:1.1.1")
     modImplementation("extra-mods:create_connected-26.1-all")
 
     runtimeOnly(ctnh.graphlib)
