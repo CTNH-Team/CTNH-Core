@@ -34,7 +34,6 @@ import static com.moguang.ctnhmana.registry.multiblock.misc.TWISTED_FUSION_MK3;
 import static com.wintercogs.ae2omnicells.common.init.OCItems.*;
 import static earth.terrarium.adastra.common.registry.ModItems.*;
 import static io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials.*;
-import static io.github.cpearl0.ctnhcore.data.materials.PlatinumLineMaterials.PlatinumGroupResidue;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.*;
 import static io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA.COMPRESSED_FUSION_REACTOR;
@@ -240,7 +239,6 @@ public class TwistedFusionRecipes {
                 .inputItems(FERTILIZER, 64)
                 .inputItems(RADIOACTIVE_WASTE, 64)
                 .inputFluids(Water.getFluid(10000))
-                .circuitMeta(20)
                 .outputItems(PROLIFERATION_RUNE.asItem(), 3)
                 .EUt(24444)
                 .duration(1000)
@@ -334,11 +332,11 @@ public class TwistedFusionRecipes {
                 .EUt(GTValues.VA[LuV])
                 .save(provider);
         BloodAltarRecipeBuilder.builder("bloodygold_dust_2")// 血铂B
-                .input(ChemicalHelper.get(TagPrefix.dust, PlatinumGroupResidue, 1))
+                .input(ChemicalHelper.get(TagPrefix.dust, PlatinumGroupSludge, 1))
                 .output(ChemicalHelper.get(TagPrefix.dust, HEMOPLATINUM, 1))
                 .circuitMeta(1)
                 .syphon(15000)
-                .minimumTier(4)
+                .minimumTier(3)
                 .consumeRate(100)
                 .drainRate(100)
                 .save(provider);

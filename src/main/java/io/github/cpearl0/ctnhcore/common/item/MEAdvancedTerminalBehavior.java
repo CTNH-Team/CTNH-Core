@@ -12,6 +12,7 @@ import com.gregtechceu.gtceu.api.item.component.IItemUIFactory;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
+import com.gregtechceu.gtceu.api.pattern.BlockPattern;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
 
 import com.lowdragmc.lowdraglib.gui.editor.ColorPattern;
@@ -36,6 +37,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 
 import appeng.api.implementations.blockentities.IWirelessAccessPoint;
+import com.moguang.ctnhmana.Mutiblock.IndustrialAltarMachine;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -50,6 +52,7 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
     // 配置键常量
     private static final String COIL_TIER_KEY = "CoilTier";
     private static final String REPEAT_COUNT_KEY = "RepeatCount";
+    private static final String ALTAR_TIER_KEY = "AltarTier";
     private static final String NO_HATCH_MODE_KEY = "NoHatchMode";
     private static final String REPLACE_COIL_MODE_KEY = "ReplaceCoilMode";
     private static final String USE_AE_KEY = "UseAEStorage";
@@ -81,9 +84,8 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
             settings.accessPoint = terminal.getAccessPoint(context.getItemInHand(), context.getLevel());
         }
 
-        if (!controller.isFormed() || (machine instanceof WorkableMultiblockMachine workableMachine &&
-                settings.isReplaceCoilMode())) {
-            var pattern = getAdvancedBlockPattern(controller.getPattern());
+        if (shouldStartAutoBuild(controller, machine, settings)) {
+            var pattern = getAdvancedBlockPattern(resolveTargetPattern(controller, machine, settings));
             if (pattern != null) {
                 pattern.startAutoBuild(player, controller.getMultiblockState(), settings);
                 BuildTaskManager.getInstance().registerTask(player, pattern);
@@ -98,11 +100,50 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
         return new AutoBuildSetting(
                 tag.getInt(COIL_TIER_KEY),
                 tag.getInt(REPEAT_COUNT_KEY),
+                tag.getInt(ALTAR_TIER_KEY),
                 tag.getInt(NO_HATCH_MODE_KEY),
                 tag.getInt(REPLACE_COIL_MODE_KEY),
                 tag.getInt(USE_AE_KEY),
                 tag.getInt(PLACE_FLUID_KEY),
                 tag.getInt(PLACE_IN_FLUID_KEY));
+    }
+
+    private boolean shouldStartAutoBuild(IMultiController controller, MetaMachine machine, AutoBuildSetting settings) {
+        if (!controller.isFormed()) {
+            return true;
+        }
+        if (machine instanceof WorkableMultiblockMachine workableMachine && settings.isReplaceCoilMode()) {
+            return true;
+        }
+        return shouldUpgradeIndustrialAltar(machine, settings);
+    }
+
+    private boolean shouldUpgradeIndustrialAltar(MetaMachine machine, AutoBuildSetting settings) {
+        if (!(machine instanceof IndustrialAltarMachine altarMachine)) {
+            return false;
+        }
+        return settings.getAltarTier() > altarMachine.getMatchedPatternIndex();
+    }
+
+    private BlockPattern resolveTargetPattern(IMultiController controller, MetaMachine machine,
+                                              AutoBuildSetting settings) {
+        if (!(machine instanceof IndustrialAltarMachine altarMachine)) {
+            return controller.getPattern();
+        }
+        BlockPattern selectedPattern = getIndustrialAltarPattern(altarMachine, settings.getAltarTier());
+        return selectedPattern == null ? controller.getPattern() : selectedPattern;
+    }
+
+    private BlockPattern getIndustrialAltarPattern(IndustrialAltarMachine altarMachine, int altarTier) {
+        int index = Math.max(0, Math.min(altarTier, 4));
+        return switch (index) {
+            case 0 -> altarMachine.getDefinition().getPatternFactory().get();
+            case 1 -> IndustrialAltarMachine.createLevel3Pattern(altarMachine.getDefinition());
+            case 2 -> IndustrialAltarMachine.createLevel4Pattern(altarMachine.getDefinition());
+            case 3 -> IndustrialAltarMachine.createLevel5Pattern(altarMachine.getDefinition());
+            case 4 -> IndustrialAltarMachine.createLevel6Pattern(altarMachine.getDefinition());
+            default -> altarMachine.getDefinition().getPatternFactory().get();
+        };
     }
 
     @Override
@@ -139,6 +180,14 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
                         () -> getTagValue(handItem, REPEAT_COUNT_KEY, 0),
                         value -> setTagValue(handItem, REPEAT_COUNT_KEY, value),
                         0, 99),
+                new SettingConfig(
+                        "item.ctnh.me_advanced_terminal.setting.10",
+                        new ArrayList<>(Collections.singletonList(
+                                Component.translatable("item.ctnh.me_advanced_terminal.setting.10.tooltip"))),
+                        ALTAR_TIER_KEY,
+                        () -> getTagValue(handItem, ALTAR_TIER_KEY, 0),
+                        value -> setTagValue(handItem, ALTAR_TIER_KEY, value),
+                        0, 4),
                 new SettingConfig(
                         "item.ctnh.me_advanced_terminal.setting.3",
                         new ArrayList<>(Collections.singletonList(
@@ -222,6 +271,7 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
 
         private final int coilTier;
         private final int repeatCount;
+        private final int altarTier;
         private final int noHatchMode;
         private final int replaceCoilMode;
         private final int useAEStorage;
@@ -232,10 +282,11 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
 
         public static final TagKey<Item> HATCH_TAG = ItemTags.create(ResourceLocation.tryBuild("forge", "hatch"));
 
-        public AutoBuildSetting(int coilTier, int repeatCount, int noHatchMode,
+        public AutoBuildSetting(int coilTier, int repeatCount, int altarTier, int noHatchMode,
                                 int replaceCoilMode, int useAEStorage, int placeFluid, int placeInFluid) {
             this.coilTier = coilTier;
             this.repeatCount = repeatCount;
+            this.altarTier = altarTier;
             this.noHatchMode = noHatchMode;
             this.replaceCoilMode = replaceCoilMode;
             this.useAEStorage = useAEStorage;
@@ -244,14 +295,14 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
         }
 
         public AutoBuildSetting() {
-            this(0, 0, 1, 0, 0, 1, 0);
+            this(0, 0, 0, 1, 0, 0, 1, 0);
         }
 
         public List<OrientedItem> apply(BlockInfo[] blockInfos) {
             List<OrientedItem> candidates = new ArrayList<>();
             if (blockInfos != null) {
                 // 处理线圈方块的特殊逻辑
-                if (Arrays.stream(blockInfos).anyMatch(info -> info.getBlockState().getBlock() instanceof CoilBlock)) {
+                if (shouldReplaceCoils(blockInfos)) {
 
                     int tier = Math.min(coilTier - 1, blockInfos.length - 1);
                     if (tier == -1) {
@@ -278,6 +329,14 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
                 }
             }
             return candidates;
+        }
+
+        private boolean shouldReplaceCoils(BlockInfo[] blockInfos) {
+            return Arrays.stream(blockInfos)
+                    .filter(info -> info.getBlockState().getBlock() instanceof CoilBlock)
+                    .map(info -> info.getBlockState().getBlock())
+                    .distinct()
+                    .count() > 1;
         }
 
         public boolean isPlaceHatch(BlockInfo[] blockInfos) {

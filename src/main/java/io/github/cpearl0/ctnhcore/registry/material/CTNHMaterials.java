@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry.material;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialBuilder;
 import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
 import io.github.cpearl0.ctnhcore.registry.CTNHElements;
@@ -127,7 +126,6 @@ public class CTNHMaterials {
     public static Material QUASER_MANA;
     public static Material COMPRESSED_ADAMANTITE;
     public static Material COMPRESSED_AETHER;
-    public static Material EVE;
     public static Material PreciousAlloy;
     public static Material Cryolite;
     public static Material Zircon;
@@ -456,14 +454,6 @@ public class CTNHMaterials {
         COMPRESSED_AETHER = REGISTRATE.material(GTCEu.id("compressed_aether"))
                 .cnlang("精炼超能以太")
                 .plasma()
-                .buildAndRegister();
-        EVE = REGISTRATE.material(GTCEu.id("eve"))
-                .cnlang("EVE高能粒子")
-                .plasma()
-                .color(0x0000FF)
-                .radioactiveHazard(20)
-                .iconSet(METALLIC)
-                .flags(GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         PreciousAlloy = REGISTRATE.material(GTCEu.id("precious_alloy"))
                 .cnlang("贵金属")
@@ -854,7 +844,7 @@ public class CTNHMaterials {
                 .color(0x4ded1c)
                 .buildAndRegister();
         COLORFUL_GEM = REGISTRATE.material(GTCEu.id("colorful_gem"))
-                .cnlang("异彩（无材质版）")
+                .cnlang("异彩")
                 .gem()
                 .element(CTNHElements.COLORFUL_GEM)
                 .color(0xFF0000)
@@ -1020,7 +1010,8 @@ public class CTNHMaterials {
                 .components(Rhenium, 1, Sulfur, 2)
                 .addOreByproducts(Molybdenum, Copper, Platinum)
                 .buildAndRegister();
-        Thorium232 = new CTNHMaterialBuilder(GTCEu.id("thorium_232"))
+        Thorium232 = REGISTRATE.material(GTCEu.id("thorium_232"))
+                .cnlang("钍-232")
                 .ingot(3)
                 .liquid(new FluidBuilder().temperature(1405))
                 .color(0x2c9f2c)

@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe.mana;
 
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
+import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -10,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import com.enderio.api.capability.StoredEntityData;
 import com.enderio.base.common.init.EIOItems;
 import com.moguang.ctnhmana.common.recipe.HellForgeCondition;
+import wayoftime.bloodmagic.common.fluid.BloodMagicFluids;
 
 import java.util.function.Consumer;
 
@@ -34,6 +36,7 @@ public class MiscManaRecipes {
                 .inputItems(REAGENT_BLOOD_LIGHT)// 血光试剂
                 .inputItems(REAGENT_BINDING)// 束缚试剂
                 .inputItems(EIOItems.EMPTY_SOUL_VIAL)// 空灵魂瓶
+                .inputFluids(FluidIngredient.of(BloodMagicFluids.DOUBT_FLUID.get(), 6666))
                 .outputItems(filled)
                 .duration(200)
                 .EUt(8000)

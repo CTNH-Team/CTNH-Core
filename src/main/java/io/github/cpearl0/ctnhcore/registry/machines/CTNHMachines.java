@@ -11,7 +11,6 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CreativeInputHa
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CreativeLaserHatchPartMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.DigitalMiner;
 import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
-import io.github.cpearl0.ctnhcore.common.machine.simple.HighPerformanceComputerMachine;
 import io.github.cpearl0.ctnhcore.data.machines.GTNNMachines;
 import io.github.cpearl0.ctnhcore.registry.CTNHCreativeModeTabs;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
@@ -41,8 +40,6 @@ import net.minecraft.network.chat.Component;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Suffix;
 
-import java.util.Locale;
-
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.capability.recipe.IO.IN;
 import static com.gregtechceu.gtceu.api.capability.recipe.IO.OUT;
@@ -51,7 +48,6 @@ import static com.gregtechceu.gtceu.common.data.GTMachines.CREATIVE_TOOLTIPS;
 import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.DUAL_INPUT_HATCH_ABILITIES;
 import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.DUAL_OUTPUT_HATCH_ABILITIES;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
-import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils.*;
 
@@ -76,7 +72,7 @@ public class CTNHMachines {
     public static MachineDefinition[] ENERGY_OUTPUT_HATCH_4A_LOWER;
     public static MachineDefinition[] ROTOR_HOLDER_EXTEND;
     public static MachineDefinition STERILE_CLEANROOM_MAINTENANCE_HATCH;
-    public static MachineDefinition[] HIGH_PERFORMANCE_COMPUTER;
+    // public static MachineDefinition[] HIGH_PERFORMANCE_COMPUTER;
     public static MachineDefinition[] HUGE_ITEM_IMPORT_BUS;
     public static MachineDefinition[] HUGE_ITEM_EXPORT_BUS;
     public static MachineDefinition[] HUGE_DUAL_IMPORT_HATCH;
@@ -154,7 +150,7 @@ public class CTNHMachines {
                         .abilities(CTNHPartAbility.COMPILER)
                         .colorOverlayTieredHullModel("huge_bus_in", null, null)
                         .register(),
-                GTValues.tiersBetween(UV, UEV));
+                GTValues.tiersBetween(UV, UHV));
 
         PERSONAL_COMPUTER = registerSimpleComputationMachines("personal_computer",
                 CTNHRecipeTypes.PERSONAL_COMPUTER);
@@ -278,25 +274,25 @@ public class CTNHMachines {
                 .tier(UHV)
                 .register();
 
-        HIGH_PERFORMANCE_COMPUTER = registerTieredMachines(
-                "high_performance_computer",
-                HighPerformanceComputerMachine::new,
-                (tier, builder) -> builder.langValue("%s High Performance Computer".formatted(VNF[tier]))
-                        .langValue("%s %s %s".formatted(VLVH[tier], toEnglishName("high_performance_computer"),
-                                VLVT[tier]))
-                        .rotationState(RotationState.NON_Y_AXIS)
-                        .workableTieredHullModel(
-                                GTCEu.id("block/machines/high_performance_computer/" +
-                                        VN[tier].toLowerCase(Locale.ROOT)))
-                        .tooltips(Component.translatable("ctnhcore.machine.high_performance_computer.tooltip.0"),
-                                Component.translatable("ctnhcore.machine.high_performance_computer.tooltip.1",
-                                        (tier >= GTValues.HV ? 1 << (tier - GTValues.HV) : 0)),
-                                Component.translatable("gtceu.universal.tooltip.voltage_in",
-                                        FormattingUtil.formatNumbers(VA[tier] *
-                                                HighPerformanceComputerMachine.getMaxInputOutputAmperageStatic()),
-                                        VNF[tier]))   // 输入电流16A
-                        .register(),
-                GTValues.tiersBetween(HV, IV));
+        // HIGH_PERFORMANCE_COMPUTER = registerTieredMachines(
+        // "high_performance_computer",
+        // HighPerformanceComputerMachine::new,
+        // (tier, builder) -> builder.langValue("%s High Performance Computer".formatted(VNF[tier]))
+        // .langValue("%s %s %s".formatted(VLVH[tier], toEnglishName("high_performance_computer"),
+        // VLVT[tier]))
+        // .rotationState(RotationState.NON_Y_AXIS)
+        // .workableTieredHullModel(
+        // GTCEu.id("block/machines/high_performance_computer/" +
+        // VN[tier].toLowerCase(Locale.ROOT)))
+        // .tooltips(Component.translatable("ctnhcore.machine.high_performance_computer.tooltip.0"),
+        // Component.translatable("ctnhcore.machine.high_performance_computer.tooltip.1",
+        // (tier >= GTValues.HV ? 1 << (tier - GTValues.HV) : 0)),
+        // Component.translatable("gtceu.universal.tooltip.voltage_in",
+        // FormattingUtil.formatNumbers(VA[tier] *
+        // HighPerformanceComputerMachine.getMaxInputOutputAmperageStatic()),
+        // VNF[tier])) // 输入电流16A
+        // .register(),
+        // GTValues.tiersBetween(HV, IV));
 
         HUGE_ITEM_IMPORT_BUS = registerTieredMachines(
                 "huge_input_bus",

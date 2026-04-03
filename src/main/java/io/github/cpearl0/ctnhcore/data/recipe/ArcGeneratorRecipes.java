@@ -41,7 +41,7 @@ public class ArcGeneratorRecipes {
                 .inputItems(CTNHBlocks.ARC_CELL, 16)
                 .inputItems(CustomTags.LuV_CIRCUITS, 16)
                 .inputItems(CustomTags.ZPM_CIRCUITS, 8)
-                .inputItems(cableGtHex, SamariumIronArsenicOxide, 16)
+                .inputItems(wireGtHex, SamariumIronArsenicOxide, 16)
                 .inputItems(GCYMMachines.LARGE_ELECTROLYZER)
                 .inputItems(GCYMBlocks.CASING_NONCONDUCTING)
                 .outputItems(MultiblocksB.ARC_GENERATOR)

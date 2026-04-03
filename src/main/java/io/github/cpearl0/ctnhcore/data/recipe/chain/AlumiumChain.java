@@ -26,32 +26,32 @@ public class AlumiumChain {
 
         // 离心
         GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_green_sapphire"))
-                .inputItems(dust, GreenSapphire, 5)// 绿色蓝宝石
+                .inputItems(dust, GreenSapphire, 5) // 绿色蓝宝石 Al2O3
                 .outputItems(dust, Alumina, 5)
                 .EUt(VA[GTValues.HV])
                 .duration(100)
                 .save(provider);
 
         GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_sapphire"))
-                .inputItems(dust, Sapphire, 5)// 蓝宝石
+                .inputItems(dust, Sapphire, 5) // 蓝宝石 Al2O3
                 .outputItems(dust, Alumina, 5)
                 .EUt(VA[GTValues.HV])
                 .duration(100)
                 .save(provider);
 
         GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_ruby"))
-                .inputItems(dust, Ruby, 6)// 红宝石
-                .outputItems(dust, Alumina, 5)
-                .outputItems(dust, ChromiumTrioxide, 1)
+                .inputItems(dust, Ruby, 2) // 红宝石 CrAl2O3
+                .outputItems(dust, Alumina, 1)
+                .outputItems(dust, Chromium, 1)
                 .EUt(VA[GTValues.HV])
                 .duration(100)
                 .save(provider);
 
         // 电解
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_pyrope"))
-                .inputItems(dust, Pyrope, 20)// 镁铝榴石
-                .outputItems(dust, Alumina, 5)
-                .outputItems(dust, SiliconDioxide, 9)
+                .inputItems(dust, Pyrope, 10) // 镁铝榴石 Al2Mg3Si3O12
+                .outputItems(dust, Alumina, 1)
+                .outputItems(dust, SiliconDioxide, 3)
                 .outputItems(dust, Magnesium, 3)
                 .outputFluids(Oxygen.getFluid(3000))
                 .EUt(VA[GTValues.MV])
@@ -59,27 +59,27 @@ public class AlumiumChain {
                 .save(provider);
 
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_granite_red"))
-                .inputItems(dust, GraniteRed, 6)// 红色花岗岩
-                .outputItems(dust, Alumina, 5)
+                .inputItems(dust, GraniteRed, 2) // 红花岗岩 Al2(KAlSi3O8)O3
+                .outputItems(dust, Alumina, 1)
                 .outputItems(dust, PotassiumFeldspar, 1)
                 .EUt(VA[GTValues.MV])
                 .duration(60)
                 .save(provider);
 
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_potassium_feldspar"))
-                .inputItems(dust, PotassiumFeldspar, 22)// 钾长石
-                .outputItems(dust, Alumina, 5)
+                .inputItems(dust, PotassiumFeldspar, 10) // 钾长石 KAlSi3O8
+                .outputItems(dust, Alumina, 1)
                 .outputItems(dust, SiliconDioxide, 6)
-                .outputItems(dust, Potassium, 6)
-                .outputFluids(Oxygen.getFluid(11000))
+                .outputItems(dust, Potassium, 2)
+                .outputFluids(Oxygen.getFluid(1000))
                 .EUt(VA[GTValues.MV])
                 .duration(200)
                 .save(provider);
 
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_pollucite"))
-                .inputItems(dust, Pollucite, 22)// 铯榴石
-                .outputItems(dust, Alumina, 5)
-                .outputItems(dust, SiliconDioxide, 12)
+                .inputItems(dust, Pollucite, 10) // 铯榴石 Cs2Al2Si4(H2O)2O12
+                .outputItems(dust, Alumina, 1)
+                .outputItems(dust, SiliconDioxide, 4)
                 .outputItems(dust, Caesium, 2)
                 .outputFluids(Water.getFluid(2000))
                 .outputFluids(Oxygen.getFluid(1000))
@@ -88,17 +88,17 @@ public class AlumiumChain {
                 .save(provider);
 
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_kyanite"))
-                .inputItems(dust, Kyanite, 8)// 蓝晶石
-                .outputItems(dust, Alumina, 5)
-                .outputItems(dust, SiliconDioxide, 3)
+                .inputItems(dust, Kyanite, 2) // 蓝晶石 Al2SiO5
+                .outputItems(dust, Alumina, 1)
+                .outputItems(dust, SiliconDioxide, 1)
                 .EUt(VA[GTValues.MV])
                 .duration(80)
                 .save(provider);
 
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_spodumene"))
-                .inputItems(dust, Spodumene, 20)// 锂辉石
-                .outputItems(dust, Alumina, 5)
-                .outputItems(dust, SiliconDioxide, 12)
+                .inputItems(dust, Spodumene, 8) // 锂辉石 LiAlSi2O6
+                .outputItems(dust, Alumina, 1)
+                .outputItems(dust, SiliconDioxide, 4)
                 .outputItems(dust, Lithium, 2)
                 .outputFluids(Oxygen.getFluid(1000))
                 .EUt(VA[GTValues.MV])
@@ -106,9 +106,9 @@ public class AlumiumChain {
                 .save(provider);
 
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_spessartine"))
-                .inputItems(dust, Spessartine, 20)// 锰铝榴石
-                .outputItems(dust, Alumina, 5)
-                .outputItems(dust, SiliconDioxide, 9)
+                .inputItems(dust, Spessartine, 10) // 锰铝榴石 Al2Mn3Si3O12
+                .outputItems(dust, Alumina, 1)
+                .outputItems(dust, SiliconDioxide, 3)
                 .outputItems(dust, Manganese, 3)
                 .outputFluids(Oxygen.getFluid(3000))
                 .EUt(VA[GTValues.MV])
@@ -116,9 +116,9 @@ public class AlumiumChain {
                 .save(provider);
 
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_mica"))
-                .inputItems(dust, Mica, 38)// 云母
-                .outputItems(dust, Alumina, 15)
-                .outputItems(dust, SiliconDioxide, 18)
+                .inputItems(dust, Mica, 15) // 云母 KAl3Si3F2O10
+                .outputItems(dust, Alumina, 3)
+                .outputItems(dust, SiliconDioxide, 6)
                 .outputItems(dust, Potassium, 2)
                 .outputFluids(Fluorine.getFluid(4000))
                 .EUt(VA[GTValues.MV])
@@ -126,8 +126,8 @@ public class AlumiumChain {
                 .save(provider);
 
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_lepidolite"))
-                .inputItems(dust, Lepidolite, 20)// 锂云母
-                .outputItems(dust, Alumina, 10)
+                .inputItems(dust, Lepidolite, 12) // 锂云母 KLi3Al4F2O10
+                .outputItems(dust, Alumina, 2)
                 .outputItems(dust, Lithium, 3)
                 .outputItems(dust, Potassium, 1)
                 .outputFluids(Oxygen.getFluid(4000))
@@ -137,9 +137,9 @@ public class AlumiumChain {
                 .save(provider);
 
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_grossular"))
-                .inputItems(dust, Grossular, 20)// 钙铝榴石
-                .outputItems(dust, Alumina, 5)
-                .outputItems(dust, SiliconDioxide, 9)
+                .inputItems(dust, Grossular, 10) // 钙铝榴石 Ca3Al2Si3O12
+                .outputItems(dust, Alumina, 1)
+                .outputItems(dust, SiliconDioxide, 3)
                 .outputItems(dust, Calcium, 3)
                 .outputFluids(Oxygen.getFluid(3000))
                 .EUt(VA[GTValues.MV])
@@ -147,20 +147,22 @@ public class AlumiumChain {
                 .save(provider);
 
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_glauconite_sand"))
-                .inputItems(dust, GlauconiteSand, 21)// 海绿石沙
-                .outputItems(dust, Alumina, 10)
+                .inputItems(dust, GlauconiteSand, 14) // 海绿石砂 KMg2Al2Si3O12H2(H2O)
+                .outputItems(dust, Alumina, 2)
                 .outputItems(dust, Manganese, 2)
                 .outputItems(dust, Potassium, 1)
-                .outputFluids(Oxygen.getFluid(6000))
+                .outputItems(dust, SiliconDioxide, 3)
+                .outputFluids(Oxygen.getFluid(3000))
                 .outputFluids(Hydrogen.getFluid(2000))
+                .outputFluids(Water.getFluid(1000))
                 .EUt(VA[GTValues.MV])
                 .duration(220)
                 .save(provider);
 
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_emerald"))
-                .inputItems(dust, Emerald, 29)// 绿宝石
-                .outputItems(dust, Alumina, 50)
-                .outputItems(dust, SiliconDioxide, 18)
+                .inputItems(dust, Emerald, 13) // 绿宝石 Be3Al2Si6O18
+                .outputItems(dust, Alumina, 1)
+                .outputItems(dust, SiliconDioxide, 6)
                 .outputItems(dust, Beryllium, 3)
                 .outputFluids(Oxygen.getFluid(3000))
                 .EUt(VA[GTValues.MV])
@@ -168,72 +170,72 @@ public class AlumiumChain {
                 .save(provider);
 
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_blue_topaz"))
-                .inputItems(dust, BlueTopaz, 13)// 蓝黄玉
-                .outputItems(dust, Alumina, 5)
-                .outputItems(dust, SiliconDioxide, 3)
-                .outputFluids(Oxygen.getFluid(1000))
-                .outputFluids(Hydrogen.getFluid(2000))
+                .inputItems(dust, BlueTopaz, 4) // 蓝黄玉 Al2SiO4F2
+                .outputItems(dust, Alumina, 1)
+                .outputItems(dust, SiliconDioxide, 1)
                 .outputFluids(Fluorine.getFluid(2000))
                 .EUt(VA[GTValues.MV])
                 .duration(100)
                 .save(provider);
 
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_biotite"))
-                .inputItems(dust, Biotite, 44)// 黑云母
-                .outputItems(dust, Alumina, 15)
-                .outputItems(dust, Lithium, 18)
+                .inputItems(dust, Biotite, 21) // 黑云母 KMg3Al3F2Si3O10
+                .outputItems(dust, Magnesium, 6)
+                .outputItems(dust, Alumina, 3)
+                .outputItems(dust, SiliconDioxide, 3)
                 .outputItems(dust, Potassium, 2)
-                .outputItems(dust, Manganese, 6)
-                .outputFluids(Fluorine.getFluid(4000))
+                .outputFluids(Fluorine.getFluid(2000))
+                .outputFluids(Oxygen.getFluid(5000))
                 .EUt(VA[GTValues.MV])
                 .duration(440)
                 .save(provider);
 
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_alunite"))
-                .inputItems(dust, Alunite, 52)// 明矾石
-                .outputItems(dust, Alumina, 15)
-                .outputItems(dust, Lithium, 12)
-                .outputItems(dust, Potassium, 2)
-                .outputFluids(Oxygen.getFluid(11000))
-                .outputFluids(Hydrogen.getFluid(12000))
+                .inputItems(dust, Alunite, 16) // 明矾石 KAl2Si3H6O14
+                .outputItems(dust, Alumina, 1)
+                .outputItems(dust, Potassium, 1)
+                .outputItems(dust, SiliconDioxide, 3)
+                .outputFluids(Oxygen.getFluid(5000))
+                .outputFluids(Hydrogen.getFluid(6000))
                 .EUt(VA[GTValues.MV])
                 .duration(520)
                 .save(provider);
 
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_almandine"))
-                .inputItems(dust, Almandine, 20)// 铁铝榴石
-                .outputItems(dust, Alumina, 5)
-                .outputItems(dust, SiliconDioxide, 9)
+                .inputItems(dust, Almandine, 10) // 铁铝榴石 Al2Fe3Si3O12
+                .outputItems(dust, Alumina, 1)
+                .outputItems(dust, SiliconDioxide, 3)
                 .outputItems(dust, Iron, 3)
                 .outputFluids(Oxygen.getFluid(3000))
                 .EUt(VA[GTValues.MV])
                 .duration(200)
                 .save(provider);
 
-        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_blue_topaz"))
-                .inputItems(dust, Clay, 14)// 粘土
-                .outputItems(dust, Alumina, 5)
-                .outputItems(dust, SiliconDioxide, 6)
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_clay"))
+                .inputItems(dust, Clay, 18) // 粘土 Na2LiAl2Si2(H2O)6
+                .outputItems(dust, Alumina, 1)
+                .outputItems(dust, SiliconDioxide, 2)
                 .outputItems(dust, Sodium, 2)
                 .outputItems(dust, Lithium, 1)
-                .outputFluids(Water.getFluid(6000))
+                .outputFluids(Hydrogen.getFluid(12000))
                 .EUt(VA[GTValues.MV])
                 .duration(180)
                 .save(provider);
 
         // 高压电解
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_topaz"))
-                .inputItems(dust, Topaz, 6)// 黄玉
+                .inputItems(dust, Topaz, 10) // 黄玉 Al2SiO5FH
                 .outputItems(dust, Aluminium, 2)
                 .outputItems(dust, Silicon)
-                .outputFluids(Hydrogen.getFluid(2000))
+                .outputFluids(Oxygen.getFluid(5000))
+                .outputFluids(Hydrogen.getFluid(1000))
                 .outputFluids(Fluorine.getFluid(1000))
                 .EUt(VA[GTValues.EV])
                 .duration(200)
                 .save(provider);
 
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_sodalite"))
-                .inputItems(dust, Sodalite, 11)// 方钠石
+                .inputItems(dust, Sodalite, 11) // 方钠石 Al3Si3Na4Cl
                 .outputItems(dust, Aluminium, 3)
                 .outputItems(dust, Silicon, 3)
                 .outputItems(dust, Sodium, 4)
@@ -243,7 +245,7 @@ public class AlumiumChain {
                 .save(provider);
 
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_lazurite"))
-                .inputItems(dust, Lazurite, 14)// 蓝金石
+                .inputItems(dust, Lazurite, 14) // 蓝金石 Al6Si6Ca8Na8
                 .outputItems(dust, Aluminium, 3)
                 .outputItems(dust, Silicon, 3)
                 .outputItems(dust, Sodium, 4)

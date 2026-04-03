@@ -12,6 +12,8 @@ dependencies {
     jarJar(project(":modules:GregTech-Modern")){ transitive = false }
 
     //modImplementation("extra-mods:create_connected-26.1-all")
+    jarJar("extra-mods:scg-ctnh:1.1.1")
+    jarJar("extra-mods:gregtechmodernfoodoption-0.0.2:0.0.2")
 
     runtimeOnly(ctnh.graphlib)
 

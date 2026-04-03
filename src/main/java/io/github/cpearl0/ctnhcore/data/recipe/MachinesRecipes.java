@@ -2,6 +2,8 @@ package io.github.cpearl0.ctnhcore.data.recipe;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials;
+import io.github.cpearl0.ctnhcore.data.materials.AviationFabricMaterials;
+import io.github.cpearl0.ctnhcore.data.materials.UncategorizedMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
@@ -91,12 +93,6 @@ public class MachinesRecipes {
         CTNHRecipeTypes.ARC_REACTOR.recipeBuilder(CTNHCore.id("test"))
                 .EUt(8192)
                 .duration(20)
-                .circuitMeta(1)
-                .save(provider);
-
-        CTNHRecipeTypes.TRAP_ENERGY.recipeBuilder(CTNHCore.id("test"))
-                .EUt(1)
-                .duration(10)
                 .circuitMeta(1)
                 .save(provider);
 
@@ -252,6 +248,42 @@ public class MachinesRecipes {
                 .outputItems(CTNHMachines.DIGITAL_MINER[HV].asStack())
                 .duration(200)
                 .EUt(VA[HV])
+                .save(provider);
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("uv_neuro_compiler"))
+                .inputItems(HUGE_DUAL_IMPORT_HATCH[UV])
+                .inputItems(CustomTags.UHV_CIRCUITS, 4)
+                .inputItems(plateDense, UncategorizedMaterials.NAQUADAH_HEAT_RESISTANT_FERROCHROME_ALLOY_792, 7)
+                .inputItems(CONVEYOR_MODULE_UV, 2)
+                .inputItems(SENSOR_UV)
+                .inputItems(plateDense, UncategorizedMaterials.RADIATION_SIGHT_ALLOY_X, 7)
+                .inputFluids(Naquadria.getFluid(1000))
+                .inputFluids(AviationFabricMaterials.KAPTON_K.getFluid(1000))
+                .outputItems(COMPILERMACHINE[UV])
+                .stationResearch(b -> b
+                        .researchStack(HUGE_DUAL_IMPORT_HATCH[UV].asStack())
+                        .CWUt(28)
+                        .EUt(VA[ZPM]))
+                .duration(100)
+                .EUt(VA[UV])
+                .save(provider);
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("uhv_neuro_compiler"))
+                .inputItems(HUGE_DUAL_IMPORT_HATCH[UHV])
+                .inputItems(CustomTags.UEV_CIRCUITS, 4)
+                .inputItems(plateDense, UncategorizedMaterials.NAQUADAH_HEAT_RESISTANT_FERROCHROME_ALLOY_792, 7)
+                .inputItems(CONVEYOR_MODULE_UHV, 2)
+                .inputItems(SENSOR_UHV)
+                .inputItems(plateDense, UncategorizedMaterials.RADIATION_SIGHT_ALLOY_INF, 7)
+                .inputFluids(Naquadria.getFluid(1000))
+                .inputFluids(AviationFabricMaterials.KAPTON_K.getFluid(1000))
+                .outputItems(COMPILERMACHINE[UHV])
+                .stationResearch(b -> b
+                        .researchStack(COMPILERMACHINE[UV].asStack())
+                        .CWUt(56)
+                        .EUt(VA[UHV]))
+                .duration(100)
+                .EUt(VA[UHV])
                 .save(provider);
     }
 }

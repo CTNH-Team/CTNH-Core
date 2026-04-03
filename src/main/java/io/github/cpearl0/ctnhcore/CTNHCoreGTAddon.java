@@ -135,7 +135,6 @@ public class CTNHCoreGTAddon implements IGTAddon {
 
     @Override
     public void removeRecipes(Consumer<ResourceLocation> consumer) {
-        AdAstraRecipes.remove(consumer);
         RecipeRemoval.init(consumer);
     }
 }
