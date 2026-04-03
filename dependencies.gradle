@@ -28,7 +28,7 @@ dependencies {
     // Create addons
     modImplementation(ctnh.createmetallurgy)
     modImplementation(ctnh.createvintage)
-//    modImplementation(ctnh.createliquidfuel)
+    modImplementation(ctnh.createliquidfuel)
 //    modImplementation(ctnh.createoreexcavation)
     modImplementation(ctnh.creatediesel)
     modImplementation(ctnh.createnewage)
