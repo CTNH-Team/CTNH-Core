@@ -75,13 +75,15 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine
     @Persisted
     @Getter
     public int reverse = 1;
-    @Persisted
     public EnergyContainerList energyContainer;
 
     public WideParticleAccelerator(IMachineBlockEntity holder) {
         super(holder);
     }
 
+    public ManagedFieldHolder getFieldHolder() {
+        return MANAGED_FIELD_HOLDER;
+    }
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             WideParticleAccelerator.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     public DoubleSupplier get_nu = () -> (double) this.nu_speed / 50000;
