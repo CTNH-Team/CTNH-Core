@@ -5,6 +5,7 @@ import net.minecraft.network.chat.Component;
 
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.runtime.EmiLog;
+import dev.emi.emi.search.EmiSearch;
 import dev.emi.emi.search.SearchStack;
 
 import java.util.Iterator;
@@ -14,7 +15,7 @@ public class TooltipBakeQueue {
 
     private final Iterator<EmiStack> iterator;
     private final int batchSize = 128;
-    public SuffixArray<SearchStack> tooltips = new SuffixArray();
+    public final SuffixArray<SearchStack> tooltips;
 
     public static boolean ready = false;
 
@@ -22,6 +23,10 @@ public class TooltipBakeQueue {
 
     public TooltipBakeQueue(List<EmiStack> stacks) {
         this.iterator = stacks.iterator();
+
+        // jech replaced the SuffixArray, so we borrow this one
+        this.tooltips = EmiSearch.tooltips;
+        EmiSearch.tooltips = new SuffixArray<>();
     }
 
     public boolean tick() {
