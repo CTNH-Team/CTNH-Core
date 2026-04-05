@@ -1,15 +1,15 @@
 package io.github.cpearl0.ctnhcore.client.ponder;
 
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.client.ponder.Electric.CarbonBrushes;
-import io.github.cpearl0.ctnhcore.client.ponder.Kinetic.*;
-import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
-
-import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
-import net.minecraft.resources.ResourceLocation;
-
 import com.mo_guang.ctpp.registry.CTPPMachines;
 import com.mo_guang.ctpp.registry.CTPPMultiblockMachines;
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.client.ponder.Electric.CarbonBrushes;
+import io.github.cpearl0.ctnhcore.client.ponder.Kinetic.BigDam;
+import io.github.cpearl0.ctnhcore.client.ponder.Kinetic.Meadow;
+import io.github.cpearl0.ctnhcore.client.ponder.Kinetic.SmashingFactory;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
+import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
+import net.minecraft.resources.ResourceLocation;
 import org.antarcticgardens.cna.CNABlocks;
 
 public final class CTNHPonderScenes {

@@ -1,7 +1,5 @@
 package io.github.cpearl0.ctnhcore.data;
 
-import io.github.cpearl0.ctnhcore.CTNHConfig;
-
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
@@ -11,16 +9,16 @@ import com.gregtechceu.gtceu.api.sound.ExistingSoundEntry;
 import com.gregtechceu.gtceu.common.data.GTRecipes;
 import com.gregtechceu.gtceu.common.data.GTSoundEntries;
 import com.gregtechceu.gtceu.utils.GTUtil;
-
+import com.mo_guang.ctpp.common.data.recipe.builder.CTPPRecipeBuilder;
+import io.github.cpearl0.ctnhcore.CTNHConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 
-import com.mo_guang.ctpp.common.data.recipe.builder.CTPPRecipeBuilder;
-
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection.LEFT_TO_RIGHT;
 import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection.UP_TO_DOWN;
+import static com.mo_guang.ctpp.registry.CTPPRecipeTypes.MECHANICAL_CENTRIFUGE_RECIPES;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.KINETIC;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
@@ -155,15 +153,15 @@ public class CreateRecipeTypes {
             .setSlotOverlay(true, false, GuiTextures.DUST_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.MIXER);
-    public static final GTRecipeType MECHANICAL_CENTRIFUGE_RECIPES = REGISTRATE
-            .recipeType("mechanical_centrifuge_recipes", KINETIC)
-            .cnlang("机械离心")
-            .setMaxIOSize(2, 6, 1, 6)
-            .setSlotOverlay(false, false, false, GuiTextures.EXTRACTOR_OVERLAY)
-            .setSlotOverlay(false, false, true, GuiTextures.CANISTER_OVERLAY)
-            .setSlotOverlay(false, true, true, GuiTextures.CENTRIFUGE_OVERLAY)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.CENTRIFUGE);
+    // public static final GTRecipeType MECHANICAL_CENTRIFUGE_RECIPES = REGISTRATE
+    // .recipeType("mechanical_centrifuge_recipes", KINETIC)
+    // .cnlang("机械离心")
+    // .setMaxIOSize(2, 6, 1, 6)
+    // .setSlotOverlay(false, false, false, GuiTextures.EXTRACTOR_OVERLAY)
+    // .setSlotOverlay(false, false, true, GuiTextures.CANISTER_OVERLAY)
+    // .setSlotOverlay(false, true, true, GuiTextures.CENTRIFUGE_OVERLAY)
+    // .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, LEFT_TO_RIGHT)
+    // .setSound(GTSoundEntries.CENTRIFUGE);
     public static final GTRecipeType MECHANICAL_SIFTER_RECIPES = REGISTRATE
             .recipeType("mechanical_sifter_recipes", KINETIC)
             .cnlang("机械筛选")

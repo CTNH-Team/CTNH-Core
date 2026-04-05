@@ -1,12 +1,11 @@
 package io.github.cpearl0.ctnhcore.utils.emi;
 
-import net.minecraft.client.searchtree.SuffixArray;
-import net.minecraft.network.chat.Component;
-
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.runtime.EmiLog;
 import dev.emi.emi.search.EmiSearch;
 import dev.emi.emi.search.SearchStack;
+import net.minecraft.client.searchtree.SuffixArray;
+import net.minecraft.network.chat.Component;
 
 import java.util.Iterator;
 import java.util.List;

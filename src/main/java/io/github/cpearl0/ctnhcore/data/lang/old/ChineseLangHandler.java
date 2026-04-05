@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.data.lang.old;
 
+import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import io.github.cpearl0.ctnhcore.data.lang.Chinese.OreLang;
 import io.github.cpearl0.ctnhcore.data.lang.Chinese.VeinLang;
 import io.github.cpearl0.ctnhcore.data.machines.GTNNMachines;
@@ -11,13 +14,7 @@ import io.github.cpearl0.ctnhcore.registry.machines.multiblock.Mechanical;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksC;
-
-import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
-
 import net.minecraftforge.common.data.LanguageProvider;
-
 import org.jetbrains.annotations.NotNull;
 import tech.vixhentx.mcmod.ctnhlib.registrate.lang.RegistrateCNLangProvider;
 
@@ -25,6 +22,7 @@ import java.lang.reflect.Field;
 import java.util.Map;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.mo_guang.ctpp.registry.CTPPMultiblockMachines.MECHANICAL_CENTRIFUGE;
 
 public class ChineseLangHandler {
 
@@ -901,7 +899,7 @@ public class ChineseLangHandler {
         provider.add(MultiblocksB.ADVANCED_ASSEMBLY_LINE.getBlock(), "进阶装配线");
         provider.add(MultiblocksB.CultivationRoom.getBlock(), "培养室");
         provider.add(Mechanical.MECHANICAL_LATHE.getBlock(), "机械车床厂");
-        provider.add(Mechanical.MECHANICAL_CENTRIFUGE.getBlock(), "机械离心厂");
+        provider.add(MECHANICAL_CENTRIFUGE.getBlock(), "机械离心厂");
         provider.add(Mechanical.MECHANICAL_EXTRACTOR.getBlock(), "机械熔炼厂");
         provider.add(Mechanical.MECHANICAL_MIXER.getBlock(), "机械搅拌厂");
         provider.add(Mechanical.MECHANICAL_SIFTER.getBlock(), "机械筛选厂");

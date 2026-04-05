@@ -1,20 +1,12 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 
-import io.github.cpearl0.ctnhcore.data.CreateRecipeTypes;
-
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.MultiblockShapeInfo;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
-
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
-
-import net.minecraft.ChatFormatting;
-import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
-
 import com.mo_guang.ctpp.CTPP;
 import com.mo_guang.ctpp.api.CTPPPartAbility;
 import com.mo_guang.ctpp.common.machine.multiblock.KineticWorkableMultiblockMachine;
@@ -24,6 +16,10 @@ import com.negodya1.vintageimprovements.VintageBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
 import fr.lucreeper74.createmetallurgy.registries.CMBlocks;
+import io.github.cpearl0.ctnhcore.data.CreateRecipeTypes;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 
 import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_TEMPERED_GLASS;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
@@ -89,35 +85,35 @@ public class Mechanical {
             .workableCasingModel(CTPP.id("block/create/railway_casing"),
                     GTCEu.id("block/multiblock/large_chemical_reactor"))
             .register();
-    public final static MultiblockMachineDefinition MECHANICAL_CENTRIFUGE = REGISTRATE
-            .multiblock("mechanical_centrifuge", KineticWorkableMultiblockMachine::new)
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(CreateRecipeTypes.MECHANICAL_CENTRIFUGE_RECIPES)
-            .appearanceBlock(AllBlocks.RAILWAY_CASING)
-            .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
-            .tooltips(CommonTooltips.KINETIC_OVERCLOCK)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("AAAAA", "BCCCB", "B###B", "B###B", "B###B", "BBBBB", "AAAAA")
-                    .aisle("AAAAA", "CDDDC", "#####", "#####", "#####", "BF#FB", "AAAAA")
-                    .aisle("AAAAA", "CDDDC", "##G##", "##G##", "##G##", "B#H#B", "AAAAA")
-                    .aisle("AAAAA", "CDDDC", "#####", "#####", "#####", "BF#FB", "AAAAA")
-                    .aisle("AA@AA", "BCCCB", "B###B", "B###B", "B###B", "BBBBB", "AAAAA")
-                    .where("A", Predicates.blocks(AllBlocks.RAILWAY_CASING.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(Predicates.abilities(CTPPPartAbility.INPUT_KINETIC))
-                            .or(Predicates.abilities(CTPPPartAbility.MECHANICAL_UPGRADE).setExactLimit(1)))
-                    .where("B", Predicates.blocks(AllBlocks.METAL_GIRDER.get()))
-                    .where("C", Predicates.blocks(AllBlocks.BRASS_CASING.get()))
-                    .where("#", Predicates.any())
-                    .where("D", Predicates.blocks(AllBlocks.BASIN.get()))
-                    .where("F", Predicates.blocks(AllBlocks.BRASS_ENCASED_COGWHEEL.get()))
-                    .where("G", Predicates.blocks(VintageBlocks.CENTRIFUGE.get()))
-                    .where("H", Predicates.blocks(AllBlocks.BRASS_ENCASED_LARGE_COGWHEEL.get()))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build())
-            .workableCasingModel(CTPP.id("block/create/railway_casing"),
-                    GTCEu.id("block/multiblock/large_chemical_reactor"))
-            .register();
+    // public final static MultiblockMachineDefinition MECHANICAL_CENTRIFUGE = REGISTRATE
+    // .multiblock("mechanical_centrifuge", KineticWorkableMultiblockMachine::new)
+    // .rotationState(RotationState.NON_Y_AXIS)
+    // .recipeType(CreateRecipeTypes.MECHANICAL_CENTRIFUGE_RECIPES)
+    // .appearanceBlock(AllBlocks.RAILWAY_CASING)
+    // .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
+    // .tooltips(CommonTooltips.KINETIC_OVERCLOCK)
+    // .pattern(definition -> FactoryBlockPattern.start()
+    // .aisle("AAAAA", "BCCCB", "B###B", "B###B", "B###B", "BBBBB", "AAAAA")
+    // .aisle("AAAAA", "CDDDC", "#####", "#####", "#####", "BF#FB", "AAAAA")
+    // .aisle("AAAAA", "CDDDC", "##G##", "##G##", "##G##", "B#H#B", "AAAAA")
+    // .aisle("AAAAA", "CDDDC", "#####", "#####", "#####", "BF#FB", "AAAAA")
+    // .aisle("AA@AA", "BCCCB", "B###B", "B###B", "B###B", "BBBBB", "AAAAA")
+    // .where("A", Predicates.blocks(AllBlocks.RAILWAY_CASING.get())
+    // .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+    // .or(Predicates.abilities(CTPPPartAbility.INPUT_KINETIC))
+    // .or(Predicates.abilities(CTPPPartAbility.MECHANICAL_UPGRADE).setExactLimit(1)))
+    // .where("B", Predicates.blocks(AllBlocks.METAL_GIRDER.get()))
+    // .where("C", Predicates.blocks(AllBlocks.BRASS_CASING.get()))
+    // .where("#", Predicates.any())
+    // .where("D", Predicates.blocks(AllBlocks.BASIN.get()))
+    // .where("F", Predicates.blocks(AllBlocks.BRASS_ENCASED_COGWHEEL.get()))
+    // .where("G", Predicates.blocks(VintageBlocks.CENTRIFUGE.get()))
+    // .where("H", Predicates.blocks(AllBlocks.BRASS_ENCASED_LARGE_COGWHEEL.get()))
+    // .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+    // .build())
+    // .workableCasingModel(CTPP.id("block/create/railway_casing"),
+    // GTCEu.id("block/multiblock/large_chemical_reactor"))
+    // .register();
     public final static MultiblockMachineDefinition MECHANICAL_SIFTER = REGISTRATE
             .multiblock("mechanical_sifter", KineticWorkableMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)

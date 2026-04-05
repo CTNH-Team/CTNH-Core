@@ -1,18 +1,15 @@
 package io.github.cpearl0.ctnhcore.common.recipe;
 
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.NeutronActivatorMachine;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeConditions;
-
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeCondition;
 import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
-
-import net.minecraft.network.chat.Component;
-
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.NeutronActivatorMachine;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeConditions;
+import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
@@ -20,7 +17,7 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
 
 @Prefix("recipe.condition.neutron_activator")
-public class NeutronActivatorCondition extends RecipeCondition {
+public class NeutronActivatorCondition extends RecipeCondition<NeutronActivatorCondition> {
 
     public static final Codec<NeutronActivatorCondition> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.BOOL.optionalFieldOf("isReverse", false).forGetter(RecipeCondition::isReverse),
@@ -55,7 +52,7 @@ public class NeutronActivatorCondition extends RecipeCondition {
     }
 
     @Override
-    public RecipeConditionType<?> getType() {
+    public RecipeConditionType<NeutronActivatorCondition> getType() {
         return CTNHRecipeConditions.NEUTRON_ACTIVATOR;
     }
 
@@ -76,34 +73,7 @@ public class NeutronActivatorCondition extends RecipeCondition {
     }
 
     @Override
-    public RecipeCondition createTemplate() {
+    public NeutronActivatorCondition createTemplate() {
         return new NeutronActivatorCondition();
     }
-
-    // @Override
-    // public @NotNull JsonObject serialize() {
-    // var value = super.serialize();
-    // value.addProperty("evRange", this.evRange);
-    // return value;
-    // }
-    //
-    // @Override
-    // public RecipeCondition deserialize(@NotNull JsonObject config) {
-    // super.deserialize(config);
-    // this.evRange = GsonHelper.getAsInt(config, "evRange", 0);
-    // return this;
-    // }
-    //
-    // @Override
-    // public void toNetwork(FriendlyByteBuf buf) {
-    // super.toNetwork(buf);
-    // buf.writeInt(this.evRange);
-    // }
-    //
-    // @Override
-    // public RecipeCondition fromNetwork(FriendlyByteBuf buf) {
-    // super.fromNetwork(buf);
-    // this.evRange = buf.readInt();
-    // return this;
-    // }
 }

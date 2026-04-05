@@ -1,10 +1,7 @@
 package io.github.cpearl0.ctnhcore.registry.material;
 
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.data.materials.*;
-import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
-import io.github.cpearl0.ctnhcore.registry.CTNHElements;
-
+import com.aetherteam.aether.block.AetherBlocks;
+import com.aetherteam.aether.item.AetherItems;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.GTValues;
@@ -17,11 +14,11 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-
-import com.aetherteam.aether.block.AetherBlocks;
-import com.aetherteam.aether.item.AetherItems;
-import com.google.gson.JsonObject;
 import earth.terrarium.adastra.common.registry.ModBlocks;
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.data.materials.*;
+import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
+import io.github.cpearl0.ctnhcore.registry.CTNHElements;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
 
@@ -1133,27 +1130,6 @@ public class CTNHMaterials {
 
         public static MaterialIconSet StarsteelIcon = new MaterialIconSet("starsteel", METALLIC);
 
-        public static MaterialIconSet Neutron = new MaterialIconSet("neutron", DULL, helo());
-
-        static JsonObject helo() {
-            JsonObject extra = new JsonObject();
-
-            extra.addProperty("loader", "avaritia:halo");
-
-            JsonObject halo = new JsonObject();
-
-            JsonObject textures = new JsonObject();
-            textures.addProperty("halo", "avaritia:misc/halo_noise");
-            extra.add("textures", textures);
-
-            halo.addProperty("texture", "#halo");
-            halo.addProperty("color", -1711276033);
-            halo.addProperty("size", 6);
-            halo.addProperty("pulse", false);
-
-            extra.add("halo", halo);
-
-            return extra;
-        }
+        public static MaterialIconSet Neutron = new MaterialIconSet("neutron", DULL);
     }
 }

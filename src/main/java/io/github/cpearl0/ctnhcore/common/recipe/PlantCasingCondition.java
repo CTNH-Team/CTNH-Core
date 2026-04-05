@@ -1,17 +1,14 @@
 package io.github.cpearl0.ctnhcore.common.recipe;
 
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ChemicalPlantMachine;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeConditions;
-
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeCondition;
 import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
-
-import net.minecraft.network.chat.Component;
-
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ChemicalPlantMachine;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeConditions;
+import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Math;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
@@ -22,7 +19,7 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
 import java.util.Map;
 
 @Prefix("recipe.condition.plant_casing")
-public class PlantCasingCondition extends RecipeCondition {
+public class PlantCasingCondition extends RecipeCondition<PlantCasingCondition> {
 
     public static final Codec<PlantCasingCondition> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.BOOL.optionalFieldOf("isReverse", false).forGetter(RecipeCondition::isReverse),
@@ -90,7 +87,7 @@ public class PlantCasingCondition extends RecipeCondition {
     }
 
     @Override
-    public RecipeCondition createTemplate() {
+    public PlantCasingCondition createTemplate() {
         return new PlantCasingCondition();
     }
 }

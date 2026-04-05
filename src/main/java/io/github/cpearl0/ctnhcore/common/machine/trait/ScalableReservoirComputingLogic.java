@@ -1,23 +1,16 @@
 package io.github.cpearl0.ctnhcore.common.machine.trait;
 
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ScalableReservoirComputingMachine;
-import io.github.cpearl0.ctnhcore.registry.CTNHDamageTypes;
-
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.ActionResult;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
-import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ScalableReservoirComputingMachine;
+import io.github.cpearl0.ctnhcore.registry.CTNHDamageTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.Collections;
-import java.util.Iterator;
 
 import javax.annotation.Nullable;
 
@@ -37,31 +30,30 @@ public class ScalableReservoirComputingLogic extends RecipeLogic {
         super.serverTick();
     }
 
-    @Override
-    public Iterator<GTRecipe> searchRecipe() {
-        GTRecipeType recipeType = machine.getRecipeType();
-        if (!machine.hasCapabilityProxies()) return null;
-        var iterator = recipeType.getLookup()
-                .getRecipeIterator(machine,
-                        recipe -> RecipeHelper.matchRecipe(machine, recipe).isSuccess() &&
-                                RecipeHelper.matchTickRecipe(machine, recipe).isSuccess() && matchSacrifice(recipe));
-        boolean any = false;
-        while (iterator.hasNext()) {
-            GTRecipe recipe = iterator.next();
-            if (recipe == null) continue;
-            any = true;
-            break;
-        }
-        if (any) {
-            iterator.reset();
-            return iterator;
-        }
-        for (GTRecipeType.ICustomRecipeLogic logic : recipeType.getCustomRecipeLogicRunners()) {
-            GTRecipe recipe = logic.createCustomRecipe(machine);
-            if (recipe != null) return Collections.singleton(recipe).iterator();
-        }
-        return Collections.emptyIterator();
-    }
+    // @Override
+    // public Iterator<GTRecipe> searchRecipe() {
+    // GTRecipeType recipeType = machine.getRecipeType();
+    // if (!machine.hasCapabilityProxies()) return null;
+    // var iterator = recipeType.searchRecipe(machine,
+    // recipe -> RecipeHelper.matchRecipe(machine, recipe).isSuccess() &&
+    // RecipeHelper.matchTickRecipe(machine, recipe).isSuccess() && matchSacrifice(recipe));
+    // boolean any = false;
+    // while (iterator.hasNext()) {
+    // GTRecipe recipe = iterator.next();
+    // if (recipe == null) continue;
+    // any = true;
+    // break;
+    // }
+    // if (any) {
+    // iterator.reset();
+    // return iterator;
+    // }
+    // for (GTRecipeType.ICustomRecipeLogic logic : recipeType.getCustomRecipeLogicRunners()) {
+    // GTRecipe recipe = logic.createCustomRecipe(machine);
+    // if (recipe != null) return Collections.singleton(recipe).iterator();
+    // }
+    // return Collections.emptyIterator();
+    // }
 
     @Override
     protected ActionResult handleRecipeIO(GTRecipe recipe, IO io) {

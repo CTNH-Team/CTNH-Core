@@ -1,13 +1,11 @@
 package io.github.cpearl0.ctnhcore.client.ponder.Electric;
 
 import io.github.cpearl0.ctnhcore.client.ponder.CTNHPonderSceneBuilder;
-
 import net.createmod.ponder.api.scene.SceneBuilder;
 import net.createmod.ponder.api.scene.SceneBuildingUtil;
 import net.createmod.ponder.api.scene.Selection;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
-
 import org.antarcticgardens.cna.CNABlocks;
 
 import static io.github.cpearl0.ctnhcore.client.ponder.Electric.CTNHElectricPondersLang.*;
