@@ -307,7 +307,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.sweat_shop.tooltip.5", "放入机械手可以提高整体配方运行速度，配方耗时x (1/1 + 0.25 * sqrt(机械手数))");
         provider.add("ctnh.multiblock.sweat_shop.tooltip.6", "放入机器的多样性会提高配方运行速度");
         provider.add("ctnh.multiblock.sweat_shop.tooltip.7", "基础配方耗时为2倍，配方所需的电压等级越高，基础耗时x(配方等级的平方)");
-        provider.add("ctnh.multiblock.sweat_shop.tooltip.8", "每5秒机器会消耗(员工数量)份简易员工餐");
+        provider.add("ctnh.multiblock.sweat_shop.tooltip.8", "每5秒机器会消耗(员工数量)份简易营养餐");
 
         provider.add("ctnh.multiblock.demon_will_generator.tooltip.0", "借用恶魔之力");
         provider.add("ctnh.multiblock.demon_will_generator.tooltip.01", "允许使用变电仓，不限制变电仓数量");

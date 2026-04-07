@@ -8,5 +8,5 @@
     "amount": 144,
     "fluid": "gtceu:wrought_iron"
   },
-  "result": "createmetallurgy:foundry_unit"
+  "result": "createmetallurgy:gauge_attachment"
 }
