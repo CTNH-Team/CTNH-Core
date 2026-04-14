@@ -20,11 +20,17 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
+
 import java.util.List;
 import java.util.Objects;
 
 import static sfiomn.legendarysurvivaloverhaul.api.temperature.TemperatureUtil.getWorldTemperature;
 
+@Prefix("fermenting_tank_machine")
 public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine {
 
     public double Machine_Temperature = 0;
@@ -35,6 +41,14 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
         super(holder);
     }
 
+    @CN("生长温度：§2%d°C§r")
+    @EN("Growth Temperature：§2%d°C§r")
+    static Lang growing_temperature;
+
+    @CN("生长效率：%d%%")
+    @EN("Growth Efficiency：%d%%")
+    static Lang growing_efficiency;
+
     @Override
     public void addDisplayText(List<Component> textList) {
         Machine_Temperature = getWorldTemperature(Objects.requireNonNull(getLevel()), getPos());
@@ -44,12 +58,9 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
                         getCoilType().getCoilTemperature() + 100L * Math.max(0, getTier() - GTValues.MV)) + "K")
                 .setStyle(Style.EMPTY.withColor(ChatFormatting.RED))));
         textList.add(textList.size(),
-                Component
-                        .translatable("ctnh.multiblock.fermenting_tank.info.growing_temperature",
-                                String.format("%.1f", Machine_Temperature))
+                growing_temperature.translate(String.format("%.1f", Machine_Temperature))
                         .setStyle(Style.EMPTY.withColor(ChatFormatting.GREEN)));
-        textList.add(textList.size(), Component.translatable("ctnh.multiblock.fermenting_tank.info.growth_efficiency",
-                String.format("%.1f", Efficiency * 100)));
+        textList.add(textList.size(), growing_efficiency.translate(String.format("%.1f", Efficiency * 100)));
     }
 
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
