@@ -53,7 +53,7 @@ public final class CTNHConstructCastingRecipes extends CTNHConstructRecipeProvid
     }
 
     private void foundryUnitCasting(Consumer<FinishedRecipe> consumer) {
-        ItemCastingRecipeBuilder.tableRecipe(CMItems.FOUNDRY_UNIT)
+        ItemCastingRecipeBuilder.tableRecipe(CMItems.GAUGE_ATTACHMENT)
                 .setCast(CDGItems.DISTILLATION_CONTROLLER.get(), false)
                 .setFluidAndTime(new FluidStack(GTMaterials.WroughtIron.getFluid(), 144))
                 .save(consumer, location("foundry_unit"));

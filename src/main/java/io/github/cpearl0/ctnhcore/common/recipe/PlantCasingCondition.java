@@ -22,7 +22,7 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
 import java.util.Map;
 
 @Prefix("recipe.condition.plant_casing")
-public class PlantCasingCondition extends RecipeCondition {
+public class PlantCasingCondition extends RecipeCondition<PlantCasingCondition> {
 
     public static final Codec<PlantCasingCondition> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.BOOL.optionalFieldOf("isReverse", false).forGetter(RecipeCondition::isReverse),
@@ -90,7 +90,7 @@ public class PlantCasingCondition extends RecipeCondition {
     }
 
     @Override
-    public RecipeCondition createTemplate() {
+    public PlantCasingCondition createTemplate() {
         return new PlantCasingCondition();
     }
 }

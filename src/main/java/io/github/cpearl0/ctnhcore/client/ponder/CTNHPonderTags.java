@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import com.mo_guang.ctpp.registry.CTPPMachines;
 import com.mo_guang.ctpp.registry.CTPPMultiblockMachines;
 import com.simibubi.create.AllBlocks;
-import org.antarcticgardens.newage.NewAgeBlocks;
+import org.antarcticgardens.cna.CNABlocks;
 
 public final class CTNHPonderTags {
 
@@ -35,7 +35,7 @@ public final class CTNHPonderTags {
                 .add(MultiblocksA.MEADOW.getId());
 
         helper.addToTag(Electric)
-                .add(NewAgeBlocks.GENERATOR_COIL.getId())
+                .add(CNABlocks.GENERATOR_COIL.getId())
                 .add(CTPPMachines.CARBON_BRUSHES.getId());
 
         CTNHCore.LOGGER.info("Ponder tags initialized");
