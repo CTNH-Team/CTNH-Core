@@ -18,7 +18,7 @@ import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.OPTICAL_PIPES;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLER_RECIPES;
@@ -86,5 +86,15 @@ public class LuvModifyRecipe {
                 .duration(800)
                 .addMaterialInfo(true, true)
                 .save(provider);
+
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("advanced_computer_casing_modified"))
+                .inputItems(COMPUTER_CASING.asStack())
+                .inputItems(CustomTags.ZPM_CIRCUITS)
+                .inputItems(wireFine, Cobalt, 64)
+                .inputItems(wireFine, Electrum, 64)
+                .inputItems(wireGtSingle, SamariumIronArsenicOxide, 16)
+                .outputItems(ADVANCED_COMPUTER_CASING)
+                .duration(200).EUt(VA[LuV])
+                .addMaterialInfo(true).save(provider);
     }
 }

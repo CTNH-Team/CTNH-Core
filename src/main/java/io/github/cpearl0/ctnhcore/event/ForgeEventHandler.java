@@ -9,6 +9,9 @@ import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.capability.EIOCapacitorProvider;
 import io.github.cpearl0.ctnhcore.integration.legendary.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
+
+import com.gregtechceu.gtceu.GTCEu;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
@@ -25,6 +28,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.MissingMappingsEvent;
+
+import com.moguang.ctnhbio.CTNHBio;
+import com.moguang.ctnhmana.CTNHMana;
+import dev.latvian.mods.kubejs.KubeJS;
 import tech.luckyblock.mcmod.ctnhenergy.CTNHEnergy;
 
 import java.util.List;

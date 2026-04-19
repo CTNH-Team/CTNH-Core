@@ -28,6 +28,10 @@ import net.minecraftforge.fluids.FluidType;
 import tech.vixhentx.mcmod.ctnhlib.registrate.builders.CTNHMachineBuilder;
 import tech.vixhentx.mcmod.ctnhlib.registrate.builders.CTNHMultiblockMachineBuilder;
 
+import it.unimi.dsi.fastutil.ints.Int2IntFunction;
+import tech.vixhentx.mcmod.ctnhlib.registrate.builders.CTNHMachineBuilder;
+import tech.vixhentx.mcmod.ctnhlib.registrate.builders.CTNHMultiblockMachineBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;

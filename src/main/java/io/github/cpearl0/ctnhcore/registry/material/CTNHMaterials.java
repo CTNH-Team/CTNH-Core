@@ -14,6 +14,9 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+
+import com.aetherteam.aether.block.AetherBlocks;
+import com.aetherteam.aether.item.AetherItems;
 import earth.terrarium.adastra.common.registry.ModBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.*;

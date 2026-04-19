@@ -110,4 +110,10 @@ dependencies {
     modLocalRuntime(ctnh.constructionwand)
 
     modClientLocalRuntime(ctnh.toomanytinkers)
+
+    // Jack's Economy
+    modImplementation(ctnh.jackseconomy)
+    modLocalRuntime(ctnh.curios)
+    modLocalRuntime(ctnh.constructionwand)
+
 }
