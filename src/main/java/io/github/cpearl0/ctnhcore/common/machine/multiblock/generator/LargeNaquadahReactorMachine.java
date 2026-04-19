@@ -3,15 +3,12 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
-import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IExplosionMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.content.Content;
-import com.gregtechceu.gtceu.api.recipe.ingredient.EnergyStack;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachine;
@@ -69,10 +66,9 @@ public class LargeNaquadahReactorMachine extends WorkableElectricMultiblockMachi
     public static ModifierFunction modifyRecipe(MetaMachine machine, GTRecipe recipe) {
         if (recipe.recipeType != CTNHRecipeTypes.LARGE_NAQUADAH_REACTOR_RECIPES) return ModifierFunction.NULL;
         if (machine instanceof LargeNaquadahReactorMachine lmachine) {
-            lmachine.checkHatch(lmachine,recipe.duration);
-            if(!lmachine.hasAir)
-            {
-                var copyRecipe =recipe.copy();
+            lmachine.checkHatch(lmachine, recipe.duration);
+            if (!lmachine.hasAir) {
+                var copyRecipe = recipe.copy();
                 copyRecipe.tickOutputs.clear();
                 copyRecipe.outputs.clear();
                 return recipe1 -> copyRecipe;
