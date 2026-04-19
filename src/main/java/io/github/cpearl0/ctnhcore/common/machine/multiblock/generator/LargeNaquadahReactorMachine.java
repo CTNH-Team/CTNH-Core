@@ -69,24 +69,17 @@ public class LargeNaquadahReactorMachine extends WorkableElectricMultiblockMachi
     public static ModifierFunction modifyRecipe(MetaMachine machine, GTRecipe recipe) {
         if (recipe.recipeType != CTNHRecipeTypes.LARGE_NAQUADAH_REACTOR_RECIPES) return ModifierFunction.NULL;
         if (machine instanceof LargeNaquadahReactorMachine lmachine) {
-            return (modifyRecipe) -> {
-                var duration = modifyRecipe.duration;
-                lmachine.checkHatch(lmachine, duration);
-                var copyRecipe = modifyRecipe.copy();
-                if (!lmachine.hasAir) {
-                    copyRecipe.tickOutputs.clear();
-                    copyRecipe.outputs.clear();
-                    return copyRecipe;
-                }
-                double eut = copyRecipe.getOutputEUt().getTotalEU();
-                if (lmachine.hasCool) {
-                    eut = eut * 1.5;
-                }
-                eut *= lmachine.activeFluidPower;
-                copyRecipe.tickOutputs.put(EURecipeCapability.CAP,
-                        List.of(new Content(new EnergyStack((long) eut), 1, 1, 0)));
-                return copyRecipe;
-            };
+            lmachine.checkHatch(lmachine,recipe.duration);
+            if(!lmachine.hasAir)
+            {
+                var copyRecipe =recipe.copy();
+                copyRecipe.tickOutputs.clear();
+                copyRecipe.outputs.clear();
+                return recipe1 -> copyRecipe;
+            }
+            return ModifierFunction.builder()
+                    .eutMultiplier(lmachine.getFinalPowerRate())
+                    .build();
         }
         return ModifierFunction.NULL;
     }

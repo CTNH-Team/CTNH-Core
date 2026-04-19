@@ -137,15 +137,7 @@ public class TwistedFusionRecipes {
                 .duration(16)
                 .save(provider);
         // 蕴魔处理
-        MANA_TRANSFORMER_RECIPES.recipeBuilder("fused_mixed_mana")// 分选蕴魔粉
-                .inputItems(ChemicalHelper.get(dust, Fused_Mana))
-                .notConsumable(ELF_CATALYST)
-                .outputItems(ChemicalHelper.get(dust, Fused_Mixed_Mana), 16)
-                .outputItems(ChemicalHelper.get(dust, ManaSteel), 4)
-                .outputItems(ChemicalHelper.get(dust, Elementium), 4)
-                .outputItems(dragonstone)
-                .outputFluids(Mana.getFluid(1000))
-                .save(provider);
+
         GTRecipeTypes.CHEMICAL_BATH_RECIPES.recipeBuilder("fused_lp_mixed_mana")// 源质提纯恶魔粉
                 .inputItems(ChemicalHelper.get(dust, Fused_Mixed_Mana), 4)
                 .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 16000))
