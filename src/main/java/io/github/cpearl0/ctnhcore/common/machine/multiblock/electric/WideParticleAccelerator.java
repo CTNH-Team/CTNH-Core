@@ -84,6 +84,7 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine
     public ManagedFieldHolder getFieldHolder() {
         return MANAGED_FIELD_HOLDER;
     }
+
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             WideParticleAccelerator.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     public DoubleSupplier get_nu = () -> (double) this.nu_speed / 50000;

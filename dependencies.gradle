@@ -13,7 +13,7 @@ dependencies {
 
     //modImplementation("extra-mods:create_connected-26.1-all")
     jarJar("extra-mods:scg-ctnh:1.1.1")
-    jarJar("extra-mods:gregtechmodernfoodoption-0.0.2:0.0.2")
+    jarJar("extra-mods:kallfix_sub-1.0:1.0")
 
     runtimeOnly(ctnh.graphlib)
 
@@ -110,4 +110,10 @@ dependencies {
     modLocalRuntime(ctnh.constructionwand)
 
     modClientLocalRuntime(ctnh.toomanytinkers)
+
+    // Jack's Economy
+    modImplementation(ctnh.jackseconomy)
+    modLocalRuntime(ctnh.curios)
+    modLocalRuntime(ctnh.constructionwand)
+
 }
