@@ -136,4 +136,25 @@ public class CTNHKineticPondersLang {
     @CN("最后，放置容器，你就可以完美使用牧场了，如果无法运行，试着多加几个输出口！")
     @EN("Finally, place the container and you can use the meadow perfectly,if it doesn't work, try adding more output ports!")
     static Lang MeadowText12;
+    // 应力出售机
+    @Key("ponder.mechanical_exporter_common.header")
+    @CN("应力出售机")
+    @EN("Mechanical Exporter")
+    static Lang MechanicalExporterCommonHeader;
+    @Key("ponder.mechanical_exporter_common.text_1")
+    @CN("放置应力出售机")
+    @EN("Place Mechanical Exporter")
+    static Lang MechanicalExporterCommonText1;
+    @Key("ponder.mechanical_exporter_common.text_2")
+    @CN("首先，你需要放入金色物品清单，它允许你出售各种食物来获取货币")
+    @EN("First, you need to put a golden item list, which allows you to sell various food to get currency")
+    static Lang MechanicalExporterCommonText2;
+    @Key("ponder.mechanical_exporter_common.text_3")
+    @CN("接入应力")
+    @EN("Access stress")
+    static Lang MechanicalExporterCommonText3;
+    @Key("ponder.mechanical_exporter_common.text_4")
+    @CN("放入有标价的食物，就可以获取货币了，对食物按alt可以看标价")
+    @EN("Put in food with a price, you can get currency, press alt to see the price of the food")
+    static Lang MechanicalExporterCommonText4;
 }

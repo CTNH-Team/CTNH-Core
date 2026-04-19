@@ -33,6 +33,10 @@ public final class CTNHPonderScenes {
         helper.forComponents(CTPPMachines.CARBON_BRUSHES.getId())
                 .addStoryBoard("carbonbrushes/common", CarbonBrushes::ponder, CTNHPonderTags.Electric);
 
+        // Exporter 应力出售机思索
+        helper.forComponents(ResourceLocation.fromNamespaceAndPath("jackseconomy", "mechanical_exporter"))
+                .addStoryBoard("mechanicalexporter/common", MechanicalExporter::Common, CTNHPonderTags.Kinetic);
+
         CTNHCore.LOGGER.info("Ponder scenes initialized");
     }
 }
