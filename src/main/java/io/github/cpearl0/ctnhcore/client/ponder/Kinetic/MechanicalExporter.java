@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.client.ponder.Kinetic;
 
-import com.gregtechceu.gtceu.integration.ae2.gui.widget.list.AEListGridWidget;
 import io.github.cpearl0.ctnhcore.client.ponder.CTNHPonderSceneBuilder;
 
 import net.createmod.catnip.math.Pointing;
@@ -23,7 +22,7 @@ public class MechanicalExporter {
         Vec3 mainBlockTextVec = util.vector().blockSurface(util.grid().at(2, 1, 2), Direction.WEST);
         Vec3 inputItemsVec = util.vector().blockSurface(util.grid().at(2, 1, 2), Direction.UP);
         Item goldenExporterManifest = ForgeRegistries.ITEMS.getValue(
-                ResourceLocation.fromNamespaceAndPath("jackseconomy","golden_exporter_manifest"));
+                ResourceLocation.fromNamespaceAndPath("jackseconomy", "golden_exporter_manifest"));
         ItemStack goldenExporterManifests = new ItemStack(goldenExporterManifest);
 
         CTNHPonderSceneBuilder scene = new CTNHPonderSceneBuilder(builder);
@@ -46,8 +45,8 @@ public class MechanicalExporter {
                 .text(MechanicalExporterCommonText2.translate().getContents().toString())
                 .pointAt(mainBlockTextVec)
                 .attachKeyFrame();
-        scene.overlay().showControls(inputItemsVec, Pointing.DOWN,40)
-                        .withItem(goldenExporterManifests);
+        scene.overlay().showControls(inputItemsVec, Pointing.DOWN, 40)
+                .withItem(goldenExporterManifests);
         scene.idle(60);
 
         scene.overlay().showText(50)

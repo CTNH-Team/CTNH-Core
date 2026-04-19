@@ -122,7 +122,7 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
-        this.basicRate=1;
+        this.basicRate = 1;
         updateBasicRate();
         updateEnergyContainer();
         updateFluidParts();
