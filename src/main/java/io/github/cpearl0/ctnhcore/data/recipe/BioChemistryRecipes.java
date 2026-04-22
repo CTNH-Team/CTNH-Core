@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.common.recipe.builder.create.SequencedAssemblyRecipeBuilder;
 import io.github.cpearl0.ctnhcore.data.materials.YeastRelatedMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
@@ -11,6 +12,7 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -294,7 +296,21 @@ public class BioChemistryRecipes {
                 .outputFluids(GTMaterials.Biomass.getFluid(75))
                 .chancedOutput(dust, YeastRelatedMaterials.ESCHERICHIA_COLI, 500, 500)
                 .save(provider);
+
+        ItemStack fluorescenceYeast = ChemicalHelper.get(dust, YeastRelatedMaterials.FLUORESCENCE_YEAST);
+        ItemStack pollutedFluorescenceYeast = ChemicalHelper.get(dust, YeastRelatedMaterials.POLLUTED_FLUORESCENCE_YEAST);
+
+        SequencedAssemblyRecipeBuilder.builder("polluted_fluorescence_yeast")
+                .input(fluorescenceYeast)
+                .transitional(fluorescenceYeast)
+                .result(pollutedFluorescenceYeast)
+                .filling(fluorescenceYeast, "alexscaves:acid")
+                .filling(fluorescenceYeast, "deep_aether:poison_fluid")
+                .pressing()
+                .loops(1)
+                .save(provider);
     }
+
 
     @CN("任意食物")
     @EN("Any food")

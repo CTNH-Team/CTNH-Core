@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe.multiblock;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.data.recipe.builder.CTNHRecipeBuilder;
+import io.github.cpearl0.ctnhcore.common.recipe.builder.CTNHRecipeBuilder;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 
