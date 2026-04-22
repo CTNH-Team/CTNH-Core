@@ -58,10 +58,11 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
 
     long basicRate;
     final int fluidAmount;
+    public long bbasic_rate = 1;
 
     public WindPowerArrayMachine(IMachineBlockEntity holder, int tier) {
         super(holder);
-        this.basicRate = GTValues.V[tier];
+        this.bbasic_rate = GTValues.V[tier];
         this.fluidAmount = tier;
     }
 
@@ -122,7 +123,6 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
-        this.basicRate = 1;
         updateBasicRate();
         updateEnergyContainer();
         updateFluidParts();
@@ -166,8 +166,7 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
     public void updateBasicRate() {
         assert getLevel() != null;
         var dimension = getLevel().dimension().location().toString();
-
-        basicRate *= (long) dimentionRate.getOrDefault(dimension, 0);
+        basicRate = bbasic_rate * (long) dimentionRate.getOrDefault(dimension, 0);
     }
 
     /// ////////////////////////////////
