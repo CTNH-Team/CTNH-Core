@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.registry;
 
 import io.github.cpearl0.ctnhcore.data.CreateRecipeTypes;
+import io.github.cpearl0.ctnhcore.data.recipe.BioChemistryRecipes;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
@@ -107,6 +108,12 @@ public class CTNHRecipeTypes {
             .setMaxIOSize(2, 1, 2, 4)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .addDataInfo(data -> {
+                if (data.getBoolean("special")) {
+                    return BioChemistryRecipes.digestion_info.translate().getString();
+                }
+                return "";
+            })
             .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType BEDROCK_DRILLING_RIGS = REGISTRATE
             .recipeType(GTCEu.id("bedrock_drilling_rigs"), GTRecipeTypes.ELECTRIC)
