@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import com.mo_guang.ctpp.common.recipe.builder.create.SequencedAssemblyRecipeBuilder;
 import io.github.cpearl0.ctnhcore.data.materials.YeastRelatedMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
@@ -11,11 +10,12 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import com.mo_guang.ctpp.common.recipe.builder.create.SequencedAssemblyRecipeBuilder;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
@@ -298,7 +298,8 @@ public class BioChemistryRecipes {
                 .save(provider);
 
         ItemStack fluorescenceYeast = ChemicalHelper.get(dust, YeastRelatedMaterials.FLUORESCENCE_YEAST);
-        ItemStack pollutedFluorescenceYeast = ChemicalHelper.get(dust, YeastRelatedMaterials.POLLUTED_FLUORESCENCE_YEAST);
+        ItemStack pollutedFluorescenceYeast = ChemicalHelper.get(dust,
+                YeastRelatedMaterials.POLLUTED_FLUORESCENCE_YEAST);
 
         SequencedAssemblyRecipeBuilder.builder("polluted_fluorescence_yeast")
                 .input(fluorescenceYeast)
@@ -310,7 +311,6 @@ public class BioChemistryRecipes {
                 .loops(1)
                 .save(provider);
     }
-
 
     @CN("任意食物")
     @EN("Any food")

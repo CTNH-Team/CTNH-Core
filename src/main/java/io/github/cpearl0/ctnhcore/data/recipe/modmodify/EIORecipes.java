@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe.modmodify;
 
-import io.github.cpearl0.ctnhcore.data.materials.CreateMaterials;
 import io.github.cpearl0.ctnhcore.common.recipe.builder.CTNHRecipeBuilder;
+import io.github.cpearl0.ctnhcore.data.materials.CreateMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
