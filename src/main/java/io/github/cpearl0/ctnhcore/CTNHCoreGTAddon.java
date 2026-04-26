@@ -131,6 +131,9 @@ public class CTNHCoreGTAddon implements IGTAddon {
         TwistedFusionRecipes.init(provider);
         EternalGardenRecipes.init(provider);
         MiscManaRecipes.init(provider);
+
+        YeastRecipes.init(provider);
+        BioChemistryRecipes.init(provider);
     }
 
     @Override

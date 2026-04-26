@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.data.recipe.builder;
+package io.github.cpearl0.ctnhcore.common.recipe.builder;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 

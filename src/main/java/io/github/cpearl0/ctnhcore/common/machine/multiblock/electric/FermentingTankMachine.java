@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
@@ -19,19 +20,24 @@ import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
+import net.minecraft.server.TickTask;
+import net.minecraft.server.level.ServerLevel;
 
+import org.jetbrains.annotations.Nullable;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
 
 import java.util.List;
-import java.util.Objects;
 
 import static sfiomn.legendarysurvivaloverhaul.api.temperature.TemperatureUtil.getWorldTemperature;
 
 @Prefix("fermenting_tank_machine")
 public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine {
+
+    @Nullable
+    protected TickableSubscription temperatureSubs;
 
     public double Machine_Temperature = 0;
     public double Efficiency = 1;
@@ -51,7 +57,6 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
 
     @Override
     public void addDisplayText(List<Component> textList) {
-        Machine_Temperature = getWorldTemperature(Objects.requireNonNull(getLevel()), getPos());
         super.addDisplayText(textList);
         textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component
                 .translatable(FormattingUtil.formatNumbers(
@@ -66,8 +71,6 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (machine instanceof FermentingTankMachine fmachine) {
             fmachine.Efficiency = 1;
-            fmachine.Machine_Temperature = getWorldTemperature(Objects.requireNonNull(fmachine.getLevel()),
-                    fmachine.getPos());
             MachineUtils.applyContents(fmachine, (contents, part) -> {
                 if (contents instanceof FluidStack fluid) {
                     double current = fluid.getAmount();
@@ -90,5 +93,24 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
                     .build();
         }
         return ModifierFunction.IDENTITY;
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+
+        if (getLevel() instanceof ServerLevel serverLevel) {
+            serverLevel.getServer().tell(new TickTask(0, this::updateTempSubscription));
+        }
+    }
+
+    protected void updateTempSubscription() {
+        temperatureSubs = subscribeServerTick(temperatureSubs, this::updateCurrentTemperature);
+    }
+
+    protected void updateCurrentTemperature() {
+        if (getOffsetTimer() % 10 == 0) {
+            Machine_Temperature = (int) getWorldTemperature(getLevel(), getPos());
+        }
     }
 }
