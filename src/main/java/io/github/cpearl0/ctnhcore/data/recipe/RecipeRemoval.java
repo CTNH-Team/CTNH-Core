@@ -79,6 +79,8 @@ public class RecipeRemoval {
                 "gtceu:assembly_line/data_bank",
                 // 高级计算机外壳
                 "gtceu:assembler/advanced_computer_casing",
+                // 计算组件
+                "gtceu:assembler/hpca_computation_component",
                 // 凯金线圈
                 "gtceu:assembler/coil_trinium",
                 // 模拟室
