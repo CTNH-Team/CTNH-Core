@@ -35,7 +35,7 @@ public class YeastRecipes {
 
             MIXER_RECIPES.recipeBuilder(CTNHCore.id(yeast.name() + "_yeast1"))
                     .EUt(30)
-                    .inputItems(yeast.dustMaterial().get(), 1)
+                    .inputItems(ChemicalHelper.get(TagPrefix.dust, yeast.dustMaterial().get()), 1)
                     .inputFluids(GTMaterials.Water.getFluid(1000))
                     .outputFluids(yeast.seedLiquidMaterial().get().getFluid(1000))
                     .duration(40)

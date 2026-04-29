@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
@@ -11,6 +12,9 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 
+import net.minecraft.server.TickTask;
+import net.minecraft.server.level.ServerLevel;
+import org.jetbrains.annotations.Nullable;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
@@ -23,6 +27,8 @@ import static sfiomn.legendarysurvivaloverhaul.api.temperature.TemperatureUtil.g
 
 @Prefix("bio_machine")
 public class BioMachine extends WorkableElectricMultiblockMachine {
+    @Nullable
+    protected TickableSubscription temperatureSubs;
 
     public double machineTemperature = 0;
     public double efficiency = 1;
@@ -43,7 +49,6 @@ public class BioMachine extends WorkableElectricMultiblockMachine {
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
         if (isFormed) {
-            machineTemperature = getWorldTemperature(Objects.requireNonNull(getLevel()), getPos());
             if (machineTemperature >= 36 && machineTemperature <= 38) {
                 efficiency = 1.2;
             } else {
@@ -59,8 +64,6 @@ public class BioMachine extends WorkableElectricMultiblockMachine {
 
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (!(machine instanceof BioMachine dmachine)) return ModifierFunction.IDENTITY;
-        dmachine.machineTemperature = getWorldTemperature(Objects.requireNonNull(dmachine.getLevel()),
-                dmachine.getPos());
         if (dmachine.machineTemperature >= 36 && dmachine.machineTemperature <= 38) {
             dmachine.efficiency = 1.2;
         } else {
@@ -69,5 +72,22 @@ public class BioMachine extends WorkableElectricMultiblockMachine {
                             1);
         }
         return ModifierFunction.builder().durationModifier(new ContentModifier(1 / dmachine.efficiency, 0)).build();
+    }
+    @Override
+    public void onLoad() {
+        super.onLoad();
+
+        if (getLevel() instanceof ServerLevel serverLevel) {
+            serverLevel.getServer().tell(new TickTask(0, this::updateTempSubscription));
+        }
+    }
+    protected void updateTempSubscription() {
+        temperatureSubs = subscribeServerTick(temperatureSubs, this::updateCurrentTemperature);
+    }
+
+    protected void updateCurrentTemperature() {
+        if (getOffsetTimer() % 10 == 0) {
+            machineTemperature = (int) getWorldTemperature(getLevel(), getPos());
+        }
     }
 }
