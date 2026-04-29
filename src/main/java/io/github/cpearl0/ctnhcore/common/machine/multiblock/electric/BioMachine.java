@@ -11,9 +11,9 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-
 import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerLevel;
+
 import org.jetbrains.annotations.Nullable;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
@@ -21,12 +21,12 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
 
 import java.util.List;
-import java.util.Objects;
 
 import static sfiomn.legendarysurvivaloverhaul.api.temperature.TemperatureUtil.getWorldTemperature;
 
 @Prefix("bio_machine")
 public class BioMachine extends WorkableElectricMultiblockMachine {
+
     @Nullable
     protected TickableSubscription temperatureSubs;
 
@@ -73,6 +73,7 @@ public class BioMachine extends WorkableElectricMultiblockMachine {
         }
         return ModifierFunction.builder().durationModifier(new ContentModifier(1 / dmachine.efficiency, 0)).build();
     }
+
     @Override
     public void onLoad() {
         super.onLoad();
@@ -81,6 +82,7 @@ public class BioMachine extends WorkableElectricMultiblockMachine {
             serverLevel.getServer().tell(new TickTask(0, this::updateTempSubscription));
         }
     }
+
     protected void updateTempSubscription() {
         temperatureSubs = subscribeServerTick(temperatureSubs, this::updateCurrentTemperature);
     }
