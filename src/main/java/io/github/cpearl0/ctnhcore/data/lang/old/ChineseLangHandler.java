@@ -751,6 +751,11 @@ public class ChineseLangHandler {
         provider.add("ctnh.u_sinope.8",
                 "对于该巨构特有的配方类型具有特殊机制：时间固定为100秒，并行固定为10，电压每超过UHV一级，则时间减少10秒，并行增加10,如果使用了四维工程学材料且线圈等级大于等于UIV，则时间固定为1秒");
 
+        provider.add("gui.ctnh.neutron_sensor.invert.enabled",
+                "输出：反转\n\n切换以反转红石逻辑\n默认情况下，中子动能介于所设定的最小值和最大值之间时传感器将发出红石信号，小于最小值时则停止发出红石信号");
+        provider.add("gui.ctnh.neutron_sensor.invert.disabled",
+                "输出：正常\n\n切换以反转红石逻辑\n默认情况下，中子动能介于所设定的最小值和最大值之间时传感器将发出红石信号，小于最小值时则停止发出红石信号");
+
         provider.add("ctnh.machine.naquadah_reactor.tooltip", "效率: %s%%");
         provider.add("ctnh.machine.rocket_engine.tooltip", "效率: %s%%");
 

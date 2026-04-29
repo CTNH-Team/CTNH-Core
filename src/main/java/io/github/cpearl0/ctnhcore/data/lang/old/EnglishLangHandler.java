@@ -494,6 +494,11 @@ public class EnglishLangHandler {
         provider.add("ctnh.machine.naquadah_reactor.tooltip", "Efficiency: %s%%");
         provider.add("ctnh.machine.rocket_engine.tooltip", "Efficiency: %s%%");
 
+        provider.add("gui.ctnh.neutron_sensor.invert.enabled",
+                "Output: Reverse\n\nSwitch to reverse redstone logic\nBy default, the sensor will emit a redstone signal when the neutron kinetic energy is between the set minimum and maximum values, and stop emitting a redstone signal when it is less than the minimum value.");
+        provider.add("gui.ctnh.neutron_sensor.invert.disabled",
+                "Output: Normal\n\nSwitch to reverse redstone logic\nBy default, the sensor will emit a redstone signal when the neutron kinetic energy is between the set minimum and maximum values, and stop emitting a redstone signal when it is less than the minimum value.");
+
         // tconstruct
         provider.add("modifier.ctnhcore.global_traveller", "Global Traveller");
 

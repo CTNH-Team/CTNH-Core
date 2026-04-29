@@ -1117,6 +1117,8 @@
   "gtceu.water_power": "水力发电",
   "gtceu.wood_bionics": "§e林海树场",
   "gtceu.zenith_extruder": "天顶塑形",
+  "gui.ctnh.neutron_sensor.invert.disabled": "输出：正常\n\n切换以反转红石逻辑\n默认情况下，中子动能介于所设定的最小值和最大值之间时传感器将发出红石信号，小于最小值时则停止发出红石信号",
+  "gui.ctnh.neutron_sensor.invert.enabled": "输出：反转\n\n切换以反转红石逻辑\n默认情况下，中子动能介于所设定的最小值和最大值之间时传感器将发出红石信号，小于最小值时则停止发出红石信号",
   "gui.ctnhcore.allow_same_fluid_in_title": "流体输入槽保护",
   "gui.ctnhcore.allow_same_fluid_in_tooltip": "允许相同流体占据多个输入槽位",
   "gui.ctnhcore.allow_same_fluid_out_title": "流体输出槽保护",
