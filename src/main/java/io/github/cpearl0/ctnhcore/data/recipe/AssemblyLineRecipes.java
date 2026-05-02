@@ -11,9 +11,10 @@ import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksC;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GCYMBlocks;
-import io.github.cpearl0.ctnhcore.data.materials.BedrockMaterials;
-import io.github.cpearl0.ctnhcore.data.materials.YeastRelatedMaterials;
+import io.github.cpearl0.ctnhcore.data.materials.*;
+
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTAEMachines;
@@ -27,6 +28,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import appeng.core.definitions.AEBlocks;
+import appeng.core.definitions.AEItems;
 import com.github.elenterius.biomancy.init.ModItems;
 import com.moguang.ctnhbio.data.materials.CommonMaterials;
 import com.moguang.ctnhbio.registry.CBBlocks;
@@ -41,13 +43,15 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
-import static com.gregtechceu.gtceu.common.data.GTMachines.DUAL_IMPORT_HATCH;
-import static com.gregtechceu.gtceu.common.data.GTMachines.HULL;
+import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLY_LINE_RECIPES;
 import static com.gregtechceu.gtceu.common.data.machines.GCYMMachines.PARALLEL_HATCH;
 import static com.moguang.ctnhbio.data.materials.OrganicMaterials.*;
 import static dev.shadowsoffire.hostilenetworks.Hostile.Items.SIM_CHAMBER;
+import static io.github.cpearl0.ctnhcore.data.materials.AviationFabricMaterials.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHItems.*;
 import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines.*;
 import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines.ME_ULTIMATE_PATTERN_BUFFER_PROXY;
 import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMultiblock.JIUZHANG_QUANTUM_COMPUTER;
@@ -200,8 +204,8 @@ public class AssemblyLineRecipes {
                 .inputItems(
                         ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2omnicells:omni_cell_component_256k")),
                         2)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:cell_component_64k")), 4)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:cell_component_256k")), 2)
+                .inputItems(AEItems.CELL_COMPONENT_64K.stack(4))
+                .inputItems(AEItems.CELL_COMPONENT_256K.stack(2))
                 .inputItems(OPTICAL_PIPES[0].asStack(64))
                 .inputItems(OPTICAL_PIPES[0].asStack(64))
                 .inputItems(OPTICAL_PIPES[0].asStack(64))
@@ -317,7 +321,7 @@ public class AssemblyLineRecipes {
         // 2. annihilate_core_mki
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("annihilate_core_mki"))
                 .inputItems(frameGt, Naquadria, 4)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ctnhcore:plate_radiation_protection")), 16)
+                .inputItems(PlateRadiationProtection.asStack(16))
                 .inputItems(NEUTRON_REFLECTOR.asStack(16))
                 .inputItems(FIELD_GENERATOR_IV.asStack(8))
                 .inputItems(FIELD_GENERATOR_LuV.asStack(4))
@@ -338,7 +342,7 @@ public class AssemblyLineRecipes {
                 .inputItems(FUSION_COIL.asStack(4))
                 .inputItems(NEUTRON_REFLECTOR.asStack(4))
                 .inputItems(FIELD_GENERATOR_LuV.asStack(6))
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:molten_enriched_naquadah_trinium_europium_duranide", 8000))
+                .inputFluids(new FluidStack(EnrichedNaquadahTriniumEuropiumDuranide.getFluid(), 8000))
                 .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 8000))
                 .outputItems(MultiblocksA.COMPRESSED_FUSION_REACTOR[LuV].asStack())
                 .EUt(24987).duration(450)
@@ -372,7 +376,7 @@ public class AssemblyLineRecipes {
                 .inputItems(FUSION_COIL.asStack(64))
                 .inputItems(NEUTRON_REFLECTOR.asStack(64))
                 .inputItems(FIELD_GENERATOR_UV.asStack(6))
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:ruthenium_trinium_americium_neutronate", 8000))
+                .inputFluids(new FluidStack(RutheniumTriniumAmericiumNeutronate.getFluid(), 8000))
                 .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 8000))
                 .outputItems(MultiblocksA.COMPRESSED_FUSION_REACTOR[UV].asStack())
                 .EUt(491020).duration(450)
@@ -411,14 +415,14 @@ public class AssemblyLineRecipes {
                 .inputItems(CONVEYOR_MODULE_UV.asStack(16))
                 .inputItems(ELECTRIC_PISTON_UV.asStack(16))
                 .inputItems(ROBOT_ARM_UV.asStack(16))
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:ev_large_miner")), 64)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:iv_large_miner")), 48)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:luv_large_miner")), 32)
+                .inputItems(GTMultiMachines.LARGE_MINER[EV].asStack(64))
+                .inputItems(GTMultiMachines.LARGE_MINER[IV].asStack(48))
+                .inputItems(GTMultiMachines.LARGE_MINER[LuV].asStack(32))
                 .inputItems(MultiblocksA.ZPM_LARGE_MINER.asStack(16))
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:cerrobase_140", 512000))
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 512000))
                 .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 512000))
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:adamantite_plasma", 512000))
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:aether_plasma", 512000))
+                .inputFluids(new FluidStack(BedrockMaterials.ADAMANTITE.getFluid(FluidStorageKeys.PLASMA), 512000))
+                .inputFluids(new FluidStack(BedrockMaterials.AETHER.getFluid(FluidStorageKeys.PLASMA), 512000))
                 .outputItems(MultiblocksA.VOID_MINER.asStack())
                 .EUt(491020).duration(3600)
                 .stationResearch(b -> b.researchStack(MultiblocksA.ZPM_LARGE_MINER.asStack())
@@ -431,7 +435,7 @@ public class AssemblyLineRecipes {
                 .inputItems(frameGt, Naquadah, 64)
                 .inputItems(frameGt, NaquadahEnriched, 64)
                 .inputItems(frameGt, Naquadria, 64)
-                .inputItems(NEUTRON_SOURCE.asStack(64))
+                .inputItems(NeutronSource.asStack(64))
                 .inputItems(plateDense, Obsidian, 7)
                 .inputItems(plateDense, TungstenSteel, 7)
                 .inputItems(plateDense, RhodiumPlatedPalladium, 7)
@@ -444,10 +448,10 @@ public class AssemblyLineRecipes {
                 .inputItems(CustomTags.UV_CIRCUITS, 8)
                 .inputItems(CustomTags.ZPM_CIRCUITS, 8)
                 .inputItems(CustomTags.LuV_CIRCUITS, 8)
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:cerrobase_140", 16000))
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 16000))
                 .inputFluids(new FluidStack(Naquadria.getFluid(), 16000))
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:pulsating_alloy", 16000))
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:molten_tungsten_carbide", 16000))
+                .inputFluids(new FluidStack(EnderIOMaterials.PulsatingAlloy.getFluid(), 16000))
+                .inputFluids(new FluidStack(TungstenCarbide.getFluid(), 16000))
                 .outputItems(MultiblocksB.SILICA_ROCK_FUEL_REFINERY.asStack())
                 .EUt(491520).duration(1000)
                 .stationResearch(b -> b.researchStack(MultiblocksA.FUEL_REFINING_FACTORY.asStack())
@@ -460,9 +464,9 @@ public class AssemblyLineRecipes {
                 .inputItems(FIELD_GENERATOR_UHV.asStack(4))
                 .inputItems(REACTOR_CONDENSATION_BLOCK.asStack())
                 .inputItems(CTNHBlocks.ANNIHILATE_CORE_MKI.asStack())
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:bedrock_dust", 16000))
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:cerrobase_140", 16000))
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:molten_naquadah_alloy", 16000))
+                .inputFluids(new FluidStack(BedrockMaterials.BEDROCK_DUST.getFluid(), 16000))
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 16000))
+                .inputFluids(new FluidStack(NaquadahAlloy.getFluid(), 16000))
                 .inputFluids(new FluidStack(Polybenzimidazole.getFluid(), 16000))
                 .outputItems(CTNHBlocks.ATOMS_SPLIT_BLOCKS.asStack(2))
                 .EUt(491052).duration(500)
@@ -488,7 +492,7 @@ public class AssemblyLineRecipes {
                 .inputItems(QUANTUM_EYE.asStack())
                 .inputItems(QUANTUM_STAR.asStack())
                 .inputItems(AUTO_MAINTENANCE_HATCH.asStack())
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:cerrobase_140", 16000))
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 16000))
                 .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 16000))
                 .inputFluids(new FluidStack(Argon.getFluid(), 16000))
                 .inputFluids(new FluidStack(Fluorine.getFluid(), 16000))
@@ -502,17 +506,17 @@ public class AssemblyLineRecipes {
         // 11. echo_processor_2
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("echo_processor_2"))
                 .inputItems(frameGt, Osmiridium)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("kubejs:echo_printed_circuit_board")))
+                .inputItems(CTNHItems.ECHO_PRINTED_CIRCUIT_BOARD.asStack())
                 .inputItems(ECHO_PROCESSOR.asStack())
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:exquisite_echo_shard_gem")))
+                .inputItems(gemExquisite, EchoShard)
                 .inputItems(BIOLOGICAL_PATCH_INDUCTOR.asStack(12))
                 .inputItems(BIOLOGICAL_PATCH_CAPACITOR.asStack(24))
                 .inputItems(ENGRAVED_CRYSTAL_CHIP.asStack(16))
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ctnhcore:sculk_cell")), 2)
+                .inputItems(SCULK_CELL.asStack())
                 .inputItems(ENERGY_LAPOTRONIC_ORB.asStack())
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:cerrobase_140", 1440))
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:sterilized_growth_medium", 1440))
-                .outputItems(ECHO_PROCESSOR_ASSEMBLY.asStack())
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 1440))
+                .inputFluids(new FluidStack(SterileGrowthMedium.getFluid(), 1440))
+                .outputItems(ECHO_PROCESSOR_ASSEMBLY)
                 .EUt(491520).duration(800)
                 .stationResearch(b -> b.researchStack(ECHO_PROCESSOR.asStack())
                         .dataStack(TOOL_DATA_MODULE.asStack())
@@ -521,20 +525,20 @@ public class AssemblyLineRecipes {
 
         // 12. echo_processor_3
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("echo_processor_3"))
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("kubejs:echo_printed_circuit_board")))
+                .inputItems(CTNHItems.ECHO_PRINTED_CIRCUIT_BOARD.asStack())
                 .inputItems(ECHO_PROCESSOR_ASSEMBLY.asStack())
                 .inputItems(BIOLOGICAL_PATCH_DIODE.asStack(32))
                 .inputItems(HIGHLY_ADVANCED_SOC.asStack(8))
                 .inputItems(NOR_MEMORY_CHIP.asStack(32))
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:ram_chip")), 64)
+                .inputItems(RANDOM_ACCESS_MEMORY.asStack(64))
                 .inputItems(wireFine, Tritanium, 64)
                 .inputItems(wireFine, IndiumTinBariumTitaniumCuprate, 64)
                 .inputItems(foil, Polybenzimidazole, 64)
-                .inputItems(foil, KaptonK, 64)
+                .inputItems(foil, KAPTON_K, 64)
                 .inputItems(plate, Duranium, 8)
                 .inputItems(plate, Tritanium, 8)
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:cerrobase_140", 2880))
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:sterilized_growth_medium", 2880))
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 2880))
+                .inputFluids(new FluidStack(SterileGrowthMedium.getFluid(), 2880))
                 .outputItems(ECHO_PROCESSOR_COMPUTER.asStack())
                 .EUt(491520).duration(800)
                 .stationResearch(b -> b.researchStack(ECHO_PROCESSOR_ASSEMBLY.asStack())
@@ -554,15 +558,15 @@ public class AssemblyLineRecipes {
                 .inputItems(BIOLOGICAL_PATCH_CAPACITOR.asStack(64))
                 .inputItems(BIOLOGICAL_PATCH_DIODE.asStack(64))
                 .inputItems(BIOLOGICAL_PATCH_INDUCTOR.asStack(64))
-                .inputItems(foil, KaptonK, 64)
+                .inputItems(foil, KAPTON_K , 64)
                 .inputItems(ENERGY_LAPOTRONIC_ORB_CLUSTER.asStack(4))
                 .inputItems(wireGtQuadruple, CTNHMaterials.SpecialCompositeSteelM77, 8)
                 .inputItems(pipeTinyFluid, CTNHMaterials.HiddenAlloy, 16)
                 .inputItems(SCULK_CELL.asStack(4))
                 .inputItems(plateDense, CTNHMaterials.HiddenAlloy, 4)
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:cerrobase_140", 2880))
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:sterilized_growth_medium", 2880))
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:sterilebiologicalculturemediumstocksolution", 2880))
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 2880))
+                .inputFluids(new FluidStack(SterileGrowthMedium.getFluid(), 2880))
+                .inputFluids(new FluidStack(CTNHMaterials.SterileBiologicalCultureMediumStockSolution.getFluid(), 2880))
                 .outputItems(ECHO_PROCESSOR_MAINFRAME.asStack())
                 .EUt(1966800).duration(1600)
                 .stationResearch(b -> b.researchStack(ECHO_PROCESSOR_COMPUTER.asStack())
@@ -580,7 +584,7 @@ public class AssemblyLineRecipes {
                 .inputItems(STEM_CELLS.asStack(64))
                 .inputItems(STEM_CELLS.asStack(64))
                 .inputItems(STEM_CELLS.asStack(64))
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:sterilized_growth_medium", 16000))
+                .inputFluids(new FluidStack(SterileGrowthMedium.getFluid(), 16000))
                 .inputFluids(new FluidStack(YeastRelatedMaterials.NORMAL_YEAST_EXTRACT_LIQUID.getFluid(), 16000))
                 .inputFluids(new FluidStack(YeastRelatedMaterials.END_YEAST_EXTRACT_LIQUID.getFluid(), 16000))
                 .outputItems(MultiblocksB.CultivationRoom.asStack())
@@ -599,7 +603,7 @@ public class AssemblyLineRecipes {
                 .inputItems(ELECTRIC_MOTOR_ZPM.asStack(4))
                 .inputItems(EMITTER_ZPM.asStack(4))
                 .inputItems(SENSOR_ZPM.asStack(4))
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:cerrobase_140", 16000))
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 16000))
                 .outputItems(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL.asStack(4))
                 .EUt(122330).duration(600)
                 .stationResearch(b -> b.researchStack(CASING_ASSEMBLY_CONTROL.asStack())
@@ -613,7 +617,7 @@ public class AssemblyLineRecipes {
                 .inputItems(rotor, Osmiridium, 4)
                 .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("enderio:end_steel_bars")), 4)
                 .inputItems(ELECTRIC_MOTOR_LuV.asStack(4))
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:cerrobase_140", 16000))
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 16000))
                 .outputItems(CTNHBlocks.ADVANCE_MACHINE_CASING_GRATE.asStack(4))
                 .EUt(122330).duration(600)
                 .stationResearch(b -> b.researchStack(CASING_GRATE.asStack())
@@ -631,7 +635,7 @@ public class AssemblyLineRecipes {
                 .inputItems(gearSmall, HSSG, 16)
                 .inputItems(gearSmall, CTNHMaterials.Eglinalloy, 16)
                 .inputItems(ROBOT_ARM_ZPM.asStack(4))
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:cerrobase_140", 16000))
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 16000))
                 .inputFluids(new FluidStack(NaquadahAlloy.getFluid(), 32000))
                 .outputItems(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_LINE.asStack())
                 .EUt(122330).duration(600)
@@ -650,7 +654,7 @@ public class AssemblyLineRecipes {
                 .inputItems(ROBOT_ARM_ZPM.asStack(16))
                 .inputItems(ROBOT_ARM_ZPM.asStack(16))
                 .inputItems(ROBOT_ARM_ZPM.asStack(16))
-                .inputFluids(FluidStack.parseFluidStackOr("gtceu:cerrobase_140", 16000))
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 16000))
                 .outputItems(MultiblocksB.ADVANCED_ASSEMBLY_LINE.asStack())
                 .EUt(122330).duration(600)
                 .stationResearch(b -> b.researchStack(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL.asStack())
