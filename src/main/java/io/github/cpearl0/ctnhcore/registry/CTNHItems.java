@@ -361,57 +361,57 @@ public class CTNHItems {
                 .lang("Temperature Keeping Device")
                 .register();
         ECHO_CIRCUIT_BOARD = REGISTRATE
-                .item("echo_circuit_board", Item::new)
+                .item("echo_circuit_board", ComponentItem::create)
                 .cnlang("回响电路板")
                 .lang("Echo Circuit Board")
                 .register();
         ECHO_PRINTED_CIRCUIT_BOARD = REGISTRATE
-                .item("echo_printed_circuit_board", Item::new)
+                .item("echo_printed_circuit_board", ComponentItem::create)
                 .cnlang("回响印制电路板")
                 .lang("Echo Printed Circuit Board")
                 .register();
         ECHO_PROCESSOR = REGISTRATE
-                .item("echo_processor", Item::new)
+                .item("echo_processor", ComponentItem::create)
                 .cnlang("回响处理器")
                 .lang("Echo Processor")
                 .register();
         ECHO_PROCESSOR_ASSEMBLY = REGISTRATE
-                .item("echo_processor_assembly", Item::new)
+                .item("echo_processor_assembly", ComponentItem::create)
                 .cnlang("回响处理器装配")
                 .lang("Echo Processor Assembly")
                 .register();
         ECHO_PROCESSOR_COMPUTER = REGISTRATE
-                .item("echo_processor_computer", Item::new)
+                .item("echo_processor_computer", ComponentItem::create)
                 .cnlang("回响处理器计算机")
                 .lang("Echo Processor Computer")
                 .register();
         ECHO_PROCESSOR_MAINFRAME = REGISTRATE
-                .item("echo_processor_mainframe", Item::new)
+                .item("echo_processor_mainframe", ComponentItem::create)
                 .cnlang("回响处理器主机")
                 .lang("Echo Processor Mainframe")
                 .register();
         BIOLOGICAL_PATCH_TRANSISTOR = REGISTRATE
-                .item("biological_patch_transistor", Item::new)
+                .item("biological_patch_transistor", ComponentItem::create)
                 .cnlang("生物贴片晶体管")
                 .lang("Biological Patch Transistor")
                 .register();
         BIOLOGICAL_PATCH_RESISTOR = REGISTRATE
-                .item("biological_patch_resistor", Item::new)
+                .item("biological_patch_resistor", ComponentItem::create)
                 .cnlang("生物贴片电阻")
                 .lang("Biological Patch Resistor")
                 .register();
         BIOLOGICAL_PATCH_CAPACITOR = REGISTRATE
-                .item("biological_patch_capacitor", Item::new)
+                .item("biological_patch_capacitor", ComponentItem::create)
                 .cnlang("生物贴片电容器")
                 .lang("Biological Patch Capacitor")
                 .register();
         BIOLOGICAL_PATCH_DIODE = REGISTRATE
-                .item("biological_patch_diode", Item::new)
+                .item("biological_patch_diode", ComponentItem::create)
                 .cnlang("生物贴片二极管")
                 .lang("Biological Patch Diode")
                 .register();
         BIOLOGICAL_PATCH_INDUCTOR = REGISTRATE
-                .item("biological_patch_inductor", Item::new)
+                .item("biological_patch_inductor", ComponentItem::create)
                 .cnlang("生物贴片电感器")
                 .lang("Biological Patch Inductor")
                 .register();
@@ -608,17 +608,17 @@ public class CTNHItems {
     public static ItemEntry<Item> THERMOMETER_CASE;
     public static ItemEntry<Item> SPACE_FABRIC;
     public static ItemEntry<Item> TEMPERATURE_KEEPING_DEVICE;
-    public static ItemEntry<Item> ECHO_CIRCUIT_BOARD;
-    public static ItemEntry<Item> ECHO_PRINTED_CIRCUIT_BOARD;
-    public static ItemEntry<Item> ECHO_PROCESSOR;
-    public static ItemEntry<Item> ECHO_PROCESSOR_ASSEMBLY;
-    public static ItemEntry<Item> ECHO_PROCESSOR_COMPUTER;
-    public static ItemEntry<Item> ECHO_PROCESSOR_MAINFRAME;
-    public static ItemEntry<Item> BIOLOGICAL_PATCH_TRANSISTOR;
-    public static ItemEntry<Item> BIOLOGICAL_PATCH_RESISTOR;
-    public static ItemEntry<Item> BIOLOGICAL_PATCH_CAPACITOR;
-    public static ItemEntry<Item> BIOLOGICAL_PATCH_DIODE;
-    public static ItemEntry<Item> BIOLOGICAL_PATCH_INDUCTOR;
+    public static ItemEntry<ComponentItem> ECHO_CIRCUIT_BOARD;
+    public static ItemEntry<ComponentItem> ECHO_PRINTED_CIRCUIT_BOARD;
+    public static ItemEntry<ComponentItem> ECHO_PROCESSOR;
+    public static ItemEntry<ComponentItem> ECHO_PROCESSOR_ASSEMBLY;
+    public static ItemEntry<ComponentItem> ECHO_PROCESSOR_COMPUTER;
+    public static ItemEntry<ComponentItem> ECHO_PROCESSOR_MAINFRAME;
+    public static ItemEntry<ComponentItem> BIOLOGICAL_PATCH_TRANSISTOR;
+    public static ItemEntry<ComponentItem> BIOLOGICAL_PATCH_RESISTOR;
+    public static ItemEntry<ComponentItem> BIOLOGICAL_PATCH_CAPACITOR;
+    public static ItemEntry<ComponentItem> BIOLOGICAL_PATCH_DIODE;
+    public static ItemEntry<ComponentItem> BIOLOGICAL_PATCH_INDUCTOR;
     public static ItemEntry<Item> SCP_500_BASE;
     public static ItemEntry<Item> SCP_500;
 
