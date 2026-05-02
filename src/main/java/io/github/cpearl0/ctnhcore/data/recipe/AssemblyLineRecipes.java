@@ -1,13 +1,18 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksC;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
+import com.gregtechceu.gtceu.common.data.GCYMBlocks;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTAEMachines;
@@ -21,6 +26,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import appeng.core.definitions.AEBlocks;
+import appeng.core.definitions.AEItems;
 import com.github.elenterius.biomancy.init.ModItems;
 import com.moguang.ctnhbio.data.materials.CommonMaterials;
 import com.moguang.ctnhbio.registry.CBBlocks;
@@ -35,13 +41,17 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
-import static com.gregtechceu.gtceu.common.data.GTMachines.DUAL_IMPORT_HATCH;
-import static com.gregtechceu.gtceu.common.data.GTMachines.HULL;
+import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLY_LINE_RECIPES;
 import static com.gregtechceu.gtceu.common.data.machines.GCYMMachines.PARALLEL_HATCH;
 import static com.moguang.ctnhbio.data.materials.OrganicMaterials.*;
 import static dev.shadowsoffire.hostilenetworks.Hostile.Items.SIM_CHAMBER;
+import static io.github.cpearl0.ctnhcore.data.materials.AviationFabricMaterials.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHItems.*;
+import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.STERILE_CLEANROOM_MAINTENANCE_HATCH;
+import static io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks.LARGE_NAQUADAH_REACTOR;
 import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines.*;
 import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines.ME_ULTIMATE_PATTERN_BUFFER_PROXY;
 import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMultiblock.JIUZHANG_QUANTUM_COMPUTER;
@@ -192,8 +202,8 @@ public class AssemblyLineRecipes {
                 .inputItems(
                         ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2omnicells:omni_cell_component_256k")),
                         2)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:cell_component_64k")), 4)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:cell_component_256k")), 2)
+                .inputItems(AEItems.CELL_COMPONENT_64K.stack(4))
+                .inputItems(AEItems.CELL_COMPONENT_256K.stack(2))
                 .inputItems(OPTICAL_PIPES[0].asStack(64))
                 .inputItems(OPTICAL_PIPES[0].asStack(64))
                 .inputItems(OPTICAL_PIPES[0].asStack(64))
@@ -277,6 +287,379 @@ public class AssemblyLineRecipes {
                 .outputItems(ME_ULTIMATE_PATTERN_BUFFER_PROXY, 1)
                 .stationResearch(b -> b.researchStack(ME_ULTIMATE_PATTERN_BUFFER.asStack()).CWUt(64).EUt(VA[UV]))
                 .EUt(VA[UV]).duration(6000)
+                .save(provider);
+
+        // ============== Assembly Line Recipes from KubeJS ==============
+
+        // 1. naq_reactor_mk3
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("naq_reactor_mk3"))
+                .inputItems(HULL[UV].asStack(64))
+                .inputItems(CTNHMachines.NAQUADAH_REACTOR[LuV].asStack(64))
+                .inputItems(CTNHMachines.NAQUADAH_REACTOR[ZPM].asStack(64))
+                .inputItems(CTNHMachines.NAQUADAH_REACTOR[UV].asStack(64))
+                .inputItems(LARGE_NAQUADAH_REACTOR.asStack(64))
+                .inputItems(NEUTRON_REFLECTOR.asStack(64))
+                .inputItems(CTNHBlocks.CASING_NAQUADAH_BLOCK.asStack(64))
+                .inputItems(CustomTags.UV_CIRCUITS, 64)
+                .inputItems(CustomTags.UHV_CIRCUITS, 64)
+                .inputItems(FIELD_GENERATOR_LuV.asStack(64))
+                .inputItems(FIELD_GENERATOR_ZPM.asStack(64))
+                .inputItems(FIELD_GENERATOR_UV.asStack(64))
+                .inputFluids(new FluidStack(Tritanium.getFluid(), 16000))
+                .inputFluids(new FluidStack(Neutronium.getFluid(), 16000))
+                .inputFluids(new FluidStack(BedrockMaterials.AETHER.getFluid(), 16000))
+                .inputFluids(new FluidStack(BedrockMaterials.ADAMANTITE.getFluid(), 16000))
+                .outputItems(MultiblocksA.NAQ_REACTOR_MK3.asStack())
+                .EUt(2044152).duration(600)
+                .stationResearch(b -> b.researchStack(CTNHMachines.NAQUADAH_REACTOR[LuV].asStack())
+                        .dataStack(TOOL_DATA_MODULE.asStack())
+                        .EUt(VA[UHV]).CWUt(256))
+                .save(provider);
+
+        // 2. annihilate_core_mki
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("annihilate_core_mki"))
+                .inputItems(frameGt, Naquadria, 4)
+                .inputItems(PlateRadiationProtection.asStack(16))
+                .inputItems(NEUTRON_REFLECTOR.asStack(16))
+                .inputItems(FIELD_GENERATOR_IV.asStack(8))
+                .inputItems(FIELD_GENERATOR_LuV.asStack(4))
+                .inputItems(FIELD_GENERATOR_ZPM.asStack(2))
+                .inputFluids(new FluidStack(Neutronium.getFluid(), 2000))
+                .outputItems(CTNHBlocks.ANNIHILATE_CORE_MKI.asStack())
+                .EUt(204415).duration(600)
+                .stationResearch(b -> b.researchStack(FUSION_COIL.asStack())
+                        .dataStack(TOOL_DATA_MODULE.asStack())
+                        .EUt(VA[ZPM]).CWUt(32))
+                .save(provider);
+
+        // 3. compressed_mk1 (LuV compressed fusion reactor)
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("compressed_mk1"))
+                .inputItems(GTMultiMachines.FUSION_REACTOR[LuV].asStack(16))
+                .inputItems(CTNHBlocks.HIGH_SPEED_PIPE_BLOCK.asStack(4))
+                .inputItems(frameGt, Europium, 8)
+                .inputItems(FUSION_COIL.asStack(4))
+                .inputItems(NEUTRON_REFLECTOR.asStack(4))
+                .inputItems(FIELD_GENERATOR_LuV.asStack(6))
+                .inputFluids(new FluidStack(EnrichedNaquadahTriniumEuropiumDuranide.getFluid(), 8000))
+                .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 8000))
+                .outputItems(MultiblocksA.COMPRESSED_FUSION_REACTOR[LuV].asStack())
+                .EUt(24987).duration(450)
+                .stationResearch(b -> b.researchStack(NEUTRON_REFLECTOR.asStack())
+                        .dataStack(TOOL_DATA_ORB.asStack())
+                        .EUt(VA[LuV]).CWUt(16))
+                .save(provider);
+
+        // 4. compressed_mk2 (ZPM compressed fusion reactor)
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("compressed_mk2"))
+                .inputItems(GTMultiMachines.FUSION_REACTOR[ZPM].asStack(16))
+                .inputItems(CTNHBlocks.HIGH_SPEED_PIPE_BLOCK.asStack(16))
+                .inputItems(frameGt, Tritanium, 8)
+                .inputItems(FUSION_COIL.asStack(16))
+                .inputItems(NEUTRON_REFLECTOR.asStack(16))
+                .inputItems(FIELD_GENERATOR_ZPM.asStack(6))
+                .inputFluids(new FluidStack(Tritanium.getFluid(), 8000))
+                .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 8000))
+                .outputItems(MultiblocksA.COMPRESSED_FUSION_REACTOR[ZPM].asStack())
+                .EUt(122800).duration(450)
+                .stationResearch(b -> b.researchStack(MultiblocksA.COMPRESSED_FUSION_REACTOR[LuV].asStack())
+                        .dataStack(TOOL_DATA_ORB.asStack())
+                        .EUt(VA[ZPM]).CWUt(32))
+                .save(provider);
+
+        // 5. compressed_mk3 (UV compressed fusion reactor)
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("compressed_mk3"))
+                .inputItems(GTMultiMachines.FUSION_REACTOR[UV].asStack(16))
+                .inputItems(CTNHBlocks.HIGH_SPEED_PIPE_BLOCK.asStack(64))
+                .inputItems(frameGt, Neutronium, 8)
+                .inputItems(FUSION_COIL.asStack(64))
+                .inputItems(NEUTRON_REFLECTOR.asStack(64))
+                .inputItems(FIELD_GENERATOR_UV.asStack(6))
+                .inputFluids(new FluidStack(RutheniumTriniumAmericiumNeutronate.getFluid(), 8000))
+                .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 8000))
+                .outputItems(MultiblocksA.COMPRESSED_FUSION_REACTOR[UV].asStack())
+                .EUt(491020).duration(450)
+                .stationResearch(b -> b.researchStack(MultiblocksA.COMPRESSED_FUSION_REACTOR[ZPM].asStack())
+                        .dataStack(TOOL_DATA_ORB.asStack())
+                        .EUt(VA[UV]).CWUt(64))
+                .save(provider);
+
+        // 6. plasma_condenser
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("plasma_condenser"))
+                .inputItems(GTMultiMachines.VACUUM_FREEZER.asStack())
+                .inputItems(PLASMA_COOLED_CORE.asStack(2))
+                .inputItems(CustomTags.ZPM_CIRCUITS, 4)
+                .inputItems(NEUTRON_REFLECTOR.asStack(4))
+                .inputItems(frameGt, Europium, 8)
+                .inputItems(FIELD_GENERATOR_LuV.asStack(8))
+                .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 4000))
+                .outputItems(MultiblocksA.PLASMA_CONDENSER.asStack())
+                .EUt(6000).duration(500)
+                .stationResearch(b -> b.researchStack(GTMultiMachines.VACUUM_FREEZER.asStack())
+                        .dataStack(TOOL_DATA_ORB.asStack())
+                        .EUt(VA[LuV]).CWUt(8))
+                .save(provider);
+
+        // 7. void_miner_create
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("void_miner_create"))
+                .inputItems(HULL[UV].asStack(16))
+                .inputItems(frameGt, BedrockMaterials.ADAMANTITE, 64)
+                .inputItems(CustomTags.UHV_CIRCUITS, 32)
+                .inputItems(CustomTags.UV_CIRCUITS, 64)
+                .inputItems(gear, BedrockMaterials.ADAMANTITE, 64)
+                .inputItems(gear, BedrockMaterials.ADAMANTITE, 64)
+                .inputItems(gear, BedrockMaterials.AETHER, 64)
+                .inputItems(gear, BedrockMaterials.AETHER, 64)
+                .inputItems(ELECTRIC_MOTOR_UV.asStack(16))
+                .inputItems(CONVEYOR_MODULE_UV.asStack(16))
+                .inputItems(ELECTRIC_PISTON_UV.asStack(16))
+                .inputItems(ROBOT_ARM_UV.asStack(16))
+                .inputItems(GTMultiMachines.LARGE_MINER[EV].asStack(64))
+                .inputItems(GTMultiMachines.LARGE_MINER[IV].asStack(48))
+                .inputItems(GTMultiMachines.LARGE_MINER[LuV].asStack(32))
+                .inputItems(MultiblocksA.ZPM_LARGE_MINER.asStack(16))
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 512000))
+                .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 512000))
+                .inputFluids(new FluidStack(BedrockMaterials.ADAMANTITE.getFluid(FluidStorageKeys.PLASMA), 512000))
+                .inputFluids(new FluidStack(BedrockMaterials.AETHER.getFluid(FluidStorageKeys.PLASMA), 512000))
+                .outputItems(MultiblocksA.VOID_MINER.asStack())
+                .EUt(491020).duration(3600)
+                .stationResearch(b -> b.researchStack(MultiblocksA.ZPM_LARGE_MINER.asStack())
+                        .dataStack(TOOL_DATA_MODULE.asStack())
+                        .EUt(VA[UV]).CWUt(256))
+                .save(provider);
+
+        // 8. silica_rock_fuel_refinery
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("silica_rock_fuel_refinery"))
+                .inputItems(frameGt, Naquadah, 64)
+                .inputItems(frameGt, NaquadahEnriched, 64)
+                .inputItems(frameGt, Naquadria, 64)
+                .inputItems(NeutronSource.asStack(64))
+                .inputItems(plateDense, Obsidian, 7)
+                .inputItems(plateDense, TungstenSteel, 7)
+                .inputItems(plateDense, RhodiumPlatedPalladium, 7)
+                .inputItems(plateDense, NaquadahAlloy, 7)
+                .inputItems(GCYMBlocks.HEAT_VENT.asStack(64))
+                .inputItems(GCYMBlocks.ELECTROLYTIC_CELL.asStack(64))
+                .inputItems(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.asStack(64))
+                .inputItems(CASING_PTFE_INERT.asStack(64))
+                .inputItems(CustomTags.UHV_CIRCUITS, 8)
+                .inputItems(CustomTags.UV_CIRCUITS, 8)
+                .inputItems(CustomTags.ZPM_CIRCUITS, 8)
+                .inputItems(CustomTags.LuV_CIRCUITS, 8)
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 16000))
+                .inputFluids(new FluidStack(Naquadria.getFluid(), 16000))
+                .inputFluids(new FluidStack(EnderIOMaterials.PulsatingAlloy.getFluid(), 16000))
+                .inputFluids(new FluidStack(TungstenCarbide.getFluid(), 16000))
+                .outputItems(MultiblocksB.SILICA_ROCK_FUEL_REFINERY.asStack())
+                .EUt(491520).duration(1000)
+                .stationResearch(b -> b.researchStack(MultiblocksA.FUEL_REFINING_FACTORY.asStack())
+                        .dataStack(TOOL_DATA_ORB.asStack())
+                        .EUt(VA[ZPM]).CWUt(64))
+                .save(provider);
+
+        // 9. atoms_split_blocks
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("atoms_split_blocks"))
+                .inputItems(FIELD_GENERATOR_UHV.asStack(4))
+                .inputItems(REACTOR_CONDENSATION_BLOCK.asStack())
+                .inputItems(CTNHBlocks.ANNIHILATE_CORE_MKI.asStack())
+                .inputFluids(new FluidStack(BedrockMaterials.BEDROCK_DUST.getFluid(), 16000))
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 16000))
+                .inputFluids(new FluidStack(NaquadahAlloy.getFluid(), 16000))
+                .inputFluids(new FluidStack(Polybenzimidazole.getFluid(), 16000))
+                .outputItems(CTNHBlocks.ATOMS_SPLIT_BLOCKS.asStack(2))
+                .EUt(491052).duration(500)
+                .stationResearch(b -> b.researchStack(REACTOR_CONDENSATION_BLOCK.asStack())
+                        .dataStack(TOOL_DATA_ORB.asStack())
+                        .EUt(VA[ZPM]).CWUt(64))
+                .save(provider);
+
+        // 10. sterile_cleanroom_maintenance_hatch
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("sterile_cleanroom_maintenance_hatch"))
+                .inputItems(FILTER_CASING_STERILE.asStack(8))
+                .inputItems(FILTER_CASING.asStack(8))
+                .inputItems(ELECTRIC_MOTOR_LuV.asStack(4))
+                .inputItems(ELECTRIC_PUMP_LuV.asStack(4))
+                .inputItems(CustomTags.ZPM_CIRCUITS, 4)
+                .inputItems(rotor, RhodiumPlatedPalladium, 4)
+                .inputItems(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("enderio:extraction_speed_upgrade_4")), 4)
+                .inputItems(ForgeRegistries.ITEMS
+                        .getValue(ResourceLocation.parse("ae2omnicells:complex_omni_cell_component_1m")), 4)
+                .inputItems(STEM_CELLS.asStack(64))
+                .inputItems(STEM_CELLS.asStack(64))
+                .inputItems(STEM_CELLS.asStack(64))
+                .inputItems(STEM_CELLS.asStack(64))
+                .inputItems(QUANTUM_EYE.asStack())
+                .inputItems(QUANTUM_STAR.asStack())
+                .inputItems(AUTO_MAINTENANCE_HATCH.asStack())
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 16000))
+                .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 16000))
+                .inputFluids(new FluidStack(Argon.getFluid(), 16000))
+                .inputFluids(new FluidStack(Fluorine.getFluid(), 16000))
+                .outputItems(STERILE_CLEANROOM_MAINTENANCE_HATCH.asStack())
+                .EUt(122330).duration(1200)
+                .stationResearch(b -> b.researchStack(FILTER_CASING_STERILE.asStack())
+                        .dataStack(TOOL_DATA_ORB.asStack())
+                        .EUt(VA[LuV]).CWUt(16))
+                .save(provider);
+
+        // 11. echo_processor_2
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("echo_processor_2"))
+                .inputItems(frameGt, Osmiridium)
+                .inputItems(CTNHItems.ECHO_PRINTED_CIRCUIT_BOARD.asStack())
+                .inputItems(ECHO_PROCESSOR.asStack())
+                .inputItems(gemExquisite, EchoShard)
+                .inputItems(BIOLOGICAL_PATCH_INDUCTOR.asStack(12))
+                .inputItems(BIOLOGICAL_PATCH_CAPACITOR.asStack(24))
+                .inputItems(ENGRAVED_CRYSTAL_CHIP.asStack(16))
+                .inputItems(SCULK_CELL.asStack())
+                .inputItems(ENERGY_LAPOTRONIC_ORB.asStack())
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 1440))
+                .inputFluids(new FluidStack(SterileGrowthMedium.getFluid(), 1440))
+                .outputItems(ECHO_PROCESSOR_ASSEMBLY)
+                .EUt(491520).duration(800)
+                .stationResearch(b -> b.researchStack(ECHO_PROCESSOR.asStack())
+                        .dataStack(TOOL_DATA_MODULE.asStack())
+                        .EUt(VA[ZPM]).CWUt(32))
+                .save(provider);
+
+        // 12. echo_processor_3
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("echo_processor_3"))
+                .inputItems(CTNHItems.ECHO_PRINTED_CIRCUIT_BOARD.asStack())
+                .inputItems(ECHO_PROCESSOR_ASSEMBLY.asStack())
+                .inputItems(BIOLOGICAL_PATCH_DIODE.asStack(32))
+                .inputItems(HIGHLY_ADVANCED_SOC.asStack(8))
+                .inputItems(NOR_MEMORY_CHIP.asStack(32))
+                .inputItems(RANDOM_ACCESS_MEMORY.asStack(64))
+                .inputItems(wireFine, Tritanium, 64)
+                .inputItems(wireFine, IndiumTinBariumTitaniumCuprate, 64)
+                .inputItems(foil, Polybenzimidazole, 64)
+                .inputItems(foil, KAPTON_K, 64)
+                .inputItems(plate, Duranium, 8)
+                .inputItems(plate, Tritanium, 8)
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 2880))
+                .inputFluids(new FluidStack(SterileGrowthMedium.getFluid(), 2880))
+                .outputItems(ECHO_PROCESSOR_COMPUTER.asStack())
+                .EUt(491520).duration(800)
+                .stationResearch(b -> b.researchStack(ECHO_PROCESSOR_ASSEMBLY.asStack())
+                        .dataStack(TOOL_DATA_MODULE.asStack())
+                        .EUt(VA[UV]).CWUt(96))
+                .save(provider);
+
+        // 13. echo_processor_4
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("echo_processor_4"))
+                .inputItems(frameGt, Europium, 4)
+                .inputItems(frameGt, Duranium, 4)
+                .inputItems(frameGt, Tritanium, 4)
+                .inputItems(frameGt, Neutronium, 4)
+                .inputItems(ECHO_PROCESSOR_COMPUTER.asStack())
+                .inputItems(BIOLOGICAL_PATCH_TRANSISTOR.asStack(64))
+                .inputItems(BIOLOGICAL_PATCH_RESISTOR.asStack(64))
+                .inputItems(BIOLOGICAL_PATCH_CAPACITOR.asStack(64))
+                .inputItems(BIOLOGICAL_PATCH_DIODE.asStack(64))
+                .inputItems(BIOLOGICAL_PATCH_INDUCTOR.asStack(64))
+                .inputItems(foil, KAPTON_K, 64)
+                .inputItems(ENERGY_LAPOTRONIC_ORB_CLUSTER.asStack(4))
+                .inputItems(wireGtQuadruple, CTNHMaterials.SpecialCompositeSteelM77, 8)
+                .inputItems(pipeTinyFluid, CTNHMaterials.HiddenAlloy, 16)
+                .inputItems(SCULK_CELL.asStack(4))
+                .inputItems(plateDense, CTNHMaterials.HiddenAlloy, 4)
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 2880))
+                .inputFluids(new FluidStack(SterileGrowthMedium.getFluid(), 2880))
+                .inputFluids(new FluidStack(CTNHMaterials.SterileBiologicalCultureMediumStockSolution.getFluid(), 2880))
+                .outputItems(ECHO_PROCESSOR_MAINFRAME.asStack())
+                .EUt(1966800).duration(1600)
+                .stationResearch(b -> b.researchStack(ECHO_PROCESSOR_COMPUTER.asStack())
+                        .dataStack(TOOL_DATA_MODULE.asStack())
+                        .EUt(VA[UV]).CWUt(288))
+                .save(provider);
+
+        // 14. cultivationroom
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("cultivationroom"))
+                .inputItems(frameGt, Tritanium, 4)
+                .inputItems(CASING_STAINLESS_CLEAN.asStack(32))
+                .inputItems(STERILE_CLEANROOM_MAINTENANCE_HATCH.asStack(4))
+                .inputItems(FUSION_GLASS.asStack(27))
+                .inputItems(STEM_CELLS.asStack(64))
+                .inputItems(STEM_CELLS.asStack(64))
+                .inputItems(STEM_CELLS.asStack(64))
+                .inputItems(STEM_CELLS.asStack(64))
+                .inputFluids(new FluidStack(SterileGrowthMedium.getFluid(), 16000))
+                .inputFluids(new FluidStack(YeastRelatedMaterials.NORMAL_YEAST_EXTRACT_LIQUID.getFluid(), 16000))
+                .inputFluids(new FluidStack(YeastRelatedMaterials.END_YEAST_EXTRACT_LIQUID.getFluid(), 16000))
+                .outputItems(MultiblocksB.CultivationRoom.asStack())
+                .EUt(24768).duration(1200)
+                .stationResearch(b -> b.researchStack(MultiblocksA.LARGE_BOTTLE.asStack())
+                        .dataStack(TOOL_DATA_STICK.asStack())
+                        .EUt(VA[LuV]).CWUt(16))
+                .save(provider);
+
+        // 15. advance_machine_casing_assembly_control
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("advance_machine_casing_assembly_control"))
+                .inputItems(frameGt, CTNHMaterials.SpecialCompositeSteelM77, 4)
+                .inputItems(HIGHLY_ADVANCED_SOC.asStack(16))
+                .inputItems(CustomTags.UV_CIRCUITS, 4)
+                .inputItems(CustomTags.UHV_CIRCUITS, 8)
+                .inputItems(ELECTRIC_MOTOR_ZPM.asStack(4))
+                .inputItems(EMITTER_ZPM.asStack(4))
+                .inputItems(SENSOR_ZPM.asStack(4))
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 16000))
+                .outputItems(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL.asStack(4))
+                .EUt(122330).duration(600)
+                .stationResearch(b -> b.researchStack(CASING_ASSEMBLY_CONTROL.asStack())
+                        .dataStack(TOOL_DATA_STICK.asStack())
+                        .EUt(VA[LuV]).CWUt(48))
+                .save(provider);
+
+        // 16. advance_machine_casing_grate
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("advance_machine_casing_grate"))
+                .inputItems(frameGt, CTNHMaterials.SpecialCompositeSteelM77)
+                .inputItems(rotor, Osmiridium, 4)
+                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("enderio:end_steel_bars")), 4)
+                .inputItems(ELECTRIC_MOTOR_LuV.asStack(4))
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 16000))
+                .outputItems(CTNHBlocks.ADVANCE_MACHINE_CASING_GRATE.asStack(4))
+                .EUt(122330).duration(600)
+                .stationResearch(b -> b.researchStack(CASING_GRATE.asStack())
+                        .dataStack(TOOL_DATA_STICK.asStack())
+                        .EUt(VA[LuV]).CWUt(16))
+                .save(provider);
+
+        // 17. advance_machine_casing_assembly_line
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("advance_machine_casing_assembly_line"))
+                .inputItems(frameGt, CTNHMaterials.SpecialCompositeSteelM77)
+                .inputItems(plate, CTNHMaterials.SpecialCompositeSteelM77, 8)
+                .inputItems(CustomTags.UHV_CIRCUITS)
+                .inputItems(gearSmall, CTNHMaterials.Inconel625, 16)
+                .inputItems(gearSmall, HSSS, 16)
+                .inputItems(gearSmall, HSSG, 16)
+                .inputItems(gearSmall, CTNHMaterials.Eglinalloy, 16)
+                .inputItems(ROBOT_ARM_ZPM.asStack(4))
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 16000))
+                .inputFluids(new FluidStack(NaquadahAlloy.getFluid(), 32000))
+                .outputItems(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_LINE.asStack())
+                .EUt(122330).duration(600)
+                .stationResearch(b -> b.researchStack(CASING_ASSEMBLY_LINE.asStack())
+                        .dataStack(TOOL_DATA_STICK.asStack())
+                        .EUt(VA[LuV]).CWUt(48))
+                .save(provider);
+
+        // 18. advance_assembly_line
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("advance_assembly_line"))
+                .inputItems(HULL[ZPM].asStack())
+                .inputItems(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL.asStack(4))
+                .inputItems(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_LINE.asStack(12))
+                .inputItems(CustomTags.ZPM_CIRCUITS, 32)
+                .inputItems(ROBOT_ARM_ZPM.asStack(16))
+                .inputItems(ROBOT_ARM_ZPM.asStack(16))
+                .inputItems(ROBOT_ARM_ZPM.asStack(16))
+                .inputItems(ROBOT_ARM_ZPM.asStack(16))
+                .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 16000))
+                .outputItems(MultiblocksB.ADVANCED_ASSEMBLY_LINE.asStack())
+                .EUt(122330).duration(600)
+                .stationResearch(b -> b.researchStack(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL.asStack())
+                        .dataStack(TOOL_DATA_STICK.asStack())
+                        .EUt(VA[LuV]).CWUt(48))
                 .save(provider);
     }
 }

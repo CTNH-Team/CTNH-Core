@@ -137,6 +137,8 @@ public class CTNHCoreGTAddon implements IGTAddon {
         BioChemistryRecipes.init(provider);
 
         DigesterRecipes.init(provider);
+
+        GtceuScriptRecipes.init(provider);
     }
 
     @Override

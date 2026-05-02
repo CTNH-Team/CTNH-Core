@@ -119,7 +119,11 @@ public class RecipeRemoval {
                 "gtceu:assembly_line/energy_hatch_uhv",
                 // 原版四氯化钛
                 "gtceu:chemical_reactor/titanium_tetrachloride",
-                "gtceu:large_chemical_reactor/titanium_tetrachloride"));
+                "gtceu:large_chemical_reactor/titanium_tetrachloride",
+                // Replace operations from JS migration
+                "gtceu:centrifuge/endstone_separation",
+                "gtceu:shaped/small_wooden_pipe",
+                "gtceu:shaped/hv_diode"));
 
         for (String path : removePaths) {
             registry.accept(ResourceLocation.parse(path));
