@@ -455,9 +455,7 @@ public class CTNHItems {
                     @Override
                     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
                         if (!level.isClientSide() && livingEntity instanceof ServerPlayer player) {
-                            player.getServer().getCommands().performPrefixedCommand(
-                                    player.getServer().createCommandSourceStack(),
-                                    "title @s title {\"text\":\"你在短时间内你将获得强大的恢复能力\",\"color\":\"red\"}");
+                            runCommand(player, "title @s title {\"text\":\"你在短时间内你将获得强大的恢复能力\",\"color\":\"red\"}");
                         }
                         return super.finishUsingItem(stack, level, livingEntity);
                     }
@@ -476,15 +474,9 @@ public class CTNHItems {
                     @Override
                     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
                         if (!level.isClientSide() && livingEntity instanceof ServerPlayer player) {
-                            player.getServer().getCommands().performPrefixedCommand(
-                                    player.getServer().createCommandSourceStack(),
-                                    "medical_condition clear @p");
-                            player.getServer().getCommands().performPrefixedCommand(
-                                    player.getServer().createCommandSourceStack(),
-                                    "title @s title {\"text\":\"你的所有疾病已被治愈\",\"color\":\"green\"}");
-                            player.getServer().getCommands().performPrefixedCommand(
-                                    player.getServer().createCommandSourceStack(),
-                                    "title @s subtitle {\"text\":\"在短时间内你将获得强大的恢复能力\",\"color\":\"red\"}");
+                            runCommand(player, "medical_condition clear @p");
+                            runCommand(player, "title @s title {\"text\":\"你的所有疾病已被治愈\",\"color\":\"green\"}");
+                            runCommand(player, "title @s subtitle {\"text\":\"在短时间内你将获得强大的恢复能力\",\"color\":\"red\"}");
                         }
                         return super.finishUsingItem(stack, level, livingEntity);
                     }
@@ -843,9 +835,11 @@ public class CTNHItems {
             })
             .properties(p -> p.food(new FoodProperties.Builder()
                     .alwaysEat()
-                    .effect(() -> new MobEffectInstance(
-                            ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("legendarysurvivaloverhaul:cold_immunity")),
-                            36000, 10), 1.0f)
+                    .effect(() -> {
+                        var effect = ForgeRegistries.MOB_EFFECTS.getValue(
+                                new ResourceLocation("legendarysurvivaloverhaul:cold_immunity"));
+                        return effect != null ? new MobEffectInstance(effect, 36000, 10) : null;
+                    }, 1.0f)
                     .build()))
             .cnlang("???烈焰蛋糕???")
             .lang("Double Blaze Cake")
@@ -891,6 +885,11 @@ public class CTNHItems {
             .properties(p -> p.rarity(Rarity.RARE))
             .register();
     // ============ KubeJS 迁移物品结束 ============
+
+    private static void runCommand(ServerPlayer player, String command) {
+        player.getServer().getCommands().performPrefixedCommand(
+                player.createCommandSourceStack(), command);
+    }
 
     public static void init() {
         registerItem();
