@@ -1074,7 +1074,7 @@ public class GtceuScriptRecipes {
 
         // ============== Chemical Reactor Recipes ==============
 
-        // 28. ancient_debris_leach: 3x ancient_debris_dust + aqua_regia 3000 -> ancient_debris_leach 2000 + nitrogen_dioxide 1000. EUt 120, dur 100
+        // 31. ancient_debris_leach: 3x ancient_debris_dust + aqua_regia 3000 -> ancient_debris_leach 2000 + nitrogen_dioxide 1000. EUt 120, dur 100
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("ancient_debris_leach"))
                 .EUt(120).duration(100)
                 .inputItems(dust, NewExplosivesProductionMaterials.ANCIENT_DEBRIS, 3)
@@ -1083,7 +1083,7 @@ public class GtceuScriptRecipes {
                 .outputFluids(NitrogenDioxide.getFluid(1000))
                 .save(provider);
 
-        // 29. soda_ash_dust: 6x sodium_hydroxide_dust + carbon_dioxide 1000 -> 6x soda_ash_dust. EUt 20, dur 50
+        // 32. soda_ash_dust: 6x sodium_hydroxide_dust + carbon_dioxide 1000 -> 6x soda_ash_dust. EUt 20, dur 50
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("soda_ash_dust"))
                 .EUt(20).duration(50)
                 .inputItems(dust, SodiumHydroxide, 6)
@@ -1091,7 +1091,7 @@ public class GtceuScriptRecipes {
                 .outputItems(dust, SodaAsh, 6)
                 .save(provider);
 
-        // 30. ir_fix: 2x iridium_chloride_dust + 3x calcium_dust -> 9x calcium_chloride_dust + 2x iridium_dust. EUt 1920, dur 300
+        // 33. ir_fix: 2x iridium_chloride_dust + 3x calcium_dust -> 9x calcium_chloride_dust + 2x iridium_dust. EUt 1920, dur 300
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("ir_fix"))
                 .EUt(1920).duration(300)
                 .inputItems(dust, IridiumChloride, 2)
@@ -1100,7 +1100,7 @@ public class GtceuScriptRecipes {
                 .outputItems(dust, Iridium, 2)
                 .save(provider);
 
-        // 31. pt_fix: 3x platinum_raw_dust + 2x calcium_dust -> 6x calcium_chloride_dust + 3x platinum_dust. EUt 24, dur 30
+        // 34. pt_fix: 3x platinum_raw_dust + 2x calcium_dust -> 6x calcium_chloride_dust + 3x platinum_dust. EUt 24, dur 30
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("pt_fix"))
                 .EUt(24).duration(30)
                 .inputItems(dust, PlatinumRaw, 3)
@@ -1109,7 +1109,7 @@ public class GtceuScriptRecipes {
                 .outputItems(dust, Platinum, 3)
                 .save(provider);
 
-        // 32. tnt: 4x powdery_block + sulfuric_acid 250 -> tnt. EUt 24, dur 100
+        // 35. tnt: 4x powdery_block + sulfuric_acid 250 -> tnt. EUt 24, dur 100
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("tnt"))
                 .EUt(24).duration(100)
                 .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("mynethersdelight:powdery_block")), 4)
@@ -1117,7 +1117,7 @@ public class GtceuScriptRecipes {
                 .outputItems(new ItemStack(Items.TNT))
                 .save(provider);
 
-        // 33. sodium_carbonate_solution1: sodium_carbonate_solution 1000 + carbon_dioxide 1000 -> 12x sodium_bicarbonate_dust. EUt 16, dur 50
+        // 36. sodium_carbonate_solution1: sodium_carbonate_solution 1000 + carbon_dioxide 1000 -> 12x sodium_bicarbonate_dust. EUt 16, dur 50
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("sodium_carbonate_solution1"))
                 .EUt(16).duration(50)
                 .inputFluids(BiodieselFertileSoilMaterials.SODIUM_CARBONATE_SOLUTION.getFluid(1000))
@@ -1125,7 +1125,7 @@ public class GtceuScriptRecipes {
                 .outputItems(dust, SodiumBicarbonate, 12)
                 .save(provider);
 
-        // 34. cao: circuit 2, 2x quicklime_dust + carbon_dioxide 1000 -> 5x calcite_dust. EUt 30, dur 80
+        // 37. cao: circuit 2, 2x quicklime_dust + carbon_dioxide 1000 -> 5x calcite_dust. EUt 30, dur 80
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("cao"))
                 .EUt(30).duration(80)
                 .circuitMeta(2)
@@ -1134,7 +1134,7 @@ public class GtceuScriptRecipes {
                 .outputItems(dust, Calcite, 5)
                 .save(provider);
 
-        // 35. wolframite: 7x wolframite_dust + calcium_dust -> 6x scheelite_dust + iron_dust + manganese_dust. EUt 24, dur 30
+        // 38. wolframite: 7x wolframite_dust + calcium_dust -> 6x scheelite_dust + iron_dust + manganese_dust. EUt 24, dur 30
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("wolframite"))
                 .EUt(24).duration(30)
                 .inputItems(dust, Wolframite, 7)
@@ -1144,7 +1144,7 @@ public class GtceuScriptRecipes {
                 .outputItems(dust, Manganese)
                 .save(provider);
 
-        // 36. direct_hydrogen_reduction: perrhenic_acid 1000 + hydrogen 3500 + notConsumable platinum_dust -> rhenium_dust + water 4000. EUt 480, dur 400
+        // 39. direct_hydrogen_reduction: perrhenic_acid 1000 + hydrogen 3500 + notConsumable platinum_dust -> rhenium_dust + water 4000. EUt 480, dur 400
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("direct_hydrogen_reduction"))
                 .EUt(480).duration(400)
                 .inputFluids(UncategorizedMaterials.PERRHENIC_ACID.getFluid(1000))
@@ -1156,7 +1156,7 @@ public class GtceuScriptRecipes {
 
         // ============== Large Chemical Reactor Recipes ==============
 
-        // 37. tarkianite_acid_leaching: 3x rheniite_dust + nitric_acid 7000 -> perrhenic_acid 1000 + sulfuric_acid 2000 + nitrogen_dioxide 7000. EUt 240, dur 450
+        // 40. tarkianite_acid_leaching: 3x rheniite_dust + nitric_acid 7000 -> perrhenic_acid 1000 + sulfuric_acid 2000 + nitrogen_dioxide 7000. EUt 240, dur 450
         LARGE_CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("tarkianite_acid_leaching"))
                 .EUt(240).duration(450)
                 .inputItems(dust, Rheniite, 3)
@@ -1168,7 +1168,7 @@ public class GtceuScriptRecipes {
 
         // ============== Electric Blast Furnace Recipes ==============
 
-        // 38. titanium: 10x ilmenite_dust + 2x carbon_dust -> 2x wrought_iron_ingot + 2x rutile_dust + carbon_monoxide 2000. EUt 480, dur 800, temp 1700
+        // 41. titanium: 10x ilmenite_dust + 2x carbon_dust -> 2x wrought_iron_ingot + 2x rutile_dust + carbon_monoxide 2000. EUt 480, dur 800, temp 1700
         BLAST_RECIPES.recipeBuilder(CTNHCore.id("titanium"))
                 .EUt(480).duration(800)
                 .blastFurnaceTemp(1700)
@@ -1179,7 +1179,7 @@ public class GtceuScriptRecipes {
                 .outputFluids(CarbonMonoxide.getFluid(2000))
                 .save(provider);
 
-        // 39. nether_star: nether_star_dust -> 2x nether_star + nether_essence_crystal_fluid 576. EUt 1920, dur 400, temp 4500
+        // 42. nether_star: nether_star_dust -> 2x nether_star + nether_essence_crystal_fluid 576. EUt 1920, dur 400, temp 4500
         BLAST_RECIPES.recipeBuilder(CTNHCore.id("nether_star"))
                 .EUt(1920).duration(400)
                 .blastFurnaceTemp(4500)
@@ -1188,7 +1188,7 @@ public class GtceuScriptRecipes {
                 .outputFluids(UncategorizedMaterials.NETHER_ESSENCE_CRYSTAL_FLUID.getFluid(576))
                 .save(provider);
 
-        // 40. germanium1: circuit 11, 16x purified_sphalerite_ore + argon 1000 -> 2x tiny_germanium_dust. EUt 6144, dur 200, temp 5200
+        // 43. germanium1: circuit 11, 16x purified_sphalerite_ore + argon 1000 -> 2x tiny_germanium_dust. EUt 6144, dur 200, temp 5200
         BLAST_RECIPES.recipeBuilder(CTNHCore.id("germanium1"))
                 .EUt(6144).duration(200)
                 .blastFurnaceTemp(5200)
@@ -1198,7 +1198,7 @@ public class GtceuScriptRecipes {
                 .outputItems(dustTiny, Germanium, 2)
                 .save(provider);
 
-        // 41. germanium2: circuit 1, 16x purified_sphalerite_ore -> 2x tiny_germanium_dust. EUt 6144, dur 400, temp 5200
+        // 44. germanium2: circuit 1, 16x purified_sphalerite_ore -> 2x tiny_germanium_dust. EUt 6144, dur 400, temp 5200
         BLAST_RECIPES.recipeBuilder(CTNHCore.id("germanium2"))
                 .EUt(6144).duration(400)
                 .blastFurnaceTemp(5200)
@@ -1207,7 +1207,7 @@ public class GtceuScriptRecipes {
                 .outputItems(dustTiny, Germanium, 2)
                 .save(provider);
 
-        // 42. ruthenium_amalgam: 3x ruthenium_amalgam_dust -> ruthenium_dust + mercury 2000. EUt 240, dur 50, temp 1700
+        // 45. ruthenium_amalgam: 3x ruthenium_amalgam_dust -> ruthenium_dust + mercury 2000. EUt 240, dur 50, temp 1700
         BLAST_RECIPES.recipeBuilder(CTNHCore.id("ruthenium_amalgam"))
                 .EUt(240).duration(50)
                 .blastFurnaceTemp(1700)
@@ -1218,7 +1218,7 @@ public class GtceuScriptRecipes {
 
         // ============== Chemical Bath Recipes ==============
 
-        // 43. netherite_magnet: fluxuated_magnetite + ancient_debris_leach 8000 -> create_new_age:netherite_magnet. EUt 120, dur 60
+        // 46. netherite_magnet: fluxuated_magnetite + ancient_debris_leach 8000 -> create_new_age:netherite_magnet. EUt 120, dur 60
         CHEMICAL_BATH_RECIPES.recipeBuilder(CTNHCore.id("netherite_magnet"))
                 .EUt(120).duration(60)
                 .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("create_new_age:fluxuated_magnetite")))
@@ -1226,7 +1226,7 @@ public class GtceuScriptRecipes {
                 .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("create_new_age:netherite_magnet")))
                 .save(provider);
 
-        // 44. fiber_glass: cellulose_dust + glass 288 -> fiber_glass 288. EUt 30, dur 120
+        // 47. fiber_glass: cellulose_dust + glass 288 -> fiber_glass 288. EUt 30, dur 120
         CHEMICAL_BATH_RECIPES.recipeBuilder(CTNHCore.id("fiber_glass"))
                 .EUt(30).duration(120)
                 .inputItems(dust, YeastRelatedMaterials.CELLULOSE)
@@ -1234,7 +1234,7 @@ public class GtceuScriptRecipes {
                 .outputFluids(FIBER_GLASS.getFluid(288))
                 .save(provider);
 
-        // 45. naoh: sodium_dust + water 1000 -> hydrogen 1000 + 3x sodium_hydroxide_dust. EUt 24, dur 40
+        // 48. naoh: sodium_dust + water 1000 -> hydrogen 1000 + 3x sodium_hydroxide_dust. EUt 24, dur 40
         CHEMICAL_BATH_RECIPES.recipeBuilder(CTNHCore.id("naoh"))
                 .EUt(24).duration(40)
                 .inputItems(dust, Sodium)
@@ -1243,7 +1243,7 @@ public class GtceuScriptRecipes {
                 .outputItems(dust, SodiumHydroxide, 3)
                 .save(provider);
 
-        // 46. advance_machine_casing_solid_steel: 8x solid_machine_casing + special_composite_steel_m77 288 -> 8x advance_machine_casing_solid_steel. EUt 24678, dur 600
+        // 49. advance_machine_casing_solid_steel: 8x solid_machine_casing + special_composite_steel_m77 288 -> 8x advance_machine_casing_solid_steel. EUt 24678, dur 600
         CHEMICAL_BATH_RECIPES.recipeBuilder(CTNHCore.id("advance_machine_casing_solid_steel"))
                 .EUt(24678).duration(600)
                 .inputItems(GTBlocks.CASING_STEEL_SOLID.asStack(8))
@@ -1251,7 +1251,7 @@ public class GtceuScriptRecipes {
                 .outputItems(ADVANCE_MACHINE_CASING_SOLID_STEEL.asStack(8))
                 .save(provider);
 
-        // 47. chocolate: create:bar_of_chocolate + milk 250 -> gtmfo:milk_chocolate. EUt 32, dur 20
+        // 50. chocolate: create:bar_of_chocolate + milk 250 -> gtmfo:milk_chocolate. EUt 32, dur 20
         CHEMICAL_BATH_RECIPES.recipeBuilder(CTNHCore.id("chocolate"))
                 .EUt(32).duration(20)
                 .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("create:bar_of_chocolate")))
@@ -1261,7 +1261,7 @@ public class GtceuScriptRecipes {
 
         // ============== Electrolyzer Recipes ==============
 
-        // 48. aluminium_dust_fix: 14x aluminium_sulfite_dust -> 2x aluminium_dust + 3x sulfur_dust + oxygen 9000. EUt 60, dur 280
+        // 51. aluminium_dust_fix: 14x aluminium_sulfite_dust -> 2x aluminium_dust + 3x sulfur_dust + oxygen 9000. EUt 60, dur 280
         ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("aluminium_dust_fix"))
                 .EUt(60).duration(280)
                 .inputItems(dust, AluminiumSulfite, 14)
@@ -1270,7 +1270,7 @@ public class GtceuScriptRecipes {
                 .outputFluids(Oxygen.getFluid(9000))
                 .save(provider);
 
-        // 49. strontium_chloride_dust: 3x strontium_chloride_dust -> strontium_dust + chlorine 2000. EUt 6144, dur 200
+        // 52. strontium_chloride_dust: 3x strontium_chloride_dust -> strontium_dust + chlorine 2000. EUt 6144, dur 200
         ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("strontium_chloride_dust"))
                 .EUt(6144).duration(200)
                 .inputItems(dust, UncategorizedMaterials.STRONTIUM_CHLORIDE, 3)
@@ -1278,7 +1278,7 @@ public class GtceuScriptRecipes {
                 .outputFluids(Chlorine.getFluid(2000))
                 .save(provider);
 
-        // 50. osmium_iron_spinel_dust: 7x osmium_iron_spinel_dust -> 10x rarest_metal_mixture_dust + 2x iron_dust + oxygen 4000. EUt 1920, dur 200
+        // 53. osmium_iron_spinel_dust: 7x osmium_iron_spinel_dust -> 10x rarest_metal_mixture_dust + 2x iron_dust + oxygen 4000. EUt 1920, dur 200
         ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("osmium_iron_spinel_dust"))
                 .EUt(1920).duration(200)
                 .inputItems(dust, OsmiumIronSpinel, 7)
@@ -1289,14 +1289,14 @@ public class GtceuScriptRecipes {
 
         // ============== Fluid Solidifier Recipes ==============
 
-        // 51. potassium_dust: potassium 144 -> potassium_dust. EUt 24, dur 20
+        // 54. potassium_dust: potassium 144 -> potassium_dust. EUt 24, dur 20
         FLUID_SOLIDFICATION_RECIPES.recipeBuilder(CTNHCore.id("potassium_dust"))
                 .EUt(24).duration(20)
                 .inputFluids(Potassium.getFluid(144))
                 .outputItems(dust, Potassium)
                 .save(provider);
 
-        // 52. p_dust: phosphorus 144 -> phosphorus_dust. EUt 8, dur 20
+        // 55. p_dust: phosphorus 144 -> phosphorus_dust. EUt 8, dur 20
         FLUID_SOLIDFICATION_RECIPES.recipeBuilder(CTNHCore.id("p_dust"))
                 .EUt(8).duration(20)
                 .inputFluids(Phosphorus.getFluid(144))
@@ -1305,7 +1305,7 @@ public class GtceuScriptRecipes {
 
         // ============== Forge Hammer Recipes ==============
 
-        // 53. hot_high_temp_wrought_precursor_ingot_fixed: hot_high_temp_wrought_precursor_ingot -> wrought_iron_ingot. EUt 8, dur 100
+        // 56. hot_high_temp_wrought_precursor_ingot_fixed: hot_high_temp_wrought_precursor_ingot -> wrought_iron_ingot. EUt 8, dur 100
         FORGE_HAMMER_RECIPES.recipeBuilder(CTNHCore.id("hot_high_temp_wrought_precursor_ingot_fixed"))
                 .EUt(8).duration(100)
                 .inputItems(ingot, UncategorizedMaterials.HIGH_TEMP_WROUGHT_PRECURSOR)
@@ -1314,21 +1314,21 @@ public class GtceuScriptRecipes {
 
         // ============== Polarizer Recipes ==============
 
-        // 54. samarium_dysprosium_terbium_permanent_magnet_alloy_ingot: ingot -> magnetic ingot. EUt 490120, dur 100
+        // 57. samarium_dysprosium_terbium_permanent_magnet_alloy_ingot: ingot -> magnetic ingot. EUt 490120, dur 100
         POLARIZER_RECIPES.recipeBuilder(CTNHCore.id("samarium_dysprosium_terbium_permanent_magnet_alloy_ingot"))
                 .EUt(490120).duration(100)
                 .inputItems(ingot, BedrockMaterials.SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY)
                 .outputItems(ingot, BedrockMaterials.SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC)
                 .save(provider);
 
-        // 55. samarium_dysprosium_terbium_permanent_magnet_alloy_magnetic_rod: rod -> magnetic rod. EUt 490120, dur 100
+        // 58. samarium_dysprosium_terbium_permanent_magnet_alloy_magnetic_rod: rod -> magnetic rod. EUt 490120, dur 100
         POLARIZER_RECIPES.recipeBuilder(CTNHCore.id("samarium_dysprosium_terbium_permanent_magnet_alloy_magnetic_rod"))
                 .EUt(490120).duration(100)
                 .inputItems(rod, BedrockMaterials.SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY)
                 .outputItems(rod, BedrockMaterials.SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC)
                 .save(provider);
 
-        // 56. long_samarium_dysprosium_terbium_permanent_magnet_alloy_magnetic_rod: long_rod -> magnetic long_rod. EUt 490120, dur 200
+        // 59. long_samarium_dysprosium_terbium_permanent_magnet_alloy_magnetic_rod: long_rod -> magnetic long_rod. EUt 490120, dur 200
         POLARIZER_RECIPES.recipeBuilder(CTNHCore.id("long_samarium_dysprosium_terbium_permanent_magnet_alloy_magnetic_rod"))
                 .EUt(490120).duration(200)
                 .inputItems(rodLong, BedrockMaterials.SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY)
@@ -1337,7 +1337,7 @@ public class GtceuScriptRecipes {
 
         // ============== Fluid Heater Recipes ==============
 
-        // 57. sterilebiologicalculturemediumstocksolution: circuit 1, biologicalculturemediumstocksolution 100 -> sterilebiologicalculturemediumstocksolution 100. EUt 122330, dur 40
+        // 60. sterilebiologicalculturemediumstocksolution: circuit 1, biologicalculturemediumstocksolution 100 -> sterilebiologicalculturemediumstocksolution 100. EUt 122330, dur 40
         FLUID_HEATER_RECIPES.recipeBuilder(CTNHCore.id("sterilebiologicalculturemediumstocksolution"))
                 .EUt(122330).duration(40)
                 .circuitMeta(1)
@@ -1347,7 +1347,7 @@ public class GtceuScriptRecipes {
 
         // ============== Canner Recipes ==============
 
-        // 58. radon: radon_bottle -> glass_bottle + radon 250. EUt VA[HV], dur 40
+        // 61. radon: radon_bottle -> glass_bottle + radon 250. EUt VA[HV], dur 40
         CANNER_RECIPES.recipeBuilder(CTNHCore.id("radon"))
                 .EUt(GTValues.VA[GTValues.HV]).duration(40)
                 .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("alexscaves:radon_bottle")))
@@ -1355,7 +1355,7 @@ public class GtceuScriptRecipes {
                 .outputFluids(Radon.getFluid(250))
                 .save(provider);
 
-        // 59. scp500_base: notConsumable pill_casting_mold + life_essence_fluid 8000 -> scp_500_base. EUt 8192, dur 100
+        // 62. scp500_base: notConsumable pill_casting_mold + life_essence_fluid 8000 -> scp_500_base. EUt 8192, dur 100
         CANNER_RECIPES.recipeBuilder(CTNHCore.id("scp500_base"))
                 .EUt(8192).duration(100)
                 .notConsumable(GTItems.SHAPE_MOLD_PILL.asStack())
@@ -1363,7 +1363,7 @@ public class GtceuScriptRecipes {
                 .outputItems(SCP_500_BASE.asStack())
                 .save(provider);
 
-        // 60. scp500: scp_500_base + milk 8000 -> scp_500. EUt 8192, dur 100
+        // 63. scp500: scp_500_base + milk 8000 -> scp_500. EUt 8192, dur 100
         CANNER_RECIPES.recipeBuilder(CTNHCore.id("scp500"))
                 .EUt(8192).duration(100)
                 .inputItems(SCP_500_BASE.asStack())
@@ -1373,7 +1373,7 @@ public class GtceuScriptRecipes {
 
         // ============== Implosion Compressor Recipes ==============
 
-        // 61. bedrock: 64x bedrock_dust_block + 64x alexscaves:nuclear_bomb -> bedrock. EUt 491200, dur 20. cleanroom STERILE_CLEANROOM
+        // 64. bedrock: 64x bedrock_dust_block + 64x alexscaves:nuclear_bomb -> bedrock. EUt 491200, dur 20. cleanroom STERILE_CLEANROOM
         IMPLOSION_RECIPES.recipeBuilder(CTNHCore.id("bedrock"))
                 .EUt(491200).duration(20)
                 .inputItems(block, BedrockMaterials.BEDROCK_DUST, 64)
@@ -1384,7 +1384,7 @@ public class GtceuScriptRecipes {
 
         // ============== Desalting Recipes ==============
 
-        // 62. salt1: circuit 0, seawater 1000 -> 2x salt_dust + chanced small_rock_salt 4000/500. EUt 120, dur 400. blastFurnaceTemp(1600)
+        // 65. salt1: circuit 0, seawater 1000 -> 2x salt_dust + chanced small_rock_salt 4000/500. EUt 120, dur 400. blastFurnaceTemp(1600)
         CTNHRecipeTypes.DESALTING.recipeBuilder(CTNHCore.id("salt1"))
                 .EUt(120).duration(400)
                 .blastFurnaceTemp(1600)
@@ -1394,7 +1394,7 @@ public class GtceuScriptRecipes {
                 .chancedOutput(dustSmall, RockSalt, 4000, 500)
                 .save(provider);
 
-        // 63. salt2: circuit 1, seawater 2000 -> 3x salt_dust + chanced small_rock_salt 6000/500 + iodized_brine 100. EUt 480, dur 400. blastFurnaceTemp(2900)
+        // 66. salt2: circuit 1, seawater 2000 -> 3x salt_dust + chanced small_rock_salt 6000/500 + iodized_brine 100. EUt 480, dur 400. blastFurnaceTemp(2900)
         CTNHRecipeTypes.DESALTING.recipeBuilder(CTNHCore.id("salt2"))
                 .EUt(480).duration(400)
                 .blastFurnaceTemp(2900)
@@ -1407,7 +1407,7 @@ public class GtceuScriptRecipes {
 
         // ============== Primitive Blast Furnace Recipes ==============
 
-        // 64. high_quality: iron_ingot + high_quality_solid_fuel -> steel_ingot + chanced ash 500/0. dur 1200
+        // 67. high_quality: iron_ingot + high_quality_solid_fuel -> steel_ingot + chanced ash 500/0. dur 1200
         PRIMITIVE_BLAST_FURNACE_RECIPES.recipeBuilder(CTNHCore.id("high_quality"))
                 .duration(1200)
                 .inputItems(ingot, Iron)
@@ -1416,7 +1416,7 @@ public class GtceuScriptRecipes {
                 .chancedOutput(dust, Ash, 500, 0)
                 .save(provider);
 
-        // 65. high_quality1: wrought_iron_ingot + high_quality_solid_fuel -> steel_ingot + chanced ash 500/0. dur 300
+        // 68. high_quality1: wrought_iron_ingot + high_quality_solid_fuel -> steel_ingot + chanced ash 500/0. dur 300
         PRIMITIVE_BLAST_FURNACE_RECIPES.recipeBuilder(CTNHCore.id("high_quality1"))
                 .duration(300)
                 .inputItems(ingot, WroughtIron)
@@ -1425,7 +1425,7 @@ public class GtceuScriptRecipes {
                 .chancedOutput(dust, Ash, 500, 0)
                 .save(provider);
 
-        // 66. refined_steel: 3x refined_iron_ingot + 3x coke_gem -> 24x steel_ingot. dur 100
+        // 69. refined_steel: 3x refined_iron_ingot + 3x coke_gem -> 24x steel_ingot. dur 100
         PRIMITIVE_BLAST_FURNACE_RECIPES.recipeBuilder(CTNHCore.id("refined_steel"))
                 .duration(100)
                 .inputItems(REFINED_IRON_INGOT.asStack(3))
@@ -1435,7 +1435,7 @@ public class GtceuScriptRecipes {
 
         // ============== Autoclave Recipes ==============
 
-        // 67. budding_quartz1: quartz_block + distilled_water 200 -> damaged_budding_quartz. EUt 120, dur 200
+        // 70. budding_quartz1: quartz_block + distilled_water 200 -> damaged_budding_quartz. EUt 120, dur 200
         AUTOCLAVE_RECIPES.recipeBuilder(CTNHCore.id("budding_quartz1"))
                 .EUt(120).duration(200)
                 .inputItems(new ItemStack(AEBlocks.QUARTZ_BLOCK.block()))
@@ -1443,7 +1443,7 @@ public class GtceuScriptRecipes {
                 .outputItems(new ItemStack(AEBlocks.DAMAGED_BUDDING_QUARTZ.block()))
                 .save(provider);
 
-        // 68. budding_quartz2: damaged_budding_quartz + distilled_water 200 -> chipped_budding_quartz. EUt 120, dur 200
+        // 71. budding_quartz2: damaged_budding_quartz + distilled_water 200 -> chipped_budding_quartz. EUt 120, dur 200
         AUTOCLAVE_RECIPES.recipeBuilder(CTNHCore.id("budding_quartz2"))
                 .EUt(120).duration(200)
                 .inputItems(new ItemStack(AEBlocks.DAMAGED_BUDDING_QUARTZ.block()))
@@ -1451,7 +1451,7 @@ public class GtceuScriptRecipes {
                 .outputItems(new ItemStack(AEBlocks.CHIPPED_BUDDING_QUARTZ.block()))
                 .save(provider);
 
-        // 69. budding_quartz3: chipped_budding_quartz + distilled_water 200 -> flawed_budding_quartz. EUt 120, dur 200
+        // 72. budding_quartz3: chipped_budding_quartz + distilled_water 200 -> flawed_budding_quartz. EUt 120, dur 200
         AUTOCLAVE_RECIPES.recipeBuilder(CTNHCore.id("budding_quartz3"))
                 .EUt(120).duration(200)
                 .inputItems(new ItemStack(AEBlocks.CHIPPED_BUDDING_QUARTZ.block()))
@@ -1459,7 +1459,7 @@ public class GtceuScriptRecipes {
                 .outputItems(new ItemStack(AEBlocks.FLAWED_BUDDING_QUARTZ.block()))
                 .save(provider);
 
-        // 70. budding_quartz4: flawed_budding_quartz + distilled_water 200 -> flawless_budding_quartz. EUt 120, dur 200
+        // 73. budding_quartz4: flawed_budding_quartz + distilled_water 200 -> flawless_budding_quartz. EUt 120, dur 200
         AUTOCLAVE_RECIPES.recipeBuilder(CTNHCore.id("budding_quartz4"))
                 .EUt(120).duration(200)
                 .inputItems(new ItemStack(AEBlocks.FLAWED_BUDDING_QUARTZ.block()))
@@ -1469,7 +1469,7 @@ public class GtceuScriptRecipes {
 
         // ============== Misc Recipes ==============
 
-        // 71. blank_data_model (forming_press): 2x ender_pearl_plate + 2x stainless_steel_plate + 2x fine_platinum_wire + smooth_stone -> hostilenetworks:blank_data_model. EUt 480, dur 200
+        // 74. blank_data_model (forming_press): 2x ender_pearl_plate + 2x stainless_steel_plate + 2x fine_platinum_wire + smooth_stone -> hostilenetworks:blank_data_model. EUt 480, dur 200
         FORMING_PRESS_RECIPES.recipeBuilder(CTNHCore.id("blank_data_model"))
                 .EUt(480).duration(200)
                 .inputItems(plate, EnderPearl, 2)
@@ -1479,7 +1479,7 @@ public class GtceuScriptRecipes {
                 .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("hostilenetworks:blank_data_model")))
                 .save(provider);
 
-        // 72. bedrock_drilling_rigs (assembler): 4x tungstencu_diamond_plating_frame + 24x #uv + 4x naquadah_alloy_drill_head + 7x dense_naquadah_alloy_plate + 4x zpm_electric_motor + 4x zpm_conveyor_module + europium 1440. circuit 2. EUt 122880, dur 1200
+        // 75. bedrock_drilling_rigs (assembler): 4x tungstencu_diamond_plating_frame + 24x #uv + 4x naquadah_alloy_drill_head + 7x dense_naquadah_alloy_plate + 4x zpm_electric_motor + 4x zpm_conveyor_module + europium 1440. circuit 2. EUt 122880, dur 1200
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("bedrock_drilling_rigs"))
                 .EUt(122880).duration(1200)
                 .circuitMeta(2)
