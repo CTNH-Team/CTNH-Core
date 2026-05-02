@@ -15,13 +15,22 @@ import com.gregtechceu.gtceu.api.data.tag.TagUtil;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
+
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
@@ -358,7 +367,12 @@ public class CTNHItems {
                 .register();
 
         HIGH_QUALITY_SOLID_FUEL = REGISTRATE
-                .item("high_quality_solid_fuel", Item::new)
+                .item("high_quality_solid_fuel", props -> new Item(props) {
+                    @Override
+                    public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType) {
+                        return 4800;
+                    }
+                })
                 .cnlang("高品质固体燃料")
                 .lang("High Quality Solid Fuel")
                 .register();
@@ -391,21 +405,25 @@ public class CTNHItems {
                 .item("echo_processor", ComponentItem::create)
                 .cnlang("回响处理器")
                 .lang("Echo Processor")
+                .tag(TagUtil.createItemTag("gtceu:circuits/zpm"))
                 .register();
         ECHO_PROCESSOR_ASSEMBLY = REGISTRATE
                 .item("echo_processor_assembly", ComponentItem::create)
                 .cnlang("回响处理器装配")
                 .lang("Echo Processor Assembly")
+                .tag(TagUtil.createItemTag("gtceu:circuits/uv"))
                 .register();
         ECHO_PROCESSOR_COMPUTER = REGISTRATE
                 .item("echo_processor_computer", ComponentItem::create)
                 .cnlang("回响处理器计算机")
                 .lang("Echo Processor Computer")
+                .tag(TagUtil.createItemTag("gtceu:circuits/uhv"))
                 .register();
         ECHO_PROCESSOR_MAINFRAME = REGISTRATE
                 .item("echo_processor_mainframe", ComponentItem::create)
                 .cnlang("回响处理器主机")
                 .lang("Echo Processor Mainframe")
+                .tag(TagUtil.createItemTag("gtceu:circuits/uev"))
                 .register();
         BIOLOGICAL_PATCH_TRANSISTOR = REGISTRATE
                 .item("biological_patch_transistor", ComponentItem::create)
@@ -433,12 +451,50 @@ public class CTNHItems {
                 .lang("Biological Patch Inductor")
                 .register();
         SCP_500_BASE = REGISTRATE
-                .item("scp_500_base", Item::new)
+                .item("scp_500_base", props -> new Item(props) {
+                    @Override
+                    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
+                        if (!level.isClientSide() && livingEntity instanceof ServerPlayer player) {
+                            player.getServer().getCommands().performPrefixedCommand(
+                                    player.getServer().createCommandSourceStack(),
+                                    "title @s title {\"text\":\"你在短时间内你将获得强大的恢复能力\",\"color\":\"red\"}");
+                        }
+                        return super.finishUsingItem(stack, level, livingEntity);
+                    }
+                })
+                .properties(p -> p.food(new FoodProperties.Builder()
+                        .alwaysEat()
+                        .fast()
+                        .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 19980, 10), 1.0f)
+                        .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 19980, 3), 1.0f)
+                        .build()))
                 .cnlang("SCP-500基底")
                 .lang("SCP-500 Base")
                 .register();
         SCP_500 = REGISTRATE
-                .item("scp_500", Item::new)
+                .item("scp_500", props -> new Item(props) {
+                    @Override
+                    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
+                        if (!level.isClientSide() && livingEntity instanceof ServerPlayer player) {
+                            player.getServer().getCommands().performPrefixedCommand(
+                                    player.getServer().createCommandSourceStack(),
+                                    "medical_condition clear @p");
+                            player.getServer().getCommands().performPrefixedCommand(
+                                    player.getServer().createCommandSourceStack(),
+                                    "title @s title {\"text\":\"你的所有疾病已被治愈\",\"color\":\"green\"}");
+                            player.getServer().getCommands().performPrefixedCommand(
+                                    player.getServer().createCommandSourceStack(),
+                                    "title @s subtitle {\"text\":\"在短时间内你将获得强大的恢复能力\",\"color\":\"red\"}");
+                        }
+                        return super.finishUsingItem(stack, level, livingEntity);
+                    }
+                })
+                .properties(p -> p.food(new FoodProperties.Builder()
+                        .alwaysEat()
+                        .fast()
+                        .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 19980, 10), 1.0f)
+                        .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 19980, 3), 1.0f)
+                        .build()))
                 .cnlang("SCP-500")
                 .lang("SCP-500")
                 .register();
@@ -785,6 +841,12 @@ public class CTNHItems {
                     return 30000;
                 }
             })
+            .properties(p -> p.food(new FoodProperties.Builder()
+                    .alwaysEat()
+                    .effect(() -> new MobEffectInstance(
+                            ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("legendarysurvivaloverhaul:cold_immunity")),
+                            36000, 10), 1.0f)
+                    .build()))
             .cnlang("???烈焰蛋糕???")
             .lang("Double Blaze Cake")
             .register();
