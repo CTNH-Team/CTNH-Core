@@ -18,6 +18,7 @@ import slimeknights.tconstruct.library.recipe.melting.MeltingRecipeBuilder;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.common.data.GTMaterialItems.MATERIAL_ITEMS;
+import static io.github.cpearl0.ctnhcore.registry.CTNHItems.RUBBER_POWDER;
 
 public final class CTNHConstructMeltingRecipes extends CTNHConstructRecipeProvider {
 
@@ -47,9 +48,9 @@ public final class CTNHConstructMeltingRecipes extends CTNHConstructRecipeProvid
     }
 
     // private void rubberRecipes(Consumer<FinishedRecipe> consumer) {
-    // // 输入: kubejs:rubber_powder, 输出: 144mB gtceu:rubber流体, 温度: 400, 时间: 90
+    // // 输入: ctnhcore:rubber_powder, 输出: 144mB gtceu:rubber流体, 温度: 400, 时间: 90
     // MeltingRecipeBuilder.melting(
-    // Ingredient.of((ItemLike) new ResourceLocation("kubejs:rubber_powder")),
+    // Ingredient.of(RUBBER_POWDER.get()),
     // new FluidStack(GTMaterials.Rubber.getFluid(), 144),
     // 400, 90
     // ).save(consumer, location("rubber"));

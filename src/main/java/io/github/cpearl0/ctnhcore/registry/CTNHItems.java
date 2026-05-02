@@ -11,6 +11,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.common.item.CoverPlaceBehavior;
 import com.gregtechceu.gtceu.common.item.TooltipBehavior;
+import com.gregtechceu.gtceu.api.data.tag.TagUtil;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -18,6 +19,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.crafting.RecipeType;
+
+import javax.annotation.Nullable;
 
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
@@ -79,6 +83,19 @@ public class CTNHItems {
     @CN("§7中子活化器在速度不达标时运行配方会产生废料")
     @EN("§7Neutron Activator will produce waste when the speed is insufficient")
     static Lang radioactive_waste;
+
+    private static void registerGeneralCircuits() {
+        String[] tiers = {"ulv", "lv", "mv", "hv", "ev", "iv", "luv", "zpm", "uv", "uhv", "uev", "uiv", "uxv", "opv", "max"};
+        String[] tierNames = {"ULV", "LV", "MV", "HV", "EV", "IV", "LuV", "ZPM", "UV", "UHV", "UEV", "UIV", "UXV", "OpV", "MAX"};
+        for (int i = 0; i < tiers.length; i++) {
+            String tier = tiers[i];
+            REGISTRATE.item("general_circuit_" + tier, Item::new)
+                    .cnlang(tierNames[i] + "级电路板")
+                    .lang("General Circuit " + tierNames[i])
+                    .tag(TagUtil.createItemTag("gtceu:circuits/" + tier))
+                    .register();
+        }
+    }
 
     public static void registerItem() {
         GREAT_ASTRONOMY_CIRCUIT_1 = REGISTRATE
@@ -704,9 +721,119 @@ public class CTNHItems {
             .lang("Circuit Board M4")
             .register();
 
+    public static ItemEntry<ComponentItem> METALLURGICAL_CATALYST = REGISTRATE
+            .item("metallurgical_catalyst", ComponentItem::create)
+            .cnlang("炼金催化剂")
+            .lang("Metallurgical Catalyst")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.literal("地狱的猪灵掌握这个技术，尝试与他们交易吧"));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> STONE_PROCESS_CATALYST = REGISTRATE
+            .item("stone_process_catalyst", ComponentItem::create)
+            .cnlang("石头粉处理催化剂")
+            .lang("Stone Process Catalyst")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.literal("村庄里的石匠掌握这个古老的技术，成为村庄英雄后他就会传授给你"));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> PLATINUM_METAL_CATALYST_SHARD1 = REGISTRATE
+            .item("platinum_metal_catalyst_shard1", ComponentItem::create)
+            .cnlang("铂系金属催化碎片1")
+            .lang("Platinum Metal Catalyst Shard 1")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.literal("久远的时间使他们变成了水里的宝藏，通过钓鱼获得"));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> PLATINUM_METAL_CATALYST_SHARD2 = REGISTRATE
+            .item("platinum_metal_catalyst_shard2", ComponentItem::create)
+            .cnlang("铂系金属催化碎片2")
+            .lang("Platinum Metal Catalyst Shard 2")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.literal("深渊里的深潜一组掌握这个技术，尝试与他们交易吧"));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> YHARIM = REGISTRATE
+            .item("yharim", ComponentItem::create)
+            .cnlang("§6圣金源锭")
+            .lang("Yharim Ingot")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.literal("你必须§6爱护蜜蜂§r才能激发这个锭的真正力量，哦你已经爱过蜜蜂了"));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> STRONGLY_INTERACTING_NEUTRON_REFLECTOR = REGISTRATE
+            .item("strongly_interacting_neutron_reflector", ComponentItem::create)
+            .cnlang("强相互作用力反射板")
+            .lang("Strongly Interacting Neutron Reflector")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.literal("§7硬度超越水滴"));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> COLORFUL_SOC = REGISTRATE
+            .item("colorful_soc", ComponentItem::create)
+            .cnlang("相变棱晶SOC")
+            .lang("Colorful SOC")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.literal("完美的色彩在此流动"));
+            })))
+            .register();
+
+    public static ItemEntry<Item> DOUBLE_BLAZE_CAKE = REGISTRATE
+            .item("double_blaze_cake", props -> new Item(props) {
+                @Override
+                public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType) {
+                    return 30000;
+                }
+            })
+            .cnlang("???烈焰蛋糕???")
+            .lang("Double Blaze Cake")
+            .register();
+    public static ItemEntry<Item> DEEP_DIVER_GEAR = REGISTRATE
+            .item("deep_diver_gear", Item::new)
+            .cnlang("深渊潜游装置")
+            .lang("Deep Diver Gear")
+            .tag(TagUtil.createItemTag("curios:belt"))
+            .register();
+    public static ItemEntry<Item> TALLOW = REGISTRATE
+            .item("tallow", props -> new Item(props) {
+                @Override
+                public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType) {
+                    return 1600;
+                }
+            })
+            .cnlang("油脂")
+            .lang("Tallow")
+            .register();
+    public static ItemEntry<SnowCitySwordItem> SNOW_CITY_SWORD = REGISTRATE
+            .item("snow_city_sword", SnowCitySwordItem::new)
+            .cnlang("雪城的大保健")
+            .lang("Snow City Sword")
+            .properties(p -> p.rarity(Rarity.RARE).stacksTo(1))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.literal("雪城的赐福,无敌的扳手！"));
+            })))
+            .register();
+    public static ItemEntry<ArkOfHomoItem> ARK_OF_HOMO = REGISTRATE
+            .item("ark_of_homo", ArkOfHomoItem::new)
+            .cnlang("§c鸿§e蒙§9方§a舟")
+            .lang("Ark of Homo")
+            .properties(p -> p.rarity(Rarity.RARE).stacksTo(1))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.literal("§m你的旅程的物理的顶点...§r\n以上均没有实现\n这里是工业包..."));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> ENDER_LIGHT = REGISTRATE
+            .item("ender_light", ComponentItem::create)
+            .cnlang("老灯的蜜汁小汉堡")
+            .lang("Ender Light")
+            .properties(p -> p.rarity(Rarity.RARE))
+            .register();
+    // ============ KubeJS 迁移物品结束 ============
+
     public static void init() {
         registerItem();
         ChemicalItems.init();
         CrystalItems.init();
+        registerGeneralCircuits();
     }
 }
