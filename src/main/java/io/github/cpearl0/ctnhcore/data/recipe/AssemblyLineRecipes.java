@@ -1,10 +1,10 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
-import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksC;
@@ -13,8 +13,6 @@ import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GCYMBlocks;
-import io.github.cpearl0.ctnhcore.data.materials.*;
-
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTAEMachines;
@@ -52,11 +50,11 @@ import static dev.shadowsoffire.hostilenetworks.Hostile.Items.SIM_CHAMBER;
 import static io.github.cpearl0.ctnhcore.data.materials.AviationFabricMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.*;
+import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.STERILE_CLEANROOM_MAINTENANCE_HATCH;
+import static io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks.LARGE_NAQUADAH_REACTOR;
 import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines.*;
 import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines.ME_ULTIMATE_PATTERN_BUFFER_PROXY;
 import static tech.luckyblock.mcmod.ctnhenergy.registry.CEMultiblock.JIUZHANG_QUANTUM_COMPUTER;
-import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.STERILE_CLEANROOM_MAINTENANCE_HATCH;
-import static io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks.LARGE_NAQUADAH_REACTOR;
 
 public class AssemblyLineRecipes {
 
@@ -483,8 +481,10 @@ public class AssemblyLineRecipes {
                 .inputItems(ELECTRIC_PUMP_LuV.asStack(4))
                 .inputItems(CustomTags.ZPM_CIRCUITS, 4)
                 .inputItems(rotor, RhodiumPlatedPalladium, 4)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("enderio:extraction_speed_upgrade_4")), 4)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2omnicells:complex_omni_cell_component_1m")), 4)
+                .inputItems(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("enderio:extraction_speed_upgrade_4")), 4)
+                .inputItems(ForgeRegistries.ITEMS
+                        .getValue(ResourceLocation.parse("ae2omnicells:complex_omni_cell_component_1m")), 4)
                 .inputItems(STEM_CELLS.asStack(64))
                 .inputItems(STEM_CELLS.asStack(64))
                 .inputItems(STEM_CELLS.asStack(64))
@@ -558,7 +558,7 @@ public class AssemblyLineRecipes {
                 .inputItems(BIOLOGICAL_PATCH_CAPACITOR.asStack(64))
                 .inputItems(BIOLOGICAL_PATCH_DIODE.asStack(64))
                 .inputItems(BIOLOGICAL_PATCH_INDUCTOR.asStack(64))
-                .inputItems(foil, KAPTON_K , 64)
+                .inputItems(foil, KAPTON_K, 64)
                 .inputItems(ENERGY_LAPOTRONIC_ORB_CLUSTER.asStack(4))
                 .inputItems(wireGtQuadruple, CTNHMaterials.SpecialCompositeSteelM77, 8)
                 .inputItems(pipeTinyFluid, CTNHMaterials.HiddenAlloy, 16)
