@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.stack.ItemMaterialInfo;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.FoodStats;
+import com.gregtechceu.gtceu.api.item.component.IInteractionItem;
 import com.gregtechceu.gtceu.common.item.CoverPlaceBehavior;
 import com.gregtechceu.gtceu.common.item.TooltipBehavior;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
@@ -28,7 +29,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -38,8 +38,6 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Suffix;
-
-import javax.annotation.Nullable;
 
 import static com.gregtechceu.gtceu.common.data.GTItems.attach;
 import static com.gregtechceu.gtceu.common.data.GTItems.materialInfo;
@@ -369,9 +367,10 @@ public class CTNHItems {
                 .register();
 
         HIGH_QUALITY_SOLID_FUEL = REGISTRATE
-                .item("high_quality_solid_fuel", props -> fuelItem(props, 4800))
+                .item("high_quality_solid_fuel", ComponentItem::create)
                 .cnlang("高品质固体燃料")
                 .lang("High Quality Solid Fuel")
+                .onRegister(item -> item.burnTime(4800))
                 .register();
         THERMOMETER_CASE = REGISTRATE
                 .item("thermometer_case", Item::new)
@@ -448,26 +447,52 @@ public class CTNHItems {
                 .lang("Biological Patch Inductor")
                 .register();
         SCP_500_BASE = REGISTRATE
-                .item("scp_500_base", CTNHItems::scp500BaseItem)
+                .item("scp_500_base", ComponentItem::create)
                 .cnlang("SCP-500基底")
                 .lang("SCP-500 Base")
-                .properties(p -> p.food(new FoodProperties.Builder()
-                        .alwaysEat()
-                        .fast()
-                        .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 19980, 10), 1.0f)
-                        .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 19980, 3), 1.0f)
-                        .build()))
+                .onRegister(item -> item.attachComponents(
+                        new FoodStats(new FoodProperties.Builder()
+                                .alwaysEat()
+                                .fast()
+                                .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 19980, 10), 1.0f)
+                                .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 19980, 3), 1.0f)
+                                .build()),
+                        new IInteractionItem() {
+
+                            @Override
+                            public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
+                                if (!level.isClientSide() && livingEntity instanceof ServerPlayer player) {
+                                    runCommand(player,
+                                            "title @s title {\"text\":\"你在短时间内你将获得强大的恢复能力\",\"color\":\"red\"}");
+                                }
+                                return stack;
+                            }
+                        }))
                 .register();
         SCP_500 = REGISTRATE
-                .item("scp_500", CTNHItems::scp500Item)
+                .item("scp_500", ComponentItem::create)
                 .cnlang("SCP-500")
                 .lang("SCP-500")
-                .properties(p -> p.food(new FoodProperties.Builder()
-                        .alwaysEat()
-                        .fast()
-                        .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 19980, 10), 1.0f)
-                        .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 19980, 3), 1.0f)
-                        .build()))
+                .onRegister(item -> item.attachComponents(
+                        new FoodStats(new FoodProperties.Builder()
+                                .alwaysEat()
+                                .fast()
+                                .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 19980, 10), 1.0f)
+                                .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 19980, 3), 1.0f)
+                                .build()),
+                        new IInteractionItem() {
+
+                            @Override
+                            public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
+                                if (!level.isClientSide() && livingEntity instanceof ServerPlayer player) {
+                                    runCommand(player, "medical_condition clear @p");
+                                    runCommand(player, "title @s title {\"text\":\"你的所有疾病已被治愈\",\"color\":\"green\"}");
+                                    runCommand(player,
+                                            "title @s subtitle {\"text\":\"在短时间内你将获得强大的恢复能力\",\"color\":\"red\"}");
+                                }
+                                return stack;
+                            }
+                        }))
                 .register();
         METALLURGICAL_CATALYST = REGISTRATE
                 .item("metallurgical_catalyst", ComponentItem::create)
@@ -728,7 +753,7 @@ public class CTNHItems {
     public static ItemEntry<ComponentItem> VOLTAGE_COIL_UHV;
     public static ItemEntry<ComponentItem> CREATIVE_ENERGY_COVER_ITEM;
 
-    public static ItemEntry<Item> HIGH_QUALITY_SOLID_FUEL;
+    public static ItemEntry<ComponentItem> HIGH_QUALITY_SOLID_FUEL;
     public static ItemEntry<Item> THERMOMETER_CASE;
     public static ItemEntry<Item> SPACE_FABRIC;
     public static ItemEntry<Item> TEMPERATURE_KEEPING_DEVICE;
@@ -743,10 +768,9 @@ public class CTNHItems {
     public static ItemEntry<ComponentItem> BIOLOGICAL_PATCH_CAPACITOR;
     public static ItemEntry<ComponentItem> BIOLOGICAL_PATCH_DIODE;
     public static ItemEntry<ComponentItem> BIOLOGICAL_PATCH_INDUCTOR;
-    public static ItemEntry<Item> SCP_500_BASE;
-    public static ItemEntry<Item> SCP_500;
+    public static ItemEntry<ComponentItem> SCP_500_BASE;
+    public static ItemEntry<ComponentItem> SCP_500;
 
-    // ============ KubeJS 迁移物品 ============
     public static ItemEntry<Item> UNFINISHED_STEEL_MECHANISM = REGISTRATE
             .item("unfinished_steel_mechanism", Item::new)
             .cnlang("未完成的钢铁构件")
@@ -836,18 +860,21 @@ public class CTNHItems {
     public static ItemEntry<ComponentItem> STRONGLY_INTERACTING_NEUTRON_REFLECTOR;
     public static ItemEntry<ComponentItem> COLORFUL_SOC;
 
-    public static ItemEntry<Item> DOUBLE_BLAZE_CAKE = REGISTRATE
-            .item("double_blaze_cake", CTNHItems::doubleBlazeCakeItem)
+    public static ItemEntry<ComponentItem> DOUBLE_BLAZE_CAKE = REGISTRATE
+            .item("double_blaze_cake", ComponentItem::create)
             .cnlang("???烈焰蛋糕???")
             .lang("Double Blaze Cake")
-            .properties(p -> p.food(new FoodProperties.Builder()
-                    .alwaysEat()
-                    .effect(() -> {
-                        var effect = ForgeRegistries.MOB_EFFECTS.getValue(
-                                ResourceLocation.tryBuild("legendarysurvivaloverhaul", "cold_immunity"));
-                        return effect != null ? new MobEffectInstance(effect, 36000, 10) : null;
-                    }, 1.0f)
-                    .build()))
+            .onRegister(item -> {
+                item.attachComponents(new FoodStats(new FoodProperties.Builder()
+                        .alwaysEat()
+                        .effect(() -> {
+                            var effect = ForgeRegistries.MOB_EFFECTS.getValue(
+                                    ResourceLocation.tryBuild("legendarysurvivaloverhaul", "cold_immunity"));
+                            return effect != null ? new MobEffectInstance(effect, 36000, 10) : null;
+                        }, 1.0f)
+                        .build()));
+                item.burnTime(30000);
+            })
             .register();
     public static ItemEntry<Item> DEEP_DIVER_GEAR = REGISTRATE
             .item("deep_diver_gear", Item::new)
@@ -855,10 +882,11 @@ public class CTNHItems {
             .lang("Deep Diver Gear")
             .tag(TagKey.create(BuiltInRegistries.ITEM.key(), ResourceLocation.parse("curios:belt")))
             .register();
-    public static ItemEntry<Item> TALLOW = REGISTRATE
-            .item("tallow", props -> fuelItem(props, 1600))
+    public static ItemEntry<ComponentItem> TALLOW = REGISTRATE
+            .item("tallow", ComponentItem::create)
             .cnlang("油脂")
             .lang("Tallow")
+            .onRegister(item -> item.burnTime(1600))
             .register();
     public static ItemEntry<SnowCitySwordItem> SNOW_CITY_SWORD = REGISTRATE
             .item("snow_city_sword", SnowCitySwordItem::new)
@@ -873,55 +901,6 @@ public class CTNHItems {
             .properties(p -> p.rarity(Rarity.RARE).stacksTo(1))
             .register();
     public static ItemEntry<ComponentItem> ENDER_LIGHT;
-    // ============ KubeJS 迁移物品结束 ============
-
-    private static Item fuelItem(Item.Properties props, int burnTime) {
-        return new Item(props) {
-
-            @Override
-            public int getBurnTime(ItemStack stack, @Nullable RecipeType<?> type) {
-                return burnTime;
-            }
-        };
-    }
-
-    private static Item scp500BaseItem(Item.Properties props) {
-        return new Item(props) {
-
-            @Override
-            public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
-                if (!level.isClientSide() && livingEntity instanceof ServerPlayer player) {
-                    runCommand(player, "title @s title {\"text\":\"你在短时间内你将获得强大的恢复能力\",\"color\":\"red\"}");
-                }
-                return super.finishUsingItem(stack, level, livingEntity);
-            }
-        };
-    }
-
-    private static Item scp500Item(Item.Properties props) {
-        return new Item(props) {
-
-            @Override
-            public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
-                if (!level.isClientSide() && livingEntity instanceof ServerPlayer player) {
-                    runCommand(player, "medical_condition clear @p");
-                    runCommand(player, "title @s title {\"text\":\"你的所有疾病已被治愈\",\"color\":\"green\"}");
-                    runCommand(player, "title @s subtitle {\"text\":\"在短时间内你将获得强大的恢复能力\",\"color\":\"red\"}");
-                }
-                return super.finishUsingItem(stack, level, livingEntity);
-            }
-        };
-    }
-
-    private static Item doubleBlazeCakeItem(Item.Properties props) {
-        return new Item(props) {
-
-            @Override
-            public int getBurnTime(ItemStack stack, @Nullable RecipeType<?> type) {
-                return 30000;
-            }
-        };
-    }
 
     private static void runCommand(ServerPlayer player, String command) {
         var server = player.getServer();
