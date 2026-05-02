@@ -473,8 +473,8 @@ public class CTNHBlocks {
                 .cnlang(cnPrefix + "台阶")
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .blockstate((ctx, prov) -> prov.slabBlock(ctx.getEntry(),
-                        prov.models().slab(baseName + "_slab", texture),
-                        prov.models().slabTop(baseName + "_slab_top", texture),
+                        prov.models().slab(baseName + "_slab", texture, texture, texture),
+                        prov.models().slabTop(baseName + "_slab_top", texture, texture, texture),
                         prov.models().getExistingFile(texture)))
                 .tag(TagKey.create(BuiltInRegistries.BLOCK.key(),
                         ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
