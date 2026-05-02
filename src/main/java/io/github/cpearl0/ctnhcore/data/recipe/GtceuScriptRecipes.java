@@ -33,6 +33,7 @@ import java.util.function.Consumer;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
+import static io.github.cpearl0.ctnhcore.data.materials.AviationFabricMaterials.KAPTON_K;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.*;
 
@@ -296,7 +297,7 @@ public class GtceuScriptRecipes {
         // 8. sculk_dust: 2x sculk_vein -> sculk_dust. EUt 8, dur 10
         MACERATOR_RECIPES.recipeBuilder(CTNHCore.id("sculk_dust"))
                 .EUt(8).duration(10)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("minecraft:sculk_vein")), 2)
+                .inputItems(new ItemStack(Items.SCULK_VEIN, 2))
                 .outputItems(dust, Sculk)
                 .save(provider);
 
@@ -399,7 +400,7 @@ public class GtceuScriptRecipes {
                 .EUt(30).duration(60)
                 .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("create_new_age:layered_magnet")))
                 .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("botania:mana_diamond")), 2)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:diamond_screw")), 2)
+                .inputItems(screw, Diamond, 2)
                 .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("create_new_age:fluxuated_magnetite")))
                 .save(provider);
 
@@ -658,7 +659,7 @@ public class GtceuScriptRecipes {
                 .EUt(24768).duration(400)
                 .inputItems(foil, Naquadria)
                 .inputItems(wireFine, Osmiridium, 8)
-                .inputFluids(AviationFabricMaterials.KAPTON_K.getFluid(288))
+                .inputFluids(KAPTON_K.getFluid(288))
                 .outputItems(BIOLOGICAL_PATCH_TRANSISTOR.asStack(32))
                 .save(provider);
 
@@ -667,25 +668,25 @@ public class GtceuScriptRecipes {
                 .EUt(24768).duration(400)
                 .inputItems(dust, Ruridit)
                 .inputItems(wireFine, Europium, 4)
-                .inputFluids(AviationFabricMaterials.KAPTON_K.getFluid(576))
+                .inputFluids(KAPTON_K.getFluid(576))
                 .outputItems(BIOLOGICAL_PATCH_RESISTOR.asStack(32))
                 .save(provider);
 
         // 36. biological_patch_capacitor: 2x kapton_k_foil + osmiridium_foil + kapton_k 72 -> 32x ctnhcore:biological_patch_capacitor. EUt 24768, dur 400
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("biological_patch_capacitor"))
                 .EUt(24768).duration(400)
-                .inputItems(foil, KaptonK, 2)
+                .inputItems(foil, KAPTON_K , 2)
                 .inputItems(foil, Osmiridium)
-                .inputFluids(AviationFabricMaterials.KAPTON_K.getFluid(72))
+                .inputFluids(KAPTON_K.getFluid(72))
                 .outputItems(BIOLOGICAL_PATCH_CAPACITOR.asStack(32))
                 .save(provider);
 
         // 37. biological_patch_diode: exquisite_arcane_crystal_gem + 32x fine_naquadah_alloy_wire + kapton_k 576 -> 64x ctnhcore:biological_patch_diode. EUt 24768, dur 400
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("biological_patch_diode"))
                 .EUt(24768).duration(400)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:exquisite_arcane_crystal_gem")))
+                .inputItems(gemExquisite, ArcaneCrystal)
                 .inputItems(wireFine, NaquadahAlloy, 32)
-                .inputFluids(AviationFabricMaterials.KAPTON_K.getFluid(576))
+                .inputFluids(KAPTON_K.getFluid(576))
                 .outputItems(BIOLOGICAL_PATCH_DIODE.asStack(64))
                 .save(provider);
 
@@ -694,7 +695,7 @@ public class GtceuScriptRecipes {
                 .EUt(24768).duration(400)
                 .inputItems(ring, Osmiridium)
                 .inputItems(wireFine, Tritanium, 4)
-                .inputFluids(AviationFabricMaterials.KAPTON_K.getFluid(288))
+                .inputFluids(KAPTON_K.getFluid(288))
                 .outputItems(BIOLOGICAL_PATCH_INDUCTOR.asStack(16))
                 .save(provider);
 
