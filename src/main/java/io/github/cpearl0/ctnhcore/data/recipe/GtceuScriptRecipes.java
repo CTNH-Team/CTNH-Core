@@ -210,6 +210,16 @@ public class GtceuScriptRecipes {
                 .outputItems(dust, EchoShard, 5)
                 .save(provider);
 
+        // 16. zirkelite_dust_one: 3x zirkelite_dust + sodium_hydroxide_solution 1000 + sodium_carbonate_solution 1000 -> alkaline_slag_dust + alkaline_complex_ore_slurry 1000. EUt 1920, dur 200
+        MIXER_RECIPES.recipeBuilder(CTNHCore.id("zirkelite_dust_one"))
+                .EUt(1920).duration(200)
+                .inputItems(dust, Zirkelite, 3)
+                .inputFluids(BauxiteProcessingMaterials.SODIUM_HYDROXIDE_SOLUTION.getFluid(1000))
+                .inputFluids(BiodieselFertileSoilMaterials.SODIUM_CARBONATE_SOLUTION.getFluid(1000))
+                .outputItems(dust, UncategorizedMaterials.ALKALINE_SLAG)
+                .outputFluids(UncategorizedMaterials.ALKALINE_COMPLEX_ORE_SLURRY.getFluid(1000))
+                .save(provider);
+
         // ============== Alloy Smelter Recipes ==============
 
         // 1. andesite_alloy: andesite + iron_ingot -> 2x andesite_alloy_ingot. EUt 7, dur 100
@@ -1034,6 +1044,32 @@ public class GtceuScriptRecipes {
                 .inputItems(dust, Tarkianite, 2)
                 .outputItems(dust, Rheniite)
                 .outputItems(dust, Molybdenite)
+                .save(provider);
+
+        // 28. twilightforest_air centrifuge: twilightforest_air 10000 -> nitrogen 2500 + oxygen 2500. EUt 7, dur 800
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("twilightforest_air_centrifuge"))
+                .EUt(7).duration(800)
+                .inputFluids(ExtraterrestrialAtmosphereMaterials.TWILIGHTFOREST_AIR.getFluid(10000))
+                .outputFluids(Nitrogen.getFluid(2500))
+                .outputFluids(Oxygen.getFluid(2500))
+                .save(provider);
+
+        // 29. alfheim_air centrifuge: alfheim_air 10000 -> mana 5 + oxygen 1500 + helium 1000. EUt 240, dur 800
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("alfheim_air_centrifuge"))
+                .EUt(240).duration(800)
+                .inputFluids(ExtraterrestrialAtmosphereMaterials.ALFHEIM_AIR.getFluid(10000))
+                .outputFluids(CMMaterials.Mana.getFluid(5))
+                .outputFluids(Oxygen.getFluid(1500))
+                .outputFluids(Helium.getFluid(1000))
+                .save(provider);
+
+        // 30. venus_air centrifuge: venus_air 10000 -> steam 1500 + carbon_dioxide 1000 + helium 500. EUt 1920, dur 800
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("venus_air_centrifuge"))
+                .EUt(1920).duration(800)
+                .inputFluids(ExtraterrestrialAtmosphereMaterials.VENUS_AIR.getFluid(10000))
+                .outputFluids(Steam.getFluid(1500))
+                .outputFluids(CarbonDioxide.getFluid(1000))
+                .outputFluids(Helium.getFluid(500))
                 .save(provider);
 
         // ============== Chemical Reactor Recipes ==============
