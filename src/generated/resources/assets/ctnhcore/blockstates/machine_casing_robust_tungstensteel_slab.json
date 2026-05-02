@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ctnhcore:block/machine_casing_robust_tungstensteel_slab"
+    },
+    "type=double": {
+      "model": "ctnhcore:block/machine_casing_robust_tungstensteel"
+    },
+    "type=top": {
+      "model": "ctnhcore:block/machine_casing_robust_tungstensteel_slab_top"
+    }
+  }
+}

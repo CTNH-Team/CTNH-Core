@@ -18,7 +18,6 @@ import slimeknights.tconstruct.library.recipe.melting.MeltingRecipeBuilder;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.common.data.GTMaterialItems.MATERIAL_ITEMS;
-import static io.github.cpearl0.ctnhcore.registry.CTNHItems.RUBBER_POWDER;
 
 public final class CTNHConstructMeltingRecipes extends CTNHConstructRecipeProvider {
 

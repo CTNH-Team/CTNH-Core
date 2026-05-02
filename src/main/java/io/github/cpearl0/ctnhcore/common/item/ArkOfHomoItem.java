@@ -14,13 +14,38 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class ArkOfHomoItem extends PickaxeItem {
+
     private static final Tier CUSTOM_TIER = new Tier() {
-        @Override public int getUses() { return 114514; }
-        @Override public float getSpeed() { return 100.0f; }
-        @Override public float getAttackDamageBonus() { return 1595.0f; }
-        @Override public int getLevel() { return 9; }
-        @Override public int getEnchantmentValue() { return 15; }
-        @Override public @NotNull Ingredient getRepairIngredient() { return Ingredient.EMPTY; }
+
+        @Override
+        public int getUses() {
+            return 114514;
+        }
+
+        @Override
+        public float getSpeed() {
+            return 100.0f;
+        }
+
+        @Override
+        public float getAttackDamageBonus() {
+            return 1595.0f;
+        }
+
+        @Override
+        public int getLevel() {
+            return 9;
+        }
+
+        @Override
+        public int getEnchantmentValue() {
+            return 15;
+        }
+
+        @Override
+        public @NotNull Ingredient getRepairIngredient() {
+            return Ingredient.EMPTY;
+        }
     };
 
     public ArkOfHomoItem(Properties properties) {

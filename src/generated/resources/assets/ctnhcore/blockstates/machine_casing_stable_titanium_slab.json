@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ctnhcore:block/machine_casing_stable_titanium_slab"
+    },
+    "type=double": {
+      "model": "ctnhcore:block/machine_casing_stable_titanium"
+    },
+    "type=top": {
+      "model": "ctnhcore:block/machine_casing_stable_titanium_slab_top"
+    }
+  }
+}

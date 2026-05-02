@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "ctnhcore:block/machine_casing_frost_proof",
+    "side": "ctnhcore:block/machine_casing_frost_proof",
+    "top": "ctnhcore:block/machine_casing_frost_proof"
+  }
+}

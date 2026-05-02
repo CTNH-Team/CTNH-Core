@@ -9,27 +9,27 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.ItemMaterialInfo;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
+import com.gregtechceu.gtceu.api.item.component.FoodStats;
 import com.gregtechceu.gtceu.common.item.CoverPlaceBehavior;
 import com.gregtechceu.gtceu.common.item.TooltipBehavior;
-import com.gregtechceu.gtceu.api.data.tag.TagUtil;
+import com.gregtechceu.gtceu.data.recipe.CustomTags;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-
-import javax.annotation.Nullable;
-
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import com.tterrag.registrate.util.entry.ItemEntry;
@@ -38,6 +38,8 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Suffix;
+
+import javax.annotation.Nullable;
 
 import static com.gregtechceu.gtceu.common.data.GTItems.attach;
 import static com.gregtechceu.gtceu.common.data.GTItems.materialInfo;
@@ -94,14 +96,14 @@ public class CTNHItems {
     static Lang radioactive_waste;
 
     private static void registerGeneralCircuits() {
-        String[] tiers = {"ulv", "lv", "mv", "hv", "ev", "iv", "luv", "zpm", "uv", "uhv", "uev", "uiv", "uxv", "opv", "max"};
-        String[] tierNames = {"ULV", "LV", "MV", "HV", "EV", "IV", "LuV", "ZPM", "UV", "UHV", "UEV", "UIV", "UXV", "OpV", "MAX"};
-        for (int i = 0; i < tiers.length; i++) {
-            String tier = tiers[i];
+        String[] tierNames = { "ULV", "LV", "MV", "HV", "EV", "IV", "LuV", "ZPM", "UV", "UHV", "UEV", "UIV", "UXV",
+                "OpV", "MAX" };
+        for (int i = 0; i < CustomTags.CIRCUITS_ARRAY.length; i++) {
+            String tier = tierNames[i].toLowerCase();
             REGISTRATE.item("general_circuit_" + tier, Item::new)
                     .cnlang(tierNames[i] + "级电路板")
                     .lang("General Circuit " + tierNames[i])
-                    .tag(TagUtil.createItemTag("gtceu:circuits/" + tier))
+                    .tag(CustomTags.CIRCUITS_ARRAY[i])
                     .register();
         }
     }
@@ -400,25 +402,25 @@ public class CTNHItems {
                 .item("echo_processor", ComponentItem::create)
                 .cnlang("回响处理器")
                 .lang("Echo Processor")
-                .tag(TagUtil.createItemTag("gtceu:circuits/zpm"))
+                .tag(CustomTags.ZPM_CIRCUITS)
                 .register();
         ECHO_PROCESSOR_ASSEMBLY = REGISTRATE
                 .item("echo_processor_assembly", ComponentItem::create)
                 .cnlang("回响处理器装配")
                 .lang("Echo Processor Assembly")
-                .tag(TagUtil.createItemTag("gtceu:circuits/uv"))
+                .tag(CustomTags.UV_CIRCUITS)
                 .register();
         ECHO_PROCESSOR_COMPUTER = REGISTRATE
                 .item("echo_processor_computer", ComponentItem::create)
                 .cnlang("回响处理器计算机")
                 .lang("Echo Processor Computer")
-                .tag(TagUtil.createItemTag("gtceu:circuits/uhv"))
+                .tag(CustomTags.UHV_CIRCUITS)
                 .register();
         ECHO_PROCESSOR_MAINFRAME = REGISTRATE
                 .item("echo_processor_mainframe", ComponentItem::create)
                 .cnlang("回响处理器主机")
                 .lang("Echo Processor Mainframe")
-                .tag(TagUtil.createItemTag("gtceu:circuits/uev"))
+                .tag(CustomTags.UEV_CIRCUITS)
                 .register();
         BIOLOGICAL_PATCH_TRANSISTOR = REGISTRATE
                 .item("biological_patch_transistor", ComponentItem::create)
@@ -466,6 +468,86 @@ public class CTNHItems {
                         .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 19980, 10), 1.0f)
                         .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 19980, 3), 1.0f)
                         .build()))
+                .register();
+        METALLURGICAL_CATALYST = REGISTRATE
+                .item("metallurgical_catalyst", ComponentItem::create)
+                .cnlang("炼金催化剂")
+                .lang("Metallurgical Catalyst")
+                .onRegister(attach(new TooltipBehavior(list -> {
+                    list.add(Component.literal("地狱的猪灵掌握这个技术，尝试与他们交易吧"));
+                })))
+                .register();
+        STONE_PROCESS_CATALYST = REGISTRATE
+                .item("stone_process_catalyst", ComponentItem::create)
+                .cnlang("石头粉处理催化剂")
+                .lang("Stone Process Catalyst")
+                .onRegister(attach(new TooltipBehavior(list -> {
+                    list.add(Component.literal("村庄里的石匠掌握这个古老的技术，成为村庄英雄后他就会传授给你"));
+                })))
+                .register();
+        PLATINUM_METAL_CATALYST_SHARD1 = REGISTRATE
+                .item("platinum_metal_catalyst_shard1", ComponentItem::create)
+                .cnlang("铂系金属催化碎片1")
+                .lang("Platinum Metal Catalyst Shard 1")
+                .onRegister(attach(new TooltipBehavior(list -> {
+                    list.add(Component.literal("久远的时间使他们变成了水里的宝藏，通过钓鱼获得"));
+                })))
+                .register();
+        PLATINUM_METAL_CATALYST_SHARD2 = REGISTRATE
+                .item("platinum_metal_catalyst_shard2", ComponentItem::create)
+                .cnlang("铂系金属催化碎片2")
+                .lang("Platinum Metal Catalyst Shard 2")
+                .onRegister(attach(new TooltipBehavior(list -> {
+                    list.add(Component.literal("深渊里的深潜一组掌握这个技术，尝试与他们交易吧"));
+                })))
+                .register();
+        YHARIM = REGISTRATE
+                .item("yharim", ComponentItem::create)
+                .cnlang("§6圣金源锭")
+                .lang("Yharim Ingot")
+                .onRegister(attach(new TooltipBehavior(list -> {
+                    list.add(Component.literal("你必须§6爱护蜜蜂§r才能激发这个锭的真正力量，哦你已经爱过蜜蜂了"));
+                })))
+                .register();
+        STRONGLY_INTERACTING_NEUTRON_REFLECTOR = REGISTRATE
+                .item("strongly_interacting_neutron_reflector", ComponentItem::create)
+                .cnlang("强相互作用力反射板")
+                .lang("Strongly Interacting Neutron Reflector")
+                .onRegister(attach(new TooltipBehavior(list -> {
+                    list.add(Component.literal("§7硬度超越水滴"));
+                })))
+                .register();
+        COLORFUL_SOC = REGISTRATE
+                .item("colorful_soc", ComponentItem::create)
+                .cnlang("相变棱晶SOC")
+                .lang("Colorful SOC")
+                .onRegister(attach(new TooltipBehavior(list -> {
+                    list.add(Component.literal("完美的色彩在此流动"));
+                })))
+                .register();
+        ENDER_LIGHT = REGISTRATE
+                .item("ender_light", ComponentItem::create)
+                .cnlang("老灯的蜜汁小汉堡")
+                .lang("Ender Light")
+                .properties(p -> p.rarity(Rarity.RARE))
+                .onRegister(attach(new FoodStats(new FoodProperties.Builder()
+                        .nutrition(20)
+                        .saturationMod(0.5f)
+                        .meat()
+                        .alwaysEat()
+                        .fast()
+                        .effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, 20 * 1800, 0), 1.0f)
+                        .effect(() -> {
+                            var effect = ForgeRegistries.MOB_EFFECTS.getValue(
+                                    ResourceLocation.tryBuild("legendarysurvivaloverhaul", "heat_immunity"));
+                            return effect != null ? new MobEffectInstance(effect, 20 * 1800, 0) : null;
+                        }, 1.0f)
+                        .effect(() -> {
+                            var effect = ForgeRegistries.MOB_EFFECTS.getValue(
+                                    ResourceLocation.tryBuild("legendarysurvivaloverhaul", "cold_immunity"));
+                            return effect != null ? new MobEffectInstance(effect, 20 * 1800, 0) : null;
+                        }, 1.0f)
+                        .build())))
                 .register();
     }
 
@@ -746,62 +828,13 @@ public class CTNHItems {
             .lang("Circuit Board M4")
             .register();
 
-    public static ItemEntry<ComponentItem> METALLURGICAL_CATALYST = REGISTRATE
-            .item("metallurgical_catalyst", ComponentItem::create)
-            .cnlang("炼金催化剂")
-            .lang("Metallurgical Catalyst")
-            .onRegister(attach(new TooltipBehavior(list -> {
-                list.add(Component.literal("地狱的猪灵掌握这个技术，尝试与他们交易吧"));
-            })))
-            .register();
-    public static ItemEntry<ComponentItem> STONE_PROCESS_CATALYST = REGISTRATE
-            .item("stone_process_catalyst", ComponentItem::create)
-            .cnlang("石头粉处理催化剂")
-            .lang("Stone Process Catalyst")
-            .onRegister(attach(new TooltipBehavior(list -> {
-                list.add(Component.literal("村庄里的石匠掌握这个古老的技术，成为村庄英雄后他就会传授给你"));
-            })))
-            .register();
-    public static ItemEntry<ComponentItem> PLATINUM_METAL_CATALYST_SHARD1 = REGISTRATE
-            .item("platinum_metal_catalyst_shard1", ComponentItem::create)
-            .cnlang("铂系金属催化碎片1")
-            .lang("Platinum Metal Catalyst Shard 1")
-            .onRegister(attach(new TooltipBehavior(list -> {
-                list.add(Component.literal("久远的时间使他们变成了水里的宝藏，通过钓鱼获得"));
-            })))
-            .register();
-    public static ItemEntry<ComponentItem> PLATINUM_METAL_CATALYST_SHARD2 = REGISTRATE
-            .item("platinum_metal_catalyst_shard2", ComponentItem::create)
-            .cnlang("铂系金属催化碎片2")
-            .lang("Platinum Metal Catalyst Shard 2")
-            .onRegister(attach(new TooltipBehavior(list -> {
-                list.add(Component.literal("深渊里的深潜一组掌握这个技术，尝试与他们交易吧"));
-            })))
-            .register();
-    public static ItemEntry<ComponentItem> YHARIM = REGISTRATE
-            .item("yharim", ComponentItem::create)
-            .cnlang("§6圣金源锭")
-            .lang("Yharim Ingot")
-            .onRegister(attach(new TooltipBehavior(list -> {
-                list.add(Component.literal("你必须§6爱护蜜蜂§r才能激发这个锭的真正力量，哦你已经爱过蜜蜂了"));
-            })))
-            .register();
-    public static ItemEntry<ComponentItem> STRONGLY_INTERACTING_NEUTRON_REFLECTOR = REGISTRATE
-            .item("strongly_interacting_neutron_reflector", ComponentItem::create)
-            .cnlang("强相互作用力反射板")
-            .lang("Strongly Interacting Neutron Reflector")
-            .onRegister(attach(new TooltipBehavior(list -> {
-                list.add(Component.literal("§7硬度超越水滴"));
-            })))
-            .register();
-    public static ItemEntry<ComponentItem> COLORFUL_SOC = REGISTRATE
-            .item("colorful_soc", ComponentItem::create)
-            .cnlang("相变棱晶SOC")
-            .lang("Colorful SOC")
-            .onRegister(attach(new TooltipBehavior(list -> {
-                list.add(Component.literal("完美的色彩在此流动"));
-            })))
-            .register();
+    public static ItemEntry<ComponentItem> METALLURGICAL_CATALYST;
+    public static ItemEntry<ComponentItem> STONE_PROCESS_CATALYST;
+    public static ItemEntry<ComponentItem> PLATINUM_METAL_CATALYST_SHARD1;
+    public static ItemEntry<ComponentItem> PLATINUM_METAL_CATALYST_SHARD2;
+    public static ItemEntry<ComponentItem> YHARIM;
+    public static ItemEntry<ComponentItem> STRONGLY_INTERACTING_NEUTRON_REFLECTOR;
+    public static ItemEntry<ComponentItem> COLORFUL_SOC;
 
     public static ItemEntry<Item> DOUBLE_BLAZE_CAKE = REGISTRATE
             .item("double_blaze_cake", CTNHItems::doubleBlazeCakeItem)
@@ -811,7 +844,7 @@ public class CTNHItems {
                     .alwaysEat()
                     .effect(() -> {
                         var effect = ForgeRegistries.MOB_EFFECTS.getValue(
-                                ResourceLocation.tryBuild("legendarysurvivaloverhaul","cold_immunity"));
+                                ResourceLocation.tryBuild("legendarysurvivaloverhaul", "cold_immunity"));
                         return effect != null ? new MobEffectInstance(effect, 36000, 10) : null;
                     }, 1.0f)
                     .build()))
@@ -820,7 +853,7 @@ public class CTNHItems {
             .item("deep_diver_gear", Item::new)
             .cnlang("深渊潜游装置")
             .lang("Deep Diver Gear")
-            .tag(TagUtil.createItemTag("curios:belt"))
+            .tag(TagKey.create(BuiltInRegistries.ITEM.key(), ResourceLocation.parse("curios:belt")))
             .register();
     public static ItemEntry<Item> TALLOW = REGISTRATE
             .item("tallow", props -> fuelItem(props, 1600))
@@ -839,16 +872,12 @@ public class CTNHItems {
             .lang("Ark of Homo")
             .properties(p -> p.rarity(Rarity.RARE).stacksTo(1))
             .register();
-    public static ItemEntry<ComponentItem> ENDER_LIGHT = REGISTRATE
-            .item("ender_light", ComponentItem::create)
-            .cnlang("老灯的蜜汁小汉堡")
-            .lang("Ender Light")
-            .properties(p -> p.rarity(Rarity.RARE))
-            .register();
+    public static ItemEntry<ComponentItem> ENDER_LIGHT;
     // ============ KubeJS 迁移物品结束 ============
 
     private static Item fuelItem(Item.Properties props, int burnTime) {
         return new Item(props) {
+
             @Override
             public int getBurnTime(ItemStack stack, @Nullable RecipeType<?> type) {
                 return burnTime;
@@ -858,6 +887,7 @@ public class CTNHItems {
 
     private static Item scp500BaseItem(Item.Properties props) {
         return new Item(props) {
+
             @Override
             public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
                 if (!level.isClientSide() && livingEntity instanceof ServerPlayer player) {
@@ -870,6 +900,7 @@ public class CTNHItems {
 
     private static Item scp500Item(Item.Properties props) {
         return new Item(props) {
+
             @Override
             public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
                 if (!level.isClientSide() && livingEntity instanceof ServerPlayer player) {
@@ -884,6 +915,7 @@ public class CTNHItems {
 
     private static Item doubleBlazeCakeItem(Item.Properties props) {
         return new Item(props) {
+
             @Override
             public int getBurnTime(ItemStack stack, @Nullable RecipeType<?> type) {
                 return 30000;

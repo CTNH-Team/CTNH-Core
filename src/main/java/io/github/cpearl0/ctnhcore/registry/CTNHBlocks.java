@@ -54,16 +54,16 @@ public class CTNHBlocks {
     static {
         REGISTRATE.creativeModeTab(() -> CTNHCreativeModeTabs.BLOCK);
         String[][] casingVariants = {
-                {"machine_casing_bronze_plated_bricks", "青铜"},
-                {"machine_casing_solid_steel", "钢"},
-                {"machine_casing_frost_proof", "铝"},
-                {"machine_casing_clean_stainless_steel", "不锈钢"},
-                {"machine_casing_stable_titanium", "钛"},
-                {"machine_casing_robust_tungstensteel", "钨钢"},
-                {"machine_casing_palladium_substation", "镀铑钯"},
-                {"machine_casing_inert_ptfe", "四氟乙烯"},
-                {"machine_casing_heatproof", "殷钢"},
-                {"machine_casing_sturdy_hsse_green", "坚固HSSE绿"},
+                { "machine_casing_bronze_plated_bricks", "青铜" },
+                { "machine_casing_solid_steel", "钢" },
+                { "machine_casing_frost_proof", "铝" },
+                { "machine_casing_clean_stainless_steel", "不锈钢" },
+                { "machine_casing_stable_titanium", "钛" },
+                { "machine_casing_robust_tungstensteel", "钨钢" },
+                { "machine_casing_palladium_substation", "镀铑钯" },
+                { "machine_casing_inert_ptfe", "四氟乙烯" },
+                { "machine_casing_heatproof", "殷钢" },
+                { "machine_casing_sturdy_hsse_green", "坚固HSSE绿" },
         };
         for (String[] variant : casingVariants) {
             registerCasingVariants(variant[0], variant[1],
@@ -475,7 +475,7 @@ public class CTNHBlocks {
                 .blockstate((ctx, prov) -> prov.slabBlock(ctx.getEntry(),
                         prov.models().slab(baseName + "_slab", texture, texture, texture),
                         prov.models().slabTop(baseName + "_slab_top", texture, texture, texture),
-                        prov.models().getExistingFile(texture)))
+                        prov.models().cubeAll(baseName, texture)))
                 .tag(TagKey.create(BuiltInRegistries.BLOCK.key(),
                         ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
                 .item(BlockItem::new).build().register();
@@ -484,7 +484,10 @@ public class CTNHBlocks {
         REGISTRATE.block(baseName + "_wall", WallBlock::new)
                 .cnlang(cnPrefix + "墙")
                 .initialProperties(() -> Blocks.IRON_BLOCK)
-                .blockstate((ctx, prov) -> prov.wallBlock(ctx.getEntry(), texture))
+                .blockstate((ctx, prov) -> {
+                    prov.wallBlock(ctx.getEntry(), texture);
+                    prov.models().cubeAll(baseName + "_wall", texture);
+                })
                 .tag(TagKey.create(BuiltInRegistries.BLOCK.key(),
                         ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
                 .item(BlockItem::new).build().register();
@@ -502,7 +505,10 @@ public class CTNHBlocks {
         REGISTRATE.block(baseName + "_fence", FenceBlock::new)
                 .cnlang(cnPrefix + "栅栏")
                 .initialProperties(() -> Blocks.IRON_BLOCK)
-                .blockstate((ctx, prov) -> prov.fenceBlock(ctx.getEntry(), texture))
+                .blockstate((ctx, prov) -> {
+                    prov.fenceBlock(ctx.getEntry(), texture);
+                    prov.models().cubeAll(baseName + "_fence", texture);
+                })
                 .tag(TagKey.create(BuiltInRegistries.BLOCK.key(),
                         ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
                 .item(BlockItem::new).build().register();

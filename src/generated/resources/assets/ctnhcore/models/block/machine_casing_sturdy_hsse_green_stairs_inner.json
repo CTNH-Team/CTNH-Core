@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "ctnhcore:block/machine_casing_sturdy_hsse_green",
+    "side": "ctnhcore:block/machine_casing_sturdy_hsse_green",
+    "top": "ctnhcore:block/machine_casing_sturdy_hsse_green"
+  }
+}

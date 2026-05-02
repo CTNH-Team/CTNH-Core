@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ctnhcore:block/machine_casing_sturdy_hsse_green_slab"
+    },
+    "type=double": {
+      "model": "ctnhcore:block/machine_casing_sturdy_hsse_green"
+    },
+    "type=top": {
+      "model": "ctnhcore:block/machine_casing_sturdy_hsse_green_slab_top"
+    }
+  }
+}
