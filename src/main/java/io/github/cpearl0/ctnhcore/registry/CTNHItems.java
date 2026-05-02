@@ -339,6 +339,92 @@ public class CTNHItems {
                 .onRegister(attach(new CoverPlaceBehavior(CREATIVE_ENERGY_COVER_DEF),
                         new TooltipBehavior(lines -> CREATIVE_TOOLTIPS.accept(ItemStack.EMPTY, lines))))
                 .register();
+
+        HIGH_QUALITY_SOLID_FUEL = REGISTRATE
+                .item("high_quality_solid_fuel", Item::new)
+                .cnlang("高品质固体燃料")
+                .lang("High Quality Solid Fuel")
+                .register();
+        THERMOMETER_CASE = REGISTRATE
+                .item("thermometer_case", Item::new)
+                .cnlang("温度计外壳")
+                .lang("Thermometer Case")
+                .register();
+        SPACE_FABRIC = REGISTRATE
+                .item("space_fabric", Item::new)
+                .cnlang("太空织物")
+                .lang("Space Fabric")
+                .register();
+        TEMPERATURE_KEEPING_DEVICE = REGISTRATE
+                .item("temperature_keeping_device", Item::new)
+                .cnlang("保温装置")
+                .lang("Temperature Keeping Device")
+                .register();
+        ECHO_CIRCUIT_BOARD = REGISTRATE
+                .item("echo_circuit_board", Item::new)
+                .cnlang("回响电路板")
+                .lang("Echo Circuit Board")
+                .register();
+        ECHO_PRINTED_CIRCUIT_BOARD = REGISTRATE
+                .item("echo_printed_circuit_board", Item::new)
+                .cnlang("回响印制电路板")
+                .lang("Echo Printed Circuit Board")
+                .register();
+        ECHO_PROCESSOR = REGISTRATE
+                .item("echo_processor", Item::new)
+                .cnlang("回响处理器")
+                .lang("Echo Processor")
+                .register();
+        ECHO_PROCESSOR_ASSEMBLY = REGISTRATE
+                .item("echo_processor_assembly", Item::new)
+                .cnlang("回响处理器装配")
+                .lang("Echo Processor Assembly")
+                .register();
+        ECHO_PROCESSOR_COMPUTER = REGISTRATE
+                .item("echo_processor_computer", Item::new)
+                .cnlang("回响处理器计算机")
+                .lang("Echo Processor Computer")
+                .register();
+        ECHO_PROCESSOR_MAINFRAME = REGISTRATE
+                .item("echo_processor_mainframe", Item::new)
+                .cnlang("回响处理器主机")
+                .lang("Echo Processor Mainframe")
+                .register();
+        BIOLOGICAL_PATCH_TRANSISTOR = REGISTRATE
+                .item("biological_patch_transistor", Item::new)
+                .cnlang("生物贴片晶体管")
+                .lang("Biological Patch Transistor")
+                .register();
+        BIOLOGICAL_PATCH_RESISTOR = REGISTRATE
+                .item("biological_patch_resistor", Item::new)
+                .cnlang("生物贴片电阻")
+                .lang("Biological Patch Resistor")
+                .register();
+        BIOLOGICAL_PATCH_CAPACITOR = REGISTRATE
+                .item("biological_patch_capacitor", Item::new)
+                .cnlang("生物贴片电容器")
+                .lang("Biological Patch Capacitor")
+                .register();
+        BIOLOGICAL_PATCH_DIODE = REGISTRATE
+                .item("biological_patch_diode", Item::new)
+                .cnlang("生物贴片二极管")
+                .lang("Biological Patch Diode")
+                .register();
+        BIOLOGICAL_PATCH_INDUCTOR = REGISTRATE
+                .item("biological_patch_inductor", Item::new)
+                .cnlang("生物贴片电感器")
+                .lang("Biological Patch Inductor")
+                .register();
+        SCP_500_BASE = REGISTRATE
+                .item("scp_500_base", Item::new)
+                .cnlang("SCP-500基底")
+                .lang("SCP-500 Base")
+                .register();
+        SCP_500 = REGISTRATE
+                .item("scp_500", Item::new)
+                .cnlang("SCP-500")
+                .lang("SCP-500")
+                .register();
     }
 
     public static ItemEntry<Item> GREAT_ASTRONOMY_CIRCUIT_1;
@@ -517,6 +603,24 @@ public class CTNHItems {
 
     public static ItemEntry<ComponentItem> VOLTAGE_COIL_UHV;
     public static ItemEntry<ComponentItem> CREATIVE_ENERGY_COVER_ITEM;
+
+    public static ItemEntry<Item> HIGH_QUALITY_SOLID_FUEL;
+    public static ItemEntry<Item> THERMOMETER_CASE;
+    public static ItemEntry<Item> SPACE_FABRIC;
+    public static ItemEntry<Item> TEMPERATURE_KEEPING_DEVICE;
+    public static ItemEntry<Item> ECHO_CIRCUIT_BOARD;
+    public static ItemEntry<Item> ECHO_PRINTED_CIRCUIT_BOARD;
+    public static ItemEntry<Item> ECHO_PROCESSOR;
+    public static ItemEntry<Item> ECHO_PROCESSOR_ASSEMBLY;
+    public static ItemEntry<Item> ECHO_PROCESSOR_COMPUTER;
+    public static ItemEntry<Item> ECHO_PROCESSOR_MAINFRAME;
+    public static ItemEntry<Item> BIOLOGICAL_PATCH_TRANSISTOR;
+    public static ItemEntry<Item> BIOLOGICAL_PATCH_RESISTOR;
+    public static ItemEntry<Item> BIOLOGICAL_PATCH_CAPACITOR;
+    public static ItemEntry<Item> BIOLOGICAL_PATCH_DIODE;
+    public static ItemEntry<Item> BIOLOGICAL_PATCH_INDUCTOR;
+    public static ItemEntry<Item> SCP_500_BASE;
+    public static ItemEntry<Item> SCP_500;
 
     public static void init() {
         registerItem();
