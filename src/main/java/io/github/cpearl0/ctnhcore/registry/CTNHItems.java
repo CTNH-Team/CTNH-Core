@@ -622,6 +622,88 @@ public class CTNHItems {
     public static ItemEntry<Item> SCP_500_BASE;
     public static ItemEntry<Item> SCP_500;
 
+    // ============ KubeJS 迁移物品 ============
+    public static ItemEntry<Item> UNFINISHED_STEEL_MECHANISM = REGISTRATE
+            .item("unfinished_steel_mechanism", Item::new)
+            .cnlang("未完成的钢铁构件")
+            .lang("Unfinished Steel Mechanism")
+            .register();
+    public static ItemEntry<Item> CRASHED_RICE = REGISTRATE
+            .item("crashed_rice", Item::new)
+            .cnlang("嚼碎的饭团")
+            .lang("Crashed Rice")
+            .register();
+    public static ItemEntry<Item> RUBBER_POWDER = REGISTRATE
+            .item("rubber_powder", Item::new)
+            .cnlang("预处理橡胶粉")
+            .lang("Rubber Powder")
+            .register();
+    public static ItemEntry<Item> CLGS_ELECTRODE = REGISTRATE
+            .item("clgs_electrode", Item::new)
+            .cnlang("clgs阳光复合电级")
+            .lang("CLGS Electrode")
+            .register();
+    public static ItemEntry<Item> THERMOTOLERANT_DISH = REGISTRATE
+            .item("thermotolerant_dish", Item::new)
+            .cnlang("耐热光性培养基")
+            .lang("Thermotolerant Dish")
+            .register();
+    public static ItemEntry<Item> CLGS = REGISTRATE
+            .item("clgs", Item::new)
+            .cnlang("Cu(In, Ga)Se2阳光电池")
+            .lang("CLGS Cell")
+            .register();
+    public static ItemEntry<Item> MEASUREMENT_PV_CELL = REGISTRATE
+            .item("measurement_pv_cell", Item::new)
+            .cnlang("测定光伏电池组")
+            .lang("Measurement PV Cell")
+            .register();
+    public static ItemEntry<Item> PV_DRONE_RESEARCH_1 = REGISTRATE
+            .item("pv_drone_research_1", Item::new)
+            .cnlang("光伏无人机研究I")
+            .lang("PV Drone Research I")
+            .register();
+    public static ItemEntry<Item> PV_DRONE_RESEARCH_2 = REGISTRATE
+            .item("pv_drone_research_2", Item::new)
+            .cnlang("光伏无人机研究II")
+            .lang("PV Drone Research II")
+            .register();
+    public static ItemEntry<Item> PV_DRONE_RESEARCH_3 = REGISTRATE
+            .item("pv_drone_research_3", Item::new)
+            .cnlang("光伏无人机研究III")
+            .lang("PV Drone Research III")
+            .register();
+    public static ItemEntry<Item> GROUT_DUST = REGISTRATE
+            .item("grout_dust", Item::new)
+            .cnlang("砖泥粉")
+            .lang("Grout Dust")
+            .register();
+    public static ItemEntry<Item> HEATPROOF_SMELTING_BRICK_DUST = REGISTRATE
+            .item("heatproof_smelting_brick_dust", Item::new)
+            .cnlang("耐热冶炼砖粉")
+            .lang("Heatproof Smelting Brick Dust")
+            .register();
+    public static ItemEntry<Item> CIRCUIT_BOARD_M_ONE = REGISTRATE
+            .item("circuit_board_m_one", Item::new)
+            .cnlang("中间产物-M1")
+            .lang("Circuit Board M1")
+            .register();
+    public static ItemEntry<Item> CIRCUIT_BOARD_M_TWO = REGISTRATE
+            .item("circuit_board_m_two", Item::new)
+            .cnlang("中间产物-M2")
+            .lang("Circuit Board M2")
+            .register();
+    public static ItemEntry<Item> CIRCUIT_BOARD_M_THREE = REGISTRATE
+            .item("circuit_board_m_three", Item::new)
+            .cnlang("中间产物-M3")
+            .lang("Circuit Board M3")
+            .register();
+    public static ItemEntry<Item> CIRCUIT_BOARD_M_FOUR = REGISTRATE
+            .item("circuit_board_m_four", Item::new)
+            .cnlang("中间产物-M4")
+            .lang("Circuit Board M4")
+            .register();
+
     public static void init() {
         registerItem();
         ChemicalItems.init();
