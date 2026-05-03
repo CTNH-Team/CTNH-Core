@@ -81,13 +81,12 @@ public class SmashingFactory {
         Selection crushingWheelControl = util.select().fromTo(3, 3, 2, 3, 3, 4);
 
         CTNHPonderSceneBuilder scene = new CTNHPonderSceneBuilder(builder);
-        scene.title("smashing_factory_common", "");
+        scene.title("smashing_factory_common");
         scene.init5x5(util);
         scene.setSceneOffsetY(-1);
         scene.idle(10);
         scene.world().showSection(mainBlock, Direction.DOWN);
-        scene.overlay().showText(60)
-                .text("")
+        scene.showText(60)
                 .pointAt(mainBlockVec)
                 .attachKeyFrame();
         scene.idle(60);
@@ -103,13 +102,12 @@ public class SmashingFactory {
         crushingWheelLinks[0] = scene.world().showIndependentSection(crushingWheelLeft, Direction.DOWN);
         crushingWheelLinks[1] = scene.world().showIndependentSection(crushingWheelRight, Direction.DOWN);
 
-        scene.overlay().showText(40)
-                .text("")
+        scene.showText(40)
                 .attachKeyFrame();
         scene.idle(60);
         scene.addKeyframe();
-        scene.overlay().showText(100)
-                .text("");
+        scene.showText(100)
+                .attachKeyFrame();
         scene.idle(40);
         Selection allCrushingWheels = crushingWheelLeft.add(crushingWheelRight);
         scene.world().replaceBlocks(allCrushingWheels, Blocks.AIR.defaultBlockState(), true);
@@ -118,16 +116,15 @@ public class SmashingFactory {
         scene.overlay().showOutline(PonderPalette.RED, "", allCrushingWheels, 60);
         scene.idle(100);
         scene.addKeyframe();
-        scene.overlay().showText(80)
-                .text("");
+        scene.showText(80)
+                .attachKeyFrame();
         BlockState crushingWheelZ = AllBlocks.CRUSHING_WHEEL.get().defaultBlockState()
                 .setValue(BlockStateProperties.AXIS, Direction.Axis.Z);
         scene.world().setBlocks(crushingWheelLeft, crushingWheelZ, true);
         scene.world().setBlocks(crushingWheelRight, crushingWheelZ, true);
         scene.world().replaceBlocks(crushingWheelControl, Blocks.AIR.defaultBlockState(), false);
         scene.idle(100);
-        scene.overlay().showText(80)
-                .text("")
+        scene.showText(80)
                 .pointAt(util.vector().blockSurface(util.grid().at(3, 1, 2), Direction.WEST))
                 .attachKeyFrame();
         scene.world().setKineticSpeed(util.select().position(3, 1, 2), 128);
@@ -138,20 +135,17 @@ public class SmashingFactory {
         BlockPos kineticInputBoxPos = util.grid().at(4, 2, 1);
         scene.world().setBlock(kineticInputBoxPos, CTPPMachines.KINETIC_INPUT_BOX[GTValues.MV].defaultBlockState(),
                 true);
-        scene.overlay().showText(80)
-                .text("")
+        scene.showText(80)
                 .pointAt(util.vector().blockSurface(util.grid().at(5, 1, 2), Direction.WEST))
                 .attachKeyFrame();
         scene.idle(100);
         scene.world().setBlocks(util.select().position(3, 3, 1),
                 CTPPMachines.MECHANICAL_UPGRADE_BUS.defaultBlockState(), true);
-        scene.overlay().showText(80)
-                .text("")
+        scene.showText(80)
                 .pointAt(util.vector().blockSurface(util.grid().at(4, 3, 1), Direction.WEST))
                 .attachKeyFrame();
         scene.idle(100);
-        scene.overlay().showText(80)
-                .text("")
+        scene.showText(80)
                 .pointAt(util.vector().blockSurface(util.grid().at(4, 1, 2), Direction.WEST))
                 .attachKeyFrame();
         scene.markAsFinished();

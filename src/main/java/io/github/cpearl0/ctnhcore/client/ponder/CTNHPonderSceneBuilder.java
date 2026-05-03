@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.client.ponder;
 
+import net.createmod.ponder.api.element.TextElementBuilder;
 import net.createmod.ponder.api.scene.SceneBuilder;
 import net.createmod.ponder.api.scene.SceneBuildingUtil;
 import net.minecraft.core.Direction;
@@ -46,5 +47,13 @@ public class CTNHPonderSceneBuilder extends CreateSceneBuilder {
         this.idle(time);
         this.rotateCameraY(90);
         this.idle(time);
+    }
+
+    public TextElementBuilder showText(int duration) {
+        return overlay().showText(duration).text("");
+    }
+
+    public void title(String sceneId) {
+        title(sceneId, "");
     }
 }

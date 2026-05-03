@@ -85,14 +85,14 @@ public class Meadow {
         Vec3 mainBlockVec = util.vector().blockSurface(util.grid().at(6, 1, 1), Direction.WEST);
 
         CTNHPonderSceneBuilder scene = new CTNHPonderSceneBuilder(builder);
-        scene.title("meadow_common", "");
+        scene.title("meadow_common");
         scene.initAll(util);
         scene.setSceneOffsetY(10);
 
         scene.world().setKineticSpeed(util.select().position(5, 1, 1), 0);
 
         scene.world().showSection(mainBlock, Direction.DOWN);
-        scene.overlay().showText(40)
+        scene.showText(40)
                 .text("")
                 .pointAt(util.vector().blockSurface(util.grid().at(6, 2, 2), Direction.WEST))
                 .attachKeyFrame();
@@ -101,7 +101,7 @@ public class Meadow {
                 .rightClick()
                 .withItem(GTItems.TERMINAL.asStack())
                 .whileSneaking();
-        scene.overlay().showText(40)
+        scene.showText(40)
                 .text("")
                 .pointAt(util.vector().blockSurface(util.grid().at(6, 2, 1), Direction.WEST))
                 .attachKeyFrame();
@@ -109,24 +109,24 @@ public class Meadow {
         scene.world().showSection(util.select().fromTo(1, 1, 1, 11, 7, 11), Direction.DOWN);
         scene.idle(60);
         scene.overlay().showOutline(PonderPalette.RED, "", util.select().fromTo(4, 1, 6, 2, 1, 2), 40);
-        scene.overlay().showText(40)
+        scene.showText(40)
                 .text("")
                 .pointAt(util.vector().blockSurface(util.grid().at(2, 5, 1), Direction.WEST))
                 .attachKeyFrame();
         scene.idle(60);
         scene.overlay().showOutline(PonderPalette.RED, "", util.select().fromTo(4, 1, 1, 3, 1, 1), 40);
-        scene.overlay().showText(40)
+        scene.showText(40)
                 .text("")
                 .pointAt(util.vector().blockSurface(util.grid().at(3, 2, 1), Direction.WEST))
                 .attachKeyFrame();
         scene.idle(60);
-        scene.overlay().showText(40)
+        scene.showText(40)
                 .text("")
                 .pointAt(util.vector().blockSurface(util.grid().at(6, 1, 1), Direction.WEST))
                 .attachKeyFrame();
         scene.world().setKineticSpeed(util.select().position(5, 1, 1), 128);
         scene.idle(60);
-        scene.overlay().showText(60)
+        scene.showText(60)
                 .text("")
                 .pointAt(util.vector().blockSurface(util.grid().at(5, 1, 5), Direction.WEST))
                 .attachKeyFrame();
@@ -160,38 +160,32 @@ public class Meadow {
         scene.idle(10);
         scene.idle(60);
         scene.overlay().showOutline(PonderPalette.RED, "", util.select().fromTo(3, 2, 5, 2, 3, 4), 30);
-        scene.overlay().showText(30)
-                .text("")
+        scene.showText(30)
                 .pointAt(util.vector().blockSurface(util.grid().at(3, 3, 5), Direction.WEST))
                 .attachKeyFrame();
         scene.idle(40);
         scene.overlay().showOutline(PonderPalette.RED, "", util.select().fromTo(5, 2, 5, 4, 3, 4), 30);
-        scene.overlay().showText(30)
-                .text("")
+        scene.showText(30)
                 .pointAt(util.vector().blockSurface(util.grid().at(5, 3, 5), Direction.WEST))
                 .attachKeyFrame();
         scene.idle(40);
         scene.overlay().showOutline(PonderPalette.RED, "", util.select().fromTo(7, 2, 5, 6, 3, 4), 30);
-        scene.overlay().showText(30)
-                .text("")
+        scene.showText(30)
                 .pointAt(util.vector().blockSurface(util.grid().at(7, 3, 5), Direction.WEST))
                 .attachKeyFrame();
         scene.idle(40);
         scene.overlay().showOutline(PonderPalette.RED, "", util.select().fromTo(9, 2, 5, 8, 3, 4), 30);
-        scene.overlay().showText(30)
-                .text("")
+        scene.showText(30)
                 .pointAt(util.vector().blockSurface(util.grid().at(9, 3, 5), Direction.WEST))
                 .attachKeyFrame();
         scene.idle(40);
         scene.overlay().showOutline(PonderPalette.RED, "", util.select().fromTo(9, 2, 5, 2, 3, 4), 60);
-        scene.overlay().showText(60)
-                .text("")
+        scene.showText(60)
                 .pointAt(util.vector().blockSurface(util.grid().at(3, 3, 5), Direction.WEST))
                 .attachKeyFrame();
         scene.idle(60);
         scene.world().showSection(util.select().fromTo(4, 1, 0, 3, 1, 0), Direction.DOWN);
-        scene.overlay().showText(40)
-                .text("")
+        scene.showText(40)
                 .pointAt(util.vector().blockSurface(util.grid().at(2, 1, 1), Direction.WEST))
                 .attachKeyFrame();
         scene.markAsFinished();

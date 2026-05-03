@@ -72,7 +72,7 @@ public class CarbonBrushes {
         Selection magnet3 = util.select().fromTo(1, 4, 1, 1, 2, 8);
         Selection magnet4 = util.select().fromTo(5, 2, 1, 5, 4, 8);
         Selection allMagnets = magnet1.add(magnet2).add(magnet3).add(magnet4);
-        scene.title("carbon_brushes", "");
+        scene.title("carbon_brushes");
         scene.configureBasePlate(0, 0, 7);
         scene.scaleSceneView(0.75f);
         scene.setSceneOffsetY(-1);
@@ -81,15 +81,13 @@ public class CarbonBrushes {
         scene.world().showSection(util.select().layer(0), Direction.NORTH);
         scene.idle(10);
         scene.world().showSection(util.select().position(3, 3, 0), Direction.NORTH);
-        scene.overlay().showText(60)
-                .text("")
+        scene.showText(60)
                 .pointAt(util.vector().blockSurface(util.grid().at(3, 3, 0), Direction.WEST))
                 .attachKeyFrame();
         scene.idle(70);
         scene.world().showSection(util.select().fromTo(3, 3, 1, 3, 3, 1), Direction.NORTH);
         scene.idle(10);
-        scene.overlay().showText(60)
-                .text("")
+        scene.showText(60)
                 .pointAt(util.vector().blockSurface(util.grid().at(2, 3, 1), Direction.WEST))
                 .attachKeyFrame();
         scene.world().setKineticSpeed(util.select().position(3, 3, 0), 64);
@@ -97,48 +95,41 @@ public class CarbonBrushes {
         scene.idle(70);
         scene.world().showSection(util.select().position(3, 5, 1), Direction.NORTH);
         scene.idle(10);
-        scene.overlay().showText(60)
-                .text("")
+        scene.showText(60)
                 .pointAt(util.vector().blockSurface(util.grid().at(3, 5, 1), Direction.DOWN))
                 .attachKeyFrame();
         scene.idle(70);
         scene.world().showSection(util.select().position(2, 3, 0), Direction.DOWN);
         scene.world().showSection(util.select().position(2, 2, 0), Direction.EAST);
         scene.idle(10);
-        scene.overlay().showText(60)
-                .text("")
+        scene.showText(60)
                 .pointAt(util.vector().blockSurface(util.grid().at(3, 2, 1), Direction.WEST))
                 .attachKeyFrame();
 
         scene.idle(70);
-        scene.overlay().showText(60)
-                .text("")
+        scene.showText(60)
                 .pointAt(util.vector().blockSurface(util.grid().at(2, 5, 1), Direction.WEST))
                 .attachKeyFrame();
         scene.idle(10);
         scene.world().showSection(util.select().fromTo(1, 5, 1, 5, 1, 1), Direction.NORTH);
         scene.idle(70);
-        scene.overlay().showText(60)
-                .text("")
+        scene.showText(60)
                 .attachKeyFrame();
         scene.idle(10);
         scene.world().showSection(util.select().fromTo(1, 5, 2, 5, 1, 9), Direction.NORTH);
         scene.idle(70);
-        scene.overlay().showText(60)
-                .text("")
+        scene.showText(60)
                 .pointAt(util.vector().blockSurface(util.grid().at(2, 5, 1), Direction.WEST))
                 .attachKeyFrame();
         scene.idle(60);
-        scene.overlay().showText(60)
-                .text("")
+        scene.showText(60)
                 .pointAt(util.vector().blockSurface(util.grid().at(4, 3, 0), Direction.WEST))
                 .attachKeyFrame();
-        scene.overlay().showText(20);
+        scene.showText(20);
         scene.world().setKineticSpeed(util.select().position(3, 3, 0), 128);
         scene.world().setKineticSpeed(util.select().fromTo(3, 3, 1, 3, 3, 8), 128);
         scene.idle(70);
-        scene.overlay().showText(100)
-                .text("")
+        scene.showText(100)
                 .attachKeyFrame();
         scene.idle(20);
         BlockState redstoneMagnet = CNABlocks.REDSTONE_MAGNET.getDefaultState();

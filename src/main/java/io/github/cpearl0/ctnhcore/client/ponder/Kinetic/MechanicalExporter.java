@@ -50,31 +50,28 @@ public class MechanicalExporter {
         ItemStack goldenExporterManifests = new ItemStack(goldenExporterManifest);
 
         CTNHPonderSceneBuilder scene = new CTNHPonderSceneBuilder(builder);
-        scene.title("mechanical_exporter_common", "");
+        scene.title("mechanical_exporter_common");
         scene.setSceneOffsetY(-1);
         scene.idle(10);
 
         scene.world().showSection(util.select().layer(0), Direction.NORTH);
         scene.idle(10);
 
-        scene.overlay().showText(50)
-                .text("")
+        scene.showText(50)
                 .pointAt(mainBlockTextVec)
                 .attachKeyFrame();
         scene.idle(20);
         scene.world().showSection(util.select().position(2, 1, 2), Direction.NORTH);
         scene.idle(40);
 
-        scene.overlay().showText(50)
-                .text("")
+        scene.showText(50)
                 .pointAt(mainBlockTextVec)
                 .attachKeyFrame();
         scene.overlay().showControls(inputItemsVec, Pointing.DOWN, 40)
                 .withItem(goldenExporterManifests);
         scene.idle(60);
 
-        scene.overlay().showText(50)
-                .text("")
+        scene.showText(50)
                 .pointAt(mainBlockTextVec)
                 .attachKeyFrame();
         scene.idle(20);
@@ -82,8 +79,7 @@ public class MechanicalExporter {
         scene.world().setKineticSpeed(util.select().fromTo(2, 1, 3, 1, 1, 3), 128);
         scene.idle(60);
 
-        scene.overlay().showText(60)
-                .text("")
+        scene.showText(60)
                 .pointAt(mainBlockTextVec)
                 .attachKeyFrame();
         scene.idle(60);
