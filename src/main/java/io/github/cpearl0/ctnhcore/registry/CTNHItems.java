@@ -53,45 +53,6 @@ public class CTNHItems {
     static {
         REGISTRATE.creativeModeTab(() -> CTNHCreativeModeTabs.ITEM);
     }
-    @CN("§7用于制作T1重型合金板")
-    @EN("§7Used for making Heavy Alloy Plate T1")
-    static Lang heavy_ingot_t1;
-    @CN("§7用于制作T2重型合金板")
-    @EN("§7Used for making Heavy Alloy Plate T2")
-    static Lang heavy_ingot_t2;
-    @CN("§7用于制作T3重型合金板")
-    @EN("§7Used for making Heavy Alloy Plate T3")
-    static Lang heavy_ingot_t3;
-    @CN("§7用于制作T4重型合金板")
-    @EN("§7Used for making Heavy Alloy Plate T4")
-    static Lang heavy_ingot_t4;
-    @CN("§71阶")
-    @EN("§7T1")
-    static Lang heavy_plate_t1;
-    @CN("§72阶")
-    @EN("§7T2")
-    static Lang heavy_plate_t2;
-    @CN("§73阶")
-    @EN("§7T3")
-    static Lang heavy_plate_t3;
-    @CN("§74阶")
-    @EN("§7T4")
-    static Lang heavy_plate_t4;
-    @CN("§7用于制作1阶火箭")
-    @EN("§7Used for making Rocket T1")
-    static Lang chip_t1;
-    @CN("§7用于制作2阶火箭")
-    @EN("§7Used for making Rocket T2")
-    static Lang chip_t2;
-    @CN("§7用于制作3阶火箭")
-    @EN("§7Used for making Rocket T3")
-    static Lang chip_t3;
-    @CN("§7用于制作4阶火箭")
-    @EN("§7Used for making Rocket T4")
-    static Lang chip_t4;
-    @CN("§7中子活化器在速度不达标时运行配方会产生废料")
-    @EN("§7Neutron Activator will produce waste when the speed is insufficient")
-    static Lang radioactive_waste;
 
     private static void registerGeneralCircuits() {
         String[] tierNames = { "ULV", "LV", "MV", "HV", "EV", "IV", "LuV", "ZPM", "UV", "UHV", "UEV", "UIV", "UXV",
@@ -106,483 +67,51 @@ public class CTNHItems {
         }
     }
 
-    public static void registerItem() {
-        GREAT_ASTRONOMY_CIRCUIT_1 = REGISTRATE
-                .item("great_astronomy_circuit_1", Item::new)
-                .cnlang("完善的一阶航天数据芯片")
-                .lang("Great Astronomy Circuit I")
-                .register();
-        SIMPLE_NUTRITIOUS_MEAL = REGISTRATE
-                .item("simple_nutritious_meal", ComponentItem::create)
-                .cnlang("简易营养餐")
-                .lang("Simple Nutritious meal")
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.translatable("ctnh.simple_nutritious_meal.tooltip.1")
-                            .withStyle(ChatFormatting.GRAY));
-                })))
-                .register();
-        ECOLOGICAL_STAR = REGISTRATE
-                .item("ecological_star", ComponentItem::create)
-                .cnlang("生态之星")
-                .lang("Ecological Star")
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.translatable("item.ctnh.ecological_star.desc").withStyle(ChatFormatting.GREEN));
-                })))
-                .register();
-        SCULK_CELL = REGISTRATE
-                .item("sculk_cell", ComponentItem::create)
-                .cnlang("幽匿干细胞")
-                .lang("Sculk Cell")
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.translatable("item.sculk_cell.desc").withStyle(ChatFormatting.DARK_GRAY));
-                })))
-                .register();
-        ANIMAL_EXCRETA = REGISTRATE
-                .item("animal_excreta", Item::new)
-                .cnlang("动物排泄物")
-                .lang("Animal Excreta")
-                .register();
-        TUMOR = REGISTRATE
-                .item("tumor", Item::new)
-                .cnlang("肿瘤")
-                .lang("Tumor")
-                .register();
-        REFINED_IRON_INGOT = REGISTRATE
-                .item("refined_iron_ingot", Item::new)
-                .cnlang("精炼铁方坯")
-                .lang("Refined Iron Ingot")
-                .register();
-
-        ANTI_INF_MATTER = REGISTRATE
-                .item("anti_inf_matter", ComponentItem::create)
-                .cnlang("§0反无穷聚合体")
-                .lang("§0Anti Inf Matter")
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.translatable("ctnh.anti_inf_matter.1").withStyle(ChatFormatting.BLACK));
-                    list.add(Component.translatable("ctnh.anti_inf_matter.2").withStyle(ChatFormatting.DARK_GRAY));
-                })))
-                .register();
-        TESTING_TERMINAL = REGISTRATE
-                .item("testing_terminal", ComponentItem::create)
-                .cnlang("检测终端")
-                .lang("Test Terminal")
-                .properties(p -> p.stacksTo(1))
-                .onRegister(attach(new TestingTerminalBehavior()))
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.translatable("ctnh.testing_terminal.tooltip.1").withStyle(ChatFormatting.GRAY));
-                    list.add(Component.translatable("ctnh.testing_terminal.tooltip.2"));
-                    list.add(Component.translatable("ctnh.testing_terminal.tooltip.3"));
-                })))
-                .register();
-        ME_ADVANCED_TERMINAL = REGISTRATE
-                .item("me_advanced_terminal",
-                        MEAdvancedTerminalItem::new)
-                .cnlang("GT-MBST-A v7.0.1")
-                .lang("GT-MBST-A v7.0.1")
-                .properties(p -> p.stacksTo(1))
-                .onRegister(attach(new MEAdvancedTerminalBehavior()))
-                // .model((ctx, prov) -> prov.generated(ctx))
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.1"));
-                    list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.2")
-                            .withStyle(ChatFormatting.GRAY));
-                    // list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.3"));
-                })))
-                .register();
-        PV_DRONE_PROTOTYPE = REGISTRATE
-                .item("photovoltaic_drone_prototype", holder -> new IDroneItem(holder, 0, 512, 16, () -> Items.AIR))
-                .cnlang("光伏无人机原型")
-                .lang("pv_drone_prototype")
-                .register();
-        PV_DRONE_TIER1 = REGISTRATE
-                .item("photovoltaic_drone_tier1", holder -> new IDroneItem(holder, 1, 8192 * 2, 64, () -> Items.AIR))
-                .cnlang("标准化光伏无人机")
-                .lang("pv_drone_tier1")
-                .register();
-        PV_DRONE_TIER2 = REGISTRATE
-                .item("photovoltaic_drone_tier2", holder -> new IDroneItem(holder, 2, 32678 * 2, 256, () -> Items.AIR))
-                .cnlang("共振结构化光伏无人机")
-                .lang("pv_drone_tier2")
-                .register();
-        PV_TERMINAL = REGISTRATE
-                .item("pv_terminal", holder -> new ConnectTerminalItem(holder))
-                .cnlang("光伏绑定终端")
-                .lang("pv_terminal")
-                .register();
-        multiblockHelper = REGISTRATE
-                .item("mutiblock_helper", holder -> new MultiblockHelper(holder))
-                .lang("mutiblock_helper")
-                .register();
-        RESEARCH_DATASET = REGISTRATE
-                .item("research_dataset", holder -> new IDataItem(holder))
-                .cnlang("研究数据集")
-                .lang("research_dataset")
-                .register();
-        RESEARCH_DATASET_LIVING_MATERIAL = REGISTRATE
-                .item("research_dataset_lm", holder -> new IDataItem(holder))
-                .cnlang("研究数据集：活体金属")
-                .lang("research_dataset_lm")
-                .register();
-        HEAVY_INGOT_T1 = REGISTRATE
-                .item("heavy_ingot_t1", ComponentItem::create)
-                .cnlang("T1重型锭")
-                .lang("Heavy Alloy Ingot T1")
-                .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_ingot_t1.translate()))))
-                .register();
-        HEAVY_INGOT_T2 = REGISTRATE
-                .item("heavy_ingot_t2", ComponentItem::create)
-                .cnlang("T2重型锭")
-                .lang("Heavy Alloy Ingot T2")
-                .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_ingot_t2.translate()))))
-                .register();
-        HEAVY_INGOT_T3 = REGISTRATE
-                .item("heavy_ingot_t3", ComponentItem::create)
-                .cnlang("T3重型锭")
-                .lang("Heavy Alloy Ingot T3")
-                .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_ingot_t3.translate()))))
-                .register();
-        HEAVY_INGOT_T4 = REGISTRATE
-                .item("heavy_ingot_t4", ComponentItem::create)
-                .cnlang("T4重型锭")
-                .lang("Heavy Alloy Ingot T4")
-                .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_ingot_t4.translate()))))
-                .register();
-        HEAVY_PLATE_T1 = REGISTRATE
-                .item("heavy_plate_t1", ComponentItem::create)
-                .cnlang("T1重型合金板")
-                .lang("Heavy Alloy Plate T1")
-                .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_plate_t1.translate()))))
-                .register();
-        HEAVY_PLATE_T2 = REGISTRATE
-                .item("heavy_plate_t2", ComponentItem::create)
-                .cnlang("T2重型合金板")
-                .lang("Heavy Alloy Plate T2")
-                .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_plate_t2.translate()))))
-                .register();
-        HEAVY_PLATE_T3 = REGISTRATE
-                .item("heavy_plate_t3", ComponentItem::create)
-                .cnlang("T3重型合金板")
-                .lang("Heavy Alloy Plate T3")
-                .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_plate_t3.translate()))))
-                .register();
-        HEAVY_PLATE_T4 = REGISTRATE
-                .item("heavy_plate_t4", ComponentItem::create)
-                .cnlang("T4重型合金板")
-                .lang("Heavy Alloy Plate T4")
-                .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_plate_t4.translate()))))
-                .register();
-        CHIP_T1 = REGISTRATE
-                .item("t1_chip", ComponentItem::create)
-                .cnlang("T1芯片")
-                .lang("Chip T1")
-                .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text -> text.add(chip_t1.translate()))))
-                .register();
-        CHIP_T2 = REGISTRATE
-                .item("t2_chip", ComponentItem::create)
-                .cnlang("T2芯片")
-                .lang("Chip T2")
-                .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text -> text.add(chip_t2.translate()))))
-                .register();
-        CHIP_T3 = REGISTRATE
-                .item("t3_chip", ComponentItem::create)
-                .cnlang("T3芯片")
-                .lang("Chip T3")
-                .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text -> text.add(chip_t3.translate()))))
-                .register();
-        CHIP_T4 = REGISTRATE
-                .item("t4_chip", ComponentItem::create)
-                .cnlang("T4芯片")
-                .lang("Chip T4")
-                .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text -> text.add(chip_t4.translate()))))
-                .register();
-        ADVANCED_RAM_WAFER = REGISTRATE
-                .item("advanced_ram_wafer", ComponentItem::create)
-                .cnlang("进阶RAM晶圆")
-                .lang("Advanced Ram Wafer")
-                .properties(p -> new Item.Properties().rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(
-                            Component.translatable("ctnh.advanced_ram_wafer.tooltip").withStyle(ChatFormatting.YELLOW));
-                })))
-                .register();
-        ADVANCED_RAM_CHIP = REGISTRATE
-                .item("advanced_ram_chip", ComponentItem::create)
-                .cnlang("进阶RAM芯片")
-                .lang("Advanced Ram Chip")
-                .properties(p -> new Item.Properties().rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.translatable("ctnh.advanced_ram_chip.tooltip").withStyle(ChatFormatting.YELLOW));
-                })))
-                .register();
-        PRIMARY_STEW = REGISTRATE
-                .item("primary_stew", ComponentItem::create)
-                .cnlang("初级煲")
-                .lang("Primary Stew")
-                .properties(p -> new Item.Properties().rarity(Rarity.EPIC))
-                .onRegister(attach(new TooltipBehavior(list -> {})))
-                .register();
-        GALAXY_MEATBALL = REGISTRATE
-                .item("galaxy_meatball", ComponentItem::create)
-                .cnlang("银河肉丸")
-                .lang("Galaxy Meatball")
-                .properties(p -> new Item.Properties().rarity(Rarity.EPIC))
-                .onRegister(attach(new TooltipBehavior(list -> {})))
-                .register();
-
-        VOLTAGE_COIL_UHV = REGISTRATE
-                .item("uhv_voltage_coil", ComponentItem::create)
-                .cnlang("极高压线圈")
-                .lang("Ultra High Voltage Coil")
-                .onRegister(materialInfo(new ItemMaterialInfo(new MaterialStack(ADAMANTITE, GTValues.M * 2),
-                        new MaterialStack(SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC,
-                                GTValues.M / 2))))
-                .register();
-
-        RADIOACTIVE_WASTE = REGISTRATE
-                .item("radioactive_waste", ComponentItem::create)
-                .cnlang("放射性废料")
-                .lang("Radioactive Waste")
-                .properties(properties -> properties.rarity(Rarity.UNCOMMON))
-                .onRegister(attach(new TooltipBehavior(text -> text.add(radioactive_waste.translate()))))
-                .register();
-
-        CREATIVE_ENERGY_COVER_ITEM = REGISTRATE
-                .item("creative_energy_cover", ComponentItem::create)
-                .cnlang("创造能源覆盖板")
-                .lang("Creative Energy Cover")
-                .onRegister(attach(new CoverPlaceBehavior(CREATIVE_ENERGY_COVER_DEF),
-                        new TooltipBehavior(lines -> CREATIVE_TOOLTIPS.accept(ItemStack.EMPTY, lines))))
-                .register();
-
-        HIGH_QUALITY_SOLID_FUEL = REGISTRATE
-                .item("high_quality_solid_fuel", ComponentItem::create)
-                .cnlang("高品质固体燃料")
-                .lang("High Quality Solid Fuel")
-                .onRegister(item -> item.burnTime(4800))
-                .register();
-        THERMOMETER_CASE = REGISTRATE
-                .item("thermometer_case", Item::new)
-                .cnlang("温度计外壳")
-                .lang("Thermometer Case")
-                .register();
-        SPACE_FABRIC = REGISTRATE
-                .item("space_fabric", Item::new)
-                .cnlang("太空织物")
-                .lang("Space Fabric")
-                .register();
-        TEMPERATURE_KEEPING_DEVICE = REGISTRATE
-                .item("temperature_keeping_device", Item::new)
-                .cnlang("保温装置")
-                .lang("Temperature Keeping Device")
-                .register();
-        ECHO_CIRCUIT_BOARD = REGISTRATE
-                .item("echo_circuit_board", ComponentItem::create)
-                .cnlang("回响电路板")
-                .lang("Echo Circuit Board")
-                .register();
-        ECHO_PRINTED_CIRCUIT_BOARD = REGISTRATE
-                .item("echo_printed_circuit_board", ComponentItem::create)
-                .cnlang("回响印制电路板")
-                .lang("Echo Printed Circuit Board")
-                .register();
-        ECHO_PROCESSOR = REGISTRATE
-                .item("echo_processor", ComponentItem::create)
-                .cnlang("回响处理器")
-                .lang("Echo Processor")
-                .tag(CustomTags.ZPM_CIRCUITS)
-                .register();
-        ECHO_PROCESSOR_ASSEMBLY = REGISTRATE
-                .item("echo_processor_assembly", ComponentItem::create)
-                .cnlang("回响处理器装配")
-                .lang("Echo Processor Assembly")
-                .tag(CustomTags.UV_CIRCUITS)
-                .register();
-        ECHO_PROCESSOR_COMPUTER = REGISTRATE
-                .item("echo_processor_computer", ComponentItem::create)
-                .cnlang("回响处理器计算机")
-                .lang("Echo Processor Computer")
-                .tag(CustomTags.UHV_CIRCUITS)
-                .register();
-        ECHO_PROCESSOR_MAINFRAME = REGISTRATE
-                .item("echo_processor_mainframe", ComponentItem::create)
-                .cnlang("回响处理器主机")
-                .lang("Echo Processor Mainframe")
-                .tag(CustomTags.UEV_CIRCUITS)
-                .register();
-        BIOLOGICAL_PATCH_TRANSISTOR = REGISTRATE
-                .item("biological_patch_transistor", ComponentItem::create)
-                .cnlang("生物贴片晶体管")
-                .lang("Biological Patch Transistor")
-                .register();
-        BIOLOGICAL_PATCH_RESISTOR = REGISTRATE
-                .item("biological_patch_resistor", ComponentItem::create)
-                .cnlang("生物贴片电阻")
-                .lang("Biological Patch Resistor")
-                .register();
-        BIOLOGICAL_PATCH_CAPACITOR = REGISTRATE
-                .item("biological_patch_capacitor", ComponentItem::create)
-                .cnlang("生物贴片电容器")
-                .lang("Biological Patch Capacitor")
-                .register();
-        BIOLOGICAL_PATCH_DIODE = REGISTRATE
-                .item("biological_patch_diode", ComponentItem::create)
-                .cnlang("生物贴片二极管")
-                .lang("Biological Patch Diode")
-                .register();
-        BIOLOGICAL_PATCH_INDUCTOR = REGISTRATE
-                .item("biological_patch_inductor", ComponentItem::create)
-                .cnlang("生物贴片电感器")
-                .lang("Biological Patch Inductor")
-                .register();
-        SCP_500_BASE = REGISTRATE
-                .item("scp_500_base", ComponentItem::create)
-                .cnlang("SCP-500基底")
-                .lang("SCP-500 Base")
-                .onRegister(item -> item.attachComponents(
-                        new FoodStats(new FoodProperties.Builder()
-                                .alwaysEat()
-                                .fast()
-                                .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 19980, 10), 1.0f)
-                                .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 19980, 3), 1.0f)
-                                .build()),
-                        new IInteractionItem() {
-
-                            @Override
-                            public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
-                                if (!level.isClientSide() && livingEntity instanceof ServerPlayer player) {
-                                    runCommand(player,
-                                            "title @s title {\"text\":\"你在短时间内你将获得强大的恢复能力\",\"color\":\"red\"}");
-                                }
-                                return stack;
-                            }
-                        }))
-                .register();
-        SCP_500 = REGISTRATE
-                .item("scp_500", ComponentItem::create)
-                .cnlang("SCP-500")
-                .lang("SCP-500")
-                .onRegister(item -> item.attachComponents(
-                        new FoodStats(new FoodProperties.Builder()
-                                .alwaysEat()
-                                .fast()
-                                .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 19980, 10), 1.0f)
-                                .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 19980, 3), 1.0f)
-                                .build()),
-                        new IInteractionItem() {
-
-                            @Override
-                            public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
-                                if (!level.isClientSide() && livingEntity instanceof ServerPlayer player) {
-                                    runCommand(player, "medical_condition clear @p");
-                                    runCommand(player, "title @s title {\"text\":\"你的所有疾病已被治愈\",\"color\":\"green\"}");
-                                    runCommand(player,
-                                            "title @s subtitle {\"text\":\"在短时间内你将获得强大的恢复能力\",\"color\":\"red\"}");
-                                }
-                                return stack;
-                            }
-                        }))
-                .register();
-        METALLURGICAL_CATALYST = REGISTRATE
-                .item("metallurgical_catalyst", ComponentItem::create)
-                .cnlang("炼金催化剂")
-                .lang("Metallurgical Catalyst")
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.literal("地狱的猪灵掌握这个技术，尝试与他们交易吧"));
-                })))
-                .register();
-        STONE_PROCESS_CATALYST = REGISTRATE
-                .item("stone_process_catalyst", ComponentItem::create)
-                .cnlang("石头粉处理催化剂")
-                .lang("Stone Process Catalyst")
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.literal("村庄里的石匠掌握这个古老的技术，成为村庄英雄后他就会传授给你"));
-                })))
-                .register();
-        PLATINUM_METAL_CATALYST_SHARD1 = REGISTRATE
-                .item("platinum_metal_catalyst_shard1", ComponentItem::create)
-                .cnlang("铂系金属催化碎片1")
-                .lang("Platinum Metal Catalyst Shard 1")
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.literal("久远的时间使他们变成了水里的宝藏，通过钓鱼获得"));
-                })))
-                .register();
-        PLATINUM_METAL_CATALYST_SHARD2 = REGISTRATE
-                .item("platinum_metal_catalyst_shard2", ComponentItem::create)
-                .cnlang("铂系金属催化碎片2")
-                .lang("Platinum Metal Catalyst Shard 2")
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.literal("深渊里的深潜一组掌握这个技术，尝试与他们交易吧"));
-                })))
-                .register();
-        YHARIM = REGISTRATE
-                .item("yharim", ComponentItem::create)
-                .cnlang("§6圣金源锭")
-                .lang("Yharim Ingot")
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.literal("你必须§6爱护蜜蜂§r才能激发这个锭的真正力量，哦你已经爱过蜜蜂了"));
-                })))
-                .register();
-        STRONGLY_INTERACTING_NEUTRON_REFLECTOR = REGISTRATE
-                .item("strongly_interacting_neutron_reflector", ComponentItem::create)
-                .cnlang("强相互作用力反射板")
-                .lang("Strongly Interacting Neutron Reflector")
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.literal("§7硬度超越水滴"));
-                })))
-                .register();
-        COLORFUL_SOC = REGISTRATE
-                .item("colorful_soc", ComponentItem::create)
-                .cnlang("相变棱晶SOC")
-                .lang("Colorful SOC")
-                .onRegister(attach(new TooltipBehavior(list -> {
-                    list.add(Component.literal("完美的色彩在此流动"));
-                })))
-                .register();
-        ENDER_LIGHT = REGISTRATE
-                .item("ender_light", ComponentItem::create)
-                .cnlang("老灯的蜜汁小汉堡")
-                .lang("Ender Light")
-                .properties(p -> p.rarity(Rarity.RARE))
-                .onRegister(attach(new FoodStats(new FoodProperties.Builder()
-                        .nutrition(20)
-                        .saturationMod(0.5f)
-                        .meat()
-                        .alwaysEat()
-                        .fast()
-                        .effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, 20 * 1800, 0), 1.0f)
-                        .effect(() -> {
-                            var effect = ForgeRegistries.MOB_EFFECTS.getValue(
-                                    ResourceLocation.tryBuild("legendarysurvivaloverhaul", "heat_immunity"));
-                            return effect != null ? new MobEffectInstance(effect, 20 * 1800, 0) : null;
-                        }, 1.0f)
-                        .effect(() -> {
-                            var effect = ForgeRegistries.MOB_EFFECTS.getValue(
-                                    ResourceLocation.tryBuild("legendarysurvivaloverhaul", "cold_immunity"));
-                            return effect != null ? new MobEffectInstance(effect, 20 * 1800, 0) : null;
-                        }, 1.0f)
-                        .build())))
-                .register();
-    }
-
-    public static ItemEntry<Item> GREAT_ASTRONOMY_CIRCUIT_1;
-    public static ItemEntry<ComponentItem> SIMPLE_NUTRITIOUS_MEAL;
-    public static ItemEntry<ComponentItem> ECOLOGICAL_STAR;
-    public static ItemEntry<ComponentItem> SCULK_CELL;
-    public static ItemEntry<Item> ANIMAL_EXCRETA;
-    public static ItemEntry<Item> TUMOR;
-    public static ItemEntry<Item> REFINED_IRON_INGOT;
+    public static ItemEntry<Item> GREAT_ASTRONOMY_CIRCUIT_1 = REGISTRATE
+            .item("great_astronomy_circuit_1", Item::new)
+            .cnlang("完善的一阶航天数据芯片")
+            .lang("Great Astronomy Circuit I")
+            .register();
+    public static ItemEntry<ComponentItem> SIMPLE_NUTRITIOUS_MEAL = REGISTRATE
+            .item("simple_nutritious_meal", ComponentItem::create)
+            .cnlang("简易营养餐")
+            .lang("Simple Nutritious meal")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.simple_nutritious_meal.tooltip.1")
+                        .withStyle(ChatFormatting.GRAY));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> ECOLOGICAL_STAR = REGISTRATE
+            .item("ecological_star", ComponentItem::create)
+            .cnlang("生态之星")
+            .lang("Ecological Star")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("item.ctnh.ecological_star.desc").withStyle(ChatFormatting.GREEN));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> SCULK_CELL = REGISTRATE
+            .item("sculk_cell", ComponentItem::create)
+            .cnlang("幽匿干细胞")
+            .lang("Sculk Cell")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("item.sculk_cell.desc").withStyle(ChatFormatting.DARK_GRAY));
+            })))
+            .register();
+    public static ItemEntry<Item> ANIMAL_EXCRETA = REGISTRATE
+            .item("animal_excreta", Item::new)
+            .cnlang("动物排泄物")
+            .lang("Animal Excreta")
+            .register();
+    public static ItemEntry<Item> TUMOR = REGISTRATE
+            .item("tumor", Item::new)
+            .cnlang("肿瘤")
+            .lang("Tumor")
+            .register();
+    public static ItemEntry<Item> REFINED_IRON_INGOT = REGISTRATE
+            .item("refined_iron_ingot", Item::new)
+            .cnlang("精炼铁方坯")
+            .lang("Refined Iron Ingot")
+            .register();
     public static ItemEntry<Item> BAUXITE_PROCESS_CATALYST = REGISTRATE
             .item("bauxite_process_catalyst", Item::new)
             .cnlang("铝土矿处理催化剂")
@@ -594,22 +123,78 @@ public class CTNHItems {
             .lang("Crystal Catalyst")
             .register();
 
-    public static ItemEntry<ComponentItem> ANTI_INF_MATTER;
-    public static ItemEntry<ComponentItem> TESTING_TERMINAL;
-    public static ItemEntry<MEAdvancedTerminalItem> ME_ADVANCED_TERMINAL;
+    public static ItemEntry<ComponentItem> ANTI_INF_MATTER = REGISTRATE
+            .item("anti_inf_matter", ComponentItem::create)
+            .cnlang("§0反无穷聚合体")
+            .lang("§0Anti Inf Matter")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.anti_inf_matter.1").withStyle(ChatFormatting.BLACK));
+                list.add(Component.translatable("ctnh.anti_inf_matter.2").withStyle(ChatFormatting.DARK_GRAY));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> TESTING_TERMINAL = REGISTRATE
+            .item("testing_terminal", ComponentItem::create)
+            .cnlang("检测终端")
+            .lang("Test Terminal")
+            .properties(p -> p.stacksTo(1))
+            .onRegister(attach(new TestingTerminalBehavior()))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.testing_terminal.tooltip.1").withStyle(ChatFormatting.GRAY));
+                list.add(Component.translatable("ctnh.testing_terminal.tooltip.2"));
+                list.add(Component.translatable("ctnh.testing_terminal.tooltip.3"));
+            })))
+            .register();
+    public static ItemEntry<MEAdvancedTerminalItem> ME_ADVANCED_TERMINAL = REGISTRATE
+            .item("me_advanced_terminal", MEAdvancedTerminalItem::new)
+            .cnlang("GT-MBST-A v7.0.1")
+            .lang("GT-MBST-A v7.0.1")
+            .properties(p -> p.stacksTo(1))
+            .onRegister(attach(new MEAdvancedTerminalBehavior()))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.1"));
+                list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.2").withStyle(ChatFormatting.GRAY));
+            })))
+            .register();
     public static ItemEntry<AstronomyCircuitItem> ASTRONOMY_CIRCUIT_1 = REGISTRATE
             .item("astronomy_circuit_1",
                     properties -> new AstronomyCircuitItem(properties, 1, GREAT_ASTRONOMY_CIRCUIT_1))
             .cnlang("一阶航天数据芯片")
             .lang("Astronomy Circuit I")
             .register();
-    public static ItemEntry<IDroneItem> PV_DRONE_PROTOTYPE;
-    public static ItemEntry<IDroneItem> PV_DRONE_TIER1;
-    public static ItemEntry<IDroneItem> PV_DRONE_TIER2;
-    public static ItemEntry<ConnectTerminalItem> PV_TERMINAL;
-    public static ItemEntry<MultiblockHelper> multiblockHelper;
-    public static ItemEntry<IDataItem> RESEARCH_DATASET;
-    public static ItemEntry<IDataItem> RESEARCH_DATASET_LIVING_MATERIAL;
+    public static ItemEntry<IDroneItem> PV_DRONE_PROTOTYPE = REGISTRATE
+            .item("photovoltaic_drone_prototype", holder -> new IDroneItem(holder, 0, 512, 16, () -> Items.AIR))
+            .cnlang("光伏无人机原型")
+            .lang("pv_drone_prototype")
+            .register();
+    public static ItemEntry<IDroneItem> PV_DRONE_TIER1 = REGISTRATE
+            .item("photovoltaic_drone_tier1", holder -> new IDroneItem(holder, 1, 8192 * 2, 64, () -> Items.AIR))
+            .cnlang("标准化光伏无人机")
+            .lang("pv_drone_tier1")
+            .register();
+    public static ItemEntry<IDroneItem> PV_DRONE_TIER2 = REGISTRATE
+            .item("photovoltaic_drone_tier2", holder -> new IDroneItem(holder, 2, 32678 * 2, 256, () -> Items.AIR))
+            .cnlang("共振结构化光伏无人机")
+            .lang("pv_drone_tier2")
+            .register();
+    public static ItemEntry<ConnectTerminalItem> PV_TERMINAL = REGISTRATE
+            .item("pv_terminal", holder -> new ConnectTerminalItem(holder))
+            .cnlang("光伏绑定终端")
+            .lang("pv_terminal")
+            .register();
+    public static ItemEntry<MultiblockHelper> multiblockHelper = REGISTRATE
+            .item("mutiblock_helper", holder -> new MultiblockHelper(holder))
+            .lang("mutiblock_helper")
+            .register();
+    public static ItemEntry<IDataItem> RESEARCH_DATASET = REGISTRATE
+            .item("research_dataset", holder -> new IDataItem(holder))
+            .cnlang("研究数据集")
+            .lang("research_dataset")
+            .register();
+    public static ItemEntry<IDataItem> RESEARCH_DATASET_LIVING_MATERIAL = REGISTRATE
+            .item("research_dataset_lm", holder -> new IDataItem(holder))
+            .cnlang("研究数据集：活体金属")
+            .lang("research_dataset_lm")
+            .register();
 
     public static ItemEntry<Item> NUCLEAR_WASTE = REGISTRATE
             .item("nuclear_waste", Item::new)
@@ -636,19 +221,140 @@ public class CTNHItems {
             .lang("Tier 1 Rocket Control Program")
             .register();
 
-    public static ItemEntry<ComponentItem> RADIOACTIVE_WASTE;
-    public static ItemEntry<ComponentItem> HEAVY_INGOT_T1;
-    public static ItemEntry<ComponentItem> HEAVY_INGOT_T2;
-    public static ItemEntry<ComponentItem> HEAVY_INGOT_T3;
-    public static ItemEntry<ComponentItem> HEAVY_INGOT_T4;
-    public static ItemEntry<ComponentItem> HEAVY_PLATE_T1;
-    public static ItemEntry<ComponentItem> HEAVY_PLATE_T2;
-    public static ItemEntry<ComponentItem> HEAVY_PLATE_T3;
-    public static ItemEntry<ComponentItem> HEAVY_PLATE_T4;
-    public static ItemEntry<ComponentItem> CHIP_T1;
-    public static ItemEntry<ComponentItem> CHIP_T2;
-    public static ItemEntry<ComponentItem> CHIP_T3;
-    public static ItemEntry<ComponentItem> CHIP_T4;
+    @CN("§7中子活化器在速度不达标时运行配方会产生废料")
+    @EN("§7Neutron Activator will produce waste when the speed is insufficient")
+    static Lang radioactive_waste;
+    public static ItemEntry<ComponentItem> RADIOACTIVE_WASTE = REGISTRATE
+            .item("radioactive_waste", ComponentItem::create)
+            .cnlang("放射性废料")
+            .lang("Radioactive Waste")
+            .properties(properties -> properties.rarity(Rarity.UNCOMMON))
+            .onRegister(attach(new TooltipBehavior(text -> text.add(radioactive_waste.translate()))))
+            .register();
+
+    @CN("§7用于制作T1重型合金板")
+    @EN("§7Used for making Heavy Alloy Plate T1")
+    static Lang heavy_ingot_t1;
+    public static ItemEntry<ComponentItem> HEAVY_INGOT_T1 = REGISTRATE
+            .item("heavy_ingot_t1", ComponentItem::create)
+            .cnlang("T1重型锭")
+            .lang("Heavy Alloy Ingot T1")
+            .properties(properties -> properties.rarity(Rarity.UNCOMMON))
+            .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_ingot_t1.translate()))))
+            .register();
+    @CN("§7用于制作T2重型合金板")
+    @EN("§7Used for making Heavy Alloy Plate T2")
+    static Lang heavy_ingot_t2;
+    public static ItemEntry<ComponentItem> HEAVY_INGOT_T2 = REGISTRATE
+            .item("heavy_ingot_t2", ComponentItem::create)
+            .cnlang("T2重型锭")
+            .lang("Heavy Alloy Ingot T2")
+            .properties(properties -> properties.rarity(Rarity.UNCOMMON))
+            .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_ingot_t2.translate()))))
+            .register();
+    @CN("§7用于制作T3重型合金板")
+    @EN("§7Used for making Heavy Alloy Plate T3")
+    static Lang heavy_ingot_t3;
+    public static ItemEntry<ComponentItem> HEAVY_INGOT_T3 = REGISTRATE
+            .item("heavy_ingot_t3", ComponentItem::create)
+            .cnlang("T3重型锭")
+            .lang("Heavy Alloy Ingot T3")
+            .properties(properties -> properties.rarity(Rarity.UNCOMMON))
+            .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_ingot_t3.translate()))))
+            .register();
+    @CN("§7用于制作T4重型合金板")
+    @EN("§7Used for making Heavy Alloy Plate T4")
+    static Lang heavy_ingot_t4;
+    public static ItemEntry<ComponentItem> HEAVY_INGOT_T4 = REGISTRATE
+            .item("heavy_ingot_t4", ComponentItem::create)
+            .cnlang("T4重型锭")
+            .lang("Heavy Alloy Ingot T4")
+            .properties(properties -> properties.rarity(Rarity.UNCOMMON))
+            .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_ingot_t4.translate()))))
+            .register();
+
+    @CN("§71阶")
+    @EN("§7T1")
+    static Lang heavy_plate_t1;
+    public static ItemEntry<ComponentItem> HEAVY_PLATE_T1 = REGISTRATE
+            .item("heavy_plate_t1", ComponentItem::create)
+            .cnlang("T1重型合金板")
+            .lang("Heavy Alloy Plate T1")
+            .properties(properties -> properties.rarity(Rarity.UNCOMMON))
+            .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_plate_t1.translate()))))
+            .register();
+    @CN("§72阶")
+    @EN("§7T2")
+    static Lang heavy_plate_t2;
+    public static ItemEntry<ComponentItem> HEAVY_PLATE_T2 = REGISTRATE
+            .item("heavy_plate_t2", ComponentItem::create)
+            .cnlang("T2重型合金板")
+            .lang("Heavy Alloy Plate T2")
+            .properties(properties -> properties.rarity(Rarity.UNCOMMON))
+            .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_plate_t2.translate()))))
+            .register();
+    @CN("§73阶")
+    @EN("§7T3")
+    static Lang heavy_plate_t3;
+    public static ItemEntry<ComponentItem> HEAVY_PLATE_T3 = REGISTRATE
+            .item("heavy_plate_t3", ComponentItem::create)
+            .cnlang("T3重型合金板")
+            .lang("Heavy Alloy Plate T3")
+            .properties(properties -> properties.rarity(Rarity.UNCOMMON))
+            .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_plate_t3.translate()))))
+            .register();
+    @CN("§74阶")
+    @EN("§7T4")
+    static Lang heavy_plate_t4;
+    public static ItemEntry<ComponentItem> HEAVY_PLATE_T4 = REGISTRATE
+            .item("heavy_plate_t4", ComponentItem::create)
+            .cnlang("T4重型合金板")
+            .lang("Heavy Alloy Plate T4")
+            .properties(properties -> properties.rarity(Rarity.UNCOMMON))
+            .onRegister(attach(new TooltipBehavior(text -> text.add(heavy_plate_t4.translate()))))
+            .register();
+
+    @CN("§7用于制作1阶火箭")
+    @EN("§7Used for making Rocket T1")
+    static Lang chip_t1;
+    public static ItemEntry<ComponentItem> CHIP_T1 = REGISTRATE
+            .item("t1_chip", ComponentItem::create)
+            .cnlang("T1芯片")
+            .lang("Chip T1")
+            .properties(properties -> properties.rarity(Rarity.UNCOMMON))
+            .onRegister(attach(new TooltipBehavior(text -> text.add(chip_t1.translate()))))
+            .register();
+    @CN("§7用于制作2阶火箭")
+    @EN("§7Used for making Rocket T2")
+    static Lang chip_t2;
+    public static ItemEntry<ComponentItem> CHIP_T2 = REGISTRATE
+            .item("t2_chip", ComponentItem::create)
+            .cnlang("T2芯片")
+            .lang("Chip T2")
+            .properties(properties -> properties.rarity(Rarity.UNCOMMON))
+            .onRegister(attach(new TooltipBehavior(text -> text.add(chip_t2.translate()))))
+            .register();
+    @CN("§7用于制作3阶火箭")
+    @EN("§7Used for making Rocket T3")
+    static Lang chip_t3;
+    public static ItemEntry<ComponentItem> CHIP_T3 = REGISTRATE
+            .item("t3_chip", ComponentItem::create)
+            .cnlang("T3芯片")
+            .lang("Chip T3")
+            .properties(properties -> properties.rarity(Rarity.UNCOMMON))
+            .onRegister(attach(new TooltipBehavior(text -> text.add(chip_t3.translate()))))
+            .register();
+    @CN("§7用于制作4阶火箭")
+    @EN("§7Used for making Rocket T4")
+    static Lang chip_t4;
+    public static ItemEntry<ComponentItem> CHIP_T4 = REGISTRATE
+            .item("t4_chip", ComponentItem::create)
+            .cnlang("T4芯片")
+            .lang("Chip T4")
+            .properties(properties -> properties.rarity(Rarity.UNCOMMON))
+            .onRegister(attach(new TooltipBehavior(text -> text.add(chip_t4.translate()))))
+            .register();
+
     public static ItemEntry<ComponentItem> INVERTER = REGISTRATE
             .item("inverter", ComponentItem::create)
             .cnlang("逆变器")
@@ -740,36 +446,187 @@ public class CTNHItems {
             .properties(properties -> properties.rarity(Rarity.RARE))
             .register();
 
-    public static ItemEntry<ComponentItem> ADVANCED_RAM_WAFER;
-    public static ItemEntry<ComponentItem> ADVANCED_RAM_CHIP;
-    public static ItemEntry<ComponentItem> PRIMARY_STEW;
-    public static ItemEntry<ComponentItem> GALAXY_MEATBALL;
+    public static ItemEntry<ComponentItem> ADVANCED_RAM_WAFER = REGISTRATE
+            .item("advanced_ram_wafer", ComponentItem::create)
+            .cnlang("进阶RAM晶圆")
+            .lang("Advanced Ram Wafer")
+            .properties(p -> new Item.Properties().rarity(Rarity.UNCOMMON))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.advanced_ram_wafer.tooltip").withStyle(ChatFormatting.YELLOW));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> ADVANCED_RAM_CHIP = REGISTRATE
+            .item("advanced_ram_chip", ComponentItem::create)
+            .cnlang("进阶RAM芯片")
+            .lang("Advanced Ram Chip")
+            .properties(p -> new Item.Properties().rarity(Rarity.UNCOMMON))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.advanced_ram_chip.tooltip").withStyle(ChatFormatting.YELLOW));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> PRIMARY_STEW = REGISTRATE
+            .item("primary_stew", ComponentItem::create)
+            .cnlang("初级煲")
+            .lang("Primary Stew")
+            .properties(p -> new Item.Properties().rarity(Rarity.EPIC))
+            .onRegister(attach(new TooltipBehavior(list -> {})))
+            .register();
+    public static ItemEntry<ComponentItem> GALAXY_MEATBALL = REGISTRATE
+            .item("galaxy_meatball", ComponentItem::create)
+            .cnlang("银河肉丸")
+            .lang("Galaxy Meatball")
+            .properties(p -> new Item.Properties().rarity(Rarity.EPIC))
+            .onRegister(attach(new TooltipBehavior(list -> {})))
+            .register();
 
     public static ItemEntry<ReloadItem> RELOAD_ITEM = REGISTRATE
             .item("recipe_reload_item", ReloadItem::new)
             .model(NonNullBiConsumer.noop())
             .register();
 
-    public static ItemEntry<ComponentItem> VOLTAGE_COIL_UHV;
-    public static ItemEntry<ComponentItem> CREATIVE_ENERGY_COVER_ITEM;
+    public static ItemEntry<ComponentItem> VOLTAGE_COIL_UHV = REGISTRATE
+            .item("uhv_voltage_coil", ComponentItem::create)
+            .cnlang("极高压线圈")
+            .lang("Ultra High Voltage Coil")
+            .onRegister(materialInfo(new ItemMaterialInfo(new MaterialStack(ADAMANTITE, GTValues.M * 2),
+                    new MaterialStack(SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC, GTValues.M / 2))))
+            .register();
+    public static ItemEntry<ComponentItem> CREATIVE_ENERGY_COVER_ITEM = REGISTRATE
+            .item("creative_energy_cover", ComponentItem::create)
+            .cnlang("创造能源覆盖板")
+            .lang("Creative Energy Cover")
+            .onRegister(attach(new CoverPlaceBehavior(CREATIVE_ENERGY_COVER_DEF),
+                    new TooltipBehavior(lines -> CREATIVE_TOOLTIPS.accept(ItemStack.EMPTY, lines))))
+            .register();
 
-    public static ItemEntry<ComponentItem> HIGH_QUALITY_SOLID_FUEL;
-    public static ItemEntry<Item> THERMOMETER_CASE;
-    public static ItemEntry<Item> SPACE_FABRIC;
-    public static ItemEntry<Item> TEMPERATURE_KEEPING_DEVICE;
-    public static ItemEntry<ComponentItem> ECHO_CIRCUIT_BOARD;
-    public static ItemEntry<ComponentItem> ECHO_PRINTED_CIRCUIT_BOARD;
-    public static ItemEntry<ComponentItem> ECHO_PROCESSOR;
-    public static ItemEntry<ComponentItem> ECHO_PROCESSOR_ASSEMBLY;
-    public static ItemEntry<ComponentItem> ECHO_PROCESSOR_COMPUTER;
-    public static ItemEntry<ComponentItem> ECHO_PROCESSOR_MAINFRAME;
-    public static ItemEntry<ComponentItem> BIOLOGICAL_PATCH_TRANSISTOR;
-    public static ItemEntry<ComponentItem> BIOLOGICAL_PATCH_RESISTOR;
-    public static ItemEntry<ComponentItem> BIOLOGICAL_PATCH_CAPACITOR;
-    public static ItemEntry<ComponentItem> BIOLOGICAL_PATCH_DIODE;
-    public static ItemEntry<ComponentItem> BIOLOGICAL_PATCH_INDUCTOR;
-    public static ItemEntry<ComponentItem> SCP_500_BASE;
-    public static ItemEntry<ComponentItem> SCP_500;
+    public static ItemEntry<ComponentItem> HIGH_QUALITY_SOLID_FUEL = REGISTRATE
+            .item("high_quality_solid_fuel", ComponentItem::create)
+            .cnlang("高品质固体燃料")
+            .lang("High Quality Solid Fuel")
+            .onRegister(item -> item.burnTime(4800))
+            .register();
+    public static ItemEntry<Item> THERMOMETER_CASE = REGISTRATE
+            .item("thermometer_case", Item::new)
+            .cnlang("温度计外壳")
+            .lang("Thermometer Case")
+            .register();
+    public static ItemEntry<Item> SPACE_FABRIC = REGISTRATE
+            .item("space_fabric", Item::new)
+            .cnlang("太空织物")
+            .lang("Space Fabric")
+            .register();
+    public static ItemEntry<Item> TEMPERATURE_KEEPING_DEVICE = REGISTRATE
+            .item("temperature_keeping_device", Item::new)
+            .cnlang("保温装置")
+            .lang("Temperature Keeping Device")
+            .register();
+    public static ItemEntry<Item> ECHO_CIRCUIT_BOARD = REGISTRATE
+            .item("echo_circuit_board", Item::new)
+            .cnlang("回响电路板")
+            .lang("Echo Circuit Board")
+            .register();
+    public static ItemEntry<Item> ECHO_PRINTED_CIRCUIT_BOARD = REGISTRATE
+            .item("echo_printed_circuit_board", Item::new)
+            .cnlang("回响印制电路板")
+            .lang("Echo Printed Circuit Board")
+            .register();
+    public static ItemEntry<Item> ECHO_PROCESSOR = REGISTRATE
+            .item("echo_processor", Item::new)
+            .cnlang("回响处理器")
+            .lang("Echo Processor")
+            .tag(CustomTags.ZPM_CIRCUITS)
+            .register();
+    public static ItemEntry<Item> ECHO_PROCESSOR_ASSEMBLY = REGISTRATE
+            .item("echo_processor_assembly", Item::new)
+            .cnlang("回响处理器装配")
+            .lang("Echo Processor Assembly")
+            .tag(CustomTags.UV_CIRCUITS)
+            .register();
+    public static ItemEntry<Item> ECHO_PROCESSOR_COMPUTER = REGISTRATE
+            .item("echo_processor_computer", Item::new)
+            .cnlang("回响处理器计算机")
+            .lang("Echo Processor Computer")
+            .tag(CustomTags.UHV_CIRCUITS)
+            .register();
+    public static ItemEntry<Item> ECHO_PROCESSOR_MAINFRAME = REGISTRATE
+            .item("echo_processor_mainframe", Item::new)
+            .cnlang("回响处理器主机")
+            .lang("Echo Processor Mainframe")
+            .tag(CustomTags.UEV_CIRCUITS)
+            .register();
+    public static ItemEntry<Item> BIOLOGICAL_PATCH_TRANSISTOR = REGISTRATE
+            .item("biological_patch_transistor", Item::new)
+            .cnlang("生物贴片晶体管")
+            .lang("Biological Patch Transistor")
+            .register();
+    public static ItemEntry<Item> BIOLOGICAL_PATCH_RESISTOR = REGISTRATE
+            .item("biological_patch_resistor", Item::new)
+            .cnlang("生物贴片电阻")
+            .lang("Biological Patch Resistor")
+            .register();
+    public static ItemEntry<Item> BIOLOGICAL_PATCH_CAPACITOR = REGISTRATE
+            .item("biological_patch_capacitor", Item::new)
+            .cnlang("生物贴片电容器")
+            .lang("Biological Patch Capacitor")
+            .register();
+    public static ItemEntry<Item> BIOLOGICAL_PATCH_DIODE = REGISTRATE
+            .item("biological_patch_diode", Item::new)
+            .cnlang("生物贴片二极管")
+            .lang("Biological Patch Diode")
+            .register();
+    public static ItemEntry<Item> BIOLOGICAL_PATCH_INDUCTOR = REGISTRATE
+            .item("biological_patch_inductor", Item::new)
+            .cnlang("生物贴片电感器")
+            .lang("Biological Patch Inductor")
+            .register();
+    public static ItemEntry<ComponentItem> SCP_500_BASE = REGISTRATE
+            .item("scp_500_base", ComponentItem::create)
+            .cnlang("SCP-500基底")
+            .lang("SCP-500 Base")
+            .onRegister(item -> item.attachComponents(
+                    new FoodStats(new FoodProperties.Builder()
+                            .alwaysEat()
+                            .fast()
+                            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 19980, 10), 1.0f)
+                            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 19980, 3), 1.0f)
+                            .build()),
+                    new IInteractionItem() {
+
+                        @Override
+                        public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
+                            if (!level.isClientSide() && livingEntity instanceof ServerPlayer player) {
+                                runCommand(player,
+                                        "title @s title {\"text\":\"你在短时间内你将获得强大的恢复能力\",\"color\":\"red\"}");
+                            }
+                            return stack;
+                        }
+                    }))
+            .register();
+    public static ItemEntry<ComponentItem> SCP_500 = REGISTRATE
+            .item("scp_500", ComponentItem::create)
+            .cnlang("SCP-500")
+            .lang("SCP-500")
+            .onRegister(item -> item.attachComponents(
+                    new FoodStats(new FoodProperties.Builder()
+                            .alwaysEat()
+                            .fast()
+                            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 19980, 10), 1.0f)
+                            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 19980, 3), 1.0f)
+                            .build()),
+                    new IInteractionItem() {
+
+                        @Override
+                        public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
+                            if (!level.isClientSide() && livingEntity instanceof ServerPlayer player) {
+                                runCommand(player, "medical_condition clear @p");
+                                runCommand(player, "title @s title {\"text\":\"你的所有疾病已被治愈\",\"color\":\"green\"}");
+                                runCommand(player,
+                                        "title @s subtitle {\"text\":\"在短时间内你将获得强大的恢复能力\",\"color\":\"red\"}");
+                            }
+                            return stack;
+                        }
+                    }))
+            .register();
 
     public static ItemEntry<Item> UNFINISHED_STEEL_MECHANISM = REGISTRATE
             .item("unfinished_steel_mechanism", Item::new)
@@ -852,13 +709,48 @@ public class CTNHItems {
             .lang("Circuit Board M4")
             .register();
 
-    public static ItemEntry<ComponentItem> METALLURGICAL_CATALYST;
-    public static ItemEntry<ComponentItem> STONE_PROCESS_CATALYST;
-    public static ItemEntry<ComponentItem> PLATINUM_METAL_CATALYST_SHARD1;
-    public static ItemEntry<ComponentItem> PLATINUM_METAL_CATALYST_SHARD2;
-    public static ItemEntry<ComponentItem> YHARIM;
-    public static ItemEntry<ComponentItem> STRONGLY_INTERACTING_NEUTRON_REFLECTOR;
-    public static ItemEntry<ComponentItem> COLORFUL_SOC;
+    public static ItemEntry<ComponentItem> METALLURGICAL_CATALYST = REGISTRATE
+            .item("metallurgical_catalyst", ComponentItem::create)
+            .cnlang("炼金催化剂")
+            .lang("Metallurgical Catalyst")
+            .onRegister(attach(new TooltipBehavior(list -> list.add(Component.literal("地狱的猪灵掌握这个技术，尝试与他们交易吧")))))
+            .register();
+    public static ItemEntry<ComponentItem> STONE_PROCESS_CATALYST = REGISTRATE
+            .item("stone_process_catalyst", ComponentItem::create)
+            .cnlang("石头粉处理催化剂")
+            .lang("Stone Process Catalyst")
+            .onRegister(attach(new TooltipBehavior(list -> list.add(Component.literal("村庄里的石匠掌握这个古老的技术，成为村庄英雄后他就会传授给你")))))
+            .register();
+    public static ItemEntry<ComponentItem> PLATINUM_METAL_CATALYST_SHARD1 = REGISTRATE
+            .item("platinum_metal_catalyst_shard1", ComponentItem::create)
+            .cnlang("铂系金属催化碎片1")
+            .lang("Platinum Metal Catalyst Shard 1")
+            .onRegister(attach(new TooltipBehavior(list -> list.add(Component.literal("久远的时间使他们变成了水里的宝藏，通过钓鱼获得")))))
+            .register();
+    public static ItemEntry<ComponentItem> PLATINUM_METAL_CATALYST_SHARD2 = REGISTRATE
+            .item("platinum_metal_catalyst_shard2", ComponentItem::create)
+            .cnlang("铂系金属催化碎片2")
+            .lang("Platinum Metal Catalyst Shard 2")
+            .onRegister(attach(new TooltipBehavior(list -> list.add(Component.literal("深渊里的深潜一组掌握这个技术，尝试与他们交易吧")))))
+            .register();
+    public static ItemEntry<ComponentItem> YHARIM = REGISTRATE
+            .item("yharim", ComponentItem::create)
+            .cnlang("§6圣金源锭")
+            .lang("Yharim Ingot")
+            .onRegister(attach(new TooltipBehavior(list -> list.add(Component.literal("你必须§6爱护蜜蜂§r才能激发这个锭的真正力量，哦你已经爱过蜜蜂了")))))
+            .register();
+    public static ItemEntry<ComponentItem> STRONGLY_INTERACTING_NEUTRON_REFLECTOR = REGISTRATE
+            .item("strongly_interacting_neutron_reflector", ComponentItem::create)
+            .cnlang("强相互作用力反射板")
+            .lang("Strongly Interacting Neutron Reflector")
+            .onRegister(attach(new TooltipBehavior(list -> list.add(Component.literal("§7硬度超越水滴")))))
+            .register();
+    public static ItemEntry<ComponentItem> COLORFUL_SOC = REGISTRATE
+            .item("colorful_soc", ComponentItem::create)
+            .cnlang("相变棱晶SOC")
+            .lang("Colorful SOC")
+            .onRegister(attach(new TooltipBehavior(list -> list.add(Component.literal("完美的色彩在此流动")))))
+            .register();
 
     public static ItemEntry<ComponentItem> DOUBLE_BLAZE_CAKE = REGISTRATE
             .item("double_blaze_cake", ComponentItem::create)
@@ -900,7 +792,30 @@ public class CTNHItems {
             .lang("Ark of Homo")
             .properties(p -> p.rarity(Rarity.RARE).stacksTo(1))
             .register();
-    public static ItemEntry<ComponentItem> ENDER_LIGHT;
+    public static ItemEntry<ComponentItem> ENDER_LIGHT = REGISTRATE
+            .item("ender_light", ComponentItem::create)
+            .cnlang("老灯的蜜汁小汉堡")
+            .lang("Ender Light")
+            .properties(p -> p.rarity(Rarity.RARE))
+            .onRegister(attach(new FoodStats(new FoodProperties.Builder()
+                    .nutrition(20)
+                    .saturationMod(0.5f)
+                    .meat()
+                    .alwaysEat()
+                    .fast()
+                    .effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, 20 * 1800, 0), 1.0f)
+                    .effect(() -> {
+                        var effect = ForgeRegistries.MOB_EFFECTS.getValue(
+                                ResourceLocation.tryBuild("legendarysurvivaloverhaul", "heat_immunity"));
+                        return effect != null ? new MobEffectInstance(effect, 20 * 1800, 0) : null;
+                    }, 1.0f)
+                    .effect(() -> {
+                        var effect = ForgeRegistries.MOB_EFFECTS.getValue(
+                                ResourceLocation.tryBuild("legendarysurvivaloverhaul", "cold_immunity"));
+                        return effect != null ? new MobEffectInstance(effect, 20 * 1800, 0) : null;
+                    }, 1.0f)
+                    .build())))
+            .register();
 
     private static void runCommand(ServerPlayer player, String command) {
         var server = player.getServer();
@@ -910,7 +825,6 @@ public class CTNHItems {
     }
 
     public static void init() {
-        registerItem();
         ChemicalItems.init();
         CrystalItems.init();
         registerGeneralCircuits();
