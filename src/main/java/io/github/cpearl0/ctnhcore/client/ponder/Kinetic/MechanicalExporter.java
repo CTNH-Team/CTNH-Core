@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.client.ponder.Kinetic;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 import io.github.cpearl0.ctnhcore.client.ponder.CTNHPonderSceneBuilder;
 
 import net.createmod.catnip.math.Pointing;
@@ -11,13 +14,34 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.registries.ForgeRegistries;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
-import static io.github.cpearl0.ctnhcore.client.ponder.Kinetic.CTNHKineticPondersLang.*;
 
 public class MechanicalExporter {
 
     private MechanicalExporter() {}
-
+    
+    @Key("ctnhcore.ponder.mechanical_exporter_common.header")
+    @CN("应力出售机")
+    @EN("Mechanical Exporter")
+    static Lang Header;
+    @Key("ctnhcore.ponder.mechanical_exporter_common.text_1")
+    @CN("放置应力出售机")
+    @EN("Place Mechanical Exporter")
+    static Lang Text1;
+    @Key("ctnhcore.ponder.mechanical_exporter_common.text_2")
+    @CN("首先，你需要放入金色物品清单，它允许你出售各种食物来获取货币")
+    @EN("First, you need to put a golden item list, which allows you to sell various food to get currency")
+    static Lang Text2;
+    @Key("ctnhcore.ponder.mechanical_exporter_common.text_3")
+    @CN("接入应力")
+    @EN("Access stress")
+    static Lang Text3;
+    @Key("ctnhcore.ponder.mechanical_exporter_common.text_4")
+    @CN("放入有标价的食物，就可以获取货币了，对食物按alt可以看标价")
+    @EN("Put in food with a price, you can get currency, press alt to see the price of the food")
+    static Lang Text4;
+    
     public static void Common(SceneBuilder builder, SceneBuildingUtil util) {
         Vec3 mainBlockTextVec = util.vector().blockSurface(util.grid().at(2, 1, 2), Direction.WEST);
         Vec3 inputItemsVec = util.vector().blockSurface(util.grid().at(2, 1, 2), Direction.UP);
@@ -26,7 +50,7 @@ public class MechanicalExporter {
         ItemStack goldenExporterManifests = new ItemStack(goldenExporterManifest);
 
         CTNHPonderSceneBuilder scene = new CTNHPonderSceneBuilder(builder);
-        scene.title("mechanical_exporter_common", MechanicalExporterCommonHeader.translate().getContents().toString());
+        scene.title("mechanical_exporter_common", "");
         scene.setSceneOffsetY(-1);
         scene.idle(10);
 
@@ -34,7 +58,7 @@ public class MechanicalExporter {
         scene.idle(10);
 
         scene.overlay().showText(50)
-                .text(MechanicalExporterCommonText1.translate().getContents().toString())
+                .text("")
                 .pointAt(mainBlockTextVec)
                 .attachKeyFrame();
         scene.idle(20);
@@ -42,7 +66,7 @@ public class MechanicalExporter {
         scene.idle(40);
 
         scene.overlay().showText(50)
-                .text(MechanicalExporterCommonText2.translate().getContents().toString())
+                .text("")
                 .pointAt(mainBlockTextVec)
                 .attachKeyFrame();
         scene.overlay().showControls(inputItemsVec, Pointing.DOWN, 40)
@@ -50,7 +74,7 @@ public class MechanicalExporter {
         scene.idle(60);
 
         scene.overlay().showText(50)
-                .text(MechanicalExporterCommonText3.translate().getContents().toString())
+                .text("")
                 .pointAt(mainBlockTextVec)
                 .attachKeyFrame();
         scene.idle(20);
@@ -59,7 +83,7 @@ public class MechanicalExporter {
         scene.idle(60);
 
         scene.overlay().showText(60)
-                .text(MechanicalExporterCommonText4.translate().getContents().toString())
+                .text("")
                 .pointAt(mainBlockTextVec)
                 .attachKeyFrame();
         scene.idle(60);
