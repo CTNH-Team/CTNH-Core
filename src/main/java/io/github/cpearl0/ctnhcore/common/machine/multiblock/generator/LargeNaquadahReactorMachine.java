@@ -20,10 +20,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
 
 import java.util.HashSet;
 import java.util.List;

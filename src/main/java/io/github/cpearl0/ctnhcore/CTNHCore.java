@@ -9,9 +9,6 @@ import net.minecraftforge.fml.common.Mod;
 
 import com.mojang.logging.LogUtils;
 import org.slf4j.Logger;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.LangProcessor;
-
-import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 @Mod(CTNHCore.MODID)
 public class CTNHCore {
@@ -22,9 +19,6 @@ public class CTNHCore {
     public static final String CUSTOM_TAG_SOURCE = "CTNH Custom Tags";
 
     public CTNHCore() {
-        LangProcessor langProcessor = new LangProcessor(REGISTRATE);
-        langProcessor.processAll();
-
         DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
     }
 

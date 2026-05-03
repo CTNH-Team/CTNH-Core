@@ -23,6 +23,7 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
+import com.ctnhlang.*;
 import com.google.common.base.MoreObjects;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.common.TinkerTags;
@@ -38,7 +39,6 @@ import slimeknights.tconstruct.library.tools.helper.ToolDamageUtil;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ModDataNBT;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -46,17 +46,14 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-@Domain(
-        value = "modifier",
-        root = "ctnhcore")
+@Domain("modifier")
 public class Global_Traveller extends NoLevelsModifier
                               implements TooltipModifierHook, BlockInteractionModifierHook, ProcessLootModifierHook {
 
-    @Key("flavor")
     @EN("Travel the world.")
     @CN("全世界折返。")
     static Lang GLOBAL_TRAVELLER_FLAVOR;
-    @Key("description")
+
     @EN("While sneaking, right-click (left-click for ranged weapons) on a container to bind it. Destroyed blocks and drops from killed mobs will be teleported to it.\\nDetailed information can be viewed on the attribute values page.")
     @CN("潜行时对准容器右键（远程武器为左键）以绑定。破坏的方块与杀死怪物的掉落物都会被传送到其中。\n在属性数值页面可以查看详细信息。")
     static Lang GLOBAL_TRAVELLER_DESC;
