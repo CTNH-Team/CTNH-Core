@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ctnhcore:block/machine_casing_solid_steel_slab"
+    },
+    "type=double": {
+      "model": "ctnhcore:block/machine_casing_solid_steel"
+    },
+    "type=top": {
+      "model": "ctnhcore:block/machine_casing_solid_steel_slab_top"
+    }
+  }
+}

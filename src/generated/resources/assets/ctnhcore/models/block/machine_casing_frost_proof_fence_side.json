@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_side",
+  "textures": {
+    "texture": "ctnhcore:block/machine_casing_frost_proof"
+  }
+}

@@ -2390,7 +2390,7 @@ public class GtceuScriptRecipes {
                 .inputItems(foil, Trinium, 8)
                 .inputFluids(Iron3Chloride.getFluid(6000))
                 .outputItems(
-                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("kubejs:echo_printed_circuit_board")))
+                        ECHO_PRINTED_CIRCUIT_BOARD.asStack())
                 .EUt(1920).duration(3600)
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .save(provider);

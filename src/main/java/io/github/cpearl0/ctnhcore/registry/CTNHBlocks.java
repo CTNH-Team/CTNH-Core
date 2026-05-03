@@ -29,8 +29,12 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.GlassBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
 
@@ -49,6 +53,22 @@ public class CTNHBlocks {
 
     static {
         REGISTRATE.creativeModeTab(() -> CTNHCreativeModeTabs.BLOCK);
+        String[][] casingVariants = {
+                { "machine_casing_bronze_plated_bricks", "青铜" },
+                { "machine_casing_solid_steel", "钢" },
+                { "machine_casing_frost_proof", "铝" },
+                { "machine_casing_clean_stainless_steel", "不锈钢" },
+                { "machine_casing_stable_titanium", "钛" },
+                { "machine_casing_robust_tungstensteel", "钨钢" },
+                { "machine_casing_palladium_substation", "镀铑钯" },
+                { "machine_casing_inert_ptfe", "四氟乙烯" },
+                { "machine_casing_heatproof", "殷钢" },
+                { "machine_casing_sturdy_hsse_green", "坚固HSSE绿" },
+        };
+        for (String[] variant : casingVariants) {
+            registerCasingVariants(variant[0], variant[1],
+                    CTNHCore.id("block/" + variant[0]));
+        }
     }
 
     public static final BlockEntry<Block> CASING_REFLECT_LIGHT = createCasingBlock(
@@ -128,6 +148,30 @@ public class CTNHBlocks {
 
     public static final BlockEntry<Block> CASING_POLYBENZIMIDAZOLE_PIPE = createCasingBlock(
             "polybenzimidazole_pipe", "聚苯并咪唑管道方块", CTNHCore.id("block/casings/pipe/polybenzimidazole_pipe"));
+
+    public static final BlockEntry<Block> BRONZE_CASING = createCasingBlock(
+            "bronze_casing", "青铜机械方块", CTNHCore.id("block/casings/bronze_casing"));
+
+    public static final BlockEntry<Block> MANA_STEEL_TUNGSTENSTEEL_GEARBOX_CASING = createCasingBlock(
+            "mana_steel_tungstensteel_gearbox_casing", "魔力钢钨钢齿轮箱机械方块",
+            CTNHCore.id("block/casings/mana_steel_tungstensteel_gearbox_casing"));
+
+    public static final BlockEntry<Block> SCULK_CASING = REGISTRATE
+            .block("sculk_casing", Block::new)
+            .cnlang("幽匿机械方块")
+            .initialProperties(() -> Blocks.IRON_BLOCK)
+            .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
+            .addLayer(() -> RenderType::cutoutMipped)
+            .blockstate((ctx, prov) -> {
+                prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll("sculk_casing",
+                        CTNHCore.id("block/casings/sculk_casing")));
+            })
+            .tag(TagKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.tryBuild("forge", "mineable/wrench")),
+                    BlockTags.MINEABLE_WITH_PICKAXE,
+                    TagKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.tryBuild("create", "casing")))
+            .item(BlockItem::new)
+            .build()
+            .register();
 
     public static final BlockEntry<Block> IRIDIUM_CASING = createCasingBlock(
             "iridium_casing", "铱机械方块", CTNHCore.id("block/casings/solid/iridium_casing"));
@@ -421,5 +465,52 @@ public class CTNHBlocks {
                 .item(TurbineRotorItem::new)
                 .build()
                 .register();
+    }
+
+    private static void registerCasingVariants(String baseName, String cnPrefix, ResourceLocation texture) {
+        // Slab
+        REGISTRATE.block(baseName + "_slab", SlabBlock::new)
+                .cnlang(cnPrefix + "台阶")
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .blockstate((ctx, prov) -> prov.slabBlock(ctx.getEntry(),
+                        prov.models().slab(baseName + "_slab", texture, texture, texture),
+                        prov.models().slabTop(baseName + "_slab_top", texture, texture, texture),
+                        prov.models().cubeAll(baseName, texture)))
+                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(),
+                        ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(BlockItem::new).build().register();
+
+        // Wall
+        REGISTRATE.block(baseName + "_wall", WallBlock::new)
+                .cnlang(cnPrefix + "墙")
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .blockstate((ctx, prov) -> {
+                    prov.wallBlock(ctx.getEntry(), texture);
+                    prov.models().cubeAll(baseName + "_wall", texture);
+                })
+                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(),
+                        ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(BlockItem::new).build().register();
+
+        // Stairs — StairBlock 构造函数需要 (BlockState, Properties)
+        REGISTRATE.block(baseName + "_stairs", p -> new StairBlock(Blocks.IRON_BLOCK.defaultBlockState(), p))
+                .cnlang(cnPrefix + "楼梯")
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .blockstate((ctx, prov) -> prov.stairsBlock(ctx.getEntry(), texture))
+                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(),
+                        ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(BlockItem::new).build().register();
+
+        // Fence
+        REGISTRATE.block(baseName + "_fence", FenceBlock::new)
+                .cnlang(cnPrefix + "栅栏")
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .blockstate((ctx, prov) -> {
+                    prov.fenceBlock(ctx.getEntry(), texture);
+                    prov.models().cubeAll(baseName + "_fence", texture);
+                })
+                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(),
+                        ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(BlockItem::new).build().register();
     }
 }

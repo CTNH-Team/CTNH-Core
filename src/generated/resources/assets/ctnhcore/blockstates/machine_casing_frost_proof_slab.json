@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ctnhcore:block/machine_casing_frost_proof_slab"
+    },
+    "type=double": {
+      "model": "ctnhcore:block/machine_casing_frost_proof"
+    },
+    "type=top": {
+      "model": "ctnhcore:block/machine_casing_frost_proof_slab_top"
+    }
+  }
+}

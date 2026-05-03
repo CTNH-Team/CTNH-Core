@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ctnhcore:block/machine_casing_heatproof_slab"
+    },
+    "type=double": {
+      "model": "ctnhcore:block/machine_casing_heatproof"
+    },
+    "type=top": {
+      "model": "ctnhcore:block/machine_casing_heatproof_slab_top"
+    }
+  }
+}

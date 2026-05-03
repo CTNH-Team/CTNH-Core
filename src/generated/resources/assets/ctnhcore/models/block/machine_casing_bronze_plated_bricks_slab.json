@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "ctnhcore:block/machine_casing_bronze_plated_bricks",
+    "side": "ctnhcore:block/machine_casing_bronze_plated_bricks",
+    "top": "ctnhcore:block/machine_casing_bronze_plated_bricks"
+  }
+}

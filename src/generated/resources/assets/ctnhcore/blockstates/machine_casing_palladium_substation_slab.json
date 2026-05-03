@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ctnhcore:block/machine_casing_palladium_substation_slab"
+    },
+    "type=double": {
+      "model": "ctnhcore:block/machine_casing_palladium_substation"
+    },
+    "type=top": {
+      "model": "ctnhcore:block/machine_casing_palladium_substation_slab_top"
+    }
+  }
+}

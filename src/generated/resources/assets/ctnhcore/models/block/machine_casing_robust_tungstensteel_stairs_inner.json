@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "ctnhcore:block/machine_casing_robust_tungstensteel",
+    "side": "ctnhcore:block/machine_casing_robust_tungstensteel",
+    "top": "ctnhcore:block/machine_casing_robust_tungstensteel"
+  }
+}
