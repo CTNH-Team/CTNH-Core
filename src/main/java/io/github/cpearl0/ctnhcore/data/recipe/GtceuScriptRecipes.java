@@ -2647,7 +2647,7 @@ public class GtceuScriptRecipes {
                 1.4f);
 
         // =============== Platinum Chain ================
-        // 从 PlatinumChain.js 迁移
+        // Migrated from PlatinumChain.js
         CMRecipeTypes.MANA_TRANSFORMER_RECIPES.recipeBuilder(CTNHCore.id("crystal_catalyst1"))
                 .inputItems(dust, PlatinumGroupSludge, 42)
                 .notConsumable(CRYSTAL_CATALYST)
@@ -2663,7 +2663,7 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // =============== Iodine Chain ================
-        // 从 IodineChain.js 迁移
+        // Migrated from IodineChain.js
         LARGE_CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("sodium_iodate"))
                 .inputItems(dust, SodiumHydroxide, 18)
                 .inputItems(dust, NewExplosivesProductionMaterials.SODIUM_IODIDE, 2)
@@ -2680,7 +2680,7 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // =============== Snow Adjust ================
-        // 从 SnowAdjust.js 迁移
+        // Migrated from SnowAdjust.js
         VACUUM_RECIPES.recipeBuilder(CTNHCore.id("adjust_liquid_oxygen"))
                 .inputFluids(Oxygen.getFluid(1000))
                 .outputFluids(Oxygen.getFluid(FluidStorageKeys.LIQUID, 1000))
@@ -2699,6 +2699,90 @@ public class GtceuScriptRecipes {
                 .outputItems(GTItems.COVER_ENDER_FLUID_LINK.asStack())
                 .EUt(30720)
                 .duration(200)
+                .save(provider);
+
+        // =============== WChain ================
+        // Migrated from WChain.js
+
+        // 1. Dehydrate tungstic acid: 7x tungstic_acid_dust -> 4x tungsten_trioxide_dust + water 1000
+        CTNHRecipeTypes.DEHYDRATOR_RECIPES.recipeBuilder(CTNHCore.id("tungsten_trioxide_dust"))
+                .inputItems(dust, TungsticAcid, 7)
+                .outputItems(dust, SpecialMaterials.TUNGSTEN_TRIOXIDE, 4)
+                .outputFluids(Water.getFluid(1000))
+                .EUt(480)
+                .duration(100)
+                .save(provider);
+
+        // 2. Reduce tungsten trioxide to tungsten dust: 4x tungsten_trioxide_dust + hydrogen 6000 -> tungsten_dust + water 3000
+        BLAST_RECIPES.recipeBuilder(CTNHCore.id("tungsten_dust"))
+                .inputItems(dust, SpecialMaterials.TUNGSTEN_TRIOXIDE, 4)
+                .inputFluids(Hydrogen.getFluid(6000))
+                .outputItems(dust, Tungsten)
+                .outputFluids(Water.getFluid(3000))
+                .circuitMeta(2)
+                .EUt(480)
+                .duration(60)
+                .blastFurnaceTemp(3500)
+                .save(provider);
+
+        // 3. Reduce tungsten trioxide to tungsten ingot: 8x tungsten_trioxide_dust + 3x carbon_dust -> 2x hot_tungsten_ingot + carbon_dioxide 3000
+        BLAST_RECIPES.recipeBuilder(CTNHCore.id("tungsten_ingot"))
+                .inputItems(dust, SpecialMaterials.TUNGSTEN_TRIOXIDE, 8)
+                .inputItems(dust, Carbon, 3)
+                .outputItems(ChemicalHelper.get(ingotHot, Tungsten, 2))
+                .outputFluids(CarbonDioxide.getFluid(3000))
+                .EUt(480)
+                .duration(1000)
+                .blastFurnaceTemp(3500)
+                .save(provider);
+
+        // =============== TiChain ================
+        // Migrated from TiChain.js
+
+        // 1. Distill titanium tetrachloride: titanium_tetrachloride 3000 -> gallium_dust + iron_iii_chloride 1000 + titanium_tetrachloride 1000 + refining_titanium_tetrachloride 1250
+        DISTILLATION_RECIPES.recipeBuilder(CTNHCore.id("refining_titanium_tetrachloride_bucket"))
+                .inputFluids(TitaniumTetrachloride.getFluid(3000))
+                .outputItems(dust, Gallium, 3)
+                .outputFluids(Iron3Chloride.getFluid(1000))
+                .outputFluids(TitaniumTetrachloride.getFluid(1000))
+                .outputFluids(BauxiteProcessingMaterials.REFINING_TITANIUM_TETRACHLORIDE.getFluid(1250))
+                .EUt(120)
+                .duration(100)
+                .save(provider);
+
+        // 2. Remove vanadium: titanium_tetrachloride_v 6000 + water 9000 + 2x aluminium_dust -> 8x aluminium_chloride_dust + 21x vanadium_pentoxide_dust + hydrochloric_acid 18000 + titanium_tetrachloride 6000
+        LARGE_CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("vanadium_pentoxide_dust"))
+                .inputFluids(BauxiteProcessingMaterials.TITANIUM_TETRACHLORIDE_V.getFluid(6000))
+                .inputFluids(Water.getFluid(9000))
+                .inputItems(dust, Aluminium, 2)
+                .outputItems(dust, BauxiteProcessingMaterials.ALUMINIUM_CHLORIDE, 8)
+                .outputItems(dust, VanadiumPentoxide, 21)
+                .outputFluids(HydrochloricAcid.getFluid(18000))
+                .outputFluids(TitaniumTetrachloride.getFluid(6000))
+                .EUt(120)
+                .duration(150)
+                .save(provider);
+
+        // 3. Synthesize vanadium-containing TiCl4: chlorine 48000 + 6x rutile_dust + 12x carbon_dust -> carbon_monoxide 12000 + titanium_tetrachloride_v 6000
+        LARGE_CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("ticl4"))
+                .inputFluids(Chlorine.getFluid(48000))
+                .inputItems(dust, Rutile, 6)
+                .inputItems(dust, Carbon, 12)
+                .outputFluids(CarbonMonoxide.getFluid(12000))
+                .outputFluids(BauxiteProcessingMaterials.TITANIUM_TETRACHLORIDE_V.getFluid(6000))
+                .EUt(480)
+                .duration(120)
+                .save(provider);
+
+        // 4. Convert high-purity TiCl4 to titanium ingot: refining_titanium_tetrachloride 5000 + 10x magnesium_dust -> 5x hot_titanium_ingot + 30x magnesium_chloride_dust
+        BLAST_RECIPES.recipeBuilder(CTNHCore.id("titanium_ingot"))
+                .inputFluids(BauxiteProcessingMaterials.REFINING_TITANIUM_TETRACHLORIDE.getFluid(5000))
+                .inputItems(dust, Magnesium, 10)
+                .outputItems(ChemicalHelper.get(ingotHot, Titanium, 5))
+                .outputItems(dust, MagnesiumChloride, 30)
+                .EUt(480)
+                .duration(150)
+                .blastFurnaceTemp(2200)
                 .save(provider);
 
         // ============== Recipe Replace Re-additions ==============
