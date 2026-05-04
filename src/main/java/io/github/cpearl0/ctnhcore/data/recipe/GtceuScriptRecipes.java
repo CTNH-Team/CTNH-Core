@@ -18,6 +18,7 @@ import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
@@ -34,6 +35,21 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
+import com.aetherteam.aether.block.AetherBlocks;
+import com.enderio.base.common.init.EIOBlocks;
+import com.enderio.base.common.init.EIOItems;
+import com.github.alexmodguy.alexscaves.server.block.ACBlockRegistry;
+import com.github.alexmodguy.alexscaves.server.item.ACItemRegistry;
+import com.moguang.ctnhbio.registry.CBItems;
+import com.simibubi.create.AllItems;
+import dev.shadowsoffire.hostilenetworks.Hostile;
+import earth.terrarium.adastra.common.registry.ModItems;
+import org.antarcticgardens.cna.CNABlocks;
+import twilightforest.init.TFBlocks;
+import vazkii.botania.common.block.BotaniaBlocks;
+import vazkii.botania.common.block.BotaniaFlowerBlocks;
+import vazkii.botania.common.item.BotaniaItems;
+import wayoftime.bloodmagic.common.block.BloodMagicBlocks;
 import com.mo_guang.ctpp.registry.CTPPMaterials;
 import com.moguang.ctnhmana.registry.CMMaterials;
 import com.moguang.ctnhmana.registry.CMRecipeTypes;
@@ -61,7 +77,7 @@ public class GtceuScriptRecipes {
                 .circuitMeta(5)
                 .inputItems(new ItemStack(Items.QUARTZ))
                 .inputItems(new ItemStack(Items.REDSTONE, 4))
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("create:rose_quartz")))
+                .outputItems(AllItems.ROSE_QUARTZ.asStack())
                 .save(provider);
 
         // 2. polished_rose_quartz2: quartz + redstone 288 -> polished_rose_quartz. EUt 32, dur 100
@@ -69,7 +85,7 @@ public class GtceuScriptRecipes {
                 .EUt(32).duration(100)
                 .inputItems(new ItemStack(Items.QUARTZ))
                 .inputFluids(Redstone.getFluid(288))
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("create:polished_rose_quartz")))
+                .outputItems(AllItems.POLISHED_ROSE_QUARTZ.asStack())
                 .save(provider);
 
         // 3. sky_dust: circuit 2, 10x stone_dust + 2x silicon_dust + electrotine_dust -> 13x sky_dust. EUt 120, dur 100
@@ -239,18 +255,18 @@ public class GtceuScriptRecipes {
         // 2. scarlet_ingot: raw_scarlet_neodymium + iron_ingot -> 2x scarlet_neodymium_ingot. EUt 7, dur 100
         ALLOY_SMELTER_RECIPES.recipeBuilder(CTNHCore.id("scarlet_ingot"))
                 .EUt(7).duration(100)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("alexscaves:raw_scarlet_neodymium")))
+                .inputItems(ACItemRegistry.RAW_SCARLET_NEODYMIUM.get())
                 .inputItems(new ItemStack(Items.IRON_INGOT))
                 .outputItems(
-                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("alexscaves:scarlet_neodymium_ingot")), 2)
+                        ACItemRegistry.SCARLET_NEODYMIUM_INGOT.get(), 2)
                 .save(provider);
 
         // 3. azure_ingot: raw_azure_neodymium + iron_ingot -> 2x azure_neodymium_ingot. EUt 7, dur 100
         ALLOY_SMELTER_RECIPES.recipeBuilder(CTNHCore.id("azure_ingot"))
                 .EUt(7).duration(100)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("alexscaves:raw_azure_neodymium")))
+                .inputItems(ACItemRegistry.RAW_AZURE_NEODYMIUM.get())
                 .inputItems(new ItemStack(Items.IRON_INGOT))
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("alexscaves:azure_neodymium_ingot")),
+                .outputItems(ACItemRegistry.AZURE_NEODYMIUM_INGOT.get(),
                         2)
                 .save(provider);
 
@@ -277,7 +293,7 @@ public class GtceuScriptRecipes {
         // 2. tiny_uranium_dust: uranium_shard -> tiny_uranium_dust, chanced tiny_uranium 2000/150. EUt 30, dur 20
         MACERATOR_RECIPES.recipeBuilder(CTNHCore.id("tiny_uranium_dust"))
                 .EUt(30).duration(20)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("alexscaves:uranium_shard")))
+                .inputItems(ACItemRegistry.URANIUM_SHARD.get())
                 .outputItems(dustTiny, Uranium238)
                 .chancedOutput(dustTiny, Uranium238, 2000, 150)
                 .save(provider);
@@ -345,21 +361,21 @@ public class GtceuScriptRecipes {
                 .EUt(30).duration(100)
                 .inputItems(CustomTags.LV_CIRCUITS)
                 .inputItems(plate, RedAlloy, 4)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("botania:livingrock")), 4)
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("botania:mana_fluxfield")))
+                .inputItems(BotaniaBlocks.livingrock.asItem(), 4)
+                .outputItems(BotaniaBlocks.rfGenerator.asItem())
                 .save(provider);
 
         // 2. submarine: alexscaves:enigmatic_engine + 2x #hv + 4x energy_crystal + 2x hv_sensor + 4x hv_electric_motor
         // + 8x red_steel_plate -> alexscaves:submarine. EUt 480, dur 400
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("submarine"))
                 .EUt(480).duration(400)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("alexscaves:enigmatic_engine")))
+                .inputItems(ACBlockRegistry.ENIGMATIC_ENGINE.get().asItem())
                 .inputItems(CustomTags.HV_CIRCUITS, 2)
                 .inputItems(GTItems.ENERGIUM_CRYSTAL.asStack(4))
                 .inputItems(GTItems.SENSOR_HV.asStack(2))
                 .inputItems(GTItems.ELECTRIC_MOTOR_HV.asStack(4))
                 .inputItems(plate, RedSteel, 8)
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("alexscaves:submarine")))
+                .outputItems(ACItemRegistry.SUBMARINE.get())
                 .save(provider);
 
         // 3. blaze_blast_furnace_casing: 4x stainless_steel_plate + 2x stainless_steel_frame + botania:blaze_block +
@@ -368,7 +384,7 @@ public class GtceuScriptRecipes {
                 .EUt(480).duration(100)
                 .inputItems(plate, StainlessSteel, 4)
                 .inputItems(frameGt, StainlessSteel, 2)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("botania:blaze_block")))
+                .inputItems(BotaniaBlocks.blazeBlock.asItem())
                 .inputFluids(PolyvinylChloride.getFluid(288))
                 .outputItems(BLAZE_BLAST_FURNACE_CASING.asStack())
                 .save(provider);
@@ -444,11 +460,11 @@ public class GtceuScriptRecipes {
         // create_new_age:fluxuated_magnetite. EUt 30, dur 60
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("fluxuated_magnetite"))
                 .EUt(30).duration(60)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("create_new_age:layered_magnet")))
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("botania:mana_diamond")), 2)
+                .inputItems(CNABlocks.LAYERED_MAGNET.asStack())
+                .inputItems(new ItemStack(BotaniaItems.manaDiamond, 2))
                 .inputItems(screw, Diamond, 2)
                 .outputItems(
-                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("create_new_age:fluxuated_magnetite")))
+                        CNABlocks.FLUXUATED_MAGNETITE.asStack())
                 .save(provider);
 
         // 11. space_helmet: glass_plate + 4x space_fabric + glue 72 -> ad_astra:space_helmet. EUt 120, dur 400
@@ -457,19 +473,19 @@ public class GtceuScriptRecipes {
                 .inputItems(plate, Glass)
                 .inputItems(SPACE_FABRIC.asStack(4))
                 .inputFluids(Glue.getFluid(72))
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ad_astra:space_helmet")))
+                .outputItems(ModItems.SPACE_HELMET)
                 .save(provider);
 
         // 12. space_suit: ad_astra:oxygen_gear + 2x ad_astra:gas_tank + 4x heavy_plate_t1 + 2x stainless_steel_screw +
         // 4x space_fabric -> ad_astra:space_suit. EUt 120, dur 400
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("space_suit"))
                 .EUt(120).duration(400)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ad_astra:oxygen_gear")))
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ad_astra:gas_tank")), 2)
+                .inputItems(ModItems.OXYGEN_GEAR.get())
+                .inputItems(ModItems.GAS_TANK.get(), 2)
                 .inputItems(HEAVY_PLATE_T1.asStack(4))
                 .inputItems(screw, StainlessSteel, 2)
                 .inputItems(SPACE_FABRIC.asStack(4))
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ad_astra:space_suit")))
+                .outputItems(ModItems.SPACE_SUIT)
                 .save(provider);
 
         // 13. space_pants: 5x heavy_plate_t1 + 3x space_fabric -> ad_astra:space_pants. circuit 0. EUt 120, dur 400
@@ -478,7 +494,7 @@ public class GtceuScriptRecipes {
                 .circuitMeta(0)
                 .inputItems(HEAVY_PLATE_T1.asStack(5))
                 .inputItems(SPACE_FABRIC.asStack(3))
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ad_astra:space_pants")))
+                .outputItems(ModItems.SPACE_PANTS)
                 .save(provider);
 
         // 14. space_boots: 4x heavy_plate_t1 + 2x space_fabric -> ad_astra:space_boots. circuit 1. EUt 120, dur 400
@@ -487,7 +503,7 @@ public class GtceuScriptRecipes {
                 .circuitMeta(1)
                 .inputItems(HEAVY_PLATE_T1.asStack(4))
                 .inputItems(SPACE_FABRIC.asStack(2))
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ad_astra:space_boots")))
+                .outputItems(ModItems.SPACE_BOOTS)
                 .save(provider);
 
         // 15. deep_learner: computer_monitor_cover + 2x double_black_steel_plate + 2x black_steel_plate +
@@ -499,7 +515,7 @@ public class GtceuScriptRecipes {
                 .inputItems(plate, BlackSteel, 2)
                 .inputItems(gear, BlackSteel)
                 .inputItems(CustomTags.EV_CIRCUITS)
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("hostilenetworks:deep_learner")))
+                .outputItems(Hostile.Items.DEEP_LEARNER.get())
                 .save(provider);
 
         // 16. fuel_refining_factory: 12x large_chemical_reactor + 8x distillation_tower + 8x cracker + 32x
@@ -654,7 +670,7 @@ public class GtceuScriptRecipes {
                 .inputItems(new ItemStack(Items.ACACIA_SAPLING, 64))
                 .inputItems(new ItemStack(Items.DARK_OAK_SAPLING, 64))
                 .inputItems(new ItemStack(Items.CHERRY_SAPLING, 64))
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:time_sapling")))
+                .inputItems(TFBlocks.TIME_SAPLING.get().asItem())
                 .inputItems(GTItems.PLANT_BALL.asStack(64))
                 .inputFluids(Bacteria.getFluid(16000))
                 .outputItems(ECOLOGICAL_STAR.asStack())
@@ -683,7 +699,7 @@ public class GtceuScriptRecipes {
                 .inputItems(GTMachines.AUTO_MAINTENANCE_HATCH.asStack())
                 .inputItems(GTItems.SMART_ITEM_FILTER.asStack(2))
                 .inputItems(GTItems.FLUID_FILTER.asStack(2))
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("enderio:basic_item_filter")), 2)
+                .inputItems(EIOItems.BASIC_ITEM_FILTER.asStack(), 2)
                 .inputItems(GTBlocks.FILTER_CASING.asStack(2))
                 .inputItems(GTItems.ELECTRIC_MOTOR_EV.asStack(4))
                 .inputItems(CustomTags.IV_CIRCUITS, 4)
@@ -701,7 +717,7 @@ public class GtceuScriptRecipes {
                 .inputItems(GTItems.ELECTRIC_PUMP_LuV.asStack())
                 .inputItems(GTItems.TAG_FLUID_FILTER.asStack(2))
                 .inputItems(GTItems.BLACKLIGHT.asStack())
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("enderio:end_steel_bars")), 2)
+                .inputItems(EIOBlocks.END_STEEL_BARS.asStack(), 2)
                 .outputItems(GTBlocks.FILTER_CASING_STERILE.asStack())
                 .save(provider);
 
@@ -864,7 +880,7 @@ public class GtceuScriptRecipes {
         DISTILLATION_RECIPES.recipeBuilder(CTNHCore.id("liquid_alfheim_air"))
                 .EUt(360).duration(2000)
                 .inputFluids(ExtraterrestrialAtmosphereMaterials.LIQUID_ALFHEIM_AIR.getFluid(100000))
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("botania:mana_powder")))
+                .outputItems(new ItemStack(BotaniaItems.manaPowder))
                 .outputFluids(CMMaterials.Mana.getFluid(100))
                 .outputFluids(Oxygen.getFluid(25000))
                 .outputFluids(Steam.getFluid(12000))
@@ -1294,9 +1310,9 @@ public class GtceuScriptRecipes {
         CHEMICAL_BATH_RECIPES.recipeBuilder(CTNHCore.id("netherite_magnet"))
                 .EUt(120).duration(60)
                 .inputItems(
-                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("create_new_age:fluxuated_magnetite")))
+                        CNABlocks.FLUXUATED_MAGNETITE.asStack())
                 .inputFluids(NewExplosivesProductionMaterials.ANCIENT_DEBRIS_LEACH.getFluid(8000))
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("create_new_age:netherite_magnet")))
+                .outputItems(CNABlocks.NETHERITE_MAGNET.asStack())
                 .save(provider);
 
         // 47. fiber_glass: cellulose_dust + glass 288 -> fiber_glass 288. EUt 30, dur 120
@@ -1328,7 +1344,7 @@ public class GtceuScriptRecipes {
         // 50. chocolate: create:bar_of_chocolate + milk 250 -> gtmfo:milk_chocolate. EUt 32, dur 20
         CHEMICAL_BATH_RECIPES.recipeBuilder(CTNHCore.id("chocolate"))
                 .EUt(32).duration(20)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("create:bar_of_chocolate")))
+                .inputItems(AllItems.BAR_OF_CHOCOLATE.asStack())
                 .inputFluids(Milk.getFluid(250))
                 .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtmfo:milk_chocolate")))
                 .save(provider);
@@ -1430,7 +1446,7 @@ public class GtceuScriptRecipes {
         // 61. radon: radon_bottle -> glass_bottle + radon 250. EUt VA[HV], dur 40
         CANNER_RECIPES.recipeBuilder(CTNHCore.id("radon"))
                 .EUt(GTValues.VA[GTValues.HV]).duration(40)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("alexscaves:radon_bottle")))
+                .inputItems(ACItemRegistry.RADON_BOTTLE.get())
                 .outputItems(new ItemStack(Items.GLASS_BOTTLE))
                 .outputFluids(Radon.getFluid(250))
                 .save(provider);
@@ -1459,7 +1475,7 @@ public class GtceuScriptRecipes {
         IMPLOSION_RECIPES.recipeBuilder(CTNHCore.id("bedrock"))
                 .EUt(491200).duration(20)
                 .inputItems(block, BedrockMaterials.BEDROCK_DUST, 64)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("alexscaves:nuclear_bomb")), 64)
+                .inputItems(ACBlockRegistry.NUCLEAR_BOMB.get().asItem(), 64)
                 .outputItems(ingot, BedrockMaterials.BEDROCK_DUST)
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .save(provider);
@@ -1561,7 +1577,7 @@ public class GtceuScriptRecipes {
                 .inputItems(plate, StainlessSteel, 2)
                 .inputItems(wireFine, Platinum, 2)
                 .inputItems(new ItemStack(Items.SMOOTH_STONE))
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("hostilenetworks:blank_data_model")))
+                .outputItems(Hostile.Items.BLANK_DATA_MODEL.get())
                 .save(provider);
 
         // 75. bedrock_drilling_rigs (assembler): 4x tungstencu_diamond_plating_frame + 24x #uv + 4x
@@ -1585,22 +1601,22 @@ public class GtceuScriptRecipes {
         // Rubber sapling
         CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("rubber_sapling"))
                 .circuitMeta(1)
-                .notConsumable(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:rubber_sapling")))
+                .notConsumable(GTBlocks.RUBBER_SAPLING.asStack())
                 .inputFluids(Water.getFluid(1000))
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:rubber_log")), 32)
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:sticky_resin")), 8)
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:rubber_sapling")), 4)
+                .outputItems(GTBlocks.RUBBER_LOG.asStack(), 32)
+                .outputItems(GTItems.STICKY_RESIN.asStack(), 8)
+                .outputItems(GTBlocks.RUBBER_SAPLING.asStack(), 4)
                 .duration(640).EUt(120)
                 .save(provider);
 
         CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("rubber_sapling_boosted"))
                 .circuitMeta(2)
-                .notConsumable(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:rubber_sapling")))
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:fertilizer")), 4)
+                .notConsumable(GTBlocks.RUBBER_SAPLING.asStack())
+                .inputItems(GTItems.FERTILIZER.asStack(), 4)
                 .inputFluids(Water.getFluid(1000))
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:rubber_log")), 64)
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:sticky_resin")), 16)
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:rubber_sapling")), 4)
+                .outputItems(GTBlocks.RUBBER_LOG.asStack(), 64)
+                .outputItems(GTItems.STICKY_RESIN.asStack(), 16)
+                .outputItems(GTBlocks.RUBBER_SAPLING.asStack(), 4)
                 .duration(320).EUt(120)
                 .save(provider);
 
@@ -1818,27 +1834,27 @@ public class GtceuScriptRecipes {
         CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("hollow_oak_sapling"))
                 .circuitMeta(1)
                 .notConsumable(
-                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:hollow_oak_sapling")))
+                        TFBlocks.HOLLOW_OAK_SAPLING.get().asItem())
                 .inputFluids(Water.getFluid(1000))
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:twilight_oak_log")),
+                .outputItems(TFBlocks.TWILIGHT_OAK_LOG.get().asItem(),
                         64)
                 .outputItems(
-                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:hollow_oak_sapling")), 4)
+                        TFBlocks.HOLLOW_OAK_SAPLING.get().asItem(), 4)
                 .duration(640).EUt(120)
                 .save(provider);
 
         CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("hollow_oak_sapling_boosted"))
                 .circuitMeta(2)
                 .notConsumable(
-                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:hollow_oak_sapling")))
+                        TFBlocks.HOLLOW_OAK_SAPLING.get().asItem())
                 .inputItems(GTItems.FERTILIZER.asStack(4))
                 .inputFluids(Water.getFluid(1000))
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:twilight_oak_log")),
+                .outputItems(TFBlocks.TWILIGHT_OAK_LOG.get().asItem(),
                         64)
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:twilight_oak_log")),
+                .outputItems(TFBlocks.TWILIGHT_OAK_LOG.get().asItem(),
                         64)
                 .outputItems(
-                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:hollow_oak_sapling")), 4)
+                        TFBlocks.HOLLOW_OAK_SAPLING.get().asItem(), 4)
                 .duration(320).EUt(120)
                 .save(provider);
 
@@ -2171,7 +2187,7 @@ public class GtceuScriptRecipes {
 
         // sky_dimension_1
         CTNHRecipeTypes.DIMENSIONAL_GAS_COLLECTION.recipeBuilder(CTNHCore.id("sky_dimension_1"))
-                .notConsumable(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("aether:white_flower")))
+                .notConsumable(AetherBlocks.WHITE_FLOWER.get().asItem())
                 .circuitMeta(1)
                 .outputFluids(ExtraterrestrialAtmosphereMaterials.AETHER_AIR.getFluid(500000))
                 .EUt(6144).duration(200)
@@ -2179,7 +2195,7 @@ public class GtceuScriptRecipes {
 
         // sky_dimension_2
         CTNHRecipeTypes.DIMENSIONAL_GAS_COLLECTION.recipeBuilder(CTNHCore.id("sky_dimension_2"))
-                .notConsumable(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("aether:white_flower")))
+                .notConsumable(AetherBlocks.WHITE_FLOWER.get().asItem())
                 .notConsumable(GTMultiMachines.VACUUM_FREEZER.asStack())
                 .outputFluids(ExtraterrestrialAtmosphereMaterials.LIQUID_AETHER_AIR.getFluid(500000))
                 .EUt(24768).duration(200)
@@ -2187,7 +2203,7 @@ public class GtceuScriptRecipes {
 
         // mana_1
         CTNHRecipeTypes.DIMENSIONAL_GAS_COLLECTION.recipeBuilder(CTNHCore.id("mana_1"))
-                .notConsumable(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("botania:entropinnyum")))
+                .notConsumable(BotaniaFlowerBlocks.entropinnyum.asItem())
                 .circuitMeta(1)
                 .outputFluids(ExtraterrestrialAtmosphereMaterials.ALFHEIM_AIR.getFluid(200000))
                 .EUt(24768).duration(200)
@@ -2195,7 +2211,7 @@ public class GtceuScriptRecipes {
 
         // mana_2
         CTNHRecipeTypes.DIMENSIONAL_GAS_COLLECTION.recipeBuilder(CTNHCore.id("mana_2"))
-                .notConsumable(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("botania:entropinnyum")))
+                .notConsumable(BotaniaFlowerBlocks.entropinnyum.asItem())
                 .notConsumable(GTMultiMachines.VACUUM_FREEZER.asStack())
                 .outputFluids(ExtraterrestrialAtmosphereMaterials.LIQUID_ALFHEIM_AIR.getFluid(200000))
                 .EUt(122330).duration(200)
@@ -2204,7 +2220,7 @@ public class GtceuScriptRecipes {
         // twilight_air1
         CTNHRecipeTypes.DIMENSIONAL_GAS_COLLECTION.recipeBuilder(CTNHCore.id("twilight_air1"))
                 .notConsumable(
-                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:rainbow_oak_sapling")))
+                        TFBlocks.RAINBOW_OAK_SAPLING.get().asItem())
                 .circuitMeta(1)
                 .outputFluids(ExtraterrestrialAtmosphereMaterials.TWILIGHTFOREST_AIR.getFluid(500000))
                 .EUt(1920).duration(200)
@@ -2213,7 +2229,7 @@ public class GtceuScriptRecipes {
         // twilight_air2
         CTNHRecipeTypes.DIMENSIONAL_GAS_COLLECTION.recipeBuilder(CTNHCore.id("twilight_air2"))
                 .notConsumable(
-                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:rainbow_oak_sapling")))
+                        TFBlocks.RAINBOW_OAK_SAPLING.get().asItem())
                 .notConsumable(GTMultiMachines.VACUUM_FREEZER.asStack())
                 .outputFluids(ExtraterrestrialAtmosphereMaterials.LIQUID_TWILIGHTFOREST_AIR.getFluid(500000))
                 .EUt(6144).duration(200)
@@ -2221,7 +2237,7 @@ public class GtceuScriptRecipes {
 
         // venus_air1
         CTNHRecipeTypes.DIMENSIONAL_GAS_COLLECTION.recipeBuilder(CTNHCore.id("venus_air1"))
-                .notConsumable(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ad_astra:raw_calorite")))
+                .notConsumable(ModItems.RAW_CALORITE.get())
                 .circuitMeta(1)
                 .outputFluids(ExtraterrestrialAtmosphereMaterials.VENUS_AIR.getFluid(500000))
                 .EUt(122330).duration(200)
@@ -2229,7 +2245,7 @@ public class GtceuScriptRecipes {
 
         // venus_air2
         CTNHRecipeTypes.DIMENSIONAL_GAS_COLLECTION.recipeBuilder(CTNHCore.id("venus_air2"))
-                .notConsumable(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ad_astra:raw_calorite")))
+                .notConsumable(ModItems.RAW_CALORITE.get())
                 .notConsumable(GTMultiMachines.VACUUM_FREEZER.asStack())
                 .outputFluids(ExtraterrestrialAtmosphereMaterials.LIQUID_VENUS_AIR.getFluid(500000))
                 .EUt(490123).duration(200)
@@ -2304,7 +2320,7 @@ public class GtceuScriptRecipes {
 
         // ore_production_3
         CTNHRecipeTypes.MARTIAL_MORALITY_EYE.recipeBuilder(CTNHCore.id("ore_production_3"))
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ad_astra:moon_stone")), 64)
+                .inputItems(ModItems.MOON_STONE.get(), 64)
                 .chancedInput(ChemicalHelper.get(block, GalliumArsenide, 4), 5500, -100)
                 .inputFluids(RocketFuel.getFluid(4000))
                 .outputFluids(NitricAcid.getFluid(1000))
@@ -2364,7 +2380,7 @@ public class GtceuScriptRecipes {
 
         // echo_circuit_board
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("echo_circuit_board"))
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ctnhbio:wetware_circuit_board")), 4)
+                .inputItems(CBItems.WETWARE_CIRCUIT_BOARD.asStack(), 4)
                 .inputItems(new ItemStack(Items.ECHO_SHARD, 3))
                 .inputItems(new ItemStack(Items.SCULK_VEIN, 5))
                 .inputItems(GTItems.STEM_CELLS.asStack(4))
@@ -2377,9 +2393,9 @@ public class GtceuScriptRecipes {
 
         // echo_processor_1
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("echo_processor_1"))
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:neuro_processing_unit")))
+                .inputItems(GTItems.NEURO_PROCESSOR.asStack())
                 .inputItems(SCULK_CELL.asStack())
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:qbit_cpu_chip")), 4)
+                .inputItems(GTItems.QUBIT_CENTRAL_PROCESSING_UNIT.asStack(), 4)
                 .inputItems(BIOLOGICAL_PATCH_CAPACITOR.asStack(16))
                 .inputItems(BIOLOGICAL_PATCH_TRANSISTOR.asStack(16))
                 .inputItems(wireFine, EnrichedNaquadahTriniumEuropiumDuranide, 16)
@@ -2637,7 +2653,7 @@ public class GtceuScriptRecipes {
                         'C', circuits[i],
                         'H', GTMachines.HULL[voltTier].asStack(),
                         'S', new ItemStack(
-                                ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("bloodmagic:sacrificerune"))));
+                                BloodMagicBlocks.SACRIFICE_RUNE.get().asItem()));
             }
         }
 
@@ -3335,6 +3351,786 @@ public class GtceuScriptRecipes {
                 .blastFurnaceTemp(1700)
                 .save(provider);
 
+        // =============== Silicon Chain ================
+        // 从 SiliconChain.js 迁移
+
+        // Zeolite 电解替换输出：aluminium_dust -> alumina_dust, silicon_dust -> silicon_dioxide_dust
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("zeolite_electrolysis"))
+                .EUt(60).duration(288)
+                .inputItems(dust, Zeolite, 19)
+                .outputItems(dust, Sodium, 2)
+                .outputItems(dust, Alumina, 2)
+                .outputItems(dust, SiliconDioxide, 3)
+                .outputFluids(Oxygen.getFluid(10000))
+                .outputFluids(Water.getFluid(2000))
+                .save(provider);
+
+        // 红石离心替换输出：silicon_dust -> silicon_dioxide_dust
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("decomposition_centrifuging__redstone"))
+                .EUt(30).duration(1400)
+                .inputItems(dust, Redstone, 10)
+                .outputItems(dust, SiliconDioxide)
+                .outputItems(dust, Pyrite)
+                .outputItems(dust, Ruby)
+                .outputItems(dust, Mercury, 3)
+                .save(provider);
+
+        // 钙铁榴石
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("andradite"))
+                .EUt(60).duration(480)
+                .inputItems(dust, Andradite, 20)
+                .outputItems(dust, Iron, 2)
+                .outputItems(dust, Calcium, 3)
+                .outputItems(dust, SiliconDioxide, 9)
+                .outputFluids(Oxygen.getFluid(6000))
+                .save(provider);
+
+        // 铁辉石
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("ferrosilite"))
+                .EUt(60).duration(120)
+                .inputItems(dust, Ferrosilite, 5)
+                .outputItems(dust, Iron)
+                .outputItems(dust, SiliconDioxide, 3)
+                .outputFluids(Oxygen.getFluid(1000))
+                .save(provider);
+
+        // 钙辉石
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("wollastonite"))
+                .EUt(60).duration(110)
+                .inputItems(dust, CTNHMaterials.Wollastonite, 5)
+                .outputItems(dust, Calcium)
+                .outputItems(dust, SiliconDioxide, 3)
+                .outputFluids(Oxygen.getFluid(1000))
+                .save(provider);
+
+        // 黑曜石
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("obsidian"))
+                .EUt(60).duration(192)
+                .inputItems(dust, Obsidian, 8)
+                .outputItems(dust, Iron)
+                .outputItems(dust, Magnesium)
+                .outputItems(dust, SiliconDioxide, 6)
+                .save(provider);
+
+        // 滑石
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("talc"))
+                .EUt(60).duration(378)
+                .inputItems(dust, Talc, 21)
+                .outputItems(dust, Magnesium, 3)
+                .outputItems(dust, SiliconDioxide, 12)
+                .outputFluids(Oxygen.getFluid(4000))
+                .outputFluids(Hydrogen.getFluid(2000))
+                .save(provider);
+
+        // 皂石
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("soapstone"))
+                .EUt(60).duration(378)
+                .inputItems(dust, Soapstone, 21)
+                .outputItems(dust, Magnesium, 3)
+                .outputItems(dust, SiliconDioxide, 12)
+                .outputFluids(Oxygen.getFluid(4000))
+                .outputFluids(Hydrogen.getFluid(2000))
+                .save(provider);
+
+        // 膨润土
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("bentonite"))
+                .EUt(60).duration(480)
+                .inputItems(dust, Bentonite, 30)
+                .outputItems(dust, Sodium)
+                .outputItems(dust, Magnesium, 6)
+                .outputItems(dust, SiliconDioxide, 36)
+                .outputFluids(Water.getFluid(5000))
+                .outputFluids(Hydrogen.getFluid(6000))
+                .save(provider);
+
+        // 石棉粉
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("asbestos"))
+                .EUt(60).duration(252)
+                .inputItems(dust, Asbestos, 18)
+                .outputItems(dust, Magnesium, 3)
+                .outputItems(dust, SiliconDioxide, 6)
+                .outputFluids(Oxygen.getFluid(5000))
+                .outputFluids(Hydrogen.getFluid(4000))
+                .save(provider);
+
+        // 钙铬榴石
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("uvarovite"))
+                .EUt(360).duration(480)
+                .inputItems(dust, Uvarovite, 20)
+                .outputItems(dust, Calcium, 3)
+                .outputItems(dust, Chromium, 2)
+                .outputItems(dust, SiliconDioxide, 9)
+                .outputFluids(Oxygen.getFluid(6000))
+                .save(provider);
+
+        // 漂白土
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("fullers_earth"))
+                .EUt(60).duration(336)
+                .inputItems(dust, FullersEarth, 21)
+                .outputItems(dust, Magnesium)
+                .outputItems(dust, SiliconDioxide, 12)
+                .outputFluids(Oxygen.getFluid(3000))
+                .outputFluids(Hydrogen.getFluid(1000))
+                .outputFluids(Water.getFluid(4000))
+                .save(provider);
+
+        // 二氧化硅处理
+        // 碳还原二氧化硅
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("silicon_dioxide_reduction"))
+                .EUt(300).duration(200)
+                .inputItems(dust, SiliconDioxide, 3)
+                .inputItems(dust, Carbon, 2)
+                .outputItems(dust, Silicon)
+                .outputFluids(CarbonMonoxide.getFluid(2000))
+                .save(provider);
+
+        // 二氧化硅氯化
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("silicon_dioxide_chloride"))
+                .EUt(30).duration(40)
+                .inputItems(dust, SiliconDioxide, 3)
+                .inputFluids(HydrochloricAcid.getFluid(4000))
+                .outputFluids(NewExplosivesProductionMaterials.SILICON_CHLORIDE.getFluid(1000))
+                .outputFluids(Water.getFluid(2000))
+                .save(provider);
+
+        // 钠还原四氯化硅
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("silicon_from_sodium"))
+                .EUt(30).duration(40)
+                .inputItems(dust, Sodium, 4)
+                .inputFluids(NewExplosivesProductionMaterials.SILICON_CHLORIDE.getFluid(1000))
+                .outputItems(dust, Salt, 8)
+                .outputItems(dust, Silicon)
+                .save(provider);
+
+        // 钾还原四氯化硅
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("silicon_from_potassium"))
+                .EUt(30).duration(40)
+                .inputItems(dust, Potassium, 4)
+                .inputFluids(NewExplosivesProductionMaterials.SILICON_CHLORIDE.getFluid(1000))
+                .outputItems(dust, RockSalt, 8)
+                .outputItems(dust, Silicon)
+                .save(provider);
+
+        // 钠还原四氟化硅
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("silicon_from_sodium2"))
+                .EUt(30).duration(40)
+                .inputItems(dust, Sodium, 4)
+                .inputFluids(CTNHMaterials.siliconFluoride.getFluid(1000))
+                .outputItems(dust, BauxiteProcessingMaterials.SODIUM_FLUORIDE, 8)
+                .outputItems(dust, Silicon)
+                .save(provider);
+
+        // =============== Space Fabric ================
+        // 从 SpaceFabric.js 迁移
+
+        // 二甲基甲酰胺
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("dimethylformamide"))
+                .inputFluids(CarbonMonoxide.getFluid(1000))
+                .inputFluids(Dimethylamine.getFluid(1000))
+                .outputFluids(NewExplosivesProductionMaterials.DIMETHYLFORMAMIDE.getFluid(1000))
+                .duration(200).EUt(480)
+                .save(provider);
+
+        // 均苯四酸二酐
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("pyrometillic_dianhydride"))
+                .inputFluids(Oxygen.getFluid(1500))
+                .inputFluids(Toluene.getFluid(250))
+                .outputFluids(PYROMETILLIC_DIANHYDRIDE.getFluid(250))
+                .outputFluids(Water.getFluid(1500))
+                .duration(400).EUt(480)
+                .save(provider);
+
+        // 对氨基二苯醚沉降物
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("oxydianiline_sludge"))
+                .inputFluids(AminoPhenol.getFluid(1000))
+                .inputFluids(Nitrochlorobenzene.getFluid(1000))
+                .inputFluids(NewExplosivesProductionMaterials.DIMETHYLFORMAMIDE.getFluid(1000))
+                .inputItems(dust, PotassiumCarbonate)
+                .outputFluids(OXYDIANILINE_SLUDGE.getFluid(250))
+                .outputFluids(Water.getFluid(1500))
+                .duration(400).EUt(480)
+                .save(provider);
+
+        // 蒸馏对氨基二苯醚沉降物
+        DISTILLATION_RECIPES.recipeBuilder(CTNHCore.id("distill_oxydianiline_sludge"))
+                .inputFluids(OXYDIANILINE_SLUDGE.getFluid(1000))
+                .outputFluids(NewExplosivesProductionMaterials.DIMETHYLFORMAMIDE.getFluid(1000))
+                .outputFluids(OXYDIANILINE.getFluid(144))
+                .duration(200).EUt(480)
+                .save(provider);
+
+        // 聚酰亚胺K
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("kapton_k"))
+                .inputFluids(PYROMETILLIC_DIANHYDRIDE.getFluid(1000))
+                .inputFluids(OXYDIANILINE.getFluid(1000))
+                .outputFluids(KAPTON_K.getFluid(1000))
+                .duration(400).EUt(480)
+                .save(provider);
+
+        // 溴化钴
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("cobalt_bromide"))
+                .inputItems(dust, Cobalt)
+                .inputFluids(Bromine.getFluid(1000))
+                .inputFluids(AceticAcid.getFluid(1000))
+                .outputFluids(COBALT_BROMIDE.getFluid(1000))
+                .duration(60).EUt(480)
+                .save(provider);
+
+        // 溴化锰
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("manganese_bromide"))
+                .inputItems(dust, Manganese)
+                .inputFluids(Bromine.getFluid(1000))
+                .inputFluids(AceticAcid.getFluid(1000))
+                .outputFluids(MANGANESE_BROMIDE.getFluid(1000))
+                .duration(60).EUt(480)
+                .save(provider);
+
+        // 乙酸锰
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("manganese_acetate"))
+                .inputItems(dust, Manganese)
+                .inputFluids(AceticAcid.getFluid(1000))
+                .outputFluids(MANGANESE_ACETATE.getFluid(1000))
+                .duration(60).EUt(480)
+                .save(provider);
+
+        // 氢溴酸
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("hydrobromic_acid"))
+                .notConsumable(dust, Platinum)
+                .inputFluids(Water.getFluid(1000))
+                .inputFluids(Bromine.getFluid(1000))
+                .inputFluids(Hydrogen.getFluid(1000))
+                .outputFluids(NewExplosivesProductionMaterials.HYDROBROMIC_ACID.getFluid(1000))
+                .duration(60).EUt(480)
+                .save(provider);
+
+        // 钴锰溴催化剂
+        LARGE_CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("co_mn_br_catalyst"))
+                .inputFluids(MANGANESE_BROMIDE.getFluid(1000))
+                .inputFluids(MANGANESE_ACETATE.getFluid(1000))
+                .inputFluids(NewExplosivesProductionMaterials.HYDROBROMIC_ACID.getFluid(1000))
+                .inputFluids(COBALT_BROMIDE.getFluid(1000))
+                .outputFluids(CO_MN_BR_CATALYST.getFluid(4000))
+                .duration(100).EUt(480)
+                .save(provider);
+
+        // 三氯甲苯
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("bis_trichloromethyl_benzene"))
+                .inputFluids(Dimethylbenzene.getFluid(1000))
+                .inputFluids(Chlorine.getFluid(12000))
+                .outputFluids(BIS_TRICHLOROMETHYL_BENZENE.getFluid(1000))
+                .outputFluids(HydrochloricAcid.getFluid(6000))
+                .duration(60).EUt(480)
+                .save(provider);
+
+        // 对苯二酸
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("therephthalic_acid"))
+                .inputFluids(Dimethylbenzene.getFluid(1000))
+                .inputFluids(Oxygen.getFluid(2000))
+                .inputFluids(CO_MN_BR_CATALYST.getFluid(1000))
+                .outputFluids(TEREPHTHALIC_ACID.getFluid(1000))
+                .outputFluids(Water.getFluid(1000))
+                .duration(60).EUt(480)
+                .save(provider);
+
+        // 对苯二酰氯
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("terephthaloyl_chloride"))
+                .inputFluids(BIS_TRICHLOROMETHYL_BENZENE.getFluid(1000))
+                .inputFluids(TEREPHTHALIC_ACID.getFluid(1000))
+                .outputFluids(TEREPHTHALOYL_CHLORIDE.getFluid(2000))
+                .outputFluids(HydrochloricAcid.getFluid(1000))
+                .duration(60).EUt(480)
+                .save(provider);
+
+        // 硝基苯胺
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("nitroaniline"))
+                .inputFluids(Nitrochlorobenzene.getFluid(1000))
+                .inputFluids(Ammonia.getFluid(2000))
+                .outputFluids(NITROANILINE.getFluid(1000))
+                .outputFluids(AmmoniumChloride.getFluid(1000))
+                .duration(60).EUt(480)
+                .save(provider);
+
+        // 对苯二胺
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("para_phenylenediamine"))
+                .inputFluids(NITROANILINE.getFluid(1000))
+                .inputFluids(Hydrogen.getFluid(6000))
+                .outputFluids(PARA_PHENYLENEDIAMINE.getFluid(1000))
+                .outputFluids(Water.getFluid(3000))
+                .duration(60).EUt(480)
+                .save(provider);
+
+        // 对芳纶
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("para_aramid"))
+                .inputFluids(PARA_PHENYLENEDIAMINE.getFluid(1000))
+                .inputFluids(TEREPHTHALOYL_CHLORIDE.getFluid(1000))
+                .outputFluids(PARA_ARAMID.getFluid(1000))
+                .outputFluids(HydrochloricAcid.getFluid(2000))
+                .duration(200).EUt(480)
+                .save(provider);
+
+        // 太空织物
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("space_fabric"))
+                .inputItems(ChemicalHelper.get(foil, Polytetrafluoroethylene, 4))
+                .inputItems(ChemicalHelper.get(foil, PARA_ARAMID, 4))
+                .inputItems(ChemicalHelper.get(foil, PolyphenyleneSulfide, 4))
+                .inputFluids(FIBER_GLASS.getFluid(576))
+                .outputItems(SPACE_FABRIC.asStack())
+                .duration(100).EUt(480)
+                .save(provider);
+
+        // =============== Stone Dust Chain ================
+        // 从 StonedustChain.js 迁移
+
+        // 催化剂配方
+        CTNHRecipeTypes.DIFFERENTIAL_CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("stone_dust_with_catalyst"))
+                .inputItems(dust, Stone, 60)
+                .notConsumable(STONE_PROCESS_CATALYST.asStack())
+                .outputItems(ChemicalHelper.get(dustTiny, StonePowderMaterials.INERT_RESIDUES))
+                .outputItems(ChemicalHelper.get(dustSmall, StonePowderMaterials.OXIDIZED_RESIDUES, 2))
+                .outputItems(ChemicalHelper.get(dustSmall, StonePowderMaterials.HEAVY_OXIDIZED_RESIDUES, 2))
+                .outputItems(ChemicalHelper.get(dustSmall, Magnetite))
+                .inputFluids(HydrofluoricAcid.getFluid(12000))
+                .outputFluids(BauxiteProcessingMaterials.RED_MUD.getFluid(75))
+                .outputFluids(StonePowderMaterials.FLUOROSILICIC_ACID.getFluid(2000))
+                .EUt(480).duration(200)
+                .save(provider);
+
+        // 产线配方
+        // 搅拌：石头粉 + 氢氟酸 -> 污浊六氟硅酸
+        MIXER_RECIPES.recipeBuilder(CTNHCore.id("dirty_hexafluorosilicic_acid"))
+                .inputItems(dust, Stone, 24)
+                .inputFluids(HydrofluoricAcid.getFluid(6000))
+                .outputFluids(StonePowderMaterials.DIRTY_HEXAFLUOROSILICIC_ACID.getFluid(3000))
+                .EUt(100).duration(40)
+                .save(provider);
+
+        // 离心：污浊六氟硅酸 -> 稀释六氟硅酸 + 石头残渣
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("dilute_hexafluorosilicic_acid"))
+                .inputFluids(StonePowderMaterials.DIRTY_HEXAFLUOROSILICIC_ACID.getFluid(3000))
+                .outputFluids(StonePowderMaterials.DILUTE_HEXAFLUOROSILICIC_ACID.getFluid(3000))
+                .outputItems(dust, StonePowderMaterials.STONE_RESIDUE, 12)
+                .duration(40).EUt(100)
+                .save(provider);
+
+        // 蒸馏：稀释六氟硅酸 -> 水 + 氟硅酸
+        DISTILLATION_RECIPES.recipeBuilder(CTNHCore.id("fluorosilicic_acid"))
+                .inputFluids(StonePowderMaterials.DILUTE_HEXAFLUOROSILICIC_ACID.getFluid(3000))
+                .outputFluids(Water.getFluid(2000))
+                .outputFluids(StonePowderMaterials.FLUOROSILICIC_ACID.getFluid(1000))
+                .duration(160).EUt(200)
+                .save(provider);
+
+        // 化学反应：石头残渣 -> 精良残渣 + 磁铁矿
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("uncommon_residues_dust"))
+                .inputItems(dust, StonePowderMaterials.STONE_RESIDUE, 24)
+                .outputItems(dust, StonePowderMaterials.UNCOMMON_RESIDUES)
+                .outputItems(ChemicalHelper.get(dustSmall, Magnetite))
+                .inputFluids(BauxiteProcessingMaterials.SODIUM_HYDROXIDE_SOLUTION.getFluid(1000))
+                .outputFluids(BauxiteProcessingMaterials.SODIUM_HYDROXIDE_SOLUTION.getFluid(925))
+                .outputFluids(BauxiteProcessingMaterials.RED_MUD.getFluid(75))
+                .duration(40).EUt(100)
+                .save(provider);
+
+        // 冷冻机：氟 -> 液态氟
+        VACUUM_RECIPES.recipeBuilder(CTNHCore.id("liquid_fluorine"))
+                .inputFluids(Fluorine.getFluid(1000))
+                .outputFluids(BiodieselFertileSoilMaterials.LIQUID_FLUORINE.getFluid(1000))
+                .EUt(1920).duration(240)
+                .save(provider);
+
+        // 化学反应：液态氧 + 液态氟 -> 二氟化二氧
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("dioxygendifluoride"))
+                .inputFluids(Oxygen.getFluid(FluidStorageKeys.LIQUID, 2000))
+                .inputFluids(BiodieselFertileSoilMaterials.LIQUID_FLUORINE.getFluid(2000))
+                .outputFluids(StonePowderMaterials.DIOXYGENDIFLUORIDE.getFluid(1000))
+                .duration(80).EUt(200)
+                .save(provider);
+
+        // 化学反应：精良残渣 -> 待分离氧化金属残渣
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("partially_oxidized_residues_dust"))
+                .inputItems(dust, StonePowderMaterials.UNCOMMON_RESIDUES)
+                .outputItems(dust, StonePowderMaterials.PARTIALLY_OXIDIZED_RESIDUES)
+                .inputFluids(StonePowderMaterials.DIOXYGENDIFLUORIDE.getFluid(1000))
+                .duration(80).EUt(100)
+                .save(provider);
+
+        // 离心：待分离氧化金属残渣 -> 纯净残渣 + 氧化残渣溶液
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("oxidized_residual_solution"))
+                .inputItems(dust, StonePowderMaterials.PARTIALLY_OXIDIZED_RESIDUES, 10)
+                .outputItems(dust, StonePowderMaterials.INERT_RESIDUES)
+                .inputFluids(DistilledWater.getFluid(10000))
+                .outputFluids(StonePowderMaterials.OXIDIZED_RESIDUAL_SOLUTION.getFluid(10000))
+                .duration(200).EUt(100)
+                .save(provider);
+
+        // 脱水机：氧化残渣溶液 -> 氧化残渣 + 重氧化残渣
+        CTNHRecipeTypes.DEHYDRATOR_RECIPES.recipeBuilder(CTNHCore.id("oxidized_residues_dust"))
+                .outputItems(dust, StonePowderMaterials.OXIDIZED_RESIDUES)
+                .outputItems(dust, StonePowderMaterials.HEAVY_OXIDIZED_RESIDUES)
+                .inputFluids(StonePowderMaterials.OXIDIZED_RESIDUAL_SOLUTION.getFluid(2000))
+                .duration(80).EUt(3000)
+                .save(provider);
+
+        // 电弧炉：氧化残渣 -> 金属残渣
+        BLAST_RECIPES.recipeBuilder(CTNHCore.id("metallic_residues_dust"))
+                .inputItems(dust, StonePowderMaterials.OXIDIZED_RESIDUES, 10)
+                .outputItems(dust, StonePowderMaterials.METALLIC_RESIDUES)
+                .inputFluids(Hydrogen.getFluid(60000))
+                .outputFluids(StonePowderMaterials.DILUTE_HYDROFLUORIC_ACID.getFluid(40000))
+                .duration(1600).EUt(2000).blastFurnaceTemp(3500)
+                .save(provider);
+
+        // 电弧炉：重氧化残渣 -> 重金属残渣
+        BLAST_RECIPES.recipeBuilder(CTNHCore.id("heavy_metallic_residues_dust"))
+                .inputItems(dust, StonePowderMaterials.HEAVY_OXIDIZED_RESIDUES, 10)
+                .outputItems(dust, StonePowderMaterials.HEAVY_METALLIC_RESIDUES)
+                .inputFluids(Hydrogen.getFluid(60000))
+                .outputFluids(StonePowderMaterials.DILUTE_HYDROFLUORIC_ACID.getFluid(40000))
+                .duration(1600).EUt(2000).blastFurnaceTemp(3500)
+                .save(provider);
+
+        // 蒸馏：稀氢氟酸 -> 水 + 氢氟酸
+        DISTILLATION_RECIPES.recipeBuilder(CTNHCore.id("hydrofluoric_acid"))
+                .inputFluids(StonePowderMaterials.DILUTE_HYDROFLUORIC_ACID.getFluid(2000))
+                .outputFluids(Water.getFluid(1000))
+                .outputFluids(HydrofluoricAcid.getFluid(1000))
+                .duration(80).EUt(200)
+                .save(provider);
+
+        // 魔力转化器：金属残渣分离
+        CMRecipeTypes.MANA_TRANSFORMER_RECIPES.recipeBuilder(CTNHCore.id("metallic_residues_dust_seperate"))
+                .inputItems(dust, StonePowderMaterials.METALLIC_RESIDUES, 10)
+                .outputItems(dust, StonePowderMaterials.DIAMAGNETIC_RESIDUES, 3)
+                .outputItems(dust, StonePowderMaterials.PARAMAGNETIC_RESIDUES, 3)
+                .outputItems(dust, StonePowderMaterials.FERROMAGNETIC_RESIDUES, 3)
+                .outputItems(dust, StonePowderMaterials.UNCOMMON_RESIDUES)
+                .duration(80).EUt(8000)
+                .save(provider);
+
+        // 魔力转化器：重金属残渣分离
+        CMRecipeTypes.MANA_TRANSFORMER_RECIPES.recipeBuilder(CTNHCore.id("heavy_metallic_residues_dust_seperate"))
+                .inputItems(dust, StonePowderMaterials.HEAVY_METALLIC_RESIDUES, 10)
+                .outputItems(dust, StonePowderMaterials.HEAVY_DIAMAGNETIC_RESIDUES, 3)
+                .outputItems(dust, StonePowderMaterials.HEAVY_PARAMAGNETIC_RESIDUES, 3)
+                .outputItems(dust, StonePowderMaterials.HEAVY_FERROMAGNETIC_RESIDUES, 3)
+                .outputItems(dust, StonePowderMaterials.EXOTIC_HEAVY_RESIDUES)
+                .duration(80).EUt(8000)
+                .save(provider);
+
+        // 离心：铁磁性残渣
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("ferromagnetic_residues_dust"))
+                .inputItems(dust, StonePowderMaterials.FERROMAGNETIC_RESIDUES, 6)
+                .outputItems(ChemicalHelper.get(dustSmall, Iron))
+                .outputItems(ChemicalHelper.get(dustSmall, Nickel))
+                .outputItems(ChemicalHelper.get(dustSmall, Cobalt))
+                .duration(100).EUt(3000)
+                .save(provider);
+
+        // 离心：抗磁性残渣
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("diamagnetic_residues_dust"))
+                .inputItems(dust, StonePowderMaterials.DIAMAGNETIC_RESIDUES, 6)
+                .outputItems(ChemicalHelper.get(dustSmall, Calcium))
+                .outputItems(ChemicalHelper.get(dustSmall, Zinc))
+                .outputItems(ChemicalHelper.get(dustSmall, Copper))
+                .outputItems(ChemicalHelper.get(dustSmall, Gallium))
+                .outputItems(ChemicalHelper.get(dustSmall, Beryllium))
+                .outputItems(ChemicalHelper.get(dustSmall, Tin))
+                .duration(100).EUt(3000)
+                .save(provider);
+
+        // 离心：顺磁性残渣
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("paramagnetic_residues_dust"))
+                .inputItems(dust, StonePowderMaterials.PARAMAGNETIC_RESIDUES, 6)
+                .outputItems(ChemicalHelper.get(dustSmall, Sodium))
+                .outputItems(ChemicalHelper.get(dustSmall, Potassium))
+                .outputItems(ChemicalHelper.get(dustSmall, Magnesium))
+                .outputItems(ChemicalHelper.get(dustSmall, Titanium))
+                .outputItems(ChemicalHelper.get(dustSmall, Vanadium))
+                .outputItems(ChemicalHelper.get(dustSmall, Manganese))
+                .duration(100).EUt(3000)
+                .save(provider);
+
+        // 离心：重顺磁性残渣
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("heavy_paramagnetic_residues_dust"))
+                .inputItems(dust, StonePowderMaterials.HEAVY_PARAMAGNETIC_RESIDUES, 6)
+                .outputItems(ChemicalHelper.get(dustSmall, Thorium))
+                .outputItems(ChemicalHelper.get(dustSmall, Uranium238))
+                .outputItems(ChemicalHelper.get(dustSmall, Tungsten))
+                .outputItems(ChemicalHelper.get(dustSmall, Hafnium))
+                .outputItems(ChemicalHelper.get(dustSmall, Tantalum))
+                .outputItems(ChemicalHelper.get(dustSmall, Thallium))
+                .duration(100).EUt(3000)
+                .save(provider);
+
+        // 离心：重抗磁性残渣
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("heavy_diamagnetic_residues_dust"))
+                .inputItems(dust, StonePowderMaterials.HEAVY_DIAMAGNETIC_RESIDUES, 6)
+                .outputItems(ChemicalHelper.get(dustSmall, Lead))
+                .outputItems(ChemicalHelper.get(dustSmall, Cadmium))
+                .outputItems(ChemicalHelper.get(dustSmall, Indium))
+                .outputItems(ChemicalHelper.get(dustSmall, Gold))
+                .outputItems(ChemicalHelper.get(dustSmall, Bismuth))
+                .outputFluids(Mercury.getFluid(36))
+                .duration(120).EUt(3000)
+                .save(provider);
+
+        // 离心：重铁磁性残渣
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("heavy_ferromagnetic_residues_dust"))
+                .inputItems(dust, StonePowderMaterials.HEAVY_FERROMAGNETIC_RESIDUES, 6)
+                .outputItems(ChemicalHelper.get(dustSmall, Dysprosium))
+                .duration(120).EUt(3000)
+                .save(provider);
+
+        // 大型化学反应：清洗纯净残渣
+        LARGE_CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("clean_inert_residues"))
+                .inputItems(dust, StonePowderMaterials.INERT_RESIDUES, 10)
+                .notConsumableFluid(FluoroantimonicAcid.getFluid(1000))
+                .outputItems(dust, StonePowderMaterials.CLEAN_INERT_RESIDUES, 10)
+                .outputItems(dust, NaquadahMaterials.NaquadahOxideMixture)
+                .duration(320).EUt(200)
+                .save(provider);
+
+        // =============== Rare Earth Chain ================
+        // 从 RareearthChain.js 迁移
+
+        // 研磨：稀土 -> 含铁稀土 + 石粉
+        MACERATOR_RECIPES.recipeBuilder(CTNHCore.id("rare_earth_fe_one"))
+                .inputItems(dust, RareEarth, 32)
+                .outputItems(dust, RareEarthMaterials.RARE_EARTH_FE_ONE, 32)
+                .outputItems(dust, Stone, 12)
+                .EUt(480).duration(60)
+                .save(provider);
+
+        // 电磁分选：含铁稀土 -> 含铁精磨稀土 + 磁性铁
+        ELECTROMAGNETIC_SEPARATOR_RECIPES.recipeBuilder(CTNHCore.id("rare_earth_fe_two"))
+                .inputItems(dust, RareEarthMaterials.RARE_EARTH_FE_ONE, 32)
+                .outputItems(dust, RareEarthMaterials.RARE_EARTH_FE_TWO, 16)
+                .outputItems(dust, IronMagnetic, 32)
+                .EUt(480).duration(240)
+                .save(provider);
+
+        // 化学浸洗：含铁精磨稀土 + 盐酸 -> 精磨稀土 + 三氯化铁
+        CHEMICAL_BATH_RECIPES.recipeBuilder(CTNHCore.id("rare_earth_intensive_research"))
+                .inputItems(dust, RareEarthMaterials.RARE_EARTH_FE_TWO, 16)
+                .inputFluids(HydrochloricAcid.getFluid(9000))
+                .outputItems(dust, RareEarthMaterials.RARE_EARTH_INTENSIVE_RESEARCH, 12)
+                .outputFluids(Iron3Chloride.getFluid(3000))
+                .duration(200).EUt(480)
+                .save(provider);
+
+        // 搅拌：精磨稀土 + 独居石 + 氟碳铈矿 -> 稀土混合物
+        MIXER_RECIPES.recipeBuilder(CTNHCore.id("rare_earth_mixture"))
+                .inputItems(dust, RareEarthMaterials.RARE_EARTH_INTENSIVE_RESEARCH)
+                .inputItems(dust, Bastnasite)
+                .inputItems(dust, Monazite)
+                .outputItems(dust, RareEarthMaterials.RARE_EARTH_MIXTURE, 3)
+                .EUt(480).duration(360)
+                .save(provider);
+
+        // 搅拌：稀土混合物 + 氢氧化钠 + 水 -> 碱式稀土混合物
+        MIXER_RECIPES.recipeBuilder(CTNHCore.id("rare_earth_mixture_oh"))
+                .circuitMeta(1)
+                .inputItems(dust, RareEarthMaterials.RARE_EARTH_MIXTURE, 4)
+                .inputItems(dust, SodiumHydroxide, 4)
+                .inputFluids(Water.getFluid(4000))
+                .outputFluids(RareEarthMaterials.RARE_EARTH_MIXTURE_OH.getFluid(1000))
+                .EUt(480).duration(480)
+                .save(provider);
+
+        // 化学反应：碱式稀土混合物 + 盐酸 -> 稀土氯化物溶液 + 盐
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("rare_earth_chloride_solution"))
+                .inputFluids(RareEarthMaterials.RARE_EARTH_MIXTURE_OH.getFluid(1000))
+                .inputFluids(HydrochloricAcid.getFluid(6000))
+                .outputFluids(BauxiteProcessingMaterials.RARE_EARTH_CHLORIDE_SOLUTION.getFluid(6000))
+                .outputItems(dust, Salt, 8)
+                .EUt(480).duration(120)
+                .save(provider);
+
+        // 流体加热器：稀土氯化物溶液 -> 沸腾稀土氯化物
+        FLUID_HEATER_RECIPES.recipeBuilder(CTNHCore.id("rare_earth_chloride_boil"))
+                .inputFluids(BauxiteProcessingMaterials.RARE_EARTH_CHLORIDE_SOLUTION.getFluid(3000))
+                .outputFluids(RareEarthMaterials.RARE_EARTH_CHLORIDE_BOIL.getFluid(3000))
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 结晶器：沸腾稀土氯化物 -> 稀土晶体 + 水
+        CTNHRecipeTypes.CRYSTALLIZER.recipeBuilder(CTNHCore.id("rare_earth_crystals"))
+                .inputFluids(RareEarthMaterials.RARE_EARTH_CHLORIDE_BOIL.getFluid(3000))
+                .outputItems(dust, RareEarthMaterials.RARE_EARTH_CRYSTALS, 4)
+                .outputFluids(Water.getFluid(6000))
+                .EUt(1920).duration(480).blastFurnaceTemp(4500)
+                .save(provider);
+
+        // 离子交换器：稀土晶体 -> 高/低亲和力稀土
+        CTNHRecipeTypes.ION_EXCHANGER.recipeBuilder(CTNHCore.id("rare_earth_high_affinity"))
+                .inputItems(dust, RareEarthMaterials.RARE_EARTH_CRYSTALS)
+                .inputFluids(HydrochloricAcid.getFluid(1500))
+                .outputFluids(RareEarthMaterials.RARE_EARTH_HIGH_AFFINITY.getFluid(1000))
+                .outputFluids(RareEarthMaterials.RARE_EARTH_LOW_AFFINTY.getFluid(1000))
+                .outputFluids(DilutedHydrochloricAcid.getFluid(4000))
+                .outputFluids(BauxiteProcessingMaterials.RED_MUD.getFluid(1000))
+                .EUt(1920).duration(960)
+                .save(provider);
+
+        // 离心：低亲和力稀土 -> 轻稀土 + 中稀土
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("rare_earth_low"))
+                .inputFluids(RareEarthMaterials.RARE_EARTH_LOW_AFFINTY.getFluid(1000))
+                .outputItems(dust, RareEarthMaterials.RARE_EARTH_LOW, 4)
+                .outputItems(dust, RareEarthMaterials.RARE_EARTH_MIDDLE, 2)
+                .EUt(480).duration(800)
+                .save(provider);
+
+        // 离心：高亲和力稀土 -> 中稀土 + 重稀土
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("rare_earth_high"))
+                .inputFluids(RareEarthMaterials.RARE_EARTH_HIGH_AFFINITY.getFluid(1000))
+                .outputItems(dust, RareEarthMaterials.RARE_EARTH_MIDDLE, 4)
+                .outputItems(dust, RareEarthMaterials.RARE_EARTH_HIGH, 2)
+                .EUt(1920).duration(800)
+                .save(provider);
+
+        // 化学浸洗：重稀土 + 氢氟酸 -> 氟浸没重稀土 + 铕
+        CHEMICAL_BATH_RECIPES.recipeBuilder(CTNHCore.id("rare_earth_high_fluoride"))
+                .inputItems(dust, RareEarthMaterials.RARE_EARTH_HIGH)
+                .inputFluids(HydrofluoricAcid.getFluid(4000))
+                .outputFluids(RareEarthMaterials.RARE_EARTH_HIGH_FLUORIDE.getFluid(1000))
+                .outputItems(ChemicalHelper.get(dustTiny, Europium))
+                .EUt(6144).duration(60)
+                .save(provider);
+
+        // 化学浸洗：中稀土 + 氢氟酸 -> 氟浸没中稀土 + 钐
+        CHEMICAL_BATH_RECIPES.recipeBuilder(CTNHCore.id("rare_earth_middle_fluoride"))
+                .inputItems(dust, RareEarthMaterials.RARE_EARTH_MIDDLE)
+                .inputFluids(HydrofluoricAcid.getFluid(4000))
+                .outputFluids(RareEarthMaterials.RARE_EARTH_MIDDLE_FLUORIDE.getFluid(1000))
+                .outputItems(ChemicalHelper.get(dustTiny, Samarium))
+                .EUt(1920).duration(60)
+                .save(provider);
+
+        // 化学浸洗：轻稀土 + 氢氟酸 -> 氟浸没轻稀土 + 钕
+        CHEMICAL_BATH_RECIPES.recipeBuilder(CTNHCore.id("rare_earth_low_fluoride"))
+                .inputItems(dust, RareEarthMaterials.RARE_EARTH_LOW)
+                .inputFluids(HydrofluoricAcid.getFluid(4000))
+                .outputFluids(RareEarthMaterials.RARE_EARTH_LOW_FLUORIDE.getFluid(1000))
+                .outputItems(ChemicalHelper.get(dustTiny, Neodymium))
+                .EUt(480).duration(60)
+                .save(provider);
+
+        // 真空烧结：氟浸没轻稀土 -> 蒸汽 + 氟
+        CTNHRecipeTypes.VACUUM_SINTERING.recipeBuilder(CTNHCore.id("rare_earth_low_fluoride_steam"))
+                .inputFluids(RareEarthMaterials.RARE_EARTH_LOW_FLUORIDE.getFluid(1000))
+                .outputFluids(RareEarthMaterials.RARE_EARTH_LOW_FLUORIDE_STEAM.getFluid(1000))
+                .outputFluids(Fluorine.getFluid(4000))
+                .EUt(480).duration(60).blastFurnaceTemp(4500)
+                .save(provider);
+
+        // 真空烧结：氟浸没重稀土 -> 蒸汽 + 氟
+        CTNHRecipeTypes.VACUUM_SINTERING.recipeBuilder(CTNHCore.id("rare_earth_high_fluoride_steam"))
+                .inputFluids(RareEarthMaterials.RARE_EARTH_HIGH_FLUORIDE.getFluid(1000))
+                .outputFluids(RareEarthMaterials.RARE_EARTH_HIGH_FLUORIDE_STEAM.getFluid(1000))
+                .outputFluids(Fluorine.getFluid(4000))
+                .EUt(6144).duration(60).blastFurnaceTemp(4500)
+                .save(provider);
+
+        // 真空烧结：氟浸没中稀土 -> 蒸汽 + 氟
+        CTNHRecipeTypes.VACUUM_SINTERING.recipeBuilder(CTNHCore.id("rare_earth_middle_fluoride_steam"))
+                .inputFluids(RareEarthMaterials.RARE_EARTH_MIDDLE_FLUORIDE.getFluid(1000))
+                .outputFluids(RareEarthMaterials.RARE_EARTH_MIDDLE_FLUORIDE_STEAM.getFluid(1000))
+                .outputFluids(Fluorine.getFluid(4000))
+                .EUt(1920).duration(60).blastFurnaceTemp(4500)
+                .save(provider);
+
+        // 冷凝分离：轻稀土蒸汽
+        CTNHRecipeTypes.CONDENSING_DISCRETE.recipeBuilder(CTNHCore.id("lanthanum_cerium_praseodymium_neodymium_oxygen_mixture"))
+                .inputFluids(RareEarthMaterials.RARE_EARTH_LOW_FLUORIDE_STEAM.getFluid(1000))
+                .outputItems(dust, RareEarthMaterials.LANTHANUM_CERIUM_PRASEODYMIUM_NEODYMIUM_OXYGEN_MIXTURE, 8)
+                .outputItems(dust, RareEarthMaterials.EUROPIUM_GADOLINIUM_TERBIUM_DYSPROSIUM_OXYGEN_MIXTURE, 4)
+                .outputItems(dust, RareEarthMaterials.YTTRIUM_HOLMIUM_ERBIUM_THULIUM_YTTERBIUM_OXYGEN_LUTETIUM_MIXTURE, 2)
+                .EUt(6144).duration(240)
+                .save(provider);
+
+        // 冷凝分离：中稀土蒸汽
+        CTNHRecipeTypes.CONDENSING_DISCRETE.recipeBuilder(CTNHCore.id("europium_gadolinium_terbium_dysprosium_oxygen_mixture"))
+                .inputFluids(RareEarthMaterials.RARE_EARTH_MIDDLE_FLUORIDE_STEAM.getFluid(1000))
+                .outputItems(dust, RareEarthMaterials.LANTHANUM_CERIUM_PRASEODYMIUM_NEODYMIUM_OXYGEN_MIXTURE, 2)
+                .outputItems(dust, RareEarthMaterials.EUROPIUM_GADOLINIUM_TERBIUM_DYSPROSIUM_OXYGEN_MIXTURE, 8)
+                .outputItems(dust, RareEarthMaterials.YTTRIUM_HOLMIUM_ERBIUM_THULIUM_YTTERBIUM_OXYGEN_LUTETIUM_MIXTURE, 4)
+                .EUt(6144).duration(240)
+                .save(provider);
+
+        // 冷凝分离：重稀土蒸汽
+        CTNHRecipeTypes.CONDENSING_DISCRETE.recipeBuilder(CTNHCore.id("yttrium_holmium_erbium_thulium_ytterbium_oxygen_lutetium_mixture"))
+                .inputFluids(RareEarthMaterials.RARE_EARTH_HIGH_FLUORIDE_STEAM.getFluid(1000))
+                .outputItems(dust, RareEarthMaterials.LANTHANUM_CERIUM_PRASEODYMIUM_NEODYMIUM_OXYGEN_MIXTURE, 2)
+                .outputItems(dust, RareEarthMaterials.EUROPIUM_GADOLINIUM_TERBIUM_DYSPROSIUM_OXYGEN_MIXTURE, 4)
+                .outputItems(dust, RareEarthMaterials.YTTRIUM_HOLMIUM_ERBIUM_THULIUM_YTTERBIUM_OXYGEN_LUTETIUM_MIXTURE, 8)
+                .EUt(6144).duration(240)
+                .save(provider);
+
+        // 化学反应：轻稀土氧化混合物 + 盐酸 -> 氯化物 + 水
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("lan_cer_pra_neo_chloride"))
+                .inputItems(dust, RareEarthMaterials.LANTHANUM_CERIUM_PRASEODYMIUM_NEODYMIUM_OXYGEN_MIXTURE, 5)
+                .inputFluids(HydrochloricAcid.getFluid(24000))
+                .outputFluids(Water.getFluid(12000))
+                .outputItems(dust, RareEarthMaterials.LAN_CER_PRA_NEO_CHLORIDE, 5)
+                .EUt(6144).duration(120)
+                .save(provider);
+
+        // 化学反应：重稀土氧化混合物 + 盐酸 -> 氯化物 + 水
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("ytt_hol_erb_thu_ytt_chloride"))
+                .inputItems(dust, RareEarthMaterials.YTTRIUM_HOLMIUM_ERBIUM_THULIUM_YTTERBIUM_OXYGEN_LUTETIUM_MIXTURE, 5)
+                .inputFluids(HydrochloricAcid.getFluid(24000))
+                .outputFluids(Water.getFluid(12000))
+                .outputItems(dust, RareEarthMaterials.YTT_HOL_ERB_THU_YTT_CHLORIDE, 5)
+                .EUt(6144).duration(480)
+                .save(provider);
+
+        // 化学反应：中稀土氧化混合物 + 盐酸 -> 氯化物 + 水
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("eur_gado_ter_dyspr_chloride"))
+                .inputItems(dust, RareEarthMaterials.EUROPIUM_GADOLINIUM_TERBIUM_DYSPROSIUM_OXYGEN_MIXTURE, 5)
+                .inputFluids(HydrochloricAcid.getFluid(24000))
+                .outputFluids(Water.getFluid(12000))
+                .outputItems(dust, RareEarthMaterials.EUR_GADO_TER_DYSPR_CHLORIDE, 5)
+                .EUt(6144).duration(240)
+                .save(provider);
+
+        // 离心：轻稀土氯化物 -> 单质稀土 + 氯气
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("lanthanum_dust"))
+                .inputItems(dust, RareEarthMaterials.LAN_CER_PRA_NEO_CHLORIDE, 5)
+                .outputItems(dust, Lanthanum)
+                .outputItems(dust, Cerium)
+                .outputItems(dust, Praseodymium)
+                .outputItems(dust, Neodymium)
+                .outputItems(dust, Promethium)
+                .outputFluids(Chlorine.getFluid(24000))
+                .EUt(6144).duration(120).blastFurnaceTemp(5200)
+                .save(provider);
+
+        // 离心：中稀土氯化物 -> 单质稀土 + 氯气
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("samarium_dust"))
+                .inputItems(dust, RareEarthMaterials.EUR_GADO_TER_DYSPR_CHLORIDE, 5)
+                .outputItems(dust, Samarium)
+                .outputItems(dust, Europium)
+                .outputItems(dust, Gadolinium)
+                .outputItems(dust, Terbium)
+                .outputItems(dust, Dysprosium)
+                .outputItems(dust, Holmium)
+                .outputFluids(Chlorine.getFluid(24000))
+                .EUt(6144).duration(120).blastFurnaceTemp(5200)
+                .save(provider);
+
+        // 离心：重稀土氯化物 -> 单质稀土 + 氯气
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("holmium_dust"))
+                .inputItems(dust, RareEarthMaterials.YTT_HOL_ERB_THU_YTT_CHLORIDE, 5)
+                .outputItems(dust, Erbium)
+                .outputItems(dust, Thulium)
+                .outputItems(dust, Ytterbium)
+                .outputItems(dust, Lutetium)
+                .outputItems(dust, Scandium)
+                .outputItems(dust, Yttrium)
+                .outputFluids(Chlorine.getFluid(24000))
+                .EUt(6144).duration(120).blastFurnaceTemp(5200)
+                .save(provider);
+
         // ============== Recipe Replace Re-additions ==============
 
         // 1. endstone_separation (centrifuge): replaced platinum_dust with platinum_metal_dust
@@ -3356,9 +4152,9 @@ public class GtceuScriptRecipes {
         {
             TagKey<Item> diodeTag = ItemTags.create(ResourceLocation.parse("gtceu:diodes"));
             VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("hv_diode"),
-                    new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:hv_diode"))),
+                    new ItemStack(GTMachines.DIODE[GTValues.HV].asStack().getItem()),
                     "CRd", "CRd", "CRd",
-                    'C', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:copper_single_cable")),
+                    'C', ChemicalHelper.get(cableGtSingle, Platinum),
                     'R', ChemicalHelper.get(plate, Ruby),
                     'd', diodeTag);
         }
