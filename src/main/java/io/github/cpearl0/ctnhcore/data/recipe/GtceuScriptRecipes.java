@@ -4134,6 +4134,454 @@ public class GtceuScriptRecipes {
                 .EUt(6144).duration(120).blastFurnaceTemp(5200)
                 .save(provider);
 
+        // =============== Wood Bionics ================
+        // 从 wood.js 迁移
+
+        // 橡木树苗
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("oak_sapling"))
+                .notConsumable(new ItemStack(Items.OAK_SAPLING))
+                .outputItems(new ItemStack(Items.OAK_LOG, 10))
+                .outputItems(new ItemStack(Items.OAK_LEAVES, 8))
+                .outputItems(new ItemStack(Items.OAK_SAPLING, 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 云杉树苗
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("spruce_sapling"))
+                .notConsumable(new ItemStack(Items.SPRUCE_SAPLING))
+                .outputItems(new ItemStack(Items.SPRUCE_LOG, 10))
+                .outputItems(new ItemStack(Items.SPRUCE_LEAVES, 8))
+                .outputItems(new ItemStack(Items.SPRUCE_SAPLING, 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 白桦树苗
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("birch_sapling"))
+                .notConsumable(new ItemStack(Items.BIRCH_SAPLING))
+                .outputItems(new ItemStack(Items.BIRCH_LOG, 10))
+                .outputItems(new ItemStack(Items.BIRCH_LEAVES, 8))
+                .outputItems(new ItemStack(Items.BIRCH_SAPLING, 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 丛林树苗
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("jungle_sapling"))
+                .notConsumable(new ItemStack(Items.JUNGLE_SAPLING))
+                .outputItems(new ItemStack(Items.JUNGLE_LOG, 10))
+                .outputItems(new ItemStack(Items.JUNGLE_LEAVES, 8))
+                .outputItems(new ItemStack(Items.JUNGLE_SAPLING, 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 金合欢树苗
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("acacia_sapling"))
+                .notConsumable(new ItemStack(Items.ACACIA_SAPLING))
+                .outputItems(new ItemStack(Items.ACACIA_LOG, 10))
+                .outputItems(new ItemStack(Items.ACACIA_LEAVES, 8))
+                .outputItems(new ItemStack(Items.ACACIA_SAPLING, 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 深色橡木树苗
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("dark_oak_sapling"))
+                .notConsumable(new ItemStack(Items.DARK_OAK_SAPLING))
+                .outputItems(new ItemStack(Items.DARK_OAK_LOG, 10))
+                .outputItems(new ItemStack(Items.DARK_OAK_LEAVES, 8))
+                .outputItems(new ItemStack(Items.DARK_OAK_SAPLING, 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 樱花树苗
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("cherry_sapling"))
+                .notConsumable(new ItemStack(Items.CHERRY_SAPLING))
+                .outputItems(new ItemStack(Items.CHERRY_LOG, 10))
+                .outputItems(new ItemStack(Items.CHERRY_LEAVES, 8))
+                .outputItems(new ItemStack(Items.CHERRY_SAPLING, 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 水晶树苗 (Aether)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("crystal_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("lost_aether_content:crystal_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("aether:skyroot_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("aether:crystal_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("lost_aether_content:crystal_sapling")), 5))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("aether:white_apple")), 8))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 节日树苗 (Aether)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("holiday_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("lost_aether_content:holiday_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("aether:skyroot_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("aether:holiday_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("lost_aether_content:holiday_sapling")), 5))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("aether:white_apple")), 8))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 冷杉树苗 (BoP)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("fir_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:fir_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:fir_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:fir_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:fir_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 红杉树苗 (BoP)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("redwood_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:redwood_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:redwood_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:redwood_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:redwood_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 桃花心木树苗 (BoP)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("mahogany_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:mahogany_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:mahogany_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:mahogany_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:mahogany_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 蓝花楹树苗 (BoP)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("jacaranda_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:jacaranda_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:jacaranda_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:jacaranda_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:jacaranda_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 棕榈树苗 (BoP)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("palm_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:palm_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:palm_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:palm_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:palm_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 柳树苗 (BoP)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("willow_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:willow_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:willow_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:willow_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:willow_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 枯木树苗 (BoP)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("dead_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:dead_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:dead_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:dead_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:dead_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 魔法树苗 (BoP)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("magic_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:magic_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:magic_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:magic_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:magic_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 暗影树苗 (BoP)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("umbran_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:umbran_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:umbran_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:umbran_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:umbran_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 地狱树苗 (BoP)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("hellbark_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:hellbark_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:hellbark_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:hellbark_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:hellbark_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 胡桃树苗 (Ecologics)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("walnut_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ecologics:walnut_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ecologics:walnut_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ecologics:walnut_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ecologics:walnut_sapling")), 5))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ecologics:walnut")), 4))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 雅格根树苗 (Deep Aether)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("yagroot_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:yagroot_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:yagroot_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:yagroot_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:yagroot_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 玫瑰根树苗 (Deep Aether)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("roseroot_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:roseroot_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:roseroot_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:roseroot_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:roseroot_sapling")), 5))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:aerglow_blossom")), 16))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 蓝玫瑰根树苗 (Deep Aether)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("blue_roseroot_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:blue_roseroot_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:roseroot_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:blue_roseroot_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:blue_roseroot_sapling")), 5))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:aerglow_blossom")), 16))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 绿色奥术树苗 (Ars Nouveau)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("green_archwood_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ars_nouveau:green_archwood_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ars_nouveau:green_archwood_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ars_nouveau:green_archwood_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ars_nouveau:green_archwood_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 紫色奥术树苗 (Ars Nouveau)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("purple_archwood_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ars_nouveau:purple_archwood_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ars_nouveau:purple_archwood_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ars_nouveau:purple_archwood_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ars_nouveau:purple_archwood_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 红色奥术树苗 (Ars Nouveau)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("red_archwood_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ars_nouveau:red_archwood_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ars_nouveau:red_archwood_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ars_nouveau:red_archwood_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ars_nouveau:red_archwood_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 蓝色奥术树苗 (Ars Nouveau)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("blue_archwood_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ars_nouveau:blue_archwood_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ars_nouveau:blue_archwood_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ars_nouveau:blue_archwood_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ars_nouveau:blue_archwood_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 太阳根树苗 (Deep Aether)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("sunroot_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:sunroot_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:sunroot_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:sunroot_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:sunroot_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 康贝里树苗 (Deep Aether)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("conberry_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:conberry_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:conberry_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:conberry_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:conberry_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 粗根树苗 (Deep Aether)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("cruderoot_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:cruderoot_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:cruderoot_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:cruderoot_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("deep_aether:cruderoot_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 牛油果树苗 (Cultural Delights)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("avocado_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("culturaldelights:avocado_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("culturaldelights:avocado_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("culturaldelights:avocado_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("culturaldelights:avocado_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 暗木树苗 (暮色森林)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("darkwood_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:darkwood_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:dark_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:dark_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:darkwood_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 红树林苗 (暮色森林)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("mangrove_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:mangrove_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:mangrove_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:mangrove_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:mangrove_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 树冠树苗 (暮色森林)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("canopy_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:canopy_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:canopy_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:canopy_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:canopy_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 暮色橡木树苗 (暮色森林)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("twilight_oak_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:twilight_oak_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:twilight_oak_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:twilight_oak_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:twilight_oak_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 橡胶树苗
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("rubber_sapling"))
+                .notConsumable(GTBlocks.RUBBER_SAPLING.asStack())
+                .outputItems(GTBlocks.RUBBER_LOG.asStack(10))
+                .outputItems(GTBlocks.RUBBER_LEAVES.asStack(8))
+                .outputItems(GTBlocks.RUBBER_SAPLING.asStack(5))
+                .outputItems(GTItems.STICKY_RESIN.asStack(5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 皮文树苗 (Alex's Caves)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("pewen_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("alexscaves:pewen_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("alexscaves:pewen_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("alexscaves:pewen_branch")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("alexscaves:pewen_sapling")), 5))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("alexscaves:pine_nuts")), 4))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 远古树苗 (Alex's Caves)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("ancient_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("alexscaves:ancient_sapling"))))
+                .outputItems(new ItemStack(Items.JUNGLE_LOG, 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("alexscaves:ancient_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("alexscaves:ancient_sapling")), 5))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("alexscaves:tree_star")), 12))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 起源树苗 (BoP)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("origin_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:origin_sapling"))))
+                .outputItems(new ItemStack(Items.OAK_LOG, 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:origin_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:origin_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 彩虹白桦树苗 (BoP)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("rainbow_birch_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:rainbow_birch_sapling"))))
+                .outputItems(new ItemStack(Items.BIRCH_LOG, 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:rainbow_birch_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:rainbow_birch_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 花橡树苗 (BoP)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("flowering_oak_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:flowering_oak_sapling"))))
+                .outputItems(new ItemStack(Items.OAK_LOG, 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:flowering_oak_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:flowering_oak_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 金橡树苗 (Aether)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("golden_oak_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("aether:golden_oak_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("aether:golden_oak_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("aether:golden_oak_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("aether:golden_oak_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 彩虹橡木树苗 (暮色森林)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("rainbow_oak_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:rainbow_oak_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:twilight_oak_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:rainbow_oak_leaves")), 8))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:rainbow_oak_sapling")), 5))
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 时间树苗 (暮色森林)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("time_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:time_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:time_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:time_leaves")), 8))
+                .chancedOutput(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:time_sapling"))), 100, 0)
+                .chancedOutput(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:time_log_core"))), 100, 0)
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 变形树苗 (暮色森林)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("transformation_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:transformation_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:transformation_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:transformation_leaves")), 8))
+                .chancedOutput(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:transformation_sapling"))), 100, 0)
+                .chancedOutput(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:transformation_log_core"))), 100, 0)
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 采矿树苗 (暮色森林)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("mining_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:mining_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:mining_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:mining_leaves")), 8))
+                .chancedOutput(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:mining_sapling"))), 100, 0)
+                .chancedOutput(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:mining_log_core"))), 100, 0)
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 分拣树苗 (暮色森林)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("sorting_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:sorting_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:sorting_log")), 10))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:sorting_leaves")), 8))
+                .chancedOutput(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:sorting_sapling"))), 100, 0)
+                .chancedOutput(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:sorting_log_core"))), 100, 0)
+                .EUt(120).duration(100)
+                .save(provider);
+
+        // 空心橡木树苗 (暮色森林)
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("hollow_oak_sapling"))
+                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:hollow_oak_sapling"))))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:twilight_oak_log")), 64))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:twilight_oak_leaves")), 64))
+                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:firefly")), 10))
+                .chancedOutput(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("twilightforest:hollow_oak_sapling"))), 100, 0)
+                .EUt(120).duration(100)
+                .save(provider);
+
         // =============== Geyan Chain ================
         // 从 GeyanChain.js 迁移
 
