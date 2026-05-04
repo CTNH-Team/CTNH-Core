@@ -1,8 +1,5 @@
 package io.github.cpearl0.ctnhcore.client.ponder.Kinetic;
 
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 import io.github.cpearl0.ctnhcore.client.ponder.CTNHPonderSceneBuilder;
 
 import com.gregtechceu.gtceu.api.GTValues;
@@ -22,10 +19,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.Vec3;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 import com.mo_guang.ctpp.registry.CTPPMachines;
 import com.simibubi.create.AllBlocks;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-
 
 public class SmashingFactory {
 

@@ -1,8 +1,5 @@
 package io.github.cpearl0.ctnhcore.client.ponder.Kinetic;
 
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 import io.github.cpearl0.ctnhcore.client.ponder.CTNHPonderSceneBuilder;
 
 import net.createmod.catnip.math.Pointing;
@@ -14,13 +11,16 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.registries.ForgeRegistries;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 public class MechanicalExporter {
 
     private MechanicalExporter() {}
-    
+
     @Key("ctnhcore.ponder.mechanical_exporter_common.header")
     @CN("应力出售机")
     @EN("Mechanical Exporter")
@@ -41,7 +41,7 @@ public class MechanicalExporter {
     @CN("放入有标价的食物，就可以获取货币了，对食物按alt可以看标价")
     @EN("Put in food with a price, you can get currency, press alt to see the price of the food")
     static Lang Text4;
-    
+
     public static void Common(SceneBuilder builder, SceneBuildingUtil util) {
         Vec3 mainBlockTextVec = util.vector().blockSurface(util.grid().at(2, 1, 2), Direction.WEST);
         Vec3 inputItemsVec = util.vector().blockSurface(util.grid().at(2, 1, 2), Direction.UP);

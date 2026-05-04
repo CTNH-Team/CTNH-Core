@@ -719,7 +719,8 @@ public class CTNHItems {
             .item("stone_process_catalyst", ComponentItem::create)
             .cnlang("石头粉处理催化剂")
             .lang("Stone Process Catalyst")
-            .onRegister(attach(new TooltipBehavior(list -> list.add(Component.literal("村庄里的石匠掌握这个古老的技术，成为村庄英雄后他就会传授给你")))))
+            .onRegister(
+                    attach(new TooltipBehavior(list -> list.add(Component.literal("村庄里的石匠掌握这个古老的技术，成为村庄英雄后他就会传授给你")))))
             .register();
     public static ItemEntry<ComponentItem> PLATINUM_METAL_CATALYST_SHARD1 = REGISTRATE
             .item("platinum_metal_catalyst_shard1", ComponentItem::create)
@@ -737,7 +738,8 @@ public class CTNHItems {
             .item("yharim", ComponentItem::create)
             .cnlang("§6圣金源锭")
             .lang("Yharim Ingot")
-            .onRegister(attach(new TooltipBehavior(list -> list.add(Component.literal("你必须§6爱护蜜蜂§r才能激发这个锭的真正力量，哦你已经爱过蜜蜂了")))))
+            .onRegister(attach(
+                    new TooltipBehavior(list -> list.add(Component.literal("你必须§6爱护蜜蜂§r才能激发这个锭的真正力量，哦你已经爱过蜜蜂了")))))
             .register();
     public static ItemEntry<ComponentItem> STRONGLY_INTERACTING_NEUTRON_REFLECTOR = REGISTRATE
             .item("strongly_interacting_neutron_reflector", ComponentItem::create)

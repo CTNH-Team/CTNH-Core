@@ -1,8 +1,5 @@
 package io.github.cpearl0.ctnhcore.client.ponder.Kinetic;
 
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 import io.github.cpearl0.ctnhcore.client.ponder.CTNHPonderSceneBuilder;
 
 import com.gregtechceu.gtceu.common.data.GTItems;
@@ -20,6 +17,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 import com.mo_guang.ctpp.registry.CTPPMultiblockMachines;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 

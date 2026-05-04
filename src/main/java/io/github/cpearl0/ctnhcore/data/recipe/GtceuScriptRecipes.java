@@ -1,12 +1,12 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
 import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.data.materials.EnderIOMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.NaquadahMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.NewExplosivesProductionMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.YeastRelatedMaterials;
-import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
@@ -40,13 +40,17 @@ import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.item.AetherItems;
-import com.hollingsworth.arsnouveau.setup.registry.BlockRegistry;
 import com.enderio.base.common.init.EIOBlocks;
 import com.enderio.base.common.init.EIOItems;
 import com.github.alexmodguy.alexscaves.server.block.ACBlockRegistry;
 import com.github.alexmodguy.alexscaves.server.item.ACItemRegistry;
+import com.hollingsworth.arsnouveau.setup.registry.BlockRegistry;
+import com.mo_guang.ctpp.registry.CTPPMaterials;
 import com.moguang.ctnhbio.registry.CBItems;
+import com.moguang.ctnhmana.registry.CMMaterials;
+import com.moguang.ctnhmana.registry.CMRecipeTypes;
 import com.simibubi.create.AllItems;
+import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.shadowsoffire.hostilenetworks.Hostile;
 import earth.terrarium.adastra.common.registry.ModItems;
 import org.antarcticgardens.cna.CNABlocks;
@@ -57,10 +61,6 @@ import vazkii.botania.common.block.BotaniaBlocks;
 import vazkii.botania.common.block.BotaniaFlowerBlocks;
 import vazkii.botania.common.item.BotaniaItems;
 import wayoftime.bloodmagic.common.block.BloodMagicBlocks;
-import com.mo_guang.ctpp.registry.CTPPMaterials;
-import com.moguang.ctnhmana.registry.CMMaterials;
-import com.moguang.ctnhmana.registry.CMRecipeTypes;
-import com.tterrag.registrate.util.entry.ItemEntry;
 
 import java.util.HashMap;
 import java.util.function.Consumer;
@@ -2738,7 +2738,8 @@ public class GtceuScriptRecipes {
                 .duration(100)
                 .save(provider);
 
-        // 2. Reduce tungsten trioxide to tungsten dust: 4x tungsten_trioxide_dust + hydrogen 6000 -> tungsten_dust + water 3000
+        // 2. Reduce tungsten trioxide to tungsten dust: 4x tungsten_trioxide_dust + hydrogen 6000 -> tungsten_dust +
+        // water 3000
         BLAST_RECIPES.recipeBuilder(CTNHCore.id("tungsten_dust"))
                 .inputItems(dust, SpecialMaterials.TUNGSTEN_TRIOXIDE, 4)
                 .inputFluids(Hydrogen.getFluid(6000))
@@ -2750,7 +2751,8 @@ public class GtceuScriptRecipes {
                 .blastFurnaceTemp(3500)
                 .save(provider);
 
-        // 3. Reduce tungsten trioxide to tungsten ingot: 8x tungsten_trioxide_dust + 3x carbon_dust -> 2x hot_tungsten_ingot + carbon_dioxide 3000
+        // 3. Reduce tungsten trioxide to tungsten ingot: 8x tungsten_trioxide_dust + 3x carbon_dust -> 2x
+        // hot_tungsten_ingot + carbon_dioxide 3000
         BLAST_RECIPES.recipeBuilder(CTNHCore.id("tungsten_ingot"))
                 .inputItems(dust, SpecialMaterials.TUNGSTEN_TRIOXIDE, 8)
                 .inputItems(dust, Carbon, 3)
@@ -2764,7 +2766,8 @@ public class GtceuScriptRecipes {
         // =============== TiChain ================
         // 从 TiChain.js 迁移
 
-        // 1. Distill titanium tetrachloride: titanium_tetrachloride 3000 -> gallium_dust + iron_iii_chloride 1000 + titanium_tetrachloride 1000 + refining_titanium_tetrachloride 1250
+        // 1. Distill titanium tetrachloride: titanium_tetrachloride 3000 -> gallium_dust + iron_iii_chloride 1000 +
+        // titanium_tetrachloride 1000 + refining_titanium_tetrachloride 1250
         DISTILLATION_RECIPES.recipeBuilder(CTNHCore.id("refining_titanium_tetrachloride_bucket"))
                 .inputFluids(TitaniumTetrachloride.getFluid(3000))
                 .outputItems(dust, Gallium, 3)
@@ -2775,7 +2778,8 @@ public class GtceuScriptRecipes {
                 .duration(100)
                 .save(provider);
 
-        // 2. Remove vanadium: titanium_tetrachloride_v 6000 + water 9000 + 2x aluminium_dust -> 8x aluminium_chloride_dust + 21x vanadium_pentoxide_dust + hydrochloric_acid 18000 + titanium_tetrachloride 6000
+        // 2. Remove vanadium: titanium_tetrachloride_v 6000 + water 9000 + 2x aluminium_dust -> 8x
+        // aluminium_chloride_dust + 21x vanadium_pentoxide_dust + hydrochloric_acid 18000 + titanium_tetrachloride 6000
         LARGE_CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("vanadium_pentoxide_dust"))
                 .inputFluids(BauxiteProcessingMaterials.TITANIUM_TETRACHLORIDE_V.getFluid(6000))
                 .inputFluids(Water.getFluid(9000))
@@ -2788,7 +2792,8 @@ public class GtceuScriptRecipes {
                 .duration(150)
                 .save(provider);
 
-        // 3. Synthesize vanadium-containing TiCl4: chlorine 48000 + 6x rutile_dust + 12x carbon_dust -> carbon_monoxide 12000 + titanium_tetrachloride_v 6000
+        // 3. Synthesize vanadium-containing TiCl4: chlorine 48000 + 6x rutile_dust + 12x carbon_dust -> carbon_monoxide
+        // 12000 + titanium_tetrachloride_v 6000
         LARGE_CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("ticl4"))
                 .inputFluids(Chlorine.getFluid(48000))
                 .inputItems(dust, Rutile, 6)
@@ -2799,7 +2804,8 @@ public class GtceuScriptRecipes {
                 .duration(120)
                 .save(provider);
 
-        // 4. Convert high-purity TiCl4 to titanium ingot: refining_titanium_tetrachloride 5000 + 10x magnesium_dust -> 5x hot_titanium_ingot + 30x magnesium_chloride_dust
+        // 4. Convert high-purity TiCl4 to titanium ingot: refining_titanium_tetrachloride 5000 + 10x magnesium_dust ->
+        // 5x hot_titanium_ingot + 30x magnesium_chloride_dust
         BLAST_RECIPES.recipeBuilder(CTNHCore.id("titanium_ingot"))
                 .inputFluids(BauxiteProcessingMaterials.REFINING_TITANIUM_TETRACHLORIDE.getFluid(5000))
                 .inputItems(dust, Magnesium, 10)
@@ -2821,7 +2827,8 @@ public class GtceuScriptRecipes {
                 .EUt(30).duration(200)
                 .save(provider);
 
-        // 2. Sodium chromate from sodium carbonate: chromite_dust + oxygen + sodium_carbonate_solution -> magnetite_dust + carbon_dioxide + sodium_chromate_solution
+        // 2. Sodium chromate from sodium carbonate: chromite_dust + oxygen + sodium_carbonate_solution ->
+        // magnetite_dust + carbon_dioxide + sodium_chromate_solution
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("sodium_chromate_from_sodium_carbonate"))
                 .inputItems(dust, Chromite)
                 .inputFluids(Oxygen.getFluid(1000))
@@ -2832,7 +2839,8 @@ public class GtceuScriptRecipes {
                 .EUt(120).duration(200)
                 .save(provider);
 
-        // 3. Sodium dichromate from sodium chromate: sulfuric_acid + sodium_chromate_solution -> sodium_sulfate_dust + sodium_dichromate_solution
+        // 3. Sodium dichromate from sodium chromate: sulfuric_acid + sodium_chromate_solution -> sodium_sulfate_dust +
+        // sodium_dichromate_solution
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("sodium_dichromate_from_sodium_chromate"))
                 .inputFluids(SulfuricAcid.getFluid(1000))
                 .inputFluids(BiodieselFertileSoilMaterials.SODIUM_CHROMATE_SOLUTION.getFluid(1000))
@@ -2841,7 +2849,8 @@ public class GtceuScriptRecipes {
                 .EUt(120).duration(200)
                 .save(provider);
 
-        // 4. Chromium oxide from sodium dichromate: carbon_dust + sodium_dichromate_solution -> soda_ash_dust + chromium_oxide_dust + carbon_monoxide
+        // 4. Chromium oxide from sodium dichromate: carbon_dust + sodium_dichromate_solution -> soda_ash_dust +
+        // chromium_oxide_dust + carbon_monoxide
         CTNHRecipeTypes.DEHYDRATOR_RECIPES.recipeBuilder(CTNHCore.id("chromium_oxide_dust_from_sodium_dichromate"))
                 .inputItems(dust, Carbon)
                 .inputFluids(BiodieselFertileSoilMaterials.SODIUM_DICHROMATE_SOLUTION.getFluid(1000))
@@ -2861,7 +2870,8 @@ public class GtceuScriptRecipes {
                 .blastFurnaceTemp(1700)
                 .save(provider);
 
-        // 6. Sodium sulfide from sodium sulfate: sodium_sulfate_dust + carbon_dust -> sodium_sulfide_dust + carbon_dioxide
+        // 6. Sodium sulfide from sodium sulfate: sodium_sulfate_dust + carbon_dust -> sodium_sulfide_dust +
+        // carbon_dioxide
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("sodium_sulfide_from_sodium_sulfate"))
                 .inputItems(dust, SodiumSulfate)
                 .inputItems(dust, Carbon)
@@ -2870,7 +2880,8 @@ public class GtceuScriptRecipes {
                 .EUt(120).duration(200)
                 .save(provider);
 
-        // 7. Soda ash from sodium sulfide: sodium_sulfide_dust + quicklime_dust + carbon_dioxide -> soda_ash_dust + calcium_sulfide_dust
+        // 7. Soda ash from sodium sulfide: sodium_sulfide_dust + quicklime_dust + carbon_dioxide -> soda_ash_dust +
+        // calcium_sulfide_dust
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("soda_ash_from_sodium_sulfide"))
                 .inputItems(dust, SodiumSulfide)
                 .inputItems(dust, Quicklime)
@@ -2883,7 +2894,8 @@ public class GtceuScriptRecipes {
         // =============== SeleniumTelluriumChain ================
         // 从 SeleniumTelluriumChain.js 迁移
 
-        // 1. Blue vitriol: purified_chalcopyrite_ore + nitric_acid -> blue_vitriol_solution + tiny_platinum_group_sludge_dust
+        // 1. Blue vitriol: purified_chalcopyrite_ore + nitric_acid -> blue_vitriol_solution +
+        // tiny_platinum_group_sludge_dust
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("blue_vitriol"))
                 .inputItems(crushedPurified, Chalcopyrite)
                 .inputFluids(NitricAcid.getFluid(1000))
@@ -2892,7 +2904,8 @@ public class GtceuScriptRecipes {
                 .EUt(120).duration(200)
                 .save(provider);
 
-        // 2. Blue vitriol electrolysis: blue_vitriol_solution -> sulfuric_acid + oxygen + copper_dust + chancedOutput(chalcogen_anode_mud_dust)
+        // 2. Blue vitriol electrolysis: blue_vitriol_solution -> sulfuric_acid + oxygen + copper_dust +
+        // chancedOutput(chalcogen_anode_mud_dust)
         ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("blue_vitriol1"))
                 .inputFluids(YeastRelatedMaterials.BLUE_VITRIOL_SOLUTION.getFluid(1000))
                 .outputFluids(SulfuricAcid.getFluid(1000))
@@ -2902,7 +2915,8 @@ public class GtceuScriptRecipes {
                 .EUt(120).duration(200)
                 .save(provider);
 
-        // 3. Chalcogen anode mud centrifuge: chalcogen_anode_mud_dust -> silver_dust + chancedOutput(copper_dust) + chancedOutput(gold_dust)
+        // 3. Chalcogen anode mud centrifuge: chalcogen_anode_mud_dust -> silver_dust + chancedOutput(copper_dust) +
+        // chancedOutput(gold_dust)
         CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("chalcogen_anode_mud_bonus"))
                 .inputItems(dust, NewExplosivesProductionMaterials.CHALCOGEN_ANODE_MUD)
                 .outputItems(dust, Silver)
@@ -2911,7 +2925,8 @@ public class GtceuScriptRecipes {
                 .EUt(30).duration(200)
                 .save(provider);
 
-        // 4. Tellurium recycle: chalcogen_anode_mud_dust + soda_ash_dust + oxygen -> sodium_tellurite_dust + selenium_dioxide_dust + silver_ingot + carbon_dioxide
+        // 4. Tellurium recycle: chalcogen_anode_mud_dust + soda_ash_dust + oxygen -> sodium_tellurite_dust +
+        // selenium_dioxide_dust + silver_ingot + carbon_dioxide
         CTNHRecipeTypes.DEHYDRATOR_RECIPES.recipeBuilder(CTNHCore.id("tellurium_recycle"))
                 .inputItems(dust, NewExplosivesProductionMaterials.CHALCOGEN_ANODE_MUD)
                 .inputItems(dust, SodaAsh)
@@ -2923,7 +2938,8 @@ public class GtceuScriptRecipes {
                 .EUt(120).duration(200)
                 .save(provider);
 
-        // 5. Tellurium recycle electrolysis: sodium_tellurite_dust + water -> tellurium_dioxide_dust + sodium_hydroxide_dust
+        // 5. Tellurium recycle electrolysis: sodium_tellurite_dust + water -> tellurium_dioxide_dust +
+        // sodium_hydroxide_dust
         ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("tellurium_recycle1"))
                 .inputItems(dust, NewExplosivesProductionMaterials.SODIUM_TELLURITE)
                 .inputFluids(Water.getFluid(1000))
@@ -2932,7 +2948,8 @@ public class GtceuScriptRecipes {
                 .EUt(120).duration(200)
                 .save(provider);
 
-        // 6. Tellurium recycle chemical: tellurium_dioxide_dust + sulfur_dioxide + water -> tellurium_dust + sulfuric_acid + sulfur_trioxide
+        // 6. Tellurium recycle chemical: tellurium_dioxide_dust + sulfur_dioxide + water -> tellurium_dust +
+        // sulfuric_acid + sulfur_trioxide
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("tellurium_recycle2"))
                 .inputItems(dust, NewExplosivesProductionMaterials.TELLURIUM_DIOXIDE)
                 .inputFluids(SulfurDioxide.getFluid(1000))
@@ -2964,7 +2981,8 @@ public class GtceuScriptRecipes {
         // =============== TantaliteChain ================
         // 从 TantaliteChain.js 迁移
 
-        // 1. Tantalum alkaline mixture: tantalite_dust + pyrochlore_dust + sodium_carbonate_solution -> tantalum_alkaline_mixture
+        // 1. Tantalum alkaline mixture: tantalite_dust + pyrochlore_dust + sodium_carbonate_solution ->
+        // tantalum_alkaline_mixture
         MIXER_RECIPES.recipeBuilder(CTNHCore.id("tantalum_alkaline_mixture"))
                 .inputItems(dust, Tantalite)
                 .inputItems(dust, Pyrochlore)
@@ -2973,7 +2991,8 @@ public class GtceuScriptRecipes {
                 .EUt(120).duration(200)
                 .save(provider);
 
-        // 2. Tantalite fluorine: potassium_fluoride_dust + tantalum_alkaline_mixture -> tantalite_fluorine + soda_ash_dust + manganese_dust + stone_dust
+        // 2. Tantalite fluorine: potassium_fluoride_dust + tantalum_alkaline_mixture -> tantalite_fluorine +
+        // soda_ash_dust + manganese_dust + stone_dust
         LARGE_CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("tantalite_fluorine"))
                 .inputItems(dust, NiobiumTantalumJointProcessingMaterials.POTASSIUM_FLUORIDE)
                 .inputFluids(NiobiumTantalumJointProcessingMaterials.TANTALUM_ALKALINE_MIXTURE.getFluid(1000))
@@ -2992,7 +3011,8 @@ public class GtceuScriptRecipes {
                 .EUt(120).duration(200)
                 .save(provider);
 
-        // 4. Niobium tantalite: chromium_trioxide_dust + ammonia_monohydrate + tantalite_fluorine -> potassium_hydroxide_dust + chromium_dust + ammonium_fluoride + niobium_tantalite
+        // 4. Niobium tantalite: chromium_trioxide_dust + ammonia_monohydrate + tantalite_fluorine ->
+        // potassium_hydroxide_dust + chromium_dust + ammonium_fluoride + niobium_tantalite
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("niobium_tantalite"))
                 .inputItems(dust, ChromiumTrioxide)
                 .inputFluids(PlatinumLineMaterials.AmmoniaMonohydrate.getFluid(1000))
@@ -3013,7 +3033,8 @@ public class GtceuScriptRecipes {
                 .EUt(30).duration(200)
                 .save(provider);
 
-        // 6. Niobium dust: niobium_oxide_dust + hematite_dust + aluminium_dust -> niobium_dust + iron_dust + alumina_dust
+        // 6. Niobium dust: niobium_oxide_dust + hematite_dust + aluminium_dust -> niobium_dust + iron_dust +
+        // alumina_dust
         BLAST_RECIPES.recipeBuilder(CTNHCore.id("niobium_dust"))
                 .inputItems(dust, NiobiumTantalumJointProcessingMaterials.NIOBIUM_OXIDE)
                 .inputItems(dust, Hematite)
@@ -3025,7 +3046,8 @@ public class GtceuScriptRecipes {
                 .blastFurnaceTemp(1700)
                 .save(provider);
 
-        // 7. Tantalum dust: tantalite_oxide_dust + hematite_dust + aluminium_dust -> tantalum_dust + iron_dust + alumina_dust
+        // 7. Tantalum dust: tantalite_oxide_dust + hematite_dust + aluminium_dust -> tantalum_dust + iron_dust +
+        // alumina_dust
         BLAST_RECIPES.recipeBuilder(CTNHCore.id("tantalum_dust"))
                 .inputItems(dust, NiobiumTantalumJointProcessingMaterials.TANTALITE_OXIDE)
                 .inputItems(dust, Hematite)
@@ -3136,7 +3158,8 @@ public class GtceuScriptRecipes {
                 .EUt(120).duration(200)
                 .save(provider);
 
-        // 10. Chloroauric acid to gold: chloroauric_acid + notConsumable(potassium_metabi_sulfite_dust) -> gold_dust + water + chlorine
+        // 10. Chloroauric acid to gold: chloroauric_acid + notConsumable(potassium_metabi_sulfite_dust) -> gold_dust +
+        // water + chlorine
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("chloroauricacid_to_gold"))
                 .inputFluids(CrudeGoldRefiningMaterials.CHLOROAURIC_ACID.getFluid(1000))
                 .notConsumable(dust, BauxiteProcessingMaterials.POTASSIUM_METABI_SULFITE)
@@ -3175,7 +3198,8 @@ public class GtceuScriptRecipes {
                 .EUt(480).duration(200)
                 .save(provider);
 
-        // 3. Graphene plate production method 2: graphite_steam + double_iridium_plate + nitrogen -> double_graphite_ir_plate_plate
+        // 3. Graphene plate production method 2: graphite_steam + double_iridium_plate + nitrogen ->
+        // double_graphite_ir_plate_plate
         CTNHRecipeTypes.CHEMICAL_VAPOR_DEPOSITION.recipeBuilder(CTNHCore.id("graphene_plate_production_method_2"))
                 .inputFluids(GrapheneProductionLineMaterials.GRAPHITE_STEAM.getFluid(1000))
                 .inputItems(plateDouble, Iridium)
@@ -3184,7 +3208,8 @@ public class GtceuScriptRecipes {
                 .EUt(480).duration(200)
                 .save(provider);
 
-        // 4. Iridium plate graphene separation 1: graphite_ir_plate_plate + hydrochloric_acid -> hydrogen + iridium_chloride_dust + graphene_dust
+        // 4. Iridium plate graphene separation 1: graphite_ir_plate_plate + hydrochloric_acid -> hydrogen +
+        // iridium_chloride_dust + graphene_dust
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("iridium_plate_graphene_separation_1"))
                 .inputItems(plate, GrapheneProductionLineMaterials.GRAPHITE_IR_PLATE)
                 .inputFluids(HydrochloricAcid.getFluid(1000))
@@ -3194,7 +3219,8 @@ public class GtceuScriptRecipes {
                 .EUt(480).duration(200)
                 .save(provider);
 
-        // 5. Iridium plate graphene separation 2: double_graphite_ir_plate_plate + hydrochloric_acid -> hydrogen + iridium_chloride_dust + graphene_dust
+        // 5. Iridium plate graphene separation 2: double_graphite_ir_plate_plate + hydrochloric_acid -> hydrogen +
+        // iridium_chloride_dust + graphene_dust
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("iridium_plate_graphene_separation_2"))
                 .inputItems(plateDouble, GrapheneProductionLineMaterials.GRAPHITE_IR_PLATE)
                 .inputFluids(HydrochloricAcid.getFluid(1000))
@@ -3250,7 +3276,8 @@ public class GtceuScriptRecipes {
                 .EUt(120).duration(200)
                 .save(provider);
 
-        // 3. Methyl isobutyl ketone: notConsumable(palladium_on_carbon) + carbon_dust + mesityl_oxide + water -> methyl_isobutyl_ketone + carbon_monoxide
+        // 3. Methyl isobutyl ketone: notConsumable(palladium_on_carbon) + carbon_dust + mesityl_oxide + water ->
+        // methyl_isobutyl_ketone + carbon_monoxide
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("methyl_isobutyl_ketone"))
                 .notConsumable(CTNHTagPrefixes.catalyst, NaquadahMaterials.PalladiumOnCarbon)
                 .inputItems(dust, Carbon)
@@ -3286,7 +3313,8 @@ public class GtceuScriptRecipes {
                 .EUt(120).duration(200)
                 .save(provider);
 
-        // 7. Silicon chloride: zircon_chlorinating_residue -> silicon_chloride + chancedOutput(cobalt_dust) + chancedOutput(rare_earth_dust)
+        // 7. Silicon chloride: zircon_chlorinating_residue -> silicon_chloride + chancedOutput(cobalt_dust) +
+        // chancedOutput(rare_earth_dust)
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("silicon_chloride"))
                 .inputFluids(ZrHfSeparationMaterials.ZIRCON_CHLORINATING_RESIDUE.getFluid(1000))
                 .outputFluids(NewExplosivesProductionMaterials.SILICON_CHLORIDE.getFluid(1000))
@@ -3304,7 +3332,9 @@ public class GtceuScriptRecipes {
                 .EUt(120).duration(200)
                 .save(provider);
 
-        // 9. Cubic zirconia: hydrogen_peroxide + zr_hf_oxy_chloride + sulfur_trioxide + ammonium_chloride + notConsumableFluid(zr_hf_separation_mix) -> ammonium_sulfate + hydrochloric_acid + cubic_zirconia_dust + chancedOutput(hafnium_oxide_dust)
+        // 9. Cubic zirconia: hydrogen_peroxide + zr_hf_oxy_chloride + sulfur_trioxide + ammonium_chloride +
+        // notConsumableFluid(zr_hf_separation_mix) -> ammonium_sulfate + hydrochloric_acid + cubic_zirconia_dust +
+        // chancedOutput(hafnium_oxide_dust)
         LARGE_CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("cubic_zirconia"))
                 .inputFluids(HydrogenPeroxide.getFluid(1000))
                 .inputFluids(ZrHfSeparationMaterials.ZR_HF_OXY_CHLORIDE.getFluid(1000))
@@ -3318,7 +3348,8 @@ public class GtceuScriptRecipes {
                 .EUt(480).duration(200)
                 .save(provider);
 
-        // 10. Zirconium tetrachloride: carbon_dust + cubic_zirconia_dust + chlorine -> carbon_dioxide + zirconium_tetrachloride_dust
+        // 10. Zirconium tetrachloride: carbon_dust + cubic_zirconia_dust + chlorine -> carbon_dioxide +
+        // zirconium_tetrachloride_dust
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("zirconium_tetrachloride"))
                 .inputItems(dust, Carbon)
                 .inputItems(dust, ZrHfSeparationMaterials.CUBIC_ZIRCONIA)
@@ -3338,7 +3369,8 @@ public class GtceuScriptRecipes {
                 .blastFurnaceTemp(1700)
                 .save(provider);
 
-        // 12. Hafnium tetrachloride: carbon_dust + hafnium_oxide_dust + chlorine -> carbon_dioxide + hafnium_chloride_dust
+        // 12. Hafnium tetrachloride: carbon_dust + hafnium_oxide_dust + chlorine -> carbon_dioxide +
+        // hafnium_chloride_dust
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("hafnium_tetrachloride"))
                 .inputItems(dust, Carbon)
                 .inputItems(dust, ZrHfSeparationMaterials.HAFNIUM_OXIDE)
@@ -4047,29 +4079,35 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // 冷凝分离：轻稀土蒸汽
-        CTNHRecipeTypes.CONDENSING_DISCRETE.recipeBuilder(CTNHCore.id("lanthanum_cerium_praseodymium_neodymium_oxygen_mixture"))
+        CTNHRecipeTypes.CONDENSING_DISCRETE
+                .recipeBuilder(CTNHCore.id("lanthanum_cerium_praseodymium_neodymium_oxygen_mixture"))
                 .inputFluids(RareEarthMaterials.RARE_EARTH_LOW_FLUORIDE_STEAM.getFluid(1000))
                 .outputItems(dust, RareEarthMaterials.LANTHANUM_CERIUM_PRASEODYMIUM_NEODYMIUM_OXYGEN_MIXTURE, 8)
                 .outputItems(dust, RareEarthMaterials.EUROPIUM_GADOLINIUM_TERBIUM_DYSPROSIUM_OXYGEN_MIXTURE, 4)
-                .outputItems(dust, RareEarthMaterials.YTTRIUM_HOLMIUM_ERBIUM_THULIUM_YTTERBIUM_OXYGEN_LUTETIUM_MIXTURE, 2)
+                .outputItems(dust, RareEarthMaterials.YTTRIUM_HOLMIUM_ERBIUM_THULIUM_YTTERBIUM_OXYGEN_LUTETIUM_MIXTURE,
+                        2)
                 .EUt(6144).duration(240)
                 .save(provider);
 
         // 冷凝分离：中稀土蒸汽
-        CTNHRecipeTypes.CONDENSING_DISCRETE.recipeBuilder(CTNHCore.id("europium_gadolinium_terbium_dysprosium_oxygen_mixture"))
+        CTNHRecipeTypes.CONDENSING_DISCRETE
+                .recipeBuilder(CTNHCore.id("europium_gadolinium_terbium_dysprosium_oxygen_mixture"))
                 .inputFluids(RareEarthMaterials.RARE_EARTH_MIDDLE_FLUORIDE_STEAM.getFluid(1000))
                 .outputItems(dust, RareEarthMaterials.LANTHANUM_CERIUM_PRASEODYMIUM_NEODYMIUM_OXYGEN_MIXTURE, 2)
                 .outputItems(dust, RareEarthMaterials.EUROPIUM_GADOLINIUM_TERBIUM_DYSPROSIUM_OXYGEN_MIXTURE, 8)
-                .outputItems(dust, RareEarthMaterials.YTTRIUM_HOLMIUM_ERBIUM_THULIUM_YTTERBIUM_OXYGEN_LUTETIUM_MIXTURE, 4)
+                .outputItems(dust, RareEarthMaterials.YTTRIUM_HOLMIUM_ERBIUM_THULIUM_YTTERBIUM_OXYGEN_LUTETIUM_MIXTURE,
+                        4)
                 .EUt(6144).duration(240)
                 .save(provider);
 
         // 冷凝分离：重稀土蒸汽
-        CTNHRecipeTypes.CONDENSING_DISCRETE.recipeBuilder(CTNHCore.id("yttrium_holmium_erbium_thulium_ytterbium_oxygen_lutetium_mixture"))
+        CTNHRecipeTypes.CONDENSING_DISCRETE
+                .recipeBuilder(CTNHCore.id("yttrium_holmium_erbium_thulium_ytterbium_oxygen_lutetium_mixture"))
                 .inputFluids(RareEarthMaterials.RARE_EARTH_HIGH_FLUORIDE_STEAM.getFluid(1000))
                 .outputItems(dust, RareEarthMaterials.LANTHANUM_CERIUM_PRASEODYMIUM_NEODYMIUM_OXYGEN_MIXTURE, 2)
                 .outputItems(dust, RareEarthMaterials.EUROPIUM_GADOLINIUM_TERBIUM_DYSPROSIUM_OXYGEN_MIXTURE, 4)
-                .outputItems(dust, RareEarthMaterials.YTTRIUM_HOLMIUM_ERBIUM_THULIUM_YTTERBIUM_OXYGEN_LUTETIUM_MIXTURE, 8)
+                .outputItems(dust, RareEarthMaterials.YTTRIUM_HOLMIUM_ERBIUM_THULIUM_YTTERBIUM_OXYGEN_LUTETIUM_MIXTURE,
+                        8)
                 .EUt(6144).duration(240)
                 .save(provider);
 
@@ -4084,7 +4122,8 @@ public class GtceuScriptRecipes {
 
         // 化学反应：重稀土氧化混合物 + 盐酸 -> 氯化物 + 水
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("ytt_hol_erb_thu_ytt_chloride"))
-                .inputItems(dust, RareEarthMaterials.YTTRIUM_HOLMIUM_ERBIUM_THULIUM_YTTERBIUM_OXYGEN_LUTETIUM_MIXTURE, 5)
+                .inputItems(dust, RareEarthMaterials.YTTRIUM_HOLMIUM_ERBIUM_THULIUM_YTTERBIUM_OXYGEN_LUTETIUM_MIXTURE,
+                        5)
                 .inputFluids(HydrochloricAcid.getFluid(24000))
                 .outputFluids(Water.getFluid(12000))
                 .outputItems(dust, RareEarthMaterials.YTT_HOL_ERB_THU_YTT_CHLORIDE, 5)
@@ -4206,121 +4245,172 @@ public class GtceuScriptRecipes {
 
         // 水晶树苗 (Aether)
         CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("crystal_sapling"))
-                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("lost_aether_content:crystal_sapling"))))
+                .notConsumable(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("lost_aether_content:crystal_sapling"))))
                 .outputItems(new ItemStack(AetherBlocks.SKYROOT_LOG.get().asItem(), 10))
                 .outputItems(new ItemStack(AetherBlocks.CRYSTAL_LEAVES.get().asItem(), 8))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("lost_aether_content:crystal_sapling")), 5))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("lost_aether_content:crystal_sapling")),
+                        5))
                 .outputItems(new ItemStack(AetherItems.WHITE_APPLE.get(), 8))
                 .EUt(120).duration(100)
                 .save(provider);
 
         // 节日树苗 (Aether)
         CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("holiday_sapling"))
-                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("lost_aether_content:holiday_sapling"))))
+                .notConsumable(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("lost_aether_content:holiday_sapling"))))
                 .outputItems(new ItemStack(AetherBlocks.SKYROOT_LOG.get().asItem(), 10))
                 .outputItems(new ItemStack(AetherBlocks.HOLIDAY_LEAVES.get().asItem(), 8))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("lost_aether_content:holiday_sapling")), 5))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("lost_aether_content:holiday_sapling")),
+                        5))
                 .outputItems(new ItemStack(AetherItems.WHITE_APPLE.get(), 8))
                 .EUt(120).duration(100)
                 .save(provider);
 
         // 冷杉树苗 (BoP)
         CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("fir_sapling"))
-                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:fir_sapling"))))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:fir_log")), 10))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:fir_leaves")), 8))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:fir_sapling")), 5))
+                .notConsumable(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:fir_sapling"))))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:fir_log")), 10))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:fir_leaves")), 8))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:fir_sapling")), 5))
                 .EUt(120).duration(100)
                 .save(provider);
 
         // 红杉树苗 (BoP)
         CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("redwood_sapling"))
-                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:redwood_sapling"))))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:redwood_log")), 10))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:redwood_leaves")), 8))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:redwood_sapling")), 5))
+                .notConsumable(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:redwood_sapling"))))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:redwood_log")), 10))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:redwood_leaves")), 8))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:redwood_sapling")), 5))
                 .EUt(120).duration(100)
                 .save(provider);
 
         // 桃花心木树苗 (BoP)
         CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("mahogany_sapling"))
-                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:mahogany_sapling"))))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:mahogany_log")), 10))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:mahogany_leaves")), 8))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:mahogany_sapling")), 5))
+                .notConsumable(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:mahogany_sapling"))))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:mahogany_log")), 10))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:mahogany_leaves")), 8))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:mahogany_sapling")), 5))
                 .EUt(120).duration(100)
                 .save(provider);
 
         // 蓝花楹树苗 (BoP)
         CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("jacaranda_sapling"))
-                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:jacaranda_sapling"))))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:jacaranda_log")), 10))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:jacaranda_leaves")), 8))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:jacaranda_sapling")), 5))
+                .notConsumable(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:jacaranda_sapling"))))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:jacaranda_log")), 10))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:jacaranda_leaves")), 8))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:jacaranda_sapling")), 5))
                 .EUt(120).duration(100)
                 .save(provider);
 
         // 棕榈树苗 (BoP)
         CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("palm_sapling"))
-                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:palm_sapling"))))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:palm_log")), 10))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:palm_leaves")), 8))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:palm_sapling")), 5))
+                .notConsumable(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:palm_sapling"))))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:palm_log")), 10))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:palm_leaves")), 8))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:palm_sapling")), 5))
                 .EUt(120).duration(100)
                 .save(provider);
 
         // 柳树苗 (BoP)
         CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("willow_sapling"))
-                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:willow_sapling"))))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:willow_log")), 10))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:willow_leaves")), 8))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:willow_sapling")), 5))
+                .notConsumable(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:willow_sapling"))))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:willow_log")), 10))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:willow_leaves")), 8))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:willow_sapling")), 5))
                 .EUt(120).duration(100)
                 .save(provider);
 
         // 枯木树苗 (BoP)
         CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("dead_sapling"))
-                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:dead_sapling"))))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:dead_log")), 10))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:dead_leaves")), 8))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:dead_sapling")), 5))
+                .notConsumable(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:dead_sapling"))))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:dead_log")), 10))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:dead_leaves")), 8))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:dead_sapling")), 5))
                 .EUt(120).duration(100)
                 .save(provider);
 
         // 魔法树苗 (BoP)
         CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("magic_sapling"))
-                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:magic_sapling"))))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:magic_log")), 10))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:magic_leaves")), 8))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:magic_sapling")), 5))
+                .notConsumable(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:magic_sapling"))))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:magic_log")), 10))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:magic_leaves")), 8))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:magic_sapling")), 5))
                 .EUt(120).duration(100)
                 .save(provider);
 
         // 暗影树苗 (BoP)
         CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("umbran_sapling"))
-                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:umbran_sapling"))))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:umbran_log")), 10))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:umbran_leaves")), 8))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:umbran_sapling")), 5))
+                .notConsumable(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:umbran_sapling"))))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:umbran_log")), 10))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:umbran_leaves")), 8))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:umbran_sapling")), 5))
                 .EUt(120).duration(100)
                 .save(provider);
 
         // 地狱树苗 (BoP)
         CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("hellbark_sapling"))
-                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:hellbark_sapling"))))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:hellbark_log")), 10))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:hellbark_leaves")), 8))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:hellbark_sapling")), 5))
+                .notConsumable(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:hellbark_sapling"))))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:hellbark_log")), 10))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:hellbark_leaves")), 8))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:hellbark_sapling")), 5))
                 .EUt(120).duration(100)
                 .save(provider);
 
         // 胡桃树苗 (Ecologics)
         CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("walnut_sapling"))
-                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ecologics:walnut_sapling"))))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ecologics:walnut_log")), 10))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ecologics:walnut_leaves")), 8))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ecologics:walnut_sapling")), 5))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ecologics:walnut")), 4))
+                .notConsumable(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ecologics:walnut_sapling"))))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ecologics:walnut_log")), 10))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ecologics:walnut_leaves")), 8))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ecologics:walnut_sapling")), 5))
+                .outputItems(
+                        new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ecologics:walnut")), 4))
                 .EUt(120).duration(100)
                 .save(provider);
 
@@ -4418,10 +4508,14 @@ public class GtceuScriptRecipes {
 
         // 牛油果树苗 (Cultural Delights)
         CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("avocado_sapling"))
-                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("culturaldelights:avocado_sapling"))))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("culturaldelights:avocado_log")), 10))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("culturaldelights:avocado_leaves")), 8))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("culturaldelights:avocado_sapling")), 5))
+                .notConsumable(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("culturaldelights:avocado_sapling"))))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("culturaldelights:avocado_log")), 10))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("culturaldelights:avocado_leaves")), 8))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("culturaldelights:avocado_sapling")), 5))
                 .EUt(120).duration(100)
                 .save(provider);
 
@@ -4493,28 +4587,41 @@ public class GtceuScriptRecipes {
 
         // 起源树苗 (BoP)
         CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("origin_sapling"))
-                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:origin_sapling"))))
+                .notConsumable(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:origin_sapling"))))
                 .outputItems(new ItemStack(Items.OAK_LOG, 10))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:origin_leaves")), 8))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:origin_sapling")), 5))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:origin_leaves")), 8))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:origin_sapling")), 5))
                 .EUt(120).duration(100)
                 .save(provider);
 
         // 彩虹白桦树苗 (BoP)
         CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("rainbow_birch_sapling"))
-                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:rainbow_birch_sapling"))))
+                .notConsumable(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:rainbow_birch_sapling"))))
                 .outputItems(new ItemStack(Items.BIRCH_LOG, 10))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:rainbow_birch_leaves")), 8))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:rainbow_birch_sapling")), 5))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:rainbow_birch_leaves")),
+                        8))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:rainbow_birch_sapling")),
+                        5))
                 .EUt(120).duration(100)
                 .save(provider);
 
         // 花橡树苗 (BoP)
         CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("flowering_oak_sapling"))
-                .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:flowering_oak_sapling"))))
+                .notConsumable(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:flowering_oak_sapling"))))
                 .outputItems(new ItemStack(Items.OAK_LOG, 10))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:flowering_oak_leaves")), 8))
-                .outputItems(new ItemStack(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:flowering_oak_sapling")), 5))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:flowering_oak_leaves")),
+                        8))
+                .outputItems(new ItemStack(
+                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("biomesoplenty:flowering_oak_sapling")),
+                        5))
                 .EUt(120).duration(100)
                 .save(provider);
 
@@ -5064,7 +5171,7 @@ public class GtceuScriptRecipes {
                 .inputFluids(BedrockMaterials.TARANIUM_ENRICHED_DIRTY_HELIUM_PLASMA.getFluid(
                         FluidStorageKeys.PLASMA, 1000))
                 .outputFluids(BedrockMaterials.TARANIUM_ENRICHED_HELIUM4_PLASMA.getFluid(
-                                FluidStorageKeys.PLASMA, 1000),
+                        FluidStorageKeys.PLASMA, 1000),
                         BedrockMaterials.TARANIUM_DEPLETED_HELIUM_PLASMA.getFluid(FluidStorageKeys.PLASMA, 1000),
                         Hydrogen.getFluid(8000))
                 .EUt(122880).duration(100)
@@ -5101,7 +5208,7 @@ public class GtceuScriptRecipes {
         // 等离子体冷凝器 - 塔兰处理 5
         CTNHRecipeTypes.PLASMA_CONDENSER_RECIPES.recipeBuilder(CTNHCore.id("taran_processing_5"))
                 .inputFluids(BedrockMaterials.TARANIUM_ENRICHED_HELIUM4_PLASMA.getFluid(
-                                FluidStorageKeys.PLASMA, 1000),
+                        FluidStorageKeys.PLASMA, 1000),
                         Helium.getFluid(FluidStorageKeys.LIQUID, 4000))
                 .outputFluids(BedrockMaterials.TARANIUM_ENRICHED_LIQUID_HELIUM4.getFluid(1000),
                         Helium.getFluid(FluidStorageKeys.PLASMA, 4000))
@@ -5111,7 +5218,7 @@ public class GtceuScriptRecipes {
         // 等离子体冷凝器 - 塔兰处理 6
         CTNHRecipeTypes.PLASMA_CONDENSER_RECIPES.recipeBuilder(CTNHCore.id("taran_processing_6"))
                 .inputFluids(BedrockMaterials.TARANIUM_DEPLETED_HELIUM_PLASMA.getFluid(
-                                FluidStorageKeys.PLASMA, 1000),
+                        FluidStorageKeys.PLASMA, 1000),
                         Helium.getFluid(FluidStorageKeys.LIQUID, 4000))
                 .outputFluids(Helium.getFluid(FluidStorageKeys.PLASMA, 4000))
                 .outputItems(dust, BedrockMaterials.ADAMANT_MUD, 8)
@@ -5470,7 +5577,8 @@ public class GtceuScriptRecipes {
         // =============== Colorful SOC Chain ================
         // 从 ColorfulsocChain.js 迁移
 
-        // color_ulv: 32x plastic_printed_circuit_board + colorful_soc + red_alloy_block + soldering_alloy_block + living_metal 72 -> 8192x nand_chip
+        // color_ulv: 32x plastic_printed_circuit_board + colorful_soc + red_alloy_block + soldering_alloy_block +
+        // living_metal 72 -> 8192x nand_chip
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("color_ulv"))
                 .inputItems(GTItems.PLASTIC_CIRCUIT_BOARD.asStack(32))
                 .inputItems(COLORFUL_SOC.asStack())
@@ -5481,7 +5589,8 @@ public class GtceuScriptRecipes {
                 .EUt(32678 * 16 * 4).duration(1)
                 .save(provider);
 
-        // color_mv: 128x plastic_printed_circuit_board + colorful_soc + red_alloy_block + annealed_copper_block + living_metal 72 -> 2048x micro_processor
+        // color_mv: 128x plastic_printed_circuit_board + colorful_soc + red_alloy_block + annealed_copper_block +
+        // living_metal 72 -> 2048x micro_processor
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("color_mv"))
                 .inputItems(GTItems.PLASTIC_CIRCUIT_BOARD.asStack(128))
                 .inputItems(COLORFUL_SOC.asStack())
@@ -5492,7 +5601,8 @@ public class GtceuScriptRecipes {
                 .EUt(32678 * 16 * 4).duration(1)
                 .save(provider);
 
-        // color_lv: 64x plastic_printed_circuit_board + colorful_soc + soldering_alloy_block + annealed_copper_block + living_metal 72 -> 4096x microchip_processor
+        // color_lv: 64x plastic_printed_circuit_board + colorful_soc + soldering_alloy_block + annealed_copper_block +
+        // living_metal 72 -> 4096x microchip_processor
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("color_lv"))
                 .inputItems(GTItems.PLASTIC_CIRCUIT_BOARD.asStack(64))
                 .inputItems(COLORFUL_SOC.asStack())
@@ -5503,7 +5613,8 @@ public class GtceuScriptRecipes {
                 .EUt(32678 * 16 * 4).duration(1)
                 .save(provider);
 
-        // color_hv: 32x epoxy_printed_circuit_board + colorful_soc + electrum_block + platinum_block + living_metal 144 -> 1024x nano_processor
+        // color_hv: 32x epoxy_printed_circuit_board + colorful_soc + electrum_block + platinum_block + living_metal 144
+        // -> 1024x nano_processor
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("color_hv"))
                 .inputItems(GTItems.ADVANCED_CIRCUIT_BOARD.asStack(32))
                 .inputItems(COLORFUL_SOC.asStack())
@@ -5514,7 +5625,8 @@ public class GtceuScriptRecipes {
                 .EUt(32678 * 16 * 4).duration(1)
                 .save(provider);
 
-        // color_ev: 32x multilayer_fiber_reinforced_printed_circuit_board + colorful_soc + niobium_titanium_block + platinum_block + living_metal 288 -> 512x quantum_processor
+        // color_ev: 32x multilayer_fiber_reinforced_printed_circuit_board + colorful_soc + niobium_titanium_block +
+        // platinum_block + living_metal 288 -> 512x quantum_processor
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("color_ev"))
                 .inputItems(GTItems.ELITE_CIRCUIT_BOARD.asStack(32))
                 .inputItems(COLORFUL_SOC.asStack())
@@ -5525,7 +5637,8 @@ public class GtceuScriptRecipes {
                 .EUt(32678 * 16 * 4).duration(1)
                 .save(provider);
 
-        // color_iv: 12x multilayer_fiber_reinforced_printed_circuit_board + colorful_soc + niobium_titanium_block + yttrium_barium_cuprate_block + living_metal 288 -> 128x crystal_processor
+        // color_iv: 12x multilayer_fiber_reinforced_printed_circuit_board + colorful_soc + niobium_titanium_block +
+        // yttrium_barium_cuprate_block + living_metal 288 -> 128x crystal_processor
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("color_iv"))
                 .inputItems(GTItems.ELITE_CIRCUIT_BOARD.asStack(12))
                 .inputItems(COLORFUL_SOC.asStack())
@@ -5536,7 +5649,8 @@ public class GtceuScriptRecipes {
                 .EUt(32678 * 16 * 4).duration(1)
                 .save(provider);
 
-        // color_luv: 8x wetware_printed_circuit_board + colorful_soc + naquadah_block + yttrium_barium_cuprate_block + living_metal 432 -> 64x wetware_processor
+        // color_luv: 8x wetware_printed_circuit_board + colorful_soc + naquadah_block + yttrium_barium_cuprate_block +
+        // living_metal 432 -> 64x wetware_processor
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("color_luv"))
                 .inputItems(GTItems.WETWARE_CIRCUIT_BOARD.asStack(8))
                 .inputItems(COLORFUL_SOC.asStack())
@@ -5547,7 +5661,8 @@ public class GtceuScriptRecipes {
                 .EUt(32678 * 16 * 4).duration(1)
                 .save(provider);
 
-        // color_zpm: 4x echo_printed_circuit_board + colorful_soc + enriched_naquadah_trinium_europium_duranide_block + bedrock_neutronium_block + living_metal 864 -> 32x echo_processor
+        // color_zpm: 4x echo_printed_circuit_board + colorful_soc + enriched_naquadah_trinium_europium_duranide_block +
+        // bedrock_neutronium_block + living_metal 864 -> 32x echo_processor
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("color_zpm"))
                 .inputItems(ECHO_PRINTED_CIRCUIT_BOARD.asStack(4))
                 .inputItems(COLORFUL_SOC.asStack())

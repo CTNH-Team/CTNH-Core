@@ -6,8 +6,9 @@ import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.ElectricStats;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 
-import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.world.item.Item;
+
+import com.tterrag.registrate.util.entry.ItemEntry;
 
 import static com.gregtechceu.gtceu.common.data.GTItems.attach;
 import static com.gregtechceu.gtceu.common.data.GTItems.modelPredicate;
