@@ -2,6 +2,8 @@ package io.github.cpearl0.ctnhcore.data.recipe;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.*;
+import io.github.cpearl0.ctnhcore.data.materials.NewExplosivesProductionMaterials;
+import io.github.cpearl0.ctnhcore.data.materials.YeastRelatedMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
@@ -32,6 +34,7 @@ import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import com.mo_guang.ctpp.registry.CTPPMaterials;
 import com.moguang.ctnhmana.registry.CMMaterials;
+import com.moguang.ctnhmana.registry.CMRecipeTypes;
 import com.tterrag.registrate.util.entry.ItemEntry;
 
 import java.util.HashMap;
@@ -2642,6 +2645,61 @@ public class GtceuScriptRecipes {
                 ChemicalHelper.get(ingotHot, UncategorizedMaterials.HIGH_TEMP_WROUGHT_PRECURSOR),
                 new ItemStack(Items.IRON_INGOT),
                 1.4f);
+
+        // =============== Platinum Chain ================
+        // 从 PlatinumChain.js 迁移
+        CMRecipeTypes.MANA_TRANSFORMER_RECIPES.recipeBuilder(CTNHCore.id("crystal_catalyst1"))
+                .inputItems(dust, PlatinumGroupSludge, 42)
+                .notConsumable(CRYSTAL_CATALYST)
+                .outputItems(dust, Palladium, 7)
+                .outputItems(dust, Platinum, 7)
+                .outputItems(dust, Ruthenium, 7)
+                .outputItems(dust, Rhodium, 7)
+                .outputItems(dust, Osmium, 7)
+                .outputItems(dust, Iridium, 7)
+                .EUt(1920)
+                .duration(600)
+                .circuitMeta(1)
+                .save(provider);
+
+        // =============== Iodine Chain ================
+        // 从 IodineChain.js 迁移
+        LARGE_CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("sodium_iodate"))
+                .inputItems(dust, SodiumHydroxide, 18)
+                .inputItems(dust, NewExplosivesProductionMaterials.SODIUM_IODIDE, 2)
+                .inputFluids(YeastRelatedMaterials.BLUE_VITRIOL_SOLUTION.getFluid(3000))
+                .inputFluids(SulfurTrioxide.getFluid(3000))
+                .outputItems(dust, NewExplosivesProductionMaterials.SODIUM_IODATE, 5)
+                .outputItems(dust, Copper, 3)
+                .outputItems(dust, Sodium, 3)
+                .outputFluids(NewExplosivesProductionMaterials.SODIUM_SULFATE_SOLUTION.getFluid(3000))
+                .outputFluids(Water.getFluid(6000))
+                .outputFluids(SulfurDioxide.getFluid(3000))
+                .EUt(1920)
+                .duration(290)
+                .save(provider);
+
+        // =============== Snow Adjust ================
+        // 从 SnowAdjust.js 迁移
+        VACUUM_RECIPES.recipeBuilder(CTNHCore.id("adjust_liquid_oxygen"))
+                .inputFluids(Oxygen.getFluid(1000))
+                .outputFluids(Oxygen.getFluid(FluidStorageKeys.LIQUID, 1000))
+                .EUt(480)
+                .duration(120)
+                .save(provider);
+
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("adjust_ender_fluid_link"))
+                .inputItems(GTItems.SENSOR_LuV.asStack())
+                .inputItems(GTItems.EMITTER_LuV.asStack())
+                .inputItems(GTItems.ELECTRIC_PUMP_LuV.asStack())
+                .inputItems(CustomTags.LuV_CIRCUITS, 2)
+                .inputItems(plate, EnderEye, 8)
+                .inputItems(plateDense, RhodiumPlatedPalladium, 4)
+                .inputFluids(Polybenzimidazole.getFluid(576))
+                .outputItems(GTItems.COVER_ENDER_FLUID_LINK.asStack())
+                .EUt(30720)
+                .duration(200)
+                .save(provider);
 
         // ============== Recipe Replace Re-additions ==============
 
