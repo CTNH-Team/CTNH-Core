@@ -5,6 +5,7 @@ import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.data.materials.NewExplosivesProductionMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.YeastRelatedMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
@@ -17,6 +18,7 @@ import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
@@ -2647,7 +2649,7 @@ public class GtceuScriptRecipes {
                 1.4f);
 
         // =============== Platinum Chain ================
-        // Migrated from PlatinumChain.js
+        // 从 PlatinumChain.js 迁移
         CMRecipeTypes.MANA_TRANSFORMER_RECIPES.recipeBuilder(CTNHCore.id("crystal_catalyst1"))
                 .inputItems(dust, PlatinumGroupSludge, 42)
                 .notConsumable(CRYSTAL_CATALYST)
@@ -2663,7 +2665,7 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // =============== Iodine Chain ================
-        // Migrated from IodineChain.js
+        // 从 IodineChain.js 迁移
         LARGE_CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("sodium_iodate"))
                 .inputItems(dust, SodiumHydroxide, 18)
                 .inputItems(dust, NewExplosivesProductionMaterials.SODIUM_IODIDE, 2)
@@ -2680,7 +2682,7 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // =============== Snow Adjust ================
-        // Migrated from SnowAdjust.js
+        // 从 SnowAdjust.js 迁移
         VACUUM_RECIPES.recipeBuilder(CTNHCore.id("adjust_liquid_oxygen"))
                 .inputFluids(Oxygen.getFluid(1000))
                 .outputFluids(Oxygen.getFluid(FluidStorageKeys.LIQUID, 1000))
@@ -2702,7 +2704,7 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // =============== WChain ================
-        // Migrated from WChain.js
+        // 从 WChain.js 迁移
 
         // 1. Dehydrate tungstic acid: 7x tungstic_acid_dust -> 4x tungsten_trioxide_dust + water 1000
         CTNHRecipeTypes.DEHYDRATOR_RECIPES.recipeBuilder(CTNHCore.id("tungsten_trioxide_dust"))
@@ -2737,7 +2739,7 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // =============== TiChain ================
-        // Migrated from TiChain.js
+        // 从 TiChain.js 迁移
 
         // 1. Distill titanium tetrachloride: titanium_tetrachloride 3000 -> gallium_dust + iron_iii_chloride 1000 + titanium_tetrachloride 1000 + refining_titanium_tetrachloride 1250
         DISTILLATION_RECIPES.recipeBuilder(CTNHCore.id("refining_titanium_tetrachloride_bucket"))
@@ -2783,6 +2785,554 @@ public class GtceuScriptRecipes {
                 .EUt(480)
                 .duration(150)
                 .blastFurnaceTemp(2200)
+                .save(provider);
+
+        // =============== ChromiteChain ================
+        // 从 ChromiteChain.js 迁移
+
+        // 1. Sodium carbonate solution: soda_ash_dust + water -> sodium_carbonate_solution
+        MIXER_RECIPES.recipeBuilder(CTNHCore.id("sodium_carbonate_solution"))
+                .inputItems(dust, SodaAsh)
+                .inputFluids(Water.getFluid(1000))
+                .outputFluids(BiodieselFertileSoilMaterials.SODIUM_CARBONATE_SOLUTION.getFluid(1000))
+                .EUt(30).duration(200)
+                .save(provider);
+
+        // 2. Sodium chromate from sodium carbonate: chromite_dust + oxygen + sodium_carbonate_solution -> magnetite_dust + carbon_dioxide + sodium_chromate_solution
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("sodium_chromate_from_sodium_carbonate"))
+                .inputItems(dust, Chromite)
+                .inputFluids(Oxygen.getFluid(1000))
+                .inputFluids(BiodieselFertileSoilMaterials.SODIUM_CARBONATE_SOLUTION.getFluid(1000))
+                .outputItems(dust, Magnetite)
+                .outputFluids(CarbonDioxide.getFluid(1000))
+                .outputFluids(BiodieselFertileSoilMaterials.SODIUM_CHROMATE_SOLUTION.getFluid(1000))
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 3. Sodium dichromate from sodium chromate: sulfuric_acid + sodium_chromate_solution -> sodium_sulfate_dust + sodium_dichromate_solution
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("sodium_dichromate_from_sodium_chromate"))
+                .inputFluids(SulfuricAcid.getFluid(1000))
+                .inputFluids(BiodieselFertileSoilMaterials.SODIUM_CHROMATE_SOLUTION.getFluid(1000))
+                .outputItems(dust, SodiumSulfate)
+                .outputFluids(BiodieselFertileSoilMaterials.SODIUM_DICHROMATE_SOLUTION.getFluid(1000))
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 4. Chromium oxide from sodium dichromate: carbon_dust + sodium_dichromate_solution -> soda_ash_dust + chromium_oxide_dust + carbon_monoxide
+        CTNHRecipeTypes.DEHYDRATOR_RECIPES.recipeBuilder(CTNHCore.id("chromium_oxide_dust_from_sodium_dichromate"))
+                .inputItems(dust, Carbon)
+                .inputFluids(BiodieselFertileSoilMaterials.SODIUM_DICHROMATE_SOLUTION.getFluid(1000))
+                .outputItems(dust, SodaAsh)
+                .outputItems(dust, BiodieselFertileSoilMaterials.CHROMIUM_OXIDE)
+                .outputFluids(CarbonMonoxide.getFluid(1000))
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 5. Chrome from chromium oxide: chromium_oxide_dust + aluminium_dust -> chromium_dust + alumina_dust
+        BLAST_RECIPES.recipeBuilder(CTNHCore.id("chrome_from_chromium_3"))
+                .inputItems(dust, BiodieselFertileSoilMaterials.CHROMIUM_OXIDE)
+                .inputItems(dust, Aluminium)
+                .outputItems(dust, Chromium)
+                .outputItems(dust, Alumina)
+                .EUt(480).duration(200)
+                .blastFurnaceTemp(1700)
+                .save(provider);
+
+        // 6. Sodium sulfide from sodium sulfate: sodium_sulfate_dust + carbon_dust -> sodium_sulfide_dust + carbon_dioxide
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("sodium_sulfide_from_sodium_sulfate"))
+                .inputItems(dust, SodiumSulfate)
+                .inputItems(dust, Carbon)
+                .outputItems(dust, SodiumSulfide)
+                .outputFluids(CarbonDioxide.getFluid(1000))
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 7. Soda ash from sodium sulfide: sodium_sulfide_dust + quicklime_dust + carbon_dioxide -> soda_ash_dust + calcium_sulfide_dust
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("soda_ash_from_sodium_sulfide"))
+                .inputItems(dust, SodiumSulfide)
+                .inputItems(dust, Quicklime)
+                .inputFluids(CarbonDioxide.getFluid(1000))
+                .outputItems(dust, SodaAsh)
+                .outputItems(dust, CreateMaterials.CALCIUM_SULFIDE)
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // =============== SeleniumTelluriumChain ================
+        // 从 SeleniumTelluriumChain.js 迁移
+
+        // 1. Blue vitriol: purified_chalcopyrite_ore + nitric_acid -> blue_vitriol_solution + tiny_platinum_group_sludge_dust
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("blue_vitriol"))
+                .inputItems(crushedPurified, Chalcopyrite)
+                .inputFluids(NitricAcid.getFluid(1000))
+                .outputFluids(YeastRelatedMaterials.BLUE_VITRIOL_SOLUTION.getFluid(1000))
+                .outputItems(dustTiny, PlatinumGroupSludge)
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 2. Blue vitriol electrolysis: blue_vitriol_solution -> sulfuric_acid + oxygen + copper_dust + chancedOutput(chalcogen_anode_mud_dust)
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("blue_vitriol1"))
+                .inputFluids(YeastRelatedMaterials.BLUE_VITRIOL_SOLUTION.getFluid(1000))
+                .outputFluids(SulfuricAcid.getFluid(1000))
+                .outputFluids(Oxygen.getFluid(1000))
+                .outputItems(dust, Copper)
+                .chancedOutput(dust, NewExplosivesProductionMaterials.CHALCOGEN_ANODE_MUD, 2500, 500)
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 3. Chalcogen anode mud centrifuge: chalcogen_anode_mud_dust -> silver_dust + chancedOutput(copper_dust) + chancedOutput(gold_dust)
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("chalcogen_anode_mud_bonus"))
+                .inputItems(dust, NewExplosivesProductionMaterials.CHALCOGEN_ANODE_MUD)
+                .outputItems(dust, Silver)
+                .chancedOutput(dust, Copper, 2500, 500)
+                .chancedOutput(dust, Gold, 1500, 500)
+                .EUt(30).duration(200)
+                .save(provider);
+
+        // 4. Tellurium recycle: chalcogen_anode_mud_dust + soda_ash_dust + oxygen -> sodium_tellurite_dust + selenium_dioxide_dust + silver_ingot + carbon_dioxide
+        CTNHRecipeTypes.DEHYDRATOR_RECIPES.recipeBuilder(CTNHCore.id("tellurium_recycle"))
+                .inputItems(dust, NewExplosivesProductionMaterials.CHALCOGEN_ANODE_MUD)
+                .inputItems(dust, SodaAsh)
+                .inputFluids(Oxygen.getFluid(1000))
+                .outputItems(dust, NewExplosivesProductionMaterials.SODIUM_TELLURITE)
+                .outputItems(dust, NewExplosivesProductionMaterials.SELENIUM_DIOXIDE)
+                .outputItems(ingot, Silver)
+                .outputFluids(CarbonDioxide.getFluid(1000))
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 5. Tellurium recycle electrolysis: sodium_tellurite_dust + water -> tellurium_dioxide_dust + sodium_hydroxide_dust
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("tellurium_recycle1"))
+                .inputItems(dust, NewExplosivesProductionMaterials.SODIUM_TELLURITE)
+                .inputFluids(Water.getFluid(1000))
+                .outputItems(dust, NewExplosivesProductionMaterials.TELLURIUM_DIOXIDE)
+                .outputItems(dust, SodiumHydroxide)
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 6. Tellurium recycle chemical: tellurium_dioxide_dust + sulfur_dioxide + water -> tellurium_dust + sulfuric_acid + sulfur_trioxide
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("tellurium_recycle2"))
+                .inputItems(dust, NewExplosivesProductionMaterials.TELLURIUM_DIOXIDE)
+                .inputFluids(SulfurDioxide.getFluid(1000))
+                .inputFluids(Water.getFluid(1000))
+                .outputItems(dust, Tellurium)
+                .outputFluids(SulfuricAcid.getFluid(1000))
+                .outputFluids(SulfurTrioxide.getFluid(1000))
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 7. Selenium dioxide recycle: selenium_dioxide_dust + water -> selenous_acid
+        MIXER_RECIPES.recipeBuilder(CTNHCore.id("selenium_dioxide_recycle"))
+                .inputItems(dust, NewExplosivesProductionMaterials.SELENIUM_DIOXIDE)
+                .inputFluids(Water.getFluid(1000))
+                .outputFluids(NewExplosivesProductionMaterials.SELENOUS_ACID.getFluid(1000))
+                .EUt(30).duration(200)
+                .save(provider);
+
+        // 8. Selenium recycle: selenous_acid + sulfur_dioxide -> selenium_dust + sulfuric_acid + sulfur_trioxide
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("selenium_dioxide_recycle1"))
+                .inputFluids(NewExplosivesProductionMaterials.SELENOUS_ACID.getFluid(1000))
+                .inputFluids(SulfurDioxide.getFluid(1000))
+                .outputItems(dust, Selenium)
+                .outputFluids(SulfuricAcid.getFluid(1000))
+                .outputFluids(SulfurTrioxide.getFluid(1000))
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // =============== TantaliteChain ================
+        // 从 TantaliteChain.js 迁移
+
+        // 1. Tantalum alkaline mixture: tantalite_dust + pyrochlore_dust + sodium_carbonate_solution -> tantalum_alkaline_mixture
+        MIXER_RECIPES.recipeBuilder(CTNHCore.id("tantalum_alkaline_mixture"))
+                .inputItems(dust, Tantalite)
+                .inputItems(dust, Pyrochlore)
+                .inputFluids(BiodieselFertileSoilMaterials.SODIUM_CARBONATE_SOLUTION.getFluid(1000))
+                .outputFluids(NiobiumTantalumJointProcessingMaterials.TANTALUM_ALKALINE_MIXTURE.getFluid(1000))
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 2. Tantalite fluorine: potassium_fluoride_dust + tantalum_alkaline_mixture -> tantalite_fluorine + soda_ash_dust + manganese_dust + stone_dust
+        LARGE_CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("tantalite_fluorine"))
+                .inputItems(dust, NiobiumTantalumJointProcessingMaterials.POTASSIUM_FLUORIDE)
+                .inputFluids(NiobiumTantalumJointProcessingMaterials.TANTALUM_ALKALINE_MIXTURE.getFluid(1000))
+                .outputFluids(NiobiumTantalumJointProcessingMaterials.TANTALITE_FLUORINE.getFluid(1000))
+                .outputItems(dust, SodaAsh)
+                .outputItems(dust, Manganese)
+                .outputItems(dust, Stone)
+                .EUt(480).duration(200)
+                .save(provider);
+
+        // 3. Potassium fluoride: potassium_dust + fluorine -> potassium_fluoride_dust
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("potassium_fluoride"))
+                .inputItems(dust, Potassium)
+                .inputFluids(Fluorine.getFluid(1000))
+                .outputItems(dust, NiobiumTantalumJointProcessingMaterials.POTASSIUM_FLUORIDE)
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 4. Niobium tantalite: chromium_trioxide_dust + ammonia_monohydrate + tantalite_fluorine -> potassium_hydroxide_dust + chromium_dust + ammonium_fluoride + niobium_tantalite
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("niobium_tantalite"))
+                .inputItems(dust, ChromiumTrioxide)
+                .inputFluids(PlatinumLineMaterials.AmmoniaMonohydrate.getFluid(1000))
+                .inputFluids(NiobiumTantalumJointProcessingMaterials.TANTALITE_FLUORINE.getFluid(1000))
+                .outputItems(dust, PotassiumHydroxide)
+                .outputItems(dust, Chromium)
+                .outputFluids(SpecialMaterials.AMMONIUM_FLUORIDE.getFluid(1000))
+                .outputFluids(NiobiumTantalumJointProcessingMaterials.NIOBIUM_TANTALITE.getFluid(1000))
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 5. Tantalite oxide: niobium_tantalite -> tantalite_oxide_dust + niobium_oxide_dust + water
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("tantalite_oxide_dust"))
+                .inputFluids(NiobiumTantalumJointProcessingMaterials.NIOBIUM_TANTALITE.getFluid(1000))
+                .outputItems(dust, NiobiumTantalumJointProcessingMaterials.TANTALITE_OXIDE)
+                .outputItems(dust, NiobiumTantalumJointProcessingMaterials.NIOBIUM_OXIDE)
+                .outputFluids(Water.getFluid(1000))
+                .EUt(30).duration(200)
+                .save(provider);
+
+        // 6. Niobium dust: niobium_oxide_dust + hematite_dust + aluminium_dust -> niobium_dust + iron_dust + alumina_dust
+        BLAST_RECIPES.recipeBuilder(CTNHCore.id("niobium_dust"))
+                .inputItems(dust, NiobiumTantalumJointProcessingMaterials.NIOBIUM_OXIDE)
+                .inputItems(dust, Hematite)
+                .inputItems(dust, Aluminium)
+                .outputItems(dust, Niobium)
+                .outputItems(dust, Iron)
+                .outputItems(dust, Alumina)
+                .EUt(480).duration(200)
+                .blastFurnaceTemp(1700)
+                .save(provider);
+
+        // 7. Tantalum dust: tantalite_oxide_dust + hematite_dust + aluminium_dust -> tantalum_dust + iron_dust + alumina_dust
+        BLAST_RECIPES.recipeBuilder(CTNHCore.id("tantalum_dust"))
+                .inputItems(dust, NiobiumTantalumJointProcessingMaterials.TANTALITE_OXIDE)
+                .inputItems(dust, Hematite)
+                .inputItems(dust, Aluminium)
+                .outputItems(dust, Tantalum)
+                .outputItems(dust, Iron)
+                .outputItems(dust, Alumina)
+                .EUt(480).duration(200)
+                .blastFurnaceTemp(1700)
+                .save(provider);
+
+        // 8. Ammonia from ammonium fluoride: ammonium_fluoride -> ammonia + fluorine
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("ammonia"))
+                .inputFluids(SpecialMaterials.AMMONIUM_FLUORIDE.getFluid(1000))
+                .outputFluids(Ammonia.getFluid(1000))
+                .outputFluids(Fluorine.getFluid(1000))
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 9. Hematite: iron_dust + oxygen -> hematite_dust
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("hematite_dust"))
+                .inputItems(dust, Iron)
+                .inputFluids(Oxygen.getFluid(1000))
+                .outputItems(dust, Hematite)
+                .EUt(30).duration(200)
+                .save(provider);
+
+        // =============== GoldChain ================
+        // 从 GoldChain.js 迁移
+
+        // 1. Tier1 gold processing: gold_alloy_dust -> tiny_gold_dust + copper_dust
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("tier1_gold_processing"))
+                .inputItems(dust, CrudeGoldRefiningMaterials.GOLD_ALLOY)
+                .outputItems(dustTiny, Gold)
+                .outputItems(dust, Copper)
+                .EUt(30).duration(200)
+                .save(provider);
+
+        // 2. Tier2 gold processing: gold_leach_dust + hydrogen -> water + copper_dust + tiny_gold_dust
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("tier2_gold_processing"))
+                .inputItems(dust, CrudeGoldRefiningMaterials.GOLD_LEACH)
+                .inputFluids(Hydrogen.getFluid(1000))
+                .outputFluids(Water.getFluid(1000))
+                .outputItems(dust, Copper)
+                .outputItems(dustTiny, Gold)
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 3. Tier3 gold processing: copper_leach_dust -> copper_dust + chancedOutput(lead/iron/gallium/nickel/silver)
+        SIFTER_RECIPES.recipeBuilder(CTNHCore.id("tier3_gold_processing"))
+                .inputItems(dust, CrudeGoldRefiningMaterials.COPPER_LEACH)
+                .outputItems(dust, Copper)
+                .chancedOutput(dust, Lead, 2500, 500)
+                .chancedOutput(dust, Iron, 2000, 500)
+                .chancedOutput(dust, Gallium, 1500, 500)
+                .chancedOutput(dust, Nickel, 1000, 500)
+                .chancedOutput(dust, Silver, 500, 250)
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 4. Gold alloy 1: precious_alloy_dust + copper_dust -> gold_alloy_ingot
+        ALLOY_SMELTER_RECIPES.recipeBuilder(CTNHCore.id("gold_alloy1"))
+                .inputItems(dust, PreciousAlloy)
+                .inputItems(dust, Copper)
+                .outputItems(ingot, CrudeGoldRefiningMaterials.GOLD_ALLOY)
+                .EUt(16).duration(200)
+                .save(provider);
+
+        // 5. Gold alloy 2: precious_alloy_ingot + copper_dust -> gold_alloy_ingot
+        ALLOY_SMELTER_RECIPES.recipeBuilder(CTNHCore.id("gold_alloy2"))
+                .inputItems(ingot, PreciousAlloy)
+                .inputItems(dust, Copper)
+                .outputItems(ingot, CrudeGoldRefiningMaterials.GOLD_ALLOY)
+                .EUt(16).duration(200)
+                .save(provider);
+
+        // 6. Gold alloy 3: precious_alloy_dust + copper_ingot -> gold_alloy_ingot
+        ALLOY_SMELTER_RECIPES.recipeBuilder(CTNHCore.id("gold_alloy3"))
+                .inputItems(dust, PreciousAlloy)
+                .inputItems(ingot, Copper)
+                .outputItems(ingot, CrudeGoldRefiningMaterials.GOLD_ALLOY)
+                .EUt(16).duration(200)
+                .save(provider);
+
+        // 7. Gold alloy 4: precious_alloy_ingot + copper_ingot -> gold_alloy_ingot
+        ALLOY_SMELTER_RECIPES.recipeBuilder(CTNHCore.id("gold_alloy4"))
+                .inputItems(ingot, PreciousAlloy)
+                .inputItems(ingot, Copper)
+                .outputItems(ingot, CrudeGoldRefiningMaterials.GOLD_ALLOY)
+                .EUt(16).duration(200)
+                .save(provider);
+
+        // 8. Gold leach dust: gold_alloy_ingot + nitric_acid -> gold_leach_dust + nitrogen_dioxide
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("gold_leach_dust"))
+                .inputItems(ingot, CrudeGoldRefiningMaterials.GOLD_ALLOY)
+                .inputFluids(NitricAcid.getFluid(1000))
+                .outputItems(dust, CrudeGoldRefiningMaterials.GOLD_LEACH)
+                .outputFluids(NitrogenDioxide.getFluid(1000))
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 9. Copper leach dust: gold_leach_dust + hydrochloric_acid -> copper_leach_dust + chloroauric_acid
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("copper_leach_dust"))
+                .inputItems(dust, CrudeGoldRefiningMaterials.GOLD_LEACH)
+                .inputFluids(HydrochloricAcid.getFluid(1000))
+                .outputItems(dust, CrudeGoldRefiningMaterials.COPPER_LEACH)
+                .outputFluids(CrudeGoldRefiningMaterials.CHLOROAURIC_ACID.getFluid(1000))
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 10. Chloroauric acid to gold: chloroauric_acid + notConsumable(potassium_metabi_sulfite_dust) -> gold_dust + water + chlorine
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("chloroauricacid_to_gold"))
+                .inputFluids(CrudeGoldRefiningMaterials.CHLOROAURIC_ACID.getFluid(1000))
+                .notConsumable(dust, BauxiteProcessingMaterials.POTASSIUM_METABI_SULFITE)
+                .outputItems(dust, Gold)
+                .outputFluids(Water.getFluid(1000))
+                .outputFluids(Chlorine.getFluid(1000))
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 11. Potassium metabisulfite: potassium_dust + sulfur_dust + oxygen -> potassium_metabi_sulfite_dust
+        MIXER_RECIPES.recipeBuilder(CTNHCore.id("potassium_metabi_sulfite_dust"))
+                .inputItems(dust, Potassium)
+                .inputItems(dust, Sulfur)
+                .inputFluids(Oxygen.getFluid(2000))
+                .outputItems(dust, BauxiteProcessingMaterials.POTASSIUM_METABI_SULFITE)
+                .EUt(30).duration(200)
+                .save(provider);
+
+        // =============== GraphiteChain ================
+        // 从 GraphiteChain.js 迁移
+
+        // 1. Graphite gas: graphite_dust -> graphite_steam
+        BLAST_RECIPES.recipeBuilder(CTNHCore.id("graphite_gas"))
+                .inputItems(dust, Graphite)
+                .outputFluids(GrapheneProductionLineMaterials.GRAPHITE_STEAM.getFluid(1000))
+                .EUt(480).duration(200)
+                .blastFurnaceTemp(1700)
+                .save(provider);
+
+        // 2. Graphene plate production method 1: graphite_steam + iridium_plate + nitrogen -> graphite_ir_plate_plate
+        CTNHRecipeTypes.CHEMICAL_VAPOR_DEPOSITION.recipeBuilder(CTNHCore.id("graphene_plate_production_method_1"))
+                .inputFluids(GrapheneProductionLineMaterials.GRAPHITE_STEAM.getFluid(1000))
+                .inputItems(plate, Iridium)
+                .inputFluids(Nitrogen.getFluid(1000))
+                .outputItems(plate, GrapheneProductionLineMaterials.GRAPHITE_IR_PLATE)
+                .EUt(480).duration(200)
+                .save(provider);
+
+        // 3. Graphene plate production method 2: graphite_steam + double_iridium_plate + nitrogen -> double_graphite_ir_plate_plate
+        CTNHRecipeTypes.CHEMICAL_VAPOR_DEPOSITION.recipeBuilder(CTNHCore.id("graphene_plate_production_method_2"))
+                .inputFluids(GrapheneProductionLineMaterials.GRAPHITE_STEAM.getFluid(1000))
+                .inputItems(plateDouble, Iridium)
+                .inputFluids(Nitrogen.getFluid(1000))
+                .outputItems(plateDouble, GrapheneProductionLineMaterials.GRAPHITE_IR_PLATE)
+                .EUt(480).duration(200)
+                .save(provider);
+
+        // 4. Iridium plate graphene separation 1: graphite_ir_plate_plate + hydrochloric_acid -> hydrogen + iridium_chloride_dust + graphene_dust
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("iridium_plate_graphene_separation_1"))
+                .inputItems(plate, GrapheneProductionLineMaterials.GRAPHITE_IR_PLATE)
+                .inputFluids(HydrochloricAcid.getFluid(1000))
+                .outputFluids(Hydrogen.getFluid(1000))
+                .outputItems(dust, IridiumChloride)
+                .outputItems(dust, Graphene)
+                .EUt(480).duration(200)
+                .save(provider);
+
+        // 5. Iridium plate graphene separation 2: double_graphite_ir_plate_plate + hydrochloric_acid -> hydrogen + iridium_chloride_dust + graphene_dust
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("iridium_plate_graphene_separation_2"))
+                .inputItems(plateDouble, GrapheneProductionLineMaterials.GRAPHITE_IR_PLATE)
+                .inputFluids(HydrochloricAcid.getFluid(1000))
+                .outputFluids(Hydrogen.getFluid(2000))
+                .outputItems(dust, IridiumChloride, 2)
+                .outputItems(dust, Graphene, 2)
+                .EUt(480).duration(200)
+                .save(provider);
+
+        // 6. Graphene powder: graphite_dust + duct_tape -> chancedOutput(small_graphene_dust)
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("graphene_powder"))
+                .inputItems(dust, Graphite)
+                .inputItems(GTItems.DUCT_TAPE.asStack())
+                .chancedOutput(dustSmall, Graphene, 5000, 500)
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 7. Graphite gas production method 1: fluid_cell + methane -> graphite_steam + fluid_cell(hydrogen)
+        BLAST_RECIPES.recipeBuilder(CTNHCore.id("graphite_gas_production_method_1"))
+                .inputItems(GTItems.FLUID_CELL.asStack())
+                .inputFluids(Methane.getFluid(1000))
+                .outputFluids(GrapheneProductionLineMaterials.GRAPHITE_STEAM.getFluid(1000))
+                .outputItems(GTItems.FLUID_CELL.asStack())
+                .EUt(480).duration(200)
+                .blastFurnaceTemp(1700)
+                .save(provider);
+
+        // 8. Graphite gas production method 1 no hydrogen: methane -> graphite_steam
+        BLAST_RECIPES.recipeBuilder(CTNHCore.id("graphite_gas_production_method_1_no_hydrogen"))
+                .inputFluids(Methane.getFluid(1000))
+                .outputFluids(GrapheneProductionLineMaterials.GRAPHITE_STEAM.getFluid(1000))
+                .EUt(480).duration(200)
+                .blastFurnaceTemp(1700)
+                .save(provider);
+
+        // =============== ZirconChain ================
+        // 从 ZirconChain.js 迁移
+
+        // 1. Barium hydroxide: barium_dust + hydrogen_peroxide -> barium_hydroxide_dust
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("barium_hydroxide"))
+                .inputItems(dust, Barium)
+                .inputFluids(HydrogenPeroxide.getFluid(1000))
+                .outputItems(dust, NewExplosivesProductionMaterials.BARIUM_HYDROXIDE)
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 2. Mesityl oxide: notConsumable(barium_hydroxide_dust) + acetone -> mesityl_oxide + water
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("mesityl_oxide"))
+                .notConsumable(dust, NewExplosivesProductionMaterials.BARIUM_HYDROXIDE)
+                .inputFluids(Acetone.getFluid(2000))
+                .outputFluids(NewExplosivesProductionMaterials.MESITYL_OXIDE.getFluid(1000))
+                .outputFluids(Water.getFluid(1000))
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 3. Methyl isobutyl ketone: notConsumable(palladium_on_carbon) + carbon_dust + mesityl_oxide + water -> methyl_isobutyl_ketone + carbon_monoxide
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("methyl_isobutyl_ketone"))
+                .notConsumable(CTNHTagPrefixes.catalyst, NaquadahMaterials.PalladiumOnCarbon)
+                .inputItems(dust, Carbon)
+                .inputFluids(NewExplosivesProductionMaterials.MESITYL_OXIDE.getFluid(1000))
+                .inputFluids(Water.getFluid(1000))
+                .outputFluids(NewExplosivesProductionMaterials.METHYL_ISOBUTYL_KETONE.getFluid(1000))
+                .outputFluids(CarbonMonoxide.getFluid(1000))
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 4. Thiocyanic acid: sulfur_dust + hydrogen_cyanide -> thiocyanic_acid
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("thiocyanic_acid"))
+                .inputItems(dust, Sulfur)
+                .inputFluids(HydrogenCyanide.getFluid(1000))
+                .outputFluids(NewExplosivesProductionMaterials.THIOCYANIC_ACID.getFluid(1000))
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 5. Zr-Hf separation mix: thiocyanic_acid + methyl_isobutyl_ketone -> zr_hf_separation_mix
+        MIXER_RECIPES.recipeBuilder(CTNHCore.id("zr_hf_separation_mix"))
+                .inputFluids(NewExplosivesProductionMaterials.THIOCYANIC_ACID.getFluid(1000))
+                .inputFluids(NewExplosivesProductionMaterials.METHYL_ISOBUTYL_KETONE.getFluid(1000))
+                .outputFluids(ZrHfSeparationMaterials.ZR_HF_SEPARATION_MIX.getFluid(1000))
+                .EUt(30).duration(200)
+                .save(provider);
+
+        // 6. Zr-Hf chloride: zircon_dust + chlorine -> zr_hf_chloride + zircon_chlorinating_residue
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("zr_hf_chloride"))
+                .inputItems(dust, Zircon)
+                .inputFluids(Chlorine.getFluid(4000))
+                .outputFluids(ZrHfSeparationMaterials.ZR_HF_CHLORIDE.getFluid(1000))
+                .outputFluids(ZrHfSeparationMaterials.ZIRCON_CHLORINATING_RESIDUE.getFluid(1000))
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 7. Silicon chloride: zircon_chlorinating_residue -> silicon_chloride + chancedOutput(cobalt_dust) + chancedOutput(rare_earth_dust)
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("silicon_chloride"))
+                .inputFluids(ZrHfSeparationMaterials.ZIRCON_CHLORINATING_RESIDUE.getFluid(1000))
+                .outputFluids(NewExplosivesProductionMaterials.SILICON_CHLORIDE.getFluid(1000))
+                .chancedOutput(dust, Cobalt, 2500, 500)
+                .chancedOutput(dust, RareEarth, 1500, 500)
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 8. Zr-Hf oxy chlorides: water + zr_hf_chloride -> zr_hf_oxy_chloride + hydrochloric_acid
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("zr_hf_oxy_chlorides"))
+                .inputFluids(Water.getFluid(1000))
+                .inputFluids(ZrHfSeparationMaterials.ZR_HF_CHLORIDE.getFluid(1000))
+                .outputFluids(ZrHfSeparationMaterials.ZR_HF_OXY_CHLORIDE.getFluid(1000))
+                .outputFluids(HydrochloricAcid.getFluid(1000))
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 9. Cubic zirconia: hydrogen_peroxide + zr_hf_oxy_chloride + sulfur_trioxide + ammonium_chloride + notConsumableFluid(zr_hf_separation_mix) -> ammonium_sulfate + hydrochloric_acid + cubic_zirconia_dust + chancedOutput(hafnium_oxide_dust)
+        LARGE_CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("cubic_zirconia"))
+                .inputFluids(HydrogenPeroxide.getFluid(1000))
+                .inputFluids(ZrHfSeparationMaterials.ZR_HF_OXY_CHLORIDE.getFluid(1000))
+                .inputFluids(SulfurTrioxide.getFluid(1000))
+                .inputFluids(AmmoniumChloride.getFluid(1000))
+                .notConsumableFluid(ZrHfSeparationMaterials.ZR_HF_SEPARATION_MIX.getFluid(1000))
+                .outputFluids(NewExplosivesProductionMaterials.AMMONIUM_SULFATE.getFluid(1000))
+                .outputFluids(HydrochloricAcid.getFluid(2000))
+                .outputItems(dust, ZrHfSeparationMaterials.CUBIC_ZIRCONIA)
+                .chancedOutput(dust, ZrHfSeparationMaterials.HAFNIUM_OXIDE, 5000, 500)
+                .EUt(480).duration(200)
+                .save(provider);
+
+        // 10. Zirconium tetrachloride: carbon_dust + cubic_zirconia_dust + chlorine -> carbon_dioxide + zirconium_tetrachloride_dust
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("zirconium_tetrachloride"))
+                .inputItems(dust, Carbon)
+                .inputItems(dust, ZrHfSeparationMaterials.CUBIC_ZIRCONIA)
+                .inputFluids(Chlorine.getFluid(4000))
+                .outputFluids(CarbonDioxide.getFluid(1000))
+                .outputItems(dust, zirconiumTetrachloride)
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 11. Zirconium dust: zirconium_tetrachloride_dust + magnesium_dust -> zirconium_dust + magnesium_chloride_dust
+        BLAST_RECIPES.recipeBuilder(CTNHCore.id("zirconium_dust"))
+                .inputItems(dust, zirconiumTetrachloride)
+                .inputItems(dust, Magnesium)
+                .outputItems(dust, Zirconium)
+                .outputItems(dust, MagnesiumChloride)
+                .EUt(480).duration(200)
+                .blastFurnaceTemp(1700)
+                .save(provider);
+
+        // 12. Hafnium tetrachloride: carbon_dust + hafnium_oxide_dust + chlorine -> carbon_dioxide + hafnium_chloride_dust
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("hafnium_tetrachloride"))
+                .inputItems(dust, Carbon)
+                .inputItems(dust, ZrHfSeparationMaterials.HAFNIUM_OXIDE)
+                .inputFluids(Chlorine.getFluid(4000))
+                .outputFluids(CarbonDioxide.getFluid(1000))
+                .outputItems(dust, ZrHfSeparationMaterials.HAFNIUM_CHLORIDE)
+                .EUt(120).duration(200)
+                .save(provider);
+
+        // 13. Hafnium dust: hafnium_chloride_dust + magnesium_dust -> hafnium_dust + magnesium_chloride_dust
+        BLAST_RECIPES.recipeBuilder(CTNHCore.id("hafnium_dust"))
+                .inputItems(dust, ZrHfSeparationMaterials.HAFNIUM_CHLORIDE)
+                .inputItems(dust, Magnesium)
+                .outputItems(dust, Hafnium)
+                .outputItems(dust, MagnesiumChloride)
+                .EUt(480).duration(200)
+                .blastFurnaceTemp(1700)
                 .save(provider);
 
         // ============== Recipe Replace Re-additions ==============
