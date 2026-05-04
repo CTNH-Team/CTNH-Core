@@ -123,7 +123,12 @@ public class RecipeRemoval {
                 // Replace operations from JS migration
                 "gtceu:centrifuge/endstone_separation",
                 "gtceu:shaped/small_wooden_pipe",
-                "gtceu:shaped/hv_diode"));
+                "gtceu:shaped/hv_diode",
+                // SnowAdjust.js migration
+                "ctnhcore:assembler/cover_ender_fluid_link",
+                // SiliconChain.js replaceOutput
+                "gtceu:electrolyzer/zeolite_electrolysis",
+                "gtceu:centrifuge/decomposition_centrifuging__redstone"));
 
         for (String path : removePaths) {
             registry.accept(ResourceLocation.parse(path));

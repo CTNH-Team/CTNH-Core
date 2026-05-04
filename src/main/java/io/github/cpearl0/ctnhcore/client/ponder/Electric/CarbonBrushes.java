@@ -1,8 +1,5 @@
 package io.github.cpearl0.ctnhcore.client.ponder.Electric;
 
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 import io.github.cpearl0.ctnhcore.client.ponder.CTNHPonderSceneBuilder;
 
 import net.createmod.ponder.api.scene.SceneBuilder;
@@ -11,9 +8,11 @@ import net.createmod.ponder.api.scene.Selection;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 import org.antarcticgardens.cna.CNABlocks;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-
 
 public class CarbonBrushes {
 

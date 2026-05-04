@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
 @Domain("modifier")
 @Category("global_traveller")
 public class GlobalTraveller extends NoLevelsModifier
-                              implements TooltipModifierHook, BlockInteractionModifierHook, ProcessLootModifierHook {
+                             implements TooltipModifierHook, BlockInteractionModifierHook, ProcessLootModifierHook {
 
     @EN("Global Traveller")
     @CN("环球旅行者")

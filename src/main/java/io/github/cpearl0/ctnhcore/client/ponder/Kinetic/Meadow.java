@@ -1,8 +1,5 @@
 package io.github.cpearl0.ctnhcore.client.ponder.Kinetic;
 
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 import io.github.cpearl0.ctnhcore.client.ponder.CTNHPonderSceneBuilder;
 
 import com.gregtechceu.gtceu.common.data.GTItems;
@@ -16,13 +13,16 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.phys.Vec3;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 public class Meadow {
 
     private Meadow() {}
-    
+
     @Key("ctnhcore.ponder.meadow_common.title")
     @CN("牧场")
     @EN("Meadow")
