@@ -28,13 +28,11 @@ public final class CTNHPonderScenes {
         helper.forComponents(MultiblocksA.MEADOW.getId())
                 .addStoryBoard("meadow/common", Meadow::Common, CTNHPonderTags.Kinetic);
 
-        // Create New Age 碳刷和发电机线圈思索
         helper.forComponents(CNABlocks.GENERATOR_COIL.getId())
                 .addStoryBoard("carbonbrushes/common", CarbonBrushes::ponder, CTNHPonderTags.Electric);
         helper.forComponents(CTPPMachines.CARBON_BRUSHES.getId())
                 .addStoryBoard("carbonbrushes/common", CarbonBrushes::ponder, CTNHPonderTags.Electric);
 
-        // Exporter 应力出售机思索
         helper.forComponents(ResourceLocation.fromNamespaceAndPath("jackseconomy", "mechanical_exporter"))
                 .addStoryBoard("mechanicalexporter/common", MechanicalExporter::Common, CTNHPonderTags.Kinetic);
 

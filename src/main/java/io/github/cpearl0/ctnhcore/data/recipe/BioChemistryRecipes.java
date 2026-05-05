@@ -15,11 +15,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import com.mo_guang.ctpp.common.recipe.builder.create.SequencedAssemblyRecipeBuilder;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Prefix;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.CN;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.EN;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
 
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -301,15 +300,15 @@ public class BioChemistryRecipes {
         ItemStack pollutedFluorescenceYeast = ChemicalHelper.get(dust,
                 YeastRelatedMaterials.POLLUTED_FLUORESCENCE_YEAST);
 
-        SequencedAssemblyRecipeBuilder.builder("polluted_fluorescence_yeast")
-                .input(fluorescenceYeast)
-                .transitional(fluorescenceYeast)
-                .result(pollutedFluorescenceYeast)
-                .filling(fluorescenceYeast, "alexscaves:acid")
-                .filling(fluorescenceYeast, "deep_aether:poison_fluid")
-                .pressing()
-                .loops(1)
-                .save(provider);
+        // SequencedAssemblyRecipeBuilder.builder("polluted_fluorescence_yeast")
+        // .input(fluorescenceYeast)
+        // .transitional(fluorescenceYeast)
+        // .result(pollutedFluorescenceYeast)
+        // .filling(fluorescenceYeast, "alexscaves:acid")
+        // .filling(fluorescenceYeast, "deep_aether:poison_fluid")
+        // .pressing()
+        // .loops(1)
+        // .save(provider);
     }
 
     @CN("任意食物")

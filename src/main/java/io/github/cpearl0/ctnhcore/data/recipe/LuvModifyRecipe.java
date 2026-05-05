@@ -5,6 +5,7 @@ import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
@@ -94,6 +95,16 @@ public class LuvModifyRecipe {
                 .inputItems(wireFine, Electrum, 64)
                 .inputItems(wireGtSingle, SamariumIronArsenicOxide, 16)
                 .outputItems(ADVANCED_COMPUTER_CASING)
+                .duration(200).EUt(VA[LuV])
+                .addMaterialInfo(true).save(provider);
+
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("hpca_computation_component"))
+                .inputItems(HPCA_EMPTY_COMPONENT)
+                .inputItems(CustomTags.ZPM_CIRCUITS, 4)
+                .inputItems(FIELD_GENERATOR_IV)
+                .outputItems(HPCA_COMPUTATION_COMPONENT)
+                .inputFluids(PCBCoolant, 1000)
+                .cleanroom(CleanroomType.CLEANROOM)
                 .duration(200).EUt(VA[LuV])
                 .addMaterialInfo(true).save(provider);
     }

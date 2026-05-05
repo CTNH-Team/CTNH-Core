@@ -37,8 +37,8 @@ import com.gregtechceu.gtceu.utils.FormattingUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 
-import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Prefix;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.annotation.Suffix;
+import com.ctnhlang.Prefix;
+import com.ctnhlang.Suffix;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.capability.recipe.IO.IN;

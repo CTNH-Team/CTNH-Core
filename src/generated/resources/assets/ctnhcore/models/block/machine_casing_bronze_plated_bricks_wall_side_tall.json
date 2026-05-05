@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_wall_side_tall",
+  "textures": {
+    "wall": "ctnhcore:block/machine_casing_bronze_plated_bricks"
+  }
+}

@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.registry;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.common.tconstruct.modifier.Global_Traveller;
+import io.github.cpearl0.ctnhcore.common.tconstruct.modifier.GlobalTraveller;
 
 import slimeknights.tconstruct.common.TinkerModule;
 import slimeknights.tconstruct.library.modifiers.Modifier;
@@ -24,5 +24,5 @@ public class CTNHConstructModifier extends TinkerModule {
     }
 
     public static final StaticModifier<Modifier> GLOBAL_TRAVELLER = MODIFIERS.register("global_traveller",
-            Global_Traveller::new);
+            GlobalTraveller::new);
 }

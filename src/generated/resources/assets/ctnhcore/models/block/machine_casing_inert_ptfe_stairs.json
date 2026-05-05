@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "ctnhcore:block/machine_casing_inert_ptfe",
+    "side": "ctnhcore:block/machine_casing_inert_ptfe",
+    "top": "ctnhcore:block/machine_casing_inert_ptfe"
+  }
+}

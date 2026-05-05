@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "ctnhcore:block/machine_casing_stable_titanium",
+    "side": "ctnhcore:block/machine_casing_stable_titanium",
+    "top": "ctnhcore:block/machine_casing_stable_titanium"
+  }
+}

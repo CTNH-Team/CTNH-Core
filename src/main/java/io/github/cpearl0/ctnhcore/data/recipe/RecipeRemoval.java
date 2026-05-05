@@ -79,6 +79,8 @@ public class RecipeRemoval {
                 "gtceu:assembly_line/data_bank",
                 // 高级计算机外壳
                 "gtceu:assembler/advanced_computer_casing",
+                // 计算组件
+                "gtceu:assembler/hpca_computation_component",
                 // 凯金线圈
                 "gtceu:assembler/coil_trinium",
                 // 模拟室
@@ -117,7 +119,16 @@ public class RecipeRemoval {
                 "gtceu:assembly_line/energy_hatch_uhv",
                 // 原版四氯化钛
                 "gtceu:chemical_reactor/titanium_tetrachloride",
-                "gtceu:large_chemical_reactor/titanium_tetrachloride"));
+                "gtceu:large_chemical_reactor/titanium_tetrachloride",
+                // Replace operations from JS migration
+                "gtceu:centrifuge/endstone_separation",
+                "gtceu:shaped/small_wooden_pipe",
+                "gtceu:shaped/hv_diode",
+                // SnowAdjust.js migration
+                "ctnhcore:assembler/cover_ender_fluid_link",
+                // SiliconChain.js replaceOutput
+                "gtceu:electrolyzer/zeolite_electrolysis",
+                "gtceu:centrifuge/decomposition_centrifuging__redstone"));
 
         for (String path : removePaths) {
             registry.accept(ResourceLocation.parse(path));

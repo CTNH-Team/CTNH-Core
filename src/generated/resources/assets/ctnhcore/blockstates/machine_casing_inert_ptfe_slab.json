@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ctnhcore:block/machine_casing_inert_ptfe_slab"
+    },
+    "type=double": {
+      "model": "ctnhcore:block/machine_casing_inert_ptfe"
+    },
+    "type=top": {
+      "model": "ctnhcore:block/machine_casing_inert_ptfe_slab_top"
+    }
+  }
+}

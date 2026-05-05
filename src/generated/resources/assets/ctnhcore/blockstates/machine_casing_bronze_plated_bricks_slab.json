@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ctnhcore:block/machine_casing_bronze_plated_bricks_slab"
+    },
+    "type=double": {
+      "model": "ctnhcore:block/machine_casing_bronze_plated_bricks"
+    },
+    "type=top": {
+      "model": "ctnhcore:block/machine_casing_bronze_plated_bricks_slab_top"
+    }
+  }
+}

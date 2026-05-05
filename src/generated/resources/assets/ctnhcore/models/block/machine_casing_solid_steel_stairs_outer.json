@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "ctnhcore:block/machine_casing_solid_steel",
+    "side": "ctnhcore:block/machine_casing_solid_steel",
+    "top": "ctnhcore:block/machine_casing_solid_steel"
+  }
+}

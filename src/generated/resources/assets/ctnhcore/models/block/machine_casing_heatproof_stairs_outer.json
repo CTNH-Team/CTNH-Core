@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "ctnhcore:block/machine_casing_heatproof",
+    "side": "ctnhcore:block/machine_casing_heatproof",
+    "top": "ctnhcore:block/machine_casing_heatproof"
+  }
+}
