@@ -17,6 +17,7 @@ public final class CTNHPonderTags {
 
     public static final ResourceLocation Kinetic = ResourceLocation.tryBuild(CTNHCore.MODID, "kinetic");
     public static final ResourceLocation Electric = ResourceLocation.tryBuild(CTNHCore.MODID, "electric");
+    public static final ResourceLocation Mana = ResourceLocation.tryBuild(CTNHCore.MODID, "mana");
 
     public static void register(PonderTagRegistrationHelper<ResourceLocation> helper) {
         helper.registerTag(Kinetic)
@@ -29,6 +30,11 @@ public final class CTNHPonderTags {
                 .item(GTItems.COVER_WIRELESS_TRANSMITTER.asItem(), true, false)
                 .register();
 
+        helper.registerTag(Mana)
+                .addToIndex()
+                .item(net.minecraft.world.item.Items.AMETHYST_SHARD, true, false)
+                .register();
+
         helper.addToTag(Kinetic)
                 .add(CTPPMultiblockMachines.BIG_DAM.getId())
                 .add(CTPPMultiblockMachines.SMASHING_FACTORY.getId())
@@ -37,6 +43,9 @@ public final class CTNHPonderTags {
         helper.addToTag(Electric)
                 .add(CNABlocks.GENERATOR_COIL.getId())
                 .add(CTPPMachines.CARBON_BRUSHES.getId());
+
+        helper.addToTag(Mana)
+                .add(ResourceLocation.fromNamespaceAndPath("ctnhmana", "mystic_spire"));
 
         CTNHCore.LOGGER.info("Ponder tags initialized");
     }

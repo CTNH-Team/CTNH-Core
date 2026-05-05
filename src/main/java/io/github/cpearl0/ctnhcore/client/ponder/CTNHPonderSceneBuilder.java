@@ -47,4 +47,8 @@ public class CTNHPonderSceneBuilder extends CreateSceneBuilder {
         this.rotateCameraY(90);
         this.idle(time);
     }
+
+    public CreateSceneBuilder getSceneBuilder() {
+        return this;
+    }
 }
