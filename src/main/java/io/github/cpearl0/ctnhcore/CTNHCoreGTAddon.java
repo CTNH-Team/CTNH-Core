@@ -123,6 +123,32 @@ public class CTNHCoreGTAddon implements IGTAddon {
         FuelChain.init(provider);
         AdAstraRecipes.init(provider);
         NaquadahLine.init(provider);
+        CementChain.init(provider);
+
+        AlumiumChain.init(provider);
+        BrineChain.init(provider);
+        CementChain.init(provider);
+        ChromiteChain.init(provider);
+        ColorfulsocChain.init(provider);
+        FuelChain.init(provider);
+        FuelRefiningChain.init(provider);
+        GeyanChain.init(provider);
+        GoldChain.init(provider);
+        GraphiteChain.init(provider);
+        IodineChain.init(provider);
+        NaquadahLine.init(provider);
+        PlatinumLine.init(provider);
+        RareearthChain.init(provider);
+        SeleniumTelluriumChain.init(provider);
+        SiliconChain.init(provider);
+        SnowAdjust.init(provider);
+        SpaceFabric.init(provider);
+        StonedustChain.init(provider);
+        TantaliteChain.init(provider);
+        TiChain.init(provider);
+        WChain.init(provider);
+        WoodChain.init(provider);
+        ZirconChain.init(provider);
 
         CasingRecipes.init(provider);
         UHVPartsRecipe.init(provider);
