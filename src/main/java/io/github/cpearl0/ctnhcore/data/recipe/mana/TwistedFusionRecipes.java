@@ -1,7 +1,5 @@
 package io.github.cpearl0.ctnhcore.data.recipe.mana;
 
-import com.moguang.ctnhmana.registry.CMBlocks;
-import com.moguang.ctnhmana.registry.CMMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
 
@@ -9,7 +7,6 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
-import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
@@ -331,7 +328,7 @@ public class TwistedFusionRecipes {
                 .inputItems(ChemicalHelper.get(plate, Ultra_Mana), 1)
                 .inputItems(MANA_FUSION_CASING, 1)
                 .inputItems(ChemicalHelper.get(plateDouble, AlfSteel), 2)
-                .inputFluids(MANA_STABLE_COOLDOWN,144)
+                .inputFluids(MANA_STABLE_COOLDOWN, 144)
                 .outputItems(TWISTED_FUSION_CASING)
                 .duration(400)
                 .EUt(GTValues.VA[LuV])
