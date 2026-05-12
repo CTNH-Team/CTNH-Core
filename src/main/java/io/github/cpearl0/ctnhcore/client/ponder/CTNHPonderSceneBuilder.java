@@ -51,6 +51,8 @@ public class CTNHPonderSceneBuilder extends CreateSceneBuilder {
 
     public CreateSceneBuilder getSceneBuilder() {
         return this;
+    }
+
     public TextElementBuilder showText(int duration) {
         return overlay().showText(duration).text("");
     }
