@@ -628,11 +628,7 @@ public class CTNHItems {
                     }))
             .register();
 
-    public static ItemEntry<Item> UNFINISHED_STEEL_MECHANISM = REGISTRATE
-            .item("unfinished_steel_mechanism", Item::new)
-            .cnlang("未完成的钢铁构件")
-            .lang("Unfinished Steel Mechanism")
-            .register();
+
     public static ItemEntry<Item> CRASHED_RICE = REGISTRATE
             .item("crashed_rice", Item::new)
             .cnlang("嚼碎的饭团")
@@ -754,22 +750,6 @@ public class CTNHItems {
             .onRegister(attach(new TooltipBehavior(list -> list.add(Component.literal("完美的色彩在此流动")))))
             .register();
 
-    public static ItemEntry<ComponentItem> DOUBLE_BLAZE_CAKE = REGISTRATE
-            .item("double_blaze_cake", ComponentItem::create)
-            .cnlang("???烈焰蛋糕???")
-            .lang("Double Blaze Cake")
-            .onRegister(item -> {
-                item.attachComponents(new FoodStats(new FoodProperties.Builder()
-                        .alwaysEat()
-                        .effect(() -> {
-                            var effect = ForgeRegistries.MOB_EFFECTS.getValue(
-                                    ResourceLocation.tryBuild("legendarysurvivaloverhaul", "cold_immunity"));
-                            return effect != null ? new MobEffectInstance(effect, 36000, 10) : null;
-                        }, 1.0f)
-                        .build()));
-                item.burnTime(30000);
-            })
-            .register();
     public static ItemEntry<Item> DEEP_DIVER_GEAR = REGISTRATE
             .item("deep_diver_gear", Item::new)
             .cnlang("深渊潜游装置")

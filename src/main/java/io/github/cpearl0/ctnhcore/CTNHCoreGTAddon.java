@@ -129,6 +129,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         BrineChain.init(provider);
         CementChain.init(provider);
         ChromiteChain.init(provider);
+        CoalChain.init(provider);
         ColorfulsocChain.init(provider);
         FuelChain.init(provider);
         FuelRefiningChain.init(provider);
