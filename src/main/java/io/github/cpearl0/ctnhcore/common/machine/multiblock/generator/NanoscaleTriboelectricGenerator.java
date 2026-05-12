@@ -40,7 +40,7 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
     @Persisted
     public final NotifiableItemStackHandler machineStorage;
     @Persisted
-    public int parallel = 1024;
+    public int parallel = 2048;
     @Persisted
     public double effencicy = 1.0;
     @Persisted
@@ -166,7 +166,7 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
                     .inputModifier(ContentModifier.multiplier(maxParallel))
                     .outputModifier(ContentModifier.multiplier(maxParallel))
                     .durationMultiplier(Math.sqrt(maxParallel))
-                    .eutMultiplier(maxParallel * (1 + maxParallel * 0.005) * efficiency)
+                    .eutMultiplier(maxParallel * (1 + maxParallel * 0.04) * efficiency)
                     .build();
         }
         return ModifierFunction.NULL;

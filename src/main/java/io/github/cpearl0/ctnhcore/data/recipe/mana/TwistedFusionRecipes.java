@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe.mana;
 
+import com.moguang.ctnhmana.registry.CMBlocks;
+import com.moguang.ctnhmana.registry.CMMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
 
@@ -47,92 +49,102 @@ import static vazkii.botania.common.item.BotaniaItems.overgrowthSeed;
 public class TwistedFusionRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        // 扭曲聚变
+        // 扭曲聚变（第三路输入为 36mB 扭曲聚合基质；其余流体输入/输出相对旧版×2）
         TWISTED_FUSION.recipeBuilder(CTNHCore.id("twist_power_mana"))
-                .inputFluids(Mana_Radiation_Mixture.getFluid(64))
-                .inputFluids(Super_Plus_Mana.getFluid(32))
-                .outputFluids(Twist_Power_Mana.getFluid(100))
+                .inputFluids(Mana_Radiation_Mixture.getFluid(128))
+                .inputFluids(Super_Plus_Mana.getFluid(64))
+                .inputFluids(Twisted_Aggregate_Matrix.getFluid(36))
+                .outputFluids(Twist_Power_Mana.getFluid(200))
                 .EUt(491520 / 16)
                 .duration(16)
                 .save(provider);
 
         TWISTED_FUSION.recipeBuilder(CTNHCore.id("caesium_argon"))
-                .inputFluids(Arsenic.getFluid(144))
-                .inputFluids(Chromium.getFluid(144))
-                .outputFluids(Caesium.getFluid(144))
-                .outputFluids(Argon.getFluid(1000))
+                .inputFluids(Arsenic.getFluid(288))
+                .inputFluids(Chromium.getFluid(288))
+                .inputFluids(Twisted_Aggregate_Matrix.getFluid(36))
+                .outputFluids(Caesium.getFluid(288))
+                .outputFluids(Argon.getFluid(2000))
                 .EUt(491520 / 16)
                 .duration(16)
                 .save(provider);
 
         TWISTED_FUSION.recipeBuilder(CTNHCore.id("carbon_iridium"))
-                .inputFluids(Iodine.getFluid(144))
-                .inputFluids(Chromium.getFluid(144))
-                .outputFluids(Carbon.getFluid(144))
-                .outputFluids(Iridium.getFluid(144))
+                .inputFluids(Iodine.getFluid(288))
+                .inputFluids(Chromium.getFluid(288))
+                .inputFluids(Twisted_Aggregate_Matrix.getFluid(36))
+                .outputFluids(Carbon.getFluid(288))
+                .outputFluids(Iridium.getFluid(288))
                 .EUt(491520 / 16)
                 .duration(16)
                 .save(provider);
 
         TWISTED_FUSION.recipeBuilder(CTNHCore.id("fluorine_trinium"))
-                .inputFluids(Potassium.getFluid(144))
-                .inputFluids(Iron.getFluid(144))
-                .outputFluids(Fluorine.getFluid(1000))
-                .outputFluids(Trinium.getFluid(144))
+                .inputFluids(Potassium.getFluid(288))
+                .inputFluids(Iron.getFluid(288))
+                .inputFluids(Twisted_Aggregate_Matrix.getFluid(36))
+                .outputFluids(Fluorine.getFluid(2000))
+                .outputFluids(Trinium.getFluid(288))
                 .EUt(1966000 / 16)
                 .duration(16)
                 .save(provider);
 
         TWISTED_FUSION.recipeBuilder(CTNHCore.id("carbon_krypton"))
-                .inputFluids(Potassium.getFluid(144))
-                .inputFluids(Chromium.getFluid(144))
-                .outputFluids(Carbon.getFluid(144))
-                .outputFluids(Krypton.getFluid(1000))
+                .inputFluids(Potassium.getFluid(288))
+                .inputFluids(Chromium.getFluid(288))
+                .inputFluids(Twisted_Aggregate_Matrix.getFluid(36))
+                .outputFluids(Carbon.getFluid(288))
+                .outputFluids(Krypton.getFluid(2000))
                 .EUt(491520 / 16)
                 .duration(16)
                 .save(provider);
 
         TWISTED_FUSION.recipeBuilder(CTNHCore.id("sulfur_indium"))
-                .inputFluids(Iodine.getFluid(144))
-                .inputFluids(Tin.getFluid(144))
-                .outputFluids(Sulfur.getFluid(144))
-                .outputFluids(Indium.getFluid(144))
+                .inputFluids(Iodine.getFluid(288))
+                .inputFluids(Tin.getFluid(288))
+                .inputFluids(Twisted_Aggregate_Matrix.getFluid(36))
+                .outputFluids(Sulfur.getFluid(288))
+                .outputFluids(Indium.getFluid(288))
                 .EUt(491520 / 16)
                 .duration(16)
                 .save(provider);
 
         TWISTED_FUSION.recipeBuilder(CTNHCore.id("potassium_duranium"))
-                .inputFluids(Deuterium.getFluid(1000))
-                .inputFluids(Krypton.getFluid(1000))
-                .outputFluids(Potassium.getFluid(144))
-                .outputFluids(Duranium.getFluid(144))
+                .inputFluids(Deuterium.getFluid(2000))
+                .inputFluids(Krypton.getFluid(2000))
+                .inputFluids(Twisted_Aggregate_Matrix.getFluid(36))
+                .outputFluids(Potassium.getFluid(288))
+                .outputFluids(Duranium.getFluid(288))
                 .EUt(1966000 / 16)
                 .duration(16)
                 .save(provider);
 
         TWISTED_FUSION.recipeBuilder(CTNHCore.id("neon_fluorine"))
-                .inputFluids(Iron.getFluid(144))
-                .inputFluids(Nitrogen.getFluid(1000))
-                .outputFluids(Neon.getFluid(1000))
-                .outputFluids(Fluorine.getFluid(1000))
+                .inputFluids(Iron.getFluid(288))
+                .inputFluids(Nitrogen.getFluid(2000))
+                .inputFluids(Twisted_Aggregate_Matrix.getFluid(36))
+                .outputFluids(Neon.getFluid(2000))
+                .outputFluids(Fluorine.getFluid(2000))
                 .EUt(1966000 / 16)
                 .duration(16)
                 .save(provider);
 
         TWISTED_FUSION.recipeBuilder(CTNHCore.id("tritanium_deuterium"))
-                .inputFluids(Trinium.getFluid(1000))
-                .inputFluids(Duranium.getFluid(144))
-                .outputFluids(Tritanium.getFluid(144))
-                .outputFluids(Deuterium.getFluid(1000))
+                .inputFluids(Trinium.getFluid(2000))
+                .inputFluids(Duranium.getFluid(288))
+                .inputFluids(Twisted_Aggregate_Matrix.getFluid(36))
+                .outputFluids(Tritanium.getFluid(288))
+                .outputFluids(Deuterium.getFluid(2000))
                 .EUt(7864320 / 16)
                 .duration(16)
                 .save(provider);
 
         TWISTED_FUSION.recipeBuilder(CTNHCore.id("neutronium_phosphorus"))
-                .inputFluids(Nitrogen.getFluid(1000))
-                .inputFluids(Platinum.getFluid(144))
-                .outputFluids(Neutronium.getFluid(144))
-                .outputFluids(Phosphorus.getFluid(144))
+                .inputFluids(Nitrogen.getFluid(2000))
+                .inputFluids(Platinum.getFluid(288))
+                .inputFluids(Twisted_Aggregate_Matrix.getFluid(36))
+                .outputFluids(Neutronium.getFluid(288))
+                .outputFluids(Phosphorus.getFluid(288))
                 .EUt(7864320 / 16)
                 .duration(16)
                 .save(provider);
@@ -316,9 +328,10 @@ public class TwistedFusionRecipes {
                 .EUt(528000 * 4)
                 .save(provider);
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("twist")
-                .inputItems(ChemicalHelper.get(plate, Ultra_Mana), 2)
-                .inputItems(GTBlocks.FUSION_CASING, 2)
+                .inputItems(ChemicalHelper.get(plate, Ultra_Mana), 1)
+                .inputItems(MANA_FUSION_CASING, 1)
                 .inputItems(ChemicalHelper.get(plateDouble, AlfSteel), 2)
+                .inputFluids(MANA_STABLE_COOLDOWN,144)
                 .outputItems(TWISTED_FUSION_CASING)
                 .duration(400)
                 .EUt(GTValues.VA[LuV])
