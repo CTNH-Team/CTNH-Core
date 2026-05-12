@@ -23,4 +23,12 @@ public class CTNHPonderTagsLang {
     @CN("CTNH电力机器思索")
     @EN("CTNH Electric Machine Ponders")
     static Lang ElectricDescription;
+    @Key("ctnhcore.ponder.tag.mana")
+    @CN("CTNH魔力机器")
+    @EN("CTNH Mana Machine")
+    static Lang Mana;
+    @Key("ctnhcore.ponder.tag.mana.description")
+    @CN("CTNH魔力机器思索")
+    @EN("CTNH Mana Machine Ponders")
+    static Lang ManaDescription;
 }
