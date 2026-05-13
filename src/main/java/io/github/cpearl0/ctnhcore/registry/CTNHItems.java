@@ -628,7 +628,6 @@ public class CTNHItems {
                     }))
             .register();
 
-
     public static ItemEntry<Item> CRASHED_RICE = REGISTRATE
             .item("crashed_rice", Item::new)
             .cnlang("嚼碎的饭团")
