@@ -133,7 +133,7 @@ public class EIORecipes {
                 .inputItems(frameGt, Silver, 1)
                 .inputItems(block, Glass, 2)
                 .inputItems(EIOItems.PHOTOVOLTAIC_PLATE, 2)
-                .outputItems(CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK)
+                .outputItems(CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK.asItem())
                 .EUt(30)
                 .duration(200)
                 .save(provider);
@@ -143,7 +143,7 @@ public class EIORecipes {
                 .inputItems(CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK.asItem())
                 .inputItems(GTBlocks.CASING_TEMPERED_GLASS.asItem(), 2)
                 .inputItems(EIOItems.PHOTOVOLTAIC_PLATE, 2)
-                .outputItems(CTNHBlocks.PULSATING_PHOTOVOLTAIC_BLOCK)
+                .outputItems(CTNHBlocks.PULSATING_PHOTOVOLTAIC_BLOCK.asItem())
                 .EUt(30)
                 .duration(200)
                 .save(provider);
@@ -154,7 +154,7 @@ public class EIORecipes {
                 .inputItems(GTBlocks.CASING_TEMPERED_GLASS.asItem(), 2)
                 .inputItems(EIOItems.PHOTOVOLTAIC_PLATE, 2)
                 .inputItems(foil, CTNHMaterials.Sunnarium, 32)
-                .outputItems(CTNHBlocks.VIBRANT_PHOTOVOLTAIC_BLOCK)
+                .outputItems(CTNHBlocks.VIBRANT_PHOTOVOLTAIC_BLOCK.asItem())
                 .EUt(30)
                 .duration(200)
                 .save(provider);

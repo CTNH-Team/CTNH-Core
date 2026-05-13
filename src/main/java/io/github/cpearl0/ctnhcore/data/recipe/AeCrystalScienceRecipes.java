@@ -172,7 +172,7 @@ public class AeCrystalScienceRecipes {
                 .EUt(VA[LuV]).duration(1200)
                 .save(provider);
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("extended_resonating_pattern_provider"))
-                .inputItems(AECSBlocks.RESONATING_PATTERN_PROVIDER_BLOCK, 2)
+                .inputItems(AECSBlocks.RESONATING_PATTERN_PROVIDER_BLOCK.asItem(), 2)
                 .inputItems(CustomTags.ZPM_CIRCUITS, 2)
                 .inputItems(CustomTags.LuV_CIRCUITS, 2)
                 .inputItems(CustomTags.IV_CIRCUITS, 2)
@@ -201,7 +201,7 @@ public class AeCrystalScienceRecipes {
                 .save(provider);
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("extended_ender_interface"))
                 .circuitMeta(15)
-                .inputItems(AECSBlocks.ENDER_INTERFACE_BLOCK, 2)
+                .inputItems(AECSBlocks.ENDER_INTERFACE_BLOCK.asItem(), 2)
                 .inputItems(AECSItems.PURE_ENDER_QUARTZ, 2)
                 .inputItems(ELECTRIC_PISTON_EV, 2)
                 .inputItems(EMITTER_EV, 1)

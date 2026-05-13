@@ -24,12 +24,12 @@ public class TurbineRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("hyper_plasma_turbine"))
-                .inputItems(GTMultiMachines.LARGE_PLASMA_TURBINE)
+                .inputItems(GTMultiMachines.LARGE_PLASMA_TURBINE.asStack())
                 .inputItems(CustomTags.UV_CIRCUITS, 16)
-                .inputItems(GTBlocks.SUPERCONDUCTING_COIL, 4)
+                .inputItems(GTBlocks.SUPERCONDUCTING_COIL.asItem(), 4)
                 .inputItems(TagPrefix.plateDense, Darmstadtium, 4)
-                .inputItems(NEUTRONIUM_REINFORCED_TURBINE_CASING)
-                .outputItems(MultiblocksB.HYPER_PLASMA_TURBINE)
+                .inputItems(NEUTRONIUM_REINFORCED_TURBINE_CASING.asItem())
+                .outputItems(MultiblocksB.HYPER_PLASMA_TURBINE.asStack())
                 .stationResearch(b -> b
                         .researchStack(GTMultiMachines.LARGE_PLASMA_TURBINE.asStack())
                         .CWUt(128)
@@ -39,10 +39,10 @@ public class TurbineRecipes {
                 .save(provider);
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("neutronium_reinforced_turbine_casing"))
-                .inputItems(GTBlocks.CASING_TUNGSTENSTEEL_TURBINE)
+                .inputItems(GTBlocks.CASING_TUNGSTENSTEEL_TURBINE.asItem())
                 .inputItems(TagPrefix.plate, Osmiridium, 6)
                 .inputFluids(Neutronium.getFluid(144 * 16))
-                .outputItems(NEUTRONIUM_REINFORCED_TURBINE_CASING, 4)
+                .outputItems(NEUTRONIUM_REINFORCED_TURBINE_CASING.asItem(), 4)
                 .stationResearch(b -> b
                         .researchStack(GTBlocks.CASING_TUNGSTENSTEEL_TURBINE.asStack())
                         .CWUt(128)
@@ -58,7 +58,7 @@ public class TurbineRecipes {
                 .inputItems(TagPrefix.plateDouble, Neutronium, 4)
                 .inputItems(TagPrefix.plateDouble, Neutronium, 4)
                 .inputFluids(Neutronium.getFluid(144 * 48))
-                .outputItems(HYPER_PLASMA_TURBINE_ROTOR, 1)
+                .outputItems(HYPER_PLASMA_TURBINE_ROTOR.asItem(), 1)
                 .stationResearch(b -> b
                         .researchStack(GTItems.TURBINE_ROTOR.asStack())
                         .CWUt(128)

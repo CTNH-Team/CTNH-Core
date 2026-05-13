@@ -200,12 +200,12 @@ public class TwistedFusionRecipes {
                 .inputItems(dust, Twist_Power_Mana, 32)
                 .inputItems(foil, TungstenCarbide, 16)
                 .inputItems(plateDouble, Naquadah, 2)
-                .outputItems(ENCAPSULATED_TWIST_MANA)
+                .outputItems(ENCAPSULATED_TWIST_MANA.asItem())
                 .duration(1200)
                 .EUt(14666400 / 1200)
                 .save(provider);
         GTRecipeTypes.IMPLOSION_RECIPES.recipeBuilder("ultra_mana_dust")// 究极魔力粉
-                .inputItems(ENCAPSULATED_TWIST_MANA)
+                .inputItems(ENCAPSULATED_TWIST_MANA.asItem())
                 .inputItems(INDUSTRIAL_TNT.asItem(), 8)
                 .outputItems(dust, Ultra_Mana, 24)
                 .outputItems(dust, Remain_Mana, 8)
@@ -223,12 +223,12 @@ public class TwistedFusionRecipes {
                 .save(provider);
         // 增殖符文+类星体符文
         GREENHOUSE_RECIPES.recipeBuilder("proliferation_rune1")// 增殖符文增殖
-                .inputItems(PROLIFERATION_RUNE)
+                .inputItems(PROLIFERATION_RUNE.asItem())
                 .inputItems(FERTILIZER, 16)
                 .inputItems(RADIOACTIVE_WASTE, 128)
                 .inputFluids(Water.getFluid(10000))
                 .circuitMeta(3)
-                .outputItems(PROLIFERATION_RUNE, 3)
+                .outputItems(PROLIFERATION_RUNE.asItem(), 3)
                 .chancedOutput(PROLIFERATION_RUNE.asStack(), (int) 9900f, 2)
                 .chancedOutput(PROLIFERATION_RUNE.asStack(), (int) 7500f, 1)
                 .EUt(24444)
@@ -326,10 +326,10 @@ public class TwistedFusionRecipes {
                 .save(provider);
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("twist")
                 .inputItems(ChemicalHelper.get(plate, Ultra_Mana), 1)
-                .inputItems(MANA_FUSION_CASING, 1)
+                .inputItems(MANA_FUSION_CASING.asItem(), 1)
                 .inputItems(ChemicalHelper.get(plateDouble, AlfSteel), 2)
                 .inputFluids(MANA_STABLE_COOLDOWN, 144)
-                .outputItems(TWISTED_FUSION_CASING)
+                .outputItems(TWISTED_FUSION_CASING.asItem())
                 .duration(400)
                 .EUt(GTValues.VA[LuV])
                 .save(provider);

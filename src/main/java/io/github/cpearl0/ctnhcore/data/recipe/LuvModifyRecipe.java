@@ -36,7 +36,7 @@ public class LuvModifyRecipe {
                 .inputItems(TagPrefix.dust, GTMaterials.Yttrium)
                 .inputItems(TagPrefix.dust, Copper)
                 .inputFluids(Oxygen, 3000)
-                .outputItems(CBBlocks.CONSCIOUSNESS_SENSOR_GLASS)
+                .outputItems(CBBlocks.CONSCIOUSNESS_SENSOR_GLASS.asItem())
                 .blastFurnaceTemp(5400)
                 .EUt(GTValues.V[GTValues.LuV])
                 .save(provider);
@@ -65,7 +65,7 @@ public class LuvModifyRecipe {
                 .inputItems(FIELD_GENERATOR_IV, 8)
                 .inputItems(TOOL_DATA_ORB)
                 .inputItems(COVER_SCREEN)
-                .inputItems(CBBlocks.CONSCIOUSNESS_SENSOR_GLASS, 16)
+                .inputItems(CBBlocks.CONSCIOUSNESS_SENSOR_GLASS.asItem(), 16)
                 .inputItems(OPTICAL_PIPES[0].asStack(16))
                 .inputFluids(SolderingAlloy, L * 8)
                 .inputFluids(VanadiumGallium, L * 8)
@@ -83,7 +83,7 @@ public class LuvModifyRecipe {
                 .inputItems(wireGtDouble, Trinium, 3)
                 .inputItems(foil, NaquadahEnriched, 8)
                 .inputFluids(Duranium, GTValues.L)
-                .outputItems(GTBlocks.COIL_TRINIUM)
+                .outputItems(GTBlocks.COIL_TRINIUM.asItem())
                 .duration(800)
                 .addMaterialInfo(true, true)
                 .save(provider);
@@ -94,7 +94,7 @@ public class LuvModifyRecipe {
                 .inputItems(wireFine, Cobalt, 64)
                 .inputItems(wireFine, Electrum, 64)
                 .inputItems(wireGtSingle, SamariumIronArsenicOxide, 16)
-                .outputItems(ADVANCED_COMPUTER_CASING)
+                .outputItems(ADVANCED_COMPUTER_CASING.asItem())
                 .duration(200).EUt(VA[LuV])
                 .addMaterialInfo(true).save(provider);
 

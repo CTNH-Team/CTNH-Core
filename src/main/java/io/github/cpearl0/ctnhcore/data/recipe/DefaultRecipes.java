@@ -698,11 +698,11 @@ public class DefaultRecipes {
         // 2. 催化剂仓
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("catalyst_hatch"))
                 .inputItems(CustomTags.MV_CIRCUITS)
-                .inputItems(GTMachines.ITEM_IMPORT_BUS[GTValues.HV])
-                .inputItems(GTMachines.ITEM_EXPORT_BUS[GTValues.HV])
-                .inputItems(GTBlocks.MACHINE_CASING_EV)
+                .inputItems(GTMachines.ITEM_IMPORT_BUS[GTValues.HV].asStack())
+                .inputItems(GTMachines.ITEM_EXPORT_BUS[GTValues.HV].asStack())
+                .inputItems(GTBlocks.MACHINE_CASING_EV.asItem())
                 .circuitMeta(1)
-                .outputItems(CTNHMachines.CATALYST_HATCH)
+                .outputItems(CTNHMachines.CATALYST_HATCH.asStack())
                 .EUt(GTValues.VA[GTValues.HV])
                 .duration(300)
                 .save(provider);
@@ -716,7 +716,7 @@ public class DefaultRecipes {
                 .inputItems(TagPrefix.plate, GTMaterials.Zeron100, 8)
                 .inputItems(CustomTags.IV_CIRCUITS, 8)
                 .inputFluids(GTMaterials.Zeron100.getFluid(2880))
-                .outputItems(GTNNMultiblocks.LARGE_DEHYDRATOR)
+                .outputItems(GTNNMultiblocks.LARGE_DEHYDRATOR.asStack())
                 .EUt(GTValues.VA[GTValues.LuV]) // 32768 EU/t
                 .duration(2400) // 120秒
                 .save(provider);
@@ -732,7 +732,7 @@ public class DefaultRecipes {
                 .inputItems(TagPrefix.pipeHugeFluid, GTMaterials.Naquadah, 4)
                 .inputItems(TagPrefix.plate, GTMaterials.NaquadahAlloy, 8)
                 .inputItems(TagPrefix.screw, GTMaterials.Osmium, 16)
-                .outputItems(GTNNMultiblocks.LARGE_NAQUADAH_REACTOR)
+                .outputItems(GTNNMultiblocks.LARGE_NAQUADAH_REACTOR.asStack())
                 .scannerResearch(CTNHMachines.NAQUADAH_REACTOR[GTValues.LuV].asStack())
                 .EUt(GTValues.VA[GTValues.ZPM])   // 98304 EU/t
                 .duration(4200) // 210秒

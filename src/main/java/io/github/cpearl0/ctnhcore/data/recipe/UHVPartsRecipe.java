@@ -206,14 +206,14 @@ public class UHVPartsRecipe {
                 .save(provider);
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("uhv_energy_output_hatch"))
-                .inputItems(HULL[UHV])
+                .inputItems(HULL[UHV].asStack())
                 .inputItems(spring, Europium, 4)
                 .inputItems(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
                 .inputItems(CustomTags.UHV_CIRCUITS)
                 .inputItems(VOLTAGE_COIL_UHV, 2)
                 .inputFluids(SodiumPotassium, 12000)
                 .inputFluids(SolderingAlloy, 40 * L)
-                .outputItems(ENERGY_OUTPUT_HATCH[UHV])
+                .outputItems(ENERGY_OUTPUT_HATCH[UHV].asStack())
                 .stationResearch(b -> b
                         .researchStack(ENERGY_OUTPUT_HATCH[UV].asStack())
                         .CWUt(128)
@@ -221,14 +221,14 @@ public class UHVPartsRecipe {
                 .duration(1000).EUt(VA[UHV]).save(provider);
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("uhv_energy_input_hatch"))
-                .inputItems(HULL[UHV])
+                .inputItems(HULL[UHV].asStack())
                 .inputItems(cableGtSingle, Europium, 4)
                 .inputItems(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
                 .inputItems(CustomTags.UHV_CIRCUITS)
                 .inputItems(VOLTAGE_COIL_UHV, 2)
                 .inputFluids(SodiumPotassium, 12000)
                 .inputFluids(SolderingAlloy, 40 * L)
-                .outputItems(ENERGY_INPUT_HATCH[UHV])
+                .outputItems(ENERGY_INPUT_HATCH[UHV].asStack())
                 .stationResearch(b -> b
                         .researchStack(ENERGY_INPUT_HATCH[UV].asStack())
                         .CWUt(128)
@@ -239,7 +239,7 @@ public class UHVPartsRecipe {
                 .inputItems(wireGtDouble, Abyssalalloy, 8)
                 .inputItems(foil, Trinium, 8)
                 .inputFluids(Trinium.getFluid(144))
-                .outputItems(COIL_ABYSALALLOY)
+                .outputItems(COIL_ABYSALALLOY.asItem())
                 .EUt(VA[UHV])
                 .duration(900)
                 .save(provider);
@@ -263,7 +263,7 @@ public class UHVPartsRecipe {
                 .inputItems(gemExquisite, COLORFUL_GEM, 64)
                 .inputItems(dust, BOUNDLESS, 1)
                 .inputItems(CustomTags.UEV_CIRCUITS, 64)
-                .inputItems(GCYMMachines.MEGA_BLAST_FURNACE)
+                .inputItems(GCYMMachines.MEGA_BLAST_FURNACE.asStack())
                 .inputFluids(LIVING_METAL.getFluid(114514))
                 .inputFluids(CMMaterials.Eve_Beam.getFluid(PLASMA, 114514))
                 .inputFluids(SUPERFUELMK1.getFluid(6666))

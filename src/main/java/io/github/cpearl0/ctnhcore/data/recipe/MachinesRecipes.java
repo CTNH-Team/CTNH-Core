@@ -64,7 +64,7 @@ public class MachinesRecipes {
                 CTNHBlocks.CASING_NAQUADAH_BLOCK.asStack(), 'P',
                 new MaterialEntry(TagPrefix.pipeNormalFluid, GTMaterials.NaquadahAlloy));
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("zpm_large_miner"))
-                .inputItems(GTMachines.HULL[ZPM])
+                .inputItems(GTMachines.HULL[ZPM].asStack())
                 .inputItems(frameGt, Osmiridium, 4)
                 .inputItems(CustomTags.ZPM_CIRCUITS, 4)
                 .inputItems(ELECTRIC_MOTOR_ZPM, 4)
@@ -72,7 +72,7 @@ public class MachinesRecipes {
                 .inputItems(CONVEYOR_MODULE_ZPM, 4)
                 .inputItems(gear, Osmiridium, 4)
                 .circuitMeta(2)
-                .outputItems(MultiblocksA.ZPM_LARGE_MINER)
+                .outputItems(MultiblocksA.ZPM_LARGE_MINER.asStack())
                 .duration(400).EUt(VA[ZPM]).save(provider);
 
         COMPRESSOR_RECIPES.recipeBuilder(CTNHCore.id("steelleaf"))
@@ -251,7 +251,7 @@ public class MachinesRecipes {
                 .save(provider);
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("uv_neuro_compiler"))
-                .inputItems(HUGE_DUAL_IMPORT_HATCH[UV])
+                .inputItems(HUGE_DUAL_IMPORT_HATCH[UV].asStack())
                 .inputItems(CustomTags.UHV_CIRCUITS, 4)
                 .inputItems(plateDense, UncategorizedMaterials.NAQUADAH_HEAT_RESISTANT_FERROCHROME_ALLOY_792, 7)
                 .inputItems(CONVEYOR_MODULE_UV, 2)
@@ -259,7 +259,7 @@ public class MachinesRecipes {
                 .inputItems(plateDense, UncategorizedMaterials.RADIATION_SIGHT_ALLOY_X, 7)
                 .inputFluids(Naquadria.getFluid(1000))
                 .inputFluids(AviationFabricMaterials.KAPTON_K.getFluid(1000))
-                .outputItems(COMPILERMACHINE[UV])
+                .outputItems(COMPILERMACHINE[UV].asStack())
                 .stationResearch(b -> b
                         .researchStack(HUGE_DUAL_IMPORT_HATCH[UV].asStack())
                         .CWUt(28)
@@ -269,7 +269,7 @@ public class MachinesRecipes {
                 .save(provider);
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("uhv_neuro_compiler"))
-                .inputItems(HUGE_DUAL_IMPORT_HATCH[UHV])
+                .inputItems(HUGE_DUAL_IMPORT_HATCH[UHV].asStack())
                 .inputItems(CustomTags.UEV_CIRCUITS, 4)
                 .inputItems(plateDense, UncategorizedMaterials.NAQUADAH_HEAT_RESISTANT_FERROCHROME_ALLOY_792, 7)
                 .inputItems(CONVEYOR_MODULE_UHV, 2)
@@ -277,7 +277,7 @@ public class MachinesRecipes {
                 .inputItems(plateDense, UncategorizedMaterials.RADIATION_SIGHT_ALLOY_INF, 7)
                 .inputFluids(Naquadria.getFluid(1000))
                 .inputFluids(AviationFabricMaterials.KAPTON_K.getFluid(1000))
-                .outputItems(COMPILERMACHINE[UHV])
+                .outputItems(COMPILERMACHINE[UHV].asStack())
                 .stationResearch(b -> b
                         .researchStack(COMPILERMACHINE[UV].asStack())
                         .CWUt(56)
