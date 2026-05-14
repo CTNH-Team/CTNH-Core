@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore;
 
+import io.github.cpearl0.ctnhcore.data.recipe.create.CreateRecipes;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps;
 import io.github.cpearl0.ctnhcore.data.CTNHBlockInfo;
 import io.github.cpearl0.ctnhcore.data.recipe.*;
@@ -150,6 +151,8 @@ public class CTNHCoreGTAddon implements IGTAddon {
         WChain.init(provider);
         WoodChain.init(provider);
         ZirconChain.init(provider);
+
+        CreateRecipes.init(provider);
 
         CasingRecipes.init(provider);
         UHVPartsRecipe.init(provider);
