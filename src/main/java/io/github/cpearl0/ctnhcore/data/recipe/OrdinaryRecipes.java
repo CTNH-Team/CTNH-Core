@@ -170,14 +170,14 @@ public class OrdinaryRecipes {
 
         // 组装机
         CBRecipeBuilder.of(CTNHCore.id("neural_network_casing"), ASSEMBLER_RECIPES)
-                .inputItems(CTNHBlocks.CASING_POLYBENZIMIDAZOLE_PIPE, 1)
+                .inputItems(CTNHBlocks.CASING_POLYBENZIMIDAZOLE_PIPE.asItem(), 1)
                 .inputItems(CustomTags.IV_CIRCUITS, 4)
                 .inputItems(EMITTER_IV, 4)
                 .inputItems(CTNHItems.HEAVY_PLATE_T2, 16)
                 .inputItems(CARBON_FIBER_PLATE, 16)
                 .inputItems(TagPrefix.plate, BlackSteel, 16)
                 .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 432))
-                .outputItems(CBBlocks.NEURAL_NETWORK_CASING, 4)
+                .outputItems(CBBlocks.NEURAL_NETWORK_CASING.asItem(), 4)
                 .duration(600)
                 .EUt(30720)
                 .save(provider);
@@ -188,7 +188,7 @@ public class OrdinaryRecipes {
                 .inputItems(TOOL_DATA_STICK, 64)
                 .inputItems(HEAVY_PLATE_T3, 16)
                 .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 288))
-                .outputItems(CBMachines.NEURAL_MODEL_ACCESSOR, 1)
+                .outputItems(CBMachines.NEURAL_MODEL_ACCESSOR.asStack(), 1)
                 .duration(800)
                 .EUt(30720)
                 .save(provider);
@@ -196,7 +196,7 @@ public class OrdinaryRecipes {
         // 以下使用ASSEMBLER_RECIPES.recipeBuilder的配方需要修改
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("card_programmed_circuit"))
                 .inputItems(AEItems.BASIC_CARD.asItem(), 1)
-                .inputItems(GTMachines.STAINLESS_STEEL_CRATE, 1)
+                .inputItems(GTMachines.STAINLESS_STEEL_CRATE.asStack(), 1)
                 .inputItems(CBItems.SYNET_CORE, 1)
                 .inputItems(COVER_SCREEN, 32)
                 .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 1440))
@@ -207,17 +207,17 @@ public class OrdinaryRecipes {
                 .save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("me_dual_output_hatch"))
-                .inputItems(HULL[IV])
-                .inputItems(GTAEMachines.ITEM_EXPORT_BUS_ME, 1)
-                .inputItems(GTAEMachines.FLUID_EXPORT_HATCH_ME, 1)
+                .inputItems(HULL[IV].asStack())
+                .inputItems(GTAEMachines.ITEM_EXPORT_BUS_ME.asStack(), 1)
+                .inputItems(GTAEMachines.FLUID_EXPORT_HATCH_ME.asStack(), 1)
                 .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 2880))
-                .outputItems(CEMachines.DUAL_OUTPUT_HATCH_ME, 1)
+                .outputItems(CEMachines.DUAL_OUTPUT_HATCH_ME.asStack(), 1)
                 .EUt(GTValues.VA[GTValues.IV])
                 .duration(500)
                 .save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("quantum_computer_casing"))
-                .inputItems(GTBlocks.SUPERCONDUCTING_COIL, 1)
+                .inputItems(GTBlocks.SUPERCONDUCTING_COIL.asItem(), 1)
                 .inputItems(CustomTags.LuV_CIRCUITS, 4)
                 .inputItems(CustomTags.IV_CIRCUITS, 4)
                 .inputItems(AEItems.CALCULATION_PROCESSOR.asItem(), 16)
@@ -226,38 +226,38 @@ public class OrdinaryRecipes {
                 .inputItems(OCItems.COMPLEX_LINK_PROCESSOR, 16)
                 .inputItems(OCItems.COMPLEX_LINK_PROCESSOR, 16)
                 .inputFluids(new FluidStack(BlueAlloy.getFluid(), 576))
-                .outputItems(CEBlocks.QUANTUM_COMPUTER_CASING, 16)
+                .outputItems(CEBlocks.QUANTUM_COMPUTER_CASING.asItem(), 16)
                 .EUt(GTValues.VA[LuV])
                 .duration(1000)
                 .save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("quantum_computer_me_network_port"))
-                .inputItems(CEBlocks.STEADY_STATE_COMPUTING_MATRIX_SHELL, 1)
+                .inputItems(CEBlocks.STEADY_STATE_COMPUTING_MATRIX_SHELL.asItem(), 1)
                 .inputItems(AEBlocks.INTERFACE.asItem(), 1)
                 .inputItems(AEBlocks.PATTERN_PROVIDER.asItem(), 1)
                 .inputItems(GTItems.QUBIT_CENTRAL_PROCESSING_UNIT, 64)
                 .inputItems(QUANTUM_EYE, 32)
                 .inputItems(QUANTUM_STAR, 16)
                 .inputFluids(new FluidStack(Argon.getFluid(), 5760))
-                .outputItems(CEBlocks.QUANTUM_COMPUTER_ME_NETWORK_PORT, 1)
+                .outputItems(CEBlocks.QUANTUM_COMPUTER_ME_NETWORK_PORT.asItem(), 1)
                 .EUt(GTValues.VA[LuV])
                 .duration(1000)
                 .save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("quantum_pointing_block"))
-                .inputItems(CEBlocks.STEADY_STATE_COMPUTING_MATRIX_SHELL, 1)
+                .inputItems(CEBlocks.STEADY_STATE_COMPUTING_MATRIX_SHELL.asItem(), 1)
                 .inputItems(plate, TungstenSteel, 16)
                 .inputItems(pipeSmallItem, Osmium, 4)
                 .inputItems(pipeSmallFluid, Iridium, 4)
                 .inputItems(screw, Europium, 16)
                 .inputFluids(new FluidStack(PCBCoolant.getFluid(), 288))
-                .outputItems(CEBlocks.QUANTUM_POINTING_BLOCK, 1)
+                .outputItems(CEBlocks.QUANTUM_POINTING_BLOCK.asItem(), 1)
                 .EUt(GTValues.VA[IV])
                 .duration(400)
                 .save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("steady_state_computing_matrix_shell"))
-                .inputItems(HULL[LuV], 1)
+                .inputItems(HULL[LuV].asStack(), 1)
                 .inputItems(CustomTags.LuV_CIRCUITS, 2)
                 .inputItems(round, Osmiridium, 64)
                 .inputItems(plateDense, Iridium, 4)
@@ -265,7 +265,7 @@ public class OrdinaryRecipes {
                 .inputItems(wireFine, Ruridit, 64)
                 .inputItems(wireFine, Platinum, 64)
                 .inputFluids(new FluidStack(PCBCoolant.getFluid(), 144))
-                .outputItems(CEBlocks.STEADY_STATE_COMPUTING_MATRIX_SHELL, 1)
+                .outputItems(CEBlocks.STEADY_STATE_COMPUTING_MATRIX_SHELL.asItem(), 1)
                 .EUt(GTValues.VA[EV])
                 .duration(200)
                 .save(provider);
@@ -273,7 +273,7 @@ public class OrdinaryRecipes {
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("ctnh_assembler_matrix_wall"))
                 .inputItems(ForgeRegistries.ITEMS
                         .getValue(ResourceLocation.parse("expatternprovider:assembler_matrix_wall")), 1)
-                .outputItems(CEBlocks.ASSEMBLER_MATRIX_WALL, 1)
+                .outputItems(CEBlocks.ASSEMBLER_MATRIX_WALL.asItem(), 1)
                 .EUt(GTValues.VA[LV])
                 .duration(20)
                 .save(provider);
@@ -281,7 +281,7 @@ public class OrdinaryRecipes {
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("ctnh_assembler_matrix_frame"))
                 .inputItems(ForgeRegistries.ITEMS
                         .getValue(ResourceLocation.parse("expatternprovider:assembler_matrix_frame")), 1)
-                .outputItems(CEBlocks.ASSEMBLER_MATRIX_FRAME, 1)
+                .outputItems(CEBlocks.ASSEMBLER_MATRIX_FRAME.asItem(), 1)
                 .EUt(GTValues.VA[LV])
                 .duration(20)
                 .save(provider);

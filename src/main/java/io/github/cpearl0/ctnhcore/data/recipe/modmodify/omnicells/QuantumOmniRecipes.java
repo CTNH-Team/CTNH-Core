@@ -48,7 +48,7 @@ public class QuantumOmniRecipes {
                 .save(provider);
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("quantum_omni_cell_housing"))
                 .inputItems(OCItems.CHARGED_ENDER_INGOT, 4)
-                .inputItems(GTBlocks.CASING_LAMINATED_GLASS, 2)
+                .inputItems(GTBlocks.CASING_LAMINATED_GLASS.asItem(), 2)
                 .inputItems(GTItems.QUANTUM_EYE, 2)
                 .inputItems(AEItems.SINGULARITY.stack(), 1)
                 .inputFluids(EnderIOMaterials.PulsatingAlloy.getFluid(288))

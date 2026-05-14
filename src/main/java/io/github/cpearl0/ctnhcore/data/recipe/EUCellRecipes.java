@@ -45,7 +45,7 @@ public class EUCellRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("me_pattern_buffer"))
-                .inputItems(DUAL_IMPORT_HATCH[LuV], 1)
+                .inputItems(DUAL_IMPORT_HATCH[LuV].asStack(), 1)
                 .inputItems(EMITTER_LuV, 1)
                 .inputItems(CustomTags.LuV_CIRCUITS, 4)
                 .inputItems(AEBlocks.PATTERN_PROVIDER.asItem(), 3)
@@ -56,7 +56,7 @@ public class EUCellRecipes {
                 .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("pccard:card_programmed_circuit")), 2)
                 .inputFluids(SolderingAlloy, L * 4)
                 .inputFluids(Lubricant, 500)
-                .outputItems(CEMachines.ME_PATTERN_BUFFER)
+                .outputItems(CEMachines.ME_PATTERN_BUFFER.asStack())
                 .scannerResearch(b -> b
                         .researchStack(DUAL_IMPORT_HATCH[LuV].asStack())
                         .duration(3000)
@@ -64,7 +64,7 @@ public class EUCellRecipes {
                 .duration(600).EUt(VA[LuV]).save(provider);
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("me_pattern_buffer_proxy"))
-                .inputItems(HULL[LuV], 1)
+                .inputItems(HULL[LuV].asStack(), 1)
                 .inputItems(SENSOR_LuV, 2)
                 .inputItems(CustomTags.LuV_CIRCUITS, 1)
                 .inputItems(AEBlocks.QUANTUM_LINK.asItem(), 1)
@@ -73,7 +73,7 @@ public class EUCellRecipes {
                 .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("pccard:card_programmed_circuit")), 2)
                 .inputFluids(SolderingAlloy, L * 4)
                 .inputFluids(Lubricant, 500)
-                .outputItems(CEMachines.ME_PATTERN_BUFFER_PROXY)
+                .outputItems(CEMachines.ME_PATTERN_BUFFER_PROXY.asStack())
                 .scannerResearch(b -> b
                         .researchStack(CEMachines.ME_PATTERN_BUFFER.asStack())
                         .duration(3000)
@@ -81,7 +81,7 @@ public class EUCellRecipes {
                 .duration(600).EUt(VA[LuV]).save(provider);
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("me_tag_stocking_input_bus"))
-                .inputItems(CEMachines.STOCKING_IMPORT_BUS_ME, 1)
+                .inputItems(CEMachines.STOCKING_IMPORT_BUS_ME.asStack(), 1)
                 .inputItems(CustomTags.LuV_CIRCUITS, 4)
                 .inputItems(CBItems.META_CORE, 4)
                 .inputItems(AEItems.CELL_COMPONENT_64K.stack(), 4)
@@ -94,7 +94,7 @@ public class EUCellRecipes {
                 .inputItems(TAG_FILTER, 8)
                 .inputFluids(SolderingAlloy, L * 16)
                 .inputFluids(Lubricant, 2000)
-                .outputItems(CEMachines.TAG_STOCKING_IMPORT_BUS_ME)
+                .outputItems(CEMachines.TAG_STOCKING_IMPORT_BUS_ME.asStack())
                 .scannerResearch(b -> b
                         .researchStack(CEMachines.STOCKING_IMPORT_BUS_ME.asStack())
                         .duration(6000)
@@ -112,15 +112,15 @@ public class EUCellRecipes {
         // .addMaterialInfo(true).save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("me_substation_hatch"))
-                .inputItems(ENERGY_INPUT_HATCH_4A[IV])
-                .inputItems(ENERGY_OUTPUT_HATCH_4A[IV])
+                .inputItems(ENERGY_INPUT_HATCH_4A[IV].asStack())
+                .inputItems(ENERGY_OUTPUT_HATCH_4A[IV].asStack())
                 .inputItems(AEBlocks.INTERFACE.asItem(), 4)
                 .inputItems(AEBlocks.PATTERN_PROVIDER.asItem(), 4)
                 .inputItems(EMITTER_IV, 8)
                 .inputItems(SENSOR_IV, 8)
                 .inputItems(wireGtSingle, SamariumIronArsenicOxide, 64)
                 .inputFluids(SolderingAlloy.getFluid(L * 8))
-                .outputItems(CEMachines.ME_SUBSTATION_HATCH)
+                .outputItems(CEMachines.ME_SUBSTATION_HATCH.asStack())
                 .duration(2000).EUt(VA[IV])
                 .addMaterialInfo(true).save(provider);
 
@@ -128,15 +128,15 @@ public class EUCellRecipes {
                 .inputItems(wireGtDouble, SamariumIronArsenicOxide, 64)
                 .inputItems(foil, NiobiumTitanium, 64)
                 .inputFluids(Trinium.getFluid(L * 64))
-                .outputItems(GTBlocks.SUPERCONDUCTING_COIL, 1)
+                .outputItems(GTBlocks.SUPERCONDUCTING_COIL.asItem(), 1)
                 .duration(100).EUt(VA[IV])
                 .addMaterialInfo(true).save(provider);
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("me_energy_input_hatch"))
                 .inputItems(ENERGY_INPUT_HATCH_4A[UV], 4)
                 .inputItems(TRANSFORMER[UV], 4)
-                .inputItems(GTBlocks.FUSION_COIL, 16)
-                .inputItems(GTBlocks.SUPERCONDUCTING_COIL, 16)
+                .inputItems(GTBlocks.FUSION_COIL.asItem(), 16)
+                .inputItems(GTBlocks.SUPERCONDUCTING_COIL.asItem(), 16)
                 .inputItems(CustomTags.UHV_CIRCUITS, 2)
                 .inputItems(CustomTags.UV_CIRCUITS, 2)
                 .inputItems(CustomTags.ZPM_CIRCUITS, 2)
@@ -145,7 +145,7 @@ public class EUCellRecipes {
                 .inputItems(wireGtDouble, IndiumTinBariumTitaniumCuprate, 32)
                 .inputItems(wireGtDouble, UraniumRhodiumDinaquadide, 16)
                 .inputItems(wireGtDouble, EnrichedNaquadahTriniumEuropiumDuranide, 8)
-                .inputItems(CEMachines.ME_SUBSTATION_HATCH, 4)
+                .inputItems(CEMachines.ME_SUBSTATION_HATCH.asStack(4))
                 .inputItems(CBItems.OMNI_CORE, 4)
                 .inputItems(CTNHItems.QuarkCore, 4)
                 .inputItems(CTNHItems.PlateRadiationProtection, 16)
@@ -153,15 +153,15 @@ public class EUCellRecipes {
                 .inputFluids(Neutronium.getFluid(L * 16))
                 .inputFluids(Organic_Compound.getFluid(L * 16))
                 .inputFluids(SpecialMaterials.ENERGY_ESSENCE_SECRETION.getFluid(L * 16))
-                .outputItems(CEMachines.ENERGY_INPUT_HATCH_ME)
+                .outputItems(CEMachines.ENERGY_INPUT_HATCH_ME.asStack())
                 .stationResearch(b -> b.researchStack(ENERGY_INPUT_HATCH_4A[UV].asStack()).CWUt(64).EUt(VA[UV]))
                 .duration(1200).EUt(VA[UV]).save(provider);
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("me_energy_output_hatch"))
                 .inputItems(ENERGY_OUTPUT_HATCH_4A[UV], 4)
                 .inputItems(TRANSFORMER[UV], 4)
-                .inputItems(GTBlocks.FUSION_COIL, 16)
-                .inputItems(GTBlocks.SUPERCONDUCTING_COIL, 16)
+                .inputItems(GTBlocks.FUSION_COIL.asItem(), 16)
+                .inputItems(GTBlocks.SUPERCONDUCTING_COIL.asItem(), 16)
                 .inputItems(CustomTags.UHV_CIRCUITS, 2)
                 .inputItems(CustomTags.UV_CIRCUITS, 2)
                 .inputItems(CustomTags.ZPM_CIRCUITS, 2)
@@ -170,7 +170,7 @@ public class EUCellRecipes {
                 .inputItems(wireGtDouble, IndiumTinBariumTitaniumCuprate, 32)
                 .inputItems(wireGtDouble, UraniumRhodiumDinaquadide, 16)
                 .inputItems(wireGtDouble, EnrichedNaquadahTriniumEuropiumDuranide, 8)
-                .inputItems(CEMachines.ME_SUBSTATION_HATCH, 4)
+                .inputItems(CEMachines.ME_SUBSTATION_HATCH.asStack(4))
                 .inputItems(CBItems.OMNI_CORE, 4)
                 .inputItems(CTNHItems.QuarkCore, 4)
                 .inputItems(CTNHItems.PlateRadiationProtection, 16)
@@ -178,7 +178,7 @@ public class EUCellRecipes {
                 .inputFluids(Neutronium.getFluid(L * 16))
                 .inputFluids(Organic_Compound.getFluid(L * 16))
                 .inputFluids(SpecialMaterials.ENERGY_ESSENCE_SECRETION.getFluid(L * 16))
-                .outputItems(CEMachines.ENERGY_OUTPUT_HATCH_ME)
+                .outputItems(CEMachines.ENERGY_OUTPUT_HATCH_ME.asStack())
                 .stationResearch(b -> b.researchStack(ENERGY_OUTPUT_HATCH_4A[UV].asStack()).CWUt(64).EUt(VA[UV]))
                 .duration(1200).EUt(VA[UV]).save(provider);
 
@@ -267,7 +267,7 @@ public class EUCellRecipes {
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("eu_cell_housing"))
                 .inputItems(plateDense, RhodiumPlatedPalladium, 4)
                 .inputItems(plateDense, TungstenSteel, 4)
-                .inputItems(GTBlocks.FUSION_GLASS, 2)
+                .inputItems(GTBlocks.FUSION_GLASS.asItem(), 2)
                 .inputFluids(SpecialMaterials.ENERGY_ESSENCE_SECRETION.getFluid(144))
                 .outputItems(CEItems.EU_CELL_HOUSING, 1)
                 .duration(400).EUt(VA[LuV]).save(provider);
@@ -352,7 +352,7 @@ public class EUCellRecipes {
                     .duration(2400)
                     .EUt(VA[Math.max(tier, EV)]);
 
-            if (tier >= IV) euCellBuilder.inputItems(GTBlocks.SUPERCONDUCTING_COIL, 4);
+            if (tier >= IV) euCellBuilder.inputItems(GTBlocks.SUPERCONDUCTING_COIL.asItem(), 4);
 
             if (tier >= LuV) {
                 euCellBuilder.inputItems(GTMultiMachines.ACTIVE_TRANSFORMER.asStack(), 1)
