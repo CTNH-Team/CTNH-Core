@@ -1,5 +1,10 @@
 package io.github.cpearl0.ctnhcore.data.recipe.create;
 
+import io.github.cpearl0.ctnhcore.data.materials.CreateMaterials;
+import io.github.cpearl0.ctnhcore.registry.CTNHItems;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
@@ -9,9 +14,6 @@ import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
-import io.github.cpearl0.ctnhcore.data.materials.CreateMaterials;
-import io.github.cpearl0.ctnhcore.registry.CTNHItems;
-import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
@@ -20,6 +22,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import com.mo_guang.ctpp.common.recipe.builder.create.*;
@@ -30,8 +33,6 @@ import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 
 import java.util.function.Consumer;
-import net.minecraftforge.fluids.FluidStack;
-import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 public class CreateRecipes {
 
@@ -287,7 +288,7 @@ public class CreateRecipes {
         // rose quartz from rose quartz chunk + water
         ItemStack roseChunk = item("biomesoplenty:rose_quartz_chunk") == null ? ItemStack.EMPTY :
                 new ItemStack(item("biomesoplenty:rose_quartz_chunk"));
-            if (!roseChunk.isEmpty() && !roseQuartz.isEmpty()) {
+        if (!roseChunk.isEmpty() && !roseQuartz.isEmpty()) {
             MixingRecipeBuilder.builder("rose_quartz_from_chunk_and_water")
                     .result(roseQuartz)
                     .input(roseChunk)
@@ -548,7 +549,9 @@ public class CreateRecipes {
                     .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Brass))
                     .deploying(AllBlocks.COGWHEEL.asItem())
                     .deploying(AllBlocks.LARGE_COGWHEEL.asItem())
-                    .filling(incompletePrecision, new FluidStack(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("alexscaves:acid")), 500))
+                    .filling(incompletePrecision,
+                            new FluidStack(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("alexscaves:acid")),
+                                    500))
                     .loops(1)
                     .save(provider);
         }
@@ -819,6 +822,4 @@ public class CreateRecipes {
         if (rl == null) return null;
         return TagKey.create(Registries.ITEM, rl);
     }
-
-
 }
