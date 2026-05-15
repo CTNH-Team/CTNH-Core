@@ -22,7 +22,6 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -45,8 +44,6 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
     public double effencicy = 1.0;
     @Persisted
     public boolean is_consume = false;
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            NanoscaleTriboelectricGenerator.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
 
     public NanoscaleTriboelectricGenerator(IMachineBlockEntity holder) {
         super(holder);
@@ -170,11 +167,6 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
                     .build();
         }
         return ModifierFunction.NULL;
-    }
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 
     @Override

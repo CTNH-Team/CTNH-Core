@@ -14,7 +14,6 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachine;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.material.Fluid;
@@ -31,9 +30,6 @@ import java.util.Map;
 import java.util.Set;
 
 public class LargeNaquadahReactorMachine extends WorkableElectricMultiblockMachine implements IExplosionMachine {
-
-    private ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(LargeNaquadahReactorMachine.class,
-            WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
 
     public LargeNaquadahReactorMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
@@ -210,9 +206,4 @@ public class LargeNaquadahReactorMachine extends WorkableElectricMultiblockMachi
     //////////////////////////////////////
     // ****** NBT SAVE *******//
     //////////////////////////////////////
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
-    }
 }

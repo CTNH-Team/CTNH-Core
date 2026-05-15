@@ -23,7 +23,6 @@ import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -65,8 +64,6 @@ import java.util.stream.Stream;
 
 public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine implements IMachineModifyDrops {
 
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            SlaughterHouseMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     @Persisted
     public final NotifiableItemStackHandler machineStorage;
     public UUID uuid = UUID.randomUUID();
@@ -451,10 +448,5 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
         var mobName = mobList.stream().map(mob -> EntityType.byString(mob).get().getDescription().getString()).toList();
         textList.add(textList.size(),
                 Component.translatable("ctnh.multiblock.slaughter_house.info.mobcount", mobList.size(), mobName));
-    }
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 }

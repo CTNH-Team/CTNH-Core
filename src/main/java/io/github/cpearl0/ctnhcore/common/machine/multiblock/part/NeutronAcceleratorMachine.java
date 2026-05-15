@@ -8,7 +8,6 @@ import com.gregtechceu.gtceu.api.machine.trait.NotifiableEnergyContainer;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.EnergyHatchPartMachine;
 
 import com.lowdragmc.lowdraglib.syncdata.ISubscription;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
@@ -18,8 +17,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class NeutronAcceleratorMachine extends EnergyHatchPartMachine {
 
-    private final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(NeutronAcceleratorMachine.class,
-            EnergyHatchPartMachine.MANAGED_FIELD_HOLDER);
     private ISubscription powerListener = null;
     private TickableSubscription powerSubs = null;
 
@@ -98,10 +95,5 @@ public class NeutronAcceleratorMachine extends EnergyHatchPartMachine {
 
     private long getMaxEUConsume() {
         return Math.round(GTValues.V[tier] * 0.8);
-    }
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 }

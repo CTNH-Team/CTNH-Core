@@ -15,7 +15,6 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -60,14 +59,6 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
 
     public VoidMinerProcessingMachine(IMachineBlockEntity holder) {
         super(holder);
-    }
-
-    public static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            VoidMinerProcessingMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 
     public boolean onWorking() {

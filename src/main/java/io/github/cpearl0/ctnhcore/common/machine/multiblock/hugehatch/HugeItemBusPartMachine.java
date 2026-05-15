@@ -26,7 +26,6 @@ import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.jei.IngredientIO;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -52,10 +51,6 @@ import java.util.List;
 
 @Suffix("tooltip")
 public class HugeItemBusPartMachine extends ItemBusPartMachine implements IAllowSameUIProvider {
-
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            HugeItemBusPartMachine.class,
-            ItemBusPartMachine.MANAGED_FIELD_HOLDER);
 
     @Getter
     @Persisted
@@ -353,10 +348,5 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IAllow
 
             this.onLoad();
         }
-    }
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 }

@@ -7,7 +7,6 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,9 +14,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ThreadRecipeLogic extends RecipeLogic {
-
-    public static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(ThreadRecipeLogic.class,
-            RecipeLogic.MANAGED_FIELD_HOLDER);
 
     @Persisted
     @DescSynced
@@ -39,11 +35,6 @@ public class ThreadRecipeLogic extends RecipeLogic {
 
     public ThreadRecipeLogic(IRecipeLogicMachine machine) {
         super(machine);
-    }
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 
     @Override

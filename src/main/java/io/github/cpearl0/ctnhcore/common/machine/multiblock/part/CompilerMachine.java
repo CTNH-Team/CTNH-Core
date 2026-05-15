@@ -13,7 +13,6 @@ import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.jei.IngredientIO;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.item.ItemStack;
@@ -31,9 +30,6 @@ public class CompilerMachine extends TieredIOPartMachine implements IDistinctPar
     @Getter
     @Persisted
     private final NotifiableItemStackHandler inventory;
-    @Persisted
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(CompilerMachine.class,
-            TieredIOPartMachine.MANAGED_FIELD_HOLDER);
     @Persisted
     public int ids = -1;
 

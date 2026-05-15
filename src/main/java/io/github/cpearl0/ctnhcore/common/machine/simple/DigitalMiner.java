@@ -30,7 +30,6 @@ import com.lowdragmc.lowdraglib.gui.widget.*;
 import com.lowdragmc.lowdraglib.side.item.ItemTransferHelper;
 import com.lowdragmc.lowdraglib.syncdata.ISubscription;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -98,9 +97,6 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
     @EN("Mined: ")
     static Lang mined_prefix;
 
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(DigitalMiner.class,
-            WorkableTieredMachine.MANAGED_FIELD_HOLDER);
-
     private long energyPerTick;
     @Nullable
     protected TickableSubscription autoOutputSubs;
@@ -152,11 +148,6 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
 
     public static int getRange(int tier) {
         return 1 << (tier + 3);// (int) (8 * Math.pow(2, tier));
-    }
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 
     protected CustomItemStackHandler createFilterItemHandler() {

@@ -20,7 +20,6 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -36,8 +35,6 @@ public class CryotheumFreezer extends WorkableElectricMultiblockMachine implemen
         super(holder, args);
     }
 
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            CryotheumFreezer.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     @Persisted
     public int a = 3;
     @Persisted
@@ -124,10 +121,5 @@ public class CryotheumFreezer extends WorkableElectricMultiblockMachine implemen
         super.addDisplayText(textList);
         textList.add(textList.size(),
                 Component.translatable("ctnh.multiblock.cryotheum_freezer.ui.5", used_energy, target));
-    }
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 }

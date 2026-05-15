@@ -23,7 +23,6 @@ import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.misc.ItemStackTransfer;
 import com.lowdragmc.lowdraglib.side.item.IItemTransfer;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import com.lowdragmc.lowdraglib.utils.Position;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -46,9 +45,6 @@ import static com.lowdragmc.lowdraglib.gui.util.DrawerHelper.drawItemStack;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class CreativeInputBusPartMachine extends TieredIOPartMachine implements IDistinctPart, IPaintable {
-
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            CreativeInputBusPartMachine.class, TieredIOPartMachine.MANAGED_FIELD_HOLDER);
 
     private final int ITEM_SIZE = 5;
 
@@ -74,11 +70,6 @@ public class CreativeInputBusPartMachine extends TieredIOPartMachine implements 
 
     public CreativeInputBusPartMachine(IMachineBlockEntity holder) {
         this(holder, ItemStackTransfer::new);
-    }
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 
     protected int getInventorySize() {

@@ -5,12 +5,10 @@ import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -27,9 +25,6 @@ import java.util.List;
 
 public class IndustrialPrimitiveBlastFurnaceMachine extends NoEnergyMachine {
 
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            IndustrialPrimitiveBlastFurnaceMachine.class,
-            WorkableMultiblockMachine.MANAGED_FIELD_HOLDER);
     @Nullable
     protected TickableSubscription temperatureSubs;
     @Persisted
@@ -41,11 +36,6 @@ public class IndustrialPrimitiveBlastFurnaceMachine extends NoEnergyMachine {
 
     public IndustrialPrimitiveBlastFurnaceMachine(IMachineBlockEntity holder) {
         super(holder);
-    }
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 
     public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {

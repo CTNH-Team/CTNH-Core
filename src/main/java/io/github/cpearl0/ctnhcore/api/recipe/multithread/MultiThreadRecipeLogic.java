@@ -9,7 +9,6 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.lowdragmc.lowdraglib.gui.texture.IGuiTexture;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -47,9 +46,6 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
     }
 
     private TickableSubscription subscription;
-
-    public static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(MultiThreadRecipeLogic.class,
-            RecipeLogic.MANAGED_FIELD_HOLDER);
 
     public boolean isRunningRecipe(GTRecipe recipe, @Nullable RecipeLogic except) {
         for (RecipeLogic worker : threads) {
@@ -216,11 +212,6 @@ public class MultiThreadRecipeLogic extends RecipeLogic {
             CompoundTag child = list.getCompound(i);
             threads[i].loadCustomPersistedData(child);
         }
-    }
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 
     public int getEnabledThreadNum() {

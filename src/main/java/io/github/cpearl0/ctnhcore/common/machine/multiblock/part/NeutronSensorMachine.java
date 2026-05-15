@@ -11,7 +11,6 @@ import com.lowdragmc.lowdraglib.gui.editor.ColorPattern;
 import com.lowdragmc.lowdraglib.gui.widget.*;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import com.lowdragmc.lowdraglib.utils.Position;
 import com.lowdragmc.lowdraglib.utils.Size;
 
@@ -27,9 +26,6 @@ import java.util.List;
 
 @Prefix("gui.multiblock.neutron_sensor")
 public class NeutronSensorMachine extends TieredPartMachine {
-
-    private ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            NeutronSensorMachine.class, TieredPartMachine.MANAGED_FIELD_HOLDER);
 
     public NeutronSensorMachine(IMachineBlockEntity holder) {
         super(holder, GTValues.IV);
@@ -177,10 +173,5 @@ public class NeutronSensorMachine extends TieredPartMachine {
     //////////////////////////////////////
     private int fromText(String num) {
         return Integer.parseInt(num);
-    }
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 }

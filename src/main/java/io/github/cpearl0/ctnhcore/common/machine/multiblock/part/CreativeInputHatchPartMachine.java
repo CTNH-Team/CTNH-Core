@@ -20,7 +20,6 @@ import com.gregtechceu.gtceu.common.item.IntCircuitBehaviour;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraftforge.fluids.FluidStack;
@@ -34,9 +33,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class CreativeInputHatchPartMachine extends TieredIOPartMachine implements IDistinctPart, IPaintable {
-
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            CreativeInputHatchPartMachine.class, TieredIOPartMachine.MANAGED_FIELD_HOLDER);
 
     private final int SLOT_COUNT = 25;
 
@@ -63,11 +59,6 @@ public class CreativeInputHatchPartMachine extends TieredIOPartMachine implement
     //////////////////////////////////////
     // ***** Initialization ******//
     //////////////////////////////////////
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
-    }
-
     @Override
     public void onLoad() {
         super.onLoad();

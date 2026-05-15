@@ -14,7 +14,6 @@ import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.item.ItemStack;
@@ -39,9 +38,6 @@ public class CircuitBusPartMachine extends TieredIOPartMachine implements IDisti
     @Persisted
     @DescSynced
     private boolean isLocked;
-
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(CircuitBusPartMachine.class,
-            TieredIOPartMachine.MANAGED_FIELD_HOLDER);
 
     public CircuitBusPartMachine(IMachineBlockEntity holder) {
         super(holder, GTValues.HV, IO.IN);
@@ -78,10 +74,5 @@ public class CircuitBusPartMachine extends TieredIOPartMachine implements IDisti
         group.addWidget(container);
 
         return group;
-    }
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 }

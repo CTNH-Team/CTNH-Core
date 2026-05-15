@@ -22,7 +22,6 @@ import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.npc.Villager;
@@ -58,8 +57,6 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
     @Persisted
     public final NotifiableItemStackHandler machineStorage;
 
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            FactoryMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     public List<String> AvailableMachine = List.of("lathe", "mechanical_press", "centrifuge", "crushing_wheel",
             "deployer", "blaze_burner", "mechanical_mixer", "basin", "laser", "mechanical_saw");
 
@@ -286,11 +283,6 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
         updateMachineCount(getMachineStorageItem());
         basicRate = (double) Math.min(VILLAGER_COUNT, (length - 2) / 2 + 4) / 2 * calculateDiversity() *
                 (1 + Math.sqrt(DEPLOYER_COUNT) / 4);
-    }
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 
     @Override

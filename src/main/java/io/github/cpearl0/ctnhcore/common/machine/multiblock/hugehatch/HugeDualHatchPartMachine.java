@@ -18,7 +18,6 @@ import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.jei.IngredientIO;
 import com.lowdragmc.lowdraglib.syncdata.ISubscription;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -36,9 +35,6 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 public class HugeDualHatchPartMachine extends HugeItemBusPartMachine {
 
     public static final int INITIAL_TANK_CAPACITY = 16 * FluidType.BUCKET_VOLUME;
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            HugeDualHatchPartMachine.class,
-            HugeItemBusPartMachine.MANAGED_FIELD_HOLDER);
 
     @Persisted
     public final NotifiableFluidTank tank;
@@ -243,10 +239,5 @@ public class HugeDualHatchPartMachine extends HugeItemBusPartMachine {
                 shareTank.getStorages(), Component.translatable("gui.gtceu.share_tank.title"))
                 .setTooltips(List.of(
                         Component.translatable("gui.gtceu.share_inventory.desc.1"))));
-    }
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 }

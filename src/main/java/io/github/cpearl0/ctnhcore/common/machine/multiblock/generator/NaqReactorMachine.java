@@ -11,7 +11,6 @@ import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -27,9 +26,6 @@ import java.util.Objects;
 @Setter
 @Getter
 public class NaqReactorMachine extends WorkableElectricMultiblockMachine implements ITieredMachine {
-
-    public static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(NaqReactorMachine.class,
-            WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
 
     @Persisted
     private int currentTemperature = 0;  // 初始温度为0K
@@ -134,11 +130,6 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
         textList.add(
                 Component.translatable("ctnh.multiblock.naq_reactor.info.nickel_consumption", fluidConsumption + "mb"));
         textList.add(Component.translatable("ctnh.multiblock.naq_reactor.info.parallel_count", getParallelCount()));
-    }
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 
     @Override

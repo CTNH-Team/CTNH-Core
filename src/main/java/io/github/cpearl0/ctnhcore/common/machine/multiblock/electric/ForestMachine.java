@@ -9,8 +9,6 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.material.Fluids;
@@ -96,11 +94,6 @@ public class ForestMachine extends WorkableElectricMultiblockMachine {
         super.addDisplayText(textList);
         textList.add(Component.translatable("ctnh.multiblock.forest_machine.info.humidity", humidity + "%"));
         textList.add(Component.translatable("ctnh.multiblock.forest_machine.info.parallel_count", getParallelCount()));
-    }
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return new ManagedFieldHolder(ForestMachine.class, super.getFieldHolder());
     }
 
     @Override

@@ -28,7 +28,6 @@ import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.widget.*;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -52,8 +51,6 @@ import java.util.List;
 public class NeutronActivatorMachine extends WorkableMultiblockMachine
                                      implements IFancyUIMachine, IDisplayUIMachine, IExplosionMachine {
 
-    public ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(NeutronActivatorMachine.class,
-            WorkableMultiblockMachine.MANAGED_FIELD_HOLDER);
     public static int K = 1000;
     public static int M = 1000000;
     public static int MAX_ENERGY = 1200 * M;
@@ -283,11 +280,6 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine
 
     private double getEfficiencyFactor() {
         return Math.pow(0.95, Math.max((height - 4), 0));
-    }
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 
     //////////////////////////////////////

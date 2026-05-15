@@ -20,7 +20,6 @@ import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.syncdata.ISubscription;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;
@@ -30,8 +29,6 @@ import java.util.List;
 
 public class CatalystHatchPartMachine extends TieredIOPartMachine {
 
-    public final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(CatalystHatchPartMachine.class,
-            TieredIOPartMachine.MANAGED_FIELD_HOLDER);
     ResourceTexture SMALL_ARROW_OVERLAY = new ResourceTexture("ctnhcore:textures/gui/arrows/small_arrow_overlay.png");
 
     public CatalystHatchPartMachine(IMachineBlockEntity holder) {
@@ -219,10 +216,5 @@ public class CatalystHatchPartMachine extends TieredIOPartMachine {
     public void setWorkingEnabled(boolean workingEnabled) {
         super.setWorkingEnabled(workingEnabled);
         onInventoryChanged();
-    }
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 }

@@ -18,7 +18,6 @@ import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -85,9 +84,6 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
     public long noiseb;
     @Persisted
     public List<Integer> error_message = new ArrayList<>();
-
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            NeuroMatrixCompiler.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
 
     // 数学计算部分
     public List<Long> getRawEquation(long Noise) {

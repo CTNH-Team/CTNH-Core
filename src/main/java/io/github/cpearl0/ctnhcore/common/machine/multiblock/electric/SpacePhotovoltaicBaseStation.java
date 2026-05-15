@@ -14,7 +14,6 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -33,9 +32,6 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
         super(holder, args);
     }
 
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            SpacePhotovoltaicBaseStation.class,
-            WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     IPBData data;
 
     @Persisted

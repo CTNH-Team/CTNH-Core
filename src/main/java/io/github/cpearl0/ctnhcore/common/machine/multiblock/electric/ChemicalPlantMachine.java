@@ -9,7 +9,6 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -31,8 +30,6 @@ import static java.lang.Math.min;
 @Prefix("info.multiblock.chemical_plant")
 public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine implements IDynamicCasing {
 
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            ChemicalPlantMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     @Persisted
     @DescSynced
     public int casingTier = 0;
@@ -71,11 +68,6 @@ public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine impl
 
     public int getMaxParallel() {
         return Math.max(((pipeTier) - 1) * 2 + 1, 1);
-    }
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 
     @CN("§6提速: %s%%")

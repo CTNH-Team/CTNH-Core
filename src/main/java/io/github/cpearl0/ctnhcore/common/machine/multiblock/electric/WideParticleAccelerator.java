@@ -22,7 +22,6 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -81,12 +80,6 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine
         super(holder);
     }
 
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
-    }
-
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            WideParticleAccelerator.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     public DoubleSupplier get_nu = () -> (double) this.nu_speed / 50000;
     public DoubleSupplier get_electric = () -> (double) this.electric_speed / 50000;
     public DoubleSupplier get_proton = () -> (double) this.proton_speed / 50000;
