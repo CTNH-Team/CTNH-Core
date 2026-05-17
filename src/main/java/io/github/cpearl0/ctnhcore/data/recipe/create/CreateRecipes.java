@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe.create;
 
 import io.github.cpearl0.ctnhcore.data.materials.CreateMaterials;
+import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
@@ -22,7 +23,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import com.mo_guang.ctpp.common.recipe.builder.create.*;
@@ -303,7 +303,7 @@ public class CreateRecipes {
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Clay))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Calcite))
                 .inputFluid(GTMaterials.Water.getFluid(1000))
-                .resultFluid("gtceu:concrete", 1000)
+                .resultFluid(GTMaterials.Concrete.getFluid(1000))
                 .save(provider);
 
         // andesite alloy dust from iron fluid + dusts
@@ -549,9 +549,7 @@ public class CreateRecipes {
                     .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Brass))
                     .deploying(AllBlocks.COGWHEEL.asItem())
                     .deploying(AllBlocks.LARGE_COGWHEEL.asItem())
-                    .filling(incompletePrecision,
-                            new FluidStack(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("alexscaves:acid")),
-                                    500))
+                    .filling(incompletePrecision, "alexscaves:acid", 500)
                     .loops(1)
                     .save(provider);
         }
@@ -671,15 +669,13 @@ public class CreateRecipes {
 
         // orange stained glass -> bronze framed glass
         ItemStack orangeGlass = new ItemStack(Blocks.ORANGE_STAINED_GLASS.asItem());
-        ItemStack bronzeFramed = item("ctnhcore:bronze_framed_glass") == null ? ItemStack.EMPTY :
-                new ItemStack(item("ctnhcore:bronze_framed_glass"));
+        ItemStack bronzeFramed = CTNHBlocks.BRONZE_FRAMED_GLASS.asStack();
         if (!orangeGlass.isEmpty() && !bronzeFramed.isEmpty()) {
             SequencedAssemblyRecipeBuilder.builder("orange_glass_to_bronze_framed")
                     .input(new ItemStack(Blocks.GLASS.asItem()))
                     .transitional(orangeGlass)
                     .result(bronzeFramed)
-                    .deploying(item("gtceu:bronze_tiny_fluid_pipe") == null ? ItemStack.EMPTY :
-                            new ItemStack(item("gtceu:bronze_tiny_fluid_pipe")))
+                    .deploying(ChemicalHelper.get(TagPrefix.pipeTinyFluid, GTMaterials.Bronze))
                     .deploying(ChemicalHelper.get(TagPrefix.rod, GTMaterials.Bronze))
                     .deploying(ChemicalHelper.get(TagPrefix.rod, GTMaterials.Bronze))
                     .loops(2)
@@ -700,7 +696,11 @@ public class CreateRecipes {
                     .deploying(resistor)
                     .filling(resinBoard, GTMaterials.Rubber.getFluid(288))
                     .pressing()
-                    .step("create_new_age:energising", json -> json.addProperty("energy_needed", 10000))
+                    .step("create_new_age:energising", json -> {
+                        json.addProperty("energy_needed", 10000);
+                        json.add("ingredients", SequencedAssemblyRecipeBuilder.ingredients(resinBoard));
+                        json.add("results", SequencedAssemblyRecipeBuilder.ingredients(resinBoard));
+                    })
                     .loops(1)
                     .save(provider);
         }
