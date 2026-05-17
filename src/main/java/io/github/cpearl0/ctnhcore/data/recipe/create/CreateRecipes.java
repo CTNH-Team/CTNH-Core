@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe.create;
 
 import io.github.cpearl0.ctnhcore.data.materials.CreateMaterials;
+import io.github.cpearl0.ctnhcore.data.materials.EnderIOMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
@@ -128,6 +129,7 @@ public class CreateRecipes {
                 case "steel" -> ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel);
                 case "red_alloy" -> ChemicalHelper.get(TagPrefix.plate, GTMaterials.RedAlloy);
                 case "mana_steel" -> ChemicalHelper.get(TagPrefix.plate, CTPPMaterials.AndesiteAlloy);
+                case "conductive_alloy" -> ChemicalHelper.get(TagPrefix.plate, EnderIOMaterials.ConductiveAlloy);
                 default -> ItemStack.EMPTY;
             };
             ItemStack wire = switch (p) {
@@ -143,6 +145,7 @@ public class CreateRecipes {
                 case "steel" -> ChemicalHelper.get(TagPrefix.wireGtSingle, GTMaterials.Steel);
                 case "red_alloy" -> ChemicalHelper.get(TagPrefix.wireGtSingle, GTMaterials.RedAlloy);
                 case "mana_steel" -> ChemicalHelper.get(TagPrefix.wireGtSingle, CTPPMaterials.AndesiteAlloy);
+                case "conductive_alloy" -> ChemicalHelper.get(TagPrefix.wireGtSingle, EnderIOMaterials.ConductiveAlloy);
                 default -> ItemStack.EMPTY;
             };
             if (!plate.isEmpty() && !wire.isEmpty()) {
@@ -248,21 +251,15 @@ public class CreateRecipes {
         }
 
         // pressing rings
-        if (!ChemicalHelper.get(TagPrefix.rod, GTMaterials.Gold).isEmpty() &&
-                !ChemicalHelper.get(TagPrefix.ring, GTMaterials.Gold).isEmpty())
-            CompactingRecipeBuilder.builder("pressing_gold_ring")
-                    .input(ChemicalHelper.get(TagPrefix.rod, GTMaterials.Gold))
-                    .output(ChemicalHelper.get(TagPrefix.ring, GTMaterials.Gold)).save(provider);
-        if (!ChemicalHelper.get(TagPrefix.rod, GTMaterials.Iron).isEmpty() &&
-                !ChemicalHelper.get(TagPrefix.ring, GTMaterials.Iron).isEmpty())
-            CompactingRecipeBuilder.builder("pressing_iron_ring")
-                    .input(ChemicalHelper.get(TagPrefix.rod, GTMaterials.Iron))
-                    .output(ChemicalHelper.get(TagPrefix.ring, GTMaterials.Iron)).save(provider);
-        if (!ChemicalHelper.get(TagPrefix.rod, GTMaterials.Copper).isEmpty() &&
-                !ChemicalHelper.get(TagPrefix.ring, GTMaterials.Copper).isEmpty())
-            CompactingRecipeBuilder.builder("pressing_copper_ring")
-                    .input(ChemicalHelper.get(TagPrefix.rod, GTMaterials.Copper))
-                    .output(ChemicalHelper.get(TagPrefix.ring, GTMaterials.Copper)).save(provider);
+        CompactingRecipeBuilder.builder("pressing_gold_ring")
+                .input(ChemicalHelper.get(TagPrefix.rod, GTMaterials.Gold))
+                .output(ChemicalHelper.get(TagPrefix.ring, GTMaterials.Gold)).save(provider);
+        CompactingRecipeBuilder.builder("pressing_iron_ring")
+                .input(ChemicalHelper.get(TagPrefix.rod, GTMaterials.Iron))
+                .output(ChemicalHelper.get(TagPrefix.ring, GTMaterials.Iron)).save(provider);
+        CompactingRecipeBuilder.builder("pressing_copper_ring")
+                .input(ChemicalHelper.get(TagPrefix.rod, GTMaterials.Copper))
+                .output(ChemicalHelper.get(TagPrefix.ring, GTMaterials.Copper)).save(provider);
 
         // Mixing recipes from create.js
         // 8x potin dust
@@ -648,10 +645,8 @@ public class CreateRecipes {
         }
 
         // high strength concrete -> sintering kiln
-        ItemStack highConcrete = item("ctnhcore:high_strength_concrete") == null ? ItemStack.EMPTY :
-                new ItemStack(item("ctnhcore:high_strength_concrete"));
-        ItemStack sinteringKiln = item("ctnhcore:sintering_kiln") == null ? ItemStack.EMPTY :
-                new ItemStack(item("ctnhcore:sintering_kiln"));
+        ItemStack highConcrete = CTNHBlocks.HIGH_GRADE_COKE_OVEN_BRICKS.asStack();
+        ItemStack sinteringKiln = MultiblocksA.SINTERING_KILN.asStack();
         ItemStack steelFirebox = GTBlocks.FIREBOX_STEEL.asStack();
         if (!highConcrete.isEmpty() && !sinteringKiln.isEmpty() && !steelFirebox.isEmpty()) {
             SequencedAssemblyRecipeBuilder.builder("high_strength_concrete_to_sintering_kiln")
@@ -659,8 +654,7 @@ public class CreateRecipes {
                     .transitional(highConcrete)
                     .result(sinteringKiln)
                     .deploying(ChemicalHelper.get(TagPrefix.block, GTMaterials.Steel))
-                    .deploying(item("ctnhcore:advanced_coke_oven") == null ? ItemStack.EMPTY :
-                            new ItemStack(item("ctnhcore:advanced_coke_oven")))
+                    .deploying(MultiblocksA.ADVANCED_COKE_OVEN.asStack())
                     .deploying(GTBlocks.CASING_PRIMITIVE_BRICKS.asStack())
                     .filling(highConcrete, GTMaterials.Creosote.getFluid(1000))
                     .loops(1)
