@@ -14,12 +14,9 @@
     "create.SpoutCategoryMixin",
     "createmetallurgy.CreateMetallurgyJEIMixin",
     "createmetallurgy.CrucibleBlockEntityMixin",
-
     "createmetallurgy.FoundryBasinBlockEntityMixin",
     "createmetallurgy.SmartBlockEntityAccessor",
     "dategen.AECSDatagenMixin",
-
-
     "eio.MachinesJEIMixin",
     "emi.CreateJEIMixin",
     "emi.CreateJEIMixin$CategoryBuilderMixin",
@@ -47,6 +44,7 @@
     "ldlib.ModularUIContainerMixin",
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MonsterMixin",
+    "mc.NaturalSpawnerMixin",
     "tmrv.RecipeManagerMixin",
     "vintageimprovements.LatheRotatingBlockMixin"
   ],

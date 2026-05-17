@@ -34,6 +34,20 @@ public class CTNHConfig {
     }
 
     @Configurable
+    @Configurable.Comment("Optimization Setting")
+    public Optimization optimization = new Optimization();
+
+    public static class Optimization {
+
+        @Configurable
+        @Configurable.Comment({
+                "At what interval will nature spawner try to spawn creatures? Vanilla is 1",
+                "Default: 20" })
+        @Configurable.Range(min = 1, max = 200)
+        public int natureSpawnCycle = 20;
+    }
+
+    @Configurable
     @Configurable.Comment("Terminal AutoBuild")
     public Terminal terminal = new Terminal();
 
