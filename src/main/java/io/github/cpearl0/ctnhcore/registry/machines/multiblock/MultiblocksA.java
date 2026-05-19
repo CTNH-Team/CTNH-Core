@@ -53,6 +53,7 @@ import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
 
 import com.enderio.base.common.init.EIOBlocks;
+import com.github.L_Ender.cataclysm.init.ModBlocks;
 import com.mo_guang.ctpp.api.CTPPPartAbility;
 import com.mo_guang.ctpp.api.pattern.FactoryStaticBlockPattern;
 import com.simibubi.create.AllBlocks;
@@ -1387,7 +1388,7 @@ public class MultiblocksA {
                     .where("N", Predicates.blocks(CASING_STEEL_SOLID.get())
                             .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
-                    .where("O", Predicates.blocks(MATERIAL_BLOCKS.get(TagPrefix.block, CTNHMaterials.Ignitium).get()))
+                    .where("O", Predicates.blocks(ModBlocks.IGNITIUM_BLOCK.get()))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
             .additionalDisplay((machine, l) -> {

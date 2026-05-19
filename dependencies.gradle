@@ -116,4 +116,5 @@ dependencies {
     modLocalRuntime(ctnh.curios)
     modLocalRuntime(ctnh.constructionwand)
 
+    modImplementation(ctnh.lendercataclysm)
 }
