@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.block;
 
-import com.ctnh.ctnhastral.data.worldgen.CAMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
@@ -10,6 +9,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.StringRepresentable;
 
+import com.ctnh.ctnhastral.data.worldgen.CAMaterials;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 

@@ -20,7 +20,6 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.item.AetherItems;
-import earth.terrarium.adastra.common.registry.ModBlocks;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
 
@@ -96,7 +95,6 @@ public class CTNHMaterials {
             property.setSeparatedInto(newSep);
         }
     }
-
 
     // Aether
     public static Material Holystone;
