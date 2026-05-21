@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import com.ctnh.ctnhastral.data.worldgen.CATagPrefixes;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.AviationFabricMaterials;
@@ -110,9 +111,9 @@ public class MachinesRecipes {
         CTNHRecipeTypes.PVDRONE.recipeBuilder(CTNHCore.id("meteorite_capture"))
                 .duration(1000)
                 .circuitMeta(2)
-                .outputItems(CTNHTagPrefixes.oreMoonStone, AdastraMaterials.Desh)
-                .outputItems(CTNHTagPrefixes.oreVenusStone, AdastraMaterials.Calorite)
-                .outputItems(CTNHTagPrefixes.oreMarsStone, AdastraMaterials.Ostrum)
+                .outputItems(CATagPrefixes.oreMoonStone, AdastraMaterials.Desh)
+                .outputItems(CATagPrefixes.oreVenusStone, AdastraMaterials.Calorite)
+                .outputItems(CATagPrefixes.oreMarsStone, AdastraMaterials.Ostrum)
                 .EUt(VA[LuV])
                 .save(provider);
 

@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.common;
 
 import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalItem;
 import io.github.cpearl0.ctnhcore.common.tconstruct.materials.CTNHConstructMaterialRecipes;
 import io.github.cpearl0.ctnhcore.common.tconstruct.recipes.CTNHConstructCastingRecipes;
 import io.github.cpearl0.ctnhcore.common.tconstruct.recipes.CTNHConstructMeltingRecipes;
@@ -19,14 +18,6 @@ import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.GTMachineModify;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.material.GTMaterialAddon;
-import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundDefinitionsProvider;
-import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundEvents;
-import io.github.cpearl0.ctnhcore.registry.worldgen.*;
-import io.github.cpearl0.ctnhcore.registry.worldgen.feature.CTNHConfiguredFeatures;
-import io.github.cpearl0.ctnhcore.registry.worldgen.feature.CTNHPlacements;
-import io.github.cpearl0.ctnhcore.registry.worldgen.sturcture.AstralMeteorStructure;
-import io.github.cpearl0.ctnhcore.registry.worldgen.sturcture.CTNHStructureSets;
-import io.github.cpearl0.ctnhcore.registry.worldgen.sturcture.CTNHStructures;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.DimensionMarker;
@@ -53,17 +44,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.RegisterEvent;
-
-import appeng.api.features.GridLinkables;
-import terrablender.api.Regions;
-import terrablender.api.SurfaceRuleManager;
 
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
-
-import static io.github.cpearl0.ctnhcore.registry.CTNHItems.ME_ADVANCED_TERMINAL;
 
 @Mod.EventBusSubscriber(modid = CTNHCore.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CommonProxy {
@@ -82,11 +66,9 @@ public class CommonProxy {
         modEventBus.addGenericListener(GTRecipeCategory.class, CommonProxy::onRecipeCategoryRegister);
         modEventBus.addGenericListener(ChanceLogic.class, CommonProxy::registerChanceLogic);
         modEventBus.addGenericListener(RecipeConditionType.class, CommonProxy::registerRecipeConditions);
-        modEventBus.addListener((RegisterEvent event) -> AstralMeteorStructure.init());
 
         CTNHCreativeModeTabs.init();
         CTNHRegistration.REGISTRATE.registerRegistrate();
-        CTNHSoundEvents.SOUND_EVENTS.register(modEventBus);
         CTNHEnchantments.Enchantments.register(modEventBus);
         CTNHConstructModifier.MODIFIERS.register(modEventBus);
 
@@ -136,16 +118,8 @@ public class CommonProxy {
 
     @SubscribeEvent
     public static void commonSetup(FMLCommonSetupEvent event) {
-        // CTNHMaterials.tagPrefixIgnore();
-        event.enqueueWork(() -> {
-            Regions.register(new CTNHOverworldRegion(2));
-            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, CTNHCore.MODID,
-                    CTNHSurfaceRuleData.customSurface());
-
-            // Clean up stale Forge persistent chunk tickets for ctnhcore on load
-            CTNHChunkLoading.registerValidationCallback();
-        });
-        GridLinkables.register(ME_ADVANCED_TERMINAL, MEAdvancedTerminalItem.LINKABLE_HANDLER);
+        // Clean up stale Forge persistent chunk tickets for ctnhcore on load
+        event.enqueueWork(CTNHChunkLoading::registerValidationCallback);
     }
 
     @SubscribeEvent
@@ -163,27 +137,13 @@ public class CommonProxy {
         PackOutput packOutput = generator.getPackOutput();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         var registries = event.getLookupProvider();
-        if (event.includeClient()) {
-            generator.addProvider(true,
-                    new CTNHSoundDefinitionsProvider(packOutput, CTNHCore.MODID, existingFileHelper));
-            // generator.addProvider(true,
-            // new CTNHBiomeTagsProvider(packOutput, registries, existingFileHelper));
-        }
+
         if (event.includeServer()) {
             var set = Set.of(CTNHCore.MODID);
             generator.addProvider(true, new BiomeTagsLoader(packOutput, registries, existingFileHelper));
             DatapackBuiltinEntriesProvider provider = generator.addProvider(true, new DatapackBuiltinEntriesProvider(
                     packOutput, registries, new RegistrySetBuilder()
-                            .add(Registries.BIOME, CTNHBiomes::bootstrap)
-                            .add(Registries.CONFIGURED_FEATURE, CTNHConfiguredFeatures::bootstrap)
-                            .add(Registries.PLACED_FEATURE, CTNHPlacements::bootstrap)
-                            .add(Registries.DIMENSION_TYPE, CTNHDimensionTypes::bootstrap)
-                            .add(Registries.LEVEL_STEM, CTNHDimensions::bootstrap)
-                            .add(Registries.NOISE_SETTINGS, CTNHNoiseGenerationSettings::bootstrap)
-                            .add(Registries.DENSITY_FUNCTION, CTNHDensityFunctions::bootstrap)
-                            .add(Registries.DAMAGE_TYPE, CTNHDamageTypes::bootstrap)
-                            .add(Registries.STRUCTURE, CTNHStructures::bootstrap)
-                            .add(Registries.STRUCTURE_SET, CTNHStructureSets::bootstrap),
+                            .add(Registries.DAMAGE_TYPE, CTNHDamageTypes::bootstrap),
                     set));
         }
     }

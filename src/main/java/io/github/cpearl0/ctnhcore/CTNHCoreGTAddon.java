@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore;
 
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps;
-import io.github.cpearl0.ctnhcore.data.CTNHBlockInfo;
 import io.github.cpearl0.ctnhcore.data.recipe.*;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.*;
 import io.github.cpearl0.ctnhcore.data.recipe.cogniassembly.WetwareCircuit;
@@ -16,7 +15,6 @@ import io.github.cpearl0.ctnhcore.data.recipe.modmodify.omnicells.QuantumOmniRec
 import io.github.cpearl0.ctnhcore.data.recipe.multiblock.*;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
-import io.github.cpearl0.ctnhcore.registry.worldgen.AstralBlocks;
 
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
@@ -55,8 +53,6 @@ public class CTNHCoreGTAddon implements IGTAddon {
 
     @Override
     public void registerTagPrefixes() {
-        AstralBlocks.init();
-        CTNHBlockInfo.init();
         CTNHTagPrefixes.init();
     }
 

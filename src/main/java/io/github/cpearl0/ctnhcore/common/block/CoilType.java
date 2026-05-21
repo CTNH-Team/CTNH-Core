@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.block;
 
+import com.ctnh.ctnhastral.data.worldgen.CAMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
@@ -23,7 +24,7 @@ public enum CoilType implements StringRepresentable, ICoilType {
             CTNHCore.id("block/casings/coils/pikyonium_coil_block")),
     BLACKTITANIUM("black_titanium", 18900, 64, 12, 9, CTNHMaterials.BlackTitanium,
             CTNHCore.id("block/casings/coils/black_titanium_coil_block")),
-    STARMETAL("starmetal", 21600, 64, 13, 9, CTNHMaterials.Starmetal,
+    STARMETAL("starmetal", 21600, 64, 13, 9, CAMaterials.Starmetal,
             CTNHCore.id("block/casings/coils/starmetal_coil_block")),
     INFINITYY("infinity", 36000, 128, 14, 9, CTNHMaterials.Infinity,
             CTNHCore.id("block/casings/coils/infinity_coil_block"));

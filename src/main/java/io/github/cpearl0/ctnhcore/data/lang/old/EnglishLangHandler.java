@@ -14,12 +14,6 @@ public class EnglishLangHandler {
 
     public static void init(RegistrateLangProvider provider) {
         enLangProvider = provider;
-        LangHandler.replace(provider, CTNHMaterials.Moonstone.getUnlocalizedName(), "Moon Stone");
-        LangHandler.replace(provider, CTNHMaterials.Marsstone.getUnlocalizedName(), "Mars Stone");
-        LangHandler.replace(provider, CTNHMaterials.Venusstone.getUnlocalizedName(), "Venus Stone");
-        LangHandler.replace(provider, CTNHMaterials.Mercurystone.getUnlocalizedName(), "Mercury Stone");
-        LangHandler.replace(provider, CTNHMaterials.Glaciostone.getUnlocalizedName(), "Glacio Stone");
-
         LangHandler.replace(provider, CTNHMaterials.Holystone.getUnlocalizedName(), "Holystone");
         LangHandler.replace(provider, CTNHMaterials.Zanite.getUnlocalizedName(), "Zanite");
         LangHandler.replace(provider, CTNHMaterials.Ambrosium.getUnlocalizedName(), "Ambrosium");
