@@ -113,6 +113,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         WetwareCircuit.init(provider);
         EIORecipes.init(provider);
         AeCrystalScienceRecipes.init(provider);
+        AE2ScriptRecipe.init(provider);
         QuantumOmniRecipes.init(provider);
         EUCellRecipes.init(provider);
         // 移植配方
