@@ -73,7 +73,7 @@ public class QuantumOmniRecipes {
                 .EUt(VA[GTValues.IV])
                 .duration(4000)
                 .save(provider);
-        GTRecipeTypes.LASER_ENGRAVER_RECIPES.recipeBuilder(CTNHCore.id("omplex_link_print_press"))
+        GTRecipeTypes.LASER_ENGRAVER_RECIPES.recipeBuilder(CTNHCore.id("complex_link_print_press"))
                 .inputItems(AECSItems.ENDER_BLANK_PRINT_PRESS.asItem())
                 .notConsumable(TagPrefix.lens, CTNHMaterials.ToxicSwampAmber, 1)
                 .outputItems(OCItems.COMPLEX_LINK_PRINT_PRESS)
