@@ -1,7 +1,9 @@
 package io.github.cpearl0.ctnhcore.data.recipe.create;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.CreateMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.EnderIOMaterials;
+import io.github.cpearl0.ctnhcore.data.materials.SpecialMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
@@ -23,9 +25,13 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.mo_guang.ctpp.common.recipe.builder.create.*;
 import com.mo_guang.ctpp.registry.CTPPBlocks;
 import com.mo_guang.ctpp.registry.CTPPItems;
@@ -33,13 +39,14 @@ import com.mo_guang.ctpp.registry.CTPPMaterials;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class CreateRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         // Crushing/milling for gtceu ingots -> dusts
-        String[] ingots = new String[] { "tin", "bronze", "zinc", "brass", "nickel", "lead" };
+        String[] ingots = new String[]{"tin", "bronze", "zinc", "brass", "nickel", "lead"};
         for (String i : ingots) {
             ItemStack ingot = switch (i) {
                 case "tin" -> ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Tin);
@@ -82,7 +89,7 @@ public class CreateRecipes {
         }
 
         // copper/iron/gold gtceu -> minecraft ingots
-        String[] vanillaIngots = new String[] { "copper", "iron", "gold" };
+        String[] vanillaIngots = new String[]{"copper", "iron", "gold"};
         for (String i : vanillaIngots) {
             ItemStack gtIngot = switch (i) {
                 case "copper" -> ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Copper);
@@ -113,8 +120,8 @@ public class CreateRecipes {
         }
 
         // Cutting plates -> single_wire (produce 2x)
-        String[] plates = new String[] { "copper", "iron", "gold", "lead", "nickel", "tin", "silver", "annealed_copper",
-                "cupronickel", "steel", "red_alloy", "mana_steel", "conductive_alloy" };
+        String[] plates = new String[]{"copper", "iron", "gold", "lead", "nickel", "tin", "silver", "annealed_copper",
+                "cupronickel", "steel", "red_alloy", "mana_steel", "conductive_alloy"};
         for (String p : plates) {
             ItemStack plate = switch (p) {
                 case "copper" -> ChemicalHelper.get(TagPrefix.plate, GTMaterials.Copper);
@@ -223,8 +230,8 @@ public class CreateRecipes {
         }
 
         // compacting: many plates
-        String[] compactIngots = new String[] { "iron", "copper", "gold", "zinc", "brass", "wrought_iron", "steel",
-                "rubber", "red_alloy", "andesite_alloy", "bronze", "potin", "nickel", "tin", "mana_steel" };
+        String[] compactIngots = new String[]{"iron", "copper", "gold", "zinc", "brass", "wrought_iron", "steel",
+                "rubber", "red_alloy", "andesite_alloy", "bronze", "potin", "nickel", "tin", "mana_steel"};
         for (String i : compactIngots) {
             ItemStack plate = switch (i) {
                 case "tin" -> ChemicalHelper.get(TagPrefix.plate, GTMaterials.Tin);
@@ -267,6 +274,7 @@ public class CreateRecipes {
         ItemStack tinDust = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Tin);
         ItemStack leadDust = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Lead);
         ItemStack potinDust = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Potin);
+        addHeatedQuartzGlassMixing(provider);
         if (!copperDust.isEmpty() && !tinDust.isEmpty() && !leadDust.isEmpty() && !potinDust.isEmpty()) {
             MixingRecipeBuilder.builder("potin_from_dusts").input(new ItemStack(copperDust.getItem(), 6))
                     .input(new ItemStack(tinDust.getItem(), 2)).input(leadDust)
@@ -799,6 +807,52 @@ public class CreateRecipes {
                     .loops(4)
                     .save(provider);
         }
+    }
+
+    private static void addHeatedQuartzGlassMixing(Consumer<FinishedRecipe> provider) {
+        ItemStack certusQuartzDust = ChemicalHelper.get(TagPrefix.dust, GTMaterials.CertusQuartz);
+        ItemStack glassDust = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Glass);
+        ItemStack quartzGlassDust = ChemicalHelper.get(TagPrefix.dust, SpecialMaterials.QUARTZ_GLASS, 2);
+        provider.accept(new FinishedRecipe() {
+
+            @Override
+            public void serializeRecipeData(JsonObject json) {
+                json.addProperty("type", "create:mixing");
+
+                JsonArray ingredients = new JsonArray();
+                ingredients.add(Ingredient.of(certusQuartzDust).toJson());
+                ingredients.add(Ingredient.of(glassDust).toJson());
+                json.add("ingredients", ingredients);
+
+                JsonArray results = new JsonArray();
+                JsonObject result = new JsonObject();
+                result.addProperty("item", Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(quartzGlassDust.getItem())).toString());
+                result.addProperty("count", quartzGlassDust.getCount());
+                results.add(result);
+                json.add("results", results);
+                json.addProperty("heatRequirement", "heated");
+            }
+
+            @Override
+            public ResourceLocation getId() {
+                return CTNHCore.id("mixing/quartz_glass_dust");
+            }
+
+            @Override
+            public RecipeSerializer<?> getType() {
+                return Objects.requireNonNull(ForgeRegistries.RECIPE_SERIALIZERS.getValue(ResourceLocation.parse("create:mixing")));
+            }
+
+            @Override
+            public JsonObject serializeAdvancement() {
+                return null;
+            }
+
+            @Override
+            public ResourceLocation getAdvancementId() {
+                return null;
+            }
+        });
     }
 
     private static Item item(String id) {
