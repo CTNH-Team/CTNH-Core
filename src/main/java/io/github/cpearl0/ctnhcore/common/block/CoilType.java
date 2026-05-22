@@ -9,7 +9,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.StringRepresentable;
 
-import com.ctnh.ctnhastral.data.worldgen.CAMaterials;
+import com.ctnh.ctnhastral.data.CAMaterials;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 

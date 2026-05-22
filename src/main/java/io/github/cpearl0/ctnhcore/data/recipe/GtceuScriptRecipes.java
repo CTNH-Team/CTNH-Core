@@ -4,7 +4,6 @@ import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.data.materials.NewExplosivesProductionMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.YeastRelatedMaterials;
-import io.github.cpearl0.ctnhcore.data.recipe.chain.*;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
@@ -55,7 +54,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import static com.ctnh.ctnhastral.data.worldgen.CAMaterials.*;
+import static com.ctnh.ctnhastral.data.CAMaterials.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;

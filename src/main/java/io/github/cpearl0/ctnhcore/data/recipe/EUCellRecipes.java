@@ -27,7 +27,7 @@ import tech.luckyblock.mcmod.ctnhenergy.registry.CEMultiblock;
 
 import java.util.function.Consumer;
 
-import static com.ctnh.ctnhastral.data.worldgen.CAMaterials.Starlight;
+import static com.ctnh.ctnhastral.data.CAMaterials.Starlight;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.foil;

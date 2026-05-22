@@ -27,7 +27,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluids;
 
-import com.ctnh.ctnhastral.data.worldgen.CATagPrefixes;
+import com.ctnh.ctnhastral.data.CATagPrefixes;
 import com.simibubi.create.AllBlocks;
 
 import java.util.function.Consumer;

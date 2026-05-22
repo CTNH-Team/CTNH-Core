@@ -22,10 +22,8 @@ public class EnglishLangHandler {
 
         provider.add("message.ctnhcore.portal.invalid_dimension", "This portal can only be used in the Overworld");
 
-        provider.add("enchantment.kubejs.vacuum_seal.desc",
-                "Protects you from vacuum damage. Note: All equipped items must have this enchantment to take effect");
-        provider.add("enchantment.kubejs.warming.desc", "Enhance your hot defending ability");
-        provider.add("enchantment.kubejs.cooling.desc", "Enhance your cold defending ability");
+        provider.add("enchantment.ctnhcore.warming.desc", "Enhance your hot defending ability");
+        provider.add("enchantment.ctnhcore.cooling.desc", "Enhance your cold defending ability");
 
         // Item Tooltip
         provider.add("ctnh.advanced_ram_wafer.tooltip", "Enhanced RAM Wafer");
