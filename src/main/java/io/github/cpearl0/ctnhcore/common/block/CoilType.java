@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.StringRepresentable;
 
+import com.ctnh.ctnhastral.data.CAMaterials;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,7 +24,7 @@ public enum CoilType implements StringRepresentable, ICoilType {
             CTNHCore.id("block/casings/coils/pikyonium_coil_block")),
     BLACKTITANIUM("black_titanium", 18900, 64, 12, 9, CTNHMaterials.BlackTitanium,
             CTNHCore.id("block/casings/coils/black_titanium_coil_block")),
-    STARMETAL("starmetal", 21600, 64, 13, 9, CTNHMaterials.Starmetal,
+    STARMETAL("starmetal", 21600, 64, 13, 9, CAMaterials.Starmetal,
             CTNHCore.id("block/casings/coils/starmetal_coil_block")),
     INFINITYY("infinity", 36000, 128, 14, 9, CTNHMaterials.Infinity,
             CTNHCore.id("block/casings/coils/infinity_coil_block"));

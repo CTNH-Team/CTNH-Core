@@ -6,8 +6,6 @@
   "mixins": [
     "ChunkMixin",
     "TagLoaderMixin",
-    "adastra.OxygenApilmplMixin",
-    "adastra.TemperatureApilmplMixin",
     "aecs.EmiPluginMixin",
     "alexcaves.MagnetUtilMixin",
     "apotheosis.EarthsBoonEnchantMixin",

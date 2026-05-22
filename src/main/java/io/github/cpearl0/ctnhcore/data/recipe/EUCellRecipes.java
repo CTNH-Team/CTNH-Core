@@ -27,6 +27,7 @@ import tech.luckyblock.mcmod.ctnhenergy.registry.CEMultiblock;
 
 import java.util.function.Consumer;
 
+import static com.ctnh.ctnhastral.data.CAMaterials.Starlight;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.foil;
@@ -39,7 +40,6 @@ import static com.moguang.ctnhbio.registry.CBRecipeTypes.BIOELECTRIC_FORGE_RECIP
 import static io.github.cpearl0.ctnhcore.data.materials.SpecialMaterials.RESONANCE_CRYSTAL;
 import static io.github.cpearl0.ctnhcore.data.materials.SpecialMaterials.STELLAR_ENERGY;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.*;
-import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.starlight;
 
 public class EUCellRecipes {
 
@@ -309,7 +309,7 @@ public class EUCellRecipes {
                 .EUt(VA[UHV]).duration(500).save(provider);
 
         DIFFERENTIAL_CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("stellar_energy_produce"))
-                .inputFluids(starlight.getFluid(1000))
+                .inputFluids(Starlight.getFluid(1000))
                 .outputFluidsRanged(new FluidStack(STELLAR_ENERGY.getFluid(), 1), UniformInt.of(2, 4))
                 .EUt(VA[EV]).duration(1000).save(provider);
 

@@ -14,12 +14,6 @@ public class EnglishLangHandler {
 
     public static void init(RegistrateLangProvider provider) {
         enLangProvider = provider;
-        LangHandler.replace(provider, CTNHMaterials.Moonstone.getUnlocalizedName(), "Moon Stone");
-        LangHandler.replace(provider, CTNHMaterials.Marsstone.getUnlocalizedName(), "Mars Stone");
-        LangHandler.replace(provider, CTNHMaterials.Venusstone.getUnlocalizedName(), "Venus Stone");
-        LangHandler.replace(provider, CTNHMaterials.Mercurystone.getUnlocalizedName(), "Mercury Stone");
-        LangHandler.replace(provider, CTNHMaterials.Glaciostone.getUnlocalizedName(), "Glacio Stone");
-
         LangHandler.replace(provider, CTNHMaterials.Holystone.getUnlocalizedName(), "Holystone");
         LangHandler.replace(provider, CTNHMaterials.Zanite.getUnlocalizedName(), "Zanite");
         LangHandler.replace(provider, CTNHMaterials.Ambrosium.getUnlocalizedName(), "Ambrosium");
@@ -28,10 +22,8 @@ public class EnglishLangHandler {
 
         provider.add("message.ctnhcore.portal.invalid_dimension", "This portal can only be used in the Overworld");
 
-        provider.add("enchantment.kubejs.vacuum_seal.desc",
-                "Protects you from vacuum damage. Note: All equipped items must have this enchantment to take effect");
-        provider.add("enchantment.kubejs.warming.desc", "Enhance your hot defending ability");
-        provider.add("enchantment.kubejs.cooling.desc", "Enhance your cold defending ability");
+        provider.add("enchantment.ctnhcore.warming.desc", "Enhance your hot defending ability");
+        provider.add("enchantment.ctnhcore.cooling.desc", "Enhance your cold defending ability");
 
         // Item Tooltip
         provider.add("ctnh.advanced_ram_wafer.tooltip", "Enhanced RAM Wafer");

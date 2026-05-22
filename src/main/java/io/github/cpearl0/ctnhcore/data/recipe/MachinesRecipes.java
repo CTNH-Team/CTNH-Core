@@ -7,7 +7,6 @@ import io.github.cpearl0.ctnhcore.data.materials.UncategorizedMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
-import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
@@ -28,6 +27,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluids;
 
+import com.ctnh.ctnhastral.data.CATagPrefixes;
 import com.simibubi.create.AllBlocks;
 
 import java.util.function.Consumer;
@@ -110,9 +110,9 @@ public class MachinesRecipes {
         CTNHRecipeTypes.PVDRONE.recipeBuilder(CTNHCore.id("meteorite_capture"))
                 .duration(1000)
                 .circuitMeta(2)
-                .outputItems(CTNHTagPrefixes.oreMoonStone, AdastraMaterials.Desh)
-                .outputItems(CTNHTagPrefixes.oreVenusStone, AdastraMaterials.Calorite)
-                .outputItems(CTNHTagPrefixes.oreMarsStone, AdastraMaterials.Ostrum)
+                .outputItems(CATagPrefixes.oreMoonStone, AdastraMaterials.Desh)
+                .outputItems(CATagPrefixes.oreVenusStone, AdastraMaterials.Calorite)
+                .outputItems(CATagPrefixes.oreMarsStone, AdastraMaterials.Ostrum)
                 .EUt(VA[LuV])
                 .save(provider);
 

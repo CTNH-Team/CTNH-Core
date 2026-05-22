@@ -20,7 +20,6 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.item.AetherItems;
-import earth.terrarium.adastra.common.registry.ModBlocks;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
 
@@ -97,14 +96,6 @@ public class CTNHMaterials {
         }
     }
 
-    // Ad Astra
-    public static Material Moonstone;
-    public static Material Marsstone;
-    public static Material Venusstone;
-    public static Material Mercurystone;
-    public static Material Glaciostone;
-    public static Material AstralStone;
-
     // Aether
     public static Material Holystone;
     public static Material Zanite;
@@ -120,7 +111,6 @@ public class CTNHMaterials {
     public static Material Titansteel;
     public static Material Pikyonium;
     public static Material BlackTitanium;
-    public static Material Starmetal;
     public static Material Infinity;
     public static Material QUASER_MANA;
     public static Material COMPRESSED_ADAMANTITE;
@@ -154,7 +144,6 @@ public class CTNHMaterials {
     public static Material H_bar;
     public static Material Sunnarium;
     public static Material HIKARIUM;
-    public static Material starlight;
     public static Material siliconFluoride;
     public static Material carbonFluoride;
     public static Material zirconiumTetrachloride;
@@ -249,48 +238,6 @@ public class CTNHMaterials {
     public static Material Thorium232;
 
     public static void init() {
-        // Ad Astra
-        Moonstone = REGISTRATE.material(CTNHCore.id("moon_stone"))
-                .cnlang("月石")
-                .dust()
-                .color(0xababab).secondaryColor(0x757575).iconSet(ROUGH)
-                .flags(DECOMPOSITION_BY_CENTRIFUGING)
-                .buildAndRegister();
-
-        Marsstone = REGISTRATE.material(CTNHCore.id("mars_stone"))
-                .cnlang("火星石")
-                .dust()
-                .color(0xababab).secondaryColor(0x757575).iconSet(ROUGH)
-                .flags(DECOMPOSITION_BY_CENTRIFUGING)
-                .buildAndRegister();
-
-        Venusstone = REGISTRATE.material(CTNHCore.id("venus_stone"))
-                .cnlang("金星石")
-                .dust()
-                .color(0xababab).secondaryColor(0x757575).iconSet(ROUGH)
-                .flags(DECOMPOSITION_BY_CENTRIFUGING)
-                .buildAndRegister();
-        Mercurystone = REGISTRATE.material(CTNHCore.id("mercury_stone"))
-                .cnlang("水星石")
-                .dust()
-                .color(0xababab).secondaryColor(0x757575).iconSet(ROUGH)
-                .flags(DECOMPOSITION_BY_CENTRIFUGING)
-                .buildAndRegister();
-
-        Glaciostone = REGISTRATE.material(CTNHCore.id("glacio_stone"))
-                .cnlang("霜原石")
-                .dust()
-                .color(0xababab).secondaryColor(0x757575).iconSet(ROUGH)
-                .flags(DECOMPOSITION_BY_CENTRIFUGING)
-                .buildAndRegister();
-
-        AstralStone = REGISTRATE.material(CTNHCore.id("astral_stone"))
-                .cnlang("星辉石")
-                .dust()
-                .color(0xc6b2e8)
-                .iconSet(ROUGH)
-                .buildAndRegister();
-
         // Aether
         Holystone = REGISTRATE.material(CTNHCore.id("holystone"))
                 .cnlang("神圣石")
@@ -409,22 +356,6 @@ public class CTNHMaterials {
                 .iconSet(DULL)
                 .flags(GENERATE_ROD, GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
                 .cableProperties(GTValues.V[GTValues.UXV], 4, 128)
-                .buildAndRegister();
-        Starmetal = REGISTRATE.material(GTCEu.id("starmetal"))
-                .cnlang("炫星")
-                .ingot()
-                .liquid(new FluidBuilder().textures(true, true).block())
-                .plasma()
-                .addOreByproducts(GTMaterials.Sapphire, GTMaterials.Polonium)
-                .radioactiveHazard(6)
-                .blastTemp(21800, HIGHEST)
-                .element(CTNHElements.STARMETAL)
-                .color(0xf4f4f4)
-                .iconSet(MaterialIcons.StarsteelIcon)
-                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW,
-                        GENERATE_FOIL,
-                        GENERATE_ROTOR)
-                .cableProperties(GTValues.V[GTValues.OpV], 4, 256)
                 .buildAndRegister();
         Infinity = REGISTRATE.material(GTCEu.id("my_infinity"))
                 .cnlang("无尽")
@@ -750,10 +681,6 @@ public class CTNHMaterials {
                 .plasma()
                 .element(CTNHElements.HIKARIUM)
                 .color(0XFFAA00)
-                .buildAndRegister();
-        starlight = REGISTRATE.material(GTCEu.id("starlight"))
-                .cnlang("星能液")
-                .liquid(new FluidBuilder().temperature(50).textures(true, true).block())
                 .buildAndRegister();
         siliconFluoride = REGISTRATE.material(GTCEu.id("silicon_fluoride"))
                 .cnlang("氟化硅")
@@ -1105,12 +1032,6 @@ public class CTNHMaterials {
     }
 
     public static void tagPrefixIgnore() {
-        TagPrefix.block.setIgnored(Moonstone, ModBlocks.MOON_STONE);
-        TagPrefix.block.setIgnored(Marsstone, ModBlocks.MARS_STONE);
-        TagPrefix.block.setIgnored(Venusstone, ModBlocks.VENUS_STONE);
-        TagPrefix.block.setIgnored(Mercurystone, ModBlocks.MERCURY_STONE);
-        TagPrefix.block.setIgnored(Glaciostone, ModBlocks.GLACIO_STONE);
-
         TagPrefix.block.setIgnored(Holystone, AetherBlocks.HOLYSTONE);
 
         TagPrefix.gem.setIgnored(Zanite, AetherItems.ZANITE_GEMSTONE);
@@ -1129,8 +1050,6 @@ public class CTNHMaterials {
     }
 
     public static class MaterialIcons {
-
-        public static MaterialIconSet StarsteelIcon = new MaterialIconSet("starsteel", METALLIC);
 
         public static MaterialIconSet Neutron = new MaterialIconSet("neutron", DULL);
     }

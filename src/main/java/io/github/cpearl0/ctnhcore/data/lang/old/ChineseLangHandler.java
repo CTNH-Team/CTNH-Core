@@ -815,10 +815,9 @@ public class ChineseLangHandler {
         provider.add(CTNHCreativeModeTabs.ITEM.get(), "CTNH物品");
         provider.add(CTNHCreativeModeTabs.BLOCK.get(), "CTNH方块");
 
-        provider.addEnchantment(CTNHEnchantments.VACUUM_SEAL, "真空密封");
         provider.addEnchantment(CTNHEnchantments.WARMING, "御寒");
         provider.addEnchantment(CTNHEnchantments.COOLING, "御暑");
-        provider.add("enchantment.ctnhcore.vacuum_seal.desc", "使你不再受到真空的伤害。注：必须所有装备均拥有该附魔");
+
         provider.add("enchantment.ctnhcore.warming.desc", "增强御暑能力");
         provider.add("enchantment.ctnhcore.cooling.desc", "增强御寒能力");
 
