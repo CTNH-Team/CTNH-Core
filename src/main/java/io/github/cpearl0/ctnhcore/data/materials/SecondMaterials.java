@@ -224,6 +224,7 @@ public class SecondMaterials {
                 .ingot()
                 .liquid()
                 .color(0x00FFFF)
+                .iconSet(METALLIC)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_ROD,
                         MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_BOLT_SCREW)
                 .buildAndRegister();

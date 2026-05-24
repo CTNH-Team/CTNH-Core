@@ -53,15 +53,17 @@ public class GlobalTraveller extends NoLevelsModifier
 
     @EN("Global Traveller")
     @CN("环球旅行者")
-    @Key("modifier.ctnhcore.global_traveller")
+    @Key("modifier.tconstruct.global_traveller")
     static Lang Null;
 
     @EN("Travel the world.")
     @CN("全世界折返。")
+    @Key("modifier.tconstruct.global_traveller.flavor")
     static Lang flavor;
 
     @EN("While sneaking, right-click (left-click for ranged weapons) on a container to bind it. Destroyed blocks and drops from killed mobs will be teleported to it.\\nDetailed information can be viewed on the attribute values page.")
     @CN("潜行时对准容器右键（远程武器为左键）以绑定。破坏的方块与杀死怪物的掉落物都会被传送到其中。\n在属性数值页面可以查看详细信息。")
+    @Key("modifier.tconstruct.global_traveller.description")
     static Lang description;
 
     @EN("Bound Container Coordinates")
