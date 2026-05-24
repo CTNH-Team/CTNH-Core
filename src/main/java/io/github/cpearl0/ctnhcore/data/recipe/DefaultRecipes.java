@@ -12,7 +12,6 @@ import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
-import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
@@ -22,11 +21,9 @@ import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
 import net.createmod.catnip.data.Pair;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import appeng.core.definitions.AEItems;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEMultiblock;
@@ -559,7 +556,7 @@ public class DefaultRecipes {
                 provider, true, "clean_machine_casing",
                 CTNHBlocks.PROCESS_MACHINE_CASING.asStack(),
                 "ABA", "BCB", "ABA",
-                'A', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:stainless_steel_foil")),
+                'A', ChemicalHelper.get(TagPrefix.foil, GTMaterials.StainlessSteel),
                 'B', CustomTags.IV_CIRCUITS,
                 'C', GTBlocks.CASING_STEEL_SOLID.asItem());
 
@@ -768,7 +765,7 @@ public class DefaultRecipes {
                 provider, true, "neutron_source",
                 CTNHItems.NeutronSource.asStack(),
                 " A ", "ABA", " A ",
-                'A', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:dense_steel_plate")), // 致密钢板
+                'A', ChemicalHelper.get(TagPrefix.plateDense, GTMaterials.Steel), // 致密钢板
                 'B', CTNHItems.EnrichedUranium.asStack() // 富集铀（直接引用）
         );
 
@@ -881,10 +878,10 @@ public class DefaultRecipes {
                 provider, "neutron_accelerator_ulv",
                 GTNNMachines.NEUTRON_ACCELERATOR[GTValues.ULV].asStack(),
                 "ABC", "DEF", "ABC",
-                'A', new MaterialEntry(TagPrefix.cableGtSingle, GTMaterials.Lead),
-                'B', new MaterialEntry(TagPrefix.plate, GTMaterials.Lead),
-                'C', new MaterialEntry(TagPrefix.rotor, GTMaterials.Lead),
-                'D', new MaterialEntry(TagPrefix.plate, GTMaterials.Wood),
+                'A', ChemicalHelper.get(TagPrefix.cableGtSingle, GTMaterials.Lead),
+                'B', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Lead),
+                'C', ChemicalHelper.get(TagPrefix.rotor, GTMaterials.Lead),
+                'D', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Wood),
                 'E', GTMachines.HULL[GTValues.ULV].asStack(),
                 'F', CTNHItems.INVERTER.asStack());
 
@@ -893,10 +890,10 @@ public class DefaultRecipes {
                 provider, "neutron_accelerator_lv",
                 GTNNMachines.NEUTRON_ACCELERATOR[GTValues.LV].asStack(),
                 "ABC", "DEF", "ABC",
-                'A', new MaterialEntry(TagPrefix.cableGtSingle, GTMaterials.Tin),
-                'B', new MaterialEntry(TagPrefix.plateDouble, GTMaterials.Lead),
+                'A', ChemicalHelper.get(TagPrefix.cableGtSingle, GTMaterials.Tin),
+                'B', ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Lead),
                 'C', GTItems.ELECTRIC_MOTOR_LV.asStack(),
-                'D', new MaterialEntry(TagPrefix.plate, GTMaterials.Rubber),
+                'D', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Rubber),
                 'E', GTMachines.HULL[GTValues.LV].asStack(),
                 'F', CTNHItems.INVERTER.asStack());
         // MV脱水机
@@ -904,11 +901,11 @@ public class DefaultRecipes {
                 provider, true, "dehydrator_mv",
                 CTNHMachines.DEHYDRATOR[GTValues.MV].asStack(),
                 "ABA", "CDC", "EFE",
-                'A', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:fine_red_alloy_wire")),
+                'A', ChemicalHelper.get(TagPrefix.wireFine, GTMaterials.RedAlloy),
                 'B', CustomTags.MV_CIRCUITS,
-                'C', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:copper_quadruple_cable")),
+                'C', ChemicalHelper.get(TagPrefix.cableGtQuadruple, GTMaterials.Copper),
                 'D', GTMachines.HULL[GTValues.MV].asStack(),
-                'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:steel_gear")),
+                'E', ChemicalHelper.get(TagPrefix.gear, GTMaterials.Steel),
                 'F', GTItems.ROBOT_ARM_MV);
 
         // HV脱水机
@@ -916,11 +913,11 @@ public class DefaultRecipes {
                 provider, true, "dehydrator_hv",
                 CTNHMachines.DEHYDRATOR[GTValues.HV].asStack(),
                 "ABA", "CDC", "EFE",
-                'A', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:fine_electrum_wire")),
+                'A', ChemicalHelper.get(TagPrefix.wireFine, GTMaterials.Electrum),
                 'B', CustomTags.HV_CIRCUITS,
-                'C', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:silver_quadruple_cable")),
+                'C', ChemicalHelper.get(TagPrefix.cableGtQuadruple, GTMaterials.Silver),
                 'D', GTMachines.HULL[GTValues.HV].asStack(),
-                'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:potin_gear")),
+                'E', ChemicalHelper.get(TagPrefix.gear, GTMaterials.Potin),
                 'F', GTItems.ROBOT_ARM_HV);
 
         // EV脱水机
@@ -930,9 +927,9 @@ public class DefaultRecipes {
                 "ABA", "CDC", "EFE",
                 'A', GTItems.VOLTAGE_COIL_EV,
                 'B', CustomTags.EV_CIRCUITS,
-                'C', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:aluminium_quadruple_cable")),
+                'C', ChemicalHelper.get(TagPrefix.cableGtQuadruple, GTMaterials.Aluminium),
                 'D', GTMachines.HULL[GTValues.EV].asStack(),
-                'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:tungsten_steel_gear")),
+                'E', ChemicalHelper.get(TagPrefix.gear, GTMaterials.TungstenSteel),
                 'F', GTItems.ROBOT_ARM_EV);
 
         // IV脱水机
@@ -942,9 +939,9 @@ public class DefaultRecipes {
                 "ABA", "CDC", "EFE",
                 'A', GTItems.VOLTAGE_COIL_IV, // IV级电压线圈（直接引用，无TagPrefix）
                 'B', CustomTags.IV_CIRCUITS,  // IV级电路
-                'C', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:tungsten_quadruple_cable")), // 四重钨电缆
+                'C', ChemicalHelper.get(TagPrefix.cableGtQuadruple, GTMaterials.Tungsten), // 四重钨电缆
                 'D', GTMachines.HULL[GTValues.IV].asStack(), // IV级机器外壳
-                'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:nichrome_gear")), // 镍铬合金齿轮
+                'E', ChemicalHelper.get(TagPrefix.gear, GTMaterials.Nichrome), // 镍铬合金齿轮
                 'F', GTItems.ROBOT_ARM_IV     // IV级机械臂
         );
 
@@ -955,9 +952,9 @@ public class DefaultRecipes {
                 "ABA", "CDC", "EFE",
                 'A', GTItems.VOLTAGE_COIL_LuV, // LuV级电压线圈
                 'B', CustomTags.LuV_CIRCUITS,  // LuV级电路
-                'C', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:naquadah_quadruple_cable")),
+                'C', ChemicalHelper.get(TagPrefix.cableGtQuadruple, GTMaterials.Naquadah),
                 'D', GTMachines.HULL[GTValues.LuV].asStack(), // LuV级机器外壳
-                'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:ultimet_gear")), // Ultimet合金齿轮
+                'E', ChemicalHelper.get(TagPrefix.gear, GTMaterials.Ultimet), // Ultimet合金齿轮
                 'F', GTItems.ROBOT_ARM_LuV    // LuV级机械臂
         );
 
@@ -968,35 +965,35 @@ public class DefaultRecipes {
                 "ABA", "CDC", "EFE",
                 'A', GTItems.VOLTAGE_COIL_ZPM, // ZPM级电压线圈
                 'B', CustomTags.ZPM_CIRCUITS,  // ZPM级电路
-                'C', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:osmium_quadruple_cable")), // 四重锇电缆
+                'C', ChemicalHelper.get(TagPrefix.cableGtQuadruple, GTMaterials.Osmium), // 四重锇电缆
                 'D', GTMachines.HULL[GTValues.ZPM].asStack(), // ZPM级机器外壳
-                'E', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:zeron_100_gear")), // Zeron-100合金齿轮
+                'E', ChemicalHelper.get(TagPrefix.gear, GTMaterials.Zeron100), // Zeron-100合金齿轮
                 'F', GTItems.ROBOT_ARM_ZPM     // ZPM级机械臂
         );
         VanillaRecipeHelper.addShapedRecipe(
                 provider, "polybenzimidazole_pipe",
                 CTNHBlocks.CASING_POLYBENZIMIDAZOLE_PIPE.asStack(),
                 "CAC", "ABA", "CAC",
-                'A', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:polybenzimidazole_plate")),
-                'B', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:polybenzimidazole_frame")),
+                'A', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Polybenzimidazole),
+                'B', ChemicalHelper.get(TagPrefix.frameGt, GTMaterials.Polybenzimidazole),
                 'C',
-                ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:polybenzimidazole_normal_fluid_pipe")));
+                ChemicalHelper.get(TagPrefix.pipeNormalFluid, GTMaterials.Polybenzimidazole));
         VanillaRecipeHelper.addShapedRecipe(
                 provider, "naquadah_firebox_casing_one",
                 CTNHBlocks.NAQUADAH_FIREBOX.asStack(),
                 "CAC", "ABA", "CAC",
                 'A', CTNHItems.NeutronSource,
-                'B', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:tungsten_frame")),
-                'C', ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("gtceu:naquadah_plate")));
+                'B', ChemicalHelper.get(TagPrefix.frameGt, GTMaterials.Tungsten),
+                'C', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Naquadah));
         VanillaRecipeHelper.addShapedRecipe(provider, true, "power_substation_ctnh",
                 CEMultiblock.POWER_SUBSTATION.asStack(),
                 "LPL", "CBC", "LPL", 'L', GTItems.LAPOTRON_CRYSTAL, 'P', GTItems.POWER_INTEGRATED_CIRCUIT, 'C',
                 CustomTags.LuV_CIRCUITS, 'B', GTBlocks.CASING_PALLADIUM_SUBSTATION.asStack());
 
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("charged_certus_quartz_crystal"))
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:certus_quartz_crystal")))
+                .inputItems(AEItems.CERTUS_QUARTZ_CRYSTAL.asItem())
                 .outputItems(
-                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:charged_certus_quartz_crystal")))
+                        AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED.asItem())
                 .EUt(GTValues.VA[GTValues.MV])
                 .duration(100)
                 .save(provider);

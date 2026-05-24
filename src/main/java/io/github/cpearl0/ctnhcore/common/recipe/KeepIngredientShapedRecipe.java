@@ -15,6 +15,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.util.Map;
@@ -62,7 +63,8 @@ public class KeepIngredientShapedRecipe extends ShapedRecipe {
             int height = pattern.length;
             NonNullList<Ingredient> ingredients = ShapedRecipeAccessor.callDissolvePattern(pattern, key, width, height);
             ItemStack result = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
-            Ingredient keepIngredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "keepIngredient"));
+            JsonElement keepIngredientJson = GsonHelper.getNonNull(json, "keepIngredient");
+            Ingredient keepIngredient = Ingredient.fromJson(keepIngredientJson);
             return new KeepIngredientShapedRecipe(recipeId, group, width, height, ingredients, result, keepIngredient);
         }
 

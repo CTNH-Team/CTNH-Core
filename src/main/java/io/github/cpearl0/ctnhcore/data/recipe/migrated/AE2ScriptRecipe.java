@@ -1,7 +1,8 @@
-package io.github.cpearl0.ctnhcore.data.recipe;
+package io.github.cpearl0.ctnhcore.data.recipe.migrated;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipes;
+import io.github.cpearl0.ctnhcore.data.materials.NewExplosivesProductionMaterials;
+import io.github.cpearl0.ctnhcore.data.materials.SpecialMaterials;
 
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.chemical.material.MarkerMaterial;
@@ -10,11 +11,10 @@ import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTItems;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
+import io.github.cpearl0.ctnhcore.utils.CTNHRecipeHelper;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
@@ -23,7 +23,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -33,26 +32,19 @@ import appeng.core.definitions.AEItems;
 import appeng.core.definitions.AEParts;
 import appeng.recipes.transform.TransformCircumstance;
 import appeng.recipes.transform.TransformRecipeBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.wintercogs.ae2omnicells.common.init.OCBlocks;
 import com.enderio.machines.common.init.MachineBlocks;
 import com.glodblock.github.extendedae.common.EPPItemAndBlock;
-import vazkii.botania.common.block.BotaniaBlocks;
+import com.wintercogs.ae2omnicells.common.init.OCBlocks;
 import com.wintercogs.ae2omnicells.common.init.OCItems;
-import io.github.cpearl0.ctnhcore.data.materials.EnderIOMaterials;
-import io.github.cpearl0.ctnhcore.data.materials.NewExplosivesProductionMaterials;
-import io.github.cpearl0.ctnhcore.data.materials.SpecialMaterials;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEItems;
+import vazkii.botania.common.block.BotaniaBlocks;
 
-import java.util.Objects;
 import java.util.function.Consumer;
 
-import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 
 public class AE2ScriptRecipe {
 
@@ -158,10 +150,9 @@ public class AE2ScriptRecipe {
                 'E', AEItems.FLUIX_DUST.asItem());
 
         for (int i = 0; i < 4; i++) {
-            var input = (i < 2) ? OCItems.OMNI_CELL_COMPONENT_64M.get()
-                    : OCItems.COMPLEX_OMNI_CELL_COMPONENT_64M.get();
-            var output = (i < 2) ? OCItems.OMNI_CELL_COMPONENT_256M.get()
-                    : OCItems.COMPLEX_OMNI_CELL_COMPONENT_256M.get();
+            var input = (i < 2) ? OCItems.OMNI_CELL_COMPONENT_64M.get() : OCItems.COMPLEX_OMNI_CELL_COMPONENT_64M.get();
+            var output = (i < 2) ? OCItems.OMNI_CELL_COMPONENT_256M.get() :
+                    OCItems.COMPLEX_OMNI_CELL_COMPONENT_256M.get();
             var glass = (i % 2 == 0) ? GTBlocks.FUSION_GLASS.asItem() : BotaniaBlocks.elfGlass.asItem();
             var suffix = (i < 2 ? "omni" : "complex") + "_256m_" + (i % 2 == 0 ? "industrial" : "elf");
             shaped(provider, "cell_component_" + suffix, output,
@@ -261,8 +252,8 @@ public class AE2ScriptRecipe {
                 .outputItems(AEParts.QUARTZ_FIBER.asItem(), 2)
                 .save(provider);
 
-        for (var mats : new Object[][]{
-                {Rubber, 144}, {SiliconeRubber, 72}, {StyreneButadieneRubber, 36}
+        for (var mats : new Object[][] {
+                { Rubber, 144 }, { SiliconeRubber, 72 }, { StyreneButadieneRubber, 36 }
         }) {
             ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("fluix_covered_cable_" + ((Material) mats[0]).getName()))
                     .EUt(120).duration(40)
@@ -456,13 +447,13 @@ public class AE2ScriptRecipe {
                 .save(provider);
         // 与 QuantumOmniRecipes 中的 ender_ingot 重叠，保留迁移代码但不注册。
         /*
-        CHEMICAL_BATH_RECIPES.recipeBuilder(CTNHCore.id("ender_ingot"))
-                .EUt(480).duration(60)
-                .inputItems(ingot, EnderIOMaterials.EndSteel)
-                .inputFluids(EnderPearl.getFluid(288))
-                .outputItems(OCItems.ENDER_INGOT.get())
-                .save(provider);
-        */
+         * CHEMICAL_BATH_RECIPES.recipeBuilder(CTNHCore.id("ender_ingot"))
+         * .EUt(480).duration(60)
+         * .inputItems(ingot, EnderIOMaterials.EndSteel)
+         * .inputFluids(EnderPearl.getFluid(288))
+         * .outputItems(OCItems.ENDER_INGOT.get())
+         * .save(provider);
+         */
         FORMING_PRESS_RECIPES.recipeBuilder(CTNHCore.id("complex_link_circuit_print"))
                 .EUt(480).circuitMeta(23).duration(200)
                 .inputItems(plate, Netherite).notConsumable(OCItems.COMPLEX_LINK_PRINT_PRESS.get())
@@ -477,19 +468,19 @@ public class AE2ScriptRecipe {
                 .save(provider);
         // 与 QuantumOmniRecipes 中的链接压印板配方重叠，保留迁移代码但不注册。
         /*
-        LASER_ENGRAVER_RECIPES.recipeBuilder(CTNHCore.id("omni_link_print_press"))
-                .EUt(120).duration(1600)
-                .inputItems(plate, Stellite100)
-                .notConsumable(lens, ArcaneCrystal, 1)
-                .outputItems(OCItems.OMNI_LINK_PRINT_PRESS.get())
-                .save(provider);
-        LASER_ENGRAVER_RECIPES.recipeBuilder(CTNHCore.id("complex_link_print_press"))
-                .EUt(120).duration(1600)
-                .inputItems(plate, Stellite100)
-                .notConsumable(lens, ToxicSwampAmber, 1)
-                .outputItems(OCItems.COMPLEX_LINK_PRINT_PRESS.get())
-                .save(provider);
-        */
+         * LASER_ENGRAVER_RECIPES.recipeBuilder(CTNHCore.id("omni_link_print_press"))
+         * .EUt(120).duration(1600)
+         * .inputItems(plate, Stellite100)
+         * .notConsumable(lens, ArcaneCrystal, 1)
+         * .outputItems(OCItems.OMNI_LINK_PRINT_PRESS.get())
+         * .save(provider);
+         * LASER_ENGRAVER_RECIPES.recipeBuilder(CTNHCore.id("complex_link_print_press"))
+         * .EUt(120).duration(1600)
+         * .inputItems(plate, Stellite100)
+         * .notConsumable(lens, ToxicSwampAmber, 1)
+         * .outputItems(OCItems.COMPLEX_LINK_PRINT_PRESS.get())
+         * .save(provider);
+         */
     }
 
     private static void makeProcessor(Consumer<FinishedRecipe> provider, String name,
@@ -510,13 +501,13 @@ public class AE2ScriptRecipe {
                 .save(provider);
         // 与 AeCrystalScienceRecipes 中的处理器压印板配方重叠，保留迁移代码但不注册。
         /*
-        LASER_ENGRAVER_RECIPES.recipeBuilder(CTNHCore.id(name + "_press"))
-                .EUt(30).duration(1600)
-                .inputItems(plate, StainlessSteel)
-                .notConsumable(lens, lensMat)
-                .outputItems(press)
-                .save(provider);
-        */
+         * LASER_ENGRAVER_RECIPES.recipeBuilder(CTNHCore.id(name + "_press"))
+         * .EUt(30).duration(1600)
+         * .inputItems(plate, StainlessSteel)
+         * .notConsumable(lens, lensMat)
+         * .outputItems(press)
+         * .save(provider);
+         */
     }
 
     private static void addMiscRecipes(Consumer<FinishedRecipe> provider) {
@@ -590,47 +581,11 @@ public class AE2ScriptRecipe {
     }
 
     private static void addEUP2PTunnelRecipe(Consumer<FinishedRecipe> provider) {
-        provider.accept(new FinishedRecipe() {
-
-            @Override
-            public void serializeRecipeData(JsonObject json) {
-                json.addProperty("type", CTNHCore.id("keep_ingredient_shaped").toString());
-
-                JsonArray pattern = new JsonArray();
-                pattern.add("AB");
-                json.add("pattern", pattern);
-
-                JsonObject key = new JsonObject();
-                key.add("A", Ingredient.of(AEParts.ME_P2P_TUNNEL.asItem()).toJson());
-                key.add("B", Ingredient.of(CEItems.EU_P2P.asItem()).toJson());
-                json.add("key", key);
-
-                JsonObject result = new JsonObject();
-                result.addProperty("item", Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(CEItems.EU_P2P.asItem())).toString());
-                json.add("result", result);
-                json.add("keepIngredient", Ingredient.of(CEItems.EU_P2P.asItem()).toJson());
-            }
-
-            @Override
-            public ResourceLocation getId() {
-                return CTNHCore.id("eu_p2p_tunnel");
-            }
-
-            @Override
-            public RecipeSerializer<?> getType() {
-                return CTNHRecipes.KEEP_INGREDIENT_SHAPED_SERIALIZER.get();
-            }
-
-            @Override
-            public JsonObject serializeAdvancement() {
-                return null;
-            }
-
-            @Override
-            public ResourceLocation getAdvancementId() {
-                return null;
-            }
-        });
+        CTNHRecipeHelper.KeepIngredientRecipeHelper.addKeepIngredientShapedRecipe(provider, CTNHCore.id("eu_p2p_tunnel"),
+                new ItemStack(CEItems.EU_P2P.asItem()), new String[] { "AB" },
+                Ingredient.of(CEItems.EU_P2P.asItem()),
+                'A', AEParts.ME_P2P_TUNNEL.asItem(),
+                'B', CEItems.EU_P2P.asItem());
     }
 
     private static void shaped(Consumer<FinishedRecipe> provider, String id, ItemLike result,

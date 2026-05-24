@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.data.recipe;
+package io.github.cpearl0.ctnhcore.data.recipe.migrated;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.*;

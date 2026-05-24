@@ -21,8 +21,8 @@ public class CTNHRecipes {
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister
             .create(ForgeRegistries.RECIPE_TYPES, CTNHCore.MODID);
 
-    public static final Supplier<RecipeSerializer<KeepIngredientShapedRecipe>> KEEP_INGREDIENT_SHAPED_SERIALIZER =
-            SERIALIZERS.register("keep_ingredient_shaped", () -> KeepIngredientShapedRecipe.SERIALIZER);
+    public static final Supplier<RecipeSerializer<KeepIngredientShapedRecipe>> KEEP_INGREDIENT_SHAPED_SERIALIZER = SERIALIZERS
+            .register("keep_ingredient_shaped", () -> KeepIngredientShapedRecipe.SERIALIZER);
 
     private static <T extends Recipe<?>> Supplier<RecipeType<T>> register(String id) {
         return RECIPE_TYPES.register(id, () -> new RecipeType<>() {

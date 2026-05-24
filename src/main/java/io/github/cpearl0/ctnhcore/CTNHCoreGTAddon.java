@@ -10,6 +10,8 @@ import io.github.cpearl0.ctnhcore.data.recipe.mana.DigesterRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.EternalGardenRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.MiscManaRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.TwistedFusionRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.migrated.AE2ScriptRecipe;
+import io.github.cpearl0.ctnhcore.data.recipe.migrated.GtceuScriptRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.EIORecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.omnicells.QuantumOmniRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.multiblock.*;
@@ -115,6 +117,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         // 移植配方
         NaquadahReactorRecipes.init(provider);
         DefaultRecipes.init(provider);
+        CrafttableScriptRecipe.init(provider);
         AlumiumChain.init(provider);
         PlatinumLine.init(provider);
         BrineChain.init(provider);

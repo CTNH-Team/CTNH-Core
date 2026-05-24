@@ -46,7 +46,7 @@ public class CreateRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         // Crushing/milling for gtceu ingots -> dusts
-        String[] ingots = new String[]{"tin", "bronze", "zinc", "brass", "nickel", "lead"};
+        String[] ingots = new String[] { "tin", "bronze", "zinc", "brass", "nickel", "lead" };
         for (String i : ingots) {
             ItemStack ingot = switch (i) {
                 case "tin" -> ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Tin);
@@ -89,7 +89,7 @@ public class CreateRecipes {
         }
 
         // copper/iron/gold gtceu -> minecraft ingots
-        String[] vanillaIngots = new String[]{"copper", "iron", "gold"};
+        String[] vanillaIngots = new String[] { "copper", "iron", "gold" };
         for (String i : vanillaIngots) {
             ItemStack gtIngot = switch (i) {
                 case "copper" -> ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Copper);
@@ -120,8 +120,8 @@ public class CreateRecipes {
         }
 
         // Cutting plates -> single_wire (produce 2x)
-        String[] plates = new String[]{"copper", "iron", "gold", "lead", "nickel", "tin", "silver", "annealed_copper",
-                "cupronickel", "steel", "red_alloy", "mana_steel", "conductive_alloy"};
+        String[] plates = new String[] { "copper", "iron", "gold", "lead", "nickel", "tin", "silver", "annealed_copper",
+                "cupronickel", "steel", "red_alloy", "mana_steel", "conductive_alloy" };
         for (String p : plates) {
             ItemStack plate = switch (p) {
                 case "copper" -> ChemicalHelper.get(TagPrefix.plate, GTMaterials.Copper);
@@ -230,8 +230,8 @@ public class CreateRecipes {
         }
 
         // compacting: many plates
-        String[] compactIngots = new String[]{"iron", "copper", "gold", "zinc", "brass", "wrought_iron", "steel",
-                "rubber", "red_alloy", "andesite_alloy", "bronze", "potin", "nickel", "tin", "mana_steel"};
+        String[] compactIngots = new String[] { "iron", "copper", "gold", "zinc", "brass", "wrought_iron", "steel",
+                "rubber", "red_alloy", "andesite_alloy", "bronze", "potin", "nickel", "tin", "mana_steel" };
         for (String i : compactIngots) {
             ItemStack plate = switch (i) {
                 case "tin" -> ChemicalHelper.get(TagPrefix.plate, GTMaterials.Tin);
@@ -826,7 +826,8 @@ public class CreateRecipes {
 
                 JsonArray results = new JsonArray();
                 JsonObject result = new JsonObject();
-                result.addProperty("item", Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(quartzGlassDust.getItem())).toString());
+                result.addProperty("item",
+                        Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(quartzGlassDust.getItem())).toString());
                 result.addProperty("count", quartzGlassDust.getCount());
                 results.add(result);
                 json.add("results", results);
@@ -840,7 +841,8 @@ public class CreateRecipes {
 
             @Override
             public RecipeSerializer<?> getType() {
-                return Objects.requireNonNull(ForgeRegistries.RECIPE_SERIALIZERS.getValue(ResourceLocation.parse("create:mixing")));
+                return Objects.requireNonNull(
+                        ForgeRegistries.RECIPE_SERIALIZERS.getValue(ResourceLocation.parse("create:mixing")));
             }
 
             @Override

@@ -119,4 +119,6 @@ dependencies {
     modLocalRuntime(ctnh.constructionwand)
 
     modImplementation(ctnh.lendercataclysm)
+
+    modImplementation(ctnh.angelblock)
 }

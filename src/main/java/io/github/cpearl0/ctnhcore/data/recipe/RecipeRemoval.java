@@ -18,6 +18,7 @@ public class RecipeRemoval {
         maceratorRecipeRemovals();
         EIORecipes.eioRemovals();
         QuantumOmniRecipes.omniRemovals();
+        crafttableRecipeRemovals();
         // 放最后
         ctnhRemovals(registry);
     }
@@ -44,6 +45,13 @@ public class RecipeRemoval {
         removePaths.addAll(List.of(
                 "gtceu:bender/bend_graphite_ir_plate_ingot_to_double_plate",
                 "gtceu:bender/bend_graphite_ir_plate_plate_to_double_plate"));
+    }
+
+    public static void crafttableRecipeRemovals() {
+        removePaths.addAll(List.of(
+                "deep_aether:skyroot_crafting_table",
+                "aether:skyroot_crafting_table",
+                "aether:skyroot_chest"));
     }
 
     public static void ctnhRemovals(Consumer<ResourceLocation> registry) {
