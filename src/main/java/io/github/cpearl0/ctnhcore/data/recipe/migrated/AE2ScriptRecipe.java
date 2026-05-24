@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.data.recipe.migrated;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.NewExplosivesProductionMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.SpecialMaterials;
+import io.github.cpearl0.ctnhcore.utils.CTNHRecipeHelper;
 
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.chemical.material.MarkerMaterial;
@@ -14,7 +15,6 @@ import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
-import io.github.cpearl0.ctnhcore.utils.CTNHRecipeHelper;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
@@ -581,7 +581,8 @@ public class AE2ScriptRecipe {
     }
 
     private static void addEUP2PTunnelRecipe(Consumer<FinishedRecipe> provider) {
-        CTNHRecipeHelper.KeepIngredientRecipeHelper.addKeepIngredientShapedRecipe(provider, CTNHCore.id("eu_p2p_tunnel"),
+        CTNHRecipeHelper.KeepIngredientRecipeHelper.addKeepIngredientShapedRecipe(provider,
+                CTNHCore.id("eu_p2p_tunnel"),
                 new ItemStack(CEItems.EU_P2P.asItem()), new String[] { "AB" },
                 Ingredient.of(CEItems.EU_P2P.asItem()),
                 'A', AEParts.ME_P2P_TUNNEL.asItem(),

@@ -1,15 +1,15 @@
 package io.github.cpearl0.ctnhcore.utils;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipes;
+
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.common.data.GTRecipeCapabilities;
 
 import com.lowdragmc.lowdraglib.utils.NBTToJsonConverter;
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipes;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -19,11 +19,13 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import io.netty.util.internal.UnstableApi;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -101,7 +103,8 @@ public class CTNHRecipeHelper extends RecipeHelper {
         }
 
         public static void addKeepIngredientShapedRecipe(Consumer<FinishedRecipe> provider, ResourceLocation id,
-                                                         ItemStack result, String[] pattern, Ingredient[] keepIngredients,
+                                                         ItemStack result, String[] pattern,
+                                                         Ingredient[] keepIngredients,
                                                          Object... key) {
             provider.accept(new KeepIngredientFinishedRecipe(id, result, pattern, keepIngredients, key));
         }
@@ -153,7 +156,8 @@ public class CTNHRecipeHelper extends RecipeHelper {
 
         private static JsonObject resultJson(ItemStack stack) {
             JsonObject result = new JsonObject();
-            result.addProperty("item", Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(stack.getItem())).toString());
+            result.addProperty("item",
+                    Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(stack.getItem())).toString());
             if (stack.getCount() > 1) {
                 result.addProperty("count", stack.getCount());
             }
