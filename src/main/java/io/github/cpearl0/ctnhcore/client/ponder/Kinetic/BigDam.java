@@ -70,7 +70,7 @@ public class BigDam {
         scene.scaleSceneView(0.2F);
         scene.setSceneOffsetY(-5);
         scene.idle(50);
-        scene.showText(40)
+        scene.showText(40, CommonText1)
                 .pointAt(MainBlockTextVec)
                 .attachKeyFrame();
         scene.world().showSection(MainBlock, Direction.NORTH);
@@ -80,7 +80,7 @@ public class BigDam {
                 .rightClick()
                 .withItem(GTItems.TERMINAL.asStack())
                 .whileSneaking();
-        scene.showText(40)
+        scene.showText(40, CommonText2)
                 .pointAt(MainBlockTextVec)
                 .attachKeyFrame();
         scene.idle(20);
@@ -141,17 +141,17 @@ public class BigDam {
 
         scene.overlay().showOutline(PonderPalette.RED, "left", IOPortLeft, 40);
         scene.overlay().showOutline(PonderPalette.RED, "right", IOPortRight, 40);
-        scene.showText(40)
+        scene.showText(40, WorkText1)
                 .attachKeyFrame();
         scene.idle(50);
-        scene.showText(40)
+        scene.showText(40, WorkText2)
                 .attachKeyFrame();
         scene.idle(50);
         scene.overlay().showControls(InputHatchVec, Pointing.RIGHT, 40)
                 .rightClick()
                 .withItem(GTMaterials.Lubricant.getBucket().getDefaultInstance())
                 .whileSneaking();
-        scene.showText(40)
+        scene.showText(40, WorkText3)
                 .pointAt(InputHatchVec)
                 .attachKeyFrame();
         scene.world().setKineticSpeed(util.select().position(22, 2, 1), 512);

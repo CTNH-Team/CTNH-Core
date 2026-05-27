@@ -57,21 +57,21 @@ public class MechanicalExporter {
         scene.world().showSection(util.select().layer(0), Direction.NORTH);
         scene.idle(10);
 
-        scene.showText(50)
+        scene.showText(50, Text1)
                 .pointAt(mainBlockTextVec)
                 .attachKeyFrame();
         scene.idle(20);
         scene.world().showSection(util.select().position(2, 1, 2), Direction.NORTH);
         scene.idle(40);
 
-        scene.showText(50)
+        scene.showText(50, Text2)
                 .pointAt(mainBlockTextVec)
                 .attachKeyFrame();
         scene.overlay().showControls(inputItemsVec, Pointing.DOWN, 40)
                 .withItem(goldenExporterManifests);
         scene.idle(60);
 
-        scene.showText(50)
+        scene.showText(50, Text3)
                 .pointAt(mainBlockTextVec)
                 .attachKeyFrame();
         scene.idle(20);
@@ -79,7 +79,7 @@ public class MechanicalExporter {
         scene.world().setKineticSpeed(util.select().fromTo(2, 1, 3, 1, 1, 3), 128);
         scene.idle(60);
 
-        scene.showText(60)
+        scene.showText(60, Text4)
                 .pointAt(mainBlockTextVec)
                 .attachKeyFrame();
         scene.idle(60);

@@ -165,19 +165,19 @@ public class MysticSpire {
         });
 
         scene.title("mystic_spire_scene1");
-        scene.showText(50)
+        scene.showText(50, MysticSpireScene1Text1)
                 .pointAt(controllerVec1)
                 .attachKeyFrame();
         scene.idle(70);
-        scene.showText(50)
+        scene.showText(50, MysticSpireScene1Text2)
                 .pointAt(sparkVec1)
                 .attachKeyFrame();
         scene.idle(70);
-        scene.showText(50)
+        scene.showText(50, MysticSpireScene1Text3)
                 .pointAt(sparkVec1)
                 .attachKeyFrame();
         scene.idle(70);
-        scene.showText(50)
+        scene.showText(50, MysticSpireScene1Text4)
                 .pointAt(sparkVec1)
                 .attachKeyFrame();
         scene.idle(70);
@@ -188,7 +188,7 @@ public class MysticSpire {
                 .withItem(saberWandStack)
                 .rightClick();
         scene.idle(70);
-        scene.showText(50)
+        scene.showText(50, MysticSpireScene1Text5)
                 .pointAt(sparkVec2)
                 .attachKeyFrame();
         scene.overlay().showControls(sparkVec2, Pointing.DOWN, 20)
@@ -197,7 +197,7 @@ public class MysticSpire {
         scene.idle(20);
         PonderParticleUtil.sparkManaFlow(builder.effects(), sparkVec2, sparkVec1, 100);
         scene.idle(70);
-        scene.showText(50)
+        scene.showText(50, MysticSpireScene1Text6)
                 .pointAt(sparkVec2)
                 .attachKeyFrame();
         scene.overlay().showControls(sparkVec2, Pointing.DOWN, 20)
@@ -227,36 +227,36 @@ public class MysticSpire {
         Vec3 controllerVec = util.vector().blockSurface(util.grid().at(8, 2, 7), Direction.UP);
 
         scene.title("mystic_spire_scene2");
-        scene.showText(50)
+        scene.showText(50, MysticSpireScene2Text1)
                 .pointAt(controllerVec)
                 .attachKeyFrame();
         scene.idle(70);
         Item Upgtade = ForgeRegistries.ITEMS.getValue(
                 ResourceLocation.fromNamespaceAndPath("ctnhmana", "upgrade_rune_speed_1"));
         ItemStack UpgtadeStack = new ItemStack(Upgtade);
-        scene.showText(50)
+        scene.showText(50, MysticSpireScene2Text2)
                 .pointAt(controllerVec)
                 .attachKeyFrame();
         scene.overlay().showControls(controllerVec, Pointing.DOWN, 40)
                 .withItem(UpgtadeStack);
         scene.idle(70);
-        scene.showText(50)
+        scene.showText(50, MysticSpireScene2Text3)
                 .pointAt(controllerVec)
                 .attachKeyFrame();
         scene.idle(70);
-        scene.showText(50)
+        scene.showText(50, MysticSpireScene2Text4)
                 .pointAt(controllerVec)
                 .attachKeyFrame();
         scene.idle(70);
-        scene.showText(50)
+        scene.showText(50, MysticSpireScene2Text5)
                 .pointAt(controllerVec)
                 .attachKeyFrame();
         scene.idle(70);
-        scene.showText(50)
+        scene.showText(50, MysticSpireScene2Text6)
                 .pointAt(controllerVec)
                 .attachKeyFrame();
         scene.idle(70);
-        scene.showText(50)
+        scene.showText(50, MysticSpireScene2Text7)
                 .pointAt(controllerVec)
                 .attachKeyFrame();
         scene.idle(70);
@@ -320,30 +320,30 @@ public class MysticSpire {
         Vec3 poolVec4 = util.vector().blockSurface(util.grid().at(0, 2, 5), Direction.UP);
 
         scene.title("mystic_spire_scene3");
-        scene.showText(70)
+        scene.showText(70, MysticSpireScene3Text1)
                 .pointAt(controllerVec1)
                 .attachKeyFrame();
         scene.idle(90);
-        scene.showText(70)
+        scene.showText(70, MysticSpireScene3Text2)
                 .pointAt(controllerVec1)
                 .attachKeyFrame();
         PonderParticleUtil.sparkManaFlow(scene.effects(), poolVec1, sparkVec1, 360);
         scene.idle(90);
-        scene.showText(70)
+        scene.showText(70, MysticSpireScene3Text3)
                 .pointAt(controllerVec3)
                 .attachKeyFrame();
         PonderParticleUtil.sparkManaFlow(scene.effects(), sparkVec1, sparkVec3, 160);
         PonderParticleUtil.sparkManaFlow(scene.effects(), sparkVec3, poolVec2, 70);
         PonderParticleUtil.sparkManaFlow(scene.effects(), sparkVec3, poolVec3, 70);
         scene.idle(90);
-        scene.showText(70)
+        scene.showText(70, MysticSpireScene3Text4)
                 .pointAt(controllerVec3)
                 .attachKeyFrame();
         PonderParticleUtil.sparkManaFlow(scene.effects(), sparkVec3, poolVec2, 70);
         PonderParticleUtil.sparkManaFlow(scene.effects(), sparkVec3, poolVec3, 70);
         PonderParticleUtil.sparkManaFlow(scene.effects(), sparkVec3, poolVec4, 70);
         scene.idle(90);
-        scene.showText(70)
+        scene.showText(70, MysticSpireScene3Text5)
                 .pointAt(controllerVec2)
                 .attachKeyFrame();
         PonderParticleUtil.sparkManaFlow(scene.effects(), sparkVec1, sparkVec2, 70);
@@ -354,7 +354,7 @@ public class MysticSpire {
         PonderParticleUtil.sparkManaFlow(scene.effects(), sparkVec3, poolVec3, 50);
         PonderParticleUtil.sparkManaFlow(scene.effects(), sparkVec3, poolVec4, 50);
         scene.idle(70);
-        scene.showText(70)
+        scene.showText(70, MysticSpireScene3Text6)
                 .pointAt(controllerVec3)
                 .attachKeyFrame();
         scene.idle(70);

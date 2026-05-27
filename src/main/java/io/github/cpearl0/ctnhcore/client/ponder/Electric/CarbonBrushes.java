@@ -80,13 +80,13 @@ public class CarbonBrushes {
         scene.world().showSection(util.select().layer(0), Direction.NORTH);
         scene.idle(10);
         scene.world().showSection(util.select().position(3, 3, 0), Direction.NORTH);
-        scene.showText(60)
+        scene.showText(60, Text1)
                 .pointAt(util.vector().blockSurface(util.grid().at(3, 3, 0), Direction.WEST))
                 .attachKeyFrame();
         scene.idle(70);
         scene.world().showSection(util.select().fromTo(3, 3, 1, 3, 3, 1), Direction.NORTH);
         scene.idle(10);
-        scene.showText(60)
+        scene.showText(60, Text2)
                 .pointAt(util.vector().blockSurface(util.grid().at(2, 3, 1), Direction.WEST))
                 .attachKeyFrame();
         scene.world().setKineticSpeed(util.select().position(3, 3, 0), 64);
@@ -94,41 +94,40 @@ public class CarbonBrushes {
         scene.idle(70);
         scene.world().showSection(util.select().position(3, 5, 1), Direction.NORTH);
         scene.idle(10);
-        scene.showText(60)
+        scene.showText(60, Text3)
                 .pointAt(util.vector().blockSurface(util.grid().at(3, 5, 1), Direction.DOWN))
                 .attachKeyFrame();
         scene.idle(70);
         scene.world().showSection(util.select().position(2, 3, 0), Direction.DOWN);
         scene.world().showSection(util.select().position(2, 2, 0), Direction.EAST);
         scene.idle(10);
-        scene.showText(60)
+        scene.showText(60, Text4)
                 .pointAt(util.vector().blockSurface(util.grid().at(3, 2, 1), Direction.WEST))
                 .attachKeyFrame();
 
         scene.idle(70);
-        scene.showText(60)
+        scene.showText(60, Text5)
                 .pointAt(util.vector().blockSurface(util.grid().at(2, 5, 1), Direction.WEST))
                 .attachKeyFrame();
         scene.idle(10);
         scene.world().showSection(util.select().fromTo(1, 5, 1, 5, 1, 1), Direction.NORTH);
         scene.idle(70);
-        scene.showText(60)
+        scene.showText(60, Text4)
                 .attachKeyFrame();
         scene.idle(10);
         scene.world().showSection(util.select().fromTo(1, 5, 2, 5, 1, 9), Direction.NORTH);
         scene.idle(70);
-        scene.showText(60)
+        scene.showText(60, Text7)
                 .pointAt(util.vector().blockSurface(util.grid().at(2, 5, 1), Direction.WEST))
                 .attachKeyFrame();
         scene.idle(60);
-        scene.showText(60)
+        scene.showText(60, Text8)
                 .pointAt(util.vector().blockSurface(util.grid().at(4, 3, 0), Direction.WEST))
                 .attachKeyFrame();
-        scene.showText(20);
         scene.world().setKineticSpeed(util.select().position(3, 3, 0), 128);
         scene.world().setKineticSpeed(util.select().fromTo(3, 3, 1, 3, 3, 8), 128);
         scene.idle(70);
-        scene.showText(100)
+        scene.showText(100, Text9)
                 .attachKeyFrame();
         scene.idle(20);
         BlockState redstoneMagnet = CNABlocks.REDSTONE_MAGNET.getDefaultState();

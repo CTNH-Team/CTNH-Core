@@ -6,8 +6,12 @@ import net.createmod.ponder.api.scene.SceneBuildingUtil;
 import net.minecraft.core.Direction;
 
 import com.simibubi.create.foundation.ponder.CreateSceneBuilder;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 public class CTNHPonderSceneBuilder extends CreateSceneBuilder {
+
+    private String sceneId;
+    private int textIndex;
 
     public CTNHPonderSceneBuilder(SceneBuilder builder) {
         super(builder);
@@ -57,7 +61,32 @@ public class CTNHPonderSceneBuilder extends CreateSceneBuilder {
         return overlay().showText(duration).text("");
     }
 
+    public TextElementBuilder showText(int duration, Lang lang) {
+        textIndex++;
+        validateTextKey(lang);
+        return overlay().showText(duration).text("");
+    }
+
+    private void validateTextKey(Lang lang) {
+        if (sceneId == null) {
+            throw new IllegalStateException("Ponder scene title must be set before adding localized text");
+        }
+        String expectedKey = "ctnhcore.ponder." + sceneId + ".text_" + textIndex;
+        if (!lang.key().equals(expectedKey)) {
+            throw new IllegalArgumentException(
+                    "Ponder text key mismatch, expected " + expectedKey + ", got " + lang.key());
+        }
+    }
+
     public void title(String sceneId) {
+        this.sceneId = sceneId;
+        this.textIndex = 0;
         title(sceneId, "");
+    }
+
+    public void title(String sceneId, String title) {
+        this.sceneId = sceneId;
+        this.textIndex = 0;
+        super.title(sceneId, title);
     }
 }
