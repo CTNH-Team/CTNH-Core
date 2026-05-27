@@ -112,7 +112,7 @@ public class CarbonBrushes {
         scene.idle(10);
         scene.world().showSection(util.select().fromTo(1, 5, 1, 5, 1, 1), Direction.NORTH);
         scene.idle(70);
-        scene.showText(60, Text4)
+        scene.showText(60, Text6)
                 .attachKeyFrame();
         scene.idle(10);
         scene.world().showSection(util.select().fromTo(1, 5, 2, 5, 1, 9), Direction.NORTH);

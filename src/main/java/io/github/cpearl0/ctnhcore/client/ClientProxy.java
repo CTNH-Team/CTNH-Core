@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.client;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.ponder.CTNHPonderPlugin;
+import io.github.cpearl0.ctnhcore.client.ponder.CTNHPonderTextKeyValidator;
 import io.github.cpearl0.ctnhcore.client.renderer.DynamicCasingRender;
 import io.github.cpearl0.ctnhcore.client.renderer.HyperPlasmaTurbineRender;
 import io.github.cpearl0.ctnhcore.client.renderer.MartialMoralityEyeRender;
@@ -12,6 +13,7 @@ import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderManager;
 import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class ClientProxy extends CommonProxy {
@@ -22,6 +24,7 @@ public class ClientProxy extends CommonProxy {
         init();
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addListener(ClientProxy::onClientSetupEvent);
+        eventBus.addListener(ClientProxy::onLoadComplete);
     }
 
     public static void init() {
@@ -34,5 +37,9 @@ public class ClientProxy extends CommonProxy {
         event.enqueueWork(() -> {
             PonderIndex.addPlugin(new CTNHPonderPlugin());
         });
+    }
+
+    public static void onLoadComplete(FMLLoadCompleteEvent event) {
+        event.enqueueWork(CTNHPonderTextKeyValidator::validateAll);
     }
 }
