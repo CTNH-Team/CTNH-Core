@@ -57,10 +57,6 @@ public class CTNHPonderSceneBuilder extends CreateSceneBuilder {
         return this;
     }
 
-    public TextElementBuilder showText(int duration) {
-        return overlay().showText(duration).text("");
-    }
-
     public TextElementBuilder showText(int duration, Lang lang) {
         textIndex++;
         validateTextKey(lang);
