@@ -45,7 +45,15 @@ public final class CTNHPonderTags {
                 .add(CTPPMachines.CARBON_BRUSHES.getId());
 
         helper.addToTag(Mana)
-                .add(ResourceLocation.fromNamespaceAndPath("ctnhmana", "mystic_spire"));
+                .add(ResourceLocation.fromNamespaceAndPath("ctnhmana", "mystic_spire"))
+                .add(ResourceLocation.fromNamespaceAndPath("ctnhmana", "manahatch"))
+                .add(ResourceLocation.fromNamespaceAndPath("ctnhmana", "elf_manahatch"))
+                .add(ResourceLocation.fromNamespaceAndPath("ctnhmana", "giga_manahatch"))
+                .add(ResourceLocation.fromNamespaceAndPath("ctnhmana", "sky_manahatch"))
+                .add(ResourceLocation.fromNamespaceAndPath("ctnhmana", "industry_manahatch"))
+                .add(ResourceLocation.fromNamespaceAndPath("ctnhmana", "bloodmanahatch"))
+                .add(ResourceLocation.fromNamespaceAndPath("ctnhmana", "soulmanahatch"))
+                .add(ResourceLocation.fromNamespaceAndPath("ctnhmana", "creative_manahatch"));
 
         CTNHCore.LOGGER.info("Ponder tags initialized");
     }
