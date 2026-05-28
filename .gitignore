@@ -27,5 +27,11 @@ forge*changelog.txt
 src/generated/resources/.cache/*
 src/test/*
 
+# OpenCode AI orchestrator config & skills
+.opencode/
+
+# OMO
+.omo
+
 # macOS
 .DS_Store
