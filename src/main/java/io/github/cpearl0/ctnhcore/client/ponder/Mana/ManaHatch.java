@@ -86,7 +86,7 @@ public class ManaHatch {
         scene.world().showSection(util.select().position(7, 1, 4), Direction.DOWN);
         scene.title("manahatch");
         scene.idle(20);
-        scene.showText(60)
+        scene.showText(60,Text1)
                 .pointAt(hatchVec)
                 .attachKeyFrame();
         scene.idle(70);
@@ -102,13 +102,13 @@ public class ManaHatch {
         });
         scene.idle(10);
         PonderParticleUtil.sparkManaFlow(scene.effects(), poolVec, hatchVec, 160);
-        scene.showText(60)
+        scene.showText(60,Text2)
                 .pointAt(poolVec)
                 .attachKeyFrame();
         scene.idle(80);
 
         // 4. 展示 LP/液态魔力转化（指向凝聚仓本体说明）
-        scene.showText(60)
+        scene.showText(60,Text3)
                 .pointAt(hatchVec)
                 .attachKeyFrame();
         scene.idle(70);
@@ -120,7 +120,7 @@ public class ManaHatch {
         scene.idle(5);
         scene.world().showSection(util.select().fromTo(5, 1, 5, 11, 5, 10), Direction.DOWN);
         scene.idle(20);
-        scene.showText(60)
+        scene.showText(60,Text4)
                 .pointAt(wiremillVec)
                 .attachKeyFrame();
         scene.idle(80);
@@ -132,13 +132,13 @@ public class ManaHatch {
         scene.overlay().showControls(wiremillVec, Pointing.DOWN, 60)
                 .withItem(upgradeStack)
                 .rightClick();
-        scene.showText(60)
+        scene.showText(60,Text5)
                 .pointAt(wiremillVec)
                 .attachKeyFrame();
         scene.idle(70);
 
         // 7. 升级基于容量提供增幅
-        scene.showText(60)
+        scene.showText(60,Text6)
                 .pointAt(hatchVec)
                 .attachKeyFrame();
         scene.idle(70);
