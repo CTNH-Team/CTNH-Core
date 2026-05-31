@@ -11,7 +11,6 @@ import net.minecraft.resources.ResourceLocation;
 
 import com.mo_guang.ctpp.registry.CTPPMachines;
 import com.mo_guang.ctpp.registry.CTPPMultiblockMachines;
-import com.moguang.ctnhmana.registry.CMMultiblockMachines;
 import com.simibubi.create.AllBlocks;
 import org.antarcticgardens.cna.CNABlocks;
 
@@ -21,7 +20,6 @@ public final class CTNHCorePonderTags {
 
     public static final ResourceLocation Kinetic = ResourceLocation.tryBuild(CTNHCore.MODID, "kinetic");
     public static final ResourceLocation Electric = ResourceLocation.tryBuild(CTNHCore.MODID, "electric");
-    public static final ResourceLocation Mana = ResourceLocation.tryBuild(CTNHCore.MODID, "mana");
 
     public static void register(PonderTagRegistrationHelper<ResourceLocation> helper) {
         registerTag(helper, Kinetic,
@@ -38,13 +36,6 @@ public final class CTNHCorePonderTags {
                 .item(GTItems.COVER_WIRELESS_TRANSMITTER.asItem(), true, false)
                 .register();
 
-        registerTag(helper, Mana,
-                "CTNH Mana Machine", "CTNH魔力机器",
-                "CTNH Mana Machine Ponders", "CTNH魔力机器思索")
-                .addToIndex()
-                .item(net.minecraft.world.item.Items.AMETHYST_SHARD, true, false)
-                .register();
-
         helper.addToTag(Kinetic)
                 .add(CTPPMultiblockMachines.BIG_DAM.getId())
                 .add(CTPPMultiblockMachines.SMASHING_FACTORY.getId())
@@ -53,9 +44,6 @@ public final class CTNHCorePonderTags {
         helper.addToTag(Electric)
                 .add(CNABlocks.GENERATOR_COIL.getId())
                 .add(CTPPMachines.CARBON_BRUSHES.getId());
-
-        helper.addToTag(Mana)
-                .add(CMMultiblockMachines.MysticSpire.getId());
 
         CTNHCore.LOGGER.info("Ponder tags initialized");
     }

@@ -22,7 +22,7 @@ CTNH-Core is the aggregate/core mod and CI release target. It hosts shared CTNH 
 - Recipe types/modifiers/conditions: `registry/CTNHRecipeTypes.java`, `registry/CTNHRecipeModifiers.java`, `registry/CTNHRecipeConditions.java`, `registry/CTNHRecipeCategories.java`.
 - Recipe generation: `CTNHCoreGTAddon.addRecipes()` dispatches `data/recipe/**`; put most new cross-module recipes here.
 - Datagen: `data/CTNHCoreDatagen.java` plus providers under `data/provider/`.
-- Ponder: `client/ponder/CTNHCorePonderPlugin.java` registers `CTNHCorePonderScenes` and `CTNHCorePonderTags` from `ClientProxy.onClientSetupEvent()`. Scenes are grouped under `Kinetic/`, `Electric/`, and `Mana/`; text is written directly in scene files with `scene.title(..., en, cn)` / `scene.showText(..., en, cn)`.
+- Ponder: `client/ponder/CTNHCorePonderPlugin.java` registers `CTNHCorePonderScenes` and `CTNHCorePonderTags` from `ClientProxy.onClientSetupEvent()`. Core scenes are grouped under `Kinetic/` and `Electric/`. During client datagen, `CommonProxy.gatherData()` calls CTNH-Lib's `CTNHPonderLang.init(new CTNHCorePonderPlugin())`.
 
 ## CONVENTIONS
 - Namespace is `io.github.cpearl0.ctnhcore`.

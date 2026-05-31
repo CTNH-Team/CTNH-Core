@@ -3,7 +3,6 @@ package io.github.cpearl0.ctnhcore.client.ponder;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.CarbonBrushes;
 import io.github.cpearl0.ctnhcore.client.ponder.Kinetic.*;
-import io.github.cpearl0.ctnhcore.client.ponder.Mana.MysticSpire;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
@@ -15,7 +14,8 @@ import org.antarcticgardens.cna.CNABlocks;
 
 public final class CTNHCorePonderScenes {
 
-    private CTNHCorePonderScenes() {}
+    private CTNHCorePonderScenes() {
+    }
 
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> helper) {
         helper.forComponents(CTPPMultiblockMachines.BIG_DAM.getId())
@@ -35,12 +35,6 @@ public final class CTNHCorePonderScenes {
 
         helper.forComponents(ResourceLocation.fromNamespaceAndPath("jackseconomy", "mechanical_exporter"))
                 .addStoryBoard("mechanicalexporter/common", MechanicalExporter::Common, CTNHCorePonderTags.Kinetic);
-
-        // 奥法尖塔思索
-        helper.forComponents(ResourceLocation.fromNamespaceAndPath("ctnhmana", "mystic_spire"))
-                .addStoryBoard("mysticspire/scene1", MysticSpire::Scene1, CTNHCorePonderTags.Mana)
-                .addStoryBoard("mysticspire/scene2", MysticSpire::Scene2, CTNHCorePonderTags.Mana)
-                .addStoryBoard("mysticspire/scene3", MysticSpire::Scene3, CTNHCorePonderTags.Mana);
 
         CTNHCore.LOGGER.info("Ponder scenes initialized");
     }
