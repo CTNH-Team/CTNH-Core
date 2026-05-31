@@ -1,6 +1,6 @@
 package io.github.cpearl0.ctnhcore.client.ponder.Kinetic;
 
-import io.github.cpearl0.ctnhcore.client.ponder.CTNHPonderSceneBuilder;
+import io.github.cpearl0.ctnhcore.client.ponder.CTNHCorePonderSceneBuilder;
 
 import net.createmod.catnip.math.Pointing;
 import net.createmod.ponder.api.scene.SceneBuilder;
@@ -23,7 +23,7 @@ public class MechanicalExporter {
                 ResourceLocation.fromNamespaceAndPath("jackseconomy", "golden_exporter_manifest"));
         ItemStack goldenExporterManifests = new ItemStack(goldenExporterManifest);
 
-        CTNHPonderSceneBuilder scene = new CTNHPonderSceneBuilder(builder);
+        CTNHCorePonderSceneBuilder scene = new CTNHCorePonderSceneBuilder(builder);
         scene.title("mechanical_exporter_common", "Mechanical Exporter", "应力出售机");
         scene.setSceneOffsetY(-1);
         scene.idle(10);

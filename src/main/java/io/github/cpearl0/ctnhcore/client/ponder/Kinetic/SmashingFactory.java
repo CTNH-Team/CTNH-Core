@@ -1,6 +1,6 @@
 package io.github.cpearl0.ctnhcore.client.ponder.Kinetic;
 
-import io.github.cpearl0.ctnhcore.client.ponder.CTNHPonderSceneBuilder;
+import io.github.cpearl0.ctnhcore.client.ponder.CTNHCorePonderSceneBuilder;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.common.data.GTItems;
@@ -34,7 +34,7 @@ public class SmashingFactory {
         Selection crushingWheelRight = util.select().fromTo(4, 3, 2, 4, 3, 4);
         Selection crushingWheelControl = util.select().fromTo(3, 3, 2, 3, 3, 4);
 
-        CTNHPonderSceneBuilder scene = new CTNHPonderSceneBuilder(builder);
+        CTNHCorePonderSceneBuilder scene = new CTNHCorePonderSceneBuilder(builder);
         scene.title("smashing_factory_common", "How to build Smashing Factory", "如何搭建粉碎工厂", "Smashing Factory", "粉碎工厂");
         scene.init5x5(util);
         scene.setSceneOffsetY(-1);

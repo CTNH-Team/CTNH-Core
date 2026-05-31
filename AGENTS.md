@@ -1,7 +1,7 @@
 # CTNH-Core KNOWLEDGE BASE
 
 ## OVERVIEW
-CTNH-Core is the aggregate/core mod and CI release target. It hosts shared CTNH gameplay systems, GTCEu integration, large machine registries, generated data, Ponder scenes, and cross-mod content.
+CTNH-Core is the aggregate/core mod and CI release target. It hosts shared CTNH gameplay systems, GTCEu integration, large machine registries, generated data, Core-owned Ponder scenes, and cross-mod content.
 
 ## WHERE TO LOOK
 - Mod entry: `src/main/java/io/github/cpearl0/ctnhcore/CTNHCore.java`. Forge mod initialization.
@@ -10,7 +10,7 @@ CTNH-Core is the aggregate/core mod and CI release target. It hosts shared CTNH 
 - Registries: `src/main/java/io/github/cpearl0/ctnhcore/registry/`. Items, machines, recipe types, blocks.
 - Multiblocks: `src/main/java/io/github/cpearl0/ctnhcore/registry/machines/multiblock/`. Very large registries; `spotless:off/on` is intentional.
 - Recipes/datagen: `src/main/java/io/github/cpearl0/ctnhcore/data/`. Source for `src/generated/resources`.
-- Ponder/client: `src/main/java/io/github/cpearl0/ctnhcore/client/ponder/`. Create Ponder scenes and client-side helpers.
+- Ponder/client: `src/main/java/io/github/cpearl0/ctnhcore/client/ponder/`. Core-owned Create Ponder scenes, tags, plugin, and Core adapter builder; shared base builder lives in CTNH-Lib.
 - Mixins: `src/main/java/io/github/cpearl0/ctnhcore/mixin/`, `src/main/resources/ctnhcore.mixins.json`. Keep JSON and package entries synchronized.
 
 ## REGISTRATION ENTRYPOINTS
@@ -22,12 +22,14 @@ CTNH-Core is the aggregate/core mod and CI release target. It hosts shared CTNH 
 - Recipe types/modifiers/conditions: `registry/CTNHRecipeTypes.java`, `registry/CTNHRecipeModifiers.java`, `registry/CTNHRecipeConditions.java`, `registry/CTNHRecipeCategories.java`.
 - Recipe generation: `CTNHCoreGTAddon.addRecipes()` dispatches `data/recipe/**`; put most new cross-module recipes here.
 - Datagen: `data/CTNHCoreDatagen.java` plus providers under `data/provider/`.
+- Ponder: `client/ponder/CTNHCorePonderPlugin.java` registers `CTNHCorePonderScenes` and `CTNHCorePonderTags` from `ClientProxy.onClientSetupEvent()`. Scenes are grouped under `Kinetic/`, `Electric/`, and `Mana/`; text is written directly in scene files with `scene.title(..., en, cn)` / `scene.showText(..., en, cn)`.
 
 ## CONVENTIONS
 - Namespace is `io.github.cpearl0.ctnhcore`.
 - `src/generated/resources` is large and produced by `:modules:CTNH-Core:runData`.
 - CI builds this module only; changes in other modules should still be validated through `:modules:CTNH-Core:build` when they affect aggregation.
 - Some generated recipe Java lives under `data/recipe/generated`; distinguish Java recipe generators from JSON generated resources.
+- Ponder `CTNHCorePonderSceneBuilder` is only a Core adapter around Lib's shared builder; keep reusable builder/text behavior in CTNH-Lib.
 
 ## COMMANDS
 ```bash

@@ -17,7 +17,7 @@ import org.antarcticgardens.cna.CNABlocks;
 
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
-public final class CTNHPonderTags {
+public final class CTNHCorePonderTags {
 
     public static final ResourceLocation Kinetic = ResourceLocation.tryBuild(CTNHCore.MODID, "kinetic");
     public static final ResourceLocation Electric = ResourceLocation.tryBuild(CTNHCore.MODID, "electric");

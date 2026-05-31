@@ -1,6 +1,6 @@
 package io.github.cpearl0.ctnhcore.client.ponder.Kinetic;
 
-import io.github.cpearl0.ctnhcore.client.ponder.CTNHPonderSceneBuilder;
+import io.github.cpearl0.ctnhcore.client.ponder.CTNHCorePonderSceneBuilder;
 
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
@@ -27,7 +27,7 @@ public class BigDam {
         Selection MainBlock = util.select().position(23, 2, 1);
         Vec3 MainBlockTextVec = util.vector().blockSurface(util.grid().at(24, 2, 1), Direction.WEST);
 
-        CTNHPonderSceneBuilder scene = new CTNHPonderSceneBuilder(builder);
+        CTNHCorePonderSceneBuilder scene = new CTNHCorePonderSceneBuilder(builder);
         scene.title("big_dam_common", "How to build Big Dam", "如何搭建三峡大坝", "Big Dam", "三峡大坝");
         scene.initAll(util);
         scene.scaleSceneView(0.2F);
@@ -73,7 +73,7 @@ public class BigDam {
         BlockPos InputHatchPos = util.grid().at(25, 3, 1);
         Vec3 InputHatchVec = util.vector().blockSurface(InputHatchPos.below(), Direction.WEST);
 
-        CTNHPonderSceneBuilder scene = new CTNHPonderSceneBuilder(builder);
+        CTNHCorePonderSceneBuilder scene = new CTNHCorePonderSceneBuilder(builder);
 
         scene.title("big_dam_work", "How to make the Big Dam work", "如何使三峡大坝工作");
         scene.initAll(util);

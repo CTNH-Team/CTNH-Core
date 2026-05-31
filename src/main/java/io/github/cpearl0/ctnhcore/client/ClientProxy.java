@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.client;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.client.ponder.CTNHPonderPlugin;
+import io.github.cpearl0.ctnhcore.client.ponder.CTNHCorePonderPlugin;
 import io.github.cpearl0.ctnhcore.client.renderer.DynamicCasingRender;
 import io.github.cpearl0.ctnhcore.client.renderer.HyperPlasmaTurbineRender;
 import io.github.cpearl0.ctnhcore.client.renderer.MartialMoralityEyeRender;
@@ -32,7 +32,7 @@ public class ClientProxy extends CommonProxy {
 
     public static void onClientSetupEvent(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-            PonderIndex.addPlugin(new CTNHPonderPlugin());
+            PonderIndex.addPlugin(new CTNHCorePonderPlugin());
         });
     }
 }

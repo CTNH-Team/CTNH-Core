@@ -1,6 +1,6 @@
 package io.github.cpearl0.ctnhcore.client.ponder.Mana;
 
-import io.github.cpearl0.ctnhcore.client.ponder.CTNHPonderSceneBuilder;
+import io.github.cpearl0.ctnhcore.client.ponder.CTNHCorePonderSceneBuilder;
 
 import net.createmod.catnip.math.Pointing;
 import net.createmod.ponder.api.scene.SceneBuilder;
@@ -23,7 +23,7 @@ public class MysticSpire {
 
     // 奥法尖塔
     public static void Scene1(SceneBuilder builder, SceneBuildingUtil util) {
-        CTNHPonderSceneBuilder scene = new CTNHPonderSceneBuilder(builder);
+        CTNHCorePonderSceneBuilder scene = new CTNHCorePonderSceneBuilder(builder);
         scene.setSceneOffsetY(-1);
         scene.scaleSceneView(0.4F);
         scene.idle(10);
@@ -103,7 +103,7 @@ public class MysticSpire {
 
     // 奥法尖塔的属性
     public static void Scene2(SceneBuilder builder, SceneBuildingUtil util) {
-        CTNHPonderSceneBuilder scene = new CTNHPonderSceneBuilder(builder);
+        CTNHCorePonderSceneBuilder scene = new CTNHCorePonderSceneBuilder(builder);
         scene.setSceneOffsetY(-1);
         scene.scaleSceneView(0.4F);
         scene.idle(10);
@@ -171,7 +171,7 @@ public class MysticSpire {
 
     // 奥法尖塔的模式
     public static void Scene3(SceneBuilder builder, SceneBuildingUtil util) {
-        CTNHPonderSceneBuilder scene = new CTNHPonderSceneBuilder(builder);
+        CTNHCorePonderSceneBuilder scene = new CTNHCorePonderSceneBuilder(builder);
         scene.setSceneOffsetY(-1);
         scene.scaleSceneView(0.4F);
         scene.idle(10);

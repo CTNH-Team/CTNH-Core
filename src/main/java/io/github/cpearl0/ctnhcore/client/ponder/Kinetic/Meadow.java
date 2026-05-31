@@ -1,6 +1,6 @@
 package io.github.cpearl0.ctnhcore.client.ponder.Kinetic;
 
-import io.github.cpearl0.ctnhcore.client.ponder.CTNHPonderSceneBuilder;
+import io.github.cpearl0.ctnhcore.client.ponder.CTNHCorePonderSceneBuilder;
 
 import com.gregtechceu.gtceu.common.data.GTItems;
 
@@ -22,7 +22,7 @@ public class Meadow {
         Selection mainBlock = util.select().position(6, 1, 1);
         Vec3 mainBlockVec = util.vector().blockSurface(util.grid().at(6, 1, 1), Direction.WEST);
 
-        CTNHPonderSceneBuilder scene = new CTNHPonderSceneBuilder(builder);
+        CTNHCorePonderSceneBuilder scene = new CTNHCorePonderSceneBuilder(builder);
         scene.title("meadow_common", "How to build Meadow", "如何搭建牧场", "Meadow", "牧场");
         scene.initAll(util);
         scene.setSceneOffsetY(10);

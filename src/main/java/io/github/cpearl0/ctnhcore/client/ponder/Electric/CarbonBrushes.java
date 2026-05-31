@@ -1,6 +1,6 @@
 package io.github.cpearl0.ctnhcore.client.ponder.Electric;
 
-import io.github.cpearl0.ctnhcore.client.ponder.CTNHPonderSceneBuilder;
+import io.github.cpearl0.ctnhcore.client.ponder.CTNHCorePonderSceneBuilder;
 
 import net.createmod.ponder.api.scene.SceneBuilder;
 import net.createmod.ponder.api.scene.SceneBuildingUtil;
@@ -15,7 +15,7 @@ public class CarbonBrushes {
     private CarbonBrushes() {}
 
     public static void ponder(SceneBuilder builder, SceneBuildingUtil util) {
-        CTNHPonderSceneBuilder scene = new CTNHPonderSceneBuilder(builder);
+        CTNHCorePonderSceneBuilder scene = new CTNHCorePonderSceneBuilder(builder);
 
         Selection magnet1 = util.select().fromTo(4, 5, 1, 2, 5, 8);
         Selection magnet2 = util.select().fromTo(4, 1, 1, 2, 1, 8);

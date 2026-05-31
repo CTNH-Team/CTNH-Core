@@ -13,34 +13,34 @@ import com.mo_guang.ctpp.registry.CTPPMachines;
 import com.mo_guang.ctpp.registry.CTPPMultiblockMachines;
 import org.antarcticgardens.cna.CNABlocks;
 
-public final class CTNHPonderScenes {
+public final class CTNHCorePonderScenes {
 
-    private CTNHPonderScenes() {}
+    private CTNHCorePonderScenes() {}
 
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> helper) {
         helper.forComponents(CTPPMultiblockMachines.BIG_DAM.getId())
-                .addStoryBoard("bigdam/common", BigDam::Common, CTNHPonderTags.Kinetic)
-                .addStoryBoard("bigdam/common", BigDam::Work, CTNHPonderTags.Kinetic);
+                .addStoryBoard("bigdam/common", BigDam::Common, CTNHCorePonderTags.Kinetic)
+                .addStoryBoard("bigdam/common", BigDam::Work, CTNHCorePonderTags.Kinetic);
 
         helper.forComponents(CTPPMultiblockMachines.SMASHING_FACTORY.getId())
-                .addStoryBoard("smashing_factory/common", SmashingFactory::Common, CTNHPonderTags.Kinetic);
+                .addStoryBoard("smashing_factory/common", SmashingFactory::Common, CTNHCorePonderTags.Kinetic);
 
         helper.forComponents(MultiblocksA.MEADOW.getId())
-                .addStoryBoard("meadow/common", Meadow::Common, CTNHPonderTags.Kinetic);
+                .addStoryBoard("meadow/common", Meadow::Common, CTNHCorePonderTags.Kinetic);
 
         helper.forComponents(CNABlocks.GENERATOR_COIL.getId())
-                .addStoryBoard("carbonbrushes/common", CarbonBrushes::ponder, CTNHPonderTags.Electric);
+                .addStoryBoard("carbonbrushes/common", CarbonBrushes::ponder, CTNHCorePonderTags.Electric);
         helper.forComponents(CTPPMachines.CARBON_BRUSHES.getId())
-                .addStoryBoard("carbonbrushes/common", CarbonBrushes::ponder, CTNHPonderTags.Electric);
+                .addStoryBoard("carbonbrushes/common", CarbonBrushes::ponder, CTNHCorePonderTags.Electric);
 
         helper.forComponents(ResourceLocation.fromNamespaceAndPath("jackseconomy", "mechanical_exporter"))
-                .addStoryBoard("mechanicalexporter/common", MechanicalExporter::Common, CTNHPonderTags.Kinetic);
+                .addStoryBoard("mechanicalexporter/common", MechanicalExporter::Common, CTNHCorePonderTags.Kinetic);
 
         // 奥法尖塔思索
         helper.forComponents(ResourceLocation.fromNamespaceAndPath("ctnhmana", "mystic_spire"))
-                .addStoryBoard("mysticspire/scene1", MysticSpire::Scene1, CTNHPonderTags.Mana)
-                .addStoryBoard("mysticspire/scene2", MysticSpire::Scene2, CTNHPonderTags.Mana)
-                .addStoryBoard("mysticspire/scene3", MysticSpire::Scene3, CTNHPonderTags.Mana);
+                .addStoryBoard("mysticspire/scene1", MysticSpire::Scene1, CTNHCorePonderTags.Mana)
+                .addStoryBoard("mysticspire/scene2", MysticSpire::Scene2, CTNHCorePonderTags.Mana)
+                .addStoryBoard("mysticspire/scene3", MysticSpire::Scene3, CTNHCorePonderTags.Mana);
 
         CTNHCore.LOGGER.info("Ponder scenes initialized");
     }
