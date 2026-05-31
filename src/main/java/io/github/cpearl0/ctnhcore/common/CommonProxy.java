@@ -4,6 +4,7 @@ import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.world.CTNHChunkLoading;
 import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
+import io.github.cpearl0.ctnhcore.data.lang.PonderLang;
 import io.github.cpearl0.ctnhcore.data.materials.AeCrystalScienceMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.AeOmniMaterials;
 import io.github.cpearl0.ctnhcore.registry.*;
@@ -135,6 +136,10 @@ public class CommonProxy {
                     packOutput, registries, new RegistrySetBuilder()
                             .add(Registries.DAMAGE_TYPE, CTNHDamageTypes::bootstrap),
                     set));
+        }
+
+        if (event.includeClient()) {
+            PonderLang.init();
         }
     }
 }

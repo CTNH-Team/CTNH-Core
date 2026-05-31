@@ -1,12 +1,18 @@
 package io.github.cpearl0.ctnhcore.client.ponder;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+
+import com.gregtechceu.gtceu.GTCEu;
+
 import net.createmod.ponder.api.element.TextElementBuilder;
 import net.createmod.ponder.api.scene.SceneBuilder;
 import net.createmod.ponder.api.scene.SceneBuildingUtil;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 
 import com.simibubi.create.foundation.ponder.CreateSceneBuilder;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+
+import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class CTNHPonderSceneBuilder extends CreateSceneBuilder {
 
@@ -57,21 +63,10 @@ public class CTNHPonderSceneBuilder extends CreateSceneBuilder {
         return this;
     }
 
-    public TextElementBuilder showText(int duration, Lang lang) {
-        textIndex++;
-        validateTextKey(lang);
+    public TextElementBuilder showText(int duration, String en, String cn) {
+        String key = nextTextKey();
+        registerLang(key, en, cn);
         return overlay().showText(duration).text("");
-    }
-
-    private void validateTextKey(Lang lang) {
-        if (sceneId == null) {
-            throw new IllegalStateException("Ponder scene title must be set before adding localized text");
-        }
-        String expectedKey = "ctnhcore.ponder." + sceneId + ".text_" + textIndex;
-        if (!lang.key().equals(expectedKey)) {
-            throw new IllegalArgumentException(
-                    "Ponder text key mismatch, expected " + expectedKey + ", got " + lang.key());
-        }
     }
 
     public void title(String sceneId) {
@@ -84,5 +79,36 @@ public class CTNHPonderSceneBuilder extends CreateSceneBuilder {
         this.sceneId = sceneId;
         this.textIndex = 0;
         super.title(sceneId, title);
+    }
+
+    public void title(String sceneId, String en, String cn) {
+        title(sceneId, en);
+        registerLang(sceneLangKey("title"), en, cn);
+        registerLang(sceneLangKey("header"), en, cn);
+    }
+
+    public void title(String sceneId, String headerEn, String headerCn, String titleEn, String titleCn) {
+        title(sceneId, headerEn);
+        registerLang(sceneLangKey("title"), titleEn, titleCn);
+        registerLang(sceneLangKey("header"), headerEn, headerCn);
+    }
+
+    public void title(String sceneId, Component component) {
+        String text = component.getString();
+        title(sceneId, text, text);
+    }
+
+    private String nextTextKey() {
+        return sceneLangKey("text_" + ++textIndex);
+    }
+
+    private String sceneLangKey(String entry) {
+        return CTNHCore.MODID + ".ponder." + sceneId + "." + entry;
+    }
+
+    private void registerLang(String key, String en, String cn) {
+        if (GTCEu.isDataGen()) {
+            REGISTRATE.genLang(key, en, cn);
+        }
     }
 }
