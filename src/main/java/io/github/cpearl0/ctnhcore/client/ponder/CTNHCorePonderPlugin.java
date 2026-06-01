@@ -7,7 +7,7 @@ import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;
 import net.minecraft.resources.ResourceLocation;
 
-public class CTNHPonderPlugin implements PonderPlugin {
+public class CTNHCorePonderPlugin implements PonderPlugin {
 
     @Override
     public String getModId() {
@@ -16,11 +16,11 @@ public class CTNHPonderPlugin implements PonderPlugin {
 
     @Override
     public void registerScenes(PonderSceneRegistrationHelper<ResourceLocation> helper) {
-        CTNHPonderScenes.register(helper);
+        CTNHCorePonderScenes.register(helper);
     }
 
     @Override
     public void registerTags(PonderTagRegistrationHelper<ResourceLocation> helper) {
-        CTNHPonderTags.register(helper);
+        CTNHCorePonderTags.register(helper);
     }
 }
