@@ -28,6 +28,7 @@ public class PitchblendeRefiningMaterials {
     public static Material URANIUM_DIOXIDE;
     public static Material THORIUM_NITRATE_SOLUTION;
     public static Material THORIUM_OXIDE;
+    public static Material SODIUM_NITRATE;
 
     public static void init() {
         URANYL_CHLORIDE_SOLUTION = REGISTRATE.material(CTNHCore.id("uranyl_chloride_solution"))
@@ -143,6 +144,13 @@ public class PitchblendeRefiningMaterials {
                 .color(0x757373)
                 .components(Thorium, 1, Oxygen, 1)
                 .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+
+        SODIUM_NITRATE = REGISTRATE.material(CTNHCore.id("sodium_nitrate"))
+                .cnlang("硝酸钠")
+                .dust()
+                .color(0xF0F0C8)
+                .components(Sodium, 1, Nitrogen, 1, Oxygen, 3)
                 .buildAndRegister();
     }
 }

@@ -22,6 +22,10 @@ public class RecipeRemoval {
         EIORecipes.eioRemovals();
         QuantumOmniRecipes.omniRemovals();
         crafttableRecipeRemovals();
+        tConstructRemovals();
+        biomancyRemovals();
+        functionalStorageRemovals();
+        dieselGeneratorRemovals();
         // 放最后
         ctnhRemovals(registry);
     }
@@ -55,6 +59,91 @@ public class RecipeRemoval {
                 "deep_aether:skyroot_crafting_table",
                 "aether:skyroot_crafting_table",
                 "aether:skyroot_chest"));
+    }
+
+    public static void tConstructRemovals() {
+        var materials = List.of("diamond", "emerald", "precious_alloy", "tin", "silver", "zinc", "nickel", "lead",
+                "beryllium", "molybdenum", "brass", "gold", "iron", "bronze", "copper", "cobalt",
+                "manganese", "slag", "steel", "aluminum", "uranium", "glass", "invar", "platinum");
+        var ids = new ArrayList<String>();
+        ids.addAll(List.of(
+                // 删除TiC安山合金配方 (regex patterns skipped)
+                "tconstruct:smeltery/casting/clay/block",
+                "tconstruct:smeltery/melting/metal/iron/chain_boots",
+                "tconstruct:smeltery/melting/metal/iron/chain_chestplate",
+                "tconstruct:smeltery/melting/metal/iron/chain_helmet",
+                "tconstruct:smeltery/melting/metal/iron/chain_leggings",
+                "tconstruct:smeltery/casting/filling/scorched_ingot_gauge",
+                "tconstruct:smeltery/casting/filling/scorched_ingot_tank",
+                "tconstruct:smeltery/casting/filling/scorched_fuel_gauge",
+                "tconstruct:smeltery/casting/filling/scorched_fuel_tank",
+                "tconstruct:smeltery/casting/filling/scorched_lantern_full",
+                "tconstruct:smeltery/casting/filling/scorched_lantern_pixel",
+                "tconstruct:smeltery/casting/filling/seared_ingot_tank",
+                "tconstruct:smeltery/casting/filling/seared_ingot_gauge",
+                "tconstruct:smeltery/casting/filling/seared_fuel_gauge",
+                "tconstruct:smeltery/casting/filling/seared_fuel_tank",
+                "tconstruct:smeltery/casting/filling/seared_lantern_full",
+                "tconstruct:smeltery/casting/filling/seared_lantern_pixel",
+                "tconstruct:smeltery/melting/metal/iron/nugget",
+                "tconstruct:smeltery/entity_melting/heads/creeper",
+                "tconstruct:smeltery/melting/amethyst/tinted_glass",
+                "tconstruct:smeltery/melting/ender/end_crystal",
+                "tconstruct:smeltery/melting/metal/copper/gauge",
+                "tconstruct:smeltery/melting/obsidian/beacon",
+                "tconstruct:smeltery/melting/obsidian/gauge",
+                "tconstruct:smeltery/melting/quartz/daylight_detector",
+                "tconstruct:smeltery/melting/scorched/glass_tinted",
+                "tconstruct:smeltery/melting/seared/fluid_cannon",
+                "tconstruct:smeltery/melting/seared/fuel_tank",
+                "tconstruct:smeltery/melting/seared/gauge",
+                "tconstruct:smeltery/melting/seared/glass",
+                "tconstruct:smeltery/melting/seared/glass_tinted",
+                "tconstruct:smeltery/melting/seared/ingot_tank",
+                "tconstruct:smeltery/melting/seared/lantern",
+                "tconstruct:smeltery/melting/seared/melter",
+                "tconstruct:smeltery/melting/seared/pane",
+                "tconstruct:smeltery/melting/seared/seared_casting_tank",
+                "tconstruct:tools/materials/melting/glass",
+                "tconstruct:smeltery/casting/ender/eye"));
+        // 熔铸炉矿物配方 (generated IDs)
+        for (String m : materials) {
+            ids.add("tconstruct:smeltery/melting/metal/" + m + "/raw");
+            ids.add("tconstruct:smeltery/melting/metal/" + m + "/raw_block");
+            ids.add("tconstruct:smeltery/melting/metal/" + m + "/ore_singular");
+            ids.add("tconstruct:smeltery/melting/metal/" + m + "/ore_dense");
+            ids.add("tconstruct:smeltery/melting/metal/" + m + "/ore_sparse");
+            ids.add("tconstruct:smeltery/melting/metal/" + m + "/geore");
+        }
+        ids.add("tconstruct:smeltery/melting/metal/gold/gilded_blackstone");
+        ids.add("tconstruct:smeltery/melting/metal/gold/nether_gold_ore");
+        removePaths.addAll(ids);
+    }
+
+    public static void biomancyRemovals() {
+        // biomancy:bio_brewing, biomancy:bio_forging, biomancy:digesting — recipe type removal
+        // (handled via GTCEu remove recipe type mechanism)
+    }
+
+    public static void dieselGeneratorRemovals() {
+        removePaths.addAll(List.of(
+                "createdieselgenerators:crafting/engine_piston_from_rods",
+                "createdieselgenerators:mixing/asphalt_block",
+                "createdieselgenerators:crafting/asphalt_block",
+                "createdieselgenerators:mixing/biodiesel"));
+    }
+
+    public static void functionalStorageRemovals() {
+        removePaths.addAll(List.of(
+                "functionalstorage:storage_controller",
+                "functionalstorage:framed_storage_controller",
+                "functionalstorage:copper_upgrade",
+                "functionalstorage:gold_upgrade",
+                "functionalstorage:diamond_upgrade",
+                "functionalstorage:netherite_upgrade",
+                "functionalstorage:oak_drawer_alternate_x1",
+                "functionalstorage:oak_drawer_alternate_x2",
+                "functionalstorage:oak_drawer_alternate_x4"));
     }
 
     public static void ctnhRemovals(Consumer<ResourceLocation> registry) {

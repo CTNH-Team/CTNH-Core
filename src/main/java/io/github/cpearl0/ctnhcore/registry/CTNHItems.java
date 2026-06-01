@@ -54,17 +54,86 @@ public class CTNHItems {
         REGISTRATE.creativeModeTab(() -> CTNHCreativeModeTabs.ITEM);
     }
 
+    public static ItemEntry<Item> GENERAL_CIRCUIT_ULV;
+    public static ItemEntry<Item> GENERAL_CIRCUIT_LV;
+    public static ItemEntry<Item> GENERAL_CIRCUIT_MV;
+    public static ItemEntry<Item> GENERAL_CIRCUIT_HV;
+    public static ItemEntry<Item> GENERAL_CIRCUIT_EV;
+    public static ItemEntry<Item> GENERAL_CIRCUIT_IV;
+    public static ItemEntry<Item> GENERAL_CIRCUIT_LUV;
+    public static ItemEntry<Item> GENERAL_CIRCUIT_ZPM;
+    public static ItemEntry<Item> GENERAL_CIRCUIT_UV;
+    public static ItemEntry<Item> GENERAL_CIRCUIT_UHV;
+    public static ItemEntry<Item> GENERAL_CIRCUIT_UEV;
+    public static ItemEntry<Item> GENERAL_CIRCUIT_UIV;
+    public static ItemEntry<Item> GENERAL_CIRCUIT_UXV;
+    public static ItemEntry<Item> GENERAL_CIRCUIT_OPV;
+    public static ItemEntry<Item> GENERAL_CIRCUIT_MAX;
+
+    public static final ItemEntry<Item>[] GENERAL_CIRCUITS = new ItemEntry[15];
+
     private static void registerGeneralCircuits() {
-        String[] tierNames = { "ULV", "LV", "MV", "HV", "EV", "IV", "LuV", "ZPM", "UV", "UHV", "UEV", "UIV", "UXV",
-                "OpV", "MAX" };
-        for (int i = 0; i < CustomTags.CIRCUITS_ARRAY.length; i++) {
-            String tier = tierNames[i].toLowerCase();
-            REGISTRATE.item("general_circuit_" + tier, Item::new)
-                    .cnlang(tierNames[i] + "级电路板")
-                    .lang("General Circuit " + tierNames[i])
-                    .tag(CustomTags.CIRCUITS_ARRAY[i])
-                    .register();
-        }
+        GENERAL_CIRCUIT_ULV = REGISTRATE.item("general_circuit_ulv", Item::new)
+                .cnlang("ULV级电路板").lang("General Circuit ULV")
+                .tag(CustomTags.ULV_CIRCUITS).register();
+        GENERAL_CIRCUIT_LV = REGISTRATE.item("general_circuit_lv", Item::new)
+                .cnlang("LV级电路板").lang("General Circuit LV")
+                .tag(CustomTags.LV_CIRCUITS).register();
+        GENERAL_CIRCUIT_MV = REGISTRATE.item("general_circuit_mv", Item::new)
+                .cnlang("MV级电路板").lang("General Circuit MV")
+                .tag(CustomTags.MV_CIRCUITS).register();
+        GENERAL_CIRCUIT_HV = REGISTRATE.item("general_circuit_hv", Item::new)
+                .cnlang("HV级电路板").lang("General Circuit HV")
+                .tag(CustomTags.HV_CIRCUITS).register();
+        GENERAL_CIRCUIT_EV = REGISTRATE.item("general_circuit_ev", Item::new)
+                .cnlang("EV级电路板").lang("General Circuit EV")
+                .tag(CustomTags.EV_CIRCUITS).register();
+        GENERAL_CIRCUIT_IV = REGISTRATE.item("general_circuit_iv", Item::new)
+                .cnlang("IV级电路板").lang("General Circuit IV")
+                .tag(CustomTags.IV_CIRCUITS).register();
+        GENERAL_CIRCUIT_LUV = REGISTRATE.item("general_circuit_luv", Item::new)
+                .cnlang("LuV级电路板").lang("General Circuit LuV")
+                .tag(CustomTags.LuV_CIRCUITS).register();
+        GENERAL_CIRCUIT_ZPM = REGISTRATE.item("general_circuit_zpm", Item::new)
+                .cnlang("ZPM级电路板").lang("General Circuit ZPM")
+                .tag(CustomTags.ZPM_CIRCUITS).register();
+        GENERAL_CIRCUIT_UV = REGISTRATE.item("general_circuit_uv", Item::new)
+                .cnlang("UV级电路板").lang("General Circuit UV")
+                .tag(CustomTags.UV_CIRCUITS).register();
+        GENERAL_CIRCUIT_UHV = REGISTRATE.item("general_circuit_uhv", Item::new)
+                .cnlang("UHV级电路板").lang("General Circuit UHV")
+                .tag(CustomTags.UHV_CIRCUITS).register();
+        GENERAL_CIRCUIT_UEV = REGISTRATE.item("general_circuit_uev", Item::new)
+                .cnlang("UEV级电路板").lang("General Circuit UEV")
+                .tag(CustomTags.UEV_CIRCUITS).register();
+        GENERAL_CIRCUIT_UIV = REGISTRATE.item("general_circuit_uiv", Item::new)
+                .cnlang("UIV级电路板").lang("General Circuit UIV")
+                .tag(CustomTags.UIV_CIRCUITS).register();
+        GENERAL_CIRCUIT_UXV = REGISTRATE.item("general_circuit_uxv", Item::new)
+                .cnlang("UXV级电路板").lang("General Circuit UXV")
+                .tag(CustomTags.UXV_CIRCUITS).register();
+        GENERAL_CIRCUIT_OPV = REGISTRATE.item("general_circuit_opv", Item::new)
+                .cnlang("OpV级电路板").lang("General Circuit OpV")
+                .tag(CustomTags.OpV_CIRCUITS).register();
+        GENERAL_CIRCUIT_MAX = REGISTRATE.item("general_circuit_max", Item::new)
+                .cnlang("MAX级电路板").lang("General Circuit MAX")
+                .tag(CustomTags.MAX_CIRCUITS).register();
+
+        GENERAL_CIRCUITS[0] = GENERAL_CIRCUIT_ULV;
+        GENERAL_CIRCUITS[1] = GENERAL_CIRCUIT_LV;
+        GENERAL_CIRCUITS[2] = GENERAL_CIRCUIT_MV;
+        GENERAL_CIRCUITS[3] = GENERAL_CIRCUIT_HV;
+        GENERAL_CIRCUITS[4] = GENERAL_CIRCUIT_EV;
+        GENERAL_CIRCUITS[5] = GENERAL_CIRCUIT_IV;
+        GENERAL_CIRCUITS[6] = GENERAL_CIRCUIT_LUV;
+        GENERAL_CIRCUITS[7] = GENERAL_CIRCUIT_ZPM;
+        GENERAL_CIRCUITS[8] = GENERAL_CIRCUIT_UV;
+        GENERAL_CIRCUITS[9] = GENERAL_CIRCUIT_UHV;
+        GENERAL_CIRCUITS[10] = GENERAL_CIRCUIT_UEV;
+        GENERAL_CIRCUITS[11] = GENERAL_CIRCUIT_UIV;
+        GENERAL_CIRCUITS[12] = GENERAL_CIRCUIT_UXV;
+        GENERAL_CIRCUITS[13] = GENERAL_CIRCUIT_OPV;
+        GENERAL_CIRCUITS[14] = GENERAL_CIRCUIT_MAX;
     }
 
     public static ItemEntry<Item> GREAT_ASTRONOMY_CIRCUIT_1 = REGISTRATE

@@ -34,6 +34,10 @@ dependencies {
 //    modImplementation(ctnh.createoreexcavation)
     modImplementation(ctnh.creatediesel)
     modImplementation(ctnh.createnewage)
+    modImplementation(ctnh.farmersdelight)
+    modImplementation(ctnh.clothconfig)
+    modImplementation(ctnh.ecologics)
+    modImplementation(ctnh.mynethersdelight)
 
     // season
     modImplementation(ctnh.glitchcore)
@@ -59,7 +63,6 @@ dependencies {
 
     modImplementation(ctnh.architecturyapi)
     modImplementation(ctnh.ftblibrary)
-    modImplementation(ctnh.ftbultimine)
     modImplementation(ctnh.ftbteams)
     modImplementation(ctnh.ftbchunks)
 
@@ -103,10 +106,22 @@ dependencies {
 
     modImplementation(ctnh.javd)
     modImplementation(ctnh.trenzalore)
-    modImplementation(ctnh.sophisticatedcore)
+    modCompileOnly(ctnh.sophisticatedcore)
     modImplementation(ctnh.sophisticatedbackpacks)
+    modImplementation(ctnh.sophisticatedstorage)
     modImplementation(ctnh.alexscaves)
     modImplementation(ctnh.citadel)
+
+    def isDatagen = gradle.startParameter.taskNames.any { it.toLowerCase().contains("rundata") }
+    if (isDatagen) {
+        modCompileOnly(ctnh.immersiveaircraft)
+        modCompileOnly(ctnh.ftbultimine)
+        modCompileOnly(ctnh.createcafe)
+    } else {
+        modImplementation(ctnh.immersiveaircraft)
+        modImplementation(ctnh.ftbultimine)
+        modImplementation(ctnh.createcafe)
+    }
 
     modLocalRuntime(ctnh.curios)
     modLocalRuntime(ctnh.constructionwand)
@@ -114,9 +129,16 @@ dependencies {
     // Jack's Economy
     modImplementation(ctnh.jackseconomy)
     modLocalRuntime(ctnh.curios)
-    modLocalRuntime(ctnh.constructionwand)
 
     modImplementation(ctnh.lendercataclysm)
 
     modImplementation(ctnh.angelblock)
+    modImplementation(ctnh.angelring)
+
+    // GT Portal
+    modImplementation(ctnh.gtportal)
+
+    // Functional Storage (needs Titanium)
+    modImplementation(ctnh.titanium)
+    modImplementation(ctnh.functionalstorage)
 }

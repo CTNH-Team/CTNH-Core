@@ -4,7 +4,10 @@ import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps;
 import io.github.cpearl0.ctnhcore.data.recipe.*;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.*;
 import io.github.cpearl0.ctnhcore.data.recipe.cogniassembly.WetwareCircuit;
+import io.github.cpearl0.ctnhcore.data.recipe.create.CafeRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.create.CreateRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.create.DieselGeneratorRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.create.MetallurgyRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.generated.HyperRotorRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.DigesterRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.EternalGardenRecipes;
@@ -115,6 +118,16 @@ public class CTNHCoreGTAddon implements IGTAddon {
         QuantumOmniRecipes.init(provider);
         EUCellRecipes.init(provider);
         // 移植配方
+        GeneralCircuitRecipes.init(provider);
+        NanoRecipes.init(provider);
+        GTPortalRecipes.init(provider);
+        DecorateBlockRecipes.init(provider);
+        FunctionalStorageRecipes.init(provider);
+        CafeRecipes.init(provider);
+        SunRecipes.init(provider);
+        TinkersRecipes.init(provider);
+        SophisticatedStorageRecipes.init(provider);
+        ImmersiveAircraftRecipes.init(provider);
         NaquadahReactorRecipes.init(provider);
         DefaultRecipes.init(provider);
         CrafttableScriptRecipe.init(provider);
@@ -153,6 +166,8 @@ public class CTNHCoreGTAddon implements IGTAddon {
         ZirconChain.init(provider);
 
         CreateRecipes.init(provider);
+        DieselGeneratorRecipes.init(provider);
+        MetallurgyRecipes.init(provider);
 
         CasingRecipes.init(provider);
         UHVPartsRecipe.init(provider);

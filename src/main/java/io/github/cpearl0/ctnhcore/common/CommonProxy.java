@@ -2,9 +2,9 @@ package io.github.cpearl0.ctnhcore.common;
 
 import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.client.ponder.CTNHCorePonderPlugin;
 import io.github.cpearl0.ctnhcore.common.world.CTNHChunkLoading;
 import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
-import io.github.cpearl0.ctnhcore.client.ponder.CTNHCorePonderPlugin;
 import io.github.cpearl0.ctnhcore.data.materials.AeCrystalScienceMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.AeOmniMaterials;
 import io.github.cpearl0.ctnhcore.registry.*;
@@ -14,7 +14,6 @@ import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.GTMachineModify;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.material.GTMaterialAddon;
-import tech.vixhentx.mcmod.ctnhlib.client.ponder.CTNHPonderLang;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.DimensionMarker;
@@ -40,6 +39,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+import tech.vixhentx.mcmod.ctnhlib.client.ponder.CTNHPonderLang;
 
 import java.util.Set;
 
@@ -135,7 +136,7 @@ public class CommonProxy {
             generator.addProvider(true, new BiomeTagsLoader(packOutput, registries, existingFileHelper));
             DatapackBuiltinEntriesProvider provider = generator.addProvider(true, new DatapackBuiltinEntriesProvider(
                     packOutput, registries, new RegistrySetBuilder()
-                    .add(Registries.DAMAGE_TYPE, CTNHDamageTypes::bootstrap),
+                            .add(Registries.DAMAGE_TYPE, CTNHDamageTypes::bootstrap),
                     set));
         }
 

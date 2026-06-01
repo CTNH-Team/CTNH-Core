@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.data.recipe.create;
 
-import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.CreateMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.EnderIOMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.SpecialMaterials;
@@ -25,13 +24,9 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.mo_guang.ctpp.common.recipe.builder.create.*;
 import com.mo_guang.ctpp.registry.CTPPBlocks;
 import com.mo_guang.ctpp.registry.CTPPItems;
@@ -39,7 +34,6 @@ import com.mo_guang.ctpp.registry.CTPPMaterials;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 
-import java.util.Objects;
 import java.util.function.Consumer;
 
 public class CreateRecipes {
@@ -278,7 +272,7 @@ public class CreateRecipes {
         if (!copperDust.isEmpty() && !tinDust.isEmpty() && !leadDust.isEmpty() && !potinDust.isEmpty()) {
             MixingRecipeBuilder.builder("potin_from_dusts").input(new ItemStack(copperDust.getItem(), 6))
                     .input(new ItemStack(tinDust.getItem(), 2)).input(leadDust)
-                    .output(new ItemStack(potinDust.getItem(), 8)).save(provider);
+                    .output(new ItemStack(potinDust.getItem(), 8)).heated().save(provider);
         }
 
         // rose quartz from quartz + redstone
@@ -287,7 +281,7 @@ public class CreateRecipes {
         ItemStack roseQuartz = AllItems.ROSE_QUARTZ.asStack();
         if (!quartz.isEmpty() && !redstone.isEmpty() && !roseQuartz.isEmpty()) {
             MixingRecipeBuilder.builder("rose_quartz_from_quartz_redstone").input(quartz)
-                    .input(new ItemStack(redstone.getItem(), 4)).output(roseQuartz).save(provider);
+                    .input(new ItemStack(redstone.getItem(), 4)).output(roseQuartz).heated().save(provider);
         }
 
         // rose quartz from rose quartz chunk + water
@@ -309,6 +303,7 @@ public class CreateRecipes {
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Calcite))
                 .inputFluid(GTMaterials.Water.getFluid(1000))
                 .resultFluid(GTMaterials.Concrete.getFluid(1000))
+                .heated()
                 .save(provider);
 
         // andesite alloy dust from iron fluid + dusts
@@ -329,14 +324,15 @@ public class CreateRecipes {
         MixingRecipeBuilder.builder("treated_wood_planks_from_creosote")
                 .result(new ItemStack(GTBlocks.TREATED_WOOD_PLANK.asItem(), 2))
                 .inputFluid(GTMaterials.Creosote.getFluid(250))
-                .input(tag("minecraft:planks"))
+                .input(tag("minecraft:planks"), 2)
                 .save(provider);
 
         // red alloy dust
         MixingRecipeBuilder.builder("red_alloy_dust")
                 .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.RedAlloy))
-                .input(new ItemStack(Items.REDSTONE))
+                .input(new ItemStack(Items.REDSTONE, 4))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Copper))
+                .heated()
                 .save(provider);
 
         // andesite_alloy_dust with chance secondary
@@ -355,11 +351,13 @@ public class CreateRecipes {
                     .result(new ItemStack(steelPrecursorDust.getItem(), 8))
                     .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.WroughtIron).getItem(), 8))
                     .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Coke).getItem(), 3))
+                    .heated()
                     .save(provider);
             MixingRecipeBuilder.builder("steel_precursor_from_wrought_and_charcoal")
                     .result(new ItemStack(steelPrecursorDust.getItem(), 8))
                     .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.WroughtIron).getItem(), 8))
-                    .input(tag("forge:dusts/charcoal"))
+                    .input(tag("forge:dusts/charcoal"), 6)
+                    .heated()
                     .save(provider);
         }
 
@@ -368,6 +366,7 @@ public class CreateRecipes {
                 .result(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Bronze).getItem(), 3))
                 .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Copper).getItem(), 3))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Tin))
+                .heated()
                 .save(provider);
 
         // alexscaves magnets
@@ -813,48 +812,14 @@ public class CreateRecipes {
         ItemStack certusQuartzDust = ChemicalHelper.get(TagPrefix.dust, GTMaterials.CertusQuartz);
         ItemStack glassDust = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Glass);
         ItemStack quartzGlassDust = ChemicalHelper.get(TagPrefix.dust, SpecialMaterials.QUARTZ_GLASS, 2);
-        provider.accept(new FinishedRecipe() {
-
-            @Override
-            public void serializeRecipeData(JsonObject json) {
-                json.addProperty("type", "create:mixing");
-
-                JsonArray ingredients = new JsonArray();
-                ingredients.add(Ingredient.of(certusQuartzDust).toJson());
-                ingredients.add(Ingredient.of(glassDust).toJson());
-                json.add("ingredients", ingredients);
-
-                JsonArray results = new JsonArray();
-                JsonObject result = new JsonObject();
-                result.addProperty("item",
-                        Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(quartzGlassDust.getItem())).toString());
-                result.addProperty("count", quartzGlassDust.getCount());
-                results.add(result);
-                json.add("results", results);
-                json.addProperty("heatRequirement", "heated");
-            }
-
-            @Override
-            public ResourceLocation getId() {
-                return CTNHCore.id("mixing/quartz_glass_dust");
-            }
-
-            @Override
-            public RecipeSerializer<?> getType() {
-                return Objects.requireNonNull(
-                        ForgeRegistries.RECIPE_SERIALIZERS.getValue(ResourceLocation.parse("create:mixing")));
-            }
-
-            @Override
-            public JsonObject serializeAdvancement() {
-                return null;
-            }
-
-            @Override
-            public ResourceLocation getAdvancementId() {
-                return null;
-            }
-        });
+        if (!certusQuartzDust.isEmpty() && !glassDust.isEmpty() && !quartzGlassDust.isEmpty()) {
+            MixingRecipeBuilder.builder("quartz_glass_dust")
+                    .input(certusQuartzDust)
+                    .input(glassDust)
+                    .output(quartzGlassDust)
+                    .heated()
+                    .save(provider);
+        }
     }
 
     private static Item item(String id) {
