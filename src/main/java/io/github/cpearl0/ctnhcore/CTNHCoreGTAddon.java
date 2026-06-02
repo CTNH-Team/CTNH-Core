@@ -5,10 +5,12 @@ import io.github.cpearl0.ctnhcore.data.recipe.*;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.*;
 import io.github.cpearl0.ctnhcore.data.recipe.cogniassembly.WetwareCircuit;
 import io.github.cpearl0.ctnhcore.data.recipe.create.CafeRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.create.CreateMetallurgyRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.create.CreateOreExcavationRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.create.CreateRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.create.DieselGeneratorRecipes;
-import io.github.cpearl0.ctnhcore.data.recipe.create.MetallurgyRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.generated.HyperRotorRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.immersiveaircraft.ImmersiveAircraftRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.DigesterRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.EternalGardenRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.MiscManaRecipes;
@@ -18,6 +20,7 @@ import io.github.cpearl0.ctnhcore.data.recipe.migrated.GtceuScriptRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.EIORecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.omnicells.QuantumOmniRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.multiblock.*;
+import io.github.cpearl0.ctnhcore.data.recipe.tconstruct.TConstructRecipes;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 
@@ -131,6 +134,8 @@ public class CTNHCoreGTAddon implements IGTAddon {
         NaquadahReactorRecipes.init(provider);
         DefaultRecipes.init(provider);
         CrafttableScriptRecipe.init(provider);
+        ApothesisScriptRecipe.init(provider);
+        SophisticatedBackpacksScriptRecipe.init(provider);
         AlumiumChain.init(provider);
         PlatinumLine.init(provider);
         BrineChain.init(provider);
@@ -167,7 +172,11 @@ public class CTNHCoreGTAddon implements IGTAddon {
 
         CreateRecipes.init(provider);
         DieselGeneratorRecipes.init(provider);
-        MetallurgyRecipes.init(provider);
+
+        ImmersiveAircraftRecipes.init(provider);
+        CreateOreExcavationRecipes.init(provider);
+        CreateMetallurgyRecipes.init(provider);
+        TConstructRecipes.init(provider);
 
         CasingRecipes.init(provider);
         UHVPartsRecipe.init(provider);

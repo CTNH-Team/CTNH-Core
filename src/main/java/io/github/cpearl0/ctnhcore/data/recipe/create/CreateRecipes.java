@@ -1,8 +1,11 @@
 package io.github.cpearl0.ctnhcore.data.recipe.create;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.data.materials.BiodieselFertileSoilMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.CreateMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.EnderIOMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.SpecialMaterials;
+import io.github.cpearl0.ctnhcore.data.materials.UncategorizedMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
@@ -11,29 +14,38 @@ import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
-import com.gregtechceu.gtceu.common.data.GCYMBlocks;
-import com.gregtechceu.gtceu.common.data.GTBlocks;
-import com.gregtechceu.gtceu.common.data.GTItems;
-import com.gregtechceu.gtceu.common.data.GTMachines;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.api.data.tag.TagUtil;
+import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.data.recipe.CustomTags;
+import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import com.google.gson.JsonArray;
+import com.jesz.createdieselgenerators.CDGBlocks;
+import com.jesz.createdieselgenerators.CDGItems;
+import com.jesz.createdieselgenerators.CreateDieselGenerators;
 import com.mo_guang.ctpp.common.recipe.builder.create.*;
+import com.mo_guang.ctpp.common.recipe.builder.create.diesel.BasinFermentingRecipeBuilder;
+import com.mo_guang.ctpp.common.recipe.builder.create.diesel.DistillationRecipeBuilder;
 import com.mo_guang.ctpp.registry.CTPPBlocks;
 import com.mo_guang.ctpp.registry.CTPPItems;
 import com.mo_guang.ctpp.registry.CTPPMaterials;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
+import com.simibubi.create.content.processing.recipe.HeatCondition;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class CreateRecipes {
@@ -202,7 +214,7 @@ public class CreateRecipes {
             MechanicalCraftingRecipeBuilder.builder("javd_portal_block")
                     .pattern("AAAAA", "ABCBA", "ACDCA", "ABCBA", "AAAAA")
                     .key('A', doubleShadowSteelPlate)
-                    .key('B', tag("gtceu:circuits/hv"))
+                    .key('B', CustomTags.HV_CIRCUITS)
                     .key('C', ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.BlackSteel))
                     .key('D', GTBlocks.MACHINE_CASING_HV.asStack())
                     .output(AllBlocks.ENCASED_FAN.asStack()).save(provider);
@@ -271,8 +283,9 @@ public class CreateRecipes {
         addHeatedQuartzGlassMixing(provider);
         if (!copperDust.isEmpty() && !tinDust.isEmpty() && !leadDust.isEmpty() && !potinDust.isEmpty()) {
             MixingRecipeBuilder.builder("potin_from_dusts").input(new ItemStack(copperDust.getItem(), 6))
-                    .input(new ItemStack(tinDust.getItem(), 2)).input(leadDust)
-                    .output(new ItemStack(potinDust.getItem(), 8)).heated().save(provider);
+                    .input(new ItemStack(tinDust.getItem(), 2))
+                    .input(leadDust)
+                    .output(new ItemStack(potinDust.getItem(), 8)).save(provider);
         }
 
         // rose quartz from quartz + redstone
@@ -281,7 +294,8 @@ public class CreateRecipes {
         ItemStack roseQuartz = AllItems.ROSE_QUARTZ.asStack();
         if (!quartz.isEmpty() && !redstone.isEmpty() && !roseQuartz.isEmpty()) {
             MixingRecipeBuilder.builder("rose_quartz_from_quartz_redstone").input(quartz)
-                    .input(new ItemStack(redstone.getItem(), 4)).output(roseQuartz).heated().save(provider);
+                    .input(new ItemStack(redstone.getItem(), 4))
+                    .output(roseQuartz).save(provider);
         }
 
         // rose quartz from rose quartz chunk + water
@@ -303,7 +317,7 @@ public class CreateRecipes {
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Calcite))
                 .inputFluid(GTMaterials.Water.getFluid(1000))
                 .resultFluid(GTMaterials.Concrete.getFluid(1000))
-                .heated()
+                .heatRequirement("heated")
                 .save(provider);
 
         // andesite alloy dust from iron fluid + dusts
@@ -324,7 +338,7 @@ public class CreateRecipes {
         MixingRecipeBuilder.builder("treated_wood_planks_from_creosote")
                 .result(new ItemStack(GTBlocks.TREATED_WOOD_PLANK.asItem(), 2))
                 .inputFluid(GTMaterials.Creosote.getFluid(250))
-                .input(tag("minecraft:planks"), 2)
+                .input(ItemTags.PLANKS, 2)
                 .save(provider);
 
         // red alloy dust
@@ -332,7 +346,7 @@ public class CreateRecipes {
                 .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.RedAlloy))
                 .input(new ItemStack(Items.REDSTONE, 4))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Copper))
-                .heated()
+                .heatRequirement("heated")
                 .save(provider);
 
         // andesite_alloy_dust with chance secondary
@@ -344,20 +358,18 @@ public class CreateRecipes {
                 .save(provider);
 
         // steel precursor mixing (wrought iron + coke or charcoal) - simplified as two recipes
-        ItemStack steelPrecursorDust = item("gtceu:steel_precursor_dust") == null ? ItemStack.EMPTY :
-                new ItemStack(item("gtceu:steel_precursor_dust"));
+        ItemStack steelPrecursorDust = ChemicalHelper.get(TagPrefix.dust, UncategorizedMaterials.STEEL_PRECURSOR, 8);
         if (!steelPrecursorDust.isEmpty()) {
             MixingRecipeBuilder.builder("steel_precursor_from_wrought_and_coke")
                     .result(new ItemStack(steelPrecursorDust.getItem(), 8))
                     .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.WroughtIron).getItem(), 8))
                     .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Coke).getItem(), 3))
-                    .heated()
+                    .heatRequirement("heated")
                     .save(provider);
             MixingRecipeBuilder.builder("steel_precursor_from_wrought_and_charcoal")
                     .result(new ItemStack(steelPrecursorDust.getItem(), 8))
                     .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.WroughtIron).getItem(), 8))
-                    .input(tag("forge:dusts/charcoal"), 6)
-                    .heated()
+                    .input(TagUtil.createItemTag("dusts/charcoal", false), 6)
                     .save(provider);
         }
 
@@ -366,7 +378,7 @@ public class CreateRecipes {
                 .result(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Bronze).getItem(), 3))
                 .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Copper).getItem(), 3))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Tin))
-                .heated()
+                .heatRequirement("heated")
                 .save(provider);
 
         // alexscaves magnets
@@ -390,9 +402,8 @@ public class CreateRecipes {
         // item_application: shadow steel casing
         ItemApplicationRecipeBuilder.builder("shadow_steel_casing_item_application")
                 .input(Items.OBSIDIAN)
-                .input(item("gtceu:shadow_steel_plate") == null ? ItemStack.EMPTY :
-                        new ItemStack(item("gtceu:shadow_steel_plate")))
-                .result(AllBlocks.SHADOW_STEEL_CASING.asStack())
+                .input(ChemicalHelper.get(TagPrefix.plate, CreateMaterials.ShadowSteel).getItem())
+                .output(AllBlocks.SHADOW_STEEL_CASING.asStack())
                 .save(provider);
 
         // mixing: chromatic compound
@@ -408,13 +419,11 @@ public class CreateRecipes {
         MixingRecipeBuilder.builder("gold_nuggets_from_aqua_regia")
                 .result(new ItemStack(ChemicalHelper.get(TagPrefix.nugget, GTMaterials.Gold).getItem(), 5))
                 .inputFluid(GTMaterials.AquaRegia.getFluid(500))
-                .input(item("gtceu:ochrum_dust") == null ? ItemStack.EMPTY :
-                        new ItemStack(item("gtceu:ochrum_dust"), 2))
+                .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.OCHRUM).getItem(), 2))
                 .save(provider);
 
         // splashing series (ores -> outputs)
-        ItemStack asurineIn = item("gtceu:asurine_dust") == null ? ItemStack.EMPTY :
-                new ItemStack(item("gtceu:asurine_dust"));
+        ItemStack asurineIn = ChemicalHelper.get(TagPrefix.dust, CreateMaterials.ASURINE);
         ItemStack asurineSil = ChemicalHelper.get(TagPrefix.dust, GTMaterials.SiliconDioxide);
         ItemStack asurineZn = ChemicalHelper.get(TagPrefix.nugget, GTMaterials.Zinc);
         if (!asurineIn.isEmpty() && !asurineSil.isEmpty()) {
@@ -425,8 +434,7 @@ public class CreateRecipes {
                     .save(provider);
         }
 
-        ItemStack crimsiteIn = item("gtceu:crimsite_dust") == null ? ItemStack.EMPTY :
-                new ItemStack(item("gtceu:crimsite_dust"));
+        ItemStack crimsiteIn = ChemicalHelper.get(TagPrefix.dust, CreateMaterials.CRIMSITE);
         ItemStack crimsiteSil = ChemicalHelper.get(TagPrefix.dust, GTMaterials.SiliconDioxide);
         ItemStack crimsiteIron = ChemicalHelper.get(TagPrefix.nugget, GTMaterials.Iron);
         if (!crimsiteIn.isEmpty() && !crimsiteSil.isEmpty()) {
@@ -437,8 +445,7 @@ public class CreateRecipes {
                     .save(provider);
         }
 
-        ItemStack ochrumIn = item("gtceu:ochrum_dust") == null ? ItemStack.EMPTY :
-                new ItemStack(item("gtceu:ochrum_dust"));
+        ItemStack ochrumIn = ChemicalHelper.get(TagPrefix.dust, CreateMaterials.OCHRUM);
         ItemStack ochrumSil = ChemicalHelper.get(TagPrefix.dust, GTMaterials.SiliconDioxide);
         ItemStack ochrumPrec = ChemicalHelper.get(TagPrefix.nugget, GTMaterials.Gold);
         if (!ochrumIn.isEmpty() && !ochrumSil.isEmpty()) {
@@ -449,8 +456,7 @@ public class CreateRecipes {
                     .save(provider);
         }
 
-        ItemStack veridiumIn = item("gtceu:veridium_dust") == null ? ItemStack.EMPTY :
-                new ItemStack(item("gtceu:veridium_dust"));
+        ItemStack veridiumIn = ChemicalHelper.get(TagPrefix.dust, CreateMaterials.VERIDIUM);
         ItemStack veridiumSil = ChemicalHelper.get(TagPrefix.dust, GTMaterials.SiliconDioxide);
         ItemStack veridiumCu = ChemicalHelper.get(TagPrefix.nugget, GTMaterials.Copper);
         if (!veridiumIn.isEmpty() && !veridiumSil.isEmpty()) {
@@ -505,8 +511,7 @@ public class CreateRecipes {
         // recipes (skip)
 
         // item_application/mixing/splashing for precious alloy dust -> gold nuggets
-        ItemStack preciousIn = item("gtceu:precious_alloy_dust") == null ? ItemStack.EMPTY :
-                new ItemStack(item("gtceu:precious_alloy_dust"));
+        ItemStack preciousIn = ChemicalHelper.get(TagPrefix.dust, CTNHMaterials.PreciousAlloy);
         if (!preciousIn.isEmpty()) {
             SplashingRecipeBuilder splash = SplashingRecipeBuilder
                     .builder("splashing_precious_alloy_gold").input(preciousIn);
@@ -532,7 +537,7 @@ public class CreateRecipes {
         ItemStack basicMechanism = CTPPItems.BASIC_MECHANISM.asStack();
         if (!incompleteBasic.isEmpty() && !basicMechanism.isEmpty()) {
             SequencedAssemblyRecipeBuilder.builder("basic_mechanism_from_slabs")
-                    .input(tag("minecraft:wooden_slabs"))
+                    .input(ItemTags.WOODEN_SLABS)
                     .transitional(incompleteBasic)
                     .result(basicMechanism)
                     .deploying(ChemicalHelper.get(TagPrefix.ingot, CTPPMaterials.AndesiteAlloy))
@@ -699,8 +704,8 @@ public class CreateRecipes {
                     .pressing()
                     .step("create_new_age:energising", json -> {
                         json.addProperty("energy_needed", 10000);
-                        json.add("ingredients", SequencedAssemblyRecipeBuilder.ingredients(resinBoard));
-                        json.add("results", SequencedAssemblyRecipeBuilder.ingredients(resinBoard));
+                        json.add("ingredients", stackElements(resinBoard));
+                        json.add("results", stackElements(resinBoard));
                     })
                     .loops(1)
                     .save(provider);
@@ -746,7 +751,7 @@ public class CreateRecipes {
         ItemStack ulvInputBus = GTMachines.ITEM_IMPORT_BUS[GTValues.ULV].asStack();
         if (!ulvInputBus.isEmpty()) {
             SequencedAssemblyRecipeBuilder.builder("ulv_input_bus_from_wooden_chest")
-                    .input(tag("forge:chests/wooden"))
+                    .input(TagUtil.createItemTag("chests/wooden", false))
                     .transitional(ulvInputBus)
                     .result(ulvInputBus)
                     .deploying(CTPPItems.STEEL_MECHANISM.asStack())
@@ -777,13 +782,13 @@ public class CreateRecipes {
                     .input(tungstenFrame)
                     .transitional(tungstenFrame)
                     .result(assemblyLineCasing)
-                    .deploying(tag("gtceu:circuits/zpm"))
+                    .deploying(CustomTags.ZPM_CIRCUITS)
                     .pressing()
                     .pressing()
-                    .deploying(tag("gtceu:circuits/zpm"))
+                    .deploying(CustomTags.ZPM_CIRCUITS)
                     .pressing()
                     .pressing()
-                    .deploying(tag("gtceu:circuits/luv"))
+                    .deploying(CustomTags.LuV_CIRCUITS)
                     .pressing()
                     .loops(2)
                     .save(provider);
@@ -806,20 +811,246 @@ public class CreateRecipes {
                     .loops(4)
                     .save(provider);
         }
+        addMigratedKubeJsCreateRecipes(provider);
+    }
+
+    private static void addMigratedKubeJsCreateRecipes(Consumer<FinishedRecipe> provider) {
+        // 迁移来源：Z:\Git\Create-New-Horizon\kubejs\server_scripts\src\create\cafe.js
+        addCafeRecipes(provider);
+        // 迁移来源：Z:\Git\Create-New-Horizon\kubejs\server_scripts\src\create\createFallen.js
+        addCreateFallenRecipes(provider);
+        // 迁移来源：Z:\Git\Create-New-Horizon\kubejs\server_scripts\src\create\dieselgenerator.js
+        addDieselGeneratorRecipes(provider);
+        // 迁移来源：Z:\Git\Create-New-Horizon\kubejs\server_scripts\src\create\Vintage_Improvements.js
+        CreateVintageRecipe.addRecipes(provider);
+    }
+
+    private static void addCafeRecipes(Consumer<FinishedRecipe> provider) {
+        MixingRecipeBuilder.builder("createcafe_blueberry_tea")
+                .input(Objects.requireNonNull(item("aether:blue_berry")))
+                .inputFluid(GTMaterials.Milk.getFluid(250))
+                .inputFluid("createcafe:melted_sugar", 250)
+                .resultFluid(fluidStack("createcafe:blueberry_tea", 500))
+                .save(provider);
+        MixingRecipeBuilder.builder("createcafe_coconut_tea")
+                .input(Objects.requireNonNull(item("ecologics:coconut_slice")))
+                .inputFluid(GTMaterials.Milk.getFluid(250))
+                .inputFluid("createcafe:melted_sugar", 250)
+                .resultFluid(fluidStack("createcafe:coconut_tea", 500))
+                .save(provider);
+        MixingRecipeBuilder.builder("createcafe_coconut_syrup")
+                .input(Objects.requireNonNull(item("ecologics:coconut_slice")))
+                .inputFluid(GTMaterials.Milk.getFluid(250))
+                .inputFluid("createcafe:melted_sugar", 750)
+                .resultFluid(fluidStack("createcafe:coconut_syrup", 1000))
+                .save(provider);
+        MixingRecipeBuilder.builder("createcafe_pomegranate_tea")
+                .input(Objects.requireNonNull(item("ars_nouveau:bombegranate_pod")))
+                .inputFluid(GTMaterials.Milk.getFluid(250))
+                .inputFluid("createcafe:melted_sugar", 250)
+                .resultFluid(fluidStack("createcafe:pomegranate_tea", 500))
+                .save(provider);
+        MixingRecipeBuilder.builder("createcafe_blood_tea")
+                .input(Objects.requireNonNull(item("gtceu:snow_steel_ingot")))
+                .inputFluid(GTMaterials.Milk.getFluid(250))
+                .inputFluid("createcafe:melted_sugar", 250)
+                .resultFluid(fluidStack("createcafe:blood_tea", 500))
+                .save(provider);
+    }
+
+    private static void addCreateFallenRecipes(Consumer<FinishedRecipe> provider) {
+        addPhenolicCircuitSequence(provider);
+        CrushingRecipeBuilder.builder("createfallen_logs_to_wood_dust")
+                .input(Ingredient.of(ItemTags.LOGS))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Wood), 0.8)
+                .save(provider);
+        CrushingRecipeBuilder.builder("createfallen_planks_to_wood_dust")
+                .input(Ingredient.of(ItemTags.PLANKS))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Wood), 0.4)
+                .save(provider);
+        rawSequencedResinBoard(provider);
+        MixingRecipeBuilder.builder("createfallen_rubber_powder_from_sulfur")
+                .input(Ingredient.of(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Sulfur)))
+                .input(Ingredient.of(ChemicalHelper.get(TagPrefix.dust, GTMaterials.RawRubber, 3)))
+                .output(CTNHItems.RUBBER_POWDER.asStack())
+                .save(provider);
+        MixingRecipeBuilder.builder("createfallen_rubber_powder_from_alex_sulfur")
+                .input(Ingredient.of(new ItemStack(Objects.requireNonNull(item("alexscaves:sulfur_dust")))))
+                .input(Ingredient.of(ChemicalHelper.get(TagPrefix.dust, GTMaterials.RawRubber, 3)))
+                .output(CTNHItems.RUBBER_POWDER.asStack())
+                .save(provider);
+    }
+
+    private static void addDieselGeneratorRecipes(Consumer<FinishedRecipe> provider) {
+        VanillaRecipeHelper.addShapedRecipe(provider,
+                CreateDieselGenerators.rl("crafting/engine_piston"),
+                new ItemStack(CDGItems.ENGINE_PISTON.get(), 2),
+                "AB ", "BC ", "  D",
+                'A', CTPPItems.STEEL_MECHANISM.asStack(),
+                'B', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Iron),
+                'C', Items.PISTON,
+                'D', ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Zinc));
+        VanillaRecipeHelper.addShapedRecipe(provider,
+                CreateDieselGenerators.rl("crafting/pumpjack_hole"),
+                new ItemStack(CDGBlocks.PUMPJACK_HOLE.get()),
+                "ABA", "CDC", "EFE",
+                'A', CTPPItems.STEEL_MECHANISM.asStack(),
+                'B', AllBlocks.HOSE_PULLEY.asStack(),
+                'C', AllBlocks.COPPER_CASING.asStack(),
+                'D', CTPPBlocks.STEEL_CASING.asStack(),
+                'E', Items.CHAIN,
+                'F', AllBlocks.FLUID_PIPE.asStack());
+        VanillaRecipeHelper.addShapedRecipe(provider,
+                CreateDieselGenerators.rl("crafting/pumpjack_bearing"),
+                new ItemStack(CDGBlocks.PUMPJACK_BEARING.get()),
+                "   ", "ABA", "ACA",
+                'A', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel),
+                'B', AllBlocks.MECHANICAL_BEARING.asStack(),
+                'C', CTPPBlocks.HEAVY_MACHINERY_CASING.asStack());
+        VanillaRecipeHelper.addShapedRecipe(provider,
+                CreateDieselGenerators.rl("crafting/basin_lid"),
+                new ItemStack(CDGBlocks.BASIN_LID.get()),
+                "   ", "ABA", "CDC",
+                'A', Items.REDSTONE,
+                'B', ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Steel),
+                'C', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel),
+                'D', Items.CLOCK);
+        ItemApplicationRecipeBuilder.builder(CreateDieselGenerators.ID + "_steel_casing_application")
+                .input(GTBlocks.TREATED_WOOD_PLANK.asStack())
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
+                .output(CTPPBlocks.STEEL_CASING.asStack())
+                .save(provider);
+        ItemApplicationRecipeBuilder.builder(CreateDieselGenerators.ID + "_heavy_machinery_casing_application")
+                .input(CTPPBlocks.STEEL_CASING.asStack())
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
+                .output(CTPPBlocks.HEAVY_MACHINERY_CASING.asStack())
+                .save(provider);
+        MixingRecipeBuilder.builder(CreateDieselGenerators.ID + "_emulsified_bitumen_slurry")
+                .inputFluid(BiodieselFertileSoilMaterials.BITUMEN.getFluid(800))
+                .inputFluid(BiodieselFertileSoilMaterials.SIMPLE_EMULGATOR.getFluid(200))
+                .resultFluid(BiodieselFertileSoilMaterials.EMULSIFIED_BITUMEN_SLURRY.getFluid(1000))
+                .save(provider);
+        CompactingRecipeBuilder.builder(CTNHCore.id(CreateDieselGenerators.ID + "/emulsified_bitumen"))
+                .inputFluid(BiodieselFertileSoilMaterials.EMULSIFIED_BITUMEN_SLURRY.getFluid(1000))
+                .resultFluid(BiodieselFertileSoilMaterials.EMULSIFIED_BITUMEN.getFluid(1000))
+                .result(ChemicalHelper.get(TagPrefix.dust, BiodieselFertileSoilMaterials.OIL_REFINED_RESIDUES, 2))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Salt, 1))
+                .save(provider);
+        MixingRecipeBuilder.builder(CreateDieselGenerators.ID + "_pure_bitumen")
+                .inputFluid(BiodieselFertileSoilMaterials.EMULSIFIED_BITUMEN.getFluid(800))
+                .inputFluid(BiodieselFertileSoilMaterials.SIMPLE_DEMULSIFIER.getFluid(200))
+                .resultFluid(BiodieselFertileSoilMaterials.PURE_BITUMEN.getFluid(1000))
+                .save(provider);
+        MixingRecipeBuilder.builder(CreateDieselGenerators.ID + "_simple_emulgator")
+                .input(Ingredient.of(ChemicalHelper.get(TagPrefix.dust, GTMaterials.SodaAsh, 6)))
+                .input(CTNHItems.TALLOW.asStack())
+                .inputFluid(GTMaterials.Water.getFluid(1000))
+                .resultFluid(BiodieselFertileSoilMaterials.SIMPLE_EMULGATOR.getFluid(1000))
+                .save(provider);
+        MixingRecipeBuilder.builder(CreateDieselGenerators.ID + "_simple_demulsifier")
+                .input(CTNHItems.TALLOW.asStack())
+                .inputFluid(GTMaterials.DilutedSulfuricAcid.getFluid(1000))
+                .resultFluid(BiodieselFertileSoilMaterials.SIMPLE_DEMULSIFIER.getFluid(1000))
+                .save(provider);
+        CompactingRecipeBuilder.builder(CTNHCore.id(CreateDieselGenerators.ID + "/petroleum_coke_gem"))
+                .inputFluid(BiodieselFertileSoilMaterials.PETROLEUM_COKE.getFluid(144))
+                .result(itemStack("gtceu:petroleum_coke_gem", 1))
+                .save(provider);
+        MixingRecipeBuilder.builder(CreateDieselGenerators.ID + "_asphalt_block")
+                .input(Items.SAND)
+                .input(Items.GRAVEL)
+                .inputFluid(BiodieselFertileSoilMaterials.PURE_BITUMEN.getFluid(100))
+                .output(new ItemStack(CDGBlocks.ASPHALT_BLOCK.get(), 4))
+                .save(provider);
+        MixingRecipeBuilder.builder(CreateDieselGenerators.ID + "_raw_bio_diesel")
+                .inputFluid(GTMaterials.Ethanol.getFluid(100))
+                .inputFluid(GTMaterials.SeedOil.getFluid(100))
+                .resultFluid(BiodieselFertileSoilMaterials.RAW_BIO_DIESEL.getFluid(200))
+                .save(provider);
+        addDieselGeneratorCustomRecipes(provider);
+        CrushingRecipeBuilder.builder(CreateDieselGenerators.ID + "_rich_soil_dust")
+                .input(Ingredient
+                        .of(Objects.requireNonNull(item("farmersdelight:rich_soil"), "farmersdelight:rich_soil")))
+                .output(new ItemStack(Objects.requireNonNull(item("gtceu:rich_soil_dust"), "gtceu:rich_soil_dust"), 3))
+                .save(provider);
+        CrushingRecipeBuilder.builder(CreateDieselGenerators.ID + "_rich_soul_soil_dust")
+                .input(Ingredient.of(Objects.requireNonNull(item("mynethersdelight:resurgent_soil"),
+                        "mynethersdelight:resurgent_soil")))
+                .output(new ItemStack(Objects.requireNonNull(item("gtceu:rich_soul_soil_dust"),
+                        "gtceu:rich_soul_soil_dust"), 3))
+                .save(provider);
+    }
+
+    private static void addPhenolicCircuitSequence(Consumer<FinishedRecipe> provider) {
+        ItemStack phenolicBoard = itemStack("gtceu:phenolic_circuit_board");
+        SequencedAssemblyRecipeBuilder.builder(
+                CTNHCore.id("createfallen/good_electronic_circuit_from_phenolic_board"))
+                .input(phenolicBoard)
+                .transitional(phenolicBoard)
+                .result(itemStack("gtceu:good_electronic_circuit"))
+                .deploying(ChemicalHelper.get(TagPrefix.wireGtDouble, GTMaterials.Silver, 1))
+                .deploying(ChemicalHelper.get(TagPrefix.wireGtSingle, GTMaterials.Copper, 1))
+                .deploying(itemStack("gtceu:basic_electronic_circuit"))
+                .deploying(GTItems.DIODE.asStack())
+                .filling(phenolicBoard, GTMaterials.Tin.getFluid(144))
+                .step("create_new_age:energising", json -> {
+                    json.addProperty("energy_needed", 10000);
+                    json.add("ingredients", stackElements(phenolicBoard));
+                    json.add("results", stackElements(phenolicBoard));
+                })
+                .loops(2)
+                .save(provider);
+    }
+
+    private static void rawSequencedResinBoard(Consumer<FinishedRecipe> provider) {
+        ItemStack circuitBoardMOne = itemStack("ctnhcore:circuit_board_m_one");
+        SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("createfallen/resin_printed_circuit_board"))
+                .input(itemStack("gtceu:wood_plate"))
+                .transitional(circuitBoardMOne)
+                .result(itemStack("gtceu:resin_printed_circuit_board"))
+                .deploying(itemStack("gtceu:copper_foil"))
+                .filling(circuitBoardMOne, GTMaterials.Glue.getFluid(25))
+                .pressing()
+                .loops(4)
+                .save(provider);
+    }
+
+    private static void addDieselGeneratorCustomRecipes(Consumer<FinishedRecipe> provider) {
+        BasinFermentingRecipeBuilder.builder(CreateDieselGenerators.rl("basin_fermenting/fermentable"))
+                .input(TagUtil.createItemTag("fermentable", false))
+                .inputFluid(GTMaterials.Water.getFluid(200))
+                .input(itemStack("gtceu:small_rich_soil_dust"))
+                .duration(200)
+                .resultFluid(BiodieselFertileSoilMaterials.ETHANOL_MIXTURE.getFluid(200))
+                .result("gtceu:normal_yeast_dust", 1, 0.1)
+                .result("gtceu:small_rich_soil_dust", 1, 0.8)
+                .save(provider);
+
+        DistillationRecipeBuilder.builder(CTNHCore.id(CreateDieselGenerators.ID + "/ethanol_mixture_distillation"))
+                .inputFluid(BiodieselFertileSoilMaterials.ETHANOL_MIXTURE.getFluid(100))
+                .heatRequirement(HeatCondition.HEATED)
+                .duration(200)
+                .resultFluid(GTMaterials.FermentedBiomass.getFluid(30))
+                .resultFluid(GTMaterials.Ethanol.getFluid(50))
+                .resultFluid(GTMaterials.Methanol.getFluid(20))
+                .save(provider);
+    }
+
+    private static JsonArray stackElements(ItemStack... stacks) {
+        JsonArray array = new JsonArray();
+        for (ItemStack stack : stacks) {
+            array.add(Ingredient.of(stack).toJson());
+        }
+        return array;
     }
 
     private static void addHeatedQuartzGlassMixing(Consumer<FinishedRecipe> provider) {
-        ItemStack certusQuartzDust = ChemicalHelper.get(TagPrefix.dust, GTMaterials.CertusQuartz);
-        ItemStack glassDust = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Glass);
-        ItemStack quartzGlassDust = ChemicalHelper.get(TagPrefix.dust, SpecialMaterials.QUARTZ_GLASS, 2);
-        if (!certusQuartzDust.isEmpty() && !glassDust.isEmpty() && !quartzGlassDust.isEmpty()) {
-            MixingRecipeBuilder.builder("quartz_glass_dust")
-                    .input(certusQuartzDust)
-                    .input(glassDust)
-                    .output(quartzGlassDust)
-                    .heated()
-                    .save(provider);
-        }
+        MixingRecipeBuilder.builder(CTNHCore.id("mixing/quartz_glass_dust"))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.CertusQuartz))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Glass))
+                .result(ChemicalHelper.get(TagPrefix.dust, SpecialMaterials.QUARTZ_GLASS, 2))
+                .heatRequirement(HeatCondition.HEATED)
+                .save(provider);
     }
 
     private static Item item(String id) {
@@ -831,10 +1062,20 @@ public class CreateRecipes {
         return ForgeRegistries.ITEMS.getValue(rl);
     }
 
-    private static TagKey<Item> tag(String id) {
-        if (id == null || id.isEmpty()) return null;
-        ResourceLocation rl = ResourceLocation.tryParse(id);
-        if (rl == null) return null;
-        return TagKey.create(Registries.ITEM, rl);
+    private static ItemLike itemLike(String id) {
+        return Objects.requireNonNull(item(id), id);
+    }
+
+    private static ItemStack itemStack(String id, int count) {
+        return new ItemStack(itemLike(id), count);
+    }
+
+    private static ItemStack itemStack(String id) {
+        return itemStack(id, 1);
+    }
+
+    private static FluidStack fluidStack(String id, int amount) {
+        ResourceLocation rl = ResourceLocation.parse(id);
+        return new FluidStack(Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(rl), id), amount);
     }
 }

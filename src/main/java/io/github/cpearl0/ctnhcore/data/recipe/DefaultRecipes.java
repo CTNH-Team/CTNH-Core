@@ -4,10 +4,14 @@ import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
 import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
 import io.github.cpearl0.ctnhcore.data.machines.GTNNMachines;
+import io.github.cpearl0.ctnhcore.data.materials.BedrockMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.PlatinumLineMaterials;
+import io.github.cpearl0.ctnhcore.data.materials.UncategorizedMaterials;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.GTValues;
@@ -16,14 +20,19 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.common.data.machines.GCYMMachines;
+import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
 import net.createmod.catnip.data.Pair;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import appeng.core.definitions.AEItems;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEMultiblock;
@@ -1016,5 +1025,321 @@ public class DefaultRecipes {
                 .EUt(GTValues.VA[GTValues.MV])
                 .duration(200)
                 .save(provider);
+
+        add80ExtendRecipes(provider);
+    }
+
+    private static void add80ExtendRecipes(Consumer<FinishedRecipe> provider) {
+        // 迁移来源：Z:/Git/Create-New-Horizon/kubejs/server_scripts/src/80extend.js
+        GTRecipeTypes.ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("china"))
+                .inputItems(GTItems.VOLTAGE_COIL_IV.asStack(4))
+                .inputItems(TagPrefix.foil, GTMaterials.Naquadah, 32)
+                .inputItems(GTItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.asStack(16))
+                .inputItems(GTItems.ELECTRIC_PUMP_IV.asStack(4))
+                .inputItems(GTNNMultiblocks.CHEMICAL_PLANT.asStack())
+                .inputItems(GTMultiMachines.CRACKER.asStack(64))
+                .outputItems(MultiblocksB.SINOPE_CHEMICAL.asStack())
+                .EUt(32800)
+                .duration(1440)
+                .save(provider);
+
+        GCYMRecipeTypes.ALLOY_BLAST_RECIPES.recipeBuilder(CTNHCore.id("man"))
+                .inputItems(TagPrefix.dust, GTMaterials.Lithium, 10)
+                .inputItems(TagPrefix.dust, GTMaterials.Cobalt, 10)
+                .inputItems(TagPrefix.dust, GTMaterials.Platinum, 10)
+                .inputItems(TagPrefix.dust, GTMaterials.Erbium, 10)
+                .inputFluids(CTNHMaterials.Pyrotheum.getFluid(1440))
+                .inputFluids(GTMaterials.Helium.getFluid(1440))
+                .outputFluids(UncategorizedMaterials.SHOCK_RESISTANT_ALLOY.getFluid(2400))
+                .EUt(2400)
+                .duration(240)
+                .save(provider);
+
+        GTRecipeTypes.FUSION_RECIPES.recipeBuilder(CTNHCore.id("americium_and_naquadria_to_neutronium_plasma"))
+                .outputFluids(GTMaterials.Neutronium.getFluid(256))
+                .inputFluids(GTMaterials.Naquadria.getFluid(256))
+                .inputFluids(GTMaterials.Americium.getFluid(256))
+                .fusionStartEU(600000000)
+                .duration(100)
+                .EUt(32678 * 4)
+                .save(provider);
+
+        CTNHRecipeTypes.SINOPE.recipeBuilder(gtceuId("thorium_232_dust"))
+                .outputItems(TagPrefix.dust, CTNHMaterials.Thorium232, 4)
+                .outputItems(TagPrefix.dustSmall, GTMaterials.Thorium, 16)
+                .inputItems(TagPrefix.dust, GTMaterials.Thorium, 32)
+                .inputItems(TagPrefix.dust, GTMaterials.Borax, 16)
+                .inputFluids(GTMaterials.HydrochloricAcid.getFluid(1500))
+                .circuitMeta(1)
+                .EUt(1920)
+                .duration(6000)
+                .save(provider);
+
+        GTRecipeTypes.ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("neutronium_alloy_casing_block"))
+                .outputItems(CTNHBlocks.CASING_NEUTRONIUM_ALLOY_BLOCK.asStack())
+                .inputItems(GTItems.ROBOT_ARM_ZPM)
+                .inputItems(GTItems.ELECTRIC_PISTON_ZPM)
+                .inputItems(GTItems.ELECTRIC_MOTOR_ZPM.asStack(2))
+                .inputItems(CustomTags.UV_CIRCUITS, 2)
+                .inputItems(CustomTags.UHV_CIRCUITS)
+                .inputItems(CTNHBlocks.CASING_NAQUADAH_BLOCK.asStack())
+                .inputItems(TagPrefix.plateDouble, BedrockMaterials.BEDROCK_NEUTRONIUM, 2)
+                .inputItems(TagPrefix.plateDense, GTMaterials.Darmstadtium, 8)
+                .inputFluids(BedrockMaterials.AETHER.getFluid(1280))
+                .inputFluids(GTMaterials.Naquadria.getFluid(1280))
+                .stationResearch(b -> b
+                        .researchStack(CTNHBlocks.CASING_NAQUADAH_BLOCK.asStack())
+                        .dataStack(GTItems.TOOL_DATA_ORB.asStack())
+                        .EUt(GTValues.VA[GTValues.ZPM])
+                        .CWUt(48))
+                .EUt(32678 * 16)
+                .duration(20 * 40)
+                .save(provider);
+
+        GTRecipeTypes.ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("plasma_alloy_blast_smelter"))
+                .inputFluids(GTMaterials.Iron.getFluid(FluidStorageKeys.PLASMA, 12800))
+                .inputFluids(GTMaterials.Helium.getFluid(FluidStorageKeys.PLASMA, 12800))
+                .inputItems(GCYMMachines.BLAST_ALLOY_SMELTER.asStack(64))
+                .inputItems(GTMultiMachines.MULTI_SMELTER.asStack(64))
+                .inputItems(GCYMMachines.MEGA_BLAST_FURNACE.asStack(64))
+                .inputItems(MultiblocksA.SUPER_EBF.asStack(64))
+                .inputItems(CustomTags.UV_CIRCUITS, 64)
+                .inputItems(TagPrefix.plateDouble, BedrockMaterials.BEDROCK_NEUTRONIUM, 64)
+                .inputItems(TagPrefix.gear, GTMaterials.Tritanium, 16)
+                .inputItems(TagPrefix.frameGt, GTMaterials.Naquadria, 16)
+                .outputItems(MultiblocksB.PLASMA_ALLOY_BLAST_SMELTER.asStack())
+                .stationResearch(b -> b
+                        .researchStack(GCYMMachines.MEGA_BLAST_FURNACE.asStack())
+                        .dataStack(GTItems.TOOL_DATA_ORB.asStack())
+                        .EUt(GTValues.VA[GTValues.UV])
+                        .CWUt(64))
+                .EUt(32678 * 32)
+                .duration(20 * 200)
+                .save(provider);
+
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("naalf"))
+                .inputItems(TagPrefix.dust, CTNHMaterials.Cryolite, 10)
+                .outputItems(TagPrefix.dust, GTMaterials.Sodium, 3)
+                .outputItems(TagPrefix.dust, GTMaterials.Aluminium)
+                .outputFluids(GTMaterials.Fluorine.getFluid(6000))
+                .circuitMeta(19)
+                .EUt(512)
+                .duration(20 * 40)
+                .save(provider);
+
+        CTNHRecipeTypes.DECAY_POOLS.recipeBuilder(CTNHCore.id("naalf"))
+                .inputItems(TagPrefix.dust, CTNHMaterials.Cryolite, 1000)
+                .circuitMeta(24)
+                .outputItems(TagPrefix.dust, UncategorizedMaterials.SODIUM22, 50)
+                .outputFluids(GTMaterials.Magnesium.getFluid(1000))
+                .outputFluids(GTMaterials.Magnalium.getFluid(10000))
+                .duration(20 * 36000)
+                .save(provider);
+
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("assembly_line_casing"),
+                GTBlocks.CASING_ASSEMBLY_CONTROL.asStack(),
+                "ABA", "ACA", "ABA",
+                'A', CustomTags.ZPM_CIRCUITS,
+                'B', CustomTags.LuV_CIRCUITS,
+                'C', ChemicalHelper.get(TagPrefix.frameGt, GTMaterials.TungstenSteel));
+
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("assembly_line_unit"),
+                GTBlocks.CASING_ASSEMBLY_LINE.asStack(),
+                "BAB", "ACA", "BAB",
+                'A', GTItems.ROBOT_ARM_IV,
+                'B', ChemicalHelper.get(TagPrefix.gear, GTMaterials.Ruridit),
+                'C', CustomTags.ZPM_CIRCUITS);
+
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(gtceuId("assembly_line_casing_1"))
+                .outputItems(GTBlocks.CASING_ASSEMBLY_CONTROL.asStack(8))
+                .inputItems(CustomTags.LuV_CIRCUITS, 8)
+                .inputItems(CustomTags.UV_CIRCUITS, 8)
+                .inputItems(TagPrefix.frameGt, GTMaterials.TungstenSteel, 8)
+                .circuitMeta(1)
+                .EUt(8192)
+                .duration(20 * 160)
+                .save(provider);
+
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(gtceuId("assembly_line_casing_2"))
+                .outputItems(GTBlocks.CASING_ASSEMBLY_CONTROL)
+                .inputItems(CustomTags.ZPM_CIRCUITS, 6)
+                .inputItems(CustomTags.LuV_CIRCUITS, 2)
+                .inputItems(TagPrefix.frameGt, GTMaterials.TungstenSteel)
+                .circuitMeta(2)
+                .EUt(8192)
+                .duration(20 * 20)
+                .save(provider);
+
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(gtceuId("assembly_line_unit_1"))
+                .outputItems(GTBlocks.CASING_ASSEMBLY_LINE.asStack(4))
+                .inputItems(GTItems.ROBOT_ARM_LuV.asStack(4))
+                .inputItems(TagPrefix.gear, GTMaterials.Ruridit, 12)
+                .inputItems(CustomTags.LuV_CIRCUITS, 4)
+                .circuitMeta(1)
+                .EUt(8192)
+                .duration(20 * 120)
+                .save(provider);
+
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(gtceuId("assembly_line_unit_2"))
+                .outputItems(GTBlocks.CASING_ASSEMBLY_LINE.asStack())
+                .inputItems(GTItems.ROBOT_ARM_IV.asStack(4))
+                .inputItems(TagPrefix.gear, GTMaterials.Ruridit, 4)
+                .inputItems(CustomTags.ZPM_CIRCUITS)
+                .circuitMeta(2)
+                .EUt(8192)
+                .duration(20 * 20)
+                .save(provider);
+
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("decomposition_electrolyzing_ammonium_chloride"))
+                .inputItems(TagPrefix.dust, GTMaterials.AmmoniumChloride, 2)
+                .outputFluids(GTMaterials.HydrochloricAcid.getFluid(144))
+                .outputFluids(GTMaterials.Ammonia.getFluid(144))
+                .EUt(25)
+                .duration(20)
+                .save(provider);
+
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("cryotheum_freezer"))
+                .outputItems(MultiblocksB.CRYOTHEUMFREEZER.asStack())
+                .inputItems(CustomTags.ZPM_CIRCUITS, 4)
+                .inputItems(TagPrefix.dust, CTNHMaterials.Cryotheum, 64)
+                .inputItems(CTNHBlocks.SUPERCOOLED_BLOCK.asStack())
+                .inputItems(CTNHBlocks.SUPER_FREEZE_BLOCK.asStack())
+                .inputItems(GTItems.ELECTRIC_PUMP_IV.asStack(6))
+                .inputItems(TagPrefix.cableGtSingle, GTMaterials.HSSG, 12)
+                .inputFluids(GTMaterials.PCBCoolant.getFluid(10000))
+                .duration(1000)
+                .EUt(8192)
+                .save(provider);
+
+        GTRecipeTypes.VACUUM_RECIPES.recipeBuilder(CTNHCore.id("super_machine_casing_frost_proof"))
+                .outputItems(CTNHBlocks.SUPER_FREEZE_BLOCK.asStack())
+                .inputItems(GTBlocks.CASING_ALUMINIUM_FROSTPROOF.asStack())
+                .inputFluids(CTNHMaterials.Cryotheum.getFluid(5000))
+                .inputFluids(GTMaterials.PCBCoolant.getFluid(5000))
+                .duration(100)
+                .EUt(8192)
+                .save(provider);
+
+        GTRecipeTypes.MIXER_RECIPES.recipeBuilder(gtceuId("cadmium_sulfide_dust"))
+                .outputItems(TagPrefix.dust, UncategorizedMaterials.CADMIUM_SULFIDE, 2)
+                .inputItems(TagPrefix.dust, GTMaterials.Cadmium)
+                .inputItems(TagPrefix.dust, GTMaterials.Sulfur)
+                .duration(100)
+                .EUt(10)
+                .save(provider);
+
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("research_dataset"))
+                .outputItems(CTNHItems.RESEARCH_DATASET.asStack())
+                .inputItems(GTItems.TOOL_DATA_ORB)
+                .inputItems(GTItems.TOOL_DATA_STICK)
+                .inputItems(Items.PAPER)
+                .duration(20)
+                .EUt(10)
+                .save(provider);
+
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("ultimate_combustion_engine"))
+                .outputItems(MultiblocksA.ULTIMATE_COMBUSTION_ENGINE.asStack())
+                .inputItems(GTItems.ELECTRIC_PISTON_LuV.asStack(12))
+                .inputItems(GTItems.ELECTRIC_PUMP_LuV.asStack(12))
+                .inputItems(GTMultiMachines.EXTREME_COMBUSTION_ENGINE.asStack(8))
+                .inputItems(CustomTags.UV_CIRCUITS, 2)
+                .EUt(32768 * 4)
+                .duration(120)
+                .save(provider);
+
+        CTNHRecipeTypes.FUEL_REFINING.recipeBuilder(CTNHCore.id("end_of_oil"))
+                .inputItems(TagPrefix.dust, GTMaterials.Trinium, 4)
+                .inputFluids(CTNHMaterials.NaquadahBasedLiquidFuelExcited.getFluid(25))
+                .inputFluids(GTMaterials.HighOctaneGasoline.getFluid(10000))
+                .outputFluids(CTNHMaterials.NQ_END_OF_GASOLINE.getFluid(20000))
+                .EUt(23678 * 4)
+                .duration(60)
+                .blastFurnaceTemp(7200)
+                .save(provider);
+
+        CTNHRecipeTypes.SILICA_ROCK_FUEL_REFINERY.recipeBuilder(gtceuId("compressed_aether_plasma_1"))
+                .outputFluids(CTNHMaterials.COMPRESSED_AETHER.getFluid(FluidStorageKeys.PLASMA, 4000))
+                .inputFluids(UncategorizedMaterials.CHARGED_SILICA_ROCK_BASED_FLUID_FUEL_MK_I.getFluid(100))
+                .inputFluids(BedrockMaterials.AETHER.getFluid(FluidStorageKeys.PLASMA, 4000))
+                .duration(100)
+                .EUt(32768 * 4)
+                .save(provider);
+
+        CTNHRecipeTypes.SILICA_ROCK_FUEL_REFINERY.recipeBuilder(gtceuId("compressed_aether_plasma_2"))
+                .outputFluids(CTNHMaterials.COMPRESSED_AETHER.getFluid(FluidStorageKeys.PLASMA, 6000))
+                .inputFluids(UncategorizedMaterials.CHARGED_SILICA_ROCK_BASED_FLUID_FUEL_MK_II.getFluid(50))
+                .inputFluids(BedrockMaterials.AETHER.getFluid(FluidStorageKeys.PLASMA, 4000))
+                .duration(25)
+                .EUt(32768 * 4 * 4)
+                .save(provider);
+
+        CTNHRecipeTypes.SILICA_ROCK_FUEL_REFINERY.recipeBuilder(gtceuId("compressed_aether_plasma_3"))
+                .outputFluids(CTNHMaterials.COMPRESSED_AETHER.getFluid(FluidStorageKeys.PLASMA, 8000))
+                .inputFluids(UncategorizedMaterials.CHARGED_SILICA_ROCK_BASED_FLUID_FUEL_MK_III.getFluid(25))
+                .inputFluids(BedrockMaterials.AETHER.getFluid(FluidStorageKeys.PLASMA, 4000))
+                .duration(25)
+                .EUt(32768 * 4 * 4)
+                .save(provider);
+
+        GTRecipeTypes.ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("strongly_interacting_neutron_reflector"))
+                .outputItems(CTNHItems.STRONGLY_INTERACTING_NEUTRON_REFLECTOR.asStack())
+                .inputItems(GTItems.NEUTRON_REFLECTOR.asStack(8))
+                .inputItems(TagPrefix.plateDouble, BedrockMaterials.BEDROCK_NEUTRONIUM, 8)
+                .inputItems(TagPrefix.plate, GTMaterials.Naquadria, 8)
+                .inputItems(CTNHItems.PlateRadiationProtection.asStack(8))
+                .inputFluids(GTMaterials.NaquadahAlloy.getFluid(1024))
+                .inputFluids(GTMaterials.Lubricant.getFluid(1024))
+                .EUt(114514)
+                .duration(1000)
+                .stationResearch(b -> b
+                        .researchStack(ChemicalHelper.get(TagPrefix.plateDense, GTMaterials.Iridium))
+                        .dataStack(GTItems.TOOL_DATA_ORB.asStack())
+                        .EUt(GTValues.VA[GTValues.UV])
+                        .CWUt(48))
+                .save(provider);
+
+        GTRecipeTypes.ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("uhv_fluid_drilling_inf"))
+                .inputItems(TagPrefix.plate, BedrockMaterials.AETHER, 16)
+                .inputItems(CTNHBlocks.CASING_NEUTRONIUM_ALLOY_BLOCK.asStack(8))
+                .inputItems(CTNHItems.STRONGLY_INTERACTING_NEUTRON_REFLECTOR.asStack(4))
+                .inputItems(CustomTags.UEV_CIRCUITS, 4)
+                .inputItems(GTMachines.QUANTUM_TANK[GTValues.UHV].asStack())
+                .inputFluids(BedrockMaterials.BEDROCK_NEUTRONIUM.getFluid(16000))
+                .inputFluids(CTNHMaterials.LIVING_METAL.getFluid(4000))
+                .outputItems(MultiblocksB.FLUID_DRILLING_INF[GTValues.UHV].asStack())
+                .inputItems(GTItems.ELECTRIC_PUMP_UHV.asStack(16))
+                .inputItems(GTItems.ELECTRIC_PISTON_UHV.asStack(8))
+                .EUt(GTValues.VA[GTValues.UEV])
+                .duration(100 * 20)
+                .stationResearch(b -> b
+                        .researchStack(GTMultiMachines.FLUID_DRILLING_RIG[GTValues.EV].asStack())
+                        .dataStack(itemStack("gtceu:data_data"))
+                        .EUt(GTValues.VA[GTValues.UHV])
+                        .CWUt(64))
+                .save(provider);
+    }
+
+    private static ResourceLocation gtceuId(String path) {
+        return ResourceLocation.fromNamespaceAndPath("gtceu", path);
+    }
+
+    private static ItemStack itemStack(String id) {
+        return itemStack(id, 1);
+    }
+
+    private static ItemStack itemStack(String id, int count) {
+        return new ItemStack(item(id), count);
+    }
+
+    private static Item item(String id) {
+        return java.util.Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse(id)), id);
+    }
+
+    private static FluidStack fluidStack(String id, int amount) {
+        return new FluidStack(fluid(id), amount);
+    }
+
+    private static net.minecraft.world.level.material.Fluid fluid(String id) {
+        return java.util.Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(ResourceLocation.parse(id)), id);
     }
 }

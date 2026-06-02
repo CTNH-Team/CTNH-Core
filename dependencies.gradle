@@ -31,9 +31,8 @@ dependencies {
     modImplementation(ctnh.createmetallurgy)
     modImplementation(ctnh.createvintage)
     modImplementation(ctnh.createliquidfuel)
-//    modImplementation(ctnh.createoreexcavation)
-    modImplementation(ctnh.creatediesel)
     modImplementation(ctnh.createnewage)
+    modImplementation(ctnh.creatediesel)
     modImplementation(ctnh.farmersdelight)
     modImplementation(ctnh.clothconfig)
     modImplementation(ctnh.ecologics)
@@ -117,10 +116,12 @@ dependencies {
         modCompileOnly(ctnh.immersiveaircraft)
         modCompileOnly(ctnh.ftbultimine)
         modCompileOnly(ctnh.createcafe)
+        modCompileOnly(ctnh.createoreexcavation)
     } else {
         modImplementation(ctnh.immersiveaircraft)
         modImplementation(ctnh.ftbultimine)
         modImplementation(ctnh.createcafe)
+        modImplementation(ctnh.createoreexcavation)
     }
 
     modLocalRuntime(ctnh.curios)

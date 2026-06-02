@@ -14,8 +14,7 @@ import org.antarcticgardens.cna.CNABlocks;
 
 public final class CTNHCorePonderScenes {
 
-    private CTNHCorePonderScenes() {
-    }
+    private CTNHCorePonderScenes() {}
 
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> helper) {
         helper.forComponents(CTPPMultiblockMachines.BIG_DAM.getId())

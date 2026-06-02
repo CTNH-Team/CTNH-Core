@@ -135,7 +135,7 @@ public class DieselGeneratorRecipes {
                 .input(new ItemStack(Items.GRAVEL))
                 .inputFluid("gtceu:pure_bitumen", 100)
                 .result(CDGBlocks.ASPHALT_BLOCK.asStack(4))
-                .heated()
+                .heatRequirement("heated")
                 .save(provider);
 
         // biodiesel: ethanol + seed_oil -> raw_bio_diesel
@@ -149,7 +149,7 @@ public class DieselGeneratorRecipes {
     private static void compactingRecipes(Consumer<FinishedRecipe> provider) {
         // petroleum_coke_gem: petroleum_coke fluid -> petroleum_coke_gem
         CompactingRecipeBuilder.builder("petroleum_coke_gem")
-                .input(BiodieselFertileSoilMaterials.PETROLEUM_COKE.getFluid(144))
+                .inputFluid(BiodieselFertileSoilMaterials.PETROLEUM_COKE.getFluid(144))
                 .result(ChemicalHelper.get(TagPrefix.gem, BiodieselFertileSoilMaterials.PETROLEUM_COKE))
                 .save(provider);
     }

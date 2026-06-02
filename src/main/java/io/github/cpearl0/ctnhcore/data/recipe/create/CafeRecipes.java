@@ -31,7 +31,7 @@ public class CafeRecipes {
                 .inputFluid("minecraft:milk", 250)
                 .inputFluid("createcafe:melted_sugar", 250)
                 .resultFluid("createcafe:blueberry_tea", 500)
-                .heated()
+                .heatRequirement("heated")
                 .save(provider);
 
         // coconut_tea: ecologics:coconut_slice + milk 250 + melted_sugar 250 -> coconut_tea 500 (heated)
@@ -40,7 +40,7 @@ public class CafeRecipes {
                 .inputFluid("minecraft:milk", 250)
                 .inputFluid("createcafe:melted_sugar", 250)
                 .resultFluid("createcafe:coconut_tea", 500)
-                .heated()
+                .heatRequirement("heated")
                 .save(provider);
 
         // coconut_syrup: ecologics:coconut_slice + milk 250 + melted_sugar 750 -> coconut_syrup 1000 (heated)
@@ -49,7 +49,7 @@ public class CafeRecipes {
                 .inputFluid("minecraft:milk", 250)
                 .inputFluid("createcafe:melted_sugar", 750)
                 .resultFluid("createcafe:coconut_syrup", 1000)
-                .heated()
+                .heatRequirement("heated")
                 .save(provider);
 
         // pomegranate_tea: ars_nouveau:bombegranate_pod + milk 250 + melted_sugar 250 -> pomegranate_tea 500 (heated)
@@ -58,7 +58,7 @@ public class CafeRecipes {
                 .inputFluid("minecraft:milk", 250)
                 .inputFluid("createcafe:melted_sugar", 250)
                 .resultFluid("createcafe:pomegranate_tea", 500)
-                .heated()
+                .heatRequirement("heated")
                 .save(provider);
 
         // blood_tea: gtceu:snow_steel_ingot + milk 250 + melted_sugar 250 -> blood_tea 500 (heated)
@@ -67,7 +67,7 @@ public class CafeRecipes {
                 .inputFluid("minecraft:milk", 250)
                 .inputFluid("createcafe:melted_sugar", 250)
                 .resultFluid("createcafe:blood_tea", 500)
-                .heated()
+                .heatRequirement("heated")
                 .save(provider);
     }
 }

@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.common.tconstruct.recipes;
+package io.github.cpearl0.ctnhcore.data.recipe.tconstruct;
 
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.utils.CTNHConstructRecipeProvider;

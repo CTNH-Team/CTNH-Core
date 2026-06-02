@@ -216,7 +216,7 @@ public class GTPortalRecipes {
 
         // Create Compacting: end_stone
         builder("gtportal_end_stone")
-                .input(new FluidStack(Fluids.WATER, 250))
+                .inputFluid(new FluidStack(Fluids.WATER, 250))
                 .input(new ItemStack(Items.SAND))
                 .input(new ItemStack(Items.GLOWSTONE_DUST, 2))
                 .output(new ItemStack(Items.END_STONE))
