@@ -23,5 +23,9 @@ public final class CTNHConstructModifierProvider extends AbstractModifierProvide
         buildModifier(CTNHConstructModifier.Ids.GLOBAL_TRAVELLER)
                 .levelDisplay(ModifierLevelDisplay.NO_LEVELS)
                 .build();
+        buildModifier(CTNHConstructModifier.Ids.SNOW_CITY)
+                .build();
+        buildModifier(CTNHConstructModifier.Ids.FORTIFICATION)
+                .build();
     }
 }

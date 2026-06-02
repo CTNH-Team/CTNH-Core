@@ -1,17 +1,17 @@
-package io.github.cpearl0.ctnhcore.common.tconstruct.recipes;
+package io.github.cpearl0.ctnhcore.data.recipe.tconstruct;
 
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.utils.CTNHConstructRecipeProvider;
 
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.jesz.createdieselgenerators.CDGItems;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.fluids.FluidStack;
 
-import com.jesz.createdieselgenerators.CDGItems;
 import com.mo_guang.ctpp.registry.CTPPMaterials;
 import fr.lucreeper74.createmetallurgy.registries.CMItems;
 import slimeknights.tconstruct.library.recipe.casting.ItemCastingRecipeBuilder;

@@ -254,59 +254,5 @@ public class UHVPartsRecipe {
                 'B', new MaterialEntry(gear, ADAMANTITE),
                 'C', HULL[UHV].asStack());
 
-        GCYMRecipeTypes.ALLOY_BLAST_RECIPES.recipeBuilder(CTNHCore.id("end_to_the_end")) // from 80extend.js
-                .inputItems(dust, SNOW_STEEL, 64)
-                .inputItems(dust, UncategorizedMaterials.QUANTUM_ALLOY, 64)
-                .inputItems(dust, HiddenAlloy, 64)
-                .inputItems(dust, SpecialCompositeSteelM77, 64)
-                .inputItems(dust, CMMaterials.Ultra_Mana, 64)
-                .inputItems(gemExquisite, COLORFUL_GEM, 64)
-                .inputItems(dust, BOUNDLESS, 1)
-                .inputItems(CustomTags.UEV_CIRCUITS, 64)
-                .inputItems(GCYMMachines.MEGA_BLAST_FURNACE.asStack())
-                .inputFluids(LIVING_METAL.getFluid(114514))
-                .inputFluids(CMMaterials.Eve_Beam.getFluid(PLASMA, 114514))
-                .inputFluids(SUPERFUELMK1.getFluid(6666))
-                .outputFluids(UncategorizedMaterials.ORACLE.getFluid(1145))
-                .EUt(VA[UEV])
-                .duration(200000)
-                .blastFurnaceTemp(12600)
-                .save(provider);
-
-        CULTIVATION_ROOM.recipeBuilder(CTNHCore.id("living_metal_pre"))
-                .inputItems(wireGtQuadruple, RutheniumTriniumAmericiumNeutronate, 4)
-                .inputItems(dust, TARANIUM, 4)
-                .inputItems(ELECTRIC_PUMP_ZPM)
-                .inputFluids(SolderingAlloy.getFluid(40000))
-                .inputFluids(UncategorizedMaterials.QUANTUM_ALLOY.getFluid(288))
-                .outputFluids(UncategorizedMaterials.LIVING_METAL_PRE.getFluid(4000))
-                .EUt(VA[UEV])
-                .duration(1000)
-                .save(provider);
-
-        CULTIVATION_ROOM.recipeBuilder(CTNHCore.id("living_metal"))
-                .notConsumable(RESEARCH_DATASET_LIVING_MATERIAL)
-                .inputItems(CustomTags.UHV_CIRCUITS)
-                .inputItems(rodLong, UncategorizedMaterials.RADIATION_SIGHT_ALLOY_INF, 4)
-                .inputFluids(UncategorizedMaterials.LIVING_METAL_PRE.getFluid(8000))
-                .inputFluids(UncategorizedMaterials.CHARGED_SILICA_ROCK_BASED_FLUID_FUEL_MK_III.getFluid(100))
-                .outputFluids(LIVING_METAL.getFluid(8000))
-                .outputFluids(NaquadahBasedLiquidFuelDepleted.getFluid(1000))
-                .EUt(VA[UEV])
-                .duration(1000)
-                .save(provider);
-
-        CULTIVATION_ROOM.recipeBuilder(CTNHCore.id("living_metal_2"))
-                .notConsumable(RESEARCH_DATASET_LIVING_MATERIAL)
-                .inputItems(CustomTags.UHV_CIRCUITS)
-                .inputItems(rodLong, UncategorizedMaterials.RADIATION_SIGHT_ALLOY_INF, 4)
-                .inputFluids(UncategorizedMaterials.LIVING_METAL_PRE.getFluid(8000))
-                .inputFluids(TARANLIQUIDFUEL_L.getFluid(500))
-                .inputFluids(TARANLIQUIDFUEL_M.getFluid(500))
-                .outputFluids(LIVING_METAL.getFluid(8000))
-                .outputFluids(PlutoniumBasedLiquidFuelDepleted.getFluid(1500))
-                .EUt(VA[UEV])
-                .duration(6000)
-                .save(provider);
     }
 }

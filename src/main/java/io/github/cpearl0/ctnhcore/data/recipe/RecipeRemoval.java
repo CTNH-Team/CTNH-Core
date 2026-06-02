@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import io.github.cpearl0.ctnhcore.data.recipe.immersiveaircraft.ImmersiveAircraftRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.EIORecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.omnicells.QuantumOmniRecipes;
 
@@ -17,11 +18,15 @@ public class RecipeRemoval {
     public static List<String> removePaths = new ArrayList<>();
 
     public static void init(Consumer<ResourceLocation> registry) {
+        removePaths.clear();
         centrifugeRecipeRemovals();
         maceratorRecipeRemovals();
         EIORecipes.eioRemovals();
         QuantumOmniRecipes.omniRemovals();
+        ImmersiveAircraftRecipes.removals(registry);
         crafttableRecipeRemovals();
+        tconstructRecipeRemovals();
+        migratedModRecipeRemovals();
         // 放最后
         ctnhRemovals(registry);
     }
@@ -52,9 +57,124 @@ public class RecipeRemoval {
 
     public static void crafttableRecipeRemovals() {
         removePaths.addAll(List.of(
+                "sophisticatedbackpacks:stack_upgrade_omega_tier",
                 "deep_aether:skyroot_crafting_table",
                 "aether:skyroot_crafting_table",
                 "aether:skyroot_chest"));
+    }
+
+    public static void tconstructRecipeRemovals() {
+        // 迁移来源：Z:/Git/Create-New-Horizon/kubejs/server_scripts/src/tconstruct/remove_tinkers_repices.js
+        removePaths.addAll(List.of(
+                "tconstruct:smeltery/casting/clay/block",
+                "tconstruct:smeltery/melting/metal/iron/chain_boots",
+                "tconstruct:smeltery/melting/metal/iron/chain_chestplate",
+                "tconstruct:smeltery/melting/metal/iron/chain_helmet",
+                "tconstruct:smeltery/melting/metal/iron/chain_leggings",
+                "tconstruct:smeltery/casting/filling/scorched_ingot_gauge",
+                "tconstruct:smeltery/casting/filling/scorched_ingot_tank",
+                "tconstruct:smeltery/casting/filling/scorched_fuel_gauge",
+                "tconstruct:smeltery/casting/filling/scorched_fuel_tank",
+                "tconstruct:smeltery/casting/filling/scorched_lantern_full",
+                "tconstruct:smeltery/casting/filling/scorched_lantern_pixel",
+                "tconstruct:smeltery/casting/filling/seared_ingot_tank",
+                "tconstruct:smeltery/casting/filling/seared_ingot_gauge",
+                "tconstruct:smeltery/casting/filling/seared_fuel_gauge",
+                "tconstruct:smeltery/casting/filling/seared_fuel_tank",
+                "tconstruct:smeltery/casting/filling/seared_lantern_full",
+                "tconstruct:smeltery/casting/filling/seared_lantern_pixel",
+                "tconstruct:smeltery/melting/metal/iron/nugget",
+                "tconstruct:smeltery/entity_melting/heads/creeper",
+                "tconstruct:smeltery/melting/amethyst/tinted_glass",
+                "tconstruct:smeltery/melting/ender/end_crystal",
+                "tconstruct:smeltery/melting/metal/copper/gauge",
+                "tconstruct:smeltery/melting/obsidian/beacon",
+                "tconstruct:smeltery/melting/obsidian/gauge",
+                "tconstruct:smeltery/melting/quartz/daylight_detector",
+                "tconstruct:smeltery/melting/scorched/glass_tinted",
+                "tconstruct:smeltery/melting/seared/fluid_cannon",
+                "tconstruct:smeltery/melting/seared/fuel_tank",
+                "tconstruct:smeltery/melting/seared/gauge",
+                "tconstruct:smeltery/melting/seared/glass",
+                "tconstruct:smeltery/melting/seared/glass_tinted",
+                "tconstruct:smeltery/melting/seared/ingot_tank",
+                "tconstruct:smeltery/melting/seared/lantern",
+                "tconstruct:smeltery/melting/seared/melter",
+                "tconstruct:smeltery/melting/seared/pane",
+                "tconstruct:smeltery/melting/seared/seared_casting_tank",
+                "tconstruct:tools/materials/melting/glass",
+                "tconstruct:smeltery/casting/ender/eye",
+                "tconstruct:smeltery/melting/metal/gold/gilded_blackstone",
+                "tconstruct:smeltery/melting/metal/gold/nether_gold_ore"));
+
+        removePaths.addAll(List.of(
+                "tconstruct:compat/create/andesite_alloy_mixing",
+                "tconstruct:compat/create/andesite_alloy_melting"));
+
+        for (String clayPath : List.of("ball", "block", "brick", "terracotta")) {
+            removePaths.add("tconstruct:smeltery/melting/clay/" + clayPath);
+        }
+        for (String cast : List.of("gold", "sand", "red_sand")) {
+            removePaths.add("tconstruct:smeltery/casting/clay/brick_" + cast + "_cast");
+        }
+
+        for (String fluidMaterial : List.of("diamond", "emerald", "precious_alloy", "tin", "silver", "zinc", "nickel",
+                "lead", "beryllium", "molybdenum", "brass", "gold", "iron", "bronze", "copper", "cobalt",
+                "manganese", "slag", "steel", "aluminum", "uranium", "glass", "invar", "platinum")) {
+            removePaths.add("tconstruct:smeltery/melting/metal/" + fluidMaterial + "/raw");
+            removePaths.add("tconstruct:smeltery/melting/metal/" + fluidMaterial + "/raw_block");
+            removePaths.add("tconstruct:smeltery/melting/metal/" + fluidMaterial + "/ore_singular");
+            removePaths.add("tconstruct:smeltery/melting/metal/" + fluidMaterial + "/ore_dense");
+            removePaths.add("tconstruct:smeltery/melting/metal/" + fluidMaterial + "/ore_sparse");
+            removePaths.add("tconstruct:smeltery/melting/metal/" + fluidMaterial + "/geore");
+        }
+    }
+
+    public static void migratedModRecipeRemovals() {
+        removePaths.addAll(List.of(
+                // 迁移来源：Z:/Git/Create-New-Horizon/kubejs/server_scripts/src/apothesis/spawner.js
+                "apotheosis:spawner/ignore_light",
+                "apotheosis:spawner/ignore_light_inverted",
+                "apotheosis:spawner/spawn_count",
+                "apotheosis:spawner/spawn_count_inverted",
+                "apotheosis:spawner/max_nearby",
+                "apotheosis:spawner/max_nearby_inverted",
+                "apotheosis:spawner/baby",
+                "apotheosis:spawner/baby_inverted",
+                "apotheosis:spawner/redstone_control",
+                "apotheosis:spawner/redstone_control_inverted",
+                "apotheosis:spawner/no_ai",
+                "apotheosis:spawner/no_ai_inverted",
+                "apotheosis:spawner/min_delay",
+                "apotheosis:spawner/min_delay_inverted",
+                "apotheosis:spawner/max_delay",
+                "apotheosis:spawner/max_delay_inverted",
+                "apotheosis:spawner/ignore_conditions",
+                "apotheosis:spawner/ignore_conditions_inverted",
+                "apotheosis:spawner/player_range",
+                "apotheosis:spawner/player_range_inverted",
+                "apotheosis:spawner/ignore_players",
+                "apotheosis:spawner/ignore_players_inverted",
+                "apotheosis:spawner/spawn_range",
+                "apotheosis:spawner/spawn_range_inverted",
+                // 迁移来源：Z:/Git/Create-New-Horizon/kubejs/server_scripts/src/sophisticatedbackpacks/sophisticatedbackpacks.js
+                "sophisticatedbackpacks:void_upgrade",
+                // 迁移来源：Z:/Git/Create-New-Horizon/kubejs/server_scripts/src/sophisticatedbackpacks/sophisticatedstorage.js
+                "sophisticatedstorage:basic_to_copper_tier_upgrade",
+                "sophisticatedstorage:basic_to_iron_tier_upgrade",
+                "sophisticatedstorage:basic_to_gold_tier_upgrade",
+                "sophisticatedstorage:basic_to_diamond_tier_upgrade",
+                "sophisticatedstorage:basic_to_netherite_tier_upgrade",
+                "sophisticatedstorage:copper_to_iron_tier_upgrade",
+                "sophisticatedstorage:copper_to_gold_tier_upgrade",
+                "sophisticatedstorage:copper_to_diamond_tier_upgrade",
+                "sophisticatedstorage:copper_to_netherite_tier_upgrade",
+                "sophisticatedstorage:iron_to_gold_tier_upgrade",
+                "sophisticatedstorage:iron_to_diamond_tier_upgrade",
+                "sophisticatedstorage:iron_to_netherite_tier_upgrade",
+                "sophisticatedstorage:gold_to_diamond_tier_upgrade",
+                "sophisticatedstorage:gold_to_netherite_tier_upgrade",
+                "sophisticatedstorage:diamond_to_netherite_tier_upgrade"));
     }
 
     public static void ctnhRemovals(Consumer<ResourceLocation> registry) {

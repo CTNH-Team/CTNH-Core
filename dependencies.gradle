@@ -33,6 +33,7 @@ dependencies {
     modImplementation(ctnh.createliquidfuel)
 //    modImplementation(ctnh.createoreexcavation)
     modImplementation(ctnh.creatediesel)
+    modImplementation(ctnh.immersiveaircraft)
     modImplementation(ctnh.createnewage)
 
     // season

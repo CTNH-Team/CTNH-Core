@@ -1,6 +1,7 @@
-package io.github.cpearl0.ctnhcore.common.tconstruct.recipes;
+package io.github.cpearl0.ctnhcore.data.recipe.tconstruct;
 
 // import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
+
 import io.github.cpearl0.ctnhcore.registry.CTNHConstructModifier;
 import io.github.cpearl0.ctnhcore.utils.CTNHConstructRecipeProvider;
 
@@ -12,6 +13,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.recipe.modifiers.adding.ModifierRecipeBuilder;
 import slimeknights.tconstruct.library.tools.SlotType;
+import twilightforest.init.TFItems;
 
 import java.util.function.Consumer;
 
@@ -42,5 +44,14 @@ public class CTNHConstructModifierRecipes extends CTNHConstructRecipeProvider {
                 .setTools(TinkerTags.Items.DURABILITY)
                 .disallowCrystal()
                 .save(consumer, location(folder + "global_traveller"));
+
+        // 迁移自 kubejs/startup_scripts/src/tconstruct_modifiers_register.js。
+        ModifierRecipeBuilder.modifier(CTNHConstructModifier.Ids.FORTIFICATION)
+                .addInput(TFItems.FORTIFICATION_SCEPTER.get(), 1)
+                .setMaxLevel(5)
+                .setSlots(SlotType.UPGRADE, 1)
+                .setTools(TinkerTags.Items.ARMOR)
+                .disallowCrystal()
+                .save(consumer, location(folder + "fortification"));
     }
 }

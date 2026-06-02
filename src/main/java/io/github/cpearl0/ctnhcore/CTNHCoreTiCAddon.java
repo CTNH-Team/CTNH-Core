@@ -1,11 +1,12 @@
-package io.github.cpearl0.ctnhcore.common.tconstruct;
+package io.github.cpearl0.ctnhcore;
 
-import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.tconstruct.materials.CTNHConstructMaterialRecipes;
+import io.github.cpearl0.ctnhcore.common.tconstruct.modifier.FortificationModifier;
 import io.github.cpearl0.ctnhcore.common.tconstruct.modifier.GlobalTraveller;
-import io.github.cpearl0.ctnhcore.common.tconstruct.recipes.CTNHConstructCastingRecipes;
-import io.github.cpearl0.ctnhcore.common.tconstruct.recipes.CTNHConstructMeltingRecipes;
-import io.github.cpearl0.ctnhcore.common.tconstruct.recipes.CTNHConstructModifierRecipes;
+import io.github.cpearl0.ctnhcore.common.tconstruct.modifier.SnowcityModifier;
+import io.github.cpearl0.ctnhcore.data.recipe.tconstruct.CTNHConstructCastingRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.tconstruct.CTNHConstructMeltingRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.tconstruct.CTNHConstructModifierRecipes;
 import io.github.cpearl0.ctnhcore.data.provider.CTNHConstructMaterialPartTextureGenerator;
 import io.github.cpearl0.ctnhcore.data.provider.CTNHConstructMaterialRenderInfoProvider;
 import io.github.cpearl0.ctnhcore.data.provider.CTNHConstructMaterialSpriteProvider;
@@ -23,7 +24,7 @@ import slimeknights.tconstruct.library.addon.ITiCStaticModifierAddon;
 import slimeknights.tconstruct.library.addon.TiCAddon;
 
 @TiCAddon(requiredMods = CTNHCore.MODID)
-public class CTNHTiCAddon implements ITiCAddon, ITiCStaticModifierAddon {
+public class CTNHCoreTiCAddon implements ITiCAddon, ITiCStaticModifierAddon {
 
     @Override
     public String addonModId() {
@@ -33,6 +34,8 @@ public class CTNHTiCAddon implements ITiCAddon, ITiCStaticModifierAddon {
     @Override
     public void registerStaticModifiers(StaticModifierRegistrar registrar) {
         registrar.register("global_traveller", GlobalTraveller::new);
+        registrar.register("snow_city", SnowcityModifier::new);
+        registrar.register("fortification", FortificationModifier::new);
     }
 
     @Override
