@@ -128,7 +128,6 @@ public class CTNHCoreGTAddon implements IGTAddon {
         FunctionalStorageRecipes.init(provider);
         CafeRecipes.init(provider);
         SunRecipes.init(provider);
-        TinkersRecipes.init(provider);
         SophisticatedStorageRecipes.init(provider);
         ImmersiveAircraftRecipes.init(provider);
         NaquadahReactorRecipes.init(provider);

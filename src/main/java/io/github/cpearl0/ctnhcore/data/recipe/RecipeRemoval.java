@@ -28,6 +28,7 @@ public class RecipeRemoval {
         biomancyRemovals();
         functionalStorageRemovals();
         dieselGeneratorRemovals();
+        vintageRemovals();
         tconstructRecipeRemovals();
         migratedModRecipeRemovals();
         // 放最后
@@ -143,7 +144,10 @@ public class RecipeRemoval {
                 "createdieselgenerators:crafting/engine_piston_from_rods",
                 "createdieselgenerators:mixing/asphalt_block",
                 "createdieselgenerators:crafting/asphalt_block",
-                "createdieselgenerators:mixing/biodiesel"));
+                "createdieselgenerators:mixing/biodiesel",
+                // 迁移自 kubejs：replaceInput pumpjack_crank + replaceOutput plant_oil
+                "createdieselgenerators:mechanical_crafting/pumpjack_crank",
+                "createdieselgenerators:compacting/plant_oil"));
     }
 
     public static void functionalStorageRemovals() {
@@ -157,6 +161,27 @@ public class RecipeRemoval {
                 "functionalstorage:oak_drawer_alternate_x1",
                 "functionalstorage:oak_drawer_alternate_x2",
                 "functionalstorage:oak_drawer_alternate_x4"));
+    }
+
+    public static void vintageRemovals() {
+        // 迁移自 kubejs/server_scripts/src/create/createFallen.js：remove_recipes_id + remove_recipes_type
+        removePaths.addAll(List.of(
+                "vintageimprovements:craft/centrifuge",
+                "vintageimprovements:craft/spring_coiling_machine",
+                "vintageimprovements:craft/vacuum_chamber",
+                "vintageimprovements:craft/vibrating_table",
+                "vintageimprovements:craft/curving_press",
+                "vintageimprovements:craft/laser",
+                "vintageimprovements:mechanical_crafting/helve_hammer",
+                // 原版 coiling 配方（remove_recipes_type "vintageimprovements:coiling"）
+                "vintageimprovements:coiling/iron_spring",
+                "vintageimprovements:coiling/gold_spring",
+                "vintageimprovements:coiling/steel_spring",
+                "vintageimprovements:coiling/copper_spring"));
+        // 迁移自 kubejs：remove_recipes_id 移除电路板工作台合成
+        removePaths.addAll(List.of(
+                "gtceu:shaped/basic_circuit_board",
+                "gtceu:shaped/good_circuit_board"));
     }
 
     public static void migratedModRecipeRemovals() {

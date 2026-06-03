@@ -10,9 +10,14 @@ import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import com.jesz.createdieselgenerators.CDGBlocks;
 import com.jesz.createdieselgenerators.CDGItems;
@@ -38,6 +43,7 @@ public class DieselGeneratorRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         shapedRecipes(provider);
+        mechanicalCraftingRecipes(provider);
         itemApplicationRecipes(provider);
         mixingRecipes(provider);
         compactingRecipes(provider);
@@ -81,6 +87,19 @@ public class DieselGeneratorRecipes {
                 'B', ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Steel),
                 'C', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel),
                 'D', new ItemStack(Items.CLOCK));
+    }
+
+    private static void mechanicalCraftingRecipes(Consumer<FinishedRecipe> provider) {
+        // 迁移自 kubejs/server_scripts/src/dieselgenerator.js：replaceInput pumpjack_crank
+        // 原版配方：andesite_alloy_ingot → andesite_alloy_plate、iron_plate → steel_plate、zinc_ingot → zinc_plate
+        MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("diesel/pumpjack_crank"))
+                .pattern("AIA", " S ", "AIA", "ZSZ", "AZA")
+                .key('A', ChemicalHelper.get(TagPrefix.plate, CTPPMaterials.AndesiteAlloy))
+                .key('I', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
+                .key('Z', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Zinc))
+                .key('S', AllBlocks.SHAFT.asStack())
+                .result(new ItemStack(CDGItems.PUMPJACK_CRANK.get()))
+                .save(provider);
     }
 
     private static void itemApplicationRecipes(Consumer<FinishedRecipe> provider) {
@@ -151,6 +170,13 @@ public class DieselGeneratorRecipes {
         CompactingRecipeBuilder.builder("petroleum_coke_gem")
                 .inputFluid(BiodieselFertileSoilMaterials.PETROLEUM_COKE.getFluid(144))
                 .result(ChemicalHelper.get(TagPrefix.gem, BiodieselFertileSoilMaterials.PETROLEUM_COKE))
+                .save(provider);
+        // 迁移自 kubejs/server_scripts/src/dieselgenerator.js：replaceOutput plant_oil → seed_oil
+        TagKey<Item> SEEDS_TAG = TagKey.create(Registries.ITEM,
+                ResourceLocation.parse("forge:seeds"));
+        CompactingRecipeBuilder.builder("plant_oil")
+                .input(Ingredient.of(SEEDS_TAG))
+                .resultFluid(GTMaterials.SeedOil.getFluid(100))
                 .save(provider);
     }
 
