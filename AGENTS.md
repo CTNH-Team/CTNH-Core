@@ -43,3 +43,4 @@ CTNH-Core is the aggregate/core mod and CI release target. It hosts shared CTNH 
 - Do not manually reformat huge multiblock registry sections protected by Spotless toggles.
 - Do not patch `run/.tconstruct-dynamic-datagen` or `src/generated/resources` as the first choice; change datagen sources instead.
 - Do not assume Core-only validation catches module-specific runtime/datagen issues.
+- When referencing items/blocks/fluids in recipes, prefer static field references (`GTMaterials.Iron`, `CTNHBlocks.MY_BLOCK`, `TagPrefix.ingot`, `AEItems.X`) over registered tags (`CustomTags.X`), and prefer tags over `ResourceLocation` string parsing or `ForgeRegistries` lookups. Only fall back when no static constant exists for the target.

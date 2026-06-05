@@ -16,6 +16,7 @@
     "createmetallurgy.FoundryBasinBlockEntityMixin",
     "createmetallurgy.SmartBlockEntityAccessor",
     "dategen.AECSDatagenMixin",
+    "dategen.ImmersiveAircraftDatagenMixin",
     "eio.MachinesJEIMixin",
     "emi.CreateJEIMixin",
     "emi.CreateJEIMixin$CategoryBuilderMixin",

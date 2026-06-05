@@ -30,6 +30,7 @@ public class RecipeRemoval {
         dieselGeneratorRemovals();
         vintageRemovals();
         tconstructRecipeRemovals();
+        avaritiaRecipeRemovals();
         migratedModRecipeRemovals();
         // 放最后
         ctnhRemovals(registry);
@@ -132,6 +133,23 @@ public class RecipeRemoval {
             removePaths.add("tconstruct:smeltery/melting/metal/" + fluidMaterial + "/ore_sparse");
             removePaths.add("tconstruct:smeltery/melting/metal/" + fluidMaterial + "/geore");
         }
+    }
+
+    // 迁移来源：Z:/Git/Create-New-Horizon/kubejs/server_scripts/src/avaritia.js
+    public static void avaritiaRecipeRemovals() {
+        removePaths.addAll(List.of(
+                "avaritia:botania_mana_tablet",
+                "avaritia:infinity_ingot",
+                "avaritia:infinity_catalyst_eternal",
+                "avaritia:infinity_catalyst",
+                "avaritia:extreme_crafting_table"));
+        // 注：以下 removals 通过 output item 或 regex 匹配，无法用路径移除：
+        // event.remove({output: 'botania:creative_pool'})
+        // event.remove({output: 'avaritia:star_fuel'})
+        // event.remove({output: 'enderio:creative_power'})
+        // event.remove({output: 'minecraft:end_portal_frame'})
+        // /avaritia:(.*)neutron_collector/ — regex
+        // /avaritia:(.*)neutron_compressor/ — regex
     }
 
     public static void biomancyRemovals() {

@@ -16,6 +16,8 @@ import io.github.cpearl0.ctnhcore.data.recipe.mana.EternalGardenRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.MiscManaRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.TwistedFusionRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.migrated.AE2ScriptRecipe;
+import io.github.cpearl0.ctnhcore.data.recipe.migrated.AvaritiaScriptRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.migrated.BioScriptRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.migrated.GtceuScriptRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.EIORecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.omnicells.QuantumOmniRecipes;
@@ -192,6 +194,8 @@ public class CTNHCoreGTAddon implements IGTAddon {
         DigesterRecipes.init(provider);
 
         GtceuScriptRecipes.init(provider);
+        BioScriptRecipes.init(provider);
+        AvaritiaScriptRecipes.init(provider);
     }
 
     @Override

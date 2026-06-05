@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#gtceu:small_gear_extruder_mold",
+      "required": false
+    },
+    {
+      "id": "#gtceu:gear_extruder_mold",
+      "required": false
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe.create;
 
+import com.mo_guang.ctpp.registry.CTPPMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.BiodieselFertileSoilMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
@@ -98,7 +99,7 @@ public class DieselGeneratorRecipes {
                 .key('I', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
                 .key('Z', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Zinc))
                 .key('S', AllBlocks.SHAFT.asStack())
-                .result(new ItemStack(CDGItems.PUMPJACK_CRANK.get()))
+                .result(new ItemStack(CDGBlocks.PUMPJACK_CRANK.get()))
                 .save(provider);
     }
 
