@@ -9,6 +9,7 @@
     "aecs.EmiPluginMixin",
     "alexcaves.MagnetUtilMixin",
     "apotheosis.EarthsBoonEnchantMixin",
+    "apotheosis.SocketHelperMixin",
     "create.SpoutCategoryMixin",
     "createmetallurgy.CreateMetallurgyJEIMixin",
     "createmetallurgy.CrucibleBlockEntityMixin",
@@ -47,6 +48,7 @@
     "vintageimprovements.LatheRotatingBlockMixin"
   ],
   "client": [
+    "create.StockKeeperRequestScreenMixin",
     "gtceu.fix.ContentMixin",
     "sophisticatedcore.SyncContainerStacksMessageMixin",
     "sophisticatedcore.SyncSlotStackMessageMixin"
