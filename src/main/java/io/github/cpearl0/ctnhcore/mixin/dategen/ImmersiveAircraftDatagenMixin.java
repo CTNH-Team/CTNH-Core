@@ -1,7 +1,8 @@
 package io.github.cpearl0.ctnhcore.mixin.dategen;
 
-import immersive_aircraft.forge.ClientForge;
 import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
+
+import immersive_aircraft.forge.ClientForge;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

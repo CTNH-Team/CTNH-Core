@@ -37,6 +37,8 @@ dependencies {
     modImplementation(ctnh.clothconfig)
     modImplementation(ctnh.ecologics)
     modImplementation(ctnh.mynethersdelight)
+    modImplementation(ctnh.createcafe)
+    modImplementation(ctnh.createoreexcavation)
 
     // season
     modImplementation(ctnh.glitchcore)
@@ -64,6 +66,7 @@ dependencies {
     modImplementation(ctnh.ftblibrary)
     modImplementation(ctnh.ftbteams)
     modImplementation(ctnh.ftbchunks)
+    modImplementation(ctnh.ftbultimine)
 
     modImplementation(ctnh.patchouli)
     modImplementation(ctnh.botania)
@@ -111,19 +114,6 @@ dependencies {
     modImplementation(ctnh.alexscaves)
     modImplementation(ctnh.citadel)
 
-    def isDatagen = gradle.startParameter.taskNames.any { it.toLowerCase().contains("rundata") }
-    if (isDatagen) {
-        modCompileOnly(ctnh.immersiveaircraft)
-        modCompileOnly(ctnh.ftbultimine)
-        modCompileOnly(ctnh.createcafe)
-        modCompileOnly(ctnh.createoreexcavation)
-    } else {
-        modImplementation(ctnh.immersiveaircraft)
-        modImplementation(ctnh.ftbultimine)
-        modImplementation(ctnh.createcafe)
-        modImplementation(ctnh.createoreexcavation)
-    }
-
     modLocalRuntime(ctnh.curios)
     modLocalRuntime(ctnh.constructionwand)
 
@@ -142,4 +132,7 @@ dependencies {
     // Functional Storage (needs Titanium)
     modImplementation(ctnh.titanium)
     modImplementation(ctnh.functionalstorage)
+
+    // Immersive Aircraft
+    modImplementation(ctnh.immersiveaircraft)
 }
