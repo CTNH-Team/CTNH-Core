@@ -85,8 +85,8 @@ public class TagClearHelper {
         if (BUILDER_FIELDS.isEmpty()) {
             // 如果反射没找到字段，尝试通过 TagsProvider 的 builders map 来设置
             throw new IllegalStateException(
-                    "Cannot find TagBuilder field in " + appender.getClass().getName()
-                            + ". TagClearHelper requires a compatible TagsProvider implementation.");
+                    "Cannot find TagBuilder field in " + appender.getClass().getName() +
+                            ". TagClearHelper requires a compatible TagsProvider implementation.");
         }
         try {
             return (TagBuilder) BUILDER_FIELDS.get(0).get(appender);

@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.data.recipe.create;
 
-import com.mo_guang.ctpp.registry.CTPPMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.BiodieselFertileSoilMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
@@ -25,6 +24,7 @@ import com.jesz.createdieselgenerators.CDGItems;
 import com.mo_guang.ctpp.common.recipe.builder.create.*;
 import com.mo_guang.ctpp.registry.CTPPBlocks;
 import com.mo_guang.ctpp.registry.CTPPItems;
+import com.mo_guang.ctpp.registry.CTPPMaterials;
 import com.simibubi.create.AllBlocks;
 import com.soytutta.mynethersdelight.common.registry.MNDItems;
 import vectorwing.farmersdelight.common.registry.ModItems;

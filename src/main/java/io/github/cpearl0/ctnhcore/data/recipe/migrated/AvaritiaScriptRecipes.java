@@ -90,7 +90,8 @@ public class AvaritiaScriptRecipes {
                 .define('W', itemOrNull("biomancy:nutrient_bar"))
                 .define('X', itemOrNull("tconstruct:meat_soup"))
                 .define('Y', itemOrNull("mynethersdelight:plate_of_stuffed_hoglin"))
-                .unlockedBy("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(CTNHItems.GALAXY_MEATBALL.get()))
+                .unlockedBy("has_item",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(CTNHItems.GALAXY_MEATBALL.get()))
                 .save(provider, ResourceLocation.parse("ctnhcore:avaritia/primary_stew"));
     }
 

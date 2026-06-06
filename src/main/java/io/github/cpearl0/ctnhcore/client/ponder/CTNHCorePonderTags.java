@@ -1,69 +1,57 @@
 package io.github.cpearl0.ctnhcore.client.ponder;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.client.ponder.Kinetic.Meadow;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.Mechanical;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 
 import com.gregtechceu.gtceu.common.data.GTItems;
+import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 
 import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;
-import net.createmod.ponder.api.registration.TagBuilder;
 import net.minecraft.resources.ResourceLocation;
 
-import com.mo_guang.ctpp.registry.CTPPMachines;
-import com.mo_guang.ctpp.registry.CTPPMultiblockMachines;
-import com.simibubi.create.AllBlocks;
-import org.antarcticgardens.cna.CNABlocks;
+import tech.vixhentx.mcmod.ctnhlib.client.ponder.CTNHPonderTagHelper;
 
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public final class CTNHCorePonderTags {
 
-    public static final ResourceLocation Kinetic = ResourceLocation.tryBuild(CTNHCore.MODID, "kinetic");
-    public static final ResourceLocation Electric = ResourceLocation.tryBuild(CTNHCore.MODID, "electric");
+    public static final ResourceLocation MechanicalMultiblock = ResourceLocation.tryBuild(CTNHCore.MODID,
+            "mechanical_multiblock");
+    public static final ResourceLocation CTNHPonder = ResourceLocation.tryBuild(CTNHCore.MODID, "ctnhponder");
 
     public static void register(PonderTagRegistrationHelper<ResourceLocation> helper) {
-        registerTag(helper, Kinetic,
-                "CTNH Kinetic Machine", "CTNH机械机器",
-                "CTNH Kinetic Machine Ponders", "CTNH机械机器思索")
+
+        CTNHPonderTagHelper.registerTag(REGISTRATE, helper, MechanicalMultiblock,
+                "Mechanical Multiblock", "机械多方块机器",
+                "Ponders on CTNH mechanical multiblock machines", "CTNH机械多方块机器思索")
                 .addToIndex()
-                .item(AllBlocks.COGWHEEL.asItem(), true, false)
+                .item(Mechanical.MECHANICAL_PRESSOR.getItem(), true, false)
                 .register();
 
-        registerTag(helper, Electric,
-                "CTNH Electric Machine", "CTNH电力机器",
-                "CTNH Electric Machine Ponders", "CTNH电力机器思索")
+        CTNHPonderTagHelper.registerTag(REGISTRATE, helper, CTNHPonder,
+                "CTNH Electric Machine", "CTNHCore机器",
+                "CTNH Electric Machine Ponders", "CTNHCore机器思索")
                 .addToIndex()
                 .item(GTItems.COVER_WIRELESS_TRANSMITTER.asItem(), true, false)
                 .register();
 
-        helper.addToTag(Kinetic)
-                .add(CTPPMultiblockMachines.BIG_DAM.getId())
-                .add(CTPPMultiblockMachines.SMASHING_FACTORY.getId())
+        helper.addToTag(MechanicalMultiblock)
+                .add(Mechanical.MECHANICAL_PRESSOR.getId())
+                .add(Mechanical.MECHANICAL_MIXER.getId())
+                .add(Mechanical.MECHANICAL_CENTRIFUGE.getId())
+                .add(Mechanical.MECHANICAL_SIFTER.getId())
+                .add(Mechanical.MECHANICAL_EXTRACTOR.getId())
+                .add(Mechanical.MECHANICAL_LATHE.getId());
+
+        helper.addToTag(CTNHPonder)
+                .add(GTMultiMachines.COKE_OVEN.getId())
+                .add(GTMultiMachines.ASSEMBLY_LINE.getId())
+                .add(GTNNMultiblocks.NEUTRON_ACTIVATOR.getId())
                 .add(MultiblocksA.MEADOW.getId());
 
-        helper.addToTag(Electric)
-                .add(CNABlocks.GENERATOR_COIL.getId())
-                .add(CTPPMachines.CARBON_BRUSHES.getId());
-
         CTNHCore.LOGGER.info("Ponder tags initialized");
-    }
-
-    private static TagBuilder registerTag(PonderTagRegistrationHelper<ResourceLocation> helper,
-                                          ResourceLocation id,
-                                          String en,
-                                          String cn,
-                                          String descriptionEn,
-                                          String descriptionCn) {
-        REGISTRATE.genLang(tagKey(id), en, cn);
-        REGISTRATE.genLang(tagDescriptionKey(id), descriptionEn, descriptionCn);
-        return helper.registerTag(id);
-    }
-
-    private static String tagKey(ResourceLocation id) {
-        return id.getNamespace() + ".ponder.tag." + id.getPath();
-    }
-
-    private static String tagDescriptionKey(ResourceLocation id) {
-        return tagKey(id) + ".description";
     }
 }
