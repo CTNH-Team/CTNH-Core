@@ -49,6 +49,8 @@
     "mc.MonsterMixin",
     "mc.NaturalSpawnerMixin",
     "tmrv.RecipeManagerMixin",
+    "tconstruct.GTConstructRecipesMixin",
+    "tconstruct.TiCDynamicDataPackMixin",
     "vintageimprovements.LatheRotatingBlockMixin"
   ],
   "client": [
