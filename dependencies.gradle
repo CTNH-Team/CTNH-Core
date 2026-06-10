@@ -138,6 +138,5 @@ dependencies {
     // Immersive Aircraft
     modImplementation(ctnh.immersiveaircraft)
 
-    //emiaccelerator
-    modImplementation(ctnh.emiaccelerator)
+    // emiaccelerator is not defined in the version catalog.
 }
