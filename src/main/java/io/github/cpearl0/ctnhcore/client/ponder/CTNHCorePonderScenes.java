@@ -12,21 +12,19 @@ import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.minecraft.resources.ResourceLocation;
 
-import org.antarcticgardens.cna.CNABlocks;
-
 public final class CTNHCorePonderScenes {
 
     private CTNHCorePonderScenes() {}
 
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> helper) {
         helper.forComponents(MultiblocksA.MEADOW.getId())
-                .addStoryBoard("meadow/common", Meadow::Common, CTNHCorePonderTags.CTNHPonder);
-;
+                .addStoryBoard("meadow/common", Meadow::Common, CTNHCorePonderTags.CTNHPonder);;
         helper.forComponents(GTMultiMachines.COKE_OVEN.getId())
                 .addStoryBoard("coke_oven/common", GregTechMultiblocks::CokeOven, CTNHCorePonderTags.CTNHPonder);
 
         helper.forComponents(GTMultiMachines.ASSEMBLY_LINE.getId())
-                .addStoryBoard("assembly_line/common", GregTechMultiblocks::AssemblyLine, CTNHCorePonderTags.CTNHPonder);
+                .addStoryBoard("assembly_line/common", GregTechMultiblocks::AssemblyLine,
+                        CTNHCorePonderTags.CTNHPonder);
 
         helper.forComponents(GTNNMultiblocks.NEUTRON_ACTIVATOR.getId())
                 .addStoryBoard("neutron_activator/common", NeutronActivator::Common, CTNHCorePonderTags.CTNHPonder);

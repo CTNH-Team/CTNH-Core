@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.client.ponder;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.client.ponder.Kinetic.Meadow;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.Mechanical;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
@@ -23,7 +22,6 @@ public final class CTNHCorePonderTags {
     public static final ResourceLocation CTNHPonder = ResourceLocation.tryBuild(CTNHCore.MODID, "ctnhponder");
 
     public static void register(PonderTagRegistrationHelper<ResourceLocation> helper) {
-
         CTNHPonderTagHelper.registerTag(REGISTRATE, helper, MechanicalMultiblock,
                 "Mechanical Multiblock", "机械多方块机器",
                 "Ponders on CTNH mechanical multiblock machines", "CTNH机械多方块机器思索")
