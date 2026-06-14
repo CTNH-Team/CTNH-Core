@@ -18,6 +18,8 @@ public class CTNHTags {
     public static TagKey<Biome> TWILIGHT_TIER1 = TagUtil.createTag(Registries.BIOME, "twilight_tier1", true);
     public static TagKey<Biome> TWILIGHT_TIER2 = TagUtil.createTag(Registries.BIOME, "twilight_tier1", true);
     public static TagKey<Biome> TWILIGHT_TIER3 = TagUtil.createTag(Registries.BIOME, "twilight_tier1", true);
+    public static final TagKey<Biome> WORLDGEN_REMOVAL_BIOMES = TagKey.create(Registries.BIOME,
+            CTNHCore.id("worldgen_removal_biomes"));
 
     public static final TagKey<Biome> HAS_ASTRAL_METEORITES = TagKey.create(Registries.BIOME,
             CTNHCore.id("astral_meteorites"));

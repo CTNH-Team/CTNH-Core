@@ -1,0 +1,169 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "aether:gravitite_ore",
+      "required": false
+    },
+    {
+      "id": "aether:gravitite_ore_buried",
+      "required": false
+    },
+    {
+      "id": "aether:ambrosium_ore",
+      "required": false
+    },
+    {
+      "id": "aether:zanite_ore",
+      "required": false
+    },
+    {
+      "id": "create_new_age:magnetite",
+      "required": false
+    },
+    {
+      "id": "create_new_age:ore_thorium",
+      "required": false
+    },
+    {
+      "id": "ad_astra:glacio_coal_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:glacio_copper_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:glacio_deepslate_coal_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:glacio_deepslate_copper_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:glacio_deepslate_iron_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:glacio_deepslate_lapis_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:glacio_ice_shard_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:glacio_iron_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:glacio_lapis_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:mars_diamond_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:mars_ice_shard_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:mars_iron_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:mars_ostrum_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:mercury_iron_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:moon_cheese_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:moon_desh_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:moon_ice_shard_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:moon_iron_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:venus_calorite_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:venus_coal_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:venus_diamond_ore",
+      "required": false
+    },
+    {
+      "id": "ad_astra:venus_gold_ore",
+      "required": false
+    },
+    {
+      "id": "twilightforest:legacy_coal_ore",
+      "required": false
+    },
+    {
+      "id": "twilightforest:legacy_iron_ore",
+      "required": false
+    },
+    {
+      "id": "twilightforest:legacy_gold_ore",
+      "required": false
+    },
+    {
+      "id": "twilightforest:legacy_redstone_ore",
+      "required": false
+    },
+    {
+      "id": "twilightforest:legacy_diamond_ore",
+      "required": false
+    },
+    {
+      "id": "twilightforest:legacy_lapis_ore",
+      "required": false
+    },
+    {
+      "id": "twilightforest:legacy_copper_ore",
+      "required": false
+    },
+    {
+      "id": "createmetallurgy:wolframite_ore",
+      "required": false
+    },
+    {
+      "id": "ae2cs:certus_quartz_ore",
+      "required": false
+    },
+    {
+      "id": "ae2cs:charged_certus_quartz_ore",
+      "required": false
+    },
+    {
+      "id": "mythicbotany:elementium_ore",
+      "required": false
+    },
+    {
+      "id": "mythicbotany:dragonstone_ore",
+      "required": false
+    },
+    {
+      "id": "mythicbotany:gold_ore",
+      "required": false
+    }
+  ]
+}

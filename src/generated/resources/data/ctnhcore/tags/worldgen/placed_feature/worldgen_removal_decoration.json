@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "tconstruct:cobalt_ore_large",
+      "required": false
+    },
+    {
+      "id": "tconstruct:cobalt_ore_small",
+      "required": false
+    }
+  ]
+}

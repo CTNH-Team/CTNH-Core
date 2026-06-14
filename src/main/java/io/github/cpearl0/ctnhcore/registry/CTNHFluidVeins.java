@@ -149,28 +149,8 @@ public class CTNHFluidVeins {
                         .depletedYield(100)
                         .register();
             });
-    public static BedrockFluidDefinition HELIUM3_VEIN_MOON = create(CTNHCore.id("moon_helium3_vein"), vein -> {
-        vein.dimensions(Set.of(Planet.MOON))
-                .fluid(() -> GTMaterials.Helium3.getFluid())
-                .weight(100)
-                .minimumYield(100)
-                .maximumYield(500)
-                .depletionAmount(2)
-                .depletionChance(1)
-                .depletedYield(20)
-                .register();
-    });
-    public static BedrockFluidDefinition SEAWATER_VEIN_MOON = create(CTNHCore.id("moon_seawater_vein"), vein -> {
-        vein.dimensions(Set.of(Planet.MOON))
-                .fluid(() -> CTNHMaterials.Seawater.getFluid())
-                .weight(800)
-                .minimumYield(400)
-                .maximumYield(800)
-                .depletionAmount(20)
-                .depletionChance(1)
-                .depletedYield(300)
-                .register();
-    });
+    // Moon brine and helium-3 extraction are intentionally moving to bespoke moon worldgen
+    // blocks/machines in CTNH-Astral, so the old bedrock fluid veins stay disabled here.
     public static BedrockFluidDefinition SULFURIC_ACID_VEIN_VENUS = create(CTNHCore.id("venus_sulfuric_acid_vein"),
             vein -> {
                 vein.dimensions(Set.of(Planet.VENUS))
