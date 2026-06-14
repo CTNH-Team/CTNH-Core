@@ -1,0 +1,41 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#minecraft:is_overworld",
+      "required": false
+    },
+    {
+      "id": "#aether:is_aether",
+      "required": false
+    },
+    {
+      "id": "#twilightforest:valid_quest_grove_biomes",
+      "required": false
+    },
+    {
+      "id": "#ad_astra:has_moon_structure",
+      "required": false
+    },
+    {
+      "id": "#ad_astra:has_mars_structure",
+      "required": false
+    },
+    {
+      "id": "#ad_astra:has_venus_structure",
+      "required": false
+    },
+    {
+      "id": "#ad_astra:has_mercury_structure",
+      "required": false
+    },
+    {
+      "id": "#ad_astra:has_glacio_structure",
+      "required": false
+    },
+    {
+      "id": "mythicbotany:alfheim",
+      "required": false
+    }
+  ]
+}

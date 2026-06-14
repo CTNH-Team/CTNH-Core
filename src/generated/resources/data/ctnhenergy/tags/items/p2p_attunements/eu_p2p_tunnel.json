@@ -2,39 +2,31 @@
   "values": [
     "#gtceu:batteries",
     {
-      "id": "gtceu:kanthal_single_wire",
+      "id": "gtceu:hssg_single_wire",
       "required": false
     },
     {
-      "id": "gtceu:kanthal_single_cable",
+      "id": "gtceu:hssg_single_cable",
       "required": false
     },
     {
-      "id": "gtceu:yttrium_barium_cuprate_single_wire",
+      "id": "gtceu:uranium_rhodium_dinaquadide_single_wire",
       "required": false
     },
     {
-      "id": "gtceu:yttrium_barium_cuprate_single_cable",
+      "id": "gtceu:conductive_alloy_single_wire",
       "required": false
     },
     {
-      "id": "gtceu:naquadah_alloy_single_wire",
+      "id": "gtceu:black_titanium_single_wire",
       "required": false
     },
     {
-      "id": "gtceu:naquadah_alloy_single_cable",
+      "id": "gtceu:black_titanium_single_cable",
       "required": false
     },
     {
-      "id": "gtceu:steel_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:steel_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:energetic_alloy_single_wire",
+      "id": "gtceu:uranium_triplatinum_single_wire",
       "required": false
     },
     {
@@ -46,171 +38,23 @@
       "required": false
     },
     {
-      "id": "gtceu:blue_titanium_alloy_single_wire",
+      "id": "gtceu:tungsten_steel_single_wire",
       "required": false
     },
     {
-      "id": "gtceu:blue_titanium_alloy_single_cable",
+      "id": "gtceu:tungsten_steel_single_cable",
       "required": false
     },
     {
-      "id": "gtceu:annealed_copper_single_wire",
+      "id": "gtceu:enriched_naquadah_trinium_europium_duranide_single_wire",
       "required": false
     },
     {
-      "id": "gtceu:annealed_copper_single_cable",
+      "id": "gtceu:naquadah_single_wire",
       "required": false
     },
     {
-      "id": "gtceu:nickel_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:nickel_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:hellforged_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:hellforged_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:terra_steel_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:terra_steel_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:iron_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:iron_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:manganese_phosphide_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:graphene_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:graphene_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:samarium_dysprosium_terbium_permanent_magnet_alloy_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:samarium_dysprosium_terbium_permanent_magnet_alloy_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:shaowium_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:shaowium_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:adamantite_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:adamantite_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:melodic_alloy_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:niobium_titanium_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:niobium_titanium_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:tritanium_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:tritanium_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:yuriko_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:yuriko_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:magnesium_diboride_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:hidden_alloy_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:hidden_alloy_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:uranium_rhodium_dinaquadide_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:black_steel_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:black_steel_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:cupronickel_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:cupronickel_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:tungsten_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:tungsten_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:aluminium_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:aluminium_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:osmium_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:osmium_single_cable",
+      "id": "gtceu:naquadah_single_cable",
       "required": false
     },
     {
@@ -222,30 +66,6 @@
       "required": false
     },
     {
-      "id": "gtceu:platinum_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:platinum_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:europium_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:europium_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:blue_alloy_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:blue_alloy_single_cable",
-      "required": false
-    },
-    {
       "id": "gtceu:starmetal_single_wire",
       "required": false
     },
@@ -254,27 +74,11 @@
       "required": false
     },
     {
-      "id": "gtceu:abyssalalloy_single_wire",
+      "id": "gtceu:vanadium_gallium_single_wire",
       "required": false
     },
     {
-      "id": "gtceu:abyssalalloy_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:mana_steel_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:mana_steel_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:photonium_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:photonium_single_cable",
+      "id": "gtceu:vanadium_gallium_single_cable",
       "required": false
     },
     {
@@ -286,15 +90,55 @@
       "required": false
     },
     {
-      "id": "gtceu:samarium_iron_arsenic_oxide_single_wire",
+      "id": "gtceu:cupronickel_single_wire",
       "required": false
     },
     {
-      "id": "gtceu:rtm_alloy_single_wire",
+      "id": "gtceu:cupronickel_single_cable",
       "required": false
     },
     {
-      "id": "gtceu:rtm_alloy_single_cable",
+      "id": "gtceu:blue_titanium_alloy_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:blue_titanium_alloy_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:samarium_dysprosium_terbium_permanent_magnet_alloy_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:samarium_dysprosium_terbium_permanent_magnet_alloy_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:blue_alloy_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:blue_alloy_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:ruthenium_trinium_americium_neutronate_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:osmium_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:osmium_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:hidden_alloy_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:hidden_alloy_single_cable",
       "required": false
     },
     {
@@ -310,35 +154,55 @@
       "required": false
     },
     {
-      "id": "gtceu:naquadah_single_wire",
+      "id": "gtceu:niobium_nitride_single_wire",
       "required": false
     },
     {
-      "id": "gtceu:naquadah_single_cable",
+      "id": "gtceu:niobium_nitride_single_cable",
       "required": false
     },
     {
-      "id": "gtceu:tin_single_wire",
+      "id": "gtceu:mana_steel_single_wire",
       "required": false
     },
     {
-      "id": "gtceu:tin_single_cable",
+      "id": "gtceu:mana_steel_single_cable",
       "required": false
     },
     {
-      "id": "gtceu:samarium_dysprosium_terbium_permanent_magnet_alloy_magnetic_single_wire",
+      "id": "gtceu:gold_single_wire",
       "required": false
     },
     {
-      "id": "gtceu:samarium_dysprosium_terbium_permanent_magnet_alloy_magnetic_single_cable",
+      "id": "gtceu:gold_single_cable",
       "required": false
     },
     {
-      "id": "gtceu:vanadium_gallium_single_wire",
+      "id": "gtceu:vibrant_alloy_single_wire",
       "required": false
     },
     {
-      "id": "gtceu:vanadium_gallium_single_cable",
+      "id": "gtceu:shaowium_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:shaowium_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:stellar_alloy_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:platinum_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:platinum_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:melodic_alloy_single_wire",
       "required": false
     },
     {
@@ -350,7 +214,91 @@
       "required": false
     },
     {
-      "id": "gtceu:mercury_barium_calcium_cuprate_single_wire",
+      "id": "gtceu:niobium_titanium_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:niobium_titanium_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:cobalt_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:cobalt_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:ultra_mana_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:tritanium_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:tritanium_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:red_alloy_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:red_alloy_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:tin_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:tin_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:kanthal_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:kanthal_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:hellforged_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:hellforged_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:europium_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:europium_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:abyssalalloy_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:abyssalalloy_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:nickel_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:nickel_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:end_steel_single_wire",
       "required": false
     },
     {
@@ -362,6 +310,54 @@
       "required": false
     },
     {
+      "id": "gtceu:aluminium_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:aluminium_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:photonium_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:photonium_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:mercury_barium_calcium_cuprate_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:tungsten_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:tungsten_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:annealed_copper_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:annealed_copper_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:pikyonium_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:pikyonium_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:manganese_phosphide_single_wire",
+      "required": false
+    },
+    {
       "id": "gtceu:polypyrrole_single_wire",
       "required": false
     },
@@ -370,11 +366,139 @@
       "required": false
     },
     {
+      "id": "gtceu:yuriko_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:yuriko_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:magnesium_diboride_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:flowing_amber_gold_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:flowing_amber_gold_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:black_steel_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:black_steel_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:alfsteel_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:alfsteel_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:terra_steel_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:terra_steel_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:elementium_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:elementium_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:rtm_alloy_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:rtm_alloy_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:energetic_alloy_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:nichrome_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:nichrome_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:indium_tin_barium_titanium_cuprate_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:steel_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:steel_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:titansteel_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:titansteel_single_cable",
+      "required": false
+    },
+    {
       "id": "gtceu:trinium_single_wire",
       "required": false
     },
     {
       "id": "gtceu:trinium_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:samarium_dysprosium_terbium_permanent_magnet_alloy_magnetic_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:samarium_dysprosium_terbium_permanent_magnet_alloy_magnetic_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:graphene_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:graphene_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:iron_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:iron_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:adamantite_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:adamantite_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:my_infinity_single_wire",
       "required": false
     },
     {
@@ -390,102 +514,6 @@
       "required": false
     },
     {
-      "id": "gtceu:stellar_alloy_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:cobalt_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:cobalt_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:flowing_amber_gold_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:flowing_amber_gold_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:aether_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:aether_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:niobium_nitride_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:niobium_nitride_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:indium_tin_barium_titanium_cuprate_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:tungsten_steel_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:tungsten_steel_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:titansteel_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:titansteel_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:pikyonium_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:pikyonium_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:conductive_alloy_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:alfsteel_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:alfsteel_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:uranium_triplatinum_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:nichrome_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:nichrome_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:black_titanium_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:black_titanium_single_cable",
-      "required": false
-    },
-    {
       "id": "gtceu:copper_single_wire",
       "required": false
     },
@@ -494,55 +522,11 @@
       "required": false
     },
     {
-      "id": "gtceu:enriched_naquadah_trinium_europium_duranide_single_wire",
+      "id": "gtceu:yttrium_barium_cuprate_single_wire",
       "required": false
     },
     {
-      "id": "gtceu:hssg_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:hssg_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:red_alloy_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:red_alloy_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:elementium_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:elementium_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:ruthenium_trinium_americium_neutronate_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:vibrant_alloy_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:gold_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:gold_single_cable",
-      "required": false
-    },
-    {
-      "id": "gtceu:end_steel_single_wire",
-      "required": false
-    },
-    {
-      "id": "gtceu:ultra_mana_single_wire",
+      "id": "gtceu:yttrium_barium_cuprate_single_cable",
       "required": false
     },
     {
@@ -554,7 +538,23 @@
       "required": false
     },
     {
-      "id": "gtceu:my_infinity_single_wire",
+      "id": "gtceu:samarium_iron_arsenic_oxide_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:naquadah_alloy_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:naquadah_alloy_single_cable",
+      "required": false
+    },
+    {
+      "id": "gtceu:aether_single_wire",
+      "required": false
+    },
+    {
+      "id": "gtceu:aether_single_cable",
       "required": false
     }
   ]

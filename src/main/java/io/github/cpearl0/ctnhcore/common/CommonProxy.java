@@ -7,6 +7,7 @@ import io.github.cpearl0.ctnhcore.common.world.CTNHChunkLoading;
 import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
 import io.github.cpearl0.ctnhcore.data.materials.AeCrystalScienceMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.AeOmniMaterials;
+import io.github.cpearl0.ctnhcore.data.worldgen.CTNHBiomeModifiers;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import io.github.cpearl0.ctnhcore.registry.jade.CTNHJadePlugin;
@@ -26,12 +27,10 @@ import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
 import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
 import com.gregtechceu.gtceu.data.tags.BiomeTagsLoader;
 
-import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -132,12 +131,12 @@ public class CommonProxy {
         var registries = event.getLookupProvider();
 
         if (event.includeServer()) {
-            var set = Set.of(CTNHCore.MODID);
             generator.addProvider(true, new BiomeTagsLoader(packOutput, registries, existingFileHelper));
-            DatapackBuiltinEntriesProvider provider = generator.addProvider(true, new DatapackBuiltinEntriesProvider(
-                    packOutput, registries, new RegistrySetBuilder()
+            generator.addProvider(true, new CTNHBiomeModifiers(packOutput));
+            generator.addProvider(true, new net.minecraftforge.common.data.DatapackBuiltinEntriesProvider(
+                    packOutput, registries, new net.minecraft.core.RegistrySetBuilder()
                             .add(Registries.DAMAGE_TYPE, CTNHDamageTypes::bootstrap),
-                    set));
+                    Set.of(CTNHCore.MODID)));
         }
 
         if (event.includeClient()) {

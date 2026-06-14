@@ -6,6 +6,8 @@ import io.github.cpearl0.ctnhcore.registry.CTNHTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BiomeTags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import org.jetbrains.annotations.Nullable;
@@ -22,6 +24,17 @@ public class CTNHBiomeTagsProvider extends BiomeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
+        tag(CTNHTags.WORLDGEN_REMOVAL_BIOMES)
+                .addTag(BiomeTags.IS_OVERWORLD)
+                .addOptionalTag(ResourceLocation.tryBuild("aether", "is_aether"))
+                .addOptionalTag(ResourceLocation.tryBuild("twilightforest", "valid_quest_grove_biomes"))
+                .addOptionalTag(ResourceLocation.tryBuild("ad_astra", "has_moon_structure"))
+                .addOptionalTag(ResourceLocation.tryBuild("ad_astra", "has_mars_structure"))
+                .addOptionalTag(ResourceLocation.tryBuild("ad_astra", "has_venus_structure"))
+                .addOptionalTag(ResourceLocation.tryBuild("ad_astra", "has_mercury_structure"))
+                .addOptionalTag(ResourceLocation.tryBuild("ad_astra", "has_glacio_structure"))
+                .addOptional(ResourceLocation.tryBuild("mythicbotany", "alfheim"));
+
         tag(CTNHTags.TWILIGHT_TIER1)
                 .add(TFBiomes.DARK_FOREST)
                 .add(TFBiomes.SNOWY_FOREST)
