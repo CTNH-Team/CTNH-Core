@@ -1,14 +1,13 @@
 package io.github.cpearl0.ctnhcore.data.worldgen;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 
-import java.nio.file.Path;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -99,7 +98,8 @@ public class CTNHBiomeModifiers implements DataProvider {
                 placedFeatureTagPathProvider.json(ResourceLocation.tryBuild("ctnhcore", "worldgen_removal_ores")));
         CompletableFuture<?> decorationTag = DataProvider.saveStable(output,
                 createOptionalTag(UNDERGROUND_DECORATION),
-                placedFeatureTagPathProvider.json(ResourceLocation.tryBuild("ctnhcore", "worldgen_removal_decoration")));
+                placedFeatureTagPathProvider
+                        .json(ResourceLocation.tryBuild("ctnhcore", "worldgen_removal_decoration")));
         return CompletableFuture.allOf(undergroundOres, undergroundDecoration, biomeTag, oreTag, decorationTag);
     }
 
@@ -107,8 +107,8 @@ public class CTNHBiomeModifiers implements DataProvider {
         JsonObject json = new JsonObject();
         json.addProperty("type", "forge:remove_features");
         json.addProperty("biomes", "#ctnhcore:worldgen_removal_biomes");
-        json.addProperty("features", features == UNDERGROUND_ORES ? "#ctnhcore:worldgen_removal_ores"
-                : "#ctnhcore:worldgen_removal_decoration");
+        json.addProperty("features", features == UNDERGROUND_ORES ? "#ctnhcore:worldgen_removal_ores" :
+                "#ctnhcore:worldgen_removal_decoration");
         json.addProperty("steps", step);
         return json;
     }
