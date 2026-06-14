@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHPredicates;
+import io.github.cpearl0.ctnhcore.client.renderer.ArcBlockRender;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.*;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.Arc_Generator;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.Arc_Reactor;
@@ -44,6 +45,7 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.BATCH_MODE;
 import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.OC_NON_PERFECT_SUBTICK;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.DUMMY_RECIPES;
+import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
 import static committee.nova.mods.avaritia.init.registry.ModBlocks.neutron;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
@@ -297,7 +299,8 @@ public class MultiblocksB {
                     .where("J", Predicates.blocks(MATERIAL_BLOCKS.get(TagPrefix.block, TungstenSteel).get()))
                     .build()
             )
-            .workableCasingModel(GTCEu.id("block/casings/gcym/nonconducting_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
+            .model(createWorkableCasingMachineModel(GTCEu.id("block/casings/gcym/nonconducting_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
+                    .andThen(b -> b.addDynamicRenderer(ArcBlockRender::new)))
             .register();
     public final static MultiblockMachineDefinition ARC_GENERATOR_MK1 = REGISTRATE.multiblock("arc_generator_mk1", holder -> new Arc_Generator(holder, 1.25, 10000))
             .rotationState(RotationState.NON_Y_AXIS)

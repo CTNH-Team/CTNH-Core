@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.client;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.ponder.CTNHCorePonderPlugin;
+import io.github.cpearl0.ctnhcore.client.renderer.ArcBlockRender;
 import io.github.cpearl0.ctnhcore.client.renderer.DynamicCasingRender;
 import io.github.cpearl0.ctnhcore.client.renderer.HyperPlasmaTurbineRender;
 import io.github.cpearl0.ctnhcore.client.renderer.MartialMoralityEyeRender;
@@ -28,6 +29,7 @@ public class ClientProxy extends CommonProxy {
         DynamicRenderManager.register(CTNHCore.id("martial_morality_eye"), MartialMoralityEyeRender.TYPE);
         DynamicRenderManager.register(CTNHCore.id("hyper_plasma_turbine"), HyperPlasmaTurbineRender.TYPE);
         DynamicRenderManager.register(CTNHCore.id("dynamic_casing"), DynamicCasingRender.TYPE);
+        DynamicRenderManager.register(CTNHCore.id("arc_generator"), ArcBlockRender.TYPE);
     }
 
     public static void onClientSetupEvent(FMLClientSetupEvent event) {

@@ -1,5 +1,10 @@
 {
   "parent": "minecraft:block/block",
+  "dynamic_renders": [
+    {
+      "type": "ctnhcore:arc_generator"
+    }
+  ],
   "loader": "gtceu:machine",
   "machine": "ctnhcore:arc_generator",
   "texture_overrides": {
