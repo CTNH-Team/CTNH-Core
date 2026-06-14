@@ -38,6 +38,12 @@ public class ArcBlockRender extends DynamicRender<IMachineFeature, ArcBlockRende
     private static final float ARC_RADIUS = 5.0f;       // 辉光球放电外壳半径
     private static final int NUM_STREAMERS = 8;         // 电弧线的数量
     private static final int SEGMENTS_PER_STREAMER = 12; // 每条电弧折线段数
+    private static final float ARC_HALF_THICKNESS = 0.0625f;
+    private static final double TWO_PI = Math.PI * 2.0;
+    private static final float MIN_DIRECTION_SPEED = 0.35f;
+    private static final float MAX_DIRECTION_SPEED = 1.6f;
+    private static final float MIN_ARC_REFRESH_SPEED = 0.55f;
+    private static final float MAX_ARC_REFRESH_SPEED = 2.2f;
 
     public ArcBlockRender() {}
 
@@ -49,6 +55,35 @@ public class ArcBlockRender extends DynamicRender<IMachineFeature, ArcBlockRende
     @Override
     public int getViewDistance() {
         return 64;
+    }
+
+    private static Vec3 createRandomizedEndPoint(float time, Random streamerRandom) {
+        float directionSpeed = randomBetween(streamerRandom, MIN_DIRECTION_SPEED, MAX_DIRECTION_SPEED);
+        float phaseOffset = streamerRandom.nextFloat() * 1024.0f;
+        long directionFrame = (long) Math.floor((time + phaseOffset) * directionSpeed / 6.0f);
+        long directionSeed = streamerRandom.nextLong() + directionFrame * 0xC2B2AE3D27D4EB4FL;
+        Random directionRandom = new Random(directionSeed);
+
+        double y = directionRandom.nextDouble() * 2.0 - 1.0;
+        double angle = directionRandom.nextDouble() * TWO_PI;
+        double horizontalScale = Math.sqrt(Math.max(0.0, 1.0 - y * y));
+        float radius = ARC_RADIUS * randomBetween(directionRandom, 0.65f, 1.08f);
+
+        return new Vec3(Math.cos(angle) * horizontalScale * radius, y * radius,
+                Math.sin(angle) * horizontalScale * radius);
+    }
+
+    private static float randomBetween(Random random, float min, float max) {
+        return Mth.lerp(random.nextFloat(), min, max);
+    }
+
+    private static long mixSeed(long seed) {
+        seed ^= seed >>> 33;
+        seed *= 0xff51afd7ed558ccdL;
+        seed ^= seed >>> 33;
+        seed *= 0xc4ceb9fe1a85ec53L;
+        seed ^= seed >>> 33;
+        return seed;
     }
 
     @Override
@@ -79,20 +114,12 @@ public class ArcBlockRender extends DynamicRender<IMachineFeature, ArcBlockRende
             renderCentralCore(matrix, builder, time);
 
             Vec3 start = new Vec3(0.0, 0.0, 0.0);
-            float baseHalfThickness = 0.04f;
+            float baseHalfThickness = ARC_HALF_THICKNESS;
 
             for (int t = 0; t < NUM_STREAMERS; t++) {
-
-                float xSign = (t & 1) == 0 ? 1.0f : -1.0f;
-                float ySign = ((t >> 1) & 1) == 0 ? 1.0f : -1.0f;
-                float zSign = ((t >> 2) & 1) == 0 ? 1.0f : -1.0f;
-
-                float len = Mth.sqrt(xSign * xSign + ySign * ySign + zSign * zSign);
-                float targetX = (xSign / len) * ARC_RADIUS;
-                float targetY = (ySign / len) * ARC_RADIUS;
-                float targetZ = (zSign / len) * ARC_RADIUS;
-
-                Vec3 end = new Vec3(targetX, targetY, targetZ);
+                long streamerSeed = mixSeed(controllerPos.asLong() ^ (0x9E3779B97F4A7C15L * (long) (t + 1)));
+                Random streamerRandom = new Random(streamerSeed);
+                Vec3 end = createRandomizedEndPoint(time, streamerRandom);
                 Vec3 delta = end.subtract(start);
 
                 if (delta.lengthSqr() < 1.0E-12) continue;
@@ -111,7 +138,8 @@ public class ArcBlockRender extends DynamicRender<IMachineFeature, ArcBlockRende
                 side = side.normalize();
                 Vec3 renderUp = side.cross(direction).normalize();
 
-                long seed = ((long) (time / 3.0f)) * 31337L + t * 13L;
+                float arcRefreshSpeed = randomBetween(streamerRandom, MIN_ARC_REFRESH_SPEED, MAX_ARC_REFRESH_SPEED);
+                long seed = ((long) Math.floor(time * arcRefreshSpeed / 3.0f)) * 31337L + streamerSeed;
                 Random rnd = new Random(seed);
 
                 Vec3 prevL1 = start;
@@ -123,7 +151,8 @@ public class ArcBlockRender extends DynamicRender<IMachineFeature, ArcBlockRende
                     float progress = (float) i / (float) SEGMENTS_PER_STREAMER;
                     Vec3 currentMidpoint = start.add(delta.scale(progress));
 
-                    float displacementMagnitude = baseHalfThickness * ((float) Math.PI * 5.0F);
+                    float displacementMagnitude = baseHalfThickness *
+                            ((float) Math.PI * randomBetween(rnd, 4.0f, 8.0f));
                     float falloff = 1.0F - (float) Math.pow(2.0F * progress - 1.0F, 2.0F);
                     displacementMagnitude *= falloff;
                     displacementMagnitude *= rnd.nextFloat() * 2.0F - 1.0F;
