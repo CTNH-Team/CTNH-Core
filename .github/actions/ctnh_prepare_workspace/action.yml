@@ -27,6 +27,15 @@ inputs:
     required: false
     default: dev
 
+  ctnh_astral_repository:
+    description: CTNH-Astral repository.
+    required: false
+    default: CTNH-Team/CTNH-Astral
+  ctnh_astral_ref:
+    description: CTNH-Astral ref.
+    required: false
+    default: dev
+
   ctnh_bio_repository:
     description: CTNH-Bio repository.
     required: false
@@ -107,6 +116,15 @@ runs:
         repository: ${{ inputs.ctnh_core_repository }}
         ref: ${{ inputs.ctnh_core_ref }}
         path: CTNH-Modules/modules/CTNH-Core
+
+    - name: Checkout CTNH-Astral
+      if: ${{ inputs.module_name != 'CTNH-Astral' }}
+      uses: actions/checkout@v4
+      with:
+        token: ${{ inputs.token }}
+        repository: ${{ inputs.ctnh_astral_repository }}
+        ref: ${{ inputs.ctnh_astral_ref }}
+        path: CTNH-Modules/modules/CTNH-Astral
 
     - name: Checkout CTNH-Bio
       if: ${{ inputs.module_name != 'CTNH-Bio' }}
