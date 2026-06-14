@@ -4,9 +4,10 @@ import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
 
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
-import com.gregtechceu.gtceu.common.data.GTBlocks;
+import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
@@ -32,7 +33,7 @@ public class NanoRecipes {
                 "BAB", "ACA", "BAB",
                 'A', CustomTags.MV_CIRCUITS,
                 'B', CTPPBlocks.STEEL_CASING.asStack(),
-                'C', GTBlocks.MACHINE_CASING_MV.asStack());
+                'C', GTMachines.HULL[GTValues.MV]);
 
         // Nano generator: stone -> stone_dust
         CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder(CTNHCore.id("stone2"))

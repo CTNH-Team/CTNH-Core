@@ -137,7 +137,7 @@ public class StonedustChain {
 
         // 蒸馏：稀氢氟酸 -> 水 + 氢氟酸
         DISTILLATION_RECIPES.recipeBuilder(CTNHCore.id("hydrofluoric_acid"))
-                .inputFluids(DilutedHydrochloricAcid.getFluid(2000))
+                .inputFluids(StonePowderMaterials.DILUTE_HYDROFLUORIC_ACID.getFluid(2000))
                 .outputFluids(Water.getFluid(1000))
                 .outputFluids(HydrofluoricAcid.getFluid(1000))
                 .duration(80).EUt(200)

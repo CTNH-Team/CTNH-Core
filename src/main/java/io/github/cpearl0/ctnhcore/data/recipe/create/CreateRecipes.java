@@ -6,6 +6,8 @@ import io.github.cpearl0.ctnhcore.data.materials.CreateMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.EnderIOMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.SpecialMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.UncategorizedMaterials;
+import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval;
+import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval.RemoveFilter;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
@@ -49,6 +51,63 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 public class CreateRecipes {
+
+    public static void createRemovals() {
+        RecipeRemoval.remove(new RemoveFilter().id("create:pressing/copper_ingot"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:pressing/brass_ingot"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:pressing/gold_ingot"));
+        RecipeRemoval.remove(new RemoveFilter().type("create:automatic_brewing"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:pressing/iron_ingot"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/andesite_alloy_from_zinc"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/andesite_alloy"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:pressing/sugar_cane"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/water_wheel"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/large_water_wheel"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/mechanical_drill"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/mechanical_mixer"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/rose_quartz"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/electron_tube"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/copper_ingot"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/deployer"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/contraption_controls"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/appliances/slime_ball"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:mechanical_crafting/crushing_wheel"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:milling/charcoal"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/mechanical_bearing"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:mixing/brass_ingot"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:pressing/juperium_ingot"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:pressing/saturlyte_ingot"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:pressing/radium_ingot"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:pressing/electrolyte_ingot"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:pressing/plutonium_ingot"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:pressing/neptunium_ingot"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:pressing/uranium_ingot"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:pressing/desh_ingot"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:pressing/ostrum_ingot"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:pressing/steel_ingot"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:pressing/calorite_ingot"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/andesite_alloy_from_block"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/andesite_alloy_block"));
+        RecipeRemoval.remove(new RemoveFilter().output("create:cart_assembler"));
+        RecipeRemoval.remove(new RemoveFilter().output("create:portable_storage_interface"));
+        RecipeRemoval.remove(new RemoveFilter().output("create:rotation_speed_controller"));
+        RecipeRemoval.remove(new RemoveFilter().output("create:belt_connector"));
+        RecipeRemoval.remove(new RemoveFilter().output("create:goggles"));
+        RecipeRemoval.remove(new RemoveFilter().output("create:shaft"));
+        RecipeRemoval.remove(new RemoveFilter().output("create:encased_fan"));
+        RecipeRemoval.remove(new RemoveFilter().output("create:windmill_bearing"));
+        RecipeRemoval.remove(new RemoveFilter().output("create:depot"));
+        RecipeRemoval.remove(new RemoveFilter().output("create:mechanical_press"));
+        RecipeRemoval.remove(new RemoveFilter().output("create:large_cogwheel"));
+        RecipeRemoval.remove(new RemoveFilter().output("create:spout"));
+        RecipeRemoval.remove(new RemoveFilter().output("create:cogwheel"));
+        RecipeRemoval.remove(new RemoveFilter().output("create:millstone"));
+        RecipeRemoval.remove(new RemoveFilter().output("create:andesite_alloy").type("create:mixing"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:milling/calcite"));
+
+        RecipeRemoval.replaceInput(new RemoveFilter().output("create:copper_casing"), "create:copper_ingot",
+                "gtceu:bronze_ingot");
+    }
 
     public static void init(Consumer<FinishedRecipe> provider) {
         // Crushing/milling for gtceu ingots -> dusts

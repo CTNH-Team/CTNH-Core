@@ -2409,12 +2409,6 @@ public class GtceuScriptRecipes {
                 .EUt(30).duration(400)
                 .save(provider);
 
-        // 2. small_wooden_pipe (shaped): replaced planks with wood_plate
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("small_wooden_pipe"),
-                ChemicalHelper.get(pipeSmallFluid, Wood, 2),
-                "P", "P", "P",
-                'P', ChemicalHelper.get(plate, Wood));
-
         // 3. hv_diode (shaped): replaced smd_diode with #gtceu:diodes tag
         {
             TagKey<Item> diodeTag = ItemTags.create(ResourceLocation.parse("gtceu:diodes"));

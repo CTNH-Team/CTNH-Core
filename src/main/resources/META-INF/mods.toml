@@ -75,7 +75,7 @@ description='''${mod_description}'''
     modId="gtceu"
     mandatory=true
     versionRange="[7.1,)"
-    ordering="BEFORE"
+    ordering="AFTER"
     side="BOTH"
 
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares

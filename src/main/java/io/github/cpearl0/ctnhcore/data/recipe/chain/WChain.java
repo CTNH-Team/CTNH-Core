@@ -10,6 +10,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.ingotHot;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 public class WChain {
@@ -40,7 +41,7 @@ public class WChain {
         GTRecipeTypes.BLAST_RECIPES.recipeBuilder("tungsten_ingot")
                 .inputItems(dust, GTMaterials.get("TungstenTrioxide"), 8)
                 .inputItems(dust, GTMaterials.Carbon, 3)
-                .outputItems(dust, GTMaterials.get("HotTungstenIngot"), 2)
+                .outputItems(ingotHot, GTMaterials.get("HotTungstenIngot"), 2)
                 .outputFluids(GTMaterials.CarbonDioxide.getFluid(3000))
                 .EUt(480)
                 .duration(1000)

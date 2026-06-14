@@ -2,6 +2,8 @@ package io.github.cpearl0.ctnhcore.data.recipe.modmodify.omnicells;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.EnderIOMaterials;
+import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval;
+import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval.RemoveFilter;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.GTValues;
@@ -21,12 +23,10 @@ import com.enderio.base.common.init.EIOItems;
 import com.wintercogs.ae2omnicells.common.init.OCItems;
 import io.github.lounode.ae2cs.common.init.AECSItems;
 
-import java.util.List;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.data.recipe.CustomTags.*;
-import static io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval.removePaths;
 
 public class QuantumOmniRecipes {
 
@@ -244,7 +244,74 @@ public class QuantumOmniRecipes {
     // .save(provider);
     // }
     public static void omniRemovals() {
-        removePaths.addAll(List.of(
-                "ae2omnicells:charged_ender_ingot"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:charged_ender_ingot"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:omni_cell_component_1k"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:omni_cell_component_4k"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:omni_cell_component_16k"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:omni_cell_component_64k"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:omni_cell_component_256k"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:omni_cell_component_1m"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:omni_cell_component_4m"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:omni_cell_component_16m"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:omni_cell_component_64m"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:complex_omni_cell_component_1k"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:complex_omni_cell_component_4k"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:complex_omni_cell_component_16k"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:complex_omni_cell_component_64k"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:complex_omni_cell_component_256k"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:complex_omni_cell_component_1m"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:complex_omni_cell_component_4m"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:complex_omni_cell_component_16m"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:complex_omni_cell_component_64m"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:quantum_omni_cell_component_4k"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:quantum_omni_cell_component_16k"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:quantum_omni_cell_component_64k"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:quantum_omni_cell_component_256k"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:quantum_omni_cell_component_1m"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:quantum_omni_cell_component_4m"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:quantum_omni_cell_component_16m"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:quantum_omni_cell_component_64m"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:omni_cell_housing"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:complex_omni_cell_housing"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:omni_link_print_press"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:complex_link_print_press"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:multidimensional_expansion_print_press"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:omni_crafting_unit_block"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:complex_crafting_unit_block"));
+        RecipeRemoval.remove(new RemoveFilter().output("ae2omnicells:quantum_crafting_unit_block"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/omni_cell_1k"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/omni_cell_4k"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/omni_cell_16k"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/omni_cell_64k"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/omni_cell_256k"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/omni_cell_1m"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/omni_cell_4m"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/omni_cell_16m"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/omni_cell_64m"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/omni_cell_256m"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/complex_omni_cell_1k"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/complex_omni_cell_4k"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/complex_omni_cell_16k"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/complex_omni_cell_64k"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/complex_omni_cell_256k"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/complex_omni_cell_1m"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/complex_omni_cell_4m"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/complex_omni_cell_16m"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/complex_omni_cell_64m"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/complex_omni_cell_256m"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/quantum_omni_cell_1k"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/quantum_omni_cell_4k"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/quantum_omni_cell_16k"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/quantum_omni_cell_64k"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/quantum_omni_cell_256k"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/quantum_omni_cell_1m"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/quantum_omni_cell_4m"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/quantum_omni_cell_16m"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/quantum_omni_cell_64m"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/shaped/quantum_omni_cell_256m"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:components/shaped/omni_cell_component_256m"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:components/shaped/complex_omni_cell_component_256m"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:components/shaped/quantum_omni_cell_component_256m"));
+        RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:cells/housing/quantum_omni_cell_housing"));
     }
 }

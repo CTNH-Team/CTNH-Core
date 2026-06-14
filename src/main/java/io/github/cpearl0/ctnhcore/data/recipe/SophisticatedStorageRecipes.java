@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval.RemoveFilter;
 
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
@@ -18,7 +19,6 @@ import net.minecraft.world.item.Items;
 import net.p3pp3rf1y.sophisticatedstorage.init.ModBlocks;
 import net.p3pp3rf1y.sophisticatedstorage.init.ModItems;
 
-import com.buuz135.functionalstorage.FunctionalStorage;
 import com.mo_guang.ctpp.common.recipe.builder.create.*;
 import com.mo_guang.ctpp.registry.CTPPItems;
 import com.simibubi.create.AllBlocks;
@@ -35,7 +35,6 @@ public class SophisticatedStorageRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         tierUpgradeRecipes(provider);
         mechanicalCrafting(provider);
-        backpackRecipes(provider);
     }
 
     private static ItemStack tierUpgrade(String from, String to) {
@@ -105,7 +104,7 @@ public class SophisticatedStorageRecipes {
         addUpgradeRecipe(provider, "basic", "copper", PLANKS_TAG, "bronze");
 
         // basic → iron
-        addUpgradeRecipe(provider, "basic", "iron", PLANKS_TAG, "iron");
+        addUpgradeRecipe(provider, "basic", "iron", tierUpgrade("basic", "copper"), "iron");
 
         // basic → gold
         addUpgradeRecipe(provider, "basic", "gold", tierUpgrade("basic", "iron"), "gold");
@@ -162,15 +161,35 @@ public class SophisticatedStorageRecipes {
                 .save(provider);
     }
 
-    private static void backpackRecipes(Consumer<FinishedRecipe> provider) {
-        // void upgrade
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("sophisticatedbackpacks/void_upgrade"),
-                new ItemStack(net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems.VOID_UPGRADE.get()),
-                " A ", "BCD", " E ",
-                'A', FunctionalStorage.VOID_UPGRADE.get(),
-                'B', Items.DISPENSER,
-                'C', net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems.UPGRADE_BASE.get(),
-                'D', Items.DROPPER,
-                'E', net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems.FILTER_UPGRADE.get());
+    public static void sophisticatedStorageRemovals() {
+        RecipeRemoval.remove(new RemoveFilter().id("sophisticatedbackpacks:stack_upgrade_omega_tier"));
+        RecipeRemoval.remove(new RemoveFilter().outputRegex("sophisticatedstorage:(.*)_barrel"));
+        RecipeRemoval.remove(new RemoveFilter().outputRegex("sophisticatedstorage:limited_(.*)_barrel"));
+        RecipeRemoval.remove(new RemoveFilter().outputRegex("sophisticatedstorage:(.*)_chest"));
+        RecipeRemoval.remove(new RemoveFilter().outputRegex("sophisticatedstorage:(.*)_shulker_box"));
+        RecipeRemoval.remove(new RemoveFilter()
+                .id("sophisticatedstorage:backpack_stack_upgrade_omega_tier_from_storage_stack_upgrade_omega_tier"));
+        RecipeRemoval.remove(new RemoveFilter().id("sophisticatedstorage:stack_upgrade_omega_tier"));
+        RecipeRemoval.remove(new RemoveFilter().id("sophisticatedstorage:void_upgrade"));
+        RecipeRemoval.remove(new RemoveFilter().id("sophisticatedstorage:controller"));
+        RecipeRemoval.remove(new RemoveFilter().output("sophisticatedstorage:basic_to_copper_tier_upgrade"));
+        RecipeRemoval.remove(new RemoveFilter().output("sophisticatedstorage:basic_to_iron_tier_upgrade"));
+        RecipeRemoval.remove(new RemoveFilter().output("sophisticatedstorage:basic_to_gold_tier_upgrade"));
+        RecipeRemoval.remove(new RemoveFilter().output("sophisticatedstorage:basic_to_diamond_tier_upgrade"));
+        RecipeRemoval.remove(new RemoveFilter().output("sophisticatedstorage:basic_to_netherite_tier_upgrade"));
+        RecipeRemoval.remove(new RemoveFilter().output("sophisticatedstorage:copper_to_iron_tier_upgrade"));
+        RecipeRemoval.remove(new RemoveFilter().output("sophisticatedstorage:copper_to_gold_tier_upgrade"));
+        RecipeRemoval.remove(new RemoveFilter().output("sophisticatedstorage:copper_to_diamond_tier_upgrade"));
+        RecipeRemoval.remove(new RemoveFilter().output("sophisticatedstorage:copper_to_netherite_tier_upgrade"));
+        RecipeRemoval.remove(new RemoveFilter().output("sophisticatedstorage:iron_to_gold_tier_upgrade"));
+        RecipeRemoval.remove(new RemoveFilter().output("sophisticatedstorage:iron_to_diamond_tier_upgrade"));
+        RecipeRemoval.remove(new RemoveFilter().output("sophisticatedstorage:iron_to_netherite_tier_upgrade"));
+        RecipeRemoval.remove(new RemoveFilter().output("sophisticatedstorage:gold_to_diamond_tier_upgrade"));
+        RecipeRemoval.remove(new RemoveFilter().output("sophisticatedstorage:gold_to_netherite_tier_upgrade"));
+        RecipeRemoval.remove(new RemoveFilter().output("sophisticatedstorage:diamond_to_netherite_tier_upgrade"));
+        RecipeRemoval.remove(new RemoveFilter().output("sophisticatedstorage:copper_upgrade"));
+        RecipeRemoval.remove(new RemoveFilter().output("sophisticatedstorage:gold_upgrade"));
+        RecipeRemoval.remove(new RemoveFilter().output("sophisticatedstorage:diamond_upgrade"));
+        RecipeRemoval.remove(new RemoveFilter().output("sophisticatedstorage:netherite_upgrade"));
     }
 }

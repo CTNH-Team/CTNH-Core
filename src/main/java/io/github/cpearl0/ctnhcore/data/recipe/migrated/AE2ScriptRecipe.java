@@ -214,7 +214,7 @@ public class AE2ScriptRecipe {
                 "ABA", "CDC", "AEA",
                 'A', ChemicalHelper.get(plate, StainlessSteel), 'B', AEBlocks.CRAFTING_ACCELERATOR.asItem(),
                 'C', AEBlocks.INTERFACE.asItem(),
-                'D', GTItems.SENSOR_HV, 'E', ChemicalHelper.get(gem, Amethyst));
+                'D', GTItems.SENSOR_HV, 'E', ChemicalHelper.get(gemFlawless, Amethyst));
         VanillaRecipeHelper.addShapedRecipe(provider, true, CTNHCore.id("storage_bus_from_parts"),
                 new ItemStack(AEParts.STORAGE_BUS.asItem(), 1), "ABC",
                 'A', AEParts.IMPORT_BUS.asItem(), 'B', AEBlocks.INTERFACE.asItem(), 'C', AEParts.EXPORT_BUS.asItem());
@@ -438,7 +438,7 @@ public class AE2ScriptRecipe {
                 .inputItems(OCItems.ENDER_INGOT.get()).notConsumable(OCItems.OMNI_LINK_PRINT_PRESS.get())
                 .outputItems(OCItems.OMNI_LINK_CIRCUIT_PRINT.get())
                 .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("omni_link_processor"))
+        FORMING_PRESS_RECIPES.recipeBuilder(CTNHCore.id("omni_link_processor"))
                 .EUt(480).circuitMeta(23).duration(360)
                 .inputItems(OCItems.OMNI_LINK_CIRCUIT_PRINT.get(), 2)
                 .inputItems(AEItems.SILICON_PRINT.asItem(), 2)
@@ -459,7 +459,7 @@ public class AE2ScriptRecipe {
                 .inputItems(plate, Netherite).notConsumable(OCItems.COMPLEX_LINK_PRINT_PRESS.get())
                 .outputItems(OCItems.COMPLEX_LINK_CIRCUIT_PRINT.get())
                 .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("complex_link_processor"))
+        FORMING_PRESS_RECIPES.recipeBuilder(CTNHCore.id("complex_link_processor"))
                 .EUt(480).circuitMeta(23).duration(360)
                 .inputItems(OCItems.COMPLEX_LINK_CIRCUIT_PRINT.get(), 2)
                 .inputItems(AEItems.SILICON_PRINT.asItem(), 2)
@@ -488,12 +488,12 @@ public class AE2ScriptRecipe {
                                       Item press, Item printed, Item processor,
                                       MarkerMaterial lensMat) {
         FORMING_PRESS_RECIPES.recipeBuilder(CTNHCore.id(name + "_print"))
-                .EUt(30).circuitMeta(23).duration(200)
+                .EUt(120).circuitMeta(23).duration(200)
                 .inputItems(platePrefix, plateMat).notConsumable(press)
                 .outputItems(printed)
                 .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id(name))
-                .EUt(30).circuitMeta(23).duration(360)
+        FORMING_PRESS_RECIPES.recipeBuilder(CTNHCore.id(name))
+                .EUt(120).circuitMeta(23).duration(360)
                 .inputItems(printed, 2)
                 .inputItems(AEItems.SILICON_PRINT.asItem(), 2)
                 .inputItems(CustomTags.MV_CIRCUITS)
@@ -586,7 +586,7 @@ public class AE2ScriptRecipe {
                 new ItemStack(CEItems.EU_P2P.asItem()), new String[] { "AB" },
                 Ingredient.of(CEItems.EU_P2P.asItem()),
                 'A', AEParts.ME_P2P_TUNNEL.asItem(),
-                'B', CEItems.EU_P2P.asItem());
+                'B', CustomTags.EV_CIRCUITS);
     }
 
     private static void shaped(Consumer<FinishedRecipe> provider, String id, ItemLike result,

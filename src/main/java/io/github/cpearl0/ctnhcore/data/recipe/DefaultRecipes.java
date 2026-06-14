@@ -574,18 +574,18 @@ public class DefaultRecipes {
                 provider, true, "iridium_machine_casing",
                 CTNHBlocks.IRIDIUM_CASING.asStack(),
                 "ABA", "ACA", "ABA",
-                'A', TagPrefix.plate, GTMaterials.Iridium,
-                'B', TagPrefix.screw, GTMaterials.Iridium,
-                'C', TagPrefix.gearSmall, GTMaterials.Iridium);
+                'A', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Iridium),
+                'B', ChemicalHelper.get(TagPrefix.screw, GTMaterials.Iridium),
+                'C', ChemicalHelper.get(TagPrefix.gearSmall, GTMaterials.Iridium));
 
         // 3. 聚苯并咪唑管道（工作台）
         VanillaRecipeHelper.addShapedRecipe(
                 provider, true, "polybenzimidazole_pipe",
                 CTNHBlocks.CASING_POLYBENZIMIDAZOLE_PIPE.asStack(),
                 "ABA", "BCB", "ABA",
-                'A', TagPrefix.plate, GTMaterials.Polybenzimidazole,
-                'B', TagPrefix.pipeNormalFluid, GTMaterials.Polybenzimidazole,
-                'C', TagPrefix.frameGt, GTMaterials.Polybenzimidazole);
+                'A', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Polybenzimidazole),
+                'B', ChemicalHelper.get(TagPrefix.pipeNormalFluid, GTMaterials.Polybenzimidazole),
+                'C', ChemicalHelper.get(TagPrefix.frameGt, GTMaterials.Polybenzimidazole));
 
         // 4. 高级过滤外壳（组装机）
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("advanced_filter_casing"))

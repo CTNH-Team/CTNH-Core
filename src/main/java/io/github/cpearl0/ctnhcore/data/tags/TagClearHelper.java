@@ -1,7 +1,11 @@
 package io.github.cpearl0.ctnhcore.data.tags;
 
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagBuilder;
+import net.minecraft.tags.TagEntry;
 import net.minecraft.tags.TagKey;
 
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
@@ -9,6 +13,8 @@ import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * Tag 清空工具。
@@ -38,6 +44,59 @@ public class TagClearHelper {
         for (var key : tagKeys) {
             clear(provider, key);
         }
+    }
+
+    /**
+     * 从标签中移除特定项。
+     * 生成 {@code {"remove": ["<entryId>"]}}，等效于 KubeJS 的 {@code event.remove(tag, item)}。
+     *
+     * @param provider Registrate 标签数据生成器
+     * @param tagKey   要操作的标签
+     * @param entryIds 要移除的项 ID（ResourceLocation）
+     * @param <T>      注册表类型
+     */
+    public static <T> void removeFromTag(RegistrateTagsProvider<T> provider, TagKey<T> tagKey,
+                                         ResourceLocation... entryIds) {
+        var appender = provider.addTag(tagKey);
+        TagBuilder builder = extractBuilder(appender);
+        for (ResourceLocation entryId : entryIds) {
+            builder.remove(TagEntry.optionalElement(entryId));
+        }
+    }
+
+    /**
+     * 从标签中移除匹配正则的所有项。
+     * 遍历注册表中所有项，筛选 ID 匹配 pattern 的项并从标签中移除。
+     *
+     * @param provider Registrate 标签数据生成器
+     * @param tagKey   要操作的标签
+     * @param pattern  正则表达式，匹配完整的 ID 字符串（如 {@code "vintageimprovements:.*_rod"}）
+     * @param registry 注册表（如 {@link BuiltInRegistries#ITEM}）
+     * @param <T>      注册表类型
+     */
+    public static <T> void removeFromTagByPattern(RegistrateTagsProvider<T> provider, TagKey<T> tagKey,
+                                                  String pattern, Registry<T> registry) {
+        var ids = expandPattern(pattern, registry);
+        removeFromTag(provider, tagKey, ids.toArray(new ResourceLocation[0]));
+    }
+
+    /**
+     * 将正则 pattern 展开为注册表中匹配的所有 ResourceLocation。
+     *
+     * <p>
+     * pattern 匹配的是完整的 ID 字符串（{@code namespace:path}），
+     * 例如 {@code "vintageimprovements:.*_rod"} 会匹配 {@code vintageimprovements:iron_rod} 等。
+     *
+     * @param pattern  正则表达式
+     * @param registry 注册表（如 {@link BuiltInRegistries#ITEM}）
+     * @param <T>      注册表类型
+     * @return 匹配的所有 ResourceLocation
+     */
+    public static <T> List<ResourceLocation> expandPattern(String pattern, Registry<T> registry) {
+        var regex = Pattern.compile(pattern);
+        return registry.keySet().stream()
+                .filter(id -> regex.matcher(id.toString()).matches())
+                .collect(Collectors.toList());
     }
 
     // -----------------------------------------------------------

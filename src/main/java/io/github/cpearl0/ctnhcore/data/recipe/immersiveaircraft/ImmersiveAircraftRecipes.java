@@ -1,6 +1,8 @@
 package io.github.cpearl0.ctnhcore.data.recipe.immersiveaircraft;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval;
+import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval.RemoveFilter;
 
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
@@ -32,6 +34,10 @@ public class ImmersiveAircraftRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         addCraftingTableRecipes(provider);
         addCreateRecipes(provider);
+    }
+
+    public static void immersiveAircraftRemovals() {
+        RecipeRemoval.remove(new RemoveFilter().mod("immersive_aircraft"));
     }
 
     public static void removals(Consumer<ResourceLocation> registry) {
