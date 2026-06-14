@@ -9,8 +9,10 @@ dependencies {
     jarJar(project(":modules:CTNH-Energy")){ transitive = false }
     implementation(project(":modules:CTNH-Mana"))
     jarJar(project(":modules:CTNH-Mana")){ transitive = false }
-    implementation(project(":modules:CTNH-Astral"))
-    jarJar(project(":modules:CTNH-Astral")){ transitive = false }
+    if (findProject(":modules:CTNH-Astral") != null) {
+        implementation(project(":modules:CTNH-Astral"))
+        jarJar(project(":modules:CTNH-Astral")){ transitive = false }
+    }
     jarJar(project(":modules:GregTech-Modern")){ transitive = false }
 
     //modImplementation("extra-mods:create_connected-26.1-all")
