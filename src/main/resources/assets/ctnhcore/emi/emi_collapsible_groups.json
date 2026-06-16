@@ -1,0 +1,231 @@
+{
+  "ctnhcore:spawn_eggs": {
+    "key": "regex:minecraft:.*_spawn_egg",
+    "priority": 0
+  },
+  "ctnhcore:spawners": {
+    "key": "minecraft:spawner"
+  },
+  "ctnhcore:music_discs": {
+    "key": "regex:minecraft:music_disc_.*"
+  },
+  "ctnhcore:splash_potions": {
+    "key": "minecraft:splash_potion"
+  },
+  "ctnhcore:lingering_potions": {
+    "key": "minecraft:lingering_potion"
+  },
+  "ctnhcore:tools/swords": {
+    "key": [
+      "#minecraft:swords",
+      "#forge:tools/swords"
+    ]
+  },
+  "ctnhcore:tools/pickaxes": {
+    "key": [
+      "#minecraft:pickaxes",
+      "#forge:tools/pickaxes"
+    ]
+  },
+  "ctnhcore:tools/axes": {
+    "key": [
+      "#minecraft:axes",
+      "#forge:tools/axes"
+    ]
+  },
+  "ctnhcore:tools/shovels": {
+    "key": [
+      "#minecraft:shovels",
+      "#forge:tools/shovels"
+    ]
+  },
+  "ctnhcore:tools/hoes": {
+    "key": [
+      "#minecraft:hoes",
+      "#forge:tools/hoes"
+    ]
+  },
+  "ctnhcore:blocks/logs": {
+    "key": "#minecraft:logs"
+  },
+  "ctnhcore:blocks/planks": {
+    "key": "#minecraft:planks"
+  },
+  "ctnhcore:blocks/wool": {
+    "key": "#minecraft:wool"
+  },
+  "ctnhcore:blocks/glazed_terracotta": {
+    "key": "regex:minecraft:.*_glazed_terracotta$"
+  },
+  "ctnhcore:blocks/stairs": {
+    "key": "#minecraft:stairs"
+  },
+  "ctnhcore:blocks/slabs": {
+    "key": "#minecraft:slabs"
+  },
+  "ctnhcore:blocks/fences": {
+    "key": "#minecraft:fences"
+  },
+  "ctnhcore:blocks/fence_gates": {
+    "key": "#minecraft:fence_gates"
+  },
+  "ctnhcore:blocks/doors": {
+    "key": "#minecraft:doors"
+  },
+  "ctnhcore:blocks/trapdoors": {
+    "key": "#minecraft:trapdoors"
+  },
+  "ctnhcore:blocks/pressure_plates": {
+    "key": "#minecraft:pressure_plates"
+  },
+  "ctnhcore:blocks/buttons": {
+    "key": "#minecraft:buttons"
+  },
+  "ctnhcore:blocks/glass": {
+    "key": "#forge:glass"
+  },
+  "ctnhcore:blocks/glass_panes": {
+    "key": "#forge:glass_panes"
+  },
+  "ctnhcore:blocks/beds": {
+    "key": "#minecraft:beds"
+  },
+  "ctnhcore:blocks/shulker_boxes": {
+    "key": "#forge:shulker_boxes"
+  },
+  "ctnhcore:blocks/candles": {
+    "key": "#minecraft:candles"
+  },
+  "ctnhcore:blocks/banners": {
+    "key": "#minecraft:banners"
+  },
+  "ctnhcore:blocks/concretes": {
+    "key": "#forge:concretes"
+  },
+  "ctnhcore:blocks/concrete_powders": {
+    "key": "#forge:concrete_powders"
+  },
+  "ctnhcore:blocks/ores": {
+    "key": "#forge:ores"
+  },
+  "ctnhcore:blocks/saplings": {
+    "key": "#minecraft:saplings"
+  },
+  "ctnhcore:blocks/mushrooms": {
+    "key": "#forge:mushrooms"
+  },
+  "ctnhcore:blocks/flowers": {
+    "key": "#minecraft:flowers"
+  },
+  "ctnhcore:blocks/corals": {
+    "key": "#forge:corals"
+  },
+  "ctnhcore:items/painting": {
+    "key": "minecraft:painting"
+  },
+  "ctnhcore:items/signs": {
+    "key": "#minecraft:signs"
+  },
+  "ctnhcore:items/hanging_signs": {
+    "key": "#minecraft:hanging_signs"
+  },
+  "ctnhcore:items/boats": {
+    "key": "#minecraft:boats"
+  },
+  "ctnhcore:items/goat_horn": {
+    "key": "minecraft:goat_horn"
+  },
+  "ctnhcore:items/potion_charm": {
+    "key": "apotheosis:potion_charm"
+  },
+  "ctnhcore:items/helmets": {
+    "key": "#forge:armors/helmets"
+  },
+  "ctnhcore:items/chestplates": {
+    "key": "#forge:armors/chestplates"
+  },
+  "ctnhcore:items/leggings": {
+    "key": "#forge:armors/leggings"
+  },
+  "ctnhcore:items/boots": {
+    "key": "#forge:armors/boots"
+  },
+  "ctnhcore:items/gloves": {
+    "key": "#aether:accessories_gloves"
+  },
+  "ctnhcore:items/arrows": {
+    "key": "#minecraft:arrows"
+  },
+  "ctnhcore:items/suspicious_stew": {
+    "key": "minecraft:suspicious_stew"
+  },
+  "ctnhcore:items/potions": {
+    "key": "minecraft:potion"
+  },
+  "ctnhcore:items/enchanted_books": {
+    "key": "minecraft:enchanted_book"
+  },
+  "ctnhcore:items/decorated_pot_sherds": {
+    "key": "#minecraft:decorated_pot_sherds"
+  },
+  "ctnhcore:items/trim_templates": {
+    "key": "#minecraft:trim_templates"
+  },
+  "ctnhcore:items/dyes": {
+    "key": "#forge:dyes"
+  },
+  "ctnhcore:items/sophisticatedstorage_barrels": {
+    "key": [
+      "sophisticatedstorage:barrel",
+      "sophisticatedstorage:copper_barrel",
+      "sophisticatedstorage:iron_barrel",
+      "sophisticatedstorage:gold_barrel",
+      "sophisticatedstorage:diamond_barrel",
+      "sophisticatedstorage:netherite_barrel",
+      "sophisticatedstorage:limited_barrel_1",
+      "sophisticatedstorage:limited_barrel_2",
+      "sophisticatedstorage:limited_barrel_3",
+      "sophisticatedstorage:limited_barrel_4",
+      "sophisticatedstorage:limited_copper_barrel_1",
+      "sophisticatedstorage:limited_copper_barrel_2",
+      "sophisticatedstorage:limited_copper_barrel_3",
+      "sophisticatedstorage:limited_copper_barrel_4",
+      "sophisticatedstorage:limited_iron_barrel_1",
+      "sophisticatedstorage:limited_iron_barrel_2",
+      "sophisticatedstorage:limited_iron_barrel_3",
+      "sophisticatedstorage:limited_iron_barrel_4",
+      "sophisticatedstorage:limited_gold_barrel_1",
+      "sophisticatedstorage:limited_gold_barrel_2",
+      "sophisticatedstorage:limited_gold_barrel_3",
+      "sophisticatedstorage:limited_gold_barrel_4",
+      "sophisticatedstorage:limited_diamond_barrel_1",
+      "sophisticatedstorage:limited_diamond_barrel_2",
+      "sophisticatedstorage:limited_diamond_barrel_3",
+      "sophisticatedstorage:limited_diamond_barrel_4",
+      "sophisticatedstorage:limited_netherite_barrel_1",
+      "sophisticatedstorage:limited_netherite_barrel_2",
+      "sophisticatedstorage:limited_netherite_barrel_3",
+      "sophisticatedstorage:limited_netherite_barrel_4"
+    ]
+  },
+  "ctnhcore:items/sophisticatedstorage_chests": {
+    "key": [
+      "sophisticatedstorage:chest",
+      "sophisticatedstorage:copper_chest",
+      "sophisticatedstorage:iron_chest",
+      "sophisticatedstorage:gold_chest",
+      "sophisticatedstorage:diamond_chest",
+      "sophisticatedstorage:netherite_chest"
+    ]
+  },
+  "ctnhcore:items/sophisticatedstorage_shulker_boxes": {
+    "key": [
+      "sophisticatedstorage:shulker_box",
+      "sophisticatedstorage:copper_shulker_box",
+      "sophisticatedstorage:iron_shulker_box",
+      "sophisticatedstorage:gold_shulker_box",
+      "sophisticatedstorage:diamond_shulker_box",
+      "sophisticatedstorage:netherite_shulker_box"
+    ]
+  }
+}

@@ -46,15 +46,9 @@ public class ChineseLangHandler {
                 "缺少足够能量以启动核聚变反应");
         provider.add("gtceu.recipe_modifier.coil_temperature_too_low", "线圈温度过低！");
 
-        provider.add("ctnhcore.emi.collapsible.group.logs", "原木");
-        provider.add("ctnhcore.emi.collapsible.group.stairs", "楼梯");
-        provider.add("ctnhcore.emi.collapsible.group.slabs", "台阶");
-        provider.add("ctnhcore.emi.collapsible.group.fences", "栅栏");
-        provider.add("ctnhcore.emi.collapsible.group.fence_gates", "栅栏门");
-        provider.add("ctnhcore.emi.collapsible.group.doors", "门");
-        provider.add("ctnhcore.emi.collapsible.group.trapdoors", "活板门");
-        provider.add("ctnhcore.emi.collapsible.group.pressure_plates", "压力板");
-        provider.add("ctnhcore.emi.collapsible.group.buttons", "按钮");
+        provider.add("ctnhcore.emi.collapsible.button.expand_all", "左键：展开全部（%s 个已折叠）");
+        provider.add("ctnhcore.emi.collapsible.button.collapse_all", "左键：折叠全部（%s 个分组）");
+        provider.add("ctnhcore.emi.collapsible.button.collapse_all.right_click", "右键：折叠全部");
 
         // Config
         provider.add("config.ctnhcore.option.ftbPlugin", "FTB相关");

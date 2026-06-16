@@ -33,15 +33,9 @@ public class EnglishLangHandler {
         provider.add("config.jade.plugin_ctnhcore.recipe_logic_provider", "Recipe Logic Info");
         provider.add("config.jade.plugin_ctnhcore.recipe_output_provider", "Recipe Output Info");
 
-        provider.add("ctnhcore.emi.collapsible.group.logs", "Logs");
-        provider.add("ctnhcore.emi.collapsible.group.stairs", "Stairs");
-        provider.add("ctnhcore.emi.collapsible.group.slabs", "Slabs");
-        provider.add("ctnhcore.emi.collapsible.group.fences", "Fences");
-        provider.add("ctnhcore.emi.collapsible.group.fence_gates", "Fence Gates");
-        provider.add("ctnhcore.emi.collapsible.group.doors", "Doors");
-        provider.add("ctnhcore.emi.collapsible.group.trapdoors", "Trapdoors");
-        provider.add("ctnhcore.emi.collapsible.group.pressure_plates", "Pressure Plates");
-        provider.add("ctnhcore.emi.collapsible.group.buttons", "Buttons");
+        provider.add("ctnhcore.emi.collapsible.button.expand_all", "Left click: expand all (%s collapsed)");
+        provider.add("ctnhcore.emi.collapsible.button.collapse_all", "Left click: collapse all (%s groups)");
+        provider.add("ctnhcore.emi.collapsible.button.collapse_all.right_click", "Right click: collapse all");
 
         // Recipe Types
         provider.add("gtceu.underfloor_heating_system", "Underfloor Heating");
