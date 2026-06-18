@@ -26,8 +26,6 @@
     "eio.MachinesJEIMixin",
     "emi.CreateJEIMixin",
     "emi.CreateJEIMixin$CategoryBuilderMixin",
-    "emi.EmiApiTagExpandMixin",
-    "emi.EmiRecipesMixin",
     "emi.EmiScreenManagerMixin",
     "emi.EmiSearchMixin",
     "emi.EmiTagsMixin",
