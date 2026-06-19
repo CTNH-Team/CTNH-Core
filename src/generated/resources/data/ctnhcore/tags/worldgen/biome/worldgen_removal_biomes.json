@@ -6,6 +6,10 @@
       "required": false
     },
     {
+      "id": "#minecraft:is_nether",
+      "required": false
+    },
+    {
       "id": "#aether:is_aether",
       "required": false
     },

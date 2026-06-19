@@ -18,14 +18,6 @@
       "required": false
     },
     {
-      "id": "create_new_age:magnetite",
-      "required": false
-    },
-    {
-      "id": "create_new_age:ore_thorium",
-      "required": false
-    },
-    {
       "id": "ad_astra:glacio_coal_ore",
       "required": false
     },
@@ -142,15 +134,19 @@
       "required": false
     },
     {
-      "id": "createmetallurgy:wolframite_ore",
+      "id": "create:zinc_ore",
       "required": false
     },
     {
-      "id": "ae2cs:certus_quartz_ore",
+      "id": "createmetallurgy:wolframite_ore_placed",
       "required": false
     },
     {
-      "id": "ae2cs:charged_certus_quartz_ore",
+      "id": "ae2cs:certus_quartz_ore_placed",
+      "required": false
+    },
+    {
+      "id": "ae2cs:charged_certus_quartz_ore_placed",
       "required": false
     },
     {

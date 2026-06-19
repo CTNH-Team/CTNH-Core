@@ -15,6 +15,7 @@ public class CTNHBiomeModifiers implements DataProvider {
 
     private static final List<String> TARGET_BIOMES = List.of(
             "#minecraft:is_overworld",
+            "#minecraft:is_nether",
             "#aether:is_aether",
             "#twilightforest:valid_quest_grove_biomes",
             "#ad_astra:has_moon_structure",
@@ -29,8 +30,6 @@ public class CTNHBiomeModifiers implements DataProvider {
             "aether:gravitite_ore_buried",
             "aether:ambrosium_ore",
             "aether:zanite_ore",
-            "create_new_age:magnetite",
-            "create_new_age:ore_thorium",
             "ad_astra:glacio_coal_ore",
             "ad_astra:glacio_copper_ore",
             "ad_astra:glacio_deepslate_coal_ore",
@@ -60,9 +59,10 @@ public class CTNHBiomeModifiers implements DataProvider {
             "twilightforest:legacy_diamond_ore",
             "twilightforest:legacy_lapis_ore",
             "twilightforest:legacy_copper_ore",
-            "createmetallurgy:wolframite_ore",
-            "ae2cs:certus_quartz_ore",
-            "ae2cs:charged_certus_quartz_ore",
+            "create:zinc_ore",
+            "createmetallurgy:wolframite_ore_placed",
+            "ae2cs:certus_quartz_ore_placed",
+            "ae2cs:charged_certus_quartz_ore_placed",
             "mythicbotany:elementium_ore",
             "mythicbotany:dragonstone_ore",
             "mythicbotany:gold_ore");
@@ -100,7 +100,14 @@ public class CTNHBiomeModifiers implements DataProvider {
                 createOptionalTag(UNDERGROUND_DECORATION),
                 placedFeatureTagPathProvider
                         .json(ResourceLocation.tryBuild("ctnhcore", "worldgen_removal_decoration")));
-        return CompletableFuture.allOf(undergroundOres, undergroundDecoration, biomeTag, oreTag, decorationTag);
+        // Separate direct-remove modifier for vanilla ancient debris (nether-hardcoded)
+        CompletableFuture<?> ancientDebris = DataProvider.saveStable(output,
+                createDirectRemoveModifier(
+                        new String[] { "minecraft:ore_ancient_debris_large", "minecraft:ore_debris_small" },
+                        "underground_decoration"),
+                biomeModifierPathProvider.json(ResourceLocation.tryBuild("ctnhcore", "remove_ancient_debris")));
+        return CompletableFuture.allOf(undergroundOres, undergroundDecoration, biomeTag, oreTag, decorationTag,
+                ancientDebris);
     }
 
     private static JsonObject createRemoveFeaturesModifier(List<String> features, String step) {
@@ -109,7 +116,9 @@ public class CTNHBiomeModifiers implements DataProvider {
         json.addProperty("biomes", "#ctnhcore:worldgen_removal_biomes");
         json.addProperty("features", features == UNDERGROUND_ORES ? "#ctnhcore:worldgen_removal_ores" :
                 "#ctnhcore:worldgen_removal_decoration");
-        json.addProperty("steps", step);
+        JsonArray stepsArray = new JsonArray();
+        stepsArray.add(step);
+        json.add("steps", stepsArray);
         return json;
     }
 
@@ -124,6 +133,22 @@ public class CTNHBiomeModifiers implements DataProvider {
             array.add(entry);
         }
         json.add("values", array);
+        return json;
+    }
+
+    /** Creates a remove_features modifier with a direct feature ID (not tag) for vanilla-proof removal. */
+    private static JsonObject createDirectRemoveModifier(String[] featureIds, String step) {
+        JsonObject json = new JsonObject();
+        json.addProperty("type", "forge:remove_features");
+        json.addProperty("biomes", "#minecraft:is_nether");
+        JsonArray featuresArray = new JsonArray();
+        for (String id : featureIds) {
+            featuresArray.add(id);
+        }
+        json.add("features", featuresArray);
+        JsonArray stepsArray = new JsonArray();
+        stepsArray.add(step);
+        json.add("steps", stepsArray);
         return json;
     }
 

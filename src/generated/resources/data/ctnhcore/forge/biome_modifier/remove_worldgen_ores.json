@@ -2,5 +2,7 @@
   "type": "forge:remove_features",
   "biomes": "#ctnhcore:worldgen_removal_biomes",
   "features": "#ctnhcore:worldgen_removal_ores",
-  "steps": "underground_ores"
+  "steps": [
+    "underground_ores"
+  ]
 }

@@ -1,0 +1,11 @@
+{
+  "type": "forge:remove_features",
+  "biomes": "#minecraft:is_nether",
+  "features": [
+    "minecraft:ore_ancient_debris_large",
+    "minecraft:ore_debris_small"
+  ],
+  "steps": [
+    "underground_decoration"
+  ]
+}
