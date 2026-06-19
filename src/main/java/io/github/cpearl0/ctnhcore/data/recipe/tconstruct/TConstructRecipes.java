@@ -89,7 +89,7 @@ public class TConstructRecipes {
         RecipeRemoval.remove(new RemoveFilter().id("tconstruct:smeltery/casting/ender/eye"));
         RecipeRemoval.remove(new RemoveFilter().id("tconstruct:smeltery/melting/metal/diamond/raw"));
         RecipeRemoval.remove(new RemoveFilter().id("tconstruct:smeltery/melting/metal/diamond/raw_block"));
-        RecipeRemoval.remove(new RemoveFilter().id("tconstruct:smeltery/melting/metal/diamond/ore_singular"));
+        RecipeRemoval.remove(new RemoveFilter().id("tconstruct:smeltery/melting/diamond/ore_singular"));
         RecipeRemoval.remove(new RemoveFilter().id("tconstruct:smeltery/melting/metal/diamond/ore_dense"));
         RecipeRemoval.remove(new RemoveFilter().id("tconstruct:smeltery/melting/metal/diamond/ore_sparse"));
         RecipeRemoval.remove(new RemoveFilter().id("tconstruct:smeltery/melting/metal/diamond/geore"));

@@ -6,6 +6,7 @@ import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.profiling.ProfilerFiller;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
 
 import com.google.gson.JsonElement;
@@ -14,16 +15,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
- * Mixin into RecipeManager.apply() — 与 KubeJS RecipeManagerMixin 完全一致的介入阶段。
- * <p>
- * Tag 数据通过 {@code TagManagerCache} 获取（与 KubeJS 的 TagContext.fromLoadResult 原理一致）：
- * ReloadableServerResources 构造时保存引用 → RecipeManager.apply HEAD 时从 TagManager.getResult() 缓存。
- * <p>
- * 所有处理逻辑都在 {@code RecipeFilterProcessor} 中（非 mixin 包），
- * 以避免 Mixin 框架抛出 {@code IllegalClassLoadError}。
+ * Mixin into RecipeManager.apply().
+ * - HEAD: filters JSON-level recipes (datapack JSON files)
+ * - RETURN: filters compiled recipes (dynamically generated, e.g. TConstruct melting)
  */
 @Mixin(value = RecipeManager.class, priority = 1100)
 public abstract class RecipeManagerApplyMixin {
@@ -40,5 +39,30 @@ public abstract class RecipeManagerApplyMixin {
 
         RecipeFilterProcessor.processRemovals(map);
         RecipeFilterProcessor.processReplacements(map);
+    }
+
+    @Inject(method = "apply*", at = @At("RETURN"))
+    private void ctnhcore$processCompiledRecipes(Map<ResourceLocation, JsonElement> map,
+                                                 ResourceManager resourceManager,
+                                                 ProfilerFiller profiler,
+                                                 CallbackInfo ci) {
+        var filters = RecipeRemoval.getFilters();
+        if (filters.isEmpty()) return;
+
+        Map<ResourceLocation, Recipe<?>> byName = ((RecipeManagerAccessor) this).ctnhcore$getByName();
+        List<ResourceLocation> toRemove = new ArrayList<>();
+
+        for (var filter : filters) {
+            String exactId = filter.getSingleExactId();
+            if (exactId == null) continue;
+            ResourceLocation rl = ResourceLocation.tryParse(exactId);
+            if (rl != null && byName.containsKey(rl)) {
+                toRemove.add(rl);
+            }
+        }
+
+        for (var id : toRemove) {
+            byName.remove(id);
+        }
     }
 }

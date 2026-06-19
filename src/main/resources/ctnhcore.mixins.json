@@ -55,7 +55,8 @@
     "tmrv.RecipeManagerMixin",
     "tconstruct.GTConstructRecipesMixin",
     "tconstruct.TiCDynamicDataPackMixin",
-    "vintageimprovements.LatheRotatingBlockMixin"
+    "vintageimprovements.LatheRotatingBlockMixin",
+    "mc.RecipeManagerAccessor"
   ],
   "client": [
     "create.StockKeeperRequestScreenMixin",
