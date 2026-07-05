@@ -30,8 +30,8 @@ import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.client.renderer.cover.SimpleCoverRenderer;
 import com.gregtechceu.gtceu.common.data.GTCovers;
-import com.gregtechceu.gtceu.common.data.models.GTMachineModels;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
+import com.gregtechceu.gtceu.common.data.models.GTMachineModels;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.*;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -176,8 +176,8 @@ public class CTNHMachines {
                                     FormattingUtil.formatNumbers(V[tier] * 64L)));
                             tooltip.add(Component.translatable("gtceu.universal.tooltip.fluid_storage_capacity",
                                     FormattingUtil.formatNumbers(
-                                            com.gregtechceu.gtceu.common.data.machines.GTMachineUtils
-                                                    .defaultTankSizeFunction.apply(tier))));
+                                            com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.defaultTankSizeFunction
+                                                    .apply(tier))));
                         })
                         .register(),
                 MV, HV, EV);

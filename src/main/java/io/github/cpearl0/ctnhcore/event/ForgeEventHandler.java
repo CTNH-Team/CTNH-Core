@@ -9,9 +9,9 @@ import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 
 import com.gregtechceu.gtceu.GTCEu;
 
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
@@ -22,8 +22,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -99,7 +99,8 @@ public class ForgeEventHandler {
         Entity entity = event.getEntity();
         if (entity.level().isClientSide) return;
         if (!BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType())
-                .equals(ResourceLocation.fromNamespaceAndPath("touhou_little_maid", "fairy"))) return;
+                .equals(ResourceLocation.fromNamespaceAndPath("touhou_little_maid", "fairy")))
+            return;
 
         if (!entity.level().dimension().location()
                 .equals(ResourceLocation.fromNamespaceAndPath("mythicbotany", "alfheim"))) {

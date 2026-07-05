@@ -141,7 +141,8 @@ public class CommonProxy {
             generator.addProvider(true, new CTNHExtraBlockTagsProvider(packOutput, registries, existingFileHelper));
             generator.addProvider(true, new CTNHExtraFluidTagsProvider(packOutput, registries, existingFileHelper));
             generator.addProvider(true, new CTNHEntityTypeTagsProvider(packOutput, registries, existingFileHelper));
-            generator.addProvider(true, new CTNHBlockEntityTypeTagsProvider(packOutput, registries, existingFileHelper));
+            generator.addProvider(true,
+                    new CTNHBlockEntityTypeTagsProvider(packOutput, registries, existingFileHelper));
             generator.addProvider(true, new CTNHBiomeModifiers(packOutput));
             generator.addProvider(true, new net.minecraftforge.common.data.DatapackBuiltinEntriesProvider(
                     packOutput, registries, new net.minecraft.core.RegistrySetBuilder()

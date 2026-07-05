@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.simple;
 
-import com.ctnh.ctnhastral.common.oxygen.OxygenAreaSource;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.SimpleTieredMachine;
@@ -18,6 +17,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 
+import com.ctnh.ctnhastral.common.oxygen.OxygenAreaSource;
 import earth.terrarium.adastra.api.systems.OxygenApi;
 import earth.terrarium.adastra.api.systems.TemperatureApi;
 import earth.terrarium.adastra.common.utils.floodfill.FloodFill3D;
@@ -28,7 +28,8 @@ import java.util.Set;
 
 public class OxygenEnricherMachine extends SimpleTieredMachine implements OxygenAreaSource {
 
-    private static final Component NO_OXYGEN_INPUT = Component.translatable("ctnhcore.machine.oxygen_enricher.no_input");
+    private static final Component NO_OXYGEN_INPUT = Component
+            .translatable("ctnhcore.machine.oxygen_enricher.no_input");
     private static final short HABITABLE_TEMPERATURE = 22;
 
     private final Set<BlockPos> distributedBlocks = new HashSet<>();
@@ -40,7 +41,8 @@ public class OxygenEnricherMachine extends SimpleTieredMachine implements Oxygen
 
     @Override
     protected NotifiableFluidTank createImportFluidHandler(Object... args) {
-        return super.createImportFluidHandler(args).setFilter(fluid -> fluid.isFluidEqual(GTMaterials.Oxygen.getFluid(1)));
+        return super.createImportFluidHandler(args)
+                .setFilter(fluid -> fluid.isFluidEqual(GTMaterials.Oxygen.getFluid(1)));
     }
 
     @Override
@@ -67,7 +69,8 @@ public class OxygenEnricherMachine extends SimpleTieredMachine implements Oxygen
     public void onLoad() {
         super.onLoad();
         if (!isRemote()) {
-            oxygenDistributionSubscription = subscribeServerTick(oxygenDistributionSubscription, this::tickOxygenDistribution);
+            oxygenDistributionSubscription = subscribeServerTick(oxygenDistributionSubscription,
+                    this::tickOxygenDistribution);
         }
     }
 
