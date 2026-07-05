@@ -1,0 +1,20 @@
+{
+  "values": [
+    {
+      "id": "create:brass_door",
+      "required": false
+    },
+    {
+      "id": "create:copper_door",
+      "required": false
+    },
+    {
+      "id": "create:train_door",
+      "required": false
+    },
+    {
+      "id": "create:framed_glass_door",
+      "required": false
+    }
+  ]
+}

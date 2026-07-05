@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.registry;
 import io.github.cpearl0.ctnhcore.api.machine.feature.ICoilMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ChemicalPlantMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
+import io.github.cpearl0.ctnhcore.common.recipe.OxygenCondition;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -165,5 +166,14 @@ public class CTNHRecipeModifiers {
 
     public static ModifierFunction rocketEngine(MetaMachine machine, GTRecipe recipe) {
         return EfficiencyGeneratorMachine.recipeModifier(machine, recipe);
+    }
+
+    public static ModifierFunction oxygenRequirement(MetaMachine machine, GTRecipe recipe) {
+        if (recipe.conditions.stream().anyMatch(OxygenCondition.class::isInstance)) {
+            return ModifierFunction.IDENTITY;
+        }
+        return ModifierFunction.builder()
+                .conditions(new OxygenCondition())
+                .build();
     }
 }

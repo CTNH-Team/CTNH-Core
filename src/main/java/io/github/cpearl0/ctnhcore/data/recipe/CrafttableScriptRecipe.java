@@ -381,6 +381,7 @@ public class CrafttableScriptRecipe {
                 'C', GTMachines.STEAM_ALLOY_SMELTER.right().asStack(), 'D', GTBlocks.CASING_PRIMITIVE_BRICKS.asStack());
         shaped(provider, "testing_terminal", CTNHItems.TESTING_TERMINAL.asStack(), "BBB", "BAB", "BBB", 'A',
                 GTItems.TERMINAL.asStack(), 'B', Items.REDSTONE);
+        shapeless(provider, "stone_button", new ItemStack(Items.STONE_BUTTON), Items.STONE);
         shaped(provider, "sweat_shop", MultiblocksA.SWEATSHOP.asStack(), "BBB", "CAC", "EDE", 'A',
                 AllItems.PRECISION_MECHANISM.asStack(), 'B', GTBlocks.CASING_STEEL_SOLID.asStack(), 'C',
                 GTItems.ELECTRIC_MOTOR_LV.asStack(), 'D', GTMachines.ASSEMBLER[GTValues.LV].asStack(), 'E',

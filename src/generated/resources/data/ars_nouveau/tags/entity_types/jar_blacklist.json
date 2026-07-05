@@ -1,0 +1,92 @@
+{
+  "values": [
+    {
+      "id": "twilightforest:swarm_spider",
+      "required": false
+    },
+    {
+      "id": "twilightforest:hedge_spider",
+      "required": false
+    },
+    {
+      "id": "minecraft:wither",
+      "required": false
+    },
+    {
+      "id": "minecraft:ender_dragon",
+      "required": false
+    },
+    {
+      "id": "alexscaves:luxtructosaurus",
+      "required": false
+    },
+    {
+      "id": "alexscaves:tremorzilla",
+      "required": false
+    },
+    {
+      "id": "ars_nouveau:wilden_boss",
+      "required": false
+    },
+    {
+      "id": "artifacts:mimic",
+      "required": false
+    },
+    {
+      "id": "cataclysm:ender_guardian",
+      "required": false
+    },
+    {
+      "id": "cataclysm:ignis",
+      "required": false
+    },
+    {
+      "id": "cataclysm:netherite_monstrosity",
+      "required": false
+    },
+    {
+      "id": "cataclysm:the_harbinger",
+      "required": false
+    },
+    {
+      "id": "cataclysm:the_leviathan",
+      "required": false
+    },
+    {
+      "id": "cataclysm:ancient_remnant",
+      "required": false
+    },
+    {
+      "id": "twilightforest:naga",
+      "required": false
+    },
+    {
+      "id": "twilightforest:lich",
+      "required": false
+    },
+    {
+      "id": "twilightforest:minoshroom",
+      "required": false
+    },
+    {
+      "id": "twilightforest:hydra",
+      "required": false
+    },
+    {
+      "id": "twilightforest:knight_phantom",
+      "required": false
+    },
+    {
+      "id": "twilightforest:ur_ghast",
+      "required": false
+    },
+    {
+      "id": "twilightforest:yeti_alpha",
+      "required": false
+    },
+    {
+      "id": "twilightforest:snow_queen",
+      "required": false
+    }
+  ]
+}

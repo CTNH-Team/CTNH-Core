@@ -6,9 +6,13 @@ import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTItems;
+import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -18,6 +22,7 @@ import com.aetherteam.aether.item.AetherItems;
 import com.github.alexmodguy.alexscaves.server.block.ACBlockRegistry;
 import com.github.alexmodguy.alexscaves.server.item.ACItemRegistry;
 import com.hollingsworth.arsnouveau.setup.registry.BlockRegistry;
+import com.mo_guang.ctpp.common.recipe.builder.create.CuttingRecipeBuilder;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
 import twilightforest.init.TFBlocks;
@@ -36,6 +41,8 @@ import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 public class WoodChain {
 
     public static void init(Consumer<FinishedRecipe> provider) {
+        addWoodScriptRecipes(provider);
+
         // 橡木树苗
         CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("oak_sapling"))
                 .notConsumable(new ItemStack(Items.OAK_SAPLING))
@@ -548,5 +555,104 @@ public class WoodChain {
                 .chancedOutput(new ItemStack(TFBlocks.HOLLOW_OAK_SAPLING.get().asItem()), 100, 0)
                 .EUt(120).duration(100)
                 .save(provider);
+    }
+
+    private static void addWoodScriptRecipes(Consumer<FinishedRecipe> provider) {
+        addArchwoodPlankRecipes(provider);
+        addSkyrootPlankRecipes(provider);
+        addCreateCuttingWoodRecipes(provider);
+    }
+
+    private static void addArchwoodPlankRecipes(Consumer<FinishedRecipe> provider) {
+        String[] archwoods = { "red", "blue", "purple", "green" };
+        for (String color : archwoods) {
+            addSawPlankRecipe(provider, "ars_nouveau/" + color + "_archwood_wood_to_planks",
+                    "ars_nouveau:" + color + "_archwood_wood", "ars_nouveau:archwood_planks", 4);
+            addSawPlankRecipe(provider, "ars_nouveau/" + color + "_archwood_log_to_planks",
+                    "ars_nouveau:" + color + "_archwood_log", "ars_nouveau:archwood_planks", 4);
+        }
+        addShapelessPlankRecipe(provider, ResourceLocation.parse("ars_nouveau:archwood_planks"),
+                "ars_nouveau:archwood_planks", 2, itemTag("forge:logs/archwood"));
+    }
+
+    private static void addSkyrootPlankRecipes(Consumer<FinishedRecipe> provider) {
+        addSawPlankRecipe(provider, "aether/golden_oak_wood_to_skyroot_planks",
+                "aether:golden_oak_wood", "aether:skyroot_planks", 4);
+        addSawPlankRecipe(provider, "aether/golden_oak_log_to_skyroot_planks",
+                "aether:golden_oak_log", "aether:skyroot_planks", 4);
+        addShapelessPlankRecipe(provider, CTNHCore.id("wood/golden_oak_log_to_skyroot_planks"),
+                "aether:skyroot_planks", 2, stack("aether:golden_oak_log"));
+        addShapelessPlankRecipe(provider, CTNHCore.id("wood/golden_oak_wood_to_skyroot_planks"),
+                "aether:skyroot_planks", 2, stack("aether:golden_oak_wood"));
+    }
+
+    private static void addCreateCuttingWoodRecipes(Consumer<FinishedRecipe> provider) {
+        String[] woods = {
+                "gtceu:rubber",
+                "biomesoplenty:pine",
+                "biomesoplenty:maple",
+                "biomesoplenty:empyreal",
+                "deep_aether:roseroot",
+                "deep_aether:yagroot",
+                "deep_aether:cruderoot",
+                "deep_aether:conberry",
+                "deep_aether:sunroot",
+                "aether:skyroot"
+        };
+        for (String wood : woods) {
+            String namespace = wood.substring(0, wood.indexOf(':'));
+            String path = wood.substring(wood.indexOf(':') + 1);
+            String strippedLog = namespace + ":stripped_" + path + "_log";
+            String strippedWood = namespace + ":stripped_" + path + "_wood";
+            String recipePrefix = namespace + "_" + path;
+
+            addCuttingRecipe(provider, recipePrefix + "_log_stripping", wood + "_log", strippedLog, 1);
+            addCuttingRecipe(provider, recipePrefix + "_stripped_log_to_planks", strippedLog, wood + "_planks", 6);
+            addCuttingRecipe(provider, recipePrefix + "_stripped_wood_to_planks", strippedWood, wood + "_planks", 6);
+        }
+    }
+
+    private static void addSawPlankRecipe(Consumer<FinishedRecipe> provider, String id, String input, String output,
+                                          int count) {
+        ItemStack inputStack = stack(input);
+        ItemStack outputStack = stack(output, count);
+        if (inputStack.isEmpty() || outputStack.isEmpty()) return;
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("wood/" + id),
+                outputStack,
+                "B", "A",
+                'A', inputStack,
+                'B', itemTag("forge:tools/saws"));
+    }
+
+    private static void addShapelessPlankRecipe(Consumer<FinishedRecipe> provider, ResourceLocation id, String output,
+                                                int count, Object input) {
+        ItemStack outputStack = stack(output, count);
+        if (outputStack.isEmpty()) return;
+        if (input instanceof ItemStack stack && stack.isEmpty()) return;
+        VanillaRecipeHelper.addShapelessRecipe(provider, id, outputStack, input);
+    }
+
+    private static void addCuttingRecipe(Consumer<FinishedRecipe> provider, String id, String input, String output,
+                                         int count) {
+        ItemStack inputStack = stack(input);
+        ItemStack outputStack = stack(output, count);
+        if (inputStack.isEmpty() || outputStack.isEmpty()) return;
+        CuttingRecipeBuilder.builder("wood/" + id)
+                .input(inputStack)
+                .result(outputStack)
+                .save(provider);
+    }
+
+    private static ItemStack stack(String id) {
+        return stack(id, 1);
+    }
+
+    private static ItemStack stack(String id, int count) {
+        Item item = ForgeRegistries.ITEMS.getValue(ResourceLocation.parse(id));
+        return item == null ? ItemStack.EMPTY : new ItemStack(item, count);
+    }
+
+    private static TagKey<Item> itemTag(String id) {
+        return TagKey.create(Registries.ITEM, ResourceLocation.parse(id));
     }
 }

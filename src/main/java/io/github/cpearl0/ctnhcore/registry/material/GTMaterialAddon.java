@@ -30,8 +30,7 @@ public class GTMaterialAddon {
         NaquadahEnriched.addFlags(GENERATE_FRAME);
         Naquadah.addFlags(GENERATE_FRAME);
         Osmiridium.addFlags(GENERATE_FRAME);
-        Sulfur.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));;
-        Iodine.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));;
+        Iodine.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         TreatedWood.addFlags(GENERATE_BOLT_SCREW, GENERATE_RING);
         Zinc.setProperty(PropertyKey.ORE, new OreProperty());
         Brass.addFlags(GENERATE_SMALL_GEAR, GENERATE_GEAR);

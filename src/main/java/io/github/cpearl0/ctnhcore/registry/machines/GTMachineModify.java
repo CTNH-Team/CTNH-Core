@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.registry.machines;
 
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -11,7 +12,9 @@ import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifierList;
+import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.machines.GCYMMachines;
@@ -86,8 +89,31 @@ public class GTMachineModify {
                         }));
         modifyGTAssembly();
         modifyCleanroom();
+        modifyOxygenGenerators();
 
         PRIMITIVE_BLAST_FURNACE.setRecipeTypes(new GTRecipeType[] { GTRecipeTypes.DUMMY_RECIPES });
+    }
+
+    private static void modifyOxygenGenerators() {
+        appendRecipeModifier(GTMachines.COMBUSTION, CTNHRecipeModifiers::oxygenRequirement);
+        appendRecipeModifier(GTMachines.GAS_TURBINE, CTNHRecipeModifiers::oxygenRequirement);
+        appendRecipeModifier(GTMachines.STEAM_TURBINE, CTNHRecipeModifiers::oxygenRequirement);
+        appendRecipeModifier(LARGE_COMBUSTION_ENGINE, CTNHRecipeModifiers::oxygenRequirement);
+        appendRecipeModifier(EXTREME_COMBUSTION_ENGINE, CTNHRecipeModifiers::oxygenRequirement);
+        appendRecipeModifier(LARGE_GAS_TURBINE, CTNHRecipeModifiers::oxygenRequirement);
+        appendRecipeModifier(LARGE_STEAM_TURBINE, CTNHRecipeModifiers::oxygenRequirement);
+        appendRecipeModifier(MultiblocksA.ULTIMATE_COMBUSTION_ENGINE, CTNHRecipeModifiers::oxygenRequirement);
+    }
+
+    private static void appendRecipeModifier(MachineDefinition[] machines, RecipeModifier recipeModifier) {
+        for (MachineDefinition machine : machines) {
+            if (machine == null) continue;
+            appendRecipeModifier(machine, recipeModifier);
+        }
+    }
+
+    private static void appendRecipeModifier(MachineDefinition machine, RecipeModifier recipeModifier) {
+        machine.setRecipeModifier(new RecipeModifierList(machine.getRecipeModifier(), recipeModifier));
     }
 
     @CN({

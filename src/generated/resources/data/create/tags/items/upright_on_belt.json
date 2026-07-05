@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "gtmfo:smore_1",
+      "required": false
+    },
+    {
+      "id": "gtmfo:smore_2",
+      "required": false
+    },
+    {
+      "id": "gtmfo:smore_4",
+      "required": false
+    }
+  ]
+}

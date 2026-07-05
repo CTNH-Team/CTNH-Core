@@ -11,6 +11,7 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CreativeInputHa
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CreativeLaserHatchPartMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.DigitalMiner;
 import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
+import io.github.cpearl0.ctnhcore.common.machine.simple.OxygenEnricherMachine;
 import io.github.cpearl0.ctnhcore.data.machines.GTNNMachines;
 import io.github.cpearl0.ctnhcore.registry.CTNHCreativeModeTabs;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
@@ -30,6 +31,7 @@ import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.client.renderer.cover.SimpleCoverRenderer;
 import com.gregtechceu.gtceu.common.data.GTCovers;
 import com.gregtechceu.gtceu.common.data.models.GTMachineModels;
+import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.*;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -67,6 +69,7 @@ public class CTNHMachines {
     public static MachineDefinition DRONEHOLDER;
     public static MachineDefinition[] COMPILERMACHINE;
     public static MachineDefinition[] PERSONAL_COMPUTER;
+    public static MachineDefinition[] OXYGEN_ENRICHER;
     public static MachineDefinition[] ASYNC_THREAD_HATCH;
     public static MachineDefinition[] PARALLEL_HATCH;
     public static MachineDefinition[] ENERGY_OUTPUT_HATCH_4A_LOWER;
@@ -154,6 +157,30 @@ public class CTNHMachines {
 
         PERSONAL_COMPUTER = registerSimpleComputationMachines("personal_computer",
                 CTNHRecipeTypes.PERSONAL_COMPUTER);
+        OXYGEN_ENRICHER = registerTieredMachines("oxygen_enricher",
+                OxygenEnricherMachine::new,
+                (tier, builder) -> builder
+                        .langValue("%s Oxygen Enricher %s".formatted(VLVH[tier], VLVT[tier]))
+                        .rotationState(RotationState.NON_Y_AXIS)
+                        .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(
+                                com.gregtechceu.gtceu.api.recipe.OverclockingLogic.NON_PERFECT_OVERCLOCK))
+                        .recipeType(CTNHRecipeTypes.OXYGEN_ENRICHER_RECIPES)
+                        .workableTieredHullModel(CTNHCore.id("block/machines/oxygen_enricher"))
+                        .tooltipBuilder((stack, tooltip) -> {
+                            int range = 12 + tier * 4;
+                            tooltip.add(Component.translatable("ctnhcore.machine.oxygen_enricher.tooltip.0"));
+                            tooltip.add(Component.translatable("ctnhcore.machine.oxygen_enricher.tooltip.1", range));
+                            tooltip.add(Component.translatable("gtceu.universal.tooltip.voltage_in",
+                                    FormattingUtil.formatNumbers(V[tier]), GTValues.VNF[tier]));
+                            tooltip.add(Component.translatable("gtceu.universal.tooltip.energy_storage_capacity",
+                                    FormattingUtil.formatNumbers(V[tier] * 64L)));
+                            tooltip.add(Component.translatable("gtceu.universal.tooltip.fluid_storage_capacity",
+                                    FormattingUtil.formatNumbers(
+                                            com.gregtechceu.gtceu.common.data.machines.GTMachineUtils
+                                                    .defaultTankSizeFunction.apply(tier))));
+                        })
+                        .register(),
+                MV, HV, EV);
 
         DIGITAL_MINER = registerTieredMachines("digital_miner",
                 DigitalMiner::new,

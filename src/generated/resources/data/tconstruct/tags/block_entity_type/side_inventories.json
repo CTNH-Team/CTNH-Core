@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "sophisticatedstorage:controller",
+      "required": false
+    },
+    {
+      "id": "sophisticatedstorage:chest",
+      "required": false
+    },
+    {
+      "id": "sophisticatedbackpacks:backpack",
+      "required": false
+    }
+  ]
+}

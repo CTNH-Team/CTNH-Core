@@ -7,6 +7,7 @@ import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTItems;
@@ -33,6 +34,8 @@ public class AdAstraRecipes {
     private static Consumer<FinishedRecipe> output;
 
     public static void init(Consumer<FinishedRecipe> provider) {
+        materialUnpackingFixes(provider);
+
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("heavy_ingot_t1"))
                 .inputItems(plateDense, Brass)
                 .inputItems(plateDense, Aluminium)
@@ -264,6 +267,26 @@ public class AdAstraRecipes {
                 'B', new MaterialEntry(rod, Platinum));
 
         stoneRelatedRecipes(provider);
+    }
+
+    private static void materialUnpackingFixes(Consumer<FinishedRecipe> provider) {
+        materialUnpackingFix(provider, "desh", AdastraMaterials.Desh);
+        materialUnpackingFix(provider, "ostrum", AdastraMaterials.Ostrum);
+        materialUnpackingFix(provider, "calorite", AdastraMaterials.Calorite);
+        materialUnpackingFix(provider, "steel", Steel);
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/steel_block_from_ingots"),
+                ChemicalHelper.get(block, Steel),
+                "AAA", "AAA", "AAA",
+                'A', ChemicalHelper.get(ingot, Steel));
+    }
+
+    private static void materialUnpackingFix(Consumer<FinishedRecipe> provider, String id, Material material) {
+        VanillaRecipeHelper.addShapelessRecipe(provider, CTNHCore.id("crafttable/" + id + "_ingots_from_block"),
+                ChemicalHelper.get(ingot, material, 9),
+                ChemicalHelper.get(block, material));
+        VanillaRecipeHelper.addShapelessRecipe(provider, CTNHCore.id("crafttable/" + id + "_nuggets_from_ingot"),
+                ChemicalHelper.get(nugget, material, 9),
+                ChemicalHelper.get(ingot, material));
     }
 
     private static void stoneRelatedRecipes(Consumer<FinishedRecipe> provider) {

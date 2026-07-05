@@ -7,6 +7,11 @@ import io.github.cpearl0.ctnhcore.common.world.CTNHChunkLoading;
 import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
 import io.github.cpearl0.ctnhcore.data.materials.AeCrystalScienceMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.AeOmniMaterials;
+import io.github.cpearl0.ctnhcore.data.tags.CTNHBlockEntityTypeTagsProvider;
+import io.github.cpearl0.ctnhcore.data.tags.CTNHEntityTypeTagsProvider;
+import io.github.cpearl0.ctnhcore.data.tags.CTNHExtraBlockTagsProvider;
+import io.github.cpearl0.ctnhcore.data.tags.CTNHExtraFluidTagsProvider;
+import io.github.cpearl0.ctnhcore.data.tags.CTNHExtraItemTagsProvider;
 import io.github.cpearl0.ctnhcore.data.worldgen.CTNHBiomeModifiers;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
@@ -132,6 +137,11 @@ public class CommonProxy {
 
         if (event.includeServer()) {
             generator.addProvider(true, new BiomeTagsLoader(packOutput, registries, existingFileHelper));
+            generator.addProvider(true, new CTNHExtraItemTagsProvider(packOutput, registries, existingFileHelper));
+            generator.addProvider(true, new CTNHExtraBlockTagsProvider(packOutput, registries, existingFileHelper));
+            generator.addProvider(true, new CTNHExtraFluidTagsProvider(packOutput, registries, existingFileHelper));
+            generator.addProvider(true, new CTNHEntityTypeTagsProvider(packOutput, registries, existingFileHelper));
+            generator.addProvider(true, new CTNHBlockEntityTypeTagsProvider(packOutput, registries, existingFileHelper));
             generator.addProvider(true, new CTNHBiomeModifiers(packOutput));
             generator.addProvider(true, new net.minecraftforge.common.data.DatapackBuiltinEntriesProvider(
                     packOutput, registries, new net.minecraft.core.RegistrySetBuilder()

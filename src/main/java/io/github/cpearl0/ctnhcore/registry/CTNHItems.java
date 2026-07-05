@@ -538,6 +538,9 @@ public class CTNHItems {
             .cnlang("初级煲")
             .lang("Primary Stew")
             .properties(p -> new Item.Properties().rarity(Rarity.EPIC))
+            .onRegister(attach(new FoodStats(new FoodProperties.Builder()
+                    .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 600, 1), 1.0f)
+                    .build())))
             .onRegister(attach(new TooltipBehavior(list -> {})))
             .register();
     public static ItemEntry<ComponentItem> GALAXY_MEATBALL = REGISTRATE
@@ -545,6 +548,9 @@ public class CTNHItems {
             .cnlang("银河肉丸")
             .lang("Galaxy Meatball")
             .properties(p -> new Item.Properties().rarity(Rarity.EPIC))
+            .onRegister(attach(new FoodStats(new FoodProperties.Builder()
+                    .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 600, 1), 1.0f)
+                    .build())))
             .onRegister(attach(new TooltipBehavior(list -> {})))
             .register();
 

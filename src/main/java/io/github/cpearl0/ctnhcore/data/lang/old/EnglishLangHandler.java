@@ -485,6 +485,12 @@ public class EnglishLangHandler {
 
         provider.add("ctnh.machine.naquadah_reactor.tooltip", "Efficiency: %s%%");
         provider.add("ctnh.machine.rocket_engine.tooltip", "Efficiency: %s%%");
+        provider.add("ctnhcore.machine.oxygen_required", "This machine requires a breathable atmosphere");
+        provider.add("ctnhcore.machine.oxygen_enricher.no_input", "Insufficient oxygen supply");
+        provider.add("ctnhcore.machine.oxygen_enricher.tooltip.0",
+                "Consumes oxygen fluid to maintain a breathable sealed room");
+        provider.add("ctnhcore.machine.oxygen_enricher.tooltip.1",
+                "Supplies oxygen to enclosed spaces within %s blocks");
 
         provider.add("gui.ctnh.neutron_sensor.invert.enabled",
                 "Output: Reverse\n\nSwitch to reverse redstone logic\nBy default, the sensor will emit a redstone signal when the neutron kinetic energy is between the set minimum and maximum values, and stop emitting a redstone signal when it is less than the minimum value.");

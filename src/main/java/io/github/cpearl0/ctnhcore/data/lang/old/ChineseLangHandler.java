@@ -758,6 +758,10 @@ public class ChineseLangHandler {
 
         provider.add("ctnh.machine.naquadah_reactor.tooltip", "效率: %s%%");
         provider.add("ctnh.machine.rocket_engine.tooltip", "效率: %s%%");
+        provider.add("ctnhcore.machine.oxygen_required", "此机器需要在可供氧环境中运行");
+        provider.add("ctnhcore.machine.oxygen_enricher.no_input", "氧气供应不足");
+        provider.add("ctnhcore.machine.oxygen_enricher.tooltip.0", "消耗氧气流体以维持密闭空间内的可呼吸环境");
+        provider.add("ctnhcore.machine.oxygen_enricher.tooltip.1", "可为半径 %s 格的密闭空间供氧");
 
         for (var tier : GTMachineUtils.ELECTRIC_TIERS) {
             provider.add(CTNHMachines.PERSONAL_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + "§r个人计算机");
@@ -810,6 +814,9 @@ public class ChineseLangHandler {
         provider.add(CTNHMachines.DIGITAL_MINER[LV].getBlock(), "数字型采矿机");
         provider.add(CTNHMachines.DIGITAL_MINER[MV].getBlock(), "§b进阶数字型采矿机§r");
         provider.add(CTNHMachines.DIGITAL_MINER[HV].getBlock(), "§6进阶数字型采矿机 II§r");
+        provider.add(CTNHMachines.OXYGEN_ENRICHER[MV].getBlock(), "§b氧气富集器§r");
+        provider.add(CTNHMachines.OXYGEN_ENRICHER[HV].getBlock(), "§6进阶氧气富集器§r");
+        provider.add(CTNHMachines.OXYGEN_ENRICHER[EV].getBlock(), "§5高级氧气富集器§r");
 
         provider.add(CTNHCreativeModeTabs.MACHINE.get(), "CTNH机器");
         provider.add(CTNHCreativeModeTabs.ITEM.get(), "CTNH物品");

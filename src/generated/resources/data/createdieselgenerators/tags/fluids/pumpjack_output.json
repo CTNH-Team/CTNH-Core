@@ -1,0 +1,11 @@
+{
+  "remove": [
+    "createdieselgenerators:crude_oil"
+  ],
+  "values": [
+    {
+      "id": "gtceu:impure_oil",
+      "required": false
+    }
+  ]
+}
