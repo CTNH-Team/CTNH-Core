@@ -196,6 +196,9 @@ public class CTNHCoreGTAddon implements IGTAddon {
         GtceuScriptRecipes.init(provider);
         BioScriptRecipes.init(provider);
         AvaritiaScriptRecipes.init(provider);
+
+        //来自kjs
+        OtherRecipesFromKJS.init(provider);
     }
 
     @Override

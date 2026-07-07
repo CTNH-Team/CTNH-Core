@@ -31,9 +31,9 @@ public class CementChain {
                 .input(cokeBrick)
                 .transitional(cokeBrick)
                 .result(cokeBricks)
-                .filling(cokeBrick, UncategorizedMaterials.CEMENT.getFluid(100))
+                .filling(cokeBrick, Concrete.getFluid(100))
                 .deploying(GTItems.COKE_OVEN_BRICK.asStack())
-                .filling(cokeBrick, UncategorizedMaterials.CEMENT.getFluid(100))
+                .filling(cokeBrick, Concrete.getFluid(100))
                 .deploying(GTItems.COKE_OVEN_BRICK.asStack())
                 .loops(1)
                 .save(provider);
@@ -46,7 +46,7 @@ public class CementChain {
                 .deploying(firebricks)
                 .deploying(firebricks)
                 .deploying(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Gypsum))
-                .filling(cokeBricks, UncategorizedMaterials.CEMENT.getFluid(250))
+                .filling(cokeBricks, Concrete.getFluid(250))
                 .loops(2)
                 .save(provider);
         // 15. cement: circuit 6, calcite_dust + 4x clay_dust + 2x iron_dust + water 10000 -> cement 14400. EUt 24, dur
@@ -58,13 +58,13 @@ public class CementChain {
                 .inputItems(dust, Clay, 4)
                 .inputItems(dust, Iron, 2)
                 .inputFluids(Water.getFluid(10000))
-                .outputFluids(UncategorizedMaterials.CEMENT.getFluid(14400))
+                .outputFluids(Concrete.getFluid(14400))
                 .save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("coke_oven_bricks1"))
                 .EUt(12).duration(40)
                 .inputItems(GTItems.COKE_OVEN_BRICK.asStack(4))
-                .inputFluids(UncategorizedMaterials.CEMENT.getFluid(144))
+                .inputFluids(Concrete.getFluid(144))
                 .outputItems(GTBlocks.CASING_COKE_BRICKS.asStack())
                 .save(provider);
     }
