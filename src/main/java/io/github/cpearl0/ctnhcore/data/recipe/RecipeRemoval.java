@@ -989,7 +989,8 @@ public class RecipeRemoval {
         replaceInput(new ReplaceFilter().id("create_connected:crafting/kinetics/fluid_vessel"),
                 "gtceu:copper_plate", "gtceu:bronze_plate");
         // Additional
-        remove(new ReplaceFilter().id("create:crafting/kinetics/steam_engine"));
+        replaceInput(new ReplaceFilter().id("create:crafting/kinetics/steam_engine"),
+                "minecraft:copper_block", "gtceu:bronze_block");
         // [orereplace.js:112] replaceOutput create:milling/andesite
         // minecraft:cobblestone → gtceu:andesite_dust
         replaceOutput(new ReplaceFilter().id("create:milling/andesite"),
