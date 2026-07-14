@@ -20,6 +20,8 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems;
 
 import appeng.core.definitions.AEBlocks;
@@ -27,7 +29,12 @@ import com.enderio.base.common.init.EIOBlocks;
 import com.enderio.base.common.init.EIOItems;
 import com.enderio.conduits.common.init.ConduitItems;
 import com.enderio.machines.common.init.MachineBlocks;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
@@ -39,7 +46,7 @@ public class EIORecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         addAlloyAndMachineRecipes(provider);
-        addReplaceInputShapedRecipes(provider);
+        addRebuiltRecipes(provider);
     }
 
     private static void addAlloyAndMachineRecipes(Consumer<FinishedRecipe> provider) {
@@ -207,11 +214,8 @@ public class EIORecipes {
                 .save(provider);
     }
 
-    /**
-     * 迁移自 kubejs/enderio.js replaceInput 操作。
-     * replaceInput 是运行时替换配方原料的逻辑，Java 等效做法：移除原配方 + 用替换后的原料重建。
-     */
-    private static void addReplaceInputShapedRecipes(Consumer<FinishedRecipe> provider) {
+    /** Rebuilt EnderIO recipes with the intended CTNH ingredients. */
+    private static void addRebuiltRecipes(Consumer<FinishedRecipe> provider) {
         // 1. ensouled_chassis: forge:gems/quartz → enderio:void_chassis
         VanillaRecipeHelper.addShapedRecipe(provider,
                 CTNHCore.id("crafttable/ensouled_chassis"),
@@ -275,6 +279,150 @@ public class EIORecipes {
                 'I', TagUtil.createItemTag("ingots/dark_steel"),
                 'B', EIOBlocks.DARK_STEEL_BARS.asItem(),
                 'G', AEBlocks.QUARTZ_GLASS.asItem());
+
+        addFusedQuartzAlloyRecipes(provider);
+        addFusedQuartzCollisionRecipes(provider);
+        addFusedQuartzRecolorRecipes(provider);
+        addFusedQuartzCraftingRecipes(provider);
+    }
+
+    private static void addFusedQuartzAlloyRecipes(Consumer<FinishedRecipe> provider) {
+        addFusedQuartzAlloyRecipe(provider, "fused_quartz_d_from_base", 4,
+                tagIngredient("forge:gems/amethyst"), "enderio:fused_quartz_d");
+        addFusedQuartzAlloyRecipe(provider, "fused_quartz_d_from_base_alt", 1,
+                tagIngredient("forge:storage_blocks/amethyst"), "enderio:fused_quartz_d");
+        addFusedQuartzAlloyRecipe(provider, "fused_quartz_e_from_base", 4,
+                tagIngredient("forge:dusts/glowstone"), "enderio:fused_quartz_e");
+        addFusedQuartzAlloyRecipe(provider, "fused_quartz_e_from_base_alt", 1,
+                itemIngredient("minecraft:glowstone"), "enderio:fused_quartz_e");
+    }
+
+    private static void addFusedQuartzAlloyRecipe(Consumer<FinishedRecipe> provider, String name, int secondaryCount,
+                                                  JsonObject secondaryIngredient, String result) {
+        JsonObject recipe = new JsonObject();
+        recipe.addProperty("type", "enderio:alloy_smelting");
+        recipe.addProperty("energy", 3200);
+        recipe.addProperty("experience", 0.3);
+        JsonArray inputs = new JsonArray();
+        inputs.add(alloyInput(1, itemIngredient("ae2:quartz_glass")));
+        inputs.add(alloyInput(secondaryCount, secondaryIngredient));
+        recipe.add("inputs", inputs);
+        recipe.add("result", itemIngredient(result));
+        provider.accept(new JsonFinishedRecipe(CTNHCore.id("enderio/alloy_smelting/" + name), recipe));
+    }
+
+    private static JsonObject alloyInput(int count, JsonObject ingredient) {
+        JsonObject input = new JsonObject();
+        input.addProperty("count", count);
+        input.add("ingredient", ingredient);
+        return input;
+    }
+
+    private static void addFusedQuartzCollisionRecipes(Consumer<FinishedRecipe> provider) {
+        addFusedQuartzCollisionRecipe(provider, "a", EIOItems.ANIMAL_TOKEN.get());
+        addFusedQuartzCollisionRecipe(provider, "m", EIOItems.MONSTER_TOKEN.get());
+        addFusedQuartzCollisionRecipe(provider, "p", EIOItems.PLAYER_TOKEN.get());
+    }
+
+    private static void addFusedQuartzCollisionRecipe(Consumer<FinishedRecipe> provider, String suffix,
+                                                      net.minecraft.world.item.Item token) {
+        VanillaRecipeHelper.addShapedRecipe(provider,
+                CTNHCore.id("enderio/collision_token_fused_quartz_" + suffix),
+                itemStack("enderio:fused_quartz_" + suffix, 8),
+                "GGG", "GTG", "GGG",
+                'G', AEBlocks.QUARTZ_GLASS.asItem(),
+                'T', token);
+    }
+
+    private static void addFusedQuartzRecolorRecipes(Consumer<FinishedRecipe> provider) {
+        for (String color : new String[] {
+                "black", "blue", "brown", "cyan", "gray", "green", "light_blue", "light_gray",
+                "lime", "magenta", "orange", "pink", "purple", "red", "white", "yellow"
+        }) {
+            Object[] ingredients = new Object[9];
+            Arrays.fill(ingredients, AEBlocks.QUARTZ_GLASS.asItem());
+            ingredients[8] = TagUtil.createItemTag("dyes/" + color);
+            VanillaRecipeHelper.addShapelessRecipe(provider,
+                    CTNHCore.id("enderio/recolor_fused_quartz_" + color),
+                    itemStack("enderio:fused_quartz_" + color, 8),
+                    ingredients);
+        }
+    }
+
+    private static void addFusedQuartzCraftingRecipes(Consumer<FinishedRecipe> provider) {
+        VanillaRecipeHelper.addShapedRecipe(provider,
+                CTNHCore.id("crafttable/ender_fluid_conduit"),
+                new ItemStack(ConduitItems.ENDER_FLUID.get(), 8),
+                "BBB", "IGI", "BBB",
+                'B', EIOItems.CONDUIT_BINDER.asItem(),
+                'I', TagUtil.createItemTag("ingots/vibrant_alloy"),
+                'G', AEBlocks.QUARTZ_GLASS.asItem());
+        VanillaRecipeHelper.addShapedRecipe(provider,
+                CTNHCore.id("crafttable/pressurized_fluid_conduit_upgrade"),
+                new ItemStack(ConduitItems.PRESSURIZED_FLUID.get(), 8),
+                "BBB", "GCG", "BBB",
+                'B', EIOItems.CONDUIT_BINDER.asItem(),
+                'C', ConduitItems.FLUID.get(),
+                'G', AEBlocks.QUARTZ_GLASS.asItem());
+        VanillaRecipeHelper.addShapedRecipe(provider,
+                CTNHCore.id("crafttable/soul_engine"),
+                new ItemStack(MachineBlocks.SOUL_ENGINE.get()),
+                "IGI", "BCB", "IZI",
+                'B', Items.BUCKET,
+                'C', EIOBlocks.ENSOULED_CHASSIS.asItem(),
+                'G', AEBlocks.QUARTZ_GLASS.asItem(),
+                'I', TagUtil.createItemTag("ingots/soularium"),
+                'Z', EIOItems.ZOMBIE_ELECTRODE.get());
+    }
+
+    private static ItemStack itemStack(String id, int count) {
+        ResourceLocation resourceLocation = ResourceLocation.parse(id);
+        return new ItemStack(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(resourceLocation),
+                "Unregistered item: " + resourceLocation), count);
+    }
+
+    private static JsonObject itemIngredient(String item) {
+        JsonObject ingredient = new JsonObject();
+        ingredient.addProperty("item", item);
+        return ingredient;
+    }
+
+    private static JsonObject tagIngredient(String tag) {
+        JsonObject ingredient = new JsonObject();
+        ingredient.addProperty("tag", tag);
+        return ingredient;
+    }
+
+    private record JsonFinishedRecipe(ResourceLocation id, JsonObject json) implements FinishedRecipe {
+
+        @Override
+        public void serializeRecipeData(JsonObject recipeJson) {
+            json.entrySet().forEach(entry -> recipeJson.add(entry.getKey(), entry.getValue()));
+        }
+
+        @Override
+        public ResourceLocation getId() {
+            return id;
+        }
+
+        @Override
+        public RecipeSerializer<?> getType() {
+            ResourceLocation type = ResourceLocation.parse(json.get("type").getAsString());
+            return Objects.requireNonNull(ForgeRegistries.RECIPE_SERIALIZERS.getValue(type),
+                    "Recipe serializer not found: " + type);
+        }
+
+        @Nullable
+        @Override
+        public JsonObject serializeAdvancement() {
+            return null;
+        }
+
+        @Nullable
+        @Override
+        public ResourceLocation getAdvancementId() {
+            return null;
+        }
     }
 
     public static void eioRemovals() {
@@ -300,40 +448,48 @@ public class EIORecipes {
         RecipeRemoval.remove(new RemoveFilter().id("enderio:wood_gear"));
         RecipeRemoval.remove(new RemoveFilter().id("enderio:wood_gear_corner"));
         RecipeRemoval.remove(new RemoveFilter().id("enderio:void_chassis"));
-        RecipeRemoval.remove(new RemoveFilter().output("enderio:creative_power"));
+        RecipeRemoval.remove(new RemoveFilter().id("enderio:creative_power"));
         RecipeRemoval.remove(new RemoveFilter().type("enderio:alloy_smelting"));
         RecipeRemoval.remove(new RemoveFilter().type("enderio:pressurized_fluid_conduit_upgrade"));
 
         String[] enderMetals = { "soularium", "energetic_alloy", "pulsating_alloy", "copper_alloy", "vibrant_alloy",
                 "redstone_alloy", "conductive_alloy", "dark_steel", "end_steel" };
         for (String metal : enderMetals) {
-            RecipeRemoval.remove(new RemoveFilter().output("enderio:" + metal + "_nugget"));
-            RecipeRemoval.remove(new RemoveFilter().output("enderio:" + metal + "_ingot"));
-            RecipeRemoval.remove(new RemoveFilter().output("enderio:" + metal + "_block"));
-            RecipeRemoval.replaceInput(new RemoveFilter().output("enderio:" + metal + "_nugget"),
-                    "enderio:" + metal + "_nugget", "gtceu:" + metal + "_nugget");
-            RecipeRemoval.replaceInput(new RemoveFilter().output("enderio:" + metal + "_ingot"),
-                    "enderio:" + metal + "_ingot", "gtceu:" + metal + "_ingot");
-            RecipeRemoval.replaceInput(new RemoveFilter().output("enderio:" + metal + "_block"),
-                    "enderio:" + metal + "_block", "gtceu:" + metal + "_block");
+            RecipeRemoval.remove(new RemoveFilter().id("enderio:" + metal + "_nugget"));
+            RecipeRemoval.remove(new RemoveFilter().id("enderio:" + metal + "_ingot"));
+            RecipeRemoval.remove(new RemoveFilter().id("enderio:" + metal + "_nugget_to_ingot"));
+            RecipeRemoval.remove(new RemoveFilter().id("enderio:alloy_smelting/" + metal + "_ingot"));
+            RecipeRemoval.remove(new RemoveFilter().id("enderio:" + metal + "_block"));
         }
 
-        // ===== replaceInput（ingredient 级别替换）=====
-        // [replaceInput] enderio.js:58 enderio:ensouled_chassis: minecraft:quartz → enderio:void_chassis
-        RecipeRemoval.replaceInput(new RemoveFilter().id("enderio:ensouled_chassis"),
-                "minecraft:quartz", "enderio:void_chassis");
-        // [replaceInput] enderio.js:90 enderio:fluid_conduit: #enderio:clear_glass → minecraft:glass
-        RecipeRemoval.replaceInput(new RemoveFilter().id("enderio:fluid_conduit"),
-                "#enderio:clear_glass", "minecraft:glass");
-        // [replaceInput] enderio.js:94 enderio:fused_quartz → ae2:quartz_glass
-        RecipeRemoval.replaceInput(new RemoveFilter(),
-                "enderio:fused_quartz", "ae2:quartz_glass");
-        // [replaceInput] enderio.js:95 enderio:crafter: minecraft:crafting_table →
-        // sophisticatedbackpacks:crafting_upgrade
-        RecipeRemoval.replaceInput(new RemoveFilter().output("enderio:crafter"),
-                "minecraft:crafting_table", "sophisticatedbackpacks:crafting_upgrade");
-        // [replaceInput] enderio.js:96 enderio:conduit_probe: enderio:energy_conduit → enderio:fluid_conduit
-        RecipeRemoval.replaceInput(new RemoveFilter().id("enderio:conduit_probe"),
-                "enderio:energy_conduit", "enderio:fluid_conduit");
+        RecipeRemoval.remove(new RemoveFilter().id("enderio:ensouled_chassis"));
+        RecipeRemoval.remove(new RemoveFilter().id("enderio:fluid_conduit"));
+        RecipeRemoval.remove(new RemoveFilter().id("enderio:crafter"));
+        RecipeRemoval.remove(new RemoveFilter().id("enderio:conduit_probe"));
+
+        for (String recipe : new String[] {
+                "enderio:empty_soul_vial",
+                "enderio:ender_fluid_conduit",
+                "enderio:pressurized_fluid_conduit",
+                "enderio:pressurized_fluid_conduit_upgrade",
+                "enderio:pressurized_fluid_tank",
+                "enderio:soul_engine",
+                "enderio:alloy_smelting/fused_quartz_d_from_base",
+                "enderio:alloy_smelting/fused_quartz_d_from_base_alt",
+                "enderio:alloy_smelting/fused_quartz_e_from_base",
+                "enderio:alloy_smelting/fused_quartz_e_from_base_alt",
+                "enderio:collision_token_fused_quartz_a",
+                "enderio:collision_token_fused_quartz_m",
+                "enderio:collision_token_fused_quartz_p"
+        }) {
+            RecipeRemoval.remove(new RemoveFilter().id(recipe));
+        }
+
+        for (String color : new String[] {
+                "black", "blue", "brown", "cyan", "gray", "green", "light_blue", "light_gray",
+                "lime", "magenta", "orange", "pink", "purple", "red", "white", "yellow"
+        }) {
+            RecipeRemoval.remove(new RemoveFilter().id("enderio:recolor_fused_quartz_" + color));
+        }
     }
 }

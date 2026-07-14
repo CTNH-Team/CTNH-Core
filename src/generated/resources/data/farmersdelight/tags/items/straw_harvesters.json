@@ -1,23 +1,15 @@
 {
   "values": [
     {
-      "id": "gtceu:naquadah_alloy_knife",
+      "id": "gtceu:neutronium_knife",
       "required": false
     },
     {
-      "id": "gtceu:bronze_knife",
+      "id": "gtceu:damascus_steel_knife",
       "required": false
     },
     {
-      "id": "gtceu:ultimet_knife",
-      "required": false
-    },
-    {
-      "id": "gtceu:aluminium_knife",
-      "required": false
-    },
-    {
-      "id": "gtceu:netherite_knife",
+      "id": "gtceu:rose_gold_knife",
       "required": false
     },
     {
@@ -25,7 +17,47 @@
       "required": false
     },
     {
-      "id": "gtceu:rose_gold_knife",
+      "id": "gtceu:sterling_silver_knife",
+      "required": false
+    },
+    {
+      "id": "gtceu:blue_steel_knife",
+      "required": false
+    },
+    {
+      "id": "gtceu:flint_knife",
+      "required": false
+    },
+    {
+      "id": "gtceu:wrought_iron_knife",
+      "required": false
+    },
+    {
+      "id": "gtceu:aluminium_knife",
+      "required": false
+    },
+    {
+      "id": "gtceu:diamond_knife",
+      "required": false
+    },
+    {
+      "id": "gtceu:tungsten_carbide_knife",
+      "required": false
+    },
+    {
+      "id": "gtceu:netherite_knife",
+      "required": false
+    },
+    {
+      "id": "gtceu:tungsten_steel_knife",
+      "required": false
+    },
+    {
+      "id": "gtceu:duranium_knife",
+      "required": false
+    },
+    {
+      "id": "gtceu:stainless_steel_knife",
       "required": false
     },
     {
@@ -37,7 +69,7 @@
       "required": false
     },
     {
-      "id": "gtceu:sterling_silver_knife",
+      "id": "gtceu:bronze_knife",
       "required": false
     },
     {
@@ -45,11 +77,11 @@
       "required": false
     },
     {
-      "id": "gtceu:stainless_steel_knife",
+      "id": "gtceu:naquadah_alloy_knife",
       "required": false
     },
     {
-      "id": "gtceu:steel_knife",
+      "id": "gtceu:ultimet_knife",
       "required": false
     },
     {
@@ -61,43 +93,11 @@
       "required": false
     },
     {
-      "id": "gtceu:damascus_steel_knife",
-      "required": false
-    },
-    {
-      "id": "gtceu:blue_steel_knife",
-      "required": false
-    },
-    {
       "id": "gtceu:red_steel_knife",
       "required": false
     },
     {
-      "id": "gtceu:wrought_iron_knife",
-      "required": false
-    },
-    {
-      "id": "gtceu:tungsten_steel_knife",
-      "required": false
-    },
-    {
-      "id": "gtceu:tungsten_carbide_knife",
-      "required": false
-    },
-    {
-      "id": "gtceu:flint_knife",
-      "required": false
-    },
-    {
-      "id": "gtceu:diamond_knife",
-      "required": false
-    },
-    {
-      "id": "gtceu:neutronium_knife",
-      "required": false
-    },
-    {
-      "id": "gtceu:duranium_knife",
+      "id": "gtceu:steel_knife",
       "required": false
     }
   ]

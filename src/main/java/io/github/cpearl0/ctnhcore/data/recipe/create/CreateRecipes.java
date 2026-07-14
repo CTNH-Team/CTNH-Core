@@ -34,6 +34,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.jesz.createdieselgenerators.CDGBlocks;
 import com.jesz.createdieselgenerators.CDGItems;
 import com.jesz.createdieselgenerators.CreateDieselGenerators;
@@ -88,28 +89,35 @@ public class CreateRecipes {
         RecipeRemoval.remove(new RemoveFilter().id("create:pressing/calorite_ingot"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/andesite_alloy_from_block"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/andesite_alloy_block"));
-        RecipeRemoval.remove(new RemoveFilter().output("create:cart_assembler"));
-        RecipeRemoval.remove(new RemoveFilter().output("create:portable_storage_interface"));
-        RecipeRemoval.remove(new RemoveFilter().output("create:rotation_speed_controller"));
-        RecipeRemoval.remove(new RemoveFilter().output("create:belt_connector"));
-        RecipeRemoval.remove(new RemoveFilter().output("create:goggles"));
-        RecipeRemoval.remove(new RemoveFilter().output("create:shaft"));
-        RecipeRemoval.remove(new RemoveFilter().output("create:encased_fan"));
-        RecipeRemoval.remove(new RemoveFilter().output("create:windmill_bearing"));
-        RecipeRemoval.remove(new RemoveFilter().output("create:depot"));
-        RecipeRemoval.remove(new RemoveFilter().output("create:mechanical_press"));
-        RecipeRemoval.remove(new RemoveFilter().output("create:large_cogwheel"));
-        RecipeRemoval.remove(new RemoveFilter().output("create:spout"));
-        RecipeRemoval.remove(new RemoveFilter().output("create:cogwheel"));
-        RecipeRemoval.remove(new RemoveFilter().output("create:millstone"));
-        RecipeRemoval.remove(new RemoveFilter().output("create:andesite_alloy").type("create:mixing"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/cart_assembler"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/portable_storage_interface"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/rotation_speed_controller"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/belt_connector"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/goggles"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/shaft"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:cutting/andesite_alloy"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:sequenced_assembly/precision_mechanism"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/encased_fan"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/windmill_bearing"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/depot"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/mechanical_press"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/large_cogwheel"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/large_cogwheel_from_little"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:deploying/large_cogwheel"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/spout"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/cogwheel"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:deploying/cogwheel"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/millstone"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:mixing/andesite_alloy"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:mixing/andesite_alloy_from_zinc"));
         RecipeRemoval.remove(new RemoveFilter().id("create:milling/calcite"));
-
-        RecipeRemoval.replaceInput(new RemoveFilter().output("create:copper_casing"), "create:copper_ingot",
-                "gtceu:bronze_ingot");
+        RecipeRemoval.remove(new RemoveFilter().id("create:item_application/copper_casing_from_log"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:item_application/copper_casing_from_wood"));
     }
 
     public static void init(Consumer<FinishedRecipe> provider) {
+        addCopperCasingRecipes(provider);
+
         // Crushing/milling for gtceu ingots -> dusts
         String[] ingots = new String[] { "tin", "bronze", "zinc", "brass", "nickel", "lead" };
         for (String i : ingots) {
@@ -871,6 +879,20 @@ public class CreateRecipes {
                     .save(provider);
         }
         addMigratedKubeJsCreateRecipes(provider);
+    }
+
+    private static void addCopperCasingRecipes(Consumer<FinishedRecipe> provider) {
+        addCopperCasingRecipe(provider, "copper_casing_from_log", "forge:stripped_logs");
+        addCopperCasingRecipe(provider, "copper_casing_from_wood", "forge:stripped_wood");
+    }
+
+    private static void addCopperCasingRecipe(Consumer<FinishedRecipe> provider, String name, String woodTag) {
+        JsonObject recipe = CreateRecipeJsonHelper.recipe("create:item_application");
+        recipe.add("ingredients", CreateRecipeJsonHelper.array(
+                CreateRecipeJsonHelper.tag(woodTag),
+                CreateRecipeJsonHelper.item("gtceu:bronze_ingot")));
+        recipe.add("results", CreateRecipeJsonHelper.array(CreateRecipeJsonHelper.item("create:copper_casing")));
+        CreateRecipeJsonHelper.save(provider, CTNHCore.id("create/" + name).toString(), recipe);
     }
 
     private static void addMigratedKubeJsCreateRecipes(Consumer<FinishedRecipe> provider) {

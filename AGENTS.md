@@ -25,7 +25,7 @@ CTNH-Core is the aggregate/core mod and CI release target. It hosts shared CTNH 
 - Materials/worldgen: `registry/material/CTNHMaterials.java`, `registry/material/GTMaterialAddon.java`, `registry/CTNHTagPrefixes.java`, `registry/CTNHOres.java`, `registry/CTNHFluidVeins.java`, `registry/CTNHWorldgenLayers.java`.
 - Recipe types/modifiers/conditions: `registry/CTNHRecipeTypes.java`, `registry/CTNHRecipeModifiers.java`, `registry/CTNHRecipeConditions.java`, `registry/CTNHRecipeCategories.java`.
 - Recipe generation: `CTNHCoreGTAddon.addRecipes()` dispatches `data/recipe/**`; key areas include `chain/`, `create/`, `migrated/`, `modmodify/`, `mana/`, `tconstruct/`, `multiblock/`, and compatibility classes such as AE2, EIO, Sophisticated Storage/Backpacks, Immersive Aircraft, Omni Cells, and Create addon recipes.
-- Recipe removal/filtering: `data/recipe/RecipeRemoval.java`, `RecipeFilterProcessor.java`, and `TagManagerCache.java`; prefer these over ad hoc JSON edits.
+- Recipe removal/filtering: `data/recipe/RecipeRemoval.java` registers ID-only filters, and `mixin/mc/RecipeManagerApplyMixin.java` removes matching incoming datapack entries at `RecipeManager.apply()` HEAD. Dynamic recipes are intentionally not filtered.
 - Datagen: `data/CTNHCoreDatagen.java` plus providers under `data/provider/`.
 - Ponder: `client/ponder/CTNHCorePonderPlugin.java` registers `CTNHCorePonderScenes` and `CTNHCorePonderTags` from `ClientProxy.onClientSetupEvent()`. Core scenes are grouped under `Kinetic/` and `Electric/`. During client datagen, `CommonProxy.gatherData()` calls CTNH-Lib's `CTNHPonderLang.init(new CTNHCorePonderPlugin())`.
 

@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe.chain;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.BauxiteProcessingMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.NewExplosivesProductionMaterials;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
@@ -18,7 +19,7 @@ public class SiliconChain {
     public static void init(Consumer<FinishedRecipe> provider) {
         // 从 SiliconChain.js 迁移
         // Zeolite 电解替换输出：aluminium_dust -> alumina_dust, silicon_dust -> silicon_dioxide_dust
-        ELECTROLYZER_RECIPES.recipeBuilder("zeolite_electrolysis")
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("silicon/zeolite_electrolysis"))
                 .EUt(60).duration(288)
                 .inputItems(dust, Zeolite, 19)
                 .outputItems(dust, Sodium, 2)
@@ -29,7 +30,7 @@ public class SiliconChain {
                 .save(provider);
 
         // 红石离心替换输出：silicon_dust -> silicon_dioxide_dust
-        CENTRIFUGE_RECIPES.recipeBuilder("decomposition_centrifuging__redstone")
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("silicon/decomposition_centrifuging__redstone"))
                 .EUt(30).duration(1400)
                 .inputItems(dust, Redstone, 10)
                 .outputItems(dust, SiliconDioxide)

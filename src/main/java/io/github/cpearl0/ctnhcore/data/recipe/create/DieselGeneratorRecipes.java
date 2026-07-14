@@ -91,7 +91,7 @@ public class DieselGeneratorRecipes {
     }
 
     private static void mechanicalCraftingRecipes(Consumer<FinishedRecipe> provider) {
-        // 迁移自 kubejs/server_scripts/src/dieselgenerator.js：replaceInput pumpjack_crank
+        // CTNH-specific pumpjack crank ingredients.
         // 原版配方：andesite_alloy_ingot → andesite_alloy_plate、iron_plate → steel_plate、zinc_ingot → zinc_plate
         MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("diesel/pumpjack_crank"))
                 .pattern("AIA", " S ", "AIA", "ZSZ", "AZA")
@@ -172,10 +172,10 @@ public class DieselGeneratorRecipes {
                 .inputFluid(BiodieselFertileSoilMaterials.PETROLEUM_COKE.getFluid(144))
                 .result(ChemicalHelper.get(TagPrefix.gem, BiodieselFertileSoilMaterials.PETROLEUM_COKE))
                 .save(provider);
-        // 迁移自 kubejs/server_scripts/src/dieselgenerator.js：replaceOutput plant_oil → seed_oil
+        // CTNH seed oil output.
         TagKey<Item> SEEDS_TAG = TagKey.create(Registries.ITEM,
                 ResourceLocation.parse("forge:seeds"));
-        CompactingRecipeBuilder.builder("plant_oil")
+        CompactingRecipeBuilder.builder(CTNHCore.id("diesel/plant_oil"))
                 .input(Ingredient.of(SEEDS_TAG))
                 .resultFluid(GTMaterials.SeedOil.getFluid(100))
                 .save(provider);

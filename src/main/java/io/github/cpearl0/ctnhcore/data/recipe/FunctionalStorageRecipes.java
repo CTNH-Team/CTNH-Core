@@ -15,12 +15,18 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import com.buuz135.functionalstorage.FunctionalStorage;
 import com.buuz135.functionalstorage.item.StorageUpgradeItem;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.simibubi.create.AllBlocks;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
@@ -47,6 +53,12 @@ public class FunctionalStorageRecipes {
                 "AAA", " B ", "AAA",
                 'A', new ItemStack(Items.SMOOTH_STONE),
                 'B', new ItemStack(FLUID_TANK));
+        addConditionalFluidDrawerRecipe(provider, CTNHCore.id("functionalstorage/fluid_2"),
+                FunctionalStorage.FLUID_DRAWER_2.getLeft().get().asItem(), 2,
+                "ACA", "AAA", "ACA");
+        addConditionalFluidDrawerRecipe(provider, CTNHCore.id("functionalstorage/fluid_4"),
+                FunctionalStorage.FLUID_DRAWER_4.getLeft().get().asItem(), 4,
+                "CAC", "AAA", "CAC");
 
         // storage_controller
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/storage_controller"),
@@ -107,5 +119,89 @@ public class FunctionalStorageRecipes {
                 CTNHCore.id("crafttable/framed_storage_controller"),
                 new ItemStack(FunctionalStorage.FRAMED_DRAWER_CONTROLLER.getLeft().get().asItem()),
                 new ItemStack(FunctionalStorage.DRAWER_CONTROLLER.getLeft().get().asItem()));
+    }
+
+    private static void addConditionalFluidDrawerRecipe(Consumer<FinishedRecipe> provider, ResourceLocation recipeId,
+                                                        Item result, int count, String... pattern) {
+        ResourceLocation resultId = Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(result), "Unregistered result");
+
+        JsonObject recipe = new JsonObject();
+        recipe.addProperty("type", "minecraft:crafting_shaped");
+        recipe.addProperty("category", "misc");
+        JsonObject key = new JsonObject();
+        key.add("A", itemIngredient(Items.SMOOTH_STONE));
+        key.add("C", itemIngredient(FLUID_TANK));
+        recipe.add("key", key);
+
+        JsonArray recipePattern = new JsonArray();
+        for (String row : pattern) {
+            recipePattern.add(row);
+        }
+        recipe.add("pattern", recipePattern);
+        JsonObject recipeResult = itemIngredient(result);
+        recipeResult.addProperty("count", count);
+        recipe.add("result", recipeResult);
+        recipe.addProperty("show_notification", true);
+
+        JsonObject itemExists = new JsonObject();
+        itemExists.addProperty("type", "forge:item_exists");
+        itemExists.addProperty("item", resultId.toString());
+        JsonArray conditionValues = new JsonArray();
+        conditionValues.add(itemExists);
+        JsonObject condition = new JsonObject();
+        condition.addProperty("type", "forge:and");
+        condition.add("values", conditionValues);
+
+        JsonArray recipes = new JsonArray();
+        JsonObject conditionalRecipe = new JsonObject();
+        JsonArray conditions = new JsonArray();
+        conditions.add(condition);
+        conditionalRecipe.add("conditions", conditions);
+        conditionalRecipe.add("recipe", recipe);
+        recipes.add(conditionalRecipe);
+
+        JsonObject conditional = new JsonObject();
+        conditional.addProperty("type", "forge:conditional");
+        conditional.add("recipes", recipes);
+        provider.accept(new JsonFinishedRecipe(recipeId, conditional));
+    }
+
+    private static JsonObject itemIngredient(Item item) {
+        ResourceLocation itemId = Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item), "Unregistered item");
+        JsonObject ingredient = new JsonObject();
+        ingredient.addProperty("item", itemId.toString());
+        return ingredient;
+    }
+
+    private record JsonFinishedRecipe(ResourceLocation id, JsonObject json) implements FinishedRecipe {
+
+        @Override
+        public void serializeRecipeData(JsonObject recipeJson) {
+            json.entrySet().forEach(entry -> recipeJson.add(entry.getKey(), entry.getValue()));
+        }
+
+        @Override
+        public ResourceLocation getId() {
+            return id;
+        }
+
+        @Override
+        public RecipeSerializer<?> getType() {
+            RecipeSerializer<?> serializer = ForgeRegistries.RECIPE_SERIALIZERS
+                    .getValue(ResourceLocation.parse(json.get("type").getAsString()));
+            return Objects.requireNonNull(serializer, "Recipe serializer not found: " + id);
+        }
+
+        @Nullable
+        @Override
+        public JsonObject serializeAdvancement() {
+            return null;
+        }
+
+        @Nullable
+        @Override
+        public ResourceLocation getAdvancementId() {
+            return null;
+        }
     }
 }

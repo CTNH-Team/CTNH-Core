@@ -39,13 +39,6 @@ public class TConstructRecipes {
         RecipeRemoval.remove(new RemoveFilter().id("tconstruct:smeltery/melting/glass/sand_cast"));
         RecipeRemoval.remove(new RemoveFilter().id("tconstruct:smeltery/scorched/alloyer"));
         RecipeRemoval.remove(new RemoveFilter().id("tconstruct:tables/cast_chest"));
-        RecipeRemoval.remove(new RemoveFilter().output("tconstruct:seared_brick"));
-        RecipeRemoval.remove(new RemoveFilter().output("tconstruct:grout"));
-        RecipeRemoval.remove(new RemoveFilter().output("tconstruct:puny_smelting"));
-        RecipeRemoval.remove(new RemoveFilter().output("tconstruct:seared_fuel_tank"));
-        RecipeRemoval.remove(new RemoveFilter().output("tconstruct:seared_fuel_gauge"));
-        RecipeRemoval.remove(new RemoveFilter().output("tconstruct:seared_ingot_tank"));
-        RecipeRemoval.remove(new RemoveFilter().output("tconstruct:seared_ingot_gauge"));
         RecipeRemoval.remove(new RemoveFilter().idRegex("tconstruct:compat\\/create\\/andesite_alloy_(.*)"));
         RecipeRemoval.remove(new RemoveFilter().id("tconstruct:smeltery/casting/clay/block"));
         RecipeRemoval.remove(new RemoveFilter().idRegex("tconstruct:smeltery\\/melting\\/clay\\/(.*)"));
