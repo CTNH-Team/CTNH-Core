@@ -28,6 +28,22 @@ public class EnglishLangHandler {
         // Item Tooltip
         provider.add("ctnh.advanced_ram_wafer.tooltip", "Enhanced RAM Wafer");
         provider.add("ctnh.advanced_ram_chip.tooltip", "Advanced Random Access Memory");
+        provider.add("ctnh.blood_magic_gregtech_hv",
+                "Use this item as an offering in the Falling Star Beacon Ritual to summon meteorites");
+        provider.add("ctnh.stone_process_catalyst",
+                "Village stonemasons know this ancient technique - they'll teach you after you become a Hero of the Village");
+        provider.add("ctnh.metallurgical_catalyst",
+                "Nether Piglins possess this knowledge - try bartering with them");
+        provider.add("ctnh.bauxite_process_catalyst",
+                "Village librarians guard this ancient technique - prove yourself as a Hero of the Village to learn it");
+        provider.add("ctnh.platinum_metal_catalyst_shard1",
+                "The tides of time turned these into aquatic treasures - fish them up");
+        provider.add("ctnh.platinum_metal_catalyst_shard2",
+                "The abyssal Drowned Ones hold this secret - attempt to trade with them");
+        provider.add("ctnh.psionic_medulla",
+                "Obtain it by extracting Alfheim Elves through the Blood Magic Evil Creature Extraction ritual");
+        provider.add("ctnh.doubt",
+                "Obtain it by killing creatures soaked in Life Essence and infusing their doubt into Life Essence");
 
         provider.add("config.jade.plugin_ctnhcore.thread_status_provider", "Thread Info");
         provider.add("config.jade.plugin_ctnhcore.recipe_logic_provider", "Recipe Logic Info");

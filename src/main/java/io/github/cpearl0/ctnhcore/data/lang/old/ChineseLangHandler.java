@@ -86,6 +86,14 @@ public class ChineseLangHandler {
         provider.add("ctnh.me_advanced_terminal.tooltip.3", "通过ME无线访问点链接到网络");
         provider.add("ctnh.advanced_ram_wafer.tooltip", "更好的内存原料");
         provider.add("ctnh.advanced_ram_chip.tooltip", "更好的随机存取存储器");
+        provider.add("ctnh.blood_magic_gregtech_hv", "在坠星位标仪式中使用此物品作为祭品可以召唤陨石");
+        provider.add("ctnh.stone_process_catalyst", "村庄里的石匠掌握这个古老的技术，成为村庄英雄后他就会传授给你");
+        provider.add("ctnh.metallurgical_catalyst", "地狱的猪灵掌握这个技术，尝试与他们交易吧");
+        provider.add("ctnh.bauxite_process_catalyst", "村庄里的图书管理员掌握这个古老的技术，成为村庄英雄后他就会传授给你");
+        provider.add("ctnh.platinum_metal_catalyst_shard1", "久远的时间使他们变成了水里的宝藏，通过钓鱼获得");
+        provider.add("ctnh.platinum_metal_catalyst_shard2", "深渊里的深潜一组掌握这个技术，尝试与他们交易吧");
+        provider.add("ctnh.psionic_medulla", "通过血魔法邪恶的生灵萃取仪式萃取艾尔夫海姆精灵获取");
+        provider.add("ctnh.doubt", "通过击杀浸泡在生命源质的生物，将其困扰注入生命源质之中获得");
 
         provider.add("item.ctnh.me_advanced_terminal.setting.title", "多方块结构成型配置");
         provider.add("item.ctnh.me_advanced_terminal.setting.1", "线圈等级");
