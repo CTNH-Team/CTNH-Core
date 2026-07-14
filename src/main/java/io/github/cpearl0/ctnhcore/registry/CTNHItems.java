@@ -181,10 +181,12 @@ public class CTNHItems {
             .cnlang("精炼铁方坯")
             .lang("Refined Iron Ingot")
             .register();
-    public static ItemEntry<Item> BAUXITE_PROCESS_CATALYST = REGISTRATE
-            .item("bauxite_process_catalyst", Item::new)
+    public static ItemEntry<ComponentItem> BAUXITE_PROCESS_CATALYST = REGISTRATE
+            .item("bauxite_process_catalyst", ComponentItem::create)
             .cnlang("铝土矿处理催化剂")
             .lang("Bauxite Process Catalyst")
+            .onRegister(attach(new TooltipBehavior(
+                    list -> list.add(Component.literal("村庄里的图书管理员掌握这个古老的技术，成为村庄英雄后他就会传授给你")))))
             .register();
     public static ItemEntry<Item> CRYSTAL_CATALYST = REGISTRATE
             .item("crystal_catalyst", Item::new)
@@ -605,29 +607,37 @@ public class CTNHItems {
             .cnlang("回响印制电路板")
             .lang("Echo Printed Circuit Board")
             .register();
-    public static ItemEntry<Item> ECHO_PROCESSOR = REGISTRATE
-            .item("echo_processor", Item::new)
+    public static ItemEntry<ComponentItem> ECHO_PROCESSOR = REGISTRATE
+            .item("echo_processor", ComponentItem::create)
             .cnlang("回响处理器")
             .lang("Echo Processor")
             .tag(CustomTags.ZPM_CIRCUITS)
+            .onRegister(attach(new TooltipBehavior(
+                    list -> list.add(Component.literal("ZPM级电路板").withStyle(ChatFormatting.DARK_AQUA)))))
             .register();
-    public static ItemEntry<Item> ECHO_PROCESSOR_ASSEMBLY = REGISTRATE
-            .item("echo_processor_assembly", Item::new)
+    public static ItemEntry<ComponentItem> ECHO_PROCESSOR_ASSEMBLY = REGISTRATE
+            .item("echo_processor_assembly", ComponentItem::create)
             .cnlang("回响处理器装配")
             .lang("Echo Processor Assembly")
             .tag(CustomTags.UV_CIRCUITS)
+            .onRegister(attach(new TooltipBehavior(
+                    list -> list.add(Component.literal("UV级电路板").withStyle(ChatFormatting.DARK_AQUA)))))
             .register();
-    public static ItemEntry<Item> ECHO_PROCESSOR_COMPUTER = REGISTRATE
-            .item("echo_processor_computer", Item::new)
+    public static ItemEntry<ComponentItem> ECHO_PROCESSOR_COMPUTER = REGISTRATE
+            .item("echo_processor_computer", ComponentItem::create)
             .cnlang("回响处理器计算机")
             .lang("Echo Processor Computer")
             .tag(CustomTags.UHV_CIRCUITS)
+            .onRegister(attach(new TooltipBehavior(
+                    list -> list.add(Component.literal("UHV级电路板").withStyle(ChatFormatting.DARK_AQUA)))))
             .register();
-    public static ItemEntry<Item> ECHO_PROCESSOR_MAINFRAME = REGISTRATE
-            .item("echo_processor_mainframe", Item::new)
+    public static ItemEntry<ComponentItem> ECHO_PROCESSOR_MAINFRAME = REGISTRATE
+            .item("echo_processor_mainframe", ComponentItem::create)
             .cnlang("回响处理器主机")
             .lang("Echo Processor Mainframe")
             .tag(CustomTags.UEV_CIRCUITS)
+            .onRegister(attach(new TooltipBehavior(
+                    list -> list.add(Component.literal("UEV级电路板").withStyle(ChatFormatting.DARK_AQUA)))))
             .register();
     public static ItemEntry<Item> BIOLOGICAL_PATCH_TRANSISTOR = REGISTRATE
             .item("biological_patch_transistor", Item::new)
@@ -676,6 +686,9 @@ public class CTNHItems {
                             return stack;
                         }
                     }))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.literal("SCP-500基底可以提供强大的恢复能力"));
+            })))
             .register();
     public static ItemEntry<ComponentItem> SCP_500 = REGISTRATE
             .item("scp_500", ComponentItem::create)
@@ -701,6 +714,10 @@ public class CTNHItems {
                             return stack;
                         }
                     }))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.literal("SCP-500可以治愈所有疾病"));
+                list.add(Component.literal("在短时间内获得强大的恢复能力"));
+            })))
             .register();
 
     public static ItemEntry<Item> CRASHED_RICE = REGISTRATE
