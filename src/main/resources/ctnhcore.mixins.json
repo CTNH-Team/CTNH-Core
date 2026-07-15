@@ -28,8 +28,6 @@
     "ftbchunks.HeightUtilsMixin",
     "gtceu.GTBlocksMixin",
     "gtceu.ItemMaterialDataMixin",
-    "gtceu.NotifiableFluidTankMixin",
-    "gtceu.NotifiableItemStackHandlerMixin",
     "gtceu.RecyclingRecipesMixin",
     "gtceu.orevein.ClientProxyAccessor",
     "javd.PortalBlockMixin",
@@ -44,7 +42,7 @@
     "vintageimprovements.LatheRotatingBlockMixin"
   ],
   "client": [
-    "create.StockKeeperRequestScreenMixin",
+    "create.StockKeeperRequestScreenMixin"
   ],
   "mixinextras": {
     "minVersion": "0.5.0"

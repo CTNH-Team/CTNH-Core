@@ -4,6 +4,7 @@ import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
+import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
 import com.gregtechceu.gtceu.api.gui.widget.LargeStackSlotWidget;
 import com.gregtechceu.gtceu.api.gui.widget.TankWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -26,7 +27,6 @@ import net.minecraftforge.fluids.FluidType;
 
 import lombok.Getter;
 import org.jetbrains.annotations.Nullable;
-import tech.vixhentx.mcmod.ctnhlib.client.gui.RightConfiguratorPanel;
 
 import java.util.List;
 
@@ -232,10 +232,10 @@ public class HugeDualHatchPartMachine extends HugeItemBusPartMachine {
     }
 
     @Override
-    public void attachRightConfigurators(RightConfiguratorPanel configuratorPanel) {
-        super.attachRightConfigurators(configuratorPanel);
+    public void attachConfigurators(ConfiguratorPanel left, ConfiguratorPanel right) {
+        super.attachConfigurators(left, right);
         if (io != IO.IN) return;
-        configuratorPanel.attachConfigurators(new FancyTankConfigurator(
+        right.attachConfigurators(new FancyTankConfigurator(
                 shareTank.getStorages(), Component.translatable("gui.gtceu.share_tank.title"))
                 .setTooltips(List.of(
                         Component.translatable("gui.gtceu.share_inventory.desc.1"))));

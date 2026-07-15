@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch;
 
-import io.github.cpearl0.ctnhcore.common.gui.rightconfigurator.IAllowSameUIProvider;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.utils.HugeBusTransferHelper;
 
@@ -11,6 +10,7 @@ import com.gregtechceu.gtceu.api.gui.widget.LargeStackSlotWidget;
 import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
+import com.gregtechceu.gtceu.api.machine.feature.IAllowSameUIProvider;
 import com.gregtechceu.gtceu.api.machine.fancyconfigurator.ButtonConfigurator;
 import com.gregtechceu.gtceu.api.machine.fancyconfigurator.FancyInvConfigurator;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
@@ -18,7 +18,6 @@ import com.gregtechceu.gtceu.api.transfer.item.LargeStackItemHandler;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.ItemBusPartMachine;
 import com.gregtechceu.gtceu.utils.GTTransferUtils;
 
-import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.texture.GuiTextureGroup;
 import com.lowdragmc.lowdraglib.gui.texture.TextTexture;
 import com.lowdragmc.lowdraglib.gui.util.ClickData;
@@ -30,7 +29,6 @@ import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.state.BlockState;
 
 import com.ctnhlang.CN;
@@ -38,8 +36,6 @@ import com.ctnhlang.EN;
 import com.ctnhlang.Suffix;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
-import tech.vixhentx.mcmod.ctnhlib.client.gui.RCUIWidget;
-import tech.vixhentx.mcmod.ctnhlib.client.gui.RightConfiguratorPanel;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.List;
@@ -149,22 +145,18 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IAllow
     static Lang refund_item;
 
     @Override
-    public void attachConfigurators(ConfiguratorPanel configuratorPanel) {
-        super.attachConfigurators(configuratorPanel);
+    public void attachConfigurators(ConfiguratorPanel left, ConfiguratorPanel right) {
+        super.attachConfigurators(left, right);
+        attachAllowSameConfigurators(right);
         if (this.io == IO.IN) {
-            configuratorPanel.attachConfigurators(
+            left.attachConfigurators(
                     new ButtonConfigurator(new GuiTextureGroup(GuiTextures.BUTTON, new TextTexture("\ud83d\udd19")),
                             this::refundAll)
                             .setTooltips(List.of(refund_item.translate())));
 
         }
-    }
-
-    @Override
-    public void attachRightConfigurators(RightConfiguratorPanel configuratorPanel) {
-        IAllowSameUIProvider.super.attachRightConfigurators(configuratorPanel);
         if (io != IO.IN) return;
-        configuratorPanel.attachConfigurators(new FancyInvConfigurator(
+        right.attachConfigurators(new FancyInvConfigurator(
                 shareInventory.storage, Component.translatable("gui.gtceu.share_inventory.title"))
                 .setTooltips(List.of(
                         Component.translatable("gui.gtceu.share_inventory.desc.1"))));
@@ -174,11 +166,6 @@ public class HugeItemBusPartMachine extends ItemBusPartMachine implements IAllow
     public void onMachineRemoved() {
         super.onMachineRemoved();
         clearInventory(shareInventory);
-    }
-
-    @Override
-    public ModularUI createUI(Player entityPlayer) {
-        return new ModularUI(176, 166, this, entityPlayer).widget(new RCUIWidget(this, 176, 166));
     }
 
     public int[] calculateOptimalLayout(int slotCount) {
