@@ -28,14 +28,11 @@
     "ftbchunks.HeightUtilsMixin",
     "gtceu.GTBlocksMixin",
     "gtceu.ItemMaterialDataMixin",
-    "gtceu.ItemRecipeCapabilityMixin",
     "gtceu.NotifiableFluidTankMixin",
     "gtceu.NotifiableItemStackHandlerMixin",
     "gtceu.RecyclingRecipesMixin",
-    "gtceu.WorkableTieredMachineMixin",
     "gtceu.orevein.ClientProxyAccessor",
     "javd.PortalBlockMixin",
-    "ldlib.ModularUIContainerMixin",
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MonsterMixin",
     "mc.NaturalSpawnerMixin",
@@ -48,8 +45,6 @@
   ],
   "client": [
     "create.StockKeeperRequestScreenMixin",
-    "sophisticatedcore.SyncContainerStacksMessageMixin",
-    "sophisticatedcore.SyncSlotStackMessageMixin"
   ],
   "mixinextras": {
     "minVersion": "0.5.0"

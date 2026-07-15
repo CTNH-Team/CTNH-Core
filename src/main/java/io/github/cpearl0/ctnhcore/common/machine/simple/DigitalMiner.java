@@ -2,13 +2,13 @@ package io.github.cpearl0.ctnhcore.common.machine.simple;
 
 import io.github.cpearl0.ctnhcore.api.machine.feature.IDigitalMiner;
 import io.github.cpearl0.ctnhcore.api.recipe.DigitalMinerLogic;
-import io.github.cpearl0.ctnhcore.common.gui.HugeSlotWidget;
 import io.github.cpearl0.ctnhcore.common.gui.SimpleNumberInputWidget;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.GTCapabilityHelper;
 import com.gregtechceu.gtceu.api.cover.filter.ItemFilter;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
+import com.gregtechceu.gtceu.api.gui.widget.LargeStackSlotWidget;
 import com.gregtechceu.gtceu.api.gui.widget.SlotWidget;
 import com.gregtechceu.gtceu.api.gui.widget.ToggleButtonWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -306,7 +306,7 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
         WidgetGroup slots = new WidgetGroup(leftPadding, 76 + 4 / 2, colSize * 18, rowSize * 18);
         for (int y = 0; y < rowSize; y++) {
             for (int x = 0; x < colSize; x++) {
-                var slot = new HugeSlotWidget(exportItems, index++, x * 18, y * 18, true, false)
+                var slot = new LargeStackSlotWidget(exportItems, index++, x * 18, y * 18, true, false)
                         .setBackground(GuiTextures.SLOT);
                 slots.addWidget(slot);
             }

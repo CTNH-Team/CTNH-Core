@@ -1,10 +1,10 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.hugehatch;
 
-import io.github.cpearl0.ctnhcore.common.gui.HugeSlotWidget;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
+import com.gregtechceu.gtceu.api.gui.widget.LargeStackSlotWidget;
 import com.gregtechceu.gtceu.api.gui.widget.TankWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
@@ -199,7 +199,7 @@ public class HugeDualHatchPartMachine extends HugeItemBusPartMachine {
             for (int x = 0; x < itemCols; x++) {
                 if (index < inventorySize) {
                     container.addWidget(
-                            new HugeSlotWidget(getInventory().storage, index, 4 + x * 18, 4 + y * 18, true,
+                            new LargeStackSlotWidget(getInventory().storage, index, 4 + x * 18, 4 + y * 18, true,
                                     io.support(IO.IN))
                                     .setBackgroundTexture(GuiTextures.SLOT)
                                     .setIngredientIO(this.io == IO.IN ? IngredientIO.INPUT : IngredientIO.OUTPUT));
