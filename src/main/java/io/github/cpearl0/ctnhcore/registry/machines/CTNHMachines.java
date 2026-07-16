@@ -448,7 +448,7 @@ public class CTNHMachines {
                         GTCEu.id("block/overlay/machine/overlay_fluid_hatch_input"),
                         GTCEu.id("block/overlay/machine/overlay_pipe_9x"),
                         GTCEu.id("block/overlay/machine/overlay_pipe_in_emissive"))
-                .abilities(PartAbility.IMPORT_FLUIDS, PartAbility.IMPORT_FLUIDS_9X)
+                .abilities(PartAbility.IMPORT_FLUIDS, PartAbility.IMPORT_FLUIDS_MULTI)
                 .tier(MAX)
                 .tooltipBuilder(CREATIVE_TOOLTIPS)
                 .register();
