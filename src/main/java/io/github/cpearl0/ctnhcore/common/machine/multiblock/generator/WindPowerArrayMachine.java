@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.common.machine.trait.providable_net.IProviableNetHandlerMachine;
 import io.github.cpearl0.ctnhcore.common.machine.trait.providable_net.ProvidableNetHandler;
 import io.github.cpearl0.ctnhcore.utils.MathUtils;
@@ -40,6 +39,9 @@ import net.minecraft.world.entity.player.Player;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -212,13 +214,13 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
     @Override
     public int getStorage() {
         assert canProvide();
-        return fluidParts != null ? MachineUtils.getFluidStorageBrute(fluidMaterial.getFluid(), fluidParts) : 0;
+        return fluidParts != null ? getFluidStorageBrute(fluidMaterial.getFluid(), fluidParts) : 0;
     }
 
     @Override
     public int checkAndConsume(int amount) {
         assert canProvide();
-        return fluidParts != null ? MachineUtils.inputFluidBrute(fluidMaterial.getFluid(amount), fluidParts) : amount;
+        return fluidParts != null ? inputFluidBrute(fluidMaterial.getFluid(amount), fluidParts) : amount;
     }
 
     void joinNet() {
@@ -258,7 +260,7 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
             needFluid = true;
         }
         if (isActive) {
-            needFluid = energyContainer.addEnergy((long) (basicRate * getEfficiency())) != 0;
+            needFluid = energyContainer.changeEnergy((long) (basicRate * getEfficiency())) != 0;
         }
     }
 
@@ -323,4 +325,33 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
     @DescSynced
     @Persisted
     boolean isWorkingEnabled = true;
+
+    public static int inputFluidBrute(FluidStack fluidStack, List<FluidHatchPartMachine> source) {
+        int ret = fluidStack.getAmount();
+        for (var part : source) {
+            var tankStorages = part.tank.getStorages();
+            for (var tankStorage : tankStorages) {
+                FluidStack fs = tankStorage.getFluid();
+                if (fs.getFluid() != fluidStack.getFluid()) continue;
+                int toDrain = Math.min(fs.getAmount(), ret);
+                tankStorage.drain(toDrain, IFluidHandler.FluidAction.EXECUTE);
+                ret -= toDrain;
+                if (ret == 0) break;
+            }
+        }
+        return ret;
+    }
+
+    public static int getFluidStorageBrute(Fluid fluidType, List<FluidHatchPartMachine> source) {
+        int ret = 0;
+        for (var part : source) {
+            var tankStorages = part.tank.getStorages();
+            for (var tankStorage : tankStorages) {
+                FluidStack fs = tankStorage.getFluid();
+                if (fs.getFluid() != fluidType) continue;
+                ret += fs.getAmount();
+            }
+        }
+        return ret;
+    }
 }

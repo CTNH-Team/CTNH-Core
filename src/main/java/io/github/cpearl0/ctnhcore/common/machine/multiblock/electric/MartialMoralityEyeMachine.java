@@ -1,6 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;

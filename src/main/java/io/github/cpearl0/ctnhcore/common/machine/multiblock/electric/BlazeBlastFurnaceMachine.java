@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
@@ -20,6 +19,7 @@ import net.minecraft.network.chat.Component;
 import com.simibubi.create.foundation.fluid.CombinedTankWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
     public boolean onWorking() {
         if (getOffsetTimer() % 20 == 0) {
             var tier = getTier();
-            if (MachineUtils.inputFluid(CTNHMaterials.Pyrotheum.getFluid((int) (Math.pow(2, (tier - 2)) * 5)), this)) {
+            if (MachineUtils.inputFluids(this, CTNHMaterials.Pyrotheum.getFluid((int) (Math.pow(2, (tier - 2)) * 5)))) {
                 return super.onWorking();
             } else {
                 getRecipeLogic().setProgress(0);
@@ -45,7 +45,7 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
         var tier = getTier();
-        if (MachineUtils.canInputFluid(CTNHMaterials.Pyrotheum.getFluid((int) (Math.pow(2, (tier - 2)) * 5)), this)) {
+        if (MachineUtils.canInputFluids(this, CTNHMaterials.Pyrotheum.getFluid((int) (Math.pow(2, (tier - 2)) * 5)))) {
             return super.beforeWorking(recipe);
         }
         getRecipeLogic().interruptRecipe();

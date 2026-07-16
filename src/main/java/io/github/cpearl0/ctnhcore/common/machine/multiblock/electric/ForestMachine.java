@@ -1,6 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -44,7 +44,7 @@ public class ForestMachine extends WorkableElectricMultiblockMachine {
                     Fluids.WATER,
                     FLUID_AMOUNT);
 
-            boolean isFluidSufficient = MachineUtils.inputFluid(waterFluid, this);  // 检查是否有足够流体
+            boolean isFluidSufficient = MachineUtils.inputFluids(this, waterFluid);  // 检查是否有足够流体
 
             // 如果流体充足，增加湿度
             if (isFluidSufficient) {

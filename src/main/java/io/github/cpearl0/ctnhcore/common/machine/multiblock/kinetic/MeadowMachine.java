@@ -1,24 +1,13 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic;
 
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.api.recipe.crossparalell.MergedGTRecipe;
-
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
-import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
-import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
-import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.AABB;
 
-import com.mo_guang.ctpp.api.CTPPModifierFunction;
-import com.mo_guang.ctpp.common.data.recipe.builder.CTPPRecipeHelper;
 import com.mo_guang.ctpp.common.machine.multiblock.KineticWorkableMultiblockMachine;
 import com.moguang.ctnhbio.api.machine.trait.NotifiableEntityContainer;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.Iterator;
 
 public class MeadowMachine extends KineticWorkableMultiblockMachine {
 
@@ -37,71 +26,5 @@ public class MeadowMachine extends KineticWorkableMultiblockMachine {
         return new AABB(
                 getPos().relative(b, 0).relative(l, 5).relative(u, 0),
                 getPos().relative(b, 10).relative(l, -5).relative(u, 6));
-    }
-
-    @Override
-    public MeadowRecipeLogic getRecipeLogic() {
-        return (MeadowRecipeLogic) super.getRecipeLogic();
-    }
-
-    @Override
-    protected MeadowRecipeLogic createRecipeLogic(Object... args) {
-        return new MeadowRecipeLogic(this);
-    }
-
-    @Override
-    public boolean alwaysTryModifyRecipe() {
-        return false;
-    }
-
-    public class MeadowRecipeLogic extends KineticRecipeLogic {
-
-        public MergedGTRecipe mergedRecipe = new MergedGTRecipe(getRecipeType(),
-                getRecipeType().getCategory(),
-                CTNHCore.id(getRecipeType().registryName.getPath() + "/merged/" + this.hashCode()));
-
-        public MeadowRecipeLogic(IRecipeLogicMachine machine) {
-            super(machine);
-        }
-
-        @Override
-        protected void handleSearchingRecipes(@NotNull Iterator<GTRecipe> matches) {
-            mergedRecipe.clear();
-            while (matches.hasNext()) {
-                GTRecipe match = matches.next();
-                if (match == null) continue;
-
-                // If a new recipe was found, merge found recipe.
-                checkMatchedRecipeAvailable(match);
-            }
-            if (mergedRecipe.isAvailable())
-                setupRecipe(mergedRecipe);
-        }
-
-        @Override
-        public boolean checkMatchedRecipeAvailable(GTRecipe match) {
-            float recipeStress = CTPPRecipeHelper.getInputStress(match);
-            int maxParallel = recipeStress == 0 ? Integer.MAX_VALUE : (int) (getTotalInputStress() / recipeStress);
-            var modified = CTPPModifierFunction
-                    .accurateParallel(getMachine(), match, maxParallel - mergedRecipe.parallels).apply(match);
-
-            if (modified != null) {
-                var recipeMatch = checkRecipe(modified);
-                if (recipeMatch.isSuccess()) {
-                    mergedRecipe.add(modified);
-                    lastOriginRecipe = match;
-                    return true;
-                } else {
-                    RecipeLogic.putFailureReason(this, match, recipeMatch.reason());
-                }
-            }
-            return false;
-        }
-
-        @Override
-        public void onRecipeFinish() {
-            markLastRecipeDirty();
-            super.onRecipeFinish();
-        }
     }
 }

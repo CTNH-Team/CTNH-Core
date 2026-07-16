@@ -37,7 +37,6 @@ import com.enderio.base.common.init.EIOItems;
 import com.github.alexmodguy.alexscaves.server.block.ACBlockRegistry;
 import com.github.alexmodguy.alexscaves.server.item.ACItemRegistry;
 import com.moguang.ctnhbio.registry.CBItems;
-import com.moguang.ctnhmana.registry.CMMaterials;
 import com.simibubi.create.AllItems;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.shadowsoffire.hostilenetworks.Hostile;
@@ -609,20 +608,7 @@ public class GtceuScriptRecipes {
                 .outputFluids(Helium.getFluid(500))
                 .save(provider);
 
-        // 10. liquid_alfheim_air: liquid_alfheim_air 100000 -> mana_powder + mana 100 + oxygen 25000 + steam 12000 +
-        // neon 10000 + carbon_dioxide 5000 + helium 5000 + argon 3000. EUt 360, dur 2000
-        DISTILLATION_RECIPES.recipeBuilder(CTNHCore.id("liquid_alfheim_air"))
-                .EUt(360).duration(2000)
-                .inputFluids(ExtraterrestrialAtmosphereMaterials.LIQUID_ALFHEIM_AIR.getFluid(100000))
-                .outputItems(new ItemStack(BotaniaItems.manaPowder))
-                .outputFluids(CMMaterials.Mana.getFluid(100))
-                .outputFluids(Oxygen.getFluid(25000))
-                .outputFluids(Steam.getFluid(12000))
-                .outputFluids(Neon.getFluid(10000))
-                .outputFluids(CarbonDioxide.getFluid(5000))
-                .outputFluids(Helium.getFluid(5000))
-                .outputFluids(Argon.getFluid(3000))
-                .save(provider);
+        // TODO: Restore CTNHMana's liquid_alfheim_air distillation recipe after its GTM migration.
 
         // 11. liquid_aether_air: liquid_aether_air 100000 -> oxygen 25000 + hydrogen 12000 + fluorine 10000 + steam
         // 12000 + neon 10000 + carbon_dioxide 5000 + helium 5000. EUt 7680, dur 2000
@@ -864,14 +850,7 @@ public class GtceuScriptRecipes {
                 .outputFluids(Oxygen.getFluid(2500))
                 .save(provider);
 
-        // 29. alfheim_air centrifuge: alfheim_air 10000 -> mana 5 + oxygen 1500 + helium 1000. EUt 240, dur 800
-        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("alfheim_air_centrifuge"))
-                .EUt(240).duration(800)
-                .inputFluids(ExtraterrestrialAtmosphereMaterials.ALFHEIM_AIR.getFluid(10000))
-                .outputFluids(CMMaterials.Mana.getFluid(5))
-                .outputFluids(Oxygen.getFluid(1500))
-                .outputFluids(Helium.getFluid(1000))
-                .save(provider);
+        // TODO: Restore CTNHMana's alfheim_air centrifuge recipe after its GTM migration.
 
         // 30. venus_air centrifuge: venus_air 10000 -> steam 1500 + carbon_dioxide 1000 + helium 500. EUt 1920, dur 800
         CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("venus_air_centrifuge"))

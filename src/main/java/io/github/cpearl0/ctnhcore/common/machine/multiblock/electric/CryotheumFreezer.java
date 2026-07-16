@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
 import io.github.cpearl0.ctnhcore.common.gui.MachineModeFancyConfiguratorTest;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
@@ -60,8 +60,8 @@ public class CryotheumFreezer extends WorkableElectricMultiblockMachine implemen
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
         var tier = getTier();
-        if (MachineUtils.inputFluid(CTNHMaterials.Cryotheum.getFluid((int) (Math.pow(4, Math.max((tier - 4), 0)) * 10)),
-                this)) {
+        if (MachineUtils.inputFluids(this,
+                CTNHMaterials.Cryotheum.getFluid((int) (Math.pow(4, Math.max((tier - 4), 0)) * 10)))) {
             used_energy += (long) (Math.pow(4, Math.max((tier - 4), 0))) * 10;
             if (used_energy >= target) {
                 a += 1;

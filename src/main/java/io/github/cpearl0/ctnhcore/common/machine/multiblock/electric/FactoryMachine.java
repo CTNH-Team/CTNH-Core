@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 
@@ -31,6 +30,7 @@ import net.minecraft.world.phys.AABB;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -164,32 +164,33 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
 
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
+        if (recipe == null) return false;
         updateVillagerCount();
         updateBasicRate();
         if (VILLAGER_COUNT == 0) {
             return false;
         } else {
-            if (getRecipeType().equals(GTRecipeTypes.CENTRIFUGE_RECIPES) && CENTRIFUGE_COUNT == 0) {
+            if (recipe.recipeType.equals(GTRecipeTypes.CENTRIFUGE_RECIPES) && CENTRIFUGE_COUNT == 0) {
                 return false;
-            } else if (getRecipeType().equals(GTRecipeTypes.LATHE_RECIPES) && LATHE_COUNT == 0) {
+            } else if (recipe.recipeType.equals(GTRecipeTypes.LATHE_RECIPES) && LATHE_COUNT == 0) {
                 return false;
-            } else if (getRecipeType().equals(GTRecipeTypes.MACERATOR_RECIPES) && CRUSHING_COUNT == 0) {
+            } else if (recipe.recipeType.equals(GTRecipeTypes.MACERATOR_RECIPES) && CRUSHING_COUNT == 0) {
                 return false;
-            } else if (getRecipeType().equals(GTRecipeTypes.EXTRACTOR_RECIPES) && BURNER_COUNT == 0) {
+            } else if (recipe.recipeType.equals(GTRecipeTypes.EXTRACTOR_RECIPES) && BURNER_COUNT == 0) {
                 return false;
-            } else if (getRecipeType().equals(GTRecipeTypes.BENDER_RECIPES) && PRESSOR_COUNT == 0) {
+            } else if (recipe.recipeType.equals(GTRecipeTypes.BENDER_RECIPES) && PRESSOR_COUNT == 0) {
                 return false;
-            } else if (getRecipeType().equals(GTRecipeTypes.MIXER_RECIPES) && MIXER_COUNT == 0) {
+            } else if (recipe.recipeType.equals(GTRecipeTypes.MIXER_RECIPES) && MIXER_COUNT == 0) {
                 return false;
-            } else if (getRecipeType().equals(GTRecipeTypes.WIREMILL_RECIPES) && SAW_COUNT == 0) {
+            } else if (recipe.recipeType.equals(GTRecipeTypes.WIREMILL_RECIPES) && SAW_COUNT == 0) {
                 return false;
-            } else if (getRecipeType().equals(GTRecipeTypes.LASER_ENGRAVER_RECIPES) && LASER_COUNT == 0) {
+            } else if (recipe.recipeType.equals(GTRecipeTypes.LASER_ENGRAVER_RECIPES) && LASER_COUNT == 0) {
                 return false;
-            } else if (getRecipeType().equals(GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES) && BASIN_COUNT == 0) {
+            } else if (recipe.recipeType.equals(GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES) && BASIN_COUNT == 0) {
                 return false;
             }
         }
-        if (!MachineUtils.canInputItem(CTNHItems.SIMPLE_NUTRITIOUS_MEAL.asStack(VILLAGER_COUNT), this)) {
+        if (!MachineUtils.canInputItems(this, CTNHItems.SIMPLE_NUTRITIOUS_MEAL.asStack(VILLAGER_COUNT))) {
             return false;
         }
         return super.beforeWorking(recipe);
@@ -200,8 +201,8 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
         if (getOffsetTimer() % 20 == 0) {
             updateVillagerCount();
             if (getOffsetTimer() % 100 == 0) {
-                if (!MachineUtils.inputItem(CTNHItems.SIMPLE_NUTRITIOUS_MEAL.asStack(VILLAGER_COUNT), this)) {
-                    recipeLogic.setProgress(0);
+                if (!MachineUtils.inputItems(this, CTNHItems.SIMPLE_NUTRITIOUS_MEAL.asStack(VILLAGER_COUNT))) {
+                    getRecipeLogic().setProgress(0);
                 }
             }
         }
@@ -211,13 +212,13 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (machine instanceof FactoryMachine fmachine) {
             var modifierFunction = ModifierFunction.builder();
-            var recipeType = fmachine.getRecipeType();
-            var recipeTier = RecipeHelper.getRecipeEUtTier(recipe);
+            var recipeType = recipe.recipeType;
+            var recipeTier = recipe.tier;
             if (fmachine.basicRate == 0) {
                 return ModifierFunction.NULL;
             }
             modifierFunction
-                    .durationModifier(ContentModifier.multiplier(2 / fmachine.basicRate * Math.pow(recipeTier, 2)));
+                    .durationMultiplier(2 / fmachine.basicRate * Math.pow(recipeTier, 2));
             if (recipeType.equals(GTRecipeTypes.CENTRIFUGE_RECIPES)) {
                 return modifierFunction.build().andThen(CTNHRecipeModifiers.accurateParallel(machine, recipe,
                         (int) Math.sqrt(fmachine.CENTRIFUGE_COUNT)));

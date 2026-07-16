@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
@@ -30,6 +29,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.*;
 
@@ -97,7 +97,7 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
                     currentFluidAmount);
 
             // 检查输入仓是否有足够流体
-            boolean isFluidSufficient = MachineUtils.inputFluid(pyrotheumFluid, this);
+            boolean isFluidSufficient = MachineUtils.inputFluids(this, pyrotheumFluid);
 
             if (isFluidSufficient) {
                 // 流体足够，执行温度变化
@@ -122,7 +122,7 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
                     currentFluidAmount);
 
             // 检查输入仓是否有足够流体
-            boolean isFluidSufficient = MachineUtils.inputFluid(cryotheumFluid, this);
+            boolean isFluidSufficient = MachineUtils.inputFluids(this, cryotheumFluid);
 
             if (isFluidSufficient) {
                 // 流体足够，执行温度变化

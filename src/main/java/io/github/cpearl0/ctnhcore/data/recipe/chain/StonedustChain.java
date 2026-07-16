@@ -12,7 +12,6 @@ import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 
-import com.moguang.ctnhmana.registry.CMRecipeTypes;
 
 import java.util.function.Consumer;
 
@@ -142,25 +141,9 @@ public class StonedustChain {
                 .outputFluids(HydrofluoricAcid.getFluid(1000))
                 .duration(80).EUt(200)
                 .save(provider);
-        // 魔力转化器：金属残渣分离
-        CMRecipeTypes.MANA_TRANSFORMER_RECIPES.recipeBuilder(CTNHCore.id("metallic_residues_dust_seperate"))
-                .inputItems(dust, StonePowderMaterials.METALLIC_RESIDUES, 10)
-                .outputItems(dust, StonePowderMaterials.DIAMAGNETIC_RESIDUES, 3)
-                .outputItems(dust, StonePowderMaterials.PARAMAGNETIC_RESIDUES, 3)
-                .outputItems(dust, StonePowderMaterials.FERROMAGNETIC_RESIDUES, 3)
-                .outputItems(dust, StonePowderMaterials.UNCOMMON_RESIDUES)
-                .duration(80).EUt(8000)
-                .save(provider);
-
-        // 魔力转化器：重金属残渣分离
-        CMRecipeTypes.MANA_TRANSFORMER_RECIPES.recipeBuilder(CTNHCore.id("heavy_metallic_residues_dust_seperate"))
-                .inputItems(dust, StonePowderMaterials.HEAVY_METALLIC_RESIDUES, 10)
-                .outputItems(dust, StonePowderMaterials.HEAVY_DIAMAGNETIC_RESIDUES, 3)
-                .outputItems(dust, StonePowderMaterials.HEAVY_PARAMAGNETIC_RESIDUES, 3)
-                .outputItems(dust, StonePowderMaterials.HEAVY_FERROMAGNETIC_RESIDUES, 3)
-                .outputItems(dust, StonePowderMaterials.EXOTIC_HEAVY_RESIDUES)
-                .duration(80).EUt(8000)
-                .save(provider);
+        // TODO: Restore CTNHMana transformer recipes after its GTM migration.
+        // metallic_residues_dust_seperate
+        // heavy_metallic_residues_dust_seperate
 
         // 离心：铁磁性残渣
         CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("ferromagnetic_residues_dust"))

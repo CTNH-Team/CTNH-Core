@@ -1,6 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
@@ -21,7 +21,7 @@ public class LargeFermentingTankMachine extends FermentingTankMachine {
     public boolean onWorking() {
         if (getOffsetTimer() % 20 == 0) {
             var level = getLevel();
-            var pos1 = MachineUtils.getOffset(this, 13, 0, 1);
+            var pos1 = MachineUtils.getOffset(this, -13, 0, 1);
             if (!level.getBlockState(pos1).getBlock().equals(MultiblocksA.LARGE_BOTTLE.getBlock())) {
                 return true;
             }

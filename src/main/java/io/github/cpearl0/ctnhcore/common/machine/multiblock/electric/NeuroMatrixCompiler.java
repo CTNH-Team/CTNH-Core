@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CompilerMachine;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 
@@ -25,6 +24,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -249,7 +249,7 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         error_message.clear();
         var tier = getTier();
         var pos = getPos();
-        var m1 = getMachine(this.getLevel(), MachineUtils.getOffset(this, 11, 0, -6));
+        var m1 = getMachine(this.getLevel(), MachineUtils.getOffset(this, -11, 0, -6));
         states.clear();
         var mx = getBlockState();
         if (m1 instanceof CompilerMachine) {
@@ -257,9 +257,9 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
             tiers = part1.getTier();
             part1.set_id(1);
         }
-        var m2 = getMachine(this.getLevel(), MachineUtils.getOffset(this, -11, 0, -6));
-        var m3 = getMachine(this.getLevel(), MachineUtils.getOffset(this, 15, 0, 7));
-        var m4 = getMachine(this.getLevel(), MachineUtils.getOffset(this, -15, 0, 7));
+        var m2 = getMachine(this.getLevel(), MachineUtils.getOffset(this, 11, 0, -6));
+        var m3 = getMachine(this.getLevel(), MachineUtils.getOffset(this, -15, 0, 7));
+        var m4 = getMachine(this.getLevel(), MachineUtils.getOffset(this, 15, 0, 7));
         var m5 = getMachine(this.getLevel(), MachineUtils.getOffset(this, 0, 0, 22));
         var m6 = getMachine(this.getLevel(), MachineUtils.getOffset(this, 0, 1, 0));
         if (m2 instanceof IMultiPart) {

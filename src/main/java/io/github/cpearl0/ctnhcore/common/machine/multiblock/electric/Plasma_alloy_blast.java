@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.capability.forge.GTCapability;
@@ -14,6 +13,7 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
+import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import static com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys.PLASMA;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
@@ -50,35 +50,36 @@ public class Plasma_alloy_blast extends CoilWorkableElectricMultiblockMachine {
             var eut = 1.0;
             var total_speed = 1.0;
             int parallel = ParallelLogic.getParallelAmount(machine, recipe, pmachine.machine_level * 4);
-            if (MachineUtils.inputFluid(Iron.getFluid(PLASMA, 200 * parallel), pmachine)) {
+            if (MachineUtils.inputFluids(pmachine, Iron.getFluid(PLASMA, 200 * parallel))) {
                 speed = 4.0;
             }
-            if (MachineUtils.inputFluid(Nickel.getFluid(PLASMA, 200 * parallel), pmachine)) {
+            if (MachineUtils.inputFluids(pmachine, Nickel.getFluid(PLASMA, 200 * parallel))) {
                 speed = 4.0;
             }
             total_speed += speed;
-            if (MachineUtils.inputFluid(Argon.getFluid(PLASMA, 300 * parallel), pmachine)) {
+            if (MachineUtils.inputFluids(pmachine, Argon.getFluid(PLASMA, 300 * parallel))) {
                 speed = 3.0;
             }
-            if (MachineUtils.inputFluid(Oxygen.getFluid(PLASMA, 300 * parallel), pmachine)) {
+            if (MachineUtils.inputFluids(pmachine, Oxygen.getFluid(PLASMA, 300 * parallel))) {
                 speed = 3.0;
             }
-            if (MachineUtils.inputFluid(Nitrogen.getFluid(PLASMA, 300 * parallel), pmachine)) {
+            if (MachineUtils.inputFluids(pmachine, Nitrogen.getFluid(PLASMA, 300 * parallel))) {
                 speed = 3.0;
             }
             total_speed += speed;
-            if (MachineUtils.inputFluid(Helium.getFluid(PLASMA, 500 * parallel), pmachine)) {
+            if (MachineUtils.inputFluids(pmachine, Helium.getFluid(PLASMA, 500 * parallel))) {
                 speed = 2.0;
             }
             total_speed = speed;
             if (pmachine.getCoilType().getCoilTemperature() > 10000) {
                 total_speed += ((double) (pmachine.getCoilType().getCoilTemperature() - 10000) / 1800);
             }
-            if (MachineUtils.inputFluid(CTNHMaterials.COMPRESSED_ADAMANTITE.getFluid(PLASMA, 100), pmachine)) {
+            if (MachineUtils.inputFluids(pmachine, CTNHMaterials.COMPRESSED_ADAMANTITE.getFluid(PLASMA, 100))) {
                 total_speed *= 5;
                 eut = 2.0;
             }
-            if (MachineUtils.inputFluid(CTNHMaterials.COMPRESSED_AETHER.getFluid(PLASMA, 50 * parallel), pmachine)) {
+            if (MachineUtils.inputFluids(pmachine,
+                    CTNHMaterials.COMPRESSED_AETHER.getFluid(PLASMA, 50 * parallel))) {
                 total_speed *= 10;
                 output = 1 - 0.2 * (Math.random());
             }

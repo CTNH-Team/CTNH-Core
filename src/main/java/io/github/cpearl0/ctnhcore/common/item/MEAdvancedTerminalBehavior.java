@@ -37,7 +37,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 
 import appeng.api.implementations.blockentities.IWirelessAccessPoint;
-import com.moguang.ctnhmana.Mutiblock.IndustrialAltarMachine;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -119,31 +118,13 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
     }
 
     private boolean shouldUpgradeIndustrialAltar(MetaMachine machine, AutoBuildSetting settings) {
-        if (!(machine instanceof IndustrialAltarMachine altarMachine)) {
-            return false;
-        }
-        return settings.getAltarTier() > altarMachine.getMatchedPatternIndex();
+        // TODO: Restore Industrial Altar support after CTNHMana's GTM migration.
+        return false;
     }
 
     private BlockPattern resolveTargetPattern(IMultiController controller, MetaMachine machine,
                                               AutoBuildSetting settings) {
-        if (!(machine instanceof IndustrialAltarMachine altarMachine)) {
-            return controller.getPattern();
-        }
-        BlockPattern selectedPattern = getIndustrialAltarPattern(altarMachine, settings.getAltarTier());
-        return selectedPattern == null ? controller.getPattern() : selectedPattern;
-    }
-
-    private BlockPattern getIndustrialAltarPattern(IndustrialAltarMachine altarMachine, int altarTier) {
-        int index = Math.max(0, Math.min(altarTier, 4));
-        return switch (index) {
-            case 0 -> altarMachine.getDefinition().getPatternFactory().get();
-            case 1 -> IndustrialAltarMachine.createLevel3Pattern(altarMachine.getDefinition());
-            case 2 -> IndustrialAltarMachine.createLevel4Pattern(altarMachine.getDefinition());
-            case 3 -> IndustrialAltarMachine.createLevel5Pattern(altarMachine.getDefinition());
-            case 4 -> IndustrialAltarMachine.createLevel6Pattern(altarMachine.getDefinition());
-            default -> altarMachine.getDefinition().getPatternFactory().get();
-        };
+        return controller.getPattern();
     }
 
     @Override

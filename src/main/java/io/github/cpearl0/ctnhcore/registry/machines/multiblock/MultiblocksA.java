@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.api.machine.multiblock.MultiThreadElectricMachine;
 import io.github.cpearl0.ctnhcore.client.renderer.MartialMoralityEyeRender;
 import io.github.cpearl0.ctnhcore.common.block.CTNHFusionCasingType;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.LargeBottleMachine;
@@ -122,13 +121,13 @@ public class MultiblocksA {
             .beforeWorking((machine, recipe) -> {
                 var efficiency = ((UnderfloorHeatingMachine) machine).getEfficiency();
                 machine.self().getHolder().self().getPersistentData().putDouble("efficiency", efficiency);
-                return true;
+                return null;
             })
-            .recipeModifier((machine, recipe) -> {
+            .recipeModifier((machine, group, recipe) -> {
                 if (machine instanceof UnderfloorHeatingMachine underfloorHeatingMachine) {
-                    return ModifierFunction.builder().inputModifier(ContentModifier.multiplier((double) underfloorHeatingMachine.rate / 100)).build();
+                    recipe.multiplyInputs(underfloorHeatingMachine.rate / 100);
                 }
-                return ModifierFunction.IDENTITY;
+                return null;
             })
             .onWorking(machine -> {
                 if (machine instanceof UnderfloorHeatingMachine) {
@@ -837,7 +836,7 @@ public class MultiblocksA {
             .register();
     //Come from GTCA
     public static final MultiblockMachineDefinition MEGA_LCR = REGISTRATE
-            .multiblock("mega_lcr", MultiThreadElectricMachine::new)
+            .multiblock("mega_lcr", RecipeE::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.LARGE_CHEMICAL_RECIPES)
             .appearanceBlock(CASING_PTFE_INERT)

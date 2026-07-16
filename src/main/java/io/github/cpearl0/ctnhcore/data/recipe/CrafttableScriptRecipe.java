@@ -58,8 +58,6 @@ import com.laidbacksloth.angelblockrenewed.BlockRegistry;
 import com.mo_guang.ctpp.registry.CTPPBlocks;
 import com.mo_guang.ctpp.registry.CTPPItems;
 import com.mo_guang.ctpp.registry.CTPPMaterials;
-import com.moguang.ctnhmana.registry.CMBlocks;
-import com.moguang.ctnhmana.registry.CMMaterials;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.negodya1.vintageimprovements.VintageBlocks;
 import com.negodya1.vintageimprovements.VintageItems;
@@ -209,8 +207,7 @@ public class CrafttableScriptRecipe {
         shaped(provider, "goggles", AllItems.GOGGLES.asStack(), "ABA", "CDC", "   ", 'A', Items.LEAD, 'B',
                 Items.SLIME_BALL, 'C', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Gold), 'D',
                 BotaniaItems.engineerGoggles);
-        shaped(provider, "lens_normal", stack(BotaniaItems.lensNormal), " A ", "ABA", " A ", 'A',
-                ChemicalHelper.get(TagPrefix.plate, CMMaterials.ManaSteel), 'B', Items.GLASS_PANE);
+        // TODO: Restore the CTNHMana Mana Steel lens recipe after its GTM migration.
         shaped(provider, "lens_magnet", stack(BotaniaItems.lensMagnet), "   ", "ABC", "   ", 'A',
                 Tags.Items.DYES_BLUE, 'B', BotaniaItems.lensNormal, 'C', Tags.Items.DYES_RED);
         keepShaped(provider, "magnetic_iron_ingot_lens",
@@ -404,12 +401,7 @@ public class CrafttableScriptRecipe {
                 GTMachines.HULL[GTValues.ULV].asStack(), 'B', Tags.Items.CHESTS_WOODEN);
         shaped(provider, "ulv_output_bus", GTMachines.ITEM_EXPORT_BUS[GTValues.ULV].asStack(), "B", "A", 'A',
                 GTMachines.HULL[GTValues.ULV].asStack(), 'B', Tags.Items.CHESTS_WOODEN);
-        shaped(provider, "elementium_normal_fluid_pipe", CMBlocks.ELEMENTIUM_NORMAL_FLUID_PIPE.asStack(2), "A A", "A A",
-                "A A", 'A', ChemicalHelper.get(TagPrefix.plate, CMMaterials.Elementium));
-        shaped(provider, "elementium_pipe_casing", CMBlocks.ELEMENTIUM_PIPE_CASING.asStack(), "CAC", "ABA", "CAC", 'A',
-                CMBlocks.ELEMENTIUM_NORMAL_FLUID_PIPE.asStack(), 'B',
-                ChemicalHelper.get(TagPrefix.frameGt, CMMaterials.Elementium), 'C',
-                ChemicalHelper.get(TagPrefix.plate, CMMaterials.Elementium));
+        // TODO: Restore CTNHMana Elementium pipe recipes after its GTM migration.
         shaped(provider, "ev_chemical_generator", MultiblocksA.EV_CHEMICAL_GENERATOR.asStack(), "ABA", "CDC", "EBE",
                 'A', ChemicalHelper.get(TagPrefix.rotor, GTMaterials.Titanium), 'B',
                 GTBlocks.CASING_TITANIUM_TURBINE.asStack(), 'C', GTBlocks.COIL_NICHROME.asStack(), 'D',

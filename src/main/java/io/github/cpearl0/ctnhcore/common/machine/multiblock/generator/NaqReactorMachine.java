@@ -1,6 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -53,7 +53,7 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
                     fluidConsumption  // 动态调整流体消耗量
             );
 
-            boolean isFluidSufficient = MachineUtils.inputFluid(nickelPlasmaFluid, this);  // 检查是否有足够流体
+            boolean isFluidSufficient = MachineUtils.inputFluids(this, nickelPlasmaFluid);  // 检查是否有足够流体
 
             if (isFluidSufficient) {
                 increaseTemperature();  // 机器工作时升温

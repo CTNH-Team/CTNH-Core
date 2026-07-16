@@ -20,13 +20,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 
 import com.moguang.ctnhbio.registry.CBBlocks;
-import com.moguang.ctnhmana.Mutiblock.MachineUtils;
-import com.moguang.ctnhmana.registry.CMBlocks;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.serialization.Codec;
 import com.simibubi.create.AllBlocks;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
+import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 @SuppressWarnings("removal")
 public class MartialMoralityEyeRender extends DynamicRender<IMachineFeature, MartialMoralityEyeRender> {
@@ -80,7 +79,7 @@ public class MartialMoralityEyeRender extends DynamicRender<IMachineFeature, Mar
                 poseStack.popPose();
 
                 ItemStack[] planets = new ItemStack[] {
-                        CMBlocks.MANA_STEEL_CASING.asStack(),
+                        // CMBlocks.MANA_STEEL_CASING.asStack(),
                         CBBlocks.FLESH_CASING.asStack(),
                         GTBlocks.MACHINE_CASING_IV.asStack(),
                         AllBlocks.BRASS_CASING.asStack()
