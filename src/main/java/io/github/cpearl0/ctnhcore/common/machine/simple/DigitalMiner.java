@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.common.machine.simple;
 
+import com.gregtechceu.gtceu.api.capability.recipe.IO;
+import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
+import com.gregtechceu.gtceu.api.machine.trait.WorkLogic;
 import io.github.cpearl0.ctnhcore.api.machine.feature.IDigitalMiner;
 import io.github.cpearl0.ctnhcore.api.recipe.DigitalMinerLogic;
 import io.github.cpearl0.ctnhcore.common.gui.SimpleNumberInputWidget;
@@ -16,7 +19,6 @@ import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.machine.WorkableTieredMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IDataInfoProvider;
 import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
-import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
@@ -105,6 +107,8 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
     @Nullable
     protected ISubscription exportItemSubs, energySubs;
     @Persisted
+    protected final NotifiableItemStackHandler exportItems = new NotifiableItemStackHandler(this, 27, IO.OUT);
+    @Persisted
     protected final CustomItemStackHandler filterInventory;
     @Getter
     @Persisted
@@ -172,24 +176,24 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
     }
 
     @Override
-    protected RecipeLogic createRecipeLogic(Object... args) {
+    protected WorkLogic createWorkLogic(Object... args) {
         return new DigitalMinerLogic(this, minerRadius, minHeight, maxHeight, silkLevel, itemFilter,
                 (int) (40 / Math.pow(2, getTier())));
     }
 
     @Override
+    public DigitalMinerLogic getWorkLogic() {
+        return (DigitalMinerLogic) super.getWorkLogic();
+    }
+
+    @Override
     public void onMachineRemoved() {
         if (!isRemote()) {
-            getRecipeLogic().ensureChunkUnforced();
+            getWorkLogic().ensureChunkUnforced();
         }
         clearInventory(exportItems.storage);
         clearInventory(filterInventory);
         clearInventory(chargerInventory);
-    }
-
-    @Override
-    public DigitalMinerLogic getRecipeLogic() {
-        return (DigitalMinerLogic) super.getRecipeLogic();
     }
 
     @Override
@@ -216,7 +220,7 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
     @Override
     public void onUnload() {
         if (!isRemote()) {
-            getRecipeLogic().ensureChunkUnforced();
+            getWorkLogic().ensureChunkUnforced();
         }
         super.onUnload();
         if (batterySubs != null) {
@@ -276,6 +280,11 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<NotifiableItemStackHandler> getOutputHandlers() {
+        return List.of(exportItems);
     }
 
     private static final int BORDER_WIDTH = 3;
@@ -369,40 +378,40 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
         return group;
     }
 
-    private void resetRecipe() {
+    private void resetWorkLogic() {
         setWorkingEnabled(false);
-        getRecipeLogic().resetRecipeLogic(this.minerRadius, this.minHeight, this.maxHeight, this.silkLevel, itemFilter);
+        getWorkLogic().resetWorkLogic(this.minerRadius, this.minHeight, this.maxHeight, this.silkLevel, itemFilter);
     }
 
     private void filterChange() {
         this.itemFilter = null;
         if (!filterInventory.getStackInSlot(0).isEmpty())
             this.itemFilter = ItemFilter.loadFilter(filterInventory.getStackInSlot(0));
-        resetRecipe();
+        resetWorkLogic();
     }
 
     private void reset(ClickData clickData) {
-        resetRecipe();
+        resetWorkLogic();
     }
 
     private void setSilkEnabled(boolean enabled) {
         if (isRemote()) return;
         silkLevel = enabled ? 1 : 0;
         energyPerTick = GTValues.VEX[getTier() - 1] * (enabled ? 4 : 1);
-        resetRecipe();
+        resetWorkLogic();
     }
 
     private void addDisplayText(@NotNull List<Component> textList) {
-        textList.add(mined_prefix.translate().append(String.valueOf(getRecipeLogic().getOreAmount())));
-        if (getRecipeLogic().isDone())
+        textList.add(mined_prefix.translate().append(String.valueOf(getWorkLogic().getOreAmount())));
+        if (getWorkLogic().isDone())
             textList.add(Component.translatable("gtceu.multiblock.large_miner.done")
                     .setStyle(Style.EMPTY.withColor(ChatFormatting.GREEN)));
-        else if (getRecipeLogic().isWorking())
+        else if (getWorkLogic().isWorking())
             textList.add(Component.translatable("gtceu.multiblock.large_miner.working")
                     .setStyle(Style.EMPTY.withColor(ChatFormatting.GOLD)));
         else if (!this.isWorkingEnabled())
             textList.add(Component.translatable("gtceu.multiblock.work_paused"));
-        if (getRecipeLogic().isInventoryFull())
+        if (getWorkLogic().isInventoryFull())
             textList.add(Component.translatable("gtceu.multiblock.large_miner.invfull")
                     .setStyle(Style.EMPTY.withColor(ChatFormatting.RED)));
         if (!drainInput(true))
@@ -416,17 +425,17 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
         if (isRemote()) return InteractionResult.SUCCESS;
 
         if (!this.isActive()) {
-            int currentRadius = getRecipeLogic().getCurrentRadius();
+            int currentRadius = getWorkLogic().getCurrentRadius();
             if (currentRadius == 1)
-                getRecipeLogic().setCurrentRadius(getRecipeLogic().getMaximumRadius());
+                getWorkLogic().setCurrentRadius(getWorkLogic().getMaximumRadius());
             else if (playerIn.isShiftKeyDown())
-                getRecipeLogic().setCurrentRadius(Math.max(1, Math.round(currentRadius / 2.0f)));
+                getWorkLogic().setCurrentRadius(Math.max(1, Math.round(currentRadius / 2.0f)));
             else
-                getRecipeLogic().setCurrentRadius(Math.max(1, currentRadius - 1));
+                getWorkLogic().setCurrentRadius(Math.max(1, currentRadius - 1));
 
-            getRecipeLogic().resetArea(true);
+            getWorkLogic().resetArea(true);
 
-            int workingArea = IDigitalMiner.getWorkingArea(getRecipeLogic().getCurrentRadius());
+            int workingArea = IDigitalMiner.getWorkingArea(getWorkLogic().getCurrentRadius());
             playerIn.sendSystemMessage(
                     Component.translatable("gtceu.universal.tooltip.working_area", workingArea, workingArea));
         } else {
@@ -440,7 +449,7 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
     public List<Component> getDataInfo(PortableScannerBehavior.DisplayMode mode) {
         if (mode == PortableScannerBehavior.DisplayMode.SHOW_ALL ||
                 mode == PortableScannerBehavior.DisplayMode.SHOW_MACHINE_INFO) {
-            int workingArea = IDigitalMiner.getWorkingArea(getRecipeLogic().getCurrentRadius());
+            int workingArea = IDigitalMiner.getWorkingArea(getWorkLogic().getCurrentRadius());
             return Collections.singletonList(
                     Component.translatable("gtceu.universal.tooltip.working_area", workingArea, workingArea));
         }

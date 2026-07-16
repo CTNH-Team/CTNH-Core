@@ -1,5 +1,9 @@
 package io.github.cpearl0.ctnhcore.api.recipe;
 
+import com.gregtechceu.gtceu.api.machine.feature.IWorkLogicMachine;
+import com.gregtechceu.gtceu.api.machine.trait.WorkLogic;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
+import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.machine.feature.IDigitalMiner;
 
@@ -7,9 +11,7 @@ import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.capability.recipe.*;
 import com.gregtechceu.gtceu.api.cover.filter.ItemFilter;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
-import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
-import com.gregtechceu.gtceu.api.machine.trait.RecipeHandlerList;
-import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
+
 import com.gregtechceu.gtceu.api.misc.IgnoreEnergyRecipeHandler;
 import com.gregtechceu.gtceu.api.misc.ItemRecipeHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
@@ -51,18 +53,20 @@ import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
-public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityHolder {
+public class DigitalMinerLogic extends WorkLogic{
 
     private static final short MAX_SPEED = Short.MAX_VALUE;
     private static final byte POWER = 5;
     private static final byte TICK_TOLERANCE = 20;
     private static final double DIVIDEND = MAX_SPEED * Math.pow(TICK_TOLERANCE, POWER);
     protected final IDigitalMiner miner;
-    @Nullable
-    private NotifiableAccountedInvWrapper cachedItemTransfer = null;
+
+    private RecipeHandlerGroup cachedGroup;
     @Getter
     private int silk;
     @Getter
@@ -114,19 +118,13 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
     private boolean isDone;
     @Getter
     private boolean isInventoryFull;
-    @Getter
-    protected final Map<IO, List<RecipeHandlerList>> capabilitiesProxy;
-    @Getter
-    protected final Map<IO, Map<RecipeCapability<?>, List<IRecipeHandler<?>>>> capabilitiesFlat;
+
     private final ItemRecipeHandler inputItemHandler, outputItemHandler;
+    private final RecipeHandlerGroup handlerGroup;
     @Getter
     private int oreAmount;
     @Getter
     private ItemFilter itemFilter;
-
-    @Getter
-    @Persisted
-    boolean workingEnabled;
 
     private static final TagKey<Item> RAW_MATERIALS_TAG = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(),
             ResourceLocation.fromNamespaceAndPath("forge", "raw_materials"));
@@ -138,7 +136,7 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
     private int forcedChunkX = Integer.MIN_VALUE;
     private int forcedChunkZ = Integer.MIN_VALUE;
 
-    public DigitalMinerLogic(@NotNull IRecipeLogicMachine machine, int maximumRadius, int minHeight, int maxHeight,
+    public DigitalMinerLogic(@NotNull IWorkLogicMachine machine, int maximumRadius, int minHeight, int maxHeight,
                              int silk, ItemFilter itemFilter, int speed) {
         super(machine);
         this.miner = (IDigitalMiner) machine;
@@ -152,31 +150,26 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
         this.pickaxeTool = GTMaterialItems.TOOL_ITEMS.get(GTMaterials.Neutronium, GTToolType.PICKAXE).get().get();
         this.pickaxeTool.enchant(Enchantments.BLOCK_FORTUNE, 1);
         this.itemFilter = itemFilter;
-        this.capabilitiesProxy = new EnumMap<>(IO.class);
-        this.capabilitiesFlat = new EnumMap<>(IO.class);
+
         this.inputItemHandler = new ItemRecipeHandler(IO.IN,
-                machine.getRecipeType().getMaxInputs(ItemRecipeCapability.CAP));
+                GTRecipeTypes.MACERATOR_RECIPES.getMaxInputs(ItemRecipeCapability.CAP));
         this.outputItemHandler = new ItemRecipeHandler(IO.OUT,
-                machine.getRecipeType().getMaxOutputs(ItemRecipeCapability.CAP));
-        addHandlerList(RecipeHandlerList.of(IO.IN, inputItemHandler, new IgnoreEnergyRecipeHandler()));
-        addHandlerList(RecipeHandlerList.of(IO.OUT, outputItemHandler));
+                GTRecipeTypes.MACERATOR_RECIPES.getMaxOutputs(ItemRecipeCapability.CAP));
+        handlerGroup = new RecipeHandlerGroup();
+        handlerGroup.addHandlers(List.of(inputItemHandler, outputItemHandler, new IgnoreEnergyRecipeHandler()));
+//        addHandlerList(RecipeHandlerList.of(IO.IN, inputItemHandler, new IgnoreEnergyRecipeHandler()));
+//        addHandlerList(RecipeHandlerList.of(IO.OUT, outputItemHandler));
     }
 
     @Override
-    public void resetRecipeLogic() {
-        super.resetRecipeLogic();
+    public void reset() {
+        super.reset();
         resetArea(false);
-        this.cachedItemTransfer = null;
+        this.cachedGroup = null;
         this.setWorkingEnabled(false);
     }
 
-    @Override
-    public void setWorkingEnabled(boolean workingEnabled) {
-        this.workingEnabled = workingEnabled;
-        updateTickSubscription();
-    }
-
-    public void resetRecipeLogic(int maximumRadius, int minHeight, int maxHeight, int silk, ItemFilter itemFilter) {
+    public void resetWorkLogic(int maximumRadius, int minHeight, int maxHeight, int silk, ItemFilter itemFilter) {
         this.silk = silk;
         this.currentRadius = maximumRadius;
         this.maximumRadius = maximumRadius;
@@ -186,14 +179,7 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
         this.rawOreFilterCache.clear();
         this.blocksToMine.clear();
         this.oreAmount = 0;
-        this.resetRecipeLogic();
-    }
-
-    @Override
-    public void inValid() {
-        super.inValid();
-        this.cachedItemTransfer = null;
-        ensureChunkUnforced();
+        this.reset();
     }
 
     public void ensureChunkUnforced() {
@@ -217,6 +203,8 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
      * Performs the actual mining in world
      * Call this method every tick in update
      */
+
+    @Override
     public void serverTick() {
         if (!(getMachine().getLevel() instanceof ServerLevel serverLevel)) return;
 
@@ -292,7 +280,6 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
             }
         } else {
             // machine isn't working enabled
-            this.setStatus(Status.IDLE);
             if (subscription != null) {
                 subscription.unsubscribe();
                 subscription = null;
@@ -384,15 +371,13 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
         }
         outputItemHandler.storage.onContentsChanged(0);
 
-        var matches = machine.getRecipeType().searchRecipe(this, r -> RecipeHelper.matchContents(this, r).isSuccess());
+        var iterator = GTRecipeTypes.MACERATOR_RECIPES.getRecipeIterator(handlerGroup,
+                r -> RecipeHelper.matchContents(handlerGroup, r.toRuntime()).isSuccess());
 
-        while (matches != null && matches.hasNext()) {
-            GTRecipe match = matches.next();
-            if (match == null) continue;
-
-            var eut = match.getInputEUt().getTotalEU();
-            if (GTUtil.getTierByVoltage(eut) <= getVoltageTier()) {
-                if (RecipeHelper.handleRecipeIO(this, match, IO.OUT, this.chanceCaches).isSuccess()) {
+        while (iterator != null && iterator.hasNext()) {
+            GTRecipe match = iterator.next().toRuntime();
+            if (match.tier <= getVoltageTier()) {
+                if (RecipeHelper.handleRecipeIO(handlerGroup, match, IO.OUT).isSuccess()) {
                     blockDrops.clear();
                     var result = new ArrayList<ItemStack>();
                     for (int i = 0; i < outputItemHandler.storage.getSlots(); ++i) {
@@ -400,17 +385,12 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
                         if (stack.isEmpty()) continue;
                         result.add(stack);
                     }
-                    dropPostProcessing(blockDrops, result, blockState, builder);
+                    blockDrops.addAll(result);
                     return true;
                 }
             }
         }
         return false;
-    }
-
-    protected void dropPostProcessing(NonNullList<ItemStack> blockDrops, List<ItemStack> outputs, BlockState blockState,
-                                      LootParams.Builder builder) {
-        blockDrops.addAll(outputs);
     }
 
     /**
@@ -424,14 +404,6 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
         blockDrops.add(new ItemStack(blockState.getBlock()));
     }
 
-    protected NotifiableAccountedInvWrapper getCachedItemTransfer() {
-        if (cachedItemTransfer == null) {
-            cachedItemTransfer = new NotifiableAccountedInvWrapper(
-                    machine.getCapabilitiesFlat(IO.OUT, ItemRecipeCapability.CAP).stream()
-                            .map(IItemHandlerModifiable.class::cast).toArray(IItemHandlerModifiable[]::new));
-        }
-        return cachedItemTransfer;
-    }
 
     /**
      * called in order to insert the mined items into the inventory and actually remove the block in world
@@ -441,27 +413,30 @@ public class DigitalMinerLogic extends RecipeLogic implements IRecipeCapabilityH
      * @param world      the {@link ServerLevel} the miner is in
      */
     private void mineAndInsertItems(NonNullList<ItemStack> blockDrops, ServerLevel world) {
-        // If the block's drops can fit in the inventory, move the previously mined position to the block
-        // replace the ore block with cobblestone instead of breaking it to prevent mob spawning
-        // remove the ore block's position from the mining queue
-        var transfer = getCachedItemTransfer();
-        if (transfer != null) {
-            if (GTTransferUtils.addItemsToItemHandler(transfer, true, blockDrops)) {
-                GTTransferUtils.addItemsToItemHandler(transfer, false, blockDrops);
-                world.setBlock(blocksToMine.getFirst(), findMiningReplacementBlock(world), 3);
-                mineX = blocksToMine.getFirst().getX();
-                mineZ = blocksToMine.getFirst().getZ();
-                mineY = blocksToMine.getFirst().getY();
-                blocksToMine.removeFirst();
-                onMineOperation();
+        var group = getCachedGroup();
+        if (MachineUtils.canOutputItems(group, blockDrops.toArray(new ItemStack[0]))) {
+            MachineUtils.outputItems(group, blockDrops.toArray(new ItemStack[0]));
+            world.setBlock(blocksToMine.getFirst(), findMiningReplacementBlock(world), 3);
+            mineX = blocksToMine.getFirst().getX();
+            mineZ = blocksToMine.getFirst().getZ();
+            mineY = blocksToMine.getFirst().getY();
+            blocksToMine.removeFirst();
+            onMineOperation();
 
-                // if the inventory was previously considered full, mark it as not since an item was able to fit
-                isInventoryFull = false;
-            } else {
-                // the ore block was not able to fit, so the inventory is considered full
-                isInventoryFull = true;
-            }
+            // if the inventory was previously considered full, mark it as not since an item was able to fit
+            isInventoryFull = false;
+        } else {
+            // the ore block was not able to fit, so the inventory is considered full
+            isInventoryFull = true;
         }
+    }
+
+    private RecipeHandlerGroup getCachedGroup() {
+        if(cachedGroup == null) {
+            cachedGroup = new RecipeHandlerGroup();
+            cachedGroup.addHandlers(miner.getOutputHandlers());
+        }
+        return cachedGroup;
     }
 
     /**

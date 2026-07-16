@@ -37,7 +37,7 @@ public class SimpleNumberInputWidget extends WidgetGroup {
     }
 
     protected Integer defaultMin() {
-        return 0;
+        return Integer.MIN_VALUE;
     }
 
     protected Integer defaultMax() {

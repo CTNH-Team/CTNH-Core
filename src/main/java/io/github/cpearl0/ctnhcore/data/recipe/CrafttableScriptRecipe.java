@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.data.recipe;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.BedrockMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.EnderIOMaterials;
+import io.github.cpearl0.ctnhcore.data.recipe.utils.KeepIngredientRecipeHelper;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
@@ -10,7 +11,6 @@ import io.github.cpearl0.ctnhcore.registry.machines.multiblock.Mechanical;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksC;
-import io.github.cpearl0.ctnhcore.utils.CTNHRecipeHelper;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -553,7 +553,7 @@ public class CrafttableScriptRecipe {
 
     private static void keepShaped(Consumer<FinishedRecipe> provider, String id, ItemStack result, String[] pattern,
                                    Object[] keepIngredients, Object... key) {
-        CTNHRecipeHelper.KeepIngredientRecipeHelper.addKeepIngredientShapedRecipe(provider,
+        KeepIngredientRecipeHelper.addKeepIngredientShapedRecipe(provider,
                 CTNHCore.id("crafttable/" + id), result,
                 pattern, ingredients(keepIngredients), key);
     }

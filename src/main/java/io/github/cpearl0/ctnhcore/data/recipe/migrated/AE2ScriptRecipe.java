@@ -3,7 +3,7 @@ package io.github.cpearl0.ctnhcore.data.recipe.migrated;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.NewExplosivesProductionMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.SpecialMaterials;
-import io.github.cpearl0.ctnhcore.utils.CTNHRecipeHelper;
+import io.github.cpearl0.ctnhcore.data.recipe.utils.KeepIngredientRecipeHelper;
 
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.chemical.material.MarkerMaterial;
@@ -581,7 +581,7 @@ public class AE2ScriptRecipe {
     }
 
     private static void addEUP2PTunnelRecipe(Consumer<FinishedRecipe> provider) {
-        CTNHRecipeHelper.KeepIngredientRecipeHelper.addKeepIngredientShapedRecipe(provider,
+        KeepIngredientRecipeHelper.addKeepIngredientShapedRecipe(provider,
                 CTNHCore.id("eu_p2p_tunnel"),
                 new ItemStack(CEItems.EU_P2P.asItem()), new String[] { "AB" },
                 Ingredient.of(CEItems.EU_P2P.asItem()),
