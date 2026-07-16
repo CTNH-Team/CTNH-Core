@@ -11,8 +11,8 @@ import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
@@ -157,7 +157,7 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
         return 1.0 / (1.0 + Math.exp(-k * (x - c)));
     }
 
-    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
+    public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
         if (machine instanceof PhotoVoltaicDroneStation lmachine) {
             var eut = lmachine.GetDronePower() * lmachine.dimension_check();
             var pa = 1;
@@ -174,19 +174,17 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
                 // 运行非挖矿配方时对光伏进行强化
                 lmachine.eut = (int) eut;
             else if (!lmachine.orbit)  // 只能在轨道维度挖矿
-                return ModifierFunction.NULL;
+                return RecipeModifier.DEFAULT_FAILURE;
             else {
-                return ModifierFunction.builder()
-                        .outputModifier(ContentModifier.multiplier(0.1 * Math.sqrt(lmachine.GetDronePower())))
-                        .build();
+                recipe.multiplyOutputs(0.1 * Math.sqrt(lmachine.GetDronePower()));
+                return null;
             }
-            return ModifierFunction.builder()
-                    .durationMultiplier(pa)
-                    .build();
+            recipe.multiplyDuration(pa);
+            return null;
 
         }
 
-        return ModifierFunction.NULL;
+        return RecipeModifier.DEFAULT_FAILURE;
     }
 
     public void addDisplayText(List<Component> textList) {

@@ -1,13 +1,13 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class ForestMachine extends WorkableElectricMultiblockMachine {
+public class ForestMachine extends RecipeElectricMultiblockMachine {
 
     // 湿度值
     private int humidity = 0;  // 初始湿度为0%
@@ -71,21 +71,17 @@ public class ForestMachine extends WorkableElectricMultiblockMachine {
     public int getParallelCount() {
         // 如果湿度为 0，默认并行数为 1
         int humidityCoefficient = humidity > 0 ? humidity : 1;  // 湿度大于0时才根据湿度计算，否则为1
-        return (int) (getMaxVoltage() * (humidityCoefficient / 100.0));  // 并行数 = 电压 * 湿度系数
+        return (int) (getOverclockVoltage() * (humidityCoefficient / 100.0));  // 并行数 = 电压 * 湿度系数
     }
 
     // recipeModifier 实现，根据湿度调整并行数
-    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
+    public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
         if (machine instanceof ForestMachine forestMachine) {
             int parallelCount = forestMachine.getParallelCount();
-
-            return ModifierFunction.builder()
-                    .inputModifier(ContentModifier.multiplier(parallelCount))  // 动态调整输入量
-                    .outputModifier(ContentModifier.multiplier(parallelCount))  // 动态调整输出量
-                    .parallels(parallelCount)  // 根据湿度调整并行数
-                    .build();
+            recipe.multiplyAllContents(parallelCount);
+            recipe.parallels *= parallelCount;
         }
-        return ModifierFunction.IDENTITY;  // 默认无修改
+        return null;
     }
 
     // GUI显示文本

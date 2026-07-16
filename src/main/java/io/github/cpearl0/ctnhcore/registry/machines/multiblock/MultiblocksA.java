@@ -33,8 +33,6 @@ import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
@@ -483,7 +481,7 @@ public class MultiblocksA {
             .recipeTypes(GTRecipeTypes.CENTRIFUGE_RECIPES, GTRecipeTypes.LATHE_RECIPES, GTRecipeTypes.BENDER_RECIPES,
                     GTRecipeTypes.MACERATOR_RECIPES, GTRecipeTypes.MIXER_RECIPES, GTRecipeTypes.EXTRACTOR_RECIPES,
                     GTRecipeTypes.WIREMILL_RECIPES, GTRecipeTypes.LASER_ENGRAVER_RECIPES, GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES)
-            .recipeModifiers(FactoryMachine::recipeModifier, OC_NON_PERFECT_SUBTICK, BATCH_MODE)
+            .recipeModifiers(FactoryMachine::recipeModifier, OC_NON_PERFECT, BATCH_MODE)
             .tooltips(Component.translatable("ctnh.multiblock.sweat_shop.tooltip.0").withStyle(ChatFormatting.GRAY))
             .tooltips(Component.translatable("ctnh.multiblock.sweat_shop.tooltip.1"))
             .tooltips(Component.translatable("ctnh.multiblock.sweat_shop.tooltip.2"))
@@ -513,7 +511,7 @@ public class MultiblocksA {
     public final static MultiblockMachineDefinition PLASMA_CONDENSER = REGISTRATE.multiblock("plasma_condenser", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(CTNHRecipeTypes.PLASMA_CONDENSER_RECIPES)
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_NON_PERFECT_SUBTICK, BATCH_MODE)
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_NON_PERFECT, BATCH_MODE)
             .tooltips(Component.translatable("ctnh.multiblock.plasma_condenser.tooltip.1").withStyle(ChatFormatting.GRAY),
                     Component.translatable("gtceu.multiblock.laser.tooltip"),
                     Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
@@ -668,7 +666,10 @@ public class MultiblocksA {
                     Component.translatable("ctnh.multiblock.fermenting_tank.tooltip.2"),
                     Component.translatable("ctnh.multiblock.fermenting_tank.tooltip.3"),
                     Component.translatable("ctnh.multiblock.large_fermenting_tank.tooltip.1"))
-            .recipeModifiers((machine, recipe) -> FermentingTankMachine.recipeModifier(machine, recipe).andThen(CTNHRecipeModifiers.accurateParallel(machine, recipe, 8)), GTRecipeModifiers::ebfOverclock)
+            .recipeModifiers((machine, group, recipe) -> {
+                var failure = FermentingTankMachine.recipeModifier(machine, group, recipe);
+                return failure != null ? failure : CTNHRecipeModifiers.accurateParallel(machine, group, recipe, 8);
+            }, GTRecipeModifiers::ebfOverclock)
             .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("##########AAAAAAAAAAA", "##########ABBBBBBBBBA", "##########ABBBBBBBBBA", "##########AAAAAAAAAAA", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "############AAAAAAA##", "############AABBBAA##", "############AABBBAA##", "############AABBBAA##", "############AAAAAAA##")
@@ -704,7 +705,7 @@ public class MultiblocksA {
             .tooltips(Component.translatable("ctnh.multiblock.digestion_tank.tooltip.0").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.multiblock.digestion_tank.tooltip.1").withStyle(ChatFormatting.GREEN),
                     Component.translatable("ctnh.multiblock.digestion_tank.tooltip.2"))
-            .recipeModifiers(BioMachine::recipeModifier, OC_NON_PERFECT_SUBTICK, BATCH_MODE)
+            .recipeModifiers(BioMachine::recipeModifier, OC_NON_PERFECT, BATCH_MODE)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("CCCCC", "CAAAC", "CCCCC")
                     .aisle("CCCCC", "AWWWA", "CDDDC")
@@ -756,7 +757,10 @@ public class MultiblocksA {
             .multiblock("super_ebf", CoilWorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.BLAST_RECIPES)
-            .recipeModifiers(PARALLEL_HATCH, (m ,r) -> ModifierFunction.builder().durationMultiplier(0.5).build(), GTRecipeModifiers::ebfOverclock, BATCH_MODE)
+            .recipeModifiers(PARALLEL_HATCH, (machine, group, recipe) -> {
+                recipe.multiplyDuration(0.5);
+                return null;
+            }, GTRecipeModifiers::ebfOverclock, BATCH_MODE)
             .appearanceBlock(CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("XXXXXXX", "FFXXXFF", "F#####F", "F#####F", "F#####F", "FFXXXFF", "XXXVXXX", "##XXX##", "#######")
@@ -979,7 +983,7 @@ public class MultiblocksA {
                     Component.translatable("ctnh.multiblock.void_miner.tooltip.6").withStyle(ChatFormatting.GOLD),
                     Component.translatable("ctnh.multiblock.void_miner.tooltip.7").withStyle(ChatFormatting.AQUA),
                     Component.translatable("ctnh.multiblock.void_miner.tooltip.8"))
-            .recipeModifiers(VoidMinerProcessingMachine::recipeModifier, OC_NON_PERFECT_SUBTICK)
+            .recipeModifiers(VoidMinerProcessingMachine::recipeModifier, OC_NON_PERFECT)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("CCCCCCC", "XF   FX", "XF   FX", "XXXXXXX", "XF   FX", "XF   FX", "XF   FX", " F   F ", "       ", "       ", "       ", "       ")
                     .aisle("CCCCCCC", "F     F", "F     F", "X     X", "F     F", "F     F", "FX   XF", "FX   XF", " FFFFF ", "       ", "       ", "       ")
@@ -1045,7 +1049,7 @@ public class MultiblocksA {
     public static final MultiblockMachineDefinition CHEMICAL_VAPOR_DEPOSITION_MACHINE = REGISTRATE.multiblock("chemical_vapor_deposition_machine", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.CHEMICAL_VAPOR_DEPOSITION)
-            .recipeModifiers(OC_NON_PERFECT_SUBTICK, BATCH_MODE)
+            .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
             .appearanceBlock(CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAA", "AAABBBA", "AAABBBA")
@@ -1133,7 +1137,12 @@ public class MultiblocksA {
     public static final MultiblockMachineDefinition ADVANCED_COKE_OVEN = REGISTRATE.multiblock("advanced_coke_oven", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.COKE_OVEN_RECIPES)
-            .recipeModifiers((machine, recipe) -> CTNHRecipeModifiers.accurateParallel(machine, recipe, 32).andThen(ModifierFunction.builder().durationMultiplier((double) 300 / recipe.duration).build()))
+            .recipeModifiers((machine, group, recipe) -> {
+                var failure = CTNHRecipeModifiers.accurateParallel(machine, group, recipe, 32);
+                if (failure != null) return failure;
+                recipe.multiplyDuration((double) 300 / recipe.duration);
+                return null;
+            })
             .appearanceBlock(HIGH_GRADE_COKE_OVEN_BRICKS)
             .tooltips(Component.translatable("ctnh.multiblock.advanced_coke_oven.tooltip.0").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.multiblock.advanced_coke_oven.tooltip.1"),
@@ -1188,7 +1197,7 @@ public class MultiblocksA {
     public static final MultiblockMachineDefinition CONDENSING_DISCRETE = REGISTRATE.multiblock("condensing_discrete", CoilWorkableElectricMultiblockMachine::new)
             .allowExtendedFacing(false)
             .recipeType(CTNHRecipeTypes.CONDENSING_DISCRETE)
-            .recipeModifiers(OC_NON_PERFECT_SUBTICK, BATCH_MODE)
+            .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
             .appearanceBlock(CASING_ALUMINIUM_FROSTPROOF)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("A###A", "BBCBB", "BBBBB", "#BDB#", "#BDB#", "#BDB#", "#BDB#", "#BDB#", "#BDB#", "#BDB#", "BBBBB", "CCCCC")
@@ -1216,7 +1225,7 @@ public class MultiblocksA {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ION_EXCHANGER)
             .tooltips(Component.translatable("ctnh.multiblock.ion_exchanger.tooltip.0").withStyle(ChatFormatting.GRAY))
-            .recipeModifiers(OC_NON_PERFECT_SUBTICK, BATCH_MODE)
+            .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
             .appearanceBlock(CASING_HSSE_STURDY)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#AAAAA#", "AABBBAA", "ABBBBBA", "AABBBAA", "#AAAAA#", "#######")
@@ -1245,7 +1254,7 @@ public class MultiblocksA {
     public static final MultiblockMachineDefinition LARGE_STEEL_FURNACE = REGISTRATE.multiblock("large_steel_furnace", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.FURNACE_RECIPES)
-            .recipeModifiers((machine, recipe) -> CTNHRecipeModifiers.accurateParallel(machine, recipe, 32), GTRecipeModifiers.OC_PERFECT_SUBTICK)
+            .recipeModifiers((machine, group, recipe) -> CTNHRecipeModifiers.accurateParallel(machine, group, recipe, 32), GTRecipeModifiers.OC_PERFECT_SUBTICK)
             .appearanceBlock(CASING_PRIMITIVE_BRICKS)
             .tooltips(Component.translatable("ctnh.multiblock.large_steel_furnace.tooltip.0").withStyle(ChatFormatting.GRAY))
             .tooltips(Component.translatable("ctnh.common_tooltip.perfect_overclock").withStyle(ChatFormatting.GREEN))
@@ -1266,7 +1275,7 @@ public class MultiblocksA {
     public static final MultiblockMachineDefinition LARGE_STEEL_ALLOY_FURNACE = REGISTRATE.multiblock("large_steel_alloy_furnace", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.ALLOY_SMELTER_RECIPES)
-            .recipeModifiers((machine, recipe) -> CTNHRecipeModifiers.accurateParallel(machine, recipe, 32), GTRecipeModifiers.OC_PERFECT_SUBTICK)
+            .recipeModifiers((machine, group, recipe) -> CTNHRecipeModifiers.accurateParallel(machine, group, recipe, 32), GTRecipeModifiers.OC_PERFECT_SUBTICK)
             .appearanceBlock(CASING_PRIMITIVE_BRICKS)
             .tooltips(Component.translatable("ctnh.multiblock.large_steel_alloy_furnace.tooltip.0").withStyle(ChatFormatting.GRAY))
             .tooltips(Component.translatable("ctnh.common_tooltip.perfect_overclock").withStyle(ChatFormatting.GREEN))
@@ -1401,7 +1410,7 @@ public class MultiblocksA {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.VACUUM_SINTERING)
             .tooltips(Component.translatable("ctnh.multiblock.vacuum_sintering_tower.tooltip.0").withStyle(ChatFormatting.GRAY))
-            .recipeModifiers((machine, recipe) -> CTNHRecipeModifiers.accurateParallel(machine, recipe, 16), GTRecipeModifiers::ebfOverclock)
+            .recipeModifiers((machine, group, recipe) -> CTNHRecipeModifiers.accurateParallel(machine, group, recipe, 16), GTRecipeModifiers::ebfOverclock)
             .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "AAAAA", "A###A", "#####", "#####", "#####")
@@ -1440,7 +1449,7 @@ public class MultiblocksA {
                     Component.translatable("ctnh.multiblock.crystallizer.tooltip.2"),
                     Component.translatable("ctnh.multiblock.crystallizer.tooltip.3"),
                     Component.translatable("ctnh.multiblock.crystallizer.tooltip.4"))
-            .recipeModifiers((machine, recipe) -> CTNHRecipeModifiers.accurateParallel(machine, recipe, 16), GTRecipeModifiers::ebfOverclock, BATCH_MODE)
+            .recipeModifiers((machine, group, recipe) -> CTNHRecipeModifiers.accurateParallel(machine, group, recipe, 16), GTRecipeModifiers::ebfOverclock, BATCH_MODE)
             .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("##AAAAA##", "###BCB###", "###BBB###", "#########", "#########", "#########", "#########", "#########", "#########")
@@ -1509,7 +1518,7 @@ public class MultiblocksA {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.BIO_REACTOR)
             .tooltips(Component.translatable("ctnh.multiblock.bio_reactor.tooltip.0").withStyle(ChatFormatting.GRAY))
-            .recipeModifiers(BioMachine::recipeModifier, OC_NON_PERFECT_SUBTICK, BATCH_MODE)
+            .recipeModifiers(BioMachine::recipeModifier, OC_NON_PERFECT, BATCH_MODE)
             .appearanceBlock(BIO_REACTOR_CASING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "ABBBA", "ABBBA", "ABBBA", "AAAAA")
@@ -1532,12 +1541,12 @@ public class MultiblocksA {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.CENTRIFUGE_RECIPES, CTNHRecipeTypes.DIFFERENTIAL_CENTRIFUGE_RECIPES)
             .appearanceBlock(CASING_TITANIUM_STABLE)
-            .recipeModifiers((metaMachine, gtRecipe) -> {
+            .recipeModifiers((metaMachine, group, gtRecipe) -> {
                 if (gtRecipe.getType().equals(GTRecipeTypes.CENTRIFUGE_RECIPES)) {
-                    return CTNHRecipeModifiers.accurateParallel(metaMachine, gtRecipe, 8);
+                    return CTNHRecipeModifiers.accurateParallel(metaMachine, group, gtRecipe, 8);
                 }
-                return ModifierFunction.IDENTITY;
-            }, OC_NON_PERFECT_SUBTICK)
+                return null;
+            }, GTRecipeModifiers.OC_NON_PERFECT)
             .tooltips(Component.translatable("super_centrifuge").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.super_centrifuge.parallel"))
             .pattern(definition -> FactoryBlockPattern.start()

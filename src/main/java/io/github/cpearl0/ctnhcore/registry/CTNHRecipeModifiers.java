@@ -8,18 +8,18 @@ import io.github.cpearl0.ctnhcore.common.recipe.OxygenCondition;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IOverclockMachine;
+import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
-import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 
 import net.minecraft.Util;
+import net.minecraft.network.chat.Component;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -29,25 +29,17 @@ import static com.gregtechceu.gtceu.api.recipe.OverclockingLogic.getCoilEUtDisco
 
 public class CTNHRecipeModifiers {
 
-    public static final ModifierFunction accurateParallel(MetaMachine machine, GTRecipe recipe, int parallel) {
-        var maxParallel = ParallelLogic.getParallelAmount(machine, recipe, parallel);
-        if (recipe.hasTick()) {
-            return ModifierFunction.builder()
-                    .parallels(maxParallel)
-                    .inputModifier(ContentModifier.multiplier(maxParallel))
-                    .outputModifier(ContentModifier.multiplier(maxParallel))
-                    .eutMultiplier(maxParallel)
-                    .build();
-        } else {
-            return ModifierFunction.builder()
-                    .parallels(maxParallel)
-                    .inputModifier(ContentModifier.multiplier(maxParallel))
-                    .outputModifier(ContentModifier.multiplier(maxParallel))
-                    .build();
-        }
+    public static Component accurateParallel(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe,
+                                             int parallel) {
+        var maxParallel = ParallelLogic.getParallelAmount(group, recipe, parallel);
+        if (maxParallel <= 1) return null;
+        recipe.multiplyAllContents(maxParallel);
+        recipe.parallels *= maxParallel;
+        return null;
     }
 
-    public static @NotNull ModifierFunction ebfOverclock(@NotNull MetaMachine machine, @NotNull GTRecipe recipe) {
+    public static @NotNull Component ebfOverclock(@NotNull MetaMachine machine, RecipeHandlerGroup group,
+                                                  @NotNull GTRecipe recipe) {
         if (!(machine instanceof ICoilMachine coilMachine) ||
                 !(machine instanceof WorkableElectricMultiblockMachine workableElectricMultiblockMachine)) {
             return RecipeModifier.nullWrongType(CoilWorkableElectricMultiblockMachine.class, machine);
@@ -57,123 +49,111 @@ public class CTNHRecipeModifiers {
                 (100 * Math.max(0, workableElectricMultiblockMachine.getTier() - GTValues.MV));
         int recipeTemp = recipe.data.getInt("ebf_temp");
         if (!recipe.data.contains("ebf_temp") || recipeTemp > blastFurnaceTemperature) {
-            return ModifierFunction.NULL;
+            return Component.translatable("gtceu.recipe_modifier.coil_temperature_too_low");
         }
 
-        if (RecipeHelper.getRecipeEUtTier(recipe) > workableElectricMultiblockMachine.getTier()) {
-            return ModifierFunction.NULL;
+        if (recipe.tier > workableElectricMultiblockMachine.getTier()) {
+            return Component.translatable("gtceu.recipe_modifier.insufficient_voltage");
         }
 
-        var discount = ModifierFunction.builder()
-                .eutMultiplier(getCoilEUtDiscount(recipeTemp, blastFurnaceTemperature))
-                .build();
+        recipe.multiplyEUt(getCoilEUtDiscount(recipeTemp, blastFurnaceTemperature));
 
         OverclockingLogic logic = (p, v) -> OverclockingLogic.heatingCoilOC(p, v, recipeTemp, blastFurnaceTemperature);
-        var oc = logic.getModifier(machine, recipe, workableElectricMultiblockMachine.getOverclockVoltage());
-
-        return oc.compose(discount);
+        return logic.getModifier(machine, group, recipe, workableElectricMultiblockMachine.getOverclockVoltage());
     }
 
-    public static final RecipeModifier GCYM_REDUCTION = (machine, recipe) -> CTNHRecipeModifiers
-            .reduction(machine, recipe, 0.8, 0.6);
+    public static final RecipeModifier GCYM_REDUCTION = (machine, group, recipe) ->
+            CTNHRecipeModifiers.reduction(recipe, 0.8, 0.6);
 
-    public static final RecipeModifier COIL_PARALLEL = (machine, recipe) -> CTNHRecipeModifiers.accurateParallel(
-            machine, recipe,
+    public static final RecipeModifier COIL_PARALLEL = (machine, group, recipe) -> CTNHRecipeModifiers.accurateParallel(
+            machine, group, recipe,
             Math.min(2147483647, (int) Math.pow(2,
                     ((double) ((CoilWorkableElectricMultiblockMachine) machine).getCoilType().getCoilTemperature() /
                             900))));
 
     public static final Function<OverclockingLogic, RecipeModifier> MT_ELECTRIC_OVERCLOCK = Util
             .memoize(logic -> (machine, recipe) -> {
-                if (!(machine instanceof IOverclockMachine overclockMachine)) return ModifierFunction.IDENTITY;
-                if (RecipeHelper.getRecipeEUtTier(recipe) > overclockMachine.getMaxOverclockTier()) {
-                    return ModifierFunction.NULL;
+                if (!(machine instanceof IOverclockMachine overclockMachine)) return null;
+                if (machine instanceof ITieredMachine tieredMachine && recipe.tier > tieredMachine.getTier()) {
+                    return Component.translatable("gtceu.recipe_modifier.insufficient_voltage");
                 }
-                return logic.getModifier(machine, recipe, overclockMachine.getOverclockVoltage());
+                return logic.getModifier(machine, group, recipe, overclockMachine.getOverclockVoltage());
             });
 
-    public static ModifierFunction chemicalPlantModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
+    public static Component chemicalPlantModifier(MetaMachine machine, RecipeHandlerGroup group, @NotNull GTRecipe recipe) {
         if (!(machine instanceof IMultiController multiController) || !multiController.isFormed())
-            return ModifierFunction.IDENTITY;
+            return null;
         if (machine instanceof ChemicalPlantMachine chemicalPlantMachine) {
             var speedMultiplier = 100.0 / (100.0 + (chemicalPlantMachine.getSpeedMultiplier()));
             var energyConsumeMultiplier = 1;
-            var parallels = ParallelLogic.getParallelAmount(machine, recipe, chemicalPlantMachine.getMaxParallel());;
+            var parallels = ParallelLogic.getParallelAmount(group, recipe, chemicalPlantMachine.getMaxParallel());
 
             if (parallels == 1 && speedMultiplier == 1.0 && energyConsumeMultiplier == 1.0)
-                return ModifierFunction.IDENTITY;
-            return ModifierFunction.builder()
-                    .modifyAllContents(ContentModifier.multiplier(parallels))
-                    .eutMultiplier(parallels * energyConsumeMultiplier)
-                    .durationMultiplier(speedMultiplier)
-                    .parallels(parallels)
-                    .build();
+                return null;
+            recipe.multiplyAllContents(parallels);
+            recipe.multiplyEUt(parallels * energyConsumeMultiplier);
+            recipe.multiplyDuration(speedMultiplier);
+            recipe.parallels *= parallels;
+            return null;
         }
-        return ModifierFunction.IDENTITY;
+        return null;
     }
 
-    public static ModifierFunction superEbfOverclock(MetaMachine machine, @NotNull GTRecipe recipe) {
+    public static Component superEbfOverclock(MetaMachine machine, RecipeHandlerGroup group, @NotNull GTRecipe recipe) {
         if (machine instanceof CoilWorkableElectricMultiblockMachine coilMachine) {
             final var blastFurnaceTemperature = coilMachine.getCoilType().getCoilTemperature() +
                     100 * Math.max(0, coilMachine.getTier() - GTValues.MV);
             var recipeTemp = recipe.data.getInt("ebf_temp");
             if (!recipe.data.contains("ebf_temp") || recipe.data.getInt("ebf_temp") > blastFurnaceTemperature) {
-                return ModifierFunction.NULL;
+                return Component.translatable("gtceu.recipe_modifier.coil_temperature_too_low");
             }
-            if (RecipeHelper.getRecipeEUtTier(recipe) > coilMachine.getTier()) {
-                return ModifierFunction.NULL;
+            if (recipe.tier > coilMachine.getTier()) {
+                return Component.translatable("gtceu.recipe_modifier.insufficient_voltage");
             }
-            var discount = ModifierFunction.builder()
-                    .eutMultiplier(getCoilEUtDiscount(recipeTemp, blastFurnaceTemperature))
-                    .durationMultiplier(0.5)
-                    .build();
+            recipe.multiplyEUt(getCoilEUtDiscount(recipeTemp, blastFurnaceTemperature));
+            recipe.multiplyDuration(0.5);
 
             OverclockingLogic logic = (p, v) -> OverclockingLogic.heatingCoilOC(p, v, recipeTemp,
                     blastFurnaceTemperature);
-            var oc = logic.getModifier(machine, recipe, coilMachine.getOverclockVoltage());
-            return oc.compose(discount);
+            return logic.getModifier(machine, group, recipe, coilMachine.getOverclockVoltage());
         }
-        return ModifierFunction.IDENTITY;
+        return null;
     }
 
-    private static ModifierFunction reduction(MetaMachine machine, @NotNull GTRecipe recipe, double duration,
-                                              double eut) {
-        return ModifierFunction.builder()
-                .durationMultiplier(duration)
-                .eutMultiplier(eut)
-                .build();
+    private static Component reduction(@NotNull GTRecipe recipe, double duration, double eut) {
+        recipe.multiplyDuration(duration);
+        recipe.multiplyEUt(eut);
+        return null;
     }
 
-    public static ModifierFunction naquadahReactor(MetaMachine machine, GTRecipe recipe) {
+    public static Component naquadahReactor(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
         if (!(machine instanceof EfficiencyGeneratorMachine generator)) {
             return RecipeModifier.nullWrongType(EfficiencyGeneratorMachine.class, machine);
         }
 
-        long recipeEUt = recipe.getOutputEUt().getTotalEU();
-        if (recipeEUt <= 0) return ModifierFunction.NULL;
+        long recipeEUt = recipe.getOutputEUt();
+        if (recipeEUt <= 0) return RecipeModifier.DEFAULT_FAILURE;
 
         int maxParallel = (int) (generator.getOverclockVoltage() / recipeEUt);
-        if (maxParallel <= 0) return ModifierFunction.NULL;
+        if (maxParallel <= 0) return RecipeModifier.DEFAULT_FAILURE;
 
-        int multiplier = ParallelLogic.getParallelAmountFast(generator, recipe, maxParallel);
-        if (multiplier <= 0) return ModifierFunction.NULL;
+        int multiplier = ParallelLogic.getParallelAmountFast(group, recipe, maxParallel);
+        if (multiplier <= 0) return RecipeModifier.DEFAULT_FAILURE;
 
-        return ModifierFunction.builder()
-                .eutMultiplier(multiplier)
-                .durationMultiplier(((double) generator.efficiency / 100) / multiplier)
-                .build();
+        recipe.multiplyEUt(multiplier);
+        recipe.multiplyDuration(((double) generator.efficiency / 100) / multiplier);
+        return null;
     }
 
-    public static ModifierFunction rocketEngine(MetaMachine machine, GTRecipe recipe) {
-        return EfficiencyGeneratorMachine.recipeModifier(machine, recipe);
+    public static Component rocketEngine(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
+        return EfficiencyGeneratorMachine.recipeModifier(machine, group, recipe);
     }
 
-    public static ModifierFunction oxygenRequirement(MetaMachine machine, GTRecipe recipe) {
+    public static Component oxygenRequirement(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
         if (recipe.conditions.stream().anyMatch(OxygenCondition.class::isInstance)) {
-            return ModifierFunction.IDENTITY;
+            return null;
         }
-        return ModifierFunction.builder()
-                .conditions(new OxygenCondition())
-                .build();
+        recipe.conditions.add(new OxygenCondition());
+        return null;
     }
 }

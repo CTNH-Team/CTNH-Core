@@ -13,6 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -75,7 +76,7 @@ public class ScalableReservoirComputingLogic extends RecipeLogic {
     }
 
     @Override
-    public void setupRecipe(GTRecipe recipe) {
+    public void setupRecipe(@NotNull GTRecipe recipe) {
         LivingEntity sacrifice = getSacrifice(recipe);
         if (sacrifice != null) {
             sacrifice.hurt(CTNHDamageTypes.COMPUTATION_SACRIFICE.source(machine.getLevel()), Float.MAX_VALUE);

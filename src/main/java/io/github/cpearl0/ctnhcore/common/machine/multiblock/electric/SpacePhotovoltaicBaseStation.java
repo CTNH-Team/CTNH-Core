@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotoVoltaicDroneStation;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
@@ -9,8 +12,8 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
@@ -23,10 +26,11 @@ import com.aetherteam.aether.data.resources.registries.AetherDimensions;
 import earth.terrarium.adastra.api.planets.Planet;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.List;
 
-public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMachine implements ITieredMachine {
+public class SpacePhotovoltaicBaseStation extends RecipeElectricMultiblockMachine implements ITieredMachine {
 
     public SpacePhotovoltaicBaseStation(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
@@ -114,29 +118,20 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
         return rate;
     }
 
+    @CN("该配方需要在空间站维度运行")
+    @EN("Needs orbit enviroment to run this recipe")
+    static Lang orbit_only;
+
     @Override
-    public boolean beforeWorking(@Nullable GTRecipe recipe) {
-        var freeze = heat * 8;
+    public Component beforeWorking(@NotNull GTRecipe recipe) {
         if (recipe.data.getBoolean("orbit") && !orbit) {
-            return false;
+            return orbit_only.translate();
         }
-        // FluidStack pyrotheumFluid = new FluidStack(
-        // Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(ResourceLocation.tryBuild("gtceu:pyrotheum"))),
-        // 1000
-        // );
-        // boolean isFluidSufficient = MachineUtils.inputFluid(pyrotheumFluid, this);
-        // if (isFluidSufficient) {
-        // freeze+=2;
-        // }
-        // if(freeze<muti)
-        // {
-        // return false;
-        // }
 
         return super.beforeWorking(recipe);
     }
 
-    public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
+    public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, @NotNull GTRecipe recipe) {
         if (machine instanceof SpacePhotovoltaicBaseStation pmachine) {
             var level = pmachine.getLevel();
             var pos = pmachine.getPos();
@@ -165,23 +160,20 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
                 // new_recipe.tickOutputs.put(EURecipeCapability.CAP, EURecipeCapability.makeEUContent(new
                 // EnergyStack(1)));
                 // recipe = new_recipe;
-                var maxparallel = ParallelLogic.getParallelAmount(machine, recipe, (int) parallel);
-                return ModifierFunction.builder()
-                        .parallels(maxparallel)
-                        .durationMultiplier(1 / duration)
-                        .inputModifier(ContentModifier.multiplier(maxparallel))
-                        .outputModifier(ContentModifier.multiplier(maxparallel))
-                        .build();
+                var maxparallel = ParallelLogic.getParallelAmount(group, recipe, (int) parallel);
+                recipe.multiplyAllContents(maxparallel);
+                recipe.multiplyDuration(1 / duration);
+                recipe.parallels *= maxparallel;
+                return null;
             }
             if (recipe.recipeType.equals(CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR)) {
                 var true_eut = EUt + pmachine.muti * 131072 * pmachine.heat;
 
-                return ModifierFunction.builder()
-                        .eutModifier(ContentModifier.multiplier((int) true_eut))
-                        .build();
+                recipe.multiplyEUt(true_eut);
+                return null;
             }
         }
-        return ModifierFunction.NULL;
+        return RecipeModifier.DEFAULT_FAILURE;
     }
 
     public void addDisplayText(List<Component> textList) {

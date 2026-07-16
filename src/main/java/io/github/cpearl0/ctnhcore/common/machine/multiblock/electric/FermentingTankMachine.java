@@ -9,8 +9,7 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
@@ -68,7 +67,7 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
         textList.add(textList.size(), growing_efficiency.translate(String.format("%.1f", Efficiency * 100)));
     }
 
-    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
+    public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
         if (machine instanceof FermentingTankMachine fmachine) {
             fmachine.Efficiency = 1;
             MachineUtils.applyContents(fmachine, (contents, part) -> {
@@ -89,10 +88,10 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
                         Math.pow(Math.max(36 - fmachine.Machine_Temperature, fmachine.Machine_Temperature - 38), 2) /
                                 10 + 1);
             }
-            return ModifierFunction.builder().durationModifier(ContentModifier.multiplier(1 / fmachine.Efficiency))
-                    .build();
+            recipe.multiplyDuration(1 / fmachine.Efficiency);
+            return null;
         }
-        return ModifierFunction.IDENTITY;
+        return null;
     }
 
     @Override

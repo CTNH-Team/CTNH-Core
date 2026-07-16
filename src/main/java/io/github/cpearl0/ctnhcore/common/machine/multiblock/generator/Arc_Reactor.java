@@ -5,7 +5,7 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -35,7 +35,7 @@ public class Arc_Reactor extends WorkableElectricMultiblockMachine implements IT
         this.arc = arc;
     }
 
-    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
+    public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
         if (machine instanceof Arc_Reactor dmachine) {
             var level = dmachine.self().getLevel();
             var pos = dmachine.self().getPos();
@@ -48,10 +48,9 @@ public class Arc_Reactor extends WorkableElectricMultiblockMachine implements IT
             } else {
                 dmachine.isconnect = false;
             }
-            return ModifierFunction.builder()
-                    .build();
+            return null;
         }
-        return ModifierFunction.IDENTITY;
+        return null;
     }
 
     public void addDisplayText(List<Component> textList) {

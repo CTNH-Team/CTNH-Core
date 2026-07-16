@@ -43,7 +43,7 @@ import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterialBlocks.MATERIAL_BLOCKS;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.BATCH_MODE;
-import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.OC_NON_PERFECT_SUBTICK;
+import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.OC_NON_PERFECT;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.DUMMY_RECIPES;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
 import static committee.nova.mods.avaritia.init.registry.ModBlocks.neutron;
@@ -59,7 +59,7 @@ public class MultiblocksB {
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.SILICA_ROCK_FUEL_REFINERY)
             .appearanceBlock(CTNHBlocks.CASING_NAQUADAH_BLOCK)
-            .recipeModifiers(OC_NON_PERFECT_SUBTICK)
+            .recipeModifiers(OC_NON_PERFECT)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("##AAA##", "##ABA##", "##AAA##", "###B###", "###B###", "###A###")
                     .aisle("###A###", "##AAA##", "###C###", "##ADA##", "###A###", "###A###")
@@ -123,7 +123,7 @@ public class MultiblocksB {
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.WOOD_BIONICS)
             .appearanceBlock(CTNHBlocks.NATURAL_ECOLOGICAL_SHELL_CASING)
-            .recipeModifiers(ForestMachine::recipeModifier, OC_NON_PERFECT_SUBTICK)
+            .recipeModifiers(ForestMachine::recipeModifier, OC_NON_PERFECT)
             .tooltips(Component.translatable("ctnh.multiblock.forest_sea.tooltip.1").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.multiblock.forest_sea.tooltip.2"),
                     Component.translatable("ctnh.multiblock.forest_sea.tooltip.3"),
@@ -143,10 +143,10 @@ public class MultiblocksB {
                     .build())
             .workableCasingModel((CTNHCore.id("block/casings/natural_ecological_shell_casing")), CTNHCore.id("block/overlay/forest_sea_tree_farm"))
             .register();
-    public final static MultiblockMachineDefinition SINOPE_CHEMICAL = REGISTRATE.multiblock("sinope_chemical", Sinope_Chemical::new)
+    public final static MultiblockMachineDefinition SINOPE_CHEMICAL = REGISTRATE.multiblock("sinope_chemical", SinopeChemical::new)
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.SINOPE, GTRecipeTypes.CRACKING_RECIPES)
-            .recipeModifiers(Sinope_Chemical::recipeModifier, OC_NON_PERFECT_SUBTICK)
+            .recipeModifiers(SinopeChemical::recipeModifier, OC_NON_PERFECT)
             .tooltips(Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.0"),
                     Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.1"),
                     Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.2"),
@@ -517,7 +517,7 @@ public class MultiblocksB {
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.ASSEMBLY_LINE_RECIPES)
             .alwaysTryModifyRecipe(true)
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_NON_PERFECT_SUBTICK,GTRecipeModifiers.BATCH_MODE)
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_NON_PERFECT, GTRecipeModifiers.BATCH_MODE)
             .tooltips(Component.translatable("gtceu.multiblock.laser.tooltip"),
                     Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
             .appearanceBlock(ADVANCE_MACHINE_CASING_SOLID_STEEL)
@@ -552,7 +552,7 @@ public class MultiblocksB {
     public final static MultiblockMachineDefinition CultivationRoom = REGISTRATE.multiblock("cultivationroom", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.CULTIVATION_ROOM)
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_NON_PERFECT_SUBTICK, BATCH_MODE)
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_NON_PERFECT, BATCH_MODE)
             .tooltips(Component.translatable("ctnh.multiblock.cultivation_room.tooltip.1").withStyle(ChatFormatting.GREEN),
                     Component.translatable("ctnh.multiblock.cultivation_room.tooltip.2"),
                     CTNHCommonTooltips.PARALLEL_HATCH,
@@ -581,10 +581,10 @@ public class MultiblocksB {
             .register();
 
 
-    public final static MultiblockMachineDefinition PLASMA_ALLOY_BLAST_SMELTER = REGISTRATE.multiblock("plasma_alloy_blast_smelter", Plasma_alloy_blast::new)
+    public final static MultiblockMachineDefinition PLASMA_ALLOY_BLAST_SMELTER = REGISTRATE.multiblock("plasma_alloy_blast_smelter", PlasmaAlloyBlast::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GCYMRecipeTypes.ALLOY_BLAST_RECIPES)
-            .recipeModifiers(Plasma_alloy_blast::recipeModifier, GTRecipeModifiers::ebfOverclock, BATCH_MODE)
+            .recipeModifiers(PlasmaAlloyBlast::recipeModifier, GTRecipeModifiers::ebfOverclock, BATCH_MODE)
             .tooltips(Component.translatable("ctnh.multiblock.plasma_alloy.tooltip.1"),
                     Component.translatable("ctnh.multiblock.plasma_alloy.tooltip.11"),
                     Component.translatable("ctnh.multiblock.plasma_alloy.tooltip.2"),
@@ -645,7 +645,7 @@ public class MultiblocksB {
 //    public final static MultiblockMachineDefinition UNIVERSE_SINOPE = REGISTRATE.multiblock("universe_sinope", holder -> new Arc_Reactor(holder, 10))
 //            .rotationState(RotationState.NON_Y_AXIS)
 //            .recipeType(CTNHRecipeTypes.ARC_REACTOR)
-//            .recipeModifiers(Plasma_alloy_blast::recipeModifier, GTRecipeModifiers::ebfOverclock)
+//            .recipeModifiers(PlasmaAlloyBlast::recipeModifier, GTRecipeModifiers::ebfOverclock)
 //            .tooltips(Component.translatable("ctnh.u_sinope.story.1"),
 //                    Component.translatable("ctnh.u_sinope.story.2"),
 //                    Component.translatable("ctnh.u_sinope.story.3"),
@@ -1023,7 +1023,7 @@ public class MultiblocksB {
     public final static MultiblockMachineDefinition  CRYOTHEUMFREEZER = REGISTRATE.multiblock("cryotheum_freezer", CryotheumFreezer::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.VACUUM_RECIPES)
-            .recipeModifiers(CryotheumFreezer::recipeModifier, OC_NON_PERFECT_SUBTICK, BATCH_MODE)
+            .recipeModifiers(CryotheumFreezer::recipeModifier, OC_NON_PERFECT, BATCH_MODE)
             .tooltips(Component.translatable("ctnh.multiblock.cryotheum_freezer.tip.0"),
                     Component.translatable("ctnh.multiblock.cryotheum_freezer.tip.1"),
                     Component.translatable("ctnh.multiblock.cryotheum_freezer.tip.2"))
@@ -1057,7 +1057,7 @@ public class MultiblocksB {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.COMPILER_RECIPE)
             .appearanceBlock(CASING_ANTIFREEZE_HEATPROOF_MACHINE)
-            .recipeModifiers(NeuroMatrixCompiler::recipeModifier)
+            .recipeModifiers(GTRecipeModifiers.TIER_CHECK, NeuroMatrixCompiler::recipeModifier)
             .tooltips(Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.0"),
                     Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.01"),
                     Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.1"),

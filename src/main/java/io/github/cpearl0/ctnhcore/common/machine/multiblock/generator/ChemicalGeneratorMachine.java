@@ -8,8 +8,7 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
@@ -62,7 +61,8 @@ public class ChemicalGeneratorMachine extends WorkableElectricMultiblockMachine 
         return GTRecipeBuilder.ofRaw().inputFluids(isExtreme() ? LIQUID_OXYGEN_STACK : OXYGEN_STACK).buildRawRecipe();
     }
 
-    public static ModifierFunction recipeModifier(@NotNull MetaMachine machine, @NotNull GTRecipe recipe) {
+    public static Component recipeModifier(@NotNull MetaMachine machine, RecipeHandlerGroup group,
+                                           @NotNull GTRecipe recipe) {
         if (!(machine instanceof ChemicalGeneratorMachine engineMachine)) {
             return RecipeModifier.nullWrongType(LargeCombustionEngineMachine.class, machine);
         }
@@ -70,17 +70,14 @@ public class ChemicalGeneratorMachine extends WorkableElectricMultiblockMachine 
         // has lubricant
         if (EUt > 0) {
             int maxParallel = (int) (engineMachine.getOverclockVoltage() / EUt); // get maximum parallel
-            int actualParallel = ParallelLogic.getParallelAmount(engineMachine, recipe, maxParallel);
+            int actualParallel = ParallelLogic.getParallelAmount(group, recipe, maxParallel);
             double eutMultiplier = actualParallel * engineMachine.getProductionBoost();
-
-            return ModifierFunction.builder()
-                    .inputModifier(ContentModifier.multiplier(actualParallel))
-                    .outputModifier(ContentModifier.multiplier(actualParallel))
-                    .eutMultiplier(eutMultiplier)
-                    .parallels(actualParallel)
-                    .build();
+            recipe.multiplyAllContents(actualParallel);
+            recipe.multiplyEUt(eutMultiplier);
+            recipe.parallels *= actualParallel;
+            return null;
         }
-        return ModifierFunction.NULL;
+        return RecipeModifier.DEFAULT_FAILURE;
     }
 
     protected double getProductionBoost() {

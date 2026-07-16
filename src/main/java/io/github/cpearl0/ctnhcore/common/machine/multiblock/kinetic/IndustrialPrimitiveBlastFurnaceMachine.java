@@ -6,7 +6,7 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
@@ -38,16 +38,14 @@ public class IndustrialPrimitiveBlastFurnaceMachine extends NoEnergyMachine {
         super(holder);
     }
 
-    public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
+    public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, @NotNull GTRecipe recipe) {
         if (machine instanceof IndustrialPrimitiveBlastFurnaceMachine imachine) {
             var parallel = imachine.getParallelCount();
-            var durationModifier = ModifierFunction.builder()
-                    .durationMultiplier(1.25 - (double) (imachine.currentTemperature - imachine.basicTemperature) /
-                            (imachine.maxTemperature - imachine.basicTemperature) * 0.75)
-                    .build();
-            return CTNHRecipeModifiers.accurateParallel(imachine, recipe, parallel).andThen(durationModifier);
+            recipe.multiplyDuration(1.25 - (double) (imachine.currentTemperature - imachine.basicTemperature) /
+                    (imachine.maxTemperature - imachine.basicTemperature) * 0.75);
+            return CTNHRecipeModifiers.accurateParallel(imachine, group, recipe, parallel);
         }
-        return ModifierFunction.IDENTITY;
+        return null;
     }
 
     public int getParallelCount() {

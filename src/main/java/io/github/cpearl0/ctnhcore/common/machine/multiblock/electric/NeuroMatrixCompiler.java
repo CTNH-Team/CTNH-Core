@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.recipe.ingredient.item.ItemIngredient;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CompilerMachine;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 
@@ -12,9 +14,8 @@ import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import com.gregtechceu.gtceu.api.recipe.content.Content;
-import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
@@ -23,6 +24,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
@@ -30,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine implements ITieredMachine {
+public class NeuroMatrixCompiler extends RecipeElectricMultiblockMachine implements ITieredMachine {
 
     public NeuroMatrixCompiler(IMachineBlockEntity holder) {
         super(holder);
@@ -330,15 +332,13 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
     }
 
     @Override
-    public boolean beforeWorking(@Nullable GTRecipe recipe) {
-        if (tiers < RecipeHelper.getRecipeEUtTier(recipe)) return false;
+    public @Nullable Component beforeWorking(@NotNull GTRecipe recipe) {
         var itemsR = recipe.getInputContents(ItemRecipeCapability.CAP).stream()
-                .map(num -> (SizedIngredient) num.getContent()) // 转换为 SizedIngredient
-                .map(SizedIngredient::getItems) // 获取 ItemStack 数组
+                .map(ItemIngredient::getItems) // 获取 ItemStack 数组
                 .filter(itemStacks -> itemStacks.length > 0) // 确保至少有一个 ItemStack
                 .map(itemStacks -> itemStacks[0].getItem()) // 获取第一个 ItemStack 的 Item
                 .collect(Collectors.toList()); // 收集到一个 List<Item>
-        if (lastrecipe == null || !recipe.equals(lastrecipe)) {
+        if (!recipe.equals(lastrecipe)) {
             lastrecipe = recipe;
             reload_recipe(recipe);
 
@@ -349,26 +349,22 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         return super.beforeWorking(recipe);
     }
 
-    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
+    public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
         if (machine instanceof NeuroMatrixCompiler nmachine) {
             for (int i = 0; i <= 4; i++) {
                 nmachine.states.set(i, 4);
             }
             var itemsX = recipe.getOutputContents(ItemRecipeCapability.CAP).stream()
-                    .map(num -> (SizedIngredient) num.getContent()) // 转换为 SizedIngredient
-                    .map(SizedIngredient::getItems) // 获取 ItemStack 数组
+                    .map(ItemIngredient::getItems) // 获取 ItemStack 数组
                     .filter(itemStacks -> itemStacks.length > 0) // 确保至少有一个 ItemStack
                     .map(itemStacks -> itemStacks[0].getItem()) // 获取第一个 ItemStack 的 Item
-                    .collect(Collectors.toList()); // 收集到一个 List<Item>
+                    .toList(); // 收集到一个 List<Item>
             if (!itemsX.isEmpty()) nmachine.items = itemsX.get(0).asItem();
-            SizedIngredient ingredient = SizedIngredient.create(ItemStack.EMPTY);
-            List<Content> itemList = new ArrayList<>();
-            var new_recipe = recipe.copy();
-            itemList.add(new Content(ingredient, 0, 0, 0));
-            new_recipe.outputs.put(ItemRecipeCapability.CAP, itemList);
-            return recipe1 -> new_recipe;
+
+            recipe.outputs.remove(ItemRecipeCapability.CAP);
+            return null;
         }
-        return ModifierFunction.NULL;
+        return RecipeModifier.nullWrongType(NeuroMatrixCompiler.class, machine);
     }
 
     @Override

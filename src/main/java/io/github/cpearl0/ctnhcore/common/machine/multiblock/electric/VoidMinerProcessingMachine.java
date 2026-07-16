@@ -5,13 +5,15 @@ import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.content.Content;
-import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
+import com.gregtechceu.gtceu.api.recipe.ingredient.fluid.FluidIngredient;
+import com.gregtechceu.gtceu.api.recipe.ingredient.item.ItemIngredient;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
+import com.gregtechceu.gtceu.utils.GTUtil;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
@@ -35,7 +37,7 @@ import java.util.*;
 
 @Setter
 @Getter
-public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachine {
+public class VoidMinerProcessingMachine extends RecipeElectricMultiblockMachine {
 
     @Persisted
     @DescSynced
@@ -85,7 +87,7 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
         return super.onWorking();
     }
 
-    public boolean beforeWorking(@Nullable GTRecipe recipe) {
+    public Component beforeWorking(@Nullable GTRecipe recipe) {
         int temperature = getCurrentTemperature();
         if (fluidCycle == 1) {  // 偶数次使用 Pyrotheum
             int currentFluidAmount = nextPyrotheumAmount;  // 使用更新后的流体量
@@ -175,7 +177,7 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
         }
     }
 
-    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
+    public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
         if (machine instanceof VoidMinerProcessingMachine reactorMachine && !reactorMachine.isOverheated) {
 
             int parallelCount = reactorMachine.getParallelCount();
@@ -191,14 +193,14 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
 
             // 确保 rawOreItems 不是空的
             if (rawOreItems.isEmpty()) {
-                return ModifierFunction.IDENTITY;  // 如果没有符合条件的物品，返回不修改配方
+                return null;
             }
 
             // 随机打乱物品顺序
             Collections.shuffle(rawOreItems, random);
 
             // 创建一个物品列表
-            List<Content> itemList = new ArrayList<>();
+            List<ItemIngredient> itemList = new ArrayList<>();
 
             // 如果我们有至少10个符合条件的物品，输出它们
             for (int i = 0; i < Math.min(10, rawOreItems.size()); i++) {
@@ -208,24 +210,19 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
                 // 创建物品的内容并添加到 itemList
                 if (!rawOreItem.isEmpty()) {
                     // 创建一个大小为 adjustedAmount 的物品
-                    SizedIngredient ingredient = SizedIngredient.create(Ingredient.of(rawOreItem), adjustedAmount);
-
+                    var ingredient = ItemIngredient.of(rawOreItem, adjustedAmount);
                     // 使用 SizedIngredient 创建 Content，并确保数量正确
-                    itemList.add(new Content(ingredient, 10000, 10000, 0));
+                    itemList.add(ingredient);
                 }
             }
-            GTRecipe newRecipe = recipe.copy();
-            // 修改配方
-            var fluid = FluidRecipeCapability.CAP.of(GTMaterials.DrillingFluid.getFluid(100000000));
             if (!itemList.isEmpty()) {
-                newRecipe.inputs.put(FluidRecipeCapability.CAP, List.of(new Content(fluid, 10000, 10000, 0)));
-                newRecipe.outputs.put(ItemRecipeCapability.CAP, itemList);
+                recipe.inputs.put(FluidRecipeCapability.CAP, GTUtil.list(FluidIngredient.of(GTMaterials.DrillingFluid, 100_000_000)));
+                recipe.outputs.put(ItemRecipeCapability.CAP, itemList);
             }
-
-            return recipe1 -> newRecipe;
+            return null;
         }
 
-        return ModifierFunction.IDENTITY;  // 返回默认修改器
+        return null;
     }
 
     // 获取所有带有 '#c:raw_ores' 标签的物品，排除黑名单物品

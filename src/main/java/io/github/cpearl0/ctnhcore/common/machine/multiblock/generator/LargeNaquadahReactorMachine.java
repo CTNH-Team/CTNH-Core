@@ -9,7 +9,8 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IExplosionMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachine;
 
@@ -59,21 +60,19 @@ public class LargeNaquadahReactorMachine extends WorkableElectricMultiblockMachi
     private int activeFluidPower = 1;
     private Fluid lockFluid = null;
 
-    public static ModifierFunction modifyRecipe(MetaMachine machine, GTRecipe recipe) {
-        if (recipe.recipeType != CTNHRecipeTypes.LARGE_NAQUADAH_REACTOR_RECIPES) return ModifierFunction.NULL;
+    public static Component modifyRecipe(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
+        if (recipe.recipeType != CTNHRecipeTypes.LARGE_NAQUADAH_REACTOR_RECIPES) return RecipeModifier.DEFAULT_FAILURE;
         if (machine instanceof LargeNaquadahReactorMachine lmachine) {
             lmachine.checkHatch(lmachine, recipe.duration);
             if (!lmachine.hasAir) {
-                var copyRecipe = recipe.copy();
-                copyRecipe.tickOutputs.clear();
-                copyRecipe.outputs.clear();
-                return recipe1 -> copyRecipe;
+                recipe.tickOutputs.clear();
+                recipe.outputs.clear();
+                return null;
             }
-            return ModifierFunction.builder()
-                    .eutMultiplier(lmachine.getFinalPowerRate())
-                    .build();
+            recipe.multiplyEUt(lmachine.getFinalPowerRate());
+            return null;
         }
-        return ModifierFunction.NULL;
+        return RecipeModifier.DEFAULT_FAILURE;
     }
 
     private void checkHatch(LargeNaquadahReactorMachine machine, int duration) {

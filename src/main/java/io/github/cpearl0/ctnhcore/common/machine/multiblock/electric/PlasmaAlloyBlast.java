@@ -8,19 +8,21 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
+
+import net.minecraft.network.chat.Component;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import static com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys.PLASMA;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
-public class Plasma_alloy_blast extends CoilWorkableElectricMultiblockMachine {
+public class PlasmaAlloyBlast extends CoilWorkableElectricMultiblockMachine {
 
-    public Plasma_alloy_blast(IMachineBlockEntity holder) {
+    public PlasmaAlloyBlast(IMachineBlockEntity holder) {
         super(holder);
     }
 
@@ -43,13 +45,13 @@ public class Plasma_alloy_blast extends CoilWorkableElectricMultiblockMachine {
         }
     }
 
-    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
-        if (machine instanceof Plasma_alloy_blast pmachine) {
+    public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
+        if (machine instanceof PlasmaAlloyBlast pmachine) {
             var speed = 1.0;
             var output = 1.0;
             var eut = 1.0;
             var total_speed = 1.0;
-            int parallel = ParallelLogic.getParallelAmount(machine, recipe, pmachine.machine_level * 4);
+            int parallel = ParallelLogic.getParallelAmount(group, recipe, pmachine.machine_level * 4);
             if (MachineUtils.inputFluids(pmachine, Iron.getFluid(PLASMA, 200 * parallel))) {
                 speed = 4.0;
             }
@@ -89,16 +91,15 @@ public class Plasma_alloy_blast extends CoilWorkableElectricMultiblockMachine {
                 output = 0.5 * (Math.random());
             }
             if (speed <= 0.5) {
-                return ModifierFunction.NULL;
+                return RecipeModifier.DEFAULT_FAILURE;
             }
-            return ModifierFunction.builder()
-                    .parallels(parallel)
-                    .inputModifier(ContentModifier.multiplier(parallel))
-                    .outputModifier(ContentModifier.multiplier(parallel * output))
-                    .eutMultiplier(eut * parallel)
-                    .durationMultiplier(1 / total_speed)
-                    .build();
+            recipe.multiplyInputs(parallel);
+            recipe.multiplyOutputs((int) (parallel * output));
+            recipe.multiplyEUt(eut * parallel);
+            recipe.multiplyDuration(1 / total_speed);
+            recipe.parallels *= parallel;
+            return null;
         }
-        return ModifierFunction.NULL;
+        return RecipeModifier.DEFAULT_FAILURE;
     }
 }

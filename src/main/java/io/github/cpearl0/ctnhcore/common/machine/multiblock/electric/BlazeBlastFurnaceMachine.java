@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
@@ -8,8 +10,7 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.transfer.fluid.IFluidHandlerModifiable;
 
@@ -19,6 +20,7 @@ import net.minecraft.network.chat.Component;
 import com.simibubi.create.foundation.fluid.CombinedTankWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.List;
@@ -42,14 +44,18 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
         return super.onWorking();
     }
 
+    @CN("烈焰之炽焱不足")
+    @EN("Insufficient Pyrotheum")
+    static Lang insufficient_pyrotheum;
+
     @Override
-    public boolean beforeWorking(@Nullable GTRecipe recipe) {
+    public Component beforeWorking(@NotNull GTRecipe recipe) {
         var tier = getTier();
         if (MachineUtils.canInputFluids(this, CTNHMaterials.Pyrotheum.getFluid((int) (Math.pow(2, (tier - 2)) * 5)))) {
             return super.beforeWorking(recipe);
         }
         getRecipeLogic().interruptRecipe();
-        return false;
+        return insufficient_pyrotheum.translate();
     }
 
     @Override
@@ -75,16 +81,13 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
         }
     }
 
-    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
-        int parallel = ParallelLogic.getParallelAmount(machine, recipe, 8);
-        var reduce = new ContentModifier(0.5 * parallel, 0);
+    public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
+        int parallel = ParallelLogic.getParallelAmount(group, recipe, 8);
         if (parallel == 0)
-            return ModifierFunction.NULL;
-        return ModifierFunction.builder()
-                .eutModifier(reduce)
-                .inputModifier(ContentModifier.multiplier(parallel))
-                .outputModifier(ContentModifier.multiplier(parallel))
-                .parallels(parallel)
-                .build();
+            return Component.translatable("gtceu.recipe_modifier.default_fail");
+        recipe.multiplyEUt(0.5 * parallel);
+        recipe.multiplyAllContents(parallel);
+        recipe.parallels *= parallel;
+        return null;
     }
 }

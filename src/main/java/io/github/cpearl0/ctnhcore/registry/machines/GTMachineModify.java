@@ -11,7 +11,6 @@ import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifierList;
 import com.gregtechceu.gtceu.common.data.GTMachines;
@@ -76,7 +75,7 @@ public class GTMachineModify {
         RecipeModifierList commonModifier = new RecipeModifierList(
                 CTNHRecipeModifiers.GCYM_REDUCTION,
                 GTRecipeModifiers.PARALLEL_HATCH,
-                GTRecipeModifiers.OC_NON_PERFECT_SUBTICK,
+                GTRecipeModifiers.OC_NON_PERFECT,
                 GTRecipeModifiers.BATCH_MODE);
         for (MachineDefinition machine : gcymMachinesToModify) {
             machine.setRecipeModifier(commonModifier);
@@ -161,13 +160,13 @@ public class GTMachineModify {
                         GTRecipeModifiers.BATCH_MODE));
     }
 
-    private static ModifierFunction assemblyRecipeModifier(MetaMachine machine, GTRecipe gtRecipe) {
+    private static Component assemblyRecipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe gtRecipe) {
         if (gtRecipe.recipeType == CTNHRecipeTypes.PRECISION_ASSEMBLY_RECIPES) {
-            return GTRecipeModifiers.OC_NON_PERFECT_SUBTICK.getModifier(machine, gtRecipe);
+            return GTRecipeModifiers.OC_NON_PERFECT.apply(machine, group, gtRecipe);
         } else {
             return new RecipeModifierList(
                     GTRecipeModifiers.PARALLEL_HATCH,
-                    GTRecipeModifiers.OC_NON_PERFECT_SUBTICK).getModifier(machine, gtRecipe);
+                    GTRecipeModifiers.OC_NON_PERFECT).apply(machine, group, gtRecipe);
         }
     }
 

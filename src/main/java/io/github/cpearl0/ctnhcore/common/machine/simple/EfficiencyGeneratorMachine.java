@@ -4,10 +4,11 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.SimpleGeneratorMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
+
+import net.minecraft.network.chat.Component;
 
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import org.jetbrains.annotations.NotNull;
@@ -42,26 +43,25 @@ public class EfficiencyGeneratorMachine extends SimpleGeneratorMachine {
         return tier * 20 + 100;
     }
 
-    public static ModifierFunction recipeModifier(@NotNull MetaMachine machine, @NotNull GTRecipe recipe) {
+    public static Component recipeModifier(@NotNull MetaMachine machine, RecipeHandlerGroup group,
+                                           @NotNull GTRecipe recipe) {
         if (!(machine instanceof EfficiencyGeneratorMachine generator)) {
             return RecipeModifier.nullWrongType(EfficiencyGeneratorMachine.class, machine);
         }
 
-        long recipeEUt = recipe.getOutputEUt().getTotalEU();
-        if (recipeEUt <= 0) return ModifierFunction.NULL;
+        long recipeEUt = recipe.getOutputEUt();
+        if (recipeEUt <= 0) return RecipeModifier.DEFAULT_FAILURE;
 
         int maxParallel = (int) (generator.getOverclockVoltage() / recipeEUt);
-        if (maxParallel <= 0) return ModifierFunction.NULL;
+        if (maxParallel <= 0) return RecipeModifier.DEFAULT_FAILURE;
 
-        int parallels = ParallelLogic.getParallelAmountFast(generator, recipe, maxParallel);
-        if (parallels <= 0) return ModifierFunction.NULL;
+        int parallels = ParallelLogic.getParallelAmountFast(group, recipe, maxParallel);
+        if (parallels <= 0) return RecipeModifier.DEFAULT_FAILURE;
 
-        return ModifierFunction.builder()
-                .inputModifier(ContentModifier.multiplier(parallels))
-                .outputModifier(ContentModifier.multiplier(parallels))
-                .eutMultiplier(parallels)
-                .parallels(parallels)
-                .durationMultiplier((double) generator.efficiency / 100)
-                .build();
+        recipe.multiplyAllContents(parallels);
+        recipe.multiplyEUt(parallels);
+        recipe.parallels *= parallels;
+        recipe.multiplyDuration((double) generator.efficiency / 100);
+        return null;
     }
 }

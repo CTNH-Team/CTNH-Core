@@ -3,10 +3,10 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -25,7 +25,7 @@ import java.util.List;
 import static sfiomn.legendarysurvivaloverhaul.api.temperature.TemperatureUtil.getWorldTemperature;
 
 @Prefix("bio_machine")
-public class BioMachine extends WorkableElectricMultiblockMachine {
+public class BioMachine extends RecipeElectricMultiblockMachine {
 
     @Nullable
     protected TickableSubscription temperatureSubs;
@@ -62,8 +62,8 @@ public class BioMachine extends WorkableElectricMultiblockMachine {
         }
     }
 
-    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
-        if (!(machine instanceof BioMachine dmachine)) return ModifierFunction.IDENTITY;
+    public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
+        if (!(machine instanceof BioMachine dmachine)) return null;
         if (dmachine.machineTemperature >= 36 && dmachine.machineTemperature <= 38) {
             dmachine.efficiency = 1.2;
         } else {
@@ -71,7 +71,8 @@ public class BioMachine extends WorkableElectricMultiblockMachine {
                     Math.pow(Math.max(36 - dmachine.machineTemperature, dmachine.machineTemperature - 38), 2) / 10 +
                             1);
         }
-        return ModifierFunction.builder().durationModifier(new ContentModifier(1 / dmachine.efficiency, 0)).build();
+        recipe.multiplyDuration(1 / dmachine.efficiency);
+        return null;
     }
 
     @Override

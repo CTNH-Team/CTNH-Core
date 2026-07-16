@@ -13,8 +13,10 @@ import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
+
+import net.minecraft.network.chat.Component;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.data.GTMaterialItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
@@ -125,7 +127,7 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
         machineStorage.extractItem(0, 1, false);
     }
 
-    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
+    public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
         if (machine instanceof NanoscaleTriboelectricGenerator zmachine) {
 
             // 定义材料效率配置（材料 -> {效率, 消耗概率分母}）
@@ -157,16 +159,15 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
                 }
             }
 
-            if (maxParallel <= 0) return ModifierFunction.NULL;
+            if (maxParallel <= 0) return RecipeModifier.DEFAULT_FAILURE;
 
-            return ModifierFunction.builder()
-                    .inputModifier(ContentModifier.multiplier(maxParallel))
-                    .outputModifier(ContentModifier.multiplier(maxParallel))
-                    .durationMultiplier(Math.sqrt(maxParallel))
-                    .eutMultiplier(maxParallel * (1 + maxParallel * 0.04) * efficiency)
-                    .build();
+            recipe.multiplyAllContents(maxParallel);
+            recipe.multiplyDuration(Math.sqrt(maxParallel));
+            recipe.multiplyEUt(maxParallel * (1 + maxParallel * 0.04) * efficiency);
+            recipe.parallels *= maxParallel;
+            return null;
         }
-        return ModifierFunction.NULL;
+        return RecipeModifier.DEFAULT_FAILURE;
     }
 
     @Override

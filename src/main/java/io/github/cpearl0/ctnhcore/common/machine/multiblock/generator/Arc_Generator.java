@@ -5,7 +5,8 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 
 import net.minecraft.network.chat.Component;
 
@@ -38,18 +39,17 @@ public class Arc_Generator extends WorkableElectricMultiblockMachine implements 
         return super.beforeWorking(recipe);
     }
 
-    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
+    public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
         if (machine instanceof Arc_Generator gmachine) {
             var arc_difference = recipe.data.getInt("maxarc") - recipe.data.getInt("requirearc");
             double rotor = Math.max(0.00001,
                     (double) (gmachine.arc - recipe.data.getInt("requirearc")) / arc_difference);
             rotor = Math.min(gmachine.efficiency, rotor);
             gmachine.rotor = rotor;
-            return ModifierFunction.builder()
-                    .eutMultiplier(rotor)
-                    .build();
+            recipe.multiplyEUt(rotor);
+            return null;
         }
-        return ModifierFunction.NULL;
+        return RecipeModifier.DEFAULT_FAILURE;
     }
 
     public void addDisplayText(List<Component> textList) {

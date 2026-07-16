@@ -1,10 +1,15 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import io.github.cpearl0.ctnhcore.common.gui.MachineModeFancyConfiguratorTest;
+import org.jetbrains.annotations.NotNull;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
-import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.gui.fancy.TabsWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -13,10 +18,7 @@ import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.content.Content;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.ingredient.EnergyStack;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
@@ -29,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.function.DoubleSupplier;
 
-public class CryotheumFreezer extends WorkableElectricMultiblockMachine implements ITieredMachine, IFancyUIMachine {
+public class CryotheumFreezer extends RecipeElectricMultiblockMachine implements IFancyUIMachine {
 
     public CryotheumFreezer(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
@@ -57,12 +59,17 @@ public class CryotheumFreezer extends WorkableElectricMultiblockMachine implemen
         return Component.translatable("ctnh.multiblock.cryotheum_freezer.ui.0", a);
     }
 
+    @CN("极寒之凛冰不足")
+    @EN("Insufficient Cryotheum")
+    static Lang insufficient_cryotheum;
+
     @Override
-    public boolean beforeWorking(@Nullable GTRecipe recipe) {
+    public Component beforeWorking(@NotNull GTRecipe recipe) {
         var tier = getTier();
+        final double amount = Math.pow(4, Math.max((tier - 4), 0));
         if (MachineUtils.inputFluids(this,
-                CTNHMaterials.Cryotheum.getFluid((int) (Math.pow(4, Math.max((tier - 4), 0)) * 10)))) {
-            used_energy += (long) (Math.pow(4, Math.max((tier - 4), 0))) * 10;
+                CTNHMaterials.Cryotheum.getFluid((int) (amount * 10)))) {
+            used_energy += (long) amount * 10;
             if (used_energy >= target) {
                 a += 1;
                 used_energy -= target;
@@ -71,37 +78,26 @@ public class CryotheumFreezer extends WorkableElectricMultiblockMachine implemen
             return super.beforeWorking(recipe);
         }
         getRecipeLogic().interruptRecipe();
-        return false;
+        return insufficient_cryotheum.translate();
     }
 
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
-        var tier = getTier();
     }
 
-    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
+    public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
         if (machine instanceof CryotheumFreezer cmachine) {
-            int parallel = ParallelLogic.getParallelAmount(machine, recipe,
+            int parallel = ParallelLogic.getParallelAmount(group, recipe,
                     (int) (2 * Math.pow(2, cmachine.parallel_muti)));
-            var reduce = new ContentModifier(1 / cmachine.energy_muti * parallel, 0);
-            if (parallel == 0)
-                return ModifierFunction.NULL;
-            var eut_consume = recipe.getTickInputContents(EURecipeCapability.CAP).stream()
-                    .map(Content::getContent)
-                    .map(EURecipeCapability.CAP::of)
-                    .mapToLong(EnergyStack::voltage)
-                    .sum();
-
-            return ModifierFunction.builder()
-                    .eutModifier(reduce)
-                    .inputModifier(ContentModifier.multiplier(parallel))
-                    .outputModifier(ContentModifier.multiplier(parallel))
-                    .durationMultiplier(1 / cmachine.speed_up)
-                    .parallels(parallel)
-                    .build();
+            if (parallel == 0) return null;
+            recipe.multiplyEUt(1 / cmachine.energy_muti * parallel);
+            recipe.multiplyAllContents(parallel);
+            recipe.multiplyDuration(1 / cmachine.speed_up);
+            recipe.parallels *= parallel;
+            return null;
         }
-        return ModifierFunction.NULL;
+        return RecipeModifier.DEFAULT_FAILURE;
     }
 
     @Override

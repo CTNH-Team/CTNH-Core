@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 
@@ -12,9 +15,7 @@ import com.gregtechceu.gtceu.api.machine.feature.IMachineModifyDrops;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 
@@ -30,13 +31,14 @@ import net.minecraft.world.phys.AABB;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FactoryMachine extends WorkableElectricMultiblockMachine implements IMachineModifyDrops {
+public class FactoryMachine extends RecipeElectricMultiblockMachine implements IMachineModifyDrops {
 
     public int CENTRIFUGE_COUNT = 0;
     public int LATHE_COUNT = 0;
@@ -162,36 +164,48 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
                 PRESSOR_COUNT + MIXER_COUNT + BASIN_COUNT + SAW_COUNT;
     }
 
+
+    @CN("没有员工")
+    @EN("No Employee")
+    static Lang no_villager;
+
+    @CN("缺少所需的生产资料")
+    @EN("No Correct Machine")
+    static Lang no_suitable_machine;
+
+    @CN("员工饥肠辘辘！")
+    @EN("Employees are hungry!")
+    static Lang no_meal;
+
     @Override
-    public boolean beforeWorking(@Nullable GTRecipe recipe) {
-        if (recipe == null) return false;
+    public Component beforeWorking(@NotNull GTRecipe recipe) {
         updateVillagerCount();
         updateBasicRate();
         if (VILLAGER_COUNT == 0) {
-            return false;
+            return no_villager.translate();
         } else {
             if (recipe.recipeType.equals(GTRecipeTypes.CENTRIFUGE_RECIPES) && CENTRIFUGE_COUNT == 0) {
-                return false;
+                return no_suitable_machine.translate();
             } else if (recipe.recipeType.equals(GTRecipeTypes.LATHE_RECIPES) && LATHE_COUNT == 0) {
-                return false;
+                return no_suitable_machine.translate();
             } else if (recipe.recipeType.equals(GTRecipeTypes.MACERATOR_RECIPES) && CRUSHING_COUNT == 0) {
-                return false;
+                return no_suitable_machine.translate();
             } else if (recipe.recipeType.equals(GTRecipeTypes.EXTRACTOR_RECIPES) && BURNER_COUNT == 0) {
-                return false;
+                return no_suitable_machine.translate();
             } else if (recipe.recipeType.equals(GTRecipeTypes.BENDER_RECIPES) && PRESSOR_COUNT == 0) {
-                return false;
+                return no_suitable_machine.translate();
             } else if (recipe.recipeType.equals(GTRecipeTypes.MIXER_RECIPES) && MIXER_COUNT == 0) {
-                return false;
+                return no_suitable_machine.translate();
             } else if (recipe.recipeType.equals(GTRecipeTypes.WIREMILL_RECIPES) && SAW_COUNT == 0) {
-                return false;
+                return no_suitable_machine.translate();
             } else if (recipe.recipeType.equals(GTRecipeTypes.LASER_ENGRAVER_RECIPES) && LASER_COUNT == 0) {
-                return false;
+                return no_suitable_machine.translate();
             } else if (recipe.recipeType.equals(GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES) && BASIN_COUNT == 0) {
-                return false;
+                return no_suitable_machine.translate();
             }
         }
         if (!MachineUtils.canInputItems(this, CTNHItems.SIMPLE_NUTRITIOUS_MEAL.asStack(VILLAGER_COUNT))) {
-            return false;
+            return no_meal.translate();
         }
         return super.beforeWorking(recipe);
     }
@@ -209,47 +223,45 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
         return super.onWorking();
     }
 
-    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
+    public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
         if (machine instanceof FactoryMachine fmachine) {
-            var modifierFunction = ModifierFunction.builder();
             var recipeType = recipe.recipeType;
             var recipeTier = recipe.tier;
             if (fmachine.basicRate == 0) {
-                return ModifierFunction.NULL;
+                return Component.translatable("gtceu.recipe_modifier.default_fail");
             }
-            modifierFunction
-                    .durationMultiplier(2 / fmachine.basicRate * Math.pow(recipeTier, 2));
+            recipe.multiplyDuration(2 / fmachine.basicRate * Math.pow(recipeTier, 2));
             if (recipeType.equals(GTRecipeTypes.CENTRIFUGE_RECIPES)) {
-                return modifierFunction.build().andThen(CTNHRecipeModifiers.accurateParallel(machine, recipe,
-                        (int) Math.sqrt(fmachine.CENTRIFUGE_COUNT)));
+                return CTNHRecipeModifiers.accurateParallel(machine, group, recipe,
+                        (int) Math.sqrt(fmachine.CENTRIFUGE_COUNT));
             } else if (recipeType.equals(GTRecipeTypes.LATHE_RECIPES)) {
-                return modifierFunction.build().andThen(
-                        CTNHRecipeModifiers.accurateParallel(machine, recipe, (int) Math.sqrt(fmachine.LATHE_COUNT)));
+                return CTNHRecipeModifiers.accurateParallel(machine, group, recipe,
+                        (int) Math.sqrt(fmachine.LATHE_COUNT));
             } else if (recipeType.equals(GTRecipeTypes.MACERATOR_RECIPES)) {
-                return modifierFunction.build().andThen(CTNHRecipeModifiers.accurateParallel(machine, recipe,
-                        (int) Math.sqrt(fmachine.CRUSHING_COUNT)));
+                return CTNHRecipeModifiers.accurateParallel(machine, group, recipe,
+                        (int) Math.sqrt(fmachine.CRUSHING_COUNT));
             } else if (recipeType.equals(GTRecipeTypes.EXTRACTOR_RECIPES)) {
-                return modifierFunction.build().andThen(
-                        CTNHRecipeModifiers.accurateParallel(machine, recipe, (int) Math.sqrt(fmachine.BURNER_COUNT)));
+                return CTNHRecipeModifiers.accurateParallel(machine, group, recipe,
+                        (int) Math.sqrt(fmachine.BURNER_COUNT));
             } else if (recipeType.equals(GTRecipeTypes.BENDER_RECIPES)) {
-                return modifierFunction.build().andThen(
-                        CTNHRecipeModifiers.accurateParallel(machine, recipe, (int) Math.sqrt(fmachine.PRESSOR_COUNT)));
+                return CTNHRecipeModifiers.accurateParallel(machine, group, recipe,
+                        (int) Math.sqrt(fmachine.PRESSOR_COUNT));
             } else if (recipeType.equals(GTRecipeTypes.MIXER_RECIPES)) {
-                return modifierFunction.build().andThen(
-                        CTNHRecipeModifiers.accurateParallel(machine, recipe, (int) Math.sqrt(fmachine.MIXER_COUNT)));
+                return CTNHRecipeModifiers.accurateParallel(machine, group, recipe,
+                        (int) Math.sqrt(fmachine.MIXER_COUNT));
             } else if (recipeType.equals(GTRecipeTypes.WIREMILL_RECIPES)) {
-                return modifierFunction.build().andThen(
-                        CTNHRecipeModifiers.accurateParallel(machine, recipe, (int) Math.sqrt(fmachine.SAW_COUNT)));
+                return CTNHRecipeModifiers.accurateParallel(machine, group, recipe,
+                        (int) Math.sqrt(fmachine.SAW_COUNT));
             } else if (recipeType.equals(GTRecipeTypes.LASER_ENGRAVER_RECIPES)) {
-                return modifierFunction.build().andThen(
-                        CTNHRecipeModifiers.accurateParallel(machine, recipe, (int) Math.sqrt(fmachine.LASER_COUNT)));
+                return CTNHRecipeModifiers.accurateParallel(machine, group, recipe,
+                        (int) Math.sqrt(fmachine.LASER_COUNT));
             } else if (recipeType.equals(GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES)) {
-                return modifierFunction.build().andThen(
-                        CTNHRecipeModifiers.accurateParallel(machine, recipe, (int) Math.sqrt(fmachine.BASIN_COUNT)));
+                return CTNHRecipeModifiers.accurateParallel(machine, group, recipe,
+                        (int) Math.sqrt(fmachine.BASIN_COUNT));
             }
             throw new IllegalStateException("Unexpected value: " + recipeType);
         }
-        return ModifierFunction.IDENTITY;
+        return null;
     }
 
     public double calculateDiversity() {

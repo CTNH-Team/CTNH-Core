@@ -7,8 +7,7 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
@@ -104,20 +103,17 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
     }
 
     // recipeModifier 实现，根据温度调整并行数
-    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
+    public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
         if (machine instanceof NaqReactorMachine reactorMachine) {
             int parallelCount = reactorMachine.getParallelCount();
             // 并行数影响Eut输出量
 
-            return ModifierFunction.builder()
-                    .inputModifier(ContentModifier.multiplier(parallelCount))  // 输入不变
-                    .outputModifier(ContentModifier.multiplier(parallelCount))  // 输出不变
-                    .durationMultiplier(1)  // 使用时间不变
-                    .parallels(parallelCount)  // 根据温度调整并行数
-                    .eutMultiplier(parallelCount)  // 根据并行数调整Eut输出
-                    .build();
+            recipe.multiplyAllContents(parallelCount);
+            recipe.parallels *= parallelCount;
+            recipe.multiplyEUt(parallelCount);
+            return null;
         }
-        return ModifierFunction.IDENTITY;
+        return null;
     }
 
     // 更新GUI显示文本

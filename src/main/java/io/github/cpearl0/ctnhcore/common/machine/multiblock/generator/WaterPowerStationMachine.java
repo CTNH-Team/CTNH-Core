@@ -6,7 +6,8 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
@@ -27,13 +28,13 @@ public class WaterPowerStationMachine extends CoilWorkableElectricMultiblockMach
         efficiency = 1 + 0.1 * getCoilTier();
     }
 
-    public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
+    public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, @NotNull GTRecipe recipe) {
         if (machine instanceof WaterPowerStationMachine wmachine) {
             var random = Math.random() * 0.4 + 0.6;
-            return ModifierFunction.builder().eutMultiplier(wmachine.water * random * wmachine.efficiency / 100)
-                    .build();
+            recipe.multiplyEUt(wmachine.water * random * wmachine.efficiency / 100);
+            return null;
         }
-        return ModifierFunction.NULL;
+        return RecipeModifier.DEFAULT_FAILURE;
     }
 
     @Override
