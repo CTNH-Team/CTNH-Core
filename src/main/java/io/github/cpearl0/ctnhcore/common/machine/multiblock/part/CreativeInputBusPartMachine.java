@@ -39,7 +39,6 @@ import java.util.function.IntFunction;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import static com.gregtechceu.gtceu.integration.ae2.gui.widget.slot.AEConfigSlotWidget.drawSelectionOverlay;
 import static com.lowdragmc.lowdraglib.gui.util.DrawerHelper.drawItemStack;
 
 @ParametersAreNonnullByDefault
@@ -218,5 +217,13 @@ public class CreativeInputBusPartMachine extends TieredIOPartMachine implements 
             }
             super.setStackInSlot(index, stack);
         }
+    }
+
+    private static void drawSelectionOverlay(GuiGraphics graphics, int x, int y, int width, int height) {
+        int color = 0x80FFFFFF;
+        graphics.fill(x, y, x + width, y + 1, color);
+        graphics.fill(x, y + height - 1, x + width, y + height, color);
+        graphics.fill(x, y, x + 1, y + height, color);
+        graphics.fill(x + width - 1, y, x + width, y + height, color);
     }
 }

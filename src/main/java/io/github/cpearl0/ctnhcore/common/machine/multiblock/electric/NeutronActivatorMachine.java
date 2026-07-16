@@ -17,9 +17,10 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.IExplosionMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDisplayUIMachine;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.content.Content;
+import com.gregtechceu.gtceu.api.recipe.ingredient.item.ItemIngredient;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.ItemBusPartMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -48,7 +49,7 @@ import java.util.HashSet;
 import java.util.List;
 
 @Prefix("info.multiblock.neutron_activator")
-public class NeutronActivatorMachine extends WorkableMultiblockMachine
+public class NeutronActivatorMachine extends RecipeMultiblockMachine
                                      implements IFancyUIMachine, IDisplayUIMachine, IExplosionMachine {
 
     public static int K = 1000;
@@ -78,6 +79,11 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine
     }
 
     @Override
+    protected RecipeLogic createRecipeLogic(Object... args) {
+        return new NeutronActivatorLogic(this);
+    }
+
+    @Override
     public void onStructureFormed() {
         // Declare 'height' as a local variable if not used elsewhere
         height = 0;
@@ -94,7 +100,6 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine
             if (io == IO.NONE) continue;
 
             for (var handlerList : part.getRecipeHandlers()) {
-                if (!handlerList.isValid(io)) continue;
                 traitSubscriptions
                         .add(handlerList.subscribe(neutronEnergySubs::updateSubscription, EURecipeCapability.CAP));
                 traitSubscriptions.add(handlerList.subscribe(moderateSubs::updateSubscription, EURecipeCapability.CAP));
@@ -286,22 +291,31 @@ public class NeutronActivatorMachine extends WorkableMultiblockMachine
     // ****** RECIPE LOGIC *******//
     //////////////////////////////////////
 
-    @Override
-    protected @Nullable GTRecipe getRealRecipe(GTRecipe recipe) {
-        List<NeutronActivatorCondition> conditions = recipe.conditions.stream()
-                .filter(NeutronActivatorCondition.class::isInstance)
-                .map(NeutronActivatorCondition.class::cast)
-                .toList();
-        var newRecipe = recipe.copy();
-        newRecipe.duration = (int) Math.max((newRecipe.duration * getVelocityFactor()), 1.0);
-        if (!conditions.isEmpty()) {
-            var condition = conditions.get(0);
-            if (eV > (condition.evRange / 10000) * 1000000 || eV < (condition.evRange % 10000) * 1000000) {
-                newRecipe.outputs.clear();
-                newRecipe.outputs.put(ItemRecipeCapability.CAP,
-                        List.of(new Content(Ingredient.of(CTNHItems.RADIOACTIVE_WASTE), 1, 1, 0)));
-            }
+    private static class NeutronActivatorLogic extends RecipeLogic {
+
+        private NeutronActivatorLogic(NeutronActivatorMachine machine) {
+            super(machine);
         }
-        return super.getRealRecipe(newRecipe);
+
+        @Override
+        public void setupRecipe(GTRecipe recipe) {
+            var machine = (NeutronActivatorMachine) getMachine();
+            List<NeutronActivatorCondition> conditions = recipe.conditions.stream()
+                    .filter(NeutronActivatorCondition.class::isInstance)
+                    .map(NeutronActivatorCondition.class::cast)
+                    .toList();
+            var newRecipe = recipe.copy();
+            newRecipe.duration = (int) Math.max((newRecipe.duration * machine.getVelocityFactor()), 1.0);
+            if (!conditions.isEmpty()) {
+                var condition = conditions.get(0);
+                if (machine.eV > (condition.evRange / 10000) * 1000000 ||
+                        machine.eV < (condition.evRange % 10000) * 1000000) {
+                    newRecipe.outputs.clear();
+                    newRecipe.outputs.put(ItemRecipeCapability.CAP,
+                            List.of(ItemIngredient.of(Ingredient.of(CTNHItems.RADIOACTIVE_WASTE))));
+                }
+            }
+            super.setupRecipe(newRecipe);
+        }
     }
 }

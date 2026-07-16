@@ -10,7 +10,7 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
@@ -34,9 +34,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
-import javax.annotation.Nullable;
 
-public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockMachine implements ITieredMachine {
+public class NanoscaleTriboelectricGenerator extends RecipeElectricMultiblockMachine implements ITieredMachine {
 
     @Persisted
     public final NotifiableItemStackHandler machineStorage;
@@ -76,7 +75,7 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
     }
 
     @Override
-    public boolean beforeWorking(@Nullable GTRecipe recipe) {
+    public Component beforeWorking(@NotNull GTRecipe recipe) {
         if (is_consume) {
             consumeItem();
         }

@@ -2,7 +2,7 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDisplayUIMachine;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeMultiblockMachine;
 
 import com.lowdragmc.lowdraglib.gui.util.ClickData;
 import com.lowdragmc.lowdraglib.gui.widget.ComponentPanelWidget;
@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class UnderfloorHeatingMachine extends WorkableMultiblockMachine implements IDisplayUIMachine {
+public class UnderfloorHeatingMachine extends RecipeMultiblockMachine implements IDisplayUIMachine {
 
     @Getter
     public int rate = 100;

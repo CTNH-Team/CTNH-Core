@@ -213,7 +213,7 @@ public class DigitalMinerLogic extends WorkLogic{
         if (isWorkingEnabled() && checkCanMine()) {
             // if the inventory is not full, drain energy etc. from the miner
             // the storages have already been checked earlier
-            if (!isInventoryFull()) {
+            if (!isInventoryFull) {
                 // always drain storages when working, even if blocksToMine ends up being empty
                 miner.drainInput(false);
                 // since energy is being consumed the miner is now active
@@ -246,7 +246,7 @@ public class DigitalMinerLogic extends WorkLogic{
                     LootParams.Builder builder = new LootParams.Builder(serverLevel)
                             .withParameter(LootContextParams.BLOCK_STATE, blockState)
                             .withParameter(LootContextParams.ORIGIN, Vec3.atLowerCornerOf(blocksToMine.getFirst()))
-                            .withParameter(LootContextParams.TOOL, getPickaxeTool());
+                            .withParameter(LootContextParams.TOOL, pickaxeTool);
 
                     // get the block's drops.
                     if (isSilkTouchMode()) {
@@ -567,7 +567,7 @@ public class DigitalMinerLogic extends WorkLogic{
         LootParams.Builder builder = new LootParams.Builder(serverLevel)
                 .withParameter(LootContextParams.BLOCK_STATE, state)
                 .withParameter(LootContextParams.ORIGIN, Vec3.atLowerCornerOf(pos))
-                .withParameter(LootContextParams.TOOL, getPickaxeTool());
+                .withParameter(LootContextParams.TOOL, pickaxeTool);
 
         getRegularBlockDrops(predictedDrops, state, builder);
         if (!predictedDrops.isEmpty() && hasPostProcessing()) {

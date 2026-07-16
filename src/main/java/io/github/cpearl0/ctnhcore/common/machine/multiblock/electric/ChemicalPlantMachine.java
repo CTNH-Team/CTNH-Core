@@ -5,7 +5,7 @@ import io.github.cpearl0.ctnhcore.api.machine.feature.IDynamicCasing;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
@@ -28,7 +28,7 @@ import java.util.List;
 import static java.lang.Math.min;
 
 @Prefix("info.multiblock.chemical_plant")
-public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine implements IDynamicCasing {
+public class ChemicalPlantMachine extends RecipeElectricMultiblockMachine implements IDynamicCasing {
 
     @Persisted
     @DescSynced

@@ -12,14 +12,12 @@ import com.gregtechceu.gtceu.api.machine.fancyconfigurator.CombinedDirectionalFa
 import com.gregtechceu.gtceu.api.machine.feature.IExplosionMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.misc.EnergyContainerList;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.content.Content;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
@@ -34,11 +32,10 @@ import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.DoubleSupplier;
 
-public class WideParticleAccelerator extends WorkableElectricMultiblockMachine
+public class WideParticleAccelerator extends RecipeElectricMultiblockMachine
                                      implements ITieredMachine, IExplosionMachine {
 
     @Persisted
@@ -85,7 +82,8 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine
     public DoubleSupplier get_proton = () -> (double) this.proton_speed / 50000;
 
     public int GetParallel(MetaMachine machine, GTRecipe recipe, int parallelLimit) {
-        int parallel = ParallelLogic.getParallelAmount(machine, recipe, (int) (parallelLimit / consume_mutiple));
+        int parallel = ParallelLogic.getParallelAmount(getRecipeLogic().getLastGroup(), recipe,
+                (int) (parallelLimit / consume_mutiple));
         return parallel;
     }
 
@@ -173,7 +171,7 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine
 
     // 初始化
     @Override
-    public boolean beforeWorking(@Nullable GTRecipe recipe) {
+    public Component beforeWorking(@NotNull GTRecipe recipe) {
         return super.beforeWorking(recipe);
     }
 
@@ -196,7 +194,7 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine
         super.afterWorking();
     }
 
-    public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
+    public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, @NotNull GTRecipe recipe) {
         var hatchs = 0;
         if (machine instanceof IMultiController controller) {
             if (controller.isFormed()) {
@@ -211,7 +209,6 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine
         }
 
         if (machine instanceof WideParticleAccelerator wmachine) {
-            List<Content> itemList = new ArrayList<>();
             var level = wmachine.self().getLevel();
             var pos = wmachine.self().getPos();
 
@@ -225,15 +222,15 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine
             }
             // 速度不足
             if (recipe.data.getString("type").equals("nu") && recipe.data.getDouble("speed") >= wmachine.nu_speed) {
-                return ModifierFunction.NULL;
+                return Component.translatable("gtceu.recipe_modifier.default_fail");
             }
             if (recipe.data.getString("type").equals("element") &&
                     recipe.data.getDouble("speed") >= wmachine.electric_speed) {
-                return ModifierFunction.NULL;
+                return Component.translatable("gtceu.recipe_modifier.default_fail");
             }
             if (recipe.data.getString("type").equals("proton") &&
                     recipe.data.getDouble("speed") >= wmachine.proton_speed) {
-                return ModifierFunction.NULL;
+                return Component.translatable("gtceu.recipe_modifier.default_fail");
             }
             // 计算并行
             int parallel = 1;
@@ -250,8 +247,8 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine
             // var true_eut=eut_consume*(1+total_eut);
             // recipe.tickInputs.put(EURecipeCapability.CAP, EURecipeCapability.makeEUContent(new EnergyStack((long)
             // true_eut)));
-            parallel = ParallelLogic.getParallelAmount(machine, recipe, 16);
-            if (hatchs > 0) parallel = ParallelLogic.getParallelAmount(machine, recipe, hatchs);
+            parallel = ParallelLogic.getParallelAmount(group, recipe, 16);
+            if (hatchs > 0) parallel = ParallelLogic.getParallelAmount(group, recipe, hatchs);
 
             // 加速粒子模式逻辑 弃用
             // if(recipe.data.getString("type").equals("addnu")||recipe.data.getString("type").equals("addproton")||recipe.data.getString("type").equals("addelement"))
@@ -324,15 +321,13 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine
                         (wmachine.nu_speed + wmachine.proton_speed + wmachine.electric_speed) / 2000);
             }
 
-            return ModifierFunction.builder()
-                    .parallels(parallel)
-                    .inputModifier(ContentModifier.multiplier(parallel))
-                    .outputModifier(ContentModifier.multiplier(parallel))
-                    .eutMultiplier(parallel)
-                    .durationMultiplier(Math.max(0.1, muti))
-                    .build();
+            recipe.parallels = parallel;
+            recipe.multiplyAllContents(parallel);
+            recipe.multiplyEUt(parallel);
+            recipe.multiplyDuration(Math.max(0.1, muti));
+            return null;
         }
-        return ModifierFunction.NULL;
+        return Component.translatable("gtceu.recipe_modifier.default_fail");
     }
 
     @Override

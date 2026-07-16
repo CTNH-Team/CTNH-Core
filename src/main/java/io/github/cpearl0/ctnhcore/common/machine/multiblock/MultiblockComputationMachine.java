@@ -1,10 +1,9 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock;
 
-import com.gregtechceu.gtceu.api.capability.IOpticalComputationProvider;
-import com.gregtechceu.gtceu.api.capability.IOpticalComputationReceiver;
-import com.gregtechceu.gtceu.api.capability.forge.GTCapability;
+import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.trait.NetworkedComputationContainer;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import net.minecraft.network.chat.Component;
@@ -13,39 +12,17 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class MultiblockComputationMachine extends WorkableElectricMultiblockMachine
-                                          implements IOpticalComputationReceiver {
+public class MultiblockComputationMachine extends RecipeElectricMultiblockMachine {
 
-    protected IOpticalComputationProvider computationContainer;
+    protected final NetworkedComputationContainer computationContainer;
 
     public MultiblockComputationMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
+        computationContainer = new NetworkedComputationContainer(this, IO.IN);
     }
 
-    @Override
-    public void onStructureFormed() {
-        super.onStructureFormed();
-        getParts().forEach(part -> part.self().holder.self()
-                .getCapability(GTCapability.CAPABILITY_COMPUTATION_PROVIDER)
-                .ifPresent(provider -> this.computationContainer = provider));
-        if (computationContainer == null) {
-            onStructureInvalid();
-        }
-    }
-
-    @Override
-    public void onStructureInvalid() {
-        computationContainer = null;
-        super.onStructureInvalid();
-    }
-
-    @Override
-    public IOpticalComputationProvider getComputationProvider() {
-        return computationContainer;
-    }
-
-    public int getMaxCWUt() {
-        return computationContainer != null ? computationContainer.getMaxCWUt() : 0;
+    public int getCurrentCWUt() {
+        return computationContainer.getReceivedCWUt();
     }
 
     //////////////////////////////////////
@@ -54,7 +31,7 @@ public class MultiblockComputationMachine extends WorkableElectricMultiblockMach
     @Override
     public void addDisplayText(@NotNull List<Component> textList) {
         if (isFormed()) {
-            int maxCUWt = getMaxCWUt();
+            int maxCUWt = getCurrentCWUt();
             textList.add(Component.translatable("gtceu.multiblock.computation.max",
                     FormattingUtil.formatNumbers(maxCUWt)));
         }

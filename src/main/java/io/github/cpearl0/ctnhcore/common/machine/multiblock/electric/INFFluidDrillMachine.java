@@ -10,7 +10,7 @@ import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.misc.EnergyContainerList;
 import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
@@ -33,7 +33,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class INFFluidDrillMachine extends WorkableElectricMultiblockMachine implements ITieredMachine {
+public class INFFluidDrillMachine extends RecipeElectricMultiblockMachine implements ITieredMachine {
 
     @Getter
     private final int tier;
@@ -60,7 +60,7 @@ public class INFFluidDrillMachine extends WorkableElectricMultiblockMachine impl
         var energyCont = new EnergyContainerList(energyContainer.stream().filter(IEnergyContainer.class::isInstance)
                 .map(IEnergyContainer.class::cast).toList());
 
-        return Math.min(this.tier + 1, Math.max(this.tier, GTUtil.getFloorTierByVoltage(energyCont.getInputVoltage())));
+        return Math.min(this.tier + 1, Math.max(this.tier, GTUtil.getFloorTierByVoltage(energyCont.getEffectiveVoltage())));
     }
 
     @Override

@@ -68,4 +68,25 @@ public enum CoilType implements StringRepresentable, ICoilType {
     public String getSerializedName() {
         return name;
     }
+
+    @Override
+    public String getName() { return name; }
+
+    @Override
+    public int getCoilTemperature() { return coilTemperature; }
+
+    @Override
+    public int getLevel() { return level; }
+
+    @Override
+    public int getEnergyDiscount() { return energyDiscount; }
+
+    @Override
+    public int getTier() { return tier; }
+
+    @Override
+    public Material getMaterial() { return material; }
+
+    @Override
+    public ResourceLocation getTexture() { return texture; }
 }

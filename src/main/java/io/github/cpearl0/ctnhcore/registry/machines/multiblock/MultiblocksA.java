@@ -36,7 +36,6 @@ import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
-import com.gregtechceu.gtceu.common.machine.multiblock.electric.LargeMinerMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import net.minecraft.ChatFormatting;
@@ -1293,7 +1292,7 @@ public class MultiblocksA {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_primitive_bricks"), GTCEu.id("block/machines/alloy_smelter"))
             .register();
 
-    public static final MultiblockMachineDefinition ZPM_LARGE_MINER = REGISTRATE.multiblock("zpm_large_miner", holder -> new LargeMinerMachine(holder, GTValues.ZPM, 64 / GTValues.ZPM, 2 * GTValues.ZPM - 5, 7, 6))
+    public static final MultiblockMachineDefinition ZPM_LARGE_MINER = REGISTRATE.multiblock("zpm_large_miner", LargeDigitalMinerMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.MACERATOR_RECIPES)
             .tooltips(
@@ -1316,8 +1315,8 @@ public class MultiblocksA {
                     .aisle("XSX", "#F#", "#F#", "#F#", "###", "###", "###")
                     .where("S", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("X", Predicates.blocks(CASING_OSMIRIDIUM.get())
-                            .or(abilities(PartAbility.EXPORT_ITEMS).setMaxGlobalLimited(1).setPreviewCount(1))
-                            .or(abilities(PartAbility.IMPORT_FLUIDS).setExactLimit(1).setPreviewCount(1))
+                            .or(abilities(PartAbility.EXPORT_ITEMS).setMinGlobalLimited(1).setPreviewCount(1))
+                            .or(abilities(PartAbility.IMPORT_FLUIDS).setMinGlobalLimited(1).setPreviewCount(1))
                             .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1)
                                     .setMaxGlobalLimited(2).setPreviewCount(1)))
                     .where("C", Predicates.blocks(CASING_OSMIRIDIUM.get()))

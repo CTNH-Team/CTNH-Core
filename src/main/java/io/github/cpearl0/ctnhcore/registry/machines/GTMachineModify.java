@@ -11,8 +11,8 @@ import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifierList;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
@@ -72,13 +72,13 @@ public class GTMachineModify {
                 GCYMMachines.LARGE_WIREMILL,
                 GCYMMachines.MEGA_BLAST_FURNACE,
                 GCYMMachines.MEGA_VACUUM_FREEZER);
-        RecipeModifierList commonModifier = new RecipeModifierList(
+        RecipeModifier[] commonModifiers = {
                 CTNHRecipeModifiers.GCYM_REDUCTION,
                 GTRecipeModifiers.PARALLEL_HATCH,
                 GTRecipeModifiers.OC_NON_PERFECT,
-                GTRecipeModifiers.BATCH_MODE);
+                GTRecipeModifiers.BATCH_MODE };
         for (MachineDefinition machine : gcymMachinesToModify) {
-            machine.setRecipeModifier(commonModifier);
+            machine.setRecipeModifiers(commonModifiers);
             machine.setTooltipBuilder(machine.getTooltipBuilder().andThen(REDUCTION_INFO));
         }
         LARGE_CHEMICAL_REACTOR.setTooltipBuilder(
@@ -112,7 +112,10 @@ public class GTMachineModify {
     }
 
     private static void appendRecipeModifier(MachineDefinition machine, RecipeModifier recipeModifier) {
-        machine.setRecipeModifier(new RecipeModifierList(machine.getRecipeModifier(), recipeModifier));
+        RecipeModifier[] modifiers = machine.getRecipeModifiers();
+        RecipeModifier[] appended = Arrays.copyOf(modifiers, modifiers.length + 1);
+        appended[modifiers.length] = recipeModifier;
+        machine.setRecipeModifiers(appended);
     }
 
     @CN({
@@ -153,20 +156,18 @@ public class GTMachineModify {
                 .where('#', Predicates.any())
                 .build());
 
-        lASB.setRecipeModifier(
-                new RecipeModifierList(
-                        CTNHRecipeModifiers.GCYM_REDUCTION,
-                        GTMachineModify::assemblyRecipeModifier,
-                        GTRecipeModifiers.BATCH_MODE));
+        lASB.setRecipeModifiers(new RecipeModifier[] {
+                CTNHRecipeModifiers.GCYM_REDUCTION,
+                GTMachineModify::assemblyRecipeModifier,
+                GTRecipeModifiers.BATCH_MODE });
     }
 
     private static Component assemblyRecipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe gtRecipe) {
         if (gtRecipe.recipeType == CTNHRecipeTypes.PRECISION_ASSEMBLY_RECIPES) {
             return GTRecipeModifiers.OC_NON_PERFECT.apply(machine, group, gtRecipe);
         } else {
-            return new RecipeModifierList(
-                    GTRecipeModifiers.PARALLEL_HATCH,
-                    GTRecipeModifiers.OC_NON_PERFECT).apply(machine, group, gtRecipe);
+            Component failure = GTRecipeModifiers.PARALLEL_HATCH.apply(machine, group, gtRecipe);
+            return failure != null ? failure : GTRecipeModifiers.OC_NON_PERFECT.apply(machine, group, gtRecipe);
         }
     }
 

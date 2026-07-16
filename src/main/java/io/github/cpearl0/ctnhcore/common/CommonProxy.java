@@ -28,7 +28,6 @@ import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEv
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.category.GTRecipeCategory;
-import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
 import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
 import com.gregtechceu.gtceu.data.tags.BiomeTagsLoader;
 
@@ -63,7 +62,6 @@ public class CommonProxy {
         modEventBus.addGenericListener(GTRecipeType.class, CommonProxy::registerRecipeTypes);
         modEventBus.addGenericListener(DimensionMarker.class, CommonProxy::registerDimensionMarkers);
         modEventBus.addGenericListener(GTRecipeCategory.class, CommonProxy::onRecipeCategoryRegister);
-        modEventBus.addGenericListener(ChanceLogic.class, CommonProxy::registerChanceLogic);
         modEventBus.addGenericListener(RecipeConditionType.class, CommonProxy::registerRecipeConditions);
 
         CTNHCreativeModeTabs.init();
@@ -103,10 +101,6 @@ public class CommonProxy {
 
     public static void registerDimensionMarkers(GTCEuAPI.RegisterEvent<ResourceLocation, DimensionMarker> event) {
         CTNHDimensionMarkers.init();
-    }
-
-    public static void registerChanceLogic(GTCEuAPI.RegisterEvent<ResourceLocation, ChanceLogic> event) {
-        CTNHChanceLogic.init();
     }
 
     public static void registerRecipeConditions(GTCEuAPI.RegisterEvent<ResourceLocation, RecipeConditionType<?>> event) {

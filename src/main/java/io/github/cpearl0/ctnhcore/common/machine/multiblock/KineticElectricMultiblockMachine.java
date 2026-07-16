@@ -17,7 +17,7 @@ import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDisplayUIMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeMultiblockMachine;
 import com.gregtechceu.gtceu.api.misc.EnergyContainerList;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.utils.GTUtil;
@@ -36,13 +36,13 @@ import com.mo_guang.ctpp.common.machine.multiblock.part.KineticPartMachine;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import it.unimi.dsi.fastutil.longs.LongSet;
 import it.unimi.dsi.fastutil.longs.LongSets;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class KineticElectricMultiblockMachine extends WorkableMultiblockMachine implements IFancyUIMachine,
+public class KineticElectricMultiblockMachine extends RecipeMultiblockMachine implements IFancyUIMachine,
                                               IDisplayUIMachine, ITieredMachine, IOverclockMachine {
 
     public KineticElectricMultiblockMachine(IMachineBlockEntity holder) {
@@ -225,8 +225,9 @@ public class KineticElectricMultiblockMachine extends WorkableMultiblockMachine 
         return new EnergyContainerList(containers);
     }
 
-    public boolean beforeWorking(@Nullable GTRecipe recipe) {
-        boolean result = super.beforeWorking(recipe);
+    public Component beforeWorking(@NotNull GTRecipe recipe) {
+        var failReason = super.beforeWorking(recipe);
+        if (failReason != null) return failReason;
         this.previousSpeed = this.speed;
         this.speed = 256.0F;
 
@@ -239,13 +240,13 @@ public class KineticElectricMultiblockMachine extends WorkableMultiblockMachine 
         }
 
         if (this.speed != this.previousSpeed) {
-            this.updateRotateBlocks(result);
+            this.updateRotateBlocks(true);
         }
         if (this.speed < 64) {
-            return false;
+            return Component.translatable("gtceu.recipe_logic.insufficient_in");
         }
 
-        return result;
+        return null;
     }
 
     @Override

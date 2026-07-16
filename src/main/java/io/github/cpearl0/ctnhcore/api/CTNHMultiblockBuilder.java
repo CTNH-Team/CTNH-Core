@@ -257,7 +257,7 @@ public class CTNHMultiblockBuilder extends CTNHMultiblockMachineBuilder {
         return (CTNHMultiblockBuilder) super.alwaysTryModifyRecipe(alwaysTryModifyRecipe);
     }
 
-    public CTNHMultiblockBuilder beforeWorking(BiPredicate<IRecipeLogicMachine, GTRecipe> beforeWorking) {
+    public CTNHMultiblockBuilder beforeWorking(BiFunction<IRecipeLogicMachine, GTRecipe, Component> beforeWorking) {
         return (CTNHMultiblockBuilder) super.beforeWorking(beforeWorking);
     }
 

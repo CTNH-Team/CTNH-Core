@@ -19,8 +19,6 @@ import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Collections;
-import java.util.Iterator;
 
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
 
@@ -42,17 +40,14 @@ public class DigestingTankMachine extends BioMachine {
         }
 
         @Override
-        public @NotNull Iterator<GTRecipe> searchRecipe() {
-            Iterator<GTRecipe> normalSearch = super.searchRecipe();
-            if (normalSearch.hasNext()) {
-                return normalSearch;
+        public void findAndHandleRecipe() {
+            super.findAndHandleRecipe();
+            if (lastRecipe == null) {
+                GTRecipe dynamicFoodRecipe = searchFoodRecipe();
+                if (dynamicFoodRecipe != null && checkRecipe(dynamicFoodRecipe).isSuccess()) {
+                    setupRecipe(dynamicFoodRecipe);
+                }
             }
-
-            GTRecipe dynamicFoodRecipe = searchFoodRecipe();
-            if (dynamicFoodRecipe != null && matchRecipe(dynamicFoodRecipe).isSuccess()) {
-                return Collections.singleton(dynamicFoodRecipe).iterator();
-            }
-            return Collections.emptyIterator();
         }
 
         @Nullable
@@ -119,7 +114,7 @@ public class DigestingTankMachine extends BioMachine {
                 return builder
                         .inputFluids(GTMaterials.Water.getFluid(amount))
                         .outputFluids(GTMaterials.Biomass.getFluid(amount))
-                        .buildRawRecipe();
+                        .buildRuntime();
             }
 
             int amount = 75 * baseAmount;
@@ -127,7 +122,7 @@ public class DigestingTankMachine extends BioMachine {
                     .inputFluids(GTMaterials.Water.getFluid(amount))
                     .outputFluids(GTMaterials.FermentedBiomass.getFluid(amount))
                     .chancedOutput(dust, YeastRelatedMaterials.ESCHERICHIA_COLI, 500 * baseAmount, 500)
-                    .buildRawRecipe();
+                    .buildRuntime();
         }
     }
 }

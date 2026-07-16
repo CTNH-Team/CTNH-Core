@@ -9,14 +9,14 @@ import com.gregtechceu.gtceu.api.gui.widget.SlotWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IMachineModifyDrops;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
-import com.gregtechceu.gtceu.api.recipe.content.Content;
-import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
-import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
+import com.gregtechceu.gtceu.api.recipe.ingredient.fluid.FluidIngredient;
+import com.gregtechceu.gtceu.api.recipe.ingredient.item.ItemIngredient;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 
@@ -63,7 +63,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine implements IMachineModifyDrops {
+public class SlaughterHouseMachine extends RecipeElectricMultiblockMachine implements IMachineModifyDrops {
 
     @Persisted
     public final NotifiableItemStackHandler machineStorage;
@@ -234,11 +234,11 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
     }
 
     @Override
-    public boolean beforeWorking(@Nullable GTRecipe recipe) {
-        if (!super.beforeWorking(recipe))
-            return false;
+    public Component beforeWorking(@NotNull GTRecipe recipe) {
+        var failReason = super.beforeWorking(recipe);
+        if (failReason != null) return failReason;
         ensureMobListUpToDate();
-        return !mobList.isEmpty();
+        return mobList.isEmpty() ? RecipeModifier.DEFAULT_FAILURE : null;
     }
 
     public void resetMobList() {
@@ -420,27 +420,29 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine imp
         rebuildLootCache(level);
     }
 
-    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
-        var newrecipe = GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK)
-                .applyModifier(machine, recipe.copy());
-        if (machine instanceof SlaughterHouseMachine smachine && newrecipe != null) {
+    public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
+        if (!(machine instanceof SlaughterHouseMachine smachine)) {
+            return RecipeModifier.nullWrongType(SlaughterHouseMachine.class, machine);
+        }
+        Component failure = OverclockingLogic.NON_PERFECT_OVERCLOCK.getModifier(machine, group, recipe,
+                smachine.getOverclockVoltage());
+        if (failure != null) return failure;
+        if (machine instanceof SlaughterHouseMachine) {
             if (machine.getLevel() instanceof ServerLevel level) {
                 smachine.ensureLootCacheUpToDate(level);
                 if (!smachine.mobList.isEmpty()) {
                     var itemList = smachine.lootCacheStacks.stream()
-                            .map(stack -> new Content(SizedIngredient.create(stack.copy()), 1, 1, 0))
+                            .map(stack -> ItemIngredient.of(stack.copy()))
                             .collect(Collectors.toCollection(ArrayList::new));
-                    newrecipe.outputs.put(ItemRecipeCapability.CAP, itemList);
-                    newrecipe.outputs.put(FluidRecipeCapability.CAP,
-                            List.of(new Content(
-                                    FluidIngredient.of(new FluidStack(EIOFluids.XP_JUICE.get().getSource(),
-                                            smachine.lootCacheTotalExperience)),
-                                    1, 1, 0)));
-                    newrecipe.duration = smachine.lootCacheDuration;
+                    recipe.outputs.put(ItemRecipeCapability.CAP, itemList);
+                    recipe.outputs.put(FluidRecipeCapability.CAP,
+                            List.of(FluidIngredient.of(new FluidStack(EIOFluids.XP_JUICE.get().getSource(),
+                                    smachine.lootCacheTotalExperience))));
+                    recipe.duration = smachine.lootCacheDuration;
                 }
             }
         }
-        return recipe1 -> newrecipe;
+        return null;
     }
 
     @Override

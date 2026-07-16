@@ -49,8 +49,7 @@ public class INFFluidDrillLogic extends RecipeLogic {
             }
 
             GTRecipe match = this.getFluidDrillRecipe();
-            if (match != null && RecipeHelper.matchRecipe(this.machine, match).isSuccess() &&
-                    RecipeHelper.matchTickRecipe(this.machine, match).isSuccess()) {
+            if (match != null && RecipeHelper.matchContents(getLastGroup(), match).isSuccess()) {
                 this.setupRecipe(match);
             }
         }
@@ -65,9 +64,8 @@ public class INFFluidDrillLogic extends RecipeLogic {
                         .outputFluids(new FluidStack(this.veinFluid,
                                 this.getFluidToProduce(
                                         data.getFluidVeinWorldEntry(this.getChunkX(), this.getChunkZ()))))
-                        .buildRawRecipe();
-                if (RecipeHelper.matchRecipe(this.getMachine(), recipe).isSuccess() &&
-                        RecipeHelper.matchTickRecipe(this.getMachine(), recipe).isSuccess()) {
+                        .buildRuntime();
+                if (RecipeHelper.matchContents(getLastGroup(), recipe).isSuccess()) {
                     return recipe;
                 }
             }
@@ -108,14 +106,12 @@ public class INFFluidDrillLogic extends RecipeLogic {
     public void onRecipeFinish() {
         this.machine.afterWorking();
         if (this.lastRecipe != null) {
-            // this.lastRecipe.postWorking(this.machine);
-            RecipeHelper.handleRecipeIO(this.machine, this.lastRecipe, IO.OUT, this.chanceCaches);
+            RecipeHelper.handleRecipeIO(getLastGroup(), this.lastRecipe, IO.OUT);
         }
 
         this.depleteVein();
         GTRecipe match = this.getFluidDrillRecipe();
-        if (match != null && RecipeHelper.matchRecipe(this.machine, match).isSuccess() &&
-                RecipeHelper.matchTickRecipe(this.machine, match).isSuccess()) {
+        if (match != null && RecipeHelper.matchContents(getLastGroup(), match).isSuccess()) {
             this.setupRecipe(match);
         } else {
             if (this.suspendAfterFinish) {

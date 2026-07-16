@@ -3,7 +3,7 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 
@@ -13,7 +13,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-public class Arc_Reactor extends WorkableElectricMultiblockMachine implements ITieredMachine {
+public class Arc_Reactor extends RecipeElectricMultiblockMachine implements ITieredMachine {
 
     public int arc;
     public boolean isconnect = false;

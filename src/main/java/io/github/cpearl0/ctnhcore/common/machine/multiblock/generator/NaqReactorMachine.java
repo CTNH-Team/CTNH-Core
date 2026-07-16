@@ -5,7 +5,7 @@ import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 
@@ -24,7 +24,7 @@ import java.util.Objects;
 
 @Setter
 @Getter
-public class NaqReactorMachine extends WorkableElectricMultiblockMachine implements ITieredMachine {
+public class NaqReactorMachine extends RecipeElectricMultiblockMachine implements ITieredMachine {
 
     @Persisted
     private int currentTemperature = 0;  // 初始温度为0K

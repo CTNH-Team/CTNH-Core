@@ -8,7 +8,7 @@ import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
@@ -20,12 +20,12 @@ import net.minecraft.world.level.Level;
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
 import earth.terrarium.adastra.api.planets.Planet;
 import lombok.Getter;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine {
+public class PhotoVoltaicDroneStation extends RecipeElectricMultiblockMachine {
 
     public PhotoVoltaicDroneStation(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
@@ -140,7 +140,7 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
     }
 
     @Override
-    public boolean beforeWorking(@Nullable GTRecipe recipe) {
+    public Component beforeWorking(@NotNull GTRecipe recipe) {
         droneholder.setLocked(true);
         return super.beforeWorking(recipe);
     }

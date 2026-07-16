@@ -8,11 +8,10 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IRotorHolderMachine;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -28,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class MegaTurbineMachine extends WorkableElectricMultiblockMachine implements ITieredMachine {
+public class MegaTurbineMachine extends RecipeElectricMultiblockMachine implements ITieredMachine {
 
     public static final int MIN_DURABILITY_TO_WARN = 10;
 
@@ -75,32 +74,30 @@ public class MegaTurbineMachine extends WorkableElectricMultiblockMachine implem
     //////////////////////////////////////
     // ****** Recipe Logic *******//
     //////////////////////////////////////
-    public static ModifierFunction recipeModifier(@NotNull MetaMachine machine, @NotNull GTRecipe recipe) {
+    public static Component recipeModifier(@NotNull MetaMachine machine, RecipeHandlerGroup group, @NotNull GTRecipe recipe) {
         if (!(machine instanceof MegaTurbineMachine turbineMachine)) {
             return RecipeModifier.nullWrongType(MegaTurbineMachine.class, machine);
         }
 
         var rotorHolder = turbineMachine.getRotorHolder();
-        if (rotorHolder == null) return ModifierFunction.NULL;
+        if (rotorHolder == null) return RecipeModifier.DEFAULT_FAILURE;
 
         long EUt = RecipeHelper.getRealEUtWithIO(recipe).voltage();
         long turbineMaxVoltage = turbineMachine.getOverclockVoltage();
         double holderEfficiency = rotorHolder.getTotalEfficiency() / 100.0;
 
-        if (EUt <= 0 || turbineMaxVoltage <= EUt || holderEfficiency <= 0) return ModifierFunction.NULL;
+        if (EUt <= 0 || turbineMaxVoltage <= EUt || holderEfficiency <= 0) return RecipeModifier.DEFAULT_FAILURE;
 
         // get the amount of parallel required to match the desired output voltage
         int maxParallel = (int) (turbineMaxVoltage / EUt);
-        int actualParallel = ParallelLogic.getParallelAmountFast(turbineMachine, recipe, maxParallel);
+        int actualParallel = ParallelLogic.getParallelAmountFast(group, recipe, maxParallel);
         double eutMultiplier = turbineMachine.productionBoost() * actualParallel;
 
-        return ModifierFunction.builder()
-                .inputModifier(ContentModifier.multiplier(actualParallel))
-                .outputModifier(ContentModifier.multiplier(actualParallel))
-                .eutMultiplier(eutMultiplier)
-                .parallels(actualParallel)
-                .durationMultiplier(holderEfficiency)
-                .build();
+        recipe.multiplyAllContents(actualParallel);
+        recipe.multiplyEUt(eutMultiplier);
+        recipe.parallels *= actualParallel;
+        recipe.multiplyDuration(holderEfficiency);
+        return null;
     }
 
     @Override

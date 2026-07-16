@@ -3,7 +3,7 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
@@ -12,9 +12,9 @@ import net.minecraft.network.chat.Component;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
 
-public class Arc_Generator extends WorkableElectricMultiblockMachine implements ITieredMachine {
+public class Arc_Generator extends RecipeElectricMultiblockMachine implements ITieredMachine {
 
     public int arc = 0;
     public int arc_max = 0;
@@ -29,9 +29,9 @@ public class Arc_Generator extends WorkableElectricMultiblockMachine implements 
     }
 
     @Override
-    public boolean beforeWorking(@Nullable GTRecipe recipe) {
+    public Component beforeWorking(@NotNull GTRecipe recipe) {
         if (arc < recipe.data.getInt("requirearc")) {
-            return false;
+            return RecipeModifier.DEFAULT_FAILURE;
         }
         arc -= recipe.data.getInt("requirearc") / 10;
         arc = Math.max(0, arc);

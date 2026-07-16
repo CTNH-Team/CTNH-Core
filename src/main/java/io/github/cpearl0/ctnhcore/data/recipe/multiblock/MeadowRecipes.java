@@ -5,7 +5,7 @@ import io.github.cpearl0.ctnhcore.common.recipe.builder.CTNHRecipeBuilder;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 
-import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
+import com.gregtechceu.gtceu.api.recipe.ingredient.fluid.FluidIngredient;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.entity.EntityType;

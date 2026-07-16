@@ -3,13 +3,12 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import com.gregtechceu.gtceu.api.capability.IControllable;
-import com.gregtechceu.gtceu.api.capability.IEnergyContainer;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.machine.feature.IExplosionMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.misc.EnergyContainerList;
 
@@ -23,10 +22,10 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Superconducting_Penning_Trap extends WorkableElectricMultiblockMachine
+
+public class Superconducting_Penning_Trap extends RecipeElectricMultiblockMachine
                                           implements ITieredMachine, IExplosionMachine, IControllable {
 
     public BlockPos pos;
@@ -40,7 +39,7 @@ public class Superconducting_Penning_Trap extends WorkableElectricMultiblockMach
     public String AP = "anti_proton";
     public String AN = "anti_nu";
     public int tickwarring = 0;
-    private IEnergyContainer energyContainer;
+    private EnergyContainerList energyContainer;
     private int energy = 0;
     public boolean no_energy_waring = false;
     public double consume_mutiple = 1.0;
@@ -55,7 +54,6 @@ public class Superconducting_Penning_Trap extends WorkableElectricMultiblockMach
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
-        List<IEnergyContainer> energyContainers = new ArrayList<>();
         this.energyContainer = getEnergyContainer();
         if (getLevel() instanceof ServerLevel serverLevel) {
             serverLevel.getServer().tell(new TickTask(0, this::updateTickSubscription));
@@ -65,7 +63,7 @@ public class Superconducting_Penning_Trap extends WorkableElectricMultiblockMach
     @Override
     public void onStructureInvalid() {
         super.onStructureInvalid();
-        this.energyContainer = new EnergyContainerList(new ArrayList<>());
+        this.energyContainer = EnergyContainerList.EMPTY;
     }
 
     @Override

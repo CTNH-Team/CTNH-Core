@@ -45,6 +45,11 @@ public class PlanetMinerBlock extends AppearanceBlock {
             return this.name().toLowerCase();
         }
 
+        @Override
+        public int getTier() {
+            return tier;
+        }
+
         public @NotNull String getSerializedName() {
             return this.getPlanetMinerFrameworkName();
         }

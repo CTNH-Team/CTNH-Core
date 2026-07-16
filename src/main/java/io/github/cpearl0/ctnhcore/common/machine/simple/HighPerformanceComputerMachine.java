@@ -1,20 +1,18 @@
 package io.github.cpearl0.ctnhcore.common.machine.simple;
 
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.capability.IOpticalComputationProvider;
 import com.gregtechceu.gtceu.api.capability.IWorkable;
+import com.gregtechceu.gtceu.api.computation.ComputationProducer;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.TieredEnergyMachine;
+import com.gregtechceu.gtceu.api.machine.trait.DirectComputationPortTrait;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableEnergyContainer;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.Collection;
 
 public final class HighPerformanceComputerMachine extends TieredEnergyMachine
-                                                  implements IOpticalComputationProvider, IWorkable {
+                                                  implements ComputationProducer, IWorkable {
 
     /* 属性 */
     @Setter
@@ -32,6 +30,8 @@ public final class HighPerformanceComputerMachine extends TieredEnergyMachine
         /* HV为1，超过HV每级翻倍 */
         CWUtToProduce = (tier >= GTValues.HV ? 1 << (tier - GTValues.HV) : 0);
         energyToDrain = (long) GTValues.VA[tier] * maxInputOutputAmperage;
+        var computationPort = new DirectComputationPortTrait(this, true, this, null);
+        computationPort.setCapabilityValidator(side -> side == null || side == getFrontFacing());
     }
 
     @Override
@@ -42,30 +42,16 @@ public final class HighPerformanceComputerMachine extends TieredEnergyMachine
     }
 
     @Override
-    public int requestCWUt(int cwut, boolean simulate, @NotNull Collection<IOpticalComputationProvider> seen) {
-        seen.add(this);
-        if (isActive()) {
-            if (drainEnergy(simulate)) {
-                int requestedCWUt = Math.min(cwut, CWUtToProduce);
-                if (!simulate) {
-                    lastCWUt = cwut;
-                }
-                return requestedCWUt;
-            }
+    public int getOfferedCWUt() {
+        return energyContainer.getEnergyStored() >= energyToDrain ? CWUtToProduce : 0;
+    }
+
+    @Override
+    public void applyProducedCWUt(int allocatedCWUt) {
+        lastCWUt = allocatedCWUt;
+        if (allocatedCWUt > 0) {
+            drainEnergy(false);
         }
-        return 0;
-    }
-
-    @Override
-    public int getMaxCWUt(@NotNull Collection<IOpticalComputationProvider> seen) {
-        seen.add(this);
-        return isActive() ? CWUtToProduce : 0;
-    }
-
-    @Override
-    public boolean canBridge(@NotNull Collection<IOpticalComputationProvider> seen) {
-        seen.add(this);
-        return true;
     }
 
     private boolean drainEnergy(boolean simulate) {

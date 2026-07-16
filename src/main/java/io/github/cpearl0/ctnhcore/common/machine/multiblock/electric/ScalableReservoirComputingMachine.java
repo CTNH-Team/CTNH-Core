@@ -3,9 +3,9 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 import io.github.cpearl0.ctnhcore.common.machine.trait.ScalableReservoirComputingLogic;
 
 import com.gregtechceu.gtceu.api.capability.IControllable;
-import com.gregtechceu.gtceu.api.capability.IOpticalComputationProvider;
+import com.gregtechceu.gtceu.api.computation.ComputationProducer;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import net.minecraft.network.chat.Component;
@@ -16,19 +16,17 @@ import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3i;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class ScalableReservoirComputingMachine extends WorkableElectricMultiblockMachine
-                                               implements IOpticalComputationProvider, IControllable {
+public class ScalableReservoirComputingMachine extends RecipeElectricMultiblockMachine
+                                               implements ComputationProducer, IControllable {
 
     public ScalableReservoirComputingMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
     }
 
-    ScalableReservoirComputingLogic recipeLogic;
     public int maxCWUt, duration, lastCWUt;
     @Getter
     AABB aabb;
@@ -39,7 +37,7 @@ public class ScalableReservoirComputingMachine extends WorkableElectricMultibloc
         if (level == null || level.isClientSide()) return;
         var sacrifices = level.getEntitiesOfClass(LivingEntity.class, aabb);
         if (sacrifices.size() == 1) {
-            recipeLogic.lockedSacrifice = sacrifices.iterator().next();
+            getRecipeLogic().lockedSacrifice = sacrifices.iterator().next();
             sacrificeLockState = SacrificeLockState.SACRIFICE_LOCKED;
         } else if (sacrifices.size() > 1) {
             sacrificeLockState = SacrificeLockState.SACRIFICE_UNLOCKED;
@@ -68,40 +66,29 @@ public class ScalableReservoirComputingMachine extends WorkableElectricMultibloc
     }
 
     @Override
-    public int requestCWUt(int cwut, boolean simulate, @NotNull Collection<IOpticalComputationProvider> seen) {
-        seen.add(this);
-        if (duration > 0) {
-            if (!simulate) {
-                duration--;
-                return lastCWUt = Math.min(cwut, maxCWUt);
-            } ;
-            return Math.min(cwut, maxCWUt);
+    public int getOfferedCWUt() {
+        return duration > 0 ? maxCWUt : 0;
+    }
+
+    @Override
+    public void applyProducedCWUt(int allocatedCWUt) {
+        lastCWUt = allocatedCWUt;
+        if (allocatedCWUt > 0 && duration > 0) {
+            duration--;
         }
-        return 0;
-    }
-
-    @Override
-    public int getMaxCWUt(@NotNull Collection<IOpticalComputationProvider> seen) {
-        seen.add(this);
-        return maxCWUt;
-    }
-
-    @Override
-    public boolean canBridge(@NotNull Collection<IOpticalComputationProvider> seen) {
-        return false;
     }
 
     @Override
     @NotNull
     @ParametersAreNonnullByDefault
     protected ScalableReservoirComputingLogic createRecipeLogic(Object... args) {
-        return recipeLogic = new ScalableReservoirComputingLogic(this);
+        return new ScalableReservoirComputingLogic(this);
     }
 
     @Override
     @NotNull
     public ScalableReservoirComputingLogic getRecipeLogic() {
-        return recipeLogic;
+        return (ScalableReservoirComputingLogic) recipeLogic;
     }
 
     /// ///////////////////////

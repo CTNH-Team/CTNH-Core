@@ -53,6 +53,11 @@ public class TurbineRotorBlock extends ActiveBlock implements EntityBlock, IBloc
                 ColorUtils.alpha(color));
     }
 
+    public float getR() { return R; }
+    public float getG() { return G; }
+    public float getB() { return B; }
+    public float getA() { return A; }
+
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
         return new TurbineRotorBE(CTNHBlockEntities.TURBINE_ROTOR.get(), pPos, pState);

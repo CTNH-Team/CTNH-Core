@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.api.machine.feature;
 
 import com.gregtechceu.gtceu.api.machine.feature.IWorkLogicMachine;
+import com.gregtechceu.gtceu.api.capability.recipe.IRecipeHandler;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import io.github.cpearl0.ctnhcore.api.recipe.DigitalMinerLogic;
 
@@ -19,5 +20,5 @@ public interface IDigitalMiner extends IWorkLogicMachine, IMachineLife {
         return maximumRadius * 2 + 1;
     }
 
-    List<NotifiableItemStackHandler> getOutputHandlers();
+    List<? extends IRecipeHandler<?>> getOutputHandlers();
 }

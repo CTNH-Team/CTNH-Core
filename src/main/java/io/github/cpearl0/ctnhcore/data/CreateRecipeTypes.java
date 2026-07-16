@@ -3,10 +3,8 @@ package io.github.cpearl0.ctnhcore.data;
 import io.github.cpearl0.ctnhcore.CTNHConfig;
 
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
-import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
 import com.gregtechceu.gtceu.api.sound.ExistingSoundEntry;
 import com.gregtechceu.gtceu.common.data.GTRecipes;
 import com.gregtechceu.gtceu.common.data.GTSoundEntries;
@@ -115,7 +113,6 @@ public class CreateRecipeTypes {
                             .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt().voltage()) * 2, 5))
                             .inputStress(
                                     builder.EUt().voltage() * CTNHConfig.INSTANCE.kinetic.extractorStressRequirement)
-                            .chancedOutputLogic(ItemRecipeCapability.CAP, ChanceLogic.NONE)
                             .save(provider);
                 }
             }

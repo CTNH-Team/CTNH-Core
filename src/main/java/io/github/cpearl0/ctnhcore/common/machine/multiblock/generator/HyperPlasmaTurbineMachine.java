@@ -12,8 +12,7 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -152,7 +151,7 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine {
     @Override
     public long getOverclockVoltage() {
         /* 算力足够时以基础功率zpm288a为底，每多提供64算力就翻倍输出功率 */
-        var cwut = getMaxCWUt();
+        var cwut = getCurrentCWUt();
         if (cwut < CWUtStair) {
             return DEFAULT_EU_OUTPUT;
         }
@@ -173,7 +172,7 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine {
     // ****** Recipe Logic *******//
     /// ///////////////////////////////////
 
-    public static ModifierFunction recipeModifier(@NotNull MetaMachine machine, @NotNull GTRecipe recipe) {
+    public static Component recipeModifier(@NotNull MetaMachine machine, RecipeHandlerGroup group, @NotNull GTRecipe recipe) {
         if (!(machine instanceof HyperPlasmaTurbineMachine hptm)) {
             return RecipeModifier.nullWrongType(HyperPlasmaTurbineMachine.class, machine);
         }
@@ -181,28 +180,24 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine {
         final long EUt = RecipeHelper.getRealEUtWithIO(recipe).voltage();
         final long turbineMaxVoltage = hptm.getOverclockVoltage();
 
-        if (EUt <= 0 || turbineMaxVoltage <= EUt) return ModifierFunction.NULL;
+        if (EUt <= 0 || turbineMaxVoltage <= EUt) return RecipeModifier.DEFAULT_FAILURE;
 
         // get the amount of parallel required to match the desired output voltage
         final double euMultiplier = getEfficiency();
         final int maxParallel = (int) (turbineMaxVoltage / EUt);
-        final int actualParallel = ParallelLogic.getParallelAmountFast(hptm, recipe, maxParallel);
+        final int actualParallel = ParallelLogic.getParallelAmountFast(group, recipe, maxParallel);
         final long actualEUt = EUt * actualParallel;
 
-        var ret = ModifierFunction.builder()
-                .inputModifier(ContentModifier.multiplier(actualParallel))
-                .outputModifier(ContentModifier.multiplier(actualParallel))
-                .eutMultiplier(actualParallel)
-                .parallels(actualParallel)
-                .durationMultiplier(euMultiplier)
-                .build();
+        recipe.multiplyAllContents(actualParallel);
+        recipe.multiplyEUt(actualParallel);
+        recipe.parallels *= actualParallel;
+        recipe.multiplyDuration(euMultiplier);
         if (actualEUt > DEFAULT_EU_OUTPUT) {
             final int cwut = (actualEUt <= BASE_EU_OUTPUT) ? CWUtStair :
                     CWUtStair * (fastLog2(actualEUt) / fastLog2(BASE_EU_OUTPUT - 1) + 2);
-            ret = ComputationModifier.append(cwut)  // 顺序是个大坑
-                    .andThen(ret);
+            ComputationModifier.append(recipe, cwut);
         }
-        return ret;
+        return null;
     }
 
     @Override
