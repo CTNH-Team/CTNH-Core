@@ -72,7 +72,7 @@ public class MachinesRecipes {
                 .inputItems(CONVEYOR_MODULE_ZPM, 4)
                 .inputItems(gear, Osmiridium, 4)
                 .circuitMeta(2)
-                .outputItems(MultiblocksA.ZPM_LARGE_MINER.asStack())
+                .outputItems(MultiblocksA.LARGE_DIGITAL_MINER[ZPM].asStack())
                 .duration(400).EUt(VA[ZPM]).save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("ev_large_miner"))
@@ -84,7 +84,7 @@ public class MachinesRecipes {
                 .inputItems(CONVEYOR_MODULE_EV, 4)
                 .inputItems(gear, Tungsten, 4)
                 .circuitMeta(2)
-                .outputItems(MultiblocksA.LARGE_MINER[EV])
+                .outputItems(MultiblocksA.LARGE_DIGITAL_MINER[EV])
                 .duration(400).EUt(VA[EV]).save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("iv_large_miner"))
@@ -96,7 +96,7 @@ public class MachinesRecipes {
                 .inputItems(CONVEYOR_MODULE_IV, 4)
                 .inputItems(gear, Iridium, 4)
                 .circuitMeta(2)
-                .outputItems(MultiblocksA.LARGE_MINER[IV])
+                .outputItems(MultiblocksA.LARGE_DIGITAL_MINER[IV])
                 .duration(400).EUt(VA[IV]).save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("luv_large_miner"))
@@ -108,7 +108,7 @@ public class MachinesRecipes {
                 .inputItems(CONVEYOR_MODULE_LuV, 4)
                 .inputItems(gear, Ruridit, 4)
                 .circuitMeta(2)
-                .outputItems(MultiblocksA.LARGE_MINER[LuV])
+                .outputItems(MultiblocksA.LARGE_DIGITAL_MINER[LuV])
                 .duration(400).EUt(VA[LuV]).save(provider);
 
         COMPRESSOR_RECIPES.recipeBuilder(CTNHCore.id("steelleaf"))

@@ -51,7 +51,6 @@ import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
 
 import com.enderio.base.common.init.EIOBlocks;
-import com.github.L_Ender.cataclysm.init.ModBlocks;
 import com.mo_guang.ctpp.api.CTPPPartAbility;
 import com.mo_guang.ctpp.api.pattern.FactoryStaticBlockPattern;
 import com.simibubi.create.AllBlocks;
@@ -1289,7 +1288,7 @@ public class MultiblocksA {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_primitive_bricks"), GTCEu.id("block/machines/alloy_smelter"))
             .register();
 
-    public static final MultiblockMachineDefinition[] LARGE_MINER = CTNHMachineUtils.registerTieredMultis("large_miner",
+    public static final MultiblockMachineDefinition[] LARGE_DIGITAL_MINER = CTNHMachineUtils.registerTieredMultis("large_digital_miner",
             (holder, tier) -> new LargeDigitalMinerMachine(holder, tier, 64 / tier, 2 * tier - 5, tier,
                     8 - (tier - 5)),
             (tier, builder) -> {
@@ -1297,24 +1296,27 @@ public class MultiblocksA {
                     case EV -> CASING_STEEL_SOLID;
                     case IV -> CASING_TITANIUM_STABLE;
                     case LuV -> CASING_TUNGSTENSTEEL_ROBUST;
+                    case ZPM -> CASING_OSMIRIDIUM;
                     default -> throw new IllegalArgumentException("Unsupported large miner tier: " + tier);
                 };
                 var frame = switch (tier) {
                     case EV -> Steel;
                     case IV -> Titanium;
                     case LuV -> TungstenSteel;
+                    case ZPM -> Osmiridium;
                     default -> throw new IllegalArgumentException("Unsupported large miner tier: " + tier);
                 };
                 var casingTexture = switch (tier) {
                     case EV -> GTCEu.id("block/casings/solid/machine_casing_solid_steel");
                     case IV -> GTCEu.id("block/casings/solid/machine_casing_stable_titanium");
                     case LuV -> GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel");
+                    case ZPM -> CTNHCore.id("block/casings/osmiridium_casing");
                     default -> throw new IllegalArgumentException("Unsupported large miner tier: " + tier);
                 };
                 return builder
-                        .langValue("%s Large Miner %s".formatted(VLVH[tier], VLVT[tier]))
+                        .cnLangValue(VNF[tier] + "大型数字采矿机")
+                        .langValue(VNF[tier] + " Large Digital Miner")
                         .rotationState(RotationState.NON_Y_AXIS)
-                        .recipeType(GTRecipeTypes.MACERATOR_RECIPES)
                         .appearanceBlock(casing)
                         .tooltips(Component.translatable("gtceu.machine.large_miner." + VN[tier].toLowerCase() + ".tooltip"),
                                 Component.translatable("gtceu.machine.miner.multi.description"))
@@ -1325,7 +1327,7 @@ public class MultiblocksA {
                             tooltip.add(Component.translatable("gtceu.universal.tooltip.working_area_chunks",
                                     workingAreaChunks, workingAreaChunks));
                             tooltip.add(Component.translatable("gtceu.universal.tooltip.energy_tier_range",
-                                    GTValues.VNF[tier], GTValues.VNF[tier]));
+                                    GTValues.VNF[tier], GTValues.VNF[tier + 1]));
                         })
                         .pattern(definition -> FactoryBlockPattern.start()
                                 .aisle("XXX", "#F#", "#F#", "#F#", "###", "###", "###")
@@ -1343,41 +1345,40 @@ public class MultiblocksA {
                                 .build())
                         .workableCasingModel(casingTexture, GTCEu.id("block/multiblock/large_miner"))
                         .register();
-            }, EV, IV, LuV);
+            }, EV, IV, LuV, ZPM);
 
-    public static final MultiblockMachineDefinition ZPM_LARGE_MINER = REGISTRATE.multiblock("zpm_large_miner", LargeDigitalMinerMachine::new)
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(GTRecipeTypes.MACERATOR_RECIPES)
-            .tooltips(
-                    Component.translatable("ctnh.multiblock.large_miner_zpm.tooltip.0"),
-                    Component.translatable("gtceu.machine.miner.multi.description"))
-            .tooltipBuilder((stack, tooltip) -> {
-                int workingAreaChunks = (2 * ZPM - 5);
-                tooltip.add(Component.translatable("gtceu.machine.miner.multi.modes"));
-                tooltip.add(Component.translatable("gtceu.machine.miner.multi.production"));
-                tooltip.add(Component.translatable("gtceu.machine.miner.fluid_usage", 8 - (ZPM - 5),
-                        DrillingFluid.getLocalizedName()));
-                tooltip.add(Component.translatable("gtceu.universal.tooltip.working_area_chunks",
-                        workingAreaChunks, workingAreaChunks));
-                tooltip.add(Component.translatable("gtceu.universal.tooltip.energy_tier_range",
-                        GTValues.VNF[ZPM], GTValues.VNF[ZPM + 1]));
-            })
-            .pattern((definition) -> FactoryBlockPattern.start()
-                    .aisle("XXX", "#F#", "#F#", "#F#", "###", "###", "###")
-                    .aisle("XXX", "FCF", "FCF", "FCF", "#F#", "#F#", "#F#")
-                    .aisle("XSX", "#F#", "#F#", "#F#", "###", "###", "###")
-                    .where("S", Predicates.controller(Predicates.blocks(definition.get())))
-                    .where("X", Predicates.blocks(CASING_OSMIRIDIUM.get())
-                            .or(abilities(PartAbility.EXPORT_ITEMS).setMinGlobalLimited(1).setPreviewCount(1))
-                            .or(abilities(PartAbility.IMPORT_FLUIDS).setMinGlobalLimited(1).setPreviewCount(1))
-                            .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1)
-                                    .setMaxGlobalLimited(2).setPreviewCount(1)))
-                    .where("C", Predicates.blocks(CASING_OSMIRIDIUM.get()))
-                    .where("F", Predicates.frames(GTMaterials.Osmiridium))
-                    .where("#", Predicates.any())
-                    .build())
-            .workableCasingModel(CTNHCore.id("block/casings/osmiridium_casing"), GTCEu.id("block/multiblock/large_miner"))
-            .register();
+//    public static final MultiblockMachineDefinition ZPM_LARGE_MINER = REGISTRATE.multiblock("zpm_large_miner", LargeDigitalMinerMachine::new)
+//            .rotationState(RotationState.NON_Y_AXIS)
+//            .tooltips(
+//                    Component.translatable("ctnh.multiblock.large_miner_zpm.tooltip.0"),
+//                    Component.translatable("gtceu.machine.miner.multi.description"))
+//            .tooltipBuilder((stack, tooltip) -> {
+//                int workingAreaChunks = (2 * ZPM - 5);
+//                tooltip.add(Component.translatable("gtceu.machine.miner.multi.modes"));
+//                tooltip.add(Component.translatable("gtceu.machine.miner.multi.production"));
+//                tooltip.add(Component.translatable("gtceu.machine.miner.fluid_usage", 8 - (ZPM - 5),
+//                        DrillingFluid.getLocalizedName()));
+//                tooltip.add(Component.translatable("gtceu.universal.tooltip.working_area_chunks",
+//                        workingAreaChunks, workingAreaChunks));
+//                tooltip.add(Component.translatable("gtceu.universal.tooltip.energy_tier_range",
+//                        GTValues.VNF[ZPM], GTValues.VNF[ZPM + 1]));
+//            })
+//            .pattern((definition) -> FactoryBlockPattern.start()
+//                    .aisle("XXX", "#F#", "#F#", "#F#", "###", "###", "###")
+//                    .aisle("XXX", "FCF", "FCF", "FCF", "#F#", "#F#", "#F#")
+//                    .aisle("XSX", "#F#", "#F#", "#F#", "###", "###", "###")
+//                    .where("S", Predicates.controller(Predicates.blocks(definition.get())))
+//                    .where("X", Predicates.blocks(CASING_OSMIRIDIUM.get())
+//                            .or(abilities(PartAbility.EXPORT_ITEMS).setMinGlobalLimited(1).setPreviewCount(1))
+//                            .or(abilities(PartAbility.IMPORT_FLUIDS).setMinGlobalLimited(1).setPreviewCount(1))
+//                            .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1)
+//                                    .setMaxGlobalLimited(2).setPreviewCount(1)))
+//                    .where("C", Predicates.blocks(CASING_OSMIRIDIUM.get()))
+//                    .where("F", Predicates.frames(GTMaterials.Osmiridium))
+//                    .where("#", Predicates.any())
+//                    .build())
+//            .workableCasingModel(CTNHCore.id("block/casings/osmiridium_casing"), GTCEu.id("block/multiblock/large_miner"))
+//            .register();
     public static final MultiblockMachineDefinition DECAY_POOLS = REGISTRATE.multiblock("decay_pools_machine", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(CTNHRecipeTypes.DECAY_POOLS)

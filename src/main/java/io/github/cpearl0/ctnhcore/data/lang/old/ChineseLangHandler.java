@@ -891,7 +891,6 @@ public class ChineseLangHandler {
         provider.add(MultiblocksA.ION_EXCHANGER.getBlock(), "离子交换机");
         provider.add(MultiblocksA.LARGE_STEEL_FURNACE.getBlock(), "大型钢制熔炉");
         provider.add(MultiblocksA.LARGE_STEEL_ALLOY_FURNACE.getBlock(), "大型钢制合金炉");
-        provider.add(MultiblocksA.ZPM_LARGE_MINER.getBlock(), "§c精英大型采矿机 III§r");
         provider.add(MultiblocksA.DECAY_POOLS.getBlock(), "衰变罐");
         provider.add(MultiblocksA.FUEL_REFINING_FACTORY.getBlock(), "燃料精炼厂");
         provider.add(MultiblocksA.VACUUM_SINTERING_TOWER.getBlock(), "真空烧结厂");

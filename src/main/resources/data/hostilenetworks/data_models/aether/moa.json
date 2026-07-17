@@ -1,0 +1,42 @@
+{
+  "entity": "aether:moa",
+  "variants": [],
+  "name": "entity.aether.moa",
+  "name_color": "#061011",
+  "gui_scale": 1,
+  "gui_x_offset": 0,
+  "gui_y_offset": 0,
+  "gui_z_offset": 0,
+  "sim_cost": 128,
+  "input": {
+    "item": "hostilenetworks:prediction_matrix"
+  },
+  "base_drop": {
+    "item": "hostilenetworks:overworld_prediction"
+  },
+  "trivia": "hostilenetworks.trivia.moa",
+  "fabricator_drops": [
+    {
+      "item": "minecraft:string",
+      "count": 32
+    },
+    {
+      "item": "minecraft:spider_eye",
+      "count": 16
+    },
+    {
+      "item": "minecraft:cobweb",
+      "count": 4
+    },
+    {
+      "optional": "true",
+      "item": "silentgear:fine_silk",
+      "count": 3
+    },
+    {
+      "optional": "true",
+      "item": "reliquary:chelicerae",
+      "count": 2
+    }
+  ]
+}

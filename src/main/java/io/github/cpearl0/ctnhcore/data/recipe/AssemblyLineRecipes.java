@@ -14,7 +14,6 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GCYMBlocks;
 import com.gregtechceu.gtceu.common.data.GTMachines;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 
@@ -23,15 +22,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
 import com.github.elenterius.biomancy.init.ModItems;
 import com.moguang.ctnhbio.data.materials.CommonMaterials;
 import com.moguang.ctnhbio.registry.CBBlocks;
-import com.moguang.ctnhbio.registry.CBItems;
 import com.moguang.ctnhbio.registry.CBMachines;
 import com.moguang.ctnhbio.registry.CBMultiblocks;
-import tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines;
 
 import java.util.function.Consumer;
 
@@ -42,7 +37,6 @@ import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLY_LINE_RECIPES;
-import static com.gregtechceu.gtceu.common.data.machines.GCYMMachines.PARALLEL_HATCH;
 import static com.moguang.ctnhbio.data.materials.OrganicMaterials.*;
 import static dev.shadowsoffire.hostilenetworks.Hostile.Items.SIM_CHAMBER;
 import static io.github.cpearl0.ctnhcore.data.materials.AviationFabricMaterials.*;
@@ -367,17 +361,17 @@ public class AssemblyLineRecipes {
                 .inputItems(CONVEYOR_MODULE_UV.asStack(16))
                 .inputItems(ELECTRIC_PISTON_UV.asStack(16))
                 .inputItems(ROBOT_ARM_UV.asStack(16))
-                .inputItems(MultiblocksA.LARGE_MINER[EV].asStack(64))
-                .inputItems(MultiblocksA.LARGE_MINER[IV].asStack(48))
-                .inputItems(MultiblocksA.LARGE_MINER[LuV].asStack(32))
-                .inputItems(MultiblocksA.ZPM_LARGE_MINER.asStack(16))
+                .inputItems(MultiblocksA.LARGE_DIGITAL_MINER[EV].asStack(64))
+                .inputItems(MultiblocksA.LARGE_DIGITAL_MINER[IV].asStack(48))
+                .inputItems(MultiblocksA.LARGE_DIGITAL_MINER[LuV].asStack(32))
+                .inputItems(MultiblocksA.LARGE_DIGITAL_MINER[ZPM].asStack(16))
                 .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 512000))
                 .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 512000))
                 .inputFluids(new FluidStack(BedrockMaterials.ADAMANTITE.getFluid(FluidStorageKeys.PLASMA), 512000))
                 .inputFluids(new FluidStack(BedrockMaterials.AETHER.getFluid(FluidStorageKeys.PLASMA), 512000))
                 .outputItems(MultiblocksA.VOID_MINER.asStack())
                 .EUt(491020).duration(3600)
-                .stationResearch(b -> b.researchStack(MultiblocksA.ZPM_LARGE_MINER.asStack())
+                .stationResearch(b -> b.researchStack(MultiblocksA.LARGE_DIGITAL_MINER[ZPM].asStack())
                         .dataStack(TOOL_DATA_MODULE.asStack())
                         .EUt(VA[UV]).CWUt(256))
                 .save(provider);
