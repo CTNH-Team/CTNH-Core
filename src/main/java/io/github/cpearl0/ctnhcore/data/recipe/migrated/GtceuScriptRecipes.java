@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe.migrated;
 
+import com.gregtechceu.gtceu.data.recipe.GTCraftingComponents;
+import com.moguang.ctnhmana.registry.CMMachines;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.data.materials.NewExplosivesProductionMaterials;
@@ -37,6 +39,7 @@ import com.enderio.base.common.init.EIOItems;
 import com.github.alexmodguy.alexscaves.server.block.ACBlockRegistry;
 import com.github.alexmodguy.alexscaves.server.item.ACItemRegistry;
 import com.moguang.ctnhbio.registry.CBItems;
+import com.moguang.ctnhmana.registry.CMMaterials;
 import com.simibubi.create.AllItems;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.shadowsoffire.hostilenetworks.Hostile;
@@ -608,7 +611,20 @@ public class GtceuScriptRecipes {
                 .outputFluids(Helium.getFluid(500))
                 .save(provider);
 
-        // TODO: Restore CTNHMana's liquid_alfheim_air distillation recipe after its GTM migration.
+        // 10. liquid_alfheim_air: liquid_alfheim_air 100000 -> mana_powder + mana 100 + oxygen 25000 + steam 12000 +
+        // neon 10000 + carbon_dioxide 5000 + helium 5000 + argon 3000. EUt 360, dur 2000
+        DISTILLATION_RECIPES.recipeBuilder(CTNHCore.id("liquid_alfheim_air"))
+                .EUt(360).duration(2000)
+                .inputFluids(ExtraterrestrialAtmosphereMaterials.LIQUID_ALFHEIM_AIR.getFluid(100000))
+                .outputItems(new ItemStack(BotaniaItems.manaPowder))
+                .outputFluids(CMMaterials.Mana.getFluid(100))
+                .outputFluids(Oxygen.getFluid(25000))
+                .outputFluids(Steam.getFluid(12000))
+                .outputFluids(Neon.getFluid(10000))
+                .outputFluids(CarbonDioxide.getFluid(5000))
+                .outputFluids(Helium.getFluid(5000))
+                .outputFluids(Argon.getFluid(3000))
+                .save(provider);
 
         // 11. liquid_aether_air: liquid_aether_air 100000 -> oxygen 25000 + hydrogen 12000 + fluorine 10000 + steam
         // 12000 + neon 10000 + carbon_dioxide 5000 + helium 5000. EUt 7680, dur 2000
@@ -850,7 +866,14 @@ public class GtceuScriptRecipes {
                 .outputFluids(Oxygen.getFluid(2500))
                 .save(provider);
 
-        // TODO: Restore CTNHMana's alfheim_air centrifuge recipe after its GTM migration.
+        // 29. alfheim_air centrifuge: alfheim_air 10000 -> mana 5 + oxygen 1500 + helium 1000. EUt 240, dur 800
+        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("alfheim_air_centrifuge"))
+                .EUt(240).duration(800)
+                .inputFluids(ExtraterrestrialAtmosphereMaterials.ALFHEIM_AIR.getFluid(10000))
+                .outputFluids(CMMaterials.Mana.getFluid(5))
+                .outputFluids(Oxygen.getFluid(1500))
+                .outputFluids(Helium.getFluid(1000))
+                .save(provider);
 
         // 30. venus_air centrifuge: venus_air 10000 -> steam 1500 + carbon_dioxide 1000 + helium 500. EUt 1920, dur 800
         CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("venus_air_centrifuge"))
@@ -2370,36 +2393,16 @@ public class GtceuScriptRecipes {
                 'S', CustomTags.SAWS,
                 'M', CustomTags.MALLETS);
 
-        // Digital Well of Suffer crafting loop (LV through UV)
-//        {
-//            String[] dwosTiers = { "lv", "mv", "hv", "ev", "iv", "luv", "zpm", "uv" };
-//            int[] voltageTiers = { GTValues.LV, GTValues.MV, GTValues.HV, GTValues.EV, GTValues.IV, GTValues.LuV,
-//                    GTValues.ZPM, GTValues.UV };
-//            ItemEntry<?>[] pumps = {
-//                    GTItems.ELECTRIC_PUMP_LV, GTItems.ELECTRIC_PUMP_MV, GTItems.ELECTRIC_PUMP_HV,
-//                    GTItems.ELECTRIC_PUMP_EV, GTItems.ELECTRIC_PUMP_IV, GTItems.ELECTRIC_PUMP_LuV,
-//                    GTItems.ELECTRIC_PUMP_ZPM, GTItems.ELECTRIC_PUMP_UV
-//            };
-//            TagKey[] circuits = {
-//                    CustomTags.LV_CIRCUITS, CustomTags.MV_CIRCUITS, CustomTags.HV_CIRCUITS,
-//                    CustomTags.EV_CIRCUITS, CustomTags.IV_CIRCUITS, CustomTags.LuV_CIRCUITS,
-//                    CustomTags.ZPM_CIRCUITS, CustomTags.UV_CIRCUITS
-//            };
-//
-//            for (int i = 0; i < dwosTiers.length; i++) {
-//                String tier = dwosTiers[i];
-//                int voltTier = voltageTiers[i];
-//                VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id(tier + "_digital_well_of_suffer"),
-//                        new ItemStack(ForgeRegistries.ITEMS
-//                                .getValue(ResourceLocation.parse("ctnhmana:" + tier + "_digital_well_of_suffer"))),
-//                        "PCP", "SHS", "PCP",
-//                        'P', pumps[i],
-//                        'C', circuits[i],
-//                        'H', GTMachines.HULL[voltTier].asStack(),
-//                        'S', new ItemStack(
-//                                BloodMagicBlocks.SACRIFICE_RUNE.get().asItem()));
-//            }
-//        }
+        for(var tier : GTValues.tiersBetween(GTValues.LV, GTValues.UV)) {
+            VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id(GTValues.VN[tier].toLowerCase() + "_digital_well_of_suffer"),
+                    CMMachines.DIGITAL_WELL_OF_SUFFER[tier].asStack(),
+                    "PCP", "SHS", "PCP",
+                    'P', GTCraftingComponents.PUMP.get(tier),
+                    'C', GTCraftingComponents.CIRCUIT.get(tier),
+                    'H', GTMachines.HULL[tier].asStack(),
+                    'S', new ItemStack(
+                            BloodMagicBlocks.SACRIFICE_RUNE.get().asItem()));
+        }
 
         // ============== Smelting Recipe ==============
 

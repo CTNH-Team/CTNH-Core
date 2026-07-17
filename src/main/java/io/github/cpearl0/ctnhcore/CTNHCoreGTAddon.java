@@ -11,10 +11,10 @@ import io.github.cpearl0.ctnhcore.data.recipe.create.CreateRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.create.DieselGeneratorRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.generated.HyperRotorRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.immersiveaircraft.ImmersiveAircraftRecipes;
-// import io.github.cpearl0.ctnhcore.data.recipe.mana.DigesterRecipes;
-// import io.github.cpearl0.ctnhcore.data.recipe.mana.EternalGardenRecipes;
-// import io.github.cpearl0.ctnhcore.data.recipe.mana.MiscManaRecipes;
-// import io.github.cpearl0.ctnhcore.data.recipe.mana.TwistedFusionRecipes;
+ import io.github.cpearl0.ctnhcore.data.recipe.mana.DigesterRecipes;
+ import io.github.cpearl0.ctnhcore.data.recipe.mana.EternalGardenRecipes;
+ import io.github.cpearl0.ctnhcore.data.recipe.mana.MiscManaRecipes;
+ import io.github.cpearl0.ctnhcore.data.recipe.mana.TwistedFusionRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.migrated.AE2ScriptRecipe;
 import io.github.cpearl0.ctnhcore.data.recipe.migrated.AvaritiaScriptRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.migrated.BioScriptRecipes;
@@ -181,15 +181,15 @@ public class CTNHCoreGTAddon implements IGTAddon {
 
         LuvModifyRecipe.init(provider);
         HugeHatchRecipes.init(provider);
-        // TODO: Restore CTNHMana recipe registrations after its GTM migration.
-        // TwistedFusionRecipes.init(provider);
-        // EternalGardenRecipes.init(provider);
-        // MiscManaRecipes.init(provider);
+
+        TwistedFusionRecipes.init(provider);
+        EternalGardenRecipes.init(provider);
+        MiscManaRecipes.init(provider);
 
         YeastRecipes.init(provider);
         BioChemistryRecipes.init(provider);
 
-        // DigesterRecipes.init(provider);
+         DigesterRecipes.init(provider);
 
         GtceuScriptRecipes.init(provider);
         BioScriptRecipes.init(provider);

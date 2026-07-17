@@ -13,6 +13,7 @@ import com.enderio.api.capacitor.ICapacitorData;
 import com.enderio.base.common.init.EIOCapabilities;
 import com.google.common.base.Suppliers;
 import com.moguang.ctnhbio.registry.CBItems;
+import com.moguang.ctnhmana.registry.CMItems;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -26,12 +27,11 @@ public class EIOCapacitorProvider implements ICapabilityProvider {
             GTItems.CAPACITOR.get(), 1,
             GTItems.SMD_CAPACITOR.get(), 2,
             GTItems.ADVANCED_SMD_CAPACITOR.get(), 4,
-            CBItems.WETWARE_CAPACITOR.get(), 8
-            // TODO: Restore CTNHMana capacitor mappings after its GTM migration.
-            // CMItems.MANA_CAPACITOR.get(), 2,
-            // CMItems.ADVANCED_MANA_CAPACITOR.get(), 3,
-            // CMItems.BLOOD_CAPACITOR.get(), 4,
-            // CMItems.WILL_CAPACITOR.get(), 6
+            CBItems.WETWARE_CAPACITOR.get(), 8,
+            CMItems.MANA_CAPACITOR.get(), 2,
+            CMItems.ADVANCED_MANA_CAPACITOR.get(), 3,
+            CMItems.BLOOD_CAPACITOR.get(), 4,
+            CMItems.WILL_CAPACITOR.get(), 6
     )));
 
     public static Map<Item, Integer> getCapacitorBaseMap() {

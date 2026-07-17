@@ -18,6 +18,7 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 
+import com.moguang.ctnhmana.registry.CMMaterials;
 import twilightforest.data.tags.BiomeTagGenerator;
 
 import static com.gregtechceu.gtceu.api.data.worldgen.WorldGenLayers.ENDSTONE;
@@ -610,8 +611,23 @@ public class CTNHOres {
                             .placement(ABOVE)
                             .density(0.2F)
                             .radius(5)));
-    // TODO: Restore the CTNHMana Fused Mana ore vein after its GTM migration.
-    // public static GTOreDefinition MANA_FUSED_VEIN = create(CTNHCore.id("mana_fused_vein"), ...);
+    public static GTOreDefinition MANA_FUSED_VEIN = create(CTNHCore.id("mana_fused_vein"),
+            vein -> vein.weight(80)
+                    .clusterSize(40)
+                    .density(0.25F)
+                    .discardChanceOnAirExposure(0)
+                    .layer(CTNHWorldgenLayers.ALFHEIM)
+                    .dimensions(ALFHEIM)
+                    .heightRangeUniform(20, 40)
+                    .layeredVeinGenerator(generator -> generator
+                            .buildLayerPattern(pattern -> pattern
+                                    .layer(l -> l.weight(3).mat(CMMaterials.Fused_Mana).size(2, 4))
+                                    .layer(l -> l.weight(2).mat(GTMaterials.Gold).size(1, 1))))
+                    .surfaceIndicatorGenerator(indicator -> indicator
+                            .surfaceRock(GTMaterials.Gold)
+                            .placement(ABOVE)
+                            .density(0.4F)
+                            .radius(5)));
     public static final GTOreDefinition KAOLINITE_VEIN = create(
             CTNHCore.id("kaolinite_vein"),
             vein -> {
