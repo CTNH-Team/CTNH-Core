@@ -70,12 +70,6 @@ public class ForgeClientEventHandler {
                     Component.literal("用GregTech的 [Armor Mode Switch] 键开启"));
             case "gtceu:lp_steam_macerator", "gtceu:hp_steam_macerator", "gtceu:steam_grinder", "gtceu:lv_macerator", "gtceu:mv_macerator", "ctpp:smashing_factory" -> addTooltip(
                     event, ChatFormatting.DARK_RED, Component.literal("研磨副产物只能通过HV及以上的电压获得！"));
-            case "tconstruct:crafting_station" -> {
-                addTooltip(event, ChatFormatting.DARK_RED,
-                        Component.literal("在服务器内，请不要将工作站连接到任何带有堆叠升级的容器中."));
-                addTooltip(event, ChatFormatting.DARK_RED,
-                        Component.literal("此举动不会吞物品，但会导致工作站无法识别到大多出堆叠大于64的物品."));
-            }
             case "enderio:conduit_probe" -> addTooltip(event, ChatFormatting.GRAY,
                     Component.literal("下蹲滚轮或通过按键绑定切换模式，仅复制粘贴模式可用"));
             default -> {}

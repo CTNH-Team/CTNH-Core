@@ -22,7 +22,6 @@ import io.github.cpearl0.ctnhcore.data.recipe.migrated.GtceuScriptRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.EIORecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.omnicells.QuantumOmniRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.multiblock.*;
-import io.github.cpearl0.ctnhcore.data.recipe.tconstruct.TConstructRecipes;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 
@@ -177,8 +176,6 @@ public class CTNHCoreGTAddon implements IGTAddon {
         ImmersiveAircraftRecipes.init(provider);
         CreateOreExcavationRecipes.init(provider);
         CreateMetallurgyRecipes.init(provider);
-        TConstructRecipes.init(provider);
-
         CasingRecipes.init(provider);
         UHVPartsRecipe.init(provider);
 

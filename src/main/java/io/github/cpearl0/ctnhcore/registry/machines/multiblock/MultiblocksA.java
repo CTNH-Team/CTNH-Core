@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 
+import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.renderer.MartialMoralityEyeRender;
@@ -1447,7 +1448,7 @@ public class MultiblocksA {
                     .where("N", Predicates.blocks(CASING_STEEL_SOLID.get())
                             .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
-                    .where("O", Predicates.blocks(MATERIAL_BLOCKS.get(TagPrefix.block, Ignitium).get()))
+                    .where("O", Predicates.blocks(ChemicalHelper.getBlock(TagPrefix.block, Ignitium)))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
             .additionalDisplay((machine, l) -> {

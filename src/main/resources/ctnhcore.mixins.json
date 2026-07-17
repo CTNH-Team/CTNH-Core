@@ -31,8 +31,6 @@
     "mc.NaturalSpawnerMixin",
     "mc.RecipeManagerApplyMixin",
     "mc.ServerChunkCacheMixin",
-    "tconstruct.GTConstructRecipesMixin",
-    "tconstruct.TiCDynamicDataPackMixin",
     "tmrv.RecipeManagerMixin",
     "vintageimprovements.LatheRotatingBlockMixin"
   ],

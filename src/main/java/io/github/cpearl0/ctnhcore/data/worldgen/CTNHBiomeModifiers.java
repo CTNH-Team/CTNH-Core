@@ -67,10 +67,6 @@ public class CTNHBiomeModifiers implements DataProvider {
             "mythicbotany:dragonstone_ore",
             "mythicbotany:gold_ore");
 
-    private static final List<String> UNDERGROUND_DECORATION = List.of(
-            "tconstruct:cobalt_ore_large",
-            "tconstruct:cobalt_ore_small");
-
     private final PackOutput.PathProvider biomeModifierPathProvider;
     private final PackOutput.PathProvider biomeTagPathProvider;
     private final PackOutput.PathProvider placedFeatureTagPathProvider;
@@ -87,35 +83,26 @@ public class CTNHBiomeModifiers implements DataProvider {
         CompletableFuture<?> undergroundOres = DataProvider.saveStable(output,
                 createRemoveFeaturesModifier(UNDERGROUND_ORES, "underground_ores"),
                 biomeModifierPathProvider.json(ResourceLocation.tryBuild("ctnhcore", "remove_worldgen_ores")));
-        CompletableFuture<?> undergroundDecoration = DataProvider.saveStable(output,
-                createRemoveFeaturesModifier(UNDERGROUND_DECORATION, "underground_decoration"),
-                biomeModifierPathProvider.json(ResourceLocation.tryBuild("ctnhcore", "remove_worldgen_decoration")));
         CompletableFuture<?> biomeTag = DataProvider.saveStable(output,
                 createOptionalTag(TARGET_BIOMES),
                 biomeTagPathProvider.json(ResourceLocation.tryBuild("ctnhcore", "worldgen_removal_biomes")));
         CompletableFuture<?> oreTag = DataProvider.saveStable(output,
                 createOptionalTag(UNDERGROUND_ORES),
                 placedFeatureTagPathProvider.json(ResourceLocation.tryBuild("ctnhcore", "worldgen_removal_ores")));
-        CompletableFuture<?> decorationTag = DataProvider.saveStable(output,
-                createOptionalTag(UNDERGROUND_DECORATION),
-                placedFeatureTagPathProvider
-                        .json(ResourceLocation.tryBuild("ctnhcore", "worldgen_removal_decoration")));
         // Separate direct-remove modifier for vanilla ancient debris (nether-hardcoded)
         CompletableFuture<?> ancientDebris = DataProvider.saveStable(output,
                 createDirectRemoveModifier(
                         new String[] { "minecraft:ore_ancient_debris_large", "minecraft:ore_debris_small" },
                         "underground_decoration"),
                 biomeModifierPathProvider.json(ResourceLocation.tryBuild("ctnhcore", "remove_ancient_debris")));
-        return CompletableFuture.allOf(undergroundOres, undergroundDecoration, biomeTag, oreTag, decorationTag,
-                ancientDebris);
+        return CompletableFuture.allOf(undergroundOres, biomeTag, oreTag, ancientDebris);
     }
 
     private static JsonObject createRemoveFeaturesModifier(List<String> features, String step) {
         JsonObject json = new JsonObject();
         json.addProperty("type", "forge:remove_features");
         json.addProperty("biomes", "#ctnhcore:worldgen_removal_biomes");
-        json.addProperty("features", features == UNDERGROUND_ORES ? "#ctnhcore:worldgen_removal_ores" :
-                "#ctnhcore:worldgen_removal_decoration");
+        json.addProperty("features", "#ctnhcore:worldgen_removal_ores");
         JsonArray stepsArray = new JsonArray();
         stepsArray.add(step);
         json.add("steps", stepsArray);

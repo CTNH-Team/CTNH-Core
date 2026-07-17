@@ -88,7 +88,7 @@ public class AvaritiaScriptRecipes {
                 .define('U', itemOrNull("twilightdelight:plate_of_meef_wellington"))
                 .define('V', itemOrNull("twilightdelight:tear_drink"))
                 .define('W', itemOrNull("biomancy:nutrient_bar"))
-                .define('X', itemOrNull("tconstruct:meat_soup"))
+                .define('X', Items.RABBIT_STEW)
                 .define('Y', itemOrNull("mynethersdelight:plate_of_stuffed_hoglin"))
                 .unlockedBy("has_item",
                         InventoryChangeTrigger.TriggerInstance.hasItems(CTNHItems.GALAXY_MEATBALL.get()))
@@ -111,7 +111,7 @@ public class AvaritiaScriptRecipes {
                 .define('G', itemOrNull("deep_aether:sun_core"))
                 .define('H', Items.HEART_OF_THE_SEA)
                 .define('I', itemOrNull("deep_aether:aerwhale_saddle"))
-                .define('J', itemOrNull("tconstruct:large_plate"))
+                .define('J', Items.NETHERITE_INGOT)
                 .define('K', itemOrNull("cataclysm:cursed_bow"))
                 .define('L', itemOrNull("ctnhcore:platinum_metal_catalyst_shard1"))
                 .define('M', CTNHItems.PRIMARY_STEW.get())

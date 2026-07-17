@@ -5,7 +5,6 @@ import io.github.cpearl0.ctnhcore.data.recipe.create.CreateRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.immersiveaircraft.ImmersiveAircraftRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.EIORecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.omnicells.QuantumOmniRecipes;
-import io.github.cpearl0.ctnhcore.data.recipe.tconstruct.TConstructRecipes;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
@@ -70,7 +69,6 @@ public class RecipeRemoval {
         CreateRecipes.createRemovals();
         ImmersiveAircraftRecipes.immersiveAircraftRemovals();
         SophisticatedStorageRecipes.sophisticatedStorageRemovals();
-        TConstructRecipes.tconstructRemovals();
 
         // ===== 本类删除（按模组/功能分组） =====
         adAstraRemovals();

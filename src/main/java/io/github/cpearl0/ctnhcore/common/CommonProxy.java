@@ -7,7 +7,6 @@ import io.github.cpearl0.ctnhcore.common.world.CTNHChunkLoading;
 import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
 import io.github.cpearl0.ctnhcore.data.materials.AeCrystalScienceMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.AeOmniMaterials;
-import io.github.cpearl0.ctnhcore.data.tags.CTNHBlockEntityTypeTagsProvider;
 import io.github.cpearl0.ctnhcore.data.tags.CTNHEntityTypeTagsProvider;
 import io.github.cpearl0.ctnhcore.data.tags.CTNHExtraBlockTagsProvider;
 import io.github.cpearl0.ctnhcore.data.tags.CTNHExtraFluidTagsProvider;
@@ -135,8 +134,6 @@ public class CommonProxy {
             generator.addProvider(true, new CTNHExtraBlockTagsProvider(packOutput, registries, existingFileHelper));
             generator.addProvider(true, new CTNHExtraFluidTagsProvider(packOutput, registries, existingFileHelper));
             generator.addProvider(true, new CTNHEntityTypeTagsProvider(packOutput, registries, existingFileHelper));
-            generator.addProvider(true,
-                    new CTNHBlockEntityTypeTagsProvider(packOutput, registries, existingFileHelper));
             generator.addProvider(true, new CTNHBiomeModifiers(packOutput));
             generator.addProvider(true, new net.minecraftforge.common.data.DatapackBuiltinEntriesProvider(
                     packOutput, registries, new net.minecraft.core.RegistrySetBuilder()

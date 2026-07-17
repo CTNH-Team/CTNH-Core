@@ -2371,35 +2371,35 @@ public class GtceuScriptRecipes {
                 'M', CustomTags.MALLETS);
 
         // Digital Well of Suffer crafting loop (LV through UV)
-        {
-            String[] dwosTiers = { "lv", "mv", "hv", "ev", "iv", "luv", "zpm", "uv" };
-            int[] voltageTiers = { GTValues.LV, GTValues.MV, GTValues.HV, GTValues.EV, GTValues.IV, GTValues.LuV,
-                    GTValues.ZPM, GTValues.UV };
-            ItemEntry<?>[] pumps = {
-                    GTItems.ELECTRIC_PUMP_LV, GTItems.ELECTRIC_PUMP_MV, GTItems.ELECTRIC_PUMP_HV,
-                    GTItems.ELECTRIC_PUMP_EV, GTItems.ELECTRIC_PUMP_IV, GTItems.ELECTRIC_PUMP_LuV,
-                    GTItems.ELECTRIC_PUMP_ZPM, GTItems.ELECTRIC_PUMP_UV
-            };
-            TagKey[] circuits = {
-                    CustomTags.LV_CIRCUITS, CustomTags.MV_CIRCUITS, CustomTags.HV_CIRCUITS,
-                    CustomTags.EV_CIRCUITS, CustomTags.IV_CIRCUITS, CustomTags.LuV_CIRCUITS,
-                    CustomTags.ZPM_CIRCUITS, CustomTags.UV_CIRCUITS
-            };
-
-            for (int i = 0; i < dwosTiers.length; i++) {
-                String tier = dwosTiers[i];
-                int voltTier = voltageTiers[i];
-                VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id(tier + "_digital_well_of_suffer"),
-                        new ItemStack(ForgeRegistries.ITEMS
-                                .getValue(ResourceLocation.parse("ctnhmana:" + tier + "_digital_well_of_suffer"))),
-                        "PCP", "SHS", "PCP",
-                        'P', pumps[i],
-                        'C', circuits[i],
-                        'H', GTMachines.HULL[voltTier].asStack(),
-                        'S', new ItemStack(
-                                BloodMagicBlocks.SACRIFICE_RUNE.get().asItem()));
-            }
-        }
+//        {
+//            String[] dwosTiers = { "lv", "mv", "hv", "ev", "iv", "luv", "zpm", "uv" };
+//            int[] voltageTiers = { GTValues.LV, GTValues.MV, GTValues.HV, GTValues.EV, GTValues.IV, GTValues.LuV,
+//                    GTValues.ZPM, GTValues.UV };
+//            ItemEntry<?>[] pumps = {
+//                    GTItems.ELECTRIC_PUMP_LV, GTItems.ELECTRIC_PUMP_MV, GTItems.ELECTRIC_PUMP_HV,
+//                    GTItems.ELECTRIC_PUMP_EV, GTItems.ELECTRIC_PUMP_IV, GTItems.ELECTRIC_PUMP_LuV,
+//                    GTItems.ELECTRIC_PUMP_ZPM, GTItems.ELECTRIC_PUMP_UV
+//            };
+//            TagKey[] circuits = {
+//                    CustomTags.LV_CIRCUITS, CustomTags.MV_CIRCUITS, CustomTags.HV_CIRCUITS,
+//                    CustomTags.EV_CIRCUITS, CustomTags.IV_CIRCUITS, CustomTags.LuV_CIRCUITS,
+//                    CustomTags.ZPM_CIRCUITS, CustomTags.UV_CIRCUITS
+//            };
+//
+//            for (int i = 0; i < dwosTiers.length; i++) {
+//                String tier = dwosTiers[i];
+//                int voltTier = voltageTiers[i];
+//                VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id(tier + "_digital_well_of_suffer"),
+//                        new ItemStack(ForgeRegistries.ITEMS
+//                                .getValue(ResourceLocation.parse("ctnhmana:" + tier + "_digital_well_of_suffer"))),
+//                        "PCP", "SHS", "PCP",
+//                        'P', pumps[i],
+//                        'C', circuits[i],
+//                        'H', GTMachines.HULL[voltTier].asStack(),
+//                        'S', new ItemStack(
+//                                BloodMagicBlocks.SACRIFICE_RUNE.get().asItem()));
+//            }
+//        }
 
         // ============== Smelting Recipe ==============
 

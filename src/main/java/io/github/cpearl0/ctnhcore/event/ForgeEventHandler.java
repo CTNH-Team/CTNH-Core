@@ -3,7 +3,6 @@ package io.github.cpearl0.ctnhcore.event;
 import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.capability.EIOCapacitorProvider;
-import io.github.cpearl0.ctnhcore.common.tconstruct.modifier.FortificationModifier;
 import io.github.cpearl0.ctnhcore.integration.legendary.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 
@@ -70,13 +69,6 @@ public class ForgeEventHandler {
                     player.setAirSupply(Math.min(player.getMaxAirSupply(), player.getAirSupply() + 4 * 10));
                 }
             });
-        }
-    }
-
-    @SubscribeEvent
-    public static void playerTick(TickEvent.PlayerTickEvent event) {
-        if (event.phase == TickEvent.Phase.END && !event.player.level().isClientSide) {
-            FortificationModifier.tickCooldown(event.player);
         }
     }
 
