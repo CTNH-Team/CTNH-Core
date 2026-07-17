@@ -44,62 +44,42 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.*;
 public class EUCellRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("me_pattern_buffer"))
-                .inputItems(DUAL_IMPORT_HATCH[LuV].asStack(), 1)
-                .inputItems(EMITTER_LuV, 1)
-                .inputItems(CustomTags.LuV_CIRCUITS, 4)
-                .inputItems(AEBlocks.PATTERN_PROVIDER.asItem(), 3)
-                .inputItems(AEBlocks.INTERFACE.asItem(), 3)
-                .inputItems(AEItems.SPEED_CARD.asItem(), 4)
-                .inputItems(AEItems.CAPACITY_CARD.asItem(), 2)
-                .inputItems(wireFine, Europium, 64)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("pccard:card_programmed_circuit")), 2)
-                .inputFluids(SolderingAlloy, L * 4)
-                .inputFluids(Lubricant, 500)
-                .outputItems(CEMachines.ME_PATTERN_BUFFER.asStack())
-                .scannerResearch(b -> b
-                        .researchStack(DUAL_IMPORT_HATCH[LuV].asStack())
-                        .duration(3000)
-                        .EUt(VA[IV]))
-                .duration(600).EUt(VA[LuV]).save(provider);
+        // spotless:off
+//        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("me_pattern_buffer"))
+//                .inputItems(DUAL_IMPORT_HATCH[LuV].asStack(), 1)
+//                .inputItems(EMITTER_LuV, 1)
+//                .inputItems(CustomTags.LuV_CIRCUITS, 4)
+//                .inputItems(AEBlocks.PATTERN_PROVIDER.asItem(), 3)
+//                .inputItems(AEBlocks.INTERFACE.asItem(), 3)
+//                .inputItems(AEItems.SPEED_CARD.asItem(), 4)
+//                .inputItems(AEItems.CAPACITY_CARD.asItem(), 2)
+//                .inputItems(wireFine, Europium, 64)
+//                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("pccard:card_programmed_circuit")), 2)
+//                .inputFluids(SolderingAlloy, L * 4)
+//                .inputFluids(Lubricant, 500)
+//                .outputItems(CEMachines.ME_PATTERN_BUFFER.asStack())
+//                .scannerResearch(b -> b
+//                        .researchStack(DUAL_IMPORT_HATCH[LuV].asStack())
+//                        .duration(3000)
+//                        .EUt(VA[IV]))
+//                .duration(600).EUt(VA[LuV]).save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("me_pattern_buffer_proxy"))
-                .inputItems(HULL[LuV].asStack(), 1)
-                .inputItems(SENSOR_LuV, 2)
-                .inputItems(CustomTags.LuV_CIRCUITS, 1)
-                .inputItems(AEBlocks.QUANTUM_LINK.asItem(), 1)
-                .inputItems(AEBlocks.QUANTUM_RING.asItem(), 2)
-                .inputItems(wireFine, Europium, 64)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("pccard:card_programmed_circuit")), 2)
-                .inputFluids(SolderingAlloy, L * 4)
-                .inputFluids(Lubricant, 500)
-                .outputItems(CEMachines.ME_PATTERN_BUFFER_PROXY.asStack())
-                .scannerResearch(b -> b
-                        .researchStack(CEMachines.ME_PATTERN_BUFFER.asStack())
-                        .duration(3000)
-                        .EUt(VA[IV]))
-                .duration(600).EUt(VA[LuV]).save(provider);
-
-        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("me_tag_stocking_input_bus"))
-                .inputItems(CEMachines.STOCKING_IMPORT_BUS_ME.asStack(), 1)
-                .inputItems(CustomTags.LuV_CIRCUITS, 4)
-                .inputItems(CBItems.META_CORE, 4)
-                .inputItems(AEItems.CELL_COMPONENT_64K.stack(), 4)
-                .inputItems(CONVEYOR_MODULE_LuV, 4)
-                .inputItems(ROBOT_ARM_LuV, 4)
-                .inputItems(AEItems.SPEED_CARD.stack(), 8)
-                .inputItems(AEItems.ENERGY_CARD.stack(), 8)
-                .inputItems(AEItems.CAPACITY_CARD.stack(), 8)
-                .inputItems(AEItems.REDSTONE_CARD.stack(), 8)
-                .inputItems(TAG_FILTER, 8)
-                .inputFluids(SolderingAlloy, L * 16)
-                .inputFluids(Lubricant, 2000)
-                .outputItems(CEMachines.TAG_STOCKING_IMPORT_BUS_ME.asStack())
-                .scannerResearch(b -> b
-                        .researchStack(CEMachines.STOCKING_IMPORT_BUS_ME.asStack())
-                        .duration(6000)
-                        .EUt(VA[IV]))
-                .duration(600).EUt(VA[LuV]).save(provider);
+//        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("me_pattern_buffer_proxy"))
+//                .inputItems(HULL[LuV].asStack(), 1)
+//                .inputItems(SENSOR_LuV, 2)
+//                .inputItems(CustomTags.LuV_CIRCUITS, 1)
+//                .inputItems(AEBlocks.QUANTUM_LINK.asItem(), 1)
+//                .inputItems(AEBlocks.QUANTUM_RING.asItem(), 2)
+//                .inputItems(wireFine, Europium, 64)
+//                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("pccard:card_programmed_circuit")), 2)
+//                .inputFluids(SolderingAlloy, L * 4)
+//                .inputFluids(Lubricant, 500)
+//                .outputItems(CEMachines.ME_PATTERN_BUFFER_PROXY.asStack())
+//                .scannerResearch(b -> b
+//                        .researchStack(CEMachines.ME_PATTERN_BUFFER.asStack())
+//                        .duration(3000)
+//                        .EUt(VA[IV]))
+//                .duration(600).EUt(VA[LuV]).save(provider);
 
         // ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("me_stocking_import_bus"))
         // .inputItems(ITEM_IMPORT_BUS[IV])
@@ -110,7 +90,7 @@ public class EUCellRecipes {
         // .outputItems(CEMachines.STOCKING_IMPORT_BUS_ME)
         // .duration(300).EUt(VA[IV])
         // .addMaterialInfo(true).save(provider);
-
+// spotless:on
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("me_substation_hatch"))
                 .inputItems(ENERGY_INPUT_HATCH_4A[IV].asStack())
                 .inputItems(ENERGY_OUTPUT_HATCH_4A[IV].asStack())

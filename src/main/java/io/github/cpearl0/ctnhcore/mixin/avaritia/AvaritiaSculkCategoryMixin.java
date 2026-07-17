@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.mixin.avaritia;
 
+import committee.nova.mods.avaritia.init.compat.emi.category.tables.SculkCraftingTableCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import dev.emi.emi.api.stack.EmiIngredient;
@@ -21,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
  * 强制将返回的 EmiIngredient 的 amount 设为 1。
  */
 @Mixin(
-       targets = "committee.nova.mods.avaritia.init.compat.emi.category.tables.SculkCraftingTableCategory",
+       value = SculkCraftingTableCategory.class,
        remap = false)
 public class AvaritiaSculkCategoryMixin {
 

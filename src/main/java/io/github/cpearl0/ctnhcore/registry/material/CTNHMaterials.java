@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.registry.material;
 
+import com.github.L_Ender.cataclysm.init.ModBlocks;
+import com.github.L_Ender.cataclysm.init.ModItems;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
@@ -1032,19 +1034,22 @@ public class CTNHMaterials {
     }
 
     public static void tagPrefixIgnore() {
-        TagPrefix.block.setIgnored(Holystone, AetherBlocks.HOLYSTONE);
+        TagPrefix.block.setIgnoredBlock(Holystone, AetherBlocks.HOLYSTONE);
 
         TagPrefix.gem.setIgnored(Zanite, AetherItems.ZANITE_GEMSTONE);
-        TagPrefix.block.setIgnored(Zanite, AetherBlocks.ZANITE_BLOCK);
+        TagPrefix.block.setIgnoredBlock(Zanite, AetherBlocks.ZANITE_BLOCK);
 
         TagPrefix.gem.setIgnored(Ambrosium, AetherItems.AMBROSIUM_SHARD);
-        TagPrefix.block.setIgnored(Ambrosium, AetherBlocks.AMBROSIUM_BLOCK);
+        TagPrefix.block.setIgnoredBlock(Ambrosium, AetherBlocks.AMBROSIUM_BLOCK);
 
         TagPrefix.gem.setIgnored(Skyjade, DAItems.SKYJADE);
-        TagPrefix.block.setIgnored(Skyjade, DABlocks.SKYJADE_BLOCK);
+        TagPrefix.block.setIgnoredBlock(Skyjade, DABlocks.SKYJADE_BLOCK);
 
         TagPrefix.ingot.setIgnored(Stratus, DAItems.STRATUS_INGOT);
-        TagPrefix.block.setIgnored(Stratus, DABlocks.STRATUS_BLOCK);
+        TagPrefix.block.setIgnoredBlock(Stratus, DABlocks.STRATUS_BLOCK);
+
+        TagPrefix.ingot.setIgnored(Ignitium, ModItems.IGNITIUM_INGOT);
+        TagPrefix.block.setIgnoredBlock(Ignitium, ModBlocks.IGNITIUM_BLOCK);
 
         hyperRotor.setIgnored(Neutronium);
     }

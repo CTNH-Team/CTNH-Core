@@ -125,7 +125,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         // 移植配方
         GeneralCircuitRecipes.init(provider);
         NanoRecipes.init(provider);
-        GTPortalRecipes.init(provider);
+        // GTPortalRecipes.init(provider);
         DecorateBlockRecipes.init(provider);
         FunctionalStorageRecipes.init(provider);
         CafeRecipes.init(provider);

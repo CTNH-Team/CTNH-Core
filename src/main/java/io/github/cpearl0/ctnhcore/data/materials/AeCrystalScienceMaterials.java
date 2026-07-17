@@ -23,10 +23,9 @@ public class AeCrystalScienceMaterials {
         TagPrefix.gem.setIgnored(PURIFIED_ENDER_QUARTZ, () -> AECSItems.PURE_ENDER_QUARTZ.get().asItem());
         TagPrefix.gem.setIgnored(PURIFIED_METEOR_CRYSTAL, () -> AECSItems.PURE_METEOR_CRYSTAL.get().asItem());
         TagPrefix.gem.setIgnored(PURIFIED_RESONATING_CRYSTAL, () -> AECSItems.PURE_RESONATING_CRYSTAL.get().asItem());
-        TagPrefix.block.setIgnored(PURIFIED_ENDER_QUARTZ, () -> AECSBlocks.PURE_ENDER_QUARTZ_BLOCK.get().asItem());
-        TagPrefix.block.setIgnored(PURIFIED_METEOR_CRYSTAL, () -> AECSBlocks.PURE_METEOR_CRYSTAL_BLOCK.get().asItem());
-        TagPrefix.block.setIgnored(PURIFIED_RESONATING_CRYSTAL,
-                () -> AECSBlocks.PURE_RESONATING_CRYSTAL_BLOCK.get().asItem());
+        TagPrefix.block.setIgnoredBlock(PURIFIED_ENDER_QUARTZ, AECSBlocks.PURE_ENDER_QUARTZ_BLOCK);
+        TagPrefix.block.setIgnoredBlock(PURIFIED_METEOR_CRYSTAL, AECSBlocks.PURE_METEOR_CRYSTAL_BLOCK);
+        TagPrefix.block.setIgnoredBlock(PURIFIED_RESONATING_CRYSTAL, AECSBlocks.PURE_RESONATING_CRYSTAL_BLOCK);
         TagPrefix.dust.setIgnored(PURIFIED_RESONATING_CRYSTAL, () -> AECSItems.RESONATING_DUST.get().asItem());
     }
 

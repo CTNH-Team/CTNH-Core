@@ -229,12 +229,9 @@ public class GTMaterialAddon {
     }
 
     public static void tagPrefixIgnore() {
-        TagPrefix.gem.setIgnored(GTMaterials.CertusQuartz, () -> AEItems.CERTUS_QUARTZ_CRYSTAL);
-        TagPrefix.block.setIgnored(GTMaterials.CertusQuartz, () -> AEBlocks.QUARTZ_BLOCK);
-
         TagPrefix.ingot.setIgnored(GTMaterials.Neutronium, neutron_ingot);
         TagPrefix.nugget.setIgnored(GTMaterials.Neutronium, neutron_nugget);
-        TagPrefix.block.setIgnored(GTMaterials.Neutronium, neutron);
+        TagPrefix.block.setIgnoredBlock(GTMaterials.Neutronium, neutron);
         TagPrefix.gear.setIgnored(Neutronium, neutron_gear);
     }
 }

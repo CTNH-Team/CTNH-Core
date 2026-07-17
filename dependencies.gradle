@@ -81,6 +81,7 @@ dependencies {
 
     // Blood Magic
     modImplementation(ctnh.bloodmagic)
+    modImplementation(ctnh.eventwrapper)
     modImplementation(ctnh.extrabotany)
     modImplementation(ctnh.mythicbotany)
     annotationProcessor(ctnh.libx)
@@ -110,7 +111,7 @@ dependencies {
 
     modImplementation(ctnh.javd)
     modImplementation(ctnh.trenzalore)
-    modCompileOnly(ctnh.sophisticatedcore)
+    modImplementation(ctnh.sophisticatedcore)
     modImplementation(ctnh.sophisticatedbackpacks)
     modImplementation(ctnh.sophisticatedstorage)
     modImplementation(ctnh.alexscaves)
@@ -122,14 +123,14 @@ dependencies {
     // Jack's Economy
     modImplementation(ctnh.jackseconomy)
     modLocalRuntime(ctnh.curios)
-
+    modImplementation(ctnh.lionfishapi)
     modImplementation(ctnh.lendercataclysm)
 
     modImplementation(ctnh.angelblock)
     modImplementation(ctnh.angelring)
 
     // GT Portal
-    modImplementation(ctnh.gtportal)
+    // modImplementation(ctnh.gtportal)
 
     // Functional Storage (needs Titanium)
     modImplementation(ctnh.titanium)

@@ -179,44 +179,20 @@ public class GTMachineModify {
         CLEANROOM.setBeforeWorking(
                 (machine, recipe) -> {
                     if (machine instanceof CleanroomMachine cleanroom) {
-                        try {
-                            // Use reflection to access the private distance fields
-                            Class<?> cleanroomClass = cleanroom.getClass();
-
-                            // Get the fields
-                            Field lDistField = cleanroomClass.getDeclaredField("lDist");
-                            Field rDistField = cleanroomClass.getDeclaredField("rDist");
-                            Field bDistField = cleanroomClass.getDeclaredField("bDist");
-                            Field fDistField = cleanroomClass.getDeclaredField("fDist");
-                            Field hDistField = cleanroomClass.getDeclaredField("hDist");
-
-                            // Make them accessible
-                            lDistField.setAccessible(true);
-                            rDistField.setAccessible(true);
-                            bDistField.setAccessible(true);
-                            fDistField.setAccessible(true);
-                            hDistField.setAccessible(true);
-
-                            // Get the values
-                            int lDist = lDistField.getInt(cleanroom);
-                            int rDist = rDistField.getInt(cleanroom);
-                            int bDist = bDistField.getInt(cleanroom);
-                            int fDist = fDistField.getInt(cleanroom);
-                            int hDist = hDistField.getInt(cleanroom);
-
-                            // Calculate length and width
-                            int length = lDist + rDist;
-                            int width = bDist + fDist;
-
-                            // Check if height is greater than length or width
-                            return hDist <= length && hDist <= width;
-                        } catch (NoSuchFieldException | IllegalAccessException e) {
-                            // Handle reflection errors
-                            e.printStackTrace();
-                            return true;
+                        int lDist = cleanroom.getLDist();
+                        int rDist = cleanroom.getRDist();
+                        int bDist = cleanroom.getBDist();
+                        int fDist = cleanroom.getFDist();
+                        int hDist = cleanroom.getHDist();
+                        int length = lDist + rDist;
+                        int width = bDist + fDist;
+                        if(hDist <= length && hDist <= width) {
+                            return null;
+                        } else {
+                            return cleanroom_restriction.translate();
                         }
                     }
-                    return true;
+                    return null;
                 });
         CLEANROOM.setTooltipBuilder(CLEANROOM.getTooltipBuilder().andThen(
                 (stack, tooltip) -> {

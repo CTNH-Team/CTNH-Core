@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.renderer.MartialMoralityEyeRender;
 import io.github.cpearl0.ctnhcore.common.block.CTNHFusionCasingType;
@@ -72,6 +73,7 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.DUMMY_RECIPES;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.Ignitium;
 import static net.minecraft.world.level.block.Blocks.*;
 
 // spotless:off
@@ -390,13 +392,8 @@ public class MultiblocksA {
             .register();
 
     public static final MultiblockMachineDefinition[] COMPRESSED_FUSION_REACTOR = CTNHMachineUtils.registerTieredMultis("compressed_fusion_reactor",
-            (holder, tier) -> new FusionReactorMachine(holder, tier) {
-
-                @Override
-                public long getMaxVoltage() {
-                    return super.getOverclockVoltage();
-                }
-            }, (tier, builder) -> builder
+            (holder, tier) -> new FusionReactorMachine(holder, tier),
+            (tier, builder) -> builder
                     .rotationState(RotationState.ALL)
                     .langValue("Fusion Reactor Computer MK %s".formatted(FormattingUtil.toRomanNumeral(tier - 3)))
                     .recipeType(GTRecipeTypes.FUSION_RECIPES)
@@ -839,7 +836,7 @@ public class MultiblocksA {
             .register();
     //Come from GTCA
     public static final MultiblockMachineDefinition MEGA_LCR = REGISTRATE
-            .multiblock("mega_lcr", RecipeE::new)
+            .multiblock("mega_lcr", RecipeElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.LARGE_CHEMICAL_RECIPES)
             .appearanceBlock(CASING_PTFE_INERT)
@@ -1450,7 +1447,7 @@ public class MultiblocksA {
                     .where("N", Predicates.blocks(CASING_STEEL_SOLID.get())
                             .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
-                    .where("O", Predicates.blocks(ModBlocks.IGNITIUM_BLOCK.get()))
+                    .where("O", Predicates.blocks(MATERIAL_BLOCKS.get(TagPrefix.block, Ignitium).get()))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
             .additionalDisplay((machine, l) -> {

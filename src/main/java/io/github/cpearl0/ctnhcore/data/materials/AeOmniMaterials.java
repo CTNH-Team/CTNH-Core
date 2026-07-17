@@ -19,7 +19,7 @@ public class AeOmniMaterials {
 
     public static void tagPrefixIgnore() {
         TagPrefix.ingot.setIgnored(ENDER_STEEL, () -> OCItems.ENDER_INGOT.get().asItem());
-        TagPrefix.block.setIgnored(ENDER_STEEL, () -> OCBlocks.ENDER_INGOT_BLOCK.get().asItem());
+        TagPrefix.block.setIgnoredBlock(ENDER_STEEL, OCBlocks.ENDER_INGOT_BLOCK);
         TagPrefix.ingot.setIgnored(CHARGED_ENDER_STEEL, () -> OCItems.CHARGED_ENDER_INGOT.get().asItem());
     }
 
