@@ -114,7 +114,7 @@ public class UnderfloorHeatingMachine extends RecipeMultiblockMachine implements
             textList.add(Component.translatable("ctnh.multiblock.underfloor_heating_system.info.steam_consumption",
                     String.format("%.1f", steam_consumption_default * rate / 100)));
             var rateText = Component.translatable("ctnh.multiblock.underfloor_heating_system.info.rate",
-                    ChatFormatting.AQUA.toString() + getRate() + "%")
+                    ChatFormatting.AQUA.toString() + rate + "%")
                     .withStyle(Style.EMPTY.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
                             Component.translatable("ctnh.multiblock.underfloor_heating_system.info.rate.tooltip"))));
             textList.add(rateText);

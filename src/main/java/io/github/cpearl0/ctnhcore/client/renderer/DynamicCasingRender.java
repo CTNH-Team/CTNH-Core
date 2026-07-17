@@ -61,14 +61,6 @@ public class DynamicCasingRender extends DynamicRender<IDynamicCasing, DynamicCa
         this(base, ModelType.getByName(type));
     }
 
-    public BlockState getBaseCasing() {
-        return baseCasing;
-    }
-
-    public ModelType getModelType() {
-        return modelType;
-    }
-
     public void initModel() {
         ModelUtils.registerBakeEventListener(false, event -> {
             bakedModelsMap.put(baseCasing, event.getModels().get(BlockModelShaper.stateToModelLocation(baseCasing)));

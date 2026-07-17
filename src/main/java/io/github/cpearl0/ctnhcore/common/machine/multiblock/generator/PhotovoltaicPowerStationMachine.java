@@ -173,7 +173,7 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
         // 计算发电功率
         lastOutputEnergy = (long) (Math.sin((double) time / (END_TIME + 24000 - START_TIME) * Math.PI) * BASIC_RATE *
                 rate_mul);
-        energyContainer.addEnergy(lastOutputEnergy);
+        energyContainer.changeEnergy(lastOutputEnergy);
     }
 
     @Override

@@ -10,7 +10,6 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gregtechceu.gtceu.common.data.*;
-import com.gregtechceu.gtceu.common.data.machines.GTAEMachines;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -208,8 +207,8 @@ public class OrdinaryRecipes {
 
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("me_dual_output_hatch"))
                 .inputItems(HULL[IV].asStack())
-                .inputItems(GTAEMachines.ITEM_EXPORT_BUS_ME.asStack(), 1)
-                .inputItems(GTAEMachines.FLUID_EXPORT_HATCH_ME.asStack(), 1)
+                .inputItems(CEMachines.ITEM_EXPORT_BUS_ME.asStack(), 1)
+                .inputItems(CEMachines.FLUID_EXPORT_HATCH_ME.asStack(), 1)
                 .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 2880))
                 .outputItems(CEMachines.DUAL_OUTPUT_HATCH_ME.asStack(), 1)
                 .EUt(GTValues.VA[GTValues.IV])

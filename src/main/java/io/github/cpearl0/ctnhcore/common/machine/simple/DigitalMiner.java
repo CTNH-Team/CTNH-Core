@@ -177,8 +177,8 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
 
     @Override
     protected WorkLogic createWorkLogic(Object... args) {
-        return new DigitalMinerLogic(this, minerRadius, minHeight, maxHeight, silkLevel, itemFilter,
-                (int) (40 / Math.pow(2, getTier())));
+        return new DigitalMinerLogic(this, getRange(getTier()), 0, 256, 0, null,
+                1, (int) (40 / Math.pow(2, getTier())));
     }
 
     @Override

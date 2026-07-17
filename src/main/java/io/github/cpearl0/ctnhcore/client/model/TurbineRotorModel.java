@@ -24,10 +24,6 @@ public class TurbineRotorModel extends ModelBase {
         this.blade = this.turbine_rotor.getChild("blade");
     }
 
-    public ModelPart getTurbine_rotor() {
-        return turbine_rotor;
-    }
-
     public static LayerDefinition createBodyLayer() {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();

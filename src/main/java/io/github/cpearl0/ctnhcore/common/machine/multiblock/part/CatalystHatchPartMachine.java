@@ -12,6 +12,7 @@ import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.TieredIOPartMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+import com.gregtechceu.gtceu.api.recipe.ingredient.item.ItemIngredient;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 
 import com.lowdragmc.lowdraglib.gui.texture.ResourceTexture;
@@ -23,7 +24,6 @@ import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.List;
 
@@ -79,59 +79,55 @@ public class CatalystHatchPartMachine extends TieredIOPartMachine {
         }) {
 
             @Override
-            public List<Ingredient> handleRecipeInner(IO io, GTRecipe recipe, List<Ingredient> left, boolean simulate) {
-                if (io != handlerIO) return left;
+            public boolean handleRecipe(IO io, GTRecipe recipe, List<ItemIngredient> left, boolean simulate) {
+                if (!handlerIO.support(io)) return false;
                 CustomItemStackHandler capability;
                 if (simulate) {
                     NonNullList<ItemStack> items = NonNullList.create();
                     for (int i = 0; i < storage.getSlots(); i++) {
-                        items.add(storage.getStackInSlot(i));
+                        items.add(storage.getStackInSlot(i).copy());
                     }
                     capability = new CustomItemStackHandler(items);
                 } else capability = storage;
-                var iterator = left.iterator();
+                var iterator = left.listIterator();
                 if (io == IO.IN) {
                     while (iterator.hasNext()) {
                         var ingredient = iterator.next();
+                        int amountToConsume = ingredient.getCount();
+                        if (!simulate) {
+                            var chance = getChance();
+                            var average = amountToConsume * chance;
+                            var variance = amountToConsume * chance * (1 - chance);
+                            amountToConsume = (int) Math.ceil(
+                                    Math.sqrt(variance) * GTValues.RNG.nextGaussian() + average);
+                        }
+                        amountToConsume = Math.max(0, Math.min(ingredient.getCount(), amountToConsume));
+                        int consumed = 0;
                         for (int i = 0; i < capability.getSlots(); i++) {
                             var item = capability.getStackInSlot(i);
-                            var itemStack = simulate ? item.copy() : item;
-                            // Does not look like a good implementation, but I think it's at least equal to
-                            // vanilla Ingredient::test
-                            if (ingredient.test(itemStack)) {
-                                var ingredientStacks = ingredient.getItems();
-                                for (var ingredientStack : ingredientStacks) {
-                                    if (ingredientStack.getItem().equals(itemStack.getItem())) {
-                                        CatalystBehavior behavior = CatalystBehavior.getBehaviour(itemStack);
-                                        var count = ingredientStack.getCount();
-                                        if (!simulate) {
-                                            var chance = getChance();
-                                            var u = (count * chance);
-                                            var e = (count * chance * (1 - chance));
-                                            count = (int) Math.ceil(Math.sqrt(e) * GTValues.RNG.nextGaussian() + u);
-                                        }
-                                        if (behavior != null) {
-                                            var damage = Math.min(count, behavior.getDurability(itemStack));
-                                            behavior.applyDamage(itemStack, damage);
-                                            ingredientStack.shrink(damage);
-                                            if (itemStack.isEmpty() || ingredientStack.isEmpty()) {
-                                                transferItems();
-                                            }
-                                        } else {
-                                            var extracted = capability.extractItem(i, count, false);
-                                            ingredientStack.shrink(extracted.getCount());
-                                        }
-                                        if (ingredientStack.isEmpty()) {
-                                            iterator.remove();
-                                            break;
-                                        }
-                                    }
-                                }
+                            if (item.isEmpty() || !ingredient.test(item)) continue;
+
+                            CatalystBehavior behavior = CatalystBehavior.getBehaviour(item);
+                            if (behavior != null) {
+                                int damage = Math.min(amountToConsume - consumed, behavior.getDurability(item));
+                                behavior.applyDamage(item, damage);
+                                consumed += damage;
+                                if (!simulate && item.isEmpty()) transferItems();
+                            } else {
+                                var extracted = capability.extractItem(i, amountToConsume - consumed, false);
+                                consumed += extracted.getCount();
                             }
+                            if (consumed >= amountToConsume) break;
+                        }
+                        int remaining = ingredient.getCount() - consumed;
+                        if (remaining <= 0) {
+                            iterator.remove();
+                        } else if (consumed > 0) {
+                            iterator.set(ingredient.copyWithCount(remaining));
                         }
                     }
                 }
-                return left.isEmpty() ? null : left;
+                return left.isEmpty();
             }
         };
     }

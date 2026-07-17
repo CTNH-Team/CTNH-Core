@@ -14,6 +14,7 @@ import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDistinctPart;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.TieredIOPartMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+import com.gregtechceu.gtceu.api.recipe.ingredient.item.ItemIngredient;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.item.IntCircuitBehaviour;
 
@@ -55,9 +56,7 @@ public class CreativeInputBusPartMachine extends TieredIOPartMachine implements 
     @Persisted
     protected final NotifiableItemStackHandler circuitInventory;
 
-    @Persisted
-    @Getter
-    boolean workingEnabled = true;
+    private boolean distinct;
 
     public CreativeInputBusPartMachine(IMachineBlockEntity holder,
                                        Function<Integer, ItemStackTransfer> transferFactory) {
@@ -81,17 +80,6 @@ public class CreativeInputBusPartMachine extends TieredIOPartMachine implements 
     }
 
     @Override
-    public void onLoad() {
-        super.onLoad();
-        getHandlerList().setColor(getPaintingColor());
-    }
-
-    @Override
-    public void onPaintingColorChanged(int color) {
-        getHandlerList().setColor(color, true);
-    }
-
-    @Override
     public int tintColor(int index) {
         if (index == 9) return getRealColor();
         return -1;
@@ -99,23 +87,23 @@ public class CreativeInputBusPartMachine extends TieredIOPartMachine implements 
 
     @Override
     public boolean isDistinct() {
-        return getHandlerList().isDistinct();
+        return distinct;
     }
 
     @Override
     public void setDistinct(boolean isDistinct) {
-        getHandlerList().setDistinctAndNotify(isDistinct);
+        distinct = isDistinct;
     }
 
     @Override
     public void setWorkingEnabled(boolean workingEnabled) {
-        this.workingEnabled = workingEnabled;
+        super.setWorkingEnabled(workingEnabled);
         inventory.notifyListeners();
     }
 
-    public void attachConfigurators(ConfiguratorPanel configuratorPanel) {
-        IDistinctPart.super.attachConfigurators(configuratorPanel);
-        configuratorPanel.attachConfigurators(new CircuitFancyConfigurator(circuitInventory.storage));
+    public void attachConfigurators(ConfiguratorPanel left, ConfiguratorPanel right) {
+        IDistinctPart.super.attachConfigurators(left, right);
+        left.attachConfigurators(new CircuitFancyConfigurator(circuitInventory.storage));
     }
 
     @Override
@@ -178,12 +166,11 @@ public class CreativeInputBusPartMachine extends TieredIOPartMachine implements 
         }
 
         @Override
-        public List<Ingredient> handleRecipeInner(IO io, GTRecipe recipe, List<Ingredient> left, boolean simulate) {
+        public boolean handleRecipe(IO io, GTRecipe recipe, List<ItemIngredient> left, boolean simulate) {
             if (isWorkingEnabled()) {
-                return super.handleRecipeInner(io, recipe, left, true);
-            } else {
-                return left;
+                return super.handleRecipe(io, recipe, left, simulate);
             }
+            return false;
         }
 
         @Override

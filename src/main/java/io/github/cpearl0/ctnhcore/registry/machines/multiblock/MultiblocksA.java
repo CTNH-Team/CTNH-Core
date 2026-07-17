@@ -861,7 +861,6 @@ public class MultiblocksA {
                             .where("P", Predicates.blocks(CASING_POLYTETRAFLUOROETHYLENE_PIPE.get()))
                             .where("#", Predicates.air())
                             .where("C", Predicates.blocks(CASING_PTFE_INERT.get()).setMinGlobalLimited(80)
-                                    .or(Predicates.abilities(CTNHPartAbility.THREAD_HATCH).setMaxGlobalLimited(1).setPreviewCount(1))
                                     .or(Predicates.autoAbilities(definition.getRecipeTypes(),false, false, true, true, true,
                                             true))
                                     .or(Predicates.autoAbilities(true, true, false))
@@ -1291,6 +1290,62 @@ public class MultiblocksA {
                     .build())
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_primitive_bricks"), GTCEu.id("block/machines/alloy_smelter"))
             .register();
+
+    public static final MultiblockMachineDefinition[] LARGE_MINER = CTNHMachineUtils.registerTieredMultis("large_miner",
+            (holder, tier) -> new LargeDigitalMinerMachine(holder, tier, 64 / tier, 2 * tier - 5, tier,
+                    8 - (tier - 5)),
+            (tier, builder) -> {
+                var casing = switch (tier) {
+                    case EV -> CASING_STEEL_SOLID;
+                    case IV -> CASING_TITANIUM_STABLE;
+                    case LuV -> CASING_TUNGSTENSTEEL_ROBUST;
+                    default -> throw new IllegalArgumentException("Unsupported large miner tier: " + tier);
+                };
+                var frame = switch (tier) {
+                    case EV -> Steel;
+                    case IV -> Titanium;
+                    case LuV -> TungstenSteel;
+                    default -> throw new IllegalArgumentException("Unsupported large miner tier: " + tier);
+                };
+                var casingTexture = switch (tier) {
+                    case EV -> GTCEu.id("block/casings/solid/machine_casing_solid_steel");
+                    case IV -> GTCEu.id("block/casings/solid/machine_casing_stable_titanium");
+                    case LuV -> GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel");
+                    default -> throw new IllegalArgumentException("Unsupported large miner tier: " + tier);
+                };
+                return builder
+                        .langValue("%s Large Miner %s".formatted(VLVH[tier], VLVT[tier]))
+                        .rotationState(RotationState.NON_Y_AXIS)
+                        .recipeType(GTRecipeTypes.MACERATOR_RECIPES)
+                        .appearanceBlock(casing)
+                        .tooltips(Component.translatable("gtceu.machine.large_miner." + VN[tier].toLowerCase() + ".tooltip"),
+                                Component.translatable("gtceu.machine.miner.multi.description"))
+                        .tooltipBuilder((stack, tooltip) -> {
+                            int workingAreaChunks = 2 * tier - 5;
+                            tooltip.add(Component.translatable("gtceu.machine.miner.fluid_usage", 8 - (tier - 5),
+                                    DrillingFluid.getLocalizedName()));
+                            tooltip.add(Component.translatable("gtceu.universal.tooltip.working_area_chunks",
+                                    workingAreaChunks, workingAreaChunks));
+                            tooltip.add(Component.translatable("gtceu.universal.tooltip.energy_tier_range",
+                                    GTValues.VNF[tier], GTValues.VNF[tier]));
+                        })
+                        .pattern(definition -> FactoryBlockPattern.start()
+                                .aisle("XXX", "#F#", "#F#", "#F#", "###", "###", "###")
+                                .aisle("XXX", "FCF", "FCF", "FCF", "#F#", "#F#", "#F#")
+                                .aisle("XSX", "#F#", "#F#", "#F#", "###", "###", "###")
+                                .where("S", Predicates.controller(Predicates.blocks(definition.get())))
+                                .where("X", Predicates.blocks(casing.get())
+                                        .or(abilities(PartAbility.EXPORT_ITEMS).setExactLimit(1).setPreviewCount(1))
+                                        .or(abilities(PartAbility.IMPORT_FLUIDS).setExactLimit(1).setPreviewCount(1))
+                                        .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1)
+                                                .setMaxGlobalLimited(2).setPreviewCount(1)))
+                                .where("C", Predicates.blocks(casing.get()))
+                                .where("F", Predicates.frames(frame))
+                                .where("#", Predicates.any())
+                                .build())
+                        .workableCasingModel(casingTexture, GTCEu.id("block/multiblock/large_miner"))
+                        .register();
+            }, EV, IV, LuV);
 
     public static final MultiblockMachineDefinition ZPM_LARGE_MINER = REGISTRATE.multiblock("zpm_large_miner", LargeDigitalMinerMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)

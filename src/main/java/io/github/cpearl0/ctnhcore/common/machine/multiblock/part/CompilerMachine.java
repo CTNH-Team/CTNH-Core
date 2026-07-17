@@ -38,10 +38,6 @@ public class CompilerMachine extends TieredIOPartMachine implements IDistinctPar
         inventory = new NotifiableItemStackHandler(this, 1, IO.IN);
     }
 
-    public NotifiableItemStackHandler getInventory() {
-        return inventory;
-    }
-
     public void set_id(int id) {
         ids = id;
     }

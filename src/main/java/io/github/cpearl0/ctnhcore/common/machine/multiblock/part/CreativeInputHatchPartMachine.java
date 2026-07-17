@@ -40,9 +40,7 @@ public class CreativeInputHatchPartMachine extends TieredIOPartMachine implement
     public final NotifiableFluidTank tank;
     private final int slots;
 
-    @Persisted
-    @Getter
-    boolean workingEnabled = true;
+    private boolean distinct;
 
     @Getter
     @Persisted
@@ -60,20 +58,9 @@ public class CreativeInputHatchPartMachine extends TieredIOPartMachine implement
     // ***** Initialization ******//
     //////////////////////////////////////
     @Override
-    public void onLoad() {
-        super.onLoad();
-        getHandlerList().setColor(getPaintingColor());
-    }
-
-    @Override
     public void setWorkingEnabled(boolean workingEnabled) {
-        this.workingEnabled = workingEnabled;
+        super.setWorkingEnabled(workingEnabled);
         tank.notifyListeners();
-    }
-
-    @Override
-    public void onPaintingColorChanged(int color) {
-        getHandlerList().setColor(color, true);
     }
 
     @Override
@@ -95,9 +82,9 @@ public class CreativeInputHatchPartMachine extends TieredIOPartMachine implement
     //////////////////////////////////////
 
     @Override
-    public void attachConfigurators(ConfiguratorPanel configuratorPanel) {
-        IDistinctPart.super.attachConfigurators(configuratorPanel);
-        configuratorPanel.attachConfigurators(new CircuitFancyConfigurator(circuitInventory.storage));
+    public void attachConfigurators(ConfiguratorPanel left, ConfiguratorPanel right) {
+        IDistinctPart.super.attachConfigurators(left, right);
+        left.attachConfigurators(new CircuitFancyConfigurator(circuitInventory.storage));
     }
 
     @Override
@@ -143,12 +130,12 @@ public class CreativeInputHatchPartMachine extends TieredIOPartMachine implement
 
     @Override
     public boolean isDistinct() {
-        return getHandlerList().isDistinct();
+        return distinct;
     }
 
     @Override
     public void setDistinct(boolean isDistinct) {
-        getHandlerList().setDistinctAndNotify(isDistinct);
+        distinct = isDistinct;
     }
 
     private class InfinityFluidTank extends NotifiableFluidTank {
@@ -158,13 +145,11 @@ public class CreativeInputHatchPartMachine extends TieredIOPartMachine implement
         }
 
         @Override
-        public List<FluidIngredient> handleRecipeInner(IO io, GTRecipe recipe, List<FluidIngredient> left,
-                                                       boolean simulate) {
+        public boolean handleRecipe(IO io, GTRecipe recipe, List<FluidIngredient> left, boolean simulate) {
             if (isWorkingEnabled()) {
-                return super.handleRecipeInner(io, recipe, left, true);
-            } else {
-                return left;
+                return super.handleRecipe(io, recipe, left, simulate);
             }
+            return false;
         }
     }
 }

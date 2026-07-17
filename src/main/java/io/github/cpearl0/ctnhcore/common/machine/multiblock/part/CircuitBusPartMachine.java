@@ -44,18 +44,6 @@ public class CircuitBusPartMachine extends TieredIOPartMachine implements IDisti
         inventory = new NotifiableItemStackHandler(this, 1, IO.IN, IO.BOTH);
     }
 
-    public NotifiableItemStackHandler getInventory() {
-        return inventory;
-    }
-
-    public boolean isLocked() {
-        return isLocked;
-    }
-
-    public void setLocked(boolean isLocked) {
-        this.isLocked = isLocked;
-    }
-
     @Override
     public void onDrops(List<ItemStack> drops) {
         clearInventory(getInventory().storage);

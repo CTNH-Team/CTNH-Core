@@ -64,7 +64,7 @@ public class WaterPowerStationMachine extends CoilWorkableElectricMultiblockMach
     public void addDisplayText(List<Component> textList) {
         if (isFormed()) {
             var outputEnergy = isActive() && recipeLogic.getLastRecipe() != null ?
-                    RecipeHelper.getRealEUtWithIO(recipeLogic.getLastRecipe()).voltage() : 0;
+                    RecipeHelper.getRealEUtWithIO(recipeLogic.getLastRecipe()) : 0;
             var voltageName = GTValues.VNF[GTUtil.getTierByVoltage(outputEnergy)];
             textList.add(Component.translatable("multiblock.ctnh.water_power_station1", water));
             textList.add(Component.translatable("multiblock.ctnh.water_power_station.efficiency",

@@ -57,8 +57,4 @@ public final class CTNHRegistrate extends CNRegistrate {
         models.add(model);
         return model;
     }
-
-    public List<ModelDefinition> getModels() {
-        return models;
-    }
 }

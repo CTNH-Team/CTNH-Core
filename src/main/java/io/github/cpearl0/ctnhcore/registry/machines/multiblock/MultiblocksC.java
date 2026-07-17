@@ -116,7 +116,6 @@ public class MultiblocksC {
                     .aisle("#####AAAAA#####", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############")
                     .where("C", Predicates.blocks(GTBlocks.MACHINE_CASING_LuV.get()))
                     .where("D", Predicates.blocks(GTBlocks.COMPUTER_CASING.get())
-                            .or(Predicates.abilities(CTNHPartAbility.THREAD_HATCH).setMaxGlobalLimited(1).setPreviewCount(1))
                             .or(Predicates.autoAbilities(definition.getRecipeTypes(),false, false, true, true, true,
                                     true))
                             .or(Predicates.autoAbilities(true, false, true))

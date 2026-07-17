@@ -790,7 +790,6 @@ public class ChineseLangHandler {
         // for (int tier : GTValues.tiersBetween(HV, IV)) {
         // provider.add(CTNHMachines.HIGH_PERFORMANCE_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + "§r高性能计算机");
         // }
-        provider.add(CTNHMachines.ASYNC_THREAD_HATCH[LuV].getBlock(), "§r异步线程控制仓");
         provider.add(CTNHMachines.STERILE_CLEANROOM_MAINTENANCE_HATCH.getBlock(), "无菌超净间维护仓");
 
         provider.add(CTNHMachines.DRONEHOLDER.getBlock(), "无人机支架");

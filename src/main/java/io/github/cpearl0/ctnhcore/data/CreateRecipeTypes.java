@@ -32,16 +32,16 @@ public class CreateRecipeTypes {
         BENDER_RECIPES.onRecipeBuild((builder, provider) -> {
             if (!GTRecipes.RECIPE_FILTERS.contains(convert(builder.id, builder.recipeType))) {
                 assert MECHANICAL_PRESSOR_RECIPES != null;
-                if (GTUtil.getTierByVoltage(builder.EUt().voltage()) <= GTValues.HV) {
+                if (GTUtil.getTierByVoltage(builder.EUt()) <= GTValues.HV) {
                     var newrecipe = MECHANICAL_PRESSOR_RECIPES.copyFrom(builder)
                             .duration(Math.max(
                                     (int) (builder.duration / CTNHConfig.INSTANCE.kinetic.pressorSpeedMultiplier), 1))
-                            .buildRawRecipe();
+                            .buildRuntime();
                     new CTPPRecipeBuilder(newrecipe, MECHANICAL_PRESSOR_RECIPES)
                             .rpm(CTNHConfig.INSTANCE.kinetic.pressorRpmRequirement)
                             .noEUt()
-                            .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt().voltage()) * 2, 5))
-                            .inputStress(builder.EUt().voltage() * CTNHConfig.INSTANCE.kinetic.pressorStressRequirement)
+                            .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt()) * 2, 5))
+                            .inputStress(builder.EUt() * CTNHConfig.INSTANCE.kinetic.pressorStressRequirement)
                             .save(provider);
                 }
             }
@@ -49,16 +49,16 @@ public class CreateRecipeTypes {
         MIXER_RECIPES.onRecipeBuild((builder, provider) -> {
             if (!GTRecipes.RECIPE_FILTERS.contains(convert(builder.id, builder.recipeType))) {
                 assert MECHANICAL_MIXER_RECIPES != null;
-                if (GTUtil.getTierByVoltage(builder.EUt().voltage()) <= GTValues.HV) {
+                if (GTUtil.getTierByVoltage(builder.EUt()) <= GTValues.HV) {
                     var newrecipe = MECHANICAL_MIXER_RECIPES.copyFrom(builder)
                             .duration(Math.max(
                                     (int) (builder.duration / CTNHConfig.INSTANCE.kinetic.mixerSpeedMultiplier), 1))
-                            .buildRawRecipe();
+                            .buildRuntime();
                     new CTPPRecipeBuilder(newrecipe, MECHANICAL_MIXER_RECIPES)
                             .rpm(CTNHConfig.INSTANCE.kinetic.mixerRpmRequirement)
                             .noEUt()
-                            .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt().voltage()) * 2, 5))
-                            .inputStress(builder.EUt().voltage() * CTNHConfig.INSTANCE.kinetic.mixerStressRequirement)
+                            .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt()) * 2, 5))
+                            .inputStress(builder.EUt() * CTNHConfig.INSTANCE.kinetic.mixerStressRequirement)
                             .save(provider);
                 }
             }
@@ -66,18 +66,18 @@ public class CreateRecipeTypes {
         CENTRIFUGE_RECIPES.onRecipeBuild((builder, provider) -> {
             if (!GTRecipes.RECIPE_FILTERS.contains(convert(builder.id, builder.recipeType))) {
                 assert MECHANICAL_CENTRIFUGE_RECIPES != null;
-                if (GTUtil.getTierByVoltage(builder.EUt().voltage()) <= GTValues.HV) {
+                if (GTUtil.getTierByVoltage(builder.EUt()) <= GTValues.HV) {
                     var newrecipe = MECHANICAL_CENTRIFUGE_RECIPES.copyFrom(builder)
                             .duration(Math.max(
                                     (int) (builder.duration / CTNHConfig.INSTANCE.kinetic.centrifugeSpeedMultiplier),
                                     1))
-                            .buildRawRecipe();
+                            .buildRuntime();
                     new CTPPRecipeBuilder(newrecipe, MECHANICAL_CENTRIFUGE_RECIPES)
                             .rpm(CTNHConfig.INSTANCE.kinetic.centrifugeRpmRequirement)
                             .noEUt()
-                            .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt().voltage()) * 2, 5))
+                            .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt()) * 2, 5))
                             .inputStress(
-                                    builder.EUt().voltage() * CTNHConfig.INSTANCE.kinetic.centrifugeStressRequirement)
+                                    builder.EUt() * CTNHConfig.INSTANCE.kinetic.centrifugeStressRequirement)
                             .save(provider);
                 }
             }
@@ -85,16 +85,16 @@ public class CreateRecipeTypes {
         SIFTER_RECIPES.onRecipeBuild((builder, provider) -> {
             if (!GTRecipes.RECIPE_FILTERS.contains(convert(builder.id, builder.recipeType))) {
                 assert MECHANICAL_SIFTER_RECIPES != null;
-                if (GTUtil.getTierByVoltage(builder.EUt().voltage()) <= GTValues.HV) {
+                if (GTUtil.getTierByVoltage(builder.EUt()) <= GTValues.HV) {
                     var newrecipe = MECHANICAL_SIFTER_RECIPES.copyFrom(builder)
                             .duration(Math.max(
                                     (int) (builder.duration / CTNHConfig.INSTANCE.kinetic.sifterSpeedMultiplier), 1))
-                            .buildRawRecipe();
+                            .buildRuntime();
                     new CTPPRecipeBuilder(newrecipe, MECHANICAL_SIFTER_RECIPES)
                             .rpm(CTNHConfig.INSTANCE.kinetic.sifterRpmRequirement)
                             .noEUt()
-                            .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt().voltage()) * 2, 5))
-                            .inputStress(builder.EUt().voltage() * CTNHConfig.INSTANCE.kinetic.sifterStressRequirement)
+                            .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt()) * 2, 5))
+                            .inputStress(builder.EUt() * CTNHConfig.INSTANCE.kinetic.sifterStressRequirement)
                             .save(provider);
                 }
             }
@@ -102,17 +102,17 @@ public class CreateRecipeTypes {
         EXTRACTOR_RECIPES.onRecipeBuild((builder, provider) -> {
             if (!GTRecipes.RECIPE_FILTERS.contains(convert(builder.id, builder.recipeType))) {
                 assert MECHANICAL_EXTRACTOR_RECIPES != null;
-                if (GTUtil.getTierByVoltage(builder.EUt().voltage()) <= GTValues.HV) {
+                if (GTUtil.getTierByVoltage(builder.EUt()) <= GTValues.HV) {
                     var newrecipe = MECHANICAL_EXTRACTOR_RECIPES.copyFrom(builder)
                             .duration(Math.max(
                                     (int) (builder.duration / CTNHConfig.INSTANCE.kinetic.extractorSpeedMultiplier), 1))
-                            .buildRawRecipe();
+                            .buildRuntime();
                     new CTPPRecipeBuilder(newrecipe, MECHANICAL_EXTRACTOR_RECIPES)
                             .rpm(CTNHConfig.INSTANCE.kinetic.extractorRpmRequirement)
                             .noEUt()
-                            .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt().voltage()) * 2, 5))
+                            .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt()) * 2, 5))
                             .inputStress(
-                                    builder.EUt().voltage() * CTNHConfig.INSTANCE.kinetic.extractorStressRequirement)
+                                    builder.EUt() * CTNHConfig.INSTANCE.kinetic.extractorStressRequirement)
                             .save(provider);
                 }
             }
@@ -120,16 +120,16 @@ public class CreateRecipeTypes {
         LATHE_RECIPES.onRecipeBuild((builder, provider) -> {
             if (!GTRecipes.RECIPE_FILTERS.contains(convert(builder.id, builder.recipeType))) {
                 assert MECHANICAL_LATHE_RECIPES != null;
-                if (GTUtil.getTierByVoltage(builder.EUt().voltage()) <= GTValues.HV) {
+                if (GTUtil.getTierByVoltage(builder.EUt()) <= GTValues.HV) {
                     var newrecipe = MECHANICAL_LATHE_RECIPES.copyFrom(builder)
                             .duration(Math.max(
                                     (int) (builder.duration / CTNHConfig.INSTANCE.kinetic.latheSpeedMultiplier), 1))
-                            .buildRawRecipe();
+                            .buildRuntime();
                     new CTPPRecipeBuilder(newrecipe, MECHANICAL_LATHE_RECIPES)
                             .rpm(CTNHConfig.INSTANCE.kinetic.latheRpmRequirement)
                             .noEUt()
-                            .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt().voltage()) * 2, 5))
-                            .inputStress(builder.EUt().voltage() * CTNHConfig.INSTANCE.kinetic.latheStressRequirement)
+                            .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt()) * 2, 5))
+                            .inputStress(builder.EUt() * CTNHConfig.INSTANCE.kinetic.latheStressRequirement)
                             .save(provider);
                 }
             }

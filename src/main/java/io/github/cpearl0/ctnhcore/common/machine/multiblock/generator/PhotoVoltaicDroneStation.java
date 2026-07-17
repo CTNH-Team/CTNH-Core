@@ -170,13 +170,13 @@ public class PhotoVoltaicDroneStation extends RecipeElectricMultiblockMachine {
                 }
 
             }
-            if (RecipeHelper.getOutputContents(recipe, ItemRecipeCapability.CAP).isEmpty())
+            if (recipe.getOutputContents(ItemRecipeCapability.CAP).isEmpty())
                 // 运行非挖矿配方时对光伏进行强化
                 lmachine.eut = (int) eut;
             else if (!lmachine.orbit)  // 只能在轨道维度挖矿
                 return RecipeModifier.DEFAULT_FAILURE;
             else {
-                recipe.multiplyOutputs(0.1 * Math.sqrt(lmachine.GetDronePower()));
+                recipe.multiplyOutputs((int) (0.1 * Math.sqrt(lmachine.GetDronePower())));
                 return null;
             }
             recipe.multiplyDuration(pa);

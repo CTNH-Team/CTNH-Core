@@ -45,8 +45,7 @@ public class OxygenEnricherMachine extends SimpleTieredMachine implements Oxygen
                 .setFilter(fluid -> fluid.isFluidEqual(GTMaterials.Oxygen.getFluid(1)));
     }
 
-    @Override
-    protected RecipeLogic createRecipeLogic(Object... args) {
+    protected RecipeLogic createRecipeLogic() {
         return new OxygenEnricherRecipeLogic(this);
     }
 
@@ -173,19 +172,10 @@ public class OxygenEnricherMachine extends SimpleTieredMachine implements Oxygen
 
         @Override
         public void findAndHandleRecipe() {
-            lastFailedMatches = null;
-            failureReasonMap.clear();
-            lastRecipe = null;
-            lastOriginRecipe = null;
-
-            var matches = machine.getRecipeType().searchRecipe(machine,
-                    recipe -> !recipe.getInputContents(
-                            com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability.CAP).isEmpty());
-            handleSearchingRecipes(matches);
-            if (lastRecipe == null && failureReasonMap.isEmpty()) {
+            super.findAndHandleRecipe();
+            if (lastRecipe == null && getFailureReasonsMap().isEmpty()) {
                 setWaiting(NO_OXYGEN_INPUT);
             }
-            recipeDirty = false;
         }
 
         @Override

@@ -35,10 +35,6 @@ public class AstronomicalMachine extends RecipeElectricMultiblockMachine {
         super(holder);
     }
 
-    public CircuitBusPartMachine getCircuitBus() {
-        return circuitBus;
-    }
-
     private boolean isValidPhotovoltaicPower() {
         var time = Objects.requireNonNull(getLevel()).getDayTime() % 24000;
         return time > END_TIME && time < START_TIME;

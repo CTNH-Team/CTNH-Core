@@ -14,6 +14,7 @@ public class SimpleComputationMachine extends SimpleTieredMachine {
     public SimpleComputationMachine(IMachineBlockEntity holder, int tier, Int2IntFunction tankScalingFunction,
                                     Object... args) {
         super(holder, tier, tankScalingFunction, args);
+        var importComputation = createImportComputationContainer(args);
         var computationPort = new DirectComputationPortTrait(this, true, null, importComputation);
         computationPort.setCapabilityValidator(side -> side == null || side == getFrontFacing());
     }

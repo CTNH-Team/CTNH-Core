@@ -75,6 +75,42 @@ public class MachinesRecipes {
                 .outputItems(MultiblocksA.ZPM_LARGE_MINER.asStack())
                 .duration(400).EUt(VA[ZPM]).save(provider);
 
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("ev_large_miner"))
+                .inputItems(GTMachines.HULL[EV])
+                .inputItems(frameGt, Titanium, 4)
+                .inputItems(CustomTags.IV_CIRCUITS, 4)
+                .inputItems(ELECTRIC_MOTOR_EV, 4)
+                .inputItems(ELECTRIC_PUMP_EV, 4)
+                .inputItems(CONVEYOR_MODULE_EV, 4)
+                .inputItems(gear, Tungsten, 4)
+                .circuitMeta(2)
+                .outputItems(MultiblocksA.LARGE_MINER[EV])
+                .duration(400).EUt(VA[EV]).save(provider);
+
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("iv_large_miner"))
+                .inputItems(GTMachines.HULL[IV])
+                .inputItems(frameGt, TungstenSteel, 4)
+                .inputItems(CustomTags.IV_CIRCUITS, 4)
+                .inputItems(ELECTRIC_MOTOR_IV, 4)
+                .inputItems(ELECTRIC_PUMP_IV, 4)
+                .inputItems(CONVEYOR_MODULE_IV, 4)
+                .inputItems(gear, Iridium, 4)
+                .circuitMeta(2)
+                .outputItems(MultiblocksA.LARGE_MINER[IV])
+                .duration(400).EUt(VA[IV]).save(provider);
+
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("luv_large_miner"))
+                .inputItems(GTMachines.HULL[LuV])
+                .inputItems(frameGt, HSSS, 4)
+                .inputItems(CustomTags.LuV_CIRCUITS, 4)
+                .inputItems(ELECTRIC_MOTOR_LuV, 4)
+                .inputItems(ELECTRIC_PUMP_LuV, 4)
+                .inputItems(CONVEYOR_MODULE_LuV, 4)
+                .inputItems(gear, Ruridit, 4)
+                .circuitMeta(2)
+                .outputItems(MultiblocksA.LARGE_MINER[LuV])
+                .duration(400).EUt(VA[LuV]).save(provider);
+
         COMPRESSOR_RECIPES.recipeBuilder(CTNHCore.id("steelleaf"))
                 .duration(300)
                 .EUt(2)
@@ -257,11 +293,14 @@ public class MachinesRecipes {
                 .save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("lv_digital_miner"))
-                .inputItems(GTMachines.MINER[LV].asStack())
+                .inputItems(GTMachines.HULL[LV])
+                .inputItems(ELECTRIC_MOTOR_LV, 3)
+                .inputItems(cableGtSingle, Tin, 2)
+                .inputItems(CustomTags.LV_CIRCUITS, 2)
                 .inputItems(CONVEYOR_MODULE_LV.asStack(2))
                 .inputItems(ROBOT_ARM_LV.asStack(2))
                 .inputItems(EMITTER_LV.asStack())
-                .inputItems(SENSOR_LV.asStack())
+                .inputItems(SENSOR_LV.asStack(2))
                 .inputItems(CustomTags.MV_CIRCUITS, 2)
                 .inputFluids(GTMaterials.SolderingAlloy.getFluid(144))
                 .outputItems(CTNHMachines.DIGITAL_MINER[LV].asStack())
@@ -270,11 +309,14 @@ public class MachinesRecipes {
                 .save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("mv_digital_miner"))
-                .inputItems(GTMachines.MINER[MV].asStack())
+                .inputItems(GTMachines.HULL[MV])
+                .inputItems(ELECTRIC_MOTOR_MV, 3)
+                .inputItems(cableGtSingle, Copper, 2)
+                .inputItems(CustomTags.MV_CIRCUITS, 2)
                 .inputItems(CONVEYOR_MODULE_MV.asStack(2))
                 .inputItems(ROBOT_ARM_MV.asStack(2))
                 .inputItems(EMITTER_MV.asStack())
-                .inputItems(SENSOR_MV.asStack())
+                .inputItems(SENSOR_MV.asStack(2))
                 .inputItems(CustomTags.HV_CIRCUITS, 2)
                 .inputFluids(GTMaterials.SolderingAlloy.getFluid(144))
                 .outputItems(CTNHMachines.DIGITAL_MINER[MV].asStack())
@@ -283,11 +325,14 @@ public class MachinesRecipes {
                 .save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("hv_digital_miner"))
-                .inputItems(GTMachines.MINER[HV].asStack())
+                .inputItems(GTMachines.HULL[HV])
+                .inputItems(ELECTRIC_MOTOR_HV, 3)
+                .inputItems(cableGtSingle, Gold, 2)
+                .inputItems(CustomTags.HV_CIRCUITS, 2)
                 .inputItems(CONVEYOR_MODULE_HV.asStack(2))
                 .inputItems(ROBOT_ARM_HV.asStack(2))
                 .inputItems(EMITTER_HV.asStack())
-                .inputItems(SENSOR_HV.asStack())
+                .inputItems(SENSOR_HV.asStack(2))
                 .inputItems(CustomTags.EV_CIRCUITS, 2)
                 .inputFluids(GTMaterials.SolderingAlloy.getFluid(144))
                 .outputItems(CTNHMachines.DIGITAL_MINER[HV].asStack())

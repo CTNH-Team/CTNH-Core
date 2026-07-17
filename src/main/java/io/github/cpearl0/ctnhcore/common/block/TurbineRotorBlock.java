@@ -27,6 +27,8 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
+import static com.gregtechceu.gtceu.api.block.property.GTBlockStateProperties.ACTIVE;
+
 public class TurbineRotorBlock extends ActiveBlock implements EntityBlock, IBlockRendererProvider {
 
     @Getter
@@ -53,10 +55,9 @@ public class TurbineRotorBlock extends ActiveBlock implements EntityBlock, IBloc
                 ColorUtils.alpha(color));
     }
 
-    public float getR() { return R; }
-    public float getG() { return G; }
-    public float getB() { return B; }
-    public float getA() { return A; }
+    public boolean isActive(BlockState state) {
+        return state.getValue(ACTIVE);
+    }
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {

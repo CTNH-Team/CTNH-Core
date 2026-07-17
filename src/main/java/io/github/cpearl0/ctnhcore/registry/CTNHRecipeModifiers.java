@@ -59,7 +59,7 @@ public class CTNHRecipeModifiers {
         recipe.multiplyEUt(getCoilEUtDiscount(recipeTemp, blastFurnaceTemperature));
 
         OverclockingLogic logic = (p, v) -> OverclockingLogic.heatingCoilOC(p, v, recipeTemp, blastFurnaceTemperature);
-        return logic.getModifier(machine, group, recipe, workableElectricMultiblockMachine.getOverclockVoltage());
+        return logic.getModifier(machine, group, recipe, workableElectricMultiblockMachine.getTierVoltage());
     }
 
     public static final RecipeModifier GCYM_REDUCTION = (machine, group, recipe) ->
@@ -72,7 +72,7 @@ public class CTNHRecipeModifiers {
                             900))));
 
     public static final Function<OverclockingLogic, RecipeModifier> MT_ELECTRIC_OVERCLOCK = Util
-            .memoize(logic -> (machine, recipe) -> {
+            .memoize(logic -> (machine, group, recipe) -> {
                 if (!(machine instanceof IOverclockMachine overclockMachine)) return null;
                 if (machine instanceof ITieredMachine tieredMachine && recipe.tier > tieredMachine.getTier()) {
                     return Component.translatable("gtceu.recipe_modifier.insufficient_voltage");

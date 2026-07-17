@@ -46,7 +46,7 @@ public class ChemicalGeneratorMachine extends RecipeElectricMultiblockMachine {
     }
 
     public boolean isBoostAllowed() {
-        return getMaxVoltage() >= GTValues.V[getTier() + 1];
+        return energyContainer.getTotalEUt() >= GTValues.V[getTier() + 1];
     }
 
     @Override
@@ -58,7 +58,7 @@ public class ChemicalGeneratorMachine extends RecipeElectricMultiblockMachine {
     }
 
     protected GTRecipe getBoostRecipe() {
-        return GTRecipeBuilder.ofRaw().inputFluids(isExtreme() ? LIQUID_OXYGEN_STACK : OXYGEN_STACK).buildRawRecipe();
+        return GTRecipeBuilder.ofRaw().inputFluids(isExtreme() ? LIQUID_OXYGEN_STACK : OXYGEN_STACK).buildRuntime();
     }
 
     public static Component recipeModifier(@NotNull MetaMachine machine, RecipeHandlerGroup group,
@@ -66,7 +66,7 @@ public class ChemicalGeneratorMachine extends RecipeElectricMultiblockMachine {
         if (!(machine instanceof ChemicalGeneratorMachine engineMachine)) {
             return RecipeModifier.nullWrongType(LargeCombustionEngineMachine.class, machine);
         }
-        long EUt = RecipeHelper.getRealEUtWithIO(recipe).voltage();
+        long EUt = RecipeHelper.getRealEUtWithIO(recipe);
         // has lubricant
         if (EUt > 0) {
             int maxParallel = (int) (engineMachine.getOverclockVoltage() / EUt); // get maximum parallel
@@ -88,11 +88,10 @@ public class ChemicalGeneratorMachine extends RecipeElectricMultiblockMachine {
     @Override
     public boolean onWorking() {
         boolean value = super.onWorking();
-        var totalContinuousRunningTime = recipeLogic.getTotalContinuousRunningTime();
-        if ((totalContinuousRunningTime == 1 || totalContinuousRunningTime % 20 == 0) && isBoostAllowed()) {
+        if (getOffsetTimer() % 20 == 0 && isBoostAllowed()) {
             var boosterRecipe = getBoostRecipe();
-            this.isOxygenBoosted = RecipeHelper.matchRecipe(this, boosterRecipe).isSuccess() &&
-                    RecipeHelper.handleRecipeIO(this, boosterRecipe, IO.IN, this.recipeLogic.getChanceCaches())
+            this.isOxygenBoosted = RecipeHelper.matchRecipe(recipeLogic.getLastGroup(), boosterRecipe).isSuccess() &&
+                    RecipeHelper.handleRecipeIO(recipeLogic.getLastGroup(), boosterRecipe, IO.IN)
                             .isSuccess();
         }
         return value;

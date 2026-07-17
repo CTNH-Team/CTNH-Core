@@ -279,26 +279,6 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
             this(0, 0, 0, 1, 0, 0, 1, 0);
         }
 
-        public int getRepeatCount() {
-            return repeatCount;
-        }
-
-        public int getUseAEStorage() {
-            return useAEStorage;
-        }
-
-        public int getPlaceFluid() {
-            return placeFluid;
-        }
-
-        public int getPlaceInFluid() {
-            return placeInFluid;
-        }
-
-        public IWirelessAccessPoint getAccessPoint() {
-            return accessPoint;
-        }
-
         public List<OrientedItem> apply(BlockInfo[] blockInfos) {
             List<OrientedItem> candidates = new ArrayList<>();
             if (blockInfos != null) {

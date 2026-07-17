@@ -285,7 +285,8 @@ public class SlaughterHouseMachine extends RecipeElectricMultiblockMachine imple
             if (io == IO.NONE || io == IO.OUT) continue;
 
             for (var handlerList : part.getRecipeHandlers()) {
-                if (!handlerList.isValid(IO.IN)) continue;
+                if (handlerList.getAllHandlers().stream()
+                        .noneMatch(handler -> handler.getHandlerIO().support(IO.IN))) continue;
                 traitSubscriptions.add(handlerList.subscribe(this::markMobListDirty, ItemRecipeCapability.CAP));
             }
         }

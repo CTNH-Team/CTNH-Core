@@ -137,7 +137,7 @@ public class DigitalMinerLogic extends WorkLogic{
     private int forcedChunkZ = Integer.MIN_VALUE;
 
     public DigitalMinerLogic(@NotNull IWorkLogicMachine machine, int maximumRadius, int minHeight, int maxHeight,
-                             int silk, ItemFilter itemFilter, int speed) {
+                             int silk, ItemFilter itemFilter, int fortune, int speed) {
         super(machine);
         this.miner = (IDigitalMiner) machine;
         this.silk = silk;
@@ -148,7 +148,7 @@ public class DigitalMinerLogic extends WorkLogic{
         this.minHeight = minHeight;
         this.maxHeight = maxHeight;
         this.pickaxeTool = GTMaterialItems.TOOL_ITEMS.get(GTMaterials.Neutronium, GTToolType.PICKAXE).get().get();
-        this.pickaxeTool.enchant(Enchantments.BLOCK_FORTUNE, 1);
+        this.pickaxeTool.enchant(Enchantments.BLOCK_FORTUNE, fortune);
         this.itemFilter = itemFilter;
 
         this.inputItemHandler = new ItemRecipeHandler(IO.IN,

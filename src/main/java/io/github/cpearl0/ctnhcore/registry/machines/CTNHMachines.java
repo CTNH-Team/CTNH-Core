@@ -70,7 +70,6 @@ public class CTNHMachines {
     public static MachineDefinition[] COMPILERMACHINE;
     public static MachineDefinition[] PERSONAL_COMPUTER;
     public static MachineDefinition[] OXYGEN_ENRICHER;
-    public static MachineDefinition[] ASYNC_THREAD_HATCH;
     public static MachineDefinition[] PARALLEL_HATCH;
     public static MachineDefinition[] ENERGY_OUTPUT_HATCH_4A_LOWER;
     public static MachineDefinition[] ROTOR_HOLDER_EXTEND;
@@ -203,27 +202,6 @@ public class CTNHMachines {
                         .workableTieredHullModel(CTNHCore.id("block/machines/digital_miner"))
                         .register(),
                 LV, MV, HV);
-
-        ASYNC_THREAD_HATCH = registerTieredMachines("async_thread_hatch",
-                AsynThreadHatchMachine::new,
-                (tier, builder) -> builder
-                        .langValue("Async Thread HATCH")
-                        .rotationState(RotationState.ALL)
-                        .abilities(CTNHPartAbility.THREAD_HATCH)
-                        .modelProperty(IS_FORMED, false)
-                        .modelProperty(GTMachineModelProperties.RECIPE_LOGIC_STATUS, RecipeLogic.Status.IDLE)
-                        .model(createWorkableTieredHullMachineModel(
-                                CTNHCore.id("block/machines/thread_hatch"))
-                                .andThen((ctx, prov, model) -> {
-                                    model.addReplaceableTextures("bottom", "top", "side");
-                                }))
-                        .tooltips(Component.translatable("gtceu.part_sharing.disabled"))
-                        // .tooltips(Component.literal("配置以启用机器的多线程模式，基础消耗1点算力"),
-                        // Component.literal("每有一个线程启用线程保护，算力消耗x2"),
-                        // Component.literal("每有一个线程启用配方锁定，算力消耗x4")
-                        // )
-                        .register(),
-                LuV);
 
         PARALLEL_HATCH = registerTieredMachines("parallel_hatch",
                 ParallelHatchPartMachine::new,

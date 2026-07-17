@@ -55,7 +55,7 @@ public class CTNHRecipeBuilder extends GTRecipeBuilder {
         return this;
     }
 
-    public CTNHRecipeBuilder nutrient(double nutrient) {
+    public CTNHRecipeBuilder nutrient(float nutrient) {
         if (nutrient >= 0) {
             input(NutrientRecipeCapability.CAP, nutrient);
         } else {
@@ -72,15 +72,6 @@ public class CTNHRecipeBuilder extends GTRecipeBuilder {
         return this;
     }
 
-    public CTNHRecipeBuilder inputEntity(EntityIngredient entity, int chance) {
-        perTick = false;
-        int lastChance = this.chance;
-        this.chance = chance;
-        input(EntityRecipeCapability.CAP, entity);
-        this.chance = lastChance;
-        return this;
-    }
-
     public CTNHRecipeBuilder outputEntity(EntityIngredient entity) {
         perTick = false;
         output(EntityRecipeCapability.CAP, entity);
@@ -93,7 +84,7 @@ public class CTNHRecipeBuilder extends GTRecipeBuilder {
     }
 
     public CTNHRecipeBuilder inputEntity(EntityType<?> type, int count, int chance) {
-        return inputEntity(EntityIngredient.of(type, count), chance);
+        return inputEntity(EntityIngredient.of(type, count));
     }
 
     public CTNHRecipeBuilder inputEntity(TagKey<EntityType<?>> tag) {

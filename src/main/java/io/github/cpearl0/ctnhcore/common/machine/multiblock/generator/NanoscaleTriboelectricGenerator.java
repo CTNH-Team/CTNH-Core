@@ -91,13 +91,13 @@ public class NanoscaleTriboelectricGenerator extends RecipeElectricMultiblockMac
         if (parallelLimit <= 1) return parallelLimit;
         if (!(machine instanceof IRecipeLogicMachine rlm)) return 1;
         // First check if we are limited by recipe inputs. This can short circuit a lot of consecutive checking
-        int maxInputMultiplier = eutlimitByInput(rlm, recipe, parallelLimit);
+        int maxInputMultiplier = eutlimitByInput(rlm.getRecipeHandlerGroups().get(0), recipe, parallelLimit);
         if (maxInputMultiplier == 0) return 0;
 
         return maxInputMultiplier;
     }
 
-    public static int eutlimitByInput(IRecipeCapabilityHolder holder, GTRecipe recipe, int parallelLimit) {
+    public static int eutlimitByInput(RecipeHandlerGroup holder, GTRecipe recipe, int parallelLimit) {
         IntSet multipliers = new IntOpenHashSet();
 
         // non-tick inputs.

@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.world;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.common.machine.simple.DigitalMiner;
+import io.github.cpearl0.ctnhcore.api.machine.feature.IDigitalMiner;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -54,8 +54,8 @@ public final class CTNHChunkLoading {
         if (!(be instanceof IMachineBlockEntity machineBlockEntity)) return false;
 
         MetaMachine metaMachine = machineBlockEntity.getMetaMachine();
-        if (!(metaMachine instanceof DigitalMiner miner)) return false;
+        if (!(metaMachine instanceof IDigitalMiner miner)) return false;
 
-        return miner.isWorkingEnabled() && !miner.getRecipeLogic().isDone();
+        return miner.isWorkingEnabled() && !miner.getWorkLogic().isDone();
     }
 }

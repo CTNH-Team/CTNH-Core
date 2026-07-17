@@ -85,7 +85,7 @@ public class KineticElectricMultiblockMachine extends RecipeMultiblockMachine im
     public int getTier() {
         var Ktier = this.Ktier;
         if (this.speed >= 256) Ktier += 1.0;
-        var Etier = GTUtil.getFloorTierByVoltage(getMaxVoltage());
+        var Etier = GTUtil.getFloorTierByVoltage(getOverclockVoltage());
         return Math.min(Ktier, Etier);
     }
 
@@ -250,47 +250,20 @@ public class KineticElectricMultiblockMachine extends RecipeMultiblockMachine im
     }
 
     @Override
-    public long getMaxVoltage() {
+    public long getOverclockVoltage() {
         if (this.energyContainer == null) {
             this.energyContainer = getEnergyContainer();
         }
         if (this.isGenerator) {
             // Generators
-            long voltage = energyContainer.getOutputVoltage();
-            long amperage = energyContainer.getOutputAmperage();
-            if (amperage == 1) {
-                // Amperage is 1 when the energy is not exactly on a tier.
-                // The voltage for recipe search is always on tier, so take the closest lower tier.
-                // List check is done because single hatches will always be a "clean voltage," no need
-                // for any additional checks.
-                return GTValues.V[GTUtil.getFloorTierByVoltage(voltage)];
-            } else {
-                return voltage;
-            }
+            return energyContainer.getEffectiveVoltage();
         } else {
             // Machines
-            long highestVoltage = energyContainer.getHighestInputVoltage();
-            if (energyContainer.getNumHighestInputContainers() > 1) {
-                // allow tier + 1 if there are multiple hatches present at the highest tier
-                int tier = GTUtil.getTierByVoltage(highestVoltage);
-                return GTValues.V[Math.min(tier + 1, GTValues.MAX)];
-            } else {
-                return highestVoltage;
-            }
+            return energyContainer.getEffectiveVoltage();
         }
     }
 
     public int getOverclockTier() {
-        return getTier();
-    }
-
-    @Override
-    public int getMaxOverclockTier() {
-        return getTier();
-    }
-
-    @Override
-    public int getMinOverclockTier() {
         return getTier();
     }
 

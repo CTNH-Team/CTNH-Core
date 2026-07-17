@@ -34,7 +34,6 @@ import com.ctnh.ctnhastral.data.CAEnchantments;
 import com.mo_guang.ctpp.registry.CTPPItems;
 import com.moguang.ctnhbio.CTNHBio;
 import com.simibubi.create.AllItems;
-import dev.latvian.mods.kubejs.KubeJS;
 import tech.luckyblock.mcmod.ctnhenergy.CTNHEnergy;
 
 import java.util.List;
@@ -136,8 +135,7 @@ public class ForgeEventHandler {
                 // TODO: Restore CTNHMana.MODID after its GTM migration.
                 CTNHBio.MODID,
                 CTNHEnergy.MODID,
-                GTCEu.MOD_ID,
-                KubeJS.MOD_ID);
+                GTCEu.MOD_ID);
 
         for (MissingMappingsEvent.Mapping<T> mapping : mappings) {
 

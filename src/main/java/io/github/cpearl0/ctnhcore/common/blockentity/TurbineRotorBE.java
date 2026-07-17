@@ -23,8 +23,4 @@ public class TurbineRotorBE extends BlockEntity {
     }
 
     private int speed = 1;// 旋转的角速度，默认为20度/s
-
-    public int getSpeed() {
-        return speed;
-    }
 }

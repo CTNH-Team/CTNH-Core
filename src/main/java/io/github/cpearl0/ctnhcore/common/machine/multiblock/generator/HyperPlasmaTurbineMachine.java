@@ -136,14 +136,6 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine {
     // }
 
     @Override
-    public long getMaxVoltage() {
-        if (this.energyContainer == null) {
-            this.energyContainer = getEnergyContainer();
-        }
-        return energyContainer.getOutputVoltage();
-    }
-
-    @Override
     public void onStructureInvalid() {
         super.onStructureInvalid();
     }
@@ -177,7 +169,7 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine {
             return RecipeModifier.nullWrongType(HyperPlasmaTurbineMachine.class, machine);
         }
 
-        final long EUt = RecipeHelper.getRealEUtWithIO(recipe).voltage();
+        final long EUt = RecipeHelper.getRealEUtWithIO(recipe);
         final long turbineMaxVoltage = hptm.getOverclockVoltage();
 
         if (EUt <= 0 || turbineMaxVoltage <= EUt) return RecipeModifier.DEFAULT_FAILURE;
@@ -223,7 +215,7 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine {
 
             long maxProduction = getOverclockVoltage();
             long currentProduction = isActive() && recipeLogic.getLastRecipe() != null ?
-                    RecipeHelper.getRealEUtWithIO(recipeLogic.getLastRecipe()).voltage() : 0;
+                    RecipeHelper.getRealEUtWithIO(recipeLogic.getLastRecipe()) : 0;
 
             if (isActive()) {
                 textList.add(Component.translatable("gtceu.multiblock.turbine.energy_per_tick",
