@@ -275,7 +275,6 @@ public class SunRecipes {
                 .EUt(480)
                 .duration(200)
                 .save(provider);
-
     }
 
     private static void fusionReactorRecipes(Consumer<FinishedRecipe> provider) {

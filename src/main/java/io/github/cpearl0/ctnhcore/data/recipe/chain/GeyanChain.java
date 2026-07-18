@@ -8,7 +8,6 @@ import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
-import com.gregtechceu.gtceu.api.recipe.ingredient.fluid.FluidIngredient;
 import com.gregtechceu.gtceu.common.data.GTItems;
 
 import net.minecraft.data.recipes.FinishedRecipe;

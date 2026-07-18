@@ -60,7 +60,6 @@ import com.moguang.ctnhmana.registry.CMBlocks;
 import com.moguang.ctnhmana.registry.CMMaterials;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.negodya1.vintageimprovements.VintageBlocks;
-import com.negodya1.vintageimprovements.VintageItems;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import earth.terrarium.adastra.common.registry.ModItems;

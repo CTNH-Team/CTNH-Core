@@ -80,7 +80,7 @@ public class CTNHBiomeModifiers implements DataProvider {
     @Override
     public CompletableFuture<?> run(CachedOutput output) {
         CompletableFuture<?> undergroundOres = DataProvider.saveStable(output,
-                createRemoveFeaturesModifier(UNDERGROUND_ORES, "underground_ores"),
+                createRemoveFeaturesModifier(UNDERGROUND_ORES, "underground_ores", "underground_decoration"),
                 biomeModifierPathProvider.json(ResourceLocation.tryBuild("ctnhcore", "remove_worldgen_ores")));
         CompletableFuture<?> biomeTag = DataProvider.saveStable(output,
                 createOptionalTag(TARGET_BIOMES),
@@ -97,13 +97,15 @@ public class CTNHBiomeModifiers implements DataProvider {
         return CompletableFuture.allOf(undergroundOres, biomeTag, oreTag, ancientDebris);
     }
 
-    private static JsonObject createRemoveFeaturesModifier(List<String> features, String step) {
+    private static JsonObject createRemoveFeaturesModifier(List<String> features, String... steps) {
         JsonObject json = new JsonObject();
         json.addProperty("type", "forge:remove_features");
         json.addProperty("biomes", "#ctnhcore:worldgen_removal_biomes");
         json.addProperty("features", "#ctnhcore:worldgen_removal_ores");
         JsonArray stepsArray = new JsonArray();
-        stepsArray.add(step);
+        for (var step : steps) {
+            stepsArray.add(step);
+        }
         json.add("steps", stepsArray);
         return json;
     }
