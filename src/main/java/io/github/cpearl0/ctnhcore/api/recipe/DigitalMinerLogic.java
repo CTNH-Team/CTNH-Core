@@ -1,9 +1,5 @@
 package io.github.cpearl0.ctnhcore.api.recipe;
 
-import com.gregtechceu.gtceu.api.machine.feature.IWorkLogicMachine;
-import com.gregtechceu.gtceu.api.machine.trait.WorkLogic;
-import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
-import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.machine.feature.IDigitalMiner;
 
@@ -11,17 +7,17 @@ import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.capability.recipe.*;
 import com.gregtechceu.gtceu.api.cover.filter.ItemFilter;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
-
+import com.gregtechceu.gtceu.api.machine.feature.IWorkLogicMachine;
+import com.gregtechceu.gtceu.api.machine.trait.WorkLogic;
 import com.gregtechceu.gtceu.api.misc.IgnoreEnergyRecipeHandler;
 import com.gregtechceu.gtceu.api.misc.ItemRecipeHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import com.gregtechceu.gtceu.api.transfer.item.NotifiableAccountedInvWrapper;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.common.data.GTMaterialItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.config.ConfigHolder;
-import com.gregtechceu.gtceu.utils.GTTransferUtils;
-import com.gregtechceu.gtceu.utils.GTUtil;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
@@ -45,7 +41,6 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.world.ForgeChunkManager;
-import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -56,9 +51,8 @@ import org.jetbrains.annotations.Nullable;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
-public class DigitalMinerLogic extends WorkLogic{
+public class DigitalMinerLogic extends WorkLogic {
 
     private static final short MAX_SPEED = Short.MAX_VALUE;
     private static final byte POWER = 5;
@@ -157,8 +151,8 @@ public class DigitalMinerLogic extends WorkLogic{
                 GTRecipeTypes.MACERATOR_RECIPES.getMaxOutputs(ItemRecipeCapability.CAP));
         handlerGroup = new RecipeHandlerGroup();
         handlerGroup.addHandlers(List.of(inputItemHandler, outputItemHandler, new IgnoreEnergyRecipeHandler()));
-//        addHandlerList(RecipeHandlerList.of(IO.IN, inputItemHandler, new IgnoreEnergyRecipeHandler()));
-//        addHandlerList(RecipeHandlerList.of(IO.OUT, outputItemHandler));
+        // addHandlerList(RecipeHandlerList.of(IO.IN, inputItemHandler, new IgnoreEnergyRecipeHandler()));
+        // addHandlerList(RecipeHandlerList.of(IO.OUT, outputItemHandler));
     }
 
     @Override
@@ -404,7 +398,6 @@ public class DigitalMinerLogic extends WorkLogic{
         blockDrops.add(new ItemStack(blockState.getBlock()));
     }
 
-
     /**
      * called in order to insert the mined items into the inventory and actually remove the block in world
      * marks the inventory as full if the items cannot fit, and not full if it previously was full and items could fit
@@ -432,7 +425,7 @@ public class DigitalMinerLogic extends WorkLogic{
     }
 
     private RecipeHandlerGroup getCachedGroup() {
-        if(cachedGroup == null) {
+        if (cachedGroup == null) {
             cachedGroup = new RecipeHandlerGroup();
             cachedGroup.addHandlers(miner.getOutputHandlers());
         }

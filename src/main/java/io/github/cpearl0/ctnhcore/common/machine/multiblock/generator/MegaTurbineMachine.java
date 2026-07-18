@@ -74,7 +74,8 @@ public class MegaTurbineMachine extends RecipeElectricMultiblockMachine implemen
     //////////////////////////////////////
     // ****** Recipe Logic *******//
     //////////////////////////////////////
-    public static Component recipeModifier(@NotNull MetaMachine machine, RecipeHandlerGroup group, @NotNull GTRecipe recipe) {
+    public static Component recipeModifier(@NotNull MetaMachine machine, RecipeHandlerGroup group,
+                                           @NotNull GTRecipe recipe) {
         if (!(machine instanceof MegaTurbineMachine turbineMachine)) {
             return RecipeModifier.nullWrongType(MegaTurbineMachine.class, machine);
         }

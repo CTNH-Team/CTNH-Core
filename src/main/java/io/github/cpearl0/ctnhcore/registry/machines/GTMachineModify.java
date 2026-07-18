@@ -29,7 +29,6 @@ import com.ctnhlang.Prefix;
 import com.ctnhlang.Suffix;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
-import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiConsumer;
@@ -186,7 +185,7 @@ public class GTMachineModify {
                         int hDist = cleanroom.getHDist();
                         int length = lDist + rDist;
                         int width = bDist + fDist;
-                        if(hDist <= length && hDist <= width) {
+                        if (hDist <= length && hDist <= width) {
                             return null;
                         } else {
                             return cleanroom_restriction.translate();

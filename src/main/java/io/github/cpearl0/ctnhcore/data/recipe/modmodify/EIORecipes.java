@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.data.recipe.modmodify;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.recipe.builder.CTNHRecipeBuilder;
-import com.mo_guang.ctpp.registry.CreateMaterials;
 import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval;
 import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval.RemoveFilter;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
@@ -31,6 +30,7 @@ import com.enderio.conduits.common.init.ConduitItems;
 import com.enderio.machines.common.init.MachineBlocks;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.mo_guang.ctpp.registry.CreateMaterials;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;

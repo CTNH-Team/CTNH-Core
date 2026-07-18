@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry.material;
 
-import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import io.github.cpearl0.ctnhcore.common.block.MaterialTurbineRotorBlock;
 import io.github.cpearl0.ctnhcore.common.block.TurbineRotorBlock;
 import io.github.cpearl0.ctnhcore.common.item.MaterialTurbineRotorItem;
@@ -20,6 +19,7 @@ import net.minecraft.world.level.block.Blocks;
 import com.google.common.collect.ImmutableTable;
 import com.google.common.collect.Table;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 
 import static io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes.hyperRotor;
 

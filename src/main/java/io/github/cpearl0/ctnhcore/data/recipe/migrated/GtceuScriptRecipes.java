@@ -1,8 +1,5 @@
 package io.github.cpearl0.ctnhcore.data.recipe.migrated;
 
-import com.gregtechceu.gtceu.data.recipe.GTCraftingComponents;
-import com.mo_guang.ctpp.registry.CreateMaterials;
-import com.moguang.ctnhmana.registry.CMMachines;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.data.materials.NewExplosivesProductionMaterials;
@@ -22,13 +19,12 @@ import com.gregtechceu.gtceu.api.recipe.ingredient.fluid.FluidIngredient;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
+import com.gregtechceu.gtceu.data.recipe.GTCraftingComponents;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -39,7 +35,9 @@ import com.enderio.base.common.init.EIOBlocks;
 import com.enderio.base.common.init.EIOItems;
 import com.github.alexmodguy.alexscaves.server.block.ACBlockRegistry;
 import com.github.alexmodguy.alexscaves.server.item.ACItemRegistry;
+import com.mo_guang.ctpp.registry.CreateMaterials;
 import com.moguang.ctnhbio.registry.CBItems;
+import com.moguang.ctnhmana.registry.CMMachines;
 import com.moguang.ctnhmana.registry.CMMaterials;
 import com.simibubi.create.AllItems;
 import dev.shadowsoffire.hostilenetworks.Hostile;
@@ -2393,8 +2391,9 @@ public class GtceuScriptRecipes {
                 'S', CustomTags.SAWS,
                 'M', CustomTags.MALLETS);
 
-        for(var tier : GTValues.tiersBetween(GTValues.LV, GTValues.UV)) {
-            VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id(GTValues.VN[tier].toLowerCase() + "_digital_well_of_suffer"),
+        for (var tier : GTValues.tiersBetween(GTValues.LV, GTValues.UV)) {
+            VanillaRecipeHelper.addShapedRecipe(provider,
+                    CTNHCore.id(GTValues.VN[tier].toLowerCase() + "_digital_well_of_suffer"),
                     CMMachines.DIGITAL_WELL_OF_SUFFER[tier].asStack(),
                     "PCP", "SHS", "PCP",
                     'P', GTCraftingComponents.PUMP.get(tier),

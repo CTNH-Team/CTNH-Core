@@ -4,7 +4,6 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.MultiblockComputatio
 import io.github.cpearl0.ctnhcore.data.recipe.utils.ComputationModifier;
 import io.github.cpearl0.ctnhcore.utils.CTNHRecipeHelper;
 
-import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;

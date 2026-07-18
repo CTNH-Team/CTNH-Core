@@ -1,8 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry.material;
 
-import com.github.L_Ender.cataclysm.init.ModBlocks;
-import com.github.L_Ender.cataclysm.init.ModItems;
-import com.mo_guang.ctpp.registry.CreateMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
@@ -23,6 +20,8 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.item.AetherItems;
+import com.github.L_Ender.cataclysm.init.ModBlocks;
+import com.github.L_Ender.cataclysm.init.ModItems;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
 

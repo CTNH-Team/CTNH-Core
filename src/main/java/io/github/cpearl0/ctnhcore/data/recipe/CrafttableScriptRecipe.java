@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
-import com.mo_guang.ctpp.registry.CreateMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.BedrockMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.EnderIOMaterials;
@@ -58,6 +57,7 @@ import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
 import com.laidbacksloth.angelblockrenewed.BlockRegistry;
 import com.mo_guang.ctpp.registry.CTPPBlocks;
 import com.mo_guang.ctpp.registry.CTPPItems;
+import com.mo_guang.ctpp.registry.CreateMaterials;
 import com.moguang.ctnhmana.registry.CMBlocks;
 import com.moguang.ctnhmana.registry.CMMaterials;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;

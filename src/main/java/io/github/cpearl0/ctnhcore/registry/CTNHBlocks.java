@@ -46,7 +46,6 @@ import java.util.function.Supplier;
 
 import static com.gregtechceu.gtceu.common.data.GTBlocks.ALL_FIREBOXES;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
-import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialBlocks.generateHyperRotorBlocks;
 
 @SuppressWarnings("removal")
 public class CTNHBlocks {

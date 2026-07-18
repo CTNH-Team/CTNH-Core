@@ -1,7 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
-
 import com.gregtechceu.gtceu.api.capability.IControllable;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
@@ -21,9 +19,9 @@ import net.minecraft.world.level.Level;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.List;
-
 
 public class Superconducting_Penning_Trap extends RecipeElectricMultiblockMachine
                                           implements ITieredMachine, IExplosionMachine, IControllable {

@@ -1,10 +1,11 @@
 package io.github.cpearl0.ctnhcore.data.materials;
 
-import com.mo_guang.ctpp.registry.CreateMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+
+import com.mo_guang.ctpp.registry.CreateMaterials;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.DULL;

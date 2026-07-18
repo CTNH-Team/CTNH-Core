@@ -1,11 +1,8 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
-import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
-
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 
@@ -15,6 +12,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.fluids.FluidStack;
 
 import org.jetbrains.annotations.NotNull;
+import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.List;
 

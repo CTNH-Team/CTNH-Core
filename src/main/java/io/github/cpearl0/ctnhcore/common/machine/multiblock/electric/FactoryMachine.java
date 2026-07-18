@@ -1,8 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 
@@ -12,7 +9,7 @@ import com.gregtechceu.gtceu.api.gui.widget.SlotWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IMachineModifyDrops;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
@@ -29,8 +26,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
@@ -163,7 +161,6 @@ public class FactoryMachine extends RecipeElectricMultiblockMachine implements I
         TOTAL_COUNT = CENTRIFUGE_COUNT + CRUSHING_COUNT + LASER_COUNT + LATHE_COUNT + DEPLOYER_COUNT + BURNER_COUNT +
                 PRESSOR_COUNT + MIXER_COUNT + BASIN_COUNT + SAW_COUNT;
     }
-
 
     @CN("没有员工")
     @EN("No Employee")

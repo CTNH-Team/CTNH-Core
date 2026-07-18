@@ -1,11 +1,10 @@
 package io.github.cpearl0.ctnhcore.data.recipe.utils;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.lowdragmc.lowdraglib.utils.NBTToJsonConverter;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipes;
-import io.github.cpearl0.ctnhcore.utils.CTNHRecipeHelper;
+
+import com.lowdragmc.lowdraglib.utils.NBTToJsonConverter;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -16,13 +15,15 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import java.util.Objects;
 import java.util.function.Consumer;
 
 public final class KeepIngredientRecipeHelper {
 
-    private KeepIngredientRecipeHelper() {
-    }
+    private KeepIngredientRecipeHelper() {}
 
     public static void addKeepIngredientShapedRecipe(Consumer<FinishedRecipe> provider, ResourceLocation id,
                                                      ItemStack result, String[] pattern, Ingredient keepIngredient,

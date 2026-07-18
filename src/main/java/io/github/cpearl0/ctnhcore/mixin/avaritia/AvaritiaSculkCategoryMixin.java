@@ -1,8 +1,8 @@
 package io.github.cpearl0.ctnhcore.mixin.avaritia;
 
-import committee.nova.mods.avaritia.init.compat.emi.category.tables.SculkCraftingTableCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 
+import committee.nova.mods.avaritia.init.compat.emi.category.tables.SculkCraftingTableCategory;
 import dev.emi.emi.api.stack.EmiIngredient;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

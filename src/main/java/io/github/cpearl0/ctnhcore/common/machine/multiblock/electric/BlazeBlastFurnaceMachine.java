@@ -1,7 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
@@ -17,9 +15,10 @@ import com.gregtechceu.gtceu.api.transfer.fluid.IFluidHandlerModifiable;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import com.simibubi.create.foundation.fluid.CombinedTankWrapper;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 

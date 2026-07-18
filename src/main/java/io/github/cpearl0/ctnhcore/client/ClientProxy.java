@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.client;
 
-import com.lowdragmc.lowdraglib.client.renderer.ATESRRendererProvider;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.model.ModelDefinition;
 import io.github.cpearl0.ctnhcore.client.ponder.CTNHCorePonderPlugin;
@@ -9,18 +8,18 @@ import io.github.cpearl0.ctnhcore.client.renderer.DynamicCasingRender;
 import io.github.cpearl0.ctnhcore.client.renderer.HyperPlasmaTurbineRender;
 import io.github.cpearl0.ctnhcore.client.renderer.MartialMoralityEyeRender;
 import io.github.cpearl0.ctnhcore.common.CommonProxy;
-
-import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderManager;
-
 import io.github.cpearl0.ctnhcore.registry.CTNHBlockEntities;
 import io.github.cpearl0.ctnhcore.registry.CTNHModelLayers;
 import io.github.cpearl0.ctnhcore.registry.CTNHRegistration;
+
+import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderManager;
+
+import com.lowdragmc.lowdraglib.client.renderer.ATESRRendererProvider;
+
 import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class ClientProxy extends CommonProxy {
 

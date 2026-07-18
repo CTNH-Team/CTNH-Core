@@ -1,8 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
-import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
-
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -11,9 +8,12 @@ import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblo
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
 
 import net.minecraft.network.chat.Component;
+
+import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.List;
 import java.util.Objects;

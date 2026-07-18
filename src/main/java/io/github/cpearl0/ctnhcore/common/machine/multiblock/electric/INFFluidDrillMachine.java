@@ -60,7 +60,8 @@ public class INFFluidDrillMachine extends RecipeElectricMultiblockMachine implem
         var energyCont = new EnergyContainerList(energyContainer.stream().filter(IEnergyContainer.class::isInstance)
                 .map(IEnergyContainer.class::cast).toList());
 
-        return Math.min(this.tier + 1, Math.max(this.tier, GTUtil.getFloorTierByVoltage(energyCont.getEffectiveVoltage())));
+        return Math.min(this.tier + 1,
+                Math.max(this.tier, GTUtil.getFloorTierByVoltage(energyCont.getEffectiveVoltage())));
     }
 
     @Override

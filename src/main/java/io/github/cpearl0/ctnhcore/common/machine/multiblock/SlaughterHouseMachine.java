@@ -18,7 +18,6 @@ import com.gregtechceu.gtceu.api.recipe.ingredient.fluid.FluidIngredient;
 import com.gregtechceu.gtceu.api.recipe.ingredient.item.ItemIngredient;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
-import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
@@ -286,7 +285,8 @@ public class SlaughterHouseMachine extends RecipeElectricMultiblockMachine imple
 
             for (var handlerList : part.getRecipeHandlers()) {
                 if (handlerList.getAllHandlers().stream()
-                        .noneMatch(handler -> handler.getHandlerIO().support(IO.IN))) continue;
+                        .noneMatch(handler -> handler.getHandlerIO().support(IO.IN)))
+                    continue;
                 traitSubscriptions.add(handlerList.subscribe(this::markMobListDirty, ItemRecipeCapability.CAP));
             }
         }

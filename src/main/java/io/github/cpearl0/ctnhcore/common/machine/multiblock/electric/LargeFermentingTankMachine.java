@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
@@ -10,6 +9,8 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.MultiblockTankMachine;
 
 import net.minecraft.world.level.material.Fluids;
+
+import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 public class LargeFermentingTankMachine extends FermentingTankMachine {
 

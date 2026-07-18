@@ -1,19 +1,17 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.ingredient.fluid.FluidIngredient;
 import com.gregtechceu.gtceu.api.recipe.ingredient.item.ItemIngredient;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-
 import com.gregtechceu.gtceu.utils.GTUtil;
+
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
@@ -23,7 +21,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -216,7 +213,8 @@ public class VoidMinerProcessingMachine extends RecipeElectricMultiblockMachine 
                 }
             }
             if (!itemList.isEmpty()) {
-                recipe.inputs.put(FluidRecipeCapability.CAP, GTUtil.list(FluidIngredient.of(GTMaterials.DrillingFluid, 100_000_000)));
+                recipe.inputs.put(FluidRecipeCapability.CAP,
+                        GTUtil.list(FluidIngredient.of(GTMaterials.DrillingFluid, 100_000_000)));
                 recipe.outputs.put(ItemRecipeCapability.CAP, itemList);
             }
             return null;

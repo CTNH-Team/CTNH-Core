@@ -9,9 +9,6 @@ import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
 
-import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
-
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static committee.nova.mods.avaritia.init.registry.ModBlocks.neutron;

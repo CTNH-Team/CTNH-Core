@@ -1,8 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotoVoltaicDroneStation;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
@@ -10,11 +7,11 @@ import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
-import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
@@ -23,9 +20,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import earth.terrarium.adastra.api.planets.Planet;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.List;

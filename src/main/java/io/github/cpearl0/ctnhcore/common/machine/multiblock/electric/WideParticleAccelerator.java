@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
 import io.github.cpearl0.ctnhcore.common.gui.WPAAcceleratorGui;
-import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import com.gregtechceu.gtceu.api.capability.IParallelHatch;
 import com.gregtechceu.gtceu.api.gui.fancy.TabsWidget;
@@ -16,8 +15,8 @@ import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMach
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.misc.EnergyContainerList;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
+import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
@@ -31,6 +30,7 @@ import net.minecraft.world.level.Level;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.List;
 import java.util.function.DoubleSupplier;

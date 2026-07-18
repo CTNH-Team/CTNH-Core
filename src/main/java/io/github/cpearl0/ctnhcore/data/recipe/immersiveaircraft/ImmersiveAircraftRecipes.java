@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.data.recipe.immersiveaircraft;
 
-import com.mo_guang.ctpp.registry.CreateMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval;
 import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval.RemoveFilter;
@@ -22,6 +21,7 @@ import net.minecraft.world.level.ItemLike;
 import com.mo_guang.ctpp.common.recipe.builder.create.MechanicalCraftingRecipeBuilder;
 import com.mo_guang.ctpp.common.recipe.builder.create.SequencedAssemblyRecipeBuilder;
 import com.mo_guang.ctpp.registry.CTPPItems;
+import com.mo_guang.ctpp.registry.CreateMaterials;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 

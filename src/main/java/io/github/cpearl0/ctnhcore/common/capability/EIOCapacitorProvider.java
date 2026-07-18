@@ -31,8 +31,7 @@ public class EIOCapacitorProvider implements ICapabilityProvider {
             CMItems.MANA_CAPACITOR.get(), 2,
             CMItems.ADVANCED_MANA_CAPACITOR.get(), 3,
             CMItems.BLOOD_CAPACITOR.get(), 4,
-            CMItems.WILL_CAPACITOR.get(), 6
-    )));
+            CMItems.WILL_CAPACITOR.get(), 6)));
 
     public static Map<Item, Integer> getCapacitorBaseMap() {
         return CAPACITOR_BASE_MAP.get();

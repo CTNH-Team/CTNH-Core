@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.data.recipe.create;
 
-import com.mo_guang.ctpp.registry.CreateMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -30,6 +29,7 @@ import com.mo_guang.ctpp.common.recipe.builder.create.metallurgy.CastingInBasinR
 import com.mo_guang.ctpp.common.recipe.builder.create.metallurgy.CastingInTableRecipeBuilder;
 import com.mo_guang.ctpp.common.recipe.builder.create.metallurgy.MeltingRecipeBuilder;
 import com.mo_guang.ctpp.registry.CTPPItems;
+import com.mo_guang.ctpp.registry.CreateMaterials;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.processing.recipe.HeatCondition;

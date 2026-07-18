@@ -2,9 +2,9 @@ package io.github.cpearl0.ctnhcore.common.machine.simple;
 
 import io.github.cpearl0.ctnhcore.common.machine.trait.SimpleComputationContainer;
 
-import com.gregtechceu.gtceu.api.machine.trait.DirectComputationPortTrait;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.SimpleTieredMachine;
+import com.gregtechceu.gtceu.api.machine.trait.DirectComputationPortTrait;
 
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import org.jetbrains.annotations.NotNull;

@@ -1,11 +1,10 @@
 package io.github.cpearl0.ctnhcore.api.machine.feature;
 
-import com.gregtechceu.gtceu.api.machine.feature.IWorkLogicMachine;
-import com.gregtechceu.gtceu.api.capability.recipe.IRecipeHandler;
-import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import io.github.cpearl0.ctnhcore.api.recipe.DigitalMinerLogic;
 
+import com.gregtechceu.gtceu.api.capability.recipe.IRecipeHandler;
 import com.gregtechceu.gtceu.api.machine.feature.IMachineLife;
+import com.gregtechceu.gtceu.api.machine.feature.IWorkLogicMachine;
 
 import java.util.List;
 

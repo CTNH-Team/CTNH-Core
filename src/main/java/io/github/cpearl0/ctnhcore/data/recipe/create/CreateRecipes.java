@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.data.recipe.create;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.BiodieselFertileSoilMaterials;
-import com.mo_guang.ctpp.registry.CreateMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.EnderIOMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.SpecialMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.UncategorizedMaterials;
@@ -43,6 +42,7 @@ import com.mo_guang.ctpp.common.recipe.builder.create.diesel.BasinFermentingReci
 import com.mo_guang.ctpp.common.recipe.builder.create.diesel.DistillationRecipeBuilder;
 import com.mo_guang.ctpp.registry.CTPPBlocks;
 import com.mo_guang.ctpp.registry.CTPPItems;
+import com.mo_guang.ctpp.registry.CreateMaterials;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.processing.recipe.HeatCondition;

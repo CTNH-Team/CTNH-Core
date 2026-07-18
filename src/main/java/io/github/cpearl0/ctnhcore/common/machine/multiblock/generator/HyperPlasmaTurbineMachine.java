@@ -164,7 +164,8 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine {
     // ****** Recipe Logic *******//
     /// ///////////////////////////////////
 
-    public static Component recipeModifier(@NotNull MetaMachine machine, RecipeHandlerGroup group, @NotNull GTRecipe recipe) {
+    public static Component recipeModifier(@NotNull MetaMachine machine, RecipeHandlerGroup group,
+                                           @NotNull GTRecipe recipe) {
         if (!(machine instanceof HyperPlasmaTurbineMachine hptm)) {
             return RecipeModifier.nullWrongType(HyperPlasmaTurbineMachine.class, machine);
         }

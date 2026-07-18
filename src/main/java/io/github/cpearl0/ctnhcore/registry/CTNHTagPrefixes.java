@@ -4,9 +4,6 @@ import io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialIconType;
 import io.github.cpearl0.ctnhcore.data.materials.ChemicalItems;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
-import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
-import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconType;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 
@@ -23,7 +20,6 @@ import com.aetherteam.aether.block.AetherBlockStateProperties;
 import com.aetherteam.aether.block.AetherBlocks;
 
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
-import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
 
 public class CTNHTagPrefixes {
 
@@ -37,20 +33,20 @@ public class CTNHTagPrefixes {
     public static TagPrefix catalyst;
 
     public static void init() {
-//        hyperRotor = REGISTRATE.tagPrefix("hyper_rotor")
-//                .cnlang("超级%s转子")
-//                .lang("%s Hyper Rotor")
-//                .itemTable(() -> CTNHMaterialBlocks.HYPER_ROTOR_BLOCKS)
-//                .defaultTagPath("hyper_rotors/%s")
-//                .unformattedTagPath("hyper_rotors")
-//                .idPattern("%s_hyper_rotor")
-//                .materialAmount(GTValues.M * 36)
-//                .maxStackSize(8)
-//                .materialIconType(new MaterialIconType("hyper_rotor"))
-//                .unificationEnabled(true)
-//                .generateItem(false)
-//                .generateBlock(false)
-//                .generationCondition(mat -> mat.hasAnyOfFlags(MaterialFlags.GENERATE_ROTOR, GENERATE_HYPER_ROTOR));
+        // hyperRotor = REGISTRATE.tagPrefix("hyper_rotor")
+        // .cnlang("超级%s转子")
+        // .lang("%s Hyper Rotor")
+        // .itemTable(() -> CTNHMaterialBlocks.HYPER_ROTOR_BLOCKS)
+        // .defaultTagPath("hyper_rotors/%s")
+        // .unformattedTagPath("hyper_rotors")
+        // .idPattern("%s_hyper_rotor")
+        // .materialAmount(GTValues.M * 36)
+        // .maxStackSize(8)
+        // .materialIconType(new MaterialIconType("hyper_rotor"))
+        // .unificationEnabled(true)
+        // .generateItem(false)
+        // .generateBlock(false)
+        // .generationCondition(mat -> mat.hasAnyOfFlags(MaterialFlags.GENERATE_ROTOR, GENERATE_HYPER_ROTOR));
 
         oreHolystone = REGISTRATE.oreTagPrefix("holystone", BlockTags.MINEABLE_WITH_PICKAXE)
                 .cnlang("圣石%s矿石")

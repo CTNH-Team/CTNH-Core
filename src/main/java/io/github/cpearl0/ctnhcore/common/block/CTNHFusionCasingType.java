@@ -78,6 +78,5 @@ public class CTNHFusionCasingType extends FusionCasingBlock {
         public ResourceLocation getTexture() {
             return CTNHCore.id("block/casings/fusion/%s".formatted(this.name));
         }
-
     }
 }

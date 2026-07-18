@@ -19,7 +19,6 @@ import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
 
 public class DigestingTankMachine extends BioMachine {

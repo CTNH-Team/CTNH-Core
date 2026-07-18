@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe.chain;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.data.materials.UncategorizedMaterials;
 
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;

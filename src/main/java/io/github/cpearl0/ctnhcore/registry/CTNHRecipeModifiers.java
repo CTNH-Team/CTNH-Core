@@ -62,8 +62,8 @@ public class CTNHRecipeModifiers {
         return logic.getModifier(machine, group, recipe, workableElectricMultiblockMachine.getTierVoltage());
     }
 
-    public static final RecipeModifier GCYM_REDUCTION = (machine, group, recipe) ->
-            CTNHRecipeModifiers.reduction(recipe, 0.8, 0.6);
+    public static final RecipeModifier GCYM_REDUCTION = (machine, group, recipe) -> CTNHRecipeModifiers
+            .reduction(recipe, 0.8, 0.6);
 
     public static final RecipeModifier COIL_PARALLEL = (machine, group, recipe) -> CTNHRecipeModifiers.accurateParallel(
             machine, group, recipe,
@@ -80,7 +80,8 @@ public class CTNHRecipeModifiers {
                 return logic.getModifier(machine, group, recipe, overclockMachine.getOverclockVoltage());
             });
 
-    public static Component chemicalPlantModifier(MetaMachine machine, RecipeHandlerGroup group, @NotNull GTRecipe recipe) {
+    public static Component chemicalPlantModifier(MetaMachine machine, RecipeHandlerGroup group,
+                                                  @NotNull GTRecipe recipe) {
         if (!(machine instanceof IMultiController multiController) || !multiController.isFormed())
             return null;
         if (machine instanceof ChemicalPlantMachine chemicalPlantMachine) {

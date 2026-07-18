@@ -10,9 +10,9 @@ import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 
 import net.minecraft.network.chat.Component;
 
-import java.util.List;
-
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class Arc_Generator extends RecipeElectricMultiblockMachine implements ITieredMachine {
 

@@ -41,7 +41,6 @@ import com.ctnhlang.CN;
 import com.ctnhlang.EN;
 import com.ctnhlang.Prefix;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
-import org.jetbrains.annotations.Nullable;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.Arrays;

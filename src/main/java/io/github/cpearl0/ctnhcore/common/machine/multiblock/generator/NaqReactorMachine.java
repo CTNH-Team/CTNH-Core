@@ -1,7 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
-import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
-
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
@@ -18,6 +16,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import lombok.Getter;
 import lombok.Setter;
+import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.List;
 import java.util.Objects;

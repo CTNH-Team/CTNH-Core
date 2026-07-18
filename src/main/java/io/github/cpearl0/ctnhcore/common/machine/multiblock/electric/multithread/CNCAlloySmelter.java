@@ -1,10 +1,10 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.multithread;
 
-import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import io.github.cpearl0.ctnhcore.api.machine.feature.ICoilMachine;
 
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
 
 public class CNCAlloySmelter extends RecipeElectricMultiblockMachine implements ICoilMachine {
