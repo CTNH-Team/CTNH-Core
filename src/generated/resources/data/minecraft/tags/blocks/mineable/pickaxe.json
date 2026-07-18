@@ -107,6 +107,10 @@
     "ctnhcore:pv_coil",
     "ctnhcore:photon_press_cond_block",
     "ctnhcore:hyper_plasma_turbine_rotor",
-    "ctnhcore:nq_excite_carbon_carbon_nanofiber_structural_block"
+    "ctnhcore:nq_excite_carbon_carbon_nanofiber_structural_block",
+    "ctnhcore:calorite_hyper_rotor",
+    "ctnhcore:mar_m_200_steel_hyper_rotor",
+    "ctnhcore:desh_hyper_rotor",
+    "ctnhcore:ostrum_hyper_rotor"
   ]
 }

@@ -342,7 +342,7 @@ public class CTNHBlocks {
             "block/nq_excite_carbon_carbon_nanofiber_structural_block");
 
     public static void init() {
-        generateHyperRotorBlocks();
+        // generateHyperRotorBlocks();
     }
 
     // Utils

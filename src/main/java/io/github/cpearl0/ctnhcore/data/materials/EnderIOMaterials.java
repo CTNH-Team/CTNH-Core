@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.materials;
 
+import com.mo_guang.ctpp.registry.CreateMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 
 import com.gregtechceu.gtceu.api.GTValues;

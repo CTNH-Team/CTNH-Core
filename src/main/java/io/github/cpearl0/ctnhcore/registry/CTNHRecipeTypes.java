@@ -1,9 +1,9 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.CreateRecipeTypes;
 import io.github.cpearl0.ctnhcore.data.recipe.BioChemistryRecipes;
 
-import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
@@ -37,21 +37,21 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 public class CTNHRecipeTypes {
 
     public static final GTRecipeType UNDERFLOOR_HEATING_SYSTEM = REGISTRATE
-            .recipeType(GTCEu.id("underfloor_heating_system"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("underfloor_heating_system"), GTRecipeTypes.ELECTRIC)
             .cnlang("地暖")
             .setMaxIOSize(0, 0, 1, 1)
             .setEUIO(IO.NONE)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT);
 
     public static final GTRecipeType ASTRONOMICAL_OBSERVATORY = REGISTRATE
-            .recipeType(GTCEu.id("astronomical_observatory"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("astronomical_observatory"), GTRecipeTypes.ELECTRIC)
             .cnlang("天文台")
             .setMaxIOSize(1, 1, 0, 0)
             .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT);
 
     public static final GTRecipeType PERSONAL_COMPUTER = REGISTRATE
-            .recipeType(GTCEu.id("personal_computer"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("personal_computer"), GTRecipeTypes.ELECTRIC)
             .cnlang("个人电脑")
             .setMaxIOSize(9, 2, 0, 0)
             .setEUIO(IO.IN)
@@ -59,7 +59,7 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT);
 
     public static final GTRecipeType DIGITAL_MINER = REGISTRATE
-            .recipeType(GTCEu.id("digital_miner"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("digital_miner"), GTRecipeTypes.ELECTRIC)
             .cnlang("数字型采矿")
             .setMaxIOSize(0, 27, 0, 0)
             .setEUIO(IO.IN)
@@ -67,7 +67,7 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT);
 
     public static final GTRecipeType OXYGEN_ENRICHER_RECIPES = REGISTRATE
-            .recipeType(GTCEu.id("oxygen_enricher"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("oxygen_enricher"), GTRecipeTypes.ELECTRIC)
             .cnlang("氧气富集器")
             .setMaxIOSize(0, 0, 1, 0)
             .setEUIO(IO.IN)
@@ -75,7 +75,7 @@ public class CTNHRecipeTypes {
             .setSound(GTSoundEntries.COOLING);
 
     public static final GTRecipeType SLAUGHTER_HOUSE = REGISTRATE
-            .recipeType(GTCEu.id("slaughter_house"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("slaughter_house"), GTRecipeTypes.ELECTRIC)
             .cnlang("屠宰场")
             .setMaxIOSize(4, 4, 2, 2)
             .setEUIO(IO.IN)
@@ -84,7 +84,7 @@ public class CTNHRecipeTypes {
             .setSound(GTSoundEntries.CHEMICAL);
 
     public static final GTRecipeType FERMENTING = REGISTRATE
-            .recipeType(GTCEu.id("fermenting"), GTRecipeTypes.MULTIBLOCK)
+            .recipeType(CTNHCore.id("fermenting"), GTRecipeTypes.MULTIBLOCK)
             .cnlang("发酵罐")
             .setEUIO(IO.IN)
             .setMaxIOSize(4, 4, 2, 1)
@@ -110,7 +110,7 @@ public class CTNHRecipeTypes {
                 widgetGroup.addWidget(new SlotWidget(new CycleItemStackHandler(items), 0,
                         widgetGroup.getSize().width - 25, widgetGroup.getSize().height - 32, false, false));
             });
-    public static final GTRecipeType DIGESTING = REGISTRATE.recipeType(GTCEu.id("digesting"), MULTIBLOCK)
+    public static final GTRecipeType DIGESTING = REGISTRATE.recipeType(CTNHCore.id("digesting"), MULTIBLOCK)
             .cnlang("化粪池")
             .setEUIO(IO.IN)
             .setMaxIOSize(2, 1, 2, 4)
@@ -124,7 +124,7 @@ public class CTNHRecipeTypes {
             })
             .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType BEDROCK_DRILLING_RIGS = REGISTRATE
-            .recipeType(GTCEu.id("bedrock_drilling_rigs"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("bedrock_drilling_rigs"), GTRecipeTypes.ELECTRIC)
             .cnlang("基岩钻机")
             .setEUIO(IO.IN)
             .setMaxIOSize(1, 3, 1, 1)
@@ -132,7 +132,7 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.ELECTROLYZER);
 
-    public static final GTRecipeType NAQ_MK1 = REGISTRATE.recipeType(GTCEu.id("naq_mk1"), GTRecipeTypes.ELECTRIC)
+    public static final GTRecipeType NAQ_MK1 = REGISTRATE.recipeType(CTNHCore.id("naq_mk1"), GTRecipeTypes.ELECTRIC)
             .cnlang("超能燃料")
             .setEUIO(IO.OUT)
             .setMaxIOSize(0, 0, 2, 1)
@@ -140,7 +140,7 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.TURBINE);
     public static final GTRecipeType PHASE_INVERSION = REGISTRATE
-            .recipeType(GTCEu.id("phase_inversion"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("phase_inversion"), GTRecipeTypes.ELECTRIC)
             .cnlang("反相蚀刻")
             .setEUIO(IO.IN)
             .setMaxIOSize(6, 6, 2, 2)
@@ -148,7 +148,7 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.ELECTROLYZER);
     public static final GTRecipeType RESONANT_MAGICAL_ASSEMBLY = REGISTRATE
-            .recipeType(GTCEu.id("resonant_assemble"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("resonant_assemble"), GTRecipeTypes.ELECTRIC)
             .cnlang("振动共鸣组装")
             .setEUIO(IO.IN)
             .setMaxIOSize(9, 9, 2, 2)
@@ -157,13 +157,13 @@ public class CTNHRecipeTypes {
             .setSound(GTSoundEntries.ELECTROLYZER);
 
     public static final GTRecipeType PLASMA_CONDENSER_RECIPES = REGISTRATE
-            .recipeType(GTCEu.id("plasma_condenser"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("plasma_condenser"), GTRecipeTypes.ELECTRIC)
             .cnlang("等离子冷凝").setEUIO(IO.IN).setMaxIOSize(2, 2, 2, 2)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
 
-    public static final GTRecipeType MEADOW = REGISTRATE.recipeType(GTCEu.id("meadow"), MULTIBLOCK)
+    public static final GTRecipeType MEADOW = REGISTRATE.recipeType(CTNHCore.id("meadow"), MULTIBLOCK)
             .cnlang("牧场养殖").setMaxIOSize(2, 3, 2, 2)
             .setMaxSize(IO.IN, EntityRecipeCapability.CAP, 1)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
@@ -171,14 +171,14 @@ public class CTNHRecipeTypes {
             .setSound(GTSoundEntries.BATH);
 
     public static final GTRecipeType CHEMICAL_GENERATOR = REGISTRATE
-            .recipeType(GTCEu.id("chemical_generator"), GENERATOR)
+            .recipeType(CTNHCore.id("chemical_generator"), GENERATOR)
             .cnlang("化学能发电")
             .setEUIO(IO.OUT)
             .setMaxIOSize(2, 0, 2, 0)
             .setSlotOverlay(false, false, GuiTextures.BOX_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_BATH, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COMBUSTION);
-    public static final GTRecipeType VOID_MINER = REGISTRATE.recipeType(GTCEu.id("void_miner"), GENERATOR)
+    public static final GTRecipeType VOID_MINER = REGISTRATE.recipeType(CTNHCore.id("void_miner"), GENERATOR)
             .cnlang("虚空采矿")
             .setEUIO(IO.IN)
             .setMaxIOSize(1, 6, 3, 0)
@@ -186,14 +186,14 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_BATH, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COMBUSTION);
     public static final GTRecipeType SINTERING_KILN = REGISTRATE
-            .recipeType(GTCEu.id("sintering_kiln"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("sintering_kiln"), GTRecipeTypes.ELECTRIC)
             .cnlang("烧结")
             .setMaxIOSize(4, 4, 2, 0)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
     public static final GTRecipeType CHEMICAL_VAPOR_DEPOSITION = REGISTRATE
-            .recipeType(GTCEu.id("chemical_vapor_deposition"), ELECTRIC)
+            .recipeType(CTNHCore.id("chemical_vapor_deposition"), ELECTRIC)
             .cnlang("化学气相沉积")
             .setEUIO(IO.IN)
             .setMaxIOSize(2, 2, 2, 2)
@@ -201,50 +201,50 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
     public static final GTRecipeType MARTIAL_MORALITY_EYE = REGISTRATE
-            .recipeType(GTCEu.id("martial_morality_eye"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("martial_morality_eye"), GTRecipeTypes.ELECTRIC)
             .cnlang("武德之眼").setEUIO(IO.IN).setMaxIOSize(2, 27, 1, 3)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType DIMENSIONAL_GAS_COLLECTION = REGISTRATE
-            .recipeType(GTCEu.id("dimensional_gas_collection"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("dimensional_gas_collection"), GTRecipeTypes.ELECTRIC)
             .cnlang("维度集气").setEUIO(IO.IN).setMaxIOSize(2, 2, 2, 2)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
     public static final GTRecipeType CONDENSING_DISCRETE = REGISTRATE
-            .recipeType(GTCEu.id("condensing_discrete"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("condensing_discrete"), GTRecipeTypes.ELECTRIC)
             .cnlang("冷凝离散").setEUIO(IO.IN).setMaxIOSize(6, 6, 6, 6)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
     public static final GTRecipeType ION_EXCHANGER = REGISTRATE
-            .recipeType(GTCEu.id("ion_exchanger"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("ion_exchanger"), GTRecipeTypes.ELECTRIC)
             .cnlang("离子交换").setEUIO(IO.IN).setMaxIOSize(6, 6, 6, 6)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
-    // public static final GTRecipeType DECAY_VESSEL = REGISTRATE.recipeType(GTCEu.id("decay_vessel"),
+    // public static final GTRecipeType DECAY_VESSEL = REGISTRATE.recipeType(CTNHCore.id("decay_vessel"),
     // GTRecipeTypes.ELECTRIC)
     // .cnlang("").setMaxIOSize(2, 1, 0, 2)
     // .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
     // .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
     // .setSound(GTSoundEntries.MINER);
     public static final GTRecipeType DECAY_POOLS = REGISTRATE
-            .recipeType(GTCEu.id("decay_pools"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("decay_pools"), GTRecipeTypes.ELECTRIC)
             .cnlang("衰变罐").setEUIO(IO.IN).setMaxIOSize(2, 1, 0, 2)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.MINER);
     public static final GTRecipeType SILICA_ROCK_FUEL_REFINERY = REGISTRATE
-            .recipeType(GTCEu.id("silica_rock_fuel_refinery"), ELECTRIC)
+            .recipeType(CTNHCore.id("silica_rock_fuel_refinery"), ELECTRIC)
             .cnlang("硅岩燃料精炼")
             .setEUIO(IO.IN)
             .setMaxIOSize(3, 0, 3, 2)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
-    public static final GTRecipeType WOOD_BIONICS = REGISTRATE.recipeType(GTCEu.id("wood_bionics"), ELECTRIC)
+    public static final GTRecipeType WOOD_BIONICS = REGISTRATE.recipeType(CTNHCore.id("wood_bionics"), ELECTRIC)
             .cnlang("§e林海树场")
             .setEUIO(IO.IN)
             .setMaxIOSize(1, 4, 1, 0)
@@ -252,7 +252,7 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CUT);
     public static final GTRecipeType FUEL_REFINING = REGISTRATE
-            .recipeType(GTCEu.id("fuel_refining"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("fuel_refining"), GTRecipeTypes.ELECTRIC)
             .cnlang("燃料精炼").setEUIO(IO.IN).setMaxIOSize(3, 3, 3, 3)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
@@ -277,7 +277,7 @@ public class CTNHRecipeTypes {
                         widgetGroup.getSize().width - 25, widgetGroup.getSize().height - 32, false, false));
             });
     public static final GTRecipeType VACUUM_SINTERING = REGISTRATE
-            .recipeType(GTCEu.id("vacuum_sintering"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("vacuum_sintering"), GTRecipeTypes.ELECTRIC)
             .cnlang("真空烧结")
             .setEUIO(IO.IN)
             .setMaxIOSize(6, 6, 6, 6)
@@ -304,7 +304,7 @@ public class CTNHRecipeTypes {
                         widgetGroup.getSize().width - 25, widgetGroup.getSize().height - 32, false, false));
             });
     public static final GTRecipeType CRYSTALLIZER = REGISTRATE
-            .recipeType(GTCEu.id("crystallizer"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("crystallizer"), GTRecipeTypes.ELECTRIC)
             .cnlang("结晶反应")
             .setEUIO(IO.IN)
             .setMaxIOSize(6, 6, 6, 6)
@@ -330,7 +330,7 @@ public class CTNHRecipeTypes {
                 widgetGroup.addWidget(new SlotWidget(new CycleItemStackHandler(items), 0,
                         widgetGroup.getSize().width - 25, widgetGroup.getSize().height - 32, false, false));
             });
-    public static final GTRecipeType DESALTING = REGISTRATE.recipeType(GTCEu.id("desalting"), GTRecipeTypes.ELECTRIC)
+    public static final GTRecipeType DESALTING = REGISTRATE.recipeType(CTNHCore.id("desalting"), GTRecipeTypes.ELECTRIC)
             .cnlang("海水脱盐")
             .setEUIO(IO.IN)
             .setMaxIOSize(1, 4, 1, 1)
@@ -356,19 +356,19 @@ public class CTNHRecipeTypes {
                 widgetGroup.addWidget(new SlotWidget(new CycleItemStackHandler(items), 0,
                         widgetGroup.getSize().width - 25, widgetGroup.getSize().height - 32, false, false));
             });
-    public static final GTRecipeType WATER_POWER = REGISTRATE.recipeType(GTCEu.id("water_power"), GENERATOR)
+    public static final GTRecipeType WATER_POWER = REGISTRATE.recipeType(CTNHCore.id("water_power"), GENERATOR)
             .cnlang("水力发电").setEUIO(IO.OUT).setMaxIOSize(0, 0, 1, 0)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
-    public static final GTRecipeType BIO_REACTOR = REGISTRATE.recipeType(GTCEu.id("bio_reactor"), ELECTRIC)
+    public static final GTRecipeType BIO_REACTOR = REGISTRATE.recipeType(CTNHCore.id("bio_reactor"), ELECTRIC)
             .cnlang("生物反应").setEUIO(IO.IN).setMaxIOSize(4, 4, 2, 2)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
     public static final String KINETIC = "kinetic";
     public static final GTRecipeType INDUSTRIAL_ALTAR_RECIPES = REGISTRATE
-            .recipeType(GTCEu.id("industrial_altar"), ELECTRIC)
+            .recipeType(CTNHCore.id("industrial_altar"), ELECTRIC)
             .cnlang("§4工业血之祭坛§r").setEUIO(IO.IN).setMaxIOSize(4, 4, 2, 2)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
@@ -382,17 +382,17 @@ public class CTNHRecipeTypes {
             .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.industrial_altar.info.0",
                     String.format("%.1f", data.getFloat("addlp"))));
 
-    public static final GTRecipeType NANO_GENERATOR = REGISTRATE.recipeType(GTCEu.id("nano_generator"), GENERATOR)
+    public static final GTRecipeType NANO_GENERATOR = REGISTRATE.recipeType(CTNHCore.id("nano_generator"), GENERATOR)
             .cnlang("摩擦发电").setMaxIOSize(4, 4, 0, 0)
             .setEUIO(IO.OUT)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.TURBINE);
-    public static final GTRecipeType SINOPE = REGISTRATE.recipeType(GTCEu.id("sinope"), GTRecipeTypes.ELECTRIC)
+    public static final GTRecipeType SINOPE = REGISTRATE.recipeType(CTNHCore.id("sinope"), GTRecipeTypes.ELECTRIC)
             .cnlang("规模化化工").setMaxIOSize(4, 4, 4, 4)
             .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.TURBINE);
-    public static final GTRecipeType ACCELERATOR_UP = REGISTRATE.recipeType(GTCEu.id("accelerator_upmode"), ELECTRIC)
+    public static final GTRecipeType ACCELERATOR_UP = REGISTRATE.recipeType(CTNHCore.id("accelerator_upmode"), ELECTRIC)
             .cnlang("粒子加速").setMaxIOSize(9, 9, 3, 3)
             .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_FUSION, ProgressTexture.FillDirection.DOWN_TO_UP)
@@ -438,7 +438,7 @@ public class CTNHRecipeTypes {
 
             });
 
-    public static final GTRecipeType ARC_GENERATOR = REGISTRATE.recipeType(GTCEu.id("arc_generator"), GENERATOR)
+    public static final GTRecipeType ARC_GENERATOR = REGISTRATE.recipeType(CTNHCore.id("arc_generator"), GENERATOR)
             .cnlang("物质撕裂湮灭").setMaxIOSize(6, 6, 3, 3)
             .setEUIO(IO.OUT)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
@@ -448,46 +448,46 @@ public class CTNHRecipeTypes {
             .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.arc_generator.max_require",
                     String.format("%d", data.getInt("maxarc"))))
             .setSound(GTSoundEntries.CHEMICAL);
-    public static final GTRecipeType ARC_REACTOR = REGISTRATE.recipeType(GTCEu.id("arc_reactor"), ELECTRIC)
+    public static final GTRecipeType ARC_REACTOR = REGISTRATE.recipeType(CTNHCore.id("arc_reactor"), ELECTRIC)
             .cnlang("电弧发生").setMaxIOSize(6, 6, 3, 3)
             .setEUIO(IO.IN)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType MAGIC_FUEL_GENERATOR = REGISTRATE
-            .recipeType(GTCEu.id("magic_fuel_generator"), ELECTRIC)
+            .recipeType(CTNHCore.id("magic_fuel_generator"), ELECTRIC)
             .cnlang("魔力燃料精炼").setMaxIOSize(6, 6, 6, 6)
             .setEUIO(IO.IN)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
-    public static final GTRecipeType CULTIVATION_ROOM = REGISTRATE.recipeType(GTCEu.id("cultivation_room"), ELECTRIC)
+    public static final GTRecipeType CULTIVATION_ROOM = REGISTRATE.recipeType(CTNHCore.id("cultivation_room"), ELECTRIC)
             .cnlang("培养").setMaxIOSize(3, 3, 3, 3)
             .setEUIO(IO.IN)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_BATH, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.MIXER);
 
-    public static final GTRecipeType CT_ASSEMBLY_LINE = REGISTRATE.recipeType(GTCEu.id("ct_assembly_line"), ELECTRIC)
+    public static final GTRecipeType CT_ASSEMBLY_LINE = REGISTRATE.recipeType(CTNHCore.id("ct_assembly_line"), ELECTRIC)
             .cnlang("机械装配线").setMaxIOSize(6, 1, 3, 0)
             .setEUIO(IO.IN)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType CT_ASSEMBLY_LINE_MAKER = REGISTRATE
-            .recipeType(GTCEu.id("ct_assembly_line_maker"), ELECTRIC)
+            .recipeType(CTNHCore.id("ct_assembly_line_maker"), ELECTRIC)
             .cnlang("机械部件装配线").setMaxIOSize(6, 1, 0, 0)
             .setEUIO(IO.IN)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
-    public static final GTRecipeType PVB_RECIPE = REGISTRATE.recipeType(GTCEu.id("pvb_recipe"), ELECTRIC)
+    public static final GTRecipeType PVB_RECIPE = REGISTRATE.recipeType(CTNHCore.id("pvb_recipe"), ELECTRIC)
             .cnlang("物理气相沉积").setMaxIOSize(6, 6, 3, 3)
             .setEUIO(IO.IN)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
-    public static final GTRecipeType LS_RECIPE = REGISTRATE.recipeType(GTCEu.id("laser_sorter_recipe"), ELECTRIC)
+    public static final GTRecipeType LS_RECIPE = REGISTRATE.recipeType(CTNHCore.id("laser_sorter_recipe"), ELECTRIC)
             .cnlang("激光分配").setMaxIOSize(6, 6, 3, 3)
             .setEUIO(IO.IN)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
@@ -495,14 +495,14 @@ public class CTNHRecipeTypes {
             .setSound(GTSoundEntries.CHEMICAL);
 
     public static final GTRecipeType PHOTOVOLTAIC_GENERATOR = REGISTRATE
-            .recipeType(GTCEu.id("photovoltaic_generator"), GENERATOR)
+            .recipeType(CTNHCore.id("photovoltaic_generator"), GENERATOR)
             .cnlang("光伏发电").setMaxIOSize(2, 2, 2, 2)
             .setEUIO(IO.OUT)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType PHOTOVOLTAIC_ASSEMBER = REGISTRATE
-            .recipeType(GTCEu.id("photovoltaic_assember"), GENERATOR)
+            .recipeType(CTNHCore.id("photovoltaic_assember"), GENERATOR)
             .cnlang("太空光伏组装").setMaxIOSize(6, 6, 3, 3)
             .setEUIO(IO.IN)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
@@ -522,14 +522,14 @@ public class CTNHRecipeTypes {
                 return "";
             })
             .setSound(GTSoundEntries.CHEMICAL);
-    public static final GTRecipeType PVDRONE = REGISTRATE.recipeType(GTCEu.id("pv_drone_recipe"), ELECTRIC)
+    public static final GTRecipeType PVDRONE = REGISTRATE.recipeType(CTNHCore.id("pv_drone_recipe"), ELECTRIC)
             .cnlang("光伏无人机").setMaxIOSize(6, 6, 3, 3)
             .setEUIO(IO.IN)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType NUCLEAR_REACTOR_RECIPES = REGISTRATE
-            .recipeType(GTCEu.id("nuclear_reactor"), MULTIBLOCK)
+            .recipeType(CTNHCore.id("nuclear_reactor"), MULTIBLOCK)
             .cnlang("裂变反应").setMaxIOSize(6, 3, 3, 3)
             .setEUIO(IO.IN)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
@@ -538,20 +538,20 @@ public class CTNHRecipeTypes {
             .addDataInfo(data -> LocalizationUtils.format("ctnh.nuclear_reactor_heat",
                     String.format("%.1f", data.getFloat("heat"))));
     public static final GTRecipeType GAS_CENTRIFUGE_RECIPES = REGISTRATE
-            .recipeType(GTCEu.id("gas_centrifuge"), MULTIBLOCK)
+            .recipeType(CTNHCore.id("gas_centrifuge"), MULTIBLOCK)
             .cnlang("气体离心").setMaxIOSize(0, 0, 1, 3)
             .setEUIO(IO.IN)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CENTRIFUGE);
     public static final GTRecipeType HOT_COOLANT_TURBINE_RECIPES = REGISTRATE
-            .recipeType(GTCEu.id("hot_coolant_turbine"), MULTIBLOCK)
+            .recipeType(CTNHCore.id("hot_coolant_turbine"), MULTIBLOCK)
             .cnlang("热冷却涡轮").setMaxIOSize(0, 0, 1, 1)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.TURBINE);
 
-    public static final GTRecipeType COMPILER_RECIPE = REGISTRATE.recipeType(GTCEu.id("compiler_recipe"), ELECTRIC)
+    public static final GTRecipeType COMPILER_RECIPE = REGISTRATE.recipeType(CTNHCore.id("compiler_recipe"), ELECTRIC)
             .cnlang("神经矩阵编译").setMaxIOSize(5, 1, 0, 0)
             .setEUIO(IO.IN)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
@@ -559,7 +559,7 @@ public class CTNHRecipeTypes {
             .setSound(GTSoundEntries.CHEMICAL);
 
     public static final GTRecipeType SCALABLE_RESERVOIR_COMPUTING = REGISTRATE
-            .recipeType(GTCEu.id("scalable_reservoir_computing"), ELECTRIC)
+            .recipeType(CTNHCore.id("scalable_reservoir_computing"), ELECTRIC)
             .cnlang("突触凝练").setEUIO(IO.IN).setMaxIOSize(1, 0, 1, 0)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
             .setSlotOverlay(false, false, GuiTextures.RESEARCH_STATION_OVERLAY)
@@ -572,7 +572,7 @@ public class CTNHRecipeTypes {
             // TODO: 渲染以后写
             .addDataInfo(data -> LocalizationUtils.format("ctnhcore.src.sacrifice", data.getString("sacrifice")));
     public static final GTRecipeType DIFFERENTIAL_CENTRIFUGE_RECIPES = REGISTRATE
-            .recipeType(GTCEu.id("differential_centrifuge"), ELECTRIC)
+            .recipeType(CTNHCore.id("differential_centrifuge"), ELECTRIC)
             .cnlang("差速离心")
             .setEUIO(IO.IN)
             .setMaxIOSize(6, 6, 6, 6)
@@ -580,31 +580,31 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CENTRIFUGE);
     public static final GTRecipeType ULTRASONICATION_RECIPES = REGISTRATE
-            .recipeType(GTCEu.id("ultrasonication"), ELECTRIC)
+            .recipeType(CTNHCore.id("ultrasonication"), ELECTRIC)
             .cnlang("超声破碎").setEUIO(IO.IN).setMaxIOSize(3, 3, 3, 3)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.MACERATOR);
     public static final GTRecipeType ZENITH_EXTRUDER_RECIPES = REGISTRATE
-            .recipeType(GTCEu.id("zenith_extruder"), ELECTRIC)
+            .recipeType(CTNHCore.id("zenith_extruder"), ELECTRIC)
             .cnlang("天顶塑形").setEUIO(IO.IN).setMaxIOSize(3, 18, 1, 0)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.MACERATOR);
 
-    public static final GTRecipeType GREENHOUSE_RECIPES = REGISTRATE.recipeType(GTCEu.id("greenhouse"), MULTIBLOCK)
+    public static final GTRecipeType GREENHOUSE_RECIPES = REGISTRATE.recipeType(CTNHCore.id("greenhouse"), MULTIBLOCK)
             .cnlang("温室").setEUIO(IO.IN).setMaxIOSize(4, 4, 1, 0)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.BATH);
 
     public static final GTRecipeType COMPONENT_ASSEMBLY_LINE_RECIPES = REGISTRATE
-            .recipeType(GTCEu.id("component_assembly_line"), GTRecipeTypes.MULTIBLOCK)
+            .recipeType(CTNHCore.id("component_assembly_line"), GTRecipeTypes.MULTIBLOCK)
             .cnlang("部件装配").setMaxIOSize(12, 1, 12, 0)
             .setEUIO(IO.IN)
             .setMaxTooltips(4)
             .setSound(GTSoundEntries.ASSEMBLER);
     public static final GTRecipeType CIRCUIT_ASSEMBLY_LINE_RECIPES = REGISTRATE
-            .recipeType(GTCEu.id("circuit_assembly_line"), GTRecipeTypes.MULTIBLOCK)
+            .recipeType(CTNHCore.id("circuit_assembly_line"), GTRecipeTypes.MULTIBLOCK)
             .cnlang("电路装配").setMaxIOSize(6, 1, 1, 0)
             .setEUIO(IO.IN)
             .setMaxTooltips(4)
@@ -613,7 +613,7 @@ public class CTNHRecipeTypes {
             .onRecipeBuild(ResearchManager::createDefaultResearchRecipe);
 
     public static final GTRecipeType CHEMICAL_PLANT_RECIPES = REGISTRATE
-            .recipeType(GTCEu.id("chemical_plant"), GTRecipeTypes.MULTIBLOCK)
+            .recipeType(CTNHCore.id("chemical_plant"), GTRecipeTypes.MULTIBLOCK)
             .cnlang("化工厂")
             .setMaxTooltips(4)
             .setMaxIOSize(5, 4, 4, 4).setEUIO(IO.IN)
@@ -623,31 +623,31 @@ public class CTNHRecipeTypes {
             .setSound(GTSoundEntries.COOLING);
 
     public static final GTRecipeType NEUTRON_ACTIVATOR_RECIPES = REGISTRATE
-            .recipeType(GTCEu.id("neutron_activator"), GTRecipeTypes.MULTIBLOCK)
+            .recipeType(CTNHCore.id("neutron_activator"), GTRecipeTypes.MULTIBLOCK)
             .cnlang("中子活化").setMaxIOSize(9, 9, 1, 1)
             .setMaxTooltips(5)
             .setSound(GTSoundEntries.COOLING);
 
     public static final GTRecipeType LARGE_NAQUADAH_REACTOR_RECIPES = REGISTRATE
-            .recipeType(GTCEu.id("large_naquadah_reactor"), GTRecipeTypes.MULTIBLOCK)
+            .recipeType(CTNHCore.id("large_naquadah_reactor"), GTRecipeTypes.MULTIBLOCK)
             .cnlang("大型硅岩反应").setMaxIOSize(0, 0, 1, 1)
             .setEUIO(IO.OUT).setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CENTRIFUGE);
 
     public static final GTRecipeType DEHYDRATOR_RECIPES = REGISTRATE
-            .recipeType(GTCEu.id("dehydrator"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("dehydrator"), GTRecipeTypes.ELECTRIC)
             .cnlang("脱水").setMaxIOSize(2, 9, 1, 1).setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CENTRIFUGE);
 
     public static final GTRecipeType NAQUADAH_REACTOR_RECIPES = REGISTRATE
-            .recipeType(GTCEu.id("naquadah_reactor"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("naquadah_reactor"), GTRecipeTypes.ELECTRIC)
             .cnlang("硅岩反应").setMaxIOSize(1, 1, 0, 0).setEUIO(IO.OUT)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CENTRIFUGE);
 
     public static final GTRecipeType STONE_BEDROCK_ORE_MACHINE_RECIPES = REGISTRATE
-            .recipeType(GTCEu.id("homemade_bedrock_ore_machine"), GTRecipeTypes.STEAM)
+            .recipeType(CTNHCore.id("homemade_bedrock_ore_machine"), GTRecipeTypes.STEAM)
             .cnlang("")
             .setXEIVisible(false)
             .setMaxIOSize(1, 6, 0, 0)
@@ -655,13 +655,13 @@ public class CTNHRecipeTypes {
             .setSound(GTSoundEntries.FURNACE);
 
     public static final GTRecipeType ROCKET_ENGINE_RECIPES = REGISTRATE
-            .recipeType(GTCEu.id("rocket_engine"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("rocket_engine"), GTRecipeTypes.ELECTRIC)
             .cnlang("火箭引擎").setMaxIOSize(0, 0, 1, 1).setEUIO(IO.OUT)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CENTRIFUGE);
 
     public static final GTRecipeType PRECISION_ASSEMBLY_RECIPES = REGISTRATE
-            .recipeType(GTCEu.id("precision_assembly"), GTRecipeTypes.ELECTRIC)
+            .recipeType(CTNHCore.id("precision_assembly"), GTRecipeTypes.ELECTRIC)
             .cnlang("精密组装").setMaxIOSize(4, 1, 4, 0).setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setMaxTooltips(4)

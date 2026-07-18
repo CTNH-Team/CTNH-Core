@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe.migrated;
 
 import com.gregtechceu.gtceu.data.recipe.GTCraftingComponents;
+import com.mo_guang.ctpp.registry.CreateMaterials;
 import com.moguang.ctnhmana.registry.CMMachines;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.*;
@@ -41,7 +42,6 @@ import com.github.alexmodguy.alexscaves.server.item.ACItemRegistry;
 import com.moguang.ctnhbio.registry.CBItems;
 import com.moguang.ctnhmana.registry.CMMaterials;
 import com.simibubi.create.AllItems;
-import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.shadowsoffire.hostilenetworks.Hostile;
 import earth.terrarium.adastra.common.registry.ModItems;
 import org.antarcticgardens.cna.CNABlocks;
@@ -708,7 +708,7 @@ public class GtceuScriptRecipes {
                 .outputItems(dust, Alumina, 3)
                 .outputItems(dust, SiliconDioxide, 3)
                 .outputItems(dust, Magnesia, 2)
-                .chancedOutput(dust, CreateMaterials.CALCIUM_SULFIDE, 2500, 500)
+                .chancedOutput(dust, BiodieselFertileSoilMaterials.CALCIUM_SULFIDE, 2500, 500)
                 .chancedOutput(dust, SodiumSulfide, 1500, 500)
                 .save(provider);
 
@@ -2423,14 +2423,11 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // 3. hv_diode (shaped): replaced smd_diode with #gtceu:diodes tag
-        {
-            TagKey<Item> diodeTag = ItemTags.create(ResourceLocation.parse("gtceu:diodes"));
-            VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("hv_diode"),
-                    new ItemStack(GTMachines.DIODE[GTValues.HV].asStack().getItem()),
-                    "CRd", "CRd", "CRd",
-                    'C', ChemicalHelper.get(cableGtSingle, Platinum),
-                    'R', ChemicalHelper.get(plate, Ruby),
-                    'd', diodeTag);
-        }
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("hv_diode"),
+                new ItemStack(GTMachines.DIODE[GTValues.HV].asStack().getItem()),
+                "CRd", "CRd", "CRd",
+                'C', ChemicalHelper.get(cableGtSingle, Platinum),
+                'R', ChemicalHelper.get(plate, Ruby),
+                'd', CustomTags.DIODES);
     }
 }

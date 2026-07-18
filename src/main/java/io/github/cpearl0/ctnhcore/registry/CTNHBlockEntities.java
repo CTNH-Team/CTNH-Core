@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry;
 
 import io.github.cpearl0.ctnhcore.common.blockentity.TurbineRotorBE;
-import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialBlocks;
 
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -15,8 +14,7 @@ public class CTNHBlockEntities {
     @SuppressWarnings("unchecked")
     public static final BlockEntityEntry<TurbineRotorBE> TURBINE_ROTOR = REGISTRATE
             .blockEntity("turbine_rotor", TurbineRotorBE::new)
-            .validBlocks(CTNHMaterialBlocks.HYPER_ROTOR_BLOCKS.values().toArray(BlockEntry[]::new))
+            // .validBlocks(CTNHMaterialBlocks.HYPER_ROTOR_BLOCKS.values().toArray(BlockEntry[]::new))
             .validBlocks(() -> CTNHBlocks.HYPER_PLASMA_TURBINE_ROTOR.get())
-
             .register();
 }

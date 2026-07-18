@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry.material;
 
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import io.github.cpearl0.ctnhcore.common.block.MaterialTurbineRotorBlock;
 import io.github.cpearl0.ctnhcore.common.block.TurbineRotorBlock;
 import io.github.cpearl0.ctnhcore.common.item.MaterialTurbineRotorItem;
@@ -52,6 +53,7 @@ public class CTNHMaterialBlocks {
                         prov.models().cubeAll(material.getName(),
                                 ResourceLocation.tryParse("minecraft:block/iron_block"))))
                 .item(MaterialTurbineRotorItem::new)
+                .model(NonNullBiConsumer.noop())
                 .tag(tagPrefix.getItemTags(material))
                 .build()
                 .register());

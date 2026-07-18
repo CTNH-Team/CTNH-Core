@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe.create;
 
+import com.mo_guang.ctpp.registry.CreateMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -30,7 +31,6 @@ import com.mo_guang.ctpp.common.recipe.builder.create.vintage.PressurizingRecipe
 import com.mo_guang.ctpp.common.recipe.builder.create.vintage.TurningRecipeBuilder;
 import com.mo_guang.ctpp.common.recipe.builder.create.vintage.VibratingRecipeBuilder;
 import com.mo_guang.ctpp.registry.CTPPItems;
-import com.mo_guang.ctpp.registry.CTPPMaterials;
 import com.negodya1.vintageimprovements.VintageBlocks;
 import com.simibubi.create.AllBlocks;
 
@@ -62,7 +62,7 @@ public final class CreateVintageRecipe {
                 'A', CTPPItems.BASIC_MECHANISM.asStack(),
                 'B', ChemicalHelper.get(TagPrefix.spring, GTMaterials.Iron),
                 'C', AllBlocks.ANDESITE_CASING.asItem(),
-                'D', ChemicalHelper.get(TagPrefix.ingot, CTPPMaterials.AndesiteAlloy),
+                'D', ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy),
                 'E', AllBlocks.MECHANICAL_PUMP.asItem());
         VanillaRecipeHelper.addShapedRecipe(provider,
                 CTNHCore.id("vintageimprovements/vibrating_table"),

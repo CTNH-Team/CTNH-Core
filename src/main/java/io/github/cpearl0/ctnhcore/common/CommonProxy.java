@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.common;
 
+import com.gregtechceu.gtceu.common.unification.material.MaterialRegistryManager;
 import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.ponder.CTNHCorePonderPlugin;
@@ -46,11 +47,12 @@ import tech.vixhentx.mcmod.ctnhlib.client.ponder.CTNHPonderLang;
 
 import java.util.Set;
 
-@Mod.EventBusSubscriber(modid = CTNHCore.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CommonProxy {
 
     @SuppressWarnings("removal")
     public CommonProxy() {
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        modEventBus.register(this);
         init();
     }
 
@@ -72,16 +74,6 @@ public class CommonProxy {
         CTNHConfig.init();
         CTNHDamageTypes.init();
         CTNHJadePlugin.init();
-    }
-
-    @SubscribeEvent
-    public static void registerMaterial(MaterialRegistryEvent event) {
-        // MaterialRegistryManager.getInstance().createRegistry(CTNHCore.MODID);
-    }
-
-    @SubscribeEvent
-    public static void addMaterialFlag(MaterialEvent event) {
-        GTMaterialAddon.init();
     }
 
     public static void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
@@ -107,22 +99,28 @@ public class CommonProxy {
     }
 
     @SubscribeEvent
-    public static void commonSetup(FMLCommonSetupEvent event) {
+    public void commonSetup(FMLCommonSetupEvent event) {
         // Clean up stale Forge persistent chunk tickets for ctnhcore on load
         event.enqueueWork(CTNHChunkLoading::registerValidationCallback);
     }
 
     @SubscribeEvent
-    public static void registerMaterials(MaterialEvent event) {
+    public void registerMaterial(MaterialRegistryEvent event) {
+        MaterialRegistryManager.getInstance().createRegistry(CTNHCore.MODID);
+    }
+
+    @SubscribeEvent
+    public void registerMaterials(MaterialEvent event) {
         CTNHMaterials.init();
         CTNHMaterials.tagPrefixIgnore();
         GTMaterialAddon.tagPrefixIgnore();
         AeOmniMaterials.tagPrefixIgnore();
         AeCrystalScienceMaterials.tagPrefixIgnore();
+        GTMaterialAddon.init();
     }
 
     @SubscribeEvent
-    public static void gatherData(GatherDataEvent event) {
+    public void gatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
         PackOutput packOutput = generator.getPackOutput();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();

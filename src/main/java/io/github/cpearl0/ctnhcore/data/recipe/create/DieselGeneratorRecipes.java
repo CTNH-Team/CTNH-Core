@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe.create;
 
+import com.mo_guang.ctpp.registry.CreateMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.BiodieselFertileSoilMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
@@ -24,7 +25,6 @@ import com.jesz.createdieselgenerators.CDGItems;
 import com.mo_guang.ctpp.common.recipe.builder.create.*;
 import com.mo_guang.ctpp.registry.CTPPBlocks;
 import com.mo_guang.ctpp.registry.CTPPItems;
-import com.mo_guang.ctpp.registry.CTPPMaterials;
 import com.simibubi.create.AllBlocks;
 import com.soytutta.mynethersdelight.common.registry.MNDItems;
 import vectorwing.farmersdelight.common.registry.ModItems;
@@ -95,7 +95,7 @@ public class DieselGeneratorRecipes {
         // 原版配方：andesite_alloy_ingot → andesite_alloy_plate、iron_plate → steel_plate、zinc_ingot → zinc_plate
         MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("diesel/pumpjack_crank"))
                 .pattern("AIA", " S ", "AIA", "ZSZ", "AZA")
-                .key('A', ChemicalHelper.get(TagPrefix.plate, CTPPMaterials.AndesiteAlloy))
+                .key('A', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy))
                 .key('I', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
                 .key('Z', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Zinc))
                 .key('S', AllBlocks.SHAFT.asStack())

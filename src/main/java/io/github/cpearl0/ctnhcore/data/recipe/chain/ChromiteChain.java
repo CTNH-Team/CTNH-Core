@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.data.recipe.chain;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.BiodieselFertileSoilMaterials;
-import io.github.cpearl0.ctnhcore.data.materials.CreateMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -87,7 +86,7 @@ public class ChromiteChain {
                 .inputItems(dust, Quicklime, 2)
                 .inputFluids(CarbonDioxide.getFluid(1000))
                 .outputItems(dust, SodaAsh, 6)
-                .outputItems(dust, CreateMaterials.CALCIUM_SULFIDE, 2)
+                .outputItems(dust, BiodieselFertileSoilMaterials.CALCIUM_SULFIDE, 2)
                 .EUt(120).duration(40)
                 .save(provider);
     }

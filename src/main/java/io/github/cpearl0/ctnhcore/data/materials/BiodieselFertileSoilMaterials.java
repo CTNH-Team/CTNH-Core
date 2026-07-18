@@ -34,6 +34,7 @@ public class BiodieselFertileSoilMaterials {
     public static Material ETHANOL_MIXTURE;
     public static Material RAW_BIO_DIESEL;
     public static Material RICH_SOUL_SOIL;
+    public static Material CALCIUM_SULFIDE;
 
     public static void init() {
         LIQUID_FLUORINE = REGISTRATE.material(CTNHCore.id("liquid_fluorine"))
@@ -170,6 +171,13 @@ public class BiodieselFertileSoilMaterials {
                 .dust()
                 .color(0x426362)
                 .iconSet(DULL)
+                .buildAndRegister();
+
+        CALCIUM_SULFIDE = REGISTRATE.material(CTNHCore.id("calcium_sulfide"))
+                .cnlang("硫化钙")
+                .dust()
+                .color(0xFFFFDC)
+                .components(Calcium, 1, Sulfur, 1)
                 .buildAndRegister();
     }
 }

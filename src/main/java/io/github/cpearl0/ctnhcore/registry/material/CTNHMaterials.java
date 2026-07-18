@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.registry.material;
 
 import com.github.L_Ender.cataclysm.init.ModBlocks;
 import com.github.L_Ender.cataclysm.init.ModItems;
+import com.mo_guang.ctpp.registry.CreateMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.BrineChain;
@@ -32,7 +33,6 @@ import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastP
 import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.HIGHEST;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
-import static io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes.hyperRotor;
 import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
 
 public class CTNHMaterials {
@@ -946,8 +946,6 @@ public class CTNHMaterials {
                 .secondaryColor(0x33342c).iconSet(MaterialIconSet.RADIOACTIVE).appendFlags(GTMaterials.EXT_METAL)
                 .element(CTNHElements.Th232).buildAndRegister();
 
-        CreateMaterials.init();
-
         AdastraMaterials.init();
         SecondMaterials.init();
         PlatinumLineMaterials.init();
@@ -1051,7 +1049,7 @@ public class CTNHMaterials {
         TagPrefix.ingot.setIgnored(Ignitium, ModItems.IGNITIUM_INGOT);
         TagPrefix.block.setIgnoredBlock(Ignitium, ModBlocks.IGNITIUM_BLOCK);
 
-        hyperRotor.setIgnored(Neutronium);
+        // hyperRotor.setIgnored(Neutronium);
     }
 
     public static class MaterialIcons {

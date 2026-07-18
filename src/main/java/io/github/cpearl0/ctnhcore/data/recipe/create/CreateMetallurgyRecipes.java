@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe.create;
 
+import com.mo_guang.ctpp.registry.CreateMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -29,7 +30,6 @@ import com.mo_guang.ctpp.common.recipe.builder.create.metallurgy.CastingInBasinR
 import com.mo_guang.ctpp.common.recipe.builder.create.metallurgy.CastingInTableRecipeBuilder;
 import com.mo_guang.ctpp.common.recipe.builder.create.metallurgy.MeltingRecipeBuilder;
 import com.mo_guang.ctpp.registry.CTPPItems;
-import com.mo_guang.ctpp.registry.CTPPMaterials;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
@@ -97,13 +97,13 @@ public class CreateMetallurgyRecipes {
         VanillaRecipeHelper.addShapedRecipe(provider, ResourceLocation.parse("ctnhcore:createmetallurgy/casting_basin"),
                 CMBlocks.CASTING_BASIN_BLOCK.asStack(),
                 "A A", "A A", "ABA",
-                'A', ChemicalHelper.get(TagPrefix.plate, CTPPMaterials.AndesiteAlloy),
-                'B', ChemicalHelper.get(TagPrefix.plateDouble, CTPPMaterials.AndesiteAlloy));
+                'A', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy),
+                'B', ChemicalHelper.get(TagPrefix.plateDouble, CreateMaterials.AndesiteAlloy));
         VanillaRecipeHelper.addShapedRecipe(provider, ResourceLocation.parse("ctnhcore:createmetallurgy/casting_table"),
                 CMBlocks.CASTING_TABLE_BLOCK.asStack(),
                 "ABA", "A A", "A A",
-                'A', ChemicalHelper.get(TagPrefix.plate, CTPPMaterials.AndesiteAlloy),
-                'B', ChemicalHelper.get(TagPrefix.plateDouble, CTPPMaterials.AndesiteAlloy));
+                'A', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy),
+                'B', ChemicalHelper.get(TagPrefix.plateDouble, CreateMaterials.AndesiteAlloy));
         VanillaRecipeHelper.addShapedRecipe(provider, ResourceLocation.parse("ctnhcore:createmetallurgy/sturdy_whisk"),
                 CMItems.STURDY_WHISK.asStack(),
                 " A ", "BCB", "DBD",
@@ -135,23 +135,23 @@ public class CreateMetallurgyRecipes {
         VanillaRecipeHelper.addShapedRecipe(provider, ResourceLocation.parse("ctnhcore:createmetallurgy/foundry_basin"),
                 CMBlocks.FOUNDRY_BASIN_BLOCK.asStack(),
                 "A A", "A A", "ABA",
-                'A', ChemicalHelper.get(TagPrefix.plate, CTPPMaterials.AndesiteAlloy),
+                'A', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy),
                 'B', AllBlocks.ANDESITE_CASING.asItem());
         VanillaRecipeHelper.addShapedRecipe(provider, ResourceLocation.parse("ctnhcore:createmetallurgy/foundry_lid"),
                 CMBlocks.FOUNDRY_LID_BLOCK.asStack(),
                 "ABA", "A A", "A A",
-                'A', ChemicalHelper.get(TagPrefix.plate, CTPPMaterials.AndesiteAlloy),
+                'A', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy),
                 'B', AllBlocks.ANDESITE_CASING.asItem());
         VanillaRecipeHelper.addShapedRecipe(provider, ResourceLocation.parse("ctnhcore:createmetallurgy/faucet"),
                 CMBlocks.FAUCET_BLOCK.asStack(3),
                 "   ", "A A", " B ",
-                'A', ChemicalHelper.get(TagPrefix.plate, CTPPMaterials.AndesiteAlloy),
+                'A', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy),
                 'B', CTPPItems.BASIC_MECHANISM.asStack());
         VanillaRecipeHelper.addShapedRecipe(provider,
                 ResourceLocation.parse("ctnhcore:createmetallurgy/gauge_attachment"),
                 CMItems.GAUGE_ATTACHMENT.asStack(),
                 "ABA",
-                'A', ChemicalHelper.get(TagPrefix.plate, CTPPMaterials.AndesiteAlloy),
+                'A', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy),
                 'B', Items.COMPASS);
     }
 

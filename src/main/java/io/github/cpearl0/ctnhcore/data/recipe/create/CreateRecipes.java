@@ -2,7 +2,7 @@ package io.github.cpearl0.ctnhcore.data.recipe.create;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.BiodieselFertileSoilMaterials;
-import io.github.cpearl0.ctnhcore.data.materials.CreateMaterials;
+import com.mo_guang.ctpp.registry.CreateMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.EnderIOMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.SpecialMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.UncategorizedMaterials;
@@ -43,7 +43,6 @@ import com.mo_guang.ctpp.common.recipe.builder.create.diesel.BasinFermentingReci
 import com.mo_guang.ctpp.common.recipe.builder.create.diesel.DistillationRecipeBuilder;
 import com.mo_guang.ctpp.registry.CTPPBlocks;
 import com.mo_guang.ctpp.registry.CTPPItems;
-import com.mo_guang.ctpp.registry.CTPPMaterials;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
@@ -146,8 +145,8 @@ public class CreateRecipes {
         }
 
         // andesite_alloy
-        ItemStack aaIngot = ChemicalHelper.get(TagPrefix.ingot, CTPPMaterials.AndesiteAlloy);
-        ItemStack aaDust = ChemicalHelper.get(TagPrefix.dust, CTPPMaterials.AndesiteAlloy);
+        ItemStack aaIngot = ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy);
+        ItemStack aaDust = ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy);
         if (!aaIngot.isEmpty() && !aaDust.isEmpty()) {
             CrushingRecipeBuilder.builder("crushing_andesite_alloy_dust").input(aaIngot).output(aaDust).save(provider);
             MillingRecipeBuilder.builder("milling_andesite_alloy_dust").input(aaIngot).output(aaDust).save(provider);
@@ -208,7 +207,7 @@ public class CreateRecipes {
                 case "cupronickel" -> ChemicalHelper.get(TagPrefix.plate, GTMaterials.Cupronickel);
                 case "steel" -> ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel);
                 case "red_alloy" -> ChemicalHelper.get(TagPrefix.plate, GTMaterials.RedAlloy);
-                case "mana_steel" -> ChemicalHelper.get(TagPrefix.plate, CTPPMaterials.AndesiteAlloy);
+                case "mana_steel" -> ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy);
                 case "conductive_alloy" -> ChemicalHelper.get(TagPrefix.plate, EnderIOMaterials.ConductiveAlloy);
                 default -> ItemStack.EMPTY;
             };
@@ -224,7 +223,7 @@ public class CreateRecipes {
                 case "cupronickel" -> ChemicalHelper.get(TagPrefix.wireGtSingle, GTMaterials.Cupronickel);
                 case "steel" -> ChemicalHelper.get(TagPrefix.wireGtSingle, GTMaterials.Steel);
                 case "red_alloy" -> ChemicalHelper.get(TagPrefix.wireGtSingle, GTMaterials.RedAlloy);
-                case "mana_steel" -> ChemicalHelper.get(TagPrefix.wireGtSingle, CTPPMaterials.AndesiteAlloy);
+                case "mana_steel" -> ChemicalHelper.get(TagPrefix.wireGtSingle, CreateMaterials.AndesiteAlloy);
                 case "conductive_alloy" -> ChemicalHelper.get(TagPrefix.wireGtSingle, EnderIOMaterials.ConductiveAlloy);
                 default -> ItemStack.EMPTY;
             };
@@ -252,7 +251,7 @@ public class CreateRecipes {
         MechanicalCraftingRecipeBuilder.builder("crushing_wheel")
                 .pattern(" AAA ", "ABCBA", "ACDCA", "ABCBA", " AAA ")
                 .key('A', ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
-                .key('B', ChemicalHelper.get(TagPrefix.plate, CTPPMaterials.AndesiteAlloy))
+                .key('B', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy))
                 .key('C', ChemicalHelper.get(TagPrefix.rod, GTMaterials.Iron))
                 .key('D', ChemicalHelper.get(TagPrefix.gear, GTMaterials.WroughtIron))
                 .output(new ItemStack(AllBlocks.CRUSHING_WHEEL.asItem(), 2)).save(provider);
@@ -261,7 +260,7 @@ public class CreateRecipes {
         MechanicalCraftingRecipeBuilder.builder("generator_coil")
                 .pattern("  A  ", " BCB ", "ACDCA", " BCB ", "  A  ")
                 .key('A', ChemicalHelper.get(TagPrefix.wireFine, GTMaterials.Copper))
-                .key('B', ChemicalHelper.get(TagPrefix.plate, CTPPMaterials.AndesiteAlloy))
+                .key('B', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy))
                 .key('C', GTItems.BASIC_CIRCUIT_BOARD.asStack())
                 .key('D', AllItems.PRECISION_MECHANISM.asItem())
                 .output(new ItemStack(AllItems.PRECISION_MECHANISM.asItem())).save(provider);
@@ -389,7 +388,7 @@ public class CreateRecipes {
 
         // andesite alloy dust from iron fluid + dusts
         MixingRecipeBuilder.builder("andesite_alloy_from_iron")
-                .result(new ItemStack(ChemicalHelper.get(TagPrefix.dust, CTPPMaterials.AndesiteAlloy).getItem(), 2))
+                .result(new ItemStack(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy).getItem(), 2))
                 .inputFluid(GTMaterials.Iron.getFluid(144))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Andesite))
                 .save(provider);
@@ -420,8 +419,8 @@ public class CreateRecipes {
         MixingRecipeBuilder.builder("andesite_alloy_dust_with_secondary")
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Andesite))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Iron))
-                .result(ChemicalHelper.get(TagPrefix.dust, CTPPMaterials.AndesiteAlloy))
-                .result(ChemicalHelper.get(TagPrefix.dust, CTPPMaterials.AndesiteAlloy), 0.3)
+                .result(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy))
+                .result(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy), 0.3)
                 .save(provider);
 
         // steel precursor mixing (wrought iron + coke or charcoal) - simplified as two recipes
@@ -478,7 +477,7 @@ public class CreateRecipes {
                 .result(AllItems.CHROMATIC_COMPOUND.asStack(4))
                 .inputFluid(GTMaterials.Lava.getFluid(500))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Netherite))
-                .input(ChemicalHelper.get(TagPrefix.ingot, CTPPMaterials.AndesiteAlloy))
+                .input(ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy))
                 .input(AllItems.POLISHED_ROSE_QUARTZ.asStack())
                 .save(provider);
 
@@ -607,7 +606,7 @@ public class CreateRecipes {
                     .input(ItemTags.WOODEN_SLABS)
                     .transitional(incompleteBasic)
                     .result(basicMechanism)
-                    .deploying(ChemicalHelper.get(TagPrefix.ingot, CTPPMaterials.AndesiteAlloy))
+                    .deploying(ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy))
                     .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Iron))
                     .cutting()
                     .loops(1)

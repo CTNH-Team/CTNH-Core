@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import com.mo_guang.ctpp.registry.CreateMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.BedrockMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.EnderIOMaterials;
@@ -57,7 +58,6 @@ import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
 import com.laidbacksloth.angelblockrenewed.BlockRegistry;
 import com.mo_guang.ctpp.registry.CTPPBlocks;
 import com.mo_guang.ctpp.registry.CTPPItems;
-import com.mo_guang.ctpp.registry.CTPPMaterials;
 import com.moguang.ctnhmana.registry.CMBlocks;
 import com.moguang.ctnhmana.registry.CMMaterials;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -87,10 +87,10 @@ public class CrafttableScriptRecipe {
 
     private static void addCrafttableRecipes(Consumer<FinishedRecipe> provider) {
         shaped(provider, "andesite_alloy_ingot",
-                stack(ChemicalHelper.get(TagPrefix.ingot, CTPPMaterials.AndesiteAlloy), 4), "ABA", "BAB", "ABA",
+                stack(ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy), 4), "ABA", "BAB", "ABA",
                 'A', Items.IRON_INGOT, 'B', Items.ANDESITE);
         shaped(provider, "shaft", stack(AllBlocks.SHAFT.asStack(), 4), "A", "A", "A", 'A',
-                ChemicalHelper.get(TagPrefix.ingot, CTPPMaterials.AndesiteAlloy));
+                ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy));
         shaped(provider, "mechanical_press", AllBlocks.MECHANICAL_PRESS.asStack(), " A ", "BCB", " D ", 'A',
                 Items.IRON_INGOT, 'B', AllBlocks.SHAFT.asStack(), 'C', AllBlocks.ANDESITE_CASING.asStack(), 'D',
                 Items.IRON_BLOCK);
@@ -102,19 +102,19 @@ public class CrafttableScriptRecipe {
                 AllBlocks.SHAFT.asStack());
         shaped(provider, "mechanical_bearing", AllBlocks.MECHANICAL_BEARING.asStack(), "AAA", "BCB", "BDB", 'A',
                 ItemTags.WOODEN_SLABS, 'B', ItemTags.PLANKS, 'C',
-                ChemicalHelper.get(TagPrefix.plate, CTPPMaterials.AndesiteAlloy), 'D', AllBlocks.SHAFT.asStack());
+                ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy), 'D', AllBlocks.SHAFT.asStack());
         shapeless(provider, "depot", AllBlocks.DEPOT.asStack(), AllBlocks.ANDESITE_CASING.asStack(),
-                ChemicalHelper.get(TagPrefix.plate, CTPPMaterials.AndesiteAlloy));
+                ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy));
         shaped(provider, "cogwheel", stack(AllBlocks.COGWHEEL.asStack(), 4), " A ", "ABA", " A ", 'A',
-                ItemTags.PLANKS, 'B', ChemicalHelper.get(TagPrefix.gearSmall, CTPPMaterials.AndesiteAlloy));
+                ItemTags.PLANKS, 'B', ChemicalHelper.get(TagPrefix.gearSmall, CreateMaterials.AndesiteAlloy));
         shaped(provider, "large_cogwheel", stack(AllBlocks.LARGE_COGWHEEL.asStack(), 4), " A ", "ABA", " A ", 'A',
                 GTBlocks.TREATED_WOOD_PLANK.asStack(), 'B',
-                ChemicalHelper.get(TagPrefix.gear, CTPPMaterials.AndesiteAlloy));
+                ChemicalHelper.get(TagPrefix.gear, CreateMaterials.AndesiteAlloy));
         shaped(provider, "water_wheel", AllBlocks.WATER_WHEEL.asStack(), "AAA", "ABA", "AAA", 'A',
                 GTBlocks.TREATED_WOOD_PLANK.asStack(), 'B', AllBlocks.LARGE_COGWHEEL.asStack());
         shaped(provider, "mechanical_drill", AllBlocks.MECHANICAL_DRILL.asStack(), " D ", "CBC", " A ", 'A',
                 AllBlocks.ANDESITE_CASING.asStack(), 'B', AllBlocks.SHAFT.asStack(), 'C',
-                ChemicalHelper.get(TagPrefix.ingot, CTPPMaterials.AndesiteAlloy), 'D',
+                ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy), 'D',
                 ChemicalHelper.get(TagPrefix.toolHeadDrill, GTMaterials.Iron));
         shaped(provider, "mechanical_mixer_create", AllBlocks.MECHANICAL_MIXER.asStack(), "ABA", "CDC", " E ", 'A',
                 CTPPItems.BASIC_MECHANISM.asStack(), 'B', AllBlocks.SHAFT.asStack(), 'C',
@@ -122,7 +122,7 @@ public class CrafttableScriptRecipe {
                 AllItems.WHISK.asStack());
         shaped(provider, "electron_tube", AllItems.ELECTRON_TUBE.asStack(), " A ", "BCB", " B ", 'A',
                 AllItems.POLISHED_ROSE_QUARTZ.asItem(), 'B',
-                ChemicalHelper.get(TagPrefix.plate, CTPPMaterials.AndesiteAlloy), 'C',
+                ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy), 'C',
                 ChemicalHelper.get(TagPrefix.gearSmall, GTMaterials.Iron));
         shaped(provider, "deployer", AllBlocks.DEPLOYER.asStack(), "ABA", "CDC", " E ", 'A',
                 CTPPItems.BASIC_MECHANISM.asStack(), 'B', AllItems.ELECTRON_TUBE.asStack(), 'C',
@@ -178,7 +178,7 @@ public class CrafttableScriptRecipe {
         shaped(provider, "cart_assembler", AllBlocks.CART_ASSEMBLER.asStack(), " A ", "BCB", "DED", 'A',
                 Items.SLIME_BALL,
                 'B', AllBlocks.POWERED_LATCH.asStack(), 'C', AllBlocks.ANDESITE_CASING.asStack(), 'D',
-                ChemicalHelper.get(TagPrefix.plate, CTPPMaterials.AndesiteAlloy), 'E',
+                ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy), 'E',
                 CTPPItems.BASIC_MECHANISM.asStack());
         shaped(provider, "millstone", AllBlocks.MILLSTONE.asStack(), " A ", "BCB", "DDD", 'A',
                 AllBlocks.CHUTE.asStack(), 'B',

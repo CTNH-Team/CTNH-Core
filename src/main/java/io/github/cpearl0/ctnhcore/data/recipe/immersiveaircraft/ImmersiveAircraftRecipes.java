@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe.immersiveaircraft;
 
+import com.mo_guang.ctpp.registry.CreateMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval;
 import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval.RemoveFilter;
@@ -21,7 +22,6 @@ import net.minecraft.world.level.ItemLike;
 import com.mo_guang.ctpp.common.recipe.builder.create.MechanicalCraftingRecipeBuilder;
 import com.mo_guang.ctpp.common.recipe.builder.create.SequencedAssemblyRecipeBuilder;
 import com.mo_guang.ctpp.registry.CTPPItems;
-import com.mo_guang.ctpp.registry.CTPPMaterials;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 
@@ -81,11 +81,11 @@ public class ImmersiveAircraftRecipes {
                 'W', CTPPItems.BASIC_MECHANISM.asStack(),
                 'S', CustomTags.SCREWDRIVERS,
                 'A', CustomTags.HAMMERS,
-                'Q', ChemicalHelper.get(TagPrefix.plate, CTPPMaterials.AndesiteAlloy));
+                'Q', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy));
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("immersive_aircraft/propeller"),
                 stack(immersive_aircraft.Items.PROPELLER.get()),
                 "SDA", "DWD", " D ",
-                'D', ChemicalHelper.get(TagPrefix.plate, CTPPMaterials.AndesiteAlloy),
+                'D', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy),
                 'W', CTPPItems.BASIC_MECHANISM.asStack(),
                 'S', CustomTags.SCREWDRIVERS,
                 'A', CustomTags.HAMMERS);
@@ -110,7 +110,7 @@ public class ImmersiveAircraftRecipes {
                 stack(immersive_aircraft.Items.STURDY_PIPES.get()),
                 "SAW", "DDD", "WQE",
                 'D', AllBlocks.FLUID_PIPE.asStack(),
-                'W', ChemicalHelper.get(TagPrefix.plate, CTPPMaterials.AndesiteAlloy),
+                'W', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy),
                 'S', CustomTags.MALLETS,
                 'A', CustomTags.HAMMERS,
                 'Q', CustomTags.FILES,
