@@ -60,7 +60,6 @@ public class CTNHBiomeModifiers implements DataProvider {
             "twilightforest:legacy_lapis_ore",
             "twilightforest:legacy_copper_ore",
             "create:zinc_ore",
-            "createmetallurgy:wolframite_ore_placed",
             "ae2cs:certus_quartz_ore_placed",
             "ae2cs:charged_certus_quartz_ore_placed",
             "mythicbotany:elementium_ore",

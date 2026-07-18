@@ -33,8 +33,6 @@ import appeng.core.definitions.AEBlocks;
 import com.aetherteam.aether.block.AetherBlocks;
 import com.enderio.base.common.init.EIOBlocks;
 import com.enderio.base.common.init.EIOItems;
-import com.github.alexmodguy.alexscaves.server.block.ACBlockRegistry;
-import com.github.alexmodguy.alexscaves.server.item.ACItemRegistry;
 import com.mo_guang.ctpp.registry.CreateMaterials;
 import com.moguang.ctnhbio.registry.CBItems;
 import com.moguang.ctnhmana.registry.CMMachines;
@@ -105,19 +103,6 @@ public class GtceuScriptRecipes {
                 .inputItems(plate, RedAlloy, 4)
                 .inputItems(BotaniaBlocks.livingrock.asItem(), 4)
                 .outputItems(BotaniaBlocks.rfGenerator.asItem())
-                .save(provider);
-
-        // 2. submarine: alexscaves:enigmatic_engine + 2x #hv + 4x energy_crystal + 2x hv_sensor + 4x hv_electric_motor
-        // + 8x red_steel_plate -> alexscaves:submarine. EUt 480, dur 400
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("submarine"))
-                .EUt(480).duration(400)
-                .inputItems(ACBlockRegistry.ENIGMATIC_ENGINE.get().asItem())
-                .inputItems(CustomTags.HV_CIRCUITS, 2)
-                .inputItems(GTItems.ENERGIUM_CRYSTAL.asStack(4))
-                .inputItems(GTItems.SENSOR_HV.asStack(2))
-                .inputItems(GTItems.ELECTRIC_MOTOR_HV.asStack(4))
-                .inputItems(plate, RedSteel, 8)
-                .outputItems(ACItemRegistry.SUBMARINE.get())
                 .save(provider);
 
         // 3. blaze_blast_furnace_casing: 4x stainless_steel_plate + 2x stainless_steel_frame + botania:blaze_block +
@@ -667,16 +652,6 @@ public class GtceuScriptRecipes {
 
         // ============== Centrifuge Recipes ==============
 
-        // 14. alexscaves_acid: acid 1000 -> water 500 + hydrochloric_acid 500 + 2x tiny_uranium_dust. EUt 30, dur 400
-        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("alexscaves_acid"))
-                .EUt(30).duration(400)
-                .inputFluids(FluidIngredient
-                        .of(ForgeRegistries.FLUIDS.getValue(ResourceLocation.parse("alexscaves:acid")), 1000))
-                .outputFluids(Water.getFluid(500))
-                .outputFluids(HydrochloricAcid.getFluid(500))
-                .outputItems(dustTiny, Uranium238, 2)
-                .save(provider);
-
         // 15. oil_refined_residues: oil_refined_residues_dust -> stone_dust + small_oxidized_residues_dust. Chanced:
         // magnetite 1500/100, garnierite 1500/100, pyrite 1500/100. EUt 30, dur 20
         CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("oil_refined_residues"))
@@ -1177,14 +1152,6 @@ public class GtceuScriptRecipes {
 
         // ============== Canner Recipes ==============
 
-        // 61. radon: radon_bottle -> glass_bottle + radon 250. EUt VA[HV], dur 40
-        CANNER_RECIPES.recipeBuilder(CTNHCore.id("radon"))
-                .EUt(GTValues.VA[GTValues.HV]).duration(40)
-                .inputItems(ACItemRegistry.RADON_BOTTLE.get())
-                .outputItems(new ItemStack(Items.GLASS_BOTTLE))
-                .outputFluids(Radon.getFluid(250))
-                .save(provider);
-
         // 62. scp500_base: notConsumable pill_casting_mold + life_essence_fluid 8000 -> scp_500_base. EUt 8192, dur 100
         CANNER_RECIPES.recipeBuilder(CTNHCore.id("scp500_base"))
                 .EUt(8192).duration(100)
@@ -1203,16 +1170,6 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // ============== Implosion Compressor Recipes ==============
-
-        // 64. bedrock: 64x bedrock_dust_block + 64x alexscaves:nuclear_bomb -> bedrock. EUt 491200, dur 20. cleanroom
-        // STERILE_CLEANROOM
-        IMPLOSION_RECIPES.recipeBuilder(CTNHCore.id("bedrock"))
-                .EUt(491200).duration(20)
-                .inputItems(block, BedrockMaterials.BEDROCK_DUST, 64)
-                .inputItems(ACBlockRegistry.NUCLEAR_BOMB.get().asItem(), 64)
-                .outputItems(ingot, BedrockMaterials.BEDROCK_DUST)
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
-                .save(provider);
 
         // ============== Desalting Recipes ==============
 
@@ -2024,8 +1981,6 @@ public class GtceuScriptRecipes {
                 .chancedInput(new ItemStack(Items.DIAMOND_BLOCK, 64), 7500, -100)
                 .inputFluids(Creosote.getFluid(64000))
                 .outputFluids(Lava.getFluid(8000))
-                .outputFluids(FluidIngredient
-                        .of(ForgeRegistries.FLUIDS.getValue(ResourceLocation.parse("alexscaves:acid")), 8000))
                 .chancedOutput(ChemicalHelper.get(rawOre, Electrotine, 64), 1000, 50)
                 .chancedOutput(ChemicalHelper.get(rawOre, Wollastonite, 64), 1000, 50)
                 .chancedOutput(ChemicalHelper.get(rawOre, Kaolinite, 64), 1000, 50)
@@ -2205,19 +2160,6 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // ============== Differential Centrifuge Recipes ==============
-
-        // alexscaves_acid
-        CTNHRecipeTypes.DIFFERENTIAL_CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("alexscaves_acid"))
-                .inputFluids(FluidIngredient
-                        .of(ForgeRegistries.FLUIDS.getValue(ResourceLocation.parse("alexscaves:acid")), 1000))
-                .outputFluids(Water.getFluid(500))
-                .outputFluids(HydrochloricAcid.getFluid(250))
-                .outputFluids(SulfuricAcid.getFluid(100))
-                .outputFluids(PhosphoricAcid.getFluid(150))
-                .outputItems(dustTiny, Uranium238, 2)
-                .chancedOutput(dustTiny, Plutonium239, 2000, 500)
-                .EUt(1920).duration(160)
-                .save(provider);
 
         // ============== Rocket Engine Recipes ==============
 

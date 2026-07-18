@@ -78,7 +78,6 @@ public class RecipeRemoval {
         ae2csRemovals();
         ae2thingsRemovals();
         aetherRemovals();
-        alexscavesRemovals();
         angelblockrenewedRemovals();
         apotheosisRemovals();
         arsNouveauRemovals();
@@ -90,7 +89,6 @@ public class RecipeRemoval {
         botaniaRemovals();
         createNewAgeRemovals();
         createdieselgeneratorsRemovals();
-        createmetallurgyRemovals();
         createoreexcavationRemovals();
         ctnhcoreRemovals();
         deepAetherRemovals();
@@ -205,11 +203,6 @@ public class RecipeRemoval {
         remove(new RemoveFilter().idRegex("aether:skyroot_(.*)"));
     }
 
-    public static void alexscavesRemovals() {
-        remove(new RemoveFilter().id("alexscaves:azure_neodymium_ingot"));
-        remove(new RemoveFilter().id("alexscaves:scarlet_neodymium_ingot"));
-    }
-
     public static void angelblockrenewedRemovals() {
         remove(new RemoveFilter().id("angelblockrenewed:angel_block"));
     }
@@ -319,12 +312,6 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("createdieselgenerators:mixing/biodiesel"));
         remove(new RemoveFilter().id("createdieselgenerators:mechanical_crafting/pumpjack_crank"));
         remove(new RemoveFilter().id("createdieselgenerators:compacting/plant_oil"));
-    }
-
-    public static void createmetallurgyRemovals() {
-        // createmetallurgy 模组下的所有配方，例外：createmetallurgy:belt_grinder
-        remove(new RemoveFilter().mod("createmetallurgy")
-                .not(new RemoveFilter().type("createmetallurgy:belt_grinder")));
     }
 
     public static void createoreexcavationRemovals() {

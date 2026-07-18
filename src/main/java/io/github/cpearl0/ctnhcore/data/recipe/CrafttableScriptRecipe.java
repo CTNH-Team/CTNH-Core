@@ -49,8 +49,6 @@ import appeng.core.definitions.AEParts;
 import com.enderio.base.common.init.EIOBlocks;
 import com.enderio.base.common.init.EIOItems;
 import com.enderio.conduits.common.init.ConduitItems;
-import com.github.alexmodguy.alexscaves.server.block.ACBlockRegistry;
-import com.github.alexmodguy.alexscaves.server.item.ACItemRegistry;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
@@ -66,7 +64,6 @@ import com.negodya1.vintageimprovements.VintageItems;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import earth.terrarium.adastra.common.registry.ModItems;
-import fr.lucreeper74.createmetallurgy.registries.CMItems;
 import me.khajiitos.jackseconomy.init.ItemBlockReg;
 import org.antarcticgardens.cna.CNABlocks;
 import org.antarcticgardens.cna.CNAItems;
@@ -94,9 +91,6 @@ public class CrafttableScriptRecipe {
         shaped(provider, "mechanical_press", AllBlocks.MECHANICAL_PRESS.asStack(), " A ", "BCB", " D ", 'A',
                 Items.IRON_INGOT, 'B', AllBlocks.SHAFT.asStack(), 'C', AllBlocks.ANDESITE_CASING.asStack(), 'D',
                 Items.IRON_BLOCK);
-        shaped(provider, "recipe_card", stack(VintageItems.RECIPE_CARD.asItem(), 4), " A ", "BBB", "CCC", 'A',
-                CMItems.SANDPAPER_BELT.asItem(), 'B', Items.REDSTONE, 'C',
-                ChemicalHelper.get(TagPrefix.plate, GTMaterials.Brass));
         shaped(provider, "windmill_bearing", AllBlocks.WINDMILL_BEARING.asStack(), "AAA", "BCB", "BDB", 'A',
                 ItemTags.WOODEN_SLABS, 'B', Items.STONE, 'C', CTPPItems.BASIC_MECHANISM.asStack(), 'D',
                 AllBlocks.SHAFT.asStack());
@@ -131,9 +125,6 @@ public class CrafttableScriptRecipe {
         shaped(provider, "contraption_controls", AllBlocks.CONTRAPTION_CONTROLS.asStack(), " A ", "BCB", " D ", 'A',
                 Items.OAK_BUTTON, 'B', CTPPItems.BASIC_MECHANISM.asStack(), 'C', AllBlocks.ANDESITE_CASING.asStack(),
                 'D', AllItems.ELECTRON_TUBE.asStack());
-        shaped(provider, "redstone_magnet", stack(CNABlocks.REDSTONE_MAGNET.asStack(), 2), "ABC", "BDB", "CBA", 'A',
-                ACItemRegistry.SCARLET_NEODYMIUM_INGOT.get(), 'B', AllItems.POLISHED_ROSE_QUARTZ.asItem(), 'C',
-                ACItemRegistry.AZURE_NEODYMIUM_INGOT.get(), 'D', CNABlocks.MAGNETITE_BLOCK.asStack());
         shaped(provider, "basic_energiser", CNABlocks.BASIC_ENERGISER.asStack(), " A ", "BCB", " D ", 'A',
                 AllItems.PRECISION_MECHANISM.asStack(), 'B', AllBlocks.SHAFT.asStack(), 'C',
                 AllBlocks.RAILWAY_CASING.asStack(), 'D', Items.LIGHTNING_ROD);
@@ -149,23 +140,6 @@ public class CrafttableScriptRecipe {
         shaped(provider, "apothecary_default", stack(BotaniaBlocks.defaultAltar), "ABA", "CCC", " D ", 'A',
                 Items.STONE_BRICK_STAIRS, 'B', BotaniaTags.Items.PETALS, 'C', Items.STONE_BRICK_SLAB, 'D',
                 Items.STONE_BRICK_WALL);
-        keepShaped(provider, "magnetic_iron_ingot_alexscaves",
-                stack(ChemicalHelper.get(TagPrefix.ingot, GTMaterials.IronMagnetic), 7),
-                new String[] { "ABA", "AAA", "ACA" },
-                new Object[] { ACBlockRegistry.SCARLET_MAGNET.get(), ACBlockRegistry.AZURE_MAGNET.get() }, 'A',
-                Items.IRON_INGOT, 'B', ACBlockRegistry.SCARLET_MAGNET.get(), 'C', ACBlockRegistry.AZURE_MAGNET.get());
-        keepShaped(provider, "magnetic_iron_rod_alexscaves",
-                stack(ChemicalHelper.get(TagPrefix.rod, GTMaterials.IronMagnetic), 7),
-                new String[] { "ABA", "AAA", "ACA" },
-                new Object[] { ACBlockRegistry.SCARLET_MAGNET.get(), ACBlockRegistry.AZURE_MAGNET.get() }, 'A',
-                ChemicalHelper.get(TagPrefix.rod, GTMaterials.Iron), 'B', ACBlockRegistry.SCARLET_MAGNET.get(), 'C',
-                ACBlockRegistry.AZURE_MAGNET.get());
-        keepShaped(provider, "magnetic_iron_bolt_alexscaves",
-                stack(ChemicalHelper.get(TagPrefix.bolt, GTMaterials.IronMagnetic), 7),
-                new String[] { "ABA", "AAA", "ACA" },
-                new Object[] { ACBlockRegistry.SCARLET_MAGNET.get(), ACBlockRegistry.AZURE_MAGNET.get() }, 'A',
-                ChemicalHelper.get(TagPrefix.bolt, GTMaterials.Iron), 'B', ACBlockRegistry.SCARLET_MAGNET.get(), 'C',
-                ACBlockRegistry.AZURE_MAGNET.get());
         shaped(provider, "magnetite_block", stack(CNABlocks.MAGNETITE_BLOCK.asStack(), 5), "ABA", "BAB", "ABA", 'A',
                 Items.STONE, 'B', ChemicalHelper.get(TagPrefix.ingot, GTMaterials.IronMagnetic));
         shaped(provider, "rotation_speed_controller", AllBlocks.ROTATION_SPEED_CONTROLLER.asStack(), " A ", "BCB",
@@ -452,11 +426,6 @@ public class CrafttableScriptRecipe {
         shaped(provider, "mechanical_sifter", Mechanical.MECHANICAL_SIFTER.asStack(), "AAA", "BCB", "DDD", 'A',
                 CTPPItems.STEEL_MECHANISM.asStack(), 'B', AllBlocks.RAILWAY_CASING.asStack(), 'C',
                 VintageBlocks.VIBRATING_TABLE.get(), 'D', GTItems.ITEM_FILTER.asStack());
-        shaped(provider, "mechanical_extractor", Mechanical.MECHANICAL_EXTRACTOR.asStack(), "AAA", "BCB", "DED", 'A',
-                CTPPItems.STEEL_MECHANISM.asStack(), 'B', AllBlocks.RAILWAY_CASING.asStack(), 'C',
-                fr.lucreeper74.createmetallurgy.registries.CMBlocks.FOUNDRY_MIXER_BLOCK.get(), 'D',
-                AllBlocks.FLUID_PIPE.asItem(), 'E',
-                fr.lucreeper74.createmetallurgy.registries.CMBlocks.FOUNDRY_BASIN_BLOCK.get());
         shaped(provider, "mechanical_lathe", Mechanical.MECHANICAL_LATHE.asStack(), "AAA", "BCB", "DDD", 'A',
                 CTPPItems.STEEL_MECHANISM.asStack(), 'B', AllBlocks.RAILWAY_CASING.asStack(), 'C',
                 VintageBlocks.LATHE_ROTATING.get(), 'D', AllItems.BELT_CONNECTOR.asItem());
@@ -465,14 +434,6 @@ public class CrafttableScriptRecipe {
         shapeless(provider, "dungeon_brick1", stack(BloodMagicBlocks.DUNGEON_BRICK_1.get()),
                 BloodMagicBlocks.DUNGEON_BRICK_ASSORTED.get());
 
-        String[][] caveTablets = {
-                { "primordial_caves", "candy_cavity" }, { "toxic_caves", "primordial_caves" },
-                { "abyssal_chasm", "toxic_caves" }, { "forlorn_hollows", "abyssal_chasm" },
-                { "magnetic_caves", "forlorn_hollows" }, { "candy_cavity", "magnetic_caves" }
-        };
-        for (String[] conversion : caveTablets) {
-            shapeless(provider, "cave_tablet_" + conversion[0], caveTablet(conversion[0]), caveTablet(conversion[1]));
-        }
         shapelessExact(provider, ResourceLocation.parse("ae2:redstone_p2p_tunnel"),
                 stack(AEParts.REDSTONE_P2P_TUNNEL.asItem()), AEParts.ME_P2P_TUNNEL.asItem(), Items.REDSTONE);
         shapelessExact(provider, ResourceLocation.parse("ae2:fe_p2p_tunnel"), stack(AEParts.FE_P2P_TUNNEL.asItem()),
@@ -529,16 +490,6 @@ public class CrafttableScriptRecipe {
             stack.setTag(TagParser.parseTag(snbt));
         } catch (CommandSyntaxException e) {
             throw new IllegalArgumentException("Invalid recipe SNBT for " + id + ": " + snbt, e);
-        }
-        return stack;
-    }
-
-    private static ItemStack caveTablet(String biome) {
-        ItemStack stack = new ItemStack(ACItemRegistry.CAVE_TABLET.get());
-        try {
-            stack.setTag(TagParser.parseTag("{CaveBiome:\"alexscaves:" + biome + "\"}"));
-        } catch (CommandSyntaxException e) {
-            throw new IllegalArgumentException("Invalid cave tablet biome: " + biome, e);
         }
         return stack;
     }

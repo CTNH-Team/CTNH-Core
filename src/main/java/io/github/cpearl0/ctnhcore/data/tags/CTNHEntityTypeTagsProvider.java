@@ -23,8 +23,6 @@ public class CTNHEntityTypeTagsProvider extends TagsProvider<EntityType<?>> {
             ResourceLocation.parse("twilightforest:hedge_spider"),
             ResourceLocation.parse("minecraft:wither"),
             ResourceLocation.parse("minecraft:ender_dragon"),
-            ResourceLocation.parse("alexscaves:luxtructosaurus"),
-            ResourceLocation.parse("alexscaves:tremorzilla"),
             ResourceLocation.parse("ars_nouveau:wilden_boss"),
             ResourceLocation.parse("artifacts:mimic"),
             ResourceLocation.parse("cataclysm:ender_guardian"),

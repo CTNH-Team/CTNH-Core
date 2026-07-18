@@ -174,7 +174,6 @@ public class CTNHCoreGTAddon implements IGTAddon {
 
         ImmersiveAircraftRecipes.init(provider);
         CreateOreExcavationRecipes.init(provider);
-        // CreateMetallurgyRecipes.init(provider);
         CasingRecipes.init(provider);
         UHVPartsRecipe.init(provider);
 

@@ -81,9 +81,6 @@ public class CTNHExtraItemTagsProvider extends TagsProvider<Item> {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        tag(itemTag("alexscaves", "deep_one_barters"))
-                .addOptionalTag(ResourceLocation.fromNamespaceAndPath("forge", "exquisite_gems"));
-
         addOptionals(itemTag("forge", "foods"), FOODS);
         addOptionals(itemTag("forge", "fermentable"), FERMENTABLE);
         addOptionals(itemTag("forge", "stripped_logs"), List.of("gtceu:stripped_rubber_log"));

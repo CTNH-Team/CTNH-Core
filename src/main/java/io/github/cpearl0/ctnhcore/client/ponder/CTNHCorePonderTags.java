@@ -41,7 +41,6 @@ public final class CTNHCorePonderTags {
                 .add(Mechanical.MECHANICAL_MIXER.getId())
                 .add(Mechanical.MECHANICAL_CENTRIFUGE.getId())
                 .add(Mechanical.MECHANICAL_SIFTER.getId())
-                .add(Mechanical.MECHANICAL_EXTRACTOR.getId())
                 .add(Mechanical.MECHANICAL_LATHE.getId());
 
         helper.addToTag(CTNHPonder)

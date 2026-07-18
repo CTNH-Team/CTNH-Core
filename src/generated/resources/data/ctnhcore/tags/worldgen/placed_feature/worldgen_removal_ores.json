@@ -138,10 +138,6 @@
       "required": false
     },
     {
-      "id": "createmetallurgy:wolframite_ore_placed",
-      "required": false
-    },
-    {
       "id": "ae2cs:certus_quartz_ore_placed",
       "required": false
     },
