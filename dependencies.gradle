@@ -31,7 +31,6 @@ dependencies {
     modImplementation(ctnh.omnicells)
 
     // Create addons
-    modImplementation(ctnh.createmetallurgy)
     modImplementation(ctnh.createvintage)
     modImplementation(ctnh.createliquidfuel)
     modImplementation(ctnh.createnewage)
@@ -111,7 +110,6 @@ dependencies {
     modImplementation(ctnh.sophisticatedcore)
     modImplementation(ctnh.sophisticatedbackpacks)
     modImplementation(ctnh.sophisticatedstorage)
-    modImplementation(ctnh.alexscaves)
     modImplementation(ctnh.citadel)
 
     modLocalRuntime(ctnh.curios)

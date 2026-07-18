@@ -447,22 +447,6 @@ public class CreateRecipes {
                 .heatRequirement("heated")
                 .save(provider);
 
-        // alexscaves magnets
-        MixingRecipeBuilder.builder("scarlet_neodymium_ingot")
-                .result(item("alexscaves:scarlet_neodymium_ingot") == null ? ItemStack.EMPTY :
-                        new ItemStack(item("alexscaves:scarlet_neodymium_ingot"), 2))
-                .input(item("alexscaves:raw_scarlet_neodymium") == null ? ItemStack.EMPTY :
-                        new ItemStack(item("alexscaves:raw_scarlet_neodymium")))
-                .input(ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Iron))
-                .save(provider);
-        MixingRecipeBuilder.builder("azure_neodymium_ingot")
-                .result(item("alexscaves:azure_neodymium_ingot") == null ? ItemStack.EMPTY :
-                        new ItemStack(item("alexscaves:azure_neodymium_ingot"), 2))
-                .input(item("alexscaves:raw_azure_neodymium") == null ? ItemStack.EMPTY :
-                        new ItemStack(item("alexscaves:raw_azure_neodymium")))
-                .input(ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Iron))
-                .save(provider);
-
         // Sequenced assembly recipes
 
         // item_application: shadow steel casing
@@ -624,7 +608,6 @@ public class CreateRecipes {
                     .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Brass))
                     .deploying(AllBlocks.COGWHEEL.asItem())
                     .deploying(AllBlocks.LARGE_COGWHEEL.asItem())
-                    .filling(incompletePrecision, "alexscaves:acid", 500)
                     .loops(1)
                     .save(provider);
         }
@@ -951,11 +934,6 @@ public class CreateRecipes {
         rawSequencedResinBoard(provider);
         MixingRecipeBuilder.builder("createfallen_rubber_powder_from_sulfur")
                 .input(Ingredient.of(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Sulfur)))
-                .input(Ingredient.of(ChemicalHelper.get(TagPrefix.dust, GTMaterials.RawRubber, 3)))
-                .output(CTNHItems.RUBBER_POWDER.asStack())
-                .save(provider);
-        MixingRecipeBuilder.builder("createfallen_rubber_powder_from_alex_sulfur")
-                .input(Ingredient.of(new ItemStack(Objects.requireNonNull(item("alexscaves:sulfur_dust")))))
                 .input(Ingredient.of(ChemicalHelper.get(TagPrefix.dust, GTMaterials.RawRubber, 3)))
                 .output(CTNHItems.RUBBER_POWDER.asStack())
                 .save(provider);

@@ -62,9 +62,6 @@ public class ChineseLangHandler {
         provider.add("config.ctnhcore.option.sifterRpmRequirement", "机械筛选厂最低转速需求");
         provider.add("config.ctnhcore.option.sifterSpeedMultiplier", "机械筛选厂加速倍率");
         provider.add("config.ctnhcore.option.sifterStressRequirement", "机械筛选厂应力消耗");
-        provider.add("config.ctnhcore.option.extractorRpmRequirement", "机械提取厂最低转速需求");
-        provider.add("config.ctnhcore.option.extractorSpeedMultiplier", "机械提取厂加速倍率");
-        provider.add("config.ctnhcore.option.extractorStressRequirement", "机械提取厂应力消耗");
         provider.add("config.ctnhcore.option.latheRpmRequirement", "机械车床厂最低转速需求");
         provider.add("config.ctnhcore.option.latheSpeedMultiplier", "机械车床厂加速倍率");
         provider.add("config.ctnhcore.option.latheStressRequirement", "机械车床厂应力消耗");
@@ -916,7 +913,6 @@ public class ChineseLangHandler {
         provider.add(MultiblocksB.CultivationRoom.getBlock(), "培养室");
         provider.add(Mechanical.MECHANICAL_LATHE.getBlock(), "机械车床厂");
         provider.add(Mechanical.MECHANICAL_CENTRIFUGE.getBlock(), "机械离心厂");
-        provider.add(Mechanical.MECHANICAL_EXTRACTOR.getBlock(), "机械熔炼厂");
         provider.add(Mechanical.MECHANICAL_MIXER.getBlock(), "机械搅拌厂");
         provider.add(Mechanical.MECHANICAL_SIFTER.getBlock(), "机械筛选厂");
         provider.add(Mechanical.MECHANICAL_PRESSOR.getBlock(), "机械辊压厂");

@@ -304,7 +304,6 @@ public class BioChemistryRecipes {
         // .input(fluorescenceYeast)
         // .transitional(fluorescenceYeast)
         // .result(pollutedFluorescenceYeast)
-        // .filling(fluorescenceYeast, "alexscaves:acid")
         // .filling(fluorescenceYeast, "deep_aether:poison_fluid")
         // .pressing()
         // .loops(1)
