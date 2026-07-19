@@ -19,8 +19,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.item.AetherItems;
-import com.github.alexmodguy.alexscaves.server.block.ACBlockRegistry;
-import com.github.alexmodguy.alexscaves.server.item.ACItemRegistry;
 import com.hollingsworth.arsnouveau.setup.registry.BlockRegistry;
 import com.mo_guang.ctpp.common.recipe.builder.create.CuttingRecipeBuilder;
 import teamrazor.deepaether.init.DABlocks;
@@ -425,26 +423,6 @@ public class WoodChain {
                 .outputItems(GTBlocks.RUBBER_LEAVES.asStack(8))
                 .outputItems(GTBlocks.RUBBER_SAPLING.asStack(5))
                 .outputItems(GTItems.STICKY_RESIN.asStack(5))
-                .EUt(120).duration(100)
-                .save(provider);
-
-        // 皮文树苗 (Alex's Caves)
-        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("pewen_sapling"))
-                .notConsumable(new ItemStack(ACBlockRegistry.PEWEN_SAPLING.get().asItem()))
-                .outputItems(new ItemStack(ACBlockRegistry.PEWEN_LOG.get().asItem(), 10))
-                .outputItems(new ItemStack(ACBlockRegistry.PEWEN_BRANCH.get().asItem(), 8))
-                .outputItems(new ItemStack(ACBlockRegistry.PEWEN_SAPLING.get().asItem(), 5))
-                .outputItems(new ItemStack(ACItemRegistry.PINE_NUTS.get(), 4))
-                .EUt(120).duration(100)
-                .save(provider);
-
-        // 远古树苗 (Alex's Caves)
-        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("ancient_sapling"))
-                .notConsumable(new ItemStack(ACBlockRegistry.ANCIENT_SAPLING.get().asItem()))
-                .outputItems(new ItemStack(Items.JUNGLE_LOG, 10))
-                .outputItems(new ItemStack(ACBlockRegistry.ANCIENT_LEAVES.get().asItem(), 8))
-                .outputItems(new ItemStack(ACBlockRegistry.ANCIENT_SAPLING.get().asItem(), 5))
-                .outputItems(new ItemStack(ACBlockRegistry.TREE_STAR.get().asItem(), 12))
                 .EUt(120).duration(100)
                 .save(provider);
 

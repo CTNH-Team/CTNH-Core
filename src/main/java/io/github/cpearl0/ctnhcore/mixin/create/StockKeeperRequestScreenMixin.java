@@ -9,6 +9,7 @@ import com.simibubi.create.content.logistics.packager.InventorySummary;
 import com.simibubi.create.content.logistics.stockTicker.StockKeeperRequestScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -53,19 +54,24 @@ import java.util.List;
 public class StockKeeperRequestScreenMixin {
 
     @Shadow
-    private List<List<BigItemStack>> displayedItems;
+    public List<List<BigItemStack>> displayedItems;
 
     @Shadow
-    private List<BigItemStack> itemsToOrder;
+    public List<BigItemStack> itemsToOrder;
 
+    @Unique
     private final List<ItemStack> ctnh$originList = new ArrayList<>();
 
+    @Unique
     private final List<Integer> ctnh$orderFlatIndices = new ArrayList<>();
 
+    @Unique
     private int ctnh$pendingFlatIdx = -2;
 
+    @Unique
     private int ctnh$orderSizeAtClickStart = -1;
 
+    @Unique
     private static ItemStack ctnh$copyStack(ItemStack src) {
         if (src == null || src.isEmpty()) {
             return src;
@@ -73,6 +79,7 @@ public class StockKeeperRequestScreenMixin {
         return src.copy();
     }
 
+    @Unique
     private int ctnh$findFlatIndex(ItemStack target) {
         if (this.displayedItems == null || target == null) {
             return -1;
@@ -150,7 +157,7 @@ public class StockKeeperRequestScreenMixin {
      */
     @Redirect(
               method = "mouseClicked",
-              remap = false,
+              remap = true,
               at = @At(
                        value = "INVOKE",
                        target = "Lnet/minecraft/world/item/ItemStack;copyWithCount(I)Lnet/minecraft/world/item/ItemStack;",
@@ -164,14 +171,14 @@ public class StockKeeperRequestScreenMixin {
         return displayed.copyWithCount(count);
     }
 
-    @Inject(method = "mouseClicked", at = @At("HEAD"), remap = false)
+    @Inject(method = "mouseClicked", at = @At("HEAD"), remap = true)
     private void ctnh$onMouseClickedHead(double mouseX, double mouseY, int button,
                                          CallbackInfoReturnable<Boolean> cir) {
         ctnh$orderSizeAtClickStart = (this.itemsToOrder == null) ? -1 : this.itemsToOrder.size();
         ctnh$pendingFlatIdx = -2;
     }
 
-    @Inject(method = "mouseClicked", at = @At("TAIL"), remap = false)
+    @Inject(method = "mouseClicked", at = @At("TAIL"), remap = true)
     private void ctnh$onMouseClickedTail(double mouseX, double mouseY, int button,
                                          CallbackInfoReturnable<Boolean> cir) {
         if (ctnh$pendingFlatIdx < 0 || ctnh$orderSizeAtClickStart < 0) {

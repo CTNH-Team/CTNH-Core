@@ -20,7 +20,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = MechanicalCraftingCategory.class, remap = false)
 public class MechanicalCraftingCategoryMixin {
 
-    @Inject(method = "setRecipe", at = @At("HEAD"), remap = false)
+    @Inject(method = "setRecipe(Lmezz/jei/api/gui/builder/IRecipeLayoutBuilder;Lnet/minecraft/world/item/crafting/CraftingRecipe;Lmezz/jei/api/recipe/IFocusGroup;)V",
+            at = @At("HEAD"),
+            remap = false)
     private void ctnhcore$normalizeInputAmount(IRecipeLayoutBuilder builder, CraftingRecipe recipe, IFocusGroup focuses,
                                                CallbackInfo ci) {
         for (Ingredient ingredient : recipe.getIngredients()) {

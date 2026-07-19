@@ -584,7 +584,7 @@ public class AE2ScriptRecipe {
         KeepIngredientRecipeHelper.addKeepIngredientShapedRecipe(provider,
                 CTNHCore.id("eu_p2p_tunnel"),
                 new ItemStack(CEItems.EU_P2P.asItem()), new String[] { "AB" },
-                Ingredient.of(CEItems.EU_P2P.asItem()),
+                Ingredient.of(CustomTags.EV_CIRCUITS),
                 'A', AEParts.ME_P2P_TUNNEL.asItem(),
                 'B', CustomTags.EV_CIRCUITS);
     }

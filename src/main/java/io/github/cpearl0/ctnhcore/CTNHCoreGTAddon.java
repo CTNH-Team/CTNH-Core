@@ -15,7 +15,6 @@ import io.github.cpearl0.ctnhcore.data.recipe.mana.EternalGardenRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.MiscManaRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.TwistedFusionRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.migrated.AE2ScriptRecipe;
-import io.github.cpearl0.ctnhcore.data.recipe.migrated.AvaritiaScriptRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.migrated.BioScriptRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.migrated.GtceuScriptRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.EIORecipes;
@@ -174,7 +173,6 @@ public class CTNHCoreGTAddon implements IGTAddon {
 
         ImmersiveAircraftRecipes.init(provider);
         CreateOreExcavationRecipes.init(provider);
-        // CreateMetallurgyRecipes.init(provider);
         CasingRecipes.init(provider);
         UHVPartsRecipe.init(provider);
 
@@ -192,7 +190,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
 
         GtceuScriptRecipes.init(provider);
         BioScriptRecipes.init(provider);
-        AvaritiaScriptRecipes.init(provider);
+        // AvaritiaScriptRecipes.init(provider);
 
         // 来自kjs
         OtherRecipesFromKJS.init(provider);

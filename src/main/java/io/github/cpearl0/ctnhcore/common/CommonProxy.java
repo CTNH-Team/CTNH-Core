@@ -7,10 +7,7 @@ import io.github.cpearl0.ctnhcore.common.world.CTNHChunkLoading;
 import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
 import io.github.cpearl0.ctnhcore.data.materials.AeCrystalScienceMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.AeOmniMaterials;
-import io.github.cpearl0.ctnhcore.data.tags.CTNHEntityTypeTagsProvider;
-import io.github.cpearl0.ctnhcore.data.tags.CTNHExtraBlockTagsProvider;
-import io.github.cpearl0.ctnhcore.data.tags.CTNHExtraFluidTagsProvider;
-import io.github.cpearl0.ctnhcore.data.tags.CTNHExtraItemTagsProvider;
+import io.github.cpearl0.ctnhcore.data.tags.*;
 import io.github.cpearl0.ctnhcore.data.worldgen.CTNHBiomeModifiers;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
@@ -24,17 +21,18 @@ import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.DimensionMarker;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
+import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.category.GTRecipeCategory;
 import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
 import com.gregtechceu.gtceu.common.unification.material.MaterialRegistryManager;
-import com.gregtechceu.gtceu.data.tags.BiomeTagsLoader;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -44,18 +42,18 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import tech.vixhentx.mcmod.ctnhlib.client.ponder.CTNHPonderLang;
 
+import java.util.List;
 import java.util.Set;
 
+@SuppressWarnings("removal")
 public class CommonProxy {
 
-    @SuppressWarnings("removal")
     public CommonProxy() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.register(this);
         init();
     }
 
-    @SuppressWarnings("removal")
     public static void init() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addGenericListener(MachineDefinition.class, CommonProxy::registerMachines);
@@ -101,6 +99,9 @@ public class CommonProxy {
     public void commonSetup(FMLCommonSetupEvent event) {
         // Clean up stale Forge persistent chunk tickets for ctnhcore on load
         event.enqueueWork(CTNHChunkLoading::registerValidationCallback);
+        event.enqueueWork(() -> GTToolType.KNIFE.itemTags.addAll(List.of(
+                TagKey.create(Registries.ITEM, new ResourceLocation("farmersdelight", "straw_harvesters")),
+                TagKey.create(Registries.ITEM, new ResourceLocation("farmersdelight", "tools/knives")))));
     }
 
     @SubscribeEvent
@@ -126,7 +127,7 @@ public class CommonProxy {
         var registries = event.getLookupProvider();
 
         if (event.includeServer()) {
-            generator.addProvider(true, new BiomeTagsLoader(packOutput, registries, existingFileHelper));
+            generator.addProvider(true, new CTNHBiomeTagsProvider(packOutput, registries, existingFileHelper));
             generator.addProvider(true, new CTNHExtraItemTagsProvider(packOutput, registries, existingFileHelper));
             generator.addProvider(true, new CTNHExtraBlockTagsProvider(packOutput, registries, existingFileHelper));
             generator.addProvider(true, new CTNHExtraFluidTagsProvider(packOutput, registries, existingFileHelper));

@@ -35,7 +35,7 @@ CTNH-Core is the aggregate/core mod and CI release target. It hosts shared CTNH 
 - CI builds this module only; changes in other modules should still be validated through `:modules:CTNH-Core:build` when they affect aggregation.
 - Some generated recipe Java lives under `data/recipe/generated`; distinguish Java recipe generators from JSON generated resources.
 - Ponder `CTNHCorePonderSceneBuilder` is only a Core adapter around Lib's shared builder; keep reusable builder/text behavior in CTNH-Lib.
-- `ctnhcore.mixins.json` covers broad integrations (AECs, Alex's Caves, Apotheosis, Ars Nouveau, Avaritia, Create/Metallurgy, EIO/JEI, EMI, FTB Chunks, GTCEu, JAVD, LDLib, Legendary Survival, Minecraft reload/spawner, Sophisticated, TConstruct, TMRV, Vintage Improvements); inspect target mod versions before changing injection signatures.
+- `ctnhcore.mixins.json` covers broad integrations (AECs, Apotheosis, Ars Nouveau, Avaritia, Create, EIO/JEI, EMI, FTB Chunks, GTCEu, JAVD, LDLib, Legendary Survival, Minecraft reload/spawner, Sophisticated, TConstruct, TMRV, Vintage Improvements); inspect target mod versions before changing injection signatures.
 
 ## COMMANDS
 ```bash

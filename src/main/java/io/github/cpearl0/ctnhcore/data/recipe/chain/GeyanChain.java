@@ -8,12 +8,9 @@ import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
-import com.gregtechceu.gtceu.api.recipe.ingredient.fluid.FluidIngredient;
 import com.gregtechceu.gtceu.common.data.GTItems;
 
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Consumer;
 
@@ -343,9 +340,6 @@ public class GeyanChain {
         // 离心机 - 核废水处理
         CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("nuclear_waste_water_treatment"))
                 .inputFluids(BedrockMaterials.NUCLEAR_WASTE_WATER.getFluid(2000))
-                .outputFluids(
-                        FluidIngredient.of(ForgeRegistries.FLUIDS.getValue(ResourceLocation.parse("alexscaves:acid")),
-                                4000))
                 .outputItems(dustTiny, Naquadria)
                 .EUt(114514).duration(40)
                 .save(provider);
