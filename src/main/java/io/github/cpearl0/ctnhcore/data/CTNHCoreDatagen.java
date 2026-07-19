@@ -14,6 +14,5 @@ public class CTNHCoreDatagen {
         REGISTRATE.addLangProcessor();
         REGISTRATE.addDataGenerator(ProviderType.BLOCK_TAGS, StoneTags::init);
         REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, ItemTags::init);
-        REGISTRATE.addDataGenerator(ProviderType.FLUID_TAGS, FluidTypeTags::init);
     }
 }

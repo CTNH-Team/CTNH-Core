@@ -11,7 +11,6 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import org.jetbrains.annotations.Nullable;
-import twilightforest.init.TFBiomes;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -22,28 +21,34 @@ public class CTNHBiomeTagsProvider extends BiomeTagsProvider {
         super(output, provider, CTNHCore.MODID, existingFileHelper);
     }
 
+    @SuppressWarnings("removal")
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         tag(CTNHTags.WORLDGEN_REMOVAL_BIOMES)
                 .addTag(BiomeTags.IS_OVERWORLD)
+                .addTag(BiomeTags.IS_NETHER)
                 .addOptionalTag(ResourceLocation.tryBuild("aether", "is_aether"))
                 .addOptionalTag(ResourceLocation.tryBuild("twilightforest", "valid_quest_grove_biomes"))
-                .addOptionalTag(ResourceLocation.tryBuild("ad_astra", "has_moon_structure"))
-                .addOptionalTag(ResourceLocation.tryBuild("ad_astra", "has_mars_structure"))
-                .addOptionalTag(ResourceLocation.tryBuild("ad_astra", "has_venus_structure"))
-                .addOptionalTag(ResourceLocation.tryBuild("ad_astra", "has_mercury_structure"))
-                .addOptionalTag(ResourceLocation.tryBuild("ad_astra", "has_glacio_structure"))
-                .addOptional(ResourceLocation.tryBuild("mythicbotany", "alfheim"));
+                .addOptional(ResourceLocation.tryBuild("mythicbotany", "alfheim"))
+                .addOptional(new ResourceLocation("ad_astra:glacio_ice_peaks"))
+                .addOptional(new ResourceLocation("ad_astra:glacio_snowy_barrens"))
+                .addOptional(new ResourceLocation("ad_astra:infernal_venus_barrens"))
+                .addOptional(new ResourceLocation("ad_astra:lunar_wastelands"))
+                .addOptional(new ResourceLocation("ad_astra:martian_canyon_creek"))
+                .addOptional(new ResourceLocation("ad_astra:martian_polar_caps"))
+                .addOptional(new ResourceLocation("ad_astra:martian_wastelands"))
+                .addOptional(new ResourceLocation("ad_astra:mercury_deltas"))
+                .addOptional(new ResourceLocation("ad_astra:venus_wastelands"));
 
-        tag(CTNHTags.TWILIGHT_TIER1)
-                .add(TFBiomes.DARK_FOREST)
-                .add(TFBiomes.SNOWY_FOREST)
-                .add(TFBiomes.SWAMP);
-        tag(CTNHTags.TWILIGHT_TIER2)
-                .add(TFBiomes.DARK_FOREST_CENTER)
-                .add(TFBiomes.GLACIER)
-                .add(TFBiomes.FIRE_SWAMP);
-        tag(CTNHTags.TWILIGHT_TIER3)
-                .add(TFBiomes.HIGHLANDS);
+        // tag(CTNHTags.TWILIGHT_TIER1)
+        // .add(TFBiomes.DARK_FOREST)
+        // .add(TFBiomes.SNOWY_FOREST)
+        // .add(TFBiomes.SWAMP);
+        // tag(CTNHTags.TWILIGHT_TIER2)
+        // .add(TFBiomes.DARK_FOREST_CENTER)
+        // .add(TFBiomes.GLACIER)
+        // .add(TFBiomes.FIRE_SWAMP);
+        // tag(CTNHTags.TWILIGHT_TIER3)
+        // .add(TFBiomes.HIGHLANDS);
     }
 }

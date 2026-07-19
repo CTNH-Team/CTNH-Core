@@ -289,20 +289,6 @@ public class CTNHConfig {
         @Configurable.DecimalRange(min = 1.0, max = 1024.0)
         public float sifterStressRequirement = 512;
         @Configurable
-        @Configurable.Comment({ "The rpm requirement for mechanical extractor machines", "Default: 128" })
-        @Configurable.Range(min = 16, max = 256)
-        public int extractorRpmRequirement = 128;
-        @Configurable
-        @Configurable.Comment({ "Mechanical Extractor's Speed Multiplier relative to its voltage level", "Default: 2" })
-        @Configurable.DecimalRange(min = 0.5, max = 4.0)
-        public float extractorSpeedMultiplier = 2;
-        @Configurable
-        @Configurable.Comment({
-                "Mechanical Extractor's stress requirement(This value will be multiplied by its basic EUt cost)",
-                "Default: 512" })
-        @Configurable.DecimalRange(min = 1.0, max = 1024.0)
-        public float extractorStressRequirement = 512;
-        @Configurable
         @Configurable.Comment({ "The rpm requirement for mechanical lathe machines", "Default: 128" })
         @Configurable.Range(min = 16, max = 256)
         public int latheRpmRequirement = 128;

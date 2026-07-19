@@ -17,7 +17,6 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
 import com.enderio.base.common.init.EIOFluids;
-import com.github.alexmodguy.alexscaves.server.item.ACItemRegistry;
 import com.simibubi.create.AllItems;
 import vazkii.botania.common.block.BotaniaBlocks;
 
@@ -39,7 +38,6 @@ import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 
 public class SunRecipes {
 
-    private static final Item BIOLUMINESSCENCE = ACItemRegistry.BIOLUMINESSCENCE.get();
     private static final Item LIGHT_RELAY = BotaniaBlocks.lightRelayDefault.asItem();
     private static final Item CHROMATIC_COMPOUND = AllItems.CHROMATIC_COMPOUND.asStack().getItem();
     private static final Fluid LIQUID_SUNSHINE = EIOFluids.LIQUID_SUNSHINE.getSource();
@@ -74,14 +72,6 @@ public class SunRecipes {
                 .outputItems(dust, Sunnarium, 16)
                 .EUt(480)
                 .duration(2000)
-                .save(provider);
-
-        AUTOCLAVE_RECIPES.recipeBuilder("sun3")
-                .inputItems(BIOLUMINESSCENCE, 16)
-                .inputFluids(UUMatter.getFluid(16))
-                .outputItems(dust, Sunnarium, 16)
-                .EUt(480)
-                .duration(800)
                 .save(provider);
 
         AUTOCLAVE_RECIPES.recipeBuilder("sun4")
@@ -284,13 +274,6 @@ public class SunRecipes {
                 .chancedOutput(dust, SUNNARIUM_EXTRACT, 6000, 1000)
                 .EUt(480)
                 .duration(200)
-                .save(provider);
-
-        EXTRACTOR_RECIPES.recipeBuilder("sun3")
-                .inputItems(BIOLUMINESSCENCE)
-                .chancedOutput(dust, SUNNARIUM_EXTRACT, 8000, 1000)
-                .EUt(480)
-                .duration(100)
                 .save(provider);
     }
 

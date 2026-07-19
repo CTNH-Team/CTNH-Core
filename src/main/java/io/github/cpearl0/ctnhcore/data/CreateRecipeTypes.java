@@ -99,24 +99,6 @@ public class CreateRecipeTypes {
                 }
             }
         });
-        EXTRACTOR_RECIPES.onRecipeBuild((builder, provider) -> {
-            if (!GTRecipes.RECIPE_FILTERS.contains(convert(builder.id, builder.recipeType))) {
-                assert MECHANICAL_EXTRACTOR_RECIPES != null;
-                if (GTUtil.getTierByVoltage(builder.EUt()) <= GTValues.HV) {
-                    var newrecipe = MECHANICAL_EXTRACTOR_RECIPES.copyFrom(builder)
-                            .duration(Math.max(
-                                    (int) (builder.duration / CTNHConfig.INSTANCE.kinetic.extractorSpeedMultiplier), 1))
-                            .buildRuntime();
-                    new CTPPRecipeBuilder(newrecipe, MECHANICAL_EXTRACTOR_RECIPES)
-                            .rpm(CTNHConfig.INSTANCE.kinetic.extractorRpmRequirement)
-                            .noEUt()
-                            .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt()) * 2, 5))
-                            .inputStress(
-                                    builder.EUt() * CTNHConfig.INSTANCE.kinetic.extractorStressRequirement)
-                            .save(provider);
-                }
-            }
-        });
         LATHE_RECIPES.onRecipeBuild((builder, provider) -> {
             if (!GTRecipes.RECIPE_FILTERS.contains(convert(builder.id, builder.recipeType))) {
                 assert MECHANICAL_LATHE_RECIPES != null;
@@ -167,12 +149,6 @@ public class CreateRecipeTypes {
             .setMaxIOSize(1, 6, 0, 0)
             .setProgressBar(GuiTextures.PROGRESS_BAR_SIFT, UP_TO_DOWN)
             .setSound(new ExistingSoundEntry(SoundEvents.SAND_PLACE, SoundSource.BLOCKS));
-    public static final GTRecipeType MECHANICAL_EXTRACTOR_RECIPES = REGISTRATE
-            .recipeType("mechanical_extractor_recipes", KINETIC)
-            .cnlang("机械提取")
-            .setMaxIOSize(1, 1, 0, 1)
-            .setSlotOverlay(false, false, GuiTextures.EXTRACTOR_OVERLAY)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, LEFT_TO_RIGHT);
     public static final GTRecipeType MECHANICAL_LATHE_RECIPES = REGISTRATE
             .recipeType("mechanical_lathe_recipes", KINETIC)
             .cnlang("机械车床")

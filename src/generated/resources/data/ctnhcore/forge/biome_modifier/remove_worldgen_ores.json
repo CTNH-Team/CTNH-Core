@@ -3,6 +3,7 @@
   "biomes": "#ctnhcore:worldgen_removal_biomes",
   "features": "#ctnhcore:worldgen_removal_ores",
   "steps": [
-    "underground_ores"
+    "underground_ores",
+    "underground_decoration"
   ]
 }
