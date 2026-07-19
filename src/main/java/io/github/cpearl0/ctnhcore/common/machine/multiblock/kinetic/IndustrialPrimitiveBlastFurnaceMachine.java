@@ -2,6 +2,10 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic;
 
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
+
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
@@ -23,7 +27,14 @@ import sfiomn.legendarysurvivaloverhaul.api.temperature.TemperatureUtil;
 
 import java.util.List;
 
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+
 public class IndustrialPrimitiveBlastFurnaceMachine extends NoEnergyMachine {
+
+    @Key("ctnh.multiblock.industrial_primitive_blast_furnace.info.parallel_count")
+    @CN("并行数：%d")
+    @EN("Parallel count: %d")
+    public static Lang industrialPrimitiveBlastFurnaceInfoParallelCount;
 
     @Nullable
     protected TickableSubscription temperatureSubs;
@@ -65,8 +76,7 @@ public class IndustrialPrimitiveBlastFurnaceMachine extends NoEnergyMachine {
         if (isFormed()) {
             textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature",
                     Component.literal(currentTemperature + "K").withStyle(ChatFormatting.RED)));
-            textList.add(Component.translatable(
-                    "ctnh.multiblock.industrial_primitive_blast_furnace.info.parallel_count", getParallelCount()));
+            textList.add(industrialPrimitiveBlastFurnaceInfoParallelCount.translate(getParallelCount()));
         }
         super.addDisplayText(textList);
     }

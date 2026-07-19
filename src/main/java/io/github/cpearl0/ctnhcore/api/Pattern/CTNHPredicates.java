@@ -1,4 +1,8 @@
 package io.github.cpearl0.ctnhcore.api.Pattern;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.common.block.PhotovoltaicBlock;
 import io.github.cpearl0.ctnhcore.common.block.SpaceStructuralFramework;
@@ -26,6 +30,13 @@ import java.util.function.Supplier;
 
 public class CTNHPredicates {
 
+    @Key("ctnh.spacephotovoltaicbasestation.jei.error.pv_block")
+    @CN("§c必须使用同种光伏方块")
+    @EN("§cAll photovoltaic blocks must be the same type")
+    public static Lang spacePhotovoltaicBaseStationJeiErrorPvBlock;
+
+
+
     public static TraceabilityPredicate PhotovoltaicBlock() {
         return (new TraceabilityPredicate((blockWorldState) -> {
             BlockState blockState = blockWorldState.getBlockState();
@@ -50,7 +61,7 @@ public class CTNHPredicates {
                         .fromBlockState(((PhotovoltaicBlock) ((Supplier) pb.getValue()).get()).defaultBlockState()))
                 .toArray((x$0) -> new BlockInfo[x$0])))
                 .addTooltips(new Component[] {
-                        Component.translatable("ctnh.spacephotovoltaicbasestation.jei.error.pv_block") });
+                        spacePhotovoltaicBaseStationJeiErrorPvBlock.translate() });
     }
 
     public static TraceabilityPredicate SpaceStructuralFrameworkBlock() {
@@ -76,7 +87,7 @@ public class CTNHPredicates {
                 .sorted(Comparator.comparingInt((value) -> value.getKey().getTier()))
                 .map((pb) -> BlockInfo.fromBlockState((pb.getValue()).get().defaultBlockState()))
                 .toArray(BlockInfo[]::new)))
-                .addTooltips(Component.translatable("ctnh.spacephotovoltaicbasestation.jei.error.pv_block"));
+                .addTooltips(spacePhotovoltaicBaseStationJeiErrorPvBlock.translate());
     }
 
     static TraceabilityPredicate autoLaserAbilities(GTRecipeType... recipeType) {

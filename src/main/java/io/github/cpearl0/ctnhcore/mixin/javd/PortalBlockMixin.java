@@ -1,4 +1,8 @@
 package io.github.cpearl0.ctnhcore.mixin.javd;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -17,6 +21,13 @@ import org.spongepowered.asm.mixin.Overwrite;
 
 @Mixin(value = PortalBlock.class)
 public class PortalBlockMixin {
+
+    @Key("message.ctnhcore.portal.invalid_dimension")
+    @CN("该传送门只能在主世界使用")
+    @EN("This portal can only be used in the Overworld")
+    public static Lang messagePortalInvalidDimension;
+
+
 
     /**
      * @author
@@ -46,7 +57,7 @@ public class PortalBlockMixin {
         } else {
             // ---- 其他维度禁止 ----
             player.displayClientMessage(
-                    Component.translatable("message.ctnhcore.portal.invalid_dimension"),
+                    messagePortalInvalidDimension.translate(),
                     true);
         }
 

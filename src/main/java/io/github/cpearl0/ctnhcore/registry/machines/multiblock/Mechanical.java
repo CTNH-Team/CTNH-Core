@@ -1,4 +1,8 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.data.CreateRecipeTypes;
 
@@ -32,6 +36,19 @@ import static io.github.cpearl0.ctnhcore.utils.LatheStateProvider.LATHE_WEST;
 import static net.minecraft.world.level.block.Blocks.GLASS;
 
 public class Mechanical {
+
+    @Key("ctnh.mechanical_lathe.structure")
+    @CN("结构中的车床必须严格依照EMI结构信息页面展示的位置和方向摆放")
+    @EN("The lathe in the structure must be placed exactly as shown in EMI's structure information, including position and orientation")
+    public static Lang mechanicalLatheStructure;
+
+
+    @Key("ctnh.mechanical_lathe.structure.1")
+    @CN("§7EMI中显示的车床数量有问题，实际只需要6个")
+    @EN("§7The number of lathes shown in EMI is incorrect; only 6 are actually required")
+    public static Lang mechanicalLatheStructure1;
+
+
 
     public final static MultiblockMachineDefinition MECHANICAL_PRESSOR = REGISTRATE
             .multiblock("mechanical_pressor", KineticWorkableMultiblockMachine::new)
@@ -185,8 +202,8 @@ public class Mechanical {
             .appearanceBlock(AllBlocks.RAILWAY_CASING)
             .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK)
-            .tooltips(Component.translatable("ctnh.mechanical_lathe.structure").withStyle(ChatFormatting.DARK_RED))
-            .tooltips(Component.translatable("ctnh.mechanical_lathe.structure.1"))
+            .tooltips(mechanicalLatheStructure.translate().withStyle(ChatFormatting.DARK_RED))
+            .tooltips(mechanicalLatheStructure1.translate())
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAAA", "AAAAAAAB", "AAACCCCB", "BBBBBBBB", "B######B", "BDDDDDDB", "AAAAAAAA")
                     .aisle("AAAAAAAA", "A#AEFFEA", "ADAGGGGC", "B######B", "########", "D######D", "AAAAAAAA")

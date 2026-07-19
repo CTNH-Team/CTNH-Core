@@ -1,4 +1,8 @@
 package io.github.cpearl0.ctnhcore.registry;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials;
@@ -29,6 +33,1285 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHWorlds.*;
 import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 
 public class CTNHOres {
+
+    @Key("apatite_vein_tf")
+    @CN("磷灰石矿脉")
+    @EN("Twilight Forest Apatite Vein")
+    public static Lang apatiteVeinTf;
+
+
+    @Key("arsenic_vein_ad")
+    @CN("砷矿脉")
+    @EN("Ad Astra Arsenic Vein")
+    public static Lang arsenicVeinAd;
+
+
+    @Key("bauxite_vein")
+    @CN("铝土矿脉")
+    @EN("Bauxite Vein")
+    public static Lang bauxiteVein;
+
+
+    @Key("beryllium_vein_ad")
+    @CN("铍矿脉")
+    @EN("Ad Astra Beryllium Vein")
+    public static Lang berylliumVeinAd;
+
+
+    @Key("calorite_vein_ad")
+    @CN("耐热合金矿脉")
+    @EN("Ad Astra Calorite Vein")
+    public static Lang caloriteVeinAd;
+
+
+    @Key("cassiterite_vein_ad")
+    @CN("锡石矿脉")
+    @EN("Ad Astra Cassiterite Vein")
+    public static Lang cassiteriteVeinAd;
+
+
+    @Key("cassiterite_vein_tf")
+    @CN("锡石矿脉")
+    @EN("Twilight Forest Cassiterite Vein")
+    public static Lang cassiteriteVeinTf;
+
+
+    @Key("chromium_vein_ad")
+    @CN("铬矿脉")
+    @EN("Ad Astra Chromium Vein")
+    public static Lang chromiumVeinAd;
+
+
+    @Key("coal_vein_tf")
+    @CN("煤矿脉")
+    @EN("Twilight Forest Coal Vein")
+    public static Lang coalVeinTf;
+
+
+    @Key("copper_vein_ad")
+    @CN("铜矿脉")
+    @EN("Ad Astra Copper Vein")
+    public static Lang copperVeinAd;
+
+
+    @Key("ctnhcore:ancient_debris_vein")
+    @CN("远古残骸矿脉")
+    @EN("Ancient Debris Vein")
+    public static Lang ctnhAncientDebrisVein;
+
+
+    @Key("ctnhcore:apatite_vein_tf")
+    @CN("暮色森林磷灰石矿脉")
+    @EN("Twilight Forest Apatite Vein")
+    public static Lang ctnhApatiteVeinTf;
+
+
+    @Key("ctnhcore:arctic_crystal_core_vein")
+    @CN("暮色森林极寒冰核矿脉")
+    @EN("Twilight Forest Arctic Crystal Core Vein")
+    public static Lang ctnhArcticCrystalCoreVein;
+
+
+    @Key("ctnhcore:arsenic_vein")
+    @CN("红砷镍矿脉")
+    @EN("Red Arsenic Nickel Vein")
+    public static Lang ctnhArsenicVein;
+
+
+    @Key("ctnhcore:arsenic_vein_ad")
+    @CN("太空砷矿脉")
+    @EN("Space Arsenic Vein")
+    public static Lang ctnhArsenicVeinAd;
+
+
+    @Key("ctnhcore:bauxite_vein")
+    @CN("月球铝土矿脉")
+    @EN("Moon Bauxite Vein")
+    public static Lang ctnhBauxiteVein;
+
+
+    @Key("ctnhcore:bauxite_vein_aether")
+    @CN("天境铝土矿脉")
+    @EN("Aether Bauxite Vein")
+    public static Lang ctnhBauxiteVeinAether;
+
+
+    @Key("ctnhcore:beryllium_vein_ad")
+    @CN("太空铍矿脉")
+    @EN("Space Beryllium Vein")
+    public static Lang ctnhBerylliumVeinAd;
+
+
+    @Key("ctnhcore:calorite_vein_ad")
+    @CN("太空耐热金属矿脉")
+    @EN("Space Calorite Vein")
+    public static Lang ctnhCaloriteVeinAd;
+
+
+    @Key("ctnhcore:cassiterite_vein_ad")
+    @CN("太空锡石矿脉")
+    @EN("Space Cassiterite Vein")
+    public static Lang ctnhCassiteriteVeinAd;
+
+
+    @Key("ctnhcore:chromite_vein")
+    @CN("铬铁矿脉")
+    @EN("Chromite Vein")
+    public static Lang ctnhChromiteVein;
+
+
+    @Key("ctnhcore:chromium_vein_ad")
+    @CN("水星铬矿脉")
+    @EN("Mercury Chromium Vein")
+    public static Lang ctnhChromiumVeinAd;
+
+
+    @Key("ctnhcore:combustible_ice_vein_aether")
+    @CN("天境可燃冰矿脉")
+    @EN("Aether Combustible Ice Vein")
+    public static Lang ctnhCombustibleIceVeinAether;
+
+
+    @Key("ctnhcore:copper_vein_ad")
+    @CN("太空铜矿脉")
+    @EN("Space Copper Vein")
+    public static Lang ctnhCopperVeinAd;
+
+
+    @Key("ctnhcore:cryolite_vein")
+    @CN("冰晶石矿脉")
+    @EN("Cryolite Vein")
+    public static Lang ctnhCryoliteVein;
+
+
+    @Key("ctnhcore:cryolite_vein_aether")
+    @CN("天境冰晶石矿脉")
+    @EN("Aether Cryolite Vein")
+    public static Lang ctnhCryoliteVeinAether;
+
+
+    @Key("ctnhcore:desh_vein_ad")
+    @CN("月球戴斯矿脉")
+    @EN("Moon Desh Vein")
+    public static Lang ctnhDeshVeinAd;
+
+
+    @Key("ctnhcore:diamond_vein_tf")
+    @CN("暮色森林钻石矿脉")
+    @EN("Twilight Forest Diamond Vein")
+    public static Lang ctnhDiamondVeinTf;
+
+
+    @Key("ctnhcore:dragonflame_vein")
+    @CN("暮色森林龙焰矿脉")
+    @EN("Twilight Forest Dragonflame Vein")
+    public static Lang ctnhDragonflameVein;
+
+
+    @Key("ctnhcore:eclipse_shadow_vein")
+    @CN("暮色森林幽影矿脉")
+    @EN("Twilight Forest Eclipse Shadow Vein")
+    public static Lang ctnhEclipseShadowVein;
+
+
+    @Key("ctnhcore:europium_vein")
+    @CN("铕萤石矿脉")
+    @EN("Europium Fluorite Vein")
+    public static Lang ctnhEuropiumVein;
+
+
+    @Key("ctnhcore:galena_vein_ad")
+    @CN("太空方铅矿脉")
+    @EN("Space Galena Vein")
+    public static Lang ctnhGalenaVeinAd;
+
+
+    @Key("ctnhcore:galena_vein_tf")
+    @CN("暮色森林方铅矿脉")
+    @EN("Twilight Forest Galena Vein")
+    public static Lang ctnhGalenaVeinTf;
+
+
+    @Key("ctnhcore:illusion_iron_vein")
+    @CN("幻铁矿脉")
+    @EN("Illusion Iron Vein")
+    public static Lang ctnhIllusionIronVein;
+
+
+    @Key("ctnhcore:ilmenite_vein")
+    @CN("钛铁矿脉")
+    @EN("Ilmenite Vein")
+    public static Lang ctnhIlmeniteVein;
+
+
+    @Key("ctnhcore:iridium_vein_ad")
+    @CN("金星铱矿脉")
+    @EN("Venus Iridium Vein")
+    public static Lang ctnhIridiumVeinAd;
+
+
+    @Key("ctnhcore:iron_vein_ad")
+    @CN("太空带状铁矿脉")
+    @EN("Space Banded Iron Vein")
+    public static Lang ctnhIronVeinAd;
+
+
+    @Key("ctnhcore:iron_vein_tf")
+    @CN("暮色森林铁矿脉")
+    @EN("Twilight Forest Iron Vein")
+    public static Lang ctnhIronVeinTf;
+
+
+    @Key("ctnhcore:kaolinite_vein")
+    @CN("高岭石矿脉")
+    @EN("Kaolinite Vein")
+    public static Lang ctnhKaoliniteVein;
+
+
+    @Key("ctnhcore:lapis_ore_vein")
+    @CN("水星青金石矿脉")
+    @EN("Mercury Lapis Lazuli Vein")
+    public static Lang ctnhLapisOreVein;
+
+
+    @Key("ctnhcore:lich_bone_vein")
+    @CN("暮色森林巫师之骨矿脉")
+    @EN("Twilight Forest Lich Bone Vein")
+    public static Lang ctnhLichBoneVein;
+
+
+    @Key("ctnhcore:lubricant_vein_ad")
+    @CN("水星滑石矿脉")
+    @EN("Mercury Talc Vein")
+    public static Lang ctnhLubricantVeinAd;
+
+
+    @Key("ctnhcore:magnesite_vein_ad")
+    @CN("水星菱镁矿脉")
+    @EN("Mercury Magnesite Vein")
+    public static Lang ctnhMagnesiteVeinAd;
+
+
+    @Key("ctnhcore:magnetite_vein_ad")
+    @CN("太空磁铁矿脉")
+    @EN("Space Magnetite Vein")
+    public static Lang ctnhMagnetiteVeinAd;
+
+
+    @Key("ctnhcore:mana_fused_vein")
+    @CN("蕴魔矿脉")
+    @EN("Mana-Fused Vein")
+    public static Lang ctnhManaFusedVein;
+
+
+    @Key("ctnhcore:manganese_vein_ad")
+    @CN("太空锰矿脉")
+    @EN("Space Manganese Vein")
+    public static Lang ctnhManganeseVeinAd;
+
+
+    @Key("ctnhcore:molybdenum_vein_ad")
+    @CN("太空辉钼矿脉")
+    @EN("Space Molybdenite Vein")
+    public static Lang ctnhMolybdenumVeinAd;
+
+
+    @Key("ctnhcore:monazite_vein_n")
+    @CN("月球独居石矿脉")
+    @EN("Moon Monazite Vein")
+    public static Lang ctnhMonaziteVeinN;
+
+
+    @Key("ctnhcore:moon_seawater_vein")
+    @CN("静海矿藏")
+    @EN("Moon Sea Water Deposit")
+    public static Lang ctnhMoonSeawaterVein;
+
+
+    @Key("ctnhcore:naquadah_vein_ad")
+    @CN("金星硅岩矿脉")
+    @EN("Venus Naquadah Vein")
+    public static Lang ctnhNaquadahVeinAd;
+
+
+    @Key("ctnhcore:naquadah_vein_ad_mars")
+    @CN("火星硅岩矿脉")
+    @EN("Mars Naquadah Vein")
+    public static Lang ctnhNaquadahVeinAdMars;
+
+
+    @Key("ctnhcore:nether_quartz_vein_ow")
+    @CN("主世界石英矿脉")
+    @EN("Overworld Quartz Vein")
+    public static Lang ctnhNetherQuartzVeinOw;
+
+
+    @Key("ctnhcore:neutronium_vein_ad")
+    @CN("霜原星中子素矿脉")
+    @EN("Glacio Neutronium Vein")
+    public static Lang ctnhNeutroniumVeinAd;
+
+
+    @Key("ctnhcore:nickel_vein")
+    @CN("镍矿脉")
+    @EN("Nickel Vein")
+    public static Lang ctnhNickelVein;
+
+
+    @Key("ctnhcore:nickel_vein_ad")
+    @CN("太空镍矿脉")
+    @EN("Space Nickel Vein")
+    public static Lang ctnhNickelVeinAd;
+
+
+    @Key("ctnhcore:niobium_vein_ad")
+    @CN("霜原星铌矿脉")
+    @EN("Glacio Niobium Vein")
+    public static Lang ctnhNiobiumVeinAd;
+
+
+    @Key("ctnhcore:olivine_vein_ad")
+    @CN("水星橄榄石矿脉")
+    @EN("Mercury Olivine Vein")
+    public static Lang ctnhOlivineVeinAd;
+
+
+    @Key("ctnhcore:osmium_vein_ad")
+    @CN("霜原星锇矿脉")
+    @EN("Glacio Osmium Vein")
+    public static Lang ctnhOsmiumVeinAd;
+
+
+    @Key("ctnhcore:ostrum_vein_ad")
+    @CN("火星紫金矿脉")
+    @EN("Mars Ostrum Vein")
+    public static Lang ctnhOstrumVeinAd;
+
+
+    @Key("ctnhcore:phosphate_vein")
+    @CN("磷酸盐矿脉")
+    @EN("Phosphate Vein")
+    public static Lang ctnhPhosphateVein;
+
+
+    @Key("ctnhcore:pitchblende_vein_ad")
+    @CN("太空沥青铀矿脉")
+    @EN("Space Pitchblende Vein")
+    public static Lang ctnhPitchblendeVeinAd;
+
+
+    @Key("ctnhcore:platinum_vein_ad")
+    @CN("太空铂矿脉")
+    @EN("Space Platinum Vein")
+    public static Lang ctnhPlatinumVeinAd;
+
+
+    @Key("ctnhcore:precious_alloy_vein")
+    @CN("贵金属矿脉")
+    @EN("Precious Alloy Vein")
+    public static Lang ctnhPreciousAlloyVein;
+
+
+    @Key("ctnhcore:pyrolusite_vein_ad")
+    @CN("金星软锰矿脉")
+    @EN("Venus Pyrolusite Vein")
+    public static Lang ctnhPyrolusiteVeinAd;
+
+
+    @Key("ctnhcore:quartzite_vein")
+    @CN("石英岩矿脉")
+    @EN("Quartzite Vein")
+    public static Lang ctnhQuartziteVein;
+
+
+    @Key("ctnhcore:redstone_vein_ad")
+    @CN("太空红石矿脉")
+    @EN("Space Redstone Vein")
+    public static Lang ctnhRedstoneVeinAd;
+
+
+    @Key("ctnhcore:rhodium_sulfur_crystal_vein")
+    @CN("铑硫晶矿脉")
+    @EN("Rhodium Sulfur Crystal Vein")
+    public static Lang ctnhRhodiumSulfurCrystalVein;
+
+
+    @Key("ctnhcore:ruthenium_amalgam_vein")
+    @CN("钌汞齐矿脉")
+    @EN("Ruthenium Amalgam Vein")
+    public static Lang ctnhRutheniumAmalgamVein;
+
+
+    @Key("ctnhcore:rutile_vein_ad")
+    @CN("金星金红石矿脉")
+    @EN("Venus Rutile Vein")
+    public static Lang ctnhRutileVeinAd;
+
+
+    @Key("ctnhcore:saltpeter_vein_ad")
+    @CN("水星粗硝石矿脉")
+    @EN("Mercury Saltpeter Vein")
+    public static Lang ctnhSaltpeterVeinAd;
+
+
+    @Key("ctnhcore:salts_vein_ad")
+    @CN("火星盐矿脉")
+    @EN("Mars Salts Vein")
+    public static Lang ctnhSaltsVeinAd;
+
+
+    @Key("ctnhcore:salts_vein_tf")
+    @CN("暮色森林盐矿脉")
+    @EN("Twilight Forest Salts Vein")
+    public static Lang ctnhSaltsVeinTf;
+
+
+    @Key("ctnhcore:scheelite_vein_ad")
+    @CN("太空白钨矿脉")
+    @EN("Space Scheelite Vein")
+    public static Lang ctnhScheeliteVeinAd;
+
+
+    @Key("ctnhcore:scheelite_vein_aether")
+    @CN("天境白钨矿脉")
+    @EN("Aether Scheelite Vein")
+    public static Lang ctnhScheeliteVeinAether;
+
+
+    @Key("ctnhcore:seawater_vein_overworld")
+    @CN("海水矿藏")
+    @EN("Seawater Deposit")
+    public static Lang ctnhSeawaterVeinOverworld;
+
+
+    @Key("ctnhcore:sheldonite_vein_moon")
+    @CN("月球谢尔顿矿脉")
+    @EN("Moon Sheldonite Vein")
+    public static Lang ctnhSheldoniteVeinMoon;
+
+
+    @Key("ctnhcore:steel_leaf_vein")
+    @CN("暮色森林钢叶矿脉")
+    @EN("Twilight Forest Steel Leaf Vein")
+    public static Lang ctnhSteelLeafVein;
+
+
+    @Key("ctnhcore:sulfur_vein_ad")
+    @CN("太空硫矿脉")
+    @EN("Space Sulfur Vein")
+    public static Lang ctnhSulfurVeinAd;
+
+
+    @Key("ctnhcore:tetrahedrite_vein_ad")
+    @CN("太空黝铜矿脉")
+    @EN("Space Tetrahedrite Vein")
+    public static Lang ctnhTetrahedriteVeinAd;
+
+
+    @Key("ctnhcore:thorium_vein_ad")
+    @CN("太空钍矿脉")
+    @EN("Space Thorium Vein")
+    public static Lang ctnhThoriumVeinAd;
+
+
+    @Key("ctnhcore:thunderstrike_vein")
+    @CN("暮色森林雷纹矿脉")
+    @EN("Twilight Forest Thunderstrike Vein")
+    public static Lang ctnhThunderstrikeVein;
+
+
+    @Key("ctnhcore:toxic_swamp_amber_vein")
+    @CN("暮色森林毒沼琥珀矿脉")
+    @EN("Twilight Forest Toxic Swamp Amber Vein")
+    public static Lang ctnhToxicSwampAmberVein;
+
+
+    @Key("ctnhcore:tuff_uraninite_vein_ad")
+    @CN("太空晶质铀矿脉")
+    @EN("Space Tuff Uraninite Vein")
+    public static Lang ctnhTuffUraniniteVeinAd;
+
+
+    @Key("ctnhcore:uranium238_vein_ad")
+    @CN("水星铀238矿脉")
+    @EN("Mercury Uranium-238 Vein")
+    public static Lang ctnhUranium238VeinAd;
+
+
+    @Key("ctnhcore:wollastonite_vein")
+    @CN("硅灰石矿脉")
+    @EN("Wollastonite Vein")
+    public static Lang ctnhWollastoniteVein;
+
+
+    @Key("ctnhcore:zanite_vein_aether")
+    @CN("天境紫晶矿石")
+    @EN("Aether Zanite Vein")
+    public static Lang ctnhZaniteVeinAether;
+
+
+    @Key("ctnhcore:zinc_vein")
+    @CN("锌矿脉")
+    @EN("Zinc Vein")
+    public static Lang ctnhZincVein;
+
+
+    @Key("ctnhcore:zircon_vein_aether")
+    @CN("天境锆石矿脉")
+    @EN("Aether Zircon Vein")
+    public static Lang ctnhZirconVeinAether;
+
+
+    @Key("ctnhcore:zirkelite_vein")
+    @CN("钛锆钍石矿脉")
+    @EN("Zirkelite Vein")
+    public static Lang ctnhZirkeliteVein;
+
+
+    @Key("desh_vein_ad")
+    @CN("戴斯矿脉")
+    @EN("Ad Astra Desh Vein")
+    public static Lang deshVeinAd;
+
+
+    @Key("diamond_vein_tf")
+    @CN("钻石矿脉")
+    @EN("Twilight Forest Diamond Vein")
+    public static Lang diamondVeinTf;
+
+
+    @Key("galena_vein_ad")
+    @CN("方铅矿脉")
+    @EN("Ad Astra Galena Vein")
+    public static Lang galenaVeinAd;
+
+
+    @Key("galena_vein_tf")
+    @CN("方铅矿脉")
+    @EN("Twilight Forest Galena Vein")
+    public static Lang galenaVeinTf;
+
+
+    @Key("gold_vein_tf")
+    @CN("金矿脉")
+    @EN("Twilight Forest Gold Vein")
+    public static Lang goldVeinTf;
+
+
+    @Key("gtceu.jei.ore_vein.ancient_debris_vein")
+    @CN("远古残骸矿脉")
+    @EN("Ancient Debris Vein")
+    public static Lang gtceuAncientDebrisVein;
+
+
+    @Key("gtceu.jei.ore_vein.apatite_vein_tf")
+    @CN("暮色森林磷灰石矿脉")
+    @EN("Twilight Forest Apatite Vein")
+    public static Lang gtceuApatiteVeinTf;
+
+
+    @Key("gtceu.jei.ore_vein.arctic_crystal_core_vein")
+    @CN("暮色森林极寒冰核矿脉")
+    @EN("Twilight Forest Arctic Crystal Core Vein")
+    public static Lang gtceuArcticCrystalCoreVein;
+
+
+    @Key("gtceu.jei.ore_vein.arsenic_vein")
+    @CN("红砷镍矿脉")
+    @EN("Red Arsenic Nickel Vein")
+    public static Lang gtceuArsenicVein;
+
+
+    @Key("gtceu.jei.ore_vein.arsenic_vein_ad")
+    @CN("太空砷矿脉")
+    @EN("Space Arsenic Vein")
+    public static Lang gtceuArsenicVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.bauxite_vein")
+    @CN("月球铝土矿脉")
+    @EN("Moon Bauxite Vein")
+    public static Lang gtceuBauxiteVein;
+
+
+    @Key("gtceu.jei.ore_vein.bauxite_vein_aether")
+    @CN("天境铝土矿脉")
+    @EN("Aether Bauxite Vein")
+    public static Lang gtceuBauxiteVeinAether;
+
+
+    @Key("gtceu.jei.ore_vein.beryllium_vein_ad")
+    @CN("太空铍矿脉")
+    @EN("Space Beryllium Vein")
+    public static Lang gtceuBerylliumVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.calorite_vein_ad")
+    @CN("太空耐热金属矿脉")
+    @EN("Space Calorite Vein")
+    public static Lang gtceuCaloriteVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.cassiterite_vein_ad")
+    @CN("太空锡石矿脉")
+    @EN("Space Cassiterite Vein")
+    public static Lang gtceuCassiteriteVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.chromite_vein")
+    @CN("铬铁矿脉")
+    @EN("Chromite Vein")
+    public static Lang gtceuChromiteVein;
+
+
+    @Key("gtceu.jei.ore_vein.chromium_vein_ad")
+    @CN("水星铬矿脉")
+    @EN("Mercury Chromium Vein")
+    public static Lang gtceuChromiumVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.combustible_ice_vein_aether")
+    @CN("天境可燃冰矿脉")
+    @EN("Aether Combustible Ice Vein")
+    public static Lang gtceuCombustibleIceVeinAether;
+
+
+    @Key("gtceu.jei.ore_vein.copper_vein_ad")
+    @CN("太空铜矿脉")
+    @EN("Space Copper Vein")
+    public static Lang gtceuCopperVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.cryolite_vein")
+    @CN("冰晶石矿脉")
+    @EN("Cryolite Vein")
+    public static Lang gtceuCryoliteVein;
+
+
+    @Key("gtceu.jei.ore_vein.cryolite_vein_aether")
+    @CN("天境冰晶石矿脉")
+    @EN("Aether Cryolite Vein")
+    public static Lang gtceuCryoliteVeinAether;
+
+
+    @Key("gtceu.jei.ore_vein.desh_vein_ad")
+    @CN("月球戴斯矿脉")
+    @EN("Moon Desh Vein")
+    public static Lang gtceuDeshVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.diamond_vein_tf")
+    @CN("暮色森林钻石矿脉")
+    @EN("Twilight Forest Diamond Vein")
+    public static Lang gtceuDiamondVeinTf;
+
+
+    @Key("gtceu.jei.ore_vein.dragonflame_vein")
+    @CN("暮色森林龙焰矿脉")
+    @EN("Twilight Forest Dragonflame Vein")
+    public static Lang gtceuDragonflameVein;
+
+
+    @Key("gtceu.jei.ore_vein.eclipse_shadow_vein")
+    @CN("暮色森林幽影矿脉")
+    @EN("Twilight Forest Eclipse Shadow Vein")
+    public static Lang gtceuEclipseShadowVein;
+
+
+    @Key("gtceu.jei.ore_vein.europium_vein")
+    @CN("铕萤石矿脉")
+    @EN("Europium Fluorite Vein")
+    public static Lang gtceuEuropiumVein;
+
+
+    @Key("gtceu.jei.ore_vein.galena_vein_ad")
+    @CN("太空方铅矿脉")
+    @EN("Space Galena Vein")
+    public static Lang gtceuGalenaVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.galena_vein_tf")
+    @CN("暮色森林方铅矿脉")
+    @EN("Twilight Forest Galena Vein")
+    public static Lang gtceuGalenaVeinTf;
+
+
+    @Key("gtceu.jei.ore_vein.gold_vein_tf")
+    @CN("暮色森林磁铁矿脉")
+    @EN("Twilight Forest Magnetite Vein")
+    public static Lang gtceuGoldVeinTf;
+
+
+    @Key("gtceu.jei.ore_vein.illusion_iron_vein")
+    @CN("幻铁矿脉")
+    @EN("Illusion Iron Vein")
+    public static Lang gtceuIllusionIronVein;
+
+
+    @Key("gtceu.jei.ore_vein.ilmenite_vein")
+    @CN("钛铁矿脉")
+    @EN("Ilmenite Vein")
+    public static Lang gtceuIlmeniteVein;
+
+
+    @Key("gtceu.jei.ore_vein.iridium_vein_ad")
+    @CN("金星铱矿脉")
+    @EN("Venus Iridium Vein")
+    public static Lang gtceuIridiumVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.iron_vein_ad")
+    @CN("太空带状铁矿脉")
+    @EN("Space Banded Iron Vein")
+    public static Lang gtceuIronVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.iron_vein_tf")
+    @CN("暮色森林铁矿脉")
+    @EN("Twilight Forest Iron Vein")
+    public static Lang gtceuIronVeinTf;
+
+
+    @Key("gtceu.jei.ore_vein.kaolinite_vein")
+    @CN("高岭石矿脉")
+    @EN("Kaolinite Vein")
+    public static Lang gtceuKaoliniteVein;
+
+
+    @Key("gtceu.jei.ore_vein.lapis_ore_vein")
+    @CN("水星青金石矿脉")
+    @EN("Mercury Lapis Lazuli Vein")
+    public static Lang gtceuLapisOreVein;
+
+
+    @Key("gtceu.jei.ore_vein.lich_bone_vein")
+    @CN("暮色森林巫师之骨矿脉")
+    @EN("Twilight Forest Lich Bone Vein")
+    public static Lang gtceuLichBoneVein;
+
+
+    @Key("gtceu.jei.ore_vein.lubricant_vein_ad")
+    @CN("水星滑石矿脉")
+    @EN("Mercury Talc Vein")
+    public static Lang gtceuLubricantVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.magnesite_vein_ad")
+    @CN("水星菱镁矿脉")
+    @EN("Mercury Magnesite Vein")
+    public static Lang gtceuMagnesiteVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.magnetite_vein_ad")
+    @CN("太空磁铁矿脉")
+    @EN("Space Magnetite Vein")
+    public static Lang gtceuMagnetiteVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.mana_fused_vein")
+    @CN("蕴魔矿脉")
+    @EN("Mana-Fused Vein")
+    public static Lang gtceuManaFusedVein;
+
+
+    @Key("gtceu.jei.ore_vein.manganese_vein_ad")
+    @CN("太空锰矿脉")
+    @EN("Space Manganese Vein")
+    public static Lang gtceuManganeseVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.molybdenum_vein_ad")
+    @CN("太空辉钼矿脉")
+    @EN("Space Molybdenite Vein")
+    public static Lang gtceuMolybdenumVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.monazite_vein_n")
+    @CN("月球独居石矿脉")
+    @EN("Moon Monazite Vein")
+    public static Lang gtceuMonaziteVeinN;
+
+
+    @Key("gtceu.jei.ore_vein.naquadah_vein_ad")
+    @CN("金星硅岩矿脉")
+    @EN("Venus Naquadah Vein")
+    public static Lang gtceuNaquadahVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.naquadah_vein_ad_mars")
+    @CN("火星硅岩矿脉")
+    @EN("Mars Naquadah Vein")
+    public static Lang gtceuNaquadahVeinAdMars;
+
+
+    @Key("gtceu.jei.ore_vein.nether_quartz_vein_ow")
+    @CN("主世界石英矿脉")
+    @EN("Overworld Quartz Vein")
+    public static Lang gtceuNetherQuartzVeinOw;
+
+
+    @Key("gtceu.jei.ore_vein.neutronium_vein_ad")
+    @CN("霜原星中子素矿脉")
+    @EN("Glacio Neutronium Vein")
+    public static Lang gtceuNeutroniumVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.nickel_vein")
+    @CN("镍矿脉")
+    @EN("Nickel Vein")
+    public static Lang gtceuNickelVein;
+
+
+    @Key("gtceu.jei.ore_vein.nickel_vein_ad")
+    @CN("太空镍矿脉")
+    @EN("Space Nickel Vein")
+    public static Lang gtceuNickelVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.niobium_vein_ad")
+    @CN("霜原星铌矿脉")
+    @EN("Glacio Niobium Vein")
+    public static Lang gtceuNiobiumVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.olivine_vein_ad")
+    @CN("水星橄榄石矿脉")
+    @EN("Mercury Olivine Vein")
+    public static Lang gtceuOlivineVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.osmium_vein_ad")
+    @CN("霜原星锇矿脉")
+    @EN("Glacio Osmium Vein")
+    public static Lang gtceuOsmiumVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.ostrum_vein_ad")
+    @CN("火星紫金矿脉")
+    @EN("Mars Ostrum Vein")
+    public static Lang gtceuOstrumVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.phosphate_vein")
+    @CN("磷酸盐矿脉")
+    @EN("Phosphate Vein")
+    public static Lang gtceuPhosphateVein;
+
+
+    @Key("gtceu.jei.ore_vein.pitchblende_vein_ad")
+    @CN("太空沥青铀矿脉")
+    @EN("Space Pitchblende Vein")
+    public static Lang gtceuPitchblendeVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.platinum_vein_ad")
+    @CN("太空铂矿脉")
+    @EN("Space Platinum Vein")
+    public static Lang gtceuPlatinumVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.precious_alloy_vein")
+    @CN("贵金属矿脉")
+    @EN("Precious Alloy Vein")
+    public static Lang gtceuPreciousAlloyVein;
+
+
+    @Key("gtceu.jei.ore_vein.pyrolusite_vein_ad")
+    @CN("金星软锰矿脉")
+    @EN("Venus Pyrolusite Vein")
+    public static Lang gtceuPyrolusiteVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.quartzite_vein")
+    @CN("石英岩矿脉")
+    @EN("Quartzite Vein")
+    public static Lang gtceuQuartziteVein;
+
+
+    @Key("gtceu.jei.ore_vein.redstone_vein_ad")
+    @CN("太空红石矿脉")
+    @EN("Space Redstone Vein")
+    public static Lang gtceuRedstoneVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.rhodium_sulfur_crystal_vein")
+    @CN("铑硫晶矿脉")
+    @EN("Rhodium Sulfur Crystal Vein")
+    public static Lang gtceuRhodiumSulfurCrystalVein;
+
+
+    @Key("gtceu.jei.ore_vein.ruthenium_amalgam_vein")
+    @CN("钌汞齐矿脉")
+    @EN("Ruthenium Amalgam Vein")
+    public static Lang gtceuRutheniumAmalgamVein;
+
+
+    @Key("gtceu.jei.ore_vein.rutile_vein_ad")
+    @CN("金星金红石矿脉")
+    @EN("Venus Rutile Vein")
+    public static Lang gtceuRutileVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.saltpeter_vein_ad")
+    @CN("水星粗硝石矿脉")
+    @EN("Mercury Saltpeter Vein")
+    public static Lang gtceuSaltpeterVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.salts_vein_ad")
+    @CN("火星盐矿脉")
+    @EN("Mars Salts Vein")
+    public static Lang gtceuSaltsVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.salts_vein_tf")
+    @CN("暮色森林盐矿脉")
+    @EN("Twilight Forest Salts Vein")
+    public static Lang gtceuSaltsVeinTf;
+
+
+    @Key("gtceu.jei.ore_vein.scheelite_vein_ad")
+    @CN("太空白钨矿脉")
+    @EN("Space Scheelite Vein")
+    public static Lang gtceuScheeliteVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.scheelite_vein_aether")
+    @CN("天境白钨矿脉")
+    @EN("Aether Scheelite Vein")
+    public static Lang gtceuScheeliteVeinAether;
+
+
+    @Key("gtceu.jei.ore_vein.sheldonite_vein_moon")
+    @CN("月球谢尔顿矿脉")
+    @EN("Moon Sheldonite Vein")
+    public static Lang gtceuSheldoniteVeinMoon;
+
+
+    @Key("gtceu.jei.ore_vein.steel_leaf_vein")
+    @CN("暮色森林钢叶矿脉")
+    @EN("Twilight Forest Steel Leaf Vein")
+    public static Lang gtceuSteelLeafVein;
+
+
+    @Key("gtceu.jei.ore_vein.sulfur_vein_ad")
+    @CN("太空硫矿脉")
+    @EN("Space Sulfur Vein")
+    public static Lang gtceuSulfurVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.tetrahedrite_vein_ad")
+    @CN("太空黝铜矿脉")
+    @EN("Space Tetrahedrite Vein")
+    public static Lang gtceuTetrahedriteVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.thorium_vein_ad")
+    @CN("太空钍矿脉")
+    @EN("Space Thorium Vein")
+    public static Lang gtceuThoriumVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.thunderstrike_vein")
+    @CN("暮色森林雷纹矿脉")
+    @EN("Twilight Forest Thunderstrike Vein")
+    public static Lang gtceuThunderstrikeVein;
+
+
+    @Key("gtceu.jei.ore_vein.toxic_swamp_amber_vein")
+    @CN("暮色森林毒沼琥珀矿脉")
+    @EN("Twilight Forest Toxic Swamp Amber Vein")
+    public static Lang gtceuToxicSwampAmberVein;
+
+
+    @Key("gtceu.jei.ore_vein.tuff_uraninite_vein_ad")
+    @CN("太空晶质铀矿脉")
+    @EN("Space Tuff Uraninite Vein")
+    public static Lang gtceuTuffUraniniteVeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.uranium238_vein_ad")
+    @CN("水星铀238矿脉")
+    @EN("Mercury Uranium-238 Vein")
+    public static Lang gtceuUranium238VeinAd;
+
+
+    @Key("gtceu.jei.ore_vein.wollastonite_vein")
+    @CN("硅灰石矿脉")
+    @EN("Wollastonite Vein")
+    public static Lang gtceuWollastoniteVein;
+
+
+    @Key("gtceu.jei.ore_vein.zanite_vein_aether")
+    @CN("天境紫晶矿石")
+    @EN("Aether Zanite Vein")
+    public static Lang gtceuZaniteVeinAether;
+
+
+    @Key("gtceu.jei.ore_vein.zinc_vein")
+    @CN("锌矿脉")
+    @EN("Zinc Vein")
+    public static Lang gtceuZincVein;
+
+
+    @Key("gtceu.jei.ore_vein.zircon_vein_aether")
+    @CN("天境锆石矿脉")
+    @EN("Aether Zircon Vein")
+    public static Lang gtceuZirconVeinAether;
+
+
+    @Key("gtceu.jei.ore_vein.zirkelite_vein")
+    @CN("钛锆钍石矿脉")
+    @EN("Zirkelite Vein")
+    public static Lang gtceuZirkeliteVein;
+
+
+    @Key("ilmenite_vein")
+    @CN("钛铁矿脉")
+    @EN("Ilmenite Vein")
+    public static Lang ilmeniteVein;
+
+
+    @Key("iridium_vein_ad")
+    @CN("铱矿脉")
+    @EN("Ad Astra Iridium Vein")
+    public static Lang iridiumVeinAd;
+
+
+    @Key("iron_vein_ad")
+    @CN("铁矿脉")
+    @EN("Ad Astra Iron Vein")
+    public static Lang ironVeinAd;
+
+
+    @Key("iron_vein_tf")
+    @CN("铁矿脉")
+    @EN("Twilight Forest Iron Vein")
+    public static Lang ironVeinTf;
+
+
+    @Key("kaolinite_vein")
+    @CN("高岭石矿脉")
+    @EN("Kaolinite Vein")
+    public static Lang kaoliniteVein;
+
+
+    @Key("lapis_vein_ad")
+    @CN("青金石矿脉")
+    @EN("Ad Astra Lapis Lazuli Vein")
+    public static Lang lapisVeinAd;
+
+
+    @Key("lapis_vein_tf")
+    @CN("青金石矿脉")
+    @EN("Twilight Forest Lapis Lazuli Vein")
+    public static Lang lapisVeinTf;
+
+
+    @Key("lubricant_vein_ad")
+    @CN("皂石矿脉")
+    @EN("Ad Astra Soapstone Vein")
+    public static Lang lubricantVeinAd;
+
+
+    @Key("lubricant_vein_tf")
+    @CN("皂石矿脉")
+    @EN("Twilight Forest Soapstone Vein")
+    public static Lang lubricantVeinTf;
+
+
+    @Key("magnesite_vein_ad")
+    @CN("菱镁矿脉")
+    @EN("Ad Astra Magnesite Vein")
+    public static Lang magnesiteVeinAd;
+
+
+    @Key("magnetite_vein_ad")
+    @CN("磁铁矿脉")
+    @EN("Ad Astra Magnetite Vein")
+    public static Lang magnetiteVeinAd;
+
+
+    @Key("manganese_vein_ad")
+    @CN("锰矿脉")
+    @EN("Ad Astra Manganese Vein")
+    public static Lang manganeseVeinAd;
+
+
+    @Key("molybdenite_vein_tf")
+    @CN("辉钼矿脉")
+    @EN("Twilight Forest Molybdenite Vein")
+    public static Lang molybdeniteVeinTf;
+
+
+    @Key("molybdenum_vein_ad")
+    @CN("钼矿脉")
+    @EN("Ad Astra Molybdenum Vein")
+    public static Lang molybdenumVeinAd;
+
+
+    @Key("monazite_vein_n")
+    @CN("独居石矿脉")
+    @EN("Moon Monazite Vein")
+    public static Lang monaziteVeinN;
+
+
+    @Key("naquadah_vein_ad")
+    @CN("硅岩矿脉")
+    @EN("Ad Astra Naquadah Vein")
+    public static Lang naquadahVeinAd;
+
+
+    @Key("naquadah_vein_ad_mars")
+    @CN("硅岩矿脉")
+    @EN("Mars Naquadah Vein")
+    public static Lang naquadahVeinAdMars;
+
+
+    @Key("neutronium_vein_ad")
+    @CN("中子素矿脉")
+    @EN("Ad Astra Neutronium Vein")
+    public static Lang neutroniumVeinAd;
+
+
+    @Key("nickel_vein_ad")
+    @CN("镍矿脉")
+    @EN("Ad Astra Nickel Vein")
+    public static Lang nickelVeinAd;
+
+
+    @Key("nickel_vein_tf")
+    @CN("镍矿脉")
+    @EN("Twilight Forest Nickel Vein")
+    public static Lang nickelVeinTf;
+
+
+    @Key("niobium_vein_ad")
+    @CN("铌矿脉")
+    @EN("Ad Astra Niobium Vein")
+    public static Lang niobiumVeinAd;
+
+
+    @Key("olivine_vein_ad")
+    @CN("橄榄石矿脉")
+    @EN("Ad Astra Olivine Vein")
+    public static Lang olivineVeinAd;
+
+
+    @Key("olivine_vein_tf")
+    @CN("橄榄石矿脉")
+    @EN("Twilight Forest Olivine Vein")
+    public static Lang olivineVeinTf;
+
+
+    @Key("osmium_vein_ad")
+    @CN("锇矿脉")
+    @EN("Ad Astra Osmium Vein")
+    public static Lang osmiumVeinAd;
+
+
+    @Key("ostrum_vein_ad")
+    @CN("紫金矿脉")
+    @EN("Ad Astra Ostrum Vein")
+    public static Lang ostrumVeinAd;
+
+
+    @Key("pitchblende_vein_ad")
+    @CN("沥青铀矿脉")
+    @EN("Ad Astra Pitchblende Vein")
+    public static Lang pitchblendeVeinAd;
+
+
+    @Key("platinum_vein_ad")
+    @CN("铂矿脉")
+    @EN("Ad Astra Platinum Vein")
+    public static Lang platinumVeinAd;
+
+
+    @Key("pyrolusite_vein_ad")
+    @CN("软锰矿脉")
+    @EN("Ad Astra Pyrolusite Vein")
+    public static Lang pyrolusiteVeinAd;
+
+
+    @Key("quartzite_vein")
+    @CN("石英岩矿脉")
+    @EN("Quartzite Vein")
+    public static Lang quartziteVein;
+
+
+    @Key("redstone_vein_ad")
+    @CN("红石矿脉")
+    @EN("Ad Astra Redstone Vein")
+    public static Lang redstoneVeinAd;
+
+
+    @Key("rutile_vein_ad")
+    @CN("金红石矿脉")
+    @EN("Ad Astra Rutile Vein")
+    public static Lang rutileVeinAd;
+
+
+    @Key("saltpeter_vein_ad")
+    @CN("蓝石矿脉")
+    @EN("Ad Astra Saltpeter Vein")
+    public static Lang saltpeterVeinAd;
+
+
+    @Key("salts_vein_ad")
+    @CN("盐矿脉")
+    @EN("Ad Astra Salts Vein")
+    public static Lang saltsVeinAd;
+
+
+    @Key("salts_vein_tf")
+    @CN("盐矿脉")
+    @EN("Twilight Forest Salts Vein")
+    public static Lang saltsVeinTf;
+
+
+    @Key("sapphire_vein_tf")
+    @CN("蓝宝石矿脉")
+    @EN("Twilight Forest Sapphire Vein")
+    public static Lang sapphireVeinTf;
+
+
+    @Key("scheelite_vein_ad")
+    @CN("白钨矿脉")
+    @EN("Ad Astra Scheelite Vein")
+    public static Lang scheeliteVeinAd;
+
+
+    @Key("sulfur_vein_ad")
+    @CN("硫矿脉")
+    @EN("Ad Astra Sulfur Vein")
+    public static Lang sulfurVeinAd;
+
+
+    @Key("tetrahedrite_vein_ad")
+    @CN("黝铜矿脉")
+    @EN("Ad Astra Tetrahedrite Vein")
+    public static Lang tetrahedriteVeinAd;
+
+
+    @Key("tuff_uraninite_vein_ad")
+    @CN("晶质铀矿脉")
+    @EN("Ad Astra Tuff Uraninite Vein")
+    public static Lang tuffUraniniteVeinAd;
+
+
+    @Key("uranium238_vein_ad")
+    @CN("铀238矿脉")
+    @EN("Ad Astra Uranium-238 Vein")
+    public static Lang uranium238VeinAd;
+
+
+    @Key("wollastonite_vein")
+    @CN("白云石矿脉")
+    @EN("Dolomite Vein")
+    public static Lang wollastoniteVein;
+
+
 
     public static void init() {
         MAGNETITE_VEIN_OW.layeredVeinGenerator(generator -> generator

@@ -1,4 +1,8 @@
 package io.github.cpearl0.ctnhcore.registry;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.api.machine.feature.ICoilMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ChemicalPlantMachine;
@@ -29,6 +33,25 @@ import static com.gregtechceu.gtceu.api.recipe.OverclockingLogic.getCoilEUtDisco
 
 public class CTNHRecipeModifiers {
 
+    @Key("gtceu.recipe_modifier.coil_temperature_too_low")
+    @CN("线圈温度过低！")
+    @EN("Coil temperature too low!")
+    public static Lang gtceuRecipeModifierCoilTemperatureTooLow;
+
+
+    @Key("gtceu.recipe_modifier.insufficient_eu_to_start_fusion")
+    @CN("缺少足够能量以启动核聚变反应")
+    @EN("Not enough energy to start the fusion reaction")
+    public static Lang gtceuRecipeModifierInsufficientEuToStartFusion;
+
+
+    @Key("gtceu.recipe_modifier.insufficient_voltage")
+    @CN("电压等级过低！")
+    @EN("Voltage tier too low!")
+    public static Lang gtceuRecipeModifierInsufficientVoltage;
+
+
+
     public static Component accurateParallel(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe,
                                              int parallel) {
         var maxParallel = ParallelLogic.getParallelAmount(group, recipe, parallel);
@@ -49,11 +72,11 @@ public class CTNHRecipeModifiers {
                 (100 * Math.max(0, workableElectricMultiblockMachine.getTier() - GTValues.MV));
         int recipeTemp = recipe.data.getInt("ebf_temp");
         if (!recipe.data.contains("ebf_temp") || recipeTemp > blastFurnaceTemperature) {
-            return Component.translatable("gtceu.recipe_modifier.coil_temperature_too_low");
+            return gtceuRecipeModifierCoilTemperatureTooLow.translate();
         }
 
         if (recipe.tier > workableElectricMultiblockMachine.getTier()) {
-            return Component.translatable("gtceu.recipe_modifier.insufficient_voltage");
+            return gtceuRecipeModifierInsufficientVoltage.translate();
         }
 
         recipe.multiplyEUt(getCoilEUtDiscount(recipeTemp, blastFurnaceTemperature));
@@ -75,7 +98,7 @@ public class CTNHRecipeModifiers {
             .memoize(logic -> (machine, group, recipe) -> {
                 if (!(machine instanceof IOverclockMachine overclockMachine)) return null;
                 if (machine instanceof ITieredMachine tieredMachine && recipe.tier > tieredMachine.getTier()) {
-                    return Component.translatable("gtceu.recipe_modifier.insufficient_voltage");
+                    return gtceuRecipeModifierInsufficientVoltage.translate();
                 }
                 return logic.getModifier(machine, group, recipe, overclockMachine.getOverclockVoltage());
             });
@@ -106,10 +129,10 @@ public class CTNHRecipeModifiers {
                     100 * Math.max(0, coilMachine.getTier() - GTValues.MV);
             var recipeTemp = recipe.data.getInt("ebf_temp");
             if (!recipe.data.contains("ebf_temp") || recipe.data.getInt("ebf_temp") > blastFurnaceTemperature) {
-                return Component.translatable("gtceu.recipe_modifier.coil_temperature_too_low");
+                return gtceuRecipeModifierCoilTemperatureTooLow.translate();
             }
             if (recipe.tier > coilMachine.getTier()) {
-                return Component.translatable("gtceu.recipe_modifier.insufficient_voltage");
+                return gtceuRecipeModifierInsufficientVoltage.translate();
             }
             recipe.multiplyEUt(getCoilEUtDiscount(recipeTemp, blastFurnaceTemperature));
             recipe.multiplyDuration(0.5);

@@ -1,4 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
+import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotoVoltaicDroneStation;
@@ -29,6 +30,31 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import java.util.List;
 
 public class SpacePhotovoltaicBaseStation extends RecipeElectricMultiblockMachine implements ITieredMachine {
+
+    @Key("ctnh.spacephotovoltaicbasestation.info.pvc_tier.0")
+    @CN("当前光伏方块等级:%d")
+    @EN("Current photovoltaic block tier: %d")
+    public static Lang spacephotovoltaicbasestationInfoPvcTier0;
+
+
+    @Key("ctnh.spacephotovoltaicbasestation.info.pvc_tier.1")
+    @CN("当前结构耐热等级:%d")
+    @EN("Current structure heat-resistance tier: %d")
+    public static Lang spacephotovoltaicbasestationInfoPvcTier1;
+
+
+    @Key("ctnh.spacephotovoltaicbasestation.info.pvc_tier.2")
+    @CN("当前结构发电量:%.2f")
+    @EN("Current power generation: %.2f")
+    public static Lang spacephotovoltaicbasestationInfoPvcTier2;
+
+
+    @Key("ctnh.spacephotovoltaicbasestation.info.pvc_tier.3")
+    @CN("当前维度光倍率:%d")
+    @EN("Current dimensional light multiplier: %d")
+    public static Lang spacephotovoltaicbasestationInfoPvcTier3;
+
+
 
     public SpacePhotovoltaicBaseStation(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
@@ -176,12 +202,12 @@ public class SpacePhotovoltaicBaseStation extends RecipeElectricMultiblockMachin
 
     public void addDisplayText(List<Component> textList) {
         textList.add(textList.size(),
-                Component.translatable("ctnh.spacephotovoltaicbasestation.info.pvc_tier.0", String.format("%d", heat)));
+                spacephotovoltaicbasestationInfoPvcTier0.translate( String.format("%d", heat)));
         textList.add(textList.size(),
-                Component.translatable("ctnh.spacephotovoltaicbasestation.info.pvc_tier.1", String.format("%d", heat)));
-        textList.add(textList.size(), Component.translatable("ctnh.spacephotovoltaicbasestation.info.pvc_tier.2",
+                spacephotovoltaicbasestationInfoPvcTier1.translate( String.format("%d", heat)));
+        textList.add(textList.size(), spacephotovoltaicbasestationInfoPvcTier2.translate(
                 String.format("%.2f", muti * 131072 * heat)));
-        textList.add(textList.size(), Component.translatable("ctnh.spacephotovoltaicbasestation.info.pvc_tier.3",
+        textList.add(textList.size(), spacephotovoltaicbasestationInfoPvcTier3.translate(
                 String.format("%.1f", muti)));
         super.addDisplayText(textList);
     }

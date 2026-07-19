@@ -1,4 +1,8 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHPredicates;
@@ -54,6 +58,763 @@ import static net.minecraft.world.level.block.Blocks.*;
 // spotless:off
 public class MultiblocksB {
 
+    @Key("ctnh.dwof.tooltip")
+    @CN("运行时为模型积累数据，至多将模型提高至[进阶]等级")
+    @EN("Accumulates data for the model during operation, raising it up to [Advanced] at most")
+    public static Lang dwofTooltip;
+
+
+    @Key("ctnh.eternal_engine.1")
+    @CN("当前发电量:%d EU /tick")
+    @EN("Current power output: %d EU/tick")
+    public static Lang eternalEngine1;
+
+
+    @Key("ctnh.eternal_engine.2")
+    @CN("累计的工作时间:%.2f s/36000 s")
+    @EN("Total operating time: %.2f s/36000 s")
+    public static Lang eternalEngine2;
+
+
+    @Key("ctnh.magic.generator")
+    @CN("精炼天地之魔精")
+    @EN("Refined Essence of Heaven and Earth")
+    public static Lang magicGenerator;
+
+
+    @Key("ctnh.magic.generator.1")
+    @CN("具有8并行，每秒基础消耗12mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍")
+    @EN("Has 8 parallel operations and consumes 12 mB of Liquid Mana per second at base. For each voltage tier above §7LV§r, consumption doubles")
+    public static Lang magicGenerator1;
+
+
+    @Key("ctnh.multiblock.arcgenerator.tooltip.1")
+    @CN("物质撕裂器")
+    @EN("Matter Ripper")
+    public static Lang arcgeneratorTooltip1;
+
+
+    @Key("ctnh.multiblock.arcgenerator.tooltip.2")
+    @CN("该机器必须配合电弧生成器使用，要求电弧生成器必须在该机器主方块上方5格，当完成链接时，电弧生成器会显示已完成连接")
+    @EN("This machine must be used with an Arc Generator. The Arc Generator must be five blocks above this machine's controller. When linked, the Arc Generator shows that the connection is complete")
+    public static Lang arcgeneratorTooltip2;
+
+
+    @Key("ctnh.multiblock.arcgenerator.tooltip.3")
+    @CN("当电弧强度小于配方最小电弧强度时，配方将无法运行")
+    @EN("If arc intensity is below the recipe's minimum, the recipe cannot run")
+    public static Lang arcgeneratorTooltip3;
+
+
+    @Key("ctnh.multiblock.arcgenerator.tooltip.4")
+    @CN("当电弧强度大于配方最大电弧强度时，配方将以(机器电弧强度-配方需求电弧强度)/(满功率需求电弧强度-需求电弧强度)的效率运行。效率允许超过100%，但不能超过机器最大发电效率")
+    @EN("When arc intensity exceeds the recipe maximum, the recipe runs at (machine arc intensity - recipe required arc intensity) / (full-power required arc intensity - required arc intensity) efficiency. Efficiency may exceed 100%, but cannot exceed the machine maximum power generation efficiency")
+    public static Lang arcgeneratorTooltip4;
+
+
+    @Key("ctnh.multiblock.arcgenerator.tooltip.5")
+    @CN("当效率未达100%时，因为湮灭的不完全，将产生少量额外产出")
+    @EN("When efficiency is below 100%, incomplete annihilation produces a small amount of extra output")
+    public static Lang arcgeneratorTooltip5;
+
+
+    @Key("ctnh.multiblock.arcgenerator.tooltip.arc.t1.1")
+    @CN("§b最大支持电弧强度:1000")
+    @EN("§bMaximum Supported Arc Intensity: 1000")
+    public static Lang arcgeneratorTooltipArcT11;
+
+
+    @Key("ctnh.multiblock.arcgenerator.tooltip.arc.t1.2")
+    @CN("§c最大发电效率:75%")
+    @EN("§cMaximum Power Generation Efficiency: 75%")
+    public static Lang arcgeneratorTooltipArcT12;
+
+
+    @Key("ctnh.multiblock.arcgenerator.tooltip.arc.t2.1")
+    @CN("§b最大支持电弧强度:10000")
+    @EN("§bMaximum Supported Arc Intensity: 10000")
+    public static Lang arcgeneratorTooltipArcT21;
+
+
+    @Key("ctnh.multiblock.arcgenerator.tooltip.arc.t2.2")
+    @CN("§c最大发电效率:125%")
+    @EN("§cMaximum Power Generation Efficiency: 125%")
+    public static Lang arcgeneratorTooltipArcT22;
+
+
+    @Key("ctnh.multiblock.arcgenerator.tooltip.arc.t3.1")
+    @CN("§b最大支持电弧强度:50000")
+    @EN("§bMaximum Supported Arc Intensity: 50000")
+    public static Lang arcgeneratorTooltipArcT31;
+
+
+    @Key("ctnh.multiblock.arcgenerator.tooltip.arc.t3.2")
+    @CN("§c最大发电效率:225%")
+    @EN("§cMaximum Power Generation Efficiency: 225%")
+    public static Lang arcgeneratorTooltipArcT32;
+
+
+    @Key("ctnh.multiblock.arcgenerator.tooltip.t2.1")
+    @CN("分子撕裂器")
+    @EN("Molecular Ripper")
+    public static Lang arcgeneratorTooltipT21;
+
+
+    @Key("ctnh.multiblock.arcgenerator.tooltip.t3.1")
+    @CN("原子撕裂器")
+    @EN("Atomic Ripper")
+    public static Lang arcgeneratorTooltipT31;
+
+
+    @Key("ctnh.multiblock.arcreactor.tooltip.1")
+    @CN("该机器必须配合电弧撕裂者使用，要求电弧生成器必须在电弧撕裂者主方块上方5格，当完成链接时，电弧生成器会显示桥接已启用")
+    @EN("This machine must be used with an Arc Ripper. The Arc Generator must be five blocks above the Arc Ripper's controller; when linked, the Arc Generator shows that the bridge is enabled")
+    public static Lang arcreactorTooltip1;
+
+
+    @Key("ctnh.multiblock.arcreactor.tooltip.2")
+    @CN("机器基础每次运行配方产生10电弧强度，无法超频，高等级机器具有更高并行数")
+    @EN("The machine produces 10 arc intensity each time it runs a recipe, cannot be overclocked, and higher-tier machines have more parallelism")
+    public static Lang arcreactorTooltip2;
+
+
+    @Key("ctnh.multiblock.arcreactor.tooltip.t1")
+    @CN("该机器并行数:1")
+    @EN("Machine parallelism: 1")
+    public static Lang arcreactorTooltipT1;
+
+
+    @Key("ctnh.multiblock.cryotheum_freezer.tip.0")
+    @CN("§b泪水如凛冰般落下")
+    @EN("§bTears fall like Cryotheum")
+    public static Lang cryotheumFreezerTip0;
+
+
+    @Key("ctnh.multiblock.cryotheum_freezer.tip.1")
+    @CN("每次运行配方消耗5*并行mb极寒之凛冰，电压每高于§9IV§r一级，这个消耗就翻4倍")
+    @EN("Each recipe operation consumes 5 × parallel mB of Cryotheum; for each voltage tier above §9IV§r, consumption quadruples")
+    public static Lang cryotheumFreezerTip1;
+
+
+    @Key("ctnh.multiblock.cryotheum_freezer.tip.2")
+    @CN("初始具有4并行和3泪之晶点数，可以在升级界面加点。每消耗10000mb凛冰，就获得一点点数，随后将目标翻四倍")
+    @EN("Starts with 4 parallel operations and 3 Tear Crystal points; add points in the upgrade screen. Every 10000 mB of Cryotheum consumed grants one point, then the target amount quadruples")
+    public static Lang cryotheumFreezerTip2;
+
+
+    @Key("ctnh.multiblock.cultivation_room.tooltip.1")
+    @CN("菌群孕育，菌种滋长")
+    @EN("Microbial incubation, fungal proliferation")
+    public static Lang cultivationRoomTooltip1;
+
+
+    @Key("ctnh.multiblock.cultivation_room.tooltip.2")
+    @CN("运用好这台机器来繁殖那些难以获取的真菌和细菌")
+    @EN("Utilize this machine to cultivate hard-to-obtain fungi and bacteria")
+    public static Lang cultivationRoomTooltip2;
+
+
+    @Key("ctnh.multiblock.fluid_drilling_rig.depletion.inf")
+    @CN("§6永§b不§d损§a耗，你在担心什么？")
+    @EN("§6E§bver§dlast§aing—what are you worried about?")
+    public static Lang fluidDrillingRigDepletionInf;
+
+
+    @Key("ctnh.multiblock.fluid_drilling_rig.description.inf")
+    @CN("§6钻取来自无尽之中的流体之海")
+    @EN("§6Drilling a sea of fluids from the Infinite")
+    public static Lang fluidDrillingRigDescriptionInf;
+
+
+    @Key("ctnh.multiblock.forest_sea.tooltip.1")
+    @CN("手植千木，绿荫千秋")
+    @EN("Plant trees by hand, create shade for millennia")
+    public static Lang forestSeaTooltip1;
+
+
+    @Key("ctnh.multiblock.forest_sea.tooltip.2")
+    @CN("林海树场是一个只消耗水来产出大量木材的大机器")
+    @EN("The Forest Sea is a massive machine that consumes only water to produce large quantities of lumber")
+    public static Lang forestSeaTooltip2;
+
+
+    @Key("ctnh.multiblock.forest_sea.tooltip.3")
+    @CN("每5s进行一次水储量的判定")
+    @EN("Performs water storage check every 5 seconds")
+    public static Lang forestSeaTooltip3;
+
+
+    @Key("ctnh.multiblock.forest_sea.tooltip.4")
+    @CN("水充足时，增加1%的湿度值")
+    @EN("When water is sufficient, increases humidity by 1%")
+    public static Lang forestSeaTooltip4;
+
+
+    @Key("ctnh.multiblock.forest_sea.tooltip.5")
+    @CN("水不足时，减少10%的湿度值")
+    @EN("When water is insufficient, decreases humidity by 10%")
+    public static Lang forestSeaTooltip5;
+
+
+    @Key("ctnh.multiblock.forest_sea.tooltip.6")
+    @CN("配方运行时间不变，但并行值会随湿度值与电压等级上升")
+    @EN("Recipe processing time remains constant, but parallel value increases with humidity and voltage tier")
+    public static Lang forestSeaTooltip6;
+
+
+    @Key("ctnh.multiblock.forest_sea.tooltip.7")
+    @CN("比温室好！")
+    @EN("Better than greenhouses!")
+    public static Lang forestSeaTooltip7;
+
+
+    @Key("ctnh.multiblock.lasersorter.tooltip.0")
+    @CN("持续调整激光频率")
+    @EN("Continuously adjusts the laser frequency")
+    public static Lang lasersorterTooltip0;
+
+
+    @Key("ctnh.multiblock.lasersorter.tooltip.1")
+    @CN("配方类型：激光分配/激光蚀刻")
+    @EN("Recipe types: Laser Distribution / Laser Etching")
+    public static Lang lasersorterTooltip1;
+
+
+    @Key("ctnh.multiblock.lasersorter.tooltip.10")
+    @CN("输入的算力每比基础算力多一倍，将一次超频转化为无损超频（即运行速度*2），该效果转化的次数不超过你能超频的等级（即上限为将你所有的有损超频转化为无损）")
+    @EN("Each time input computation doubles the base requirement, one lossy overclock is converted into a perfect overclock (processing speed ×2). Conversions cannot exceed the machine's overclock tier, up to converting all lossy overclocks into perfect overclocks")
+    public static Lang lasersorterTooltip10;
+
+
+    @Key("ctnh.multiblock.lasersorter.tooltip.11")
+    @CN("§c如果输入的算力不为整数倍，则以上所有的增益全部无效且最终所需时间*4")
+    @EN("§cIf input computation is not an integer multiple, all bonuses above are disabled and final time ×4")
+    public static Lang lasersorterTooltip11;
+
+
+    @Key("ctnh.multiblock.lasersorter.tooltip.2")
+    @CN("本机器需要消耗算力才能运行")
+    @EN("This machine consumes computation to operate")
+    public static Lang lasersorterTooltip2;
+
+
+    @Key("ctnh.multiblock.lasersorter.tooltip.3")
+    @CN("————————激光蚀刻模式————————")
+    @EN("————————Laser Etching Mode————————")
+    public static Lang lasersorterTooltip3;
+
+
+    @Key("ctnh.multiblock.lasersorter.tooltip.4")
+    @CN("LuV及以下的电压固定基础请求8算力，电压每高于LuV一级，请求的基础算力翻倍")
+    @EN("At LuV and below, the base computation requirement is fixed at 8 CWU; for each voltage tier above LuV, the base requirement doubles")
+    public static Lang lasersorterTooltip4;
+
+
+    @Key("ctnh.multiblock.lasersorter.tooltip.5")
+    @CN("输入的算力如果为基础请求算力的整数倍，则最终输出*1.25，并行等同于⌊(输入的算力/基础请求算力)⌋的三次方")
+    @EN("If input computation is an integer multiple of the base requirement, final output ×1.25 and parallelism = floor(input computation / base requirement)^3")
+    public static Lang lasersorterTooltip5;
+
+
+    @Key("ctnh.multiblock.lasersorter.tooltip.6")
+    @CN("输入的算力每比基础算力多一倍，将一次超频转化为无损超频（即运行速度*2），该效果转化的次数不超过你能超频的等级（即上限为将你所有的有损超频转化为无损）")
+    @EN("Each time input computation doubles the base requirement, one lossy overclock is converted into a perfect overclock (processing speed ×2). Conversions cannot exceed the machine's overclock tier, up to converting all lossy overclocks into perfect overclocks")
+    public static Lang lasersorterTooltip6;
+
+
+    @Key("ctnh.multiblock.lasersorter.tooltip.7")
+    @CN("————————激光分配模式————————")
+    @EN("————————Laser Distribution Mode————————")
+    public static Lang lasersorterTooltip7;
+
+
+    @Key("ctnh.multiblock.lasersorter.tooltip.8")
+    @CN("配方给出请求算力，如果配方没有给出则按照激光蚀刻模式的公式计算")
+    @EN("The recipe specifies the required computation; if it does not, calculate it using the Laser Etching formula")
+    public static Lang lasersorterTooltip8;
+
+
+    @Key("ctnh.multiblock.lasersorter.tooltip.9")
+    @CN("输入的算力如果为基础请求算力的整数倍，则并行等同于⌊(输入的算力/基础请求算力)⌋的三次方")
+    @EN("If input computation is an integer multiple of the base requirement, parallelism = floor(input computation / base requirement)^3")
+    public static Lang lasersorterTooltip9;
+
+
+    @Key("ctnh.multiblock.nano_generator.tooltip.0")
+    @CN("利用摩擦热的力量")
+    @EN("Utilize the power of friction heat")
+    public static Lang nanoGeneratorTooltip0;
+
+
+    @Key("ctnh.multiblock.nano_generator.tooltip.1")
+    @CN("最大并行数:2048")
+    @EN("Maximum parallel count: 2048")
+    public static Lang nanoGeneratorTooltip1;
+
+
+    @Key("ctnh.multiblock.nano_generator.tooltip.2")
+    @CN("每有1并行数，总体发电量提升4%\n实际运行时间为配方时间*sqrt(并行数)")
+    @EN("For each parallel process, total power generation increases by 4%\nActual operation time is recipe time * sqrt(parallel count)")
+    public static Lang nanoGeneratorTooltip2;
+
+
+    @Key("ctnh.multiblock.nano_generator.tooltip.3")
+    @CN("在控制器内放入特定材料可提升倍率，但也有概率消耗\n无材料：0.8倍率\n橡胶片：1.0倍率,并行数/512几率消耗\n聚乙烯片：1.6倍率，并行数/1024几率消耗\n硅橡胶片：2.4倍率，并行数/4096几率消耗\n聚四氟乙烯片：3.2倍率，并行数/65535几率消耗\n丁苯橡胶片：4.6倍率，并行数/131070几率消耗\n聚苯并咪唑片：5倍率，并行数/1048576几率消耗")
+    @EN("Inserting specific materials into the controller increases the multiplier, but each material may also be consumed\nNo material: 0.8x multiplier\nRubber Sheet: 1.0x multiplier, consumption chance = parallel count / 512\nPolyethylene Sheet: 1.6x multiplier, consumption chance = parallel count / 1024\nSilicone Rubber Sheet: 2.4x multiplier, consumption chance = parallel count / 4096\nPTFE Sheet: 3.2x multiplier, consumption chance = parallel count / 65535\nStyrene-Butadiene Rubber Sheet: 4.6x multiplier, consumption chance = parallel count / 131070\nPolybenzimidazole Sheet: 5x multiplier, consumption chance = parallel count / 1048576")
+    public static Lang nanoGeneratorTooltip3;
+
+
+    @Key("ctnh.multiblock.neuro_martix_compiler.tip.0")
+    @CN("将生物的进化之道完全放任于碳基生物的自然演变是一种低效且缓慢的做法，现在我们将亲自编码每一个基因序列，将我们的至臻完美编译在神经元的逻辑之中")
+    @EN("Leaving the evolution of living beings entirely to the natural evolution of carbon-based life is inefficient and slow. We will now encode every genetic sequence ourselves, compiling our ultimate perfection into neuronal logic")
+    public static Lang neuroMatrixCompilerTip0;
+
+
+    @Key("ctnh.multiblock.neuro_martix_compiler.tip.01")
+    @CN("神经矩阵编码器（CMP）是一台编译神经序列的机器，其不同于其他机器，不执行正常的输入逻辑，无法超频")
+    @EN("The Neural Matrix Compiler (CMP) compiles neural sequences. Unlike other machines, it does not use normal input logic and cannot be overclocked")
+    public static Lang neuroMatrixCompilerTip01;
+
+
+    @Key("ctnh.multiblock.neuro_martix_compiler.tip.1")
+    @CN("该机器的输入由6个神经矩阵研究舱室组成，每个舱室在结构完成时将被编码，所有研究舱室必须为同一等级，编码完成后，每个研究舱室将会显示他们所属的片区（并未实现）现在片区分配固定为：机器主方块左前方为1，右前方为2，左后方为3，右后方为4")
+    @EN("The machine input consists of 6 Neural Matrix Research Chambers. Each chamber is encoded when the structure is completed, and all research chambers must be the same tier. After encoding, each chamber displays its assigned region (not implemented). Regions are currently fixed as follows: the front-left of the controller is 1, front-right is 2, back-left is 3, and back-right is 4")
+    public static Lang neuroMatrixCompilerTip1;
+
+
+    @Key("ctnh.multiblock.neuro_martix_compiler.tip.10")
+    @CN("如果运算失败，则定义噪声结果函数f(x1,x2,x3)=ax1+bx2+cx3+d+ϵ,根据噪声决定片区，噪声波动最多翻倍5倍，片区误差项为0.9-1.1间，则噪声变为0.5倍率")
+    @EN("If computation fails, define the noise result function f(x1,x2,x3)=ax1+bx2+cx3+d+ϵ. The region is determined by noise; noise fluctuation can be multiplied by up to 5, and if the region error term is between 0.9 and 1.1, noise becomes a 0.5 multiplier")
+    public static Lang neuroMatrixCompilerTip10;
+
+
+    @Key("ctnh.multiblock.neuro_martix_compiler.tip.11")
+    @CN("最终编译数据集将获得三个信息，信息1代表本次的方程，信息2代表噪声结果函数获得的结果值对于y的倍率，信息3代表误差项的比率")
+    @EN("The final compiled dataset contains three pieces of information: information 1 is the equation used, information 2 is the result value from the noise function as a multiplier of y, and information 3 is the error-term ratio")
+    public static Lang neuroMatrixCompilerTip11;
+
+
+    @Key("ctnh.multiblock.neuro_martix_compiler.tip.12")
+    @CN("在执行相同配方时方程不会重置，在执行配方或者结构重新成型时，重置y和方程")
+    @EN("The equation is not reset when executing the same recipe. It resets y and the equation when a recipe is executed or the structure is re-formed")
+    public static Lang neuroMatrixCompilerTip12;
+
+
+    @Key("ctnh.multiblock.neuro_martix_compiler.tip.2")
+    @CN("该机器的输入§c必须严格按照EMI的物品顺序§9从左到右§r从第一行到第二行放置在§91-5片区§r，同时在第六片区放置§9研究数据集§r§r,任何错误的放置或者外部舱室的放置都会导致机器故障并在对应舱室显示故障")
+    @EN("Machine inputs §cmust strictly follow the EMI item order§9, placed §rfrom left to right§r and from the first row to the second row in §9Regions 1-5§r. Place the §9Research Dataset§r in Region 6. Any incorrect placement or external chamber placement will cause a machine fault, shown in the corresponding chamber")
+    public static Lang neuroMatrixCompilerTip2;
+
+
+    @Key("ctnh.multiblock.neuro_martix_compiler.tip.3")
+    @CN("必须保证所有神经矩阵研究舱室的等级不低于配方等级，否则配方不会运行")
+    @EN("All Neural Matrix Research Chambers must be at least the recipe tier; otherwise the recipe will not run")
+    public static Lang neuroMatrixCompilerTip3;
+
+
+    @Key("ctnh.multiblock.neuro_martix_compiler.tip.4")
+    @CN("————————机器总体机制————————")
+    @EN("————————Overall Machine Mechanics————————")
+    public static Lang neuroMatrixCompilerTip4;
+
+
+    @Key("ctnh.multiblock.neuro_martix_compiler.tip.5")
+    @CN("每次检测到新的配方时，机器将§6完美诉诸于随机§r，生成函数F(x1,x2,x3)=§6y=ax1+bx2+cx3+d§r，其中，x1,x2,x3为期望的片区所消耗的物品数量，同时在给定范围内随机x1,x2,x3,获取答案y")
+    @EN("Whenever a new recipe is detected, the machine §6entrusts itself to randomness§r and generates F(x1,x2,x3)=§6y=ax1+bx2+cx3+d§r, where x1, x2, and x3 are the quantities of items consumed by the target regions. It then randomly chooses x1, x2, and x3 within the given ranges to obtain y")
+    public static Lang neuroMatrixCompilerTip5;
+
+
+    @Key("ctnh.multiblock.neuro_martix_compiler.tip.6")
+    @CN("当配方执行时，在开始逻辑运算，1-5片区将各自运行5s,运行完毕时将消耗舱室内所有物品来取得函数")
+    @EN("When a recipe runs, logical computation begins. Regions 1-5 each run for 5 s; when finished, they consume all items in their chambers to obtain the function")
+    public static Lang neuroMatrixCompilerTip6;
+
+
+    @Key("ctnh.multiblock.neuro_martix_compiler.tip.7")
+    @CN("在片区1-5执行完毕后，进行持续5s的总计算流程，在此过程中给出x1,x2,x3，计算得到计算值y，与真实比较，进行最终编译运算")
+    @EN("After Regions 1-5 finish, a total computation process runs for 5 s. During this process, x1, x2, and x3 are supplied, the calculated y is compared with the true value, and the final compilation is performed")
+    public static Lang neuroMatrixCompilerTip7;
+
+
+    @Key("ctnh.multiblock.neuro_martix_compiler.tip.8")
+    @CN("————————最终编译运算————————")
+    @EN("————————Final Compilation————————")
+    public static Lang neuroMatrixCompilerTip8;
+
+
+    @Key("ctnh.multiblock.neuro_martix_compiler.tip.9")
+    @CN("最终编译运算将比较真实y与结果y，如果结果y的值在真实值y的0.9-1.1倍内，则运算成功，将编译数据集变为配方输出")
+    @EN("Final compilation compares true y with result y. If result y is within 0.9 to 1.1 times true y, the computation succeeds and the compiled dataset becomes the recipe output")
+    public static Lang neuroMatrixCompilerTip9;
+
+
+    @Key("ctnh.multiblock.neuro_martix_compiler.tip.part1")
+    @CN("片区1-3：用于提供函数F(x)的真实x1,x2,x3")
+    @EN("Regions 1-3: provide the actual x1, x2, and x3 for function F(x)")
+    public static Lang neuroMatrixCompilerTipPart1;
+
+
+    @Key("ctnh.multiblock.neuro_martix_compiler.tip.part2")
+    @CN("片区4：代表函数F(x)的常数量d，同时决定噪声ϵ")
+    @EN("Region 4: represents the constant d in function F(x) and determines noise ϵ")
+    public static Lang neuroMatrixCompilerTipPart2;
+
+
+    @Key("ctnh.multiblock.neuro_martix_compiler.tip.part3")
+    @CN("片区5：此片区用为神经编译提供电路板支持，决定噪声ϵ波动，如果提供电路板大于配方给定值则不造成噪声影响")
+    @EN("Region 5: provides circuit-board support for neural compilation and determines noise ϵ fluctuation. If the provided circuit board exceeds the recipe requirement, it causes no noise impact")
+    public static Lang neuroMatrixCompilerTipPart3;
+
+
+    @Key("ctnh.multiblock.neuro_martix_compiler.tip.part4")
+    @CN("片区6：收集最终编译结果的片区，在完成一次逻辑运算流程后，将根据结果对神经数据集进行修改")
+    @EN("Region 6: collects the final compilation result and modifies the neural dataset based on the result after a logical computation cycle")
+    public static Lang neuroMatrixCompilerTipPart4;
+
+
+    @Key("ctnh.multiblock.plasma_alloy.tooltip.1")
+    @CN("§4转底炉的复仇")
+    @EN("§4The Revenge of the Rotary Kiln")
+    public static Lang plasmaAlloyTooltip1;
+
+
+    @Key("ctnh.multiblock.plasma_alloy.tooltip.10")
+    @CN("§c速度增幅超过5000%时，最终产物量将会在0%-50%中浮动！")
+    @EN("§cWhen the speed bonus exceeds 5000%, final output fluctuates between 0% and 50%!")
+    public static Lang plasmaAlloyTooltip10;
+
+
+    @Key("ctnh.multiblock.plasma_alloy.tooltip.11")
+    @CN("允许使用§b激光仓§r，使用激光仓时最终速度将除以4，速度低于原速度时拒绝运行")
+    @EN("Allows §blaser hatches§r; when using a laser hatch, final speed is divided by 4, and operation is rejected if it falls below the original speed")
+    public static Lang plasmaAlloyTooltip11;
+
+
+    @Key("ctnh.multiblock.plasma_alloy.tooltip.2")
+    @CN("线圈温度每有1800K，获得4点并行，线圈温度超过10000K时，获得(线圈温度-10000)/10000的额外加速")
+    @EN("Every 1800 K of coil temperature grants 4 parallel operations; above 10000 K, it grants an additional speed multiplier of (coil temperature - 10000) / 10000")
+    public static Lang plasmaAlloyTooltip2;
+
+
+    @Key("ctnh.multiblock.plasma_alloy.tooltip.3")
+    @CN("运行前消耗(并行数*对应等离子体消耗)的等离子体，获得额外加速")
+    @EN("Consumes (parallel count × corresponding plasma consumption) of plasma before operation to gain an additional speed boost")
+    public static Lang plasmaAlloyTooltip3;
+
+
+    @Key("ctnh.multiblock.plasma_alloy.tooltip.4")
+    @CN("氦等离子体：消耗500*并行的等离子体，速度+100%")
+    @EN("Helium plasma: consumes 500 × parallel plasma, speed +100%")
+    public static Lang plasmaAlloyTooltip4;
+
+
+    @Key("ctnh.multiblock.plasma_alloy.tooltip.5")
+    @CN("氧，氮等离子体：消耗300*并行的等离子体，速度+200%")
+    @EN("Oxygen or nitrogen plasma: consumes 300 × parallel plasma, speed +200%")
+    public static Lang plasmaAlloyTooltip5;
+
+
+    @Key("ctnh.multiblock.plasma_alloy.tooltip.6")
+    @CN("镍，铁等离子体：消耗200*并行的等离子体，速度+300%")
+    @EN("Nickel or iron plasma: consumes 200 × parallel plasma, speed +300%")
+    public static Lang plasmaAlloyTooltip6;
+
+
+    @Key("ctnh.multiblock.plasma_alloy.tooltip.7")
+    @CN("消耗特殊的冶炼等离子体可以获得额外的速度加成，§c但是同样会将增加你冶炼的风险")
+    @EN("Special smelting plasmas grant additional speed bonuses, §cbut also increase the risk of your smelting process")
+    public static Lang plasmaAlloyTooltip7;
+
+
+    @Key("ctnh.multiblock.plasma_alloy.tooltip.8")
+    @CN("压缩精金等离子：消耗固定100等离子体，使速度*5,使消耗电压翻倍（§c这可能导致配方不运行，请使用多安能源仓）")
+    @EN("Compressed Enriched Naquadah Plasma: consumes a fixed 100 plasma, speed ×5, and doubles voltage consumption (§cwhich may prevent recipes from running; use multi-amp energy hatches)")
+    public static Lang plasmaAlloyTooltip8;
+
+
+    @Key("ctnh.multiblock.plasma_alloy.tooltip.9")
+    @CN("精炼超能以太等离子体：消耗50*并行等离子体，使速度*10,§c使最终产物在80%-100%中浮动")
+    @EN("Refined Super Energetic Aether Plasma: consumes 50 × parallel plasma, speed ×10, §cand makes final output fluctuate between 80% and 100%")
+    public static Lang plasmaAlloyTooltip9;
+
+
+    @Key("ctnh.multiblock.pvdrone.tooltip.0")
+    @CN("戴森云计划")
+    @EN("Dyson Swarm Project")
+    public static Lang pvdroneTooltip0;
+
+
+    @Key("ctnh.multiblock.pvdrone.tooltip.1")
+    @CN("允许使用并行控制仓，并行数为运行时间倍率")
+    @EN("Allows parallel control hatches; parallelism equals the processing-time multiplier")
+    public static Lang pvdroneTooltip1;
+
+
+    @Key("ctnh.multiblock.pvdrone.tooltip.2")
+    @CN("为光伏基站提供电力增幅，使用光伏绑定终端来为这两个结构绑定")
+    @EN("Provides a power boost to the photovoltaic station; use the Photovoltaic Binding Terminal to bind these two structures")
+    public static Lang pvdroneTooltip2;
+
+
+    @Key("ctnh.multiblock.pvdrone.tooltip.3")
+    @CN("将无人机放入无人机支架以开始发送无人机，每5秒和运行结束时，每个无人机都有一定概率消耗，无人机发电同样受维度和空间站增幅")
+    @EN("Place drones in the drone holder to begin transmitting them. Each drone has a chance to be consumed every 5 seconds and when operation ends; drone generation is also affected by dimension and station bonuses")
+    public static Lang pvdroneTooltip3;
+
+
+    @Key("ctnh.multiblock.pvdrone.tooltip.4")
+    @CN("无人机的消耗概率公式为1.0 / (1.0 + Math.exp(-0.25* (x - 9)))")
+    @EN("Drone consumption chance = 1.0 / (1.0 + Math.exp(-0.25 * (x - 9)))")
+    public static Lang pvdroneTooltip4;
+
+
+    @Key("ctnh.multiblock.pvdrone.tooltip.5")
+    @CN("使用无人机收集陨石时，产出的倍率公式为0.1*Math.sqrt(无人机电压之和)，倍率小于1时无产出，无法超频")
+    @EN("When drones collect meteors, output multiplier = 0.1 × sqrt(sum of drone voltages). No output below multiplier 1; cannot be overclocked")
+    public static Lang pvdroneTooltip5;
+
+
+    @Key("ctnh.multiblock.sinope_chemical.tooltip.0")
+    @CN("来自§b某个神秘东方大国§r的工业力量")
+    @EN("From §bA certain mysterious eastern country§r's industrial power.")
+    public static Lang sinopeChemicalTooltip0;
+
+
+    @Key("ctnh.multiblock.sinope_chemical.tooltip.1")
+    @CN("格雷员工不骗格雷员工，并行是真实的")
+    @EN("Gray employees don’t deceive gray employees, parallel is real.")
+    public static Lang sinopeChemicalTooltip1;
+
+
+    @Key("ctnh.multiblock.sinope_chemical.tooltip.2")
+    @CN("没有外壳等级要求，配方不需要催化剂")
+    @EN("No shell level requirements, recipes don't need catalysts.")
+    public static Lang sinopeChemicalTooltip2;
+
+
+    @Key("ctnh.multiblock.sinope_chemical.tooltip.3")
+    @CN("并行数与中心的方块有关")
+    @EN("Parallel count is related to the central block.")
+    public static Lang sinopeChemicalTooltip3;
+
+
+    @Key("ctnh.multiblock.sinope_chemical.tooltip.4")
+    @CN("硅岩块:8并行")
+    @EN("Silicon rock block: 8 parallel")
+    public static Lang sinopeChemicalTooltip4;
+
+
+    @Key("ctnh.multiblock.sinope_chemical.tooltip.5")
+    @CN("富集硅岩块:32并行")
+    @EN("Enriched silicon rock block: 32 parallel")
+    public static Lang sinopeChemicalTooltip5;
+
+
+    @Key("ctnh.multiblock.sinope_chemical.tooltip.6")
+    @CN("超能硅岩块:128并行")
+    @EN("Super silicon rock block: 128 parallel")
+    public static Lang sinopeChemicalTooltip6;
+
+
+    @Key("ctnh.multiblock.sinope_chemical.tooltip.7")
+    @CN("每一点实际的并行数减少0.5%的能耗和运行时间，至多减少25%(独立乘区)")
+    @EN("Each point of actual parallel reduces energy consumption and operation time by 0.5%, up to a maximum reduction of 25% (independently multiplied)")
+    public static Lang sinopeChemicalTooltip7;
+
+
+    @Key("ctnh.multiblock.sinope_chemical.tooltip.8")
+    @CN("线圈每提供1800K，运行速度+100%")
+    @EN("Each coil providing 1800K increases the operation speed by +100%")
+    public static Lang sinopeChemicalTooltip8;
+
+
+    @Key("ctnh.multiblock.sinope_chemical.tooltip.9")
+    @CN("§c任何虚假的并行都将绳之以法!§r")
+    @EN("§cAny false parallel will be punished!§r")
+    public static Lang sinopeChemicalTooltip9;
+
+
+    @Key("ctnh.multiblock.spacephotovoltaicbasestation.tooltip.0")
+    @CN("§6光辉灿烂的太空之路")
+    @EN("§6A Glorious Path Through Space")
+    public static Lang spacephotovoltaicbasestationTooltip0;
+
+
+    @Key("ctnh.multiblock.spacephotovoltaicbasestation.tooltip.2")
+    @CN("在太空发电模式下，星球类型和光伏方块的等级都会提升发电量，在空间站被视为无重力环境，且发电量*4,消耗特定材料以进一步提升发电量")
+    @EN("In Space Power Generation mode, planet type and photovoltaic block tier increase power output. The station is treated as a zero-gravity environment, multiplying output by 4; consuming specific materials increases output further")
+    public static Lang spacephotovoltaicbasestationTooltip2;
+
+
+    @Key("ctnh.multiblock.spacephotovoltaicbasestation.tooltip.3")
+    @CN("在太空光伏组装模式下，不消耗EUt，发电量将锁定为1，根据配方的模拟F功率来计算速度和并行量")
+    @EN("In Space Photovoltaic Assembly mode, no EUt is consumed and power output is locked at 1. Speed and parallelism are calculated from the recipe's simulated F power")
+    public static Lang spacephotovoltaicbasestationTooltip3;
+
+
+    @Key("ctnh.multiblock.spacephotovoltaicbasestation.tooltip.4")
+    @CN("光伏等级，光照强度共同决定了是否可以执行太空组装配方，光伏方块耐热性和耐热结构方块决定了可以获得的光照最大倍率，太空结构方块决定了可以使用的光伏方块等级和是否可以使用附属结构")
+    @EN("Photovoltaic tier and light intensity determine whether space assembly recipes can run. Photovoltaic block heat resistance and heat-resistant structural blocks determine the maximum light multiplier. Space structural blocks determine the usable photovoltaic tier and whether auxiliary structures are allowed")
+    public static Lang spacephotovoltaicbasestationTooltip4;
+
+
+    @Key("ctnh.multiblock.spacephotovoltaicbasestation.tooltip.5")
+    @CN("在太空光伏组装模式下，最终并行为(太空发电模式下发电量/模拟功率),最终时间倍率为(模拟功率/太空发电模式下发电量)，当太空发电模式下发电量小于模拟功率时，最终时间倍率将变为平方")
+    @EN("In Space Photovoltaic Assembly mode, final parallelism = (Space Power Generation output / simulated power), and final time multiplier = (simulated power / Space Power Generation output). If Space Power Generation output is lower than simulated power, the final time multiplier is squared")
+    public static Lang spacephotovoltaicbasestationTooltip5;
+
+
+    @Key("ctnh.multiblock.spacephotovoltaicbasestation.tooltip.ex")
+    @CN("§6该结构将持续拓展，这还不是它的完全体状态！")
+    @EN("§6This structure will continue to expand; it is not yet complete!")
+    public static Lang spacephotovoltaicbasestationTooltipEx;
+
+
+    @Key("ctnh.multiblock.wide_accelerator.tooltip.0")
+    @CN("粒子加速集成者")
+    @EN("Particle Accelerator Integrator")
+    public static Lang wideAcceleratorTooltip0;
+
+
+    @Key("ctnh.multiblock.wide_accelerator.tooltip.1")
+    @CN("允许§9使用激光仓§r和§a变电仓§r")
+    @EN("Allows the use of §9laser hatches§r and §avoltage converter hatches§r")
+    public static Lang wideAcceleratorTooltip1;
+
+
+    @Key("ctnh.multiblock.wide_accelerator.tooltip.10")
+    @CN("注意:本机器用电量极高，且暂时无法做到只能计算正确并行，使用低电压可能导致§c配方无法运行§r或者§c跳电§r,建议搭配§9激光仓§r使用，如遇配方不工作，请报告给作者")
+    @EN("WARNING: Extreme power consumption. Improper voltage may cause §crecipe failure§r or §ccircuit tripping§r. Recommended with §9laser hatches§r. Reduce parallelism if malfunction occurs")
+    public static Lang wideAcceleratorTooltip10;
+
+
+    @Key("ctnh.multiblock.wide_accelerator.tooltip.11")
+    @CN("可以与约束器链接传递部分粒子。§c警告：如果没有链接约束器，不要随意尝试某些危险的配方§r (目前还是饼)")
+    @EN("Particle transfer available via containment links. §cCAUTION: Hazardous recipes require pre-installed containment systems§r (Currently conceptual)")
+    public static Lang wideAcceleratorTooltip11;
+
+
+    @Key("ctnh.multiblock.wide_accelerator.tooltip.2")
+    @CN("通过三个轨道加速三种粒子")
+    @EN("Accelerates three types of particles through three beamlines")
+    public static Lang wideAcceleratorTooltip2;
+
+
+    @Key("ctnh.multiblock.wide_accelerator.tooltip.3")
+    @CN("本机器只要求粒子速度大于配方需求，不满足需求无法运行。粒子速度不会超过50Gev，这台机器非常安全，不会引发爆炸。")
+    @EN("The machine only requires particle velocities to exceed the recipe requirements; it cannot run otherwise. Particle velocity is capped at 50 GeV, making the machine very safe and preventing explosions.")
+    public static Lang wideAcceleratorTooltip3;
+
+
+    @Key("ctnh.multiblock.wide_accelerator.tooltip.4")
+    @CN("允许使用§b并行控制仓§r，不适用并行控制仓则使用默认值")
+    @EN("Allows the use of §bparallel control hatches§r; without one, the default value is used")
+    public static Lang wideAcceleratorTooltip4;
+
+
+    @Key("ctnh.multiblock.wide_accelerator.tooltip.5")
+    @CN("在运行一般配方时如无§b并行控制仓§r,默认使用16并行")
+    @EN("When running normal recipes without a §bparallel control hatch§r, the default is 16 parallel processes")
+    public static Lang wideAcceleratorTooltip5;
+
+
+    @Key("ctnh.multiblock.wide_accelerator.tooltip.6")
+    @CN("如果粒子速度过慢，则什么都不会产生")
+    @EN("Insufficient particle velocity yields no products")
+    public static Lang wideAcceleratorTooltip6;
+
+
+    @Key("ctnh.multiblock.wide_accelerator.tooltip.7")
+    @CN("本机器可以存储至多50E EU能量，存储的能量可以在加速界面调整三种粒子速度，每调整1M ev粒子速度需要消耗10M EU存储的能量，按住shift时可以一次性更改10M ev粒子速度，按住ctrl时可以一次性更改100M ev粒子速度")
+    @EN("The machine can store up to 50E EU. Stored energy can be used to adjust the three particle velocities in the acceleration interface. Each 1 MeV increase in particle velocity consumes 10M EU from stored energy. Hold Shift to change velocity by 10 MeV at once; hold Ctrl to change it by 100 MeV at once.")
+    public static Lang wideAcceleratorTooltip7;
+
+
+    @Key("ctnh.multiblock.wide_accelerator.tooltip.8")
+    @CN("三种粒子轨道速度之和每有1M ev，每tick便消耗机器存储的100EU能量，电量不足时，每tick粒子速度会衰减10%")
+    @EN("For every 1 MeV in the sum of the three particle velocities, the machine consumes 100 EU of stored energy per tick. If power is insufficient, particle velocity decays by 10% per tick.")
+    public static Lang wideAcceleratorTooltip8;
+
+
+    @Key("ctnh.multiblock.wide_accelerator.tooltip.9")
+    @CN("机器没有运行时，默认使用存储能源舱室的所有能源为机器充能。机器运行时仍然使用能源仓的能量。但在机器运行时除非机器存储电量不够，否则能源仓不会为机器充能")
+    @EN("When the machine is idle, it uses all energy in the energy-storage hatches to charge itself by default. While running, it continues to use energy from the energy hatches. However, during operation, the energy hatches will not charge the machine unless its stored energy is insufficient.")
+    public static Lang wideAcceleratorTooltip9;
+
+
+    @Key("ctnh.plasma_alloy.tooltip.recipe")
+    @CN("配方类型：合金冶炼炉")
+    @EN("Recipe Type: Alloy Blast Smelter")
+    public static Lang plasmaAlloyTooltipRecipe;
+
+
+    @Key("ctnh.u_sinope.1")
+    @CN("配方类型：蒸馏塔/蒸馏室/裂化机/流体加热机/流体固化机/真空石化处理/???")
+    @EN("Recipe types: Distillation Tower / Distillation Room / Cracker / Fluid Heater / Fluid Solidifier / Vacuum Petrochemical Processing / ???")
+    public static Lang uSinope1;
+
+
+    @Key("ctnh.u_sinope.2")
+    @CN("§c它那究极的结构已然无法让你的EMI承受，你需要寻求蓝图的帮忙，同时在修改结构时最好直接破坏主方块以避免检测卡死游戏")
+    @EN("§cIts ultimate structure is too much for your EMI to bear; seek help from blueprints. When modifying the structure, it is best to break the controller directly to avoid detection freezing the game")
+    public static Lang uSinope2;
+
+
+    @Key("ctnh.u_sinope.3")
+    @CN("巨型的结构只能在真空建立，否则巨大的结构将会使周围坍缩（效率减少99.99%）")
+    @EN("This giant structure can only be built in a vacuum; otherwise the surrounding area will collapse (efficiency reduced by 99.99%)")
+    public static Lang uSinope3;
+
+
+    @Key("ctnh.u_sinope.4")
+    @CN("除非你使用四维工程学材料，否则它无法再承受UIV即以上的线圈，效率将减少99.99%")
+    @EN("Unless four-dimensional engineering materials are used, it cannot withstand coils at UIV or above; efficiency is reduced by 99.99%")
+    public static Lang uSinope4;
+
+
+    @Key("ctnh.u_sinope.5")
+    @CN("线圈等级决定了最大的配方等级，你最大只能使用线圈电压等级+1的配方等级，否则效率减少99%")
+    @EN("Coil tier determines the maximum recipe tier. You can use at most a recipe tier one above the coil voltage tier; otherwise efficiency is reduced by 99%")
+    public static Lang uSinope5;
+
+
+    @Key("ctnh.u_sinope.6")
+    @CN("允许使用激光仓，但你的配方电压等级必须达到OPV，否则效率将减少99%")
+    @EN("Laser hatches are allowed, but the recipe voltage tier must reach OPV; otherwise efficiency is reduced by 99%")
+    public static Lang uSinope6;
+
+
+    @Key("ctnh.u_sinope.7")
+    @CN("对于常规配方，该巨构拥有8^（电压等级）的并行，最高不超过2^32，在能源仓等级达到OPV时解锁无损超频，配方等级每超过UHV一级，处理速度+555%,每100点并行使处理速度增加333%,如果使用了四维工程学材料，则速度额外增加5000%")
+    @EN("For normal recipes, this multiblock has 8^(voltage tier) parallel operations, capped at 2^32. Lossless overclocking unlocks when the energy hatch reaches OPV. Each recipe tier above UHV adds 555% processing speed; every 100 parallels adds 333% processing speed. Four-dimensional engineering materials add another 5000% speed")
+    public static Lang uSinope7;
+
+
+    @Key("ctnh.u_sinope.8")
+    @CN("对于该巨构特有的配方类型具有特殊机制：时间固定为100秒，并行固定为10，电压每超过UHV一级，则时间减少10秒，并行增加10,如果使用了四维工程学材料且线圈等级大于等于UIV，则时间固定为1秒")
+    @EN("This multiblock's unique recipe types use special mechanics: time is fixed at 100 seconds and parallelism at 10; for each voltage tier above UHV, time decreases by 10 seconds and parallelism increases by 10. If four-dimensional engineering materials are used and the coil tier is at least UIV, time is fixed at 1 second")
+    public static Lang uSinope8;
+
+
+    @Key("ctnh.u_sinope.story.1")
+    @CN("在战争没有开始前，人们曾团结在一起，一齐建造这工业的巴别巨塔")
+    @EN("Before the war began, people stood united and built this industrial Tower of Babel together")
+    public static Lang uSinopeStory1;
+
+
+    @Key("ctnh.u_sinope.story.2")
+    @CN("直到那场永恒的战争，这座真空巨塔化为永恒的残骸，随着战争的双方破碎在真空中")
+    @EN("Until the Eternal War, when this vacuum tower became eternal ruins, shattered in the vacuum along with both sides of the war")
+    public static Lang uSinopeStory2;
+
+
+    @Key("ctnh.u_sinope.story.3")
+    @CN("你已无法再知晓那场战争的双方是否已经相互毁灭，但你直到，这座巨型结构将宣告着人类的复兴")
+    @EN("You can no longer know whether both sides of that war destroyed each other, but you know this giant structure will herald humanity's revival")
+    public static Lang uSinopeStory3;
+
+
+
 
     public final static MultiblockMachineDefinition SILICA_ROCK_FUEL_REFINERY = REGISTRATE.multiblock("silica_rock_fuel_refinery", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
@@ -86,10 +847,10 @@ public class MultiblocksB {
             .recipeType(CTNHRecipeTypes.NANO_GENERATOR)
             .generator(true)
             .recipeModifier(NanoscaleTriboelectricGenerator::recipeModifier)
-            .tooltips(Component.translatable("ctnh.multiblock.nano_generator.tooltip.0"),
-                    Component.translatable("ctnh.multiblock.nano_generator.tooltip.1"),
-                    Component.translatable("ctnh.multiblock.nano_generator.tooltip.2"),
-                    Component.translatable("ctnh.multiblock.nano_generator.tooltip.3")
+            .tooltips(nanoGeneratorTooltip0.translate(),
+                    nanoGeneratorTooltip1.translate(),
+                    nanoGeneratorTooltip2.translate(),
+                    nanoGeneratorTooltip3.translate()
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("###B###", "###C###", "###C###", "###C###", "###C###", "###C###", "###D###", "###D###", "###D###", "###D###", "###E###", "###F###", "###F###", "###D###")
@@ -124,13 +885,13 @@ public class MultiblocksB {
             .recipeTypes(CTNHRecipeTypes.WOOD_BIONICS)
             .appearanceBlock(CTNHBlocks.NATURAL_ECOLOGICAL_SHELL_CASING)
             .recipeModifiers(ForestMachine::recipeModifier, OC_NON_PERFECT)
-            .tooltips(Component.translatable("ctnh.multiblock.forest_sea.tooltip.1").withStyle(ChatFormatting.GRAY),
-                    Component.translatable("ctnh.multiblock.forest_sea.tooltip.2"),
-                    Component.translatable("ctnh.multiblock.forest_sea.tooltip.3"),
-                    Component.translatable("ctnh.multiblock.forest_sea.tooltip.4"),
-                    Component.translatable("ctnh.multiblock.forest_sea.tooltip.5"),
-                    Component.translatable("ctnh.multiblock.forest_sea.tooltip.6"),
-                    Component.translatable("ctnh.multiblock.forest_sea.tooltip.7"))
+            .tooltips(forestSeaTooltip1.translate().withStyle(ChatFormatting.GRAY),
+                    forestSeaTooltip2.translate(),
+                    forestSeaTooltip3.translate(),
+                    forestSeaTooltip4.translate(),
+                    forestSeaTooltip5.translate(),
+                    forestSeaTooltip6.translate(),
+                    forestSeaTooltip7.translate())
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAA", "AAA", "AAA")
                     .aisle("AAA", "A#A", "AAA")
@@ -147,16 +908,16 @@ public class MultiblocksB {
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.SINOPE, GTRecipeTypes.CRACKING_RECIPES)
             .recipeModifiers(SinopeChemical::recipeModifier, OC_NON_PERFECT)
-            .tooltips(Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.0"),
-                    Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.1"),
-                    Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.2"),
-                    Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.3"),
-                    Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.4"),
-                    Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.5"),
-                    Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.6"),
-                    Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.7"),
-                    Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.8"),
-                    Component.translatable("ctnh.multiblock.sinope_chemical.tooltip.9"))
+            .tooltips(sinopeChemicalTooltip0.translate(),
+                    sinopeChemicalTooltip1.translate(),
+                    sinopeChemicalTooltip2.translate(),
+                    sinopeChemicalTooltip3.translate(),
+                    sinopeChemicalTooltip4.translate(),
+                    sinopeChemicalTooltip5.translate(),
+                    sinopeChemicalTooltip6.translate(),
+                    sinopeChemicalTooltip7.translate(),
+                    sinopeChemicalTooltip8.translate(),
+                    sinopeChemicalTooltip9.translate())
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAAAA", "A#######A", "A#######A", "A#######A", "A#######A", "A#######A", "A#######A", "A#######A", "AAAAAAAAA")
                     .aisle("AAAAAAAAA", "#BBBBBBB#", "#########", "#########", "#########", "#########", "#########", "#BBBBBBB#", "AAAAAAAAA")
@@ -188,18 +949,18 @@ public class MultiblocksB {
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.ACCELERATOR_UP)
             .recipeModifiers(WideParticleAccelerator::recipeModifier, OC_NON_PERFECT)
-            .tooltips(Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.0"),
-                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.1"),
-                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.2"),
-                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.3"),
-                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.4"),
-                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.5"),
-                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.6"),
-                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.7"),
-                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.8"),
-                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.9"),
-                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.10"),
-                    Component.translatable("ctnh.multiblock.wide_accelerator.tooltip.11")
+            .tooltips(wideAcceleratorTooltip0.translate(),
+                    wideAcceleratorTooltip1.translate(),
+                    wideAcceleratorTooltip2.translate(),
+                    wideAcceleratorTooltip3.translate(),
+                    wideAcceleratorTooltip4.translate(),
+                    wideAcceleratorTooltip5.translate(),
+                    wideAcceleratorTooltip6.translate(),
+                    wideAcceleratorTooltip7.translate(),
+                    wideAcceleratorTooltip8.translate(),
+                    wideAcceleratorTooltip9.translate(),
+                    wideAcceleratorTooltip10.translate(),
+                    wideAcceleratorTooltip11.translate()
             )
 
             .pattern(definition -> FactoryBlockPattern.start()
@@ -254,13 +1015,13 @@ public class MultiblocksB {
             .recipeType(CTNHRecipeTypes.ARC_GENERATOR)
             .generator(true)
             .recipeModifier(Arc_Generator::recipeModifier, true)
-            .tooltips(Component.translatable("ctnh.multiblock.arcgenerator.tooltip.1"),
-                    Component.translatable("ctnh.multiblock.arcgenerator.tooltip.arc.t1.1"),
-                    Component.translatable("ctnh.multiblock.arcgenerator.tooltip.arc.t1.2"),
-                    Component.translatable("ctnh.multiblock.arcgenerator.tooltip.2"),
-                    Component.translatable("ctnh.multiblock.arcgenerator.tooltip.3"),
-                    Component.translatable("ctnh.multiblock.arcgenerator.tooltip.4"),
-                    Component.translatable("ctnh.multiblock.arcgenerator.tooltip.5")
+            .tooltips(arcgeneratorTooltip1.translate(),
+                    arcgeneratorTooltipArcT11.translate(),
+                    arcgeneratorTooltipArcT12.translate(),
+                    arcgeneratorTooltip2.translate(),
+                    arcgeneratorTooltip3.translate(),
+                    arcgeneratorTooltip4.translate(),
+                    arcgeneratorTooltip5.translate()
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "###B#############B###", "#####################", "#####################", "#####################").aisle("#####################", "#####################", "#####################", "#####################", "#####################", "###B#############B###", "##BCB###########BCB##", "###B#############B###", "#####################", "#####################")
@@ -306,13 +1067,13 @@ public class MultiblocksB {
             .recipeType(CTNHRecipeTypes.ARC_GENERATOR)
             .generator(true)
             .recipeModifier(Arc_Generator::recipeModifier, true)
-            .tooltips(Component.translatable("ctnh.multiblock.arcgenerator.tooltip.t2.1"),
-                    Component.translatable("ctnh.multiblock.arcgenerator.tooltip.arc.t2.1"),
-                    Component.translatable("ctnh.multiblock.arcgenerator.tooltip.arc.t2.2"),
-                    Component.translatable("ctnh.multiblock.arcgenerator.tooltip.2"),
-                    Component.translatable("ctnh.multiblock.arcgenerator.tooltip.3"),
-                    Component.translatable("ctnh.multiblock.arcgenerator.tooltip.4"),
-                    Component.translatable("ctnh.multiblock.arcgenerator.tooltip.5")
+            .tooltips(arcgeneratorTooltipT21.translate(),
+                    arcgeneratorTooltipArcT21.translate(),
+                    arcgeneratorTooltipArcT22.translate(),
+                    arcgeneratorTooltip2.translate(),
+                    arcgeneratorTooltip3.translate(),
+                    arcgeneratorTooltip4.translate(),
+                    arcgeneratorTooltip5.translate()
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "###B#############B###", "#####################", "#####################", "#####################").aisle("#####################", "#####################", "#####################", "#####################", "#####################", "###B#############B###", "##BCB###########BCB##", "###B#############B###", "#####################", "#####################")
@@ -357,13 +1118,13 @@ public class MultiblocksB {
             .recipeType(CTNHRecipeTypes.ARC_GENERATOR)
             .generator(true)
             .recipeModifier(Arc_Generator::recipeModifier, true)
-            .tooltips(Component.translatable("ctnh.multiblock.arcgenerator.tooltip.t3.1"),
-                    Component.translatable("ctnh.multiblock.arcgenerator.tooltip.arc.t3.1"),
-                    Component.translatable("ctnh.multiblock.arcgenerator.tooltip.arc.t3.2"),
-                    Component.translatable("ctnh.multiblock.arcgenerator.tooltip.2"),
-                    Component.translatable("ctnh.multiblock.arcgenerator.tooltip.3"),
-                    Component.translatable("ctnh.multiblock.arcgenerator.tooltip.4"),
-                    Component.translatable("ctnh.multiblock.arcgenerator.tooltip.5")
+            .tooltips(arcgeneratorTooltipT31.translate(),
+                    arcgeneratorTooltipArcT31.translate(),
+                    arcgeneratorTooltipArcT32.translate(),
+                    arcgeneratorTooltip2.translate(),
+                    arcgeneratorTooltip3.translate(),
+                    arcgeneratorTooltip4.translate(),
+                    arcgeneratorTooltip5.translate()
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "###B#############B###", "#####################", "#####################", "#####################").aisle("#####################", "#####################", "#####################", "#####################", "#####################", "###B#############B###", "##BCB###########BCB##", "###B#############B###", "#####################", "#####################")
@@ -407,9 +1168,9 @@ public class MultiblocksB {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ARC_REACTOR)
             .recipeModifier(Arc_Reactor::recipeModifier)
-            .tooltips(Component.translatable("ctnh.multiblock.arcreactor.tooltip.1"),
-                    Component.translatable("ctnh.multiblock.arcreactor.tooltip.2"),
-                    Component.translatable("ctnh.multiblock.arcreactor.tooltip.t1")
+            .tooltips(arcreactorTooltip1.translate(),
+                    arcreactorTooltip2.translate(),
+                    arcreactorTooltipT1.translate()
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#########B########", "#########B########", "#########B########", "#########B########", "#########B########", "#########B########", "##################", "##################")
@@ -517,7 +1278,7 @@ public class MultiblocksB {
             .recipeType(GTRecipeTypes.ASSEMBLY_LINE_RECIPES)
             .alwaysTryModifyRecipe(true)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_NON_PERFECT, GTRecipeModifiers.BATCH_MODE)
-            .tooltips(Component.translatable("gtceu.multiblock.laser.tooltip"),
+            .tooltips(CTNHCommonTooltips.gtceuMultiblockLaserTooltip.translate(),
                     Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
             .appearanceBlock(ADVANCE_MACHINE_CASING_SOLID_STEEL)
             .pattern(definition -> FactoryBlockPattern.start(BACK, UP, RIGHT)
@@ -552,10 +1313,10 @@ public class MultiblocksB {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.CULTIVATION_ROOM)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_NON_PERFECT, BATCH_MODE)
-            .tooltips(Component.translatable("ctnh.multiblock.cultivation_room.tooltip.1").withStyle(ChatFormatting.GREEN),
-                    Component.translatable("ctnh.multiblock.cultivation_room.tooltip.2"),
+            .tooltips(cultivationRoomTooltip1.translate().withStyle(ChatFormatting.GREEN),
+                    cultivationRoomTooltip2.translate(),
                     CTNHCommonTooltips.PARALLEL_HATCH,
-                    Component.translatable("gtceu.multiblock.laser.tooltip")
+                    CTNHCommonTooltips.gtceuMultiblockLaserTooltip.translate()
             )
             .appearanceBlock(CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -584,17 +1345,17 @@ public class MultiblocksB {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GCYMRecipeTypes.ALLOY_BLAST_RECIPES)
             .recipeModifiers(PlasmaAlloyBlast::recipeModifier, GTRecipeModifiers::ebfOverclock, BATCH_MODE)
-            .tooltips(Component.translatable("ctnh.multiblock.plasma_alloy.tooltip.1"),
-                    Component.translatable("ctnh.multiblock.plasma_alloy.tooltip.11"),
-                    Component.translatable("ctnh.multiblock.plasma_alloy.tooltip.2"),
-                    Component.translatable("ctnh.multiblock.plasma_alloy.tooltip.3"),
-                    Component.translatable("ctnh.multiblock.plasma_alloy.tooltip.4"),
-                    Component.translatable("ctnh.multiblock.plasma_alloy.tooltip.5"),
-                    Component.translatable("ctnh.multiblock.plasma_alloy.tooltip.6"),
-                    Component.translatable("ctnh.multiblock.plasma_alloy.tooltip.7"),
-                    Component.translatable("ctnh.multiblock.plasma_alloy.tooltip.8"),
-                    Component.translatable("ctnh.multiblock.plasma_alloy.tooltip.9"),
-                    Component.translatable("ctnh.multiblock.plasma_alloy.tooltip.10")
+            .tooltips(plasmaAlloyTooltip1.translate(),
+                    plasmaAlloyTooltip11.translate(),
+                    plasmaAlloyTooltip2.translate(),
+                    plasmaAlloyTooltip3.translate(),
+                    plasmaAlloyTooltip4.translate(),
+                    plasmaAlloyTooltip5.translate(),
+                    plasmaAlloyTooltip6.translate(),
+                    plasmaAlloyTooltip7.translate(),
+                    plasmaAlloyTooltip8.translate(),
+                    plasmaAlloyTooltip9.translate(),
+                    plasmaAlloyTooltip10.translate()
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("A####BBBBBBB####A", "#####BBBBBBB#####", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################")
@@ -816,18 +1577,18 @@ public class MultiblocksB {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.LS_RECIPE,GTRecipeTypes.LASER_ENGRAVER_RECIPES)
             .recipeModifiers(LaserSorter::recipeModifier, OC_NON_PERFECT)
-            .tooltips(Component.translatable("ctnh.multiblock.lasersorter.tooltip.0"),
-                    Component.translatable("ctnh.multiblock.lasersorter.tooltip.1"),
-                    Component.translatable("ctnh.multiblock.lasersorter.tooltip.2"),
-                    Component.translatable("ctnh.multiblock.lasersorter.tooltip.3"),
-                    Component.translatable("ctnh.multiblock.lasersorter.tooltip.4"),
-                    Component.translatable("ctnh.multiblock.lasersorter.tooltip.5"),
-                    Component.translatable("ctnh.multiblock.lasersorter.tooltip.6"),
-                    Component.translatable("ctnh.multiblock.lasersorter.tooltip.7"),
-                    Component.translatable("ctnh.multiblock.lasersorter.tooltip.8"),
-                    Component.translatable("ctnh.multiblock.lasersorter.tooltip.9"),
-                    Component.translatable("ctnh.multiblock.lasersorter.tooltip.10"),
-                    Component.translatable("ctnh.multiblock.lasersorter.tooltip.11")
+            .tooltips(lasersorterTooltip0.translate(),
+                    lasersorterTooltip1.translate(),
+                    lasersorterTooltip2.translate(),
+                    lasersorterTooltip3.translate(),
+                    lasersorterTooltip4.translate(),
+                    lasersorterTooltip5.translate(),
+                    lasersorterTooltip6.translate(),
+                    lasersorterTooltip7.translate(),
+                    lasersorterTooltip8.translate(),
+                    lasersorterTooltip9.translate(),
+                    lasersorterTooltip10.translate(),
+                    lasersorterTooltip11.translate()
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAA", "AABBBAA", "AABBBAA", "AABBBAA", "AAAAAAA")
@@ -856,12 +1617,12 @@ public class MultiblocksB {
             .generator(true)
             .recipeTypes(CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR, CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER)
             .recipeModifier(SpacePhotovoltaicBaseStation::recipeModifier,true)
-            .tooltips(Component.translatable("ctnh.multiblock.spacephotovoltaicbasestation.tooltip.0"),
-                    Component.translatable("ctnh.multiblock.spacephotovoltaicbasestation.tooltip.2"),
-                    Component.translatable("ctnh.multiblock.spacephotovoltaicbasestation.tooltip.3"),
-                    Component.translatable("ctnh.multiblock.spacephotovoltaicbasestation.tooltip.4"),
-                    Component.translatable("ctnh.multiblock.spacephotovoltaicbasestation.tooltip.5"),
-                    Component.translatable("ctnh.multiblock.spacephotovoltaicbasestation.tooltip.ex")
+            .tooltips(spacephotovoltaicbasestationTooltip0.translate(),
+                    spacephotovoltaicbasestationTooltip2.translate(),
+                    spacephotovoltaicbasestationTooltip3.translate(),
+                    spacephotovoltaicbasestationTooltip4.translate(),
+                    spacephotovoltaicbasestationTooltip5.translate(),
+                    spacephotovoltaicbasestationTooltipEx.translate()
 
             )
             .pattern(definition -> FactoryBlockPattern.start()
@@ -922,12 +1683,12 @@ public class MultiblocksB {
             .allowExtendedFacing(false)
             .recipeTypes(CTNHRecipeTypes.PVDRONE)
             .recipeModifiers(PhotoVoltaicDroneStation::recipeModifier)
-            .tooltips(Component.translatable("ctnh.multiblock.pvdrone.tooltip.0"),
-                    Component.translatable("ctnh.multiblock.pvdrone.tooltip.1"),
-                    Component.translatable("ctnh.multiblock.pvdrone.tooltip.2"),
-                    Component.translatable("ctnh.multiblock.pvdrone.tooltip.3"),
-                    Component.translatable("ctnh.multiblock.pvdrone.tooltip.4"),
-                    Component.translatable("ctnh.multiblock.pvdrone.tooltip.5")
+            .tooltips(pvdroneTooltip0.translate(),
+                    pvdroneTooltip1.translate(),
+                    pvdroneTooltip2.translate(),
+                    pvdroneTooltip3.translate(),
+                    pvdroneTooltip4.translate(),
+                    pvdroneTooltip5.translate()
 
             )
             .pattern(definition -> FactoryBlockPattern.start()
@@ -1023,9 +1784,9 @@ public class MultiblocksB {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.VACUUM_RECIPES)
             .recipeModifiers(CryotheumFreezer::recipeModifier, OC_NON_PERFECT, BATCH_MODE)
-            .tooltips(Component.translatable("ctnh.multiblock.cryotheum_freezer.tip.0"),
-                    Component.translatable("ctnh.multiblock.cryotheum_freezer.tip.1"),
-                    Component.translatable("ctnh.multiblock.cryotheum_freezer.tip.2"))
+            .tooltips(cryotheumFreezerTip0.translate(),
+                    cryotheumFreezerTip1.translate(),
+                    cryotheumFreezerTip2.translate())
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("A###BBBBB####", "####BCCCB####", "####BCCCB####", "####BCCCB####", "####BCCCB####", "####BCCCB####", "####BBBBB####")
                     .aisle("#BBBBBDBBBBB#", "#DDDBEDEBDDD#", "#BBBBEDEBBBB#", "#DDDBEFEBDDD#", "#BBBBEDEBBBB#", "#DDDBEDEBDDD#", "#BBBBBEBBBBB#")
@@ -1057,25 +1818,25 @@ public class MultiblocksB {
             .recipeType(CTNHRecipeTypes.COMPILER_RECIPE)
             .appearanceBlock(CASING_ANTIFREEZE_HEATPROOF_MACHINE)
             .recipeModifiers(GTRecipeModifiers.TIER_CHECK, NeuroMatrixCompiler::recipeModifier)
-            .tooltips(Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.0"),
-                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.01"),
-                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.1"),
-                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.2"),
-                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.3"),
-                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.4"),
-                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.5"),
-                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.6"),
-                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.part1"),
-                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.part2"),
-                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.part3"),
-                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.part4"),
-                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.7"),
-                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.8"),
-                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.9"),
-                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.10"),
-                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.11"),
+            .tooltips(neuroMatrixCompilerTip0.translate(),
+                    neuroMatrixCompilerTip01.translate(),
+                    neuroMatrixCompilerTip1.translate(),
+                    neuroMatrixCompilerTip2.translate(),
+                    neuroMatrixCompilerTip3.translate(),
+                    neuroMatrixCompilerTip4.translate(),
+                    neuroMatrixCompilerTip5.translate(),
+                    neuroMatrixCompilerTip6.translate(),
+                    neuroMatrixCompilerTipPart1.translate(),
+                    neuroMatrixCompilerTipPart2.translate(),
+                    neuroMatrixCompilerTipPart3.translate(),
+                    neuroMatrixCompilerTipPart4.translate(),
+                    neuroMatrixCompilerTip7.translate(),
+                    neuroMatrixCompilerTip8.translate(),
+                    neuroMatrixCompilerTip9.translate(),
+                    neuroMatrixCompilerTip10.translate(),
+                    neuroMatrixCompilerTip11.translate(),
 
-                    Component.translatable("ctnh.multiblock.neuro_martix_compiler.tip.12"))
+                    neuroMatrixCompilerTip12.translate())
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("A############BBBBB#############", "#############CCDCC#############", "#############B#B#B#############", "###############################", "###############################", "###############################", "##############B#B##############", "#############CCCCC#############", "#############BBBBB#############")
                     .aisle("#############BBBBB#############", "#############CEFEC#############", "##############EFE##############", "##############EFE##############", "##############EFE##############", "##############EFE##############", "#############BEFEB#############", "#############CEFEC#############", "#############BBBBB#############")
@@ -1132,8 +1893,8 @@ public static final MultiblockMachineDefinition[] FLUID_DRILLING_INF = CTNHMachi
                 .langValue("%s Fluid Drilling Rig %s".formatted(VLVH[tier], VLVT[tier]))
                 .recipeType(DUMMY_RECIPES)
                 .tooltips(
-                        Component.translatable("ctnh.multiblock.fluid_drilling_rig.description.inf"),
-                        Component.translatable("ctnh.multiblock.fluid_drilling_rig.depletion.inf"
+                        fluidDrillingRigDescriptionInf.translate(),
+                        fluidDrillingRigDepletionInf.translate(
                                 ),
                         Component.translatable("gtceu.universal.tooltip.energy_tier_range", GTValues.VNF[tier],
                                 GTValues.VNF[tier + 1]),

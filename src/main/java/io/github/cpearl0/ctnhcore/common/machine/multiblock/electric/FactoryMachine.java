@@ -1,4 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
+import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
+import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
@@ -37,6 +39,19 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FactoryMachine extends RecipeElectricMultiblockMachine implements IMachineModifyDrops {
+
+    @Key("ctnh.multiblock.sweat_shop.info.basic_rate")
+    @CN("基础效率：x%s")
+    @EN("Base Productivity: x%s")
+    public static Lang sweatShopInfoBasicRate;
+
+
+    @Key("ctnh.multiblock.sweat_shop.info.villager_count")
+    @CN("员工数量：%s")
+    @EN("Employee Count: %s")
+    public static Lang sweatShopInfoVillagerCount;
+
+
 
     public int CENTRIFUGE_COUNT = 0;
     public int LATHE_COUNT = 0;
@@ -225,7 +240,7 @@ public class FactoryMachine extends RecipeElectricMultiblockMachine implements I
             var recipeType = recipe.recipeType;
             var recipeTier = recipe.tier;
             if (fmachine.basicRate == 0) {
-                return Component.translatable("gtceu.recipe_modifier.default_fail");
+                return CTNHCommonTooltips.gtceuRecipeModifierDefaultFail.translate();
             }
             recipe.multiplyDuration(2 / fmachine.basicRate * Math.pow(recipeTier, 2));
             if (recipeType.equals(GTRecipeTypes.CENTRIFUGE_RECIPES)) {
@@ -300,8 +315,8 @@ public class FactoryMachine extends RecipeElectricMultiblockMachine implements I
         updateVillagerCount();
         updateBasicRate();
         super.addDisplayText(textList);
-        textList.add(Component.translatable("ctnh.multiblock.sweat_shop.info.villager_count", VILLAGER_COUNT));
+        textList.add(sweatShopInfoVillagerCount.translate( VILLAGER_COUNT));
         textList.add(
-                Component.translatable("ctnh.multiblock.sweat_shop.info.basic_rate", String.format("%.2f", basicRate)));
+                sweatShopInfoBasicRate.translate( String.format("%.2f", basicRate)));
     }
 }

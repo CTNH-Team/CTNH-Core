@@ -1,4 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.item;
+import com.ctnhlang.Key;
 
 import com.gregtechceu.gtceu.api.item.component.IInteractionItem;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -37,6 +38,37 @@ import java.util.List;
 import static com.lowdragmc.lowdraglib.networking.LDLNetworking.NETWORK;
 
 public class TestingTerminalBehavior implements IInteractionItem {
+
+    @Key("ctnh.test_terminal.error_info")
+    @CN("(%s)")
+    @EN("(%s)")
+    public static Lang testTerminalErrorInfo;
+
+
+    @Key("ctnh.test_terminal.lack_error")
+    @CN("在%s处缺少")
+    @EN("At %s, you need")
+    public static Lang testTerminalLackError;
+
+
+    @Key("ctnh.test_terminal.position")
+    @CN("(%s,%s,%s)")
+    @EN("(%s,%s,%s)")
+    public static Lang testTerminalPosition;
+
+
+    @Key("ctnh.test_terminal.success")
+    @CN("一切正常！")
+    @EN("Everything is OK！")
+    public static Lang testTerminalSuccess;
+
+
+    @Key("ctnh.test_terminal.wrong_error")
+    @CN("在%s处应为")
+    @EN("At %s, it should be")
+    public static Lang testTerminalWrongError;
+
+
 
     private static final String TAG_FLIPPED = "IsFlipped";
 
@@ -95,7 +127,7 @@ public class TestingTerminalBehavior implements IInteractionItem {
 
         if (controller.isFormed()) {
             player.sendSystemMessage(
-                    Component.translatable("ctnh.test_terminal.success")
+                    testTerminalSuccess.translate()
                             .withStyle(ChatFormatting.GREEN));
             return InteractionResult.SUCCESS;
         }
@@ -174,16 +206,16 @@ public class TestingTerminalBehavior implements IInteractionItem {
 
         if (error instanceof SinglePredicateError) {
 
-            messages.add(Component.translatable(
-                    "ctnh.test_terminal.lack_error",
-                    Component.translatable("ctnh.test_terminal.position",
+            messages.add(testTerminalLackError.translate(
+                    
+                    testTerminalPosition.translate(
                             pos.getX(), pos.getY(), pos.getZ())));
 
         } else {
 
-            messages.add(Component.translatable(
-                    "ctnh.test_terminal.wrong_error",
-                    Component.translatable("ctnh.test_terminal.position",
+            messages.add(testTerminalWrongError.translate(
+                    
+                    testTerminalPosition.translate(
                             pos.getX(), pos.getY(), pos.getZ())));
         }
 
