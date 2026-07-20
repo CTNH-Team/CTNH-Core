@@ -36,6 +36,7 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
+import static com.gregtechceu.gtceu.common.data.GTMachines.DUAL_IMPORT_HATCH;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.machines.GTResearchMachines.OBJECT_HOLDER;
@@ -341,7 +342,7 @@ public class MachinesRecipes {
                 .save(provider);
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("uv_neuro_compiler"))
-                .inputItems(HUGE_DUAL_IMPORT_HATCH[UV].asStack())
+                .inputItems(DUAL_IMPORT_HATCH[UV].asStack())
                 .inputItems(CustomTags.UHV_CIRCUITS, 4)
                 .inputItems(plateDense, UncategorizedMaterials.NAQUADAH_HEAT_RESISTANT_FERROCHROME_ALLOY_792, 7)
                 .inputItems(CONVEYOR_MODULE_UV, 2)
@@ -351,7 +352,7 @@ public class MachinesRecipes {
                 .inputFluids(AviationFabricMaterials.KAPTON_K.getFluid(1000))
                 .outputItems(COMPILERMACHINE[UV].asStack())
                 .stationResearch(b -> b
-                        .researchStack(HUGE_DUAL_IMPORT_HATCH[UV].asStack())
+                        .researchStack(DUAL_IMPORT_HATCH[UV].asStack())
                         .CWUt(28)
                         .EUt(VA[ZPM]))
                 .duration(100)
@@ -359,7 +360,7 @@ public class MachinesRecipes {
                 .save(provider);
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("uhv_neuro_compiler"))
-                .inputItems(HUGE_DUAL_IMPORT_HATCH[UHV].asStack())
+                .inputItems(DUAL_IMPORT_HATCH[UHV].asStack())
                 .inputItems(CustomTags.UEV_CIRCUITS, 4)
                 .inputItems(plateDense, UncategorizedMaterials.NAQUADAH_HEAT_RESISTANT_FERROCHROME_ALLOY_792, 7)
                 .inputItems(CONVEYOR_MODULE_UHV, 2)
