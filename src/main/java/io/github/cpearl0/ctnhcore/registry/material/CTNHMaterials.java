@@ -1,4 +1,8 @@
 package io.github.cpearl0.ctnhcore.registry.material;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.*;
@@ -35,6 +39,7 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialFlags.GENERATE_HYPER_ROTOR;
 
 public class CTNHMaterials {
+
 
     public static void addFluid(Material material) {
         if (!material.hasProperty(PropertyKey.FLUID)) {

@@ -1,5 +1,10 @@
 package io.github.cpearl0.ctnhcore.utils;
 
+import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.SimpleComputationMachine;
@@ -44,6 +49,12 @@ import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class CTNHMachineUtils {
+
+    @CN("注意：部分配方需要算力执行")
+    @EN("Note: Some recipes require computation to run")
+    public static Lang tooltipsSimpleComputationMachine;
+
+
 
     public static MachineDefinition[] registerTieredMachines(String name,
                                                              BiFunction<IMachineBlockEntity, Integer, MetaMachine> factory,
@@ -169,7 +180,7 @@ public class CTNHMachineUtils {
                             .workableTieredHullModel(CTNHCore.id("block/machines/" + name))
                             .tooltips(workableTiered(tier, GTValues.V[tier], GTValues.V[tier] * 64, recipeType,
                                     tankScalingFunction.apply(tier), true))
-                            .tooltips(Component.translatable("ctnh.tooltips.simplecomputationmachine"))
+                            .tooltips(tooltipsSimpleComputationMachine.translate())
                             .register();
                 },
                 tiers);
@@ -206,8 +217,7 @@ public class CTNHMachineUtils {
                         .recipeType(recipeType)
                         .simpleGeneratorModel(CTNHCore.id("block/generators/" + name))
                         .tooltips(
-                                Component.translatable(
-                                        "ctnh.machine." + name + ".tooltip", efficiencyFunction.apply(tier)))
+                                efficiencyTooltip(name).translate(efficiencyFunction.apply(tier)))
                         .tooltips(GTMachineUtils.explosion())
                         .tooltips(
                                 GTMachineUtils.workableTiered(
@@ -219,6 +229,14 @@ public class CTNHMachineUtils {
                                         false))
                         .register(),
                 tiers);
+    }
+
+    private static Lang efficiencyTooltip(String name) {
+        return switch (name) {
+            case "naquadah_reactor" -> CTNHMachines.machineNaquadahReactorTooltip;
+            case "rocket_engine" -> CTNHMachines.machineRocketEngineTooltip;
+            default -> throw new IllegalArgumentException("Unsupported efficiency generator: " + name);
+        };
     }
 
     public static Component environmentRequirement(MedicalCondition condition) {

@@ -1,4 +1,7 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.api.machine.feature.ICoilMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.multithread.CNCAlloySmelter;
@@ -40,13 +43,19 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 // spotless:off
 public class MultiblocksC {
+
+    @CN("室内种植")
+    @EN("Plant In Room")
+    public static Lang greenhouseTooltip0;
+
+
     public static void init() {}
 
     public static final MultiblockMachineDefinition GREENHOUSE = REGISTRATE.multiblock("greenhouse", WorkableElectricMultiblockMachine::new)
             .allowExtendedFacing(false)
             .recipeType(CTNHRecipeTypes.GREENHOUSE_RECIPES)
             .recipeModifiers(GTRecipeModifiers.OC_NON_PERFECT, GTRecipeModifiers.BATCH_MODE)
-            .tooltips(Component.translatable("ctnh.multiblock.greenhouse.tooltip.0").withStyle(ChatFormatting.GRAY))
+            .tooltips(greenhouseTooltip0.translate().withStyle(ChatFormatting.GRAY))
             .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "ABBBA", "ABBBA", "#BBB#", "#BBB#", "##B##", "#####")
@@ -84,8 +93,8 @@ public class MultiblocksC {
             .multiblock("cnc_alloy_smelter", CNCAlloySmelter::new)
             .langValue("CNC ALLOY Smelter")
             .recipeType(ALLOY_BLAST_RECIPES)
-            .tooltips(Component.translatable("ctnh.multiblock.mega_lcr.tooltip.0"),
-                    Component.translatable("ctnh.multiblock.mega_lcr.tooltip.1"),
+            .tooltips(MultiblocksA.megaLcrTooltip0.translate(),
+                    MultiblocksA.megaLcrTooltip1.translate(),
                     Component.translatable("gtceu.multiblock.parallelizable.tooltip"),
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.0"),
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),

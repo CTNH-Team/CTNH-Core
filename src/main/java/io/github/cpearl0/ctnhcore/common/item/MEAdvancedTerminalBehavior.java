@@ -1,4 +1,8 @@
 package io.github.cpearl0.ctnhcore.common.item;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.common.gui.terminal.TerminalInputWidget;
 import io.github.cpearl0.ctnhcore.event.BuildTaskManager;
@@ -48,6 +52,116 @@ import java.util.function.Supplier;
 import static io.github.cpearl0.ctnhcore.api.Pattern.AsynBlockPattern.getAdvancedBlockPattern;
 
 public class MEAdvancedTerminalBehavior implements IItemUIFactory {
+
+    @CN("线圈等级")
+    @EN("Coil Tier")
+    public static Lang itemMeAdvancedTerminalSetting1;
+
+
+    @CN("设置自动放置的线圈等级(0:不指定等级)\n设置后会忽略结构本身的要求")
+    @EN("Set the tier of coils placed automatically (0: no tier specified)\nThe structure's own requirements are ignored after setting this")
+    public static Lang itemMeAdvancedTerminalSetting1Tooltip;
+
+
+    @CN("工业血之祭坛结构等级")
+    @EN("Industrial Blood Altar Tier")
+    public static Lang itemMeAdvancedTerminalSetting10;
+
+
+    @CN("仅对工业血之祭坛自动成型生效\n设置要构建的工业血之祭坛等级(0-4)\n0 对应二阶，4 对应六阶")
+    @EN("Only applies to automatic formation of Industrial Blood Altars\nSet the Industrial Blood Altar tier to build (0-4)\n0 corresponds to Tier II and 4 corresponds to Tier VI")
+    public static Lang itemMeAdvancedTerminalSetting10Tooltip;
+
+
+    @CN("重复结构次数")
+    @EN("Repeated Structure Count")
+    public static Lang itemMeAdvancedTerminalSetting2;
+
+
+    @CN("设置可重复结构(蒸馏塔、装配线等)的重复部分放置次数\n对超净间无效")
+    @EN("Set the number of repeated sections placed for repeatable structures (Distillation Towers, Assembly Lines, etc.)\nDoes not apply to Cleanrooms")
+    public static Lang itemMeAdvancedTerminalSetting2Tooltip;
+
+
+    @CN("无仓室模式")
+    @EN("Hatchless Mode")
+    public static Lang itemMeAdvancedTerminalSetting3;
+
+
+    @CN("是否启用无仓室模式(0:不启用,1:启用)\n启用无仓室模式后不会放置任何仓室")
+    @EN("Enable hatchless mode (0: disabled, 1: enabled)\nWhen enabled, no hatches will be placed")
+    public static Lang itemMeAdvancedTerminalSetting3Tooltip;
+
+
+    @CN("线圈替换模式")
+    @EN("Coil Replacement Mode")
+    public static Lang itemMeAdvancedTerminalSetting4;
+
+
+    @CN("是否启用线圈替换模式(0:不启用,1:启用)\n启用线圈替换模式会将所有线圈替换为指定等级的线圈\n请确保物品栏中有空间存放替换下来的线圈")
+    @EN("Enable coil replacement mode (0: disabled, 1: enabled)\nWhen enabled, all coils are replaced with the specified tier\nMake sure the inventory has room for the replaced coils")
+    public static Lang itemMeAdvancedTerminalSetting4Tooltip;
+
+
+    @CN("使用AE存储")
+    @EN("Use AE Storage")
+    public static Lang itemMeAdvancedTerminalSetting5;
+
+
+    @CN("是否启用AE库存(0:不启用,1:启用)\n启用后将优先在AE库存中检索\n通过ME无线访问点链接到网络")
+    @EN("Enable AE storage (0: disabled, 1: enabled)\nWhen enabled, the AE storage is searched first\nConnect to the network through an ME Wireless Access Point")
+    public static Lang itemMeAdvancedTerminalSetting5Tooltip;
+
+
+    @CN("放置流体")
+    @EN("Place Fluids")
+    public static Lang itemMeAdvancedTerminalSetting6;
+
+
+    @CN("是否启用流体放置(0:不启用,1:启用)\n启用后将检索并消耗物品栏/背包流体容器中的或AE库存中的流体\n可堆叠的流体容器须保证堆叠数为1")
+    @EN("Enable fluid placement (0: disabled, 1: enabled)\nWhen enabled, fluids are searched for and consumed from fluid containers in the inventory/backpack or AE storage\nStackable fluid containers must have a stack size of 1")
+    public static Lang itemMeAdvancedTerminalSetting6Tooltip;
+
+
+    @CN("在流体中放置")
+    @EN("Place in Fluids")
+    public static Lang itemMeAdvancedTerminalSetting7;
+
+
+    @CN("是否在流体中放置方块(0:不启用,1:启用)\n启用后会将空间中的流体视为空位\n与“放置流体”同时启用时，不会在流体中放置流体")
+    @EN("Place blocks in fluids (0: disabled, 1: enabled)\nWhen enabled, fluids in the space are treated as empty space\nWhen enabled together with Place Fluids, fluids will not be placed in fluids")
+    public static Lang itemMeAdvancedTerminalSetting7Tooltip;
+
+
+    @Key("item.ctnh.me_advanced_terminal.setting.8")
+    @CN("拆除模式")
+    @EN("Removal Mode")
+    public static Lang itemMeAdvancedTerminalSetting8;
+
+
+    @Key("item.ctnh.me_advanced_terminal.setting.8.tooltip")
+    @CN("是否启用拆除模式(0:不启用,1:启用)\n请确保物品栏中有空间存放拆除的方块\n与“使用AE存储”同时启用时，拆除的方块会自动存入AE存储")
+    @EN("Enable removal mode (0: disabled, 1: enabled)\nMake sure the inventory has room for removed blocks\nWhen enabled together with AE Storage, removed blocks are automatically stored in AE storage")
+    public static Lang itemMeAdvancedTerminalSetting8Tooltip;
+
+
+    @Key("item.ctnh.me_advanced_terminal.setting.9")
+    @CN("多方块成型配置")
+    @EN("Multiblock Formation Configuration")
+    public static Lang itemMeAdvancedTerminalSetting9;
+
+
+    @Key("item.ctnh.me_advanced_terminal.setting.9.tooltip")
+    @CN("多方块成型配置")
+    @EN("Multiblock formation configuration")
+    public static Lang itemMeAdvancedTerminalSetting9Tooltip;
+
+
+    @CN("多方块结构成型配置")
+    @EN("Multiblock Formation Settings")
+    public static Lang itemMeAdvancedTerminalSettingTitle;
+
+
 
     // 配置键常量
     private static final String COIL_TIER_KEY = "CoilTier";
@@ -162,68 +276,68 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
                 // .addWidget(new AlignLabelWidget(89, 5, "item.ctnh.me_advanced_terminal.setting.title")
                 // .setTextAlign(ALIGN_CENTER));
                 .addWidget(new LabelWidget(40, 5,
-                        Component.translatable("item.ctnh.me_advanced_terminal.setting.title").getString()));
+                        itemMeAdvancedTerminalSettingTitle.translate().getString()));
 
         List<SettingConfig> settings = Arrays.asList(
                 new SettingConfig(
-                        "item.ctnh.me_advanced_terminal.setting.1",
+                        itemMeAdvancedTerminalSetting1.key(),
                         getCoilTooltip(),
                         COIL_TIER_KEY,
                         () -> getTagValue(handItem, COIL_TIER_KEY, 0),
                         value -> setTagValue(handItem, COIL_TIER_KEY, value),
                         0, GTCEuAPI.HEATING_COILS.size()),
                 new SettingConfig(
-                        "item.ctnh.me_advanced_terminal.setting.2",
+                        itemMeAdvancedTerminalSetting2.key(),
                         new ArrayList<>(Collections.singletonList(
-                                Component.translatable("item.ctnh.me_advanced_terminal.setting.2.tooltip"))),
+                                itemMeAdvancedTerminalSetting2Tooltip.translate())),
                         REPEAT_COUNT_KEY,
                         () -> getTagValue(handItem, REPEAT_COUNT_KEY, 0),
                         value -> setTagValue(handItem, REPEAT_COUNT_KEY, value),
                         0, 99),
                 new SettingConfig(
-                        "item.ctnh.me_advanced_terminal.setting.10",
+                        itemMeAdvancedTerminalSetting10.key(),
                         new ArrayList<>(Collections.singletonList(
-                                Component.translatable("item.ctnh.me_advanced_terminal.setting.10.tooltip"))),
+                                itemMeAdvancedTerminalSetting10Tooltip.translate())),
                         ALTAR_TIER_KEY,
                         () -> getTagValue(handItem, ALTAR_TIER_KEY, 0),
                         value -> setTagValue(handItem, ALTAR_TIER_KEY, value),
                         0, 4),
                 new SettingConfig(
-                        "item.ctnh.me_advanced_terminal.setting.3",
+                        itemMeAdvancedTerminalSetting3.key(),
                         new ArrayList<>(Collections.singletonList(
-                                Component.translatable("item.ctnh.me_advanced_terminal.setting.3.tooltip"))),
+                                itemMeAdvancedTerminalSetting3Tooltip.translate())),
                         NO_HATCH_MODE_KEY,
                         () -> getTagValue(handItem, NO_HATCH_MODE_KEY, 1),
                         value -> setTagValue(handItem, NO_HATCH_MODE_KEY, value),
                         0, 1),
                 new SettingConfig(
-                        "item.ctnh.me_advanced_terminal.setting.4",
+                        itemMeAdvancedTerminalSetting4.key(),
                         new ArrayList<>(Collections.singletonList(
-                                Component.translatable("item.ctnh.me_advanced_terminal.setting.4.tooltip"))),
+                                itemMeAdvancedTerminalSetting4Tooltip.translate())),
                         REPLACE_COIL_MODE_KEY,
                         () -> getTagValue(handItem, REPLACE_COIL_MODE_KEY, 0),
                         value -> setTagValue(handItem, REPLACE_COIL_MODE_KEY, value),
                         0, 1),
                 new SettingConfig(
-                        "item.ctnh.me_advanced_terminal.setting.5",
+                        itemMeAdvancedTerminalSetting5.key(),
                         new ArrayList<>(Collections.singletonList(
-                                Component.translatable("item.ctnh.me_advanced_terminal.setting.5.tooltip"))),
+                                itemMeAdvancedTerminalSetting5Tooltip.translate())),
                         USE_AE_KEY,
                         () -> getTagValue(handItem, USE_AE_KEY, 0),
                         value -> setTagValue(handItem, USE_AE_KEY, value),
                         0, 1),
                 new SettingConfig(
-                        "item.ctnh.me_advanced_terminal.setting.6",
+                        itemMeAdvancedTerminalSetting6.key(),
                         new ArrayList<>(Collections.singletonList(
-                                Component.translatable("item.ctnh.me_advanced_terminal.setting.6.tooltip"))),
+                                itemMeAdvancedTerminalSetting6Tooltip.translate())),
                         PLACE_FLUID_KEY,
                         () -> getTagValue(handItem, PLACE_FLUID_KEY, 0),
                         value -> setTagValue(handItem, PLACE_FLUID_KEY, value),
                         0, 1),
                 new SettingConfig(
-                        "item.ctnh.me_advanced_terminal.setting.7",
+                        itemMeAdvancedTerminalSetting7.key(),
                         new ArrayList<>(Collections.singletonList(
-                                Component.translatable("item.ctnh.me_advanced_terminal.setting.7.tooltip"))),
+                                itemMeAdvancedTerminalSetting7Tooltip.translate())),
                         PLACE_IN_FLUID_KEY,
                         () -> getTagValue(handItem, PLACE_IN_FLUID_KEY, 0),
                         value -> setTagValue(handItem, PLACE_IN_FLUID_KEY, value),
@@ -248,7 +362,7 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
 
     private List<Component> getCoilTooltip() {
         List<Component> lines = new ArrayList<>();
-        lines.add(Component.translatable("item.ctnh.me_advanced_terminal.setting.1.tooltip"));
+        lines.add(itemMeAdvancedTerminalSetting1Tooltip.translate());
         GTCEuAPI.HEATING_COILS.entrySet().stream()
                 .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
                 .forEach(entry -> lines.add(Component.literal(String.valueOf(entry.getKey().getTier() + 1))

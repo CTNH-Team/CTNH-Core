@@ -1,4 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -14,6 +17,17 @@ import net.minecraft.world.level.Level;
 import java.util.List;
 
 public class Arc_Reactor extends RecipeElectricMultiblockMachine implements ITieredMachine {
+
+    @CN("可输出的电弧强度:%d")
+    @EN("Output Arc Intensity: %d")
+    public static Lang arcreactorArc;
+
+
+    @CN("§b桥接已启用§r")
+    @EN("§bBridge Enabled§r")
+    public static Lang arcreactorConnect;
+
+
 
     public int arc;
     public boolean isconnect = false;
@@ -57,10 +71,10 @@ public class Arc_Reactor extends RecipeElectricMultiblockMachine implements ITie
         super.addDisplayText(textList);
         var tier = getTier();
         if (isconnect) {
-            textList.add(textList.size(), Component.translatable("ctnh.multiblock.arcreactor.connect"));
+            textList.add(textList.size(), arcreactorConnect.translate());
         }
         textList.add(textList.size(),
-                Component.translatable("ctnh.multiblock.arcreactor.arc", String.format("%d", arc)));
+                arcreactorArc.translate( String.format("%d", arc)));
     }
 
     @Override

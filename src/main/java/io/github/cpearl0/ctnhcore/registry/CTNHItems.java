@@ -1,4 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry;
+import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.common.item.*;
 import io.github.cpearl0.ctnhcore.common.item.debug.ReloadItem;
@@ -49,6 +50,110 @@ import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.CREATIVE
 
 @Suffix("tooltip")
 public class CTNHItems {
+
+    @CN("更好的随机存取存储器")
+    @EN("Advanced Random Access Memory")
+    public static Lang advancedRamChipTooltip;
+
+
+    @CN("更好的内存原料")
+    @EN("Enhanced RAM Wafer")
+    public static Lang advancedRamWaferTooltip;
+
+
+    @Key("ctnh.item.dyson_tier1")
+    @CN("集成性光伏无人机蜂群")
+    @EN("Integrated Photovoltaic Drone Swarm")
+    public static Lang itemDysonTier1;
+
+
+    @Key("ctnh.item.dyson_tier2")
+    @CN("§4我们的蜂群遮天蔽日")
+    @EN("§4Our swarm blocks out the sky")
+    public static Lang itemDysonTier2;
+
+
+    @CN("基础堆温：%d°C")
+    @EN("Base Reactor Temperature: %d°C")
+    public static Lang itemNuclearReactorHeat;
+
+
+    @Key("ctnh.item.runes.horizen_rune")
+    @CN("视野所向之处")
+    @EN("As Far as the Eye Can See")
+    public static Lang itemRunesHorizenRune;
+
+
+    @Key("ctnh.item.runes.proliferation_rune")
+    @CN("金融与生物的本能")
+    @EN("Finance and Biological Instinct")
+    public static Lang itemRunesProliferationRune;
+
+
+    @Key("ctnh.item.runes.quasar_rune")
+    @CN("毁灭与创造交替")
+    @EN("The Alternation of Destruction and Creation")
+    public static Lang itemRunesQuasarRune;
+
+
+    @Key("ctnh.item.runes.starlight_rune")
+    @CN("Per Aspera Ad Astra")
+    @EN("Per Aspera Ad Astra")
+    public static Lang itemRunesStarlightRune;
+
+
+    @Key("ctnh.item.runes.twist_rune")
+    @CN("速度与人性的扭曲")
+    @EN("The Distortion of Speed and Humanity")
+    public static Lang itemRunesTwistRune;
+
+
+    @CN("§l格雷科技-多方块结构终端-异步成型模式")
+    @EN("§lGregTech Multiblock Structure Terminal - Asynchronous Formation Mode")
+    public static Lang meAdvancedTerminalTooltip1;
+
+
+    @CN("复刻了曾经的旗舰款，终端屏幕上闪烁着久违的画面")
+    @EN("A replica of the former flagship model; its terminal screen flickers with a long-lost display")
+    public static Lang meAdvancedTerminalTooltip2;
+
+
+    @Key("ctnh.me_advanced_terminal.tooltip.3")
+    @CN("通过ME无线访问点链接到网络")
+    @EN("Connects to the network via an ME Wireless Access Point")
+    public static Lang meAdvancedTerminalTooltip3;
+
+
+    @CN("能维持机体基本的生理功能")
+    @EN("Maintains the body's basic physiological functions")
+    public static Lang simpleNutritiousMealTooltip1;
+
+
+    @CN("用于检测多方块搭建时产生的错误")
+    @EN("Use to check the error when building the multiblock")
+    public static Lang testingTerminalTooltip1;
+
+
+    @CN("右键多方块的主方块以显示错误信息")
+    @EN("Right-click the controller to show the error info")
+    public static Lang testingTerminalTooltip2;
+
+
+    @CN("按住Shift右键切换普通/翻转模式")
+    @EN("Right-click with Shift to change between Normal/Flipped mode")
+    public static Lang testingTerminalTooltip3;
+
+
+    @CN("蕴含生态圈的所有精华")
+    @EN("Contains all the essence of an ecosystem")
+    public static Lang itemEcologicalStarDesc;
+
+
+    @CN("分化....")
+    @EN("Differentiation....")
+    public static Lang itemSculkCellDesc;
+
+
 
     static {
         REGISTRATE.creativeModeTab(() -> CTNHCreativeModeTabs.ITEM);
@@ -146,7 +251,7 @@ public class CTNHItems {
             .cnlang("简易营养餐")
             .lang("Simple Nutritious meal")
             .onRegister(attach(new TooltipBehavior(list -> {
-                list.add(Component.translatable("ctnh.simple_nutritious_meal.tooltip.1")
+                list.add(simpleNutritiousMealTooltip1.translate()
                         .withStyle(ChatFormatting.GRAY));
             })))
             .register();
@@ -155,7 +260,7 @@ public class CTNHItems {
             .cnlang("生态之星")
             .lang("Ecological Star")
             .onRegister(attach(new TooltipBehavior(list -> {
-                list.add(Component.translatable("item.ctnh.ecological_star.desc").withStyle(ChatFormatting.GREEN));
+                list.add(itemEcologicalStarDesc.translate().withStyle(ChatFormatting.GREEN));
             })))
             .register();
     public static ItemEntry<ComponentItem> SCULK_CELL = REGISTRATE
@@ -163,7 +268,7 @@ public class CTNHItems {
             .cnlang("幽匿干细胞")
             .lang("Sculk Cell")
             .onRegister(attach(new TooltipBehavior(list -> {
-                list.add(Component.translatable("item.sculk_cell.desc").withStyle(ChatFormatting.DARK_GRAY));
+                list.add(itemSculkCellDesc.translate().withStyle(ChatFormatting.DARK_GRAY));
             })))
             .register();
     public static ItemEntry<Item> ANIMAL_EXCRETA = REGISTRATE
@@ -210,9 +315,9 @@ public class CTNHItems {
             .properties(p -> p.stacksTo(1))
             .onRegister(attach(new TestingTerminalBehavior()))
             .onRegister(attach(new TooltipBehavior(list -> {
-                list.add(Component.translatable("ctnh.testing_terminal.tooltip.1").withStyle(ChatFormatting.GRAY));
-                list.add(Component.translatable("ctnh.testing_terminal.tooltip.2"));
-                list.add(Component.translatable("ctnh.testing_terminal.tooltip.3"));
+                list.add(testingTerminalTooltip1.translate().withStyle(ChatFormatting.GRAY));
+                list.add(testingTerminalTooltip2.translate());
+                list.add(testingTerminalTooltip3.translate());
             })))
             .register();
     public static ItemEntry<MEAdvancedTerminalItem> ME_ADVANCED_TERMINAL = REGISTRATE
@@ -222,8 +327,8 @@ public class CTNHItems {
             .properties(p -> p.stacksTo(1))
             .onRegister(attach(new MEAdvancedTerminalBehavior()))
             .onRegister(attach(new TooltipBehavior(list -> {
-                list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.1"));
-                list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.2").withStyle(ChatFormatting.GRAY));
+                list.add(meAdvancedTerminalTooltip1.translate());
+                list.add(meAdvancedTerminalTooltip2.translate().withStyle(ChatFormatting.GRAY));
             })))
             .register();
     public static ItemEntry<AstronomyCircuitItem> ASTRONOMY_CIRCUIT_1 = REGISTRATE
@@ -523,7 +628,7 @@ public class CTNHItems {
             .lang("Advanced Ram Wafer")
             .properties(p -> new Item.Properties().rarity(Rarity.UNCOMMON))
             .onRegister(attach(new TooltipBehavior(list -> {
-                list.add(Component.translatable("ctnh.advanced_ram_wafer.tooltip").withStyle(ChatFormatting.YELLOW));
+                list.add(advancedRamWaferTooltip.translate().withStyle(ChatFormatting.YELLOW));
             })))
             .register();
     public static ItemEntry<ComponentItem> ADVANCED_RAM_CHIP = REGISTRATE
@@ -532,7 +637,7 @@ public class CTNHItems {
             .lang("Advanced Ram Chip")
             .properties(p -> new Item.Properties().rarity(Rarity.UNCOMMON))
             .onRegister(attach(new TooltipBehavior(list -> {
-                list.add(Component.translatable("ctnh.advanced_ram_chip.tooltip").withStyle(ChatFormatting.YELLOW));
+                list.add(advancedRamChipTooltip.translate().withStyle(ChatFormatting.YELLOW));
             })))
             .register();
     public static ItemEntry<ComponentItem> PRIMARY_STEW = REGISTRATE

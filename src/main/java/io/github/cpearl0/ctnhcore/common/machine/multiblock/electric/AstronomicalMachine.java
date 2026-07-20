@@ -1,4 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CircuitBusPartMachine;
 
@@ -25,6 +28,12 @@ import java.util.Objects;
 
 public class AstronomicalMachine extends RecipeElectricMultiblockMachine {
 
+    @CN("只能在夜晚使用")
+    @EN("Can only be used at night")
+    public static Lang astronomicalInfoInvalid;
+
+
+
     public static final int START_TIME = 23000;
     public static final int END_TIME = 13000;
 
@@ -48,7 +57,7 @@ public class AstronomicalMachine extends RecipeElectricMultiblockMachine {
     @Override
     public Component beforeWorking(@NotNull GTRecipe recipe) {
         if (isValidPhotovoltaicPower()) return null;
-        return Component.translatable("ctnh.multiblock.astronomical.info.invalid");
+        return astronomicalInfoInvalid.translate();
         // final boolean[] begin = {false};
         // getParts().stream()
         // .filter(part -> part instanceof CircuitBusPartMachine)
@@ -67,7 +76,7 @@ public class AstronomicalMachine extends RecipeElectricMultiblockMachine {
     public void addDisplayText(@NotNull List<Component> textList) {
         if (isFormed()) {
             if (!isValidPhotovoltaicPower()) {
-                textList.add(Component.translatable("ctnh.multiblock.astronomical.info.invalid")
+                textList.add(astronomicalInfoInvalid.translate()
                         .withStyle(ChatFormatting.RED));
             } else {
                 super.addDisplayText(textList);

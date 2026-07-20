@@ -1,4 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.common.item.IDroneItem;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.DroneHolderMachine;
@@ -25,6 +28,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PhotoVoltaicDroneStation extends RecipeElectricMultiblockMachine {
+
+    @CN("提供的能量:%d")
+    @EN("Power supplied: %d")
+    public static Lang pvdroneInfoT1;
+
+
+    @CN("无人机消耗概率:%.4f")
+    @EN("Drone consumption chance: %.4f")
+    public static Lang pvdroneInfoT2;
+
+
 
     public PhotoVoltaicDroneStation(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
@@ -188,9 +202,9 @@ public class PhotoVoltaicDroneStation extends RecipeElectricMultiblockMachine {
 
     public void addDisplayText(List<Component> textList) {
         textList.add(textList.size(),
-                Component.translatable("ctnh.multiblock.pvdrone.info.t1", String.format("%d", eut)));
+                pvdroneInfoT1.translate( String.format("%d", eut)));
         textList.add(textList.size(),
-                Component.translatable("ctnh.multiblock.pvdrone.info.t2", String.format("%.4f", num)));
+                pvdroneInfoT2.translate( String.format("%.4f", num)));
         super.addDisplayText(textList);
     }
 }

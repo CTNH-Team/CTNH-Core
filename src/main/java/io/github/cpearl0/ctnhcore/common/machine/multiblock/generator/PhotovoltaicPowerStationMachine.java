@@ -1,4 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.IEnergyContainer;
@@ -41,6 +44,27 @@ import java.util.Objects;
 
 public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine implements IFancyUIMachine,
                                              IDisplayUIMachine, IWorkable, IExplosionMachine {
+
+    @CN("发电效率：%s%%")
+    @EN("Efficiency: %s%%")
+    public static Lang photovoltaicPowerStationInfo1;
+
+
+    @CN("产能功率：%s/%s EU/t")
+    @EN("Generating: %s/%s EU/t")
+    public static Lang photovoltaicPowerStationInfo2;
+
+
+    @CN("有方块阻挡")
+    @EN("Shadowed")
+    public static Lang photovoltaicPowerStationInfoInvalid;
+
+
+    @CN("光照过于微弱")
+    @EN("At night")
+    public static Lang photovoltaicPowerStationInfoNight;
+
+
 
     // const
     public static final int START_TIME = 23000;
@@ -266,14 +290,15 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
 
             if (valid == Status.VALID) {
                 // gtceu.multiblock.generation_eu
-                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station.info.1",
+                textList.add(photovoltaicPowerStationInfo1.translate(
                         String.format("%.1f", (lastOutputEnergy * 100f / BASIC_RATE))));
-                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station.info.2",
+                textList.add(photovoltaicPowerStationInfo2.translate(
                         FormattingUtil.formatNumbers(lastOutputEnergy), voltageName));
             } else {
-                textList.add(Component
-                        .translatable("ctnh.multiblock.photovoltaic_power_station.info." + valid.name().toLowerCase())
-                        .withStyle(ChatFormatting.RED));
+                Lang statusText = valid == Status.INVALID
+                        ? photovoltaicPowerStationInfoInvalid
+                        : photovoltaicPowerStationInfoNight;
+                textList.add(statusText.translate().withStyle(ChatFormatting.RED));
             }
         }
     }

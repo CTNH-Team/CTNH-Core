@@ -1,4 +1,8 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
+import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.renderer.HyperPlasmaTurbineRender;
@@ -32,6 +36,17 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class HyperPlasmaTurbineRegister {
+
+    @CN("§a精密计算§f与§e等离子体§f的§5终极艺术")
+    @EN("§5FINAL FANTASY §fof §a Precise Computation §f and §e Plasma Energy")
+    public static Lang hyperPlasmaTurbineTooltip0;
+
+
+    @CN("提供%d算力以达到基础功率，每提供%d算力，输出功率翻一倍")
+    @EN("Provide %d computation to reach the Base Production. For every %d computation provided, the Output Production DOUBLES.")
+    public static Lang hyperPlasmaTurbineTooltip1;
+
+
 
     public static MultiblockMachineDefinition register() {
         return REGISTRATE.multiblock("hyper_plasma_turbine", HyperPlasmaTurbineMachine::new)
@@ -281,14 +296,14 @@ public class HyperPlasmaTurbineRegister {
                         .andThen(b -> b.addDynamicRenderer(HyperPlasmaTurbineRender::new)))
                 // .hasTESR(true)
                 .tooltips(
-                        Component.translatable("ctnh.multiblock.hyper_plasma_turbine.tooltip0"),
-                        Component.translatable("ctnh.multiblock.hyper_plasma_turbine.tooltip1",
+                        hyperPlasmaTurbineTooltip0.translate(),
+                        hyperPlasmaTurbineTooltip1.translate(
                                 HyperPlasmaTurbineMachine.CWUtStair, HyperPlasmaTurbineMachine.CWUtStair),
                         Component.translatable("gtceu.multiblock.turbine.efficiency",
                                 HyperPlasmaTurbineMachine.getEfficiency() * 100),
                         Component.translatable("gtceu.universal.tooltip.base_production_eut",
                                 HyperPlasmaTurbineMachine.BASE_EU_OUTPUT),
-                        Component.translatable("gtceu.multiblock.laser.tooltip"))
+                        CTNHCommonTooltips.gtceuMultiblockLaserTooltip.translate())
                 .register();
     }
     // //由MBPosHelper生成

@@ -1,4 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.simple;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -28,8 +31,13 @@ import java.util.Set;
 
 public class OxygenEnricherMachine extends SimpleTieredMachine implements OxygenAreaSource {
 
-    private static final Component NO_OXYGEN_INPUT = Component
-            .translatable("ctnhcore.machine.oxygen_enricher.no_input");
+    @CN("氧气供应不足")
+    @EN("Insufficient oxygen supply")
+    public static Lang ctnhMachineOxygenEnricherNoInput;
+
+
+
+    private static final Component NO_OXYGEN_INPUT = ctnhMachineOxygenEnricherNoInput.translate();
     private static final short HABITABLE_TEMPERATURE = 22;
 
     private final Set<BlockPos> distributedBlocks = new HashSet<>();

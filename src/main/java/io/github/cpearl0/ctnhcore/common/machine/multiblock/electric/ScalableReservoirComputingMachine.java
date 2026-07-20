@@ -1,4 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.common.machine.trait.ScalableReservoirComputingLogic;
 
@@ -22,6 +25,27 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 public class ScalableReservoirComputingMachine extends RecipeElectricMultiblockMachine
                                                implements ComputationProducer, IControllable {
+
+    @CN("无牺牲者")
+    @EN("No sacrifices found")
+    public static Lang ctnhSrcSacrificeEmpty;
+
+
+    @CN("已锁定牺牲者！")
+    @EN("Sacrifice LOCKED")
+    public static Lang ctnhSrcSacrificeLocked;
+
+
+    @CN("无法锁定牺牲者")
+    @EN("Sacrifice UNLOCKED")
+    public static Lang ctnhSrcSacrificeUnlocked;
+
+
+    @CN("湿件剩余存活时间: %s ticks")
+    @EN("Wetware duration: %s ticks")
+    public static Lang ctnhSrcWetwareDuration;
+
+
 
     public ScalableReservoirComputingMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
@@ -102,13 +126,21 @@ public class ScalableReservoirComputingMachine extends RecipeElectricMultiblockM
 
     SacrificeLockState sacrificeLockState = SacrificeLockState.SACRIFICE_EMPTY;
 
+    private static Lang sacrificeStatus(SacrificeLockState state) {
+        return switch (state) {
+            case SACRIFICE_EMPTY -> ctnhSrcSacrificeEmpty;
+            case SACRIFICE_LOCKED -> ctnhSrcSacrificeLocked;
+            case SACRIFICE_UNLOCKED -> ctnhSrcSacrificeUnlocked;
+        };
+    }
+
     @Override
     public void addDisplayText(@NotNull List<Component> textList) {
         if (isFormed()) {
             if (!isActive()) {
-                textList.add(Component.translatable("ctnhcore.src." + sacrificeLockState.name().toLowerCase()));
+                textList.add(sacrificeStatus(sacrificeLockState).translate());
             }
-            textList.add(Component.translatable("ctnhcore.src.wetware_duration",
+            textList.add(ctnhSrcWetwareDuration.translate(
                     FormattingUtil.formatNumbers(duration)));
             textList.add(Component.translatable("gtceu.multiblock.computation.max",
                     FormattingUtil.formatNumbers(maxCWUt)));

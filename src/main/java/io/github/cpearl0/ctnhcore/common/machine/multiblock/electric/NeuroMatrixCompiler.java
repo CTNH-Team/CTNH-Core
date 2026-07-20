@@ -1,4 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CompilerMachine;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
@@ -31,6 +34,47 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class NeuroMatrixCompiler extends RecipeElectricMultiblockMachine implements ITieredMachine {
+
+    @CN("§c未知错误")
+    @EN("§cUnknown error")
+    public static Lang compilerError0;
+
+
+    @CN("§c舱室等级与片区1不匹配")
+    @EN("§cChamber tier does not match Region 1")
+    public static Lang compilerError1;
+
+
+    @CN("片区%d状态:%s")
+    @EN("Region %d status: %s")
+    public static Lang neuroMatrixCompilerInfoPartStates;
+
+
+    @CN("§c错误,类型：%s")
+    @EN("§cError, type: %s")
+    public static Lang neuroMatrixCompilerInfoStateError;
+
+
+    @CN("§a完成")
+    @EN("§aComplete")
+    public static Lang neuroMatrixCompilerInfoStateFinish;
+
+
+    @CN("§6待机")
+    @EN("§6Idle")
+    public static Lang neuroMatrixCompilerInfoStateIdle;
+
+
+    @CN("§b等待中......")
+    @EN("§bWaiting......")
+    public static Lang neuroMatrixCompilerInfoStateWaiting;
+
+
+    @CN("§9运行中:%ss/%ss")
+    @EN("§9Working: %ss/%ss")
+    public static Lang neuroMatrixCompilerInfoStateWorking;
+
+
 
     public NeuroMatrixCompiler(IMachineBlockEntity holder) {
         super(holder);
@@ -384,39 +428,39 @@ public class NeuroMatrixCompiler extends RecipeElectricMultiblockMachine impleme
 
     public MutableComponent error_analyse(int i) {
         if (i == -1) {
-            return Component.translatable("ctnh.compiler.error.0");
+            return compilerError0.translate();
         }
         if (i == 0)
-            return Component.translatable("ctnh.compiler.error.1");
-        return Component.translatable("ctnh.compiler.error.0");
+            return compilerError1.translate();
+        return compilerError0.translate();
     }
 
     public MutableComponent addProgressPartSatus(int i) {
         if (states.get(i) == 0) {
-            return (Component.translatable("ctnh.neuro_matrix_compiler.info.part_states",
-                    new Object[] { i + 1, Component.translatable("ctnh.neuro_matrix_compiler.info.state.idle") }));
+            return (neuroMatrixCompilerInfoPartStates.translate(
+                    new Object[] { i + 1, neuroMatrixCompilerInfoStateIdle.translate() }));
         }
         if (states.get(i) == 1) {
-            return (Component.translatable("ctnh.neuro_matrix_compiler.info.part_states",
+            return (neuroMatrixCompilerInfoPartStates.translate(
                     new Object[] { i + 1,
-                            Component.translatable("ctnh.neuro_matrix_compiler.info.state.working", new Object[] {
+                            neuroMatrixCompilerInfoStateWorking.translate( new Object[] {
                                     String.format("%.2f", (double) this.recipeLogic.getProgress() / 20),
                                     String.format("%.2f", (double) this.recipeLogic.getMaxProgress() / 120) }) }));
         }
         if (states.get(i) == 2) {
-            return (Component.translatable("ctnh.neuro_matrix_compiler.info.part_states",
-                    new Object[] { i + 1, Component.translatable("ctnh.neuro_matrix_compiler.info.state.error",
+            return (neuroMatrixCompilerInfoPartStates.translate(
+                    new Object[] { i + 1, neuroMatrixCompilerInfoStateError.translate(
                             new Object[] { error_analyse(error_message.get(i)) }) }));
         }
         if (states.get(i) == 3) {
-            return (Component.translatable("ctnh.neuro_matrix_compiler.info.part_states",
-                    new Object[] { i + 1, Component.translatable("ctnh.neuro_matrix_compiler.info.state.finish") }));
+            return (neuroMatrixCompilerInfoPartStates.translate(
+                    new Object[] { i + 1, neuroMatrixCompilerInfoStateFinish.translate() }));
         }
         if (states.get(i) == 4) {
-            return (Component.translatable("ctnh.neuro_matrix_compiler.info.part_states",
-                    new Object[] { i + 1, Component.translatable("ctnh.neuro_matrix_compiler.info.state.waiting") }));
+            return (neuroMatrixCompilerInfoPartStates.translate(
+                    new Object[] { i + 1, neuroMatrixCompilerInfoStateWaiting.translate() }));
         }
-        return (Component.translatable("ctnh.neuro_matrix_compiler.info.part_states",
-                new Object[] { i + 1, Component.translatable("ctnh.neuro_matrix_compiler.info.state.error") }));
+        return (neuroMatrixCompilerInfoPartStates.translate(
+                new Object[] { i + 1, neuroMatrixCompilerInfoStateError.translate() }));
     }
 }

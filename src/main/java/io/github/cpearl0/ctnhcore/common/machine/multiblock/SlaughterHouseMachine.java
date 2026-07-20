@@ -1,4 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.api.gui.CTNHGuiTextures;
 
@@ -63,6 +66,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class SlaughterHouseMachine extends RecipeElectricMultiblockMachine implements IMachineModifyDrops {
+
+    @CN("怪物种类：%d (%s)")
+    @EN("Mob Types: %d (%s)")
+    public static Lang slaughterHouseInfoMobcount;
+
+
 
     @Persisted
     public final NotifiableItemStackHandler machineStorage;
@@ -451,6 +460,6 @@ public class SlaughterHouseMachine extends RecipeElectricMultiblockMachine imple
         super.addDisplayText(textList);
         var mobName = mobList.stream().map(mob -> EntityType.byString(mob).get().getDescription().getString()).toList();
         textList.add(textList.size(),
-                Component.translatable("ctnh.multiblock.slaughter_house.info.mobcount", mobList.size(), mobName));
+                slaughterHouseInfoMobcount.translate( mobList.size(), mobName));
     }
 }

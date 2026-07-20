@@ -1,4 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -24,6 +27,22 @@ import java.util.Objects;
 @Setter
 @Getter
 public class NaqReactorMachine extends RecipeElectricMultiblockMachine implements ITieredMachine {
+
+    @CN("镍等离子体消耗量: %d")
+    @EN("Nickel plasma consumption: %d")
+    public static Lang naqReactorInfoNickelConsumption;
+
+
+    @CN("发电并行数: %d")
+    @EN("Power generation parallel count: %d")
+    public static Lang naqReactorInfoParallelCount;
+
+
+    @CN("§c内核温度: %d")
+    @EN("§cCore temperature: %d")
+    public static Lang naqReactorInfoTemperature;
+
+
 
     @Persisted
     private int currentTemperature = 0;  // 初始温度为0K
@@ -121,10 +140,10 @@ public class NaqReactorMachine extends RecipeElectricMultiblockMachine implement
         super.addDisplayText(textList);
         int parallelCount = getParallelCount();  // 获取当前并行数
         int fluidConsumption = FLUID_AMOUNT * parallelCount;  // 计算实际消耗量
-        textList.add(Component.translatable("ctnh.multiblock.naq_reactor.info.temperature", currentTemperature + "K"));
+        textList.add(naqReactorInfoTemperature.translate( currentTemperature + "K"));
         textList.add(
-                Component.translatable("ctnh.multiblock.naq_reactor.info.nickel_consumption", fluidConsumption + "mb"));
-        textList.add(Component.translatable("ctnh.multiblock.naq_reactor.info.parallel_count", getParallelCount()));
+                naqReactorInfoNickelConsumption.translate( fluidConsumption + "mb"));
+        textList.add(naqReactorInfoParallelCount.translate( getParallelCount()));
     }
 
     @Override

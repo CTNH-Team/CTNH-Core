@@ -1,4 +1,8 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 
 import com.gregtechceu.gtceu.api.capability.IControllable;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -25,6 +29,43 @@ import java.util.List;
 
 public class Superconducting_Penning_Trap extends RecipeElectricMultiblockMachine
                                           implements ITieredMachine, IExplosionMachine, IControllable {
+
+    @CN("反电子量:%d")
+    @EN("Positron amount: %d")
+    public static Lang antiElectric;
+
+
+    @CN("反中子量:%d")
+    @EN("Antineutron amount: %d")
+    public static Lang antiNu;
+
+
+    @CN("反质子量:%d")
+    @EN("Antiproton amount: %d")
+    public static Lang antiProton;
+
+
+    @CN("§c警告：供电不足，约束场即将失效！")
+    @EN("§cWarning: insufficient power; the containment field is about to fail!")
+    public static Lang noEnergyWaring;
+
+
+    @CN("约束危险物质")
+    @EN("Contain hazardous materials")
+    public static Lang restoreDanger;
+
+
+    @Key("ctnh.trap_electric")
+    @CN("当前存储电量:%deu")
+    @EN("Current stored power: %d EU")
+    public static Lang trapElectric;
+
+
+    @CN("允许存储电量上限:%deu")
+    @EN("Maximum stored power: %d EU")
+    public static Lang trapElectricMax;
+
+
 
     public BlockPos pos;
     public Level level;
@@ -168,24 +209,24 @@ public class Superconducting_Penning_Trap extends RecipeElectricMultiblockMachin
     @Override
     public void addDisplayText(List<Component> textList) {
         if (isconnect) {
-            textList.add(textList.size(), Component.translatable("ctnh.connect"));
+            textList.add(textList.size(), WideParticleAccelerator.connect.translate());
         }
         if (no_energy_waring) {
-            textList.add(textList.size(), Component.translatable("ctnh.no_energy_waring"));
+            textList.add(textList.size(), noEnergyWaring.translate());
         }
         MultiblockDisplayText.builder(textList, isFormed())
                 .setWorkingStatus(true, isActive() && isWorkingEnabled()) // transform into two-state system for display
                 .setWorkingStatusKeys(
                         "gtceu.multiblock.idling",
                         "gtceu.multiblock.idling",
-                        "ctnh.restore_danger")
+                        restoreDanger.key())
                 .addEnergyUsageExactLine(energy)
                 .addWorkingStatusLine();
-        textList.add(textList.size(), Component.translatable("ctnh.trap_electric_max", String.format("%d", anti_nu)));
-        textList.add(textList.size(), Component.translatable("ctnh.anti_electric", String.format("%d", anti_electron)));
-        textList.add(textList.size(), Component.translatable("ctnh.anti_nu", String.format("%d", anti_nu)));
-        textList.add(textList.size(), Component.translatable("ctnh.anti_proton", String.format("%d", anti_proton)));
-        textList.add(textList.size(), Component.translatable("ctnh.anti_electric", String.format("%d", anti_electron)));
+        textList.add(textList.size(), trapElectricMax.translate( String.format("%d", anti_nu)));
+        textList.add(textList.size(), antiElectric.translate( String.format("%d", anti_electron)));
+        textList.add(textList.size(), antiNu.translate( String.format("%d", anti_nu)));
+        textList.add(textList.size(), antiProton.translate( String.format("%d", anti_proton)));
+        textList.add(textList.size(), antiElectric.translate( String.format("%d", anti_electron)));
     }
 
     @Override

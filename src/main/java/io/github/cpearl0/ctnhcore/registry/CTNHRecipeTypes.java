@@ -1,4 +1,9 @@
 package io.github.cpearl0.ctnhcore.registry;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ScalableReservoirComputingMachine;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.CreateRecipeTypes;
@@ -35,6 +40,184 @@ import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class CTNHRecipeTypes {
+
+    @CN("§c危险粒子实验")
+    @EN("§cDangerous Particle Experiment")
+    public static Lang accDanger;
+
+
+    @Key("ctnh.nuclear_reactor.basic")
+    @CN("这是一个耗能设备，但是会产生大量的热量，可以转化用以发电")
+    @EN("This is an energy-consuming machine that produces a large amount of heat, which can be converted into power")
+    public static Lang nuclearReactorBasic;
+
+
+    @Key("ctnh.nuclear_reactor.coolant")
+    @CN("冷却液可以使用蒸汽（150°C），氘（450°C），钠（800°C），钠钾合金（900°C），反应的堆温越高，消耗冷却液的速度越快，冷却液的热容越大，消耗速度越慢")
+    @EN("Coolant can be steam (150°C), deuterium (450°C), sodium (800°C), or sodium-potassium alloy (900°C). Higher reactor temperature increases coolant consumption, while higher coolant heat capacity reduces consumption")
+    public static Lang nuclearReactorCoolant;
+
+
+    @Key("ctnh.nuclear_reactor.overclock")
+    @CN("冷却液并非运行所必须，但是在有冷却液时，配方每运行一秒，进度会增加两秒")
+    @EN("Coolant is not required for operation, but with coolant present, recipe progress increases by two seconds for every one second of operation")
+    public static Lang nuclearReactorOverclock;
+
+
+    @Key("ctnh.nuclear_reactor.safe")
+    @CN("反应堆不会过热爆炸")
+    @EN("The reactor will not explode from overheating")
+    public static Lang nuclearReactorSafe;
+
+
+    @CN("模式：加速电子")
+    @EN("Mode: Electron Acceleration")
+    public static Lang recipeAcceleratorModeElement;
+
+
+    @CN("加速类型：电子")
+    @EN("Accelerated Particle: Electron")
+    public static Lang recipeAcceleratorModeElementConsume;
+
+
+    @CN("模式：加速中子")
+    @EN("Mode: Neutron Acceleration")
+    public static Lang recipeAcceleratorModeNu;
+
+
+    @CN("加速类型：中子")
+    @EN("Accelerated Particle: Neutron")
+    public static Lang recipeAcceleratorModeNuConsume;
+
+
+    @CN("模式：加速质子")
+    @EN("Mode: Proton Acceleration")
+    public static Lang recipeAcceleratorModeProton;
+
+
+    @CN("加速类型：质子")
+    @EN("Accelerated Particle: Proton")
+    public static Lang recipeAcceleratorModeProtonConsume;
+
+
+    @CN("需求速度:%.2fGev")
+    @EN("Required Velocity: %.2f GeV")
+    public static Lang recipeAcceleratorModeSpeedG;
+
+
+    @CN("需求速度：%.2fMev")
+    @EN("Required Velocity: %.2f MeV")
+    public static Lang recipeAcceleratorModeSpeedM;
+
+
+    @CN("满功率需求电弧强度:%d")
+    @EN("Full-Power Required Arc Intensity: %d")
+    public static Lang recipeArcGeneratorMaxRequire;
+
+
+    @CN("需求电弧强度:%d")
+    @EN("Required Arc Intensity: %d")
+    public static Lang recipeArcGeneratorRequire;
+
+
+    @Key("ctnh.recipe.hellforge.info.drain")
+    @CN("消耗：%s意志")
+    @EN("Drain: %s Will")
+    public static Lang recipeHellforgeInfoDrain;
+
+
+    @Key("ctnh.recipe.hellforge.info.minimum_drain")
+    @CN("最少：%s意志")
+    @EN("Minimum Drain: %s Will")
+    public static Lang recipeHellforgeInfoMinimumDrain;
+
+
+    @CN("消耗/输入的lp量:%.1f")
+    @EN("LP consumption/input: %.1f")
+    public static Lang recipeIndustrialAltarInfo0;
+
+
+    @Key("ctnh.recipe.quasar_eye.info.0")
+    @CN("启动消耗:%.1f")
+    @EN("Activation Cost: %.1f")
+    public static Lang recipeQuasarEyeInfo0;
+
+
+    @Key("ctnh.recipe.quasar_eye.info.1")
+    @CN("能量等级: %d")
+    @EN("Energy Tier: %d")
+    public static Lang recipeQuasarEyeInfo1;
+
+
+    @Key("ctnh.recipe.quasar_eye.info.2")
+    @CN("启动等级: %d")
+    @EN("Activation Tier: %d")
+    public static Lang recipeQuasarEyeInfo2;
+
+
+    @Key("ctnh.recipe_type.info")
+    @CN("配方类型：%s")
+    @EN("Recipe Type：%s")
+    public static Lang recipeTypeInfo;
+
+
+    @Key("ctnh.recipe_type.list")
+    @CN("%s, %s")
+    @EN("%s, %s")
+    public static Lang recipeTypeList;
+
+
+    @CN("模拟电压消耗: %d EUt")
+    @EN("Simulated voltage consumption: %d EUt")
+    public static Lang spacephotovoltaicbasestationRecipeEutModel;
+
+
+    @CN("需求光伏方块等级: %d")
+    @EN("Required photovoltaic block tier: %d")
+    public static Lang spacephotovoltaicbasestationRecipePvcTier;
+
+
+    @CN("牺牲者: %s")
+    @EN("Sacrifices: %s")
+    public static Lang ctnhSrcSacrifice;
+
+
+    @Key("gtceu.recipe_logic.recipe_waiting")
+    @CN("配方等待中：")
+    @EN("Recipe waiting:")
+    public static Lang gtceuRecipeLogicRecipeWaiting;
+
+
+    @Key("gtceu.recipe_logic.setup_fail")
+    @CN("配方启动失败：")
+    @EN("Recipe failed to start:")
+    public static Lang gtceuRecipeLogicSetupFail;
+
+
+    @Key("multiblock.ctnh.nuclear_reactor.consume_amount")
+    @CN("冷却液消耗率：%s mB/s")
+    @EN("Coolant consumption rate: %s mB/s")
+    public static Lang multiblockCtnhNuclearReactorConsumeAmount;
+
+
+    @Key("multiblock.ctnh.nuclear_reactor.coolant")
+    @CN("冷却液：%s")
+    @EN("Coolant: %s")
+    public static Lang multiblockCtnhNuclearReactorCoolant;
+
+
+    @Key("multiblock.ctnh.nuclear_reactor.coolant_amount")
+    @CN("冷却液量：%s mB")
+    @EN("Coolant amount: %s mB")
+    public static Lang multiblockCtnhNuclearReactorCoolantAmount;
+
+
+    @Key("nuclear_reactor")
+    @CN("核能转化时刻")
+    @EN("Nuclear Energy Conversion")
+    public static Lang nuclearReactor;
+
+
 
     public static final GTRecipeType UNDERFLOOR_HEATING_SYSTEM = REGISTRATE
             .recipeType(CTNHCore.id("underfloor_heating_system"), GTRecipeTypes.ELECTRIC)
@@ -379,7 +562,7 @@ public class CTNHRecipeTypes {
                         new com.gregtechceu.gtceu.api.gui.widget.SlotWidget(handler, 0, group.getSize().width - 30,
                                 group.getSize().height - 30, false, false));
             })
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.industrial_altar.info.0",
+            .addDataInfo(data -> LocalizationUtils.format(recipeIndustrialAltarInfo0.key(),
                     String.format("%.1f", data.getFloat("addlp"))));
 
     public static final GTRecipeType NANO_GENERATOR = REGISTRATE.recipeType(CTNHCore.id("nano_generator"), GENERATOR)
@@ -399,17 +582,17 @@ public class CTNHRecipeTypes {
             .setSound(GTSoundEntries.FIRE)
             .addDataInfo(data -> {
                 if (data.getString("type").equals("addnu")) {
-                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.nu");
+                    return LocalizationUtils.format(recipeAcceleratorModeNu.key());
                 } else if (data.getString("type").equals("addproton")) {
-                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.proton");
+                    return LocalizationUtils.format(recipeAcceleratorModeProton.key());
                 } else if (data.getString("type").equals("addelement")) {
-                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.element");
+                    return LocalizationUtils.format(recipeAcceleratorModeElement.key());
                 } else if (data.getString("type").equals("element")) {
-                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.element.consume");
+                    return LocalizationUtils.format(recipeAcceleratorModeElementConsume.key());
                 } else if (data.getString("type").equals("nu")) {
-                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.nu.consume");
+                    return LocalizationUtils.format(recipeAcceleratorModeNuConsume.key());
                 } else if (data.getString("type").equals("proton")) {
-                    return LocalizationUtils.format("ctnh.recipe.accelerator.mode.proton.consume");
+                    return LocalizationUtils.format(recipeAcceleratorModeProtonConsume.key());
                 }
                 return "";
             })
@@ -419,11 +602,11 @@ public class CTNHRecipeTypes {
                         data.getString("type").equals("proton")) {
                     var speed = data.getDouble("speed");
                     if (data.getDouble("speed") < 1000) {
-                        return LocalizationUtils.format("ctnh.recipe.accelerator.mode.speed.m",
+                        return LocalizationUtils.format(recipeAcceleratorModeSpeedM.key(),
                                 String.format("%.2f", speed));
                     }
                     if (speed >= 1000) {
-                        return LocalizationUtils.format("ctnh.recipe.accelerator.mode.speed.g",
+                        return LocalizationUtils.format(recipeAcceleratorModeSpeedG.key(),
                                 String.format("%.2f", speed / 1000));
                     }
 
@@ -432,7 +615,7 @@ public class CTNHRecipeTypes {
             })
             .addDataInfo(data -> {
                 if (data.contains("darkmatter")) {
-                    return LocalizationUtils.format("ctnh.acc.danger");
+                    return LocalizationUtils.format(accDanger.key());
                 }
                 return "";
 
@@ -443,9 +626,9 @@ public class CTNHRecipeTypes {
             .setEUIO(IO.OUT)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.arc_generator.require",
+            .addDataInfo(data -> LocalizationUtils.format(recipeArcGeneratorRequire.key(),
                     String.format("%d", data.getInt("requirearc"))))
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.recipe.arc_generator.max_require",
+            .addDataInfo(data -> LocalizationUtils.format(recipeArcGeneratorMaxRequire.key(),
                     String.format("%d", data.getInt("maxarc"))))
             .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType ARC_REACTOR = REGISTRATE.recipeType(CTNHCore.id("arc_reactor"), ELECTRIC)
@@ -509,14 +692,14 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .addDataInfo(data -> {
                 if (data.contains("tier")) {
-                    return LocalizationUtils.format("ctnh.spacephotovoltaicbasestation.recipe.pvc_tier",
+                    return LocalizationUtils.format(spacephotovoltaicbasestationRecipePvcTier.key(),
                             String.format("%d", data.getInt("tier")));
                 }
                 return "";
             })
             .addDataInfo(data -> {
                 if (data.contains("input")) {
-                    return LocalizationUtils.format("ctnh.spacephotovoltaicbasestation.recipe.eut_model",
+                    return LocalizationUtils.format(spacephotovoltaicbasestationRecipeEutModel.key(),
                             String.format("%d", data.getInt("input")));
                 }
                 return "";
@@ -535,7 +718,7 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL)
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.nuclear_reactor_heat",
+            .addDataInfo(data -> LocalizationUtils.format(CTNHItems.itemNuclearReactorHeat.key(),
                     String.format("%.1f", data.getFloat("heat"))));
     public static final GTRecipeType GAS_CENTRIFUGE_RECIPES = REGISTRATE
             .recipeType(CTNHCore.id("gas_centrifuge"), MULTIBLOCK)
@@ -568,9 +751,9 @@ public class CTNHRecipeTypes {
             .addDataInfo(data -> LocalizationUtils.format("gtceu.machine.hpca.component_type.computation_cwut",
                     data.getInt("maxCWUt")))
             .addDataInfo(
-                    data -> LocalizationUtils.format("ctnhcore.src.wetware_duration", data.getInt("wetwareDuration")))
+                    data -> LocalizationUtils.format(ScalableReservoirComputingMachine.ctnhSrcWetwareDuration.key(), data.getInt("wetwareDuration")))
             // TODO: 渲染以后写
-            .addDataInfo(data -> LocalizationUtils.format("ctnhcore.src.sacrifice", data.getString("sacrifice")));
+            .addDataInfo(data -> LocalizationUtils.format(ctnhSrcSacrifice.key(), data.getString("sacrifice")));
     public static final GTRecipeType DIFFERENTIAL_CENTRIFUGE_RECIPES = REGISTRATE
             .recipeType(CTNHCore.id("differential_centrifuge"), ELECTRIC)
             .cnlang("差速离心")

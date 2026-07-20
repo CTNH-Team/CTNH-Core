@@ -1,4 +1,8 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.NaqReactorMachine;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
@@ -35,6 +39,22 @@ import java.util.*;
 @Setter
 @Getter
 public class VoidMinerProcessingMachine extends RecipeElectricMultiblockMachine {
+
+    @CN("极寒之凛冰消耗：%d ")
+    @EN("Cryotheum consumption: %d ")
+    public static Lang voidMinerInfoCryotheum;
+
+
+    @CN("过热!!!")
+    @EN("Overheating!!!")
+    public static Lang voidMinerInfoOverheat;
+
+
+    @CN("烈焰之炽焱消耗：%d ")
+    @EN("Pyrotheum consumption: %d ")
+    public static Lang voidMinerInfoPyrotheum;
+
+
 
     @Persisted
     @DescSynced
@@ -148,13 +168,13 @@ public class VoidMinerProcessingMachine extends RecipeElectricMultiblockMachine 
 
         if (isOverheated) {
             textList.add(
-                    Component.translatable("ctnh.multiblock.void_miner.info.overheat").withStyle(ChatFormatting.RED));
+                    voidMinerInfoOverheat.translate().withStyle(ChatFormatting.RED));
         }
-        textList.add(Component.translatable("ctnh.multiblock.naq_reactor.info.temperature",
+        textList.add(NaqReactorMachine.naqReactorInfoTemperature.translate(
                 Component.literal(currentTemperature + "K").withStyle(ChatFormatting.RED)));
-        textList.add(Component.translatable("ctnh.multiblock.void_miner.info.pyrotheum", nextPyrotheumAmount + " mB")
+        textList.add(voidMinerInfoPyrotheum.translate( nextPyrotheumAmount + " mB")
                 .withStyle(ChatFormatting.GOLD));
-        textList.add(Component.translatable("ctnh.multiblock.void_miner.info.cryotheum", nextCryotheumAmount + " mB")
+        textList.add(voidMinerInfoCryotheum.translate( nextCryotheumAmount + " mB")
                 .withStyle(ChatFormatting.AQUA));
     }
 

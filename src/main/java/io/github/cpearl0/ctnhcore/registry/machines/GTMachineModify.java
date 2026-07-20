@@ -44,8 +44,14 @@ import static io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips.PERFECT_OVERCL
 @Suffix("tooltip")
 public class GTMachineModify {
 
+    @CN("配方耗时x0.8，配方耗能x0.6")
+    @EN("Recipe time ×0.8, recipe energy ×0.6")
+    public static Lang gcymReduction;
+
+
+
     public static BiConsumer<ItemStack, List<Component>> REDUCTION_INFO = (itemStack, list) -> list
-            .add(Component.translatable("ctnh.gcym.reduction").withStyle(ChatFormatting.GREEN));
+            .add(gcymReduction.translate().withStyle(ChatFormatting.GREEN));
 
     public static void init() {
         List<MachineDefinition> gcymMachinesToModify = Arrays.asList(
@@ -133,7 +139,7 @@ public class GTMachineModify {
         lASBRecipeTypes.add(CTNHRecipeTypes.PRECISION_ASSEMBLY_RECIPES);
         lASB.setRecipeTypes(lASBRecipeTypes.toArray(GTRecipeType[]::new));
         lASB.setTooltipBuilder(lASB.getTooltipBuilder().andThen((itemStack, components) -> {
-            components.add(Component.translatable("ctnh.gcym.reduction").withStyle(ChatFormatting.GREEN));
+            components.add(gcymReduction.translate().withStyle(ChatFormatting.GREEN));
             components.add(precision_assembly[0].translate());
             components.add(precision_assembly[1].translate());
         }));

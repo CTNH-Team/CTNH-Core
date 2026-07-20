@@ -1,4 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.gui;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.WideParticleAccelerator;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
@@ -21,6 +24,27 @@ import java.util.function.Function;
 
 public class WPAAcceleratorGui implements IFancyUIProvider {
 
+    @CN("电子轨道")
+    @EN("Electron Beamline")
+    public static Lang wideAcceleratorGuiElectric;
+
+
+    @CN("访问轨道")
+    @EN("Access Beamline")
+    public static Lang wideAcceleratorGuiName;
+
+
+    @CN("中子轨道")
+    @EN("Neutron Beamline")
+    public static Lang wideAcceleratorGuiNu;
+
+
+    @CN("原子轨道")
+    @EN("Proton Beamline")
+    public static Lang wideAcceleratorGuiProton;
+
+
+
     protected WideParticleAccelerator machine;
 
     public WPAAcceleratorGui(IRecipeLogicMachine machine) {
@@ -29,22 +53,22 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
     }
 
     public MutableComponent get_mode() {
-        return (Component.translatable("ctnh.multiblock.wide_accelerator.info.power",
+        return (WideParticleAccelerator.wideAcceleratorInfoPower.translate(
                 (double) machine.store_energy / 1000000, (double) machine.max_energy / 1000000));
     }
 
     public Function<Double, String> target() {
-        return speed -> Component.translatable("ctnh.multiblock.wide_accelerator.info.electric_speed", speed * 50000)
+        return speed -> WideParticleAccelerator.wideAcceleratorInfoElectricSpeed.translate( speed * 50000)
                 .getString();
     }
 
     public Function<Double, String> target2() {
-        return speed -> Component.translatable("ctnh.multiblock.wide_accelerator.info.nu_speed", speed * 50000)
+        return speed -> WideParticleAccelerator.wideAcceleratorInfoNuSpeed.translate( speed * 50000)
                 .getString();
     }
 
     public Function<Double, String> target3() {
-        return speed -> Component.translatable("ctnh.multiblock.wide_accelerator.info.proton_speed", speed * 50000)
+        return speed -> WideParticleAccelerator.wideAcceleratorInfoProtonSpeed.translate( speed * 50000)
                 .getString();
     }
 
@@ -115,7 +139,7 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
         /// / 电子轨道逻辑/ ////
         /// //////////////////////////
         group.addWidget(new TextTextureWidget(10, 40, 40, 15)
-                .setText(Component.translatable("ctnh.multiblock.wide_accelerator.gui.electric")));
+                .setText(wideAcceleratorGuiElectric.translate()));
 
         var speed_progress = (new ProgressWidget(machine.get_electric, 50, 60, 100, 15,
                 new ProgressTexture(CTNHGuiTextures.TEST_BAR, CTNHGuiTextures.TEST_BAR_FULL)
@@ -155,7 +179,7 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
         /// //////////////////////////
         ///
         group.addWidget(new TextTextureWidget(10, 120 - 35, 40, 15)
-                .setText(Component.translatable("ctnh.multiblock.wide_accelerator.gui.nu")));
+                .setText(wideAcceleratorGuiNu.translate()));
         var speed_progress2 = (new ProgressWidget(machine.get_nu, 50, 120 - 10, 100, 15,
                 new ProgressTexture(CTNHGuiTextures.TEST_BAR, CTNHGuiTextures.TEST_BAR_FULL)
                         .setFillDirection(ProgressTexture.FillDirection.LEFT_TO_RIGHT))
@@ -192,7 +216,7 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
         /// / 原子轨道逻辑/ ////
         /// //////////////////////////
         group.addWidget(new TextTextureWidget(10, 140, 40, 15)
-                .setText(Component.translatable("ctnh.multiblock.wide_accelerator.gui.proton")));
+                .setText(wideAcceleratorGuiProton.translate()));
         var speed_progress3 = (new ProgressWidget(machine.get_proton, 50, 160, 100, 15,
                 new ProgressTexture(CTNHGuiTextures.TEST_BAR, CTNHGuiTextures.TEST_BAR_FULL)
                         .setFillDirection(ProgressTexture.FillDirection.LEFT_TO_RIGHT))
@@ -248,7 +272,7 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
     @Override
     public List<Component> getTabTooltips() {
         List<Component> tooltip = new ArrayList<>();
-        tooltip.add(Component.translatable("ctnh.multiblock.wide_accelerator.gui.name"));
+        tooltip.add(wideAcceleratorGuiName.translate());
         return tooltip;
     }
 

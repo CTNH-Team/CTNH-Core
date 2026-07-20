@@ -1,4 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
+import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
@@ -25,6 +26,12 @@ import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 import java.util.List;
 
 public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMachine {
+
+    @CN("烈焰之炽焱：%d mB")
+    @EN("Blazing Pyrotheum: %d mB")
+    public static Lang blazeBlastFurnaceInfoPyrotheum;
+
+
 
     public BlazeBlastFurnaceMachine(IMachineBlockEntity holder) {
         super(holder);
@@ -76,14 +83,14 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
         if (isFormed()) {
             textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature",
                     Component.literal(getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
-            textList.add(Component.translatable("ctnh.multiblock.blaze_blast_furnace.info.pyrotheum", current));
+            textList.add(blazeBlastFurnaceInfoPyrotheum.translate( current));
         }
     }
 
     public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
         int parallel = ParallelLogic.getParallelAmount(group, recipe, 8);
         if (parallel == 0)
-            return Component.translatable("gtceu.recipe_modifier.default_fail");
+            return CTNHCommonTooltips.gtceuRecipeModifierDefaultFail.translate();
         recipe.multiplyEUt(0.5 * parallel);
         recipe.multiplyAllContents(parallel);
         recipe.parallels *= parallel;

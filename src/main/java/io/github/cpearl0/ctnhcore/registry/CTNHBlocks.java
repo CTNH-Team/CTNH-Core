@@ -415,6 +415,7 @@ public class CTNHBlocks {
     private static BlockEntry<SpaceStructuralFramework> createSpaceStructuralFrame(ISSFData pbdata, String location) {
         var ssfblock = REGISTRATE.block("%s".formatted(pbdata.getSpaceStructuralFrameworkName()),
                 p -> new SpaceStructuralFramework(p, pbdata))
+                .cnlang("硅岩激发碳纳米太空结构方块")
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
                 .addLayer(() -> RenderType::cutoutMipped)

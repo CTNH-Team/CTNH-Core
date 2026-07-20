@@ -1,4 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -15,6 +18,27 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class Arc_Generator extends RecipeElectricMultiblockMachine implements ITieredMachine {
+
+    @CN("电弧最大强度:%d")
+    @EN("Max Arc Intensity: %d")
+    public static Lang arcgeneratorInfo0;
+
+
+    @CN("电弧强度:%d")
+    @EN("Current Arc Intensity: %d")
+    public static Lang arcgeneratorInfo1;
+
+
+    @CN("支持最大效率:%.2f%%")
+    @EN("Max Supported Efficiency: %.2f%%")
+    public static Lang arcgeneratorInfo2;
+
+
+    @CN("当前效率:%.2f%%")
+    @EN("Current Efficiency: %.2f%%")
+    public static Lang arcgeneratorInfo3;
+
+
 
     public int arc = 0;
     public int arc_max = 0;
@@ -57,13 +81,13 @@ public class Arc_Generator extends RecipeElectricMultiblockMachine implements IT
         var tier = getTier();
 
         textList.add(textList.size(),
-                Component.translatable("ctnh.multiblock.arcgenerator.info.0", String.format("%d", arc_max)));
+                arcgeneratorInfo0.translate( String.format("%d", arc_max)));
         textList.add(textList.size(),
-                Component.translatable("ctnh.multiblock.arcgenerator.info.1", String.format("%d", arc)));
+                arcgeneratorInfo1.translate( String.format("%d", arc)));
         textList.add(textList.size(),
-                Component.translatable("ctnh.multiblock.arcgenerator.info.2", String.format("%.2f", efficiency * 100)));
+                arcgeneratorInfo2.translate( String.format("%.2f", efficiency * 100)));
         textList.add(textList.size(),
-                Component.translatable("ctnh.multiblock.arcgenerator.info.3", String.format("%.2f", rotor * 100)));
+                arcgeneratorInfo3.translate( String.format("%.2f", rotor * 100)));
     }
 
     @Override

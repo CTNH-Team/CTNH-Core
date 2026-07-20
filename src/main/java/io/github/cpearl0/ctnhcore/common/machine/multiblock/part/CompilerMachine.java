@@ -1,4 +1,8 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.part;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
@@ -26,6 +30,19 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class CompilerMachine extends TieredIOPartMachine implements IDistinctPart, IMachineModifyDrops {
+
+    @Key("ctnh.compiler.id")
+    @CN("该舱室被分配到的片区编号:%s")
+    @EN("Assigned region ID: %s")
+    public static Lang compilerId;
+
+
+    @Key("ctnh.compiler.noid")
+    @CN("§c当前舱室尚未连接到主机！")
+    @EN("§cThis chamber is not connected to the host!")
+    public static Lang compilerNoid;
+
+
 
     @Getter
     @Persisted

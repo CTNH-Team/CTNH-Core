@@ -1,4 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -17,6 +20,17 @@ import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 import java.util.List;
 
 public class ForestMachine extends RecipeElectricMultiblockMachine {
+
+    @CN("湿度值：%d")
+    @EN("Humidity level: %d")
+    public static Lang forestMachineInfoHumidity;
+
+
+    @CN("并行数：%d")
+    @EN("Parallel count: %d")
+    public static Lang forestMachineInfoParallelCount;
+
+
 
     // 湿度值
     private int humidity = 0;  // 初始湿度为0%
@@ -86,8 +100,8 @@ public class ForestMachine extends RecipeElectricMultiblockMachine {
     @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
-        textList.add(Component.translatable("ctnh.multiblock.forest_machine.info.humidity", humidity + "%"));
-        textList.add(Component.translatable("ctnh.multiblock.forest_machine.info.parallel_count", getParallelCount()));
+        textList.add(forestMachineInfoHumidity.translate( humidity + "%"));
+        textList.add(forestMachineInfoParallelCount.translate( getParallelCount()));
     }
 
     @Override

@@ -1,4 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.common.machine.trait.providable_net.IProviableNetHandlerMachine;
 import io.github.cpearl0.ctnhcore.common.machine.trait.providable_net.ProvidableNetHandler;
@@ -53,6 +56,22 @@ import javax.annotation.Nonnull;
 
 public class WindPowerArrayMachine extends MultiblockControllerMachine implements IProviableNetHandlerMachine,
                                    IFancyUIMachine, IDisplayUIMachine, IWorkable {
+
+    @CN("网络将在%d秒后重建")
+    @EN("Network will rebuild in %d second(s)")
+    public static Lang windPowerArrayInfoNetworkDirty;
+
+
+    @CN("发电网络机器数：%d")
+    @EN("Network Machine Count：%d")
+    public static Lang windPowerArrayInfoNetworkMachine;
+
+
+    @CN("发电效率：%d")
+    @EN("Generating Efficiency: %d")
+    public static Lang windPowerArrayInfoNetworkMachineEfficiency;
+
+
 
     public static final Material fluidMaterial = GTMaterials.Lubricant;
     private EnergyContainerList energyContainer;
@@ -272,12 +291,12 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
                     .addWorkingStatusLine()
                     .addCurrentEnergyProductionLine(needFluid ? (long) (basicRate * getEfficiency()) : 0)
                     .addEnergyProductionLine(basicRate, (long) (basicRate * getEfficiency()));
-            textList.add(Component.translatable("ctnh.mutliblock.wind_power_array.info.network_machine",
+            textList.add(windPowerArrayInfoNetworkMachine.translate(
                     netHandler.getNetSize()));
-            textList.add(Component.translatable("ctnh.mutliblock.wind_power_array.info.network_machine_efficiency",
+            textList.add(windPowerArrayInfoNetworkMachineEfficiency.translate(
                     String.format("%.1f", getEfficiency())));
             if (netHandler.getDeadTime() != -1)
-                textList.add(Component.translatable("ctnh.mutliblock.wind_power_array.info.network_dirty",
+                textList.add(windPowerArrayInfoNetworkDirty.translate(
                         (netHandler.getDeadTime() - getLevel().getGameTime()) / 20));
         }
     }
