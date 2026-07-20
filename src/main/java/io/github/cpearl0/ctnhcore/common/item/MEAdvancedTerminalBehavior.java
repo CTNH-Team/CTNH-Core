@@ -53,97 +53,81 @@ import static io.github.cpearl0.ctnhcore.api.Pattern.AsynBlockPattern.getAdvance
 
 public class MEAdvancedTerminalBehavior implements IItemUIFactory {
 
-    @Key("item.ctnh.me_advanced_terminal.setting.1")
     @CN("线圈等级")
     @EN("Coil Tier")
     public static Lang itemMeAdvancedTerminalSetting1;
 
 
-    @Key("item.ctnh.me_advanced_terminal.setting.1.tooltip")
     @CN("设置自动放置的线圈等级(0:不指定等级)\n设置后会忽略结构本身的要求")
     @EN("Set the tier of coils placed automatically (0: no tier specified)\nThe structure's own requirements are ignored after setting this")
     public static Lang itemMeAdvancedTerminalSetting1Tooltip;
 
 
-    @Key("item.ctnh.me_advanced_terminal.setting.10")
     @CN("工业血之祭坛结构等级")
     @EN("Industrial Blood Altar Tier")
     public static Lang itemMeAdvancedTerminalSetting10;
 
 
-    @Key("item.ctnh.me_advanced_terminal.setting.10.tooltip")
     @CN("仅对工业血之祭坛自动成型生效\n设置要构建的工业血之祭坛等级(0-4)\n0 对应二阶，4 对应六阶")
     @EN("Only applies to automatic formation of Industrial Blood Altars\nSet the Industrial Blood Altar tier to build (0-4)\n0 corresponds to Tier II and 4 corresponds to Tier VI")
     public static Lang itemMeAdvancedTerminalSetting10Tooltip;
 
 
-    @Key("item.ctnh.me_advanced_terminal.setting.2")
     @CN("重复结构次数")
     @EN("Repeated Structure Count")
     public static Lang itemMeAdvancedTerminalSetting2;
 
 
-    @Key("item.ctnh.me_advanced_terminal.setting.2.tooltip")
     @CN("设置可重复结构(蒸馏塔、装配线等)的重复部分放置次数\n对超净间无效")
     @EN("Set the number of repeated sections placed for repeatable structures (Distillation Towers, Assembly Lines, etc.)\nDoes not apply to Cleanrooms")
     public static Lang itemMeAdvancedTerminalSetting2Tooltip;
 
 
-    @Key("item.ctnh.me_advanced_terminal.setting.3")
     @CN("无仓室模式")
     @EN("Hatchless Mode")
     public static Lang itemMeAdvancedTerminalSetting3;
 
 
-    @Key("item.ctnh.me_advanced_terminal.setting.3.tooltip")
     @CN("是否启用无仓室模式(0:不启用,1:启用)\n启用无仓室模式后不会放置任何仓室")
     @EN("Enable hatchless mode (0: disabled, 1: enabled)\nWhen enabled, no hatches will be placed")
     public static Lang itemMeAdvancedTerminalSetting3Tooltip;
 
 
-    @Key("item.ctnh.me_advanced_terminal.setting.4")
     @CN("线圈替换模式")
     @EN("Coil Replacement Mode")
     public static Lang itemMeAdvancedTerminalSetting4;
 
 
-    @Key("item.ctnh.me_advanced_terminal.setting.4.tooltip")
     @CN("是否启用线圈替换模式(0:不启用,1:启用)\n启用线圈替换模式会将所有线圈替换为指定等级的线圈\n请确保物品栏中有空间存放替换下来的线圈")
     @EN("Enable coil replacement mode (0: disabled, 1: enabled)\nWhen enabled, all coils are replaced with the specified tier\nMake sure the inventory has room for the replaced coils")
     public static Lang itemMeAdvancedTerminalSetting4Tooltip;
 
 
-    @Key("item.ctnh.me_advanced_terminal.setting.5")
     @CN("使用AE存储")
     @EN("Use AE Storage")
     public static Lang itemMeAdvancedTerminalSetting5;
 
 
-    @Key("item.ctnh.me_advanced_terminal.setting.5.tooltip")
     @CN("是否启用AE库存(0:不启用,1:启用)\n启用后将优先在AE库存中检索\n通过ME无线访问点链接到网络")
     @EN("Enable AE storage (0: disabled, 1: enabled)\nWhen enabled, the AE storage is searched first\nConnect to the network through an ME Wireless Access Point")
     public static Lang itemMeAdvancedTerminalSetting5Tooltip;
 
 
-    @Key("item.ctnh.me_advanced_terminal.setting.6")
     @CN("放置流体")
     @EN("Place Fluids")
     public static Lang itemMeAdvancedTerminalSetting6;
 
 
-    @Key("item.ctnh.me_advanced_terminal.setting.6.tooltip")
     @CN("是否启用流体放置(0:不启用,1:启用)\n启用后将检索并消耗物品栏/背包流体容器中的或AE库存中的流体\n可堆叠的流体容器须保证堆叠数为1")
     @EN("Enable fluid placement (0: disabled, 1: enabled)\nWhen enabled, fluids are searched for and consumed from fluid containers in the inventory/backpack or AE storage\nStackable fluid containers must have a stack size of 1")
     public static Lang itemMeAdvancedTerminalSetting6Tooltip;
 
 
-    @Key("item.ctnh.me_advanced_terminal.setting.7")
     @CN("在流体中放置")
     @EN("Place in Fluids")
     public static Lang itemMeAdvancedTerminalSetting7;
 
 
-    @Key("item.ctnh.me_advanced_terminal.setting.7.tooltip")
     @CN("是否在流体中放置方块(0:不启用,1:启用)\n启用后会将空间中的流体视为空位\n与“放置流体”同时启用时，不会在流体中放置流体")
     @EN("Place blocks in fluids (0: disabled, 1: enabled)\nWhen enabled, fluids in the space are treated as empty space\nWhen enabled together with Place Fluids, fluids will not be placed in fluids")
     public static Lang itemMeAdvancedTerminalSetting7Tooltip;
@@ -173,7 +157,6 @@ public class MEAdvancedTerminalBehavior implements IItemUIFactory {
     public static Lang itemMeAdvancedTerminalSetting9Tooltip;
 
 
-    @Key("item.ctnh.me_advanced_terminal.setting.title")
     @CN("多方块结构成型配置")
     @EN("Multiblock Formation Settings")
     public static Lang itemMeAdvancedTerminalSettingTitle;

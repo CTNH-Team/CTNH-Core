@@ -4,7 +4,6 @@ import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -31,7 +30,6 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 public class IndustrialPrimitiveBlastFurnaceMachine extends NoEnergyMachine {
 
-    @Key("ctnh.multiblock.industrial_primitive_blast_furnace.info.parallel_count")
     @CN("并行数：%d")
     @EN("Parallel count: %d")
     public static Lang industrialPrimitiveBlastFurnaceInfoParallelCount;

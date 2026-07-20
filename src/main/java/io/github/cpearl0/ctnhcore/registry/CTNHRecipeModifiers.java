@@ -33,7 +33,6 @@ import static com.gregtechceu.gtceu.api.recipe.OverclockingLogic.getCoilEUtDisco
 
 public class CTNHRecipeModifiers {
 
-    @Key("gtceu.recipe_modifier.coil_temperature_too_low")
     @CN("线圈温度过低！")
     @EN("Coil temperature too low!")
     public static Lang gtceuRecipeModifierCoilTemperatureTooLow;
@@ -45,7 +44,6 @@ public class CTNHRecipeModifiers {
     public static Lang gtceuRecipeModifierInsufficientEuToStartFusion;
 
 
-    @Key("gtceu.recipe_modifier.insufficient_voltage")
     @CN("电压等级过低！")
     @EN("Voltage tier too low!")
     public static Lang gtceuRecipeModifierInsufficientVoltage;

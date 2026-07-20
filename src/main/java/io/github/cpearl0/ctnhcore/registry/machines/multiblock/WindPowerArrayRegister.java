@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.WindPowerArrayMachine;
 
@@ -24,73 +23,61 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class WindPowerArrayRegister {
 
-    @Key("ctnh.multiblock.wind_array.tooltip0")
     @CN("§7§o风力狼群:真正的自然之力")
     @EN("§7§oWind Wolf: The TRUE POWER of NATURE")
     public static Lang windArrayTooltip0;
 
 
-    @Key("ctnh.multiblock.wind_array.tooltip1")
     @CN("§8---------------§a基础数据§8-----------------")
     @EN("§8-----------------§aBasic Data§8--------------------")
     public static Lang windArrayTooltip1;
 
 
-    @Key("ctnh.multiblock.wind_array.tooltip10")
     @CN("§f润滑油会从风力网络中抽取.")
     @EN("§fLubricant will be extracted from the network.")
     public static Lang windArrayTooltip10;
 
 
-    @Key("ctnh.multiblock.wind_array.tooltip11")
     @CN("§5顺应风力网络的工作规律,以抵挡自然之力的摧残")
     @EN("§5DO OBEY the rules to resist the DESTRUCTION from nature force.")
     public static Lang windArrayTooltip11;
 
 
-    @Key("ctnh.multiblock.wind_array.tooltip2")
     @CN("§f- 基础发电功率: §e%d EU/t  §7(地球)")
     @EN("§f- Basic Production: §e%d EU/t  §7(on earth)")
     public static Lang windArrayTooltip2;
 
 
-    @Key("ctnh.multiblock.wind_array.tooltip3")
     @CN("§f- 天气风力增益: §e雨天x2,雷雨x4")
     @EN("§f- Weather Boost: §eRainy x2, Thunder x4")
     public static Lang windArrayTooltip3;
 
 
-    @Key("ctnh.multiblock.wind_array.tooltip4")
     @CN("§f- 高度增益: §e Clamp(Y-64, 0, 256-64) / (256-64)")
     @EN("§f- Altitude Boost: §eClamp(Y-64, 0, 256-64) / (256-64)")
     public static Lang windArrayTooltip4;
 
 
-    @Key("ctnh.multiblock.wind_array.tooltip5")
     @CN("§f- 网络增益: §e 0.3*[log2(网络大小)]")
     @EN("§f- Network Boost: §e 0.3*[log2(NetSize)]")
     public static Lang windArrayTooltip5;
 
 
-    @Key("ctnh.multiblock.wind_array.tooltip6")
     @CN("§f增益乘算得到发电效率")
     @EN("§fAll boosts are multiplied to determine production.")
     public static Lang windArrayTooltip6;
 
 
-    @Key("ctnh.multiblock.wind_array.tooltip7")
     @CN("§f需要§e%d mB/s§f 润滑油以维护机器运行")
     @EN("§fRequires §e%d mB/s§f Lubricant.")
     public static Lang windArrayTooltip7;
 
 
-    @Key("ctnh.multiblock.wind_array.tooltip8")
     @CN("§8---------------§a风力网络§8-----------------")
     @EN("§8-----------------§aWind Network§8------------------")
     public static Lang windArrayTooltip8;
 
 
-    @Key("ctnh.multiblock.wind_array.tooltip9")
     @CN("§f所有结构对齐且间距<=1的风力发电机阵列会组成风力网络")
     @EN("§fAligned structure within a distance of <= 1 form a Wind Network.")
     public static Lang windArrayTooltip9;

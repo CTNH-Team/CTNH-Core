@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.common.machine.trait.ScalableReservoirComputingLogic;
 
@@ -27,25 +26,21 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class ScalableReservoirComputingMachine extends RecipeElectricMultiblockMachine
                                                implements ComputationProducer, IControllable {
 
-    @Key("ctnhcore.src.sacrifice_empty")
     @CN("无牺牲者")
     @EN("No sacrifices found")
     public static Lang ctnhSrcSacrificeEmpty;
 
 
-    @Key("ctnhcore.src.sacrifice_locked")
     @CN("已锁定牺牲者！")
     @EN("Sacrifice LOCKED")
     public static Lang ctnhSrcSacrificeLocked;
 
 
-    @Key("ctnhcore.src.sacrifice_unlocked")
     @CN("无法锁定牺牲者")
     @EN("Sacrifice UNLOCKED")
     public static Lang ctnhSrcSacrificeUnlocked;
 
 
-    @Key("ctnhcore.src.wetware_duration")
     @CN("湿件剩余存活时间: %s ticks")
     @EN("Wetware duration: %s ticks")
     public static Lang ctnhSrcWetwareDuration;

@@ -3,7 +3,6 @@ import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.common.gui.WPAAcceleratorGui;
 
@@ -43,37 +42,31 @@ import java.util.function.DoubleSupplier;
 public class WideParticleAccelerator extends RecipeElectricMultiblockMachine
                                      implements ITieredMachine, IExplosionMachine {
 
-    @Key("ctnh.connect")
     @CN("连接已搭建")
     @EN("Connection established")
     public static Lang connect;
 
 
-    @Key("ctnh.multiblock.wide_accelerator.info.consume")
     @CN("电量消耗倍率:%.2f")
     @EN("Power Consumption Multiplier: %.2f")
     public static Lang wideAcceleratorInfoConsume;
 
 
-    @Key("ctnh.multiblock.wide_accelerator.info.electric_speed")
     @CN("电子速度:%.2fMev")
     @EN("Electron Velocity: %.2f MeV")
     public static Lang wideAcceleratorInfoElectricSpeed;
 
 
-    @Key("ctnh.multiblock.wide_accelerator.info.nu_speed")
     @CN("中子速度:%.2fMev")
     @EN("Neutron Velocity: %.2f MeV")
     public static Lang wideAcceleratorInfoNuSpeed;
 
 
-    @Key("ctnh.multiblock.wide_accelerator.info.power")
     @CN("存储的电量：%.2f E/%.2f E")
     @EN("Stored energy: %.2f E/%.2f E")
     public static Lang wideAcceleratorInfoPower;
 
 
-    @Key("ctnh.multiblock.wide_accelerator.info.proton_speed")
     @CN("质子速度:%.2fMev")
     @EN("Proton Velocity: %.2f MeV")
     public static Lang wideAcceleratorInfoProtonSpeed;

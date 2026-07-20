@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.common.item;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 
@@ -19,19 +18,16 @@ import java.util.List;
 
 public class IDataItem extends ComponentItem {
 
-    @Key("ctnh.data.noise")
     @CN("当前噪声值：%s")
     @EN("Current noise: %s")
     public static Lang dataNoise;
 
 
-    @Key("ctnh.item.data.tip1")
     @CN("当前公式: a%s+b%s+c%s+d")
     @EN("Current formula: a%s+b%s+c%s+d")
     public static Lang itemDataTip1;
 
 
-    @Key("ctnh.item.data.tip2")
     @CN("获取的倍率: %s")
     @EN("Obtained multiplier: %s")
     public static Lang itemDataTip2;

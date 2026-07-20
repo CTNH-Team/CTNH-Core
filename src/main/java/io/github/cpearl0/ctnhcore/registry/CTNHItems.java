@@ -51,13 +51,11 @@ import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.CREATIVE
 @Suffix("tooltip")
 public class CTNHItems {
 
-    @Key("ctnh.advanced_ram_chip.tooltip")
     @CN("更好的随机存取存储器")
     @EN("Advanced Random Access Memory")
     public static Lang advancedRamChipTooltip;
 
 
-    @Key("ctnh.advanced_ram_wafer.tooltip")
     @CN("更好的内存原料")
     @EN("Enhanced RAM Wafer")
     public static Lang advancedRamWaferTooltip;
@@ -75,7 +73,6 @@ public class CTNHItems {
     public static Lang itemDysonTier2;
 
 
-    @Key("ctnh.item.nuclear_reactor_heat")
     @CN("基础堆温：%d°C")
     @EN("Base Reactor Temperature: %d°C")
     public static Lang itemNuclearReactorHeat;
@@ -111,13 +108,11 @@ public class CTNHItems {
     public static Lang itemRunesTwistRune;
 
 
-    @Key("ctnh.me_advanced_terminal.tooltip.1")
     @CN("§l格雷科技-多方块结构终端-异步成型模式")
     @EN("§lGregTech Multiblock Structure Terminal - Asynchronous Formation Mode")
     public static Lang meAdvancedTerminalTooltip1;
 
 
-    @Key("ctnh.me_advanced_terminal.tooltip.2")
     @CN("复刻了曾经的旗舰款，终端屏幕上闪烁着久违的画面")
     @EN("A replica of the former flagship model; its terminal screen flickers with a long-lost display")
     public static Lang meAdvancedTerminalTooltip2;
@@ -129,37 +124,31 @@ public class CTNHItems {
     public static Lang meAdvancedTerminalTooltip3;
 
 
-    @Key("ctnh.simple_nutritious_meal.tooltip.1")
     @CN("能维持机体基本的生理功能")
     @EN("Maintains the body's basic physiological functions")
     public static Lang simpleNutritiousMealTooltip1;
 
 
-    @Key("ctnh.testing_terminal.tooltip.1")
     @CN("用于检测多方块搭建时产生的错误")
     @EN("Use to check the error when building the multiblock")
     public static Lang testingTerminalTooltip1;
 
 
-    @Key("ctnh.testing_terminal.tooltip.2")
     @CN("右键多方块的主方块以显示错误信息")
     @EN("Right-click the controller to show the error info")
     public static Lang testingTerminalTooltip2;
 
 
-    @Key("ctnh.testing_terminal.tooltip.3")
     @CN("按住Shift右键切换普通/翻转模式")
     @EN("Right-click with Shift to change between Normal/Flipped mode")
     public static Lang testingTerminalTooltip3;
 
 
-    @Key("item.ctnh.ecological_star.desc")
     @CN("蕴含生态圈的所有精华")
     @EN("Contains all the essence of an ecosystem")
     public static Lang itemEcologicalStarDesc;
 
 
-    @Key("item.sculk_cell.desc")
     @CN("分化....")
     @EN("Differentiation....")
     public static Lang itemSculkCellDesc;

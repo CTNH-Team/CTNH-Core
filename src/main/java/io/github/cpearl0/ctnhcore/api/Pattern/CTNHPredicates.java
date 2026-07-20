@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.api.Pattern;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.common.block.PhotovoltaicBlock;
 import io.github.cpearl0.ctnhcore.common.block.SpaceStructuralFramework;
@@ -30,7 +29,6 @@ import java.util.function.Supplier;
 
 public class CTNHPredicates {
 
-    @Key("ctnh.spacephotovoltaicbasestation.jei.error.pv_block")
     @CN("§c必须使用同种光伏方块")
     @EN("§cAll photovoltaic blocks must be the same type")
     public static Lang spacePhotovoltaicBaseStationJeiErrorPvBlock;

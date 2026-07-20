@@ -4,7 +4,6 @@ import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
@@ -51,7 +50,6 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class CTNHMachineUtils {
 
-    @Key("ctnh.tooltips.simplecomputationmachine")
     @CN("注意：部分配方需要算力执行")
     @EN("Note: Some recipes require computation to run")
     public static Lang tooltipsSimpleComputationMachine;

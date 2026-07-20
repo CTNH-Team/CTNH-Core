@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.common.item.IDroneItem;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.DroneHolderMachine;
@@ -30,13 +29,11 @@ import java.util.List;
 
 public class PhotoVoltaicDroneStation extends RecipeElectricMultiblockMachine {
 
-    @Key("ctnh.multiblock.pvdrone.info.t1")
     @CN("提供的能量:%d")
     @EN("Power supplied: %d")
     public static Lang pvdroneInfoT1;
 
 
-    @Key("ctnh.multiblock.pvdrone.info.t2")
     @CN("无人机消耗概率:%.4f")
     @EN("Drone consumption chance: %.4f")
     public static Lang pvdroneInfoT2;

@@ -10,19 +10,16 @@ import net.minecraft.network.chat.MutableComponent;
 
 public class CTNHCommonTooltips {
 
-    @Key("ctnh.common_tooltip.parallel_hatch")
     @CN("·允许使用并行控制仓")
     @EN("Voltage levels increase the number of parallels")
     public static Lang commonTooltipParallelHatch;
 
 
-    @Key("ctnh.common_tooltip.perfect_overclock")
     @CN("无损超频！")
     @EN("Perfect Overclock！")
     public static Lang commonTooltipPerfectOverclock;
 
 
-    @Key("ctnh.common_tooltip.steel_machine.0")
     @CN("只能使用HV级能源仓及以下等级")
     @EN("Can only use HV-grade energy hatches and below")
     public static Lang commonTooltipSteelMachine0;
@@ -34,19 +31,16 @@ public class CTNHCommonTooltips {
     public static Lang commonTooltipSteelMachine1;
 
 
-    @Key("ctnh.common_tooltip.subtick_overclock")
     @CN("当配方运行时间小于1t时,会自动计算并行")
     @EN("When recipe runtime is less than 1 tick, parallel calculations will be performed automatically.")
     public static Lang commonTooltipSubtickOverclock;
 
 
-    @Key("gtceu.multiblock.laser.tooltip")
     @CN("允许使用激光仓")
     @EN("The use of the laser chamber is permitted")
     public static Lang gtceuMultiblockLaserTooltip;
 
 
-    @Key("gtceu.recipe_modifier.default_fail")
     @CN("配方修改失败")
     @EN("Recipe modification failed")
     public static Lang gtceuRecipeModifierDefaultFail;

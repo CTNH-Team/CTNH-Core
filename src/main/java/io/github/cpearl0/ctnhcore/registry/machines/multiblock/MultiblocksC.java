@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.api.machine.feature.ICoilMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.multithread.CNCAlloySmelter;
@@ -45,7 +44,6 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 // spotless:off
 public class MultiblocksC {
 
-    @Key("ctnh.multiblock.greenhouse.tooltip.0")
     @CN("室内种植")
     @EN("Plant In Room")
     public static Lang greenhouseTooltip0;

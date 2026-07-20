@@ -696,13 +696,11 @@ public class CTNHMachines {
     public static Lang blockZpmPersonalComputer;
 
 
-    @Key("ctnh.machine.naquadah_reactor.tooltip")
     @CN("效率: %s%%")
     @EN("Efficiency: %s%%")
     public static Lang machineNaquadahReactorTooltip;
 
 
-    @Key("ctnh.machine.rocket_engine.tooltip")
     @CN("效率: %s%%")
     @EN("Efficiency: %s%%")
     public static Lang machineRocketEngineTooltip;
@@ -714,31 +712,26 @@ public class CTNHMachines {
     public static Lang ctnhCopyrightInfo;
 
 
-    @Key("ctnhcore.machine.digital_miner.tooltip.0")
     @CN("§7来自GTMThings的挖矿黑科技，速度更快且无采矿管道，仅挖取矿石")
     @EN("§7From GTMThings, faster speed and no mining pipes, only mining ores")
     public static Lang ctnhMachineDigitalMinerTooltip0;
 
 
-    @Key("ctnhcore.machine.digital_miner.tooltip.1")
     @CN("§b工作时自带自身区块强加载")
     @EN("§bForce loading self chunk while working")
     public static Lang ctnhMachineDigitalMinerTooltip1;
 
 
-    @Key("ctnhcore.machine.digital_miner.tooltip.2")
     @CN("工作时消耗§f%d EU/t§7，每个方块需要§f%d§7刻")
     @EN("Uses §f%d EU/t §7while working, each block takes §f%d§7 ticks")
     public static Lang ctnhMachineDigitalMinerTooltip2;
 
 
-    @Key("ctnhcore.machine.oxygen_enricher.tooltip.0")
     @CN("消耗氧气流体以维持密闭空间内的可呼吸环境")
     @EN("Consumes oxygen fluid to maintain a breathable sealed room")
     public static Lang ctnhMachineOxygenEnricherTooltip0;
 
 
-    @Key("ctnhcore.machine.oxygen_enricher.tooltip.1")
     @CN("可为半径 %s 格的密闭空间供氧")
     @EN("Supplies oxygen to enclosed spaces within %s blocks")
     public static Lang ctnhMachineOxygenEnricherTooltip1;
@@ -750,37 +743,31 @@ public class CTNHMachines {
     public static Lang ctnhRecipeLogicInsufficientCwut;
 
 
-    @Key("gtceu.machine.parallel_hatch_mk10.tooltip")
     @CN("允许同时处理至多4096个配方。")
     @EN("Allows up to 4096 recipes to be processed simultaneously.")
     public static Lang gtceuMachineParallelHatchMk10Tooltip;
 
 
-    @Key("gtceu.machine.parallel_hatch_mk11.tooltip")
     @CN("允许同时处理至多16384个配方。")
     @EN("Allows up to 16384 recipes to be processed simultaneously.")
     public static Lang gtceuMachineParallelHatchMk11Tooltip;
 
 
-    @Key("gtceu.machine.parallel_hatch_mk12.tooltip")
     @CN("允许同时处理至多65536个配方。")
     @EN("Allows up to 65536 recipes to be processed simultaneously.")
     public static Lang gtceuMachineParallelHatchMk12Tooltip;
 
 
-    @Key("gtceu.machine.parallel_hatch_mk13.tooltip")
     @CN("允许同时处理至多262144个配方。")
     @EN("Allows up to 262144 recipes to be processed simultaneously.")
     public static Lang gtceuMachineParallelHatchMk13Tooltip;
 
 
-    @Key("gtceu.machine.parallel_hatch_mk14.tooltip")
     @CN("允许同时处理至多1048576个配方。")
     @EN("Allows up to 1048576 recipes to be processed simultaneously.")
     public static Lang gtceuMachineParallelHatchMk14Tooltip;
 
 
-    @Key("gtceu.machine.parallel_hatch_mk9.tooltip")
     @CN("允许同时处理至多1024个配方。")
     @EN("Allows up to 1024 recipes to be processed simultaneously.")
     public static Lang gtceuMachineParallelHatchMk9Tooltip;

@@ -41,7 +41,6 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class CTNHRecipeTypes {
 
-    @Key("ctnh.acc.danger")
     @CN("§c危险粒子实验")
     @EN("§cDangerous Particle Experiment")
     public static Lang accDanger;
@@ -71,61 +70,51 @@ public class CTNHRecipeTypes {
     public static Lang nuclearReactorSafe;
 
 
-    @Key("ctnh.recipe.accelerator.mode.element")
     @CN("模式：加速电子")
     @EN("Mode: Electron Acceleration")
     public static Lang recipeAcceleratorModeElement;
 
 
-    @Key("ctnh.recipe.accelerator.mode.element.consume")
     @CN("加速类型：电子")
     @EN("Accelerated Particle: Electron")
     public static Lang recipeAcceleratorModeElementConsume;
 
 
-    @Key("ctnh.recipe.accelerator.mode.nu")
     @CN("模式：加速中子")
     @EN("Mode: Neutron Acceleration")
     public static Lang recipeAcceleratorModeNu;
 
 
-    @Key("ctnh.recipe.accelerator.mode.nu.consume")
     @CN("加速类型：中子")
     @EN("Accelerated Particle: Neutron")
     public static Lang recipeAcceleratorModeNuConsume;
 
 
-    @Key("ctnh.recipe.accelerator.mode.proton")
     @CN("模式：加速质子")
     @EN("Mode: Proton Acceleration")
     public static Lang recipeAcceleratorModeProton;
 
 
-    @Key("ctnh.recipe.accelerator.mode.proton.consume")
     @CN("加速类型：质子")
     @EN("Accelerated Particle: Proton")
     public static Lang recipeAcceleratorModeProtonConsume;
 
 
-    @Key("ctnh.recipe.accelerator.mode.speed.g")
     @CN("需求速度:%.2fGev")
     @EN("Required Velocity: %.2f GeV")
     public static Lang recipeAcceleratorModeSpeedG;
 
 
-    @Key("ctnh.recipe.accelerator.mode.speed.m")
     @CN("需求速度：%.2fMev")
     @EN("Required Velocity: %.2f MeV")
     public static Lang recipeAcceleratorModeSpeedM;
 
 
-    @Key("ctnh.recipe.arc_generator.max_require")
     @CN("满功率需求电弧强度:%d")
     @EN("Full-Power Required Arc Intensity: %d")
     public static Lang recipeArcGeneratorMaxRequire;
 
 
-    @Key("ctnh.recipe.arc_generator.require")
     @CN("需求电弧强度:%d")
     @EN("Required Arc Intensity: %d")
     public static Lang recipeArcGeneratorRequire;
@@ -143,7 +132,6 @@ public class CTNHRecipeTypes {
     public static Lang recipeHellforgeInfoMinimumDrain;
 
 
-    @Key("ctnh.recipe.industrial_altar.info.0")
     @CN("消耗/输入的lp量:%.1f")
     @EN("LP consumption/input: %.1f")
     public static Lang recipeIndustrialAltarInfo0;
@@ -179,19 +167,16 @@ public class CTNHRecipeTypes {
     public static Lang recipeTypeList;
 
 
-    @Key("ctnh.spacephotovoltaicbasestation.recipe.eut_model")
     @CN("模拟电压消耗: %d EUt")
     @EN("Simulated voltage consumption: %d EUt")
     public static Lang spacephotovoltaicbasestationRecipeEutModel;
 
 
-    @Key("ctnh.spacephotovoltaicbasestation.recipe.pvc_tier")
     @CN("需求光伏方块等级: %d")
     @EN("Required photovoltaic block tier: %d")
     public static Lang spacephotovoltaicbasestationRecipePvcTier;
 
 
-    @Key("ctnhcore.src.sacrifice")
     @CN("牺牲者: %s")
     @EN("Sacrifices: %s")
     public static Lang ctnhSrcSacrifice;

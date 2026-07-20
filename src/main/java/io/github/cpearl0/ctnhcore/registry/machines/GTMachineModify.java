@@ -1,5 +1,4 @@
 package io.github.cpearl0.ctnhcore.registry.machines;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
@@ -45,7 +44,6 @@ import static io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips.PERFECT_OVERCL
 @Suffix("tooltip")
 public class GTMachineModify {
 
-    @Key("ctnh.gcym.reduction")
     @CN("配方耗时x0.8，配方耗能x0.6")
     @EN("Recipe time ×0.8, recipe energy ×0.6")
     public static Lang gcymReduction;

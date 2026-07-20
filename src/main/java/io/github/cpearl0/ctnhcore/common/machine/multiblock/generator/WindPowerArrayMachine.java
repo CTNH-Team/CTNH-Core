@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.common.machine.trait.providable_net.IProviableNetHandlerMachine;
 import io.github.cpearl0.ctnhcore.common.machine.trait.providable_net.ProvidableNetHandler;
@@ -58,19 +57,16 @@ import javax.annotation.Nonnull;
 public class WindPowerArrayMachine extends MultiblockControllerMachine implements IProviableNetHandlerMachine,
                                    IFancyUIMachine, IDisplayUIMachine, IWorkable {
 
-    @Key("ctnh.mutliblock.wind_power_array.info.network_dirty")
     @CN("网络将在%d秒后重建")
     @EN("Network will rebuild in %d second(s)")
     public static Lang windPowerArrayInfoNetworkDirty;
 
 
-    @Key("ctnh.mutliblock.wind_power_array.info.network_machine")
     @CN("发电网络机器数：%d")
     @EN("Network Machine Count：%d")
     public static Lang windPowerArrayInfoNetworkMachine;
 
 
-    @Key("ctnh.mutliblock.wind_power_array.info.network_machine_efficiency")
     @CN("发电效率：%d")
     @EN("Generating Efficiency: %d")
     public static Lang windPowerArrayInfoNetworkMachineEfficiency;

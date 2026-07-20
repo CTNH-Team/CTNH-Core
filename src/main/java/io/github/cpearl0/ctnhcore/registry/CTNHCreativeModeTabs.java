@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.registry;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 
@@ -16,19 +15,16 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class CTNHCreativeModeTabs {
 
-    @Key("itemGroup.ctnhcore.block")
     @CN("CTNH方块")
     @EN("CTNH Blocks")
     public static Lang itemGroupBlock;
 
 
-    @Key("itemGroup.ctnhcore.item")
     @CN("CTNH物品")
     @EN("CTNH Items")
     public static Lang itemGroupItem;
 
 
-    @Key("itemGroup.ctnhcore.machine")
     @CN("CTNH机器")
     @EN("CTNH Machines")
     public static Lang itemGroupMachine;

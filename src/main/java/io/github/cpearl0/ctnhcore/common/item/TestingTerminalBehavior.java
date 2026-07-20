@@ -45,25 +45,21 @@ public class TestingTerminalBehavior implements IInteractionItem {
     public static Lang testTerminalErrorInfo;
 
 
-    @Key("ctnh.test_terminal.lack_error")
     @CN("在%s处缺少")
     @EN("At %s, you need")
     public static Lang testTerminalLackError;
 
 
-    @Key("ctnh.test_terminal.position")
     @CN("(%s,%s,%s)")
     @EN("(%s,%s,%s)")
     public static Lang testTerminalPosition;
 
 
-    @Key("ctnh.test_terminal.success")
     @CN("一切正常！")
     @EN("Everything is OK！")
     public static Lang testTerminalSuccess;
 
 
-    @Key("ctnh.test_terminal.wrong_error")
     @CN("在%s处应为")
     @EN("At %s, it should be")
     public static Lang testTerminalWrongError;

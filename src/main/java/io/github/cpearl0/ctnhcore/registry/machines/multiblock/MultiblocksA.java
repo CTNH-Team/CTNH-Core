@@ -125,31 +125,26 @@ public class MultiblocksA {
     public static Lang computerA7;
 
 
-    @Key("ctnh.multiblock.advanced_coke_oven.tooltip.0")
     @CN("高级焦炉")
     @EN("Advanced Coke Oven")
     public static Lang advancedCokeOvenTooltip0;
 
 
-    @Key("ctnh.multiblock.advanced_coke_oven.tooltip.1")
     @CN("§6§l自带32并行")
     @EN("§6§lComes with 32 parallelism")
     public static Lang advancedCokeOvenTooltip1;
 
 
-    @Key("ctnh.multiblock.advanced_coke_oven.tooltip.2")
     @CN("只可运行焦炉配方,且运行配方时间固定为15s")
     @EN("Can only run coke oven recipes, and recipe time is fixed at 15 seconds")
     public static Lang advancedCokeOvenTooltip2;
 
 
-    @Key("ctnh.multiblock.advanced_coke_oven.tooltip.3")
     @CN("产生大量的焦化产物与杂酚油")
     @EN("Produces a large amount of coke products and phenolic oil")
     public static Lang advancedCokeOvenTooltip3;
 
 
-    @Key("ctnh.multiblock.advanced_coke_oven.tooltip.4")
     @CN("§c§l不能使用焦炉仓")
     @EN("§c§lCannot use coke oven cells")
     public static Lang advancedCokeOvenTooltip4;
@@ -161,109 +156,91 @@ public class MultiblocksA {
     public static Lang arcreactorTooltip;
 
 
-    @Key("ctnh.multiblock.astronomical.tooltip.0")
     @CN("知天易，逆天难")
     @EN("Knowing the heavens is easy, but defying them is difficult")
     public static Lang astronomicalTooltip0;
 
 
-    @Key("ctnh.multiblock.astronomical.tooltip.1")
     @CN("无法在阳光直射下工作，工作时会自动为芯片总线中的芯片收集数据")
     @EN("Cannot work under direct sunlight, but will automatically collect data for the chips in the chip bus while working")
     public static Lang astronomicalTooltip1;
 
 
-    @Key("ctnh.multiblock.bio_reactor.tooltip.0")
     @CN("一个大罐子")
     @EN("A big tank")
     public static Lang bioReactorTooltip0;
 
 
-    @Key("ctnh.multiblock.blaze_blast_furnace.tooltip.0")
     @CN("比电力高炉快")
     @EN("Faster than an electric blast furnace.")
     public static Lang blazeBlastFurnaceTooltip0;
 
 
-    @Key("ctnh.multiblock.blaze_blast_furnace.tooltip.1")
     @CN("每秒基础消耗§a10mB§r烈焰之炽焱，电压每超过§6HV§r一级，消耗量变为原来的两倍")
     @EN("Base consumption is §a10mB§r of Blazing Pyrotheum per second. For each voltage tier above §6HV§r, the consumption doubles.")
     public static Lang blazeBlastFurnaceTooltip1;
 
 
-    @Key("ctnh.multiblock.blaze_blast_furnace.tooltip.2")
     @CN("运行耗能x0.75")
     @EN("Consumes 0.75x energy.")
     public static Lang blazeBlastFurnaceTooltip2;
 
 
-    @Key("ctnh.multiblock.blaze_blast_furnace.tooltip.3")
     @CN("允许一次性处理8个配方")
     @EN("Allows processing of 8 recipes simultaneously.")
     public static Lang blazeBlastFurnaceTooltip3;
 
 
-    @Key("ctnh.multiblock.coke_tower.tooltip.0")
     @CN("拥有强大的焦化产能来支撑你的木化产线！")
     @EN("Boasts formidable coking capacity to fuel your petrochemical production line!")
     public static Lang cokeTowerTooltip0;
 
 
-    @Key("ctnh.multiblock.coke_tower.tooltip.1")
     @CN("有着如同工业熔炉一般的速度")
     @EN("Delivers blistering speeds rivaling industrial furnaces")
     public static Lang cokeTowerTooltip1;
 
 
-    @Key("ctnh.multiblock.crystallizer.tooltip.0")
     @CN("专业结晶")
     @EN("Professional Crystallization")
     public static Lang crystallizerTooltip0;
 
 
-    @Key("ctnh.multiblock.crystallizer.tooltip.1")
     @CN("结晶器能更加快速的完成晶体配方")
     @EN("The crystallizer completes crystal recipes more efficiently.")
     public static Lang crystallizerTooltip1;
 
 
-    @Key("ctnh.multiblock.crystallizer.tooltip.2")
     @CN("随着线圈等级上升，工作效率逐级提升")
     @EN("Efficiency improves as the coil level increases.")
     public static Lang crystallizerTooltip2;
 
 
-    @Key("ctnh.multiblock.crystallizer.tooltip.3")
     @CN("可以运行部分化学气相沉积的配方和部分高压釜的配方")
     @EN("Can process chemical vapor deposition recipes and some autoclave recipes.")
     public static Lang crystallizerTooltip3;
 
 
-    @Key("ctnh.multiblock.crystallizer.tooltip.4")
     @CN("省材料的最佳帮手")
     @EN("The best assistant for saving materials.")
     public static Lang crystallizerTooltip4;
 
 
-    @Key("ctnh.multiblock.decay_pools.tooltip.0")
     @CN("衰变")
     @EN("Decay")
     public static Lang decayPoolsTooltip0;
 
 
-    @Key("ctnh.multiblock.decay_pools.tooltip.1")
     @CN("当电路板为0时为不通电状态---不启用世界加速")
     @EN("When the circuit board is set to 0, the machine is unpowered and world acceleration is disabled.")
     public static Lang decayPoolsTooltip1;
 
 
-    @Key("ctnh.multiblock.decay_pools.tooltip.2")
     @CN("当电路板为1时为通电状态---启用世界加速")
     @EN("When the circuit board is set to 1, the machine is powered and world acceleration is enabled.")
     public static Lang decayPoolsTooltip2;
 
 
-    @Key("ctnh.multiblock.decay_pools.tooltip.3")
     @CN("加速衰变过程")
     @EN("Accelerates the decay process.")
     public static Lang decayPoolsTooltip3;
@@ -359,49 +336,41 @@ public class MultiblocksA {
     public static Lang demonWillGeneratorTooltip6;
 
 
-    @Key("ctnh.multiblock.desalting_factory.tooltip.0")
     @CN("从海水中烘干出盐，很环保不是吗？")
     @EN("Drying salt out of seawater—eco-friendly, isn't it?")
     public static Lang desaltingFactoryTooltip0;
 
 
-    @Key("ctnh.multiblock.digestion_tank.tooltip.0")
     @CN("其实产生的是很有价值的原料......")
     @EN("Actually, it produces very valuable materials...")
     public static Lang digestionTankTooltip0;
 
 
-    @Key("ctnh.multiblock.digestion_tank.tooltip.1")
     @CN("化粪池堆肥机制：")
     @EN("Composting Mechanism of the Digestion Tank:")
     public static Lang digestionTankTooltip1;
 
 
-    @Key("ctnh.multiblock.digestion_tank.tooltip.2")
     @CN("当化粪池温度处于§236§r至§238§r度之间时为最适生长温度，配方获得1.2倍效率，越偏离最适生长温度，配方效率越低，最低为三分之一")
     @EN("The optimal growth temperature is between §236§r and §238§r degrees. Recipes get 1.2x efficiency at optimal temperature. The further it deviates, the lower the efficiency, down to one-third.")
     public static Lang digestionTankTooltip2;
 
 
-    @Key("ctnh.multiblock.fermenting_tank.tooltip.0")
     @CN("一个专为微生物提供的生长罐，注意时刻关注他！")
     @EN("A tank designed specifically for microbial growth. Always keep an eye on it!")
     public static Lang fermentingTankTooltip0;
 
 
-    @Key("ctnh.multiblock.fermenting_tank.tooltip.1")
     @CN("发酵罐的生物生长机制：")
     @EN("Biological Growth Mechanism of the Fermenting Tank:")
     public static Lang fermentingTankTooltip1;
 
 
-    @Key("ctnh.multiblock.fermenting_tank.tooltip.2")
     @CN("当发酵罐温度处于§236§r至§238§r度之间时为最适生长温度，配方获得1.2倍效率，越偏离最适生长温度，配方效率越低，最低为三分之一")
     @EN("The optimal growth temperature is between §236§r and §238§r degrees. Recipes get 1.2x efficiency at optimal temperature. The further it deviates, the lower the efficiency, down to one-third.")
     public static Lang fermentingTankTooltip2;
 
 
-    @Key("ctnh.multiblock.fermenting_tank.tooltip.3")
     @CN("微生物的生长符合逻辑斯蒂方程，当输入仓内液体体积为容量的一半时，§2生长效率达到两倍§r，而满仓和空仓时生长效率最低，保底为20%")
     @EN("Microbial growth follows the logistic equation. When the liquid volume in the input tank is half of its capacity, §2growth efficiency doubles§r. Efficiency is lowest when the tank is full or empty, with a minimum of 20%.")
     public static Lang fermentingTankTooltip3;
@@ -449,79 +418,66 @@ public class MultiblocksA {
     public static Lang industrialAltarInfoMaxLp;
 
 
-    @Key("ctnh.multiblock.industrial_primitive_blast_furnace.tooltip.0")
     @CN("更强大的土高炉，你的炼钢好帮手")
     @EN("A more powerful primitive blast furnace, your best helper for steelmaking")
     public static Lang industrialPrimitiveBlastFurnaceTooltip0;
 
 
-    @Key("ctnh.multiblock.industrial_primitive_blast_furnace.tooltip.1")
     @CN("工业土高炉在持续运行配方时，会不断升温，而一旦中止，则会迅速冷却")
     @EN("The industrial primitive blast furnace will continuously heat up while running a recipe, and will cool down rapidly once the process is stopped")
     public static Lang industrialPrimitiveBlastFurnaceTooltip1;
 
 
-    @Key("ctnh.multiblock.industrial_primitive_blast_furnace.tooltip.2")
     @CN("温度越高，工业土高炉的并行数越高，最高为8并行")
     @EN("The higher the temperature, the higher the parallelism of the industrial primitive blast furnace, up to a maximum of 8 parallelism")
     public static Lang industrialPrimitiveBlastFurnaceTooltip2;
 
 
-    @Key("ctnh.multiblock.industrial_primitive_blast_furnace.tooltip.3")
     @CN("温度越高，工业土高炉的效率越高，最高为两倍效率")
     @EN("The higher the temperature, the higher the efficiency of the industrial primitive blast furnace, up to a maximum of double efficiency")
     public static Lang industrialPrimitiveBlastFurnaceTooltip3;
 
 
-    @Key("ctnh.multiblock.ion_exchanger.tooltip.0")
     @CN("离子交换")
     @EN("Ion Exchange")
     public static Lang ionExchangerTooltip0;
 
 
-    @Key("ctnh.multiblock.large_bottle.tooltip.0")
     @CN("真是一个大罐子")
     @EN("This is truly a large container.")
     public static Lang largeBottleTooltip0;
 
 
-    @Key("ctnh.multiblock.large_bottle.tooltip.1")
     @CN("可以存储10000桶液体")
     @EN("Can store up to 10,000 buckets of liquid.")
     public static Lang largeBottleTooltip1;
 
 
-    @Key("ctnh.multiblock.large_bottle.tooltip.2")
     @CN("与大型发酵罐一起使用时，其中的液体会以§e100mb/s§r的速度消耗")
     @EN("When used with a large fermenting tank, its liquid will be consumed at a rate of §e100mb/s§r.")
     public static Lang largeBottleTooltip2;
 
 
-    @Key("ctnh.multiblock.large_fermenting_tank.tooltip.0")
     @CN("高效工业化发酵生产")
     @EN("Efficient Industrial Fermentation")
     public static Lang largeFermentingTankTooltip0;
 
 
-    @Key("ctnh.multiblock.large_fermenting_tank.tooltip.1")
     @CN("可接入附属结构，在对应位置连接上一个大发酵瓶后，可以根据发酵瓶中的液体种类提升保底效率：水(50%)，简易培养基(150%)，无菌培养基(200%)")
     @EN("Can connect auxiliary structures. By attaching a large fermentation bottle with a specific liquid type, the minimum efficiency increases: Water (50%), Basic Medium (150%), Sterile Medium (200%).")
     public static Lang largeFermentingTankTooltip1;
 
 
-    @Key("ctnh.multiblock.large_gas_collection_chamber.tooltip.0")
     @CN("全维度集气")
     @EN("Dimensional Gas Collection Chamber")
     public static Lang largeGasCollectionChamberTooltip0;
 
 
-    @Key("ctnh.multiblock.large_gas_collection_chamber.tooltip.1")
     @CN("这台机器可以收集任意维度的气体")
     @EN("This machine can collect gases from any dimension")
     public static Lang largeGasCollectionChamberTooltip1;
 
 
-    @Key("ctnh.multiblock.large_gas_collection_chamber.tooltip.2")
     @CN("由于它的产量较大，建议你用ME输出总成来收集产物")
     @EN("Since its output is large, it is recommended to use an ME Output Assembly to collect the products")
     public static Lang largeGasCollectionChamberTooltip2;
@@ -533,13 +489,11 @@ public class MultiblocksA {
     public static Lang largeMinerZpmTooltip0;
 
 
-    @Key("ctnh.multiblock.large_steel_alloy_furnace.tooltip.0")
     @CN("钢质合金炉")
     @EN("Steel Alloy Furnace")
     public static Lang largeSteelAlloyFurnaceTooltip0;
 
 
-    @Key("ctnh.multiblock.large_steel_furnace.tooltip.0")
     @CN("钢质熔炉")
     @EN("Steel Furnace")
     public static Lang largeSteelFurnaceTooltip0;
@@ -581,67 +535,56 @@ public class MultiblocksA {
     public static Lang manaTurbineInfoEfficiency;
 
 
-    @Key("ctnh.multiblock.martial_morality_eye.tooltip.0")
     @CN("丐版鸿蒙之眼")
     @EN("Poor version of the Primordial Eye")
     public static Lang martialMoralityEyeTooltip0;
 
 
-    @Key("ctnh.multiblock.martial_morality_eye.tooltip.1")
     @CN("原始时代时消耗64000mb的蒸汽和64个原石")
     @EN("Consumes 64000mb of steam and 64 raw stones in the early stages")
     public static Lang martialMoralityEyeTooltip1;
 
 
-    @Key("ctnh.multiblock.martial_morality_eye.tooltip.2")
     @CN("产出主世界和暮色森林以及月球的矿")
     @EN("Produces ores from the Overworld, Twilight Forest, and the Moon")
     public static Lang martialMoralityEyeTooltip2;
 
 
-    @Key("ctnh.multiblock.martial_morality_eye.tooltip.3")
     @CN("随着电压等级提高能够解锁更多配方")
     @EN("Unlocks more recipes as the voltage level increases")
     public static Lang martialMoralityEyeTooltip3;
 
 
-    @Key("ctnh.multiblock.martial_morality_eye.tooltip.4")
     @CN("在前期比坠星好用")
     @EN("More useful than falling stars in the early stages")
     public static Lang martialMoralityEyeTooltip4;
 
 
-    @Key("ctnh.multiblock.martial_morality_eye.tooltip.5")
     @CN("结构中心似乎存在着神秘力量，充满危险的气息，请远离！")
     @EN("The center of the structure seems to emanate a mysterious force, filled with an aura of danger. Stay away!")
     public static Lang martialMoralityEyeTooltip5;
 
 
-    @Key("ctnh.multiblock.martial_morality_eye.tooltip.6")
     @CN("结构来源:Twist Space Technology")
     @EN("Structure source: Twist Space Technology")
     public static Lang martialMoralityEyeTooltip6;
 
 
-    @Key("ctnh.multiblock.meadow.tooltip.0")
     @CN("§7自动化放牧")
     @EN("§7Automated Grazing")
     public static Lang meadowTooltip0;
 
 
-    @Key("ctnh.multiblock.meadow.tooltip.1")
     @CN("输入配方所需n倍应力时，获得n并行")
     @EN("Gains n parallel processing when provided with n× the required stress.")
     public static Lang meadowTooltip1;
 
 
-    @Key("ctnh.multiblock.meadow.tooltip.2")
     @CN("可以同时养殖不同动物")
     @EN("Allows breeding of different animals at the same time.")
     public static Lang meadowTooltip2;
 
 
-    @Key("ctnh.multiblock.meadow.tooltip.3")
     @CN("§7只有动物跑出去时，你才知道你不是在种菜！")
     @EN("§7Only when the animals run away will you realize that you are not growing crops!")
     public static Lang meadowTooltip3;
@@ -659,13 +602,11 @@ public class MultiblocksA {
     public static Lang megaLcrInfoSpeed;
 
 
-    @Key("ctnh.multiblock.mega_lcr.tooltip.0")
     @CN("§b具有4个异步线程§r")
     @EN("§bHas 4 asynchronous threads§r")
     public static Lang megaLcrTooltip0;
 
 
-    @Key("ctnh.multiblock.mega_lcr.tooltip.1")
     @CN("使用§d异步线程控制仓§r以配置多线程运行模式")
     @EN("Use §dAsynchronous Thread Control Hatches§r to configure multithreaded operation")
     public static Lang megaLcrTooltip1;
@@ -701,85 +642,71 @@ public class MultiblocksA {
     public static Lang meteorCapturerTooltip4;
 
 
-    @Key("ctnh.multiblock.naq_reactor_mk3.tooltip.1")
     @CN("浩瀚能量，天地震动")
     @EN("Vast energy, the earth trembles")
     public static Lang naqReactorMk3Tooltip1;
 
 
-    @Key("ctnh.multiblock.naq_reactor_mk3.tooltip.2")
     @CN("利用超能燃料进行发电,无镍等离子体时无法完全消耗燃料")
     @EN("Generates power using supercharged fuel - cannot fully consume fuel without nickel plasma")
     public static Lang naqReactorMk3Tooltip2;
 
 
-    @Key("ctnh.multiblock.naq_reactor_mk3.tooltip.3")
     @CN("机器构型中必须有一个动力仓")
     @EN("A power core must be present in the machine configuration")
     public static Lang naqReactorMk3Tooltip3;
 
 
-    @Key("ctnh.multiblock.naq_reactor_mk3.tooltip.4")
     @CN("随着内核温度上升,发电效率增大")
     @EN("As the core temperature increases, power generation efficiency improves")
     public static Lang naqReactorMk3Tooltip4;
 
 
-    @Key("ctnh.multiblock.photovoltaic_power_station_energetic.tooltip.0")
     @CN("简易太阳能发电")
     @EN("Basic Solar Power Generation")
     public static Lang photovoltaicPowerStationEnergeticTooltip0;
 
 
-    @Key("ctnh.multiblock.photovoltaic_power_station_energetic.tooltip.1")
     @CN("§e基础产能功率：§r512 EU/t")
     @EN("§eBase Output:§r 512 EU/t")
     public static Lang photovoltaicPowerStationEnergeticTooltip1;
 
 
-    @Key("ctnh.multiblock.photovoltaic_power_station_energetic.tooltip.2")
     @CN("只在白天工作，不同维度会对太阳能发电的效率产生影响，基础产能功率为在主世界正午的功率")
     @EN("Operates only during daytime. Efficiency varies across dimensions. Base output reflects noon in the Overworld")
     public static Lang photovoltaicPowerStationEnergeticTooltip2;
 
 
-    @Key("ctnh.multiblock.photovoltaic_power_station_pulsating.tooltip.0")
     @CN("高效太阳能发电")
     @EN("Advanced Solar Power Generation")
     public static Lang photovoltaicPowerStationPulsatingTooltip0;
 
 
-    @Key("ctnh.multiblock.photovoltaic_power_station_pulsating.tooltip.1")
     @CN("§e基础产能功率：§r2048 EU/t")
     @EN("§eBase Output:§r 2048 EU/t")
     public static Lang photovoltaicPowerStationPulsatingTooltip1;
 
 
-    @Key("ctnh.multiblock.photovoltaic_power_station_pulsating.tooltip.2")
     @CN("只在白天工作，不同维度会对太阳能发电的效率产生影响，基础产能功率为在主世界正午的功率")
     @EN("Operates only during daytime. Efficiency varies across dimensions. Base output reflects noon in the Overworld")
     public static Lang photovoltaicPowerStationPulsatingTooltip2;
 
 
-    @Key("ctnh.multiblock.photovoltaic_power_station_vibrant.tooltip.0")
     @CN("究极太阳能发电")
     @EN("Ultimate Solar Power Generation")
     public static Lang photovoltaicPowerStationVibrantTooltip0;
 
 
-    @Key("ctnh.multiblock.photovoltaic_power_station_vibrant.tooltip.1")
     @CN("§e基础产能功率：§r8192 EU/t")
     @EN("§eBase Output:§r 8192 EU/t")
     public static Lang photovoltaicPowerStationVibrantTooltip1;
 
 
-    @Key("ctnh.multiblock.photovoltaic_power_station_vibrant.tooltip.2")
     @CN("只在白天工作，不同维度会对太阳能发电的效率产生影响，基础产能功率为在主世界正午的功率")
     @EN("Operates only during daytime. Efficiency varies across dimensions. Base output reflects noon in the Overworld")
     public static Lang photovoltaicPowerStationVibrantTooltip2;
 
 
-    @Key("ctnh.multiblock.plasma_condenser.tooltip.1")
     @CN("氤氲之气，凝为霜露")
     @EN("The dense air condenses into frost and dew")
     public static Lang plasmaCondenserTooltip1;
@@ -857,187 +784,156 @@ public class MultiblocksA {
     public static Lang quasarEyeTooltip9;
 
 
-    @Key("ctnh.multiblock.sintering_kiln.tooltip.0")
     @CN("需要通入8192应力使其内部活塞压实待加工料")
     @EN("Requires 8,192 Stress to activate internal pistons for compacting materials")
     public static Lang sinteringKilnTooltip0;
 
 
-    @Key("ctnh.multiblock.slaughter_house.tooltip.0")
     @CN("无情的杀戮机器")
     @EN("A merciless killing machine")
     public static Lang slaughterHouseTooltip0;
 
 
-    @Key("ctnh.multiblock.slaughter_house.tooltip.1")
     @CN("输入总线放入电动刷怪笼后，机器会自动输出对应怪物的战利品，可放入多个电动刷怪笼")
     @EN("When powered spawners are placed in the input bus, the machine will automatically output corresponding mob drops. Multiple powered spawners can be inserted")
     public static Lang slaughterHouseTooltip1;
 
 
-    @Key("ctnh.multiblock.slaughter_house.tooltip.2")
     @CN("电压每升高1级，虚拟刷怪量会增加4（HV为4）")
     @EN("Each voltage tier increase adds +4 to virtual spawn count (HV provides 4)")
     public static Lang slaughterHouseTooltip2;
 
 
-    @Key("ctnh.multiblock.slaughter_house.tooltip.3")
     @CN("怪物血量和护甲值越高，配方运行所需时间越长")
     @EN("Higher mob health and armor values will increase processing time")
     public static Lang slaughterHouseTooltip3;
 
 
-    @Key("ctnh.multiblock.slaughter_house.tooltip.4")
     @CN("武器的伤害和附魔会减少配方运行的时间")
     @EN("Weapon damage and enchantments will reduce processing time")
     public static Lang slaughterHouseTooltip4;
 
 
-    @Key("ctnh.multiblock.slaughter_house.tooltip.5")
     @CN("时运等附魔也能生效")
     @EN("Fortune and other enchantments also take effect")
     public static Lang slaughterHouseTooltip5;
 
 
-    @Key("ctnh.multiblock.super_ebf.tooltip.0")
     @CN("所有配方速度提高50%！")
     @EN("All recipes are 50% faster!")
     public static Lang superEbfTooltip0;
 
 
-    @Key("ctnh.multiblock.sweat_shop.tooltip.0")
     @CN("生产资料与剩余价值")
     @EN("Means of Production and Surplus Value")
     public static Lang sweatShopTooltip0;
 
 
-    @Key("ctnh.multiblock.sweat_shop.tooltip.1")
     @CN("工厂内的村民数量决定了工作效率，配方耗时x(2/村民数量)")
     @EN("The number of villagers in the factory determines efficiency. Recipe time x (2 / number of villagers)")
     public static Lang sweatShopTooltip1;
 
 
-    @Key("ctnh.multiblock.sweat_shop.tooltip.2")
     @CN("工厂内的有效员工数量受限于工厂大小，初始上限为4，工厂长度每增加4格上限+1")
     @EN("The effective number of workers in the factory is limited by the factory size. Initial limit: 4 workers; for every 4 blocks added to the factory length, the limit increases by 1.")
     public static Lang sweatShopTooltip2;
 
 
-    @Key("ctnh.multiblock.sweat_shop.tooltip.3")
     @CN("放入的生产资料(机器)决定了可以工作的配方：\n动力辊压机----卷板机配方\n动力搅拌机----搅拌机配方\n车床----车床配方\n离心机----离心机配方\n烈焰人燃烧室----提取机配方\n工作盆----流体成型配方\n粉碎轮----研磨机配方\n动力锯----线材轧机配方\n激光加工器----激光蚀刻配方\n==============================")
     @EN("The production materials (machines) placed determine the available recipes:\nPowered Rolling Machine ---- Rolling Mill Recipes\nPowered Mixer ---- Mixer Recipes\nLathe ---- Lathe Recipes\nCentrifuge ---- Centrifuge Recipes\nBlaze Burner ---- Extractor Recipes\nWork Basin ---- Fluid Forming Recipes\nCrushing Wheel ---- Grinder Recipes\nPowered Saw ---- Wire Rolling Machine Recipes\nLaser Processor ---- Laser Etching Recipes\n==============================")
     public static Lang sweatShopTooltip3;
 
 
-    @Key("ctnh.multiblock.sweat_shop.tooltip.4")
     @CN("放入的生产资料(机器)数量决定了对应工作配方的并行数：并行数 = sqrt(机器数)")
     @EN("The number of production materials (machines) placed determines the parallelism of corresponding recipes: Parallelism = sqrt(number of machines)")
     public static Lang sweatShopTooltip4;
 
 
-    @Key("ctnh.multiblock.sweat_shop.tooltip.5")
     @CN("放入机械手可以提高整体配方运行速度，配方耗时x (1/1 + 0.25 * sqrt(机械手数))")
     @EN("Adding robotic arms improves the overall recipe execution speed. Recipe time x (1 / 1 + 0.25 * sqrt(number of robotic arms))")
     public static Lang sweatShopTooltip5;
 
 
-    @Key("ctnh.multiblock.sweat_shop.tooltip.6")
     @CN("放入机器的多样性会提高配方运行速度")
     @EN("The diversity of machines placed improves recipe execution speed.")
     public static Lang sweatShopTooltip6;
 
 
-    @Key("ctnh.multiblock.sweat_shop.tooltip.7")
     @CN("基础配方耗时为2倍，配方所需的电压等级越高，基础耗时x(配方等级的平方)")
     @EN("The base recipe time is 2x. The higher the recipe voltage tier, the more the base time is multiplied by the square of the recipe tier.")
     public static Lang sweatShopTooltip7;
 
 
-    @Key("ctnh.multiblock.sweat_shop.tooltip.8")
     @CN("每5秒机器会消耗(员工数量)份简易营养餐")
     @EN("Every 5 seconds, the machine consumes (number of employees) servings of Simple Worker Meals.")
     public static Lang sweatShopTooltip8;
 
 
-    @Key("ctnh.multiblock.underfloor_heating_system.tooltip.0")
     @CN("用蒸汽温暖你的心")
     @EN("Warm your heart with steam")
     public static Lang underfloorHeatingSystemTooltip0;
 
 
-    @Key("ctnh.multiblock.underfloor_heating_system.tooltip.1")
     @CN("地暖系统依靠蒸汽供暖，占地一个区块，能对§a周围5*5的区块§r产生供暖，供暖只会在地暖上方十格内生效")
     @EN("The underfloor heating system uses steam for heating. Occupying one chunk, it can heat §aa 5×5 chunk area§r around it. Heating only works within 10 blocks above the system")
     public static Lang underfloorHeatingSystemTooltip1;
 
 
-    @Key("ctnh.multiblock.underfloor_heating_system.tooltip.2")
     @CN("铜砖瓦会生锈，生锈后地暖系统的供暖能力会减弱")
     @EN("Copper brick tiles will rust over time, reducing the heating efficiency of the system when rusted")
     public static Lang underfloorHeatingSystemTooltip2;
 
 
-    @Key("ctnh.multiblock.underfloor_heating_system.tooltip.3")
     @CN("可以调节速率，以降低供暖功率并减少蒸汽消耗，最低降至25%")
     @EN("Adjustable rate allows reducing heating power and steam consumption, with minimum setting at 25%")
     public static Lang underfloorHeatingSystemTooltip3;
 
 
-    @Key("ctnh.multiblock.vacuum_sintering_tower.tooltip.0")
     @CN("真空烧结")
     @EN("Vacuum Sintering")
     public static Lang vacuumSinteringTowerTooltip0;
 
 
-    @Key("ctnh.multiblock.void_miner.tooltip.0")
     @CN("取天材，掘地精")
     @EN("Harvesting heaven's materials, digging the earth's essence")
     public static Lang voidMinerTooltip0;
 
 
-    @Key("ctnh.multiblock.void_miner.tooltip.1")
     @CN("虚空采矿场自动生成并提取矿石")
     @EN("The Void Miner automatically generates and extracts ores")
     public static Lang voidMinerTooltip1;
 
 
-    @Key("ctnh.multiblock.void_miner.tooltip.2")
     @CN("如果你对矿物需求极大，虚空采矿机是必不可少的帮手")
     @EN("If you have a huge demand for minerals, the Void Miner is an essential helper")
     public static Lang voidMinerTooltip2;
 
 
-    @Key("ctnh.multiblock.void_miner.tooltip.3")
     @CN("每次工作消耗100,000B钻井液，升降温度时消耗极寒之凛冰和烈焰之炽焱")
     @EN("Each operation consumes 100,000 B of drilling fluid; Cryotheum and Pyrotheum are consumed when adjusting temperature")
     public static Lang voidMinerTooltip3;
 
 
-    @Key("ctnh.multiblock.void_miner.tooltip.4")
     @CN("在奇数次运行前，机器会试图消耗烈焰之炽焱来升温。初始烈焰之炽焱消耗量为1000mb,若成功消耗,则温度将会增加 ⌊(消耗量 ÷ 100)⌋,接着消耗量将会自乘以 1.02")
     @EN("Before odd-numbered operations, the machine attempts to consume Pyrotheum to raise the temperature. Initial consumption is 1000 mB; if successful, the temperature increases by floor(consumption / 100), then consumption is multiplied by 1.02.")
     public static Lang voidMinerTooltip4;
 
 
-    @Key("ctnh.multiblock.void_miner.tooltip.5")
     @CN("在偶数次运行前，机器会试图消耗极寒之凛冰来降温。初始极寒之凛冰消耗量为1000mb,若成功消耗,则温度将会降低 ⌊(消耗量 ÷ 100)⌋,接着消耗量将会自乘以 1.02")
     @EN("Before even-numbered operations, the machine attempts to consume Cryotheum to lower the temperature. Initial consumption is 1000 mB; if successful, the temperature decreases by floor(consumption / 100), then consumption is multiplied by 1.02.")
     public static Lang voidMinerTooltip5;
 
 
-    @Key("ctnh.multiblock.void_miner.tooltip.6")
     @CN("温度越高，虚空采矿场的产出倍率越高")
     @EN("The higher the temperature, the higher the Void Miner's output multiplier")
     public static Lang voidMinerTooltip6;
 
 
-    @Key("ctnh.multiblock.void_miner.tooltip.7")
     @CN("当温度达到25000K时，虚空采矿机将进入强制降温模式，直至温度降至0K时，恢复正常工作模式")
     @EN("At 25,000 K, the Void Miner enters forced cooling mode until the temperature reaches 0 K, then resumes normal operation.")
     public static Lang voidMinerTooltip7;
 
 
-    @Key("ctnh.multiblock.void_miner.tooltip.8")
     @CN("请交替输入烈焰之炽焱和极寒之凛冰来控制温度")
     @EN("Alternate Pyrotheum and Cryotheum inputs to control the temperature.")
     public static Lang voidMinerTooltip8;
@@ -1091,7 +987,6 @@ public class MultiblocksA {
     public static Lang zenithMachineInfoNowParallel;
 
 
-    @Key("ctnh.super_centrifuge.parallel")
     @CN("普通离心机模式下会获得8并行")
     @EN("Provides 8 parallel operations in normal centrifuge mode")
     public static Lang superCentrifugeParallel;
@@ -1151,13 +1046,11 @@ public class MultiblocksA {
     public static Lang gtceuUnderfloorHeatingSystem;
 
 
-    @Key("super_centrifuge")
     @CN("超速离心")
     @EN("Super Centrifuge")
     public static Lang superCentrifuge;
 
 
-    @Key("ultrasonic_apparatus")
     @CN("超声破碎")
     @EN("Ultrasonic Disruptor")
     public static Lang ultrasonicApparatus;

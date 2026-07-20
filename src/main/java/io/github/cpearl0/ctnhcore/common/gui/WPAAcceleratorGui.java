@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.common.gui;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.WideParticleAccelerator;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
@@ -25,25 +24,21 @@ import java.util.function.Function;
 
 public class WPAAcceleratorGui implements IFancyUIProvider {
 
-    @Key("ctnh.multiblock.wide_accelerator.gui.electric")
     @CN("电子轨道")
     @EN("Electron Beamline")
     public static Lang wideAcceleratorGuiElectric;
 
 
-    @Key("ctnh.multiblock.wide_accelerator.gui.name")
     @CN("访问轨道")
     @EN("Access Beamline")
     public static Lang wideAcceleratorGuiName;
 
 
-    @Key("ctnh.multiblock.wide_accelerator.gui.nu")
     @CN("中子轨道")
     @EN("Neutron Beamline")
     public static Lang wideAcceleratorGuiNu;
 
 
-    @Key("ctnh.multiblock.wide_accelerator.gui.proton")
     @CN("原子轨道")
     @EN("Proton Beamline")
     public static Lang wideAcceleratorGuiProton;

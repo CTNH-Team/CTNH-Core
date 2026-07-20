@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.data.CreateRecipeTypes;
 
@@ -36,13 +35,11 @@ import static net.minecraft.world.level.block.Blocks.GLASS;
 
 public class Mechanical {
 
-    @Key("ctnh.mechanical_lathe.structure")
     @CN("结构中的车床必须严格依照EMI结构信息页面展示的位置和方向摆放")
     @EN("The lathe in the structure must be placed exactly as shown in EMI's structure information, including position and orientation")
     public static Lang mechanicalLatheStructure;
 
 
-    @Key("ctnh.mechanical_lathe.structure.1")
     @CN("§7EMI中显示的车床数量有问题，实际只需要6个")
     @EN("§7The number of lathes shown in EMI is incorrect; only 6 are actually required")
     public static Lang mechanicalLatheStructure1;

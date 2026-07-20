@@ -3,7 +3,6 @@ import org.spongepowered.asm.mixin.Unique;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -23,7 +22,6 @@ import org.spongepowered.asm.mixin.Overwrite;
 @Mixin(value = PortalBlock.class)
 public class PortalBlockMixin {
 
-    @Key("message.ctnhcore.portal.invalid_dimension")
     @CN("该传送门只能在主世界使用")
     @EN("This portal can only be used in the Overworld")
     @Unique

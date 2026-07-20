@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -20,25 +19,21 @@ import java.util.List;
 
 public class Arc_Generator extends RecipeElectricMultiblockMachine implements ITieredMachine {
 
-    @Key("ctnh.multiblock.arcgenerator.info.0")
     @CN("电弧最大强度:%d")
     @EN("Max Arc Intensity: %d")
     public static Lang arcgeneratorInfo0;
 
 
-    @Key("ctnh.multiblock.arcgenerator.info.1")
     @CN("电弧强度:%d")
     @EN("Current Arc Intensity: %d")
     public static Lang arcgeneratorInfo1;
 
 
-    @Key("ctnh.multiblock.arcgenerator.info.2")
     @CN("支持最大效率:%.2f%%")
     @EN("Max Supported Efficiency: %.2f%%")
     public static Lang arcgeneratorInfo2;
 
 
-    @Key("ctnh.multiblock.arcgenerator.info.3")
     @CN("当前效率:%.2f%%")
     @EN("Current Efficiency: %.2f%%")
     public static Lang arcgeneratorInfo3;

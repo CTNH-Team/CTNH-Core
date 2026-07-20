@@ -3,7 +3,6 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.NaqReactor
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
@@ -41,19 +40,16 @@ import java.util.*;
 @Getter
 public class VoidMinerProcessingMachine extends RecipeElectricMultiblockMachine {
 
-    @Key("ctnh.multiblock.void_miner.info.cryotheum")
     @CN("极寒之凛冰消耗：%d ")
     @EN("Cryotheum consumption: %d ")
     public static Lang voidMinerInfoCryotheum;
 
 
-    @Key("ctnh.multiblock.void_miner.info.overheat")
     @CN("过热!!!")
     @EN("Overheating!!!")
     public static Lang voidMinerInfoOverheat;
 
 
-    @Key("ctnh.multiblock.void_miner.info.pyrotheum")
     @CN("烈焰之炽焱消耗：%d ")
     @EN("Pyrotheum consumption: %d ")
     public static Lang voidMinerInfoPyrotheum;

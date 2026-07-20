@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
@@ -40,13 +39,11 @@ import java.util.List;
 
 public class FactoryMachine extends RecipeElectricMultiblockMachine implements IMachineModifyDrops {
 
-    @Key("ctnh.multiblock.sweat_shop.info.basic_rate")
     @CN("基础效率：x%s")
     @EN("Base Productivity: x%s")
     public static Lang sweatShopInfoBasicRate;
 
 
-    @Key("ctnh.multiblock.sweat_shop.info.villager_count")
     @CN("员工数量：%s")
     @EN("Employee Count: %s")
     public static Lang sweatShopInfoVillagerCount;

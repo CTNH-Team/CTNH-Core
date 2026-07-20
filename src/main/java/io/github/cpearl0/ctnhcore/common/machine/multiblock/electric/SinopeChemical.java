@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -26,13 +25,11 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 public class SinopeChemical extends CoilWorkableElectricMultiblockMachine implements ITieredMachine {
 
-    @Key("ctnh.multiblock.sinope_chemical.info.level")
     @CN("线圈加速倍率:%d")
     @EN("Coil Accelerating Rate: %d")
     public static Lang sinopeChemicalInfoLevel;
 
 
-    @Key("ctnh.multiblock.sinope_chemical.info.parallel")
     @CN("并行数:%d")
     @EN("Parallel Count: %d")
     public static Lang sinopeChemicalInfoParallel;

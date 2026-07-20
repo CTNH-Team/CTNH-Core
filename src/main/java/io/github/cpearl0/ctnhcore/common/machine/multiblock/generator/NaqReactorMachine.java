@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -29,19 +28,16 @@ import java.util.Objects;
 @Getter
 public class NaqReactorMachine extends RecipeElectricMultiblockMachine implements ITieredMachine {
 
-    @Key("ctnh.multiblock.naq_reactor.info.nickel_consumption")
     @CN("镍等离子体消耗量: %d")
     @EN("Nickel plasma consumption: %d")
     public static Lang naqReactorInfoNickelConsumption;
 
 
-    @Key("ctnh.multiblock.naq_reactor.info.parallel_count")
     @CN("发电并行数: %d")
     @EN("Power generation parallel count: %d")
     public static Lang naqReactorInfoParallelCount;
 
 
-    @Key("ctnh.multiblock.naq_reactor.info.temperature")
     @CN("§c内核温度: %d")
     @EN("§cCore temperature: %d")
     public static Lang naqReactorInfoTemperature;

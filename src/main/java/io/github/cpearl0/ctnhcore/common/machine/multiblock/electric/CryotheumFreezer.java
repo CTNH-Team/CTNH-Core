@@ -1,5 +1,4 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.common.gui.MachineModeFancyConfiguratorTest;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
@@ -31,13 +30,11 @@ import java.util.function.DoubleSupplier;
 
 public class CryotheumFreezer extends RecipeElectricMultiblockMachine implements IFancyUIMachine {
 
-    @Key("ctnh.multiblock.cryotheum_freezer.ui.0")
     @CN("当前泪之晶点数:%d")
     @EN("Current Tear Crystal points: %d")
     public static Lang cryotheumFreezerUi0;
 
 
-    @Key("ctnh.multiblock.cryotheum_freezer.ui.5")
     @CN("§b当前消耗的凛冰:%d / %d")
     @EN("§bCurrent Cryotheum consumption: %d / %d")
     public static Lang cryotheumFreezerUi5;

@@ -3,7 +3,6 @@ import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.renderer.HyperPlasmaTurbineRender;
@@ -38,13 +37,11 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class HyperPlasmaTurbineRegister {
 
-    @Key("ctnh.multiblock.hyper_plasma_turbine.tooltip0")
     @CN("§a精密计算§f与§e等离子体§f的§5终极艺术")
     @EN("§5FINAL FANTASY §fof §a Precise Computation §f and §e Plasma Energy")
     public static Lang hyperPlasmaTurbineTooltip0;
 
 
-    @Key("ctnh.multiblock.hyper_plasma_turbine.tooltip1")
     @CN("提供%d算力以达到基础功率，每提供%d算力，输出功率翻一倍")
     @EN("Provide %d computation to reach the Base Production. For every %d computation provided, the Output Production DOUBLES.")
     public static Lang hyperPlasmaTurbineTooltip1;

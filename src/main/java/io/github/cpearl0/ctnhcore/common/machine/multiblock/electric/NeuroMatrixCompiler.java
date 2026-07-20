@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CompilerMachine;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
@@ -36,49 +35,41 @@ import java.util.stream.Collectors;
 
 public class NeuroMatrixCompiler extends RecipeElectricMultiblockMachine implements ITieredMachine {
 
-    @Key("ctnh.compiler.error.0")
     @CN("§c未知错误")
     @EN("§cUnknown error")
     public static Lang compilerError0;
 
 
-    @Key("ctnh.compiler.error.1")
     @CN("§c舱室等级与片区1不匹配")
     @EN("§cChamber tier does not match Region 1")
     public static Lang compilerError1;
 
 
-    @Key("ctnh.neuro_matrix_compiler.info.part_states")
     @CN("片区%d状态:%s")
     @EN("Region %d status: %s")
     public static Lang neuroMatrixCompilerInfoPartStates;
 
 
-    @Key("ctnh.neuro_matrix_compiler.info.state.error")
     @CN("§c错误,类型：%s")
     @EN("§cError, type: %s")
     public static Lang neuroMatrixCompilerInfoStateError;
 
 
-    @Key("ctnh.neuro_matrix_compiler.info.state.finish")
     @CN("§a完成")
     @EN("§aComplete")
     public static Lang neuroMatrixCompilerInfoStateFinish;
 
 
-    @Key("ctnh.neuro_matrix_compiler.info.state.idle")
     @CN("§6待机")
     @EN("§6Idle")
     public static Lang neuroMatrixCompilerInfoStateIdle;
 
 
-    @Key("ctnh.neuro_matrix_compiler.info.state.waiting")
     @CN("§b等待中......")
     @EN("§bWaiting......")
     public static Lang neuroMatrixCompilerInfoStateWaiting;
 
 
-    @Key("ctnh.neuro_matrix_compiler.info.state.working")
     @CN("§9运行中:%ss/%ss")
     @EN("§9Working: %ss/%ss")
     public static Lang neuroMatrixCompilerInfoStateWorking;

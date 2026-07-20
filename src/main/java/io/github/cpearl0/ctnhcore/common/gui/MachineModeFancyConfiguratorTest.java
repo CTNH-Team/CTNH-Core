@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.common.gui;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.CryotheumFreezer;
 import io.github.cpearl0.ctnhcore.registry.CTNHGuiTextures;
@@ -24,25 +23,21 @@ import java.util.List;
 
 public class MachineModeFancyConfiguratorTest implements IFancyUIProvider {
 
-    @Key("ctnh.multiblock.cryotheum_freezer.ui.1")
     @CN("当前冷冻机加速：%.2f / %.2f")
     @EN("Current freezer speed: %.2f / %.2f")
     public static Lang cryotheumFreezerUi1;
 
 
-    @Key("ctnh.multiblock.cryotheum_freezer.ui.2")
     @CN("打开升级面板")
     @EN("Open Upgrade Panel")
     public static Lang cryotheumFreezerUi2;
 
 
-    @Key("ctnh.multiblock.cryotheum_freezer.ui.3")
     @CN("当前能量利用效率：%.2f / %.2f")
     @EN("Current energy efficiency: %.2f / %.2f")
     public static Lang cryotheumFreezerUi3;
 
 
-    @Key("ctnh.multiblock.cryotheum_freezer.ui.4")
     @CN("当前并行：%d / %d")
     @EN("Current parallelism: %d / %d")
     public static Lang cryotheumFreezerUi4;

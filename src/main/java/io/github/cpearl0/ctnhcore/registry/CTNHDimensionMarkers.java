@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.registry;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import com.gregtechceu.gtceu.api.data.DimensionMarker;
 
@@ -12,49 +11,41 @@ import static com.gregtechceu.gtceu.common.data.GTDimensionMarkers.createAndRegi
 
 public class CTNHDimensionMarkers {
 
-    @Key("dimension.ad_astra:glacio")
     @CN("霜原星")
     @EN("Glacio")
     public static Lang dimensionAdAstraGlacio;
 
 
-    @Key("dimension.ad_astra:mars")
     @CN("火星")
     @EN("Mars")
     public static Lang dimensionAdAstraMars;
 
 
-    @Key("dimension.ad_astra:mercury")
     @CN("水星")
     @EN("Mercury")
     public static Lang dimensionAdAstraMercury;
 
 
-    @Key("dimension.ad_astra:moon")
     @CN("月球")
     @EN("Moon")
     public static Lang dimensionAdAstraMoon;
 
 
-    @Key("dimension.ad_astra:venus")
     @CN("金星")
     @EN("Venus")
     public static Lang dimensionAdAstraVenus;
 
 
-    @Key("dimension.ad_extendra:jupiter")
     @CN("木星")
     @EN("Jupiter")
     public static Lang dimensionAdExtendraJupiter;
 
 
-    @Key("dimension.aether:the_aether")
     @CN("天境")
     @EN("Aether")
     public static Lang dimensionAetherTheAether;
 
 
-    @Key("dimension.twilightforest:twilight_forest")
     @CN("暮色森林")
     @EN("Twilight Forest")
     public static Lang dimensionTwilightforestTwilightForest;

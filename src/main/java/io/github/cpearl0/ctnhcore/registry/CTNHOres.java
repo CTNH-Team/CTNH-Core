@@ -95,7 +95,7 @@ public class CTNHOres {
 
 
     @Key("ctnhcore:ancient_debris_vein")
-        @CN("远古残骸矿脉")
+    @CN("远古残骸矿脉")
     @EN("Ancient Debris Vein")
     public static Lang ctnhAncientDebrisVein;
 

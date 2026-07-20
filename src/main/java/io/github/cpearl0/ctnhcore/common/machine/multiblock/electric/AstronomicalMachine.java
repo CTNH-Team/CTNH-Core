@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CircuitBusPartMachine;
 
@@ -29,7 +28,6 @@ import java.util.Objects;
 
 public class AstronomicalMachine extends RecipeElectricMultiblockMachine {
 
-    @Key("ctnh.multiblock.astronomical.info.invalid")
     @CN("只能在夜晚使用")
     @EN("Can only be used at night")
     public static Lang astronomicalInfoInvalid;

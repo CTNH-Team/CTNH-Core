@@ -30,31 +30,26 @@ import java.util.List;
 public class Superconducting_Penning_Trap extends RecipeElectricMultiblockMachine
                                           implements ITieredMachine, IExplosionMachine, IControllable {
 
-    @Key("ctnh.anti_electric")
     @CN("反电子量:%d")
     @EN("Positron amount: %d")
     public static Lang antiElectric;
 
 
-    @Key("ctnh.anti_nu")
     @CN("反中子量:%d")
     @EN("Antineutron amount: %d")
     public static Lang antiNu;
 
 
-    @Key("ctnh.anti_proton")
     @CN("反质子量:%d")
     @EN("Antiproton amount: %d")
     public static Lang antiProton;
 
 
-    @Key("ctnh.no_energy_waring")
     @CN("§c警告：供电不足，约束场即将失效！")
     @EN("§cWarning: insufficient power; the containment field is about to fail!")
     public static Lang noEnergyWaring;
 
 
-    @Key("ctnh.restore_danger")
     @CN("约束危险物质")
     @EN("Contain hazardous materials")
     public static Lang restoreDanger;
@@ -66,7 +61,6 @@ public class Superconducting_Penning_Trap extends RecipeElectricMultiblockMachin
     public static Lang trapElectric;
 
 
-    @Key("ctnh.trap_electric_max")
     @CN("允许存储电量上限:%deu")
     @EN("Maximum stored power: %d EU")
     public static Lang trapElectricMax;

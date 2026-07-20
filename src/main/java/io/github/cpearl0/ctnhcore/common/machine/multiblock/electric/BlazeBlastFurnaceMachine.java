@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
@@ -28,7 +27,6 @@ import java.util.List;
 
 public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMachine {
 
-    @Key("ctnh.multiblock.blaze_blast_furnace.info.pyrotheum")
     @CN("烈焰之炽焱：%d mB")
     @EN("Blazing Pyrotheum: %d mB")
     public static Lang blazeBlastFurnaceInfoPyrotheum;

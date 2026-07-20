@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.IEnergyContainer;
@@ -46,25 +45,21 @@ import java.util.Objects;
 public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine implements IFancyUIMachine,
                                              IDisplayUIMachine, IWorkable, IExplosionMachine {
 
-    @Key("ctnh.multiblock.photovoltaic_power_station.info.1")
     @CN("发电效率：%s%%")
     @EN("Efficiency: %s%%")
     public static Lang photovoltaicPowerStationInfo1;
 
 
-    @Key("ctnh.multiblock.photovoltaic_power_station.info.2")
     @CN("产能功率：%s/%s EU/t")
     @EN("Generating: %s/%s EU/t")
     public static Lang photovoltaicPowerStationInfo2;
 
 
-    @Key("ctnh.multiblock.photovoltaic_power_station.info.invalid")
     @CN("有方块阻挡")
     @EN("Shadowed")
     public static Lang photovoltaicPowerStationInfoInvalid;
 
 
-    @Key("ctnh.multiblock.photovoltaic_power_station.info.night")
     @CN("光照过于微弱")
     @EN("At night")
     public static Lang photovoltaicPowerStationInfoNight;
