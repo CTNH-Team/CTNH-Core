@@ -56,6 +56,51 @@ import static io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils.*;
 @Suffix("tooltip")
 public class CTNHMachines {
 
+    @Key("block.ctnhcore.abyssalalloy_coil_block")
+    @CN("渊狱合金线圈")
+    public static Lang blockAbyssalalloyCoilBlock;
+
+
+    @Key("block.ctnhcore.atoms_split_blocks")
+    @CN("原子裂解方块")
+    public static Lang blockAtomsSplitBlocks;
+
+
+    @Key("block.ctnhcore.black_titanium_coil_block")
+    @CN("黑钛合金线圈")
+    public static Lang blockBlackTitaniumCoilBlock;
+
+
+    @Key("block.ctnhcore.hyper_plasma_turbine_rotor")
+    @CN("超極等离子涡轮转子")
+    public static Lang blockHyperPlasmaTurbineRotor;
+
+
+    @Key("block.ctnhcore.infinity_coil_block")
+    @CN("无尽线圈")
+    public static Lang blockInfinityCoilBlock;
+
+
+    @Key("block.ctnhcore.naquadah_firebox_casing")
+    @CN("硅岩燃烧室")
+    public static Lang blockNaquadahFireboxCasing;
+
+
+    @Key("block.ctnhcore.pikyonium_coil_block")
+    @CN("皮卡优线圈")
+    public static Lang blockPikyoniumCoilBlock;
+
+
+    @Key("block.ctnhcore.starmetal_coil_block")
+    @CN("星辉线圈")
+    public static Lang blockStarmetalCoilBlock;
+
+
+    @Key("block.ctnhcore.titansteel_coil_block")
+    @CN("泰坦钢线圈")
+    public static Lang blockTitansteelCoilBlock;
+
+
     @Key("block.ctnhcore.advance_assembly_line")
     @CN("进阶装配线")
     public static Lang blockAdvanceAssemblyLine;
