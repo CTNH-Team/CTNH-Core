@@ -27,7 +27,8 @@ public class GTNNMachines {
 
     public static void init() {
         NEUTRON_ACCELERATOR = registerTieredMachines(
-                "neutron_accelerator", NeutronAcceleratorMachine::new,
+                "neutron_accelerator",
+                " 中子加速器", NeutronAcceleratorMachine::new,
                 (tier, builder) -> builder.langValue(VNF[tier] + " Neutron Accelerator")
                         .rotationState(RotationState.ALL)
                         .abilities(CTNHPartAbility.NEUTRON_ACCELERATOR)

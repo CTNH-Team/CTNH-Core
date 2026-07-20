@@ -40,48 +40,6 @@ import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterialFlags.GEN
 
 public class CTNHMaterials {
 
-    @Key("block.gtceu.starlight")
-    @CN("星能液")
-    @EN("Starlight Fluid")
-    public static Lang blockGtceuStarlight;
-
-
-    @Key("block.gtceu.sulfuric_acid")
-    @CN("硫酸")
-    @EN("Sulfuric Acid")
-    public static Lang blockGtceuSulfuricAcid;
-
-
-    @Key("material.ctnhcore.ambrosium")
-    @CN("神能晶")
-    @EN("Ambrosium")
-    public static Lang materialAmbrosium;
-
-
-    @Key("material.ctnhcore.holystone")
-    @CN("神圣石")
-    @EN("Holystone")
-    public static Lang materialHolystone;
-
-
-    @Key("material.ctnhcore.skyjade")
-    @CN("穹玉")
-    @EN("Skyjade")
-    public static Lang materialSkyjade;
-
-
-    @Key("material.ctnhcore.stratus")
-    @CN("云母钢")
-    @EN("Stratus")
-    public static Lang materialStratus;
-
-
-    @Key("material.ctnhcore.zanite")
-    @CN("紫晶石")
-    @EN("Zanite")
-    public static Lang materialZanite;
-
-
 
     public static void addFluid(Material material) {
         if (!material.hasProperty(PropertyKey.FLUID)) {

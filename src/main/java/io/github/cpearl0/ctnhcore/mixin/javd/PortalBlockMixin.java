@@ -1,4 +1,5 @@
 package io.github.cpearl0.ctnhcore.mixin.javd;
+import org.spongepowered.asm.mixin.Unique;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
@@ -25,7 +26,8 @@ public class PortalBlockMixin {
     @Key("message.ctnhcore.portal.invalid_dimension")
     @CN("该传送门只能在主世界使用")
     @EN("This portal can only be used in the Overworld")
-    public static Lang messagePortalInvalidDimension;
+    @Unique
+    private static Lang messagePortalInvalidDimension;
 
 
 
