@@ -1,6 +1,7 @@
 {
   "values": [
     "#minecraft:is_overworld",
+    "#minecraft:is_nether",
     {
       "id": "#aether:is_aether",
       "required": false

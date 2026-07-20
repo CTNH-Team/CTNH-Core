@@ -72,7 +72,7 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
             MachineUtils.applyContents(fmachine, (contents, part) -> {
                 if (contents instanceof FluidStack fluid) {
                     double current = fluid.getAmount();
-                    var total = FluidHatchPartMachine.getTankCapacity(FluidHatchPartMachine.INITIAL_TANK_CAPACITY_1X,
+                    var total = FluidHatchPartMachine.getTankCapacity(FluidHatchPartMachine.INITIAL_TANK_CAPACITY,
                             part.self().getDefinition().getTier());
                     double density = current / total;
                     double logistic = 8 * (density - Math.pow(density, 2));
