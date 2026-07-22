@@ -11,6 +11,7 @@ import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+import io.github.lounode.ae2cs.common.init.AECSBlocks;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -110,6 +111,8 @@ public class CreateRecipes {
         RecipeRemoval.remove(new RemoveFilter().id("create:mixing/andesite_alloy"));
         RecipeRemoval.remove(new RemoveFilter().id("create:mixing/andesite_alloy_from_zinc"));
         RecipeRemoval.remove(new RemoveFilter().id("create:milling/calcite"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/fluid_pipe"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/fluid_pipe_vertical"));
         RecipeRemoval.remove(new RemoveFilter().id("create:item_application/copper_casing_from_log"));
         RecipeRemoval.remove(new RemoveFilter().id("create:item_application/copper_casing_from_wood"));
     }
@@ -354,17 +357,45 @@ public class CreateRecipes {
                     .output(new ItemStack(potinDust.getItem(), 8)).save(provider);
         }
 
-        // rose quartz from quartz + redstone
-        ItemStack quartz = new ItemStack(Items.QUARTZ);
-        ItemStack redstone = new ItemStack(Items.REDSTONE);
-        ItemStack roseQuartz = AllItems.ROSE_QUARTZ.asStack();
-        if (!quartz.isEmpty() && !redstone.isEmpty() && !roseQuartz.isEmpty()) {
-            MixingRecipeBuilder.builder("rose_quartz_from_quartz_redstone").input(quartz)
-                    .input(new ItemStack(redstone.getItem(), 4))
-                    .output(roseQuartz).save(provider);
-        }
+        CompactingRecipeBuilder.builder(CTNHCore.id("create/rose_quartz_block"))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.NetherQuartz, 9))
+                .input(new ItemStack(Items.REDSTONE, 32))
+                .result(AECSBlocks.PURE_ROSE_QUARTZ_BLOCK.toStack())
+                .heated()
+                .save(provider);
 
+        CuttingRecipeBuilder.builder("rose_quartz_block_to_rose_quartz")
+                .input(item("ae2cs:rose_quartz_block"))
+                .result(AllItems.ROSE_QUARTZ.asStack(9))
+                .save(provider);
+
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("create/fluid_pipe_bronze"),
+                AllBlocks.FLUID_PIPE.asStack(4),
+                "SCS",
+                'S', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Bronze),
+                'C', ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Bronze));
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("create/fluid_pipe_bronze_vertical"),
+                AllBlocks.FLUID_PIPE.asStack(4),
+                "S", "C", "S",
+                'S', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Bronze),
+                'C', ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Bronze));
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("create/fluid_pipe_vanilla_copper"),
+                AllBlocks.FLUID_PIPE.asStack(),
+                "SCS",
+                'S', TagUtil.createItemTag("plates/copper", false),
+                'C', Items.COPPER_INGOT);
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("create/fluid_pipe_vanilla_copper_vertical"),
+                AllBlocks.FLUID_PIPE.asStack(),
+                "S", "C", "S",
+                'S', TagUtil.createItemTag("plates/copper", false),
+                'C', Items.COPPER_INGOT);
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("create/fluid_tank_bronze"),
+                AllBlocks.FLUID_TANK.asStack(2),
+                "B", "C", "B",
+                'B', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Bronze),
+                'C', TagUtil.createItemTag("barrels/wooden", false));
         // rose quartz from rose quartz chunk + water
+        ItemStack roseQuartz = AllItems.ROSE_QUARTZ.asStack();
         ItemStack roseChunk = item("biomesoplenty:rose_quartz_chunk") == null ? ItemStack.EMPTY :
                 new ItemStack(item("biomesoplenty:rose_quartz_chunk"));
         if (!roseChunk.isEmpty() && !roseQuartz.isEmpty()) {
@@ -866,13 +897,17 @@ public class CreateRecipes {
     private static void addCopperCasingRecipes(Consumer<FinishedRecipe> provider) {
         addCopperCasingRecipe(provider, "copper_casing_from_log", "forge:stripped_logs");
         addCopperCasingRecipe(provider, "copper_casing_from_wood", "forge:stripped_wood");
+        addCopperCasingRecipe(provider, "copper_casing_from_andesite_casing", "create:andesite_casing");
     }
 
-    private static void addCopperCasingRecipe(Consumer<FinishedRecipe> provider, String name, String woodTag) {
+    private static void addCopperCasingRecipe(Consumer<FinishedRecipe> provider, String name, String baseIngredient) {
         JsonObject recipe = CreateRecipeJsonHelper.recipe("create:item_application");
         recipe.add("ingredients", CreateRecipeJsonHelper.array(
-                CreateRecipeJsonHelper.tag(woodTag),
-                CreateRecipeJsonHelper.item("gtceu:bronze_ingot")));
+                baseIngredient.startsWith("forge:")
+                        ? CreateRecipeJsonHelper.tag(baseIngredient)
+                        : CreateRecipeJsonHelper.item(baseIngredient),
+                CreateRecipeJsonHelper.item(name.endsWith("andesite_casing")
+                        ? "gtceu:copper_plate" : "gtceu:bronze_ingot")));
         recipe.add("results", CreateRecipeJsonHelper.array(CreateRecipeJsonHelper.item("create:copper_casing")));
         CreateRecipeJsonHelper.save(provider, CTNHCore.id("create/" + name).toString(), recipe);
     }

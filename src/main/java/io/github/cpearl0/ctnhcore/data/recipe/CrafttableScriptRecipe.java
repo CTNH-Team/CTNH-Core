@@ -113,10 +113,16 @@ public class CrafttableScriptRecipe {
                 CTPPItems.BASIC_MECHANISM.asStack(), 'B', AllBlocks.SHAFT.asStack(), 'C',
                 AllBlocks.ANDESITE_CASING.asStack(), 'D', AllBlocks.LARGE_COGWHEEL.asStack(), 'E',
                 AllItems.WHISK.asStack());
-        shaped(provider, "electron_tube", AllItems.ELECTRON_TUBE.asStack(), " A ", "BCB", " B ", 'A',
+        shaped(provider, "electron_tube", AllItems.ELECTRON_TUBE.asStack(4), " A ", "BCB", " B ", 'A',
                 AllItems.POLISHED_ROSE_QUARTZ.asItem(), 'B',
                 ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy), 'C',
                 ChemicalHelper.get(TagPrefix.gearSmall, GTMaterials.Iron));
+        shaped(provider, "electron_tube_from_glass_tube", AllItems.ELECTRON_TUBE.asStack(4), " A ", " C ", " B ", 'A',
+                AllItems.POLISHED_ROSE_QUARTZ.asItem(), 'B', ChemicalHelper.get(TagPrefix.gearSmall, GTMaterials.Iron), 'C',
+                GTItems.GLASS_TUBE.asStack());
+        shaped(provider, "electron_tube_from_glass_tube_steel_gear", AllItems.ELECTRON_TUBE.asStack(6),
+                " A ", " C ", " B ", 'A', AllItems.POLISHED_ROSE_QUARTZ.asItem(), 'B',
+                ChemicalHelper.get(TagPrefix.gearSmall, GTMaterials.Steel), 'C', GTItems.GLASS_TUBE.asStack());
         shaped(provider, "deployer", AllBlocks.DEPLOYER.asStack(), "ABA", "CDC", " E ", 'A',
                 CTPPItems.BASIC_MECHANISM.asStack(), 'B', AllItems.ELECTRON_TUBE.asStack(), 'C',
                 AllBlocks.ANDESITE_CASING.asStack(), 'D', AllBlocks.SHAFT.asStack(), 'E',

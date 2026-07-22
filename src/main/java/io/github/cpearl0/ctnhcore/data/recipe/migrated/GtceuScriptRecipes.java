@@ -5,6 +5,7 @@ import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.data.materials.NewExplosivesProductionMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.YeastRelatedMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import io.github.cpearl0.ctnhcore.data.recipe.utils.KeepIngredientRecipeHelper;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
@@ -27,6 +28,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import appeng.core.definitions.AEBlocks;
@@ -1106,13 +1108,19 @@ public class GtceuScriptRecipes {
 
         // ============== Forge Hammer Recipes ==============
 
-        // 56. hot_high_temp_wrought_precursor_ingot_fixed: hot_high_temp_wrought_precursor_ingot -> wrought_iron_ingot.
-        // EUt 8, dur 100
-        FORGE_HAMMER_RECIPES.recipeBuilder(CTNHCore.id("hot_high_temp_wrought_precursor_ingot_fixed"))
+        FORGE_HAMMER_RECIPES.recipeBuilder(CTNHCore.id("hot_wrought_iron_ingot_fixed"))
                 .EUt(8).duration(100)
-                .inputItems(ingot, UncategorizedMaterials.HIGH_TEMP_WROUGHT_PRECURSOR)
+                .inputItems(ingotHot, WroughtIron)
                 .outputItems(ingot, WroughtIron)
                 .save(provider);
+
+        KeepIngredientRecipeHelper.addKeepIngredientShapedRecipe(provider,
+                CTNHCore.id("crafttable/wrought_iron_ingot_from_hot"),
+                ChemicalHelper.get(ingot, WroughtIron),
+                new String[] { "HA" },
+                Ingredient.of(CustomTags.CRAFTING_HAMMERS),
+                'H', CustomTags.CRAFTING_HAMMERS,
+                'A', ChemicalHelper.get(ingotHot, WroughtIron));
 
         // ============== Polarizer Recipes ==============
 
@@ -2347,9 +2355,9 @@ public class GtceuScriptRecipes {
 
         // ============== Smelting Recipe ==============
 
-        VanillaRecipeHelper.addSmeltingRecipe(provider, CTNHCore.id("smelting_hot_high_temp_wrought_precursor"),
-                ChemicalHelper.get(ingotHot, UncategorizedMaterials.HIGH_TEMP_WROUGHT_PRECURSOR),
+        VanillaRecipeHelper.addSmeltingRecipe(provider, CTNHCore.id("smelting_iron_to_hot_wrought_iron"),
                 new ItemStack(Items.IRON_INGOT),
+                ChemicalHelper.get(ingotHot, WroughtIron),
                 1.4f);
 
         // ============== Recipe Replace Re-additions ==============

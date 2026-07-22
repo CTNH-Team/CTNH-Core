@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.registry.material;
 
 import io.github.cpearl0.ctnhcore.data.CTNHMaterialFlags;
 
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
@@ -203,6 +204,8 @@ public class GTMaterialAddon {
         Neutronium.setMaterialIconSet(CTNHMaterials.MaterialIcons.Neutron);
         NaquadahEnriched.addFlags(GENERATE_BOLT_SCREW);
         Europium.addFlags(GENERATE_BOLT_SCREW);
+        WroughtIron.setProperty(PropertyKey.BLAST,
+                new BlastProperty(2150, BlastProperty.GasTier.HIGH, GTValues.VA[GTValues.MV], 250, -1, -1));
         Brass.addFlags(GENERATE_DENSE);
         Aluminium.addFlags(GENERATE_DENSE);
         Steel.addFlags(GENERATE_DENSE);

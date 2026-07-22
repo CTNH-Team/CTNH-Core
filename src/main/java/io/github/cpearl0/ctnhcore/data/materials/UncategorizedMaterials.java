@@ -55,7 +55,6 @@ public class UncategorizedMaterials {
     public static Material STRONTIUM_CHLORIDE;
     public static Material ORACLE;
     public static Material STEEL_PRECURSOR;
-    public static Material HIGH_TEMP_WROUGHT_PRECURSOR;
     public static Material PERRHENIC_ACID;
 
     public static void init() {
@@ -377,15 +376,6 @@ public class UncategorizedMaterials {
                 .formula("Fe8C3")
                 .dust()
                 .color(0x4A4A4A)
-                .buildAndRegister();
-
-        HIGH_TEMP_WROUGHT_PRECURSOR = REGISTRATE.material(CTNHCore.id("high_temp_wrought_precursor"))
-                .cnlang("预处理锻铁")
-                .dust()
-                .ingot()
-                .iconSet(METALLIC)
-                .color(0x8C7853)
-                .blastTemp(7200, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.UHV], 2500)
                 .buildAndRegister();
 
         PERRHENIC_ACID = REGISTRATE.material(CTNHCore.id("perrhenic_acid"))
