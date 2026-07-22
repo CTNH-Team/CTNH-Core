@@ -118,7 +118,8 @@ public class CrafttableScriptRecipe {
                 ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy), 'C',
                 ChemicalHelper.get(TagPrefix.gearSmall, GTMaterials.Iron));
         shaped(provider, "electron_tube_from_glass_tube", AllItems.ELECTRON_TUBE.asStack(4), " A ", " C ", " B ", 'A',
-                AllItems.POLISHED_ROSE_QUARTZ.asItem(), 'B', ChemicalHelper.get(TagPrefix.gearSmall, GTMaterials.Iron), 'C',
+                AllItems.POLISHED_ROSE_QUARTZ.asItem(), 'B', ChemicalHelper.get(TagPrefix.gearSmall, GTMaterials.Iron),
+                'C',
                 GTItems.GLASS_TUBE.asStack());
         shaped(provider, "electron_tube_from_glass_tube_steel_gear", AllItems.ELECTRON_TUBE.asStack(6),
                 " A ", " C ", " B ", 'A', AllItems.POLISHED_ROSE_QUARTZ.asItem(), 'B',

@@ -1,11 +1,7 @@
 package io.github.cpearl0.ctnhcore.registry;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ScalableReservoirComputingMachine;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ScalableReservoirComputingMachine;
 import io.github.cpearl0.ctnhcore.data.CreateRecipeTypes;
 import io.github.cpearl0.ctnhcore.data.recipe.BioChemistryRecipes;
 
@@ -29,8 +25,12 @@ import com.lowdragmc.lowdraglib.utils.LocalizationUtils;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.world.item.ItemStack;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 import com.moguang.ctnhbio.api.capability.recipe.EntityRecipeCapability;
 import com.simibubi.create.AllBlocks;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,179 +45,146 @@ public class CTNHRecipeTypes {
     @EN("§cDangerous Particle Experiment")
     public static Lang accDanger;
 
-
     @Key("ctnh.nuclear_reactor.basic")
     @CN("这是一个耗能设备，但是会产生大量的热量，可以转化用以发电")
     @EN("This is an energy-consuming machine that produces a large amount of heat, which can be converted into power")
     public static Lang nuclearReactorBasic;
-
 
     @Key("ctnh.nuclear_reactor.coolant")
     @CN("冷却液可以使用蒸汽（150°C），氘（450°C），钠（800°C），钠钾合金（900°C），反应的堆温越高，消耗冷却液的速度越快，冷却液的热容越大，消耗速度越慢")
     @EN("Coolant can be steam (150°C), deuterium (450°C), sodium (800°C), or sodium-potassium alloy (900°C). Higher reactor temperature increases coolant consumption, while higher coolant heat capacity reduces consumption")
     public static Lang nuclearReactorCoolant;
 
-
     @Key("ctnh.nuclear_reactor.overclock")
     @CN("冷却液并非运行所必须，但是在有冷却液时，配方每运行一秒，进度会增加两秒")
     @EN("Coolant is not required for operation, but with coolant present, recipe progress increases by two seconds for every one second of operation")
     public static Lang nuclearReactorOverclock;
-
 
     @Key("ctnh.nuclear_reactor.safe")
     @CN("反应堆不会过热爆炸")
     @EN("The reactor will not explode from overheating")
     public static Lang nuclearReactorSafe;
 
-
     @CN("模式：加速电子")
     @EN("Mode: Electron Acceleration")
     public static Lang recipeAcceleratorModeElement;
-
 
     @CN("加速类型：电子")
     @EN("Accelerated Particle: Electron")
     public static Lang recipeAcceleratorModeElementConsume;
 
-
     @CN("模式：加速中子")
     @EN("Mode: Neutron Acceleration")
     public static Lang recipeAcceleratorModeNu;
-
 
     @CN("加速类型：中子")
     @EN("Accelerated Particle: Neutron")
     public static Lang recipeAcceleratorModeNuConsume;
 
-
     @CN("模式：加速质子")
     @EN("Mode: Proton Acceleration")
     public static Lang recipeAcceleratorModeProton;
-
 
     @CN("加速类型：质子")
     @EN("Accelerated Particle: Proton")
     public static Lang recipeAcceleratorModeProtonConsume;
 
-
     @CN("需求速度:%.2fGev")
     @EN("Required Velocity: %.2f GeV")
     public static Lang recipeAcceleratorModeSpeedG;
-
 
     @CN("需求速度：%.2fMev")
     @EN("Required Velocity: %.2f MeV")
     public static Lang recipeAcceleratorModeSpeedM;
 
-
     @CN("满功率需求电弧强度:%d")
     @EN("Full-Power Required Arc Intensity: %d")
     public static Lang recipeArcGeneratorMaxRequire;
 
-
     @CN("需求电弧强度:%d")
     @EN("Required Arc Intensity: %d")
     public static Lang recipeArcGeneratorRequire;
-
 
     @Key("ctnh.recipe.hellforge.info.drain")
     @CN("消耗：%s意志")
     @EN("Drain: %s Will")
     public static Lang recipeHellforgeInfoDrain;
 
-
     @Key("ctnh.recipe.hellforge.info.minimum_drain")
     @CN("最少：%s意志")
     @EN("Minimum Drain: %s Will")
     public static Lang recipeHellforgeInfoMinimumDrain;
 
-
     @CN("消耗/输入的lp量:%.1f")
     @EN("LP consumption/input: %.1f")
     public static Lang recipeIndustrialAltarInfo0;
-
 
     @Key("ctnh.recipe.quasar_eye.info.0")
     @CN("启动消耗:%.1f")
     @EN("Activation Cost: %.1f")
     public static Lang recipeQuasarEyeInfo0;
 
-
     @Key("ctnh.recipe.quasar_eye.info.1")
     @CN("能量等级: %d")
     @EN("Energy Tier: %d")
     public static Lang recipeQuasarEyeInfo1;
-
 
     @Key("ctnh.recipe.quasar_eye.info.2")
     @CN("启动等级: %d")
     @EN("Activation Tier: %d")
     public static Lang recipeQuasarEyeInfo2;
 
-
     @Key("ctnh.recipe_type.info")
     @CN("配方类型：%s")
     @EN("Recipe Type：%s")
     public static Lang recipeTypeInfo;
-
 
     @Key("ctnh.recipe_type.list")
     @CN("%s, %s")
     @EN("%s, %s")
     public static Lang recipeTypeList;
 
-
     @CN("模拟电压消耗: %d EUt")
     @EN("Simulated voltage consumption: %d EUt")
     public static Lang spacephotovoltaicbasestationRecipeEutModel;
-
 
     @CN("需求光伏方块等级: %d")
     @EN("Required photovoltaic block tier: %d")
     public static Lang spacephotovoltaicbasestationRecipePvcTier;
 
-
     @CN("牺牲者: %s")
     @EN("Sacrifices: %s")
     public static Lang ctnhSrcSacrifice;
-
 
     @Key("gtceu.recipe_logic.recipe_waiting")
     @CN("配方等待中：")
     @EN("Recipe waiting:")
     public static Lang gtceuRecipeLogicRecipeWaiting;
 
-
     @Key("gtceu.recipe_logic.setup_fail")
     @CN("配方启动失败：")
     @EN("Recipe failed to start:")
     public static Lang gtceuRecipeLogicSetupFail;
-
 
     @Key("multiblock.ctnh.nuclear_reactor.consume_amount")
     @CN("冷却液消耗率：%s mB/s")
     @EN("Coolant consumption rate: %s mB/s")
     public static Lang multiblockCtnhNuclearReactorConsumeAmount;
 
-
     @Key("multiblock.ctnh.nuclear_reactor.coolant")
     @CN("冷却液：%s")
     @EN("Coolant: %s")
     public static Lang multiblockCtnhNuclearReactorCoolant;
-
 
     @Key("multiblock.ctnh.nuclear_reactor.coolant_amount")
     @CN("冷却液量：%s mB")
     @EN("Coolant amount: %s mB")
     public static Lang multiblockCtnhNuclearReactorCoolantAmount;
 
-
     @Key("nuclear_reactor")
     @CN("核能转化时刻")
     @EN("Nuclear Energy Conversion")
     public static Lang nuclearReactor;
-
-
 
     public static final GTRecipeType UNDERFLOOR_HEATING_SYSTEM = REGISTRATE
             .recipeType(CTNHCore.id("underfloor_heating_system"), GTRecipeTypes.ELECTRIC)
@@ -751,7 +718,8 @@ public class CTNHRecipeTypes {
             .addDataInfo(data -> LocalizationUtils.format("gtceu.machine.hpca.component_type.computation_cwut",
                     data.getInt("maxCWUt")))
             .addDataInfo(
-                    data -> LocalizationUtils.format(ScalableReservoirComputingMachine.ctnhSrcWetwareDuration.key(), data.getInt("wetwareDuration")))
+                    data -> LocalizationUtils.format(ScalableReservoirComputingMachine.ctnhSrcWetwareDuration.key(),
+                            data.getInt("wetwareDuration")))
             // TODO: 渲染以后写
             .addDataInfo(data -> LocalizationUtils.format(ctnhSrcSacrifice.key(), data.getString("sacrifice")));
     public static final GTRecipeType DIFFERENTIAL_CENTRIFUGE_RECIPES = REGISTRATE

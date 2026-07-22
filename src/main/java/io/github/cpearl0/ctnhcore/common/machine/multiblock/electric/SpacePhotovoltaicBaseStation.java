@@ -34,22 +34,17 @@ public class SpacePhotovoltaicBaseStation extends RecipeElectricMultiblockMachin
     @EN("Current photovoltaic block tier: %d")
     public static Lang spacephotovoltaicbasestationInfoPvcTier0;
 
-
     @CN("当前结构耐热等级:%d")
     @EN("Current structure heat-resistance tier: %d")
     public static Lang spacephotovoltaicbasestationInfoPvcTier1;
-
 
     @CN("当前结构发电量:%.2f")
     @EN("Current power generation: %.2f")
     public static Lang spacephotovoltaicbasestationInfoPvcTier2;
 
-
     @CN("当前维度光倍率:%d")
     @EN("Current dimensional light multiplier: %d")
     public static Lang spacephotovoltaicbasestationInfoPvcTier3;
-
-
 
     public SpacePhotovoltaicBaseStation(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
@@ -197,9 +192,9 @@ public class SpacePhotovoltaicBaseStation extends RecipeElectricMultiblockMachin
 
     public void addDisplayText(List<Component> textList) {
         textList.add(textList.size(),
-                spacephotovoltaicbasestationInfoPvcTier0.translate( String.format("%d", heat)));
+                spacephotovoltaicbasestationInfoPvcTier0.translate(String.format("%d", heat)));
         textList.add(textList.size(),
-                spacephotovoltaicbasestationInfoPvcTier1.translate( String.format("%d", heat)));
+                spacephotovoltaicbasestationInfoPvcTier1.translate(String.format("%d", heat)));
         textList.add(textList.size(), spacephotovoltaicbasestationInfoPvcTier2.translate(
                 String.format("%.2f", muti * 131072 * heat)));
         textList.add(textList.size(), spacephotovoltaicbasestationInfoPvcTier3.translate(

@@ -1,8 +1,4 @@
 package io.github.cpearl0.ctnhcore.registry;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.api.machine.feature.ICoilMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ChemicalPlantMachine;
@@ -25,7 +21,11 @@ import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import net.minecraft.Util;
 import net.minecraft.network.chat.Component;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 import org.jetbrains.annotations.NotNull;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.function.Function;
 
@@ -37,18 +37,14 @@ public class CTNHRecipeModifiers {
     @EN("Coil temperature too low!")
     public static Lang gtceuRecipeModifierCoilTemperatureTooLow;
 
-
     @Key("gtceu.recipe_modifier.insufficient_eu_to_start_fusion")
     @CN("缺少足够能量以启动核聚变反应")
     @EN("Not enough energy to start the fusion reaction")
     public static Lang gtceuRecipeModifierInsufficientEuToStartFusion;
 
-
     @CN("电压等级过低！")
     @EN("Voltage tier too low!")
     public static Lang gtceuRecipeModifierInsufficientVoltage;
-
-
 
     public static Component accurateParallel(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe,
                                              int parallel) {

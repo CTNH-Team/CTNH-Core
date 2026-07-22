@@ -1,8 +1,4 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.part;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
@@ -21,7 +17,11 @@ import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.item.ItemStack;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 import lombok.Getter;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.List;
 
@@ -36,13 +36,10 @@ public class CompilerMachine extends TieredIOPartMachine implements IDistinctPar
     @EN("Assigned region ID: %s")
     public static Lang compilerId;
 
-
     @Key("ctnh.compiler.noid")
     @CN("§c当前舱室尚未连接到主机！")
     @EN("§cThis chamber is not connected to the host!")
     public static Lang compilerNoid;
-
-
 
     @Getter
     @Persisted

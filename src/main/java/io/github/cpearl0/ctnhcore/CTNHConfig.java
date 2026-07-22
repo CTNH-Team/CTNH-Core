@@ -1,13 +1,13 @@
 package io.github.cpearl0.ctnhcore;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
 import com.ctnhlang.Key;
-
 import dev.toma.configuration.Configuration;
 import dev.toma.configuration.config.Config;
 import dev.toma.configuration.config.Configurable;
 import dev.toma.configuration.config.format.ConfigFormats;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 @Config(id = CTNHCore.MODID)
 public class CTNHConfig {
@@ -17,145 +17,120 @@ public class CTNHConfig {
     @EN("Mechanical Centrifuge minimum RPM")
     public static Lang configOptionCentrifugeRpmRequirement;
 
-
     @Key("config.ctnhcore.option.centrifugeSpeedMultiplier")
     @CN("机械离心厂加速倍率")
     @EN("Mechanical Centrifuge speed multiplier")
     public static Lang configOptionCentrifugeSpeedMultiplier;
-
 
     @Key("config.ctnhcore.option.centrifugeStressRequirement")
     @CN("机械离心厂应力消耗")
     @EN("Mechanical Centrifuge stress consumption")
     public static Lang configOptionCentrifugeStressRequirement;
 
-
     @Key("config.ctnhcore.option.enableFTBUltimineOnGTOres")
     @CN("开启GT矿物连锁")
     @EN("Enable GT ore vein mining")
     public static Lang configOptionEnableFtbUltimineOnGtOres;
-
 
     @Key("config.ctnhcore.option.extractorRpmRequirement")
     @CN("机械提取厂最低转速需求")
     @EN("Mechanical Extractor minimum RPM")
     public static Lang configOptionExtractorRpmRequirement;
 
-
     @Key("config.ctnhcore.option.extractorSpeedMultiplier")
     @CN("机械提取厂加速倍率")
     @EN("Mechanical Extractor speed multiplier")
     public static Lang configOptionExtractorSpeedMultiplier;
-
 
     @Key("config.ctnhcore.option.extractorStressRequirement")
     @CN("机械提取厂应力消耗")
     @EN("Mechanical Extractor stress consumption")
     public static Lang configOptionExtractorStressRequirement;
 
-
     @Key("config.ctnhcore.option.ftbPlugin")
     @CN("FTB相关")
     @EN("FTB Options")
     public static Lang configOptionFtbPlugin;
-
 
     @Key("config.ctnhcore.option.kinetic")
     @CN("应力相关")
     @EN("Kinetic Options")
     public static Lang configOptionKinetic;
 
-
     @Key("config.ctnhcore.option.laserRpmRequirement")
     @CN("机械激光厂最低转速需求")
     @EN("Mechanical Laser minimum RPM")
     public static Lang configOptionLaserRpmRequirement;
-
 
     @Key("config.ctnhcore.option.laserSpeedMultiplier")
     @CN("机械激光厂加速倍率")
     @EN("Mechanical Laser speed multiplier")
     public static Lang configOptionLaserSpeedMultiplier;
 
-
     @Key("config.ctnhcore.option.laserStressRequirement")
     @CN("机械激光厂应力消耗")
     @EN("Mechanical Laser stress consumption")
     public static Lang configOptionLaserStressRequirement;
-
 
     @Key("config.ctnhcore.option.latheRpmRequirement")
     @CN("机械车床厂最低转速需求")
     @EN("Mechanical Lathe minimum RPM")
     public static Lang configOptionLatheRpmRequirement;
 
-
     @Key("config.ctnhcore.option.latheSpeedMultiplier")
     @CN("机械车床厂加速倍率")
     @EN("Mechanical Lathe speed multiplier")
     public static Lang configOptionLatheSpeedMultiplier;
-
 
     @Key("config.ctnhcore.option.latheStressRequirement")
     @CN("机械车床厂应力消耗")
     @EN("Mechanical Lathe stress consumption")
     public static Lang configOptionLatheStressRequirement;
 
-
     @Key("config.ctnhcore.option.mixerRpmRequirement")
     @CN("机械搅拌厂最低转速需求")
     @EN("Mechanical Mixer minimum RPM")
     public static Lang configOptionMixerRpmRequirement;
-
 
     @Key("config.ctnhcore.option.mixerSpeedMultiplier")
     @CN("机械搅拌厂加速倍率")
     @EN("Mechanical Mixer speed multiplier")
     public static Lang configOptionMixerSpeedMultiplier;
 
-
     @Key("config.ctnhcore.option.mixerStressRequirement")
     @CN("机械搅拌厂应力消耗")
     @EN("Mechanical Mixer stress consumption")
     public static Lang configOptionMixerStressRequirement;
-
 
     @Key("config.ctnhcore.option.pressorRpmRequirement")
     @CN("机械辊压厂最低转速需求")
     @EN("Mechanical Pressor minimum RPM")
     public static Lang configOptionPressorRpmRequirement;
 
-
     @Key("config.ctnhcore.option.pressorSpeedMultiplier")
     @CN("机械辊压厂加速倍率")
     @EN("Mechanical Pressor speed multiplier")
     public static Lang configOptionPressorSpeedMultiplier;
-
 
     @Key("config.ctnhcore.option.pressorStressRequirement")
     @CN("机械辊压厂应力消耗")
     @EN("Mechanical Pressor stress consumption")
     public static Lang configOptionPressorStressRequirement;
 
-
     @Key("config.ctnhcore.option.sifterRpmRequirement")
     @CN("机械筛选厂最低转速需求")
     @EN("Mechanical Sifter minimum RPM")
     public static Lang configOptionSifterRpmRequirement;
-
 
     @Key("config.ctnhcore.option.sifterSpeedMultiplier")
     @CN("机械筛选厂加速倍率")
     @EN("Mechanical Sifter speed multiplier")
     public static Lang configOptionSifterSpeedMultiplier;
 
-
     @Key("config.ctnhcore.option.sifterStressRequirement")
     @CN("机械筛选厂应力消耗")
     @EN("Mechanical Sifter stress consumption")
     public static Lang configOptionSifterStressRequirement;
-
-
 
     public static CTNHConfig INSTANCE;
     private static final Object LOCK = new Object();

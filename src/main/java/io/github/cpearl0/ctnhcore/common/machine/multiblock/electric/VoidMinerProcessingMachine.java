@@ -1,8 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
+
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.NaqReactorMachine;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
@@ -28,10 +26,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.*;
@@ -44,17 +45,13 @@ public class VoidMinerProcessingMachine extends RecipeElectricMultiblockMachine 
     @EN("Cryotheum consumption: %d ")
     public static Lang voidMinerInfoCryotheum;
 
-
     @CN("过热!!!")
     @EN("Overheating!!!")
     public static Lang voidMinerInfoOverheat;
 
-
     @CN("烈焰之炽焱消耗：%d ")
     @EN("Pyrotheum consumption: %d ")
     public static Lang voidMinerInfoPyrotheum;
-
-
 
     @Persisted
     @DescSynced
@@ -172,9 +169,9 @@ public class VoidMinerProcessingMachine extends RecipeElectricMultiblockMachine 
         }
         textList.add(NaqReactorMachine.naqReactorInfoTemperature.translate(
                 Component.literal(currentTemperature + "K").withStyle(ChatFormatting.RED)));
-        textList.add(voidMinerInfoPyrotheum.translate( nextPyrotheumAmount + " mB")
+        textList.add(voidMinerInfoPyrotheum.translate(nextPyrotheumAmount + " mB")
                 .withStyle(ChatFormatting.GOLD));
-        textList.add(voidMinerInfoCryotheum.translate( nextCryotheumAmount + " mB")
+        textList.add(voidMinerInfoCryotheum.translate(nextCryotheumAmount + " mB")
                 .withStyle(ChatFormatting.AQUA));
     }
 

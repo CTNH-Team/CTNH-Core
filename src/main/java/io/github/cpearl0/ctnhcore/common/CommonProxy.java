@@ -7,6 +7,7 @@ import io.github.cpearl0.ctnhcore.common.world.CTNHChunkLoading;
 import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
 import io.github.cpearl0.ctnhcore.data.materials.AeCrystalScienceMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.AeOmniMaterials;
+import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval;
 import io.github.cpearl0.ctnhcore.data.tags.*;
 import io.github.cpearl0.ctnhcore.data.worldgen.CTNHBiomeModifiers;
 import io.github.cpearl0.ctnhcore.registry.*;
@@ -71,6 +72,7 @@ public class CommonProxy {
         CTNHConfig.init();
         CTNHDamageTypes.init();
         CTNHJadePlugin.init();
+        RecipeRemoval.init();
     }
 
     public static void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {

@@ -1,11 +1,12 @@
 package io.github.cpearl0.ctnhcore.registry;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import com.gregtechceu.gtceu.api.data.DimensionMarker;
 
 import net.minecraft.resources.ResourceLocation;
+
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import static com.gregtechceu.gtceu.common.data.GTDimensionMarkers.createAndRegister;
 
@@ -15,42 +16,33 @@ public class CTNHDimensionMarkers {
     @EN("Glacio")
     public static Lang dimensionAdAstraGlacio;
 
-
     @CN("火星")
     @EN("Mars")
     public static Lang dimensionAdAstraMars;
-
 
     @CN("水星")
     @EN("Mercury")
     public static Lang dimensionAdAstraMercury;
 
-
     @CN("月球")
     @EN("Moon")
     public static Lang dimensionAdAstraMoon;
-
 
     @CN("金星")
     @EN("Venus")
     public static Lang dimensionAdAstraVenus;
 
-
     @CN("木星")
     @EN("Jupiter")
     public static Lang dimensionAdExtendraJupiter;
-
 
     @CN("天境")
     @EN("Aether")
     public static Lang dimensionAetherTheAether;
 
-
     @CN("暮色森林")
     @EN("Twilight Forest")
     public static Lang dimensionTwilightforestTwilightForest;
-
-
 
     public static final DimensionMarker MOON = createAndRegister(ResourceLocation.tryParse("ad_astra:moon"),
             1, ResourceLocation.tryParse("ad_astra:moon_stone"), dimensionAdAstraMoon.key());

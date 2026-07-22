@@ -1,7 +1,4 @@
 package io.github.cpearl0.ctnhcore.registry;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 
@@ -9,7 +6,10 @@ import com.gregtechceu.gtceu.common.data.GTCreativeModeTabs;
 
 import net.minecraft.world.item.CreativeModeTab;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
@@ -19,17 +19,13 @@ public class CTNHCreativeModeTabs {
     @EN("CTNH Blocks")
     public static Lang itemGroupBlock;
 
-
     @CN("CTNH物品")
     @EN("CTNH Items")
     public static Lang itemGroupItem;
 
-
     @CN("CTNH机器")
     @EN("CTNH Machines")
     public static Lang itemGroupMachine;
-
-
 
     public static RegistryEntry<CreativeModeTab> MACHINE = REGISTRATE.defaultCreativeTab("machine",
             builder -> builder

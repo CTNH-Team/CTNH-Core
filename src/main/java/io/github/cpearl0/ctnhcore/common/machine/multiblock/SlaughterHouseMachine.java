@@ -1,7 +1,4 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.api.gui.CTNHGuiTextures;
 
@@ -47,12 +44,15 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fluids.FluidStack;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import com.enderio.base.common.init.EIOFluids;
 import com.enderio.machines.common.init.MachineBlocks;
 import com.mojang.authlib.GameProfile;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.ArrayList;
@@ -70,8 +70,6 @@ public class SlaughterHouseMachine extends RecipeElectricMultiblockMachine imple
     @CN("怪物种类：%d (%s)")
     @EN("Mob Types: %d (%s)")
     public static Lang slaughterHouseInfoMobcount;
-
-
 
     @Persisted
     public final NotifiableItemStackHandler machineStorage;
@@ -460,6 +458,6 @@ public class SlaughterHouseMachine extends RecipeElectricMultiblockMachine imple
         super.addDisplayText(textList);
         var mobName = mobList.stream().map(mob -> EntityType.byString(mob).get().getDescription().getString()).toList();
         textList.add(textList.size(),
-                slaughterHouseInfoMobcount.translate( mobList.size(), mobName));
+                slaughterHouseInfoMobcount.translate(mobList.size(), mobName));
     }
 }

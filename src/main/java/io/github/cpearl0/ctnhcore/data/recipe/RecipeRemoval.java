@@ -11,7 +11,6 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.regex.Pattern;
 
 /**
@@ -33,7 +32,7 @@ import java.util.regex.Pattern;
  *
  * <p>
  * 所有删除均在 {@code RecipeManager.apply()} 的 HEAD 阶段按数据包配方 ID 处理。
- * {@link #init(Consumer)} 入参的 registry 钩子保留为空操作以兼容 GTAddon 接口。
+ * {@link #init()} 入参的 registry 钩子保留为空操作以兼容 GTAddon 接口。
  */
 @Mod.EventBusSubscriber(modid = CTNHCore.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class RecipeRemoval {
@@ -59,7 +58,7 @@ public class RecipeRemoval {
      * 初始化所有删除规则。所有删除通过 {@link #remove(RemoveFilter)} 注册，
      * 最终在 {@code RecipeManagerApplyMixin} 中统一处理。
      */
-    public static void init(Consumer<ResourceLocation> registry) {
+    public static void init() {
         // GTCEu invokes addon recipe-removal registration on datapack reload.
         FILTERS.clear();
 

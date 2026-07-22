@@ -1,7 +1,4 @@
 package io.github.cpearl0.ctnhcore.common.gui;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.WideParticleAccelerator;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
@@ -18,6 +15,10 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -28,22 +29,17 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
     @EN("Electron Beamline")
     public static Lang wideAcceleratorGuiElectric;
 
-
     @CN("访问轨道")
     @EN("Access Beamline")
     public static Lang wideAcceleratorGuiName;
-
 
     @CN("中子轨道")
     @EN("Neutron Beamline")
     public static Lang wideAcceleratorGuiNu;
 
-
     @CN("原子轨道")
     @EN("Proton Beamline")
     public static Lang wideAcceleratorGuiProton;
-
-
 
     protected WideParticleAccelerator machine;
 
@@ -58,17 +54,17 @@ public class WPAAcceleratorGui implements IFancyUIProvider {
     }
 
     public Function<Double, String> target() {
-        return speed -> WideParticleAccelerator.wideAcceleratorInfoElectricSpeed.translate( speed * 50000)
+        return speed -> WideParticleAccelerator.wideAcceleratorInfoElectricSpeed.translate(speed * 50000)
                 .getString();
     }
 
     public Function<Double, String> target2() {
-        return speed -> WideParticleAccelerator.wideAcceleratorInfoNuSpeed.translate( speed * 50000)
+        return speed -> WideParticleAccelerator.wideAcceleratorInfoNuSpeed.translate(speed * 50000)
                 .getString();
     }
 
     public Function<Double, String> target3() {
-        return speed -> WideParticleAccelerator.wideAcceleratorInfoProtonSpeed.translate( speed * 50000)
+        return speed -> WideParticleAccelerator.wideAcceleratorInfoProtonSpeed.translate(speed * 50000)
                 .getString();
     }
 

@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
-import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
@@ -8,6 +7,7 @@ import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gregtechceu.gtceu.common.data.*;
@@ -28,8 +28,8 @@ import com.moguang.ctnhbio.registry.CBBlocks;
 import com.moguang.ctnhbio.registry.CBItems;
 import com.moguang.ctnhbio.registry.CBMachines;
 import com.simibubi.create.AllItems;
-import io.github.lounode.ae2cs.common.init.AECSBlocks;
 import com.wintercogs.ae2omnicells.common.init.OCItems;
+import io.github.lounode.ae2cs.common.init.AECSBlocks;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEBlocks;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines;
 
@@ -50,7 +50,7 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHItems.HEAVY_PLATE_T3;
 public class OrdinaryRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        //工作台
+        // 工作台
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/flint_dust_from_mortar"),
                 ChemicalHelper.get(dust, Flint),
                 "X", "m",
@@ -59,7 +59,7 @@ public class OrdinaryRecipes {
                 ChemicalHelper.get(dust, NetherQuartz),
                 "X", "m",
                 'X', Items.QUARTZ);
-        //电子管合成真空管配方
+        // 电子管合成真空管配方
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("vacuum_tube_plain_from_electron_tube"))
                 .inputItems(AllItems.ELECTRON_TUBE.asItem())
                 .inputItems(bolt, Steel)

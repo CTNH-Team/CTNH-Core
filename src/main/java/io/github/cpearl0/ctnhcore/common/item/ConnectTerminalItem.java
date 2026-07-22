@@ -1,7 +1,4 @@
 package io.github.cpearl0.ctnhcore.common.item;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.SpacePhotovoltaicBaseStation;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotoVoltaicDroneStation;
@@ -24,7 +21,10 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.List;
 
@@ -34,27 +34,21 @@ public class ConnectTerminalItem extends ComponentItem {
     @EN("Bound coordinates: (%s,%s,%s)")
     public static Lang itemTerminalLocation;
 
-
     @CN("已清除坐标！")
     @EN("Coordinates cleared!")
     public static Lang itemTerminalSuccessClear;
-
 
     @CN("已经获取坐标!")
     @EN("Coordinates acquired!")
     public static Lang itemTerminalSuccessGet;
 
-
     @CN("已成功写入坐标!")
     @EN("Coordinates written successfully!")
     public static Lang itemTerminalSuccessWrite;
 
-
     @CN("使用右键绑定光伏模块控制器，然后再右键将控制器和光伏基站绑定\nshift+右键任意方块清除坐标")
     @EN("Right-click a photovoltaic module controller to bind it, then right-click again to bind the controller to the photovoltaic station\nShift+right-click any block to clear the coordinates")
     public static Lang itemTerminalTips;
-
-
 
     public ConnectTerminalItem(Properties properties) {
         super(properties
@@ -121,7 +115,7 @@ public class ConnectTerminalItem extends ComponentItem {
         if (nbt.contains("block_x")) {
 
             tooltipComponents.add(
-                    itemTerminalLocation.translate( String.format("%d", nbt.getInt("block_x")),
+                    itemTerminalLocation.translate(String.format("%d", nbt.getInt("block_x")),
                             String.format("%d", nbt.getInt("block_y")), String.format("%d", nbt.getInt("block_y"))));
         }
         super.appendHoverText(stack, level, tooltipComponents, isAdvanced); // 调用父类方法以处理原版提示信息

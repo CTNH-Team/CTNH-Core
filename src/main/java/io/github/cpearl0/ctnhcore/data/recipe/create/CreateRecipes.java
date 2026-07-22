@@ -11,7 +11,6 @@ import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
-import io.github.lounode.ae2cs.common.init.AECSBlocks;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -47,6 +46,7 @@ import com.mo_guang.ctpp.registry.CreateMaterials;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
+import io.github.lounode.ae2cs.common.init.AECSBlocks;
 
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -903,11 +903,10 @@ public class CreateRecipes {
     private static void addCopperCasingRecipe(Consumer<FinishedRecipe> provider, String name, String baseIngredient) {
         JsonObject recipe = CreateRecipeJsonHelper.recipe("create:item_application");
         recipe.add("ingredients", CreateRecipeJsonHelper.array(
-                baseIngredient.startsWith("forge:")
-                        ? CreateRecipeJsonHelper.tag(baseIngredient)
-                        : CreateRecipeJsonHelper.item(baseIngredient),
-                CreateRecipeJsonHelper.item(name.endsWith("andesite_casing")
-                        ? "gtceu:copper_plate" : "gtceu:bronze_ingot")));
+                baseIngredient.startsWith("forge:") ? CreateRecipeJsonHelper.tag(baseIngredient) :
+                        CreateRecipeJsonHelper.item(baseIngredient),
+                CreateRecipeJsonHelper
+                        .item(name.endsWith("andesite_casing") ? "gtceu:copper_plate" : "gtceu:bronze_ingot")));
         recipe.add("results", CreateRecipeJsonHelper.array(CreateRecipeJsonHelper.item("create:copper_casing")));
         CreateRecipeJsonHelper.save(provider, CTNHCore.id("create/" + name).toString(), recipe);
     }

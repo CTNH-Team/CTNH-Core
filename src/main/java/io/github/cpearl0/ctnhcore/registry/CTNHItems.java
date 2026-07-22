@@ -1,5 +1,4 @@
 package io.github.cpearl0.ctnhcore.registry;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.common.item.*;
 import io.github.cpearl0.ctnhcore.common.item.debug.ReloadItem;
@@ -35,6 +34,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 import com.ctnhlang.Suffix;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
@@ -55,105 +55,85 @@ public class CTNHItems {
     @EN("Advanced Random Access Memory")
     public static Lang advancedRamChipTooltip;
 
-
     @CN("更好的内存原料")
     @EN("Enhanced RAM Wafer")
     public static Lang advancedRamWaferTooltip;
-
 
     @Key("ctnh.item.dyson_tier1")
     @CN("集成性光伏无人机蜂群")
     @EN("Integrated Photovoltaic Drone Swarm")
     public static Lang itemDysonTier1;
 
-
     @Key("ctnh.item.dyson_tier2")
     @CN("§4我们的蜂群遮天蔽日")
     @EN("§4Our swarm blocks out the sky")
     public static Lang itemDysonTier2;
 
-
     @CN("基础堆温：%d°C")
     @EN("Base Reactor Temperature: %d°C")
     public static Lang itemNuclearReactorHeat;
-
 
     @Key("ctnh.item.runes.horizen_rune")
     @CN("视野所向之处")
     @EN("As Far as the Eye Can See")
     public static Lang itemRunesHorizenRune;
 
-
     @Key("ctnh.item.runes.proliferation_rune")
     @CN("金融与生物的本能")
     @EN("Finance and Biological Instinct")
     public static Lang itemRunesProliferationRune;
-
 
     @Key("ctnh.item.runes.quasar_rune")
     @CN("毁灭与创造交替")
     @EN("The Alternation of Destruction and Creation")
     public static Lang itemRunesQuasarRune;
 
-
     @Key("ctnh.item.runes.starlight_rune")
     @CN("Per Aspera Ad Astra")
     @EN("Per Aspera Ad Astra")
     public static Lang itemRunesStarlightRune;
-
 
     @Key("ctnh.item.runes.twist_rune")
     @CN("速度与人性的扭曲")
     @EN("The Distortion of Speed and Humanity")
     public static Lang itemRunesTwistRune;
 
-
     @CN("§l格雷科技-多方块结构终端-异步成型模式")
     @EN("§lGregTech Multiblock Structure Terminal - Asynchronous Formation Mode")
     public static Lang meAdvancedTerminalTooltip1;
 
-
     @CN("复刻了曾经的旗舰款，终端屏幕上闪烁着久违的画面")
     @EN("A replica of the former flagship model; its terminal screen flickers with a long-lost display")
     public static Lang meAdvancedTerminalTooltip2;
-
 
     @Key("ctnh.me_advanced_terminal.tooltip.3")
     @CN("通过ME无线访问点链接到网络")
     @EN("Connects to the network via an ME Wireless Access Point")
     public static Lang meAdvancedTerminalTooltip3;
 
-
     @CN("能维持机体基本的生理功能")
     @EN("Maintains the body's basic physiological functions")
     public static Lang simpleNutritiousMealTooltip1;
-
 
     @CN("用于检测多方块搭建时产生的错误")
     @EN("Use to check the error when building the multiblock")
     public static Lang testingTerminalTooltip1;
 
-
     @CN("右键多方块的主方块以显示错误信息")
     @EN("Right-click the controller to show the error info")
     public static Lang testingTerminalTooltip2;
-
 
     @CN("按住Shift右键切换普通/翻转模式")
     @EN("Right-click with Shift to change between Normal/Flipped mode")
     public static Lang testingTerminalTooltip3;
 
-
     @CN("蕴含生态圈的所有精华")
     @EN("Contains all the essence of an ecosystem")
     public static Lang itemEcologicalStarDesc;
 
-
     @CN("分化....")
     @EN("Differentiation....")
     public static Lang itemSculkCellDesc;
-
-
 
     static {
         REGISTRATE.creativeModeTab(() -> CTNHCreativeModeTabs.ITEM);

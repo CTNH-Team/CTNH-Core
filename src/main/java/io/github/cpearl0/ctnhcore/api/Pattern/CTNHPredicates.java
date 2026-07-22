@@ -1,7 +1,4 @@
 package io.github.cpearl0.ctnhcore.api.Pattern;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.common.block.PhotovoltaicBlock;
 import io.github.cpearl0.ctnhcore.common.block.SpaceStructuralFramework;
@@ -21,6 +18,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -32,8 +33,6 @@ public class CTNHPredicates {
     @CN("§c必须使用同种光伏方块")
     @EN("§cAll photovoltaic blocks must be the same type")
     public static Lang spacePhotovoltaicBaseStationJeiErrorPvBlock;
-
-
 
     public static TraceabilityPredicate PhotovoltaicBlock() {
         return (new TraceabilityPredicate((blockWorldState) -> {

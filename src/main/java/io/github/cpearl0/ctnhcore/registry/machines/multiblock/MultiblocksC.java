@@ -1,7 +1,4 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.api.machine.feature.ICoilMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.multithread.CNCAlloySmelter;
@@ -30,7 +27,10 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.world.level.block.Blocks;
 
 import appeng.core.definitions.AEBlocks;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import org.joml.Vector3f;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.List;
 

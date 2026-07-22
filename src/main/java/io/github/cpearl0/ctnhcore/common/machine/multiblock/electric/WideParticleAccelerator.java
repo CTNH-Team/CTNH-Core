@@ -1,10 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
-import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.common.gui.WPAAcceleratorGui;
+import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 
 import com.gregtechceu.gtceu.api.capability.IParallelHatch;
 import com.gregtechceu.gtceu.api.gui.fancy.TabsWidget;
@@ -31,9 +28,12 @@ import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.List;
@@ -46,32 +46,25 @@ public class WideParticleAccelerator extends RecipeElectricMultiblockMachine
     @EN("Connection established")
     public static Lang connect;
 
-
     @CN("电量消耗倍率:%.2f")
     @EN("Power Consumption Multiplier: %.2f")
     public static Lang wideAcceleratorInfoConsume;
-
 
     @CN("电子速度:%.2fMev")
     @EN("Electron Velocity: %.2f MeV")
     public static Lang wideAcceleratorInfoElectricSpeed;
 
-
     @CN("中子速度:%.2fMev")
     @EN("Neutron Velocity: %.2f MeV")
     public static Lang wideAcceleratorInfoNuSpeed;
-
 
     @CN("存储的电量：%.2f E/%.2f E")
     @EN("Stored energy: %.2f E/%.2f E")
     public static Lang wideAcceleratorInfoPower;
 
-
     @CN("质子速度:%.2fMev")
     @EN("Proton Velocity: %.2f MeV")
     public static Lang wideAcceleratorInfoProtonSpeed;
-
-
 
     @Persisted
     @Getter

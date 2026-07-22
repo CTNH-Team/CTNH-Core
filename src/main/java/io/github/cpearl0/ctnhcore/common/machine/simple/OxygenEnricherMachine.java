@@ -1,7 +1,4 @@
 package io.github.cpearl0.ctnhcore.common.machine.simple;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -21,9 +18,12 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 
 import com.ctnh.ctnhastral.common.oxygen.OxygenAreaSource;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import earth.terrarium.adastra.api.systems.OxygenApi;
 import earth.terrarium.adastra.api.systems.TemperatureApi;
 import earth.terrarium.adastra.common.utils.floodfill.FloodFill3D;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -34,8 +34,6 @@ public class OxygenEnricherMachine extends SimpleTieredMachine implements Oxygen
     @CN("氧气供应不足")
     @EN("Insufficient oxygen supply")
     public static Lang ctnhMachineOxygenEnricherNoInput;
-
-
 
     private static final Component NO_OXYGEN_INPUT = ctnhMachineOxygenEnricherNoInput.translate();
     private static final short HABITABLE_TEMPERATURE = 22;

@@ -1,7 +1,4 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.IEnergyContainer;
@@ -32,11 +29,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import earth.terrarium.adastra.api.planets.Planet;
 import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,22 +49,17 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
     @EN("Efficiency: %s%%")
     public static Lang photovoltaicPowerStationInfo1;
 
-
     @CN("产能功率：%s/%s EU/t")
     @EN("Generating: %s/%s EU/t")
     public static Lang photovoltaicPowerStationInfo2;
-
 
     @CN("有方块阻挡")
     @EN("Shadowed")
     public static Lang photovoltaicPowerStationInfoInvalid;
 
-
     @CN("光照过于微弱")
     @EN("At night")
     public static Lang photovoltaicPowerStationInfoNight;
-
-
 
     // const
     public static final int START_TIME = 23000;
@@ -295,9 +290,8 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
                 textList.add(photovoltaicPowerStationInfo2.translate(
                         FormattingUtil.formatNumbers(lastOutputEnergy), voltageName));
             } else {
-                Lang statusText = valid == Status.INVALID
-                        ? photovoltaicPowerStationInfoInvalid
-                        : photovoltaicPowerStationInfoNight;
+                Lang statusText = valid == Status.INVALID ? photovoltaicPowerStationInfoInvalid :
+                        photovoltaicPowerStationInfoNight;
                 textList.add(statusText.translate().withStyle(ChatFormatting.RED));
             }
         }

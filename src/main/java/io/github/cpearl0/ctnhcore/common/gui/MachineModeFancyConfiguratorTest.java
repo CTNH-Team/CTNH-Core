@@ -1,7 +1,4 @@
 package io.github.cpearl0.ctnhcore.common.gui;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.CryotheumFreezer;
 import io.github.cpearl0.ctnhcore.registry.CTNHGuiTextures;
@@ -18,6 +15,10 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,22 +28,17 @@ public class MachineModeFancyConfiguratorTest implements IFancyUIProvider {
     @EN("Current freezer speed: %.2f / %.2f")
     public static Lang cryotheumFreezerUi1;
 
-
     @CN("打开升级面板")
     @EN("Open Upgrade Panel")
     public static Lang cryotheumFreezerUi2;
-
 
     @CN("当前能量利用效率：%.2f / %.2f")
     @EN("Current energy efficiency: %.2f / %.2f")
     public static Lang cryotheumFreezerUi3;
 
-
     @CN("当前并行：%d / %d")
     @EN("Current parallelism: %d / %d")
     public static Lang cryotheumFreezerUi4;
-
-
 
     protected CryotheumFreezer machine;
 
@@ -62,15 +58,15 @@ public class MachineModeFancyConfiguratorTest implements IFancyUIProvider {
     }
 
     public MutableComponent target() {
-        return cryotheumFreezerUi1.translate( machine.speed_up, 3.5);
+        return cryotheumFreezerUi1.translate(machine.speed_up, 3.5);
     }
 
     public MutableComponent target2() {
-        return cryotheumFreezerUi3.translate( machine.energy_muti, 3.5);
+        return cryotheumFreezerUi3.translate(machine.energy_muti, 3.5);
     }
 
     public MutableComponent target3() {
-        return cryotheumFreezerUi4.translate( 2 * Math.pow(2, machine.parallel_muti),
+        return cryotheumFreezerUi4.translate(2 * Math.pow(2, machine.parallel_muti),
                 2 * Math.pow(2, 10));
     }
 

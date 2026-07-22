@@ -1,7 +1,4 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.data.CreateRecipeTypes;
 
@@ -16,8 +13,9 @@ import com.lowdragmc.lowdraglib.utils.BlockInfo;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import com.mo_guang.ctpp.CTPP;
 import com.mo_guang.ctpp.api.CTPPPartAbility;
 import com.mo_guang.ctpp.common.machine.multiblock.KineticWorkableMultiblockMachine;
@@ -26,6 +24,7 @@ import com.mo_guang.ctpp.util.CommonTooltips;
 import com.negodya1.vintageimprovements.VintageBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_TEMPERED_GLASS;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
@@ -39,12 +38,9 @@ public class Mechanical {
     @EN("The lathe in the structure must be placed exactly as shown in EMI's structure information, including position and orientation")
     public static Lang mechanicalLatheStructure;
 
-
     @CN("§7EMI中显示的车床数量有问题，实际只需要6个")
     @EN("§7The number of lathes shown in EMI is incorrect; only 6 are actually required")
     public static Lang mechanicalLatheStructure1;
-
-
 
     public final static MultiblockMachineDefinition MECHANICAL_PRESSOR = REGISTRATE
             .multiblock("mechanical_pressor", KineticWorkableMultiblockMachine::new)

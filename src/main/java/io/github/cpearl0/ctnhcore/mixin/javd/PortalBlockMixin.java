@@ -1,11 +1,6 @@
 package io.github.cpearl0.ctnhcore.mixin.javd;
-import org.spongepowered.asm.mixin.Unique;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -13,11 +8,15 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import com.unrealdinnerbone.javd.JAVDRegistry;
 import com.unrealdinnerbone.javd.block.PortalBlock;
 import com.unrealdinnerbone.javd.util.TelerportUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Unique;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 @Mixin(value = PortalBlock.class)
 public class PortalBlockMixin {
@@ -26,8 +25,6 @@ public class PortalBlockMixin {
     @EN("This portal can only be used in the Overworld")
     @Unique
     private static Lang messagePortalInvalidDimension;
-
-
 
     /**
      * @author

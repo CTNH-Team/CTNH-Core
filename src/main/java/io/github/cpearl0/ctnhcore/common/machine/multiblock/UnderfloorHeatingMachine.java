@@ -1,7 +1,4 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDisplayUIMachine;
@@ -21,10 +18,13 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.foundation.block.CopperBlockSet;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.List;
 
@@ -34,27 +34,21 @@ public class UnderfloorHeatingMachine extends RecipeMultiblockMachine implements
     @EN("Efficiency: %d")
     public static Lang underfloorHeatingSystemInfoEfficiency;
 
-
     @CN("速率：%s")
     @EN("Rate: %s")
     public static Lang underfloorHeatingSystemInfoRate;
-
 
     @CN("减少蒸汽的消耗来降低地暖的发热功率")
     @EN("Reduce the consumption of steam to reduce the heating power of the floor heating")
     public static Lang underfloorHeatingSystemInfoRateTooltip;
 
-
     @CN("调节速率：")
     @EN("Adjust rate: ")
     public static Lang underfloorHeatingSystemInfoRateModify;
 
-
     @CN("蒸汽消耗速率：%d")
     @EN("Steam consumption rate: %d")
     public static Lang underfloorHeatingSystemInfoSteamConsumption;
-
-
 
     @Getter
     public int rate = 100;

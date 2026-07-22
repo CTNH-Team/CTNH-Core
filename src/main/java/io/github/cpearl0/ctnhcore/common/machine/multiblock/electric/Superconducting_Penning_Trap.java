@@ -1,8 +1,4 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import com.gregtechceu.gtceu.api.capability.IControllable;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -21,8 +17,12 @@ import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.List;
@@ -34,38 +34,30 @@ public class Superconducting_Penning_Trap extends RecipeElectricMultiblockMachin
     @EN("Positron amount: %d")
     public static Lang antiElectric;
 
-
     @CN("反中子量:%d")
     @EN("Antineutron amount: %d")
     public static Lang antiNu;
-
 
     @CN("反质子量:%d")
     @EN("Antiproton amount: %d")
     public static Lang antiProton;
 
-
     @CN("§c警告：供电不足，约束场即将失效！")
     @EN("§cWarning: insufficient power; the containment field is about to fail!")
     public static Lang noEnergyWaring;
 
-
     @CN("约束危险物质")
     @EN("Contain hazardous materials")
     public static Lang restoreDanger;
-
 
     @Key("ctnh.trap_electric")
     @CN("当前存储电量:%deu")
     @EN("Current stored power: %d EU")
     public static Lang trapElectric;
 
-
     @CN("允许存储电量上限:%deu")
     @EN("Maximum stored power: %d EU")
     public static Lang trapElectricMax;
-
-
 
     public BlockPos pos;
     public Level level;
@@ -222,11 +214,11 @@ public class Superconducting_Penning_Trap extends RecipeElectricMultiblockMachin
                         restoreDanger.key())
                 .addEnergyUsageExactLine(energy)
                 .addWorkingStatusLine();
-        textList.add(textList.size(), trapElectricMax.translate( String.format("%d", anti_nu)));
-        textList.add(textList.size(), antiElectric.translate( String.format("%d", anti_electron)));
-        textList.add(textList.size(), antiNu.translate( String.format("%d", anti_nu)));
-        textList.add(textList.size(), antiProton.translate( String.format("%d", anti_proton)));
-        textList.add(textList.size(), antiElectric.translate( String.format("%d", anti_electron)));
+        textList.add(textList.size(), trapElectricMax.translate(String.format("%d", anti_nu)));
+        textList.add(textList.size(), antiElectric.translate(String.format("%d", anti_electron)));
+        textList.add(textList.size(), antiNu.translate(String.format("%d", anti_nu)));
+        textList.add(textList.size(), antiProton.translate(String.format("%d", anti_proton)));
+        textList.add(textList.size(), antiElectric.translate(String.format("%d", anti_electron)));
     }
 
     @Override

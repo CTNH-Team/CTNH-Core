@@ -48,8 +48,6 @@ public class GTMachineModify {
     @EN("Recipe time ×0.8, recipe energy ×0.6")
     public static Lang gcymReduction;
 
-
-
     public static BiConsumer<ItemStack, List<Component>> REDUCTION_INFO = (itemStack, list) -> list
             .add(gcymReduction.translate().withStyle(ChatFormatting.GREEN));
 

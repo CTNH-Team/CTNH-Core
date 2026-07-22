@@ -2,9 +2,6 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic;
 
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
@@ -19,14 +16,15 @@ import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import sfiomn.legendarysurvivaloverhaul.api.temperature.TemperatureUtil;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.List;
-
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 public class IndustrialPrimitiveBlastFurnaceMachine extends NoEnergyMachine {
 

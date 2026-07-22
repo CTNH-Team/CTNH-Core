@@ -1,7 +1,4 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -14,6 +11,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+
 import java.util.List;
 
 public class Arc_Reactor extends RecipeElectricMultiblockMachine implements ITieredMachine {
@@ -22,12 +23,9 @@ public class Arc_Reactor extends RecipeElectricMultiblockMachine implements ITie
     @EN("Output Arc Intensity: %d")
     public static Lang arcreactorArc;
 
-
     @CN("§b桥接已启用§r")
     @EN("§bBridge Enabled§r")
     public static Lang arcreactorConnect;
-
-
 
     public int arc;
     public boolean isconnect = false;
@@ -74,7 +72,7 @@ public class Arc_Reactor extends RecipeElectricMultiblockMachine implements ITie
             textList.add(textList.size(), arcreactorConnect.translate());
         }
         textList.add(textList.size(),
-                arcreactorArc.translate( String.format("%d", arc)));
+                arcreactorArc.translate(String.format("%d", arc)));
     }
 
     @Override

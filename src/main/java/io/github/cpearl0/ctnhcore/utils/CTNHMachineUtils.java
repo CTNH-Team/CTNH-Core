@@ -1,13 +1,9 @@
 package io.github.cpearl0.ctnhcore.utils;
 
-import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.SimpleComputationMachine;
+import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
@@ -32,7 +28,10 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.fluids.FluidType;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.registrate.builders.CTNHMachineBuilder;
 import tech.vixhentx.mcmod.ctnhlib.registrate.builders.CTNHMultiblockMachineBuilder;
 
@@ -53,8 +52,6 @@ public class CTNHMachineUtils {
     @CN("注意：部分配方需要算力执行")
     @EN("Note: Some recipes require computation to run")
     public static Lang tooltipsSimpleComputationMachine;
-
-
 
     public static MachineDefinition[] registerTieredMachines(String name,
                                                              BiFunction<IMachineBlockEntity, Integer, MetaMachine> factory,

@@ -5,7 +5,6 @@ import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.data.materials.NewExplosivesProductionMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.YeastRelatedMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
-import io.github.cpearl0.ctnhcore.data.recipe.utils.KeepIngredientRecipeHelper;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksB;
@@ -28,7 +27,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import appeng.core.definitions.AEBlocks;
@@ -1114,12 +1112,9 @@ public class GtceuScriptRecipes {
                 .outputItems(ingot, WroughtIron)
                 .save(provider);
 
-        KeepIngredientRecipeHelper.addKeepIngredientShapedRecipe(provider,
-                CTNHCore.id("crafttable/wrought_iron_ingot_from_hot"),
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("shaped/wrought_iron_ingot_from_hot"),
                 ChemicalHelper.get(ingot, WroughtIron),
-                new String[] { "HA" },
-                Ingredient.of(CustomTags.CRAFTING_HAMMERS),
-                'H', CustomTags.CRAFTING_HAMMERS,
+                "hA",
                 'A', ChemicalHelper.get(ingotHot, WroughtIron));
 
         // ============== Polarizer Recipes ==============

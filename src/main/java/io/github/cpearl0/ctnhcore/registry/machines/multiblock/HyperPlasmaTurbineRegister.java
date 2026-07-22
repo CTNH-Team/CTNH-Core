@@ -1,12 +1,9 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
-import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.renderer.HyperPlasmaTurbineRender;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.HyperPlasmaTurbineMachine;
+import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
@@ -27,7 +24,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import com.simibubi.create.AllBlocks;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import static com.gregtechceu.gtceu.api.GTValues.ZPM;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Neutronium;
@@ -41,12 +41,9 @@ public class HyperPlasmaTurbineRegister {
     @EN("§5FINAL FANTASY §fof §a Precise Computation §f and §e Plasma Energy")
     public static Lang hyperPlasmaTurbineTooltip0;
 
-
     @CN("提供%d算力以达到基础功率，每提供%d算力，输出功率翻一倍")
     @EN("Provide %d computation to reach the Base Production. For every %d computation provided, the Output Production DOUBLES.")
     public static Lang hyperPlasmaTurbineTooltip1;
-
-
 
     public static MultiblockMachineDefinition register() {
         return REGISTRATE.multiblock("hyper_plasma_turbine", HyperPlasmaTurbineMachine::new)

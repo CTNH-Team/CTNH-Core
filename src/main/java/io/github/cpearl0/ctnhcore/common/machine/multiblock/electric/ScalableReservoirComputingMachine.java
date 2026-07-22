@@ -1,7 +1,4 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.common.machine.trait.ScalableReservoirComputingLogic;
 
@@ -15,9 +12,12 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.AABB;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3i;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.List;
 
@@ -30,22 +30,17 @@ public class ScalableReservoirComputingMachine extends RecipeElectricMultiblockM
     @EN("No sacrifices found")
     public static Lang ctnhSrcSacrificeEmpty;
 
-
     @CN("已锁定牺牲者！")
     @EN("Sacrifice LOCKED")
     public static Lang ctnhSrcSacrificeLocked;
-
 
     @CN("无法锁定牺牲者")
     @EN("Sacrifice UNLOCKED")
     public static Lang ctnhSrcSacrificeUnlocked;
 
-
     @CN("湿件剩余存活时间: %s ticks")
     @EN("Wetware duration: %s ticks")
     public static Lang ctnhSrcWetwareDuration;
-
-
 
     public ScalableReservoirComputingMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);

@@ -34,12 +34,9 @@ public class CryotheumFreezer extends RecipeElectricMultiblockMachine implements
     @EN("Current Tear Crystal points: %d")
     public static Lang cryotheumFreezerUi0;
 
-
     @CN("§b当前消耗的凛冰:%d / %d")
     @EN("§bCurrent Cryotheum consumption: %d / %d")
     public static Lang cryotheumFreezerUi5;
-
-
 
     public CryotheumFreezer(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
@@ -64,7 +61,7 @@ public class CryotheumFreezer extends RecipeElectricMultiblockMachine implements
     public long target = 100000L;
 
     public MutableComponent provider_a() {
-        return cryotheumFreezerUi0.translate( a);
+        return cryotheumFreezerUi0.translate(a);
     }
 
     @CN("极寒之凛冰不足")
@@ -124,6 +121,6 @@ public class CryotheumFreezer extends RecipeElectricMultiblockMachine implements
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
         textList.add(textList.size(),
-                cryotheumFreezerUi5.translate( used_energy, target));
+                cryotheumFreezerUi5.translate(used_energy, target));
     }
 }

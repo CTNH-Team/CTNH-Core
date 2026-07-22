@@ -1,5 +1,4 @@
 package io.github.cpearl0.ctnhcore.common.item;
-import com.ctnhlang.Key;
 
 import com.gregtechceu.gtceu.api.item.component.IInteractionItem;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -29,6 +28,7 @@ import net.minecraftforge.fluids.FluidUtil;
 
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.network.packets.BlockHighlightPacket;
 
@@ -44,27 +44,21 @@ public class TestingTerminalBehavior implements IInteractionItem {
     @EN("(%s)")
     public static Lang testTerminalErrorInfo;
 
-
     @CN("在%s处缺少")
     @EN("At %s, you need")
     public static Lang testTerminalLackError;
-
 
     @CN("(%s,%s,%s)")
     @EN("(%s,%s,%s)")
     public static Lang testTerminalPosition;
 
-
     @CN("一切正常！")
     @EN("Everything is OK！")
     public static Lang testTerminalSuccess;
 
-
     @CN("在%s处应为")
     @EN("At %s, it should be")
     public static Lang testTerminalWrongError;
-
-
 
     private static final String TAG_FLIPPED = "IsFlipped";
 
@@ -203,14 +197,14 @@ public class TestingTerminalBehavior implements IInteractionItem {
         if (error instanceof SinglePredicateError) {
 
             messages.add(testTerminalLackError.translate(
-                    
+
                     testTerminalPosition.translate(
                             pos.getX(), pos.getY(), pos.getZ())));
 
         } else {
 
             messages.add(testTerminalWrongError.translate(
-                    
+
                     testTerminalPosition.translate(
                             pos.getX(), pos.getY(), pos.getZ())));
         }

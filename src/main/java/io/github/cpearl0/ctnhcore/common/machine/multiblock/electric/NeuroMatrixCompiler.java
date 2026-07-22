@@ -1,7 +1,4 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CompilerMachine;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
@@ -25,8 +22,11 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.ArrayList;
@@ -39,42 +39,33 @@ public class NeuroMatrixCompiler extends RecipeElectricMultiblockMachine impleme
     @EN("§cUnknown error")
     public static Lang compilerError0;
 
-
     @CN("§c舱室等级与片区1不匹配")
     @EN("§cChamber tier does not match Region 1")
     public static Lang compilerError1;
-
 
     @CN("片区%d状态:%s")
     @EN("Region %d status: %s")
     public static Lang neuroMatrixCompilerInfoPartStates;
 
-
     @CN("§c错误,类型：%s")
     @EN("§cError, type: %s")
     public static Lang neuroMatrixCompilerInfoStateError;
-
 
     @CN("§a完成")
     @EN("§aComplete")
     public static Lang neuroMatrixCompilerInfoStateFinish;
 
-
     @CN("§6待机")
     @EN("§6Idle")
     public static Lang neuroMatrixCompilerInfoStateIdle;
-
 
     @CN("§b等待中......")
     @EN("§bWaiting......")
     public static Lang neuroMatrixCompilerInfoStateWaiting;
 
-
     @CN("§9运行中:%ss/%ss")
     @EN("§9Working: %ss/%ss")
     public static Lang neuroMatrixCompilerInfoStateWorking;
-
-
 
     public NeuroMatrixCompiler(IMachineBlockEntity holder) {
         super(holder);
@@ -443,7 +434,7 @@ public class NeuroMatrixCompiler extends RecipeElectricMultiblockMachine impleme
         if (states.get(i) == 1) {
             return (neuroMatrixCompilerInfoPartStates.translate(
                     new Object[] { i + 1,
-                            neuroMatrixCompilerInfoStateWorking.translate( new Object[] {
+                            neuroMatrixCompilerInfoStateWorking.translate(new Object[] {
                                     String.format("%.2f", (double) this.recipeLogic.getProgress() / 20),
                                     String.format("%.2f", (double) this.recipeLogic.getMaxProgress() / 120) }) }));
         }

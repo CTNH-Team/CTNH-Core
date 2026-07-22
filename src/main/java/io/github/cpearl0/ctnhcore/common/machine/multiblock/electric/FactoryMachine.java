@@ -1,8 +1,8 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
-import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
+import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
@@ -43,12 +43,9 @@ public class FactoryMachine extends RecipeElectricMultiblockMachine implements I
     @EN("Base Productivity: x%s")
     public static Lang sweatShopInfoBasicRate;
 
-
     @CN("员工数量：%s")
     @EN("Employee Count: %s")
     public static Lang sweatShopInfoVillagerCount;
-
-
 
     public int CENTRIFUGE_COUNT = 0;
     public int LATHE_COUNT = 0;
@@ -312,8 +309,8 @@ public class FactoryMachine extends RecipeElectricMultiblockMachine implements I
         updateVillagerCount();
         updateBasicRate();
         super.addDisplayText(textList);
-        textList.add(sweatShopInfoVillagerCount.translate( VILLAGER_COUNT));
+        textList.add(sweatShopInfoVillagerCount.translate(VILLAGER_COUNT));
         textList.add(
-                sweatShopInfoBasicRate.translate( String.format("%.2f", basicRate)));
+                sweatShopInfoBasicRate.translate(String.format("%.2f", basicRate)));
     }
 }

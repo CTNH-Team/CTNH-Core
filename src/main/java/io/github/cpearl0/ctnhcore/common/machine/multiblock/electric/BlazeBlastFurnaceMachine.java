@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
-import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
@@ -30,8 +30,6 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
     @CN("烈焰之炽焱：%d mB")
     @EN("Blazing Pyrotheum: %d mB")
     public static Lang blazeBlastFurnaceInfoPyrotheum;
-
-
 
     public BlazeBlastFurnaceMachine(IMachineBlockEntity holder) {
         super(holder);
@@ -83,7 +81,7 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
         if (isFormed()) {
             textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature",
                     Component.literal(getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
-            textList.add(blazeBlastFurnaceInfoPyrotheum.translate( current));
+            textList.add(blazeBlastFurnaceInfoPyrotheum.translate(current));
         }
     }
 

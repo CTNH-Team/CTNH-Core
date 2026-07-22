@@ -1,7 +1,4 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CircuitBusPartMachine;
 
@@ -20,8 +17,11 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.List;
 import java.util.Objects;
@@ -31,8 +31,6 @@ public class AstronomicalMachine extends RecipeElectricMultiblockMachine {
     @CN("只能在夜晚使用")
     @EN("Can only be used at night")
     public static Lang astronomicalInfoInvalid;
-
-
 
     public static final int START_TIME = 23000;
     public static final int END_TIME = 13000;

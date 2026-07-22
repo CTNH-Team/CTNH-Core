@@ -1,7 +1,4 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.common.machine.trait.providable_net.IProviableNetHandlerMachine;
 import io.github.cpearl0.ctnhcore.common.machine.trait.providable_net.ProvidableNetHandler;
@@ -43,9 +40,12 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,17 +61,13 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
     @EN("Network will rebuild in %d second(s)")
     public static Lang windPowerArrayInfoNetworkDirty;
 
-
     @CN("发电网络机器数：%d")
     @EN("Network Machine Count：%d")
     public static Lang windPowerArrayInfoNetworkMachine;
 
-
     @CN("发电效率：%d")
     @EN("Generating Efficiency: %d")
     public static Lang windPowerArrayInfoNetworkMachineEfficiency;
-
-
 
     public static final Material fluidMaterial = GTMaterials.Lubricant;
     private EnergyContainerList energyContainer;

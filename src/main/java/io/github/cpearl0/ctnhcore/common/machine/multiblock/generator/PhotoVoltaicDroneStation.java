@@ -1,7 +1,4 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.common.item.IDroneItem;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.DroneHolderMachine;
@@ -20,9 +17,12 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import earth.terrarium.adastra.api.planets.Planet;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,12 +33,9 @@ public class PhotoVoltaicDroneStation extends RecipeElectricMultiblockMachine {
     @EN("Power supplied: %d")
     public static Lang pvdroneInfoT1;
 
-
     @CN("无人机消耗概率:%.4f")
     @EN("Drone consumption chance: %.4f")
     public static Lang pvdroneInfoT2;
-
-
 
     public PhotoVoltaicDroneStation(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
@@ -202,9 +199,9 @@ public class PhotoVoltaicDroneStation extends RecipeElectricMultiblockMachine {
 
     public void addDisplayText(List<Component> textList) {
         textList.add(textList.size(),
-                pvdroneInfoT1.translate( String.format("%d", eut)));
+                pvdroneInfoT1.translate(String.format("%d", eut)));
         textList.add(textList.size(),
-                pvdroneInfoT2.translate( String.format("%.4f", num)));
+                pvdroneInfoT2.translate(String.format("%.4f", num)));
         super.addDisplayText(textList);
     }
 }

@@ -1,7 +1,4 @@
 package io.github.cpearl0.ctnhcore.integration.emi;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 
@@ -11,6 +8,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import com.enderio.base.common.init.EIOItems;
 import com.enderio.machines.common.blockentity.capacitorbank.CapacitorTier;
 import com.enderio.machines.common.blockentity.solar.SolarPanelTier;
@@ -22,6 +21,7 @@ import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiInfoRecipe;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,42 +36,33 @@ public class CTNHCoreEmiPlugin implements EmiPlugin {
     @EN("Village librarians guard this ancient technique - prove yourself as a Hero of the Village to learn it")
     public static Lang bauxiteProcessCatalyst;
 
-
     @CN("在坠星位标仪式中使用此物品作为祭品可以召唤陨石")
     @EN("Use this item as an offering in the Falling Star Beacon Ritual to summon meteorites")
     public static Lang bloodMagicGregtechHv;
-
 
     @CN("通过击杀浸泡在生命源质的生物，将其困扰注入生命源质之中获得")
     @EN("Obtain it by killing creatures soaked in Life Essence and infusing their doubt into Life Essence")
     public static Lang doubt;
 
-
     @CN("地狱的猪灵掌握这个技术，尝试与他们交易吧")
     @EN("Nether Piglins possess this knowledge - try bartering with them")
     public static Lang metallurgicalCatalyst;
-
 
     @CN("久远的时间使他们变成了水里的宝藏，通过钓鱼获得")
     @EN("The tides of time turned these into aquatic treasures - fish them up")
     public static Lang platinumMetalCatalystShard1;
 
-
     @CN("深渊里的深潜一组掌握这个技术，尝试与他们交易吧")
     @EN("The abyssal Drowned Ones hold this secret - attempt to trade with them")
     public static Lang platinumMetalCatalystShard2;
-
 
     @CN("通过血魔法邪恶的生灵萃取仪式萃取艾尔夫海姆精灵获取")
     @EN("Obtain it by extracting Alfheim Elves through the Blood Magic Evil Creature Extraction ritual")
     public static Lang psionicMedulla;
 
-
     @CN("村庄里的石匠掌握这个古老的技术，成为村庄英雄后他就会传授给你")
     @EN("Village stonemasons know this ancient technique - they'll teach you after you become a Hero of the Village")
     public static Lang stoneProcessCatalyst;
-
-
 
     private static final List<String> EXTRA_ITEMS = List.of(
             "create:chromatic_compound",
