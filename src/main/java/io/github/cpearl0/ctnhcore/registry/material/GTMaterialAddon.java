@@ -206,6 +206,7 @@ public class GTMaterialAddon {
         Europium.addFlags(GENERATE_BOLT_SCREW);
         WroughtIron.setProperty(PropertyKey.BLAST,
                 new BlastProperty(2150, BlastProperty.GasTier.HIGH, GTValues.VA[GTValues.MV], 250, -1, -1));
+        WroughtIron.addFlags(DISABLE_EBF_BLAST);
         Brass.addFlags(GENERATE_DENSE);
         Aluminium.addFlags(GENERATE_DENSE);
         Steel.addFlags(GENERATE_DENSE);

@@ -1,12 +1,22 @@
 {
   "values": [
-    {
-      "id": "#gtceu:small_gear_extruder_mold",
-      "required": false
-    },
-    {
-      "id": "#gtceu:gear_extruder_mold",
-      "required": false
-    }
+    "gtceu:plate_extruder_mold",
+    "gtceu:rod_extruder_mold",
+    "gtceu:bolt_extruder_mold",
+    "gtceu:ring_extruder_mold",
+    "gtceu:cell_extruder_mold",
+    "gtceu:ingot_extruder_mold",
+    "gtceu:wire_extruder_mold",
+    "gtceu:tiny_pipe_extruder_mold",
+    "gtceu:small_pipe_extruder_mold",
+    "gtceu:normal_pipe_extruder_mold",
+    "gtceu:large_pipe_extruder_mold",
+    "gtceu:huge_pipe_extruder_mold",
+    "gtceu:block_extruder_mold",
+    "gtceu:gear_extruder_mold",
+    "gtceu:bottle_extruder_mold",
+    "gtceu:foil_extruder_mold",
+    "gtceu:small_gear_extruder_mold",
+    "gtceu:rotor_extruder_mold"
   ]
 }

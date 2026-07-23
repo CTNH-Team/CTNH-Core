@@ -1,17 +1,19 @@
 package io.github.cpearl0.ctnhcore.data.tags;
 
-import com.gregtechceu.gtceu.api.data.tag.TagUtil;
+import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagEntry;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
 import appeng.api.features.P2PTunnelAttunement;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEItems;
+
+import java.util.Arrays;
+import java.util.Objects;
 
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 
@@ -23,10 +25,11 @@ public class ItemTags {
         provider.addTag(attunement)
                 .addTag(CustomTags.EV_CIRCUITS);
 
-        // GTCEu 挤出模具 → vintageimprovements curving_heads tag
-        provider.addTag(curvingHeadsTag())
-                .add(TagEntry.optionalTag(TagUtil.createModItemTag("small_gear_extruder_mold").location()))
-                .add(TagEntry.optionalTag(TagUtil.createModItemTag("gear_extruder_mold").location()));
+        // GTCEu 模头
+        var appender = provider.addTag(curvingHeadsTag());
+        Arrays.stream(GTItems.SHAPE_EXTRUDERS)
+                .filter(Objects::nonNull)
+                .forEach(mold -> appender.add(mold.getKey()));
     }
 
     private static TagKey<Item> curvingHeadsTag() {
