@@ -40,7 +40,6 @@ import com.moguang.ctnhmana.registry.CMMaterials;
 import com.simibubi.create.AllItems;
 import dev.shadowsoffire.hostilenetworks.Hostile;
 import earth.terrarium.adastra.common.registry.ModItems;
-import org.antarcticgardens.cna.CNABlocks;
 import twilightforest.init.TFBlocks;
 import vazkii.botania.common.block.BotaniaBlocks;
 import vazkii.botania.common.block.BotaniaFlowerBlocks;
@@ -181,17 +180,6 @@ public class GtceuScriptRecipes {
                 .inputItems(wireGtQuadruple, Silver, 2)
                 .inputItems(plate, StainlessSteel, 2)
                 .outputItems(CTNHMachines.ENERGY_OUTPUT_HATCH_4A_LOWER[GTValues.HV].asStack())
-                .save(provider);
-
-        // 10. fluxuated_magnetite: create_new_age:layered_magnet + 2x botania:mana_diamond + 2x diamond_screw ->
-        // create_new_age:fluxuated_magnetite. EUt 30, dur 60
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("fluxuated_magnetite"))
-                .EUt(30).duration(60)
-                .inputItems(CNABlocks.LAYERED_MAGNET.asStack())
-                .inputItems(new ItemStack(BotaniaItems.manaDiamond, 2))
-                .inputItems(screw, Diamond, 2)
-                .outputItems(
-                        CNABlocks.FLUXUATED_MAGNETITE.asStack())
                 .save(provider);
 
         // 11. space_helmet: glass_plate + 4x space_fabric + glue 72 -> ad_astra:space_helmet. EUt 120, dur 400
@@ -1013,16 +1001,6 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // ============== Chemical Bath Recipes ==============
-
-        // 46. netherite_magnet: fluxuated_magnetite + ancient_debris_leach 8000 -> create_new_age:netherite_magnet. EUt
-        // 120, dur 60
-        CHEMICAL_BATH_RECIPES.recipeBuilder(CTNHCore.id("netherite_magnet"))
-                .EUt(120).duration(60)
-                .inputItems(
-                        CNABlocks.FLUXUATED_MAGNETITE.asStack())
-                .inputFluids(NewExplosivesProductionMaterials.ANCIENT_DEBRIS_LEACH.getFluid(8000))
-                .outputItems(CNABlocks.NETHERITE_MAGNET.asStack())
-                .save(provider);
 
         // 47. fiber_glass: cellulose_dust + glass 288 -> fiber_glass 288. EUt 30, dur 120
         CHEMICAL_BATH_RECIPES.recipeBuilder(CTNHCore.id("fiber_glass"))

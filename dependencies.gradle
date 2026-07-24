@@ -33,7 +33,6 @@ dependencies {
     // Create addons
     modImplementation(ctnh.createvintage)
     modImplementation(ctnh.createliquidfuel)
-    modImplementation(ctnh.createnewage)
     modImplementation(ctnh.creatediesel)
     modImplementation(ctnh.farmersdelight)
     modImplementation(ctnh.clothconfig)

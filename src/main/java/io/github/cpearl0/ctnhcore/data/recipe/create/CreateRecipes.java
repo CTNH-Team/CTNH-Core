@@ -807,11 +807,6 @@ public class CreateRecipes {
                     .deploying(resistor)
                     .filling(resinBoard, GTMaterials.Rubber.getFluid(288))
                     .pressing()
-                    .step("create_new_age:energising", json -> {
-                        json.addProperty("energy_needed", 10000);
-                        json.add("ingredients", stackElements(resinBoard));
-                        json.add("results", stackElements(resinBoard));
-                    })
                     .loops(1)
                     .save(provider);
         }
@@ -1129,11 +1124,6 @@ public class CreateRecipes {
                 .deploying(itemStack("gtceu:basic_electronic_circuit"))
                 .deploying(GTItems.DIODE.asStack())
                 .filling(phenolicBoard, GTMaterials.Tin.getFluid(144))
-                .step("create_new_age:energising", json -> {
-                    json.addProperty("energy_needed", 10000);
-                    json.add("ingredients", stackElements(phenolicBoard));
-                    json.add("results", stackElements(phenolicBoard));
-                })
                 .loops(2)
                 .save(provider);
     }

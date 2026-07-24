@@ -86,7 +86,6 @@ public class RecipeRemoval {
         biomesoplentyRemovals();
         bloodmagicRemovals();
         botaniaRemovals();
-        createNewAgeRemovals();
         createdieselgeneratorsRemovals();
         createoreexcavationRemovals();
         ctnhcoreRemovals();
@@ -284,18 +283,6 @@ public class RecipeRemoval {
         remove(new RemoveFilter().mod("botania").type("botania:petal_apothecary"));
         remove(new RemoveFilter().mod("botania").type("botania:runic_altar"));
         remove(new RemoveFilter().mod("botania").type("botania:terra_plate"));
-    }
-
-    public static void createNewAgeRemovals() {
-        remove(new RemoveFilter().id("create_new_age:shaped/redstone_magnet"));
-        remove(new RemoveFilter().id("create_new_age:shapeless/basic_energiser"));
-        remove(new RemoveFilter().id("create_new_age:pressing/overcharged_gold"));
-        remove(new RemoveFilter().id("create_new_age:pressing/overcharged_iron"));
-        remove(new RemoveFilter().id("create_new_age:shaped/layered_magnet"));
-        remove(new RemoveFilter().id("create_new_age:shaped/netherite_magnet"));
-        remove(new RemoveFilter().id("create_new_age:shaped/fluxuated_magnetite"));
-        remove(new RemoveFilter().id("create_new_age:shaped/carbon_brushes"));
-        remove(new RemoveFilter().id("create_new_age:shaped/generator_coil"));
     }
 
     public static void createdieselgeneratorsRemovals() {

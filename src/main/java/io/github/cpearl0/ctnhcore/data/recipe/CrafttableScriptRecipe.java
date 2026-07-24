@@ -64,8 +64,6 @@ import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import earth.terrarium.adastra.common.registry.ModItems;
 import me.khajiitos.jackseconomy.init.ItemBlockReg;
-import org.antarcticgardens.cna.CNABlocks;
-import org.antarcticgardens.cna.CNAItems;
 import vazkii.botania.common.block.BotaniaBlocks;
 import vazkii.botania.common.item.BotaniaItems;
 import vazkii.botania.common.lib.BotaniaTags;
@@ -131,9 +129,6 @@ public class CrafttableScriptRecipe {
         shaped(provider, "contraption_controls", AllBlocks.CONTRAPTION_CONTROLS.asStack(), " A ", "BCB", " D ", 'A',
                 Items.OAK_BUTTON, 'B', CTPPItems.BASIC_MECHANISM.asStack(), 'C', AllBlocks.ANDESITE_CASING.asStack(),
                 'D', AllItems.ELECTRON_TUBE.asStack());
-        shaped(provider, "basic_energiser", CNABlocks.BASIC_ENERGISER.asStack(), " A ", "BCB", " D ", 'A',
-                AllItems.PRECISION_MECHANISM.asStack(), 'B', AllBlocks.SHAFT.asStack(), 'C',
-                AllBlocks.RAILWAY_CASING.asStack(), 'D', Items.LIGHTNING_ROD);
         shaped(provider, "lightning_rod_crafttable", stack(Items.LIGHTNING_ROD), " A ", " B ", " C ", 'A',
                 Items.COPPER_BLOCK, 'B', Items.COPPER_INGOT, 'C',
                 ChemicalHelper.get(TagPrefix.rod, GTMaterials.Copper));
@@ -146,8 +141,6 @@ public class CrafttableScriptRecipe {
         shaped(provider, "apothecary_default", stack(BotaniaBlocks.defaultAltar), "ABA", "CCC", " D ", 'A',
                 Items.STONE_BRICK_STAIRS, 'B', BotaniaTags.Items.PETALS, 'C', Items.STONE_BRICK_SLAB, 'D',
                 Items.STONE_BRICK_WALL);
-        shaped(provider, "magnetite_block", stack(CNABlocks.MAGNETITE_BLOCK.asStack(), 5), "ABA", "BAB", "ABA", 'A',
-                Items.STONE, 'B', ChemicalHelper.get(TagPrefix.ingot, GTMaterials.IronMagnetic));
         shaped(provider, "rotation_speed_controller", AllBlocks.ROTATION_SPEED_CONTROLLER.asStack(), " A ", "BCB",
                 "DDD", 'A', AllBlocks.COGWHEEL.asStack(), 'B', AllBlocks.SHAFT.asStack(), 'C',
                 AllItems.PRECISION_MECHANISM.asStack(), 'D', AllBlocks.BRASS_CASING.asStack());
@@ -205,14 +198,6 @@ public class CrafttableScriptRecipe {
                 stack(ChemicalHelper.get(TagPrefix.bolt, GTMaterials.IronMagnetic), 8),
                 new String[] { "AAA", "ABA", "AAA" }, new Object[] { BotaniaItems.lensMagnet }, 'A',
                 ChemicalHelper.get(TagPrefix.bolt, GTMaterials.Iron), 'B', BotaniaItems.lensMagnet);
-        shaped(provider, "layered_magnet", stack(CNABlocks.LAYERED_MAGNET.asStack(), 2), "AAA", "BCB", "AAA", 'A',
-                CNAItems.OVERCHARGED_GOLDEN_SHEET.asStack(), 'B', CNABlocks.REDSTONE_MAGNET.asStack(), 'C',
-                ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Steel));
-        shaped(provider, "electrical_connector", stack(CNABlocks.ELECTRICAL_CONNECTOR.asStack(), 2), " A ", " B ",
-                "CBC",
-                'A', ChemicalHelper.get(TagPrefix.wireFine, GTMaterials.Copper), 'B',
-                ChemicalHelper.get(TagPrefix.wireGtSingle, GTMaterials.Copper), 'C',
-                ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel));
         shaped(provider, "digestion_tank", MultiblocksA.DIGESTION_TANK.asStack(), "ABC", "BDB", "EBE", 'A',
                 GTItems.CONVEYOR_MODULE_MV.asStack(), 'B', CustomTags.MV_CIRCUITS, 'C',
                 GTItems.ELECTRIC_PUMP_MV.asStack(), 'D', GTMachines.HULL[GTValues.MV].asStack(), 'E', Items.BRICKS);
