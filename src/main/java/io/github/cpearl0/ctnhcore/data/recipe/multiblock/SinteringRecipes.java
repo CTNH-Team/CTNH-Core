@@ -10,7 +10,7 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 
-import com.mo_guang.ctpp.common.data.recipe.builder.CTPPRecipeBuilder;
+import com.mo_guang.ctpp.data.recipe.builder.CTPPRecipeBuilder;
 
 import java.util.function.Consumer;
 

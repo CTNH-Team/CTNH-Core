@@ -18,8 +18,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 
-import com.mo_guang.ctpp.common.recipe.builder.create.MechanicalCraftingRecipeBuilder;
-import com.mo_guang.ctpp.common.recipe.builder.create.SequencedAssemblyRecipeBuilder;
+import com.mo_guang.ctpp.data.recipe.builder.create.MechanicalCraftingRecipeBuilder;
+import com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder;
 import com.mo_guang.ctpp.registry.CTPPItems;
 import com.mo_guang.ctpp.registry.CreateMaterials;
 import com.simibubi.create.AllBlocks;

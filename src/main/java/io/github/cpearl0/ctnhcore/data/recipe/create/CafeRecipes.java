@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 
 import com.aetherteam.aether.item.AetherItems;
 import com.hollingsworth.arsnouveau.setup.registry.BlockRegistry;
-import com.mo_guang.ctpp.common.recipe.builder.create.MixingRecipeBuilder;
+import com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder;
 import samebutdifferent.ecologics.registry.ModItems;
 
 import java.util.function.Consumer;

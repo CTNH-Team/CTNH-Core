@@ -19,7 +19,7 @@ import net.minecraft.world.item.Items;
 import net.p3pp3rf1y.sophisticatedstorage.init.ModBlocks;
 import net.p3pp3rf1y.sophisticatedstorage.init.ModItems;
 
-import com.mo_guang.ctpp.common.recipe.builder.create.*;
+import com.mo_guang.ctpp.data.recipe.builder.create.MechanicalCraftingRecipeBuilder;
 import com.mo_guang.ctpp.registry.CTPPItems;
 import com.simibubi.create.AllBlocks;
 

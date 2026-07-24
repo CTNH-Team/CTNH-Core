@@ -21,7 +21,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 import com.jesz.createdieselgenerators.CDGBlocks;
 import com.jesz.createdieselgenerators.CDGItems;
-import com.mo_guang.ctpp.common.recipe.builder.create.*;
+import com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder;
 import com.mo_guang.ctpp.registry.CTPPBlocks;
 import com.mo_guang.ctpp.registry.CTPPItems;
 import com.mo_guang.ctpp.registry.CreateMaterials;
@@ -93,7 +93,8 @@ public class DieselGeneratorRecipes {
     private static void mechanicalCraftingRecipes(Consumer<FinishedRecipe> provider) {
         // CTNH-specific pumpjack crank ingredients.
         // 原版配方：andesite_alloy_ingot → andesite_alloy_plate、iron_plate → steel_plate、zinc_ingot → zinc_plate
-        MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("diesel/pumpjack_crank"))
+        com.mo_guang.ctpp.data.recipe.builder.create.MechanicalCraftingRecipeBuilder
+                .builder(CTNHCore.id("diesel/pumpjack_crank"))
                 .pattern("AIA", " S ", "AIA", "ZSZ", "AZA")
                 .key('A', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy))
                 .key('I', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
@@ -105,14 +106,14 @@ public class DieselGeneratorRecipes {
 
     private static void itemApplicationRecipes(Consumer<FinishedRecipe> provider) {
         // steel_casing: treated_wood_planks + wrought_iron_plate -> steel_casing
-        ItemApplicationRecipeBuilder.builder("steel_casing")
+        com.mo_guang.ctpp.data.recipe.builder.create.ItemApplicationRecipeBuilder.builder("steel_casing")
                 .input(TREATED_WOOD_PLANKS)
                 .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
                 .result(STEEL_CASING)
                 .save(provider);
 
         // heavy_machinery_casing: steel_casing + steel_plate -> heavy_machinery_casing
-        ItemApplicationRecipeBuilder.builder("heavy_machinery_casing")
+        com.mo_guang.ctpp.data.recipe.builder.create.ItemApplicationRecipeBuilder.builder("heavy_machinery_casing")
                 .input(STEEL_CASING)
                 .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
                 .result(HEAVY_MACHINERY_CASING)
@@ -121,21 +122,21 @@ public class DieselGeneratorRecipes {
 
     private static void mixingRecipes(Consumer<FinishedRecipe> provider) {
         // emulsified_bitumen_slurry: bitumen + simple_emulgator -> emulsified_bitumen_slurry
-        MixingRecipeBuilder.builder("emulsified_bitumen_slurry")
+        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("emulsified_bitumen_slurry")
                 .inputFluid("gtceu:bitumen", 800)
                 .inputFluid("gtceu:simple_emulgator", 200)
                 .resultFluid("gtceu:emulsified_bitumen_slurry", 1000)
                 .save(provider);
 
         // pure_bitumen: emulsified_bitumen + simple_demulsifier -> pure_bitumen
-        MixingRecipeBuilder.builder("pure_bitumen")
+        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("pure_bitumen")
                 .inputFluid("gtceu:emulsified_bitumen", 800)
                 .inputFluid("gtceu:simple_demulsifier", 200)
                 .resultFluid("gtceu:pure_bitumen", 1000)
                 .save(provider);
 
         // simple_emulgator: soda_ash + tallow + water -> simple_emulgator
-        MixingRecipeBuilder.builder("simple_emulgator")
+        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("simple_emulgator")
                 .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.SodaAsh).getItem(), 6))
                 .input(TALLOW)
                 .inputFluid("minecraft:water", 1000)
@@ -143,14 +144,14 @@ public class DieselGeneratorRecipes {
                 .save(provider);
 
         // simple_demulsifier: tallow + diluted_sulfuric_acid -> simple_demulsifier
-        MixingRecipeBuilder.builder("simple_demulsifier")
+        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("simple_demulsifier")
                 .input(TALLOW)
                 .inputFluid("gtceu:diluted_sulfuric_acid", 1000)
                 .resultFluid("gtceu:simple_demulsifier", 1000)
                 .save(provider);
 
         // asphalt_block: sand + gravel + pure_bitumen (heated)
-        MixingRecipeBuilder.builder("asphalt_block")
+        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("asphalt_block")
                 .input(new ItemStack(Items.SAND))
                 .input(new ItemStack(Items.GRAVEL))
                 .inputFluid("gtceu:pure_bitumen", 100)
@@ -159,7 +160,7 @@ public class DieselGeneratorRecipes {
                 .save(provider);
 
         // biodiesel: ethanol + seed_oil -> raw_bio_diesel
-        MixingRecipeBuilder.builder("biodiesel")
+        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("biodiesel")
                 .inputFluid("gtceu:ethanol", 100)
                 .inputFluid("gtceu:seed_oil", 100)
                 .resultFluid("gtceu:raw_bio_diesel", 200)
@@ -168,14 +169,14 @@ public class DieselGeneratorRecipes {
 
     private static void compactingRecipes(Consumer<FinishedRecipe> provider) {
         // petroleum_coke_gem: petroleum_coke fluid -> petroleum_coke_gem
-        CompactingRecipeBuilder.builder("petroleum_coke_gem")
+        com.mo_guang.ctpp.data.recipe.builder.create.CompactingRecipeBuilder.builder("petroleum_coke_gem")
                 .inputFluid(BiodieselFertileSoilMaterials.PETROLEUM_COKE.getFluid(144))
                 .result(ChemicalHelper.get(TagPrefix.gem, BiodieselFertileSoilMaterials.PETROLEUM_COKE))
                 .save(provider);
         // CTNH seed oil output.
         TagKey<Item> SEEDS_TAG = TagKey.create(Registries.ITEM,
                 ResourceLocation.parse("forge:seeds"));
-        CompactingRecipeBuilder.builder(CTNHCore.id("diesel/plant_oil"))
+        com.mo_guang.ctpp.data.recipe.builder.create.CompactingRecipeBuilder.builder(CTNHCore.id("diesel/plant_oil"))
                 .input(Ingredient.of(SEEDS_TAG))
                 .resultFluid(GTMaterials.SeedOil.getFluid(100))
                 .save(provider);
@@ -183,7 +184,7 @@ public class DieselGeneratorRecipes {
 
     private static void crushingRecipes(Consumer<FinishedRecipe> provider) {
         // rich_soil -> rich_soil_dust x3
-        CrushingRecipeBuilder.builder("crushing_rich_soil")
+        com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder.builder("crushing_rich_soil")
                 .input(new ItemStack(ModItems.RICH_SOIL.get()))
                 .result(new ItemStack(
                         ChemicalHelper.get(TagPrefix.dust, BiodieselFertileSoilMaterials.RICH_SOIL).getItem(), 3))

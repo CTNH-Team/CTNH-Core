@@ -10,7 +10,7 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 
-import com.mo_guang.ctpp.common.recipe.builder.create.SequencedAssemblyRecipeBuilder;
+import com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder;
 
 import java.util.function.Consumer;
 

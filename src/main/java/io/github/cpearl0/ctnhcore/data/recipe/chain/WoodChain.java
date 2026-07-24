@@ -3,7 +3,6 @@ package io.github.cpearl0.ctnhcore.data.recipe.chain;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 
-import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
@@ -20,20 +19,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.item.AetherItems;
 import com.hollingsworth.arsnouveau.setup.registry.BlockRegistry;
-import com.mo_guang.ctpp.common.recipe.builder.create.CuttingRecipeBuilder;
+import com.mo_guang.ctpp.data.recipe.builder.create.CuttingRecipeBuilder;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
 import twilightforest.init.TFBlocks;
 
 import java.util.function.Consumer;
-
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
-import static io.github.cpearl0.ctnhcore.data.materials.AviationFabricMaterials.*;
-import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
-import static io.github.cpearl0.ctnhcore.registry.CTNHItems.*;
-import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 
 /** Converted from server_scripts/src/gtceu/chain/wood.js */
 public class WoodChain {

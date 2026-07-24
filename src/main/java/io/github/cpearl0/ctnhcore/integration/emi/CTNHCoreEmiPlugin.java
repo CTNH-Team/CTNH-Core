@@ -6,6 +6,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 import com.ctnhlang.CN;
@@ -14,11 +15,14 @@ import com.enderio.base.common.init.EIOItems;
 import com.enderio.machines.common.blockentity.capacitorbank.CapacitorTier;
 import com.enderio.machines.common.blockentity.solar.SolarPanelTier;
 import com.enderio.machines.common.init.MachineBlocks;
+import com.simibubi.create.AllBlocks;
+import com.simibubi.create.Create;
 import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiInitRegistry;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiInfoRecipe;
+import dev.emi.emi.api.recipe.EmiWorldInteractionRecipe;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
@@ -92,6 +96,15 @@ public class CTNHCoreEmiPlugin implements EmiPlugin {
                 platinumMetalCatalystShard2.key());
         addInformation(registry, "gtceu:psionic_medulla_gem", psionicMedulla.key());
         addInformation(registry, "bloodmagic:doubt_bucket", doubt.key());
+
+        addEncasingRecipe(registry, "andesite_cogwheel", AllBlocks.COGWHEEL.asStack(),
+                AllBlocks.ANDESITE_CASING.asStack(), AllBlocks.ANDESITE_ENCASED_COGWHEEL.asStack());
+        addEncasingRecipe(registry, "andesite_large_cogwheel", AllBlocks.LARGE_COGWHEEL.asStack(),
+                AllBlocks.ANDESITE_CASING.asStack(), AllBlocks.ANDESITE_ENCASED_LARGE_COGWHEEL.asStack());
+        addEncasingRecipe(registry, "brass_cogwheel", AllBlocks.COGWHEEL.asStack(), AllBlocks.BRASS_CASING.asStack(),
+                AllBlocks.BRASS_ENCASED_COGWHEEL.asStack());
+        addEncasingRecipe(registry, "brass_large_cogwheel", AllBlocks.LARGE_COGWHEEL.asStack(),
+                AllBlocks.BRASS_CASING.asStack(), AllBlocks.BRASS_ENCASED_LARGE_COGWHEEL.asStack());
     }
 
     @Override
@@ -140,5 +153,15 @@ public class CTNHCoreEmiPlugin implements EmiPlugin {
     private static Item resolveItem(String itemId) {
         ResourceLocation id = ResourceLocation.tryParse(itemId);
         return id == null ? Items.AIR : BuiltInRegistries.ITEM.get(id);
+    }
+
+    private static void addEncasingRecipe(EmiRegistry registry, String id, ItemStack cogwheel, ItemStack casing,
+                                          ItemStack output) {
+        registry.addRecipe(EmiWorldInteractionRecipe.builder()
+                .id(Create.asResource("/world/encasing/" + id))
+                .leftInput(EmiStack.of(cogwheel))
+                .rightInput(EmiStack.of(casing), true)
+                .output(EmiStack.of(output))
+                .build());
     }
 }
