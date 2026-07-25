@@ -4,8 +4,7 @@ import io.github.cpearl0.ctnhcore.CTNHCore;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_PLATE;
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.NO_UNIFICATION;
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class GrapheneProductionLineMaterials {
@@ -24,7 +23,7 @@ public class GrapheneProductionLineMaterials {
                 .cnlang("覆石墨烯铱")
                 .ingot()
                 .color(0x000000)
-                .flags(GENERATE_PLATE, NO_UNIFICATION)
+                .flags(GENERATE_PLATE, DISABLE_MATERIAL_RECIPES)
                 .buildAndRegister();
     }
 }
