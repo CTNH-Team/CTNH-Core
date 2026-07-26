@@ -1082,19 +1082,6 @@ public class GtceuScriptRecipes {
                 .outputItems(dust, Phosphorus)
                 .save(provider);
 
-        // ============== Forge Hammer Recipes ==============
-
-        FORGE_HAMMER_RECIPES.recipeBuilder(CTNHCore.id("hot_wrought_iron_ingot_fixed"))
-                .EUt(8).duration(100)
-                .inputItems(ingotHot, WroughtIron)
-                .outputItems(ingot, WroughtIron)
-                .save(provider);
-
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("shaped/wrought_iron_ingot_from_hot"),
-                ChemicalHelper.get(ingot, WroughtIron),
-                "hA",
-                'A', ChemicalHelper.get(ingotHot, WroughtIron));
-
         // ============== Polarizer Recipes ==============
 
         // 57. samarium_dysprosium_terbium_permanent_magnet_alloy_ingot: ingot -> magnetic ingot. EUt 490120, dur 100
@@ -2325,13 +2312,6 @@ public class GtceuScriptRecipes {
                     'S', new ItemStack(
                             BloodMagicBlocks.SACRIFICE_RUNE.get().asItem()));
         }
-
-        // ============== Smelting Recipe ==============
-
-        VanillaRecipeHelper.addSmeltingRecipe(provider, CTNHCore.id("smelting_iron_to_hot_wrought_iron"),
-                new ItemStack(Items.IRON_INGOT),
-                ChemicalHelper.get(ingotHot, WroughtIron),
-                1.4f);
 
         // ============== Recipe Replace Re-additions ==============
 

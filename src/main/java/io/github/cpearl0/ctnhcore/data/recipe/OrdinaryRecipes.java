@@ -12,12 +12,10 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
-import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -27,9 +25,7 @@ import com.moguang.ctnhbio.data.recipe.CBRecipeBuilder;
 import com.moguang.ctnhbio.registry.CBBlocks;
 import com.moguang.ctnhbio.registry.CBItems;
 import com.moguang.ctnhbio.registry.CBMachines;
-import com.simibubi.create.AllItems;
 import com.wintercogs.ae2omnicells.common.init.OCItems;
-import io.github.lounode.ae2cs.common.init.AECSBlocks;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEBlocks;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines;
 
@@ -50,40 +46,6 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHItems.HEAVY_PLATE_T3;
 public class OrdinaryRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        // 工作台
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/flint_dust_from_mortar"),
-                ChemicalHelper.get(dust, Flint),
-                "X", "m",
-                'X', Items.FLINT);
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/nether_quartz_dust_from_mortar"),
-                ChemicalHelper.get(dust, NetherQuartz),
-                "X", "m",
-                'X', Items.QUARTZ);
-        // 电子管合成真空管配方
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("vacuum_tube_plain_from_electron_tube"))
-                .inputItems(AllItems.ELECTRON_TUBE.asItem())
-                .inputItems(bolt, Steel)
-                .inputItems(wireGtSingle, Copper, 2)
-                .circuitMeta(1)
-                .outputItems(VACUUM_TUBE, 4)
-                .duration(120).EUt(VA[ULV]).save(provider);
-
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("vacuum_tube_red_alloy_from_electron_tube"))
-                .inputItems(AllItems.ELECTRON_TUBE.asItem())
-                .inputItems(bolt, Steel)
-                .inputItems(wireGtSingle, Copper, 2)
-                .inputFluids(RedAlloy.getFluid(18))
-                .outputItems(VACUUM_TUBE, 6)
-                .duration(40).EUt(VA[ULV]).save(provider);
-
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("vacuum_tube_red_alloy_annealed_from_electron_tube"))
-                .inputItems(AllItems.ELECTRON_TUBE.asItem())
-                .inputItems(bolt, Steel)
-                .inputItems(wireGtSingle, AnnealedCopper, 2)
-                .inputFluids(RedAlloy.getFluid(18))
-                .outputItems(VACUUM_TUBE, 8)
-                .duration(40).EUt(VA[ULV]).save(provider);
-
         // 磁选
         // CBRecipeBuilder 的配方已经使用了 CTNHCore.id()，不需要修改
         CBRecipeBuilder.of(CTNHCore.id("calcite_electromagnetic"), GTRecipeTypes.ELECTROMAGNETIC_SEPARATOR_RECIPES)
@@ -157,14 +119,6 @@ public class OrdinaryRecipes {
                 .outputFluids(new FluidStack(PYRROLE.getFluid(), 800))
                 .duration(120)
                 .EUt(384)
-                .save(provider);
-
-        // 切割机
-        CUTTER_RECIPES.recipeBuilder(CTNHCore.id("rose_quartz_block_to_polished_rose_quartz"))
-                .inputItems(AECSBlocks.PURE_ROSE_QUARTZ_BLOCK.asItem())
-                .outputItems(AllItems.POLISHED_ROSE_QUARTZ.asItem(), 9)
-                .duration(40)
-                .EUt(8)
                 .save(provider);
 
         CBRecipeBuilder.of(CTNHCore.id("advanced_ram_chip_recipe"), GTRecipeTypes.CUTTER_RECIPES)

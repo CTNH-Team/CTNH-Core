@@ -6,6 +6,7 @@ import io.github.cpearl0.ctnhcore.data.recipe.create.CafeRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.create.CreateOreExcavationRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.create.CreateRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.create.DieselGeneratorRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.create.PrimitiveKineticAgeRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.generated.HyperRotorRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.immersiveaircraft.ImmersiveAircraftRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.DigesterRecipes;
@@ -106,6 +107,7 @@ public class CTNHCoreRecipeAddition {
         WoodChain.init(provider);
         ZirconChain.init(provider);
 
+        PrimitiveKineticAgeRecipes.init(provider);
         CreateRecipes.init(provider);
         DieselGeneratorRecipes.init(provider);
 

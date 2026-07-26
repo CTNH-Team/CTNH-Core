@@ -44,7 +44,6 @@ import com.mo_guang.ctpp.registry.CreateMaterials;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
-import io.github.lounode.ae2cs.common.init.AECSBlocks;
 
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -116,8 +115,6 @@ public class CreateRecipes {
     }
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        addCopperCasingRecipes(provider);
-
         // Crushing/milling for gtceu ingots -> dusts
         String[] ingots = new String[] { "tin", "bronze", "zinc", "brass", "nickel", "lead" };
         for (String i : ingots) {
@@ -367,44 +364,6 @@ public class CreateRecipes {
                     .output(new ItemStack(potinDust.getItem(), 8)).save(provider);
         }
 
-        com.mo_guang.ctpp.data.recipe.builder.create.CompactingRecipeBuilder
-                .builder(CTNHCore.id("create/rose_quartz_block"))
-                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.NetherQuartz, 9))
-                .input(new ItemStack(Items.REDSTONE, 32))
-                .result(AECSBlocks.PURE_ROSE_QUARTZ_BLOCK.toStack())
-                .heated()
-                .save(provider);
-
-        CuttingRecipeBuilder.builder("rose_quartz_block_to_rose_quartz")
-                .input(item("ae2cs:rose_quartz_block"))
-                .result(AllItems.ROSE_QUARTZ.asStack(9))
-                .save(provider);
-
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("create/fluid_pipe_bronze"),
-                AllBlocks.FLUID_PIPE.asStack(4),
-                "SCS",
-                'S', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Bronze),
-                'C', ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Bronze));
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("create/fluid_pipe_bronze_vertical"),
-                AllBlocks.FLUID_PIPE.asStack(4),
-                "S", "C", "S",
-                'S', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Bronze),
-                'C', ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Bronze));
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("create/fluid_pipe_vanilla_copper"),
-                AllBlocks.FLUID_PIPE.asStack(),
-                "SCS",
-                'S', TagUtil.createItemTag("plates/copper", false),
-                'C', Items.COPPER_INGOT);
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("create/fluid_pipe_vanilla_copper_vertical"),
-                AllBlocks.FLUID_PIPE.asStack(),
-                "S", "C", "S",
-                'S', TagUtil.createItemTag("plates/copper", false),
-                'C', Items.COPPER_INGOT);
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("create/fluid_tank_bronze"),
-                AllBlocks.FLUID_TANK.asStack(2),
-                "B", "C", "B",
-                'B', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Bronze),
-                'C', TagUtil.createItemTag("barrels/wooden", false));
         // rose quartz from rose quartz chunk + water
         ItemStack roseQuartz = AllItems.ROSE_QUARTZ.asStack();
         ItemStack roseChunk = item("biomesoplenty:rose_quartz_chunk") == null ? ItemStack.EMPTY :
@@ -918,23 +877,6 @@ public class CreateRecipes {
                     .save(provider);
         }
         addMigratedKubeJsCreateRecipes(provider);
-    }
-
-    private static void addCopperCasingRecipes(Consumer<FinishedRecipe> provider) {
-        addCopperCasingRecipe(provider, "copper_casing_from_log", "forge:stripped_logs");
-        addCopperCasingRecipe(provider, "copper_casing_from_wood", "forge:stripped_wood");
-        addCopperCasingRecipe(provider, "copper_casing_from_andesite_casing", "create:andesite_casing");
-    }
-
-    private static void addCopperCasingRecipe(Consumer<FinishedRecipe> provider, String name, String baseIngredient) {
-        JsonObject recipe = CreateRecipeJsonHelper.recipe("create:item_application");
-        recipe.add("ingredients", CreateRecipeJsonHelper.array(
-                baseIngredient.startsWith("forge:") ? CreateRecipeJsonHelper.tag(baseIngredient) :
-                        CreateRecipeJsonHelper.item(baseIngredient),
-                CreateRecipeJsonHelper
-                        .item(name.endsWith("andesite_casing") ? "gtceu:copper_plate" : "gtceu:bronze_ingot")));
-        recipe.add("results", CreateRecipeJsonHelper.array(CreateRecipeJsonHelper.item("create:copper_casing")));
-        CreateRecipeJsonHelper.save(provider, CTNHCore.id("create/" + name).toString(), recipe);
     }
 
     private static void addMigratedKubeJsCreateRecipes(Consumer<FinishedRecipe> provider) {
