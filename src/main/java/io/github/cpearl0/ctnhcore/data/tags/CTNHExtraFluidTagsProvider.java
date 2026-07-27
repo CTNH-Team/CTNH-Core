@@ -25,7 +25,7 @@ public class CTNHExtraFluidTagsProvider extends TagsProvider<Fluid> {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         tag(fluidTag("createdieselgenerators", "pumpjack_output"))
-                .addOptional(ResourceLocation.fromNamespaceAndPath("gtceu", "impure_oil"))
+                .addOptional(CTNHCore.id("impure_oil"))
                 .remove(ResourceLocation.fromNamespaceAndPath("createdieselgenerators", "crude_oil"));
     }
 

@@ -12,11 +12,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-final class CreateRecipeJsonHelper {
+public final class CreateRecipeJsonHelper {
 
     private CreateRecipeJsonHelper() {}
 
-    static void save(Consumer<FinishedRecipe> provider, String id, JsonObject json) {
+    public static void save(Consumer<FinishedRecipe> provider, String id, JsonObject json) {
         ResourceLocation recipeId = Objects.requireNonNull(ResourceLocation.tryParse(id), "Invalid recipe id: " + id);
         String type = Objects.requireNonNull(json.get("type"), "Recipe type missing: " + id).getAsString();
         provider.accept(new FinishedRecipe() {
@@ -52,13 +52,13 @@ final class CreateRecipeJsonHelper {
         });
     }
 
-    static JsonObject recipe(String type) {
+    public static JsonObject recipe(String type) {
         JsonObject json = new JsonObject();
         json.addProperty("type", type);
         return json;
     }
 
-    static JsonArray array(JsonObject... values) {
+    public static JsonArray array(JsonObject... values) {
         JsonArray array = new JsonArray();
         for (JsonObject value : values) {
             array.add(value);
@@ -66,7 +66,7 @@ final class CreateRecipeJsonHelper {
         return array;
     }
 
-    static JsonObject item(String id) {
+    public static JsonObject item(String id) {
         JsonObject json = new JsonObject();
         json.addProperty("item", id);
         return json;
@@ -78,7 +78,7 @@ final class CreateRecipeJsonHelper {
         return json;
     }
 
-    static JsonObject tag(String id) {
+    public static JsonObject tag(String id) {
         JsonObject json = new JsonObject();
         json.addProperty("tag", id);
         return json;

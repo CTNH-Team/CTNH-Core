@@ -109,7 +109,7 @@ public class VoidMinerProcessingMachine extends RecipeElectricMultiblockMachine 
             // 创建 Pyrotheum 流体
             FluidStack pyrotheumFluid = new FluidStack(
                     Objects.requireNonNull(
-                            ForgeRegistries.FLUIDS.getValue(ResourceLocation.tryParse("gtceu:pyrotheum"))),
+                            ForgeRegistries.FLUIDS.getValue(ResourceLocation.tryParse("ctnhcore:pyrotheum"))),
                     currentFluidAmount);
 
             // 检查输入仓是否有足够流体
@@ -134,7 +134,7 @@ public class VoidMinerProcessingMachine extends RecipeElectricMultiblockMachine 
             // 创建 Cryotheum 流体
             FluidStack cryotheumFluid = new FluidStack(
                     Objects.requireNonNull(
-                            ForgeRegistries.FLUIDS.getValue(ResourceLocation.tryParse("gtceu:cryotheum"))),
+                            ForgeRegistries.FLUIDS.getValue(ResourceLocation.tryParse("ctnhcore:cryotheum"))),
                     currentFluidAmount);
 
             // 检查输入仓是否有足够流体
@@ -274,11 +274,11 @@ public class VoidMinerProcessingMachine extends RecipeElectricMultiblockMachine 
         blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_infinity")));
         blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_infinity_catalyst")));
         blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_starmetal")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_jasper")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_flowing_amber_gold")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("ctnhcore:raw_jasper")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("ctnhcore:raw_flowing_amber_gold")));
         blacklist.add(
-                ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_special_composite_steel_m77")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_hidden_alloy")));
+                ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("ctnhcore:raw_special_composite_steel_m77")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("ctnhcore:raw_hidden_alloy")));
         blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_iridium")));
         blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_osmium")));
 

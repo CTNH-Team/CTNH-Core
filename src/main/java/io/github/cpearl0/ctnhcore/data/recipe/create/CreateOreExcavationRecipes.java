@@ -35,7 +35,7 @@ public class CreateOreExcavationRecipes {
             new Vein("lapis", "gtceu:raw_lapis", 128, 8, 266484, 10, 40, new String[] { "minecraft:is_overworld" }, 1),
             new Vein("oilsands", "gtceu:raw_oilsands", 128, 8, 168915, 30, 60,
                     new String[] { "minecraft:is_overworld" }, 1),
-            new Vein("precious_alloy", "gtceu:raw_precious_alloy", 80, 8, 168784, 25, 85,
+            new Vein("precious_alloy", "ctnhcore:raw_precious_alloy", 80, 8, 168784, 25, 85,
                     new String[] { "minecraft:is_overworld" }, null),
             new Vein("nether_quartz", "gtceu:raw_nether_quartz", 64, 8, 116564, 25, 65,
                     new String[] { "minecraft:is_overworld" }, null),
@@ -62,7 +62,7 @@ public class CreateOreExcavationRecipes {
                     new String[] { "minecraft:is_nether" }, null),
             new Vein("ancient_debris", "minecraft:ancient_debris", 256, 8, 9984655, 20, 45,
                     new String[] { "minecraft:is_nether" }, null),
-            new Vein("seawater", "gtceu:seawater_bucket", 64, 8, 12345678, 3000, 8000,
+            new Vein("seawater", "ctnhcore:seawater_bucket", 64, 8, 12345678, 3000, 8000,
                     new String[] { "minecraft:is_ocean", "minecraft:is_overworld" }, null)
     };
 
@@ -83,7 +83,7 @@ public class CreateOreExcavationRecipes {
                     new Drop("gtceu:raw_lapis", 0.1), new Drop("gtceu:raw_calcite", 0.1)),
             new Drill("oilsands", 300, 192, null, new Drop("gtceu:raw_oilsands", 1)),
             new Drill("precious_alloy", 400, 512, "createoreexcavation:diamond_drill",
-                    new Drop("gtceu:raw_precious_alloy", 0.4), new Drop("gtceu:raw_silver", 0.2),
+                    new Drop("ctnhcore:raw_precious_alloy", 0.4), new Drop("gtceu:raw_silver", 0.2),
                     new Drop("gtceu:raw_tin", 0.2), new Drop("minecraft:raw_copper", 0.2)),
             new Drill("nether_quartz", 400, 512, "createoreexcavation:diamond_drill",
                     new Drop("gtceu:raw_nether_quartz", 0.5), new Drop("gtceu:raw_quartzite", 0.4),
@@ -92,7 +92,7 @@ public class CreateOreExcavationRecipes {
             new Drill("diamond", 400, 512, "createoreexcavation:diamond_drill", new Drop("gtceu:raw_diamond", 0.4),
                     new Drop("gtceu:raw_graphite", 0.4), new Drop("gtceu:raw_coal", 0.2)),
             new Drill("magnetite", 300, 256, null, new Drop("gtceu:raw_magnetite", 0.6),
-                    new Drop("gtceu:raw_vanadium_magnetite", 0.2), new Drop("gtceu:raw_precious_alloy", 0.2)),
+                    new Drop("gtceu:raw_vanadium_magnetite", 0.2), new Drop("ctnhcore:raw_precious_alloy", 0.2)),
             new Drill("salt", 300, 192, null, new Drop("gtceu:raw_rock_salt", 0.3), new Drop("gtceu:raw_salt", 0.3),
                     new Drop("gtceu:raw_lepidolite", 0.2), new Drop("gtceu:raw_spodumene", 0.2)),
             new Drill("beryllium", 200, 288, "createoreexcavation:diamond_drill", new Drop("gtceu:raw_beryllium", 0.6),
@@ -119,7 +119,7 @@ public class CreateOreExcavationRecipes {
                     new Drop("gtceu:raw_barite", 0.3)),
             new Drill("ancient_debris", 400, 1024, "createoreexcavation:netherite_drill",
                     new Drop("minecraft:ancient_debris", 0.1), new Drop("gtceu:raw_sulfur", 0.35),
-                    new Drop("gtceu:raw_precious_alloy", 0.3), new Drop("gtceu:raw_nether_quartz", 0.25))
+                    new Drop("ctnhcore:raw_precious_alloy", 0.3), new Drop("gtceu:raw_nether_quartz", 0.25))
     };
 
     public static void init(Consumer<FinishedRecipe> provider) {
@@ -183,7 +183,7 @@ public class CreateOreExcavationRecipes {
 
     private static void addSeawaterExtraction(Consumer<FinishedRecipe> provider) {
         JsonObject json = CreateRecipeJsonHelper.recipe("createoreexcavation:extracting");
-        json.add("result", CreateRecipeJsonHelper.fluid("gtceu:seawater", 1000));
+        json.add("result", CreateRecipeJsonHelper.fluid("ctnhcore:seawater", 1000));
         json.addProperty("vein", "kubejs:seawater_vein");
         json.addProperty("processingTime", 250);
         json.add("fluid", CreateRecipeJsonHelper.fluid("gtceu:lubricant", 50));

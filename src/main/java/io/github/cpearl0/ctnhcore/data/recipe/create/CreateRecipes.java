@@ -4,7 +4,6 @@ import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.BiodieselFertileSoilMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.EnderIOMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.SpecialMaterials;
-import io.github.cpearl0.ctnhcore.data.materials.UncategorizedMaterials;
 import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval;
 import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval.RemoveFilter;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
@@ -189,15 +188,6 @@ public class CreateRecipes {
             }
         }
 
-        // Cutting: shaft from andesite_alloy_ingot
-        ItemStack shaft2 = new ItemStack(AllBlocks.SHAFT.asItem());
-        if (!aaIngot.isEmpty() && !shaft2.isEmpty()) {
-            // produce 2x shaft
-            com.mo_guang.ctpp.data.recipe.builder.create.CuttingRecipeBuilder
-                    .builder("cutting_shaft_from_andesite_alloy_ingot").input(aaIngot)
-                    .result(new ItemStack(shaft2.getItem(), 2)).save(provider);
-        }
-
         // Cutting plates -> single_wire (produce 2x)
         String[] plates = new String[] { "copper", "iron", "gold", "lead", "nickel", "tin", "silver", "annealed_copper",
                 "cupronickel", "steel", "red_alloy", "mana_steel", "conductive_alloy" };
@@ -241,29 +231,6 @@ public class CreateRecipes {
             }
         }
 
-        // Mechanical crafting (register with basic ingredient set)
-        // encased fan - full 5x5 pattern from create.js
-        com.mo_guang.ctpp.data.recipe.builder.create.MechanicalCraftingRecipeBuilder.builder("encased_fan")
-                .pattern("ABCBA", "DDEDD", "AFBFA", "AFBFA", "GGHGG")
-                .key('A', AllBlocks.ANDESITE_CASING.asItem())
-                .key('B', AllBlocks.SHAFT.asItem())
-                .key('C', Items.REDSTONE_TORCH)
-                .key('D', ChemicalHelper.get(TagPrefix.rod, GTMaterials.WroughtIron))
-                .key('E', Items.REDSTONE)
-                .key('F', ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
-                .key('G', Blocks.IRON_BARS.asItem())
-                .key('H', AllItems.PROPELLER.asItem())
-                .output(new ItemStack(AllBlocks.ENCASED_FAN.asItem())).save(provider);
-
-        // crushing wheel (2x) - 5x5 pattern from create.js
-        com.mo_guang.ctpp.data.recipe.builder.create.MechanicalCraftingRecipeBuilder.builder("crushing_wheel")
-                .pattern(" AAA ", "ABCBA", "ACDCA", "ABCBA", " AAA ")
-                .key('A', ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
-                .key('B', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy))
-                .key('C', ChemicalHelper.get(TagPrefix.rod, GTMaterials.Iron))
-                .key('D', ChemicalHelper.get(TagPrefix.gear, GTMaterials.WroughtIron))
-                .output(new ItemStack(AllBlocks.CRUSHING_WHEEL.asItem(), 2)).save(provider);
-
         // generator coil - 5x5 pattern from create.js
         com.mo_guang.ctpp.data.recipe.builder.create.MechanicalCraftingRecipeBuilder.builder("generator_coil")
                 .pattern("  A  ", " BCB ", "ACDCA", " BCB ", "  A  ")
@@ -272,15 +239,6 @@ public class CreateRecipes {
                 .key('C', GTItems.BASIC_CIRCUIT_BOARD.asStack())
                 .key('D', AllItems.PRECISION_MECHANISM.asItem())
                 .output(new ItemStack(AllItems.PRECISION_MECHANISM.asItem())).save(provider);
-
-        // large water wheel - 5x5 pattern from create.js
-        com.mo_guang.ctpp.data.recipe.builder.create.MechanicalCraftingRecipeBuilder.builder("large_water_wheel")
-                .pattern(" AAA ", "ABCBA", "ACDCA", "ABCBA", " AAA ")
-                .key('A', new ItemStack(AllBlocks.SHAFT.asItem()))
-                .key('B', ChemicalHelper.get(TagPrefix.screw, GTMaterials.Steel))
-                .key('C', ChemicalHelper.get(TagPrefix.ring, GTMaterials.Gold))
-                .key('D', AllBlocks.WATER_WHEEL.asItem())
-                .output(new ItemStack(AllBlocks.LARGE_WATER_WHEEL.asItem())).save(provider);
 
         // portal block (from server_scripts create.js)
         ItemStack doubleShadowSteelPlate = ChemicalHelper.get(TagPrefix.plateDouble, CreateMaterials.ShadowSteel);
@@ -387,67 +345,11 @@ public class CreateRecipes {
                 .heatRequirement("heated")
                 .save(provider);
 
-        // andesite alloy dust from iron fluid + dusts
-        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("andesite_alloy_from_iron")
-                .result(new ItemStack(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy).getItem(), 2))
-                .inputFluid(GTMaterials.Iron.getFluid(144))
-                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Andesite))
-                .save(provider);
-
         // stem cells from growth medium fluid + animal excreta
         com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("stem_cells_from_growth_medium")
                 .result(GTItems.STEM_CELLS.asStack())
                 .inputFluid(CTNHMaterials.SimpleGrowthMedium.getFluid(144))
                 .input(CTNHItems.ANIMAL_EXCRETA.asItem())
-                .save(provider);
-
-        // treated wood planks from creosote + planks tag
-        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("treated_wood_planks_from_creosote")
-                .result(new ItemStack(GTBlocks.TREATED_WOOD_PLANK.asItem(), 2))
-                .inputFluid(GTMaterials.Creosote.getFluid(250))
-                .input(ItemTags.PLANKS, 2)
-                .save(provider);
-
-        // red alloy dust
-        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("red_alloy_dust")
-                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.RedAlloy))
-                .input(new ItemStack(Items.REDSTONE, 4))
-                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Copper))
-                .heatRequirement("heated")
-                .save(provider);
-
-        // andesite_alloy_dust with chance secondary
-        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("andesite_alloy_dust_with_secondary")
-                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Andesite))
-                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Iron))
-                .result(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy))
-                .result(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy), 0.3)
-                .save(provider);
-
-        // steel precursor mixing (wrought iron + coke or charcoal) - simplified as two recipes
-        ItemStack steelPrecursorDust = ChemicalHelper.get(TagPrefix.dust, UncategorizedMaterials.STEEL_PRECURSOR, 8);
-        if (!steelPrecursorDust.isEmpty()) {
-            com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder
-                    .builder("steel_precursor_from_wrought_and_coke")
-                    .result(new ItemStack(steelPrecursorDust.getItem(), 8))
-                    .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.WroughtIron).getItem(), 8))
-                    .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Coke).getItem(), 3))
-                    .heatRequirement("heated")
-                    .save(provider);
-            com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder
-                    .builder("steel_precursor_from_wrought_and_charcoal")
-                    .result(new ItemStack(steelPrecursorDust.getItem(), 8))
-                    .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.WroughtIron).getItem(), 8))
-                    .input(TagUtil.createItemTag("dusts/charcoal", false), 6)
-                    .save(provider);
-        }
-
-        // bronze dust
-        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("bronze_dust_from_copper_tin")
-                .result(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Bronze).getItem(), 3))
-                .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Copper).getItem(), 3))
-                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Tin))
-                .heatRequirement("heated")
                 .save(provider);
 
         // Sequenced assembly recipes
@@ -587,38 +489,6 @@ public class CreateRecipes {
                 .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Obsidian), 0.75)
                 .save(provider);
 
-        // basic mechanism from wooden slabs -> ctpp:basic_mechanism
-        ItemStack incompleteBasic = CTPPItems.INCOMPLETE_BASIC_MECHANISM.asStack();
-        ItemStack basicMechanism = CTPPItems.BASIC_MECHANISM.asStack();
-        if (!incompleteBasic.isEmpty() && !basicMechanism.isEmpty()) {
-            com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
-                    .builder("basic_mechanism_from_slabs")
-                    .input(ItemTags.WOODEN_SLABS)
-                    .transitional(incompleteBasic)
-                    .result(basicMechanism)
-                    .deploying(ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy))
-                    .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Iron))
-                    .cutting()
-                    .loops(1)
-                    .save(provider);
-        }
-
-        // precision mechanism from basic mechanism
-        ItemStack incompletePrecision = AllItems.INCOMPLETE_PRECISION_MECHANISM.asStack();
-        ItemStack precision = AllItems.PRECISION_MECHANISM.asStack();
-        if (!incompletePrecision.isEmpty() && !precision.isEmpty() && !basicMechanism.isEmpty()) {
-            com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
-                    .builder("precision_mechanism_from_basic")
-                    .input(basicMechanism)
-                    .transitional(incompletePrecision)
-                    .result(precision)
-                    .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Brass))
-                    .deploying(AllBlocks.COGWHEEL.asItem())
-                    .deploying(AllBlocks.LARGE_COGWHEEL.asItem())
-                    .loops(1)
-                    .save(provider);
-        }
-
         // electron tube
         ItemStack electronTrans = AllItems.ELECTRON_TUBE.asStack();
         ItemStack vacuumTube = GTItems.VACUUM_TUBE.asStack();
@@ -636,6 +506,7 @@ public class CreateRecipes {
         }
 
         // unfinished steel mechanism (create precision -> ctpp:steel_mechanism)
+        ItemStack precision = AllItems.PRECISION_MECHANISM.asStack();
         ItemStack unfinishedSteel = CTPPItems.INCOMPLETE_STEEL_MECHANISM.asStack();
         ItemStack steelMech = CTPPItems.STEEL_MECHANISM.asStack();
         if (!unfinishedSteel.isEmpty() && !steelMech.isEmpty() && !precision.isEmpty()) {
@@ -916,7 +787,7 @@ public class CreateRecipes {
                 .resultFluid(fluidStack("createcafe:pomegranate_tea", 500))
                 .save(provider);
         com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("createcafe_blood_tea")
-                .input(Objects.requireNonNull(item("gtceu:snow_steel_ingot")))
+                .input(Objects.requireNonNull(item("ctnhcore:snow_steel_ingot")))
                 .inputFluid(GTMaterials.Milk.getFluid(250))
                 .inputFluid("createcafe:melted_sugar", 250)
                 .resultFluid(fluidStack("createcafe:blood_tea", 500))
@@ -1023,7 +894,7 @@ public class CreateRecipes {
         com.mo_guang.ctpp.data.recipe.builder.create.CompactingRecipeBuilder
                 .builder(CTNHCore.id(CreateDieselGenerators.ID + "/petroleum_coke_gem"))
                 .inputFluid(BiodieselFertileSoilMaterials.PETROLEUM_COKE.getFluid(144))
-                .result(itemStack("gtceu:petroleum_coke_gem", 1))
+                .result(itemStack("ctnhcore:petroleum_coke_gem", 1))
                 .save(provider);
         com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder
                 .builder(CreateDieselGenerators.ID + "_asphalt_block")
@@ -1043,14 +914,14 @@ public class CreateRecipes {
                 .builder(CreateDieselGenerators.ID + "_rich_soil_dust")
                 .input(Ingredient
                         .of(Objects.requireNonNull(item("farmersdelight:rich_soil"), "farmersdelight:rich_soil")))
-                .output(new ItemStack(Objects.requireNonNull(item("gtceu:rich_soil_dust"), "gtceu:rich_soil_dust"), 3))
+                .output(new ItemStack(Objects.requireNonNull(item("ctnhcore:rich_soil_dust"), "ctnhcore:rich_soil_dust"), 3))
                 .save(provider);
         com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder
                 .builder(CreateDieselGenerators.ID + "_rich_soul_soil_dust")
                 .input(Ingredient.of(Objects.requireNonNull(item("mynethersdelight:resurgent_soil"),
                         "mynethersdelight:resurgent_soil")))
-                .output(new ItemStack(Objects.requireNonNull(item("gtceu:rich_soul_soil_dust"),
-                        "gtceu:rich_soul_soil_dust"), 3))
+                .output(new ItemStack(Objects.requireNonNull(item("ctnhcore:rich_soul_soil_dust"),
+                        "ctnhcore:rich_soul_soil_dust"), 3))
                 .save(provider);
     }
 
@@ -1088,11 +959,11 @@ public class CreateRecipes {
         // BasinFermentingRecipeBuilder.builder(CreateDieselGenerators.rl("basin_fermenting/fermentable"))
         // .input(TagUtil.createItemTag("fermentable", false))
         // .inputFluid(GTMaterials.Water.getFluid(200))
-        // .input(itemStack("gtceu:small_rich_soil_dust"))
+        // .input(itemStack("ctnhcore:small_rich_soil_dust"))
         // .duration(200)
         // .resultFluid(BiodieselFertileSoilMaterials.ETHANOL_MIXTURE.getFluid(200))
-        // .result("gtceu:normal_yeast_dust", 1, 0.1)
-        // .result("gtceu:small_rich_soil_dust", 1, 0.8)
+        // .result("ctnhcore:normal_yeast_dust", 1, 0.1)
+        // .result("ctnhcore:small_rich_soil_dust", 1, 0.8)
         // .save(provider);
 
         // DistillationRecipeBuilder.builder(CTNHCore.id(CreateDieselGenerators.ID + "/ethanol_mixture_distillation"))

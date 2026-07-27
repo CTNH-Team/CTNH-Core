@@ -80,82 +80,15 @@ public class CrafttableScriptRecipe {
     }
 
     private static void addCrafttableRecipes(Consumer<FinishedRecipe> provider) {
-        shaped(provider, "andesite_alloy_ingot",
-                stack(ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy), 4), "ABA", "BAB", "ABA",
-                'A', Items.IRON_INGOT, 'B', Items.ANDESITE);
-        shaped(provider, "shaft", stack(AllBlocks.SHAFT.asStack(), 4), "A", "A", "A", 'A',
-                ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy));
-        shaped(provider, "mechanical_press", AllBlocks.MECHANICAL_PRESS.asStack(), " A ", "BCB", " D ", 'A',
-                Items.IRON_INGOT, 'B', AllBlocks.SHAFT.asStack(), 'C', AllBlocks.ANDESITE_CASING.asStack(), 'D',
-                Items.IRON_BLOCK);
-        shaped(provider, "windmill_bearing", AllBlocks.WINDMILL_BEARING.asStack(), "AAA", "BCB", "BDB", 'A',
-                ItemTags.WOODEN_SLABS, 'B', Items.STONE, 'C', CTPPItems.BASIC_MECHANISM.asStack(), 'D',
-                AllBlocks.SHAFT.asStack());
-        shaped(provider, "mechanical_bearing", AllBlocks.MECHANICAL_BEARING.asStack(), "AAA", "BCB", "BDB", 'A',
-                ItemTags.WOODEN_SLABS, 'B', ItemTags.PLANKS, 'C',
-                ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy), 'D', AllBlocks.SHAFT.asStack());
-        shapeless(provider, "depot", AllBlocks.DEPOT.asStack(), AllBlocks.ANDESITE_CASING.asStack(),
-                ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy));
-        shaped(provider, "cogwheel", stack(AllBlocks.COGWHEEL.asStack(), 4), " A ", "ABA", " A ", 'A',
-                ItemTags.PLANKS, 'B', ChemicalHelper.get(TagPrefix.gearSmall, CreateMaterials.AndesiteAlloy));
-        shaped(provider, "large_cogwheel", stack(AllBlocks.LARGE_COGWHEEL.asStack(), 4), " A ", "ABA", " A ", 'A',
-                GTBlocks.TREATED_WOOD_PLANK.asStack(), 'B',
-                ChemicalHelper.get(TagPrefix.gear, CreateMaterials.AndesiteAlloy));
-        shaped(provider, "water_wheel", AllBlocks.WATER_WHEEL.asStack(), "AAA", "ABA", "AAA", 'A',
-                GTBlocks.TREATED_WOOD_PLANK.asStack(), 'B', AllBlocks.LARGE_COGWHEEL.asStack());
-        shaped(provider, "mechanical_drill", AllBlocks.MECHANICAL_DRILL.asStack(), " D ", "CBC", " A ", 'A',
-                AllBlocks.ANDESITE_CASING.asStack(), 'B', AllBlocks.SHAFT.asStack(), 'C',
-                ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy), 'D',
-                ChemicalHelper.get(TagPrefix.toolHeadDrill, GTMaterials.Iron));
-        shaped(provider, "mechanical_mixer_create", AllBlocks.MECHANICAL_MIXER.asStack(), "ABA", "CDC", " E ", 'A',
-                CTPPItems.BASIC_MECHANISM.asStack(), 'B', AllBlocks.SHAFT.asStack(), 'C',
-                AllBlocks.ANDESITE_CASING.asStack(), 'D', AllBlocks.LARGE_COGWHEEL.asStack(), 'E',
-                AllItems.WHISK.asStack());
-        shaped(provider, "deployer", AllBlocks.DEPLOYER.asStack(), "ABA", "CDC", " E ", 'A',
-                CTPPItems.BASIC_MECHANISM.asStack(), 'B', AllItems.ELECTRON_TUBE.asStack(), 'C',
-                AllBlocks.ANDESITE_CASING.asStack(), 'D', AllBlocks.SHAFT.asStack(), 'E',
-                AllItems.BRASS_HAND.asStack());
-        shaped(provider, "contraption_controls", AllBlocks.CONTRAPTION_CONTROLS.asStack(), " A ", "BCB", " D ", 'A',
-                Items.OAK_BUTTON, 'B', CTPPItems.BASIC_MECHANISM.asStack(), 'C', AllBlocks.ANDESITE_CASING.asStack(),
-                'D', AllItems.ELECTRON_TUBE.asStack());
         shaped(provider, "lightning_rod_crafttable", stack(Items.LIGHTNING_ROD), " A ", " B ", " C ", 'A',
                 Items.COPPER_BLOCK, 'B', Items.COPPER_INGOT, 'C',
                 ChemicalHelper.get(TagPrefix.rod, GTMaterials.Copper));
         shaped(provider, "void_chassis", stack(EIOBlocks.VOID_CHASSIS.asItem()), "ABA", "BCB", "ABA", 'A',
                 Items.IRON_BARS, 'B',
                 ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel), 'C', CustomTags.MV_CIRCUITS);
-        shaped(provider, "spout", AllBlocks.SPOUT.asStack(), "ABA", "ACA", " D ", 'A',
-                ChemicalHelper.get(TagPrefix.plate, GTMaterials.Bronze), 'B', Items.GLASS, 'C',
-                AllBlocks.COPPER_CASING.asStack(), 'D', AllBlocks.FLUID_PIPE.asItem());
         shaped(provider, "apothecary_default", stack(BotaniaBlocks.defaultAltar), "ABA", "CCC", " D ", 'A',
                 Items.STONE_BRICK_STAIRS, 'B', BotaniaTags.Items.PETALS, 'C', Items.STONE_BRICK_SLAB, 'D',
                 Items.STONE_BRICK_WALL);
-        shaped(provider, "rotation_speed_controller", AllBlocks.ROTATION_SPEED_CONTROLLER.asStack(), " A ", "BCB",
-                "DDD", 'A', AllBlocks.COGWHEEL.asStack(), 'B', AllBlocks.SHAFT.asStack(), 'C',
-                AllItems.PRECISION_MECHANISM.asStack(), 'D', AllBlocks.BRASS_CASING.asStack());
-        shaped(provider, "portable_storage_interface", AllBlocks.PORTABLE_STORAGE_INTERFACE.asStack(), "   ", "ABC",
-                "   ",
-                'A', AllBlocks.ANDESITE_CASING.asStack(), 'B', CTPPItems.BASIC_MECHANISM.asStack(), 'C',
-                AllBlocks.CHUTE.asStack());
-        shaped(provider, "cart_assembler", AllBlocks.CART_ASSEMBLER.asStack(), " A ", "BCB", "DED", 'A',
-                Items.SLIME_BALL,
-                'B', AllBlocks.POWERED_LATCH.asStack(), 'C', AllBlocks.ANDESITE_CASING.asStack(), 'D',
-                ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy), 'E',
-                CTPPItems.BASIC_MECHANISM.asStack());
-        shaped(provider, "millstone", AllBlocks.MILLSTONE.asStack(), " A ", "BCB", "DDD", 'A',
-                AllBlocks.CHUTE.asStack(), 'B',
-                AllBlocks.COGWHEEL.asStack(), 'C', CTPPItems.BASIC_MECHANISM.asStack(), 'D', Items.SMOOTH_STONE);
-        shaped(provider, "belt_connector_leather", stack(AllItems.BELT_CONNECTOR.asItem(), 3), "   ", "AAA", "BBB", 'A',
-                Items.LEATHER, 'B', Items.DRIED_KELP);
-        shaped(provider, "belt_connector_polyethylene", stack(AllItems.BELT_CONNECTOR.asItem(), 6), "   ", "AAA", "BBB",
-                'A',
-                ChemicalHelper.get(TagPrefix.plate, GTMaterials.Polyethylene), 'B', Items.DRIED_KELP);
-        shaped(provider, "belt_connector_polyvinyl_chloride", stack(AllItems.BELT_CONNECTOR.asItem(), 8), "   ", "AAA",
-                "BBB",
-                'A', ChemicalHelper.get(TagPrefix.plate, GTMaterials.PolyvinylChloride), 'B', Items.DRIED_KELP);
-        shaped(provider, "belt_connector_polybenzimidazole", stack(AllItems.BELT_CONNECTOR.asItem(), 16), "   ", "AAA",
-                "BBB",
-                'A', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Polybenzimidazole), 'B', Items.DRIED_KELP);
         shaped(provider, "charger", stack(AEBlocks.CHARGER.asItem()), " AA", "BCD", " AA", 'A',
                 ChemicalHelper.get(TagPrefix.plate, GTMaterials.CertusQuartz), 'B', Items.REDSTONE, 'C', Items.HOPPER,
                 'D', ChemicalHelper.get(TagPrefix.gearSmall, GTMaterials.Aluminium));
@@ -168,9 +101,6 @@ public class CrafttableScriptRecipe {
         shaped(provider, "angel_block", stack(BlockRegistry.ANGEL_BLOCK_ITEM.get().asItem()), "ABA", "BCB", "ABA", 'A',
                 ChemicalHelper.get(TagPrefix.rod, GTMaterials.Tin), 'B', BotaniaBlocks.elfGlass.asItem(), 'C',
                 BloodMagicItems.REAGENT_AIR.get());
-        shaped(provider, "goggles", AllItems.GOGGLES.asStack(), "ABA", "CDC", "   ", 'A', Items.LEAD, 'B',
-                Items.SLIME_BALL, 'C', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Gold), 'D',
-                BotaniaItems.engineerGoggles);
         shaped(provider, "lens_normal", stack(BotaniaItems.lensNormal), " A ", "ABA", " A ", 'A',
                 ChemicalHelper.get(TagPrefix.plate, CMMaterials.ManaSteel), 'B', Items.GLASS_PANE);
         shaped(provider, "lens_magnet", stack(BotaniaItems.lensMagnet), "   ", "ABC", "   ", 'A',

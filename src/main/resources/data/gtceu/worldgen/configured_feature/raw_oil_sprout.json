@@ -1,7 +1,7 @@
 {
   "type": "gtceu:fluid_sprout",
   "config": {
-    "fluid": "gtceu:impure_oil",
+    "fluid": "ctnhcore:impure_oil",
     "size": {
       "type": "minecraft:uniform",
       "value": {
