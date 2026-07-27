@@ -61,7 +61,7 @@ public class CafeRecipes {
                 .heatRequirement("heated")
                 .save(provider);
 
-        // blood_tea: gtceu:snow_steel_ingot + milk 250 + melted_sugar 250 -> blood_tea 500 (heated)
+        // blood_tea: ctnhcore:snow_steel_ingot + milk 250 + melted_sugar 250 -> blood_tea 500 (heated)
         MixingRecipeBuilder.builder("cafe_blood_tea")
                 .input(SNOW_STEEL_INGOT)
                 .inputFluid("minecraft:milk", 250)
