@@ -547,7 +547,6 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("gtceu:assembler/assembly_line_casing"));
         remove(new RemoveFilter().id("gtceu:assembler/assembly_control_casing"));
         remove(new RemoveFilter().id("gtceu:electric_blast_furnace/naq_ingot"));
-        remove(new RemoveFilter().idRegex("gtceu:.*high_temp_wrought_precursor.*"));
 
         remove(new RemoveFilter().id("gtceu:electrolyzer/zeolite_electrolysis"));
         remove(new RemoveFilter().id("gtceu:centrifuge/decomposition_centrifuging__redstone"));

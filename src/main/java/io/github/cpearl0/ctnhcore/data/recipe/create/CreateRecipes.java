@@ -32,7 +32,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.jesz.createdieselgenerators.CDGBlocks;
 import com.jesz.createdieselgenerators.CDGItems;
 import com.jesz.createdieselgenerators.CreateDieselGenerators;
@@ -914,7 +913,8 @@ public class CreateRecipes {
                 .builder(CreateDieselGenerators.ID + "_rich_soil_dust")
                 .input(Ingredient
                         .of(Objects.requireNonNull(item("farmersdelight:rich_soil"), "farmersdelight:rich_soil")))
-                .output(new ItemStack(Objects.requireNonNull(item("ctnhcore:rich_soil_dust"), "ctnhcore:rich_soil_dust"), 3))
+                .output(new ItemStack(
+                        Objects.requireNonNull(item("ctnhcore:rich_soil_dust"), "ctnhcore:rich_soil_dust"), 3))
                 .save(provider);
         com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder
                 .builder(CreateDieselGenerators.ID + "_rich_soul_soil_dust")

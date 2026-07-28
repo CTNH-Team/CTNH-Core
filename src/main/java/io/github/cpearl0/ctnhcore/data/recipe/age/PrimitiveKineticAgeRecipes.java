@@ -21,11 +21,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 
 import com.google.gson.JsonObject;
-import com.mo_guang.ctpp.data.recipe.builder.create.CompactingRecipeBuilder;
-import com.mo_guang.ctpp.data.recipe.builder.create.CuttingRecipeBuilder;
-import com.mo_guang.ctpp.data.recipe.builder.create.MechanicalCraftingRecipeBuilder;
-import com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder;
-import com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder;
+import com.mo_guang.ctpp.data.recipe.builder.create.*;
+import com.mo_guang.ctpp.data.recipe.builder.diesel.HammerRecipeBuilder;
 import com.mo_guang.ctpp.registry.CTPPItems;
 import com.mo_guang.ctpp.registry.CreateMaterials;
 import com.simibubi.create.AllBlocks;
@@ -57,16 +54,20 @@ public class PrimitiveKineticAgeRecipes {
         // 锻铁锭（GT 锻造锤）
         GTRecipeTypes.FORGE_HAMMER_RECIPES.recipeBuilder(CTNHCore.id("hot_wrought_iron_ingot_fixed"))
                 .EUt(8)
-                .duration(100)
+                .duration(20)
                 .inputItems(TagPrefix.ingotHot, GTMaterials.WroughtIron)
                 .outputItems(TagPrefix.ingot, GTMaterials.WroughtIron)
                 .save(provider);
 
-        // 锻铁锭（工作台锻造锤）
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("shaped/wrought_iron_ingot_from_hot"),
-                ChemicalHelper.get(TagPrefix.ingot, GTMaterials.WroughtIron),
-                "hA",
-                'A', ChemicalHelper.get(TagPrefix.ingotHot, GTMaterials.WroughtIron));
+        HammerRecipeBuilder.builder("wrought_iron_ingot_from_hot")
+                .input(TagPrefix.ingotHot, GTMaterials.WroughtIron)
+                .output(TagPrefix.ingot, GTMaterials.WroughtIron)
+                .save(provider);
+
+        PressingRecipeBuilder.builder("wrought_iron_ingot_from_hot")
+                .input(TagPrefix.ingotHot, GTMaterials.WroughtIron)
+                .output(TagPrefix.ingot, GTMaterials.WroughtIron)
+                .save(provider);
 
         // 热锻铁锭（熔炉）
         VanillaRecipeHelper.addSmeltingRecipe(provider, CTNHCore.id("smelting_iron_to_hot_wrought_iron"),
@@ -199,7 +200,8 @@ public class PrimitiveKineticAgeRecipes {
                 'B', ChemicalHelper.get(TagPrefix.gear, CreateMaterials.AndesiteAlloy));
 
         // 水车
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/water_wheel"), AllBlocks.WATER_WHEEL.asStack(),
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/water_wheel"),
+                AllBlocks.WATER_WHEEL.asStack(),
                 "AAA", "ABA", "AAA",
                 'A', GTBlocks.TREATED_WOOD_PLANK.asStack(),
                 'B', AllBlocks.LARGE_COGWHEEL.asStack());
@@ -277,7 +279,8 @@ public class PrimitiveKineticAgeRecipes {
                 'E', CTPPItems.BASIC_MECHANISM.asStack());
 
         // 石磨
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/millstone"), AllBlocks.MILLSTONE.asStack(),
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/millstone"),
+                AllBlocks.MILLSTONE.asStack(),
                 " A ", "BCB", "DDD",
                 'A', AllBlocks.CHUTE.asStack(),
                 'B', AllBlocks.COGWHEEL.asStack(),
@@ -450,7 +453,8 @@ public class PrimitiveKineticAgeRecipes {
                 'C', GTItems.GLASS_TUBE.asStack());
 
         // 电子管（玻璃管与钢小齿轮）
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/electron_tube_from_glass_tube_steel_gear"),
+        VanillaRecipeHelper.addShapedRecipe(provider,
+                CTNHCore.id("crafttable/electron_tube_from_glass_tube_steel_gear"),
                 AllItems.ELECTRON_TUBE.asStack(6),
                 " A ", " C ", " B ",
                 'A', AllItems.POLISHED_ROSE_QUARTZ.asItem(),
@@ -546,9 +550,10 @@ public class PrimitiveKineticAgeRecipes {
     }
 
     private static void addCopperCasingRecipe(Consumer<FinishedRecipe> provider, String name, JsonObject baseIngredient,
-                                               String metalIngredient) {
+                                              String metalIngredient) {
         JsonObject recipe = CreateRecipeJsonHelper.recipe("create:item_application");
-        recipe.add("ingredients", CreateRecipeJsonHelper.array(baseIngredient, CreateRecipeJsonHelper.item(metalIngredient)));
+        recipe.add("ingredients",
+                CreateRecipeJsonHelper.array(baseIngredient, CreateRecipeJsonHelper.item(metalIngredient)));
         recipe.add("results", CreateRecipeJsonHelper.array(CreateRecipeJsonHelper.item("create:copper_casing")));
         CreateRecipeJsonHelper.save(provider, CTNHCore.id("create/" + name).toString(), recipe);
     }

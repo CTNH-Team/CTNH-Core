@@ -19,6 +19,7 @@
     "dategen.FTBUltimineDatagenMixin",
     "dategen.ImmersiveAircraftDatagenMixin",
     "eio.MachinesJEIMixin",
+    "emi.EmiReloadManagerMixin",
     "emi.GTRecipeEMICategoryMixin",
     "ftbchunks.HeightUtilsMixin",
     "gtceu.GTBlocksMixin",

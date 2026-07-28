@@ -1,12 +1,12 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import io.github.cpearl0.ctnhcore.data.recipe.age.PrimitiveKineticAgeRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.*;
 import io.github.cpearl0.ctnhcore.data.recipe.cogniassembly.WetwareCircuit;
 import io.github.cpearl0.ctnhcore.data.recipe.create.CafeRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.create.CreateOreExcavationRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.create.CreateRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.create.DieselGeneratorRecipes;
-import io.github.cpearl0.ctnhcore.data.recipe.age.PrimitiveKineticAgeRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.generated.HyperRotorRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.immersiveaircraft.ImmersiveAircraftRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.DigesterRecipes;
