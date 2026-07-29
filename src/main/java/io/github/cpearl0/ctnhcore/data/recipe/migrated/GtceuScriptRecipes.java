@@ -411,6 +411,8 @@ public class GtceuScriptRecipes {
                 .inputItems(CustomTags.IV_CIRCUITS, 4)
                 .inputFluids(Electrum.getFluid(16000))
                 .outputItems(GTMachines.CLEANING_MAINTENANCE_HATCH.asStack())
+                .removePreviousMaterialInfo()
+                .addMaterialInfo(true)
                 .save(provider);
 
         // 31. sterilizing_filter_casing_as: europium_frame + hsss_rotor + luv_electric_motor + luv_electric_pump + 2x

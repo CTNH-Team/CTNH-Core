@@ -24,7 +24,6 @@
     "ftbchunks.HeightUtilsMixin",
     "gtceu.GTBlocksMixin",
     "gtceu.ItemMaterialDataMixin",
-    "gtceu.RecyclingRecipesMixin",
     "gtceu.orevein.ClientProxyAccessor",
     "javd.PortalBlockMixin",
     "legendarysurvival.AltitudeModifierMixin",
@@ -33,7 +32,7 @@
     "mc.RecipeManagerApplyMixin",
     "mc.ServerChunkCacheMixin",
     "tmrv.RecipeManagerMixin",
-    "vintageimprovements.LatheRotatingBlockMixin"
+    "vintageimprovements.LatheMovingBlockMixin"
   ],
   "client": [
     "create.StockKeeperRequestScreenMixin"

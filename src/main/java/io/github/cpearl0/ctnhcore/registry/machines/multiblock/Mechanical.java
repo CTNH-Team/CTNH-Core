@@ -27,9 +27,8 @@ import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_TEMPERED_GLASS;
+import static com.simibubi.create.content.kinetics.base.HorizontalKineticBlock.HORIZONTAL_FACING;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
-import static io.github.cpearl0.ctnhcore.utils.LatheStateProvider.LATHE_EAST;
-import static io.github.cpearl0.ctnhcore.utils.LatheStateProvider.LATHE_WEST;
 import static net.minecraft.world.level.block.Blocks.GLASS;
 
 public class Mechanical {
@@ -37,10 +36,6 @@ public class Mechanical {
     @CN("结构中的车床必须严格依照EMI结构信息页面展示的位置和方向摆放")
     @EN("The lathe in the structure must be placed exactly as shown in EMI's structure information, including position and orientation")
     public static Lang mechanicalLatheStructure;
-
-    @CN("§7EMI中显示的车床数量有问题，实际只需要6个")
-    @EN("§7The number of lathes shown in EMI is incorrect; only 6 are actually required")
-    public static Lang mechanicalLatheStructure1;
 
     public final static MultiblockMachineDefinition MECHANICAL_PRESSOR = REGISTRATE
             .multiblock("mechanical_pressor", KineticWorkableMultiblockMachine::new)
@@ -163,7 +158,6 @@ public class Mechanical {
             .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate())
             .tooltips(mechanicalLatheStructure.translate().withStyle(ChatFormatting.DARK_RED))
-            .tooltips(mechanicalLatheStructure1.translate())
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAAA", "AAAAAAAB", "AAACCCCB", "BBBBBBBB", "B######B", "BDDDDDDB", "AAAAAAAA")
                     .aisle("AAAAAAAA", "A#AEFFEA", "ADAGGGGC", "B######B", "########", "D######D", "AAAAAAAA")
@@ -198,11 +192,15 @@ public class Mechanical {
                             .where('E',
                                     VintageBlocks.LATHE_MOVING.getDefaultState()
                                             .setValue(DirectionalKineticBlock.FACING, Direction.EAST))
-                            .where('F', LATHE_WEST)
+                            .where('F',
+                                    VintageBlocks.LATHE_ROTATING.getDefaultState().setValue(HORIZONTAL_FACING,
+                                            Direction.WEST))
                             .where('Y',
                                     VintageBlocks.LATHE_MOVING.getDefaultState()
                                             .setValue(DirectionalKineticBlock.FACING, Direction.WEST))
-                            .where('X', LATHE_EAST)
+                            .where('X',
+                                    VintageBlocks.LATHE_ROTATING.getDefaultState().setValue(HORIZONTAL_FACING,
+                                            Direction.EAST))
                             .where('G', CASING_TEMPERED_GLASS)
                             .where('@', Mechanical.MECHANICAL_LATHE, Direction.NORTH)
                             .build())
