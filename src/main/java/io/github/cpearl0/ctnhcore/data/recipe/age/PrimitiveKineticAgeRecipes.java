@@ -3,6 +3,9 @@ package io.github.cpearl0.ctnhcore.data.recipe.age;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.UncategorizedMaterials;
 import io.github.cpearl0.ctnhcore.data.recipe.create.CreateRecipeJsonHelper;
+import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
+import io.github.cpearl0.ctnhcore.registry.CTNHItems;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -18,11 +21,13 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 
 import com.google.gson.JsonObject;
 import com.mo_guang.ctpp.data.recipe.builder.create.*;
 import com.mo_guang.ctpp.data.recipe.builder.diesel.HammerRecipeBuilder;
+import com.mo_guang.ctpp.data.recipe.builder.vintage.PressurizingRecipeBuilder;
 import com.mo_guang.ctpp.registry.CTPPItems;
 import com.mo_guang.ctpp.registry.CreateMaterials;
 import com.simibubi.create.AllBlocks;
@@ -39,6 +44,9 @@ public class PrimitiveKineticAgeRecipes {
         addMortarRecipes(provider);
         addAndesiteAlloyRecipes(provider);
         addRoseQuartzRecipes(provider);
+        addCokeOvenBrickRecipes(provider);
+        addFirebrickRecipes(provider);
+        addRubberRecipes(provider);
         addKineticCraftingRecipes(provider);
         addKineticMechanicalCraftingRecipes(provider);
         addKineticMechanismRecipes(provider);
@@ -135,6 +143,72 @@ public class PrimitiveKineticAgeRecipes {
                 .outputItems(AllItems.POLISHED_ROSE_QUARTZ.asItem(), 9)
                 .duration(40)
                 .EUt(8)
+                .save(provider);
+    }
+
+    private static void addCokeOvenBrickRecipes(Consumer<FinishedRecipe> provider) {
+        // 焦炉砖块（加热塑形）
+        CompactingRecipeBuilder.builder(CTNHCore.id("create/coke_oven_bricks"))
+                .input(GTItems.COKE_OVEN_BRICK.asStack(4))
+                .inputFluid(GTMaterials.Concrete.getFluid(200))
+                .result(GTBlocks.CASING_COKE_BRICKS.asStack())
+                .heated()
+                .processingTime(40)
+                .save(provider);
+
+        // 高级焦炉砖（钢框架右键焦炉砖）
+        ItemApplicationRecipeBuilder.builder("high_grade_coke_oven_bricks")
+                .input(GTBlocks.CASING_COKE_BRICKS.asStack())
+                .input(ChemicalHelper.get(TagPrefix.frameGt, GTMaterials.Steel))
+                .output(CTNHBlocks.HIGH_GRADE_COKE_OVEN_BRICKS.asStack())
+                .save(provider);
+    }
+
+    private static void addFirebrickRecipes(Consumer<FinishedRecipe> provider) {
+        // 耐火黏土粉（机械搅拌）
+        MixingRecipeBuilder.builder(CTNHCore.id("create/fireclay_dust"))
+                .input(ChemicalHelper.get(TagPrefix.dust, CTNHMaterials.Kaolinite))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Graphite))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Clay))
+                .output(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Fireclay, 3))
+                .processingTime(40)
+                .save(provider);
+
+        // 压缩耐火黏土（加压处理）
+        PressurizingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/compressed_fireclay"))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Fireclay))
+                .inputFluid(GTMaterials.Water.getFluid(250))
+                .result(GTItems.COMPRESSED_FIRECLAY.asStack())
+                .heatRequirement("heated")
+                .processingTime(0)
+                .save(provider);
+
+        // 耐火砖块（加热塑形）
+        CompactingRecipeBuilder.builder(CTNHCore.id("create/firebricks"))
+                .input(GTItems.FIRECLAY_BRICK.asStack(4))
+                .inputFluid(GTMaterials.Concrete.getFluid(400))
+                .result(GTBlocks.CASING_PRIMITIVE_BRICKS.asStack())
+                .heated()
+                .processingTime(40)
+                .save(provider);
+    }
+
+    private static void addRubberRecipes(Consumer<FinishedRecipe> provider) {
+        // 预处理橡胶粉（加热混合）
+        MixingRecipeBuilder.builder("createfallen_rubber_powder_from_sulfur")
+                .input(Ingredient.of(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Sulfur)))
+                .input(Ingredient.of(ChemicalHelper.get(TagPrefix.dust, GTMaterials.RawRubber)), 3)
+                .output(CTNHItems.RUBBER_POWDER.asStack())
+                .heatRequirement("heated")
+                .save(provider);
+
+        // 液态橡胶（蓝火加压处理）
+        PressurizingRecipeBuilder.builder(
+                CTNHCore.id("vintageimprovements/liquid_rubber_from_rubber_powder"))
+                .input(CTNHItems.RUBBER_POWDER.asStack())
+                .resultFluid(GTMaterials.Rubber.getFluid(144))
+                .heatRequirement("superheated")
+                .processingTime(200)
                 .save(provider);
     }
 
@@ -350,7 +424,7 @@ public class PrimitiveKineticAgeRecipes {
         // 大型水车（机械合成）
         MechanicalCraftingRecipeBuilder.builder("large_water_wheel")
                 .pattern(" AAA ", "ABCBA", "ACDCA", "ABCBA", " AAA ")
-                .key('A', new ItemStack(AllBlocks.SHAFT.asItem()))
+                .key('A', GTBlocks.TREATED_WOOD_PLANK.asItem())
                 .key('B', ChemicalHelper.get(TagPrefix.screw, GTMaterials.Steel))
                 .key('C', ChemicalHelper.get(TagPrefix.ring, GTMaterials.Gold))
                 .key('D', AllBlocks.WATER_WHEEL.asItem())

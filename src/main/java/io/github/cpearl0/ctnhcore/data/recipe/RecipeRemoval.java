@@ -372,6 +372,7 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("gtceu:fusion_reactor/americium_and_naquadria_to_neutronium_plasma"));
         remove(new RemoveFilter().id("gtceu:shapeless/compressed_clay"));
         remove(new RemoveFilter().id("gtceu:extractor/extract_coke_oven_bricks"));
+        remove(new RemoveFilter().id("gtceu:shaped/casing_coke_bricks"));
         remove(new RemoveFilter().id("gtceu:shapeless/fireclay_dust"));
         remove(new RemoveFilter().id("gtceu:shaped/casing_primitive_bricks"));
         remove(new RemoveFilter().idRegex("gtceu:shaped/.*gem.*"));
@@ -679,10 +680,13 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("vintageimprovements:pressing/nickel_ingot"));
         remove(new RemoveFilter().id("vintageimprovements:pressing/osmium_ingot"));
         remove(new RemoveFilter().id("vintageimprovements:sequenced_assembly/recipe_card"));
+        remove(new RemoveFilter().id("vintageimprovements:copper_sulfate"));
         remove(new RemoveFilter().id("vintageimprovements:pressurizing/sulfuric_acid"));
         remove(new RemoveFilter().id("vintageimprovements:pressurizing/sulfur_trioxide_alt"));
         remove(new RemoveFilter().id("vintageimprovements:pressurizing/sulfur_trioxide"));
         remove(new RemoveFilter().id("vintageimprovements:pressurizing/sulfur_dioxide"));
+        remove(new RemoveFilter().id(
+                "vintageimprovements:pressurizing/compat/sulfur_dioxide_from_dust"));
         remove(new RemoveFilter().id("vintageimprovements:craft/sulfur_items_to_block"));
         remove(new RemoveFilter().id("vintageimprovements:grinder_polishing/rose_quartz"));
         remove(new RemoveFilter().id("vintageimprovements:craft/belt_grinder"));

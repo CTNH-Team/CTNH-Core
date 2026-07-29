@@ -276,9 +276,6 @@ public class CrafttableScriptRecipe {
                 GTBlocks.FIREBOX_BRONZE.asStack(), 'B', ChemicalHelper.get(TagPrefix.cableGtSingle, GTMaterials.Lead),
                 'C',
                 CustomTags.ULV_CIRCUITS);
-        shaped(provider, "high_strength_concrete", CTNHBlocks.HIGH_GRADE_COKE_OVEN_BRICKS.asStack(), " C ", "CAC",
-                " C ", 'A',
-                GTBlocks.CASING_COKE_BRICKS.asStack(), 'C', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel));
         shaped(provider, "advanced_coke_oven", MultiblocksA.ADVANCED_COKE_OVEN.asStack(), "BCB", "CAC", "BCB", 'A',
                 GTMultiMachines.COKE_OVEN.asStack(), 'B', CTNHBlocks.HIGH_GRADE_COKE_OVEN_BRICKS.asStack(), 'C',
                 ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel));

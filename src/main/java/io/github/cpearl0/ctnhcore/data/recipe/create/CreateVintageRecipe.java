@@ -89,13 +89,6 @@ public final class CreateVintageRecipe {
                 'B', AllBlocks.SHAFT.asItem(),
                 'C', ChemicalHelper.get(TagPrefix.spring, GTMaterials.Iron),
                 'D', AllBlocks.ANDESITE_CASING.asItem());
-        PressurizingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/compressed_fireclay"))
-                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Fireclay))
-                .inputFluid(GTMaterials.Water.getFluid(500))
-                .result(GTItems.COMPRESSED_FIRECLAY.asStack())
-                .heatRequirement("heated")
-                .processingTime(0)
-                .save(provider);
         VibratingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/rubber_sapling_to_sticky_resin"))
                 .input(GTBlocks.RUBBER_SAPLING.asStack())
                 .result(GTItems.STICKY_RESIN.asStack())

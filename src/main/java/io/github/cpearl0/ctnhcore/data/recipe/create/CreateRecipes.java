@@ -804,12 +804,6 @@ public class CreateRecipes {
                 .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Wood), 0.4)
                 .save(provider);
         rawSequencedResinBoard(provider);
-        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder
-                .builder("createfallen_rubber_powder_from_sulfur")
-                .input(Ingredient.of(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Sulfur)))
-                .input(Ingredient.of(ChemicalHelper.get(TagPrefix.dust, GTMaterials.RawRubber, 3)))
-                .output(CTNHItems.RUBBER_POWDER.asStack())
-                .save(provider);
     }
 
     private static void addDieselGeneratorRecipes(Consumer<FinishedRecipe> provider) {

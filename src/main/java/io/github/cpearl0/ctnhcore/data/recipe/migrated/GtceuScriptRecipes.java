@@ -273,15 +273,6 @@ public class GtceuScriptRecipes {
                 .outputItems(MultiblocksA.LARGE_BOTTLE.asStack())
                 .save(provider);
 
-        // 19. refractory_brick_1: coke_oven_bricks + 4x firebrick + concrete 500 -> gtceu:firebricks. EUt 24, dur 50
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("refractory_brick_1"))
-                .EUt(24).duration(50)
-                .inputItems(GTBlocks.CASING_COKE_BRICKS.asStack())
-                .inputItems(GTItems.FIRECLAY_BRICK.asStack(4))
-                .inputFluids(Concrete.getFluid(500))
-                .outputItems(GTBlocks.CASING_PRIMITIVE_BRICKS.asStack())
-                .save(provider);
-
         // 20. decay_pools_machine: 28x dense_lead_plate + hv_machine_hull + 4x neutron_source + 8x double_uranium_plate
         // + soldering_alloy 4000 -> ctnhcore:decay_pools_machine. EUt 1920, dur 900
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("decay_pools_machine"))
@@ -434,14 +425,6 @@ public class GtceuScriptRecipes {
                 .inputItems(GTItems.BLACKLIGHT.asStack())
                 .inputItems(EIOBlocks.END_STEEL_BARS.asStack(), 2)
                 .outputItems(GTBlocks.FILTER_CASING_STERILE.asStack())
-                .save(provider);
-
-        // 33. coke_oven_bricks2: 4x coke_oven_brick + concrete 72 -> gtceu:coke_oven_bricks. EUt 12, dur 40
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("coke_oven_bricks2"))
-                .EUt(12).duration(40)
-                .inputItems(GTItems.COKE_OVEN_BRICK.asStack(4))
-                .inputFluids(Concrete.getFluid(72))
-                .outputItems(GTBlocks.CASING_COKE_BRICKS.asStack())
                 .save(provider);
 
         // 34. biological_patch_transistor: naquadria_foil + 8x fine_osmiridium_wire + kapton_k 288 -> 32x
