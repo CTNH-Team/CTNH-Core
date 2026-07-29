@@ -20,9 +20,11 @@ import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.machine.trait.WorkLogic;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
+import com.gregtechceu.gtceu.api.transfer.item.LargeStackItemHandler;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import com.gregtechceu.gtceu.common.item.PortableScannerBehavior;
+import com.gregtechceu.gtceu.common.machine.multiblock.part.ItemBusPartMachine;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 
@@ -107,7 +109,8 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
     @Nullable
     protected ISubscription exportItemSubs, energySubs;
     @Persisted
-    protected final NotifiableItemStackHandler exportItems = new NotifiableItemStackHandler(this, 27, IO.OUT);
+    protected final NotifiableItemStackHandler exportItems = new NotifiableItemStackHandler(this, 27, IO.OUT, IO.OUT,
+            slots -> new LargeStackItemHandler(slots, ItemBusPartMachine.getSlotMultiplier(getTier())));
     @Persisted
     protected final CustomItemStackHandler filterInventory;
     @Getter
@@ -315,7 +318,7 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
         WidgetGroup slots = new WidgetGroup(leftPadding, 76 + 4 / 2, colSize * 18, rowSize * 18);
         for (int y = 0; y < rowSize; y++) {
             for (int x = 0; x < colSize; x++) {
-                var slot = new LargeStackSlotWidget(exportItems, index++, x * 18, y * 18, true, false)
+                var slot = new LargeStackSlotWidget(exportItems.storage, index++, x * 18, y * 18, true, false)
                         .setBackground(GuiTextures.SLOT);
                 slots.addWidget(slot);
             }
@@ -379,7 +382,6 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
     }
 
     private void resetWorkLogic() {
-        setWorkingEnabled(false);
         getWorkLogic().resetWorkLogic(this.minerRadius, this.minHeight, this.maxHeight, this.silkLevel, itemFilter);
     }
 
@@ -392,6 +394,7 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
 
     private void reset(ClickData clickData) {
         resetWorkLogic();
+        getWorkLogic().setWorkingEnabled(false);
     }
 
     private void setSilkEnabled(boolean enabled) {

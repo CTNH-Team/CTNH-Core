@@ -37,7 +37,7 @@ public final class LayeredBiMap<K, V>
 
                 V value = fallback.get(key);
                 if (value != null) {
-                    LOGGER.info(
+                    LOGGER.debug(
                             "[LayeredBiMap] primary miss, fallback hit: key={}, value={}",
                             key, value);
                 }
@@ -115,7 +115,7 @@ public final class LayeredBiMap<K, V>
 
                     for (Entry<K, V> e : fallback.entrySet()) {
                         if (Objects.equals(e.getValue(), value)) {
-                            LOGGER.info(
+                            LOGGER.debug(
                                     "[LayeredBiMap:inverse] primary miss, fallback hit: value={}, key={}",
                                     value, e.getKey());
                             return e.getKey();

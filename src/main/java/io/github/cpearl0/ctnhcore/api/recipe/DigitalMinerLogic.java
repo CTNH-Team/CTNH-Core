@@ -160,7 +160,6 @@ public class DigitalMinerLogic extends WorkLogic {
         super.reset();
         resetArea(false);
         this.cachedGroup = null;
-        this.setWorkingEnabled(false);
     }
 
     public void resetWorkLogic(int maximumRadius, int minHeight, int maxHeight, int silk, ItemFilter itemFilter) {
@@ -273,11 +272,7 @@ public class DigitalMinerLogic extends WorkLogic {
                 this.oreAmount = blocksToMine.size();
             }
         } else {
-            // machine isn't working enabled
-            if (subscription != null) {
-                subscription.unsubscribe();
-                subscription = null;
-            }
+            unsubscribeTick();
         }
     }
 
