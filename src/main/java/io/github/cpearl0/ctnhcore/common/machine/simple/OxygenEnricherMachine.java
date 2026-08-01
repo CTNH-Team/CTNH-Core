@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.machine.trait.NotifiableFluidTank;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.ActionResult;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 
@@ -185,12 +186,12 @@ public class OxygenEnricherMachine extends SimpleTieredMachine implements Oxygen
         }
 
         @Override
-        protected ActionResult matchRecipe(GTRecipe recipe) {
+        protected ActionResult matchRecipe(GTRecipe recipe, RecipeHandlerGroup group) {
             if (machine.importFluids.getFluidInTank(0).isEmpty() ||
                     !machine.importFluids.getFluidInTank(0).isFluidEqual(GTMaterials.Oxygen.getFluid(1))) {
                 return ActionResult.fail(NO_OXYGEN_INPUT, null, IO.IN);
             }
-            return super.matchRecipe(recipe);
+            return super.matchRecipe(recipe, group);
         }
     }
 }

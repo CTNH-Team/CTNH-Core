@@ -56,18 +56,6 @@ public class AstronomicalMachine extends RecipeElectricMultiblockMachine {
     public Component beforeWorking(@NotNull GTRecipe recipe) {
         if (isValidPhotovoltaicPower()) return null;
         return astronomicalInfoInvalid.translate();
-        // final boolean[] begin = {false};
-        // getParts().stream()
-        // .filter(part -> part instanceof CircuitBusPartMachine)
-        // .findFirst()
-        // .ifPresent(bus -> {
-        // var circuitBus = (CircuitBusPartMachine) bus;
-        // if (!circuitBus.getInventory().isEmpty()) {
-        // var circuit = circuitBus.getInventory().getStackInSlot(0);
-        // begin[0] = AstronomyCircuitItem.workInLevel(circuit, getLevel());
-        // }
-        // });
-        // return begin[0];
     }
 
     @Override
@@ -92,80 +80,6 @@ public class AstronomicalMachine extends RecipeElectricMultiblockMachine {
                 recipeHandlerLists.add(handlerList);
                 traitSubscriptions.add(handlerList.subscribe(recipeLogic::updateTickSubscription));
             }
-        }
-    }
-
-    @Override
-    protected RecipeLogic createRecipeLogic(Object... args) {
-        return new AstronomicalMachineRecipeLogic(this);
-    }
-
-    @Override
-    public AstronomicalMachineRecipeLogic getRecipeLogic() {
-        return (AstronomicalMachineRecipeLogic) super.getRecipeLogic();
-    }
-
-    public static class AstronomicalMachineRecipeLogic extends RecipeLogic {
-
-        public AstronomicalMachineRecipeLogic(AstronomicalMachine machine) {
-            super(machine);
-        }
-
-        @Override
-        public AstronomicalMachine getMachine() {
-            return (AstronomicalMachine) super.getMachine();
-        }
-
-        @Override
-        protected ActionResult matchRecipe(GTRecipe recipe) {
-            var match = matchRecipeNoOutput(recipe);
-            if (!match.isSuccess()) return match;
-
-            return matchTickRecipeNoOutput(recipe);
-        }
-
-        protected ActionResult matchRecipeNoOutput(GTRecipe recipe) {
-            return RecipeHelper.handleRecipe(getLastGroup(), recipe, IO.IN, recipe.inputs, true);
-        }
-
-        protected ActionResult matchTickRecipeNoOutput(GTRecipe recipe) {
-            if (recipe.hasTick()) {
-                return RecipeHelper.handleRecipe(getLastGroup(), recipe, IO.IN, recipe.tickInputs, true);
-            }
-            return ActionResult.SUCCESS;
-        }
-
-        @Override
-        public ActionResult handleTickRecipe(GTRecipe recipe) {
-            if (!recipe.hasTick()) return ActionResult.SUCCESS;
-
-            var match = matchTickRecipeNoOutput(recipe);
-            if (!match.isSuccess()) return match;
-            return RecipeHelper.handleRecipe(getLastGroup(), recipe, IO.IN, recipe.tickInputs, false);
-        }
-
-        @Override
-        protected ActionResult handleRecipeIO(GTRecipe recipe, IO io) {
-            var circuitBus = getMachine().getCircuitBus();
-            if (io == IO.IN) {
-                circuitBus.setLocked(true);
-                return ActionResult.SUCCESS;
-            }
-
-            if (lastRecipe == null) {
-                circuitBus.setLocked(false);
-                return ActionResult.SUCCESS;
-            }
-            ItemStack outputItem = ItemStack.EMPTY;
-            var contents = lastRecipe.getOutputContents(ItemRecipeCapability.CAP);
-            if (!contents.isEmpty()) {
-                outputItem = contents.get(0).getItems()[0];
-            }
-            if (!outputItem.isEmpty()) {
-                circuitBus.setItem(outputItem);
-            }
-            circuitBus.setLocked(false);
-            return ActionResult.SUCCESS;
         }
     }
 }

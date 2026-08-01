@@ -43,7 +43,7 @@ public class DigestingTankMachine extends BioMachine {
             super.findAndHandleRecipe();
             if (lastRecipe == null) {
                 GTRecipe dynamicFoodRecipe = searchFoodRecipe();
-                if (dynamicFoodRecipe != null && checkRecipe(dynamicFoodRecipe).isSuccess()) {
+                if (dynamicFoodRecipe != null && checkRecipe(dynamicFoodRecipe, getLastGroup()).isSuccess()) {
                     setupRecipe(dynamicFoodRecipe);
                 }
             }
@@ -62,12 +62,12 @@ public class DigestingTankMachine extends BioMachine {
                     }
 
                     GTRecipe circuit0 = buildDynamicFoodRecipe(stack, 0);
-                    if (circuit0 != null && matchRecipe(circuit0).isSuccess()) {
+                    if (circuit0 != null && matchRecipe(circuit0, getLastGroup()).isSuccess()) {
                         return circuit0;
                     }
 
                     GTRecipe circuit1 = buildDynamicFoodRecipe(stack, 1);
-                    if (circuit1 != null && matchRecipe(circuit1).isSuccess()) {
+                    if (circuit1 != null && matchRecipe(circuit1, getLastGroup()).isSuccess()) {
                         return circuit1;
                     }
                 }

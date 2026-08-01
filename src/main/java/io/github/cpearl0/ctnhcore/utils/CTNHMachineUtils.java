@@ -152,22 +152,12 @@ public class CTNHMachineUtils {
     /*
      * 算力单方块
      */
-    public static MachineDefinition[] registerSimpleComputationMachines(String name,
-                                                                        GTRecipeType recipeType,
-                                                                        Int2IntFunction tankScalingFunction,
-                                                                        boolean hasPollutionDebuff,
-                                                                        int... tiers) {
+
+    public static MachineDefinition[] registerSimpleComputationMachines(String name, GTRecipeType recipeType) {
         return registerTieredMachines(name,
-                (holder, tier) -> new SimpleComputationMachine(holder, tier, tankScalingFunction), (tier, builder) -> {
-                    if (hasPollutionDebuff) {
-                        builder.recipeModifiers(GTRecipeModifiers.ENVIRONMENT_REQUIREMENT
-                                .apply(GTMedicalConditions.CARBON_MONOXIDE_POISONING, 100 * tier),
-                                GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
-                                .tooltips(defaultEnvironmentRequirement());
-                    } else {
-                        builder.recipeModifier(
-                                GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK));
-                    }
+                (holder, tier) -> new SimpleComputationMachine(holder, tier, GTMachineUtils.defaultTankSizeFunction), (tier, builder) -> {
+                    builder.recipeModifier(
+                            GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK));
                     return builder
                             .langValue("%s %s %s".formatted(VLVH[tier], toEnglishName(name), VLVT[tier]))
                             .editableUI(
@@ -175,28 +165,12 @@ public class CTNHMachineUtils {
                             .rotationState(RotationState.NON_Y_AXIS)
                             .recipeType(recipeType)
                             .workableTieredHullModel(CTNHCore.id("block/machines/" + name))
-                            .tooltips(workableTiered(tier, GTValues.V[tier], GTValues.V[tier] * 64, recipeType,
-                                    tankScalingFunction.apply(tier), true))
+                            .tooltips(workableTiered(tier, V[tier], V[tier] * 64, recipeType,
+                                    GTMachineUtils.defaultTankSizeFunction.apply(tier), true))
                             .tooltips(tooltipsSimpleComputationMachine.translate())
                             .register();
                 },
-                tiers);
-    }
-
-    public static MachineDefinition[] registerSimpleComputationMachines(String name, GTRecipeType recipeType,
-                                                                        Int2IntFunction tankScalingFunction,
-                                                                        boolean hasPollutionDebuff) {
-        return registerSimpleComputationMachines(name, recipeType, tankScalingFunction, hasPollutionDebuff,
                 GTMachineUtils.ELECTRIC_TIERS);
-    }
-
-    public static MachineDefinition[] registerSimpleComputationMachines(String name, GTRecipeType recipeType,
-                                                                        Int2IntFunction tankScalingFunction) {
-        return registerSimpleComputationMachines(name, recipeType, tankScalingFunction, false);
-    }
-
-    public static MachineDefinition[] registerSimpleComputationMachines(String name, GTRecipeType recipeType) {
-        return registerSimpleComputationMachines(name, recipeType, GTMachineUtils.defaultTankSizeFunction);
     }
 
     public static MachineDefinition[] registerEfficiencyGeneratorMachines(String name, GTRecipeType recipeType,
