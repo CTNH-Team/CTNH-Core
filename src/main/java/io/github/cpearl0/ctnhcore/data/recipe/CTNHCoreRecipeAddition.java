@@ -19,6 +19,7 @@ import io.github.cpearl0.ctnhcore.data.recipe.migrated.GtceuScriptRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.EIORecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.omnicells.QuantumOmniRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.multiblock.*;
+import io.github.cpearl0.ctnhcore.data.recipe.tconstruct.TConstructRecipes;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 
@@ -54,6 +55,7 @@ public class CTNHCoreRecipeAddition {
         // 兼容 mod 配方
         WetwareCircuit.init(provider);
         EIORecipes.init(provider);
+        TConstructRecipes.init(provider);
         AeCrystalScienceRecipes.init(provider);
         AE2ScriptRecipe.init(provider);
         QuantumOmniRecipes.init(provider);

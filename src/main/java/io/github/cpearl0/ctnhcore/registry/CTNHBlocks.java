@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry;
 
-import com.simibubi.create.AllTags;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBoilerFireboxType;
@@ -23,10 +22,8 @@ import com.gregtechceu.gtceu.common.data.models.GTModels;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -39,6 +36,7 @@ import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
 
+import com.simibubi.create.AllTags;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
@@ -456,7 +454,7 @@ public class CTNHBlocks {
     public static BlockEntry<TurbineRotorBlock> createTurbineRotorBlock(String name, int R, int G, int B, int A) {
         return REGISTRATE.block(name, TurbineRotorBlock.create(R, G, B, A))
                 .initialProperties(() -> Blocks.OBSIDIAN)
-                .tag(CustomTags.MINEABLE_WITH_WRENCH,BlockTags.MINEABLE_WITH_PICKAXE)
+                .tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE)
                 .blockstate((ctx, prov) -> prov.simpleBlock(ctx.getEntry(),
                         prov.models().cubeAll(name, ResourceLocation.tryParse("minecraft:block/iron_block"))))
                 .item(TurbineRotorItem::new)

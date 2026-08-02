@@ -1,7 +1,14 @@
 {
+  "replace": false,
   "values": [
-    "#minecraft:is_overworld",
-    "#minecraft:is_nether",
+    {
+      "id": "#minecraft:is_overworld",
+      "required": false
+    },
+    {
+      "id": "#minecraft:is_nether",
+      "required": false
+    },
     {
       "id": "#aether:is_aether",
       "required": false
@@ -11,43 +18,27 @@
       "required": false
     },
     {
+      "id": "#ad_astra:has_moon_structure",
+      "required": false
+    },
+    {
+      "id": "#ad_astra:has_mars_structure",
+      "required": false
+    },
+    {
+      "id": "#ad_astra:has_venus_structure",
+      "required": false
+    },
+    {
+      "id": "#ad_astra:has_mercury_structure",
+      "required": false
+    },
+    {
+      "id": "#ad_astra:has_glacio_structure",
+      "required": false
+    },
+    {
       "id": "mythicbotany:alfheim",
-      "required": false
-    },
-    {
-      "id": "ad_astra:glacio_ice_peaks",
-      "required": false
-    },
-    {
-      "id": "ad_astra:glacio_snowy_barrens",
-      "required": false
-    },
-    {
-      "id": "ad_astra:infernal_venus_barrens",
-      "required": false
-    },
-    {
-      "id": "ad_astra:lunar_wastelands",
-      "required": false
-    },
-    {
-      "id": "ad_astra:martian_canyon_creek",
-      "required": false
-    },
-    {
-      "id": "ad_astra:martian_polar_caps",
-      "required": false
-    },
-    {
-      "id": "ad_astra:martian_wastelands",
-      "required": false
-    },
-    {
-      "id": "ad_astra:mercury_deltas",
-      "required": false
-    },
-    {
-      "id": "ad_astra:venus_wastelands",
       "required": false
     }
   ]

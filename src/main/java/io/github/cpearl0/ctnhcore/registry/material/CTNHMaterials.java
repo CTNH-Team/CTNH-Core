@@ -1,8 +1,4 @@
 package io.github.cpearl0.ctnhcore.registry.material;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.*;
@@ -23,10 +19,14 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.item.AetherItems;
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 import com.github.L_Ender.cataclysm.init.ModBlocks;
 import com.github.L_Ender.cataclysm.init.ModItems;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
@@ -44,43 +44,10 @@ public class CTNHMaterials {
     @EN("Starlight Fluid")
     public static Lang blockGtceuStarlight;
 
-
     @Key("block.gtceu.sulfuric_acid")
     @CN("硫酸")
     @EN("Sulfuric Acid")
     public static Lang blockGtceuSulfuricAcid;
-
-
-    @Key("material.ctnhcore.ambrosium")
-    @CN("神能晶")
-    @EN("Ambrosium")
-    public static Lang materialAmbrosium;
-
-
-    @Key("material.ctnhcore.holystone")
-    @CN("神圣石")
-    @EN("Holystone")
-    public static Lang materialHolystone;
-
-
-    @Key("material.ctnhcore.skyjade")
-    @CN("穹玉")
-    @EN("Skyjade")
-    public static Lang materialSkyjade;
-
-
-    @Key("material.ctnhcore.stratus")
-    @CN("云母钢")
-    @EN("Stratus")
-    public static Lang materialStratus;
-
-
-    @Key("material.ctnhcore.zanite")
-    @CN("紫晶石")
-    @EN("Zanite")
-    public static Lang materialZanite;
-
-
 
     public static void addFluid(Material material) {
         if (!material.hasProperty(PropertyKey.FLUID)) {

@@ -155,7 +155,8 @@ public class CTNHMachineUtils {
 
     public static MachineDefinition[] registerSimpleComputationMachines(String name, GTRecipeType recipeType) {
         return registerTieredMachines(name,
-                (holder, tier) -> new SimpleComputationMachine(holder, tier, GTMachineUtils.defaultTankSizeFunction), (tier, builder) -> {
+                (holder, tier) -> new SimpleComputationMachine(holder, tier, GTMachineUtils.defaultTankSizeFunction),
+                (tier, builder) -> {
                     builder.recipeModifier(
                             GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK));
                     return builder

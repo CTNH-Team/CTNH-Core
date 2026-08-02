@@ -20,6 +20,10 @@ dependencies {
     jarJar("extra-mods:scg-ctnh:1.1.1")
     jarJar("extra-mods:kallfix_sub-1.0:1.0")
 
+    // GregTech Construct (local patched build)
+    modImplementation("extra-mods:GregTech-Construct-3.11.2.180:3.11.2.180")
+    modImplementation(ctnh.mantle)
+
     runtimeOnly(ctnh.graphlib)
 
     // AE2

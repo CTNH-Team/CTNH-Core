@@ -26,7 +26,6 @@ import com.mo_guang.ctpp.data.recipe.builder.vintage.CentrifugationRecipeBuilder
 import com.mo_guang.ctpp.data.recipe.builder.vintage.CoilingRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.vintage.CurvingRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.vintage.HammeringRecipeBuilder;
-import com.mo_guang.ctpp.data.recipe.builder.vintage.PressurizingRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.vintage.TurningRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.vintage.VibratingRecipeBuilder;
 import com.mo_guang.ctpp.registry.CTPPItems;
