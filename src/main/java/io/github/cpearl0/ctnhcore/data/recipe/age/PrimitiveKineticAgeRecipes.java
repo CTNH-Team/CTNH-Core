@@ -261,13 +261,15 @@ public class PrimitiveKineticAgeRecipes {
                 ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy));
 
         // 小型齿轮
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/cogwheel"), AllBlocks.COGWHEEL.asStack(4),
+        VanillaRecipeHelper.addShapedRecipe(provider, true,
+                CTNHCore.id("crafttable/cogwheel"), AllBlocks.COGWHEEL.asStack(4),
                 " A ", "ABA", " A ",
                 'A', ItemTags.PLANKS,
                 'B', ChemicalHelper.get(TagPrefix.gearSmall, CreateMaterials.AndesiteAlloy));
 
         // 大型齿轮
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/large_cogwheel"),
+        VanillaRecipeHelper.addShapedRecipe(provider, true,
+                CTNHCore.id("crafttable/large_cogwheel"),
                 AllBlocks.LARGE_COGWHEEL.asStack(4),
                 " A ", "ABA", " A ",
                 'A', GTBlocks.TREATED_WOOD_PLANK.asStack(),

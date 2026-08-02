@@ -35,7 +35,6 @@
     "vintageimprovements.LatheMovingBlockMixin"
   ],
   "client": [
-    "create.StockKeeperRequestScreenMixin"
   ],
   "mixinextras": {
     "minVersion": "0.5.0"

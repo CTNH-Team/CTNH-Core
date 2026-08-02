@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry.material;
 
+import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import io.github.cpearl0.ctnhcore.common.block.MaterialTurbineRotorBlock;
 import io.github.cpearl0.ctnhcore.common.block.TurbineRotorBlock;
 import io.github.cpearl0.ctnhcore.common.item.MaterialTurbineRotorItem;
@@ -46,8 +47,7 @@ public class CTNHMaterialBlocks {
                 .block(tagPrefix.idPattern().formatted(material.getName()), MaterialTurbineRotorBlock.create(material))
                 .initialProperties(() -> Blocks.OBSIDIAN)
                 // .lang(tagPrefix.langValue().formatted(toEnglishName(material.getName())))
-                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(),
-                        ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+                .tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE)
                 .tag(tagPrefix.getBlockTags(material))
                 .blockstate((ctx, prov) -> prov.simpleBlock(ctx.getEntry(),
                         prov.models().cubeAll(material.getName(),

@@ -28,6 +28,7 @@ import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import net.createmod.catnip.data.Pair;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -890,7 +891,7 @@ public class DefaultRecipes {
                 'A', ChemicalHelper.get(TagPrefix.cableGtSingle, GTMaterials.Lead),
                 'B', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Lead),
                 'C', ChemicalHelper.get(TagPrefix.rotor, GTMaterials.Lead),
-                'D', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Wood),
+                'D', ItemTags.PLANKS,
                 'E', GTMachines.HULL[GTValues.ULV].asStack(),
                 'F', CTNHItems.INVERTER.asStack());
 

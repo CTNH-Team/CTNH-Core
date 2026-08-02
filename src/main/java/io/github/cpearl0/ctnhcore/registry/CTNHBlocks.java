@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import com.simibubi.create.AllTags;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBoilerFireboxType;
@@ -165,9 +166,9 @@ public class CTNHBlocks {
                 prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll("sculk_casing",
                         CTNHCore.id("block/casings/sculk_casing")));
             })
-            .tag(TagKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.tryBuild("forge", "mineable/wrench")),
+            .tag(CustomTags.MINEABLE_WITH_WRENCH,
                     BlockTags.MINEABLE_WITH_PICKAXE,
-                    TagKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.tryBuild("create", "casing")))
+                    AllTags.AllBlockTags.CASING.tag)
             .item(BlockItem::new)
             .build()
             .register();
@@ -212,8 +213,7 @@ public class CTNHBlocks {
                         .texture("side", CTNHCore.id("block/casings/space_elevator/scifi_elevator_casing"));
                 prov.simpleBlock(ctx.getEntry(), model);
             })
-            .tag(TagKey.create(BuiltInRegistries.BLOCK.key(),
-                    ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+            .tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE)
             .item(BlockItem::new)
             .build()
             .register();
@@ -232,8 +232,7 @@ public class CTNHBlocks {
                         .texture("side", CTNHCore.id("block/casings/space_elevator/elevator_struct_casing"));
                 prov.simpleBlock(ctx.getEntry(), model);
             })
-            .tag(TagKey.create(BuiltInRegistries.BLOCK.key(),
-                    ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+            .tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE)
             .item(BlockItem::new)
             .build()
             .register();
@@ -369,8 +368,7 @@ public class CTNHBlocks {
                 .blockstate((ctx, prov) -> {
                     prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, texture));
                 })
-                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(),
-                        ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+                .tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE)
                 .item(BlockItem::new)
                 .build()
                 .register();
@@ -458,8 +456,7 @@ public class CTNHBlocks {
     public static BlockEntry<TurbineRotorBlock> createTurbineRotorBlock(String name, int R, int G, int B, int A) {
         return REGISTRATE.block(name, TurbineRotorBlock.create(R, G, B, A))
                 .initialProperties(() -> Blocks.OBSIDIAN)
-                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(),
-                        ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+                .tag(CustomTags.MINEABLE_WITH_WRENCH,BlockTags.MINEABLE_WITH_PICKAXE)
                 .blockstate((ctx, prov) -> prov.simpleBlock(ctx.getEntry(),
                         prov.models().cubeAll(name, ResourceLocation.tryParse("minecraft:block/iron_block"))))
                 .item(TurbineRotorItem::new)
@@ -476,8 +473,7 @@ public class CTNHBlocks {
                         prov.models().slab(baseName + "_slab", texture, texture, texture),
                         prov.models().slabTop(baseName + "_slab_top", texture, texture, texture),
                         prov.models().cubeAll(baseName, texture)))
-                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(),
-                        ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+                .tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE)
                 .item(BlockItem::new).build().register();
 
         // Wall
@@ -488,8 +484,7 @@ public class CTNHBlocks {
                     prov.wallBlock(ctx.getEntry(), texture);
                     prov.models().cubeAll(baseName + "_wall", texture);
                 })
-                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(),
-                        ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+                .tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE)
                 .item(BlockItem::new).build().register();
 
         // Stairs — StairBlock 构造函数需要 (BlockState, Properties)
@@ -497,8 +492,7 @@ public class CTNHBlocks {
                 .cnlang(cnPrefix + "楼梯")
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .blockstate((ctx, prov) -> prov.stairsBlock(ctx.getEntry(), texture))
-                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(),
-                        ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+                .tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE)
                 .item(BlockItem::new).build().register();
 
         // Fence
@@ -509,8 +503,7 @@ public class CTNHBlocks {
                     prov.fenceBlock(ctx.getEntry(), texture);
                     prov.models().cubeAll(baseName + "_fence", texture);
                 })
-                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(),
-                        ResourceLocation.tryBuild("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+                .tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE)
                 .item(BlockItem::new).build().register();
     }
 }

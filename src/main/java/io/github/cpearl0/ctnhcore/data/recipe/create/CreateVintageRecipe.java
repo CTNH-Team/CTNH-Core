@@ -132,12 +132,6 @@ public final class CreateVintageRecipe {
                 .key('F', ChemicalHelper.get(TagPrefix.spring, GTMaterials.Iron))
                 .output(VintageBlocks.HELVE.asStack())
                 .save(provider);
-        PressurizingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/wood_dust_pressurizing"))
-                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Wood))
-                .result(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Wood))
-                .resultFluid(GTMaterials.Water.getFluid(100))
-                .processingTime(0)
-                .save(provider);
     }
 
     private static void addVintageImprovementsRecipes(Consumer<FinishedRecipe> provider) {
