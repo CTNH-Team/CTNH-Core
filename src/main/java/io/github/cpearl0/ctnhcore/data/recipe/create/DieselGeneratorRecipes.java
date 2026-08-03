@@ -10,14 +10,9 @@ import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 
 import com.jesz.createdieselgenerators.CDGBlocks;
 import com.jesz.createdieselgenerators.CDGItems;
@@ -172,13 +167,6 @@ public class DieselGeneratorRecipes {
         com.mo_guang.ctpp.data.recipe.builder.create.CompactingRecipeBuilder.builder("petroleum_coke_gem")
                 .inputFluid(BiodieselFertileSoilMaterials.PETROLEUM_COKE.getFluid(144))
                 .result(ChemicalHelper.get(TagPrefix.gem, BiodieselFertileSoilMaterials.PETROLEUM_COKE))
-                .save(provider);
-        // CTNH seed oil output.
-        TagKey<Item> SEEDS_TAG = TagKey.create(Registries.ITEM,
-                ResourceLocation.parse("forge:seeds"));
-        com.mo_guang.ctpp.data.recipe.builder.create.CompactingRecipeBuilder.builder(CTNHCore.id("diesel/plant_oil"))
-                .input(Ingredient.of(SEEDS_TAG))
-                .resultFluid(GTMaterials.SeedOil.getFluid(100))
                 .save(provider);
     }
 

@@ -850,15 +850,20 @@ public class CTNHItems {
             .cnlang("光伏无人机研究III")
             .lang("PV Drone Research III")
             .register();
-    public static ItemEntry<Item> GROUT_DUST = REGISTRATE
-            .item("grout_dust", Item::new)
-            .cnlang("砖泥粉")
-            .lang("Grout Dust")
+    public static ItemEntry<Item> BRICK_MUD = REGISTRATE
+            .item("brick_mud", Item::new)
+            .cnlang("砖泥")
+            .lang("Brick Mud")
             .register();
-    public static ItemEntry<Item> HEATPROOF_SMELTING_BRICK_DUST = REGISTRATE
-            .item("heatproof_smelting_brick_dust", Item::new)
-            .cnlang("耐热冶炼砖粉")
-            .lang("Heatproof Smelting Brick Dust")
+    public static ItemEntry<Item> BRICK_PREFORM = REGISTRATE
+            .item("brick_preform", Item::new)
+            .cnlang("砖胚")
+            .lang("Brick Preform")
+            .register();
+    public static ItemEntry<Item> COKE_OVEN_BRICK_MUD = REGISTRATE
+            .item("coke_oven_brick_mud", Item::new)
+            .cnlang("焦炉砖泥")
+            .lang("Coke Oven Brick Mud")
             .register();
     public static ItemEntry<Item> CIRCUIT_BOARD_M_ONE = REGISTRATE
             .item("circuit_board_m_one", Item::new)

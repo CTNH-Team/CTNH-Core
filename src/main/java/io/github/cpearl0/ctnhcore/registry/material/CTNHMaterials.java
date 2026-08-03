@@ -171,6 +171,7 @@ public class CTNHMaterials {
     public static Material NQ_END_OF_GASOLINE;
     public static Material LIVING_METAL;
     public static Material MysteryFluid;
+    public static Material MOLTEN_CARBON;
     public static Material COLORFUL_GEM;
     public static Material RhodiumSulfurCrystal;
     public static Material RutheniumAmalgam;
@@ -782,6 +783,11 @@ public class CTNHMaterials {
                 .cnlang("神秘液体")
                 .liquid()
                 .color(0x4ded1c)
+                .buildAndRegister();
+        MOLTEN_CARBON = REGISTRATE.material(CTNHCore.id("molten_carbon"))
+                .cnlang("熔融碳素")
+                .liquid(new FluidBuilder().temperature(1300))
+                .color(0x3a3a3a)
                 .buildAndRegister();
         COLORFUL_GEM = REGISTRATE.material(CTNHCore.id("colorful_gem"))
                 .cnlang("异彩")

@@ -97,6 +97,8 @@ public class CTNHBlocks {
             "space_elevator_mechanical_casing", "太空电梯机械方块", CTNHCore.id("block/space_elevator_mechanical_casing"));
     public static final BlockEntry<Block> HIGH_GRADE_COKE_OVEN_BRICKS = createCasingBlock(
             "high_strength_concrete", "高级焦炉砖", CTNHCore.id("block/high_grade_coke_oven_bricks"));
+    public static final BlockEntry<Block> PLANT_OIL_MASS = createCasingBlock(
+            "plant_oil_mass", "植物油质块", CTNHCore.id("block/plant_oil_mass"));
     public static final BlockEntry<Block> ADVANCE_MACHINE_CASING_GRATE = createCasingBlock(
             "advance_machine_casing_grate", "进阶装配线格栅方块", CTNHCore.id("block/advance_machine_casing_grate"));
     public static final BlockEntry<Block> BLAZE_BLAST_FURNACE_CASING = createCasingBlock(

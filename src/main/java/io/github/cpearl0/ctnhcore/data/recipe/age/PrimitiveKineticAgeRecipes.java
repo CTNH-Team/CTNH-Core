@@ -26,13 +26,23 @@ import net.minecraft.world.level.block.Blocks;
 
 import com.google.gson.JsonObject;
 import com.mo_guang.ctpp.data.recipe.builder.create.*;
+import com.mo_guang.ctpp.data.recipe.builder.diesel.DistillationRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.diesel.HammerRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.vintage.PressurizingRecipeBuilder;
 import com.mo_guang.ctpp.registry.CTPPItems;
 import com.mo_guang.ctpp.registry.CreateMaterials;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
+import com.simibubi.create.content.processing.recipe.HeatCondition;
 import io.github.lounode.ae2cs.common.init.AECSBlocks;
+import slimeknights.tconstruct.fluids.TinkerFluids;
+import slimeknights.tconstruct.library.recipe.FluidValues;
+import slimeknights.tconstruct.library.recipe.alloying.AlloyRecipeBuilder;
+import slimeknights.tconstruct.library.recipe.ingredient.NoContainerIngredient;
+import slimeknights.tconstruct.library.recipe.melting.IMeltingRecipe;
+import slimeknights.tconstruct.library.recipe.melting.MeltingRecipeBuilder;
+import slimeknights.tconstruct.smeltery.TinkerSmeltery;
+import slimeknights.tconstruct.smeltery.block.component.SearedTankBlock.TankType;
 import vazkii.botania.common.item.BotaniaItems;
 
 import java.util.function.Consumer;
@@ -45,6 +55,12 @@ public class PrimitiveKineticAgeRecipes {
         addAndesiteAlloyRecipes(provider);
         addRoseQuartzRecipes(provider);
         addCokeOvenBrickRecipes(provider);
+        addSmeltingBrickRecipes(provider);
+        addTConstructMachineRecipes(provider);
+        addSmelteryControllerRecipe(provider);
+        addTConstructSmelteryIORecipes(provider);
+        addTConstructMeltingRecipes(provider);
+        addPlantOilRecipes(provider);
         addFirebrickRecipes(provider);
         addRubberRecipes(provider);
         addKineticCraftingRecipes(provider);
@@ -147,6 +163,22 @@ public class PrimitiveKineticAgeRecipes {
     }
 
     private static void addCokeOvenBrickRecipes(Consumer<FinishedRecipe> provider) {
+        // 焦炉砖泥（搅拌机混合黏土球 + 沙子，参考原版压缩焦黏土配方，无需模具）
+        MixingRecipeBuilder.builder(CTNHCore.id("create/coke_oven_brick_mud"))
+                .input(Items.CLAY_BALL, 3)
+                .input(ItemTags.SAND, 5)
+                .output(CTNHItems.COKE_OVEN_BRICK_MUD.asStack(3))
+                .processingTime(40)
+                .save(provider);
+
+        // 焦炉泥砖（焦炉砖泥 + 木制砖模具）
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/coke_oven_brick_from_mold"),
+                GTItems.COKE_OVEN_BRICK.asStack(4),
+                "FF",
+                "FM",
+                'F', CTNHItems.COKE_OVEN_BRICK_MUD.asStack(),
+                'M', GTItems.WOODEN_FORM_BRICK.asStack());
+
         // 焦炉砖块（加热塑形）
         CompactingRecipeBuilder.builder(CTNHCore.id("create/coke_oven_bricks"))
                 .input(GTItems.COKE_OVEN_BRICK.asStack(4))
@@ -161,6 +193,120 @@ public class PrimitiveKineticAgeRecipes {
                 .input(GTBlocks.CASING_COKE_BRICKS.asStack())
                 .input(ChemicalHelper.get(TagPrefix.frameGt, GTMaterials.Steel))
                 .output(CTNHBlocks.HIGH_GRADE_COKE_OVEN_BRICKS.asStack())
+                .save(provider);
+    }
+
+    private static void addSmeltingBrickRecipes(Consumer<FinishedRecipe> provider) {
+        // 砖泥（搅拌机混合黏土球 + 沙子 + 砾石，小份）
+        MixingRecipeBuilder.builder(CTNHCore.id("create/brick_mud"))
+                .input(Items.CLAY_BALL)
+                .input(ItemTags.SAND)
+                .input(Items.GRAVEL)
+                .output(CTNHItems.BRICK_MUD.asStack(2))
+                .processingTime(40)
+                .save(provider);
+
+        // 砖胚（砖泥 + 木制砖模具，3:4）
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/brick_preform_from_mold"),
+                CTNHItems.BRICK_PREFORM.asStack(4),
+                "FF",
+                "FM",
+                'F', CTNHItems.BRICK_MUD.asStack(),
+                'M', GTItems.WOODEN_FORM_BRICK.asStack());
+
+        // 焦黑砖（烧制砖胚）
+        VanillaRecipeHelper.addSmeltingRecipe(provider, CTNHCore.id("brick_preform_to_seared_brick"),
+                Ingredient.of(CTNHItems.BRICK_PREFORM.asStack()),
+                new ItemStack(TinkerSmeltery.searedBrick.get()), 0.3f);
+    }
+
+    private static void addTConstructMachineRecipes(Consumer<FinishedRecipe> provider) {
+        // 焦黑熔化炉：5 焦黑砖 + 1 焦黑储罐（燃料表/储量表，空罐）
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/seared_melter"),
+                new ItemStack(TinkerSmeltery.searedMelter.get()),
+                "BGB",
+                "BBB",
+                'B', TinkerSmeltery.searedBrick.get(),
+                'G', NoContainerIngredient.of(TinkerSmeltery.searedTank.get(TankType.FUEL_GAUGE),
+                        TinkerSmeltery.searedTank.get(TankType.INGOT_GAUGE)));
+    }
+
+    private static void addSmelteryControllerRecipe(Consumer<FinishedRecipe> provider) {
+        // 冶炼炉控制器（动力合成器机械合成：20 焦黑砖 + 1 铜量计 + 3 精密构件 + 1 焦黑熔化炉）
+        // 流程：焦黑熔化炉 →(动力合成器) 冶炼炉；熔化炉居中，上方铜量计，左右下精密构件
+        MechanicalCraftingRecipeBuilder.builder("smeltery_controller")
+                .pattern("BBBBB", "BBGBB", "BAMAB", "BBABB", "BBBBB")
+                .key('A', AllItems.PRECISION_MECHANISM.asItem())
+                .key('B', TinkerSmeltery.searedBrick.get())
+                .key('G', TinkerSmeltery.copperGauge.get().asItem())
+                .key('M', TinkerSmeltery.searedMelter.get().asItem())
+                .output(new ItemStack(TinkerSmeltery.smelteryController.get()))
+                .save(provider);
+    }
+
+    private static void addTConstructSmelteryIORecipes(Consumer<FinishedRecipe> provider) {
+        // 焦黑排液孔（4 焦黑砖 + 2 机械动力流体管道；原 GTC 铜锭配方已注释停用）
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/seared_drain"),
+                new ItemStack(TinkerSmeltery.searedDrain.get()),
+                "# #", "C C", "# #",
+                '#', TinkerSmeltery.searedBrick.get(),
+                'C', AllBlocks.FLUID_PIPE.asItem());
+
+        // 焦黑疏导孔（4 焦黑砖 + 2 机械动力智能流体管道；原 GTC 金锭配方已注释停用）
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/seared_duct"),
+                new ItemStack(TinkerSmeltery.searedDuct.get()),
+                "# #", "C C", "# #",
+                '#', TinkerSmeltery.searedBrick.get(),
+                'C', AllBlocks.SMART_FLUID_PIPE.asItem());
+    }
+
+    private static void addTConstructMeltingRecipes(Consumer<FinishedRecipe> provider) {
+        // 熔融碳素（冶炼炉 1000°C：焦炭 → 熔融碳素 144mB）
+        MeltingRecipeBuilder.melting(
+                Ingredient.of(ChemicalHelper.get(TagPrefix.gem, GTMaterials.Coke)),
+                CTNHMaterials.MOLTEN_CARBON.getFluid(FluidValues.INGOT),
+                1000,
+                IMeltingRecipe.calcTimeForAmount(1000, FluidValues.INGOT))
+                .save(provider, CTNHCore.id("smeltery/melting/coke_to_molten_carbon"));
+
+        // 熔融碳素（冶炼炉 1000°C：焦炭粉 → 熔融碳素 144mB）
+        MeltingRecipeBuilder.melting(
+                Ingredient.of(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Coke)),
+                CTNHMaterials.MOLTEN_CARBON.getFluid(FluidValues.INGOT),
+                1000,
+                IMeltingRecipe.calcTimeForAmount(1000, FluidValues.INGOT))
+                .save(provider, CTNHCore.id("smeltery/melting/coke_dust_to_molten_carbon"));
+
+        // 熔融钢（冶炼炉合金：1 液态铁 + 1 熔融碳素 → 1 熔融钢）
+        AlloyRecipeBuilder.alloy(TinkerFluids.moltenSteel, FluidValues.INGOT)
+                .addInput(TinkerFluids.moltenIron.ingredient(FluidValues.INGOT))
+                .addInput(CTNHMaterials.MOLTEN_CARBON.getFluid(), FluidValues.INGOT)
+                .save(provider, CTNHCore.id("smeltery/alloys/steel_from_iron_and_carbon"));
+    }
+
+    private static void addPlantOilRecipes(Consumer<FinishedRecipe> provider) {
+        // 植物油质块（搅拌机：8 种子 + 水 → 2 块）
+        MixingRecipeBuilder.builder(CTNHCore.id("create/plant_oil_mass"))
+                .input(TagUtil.createItemTag("seeds"), 8)
+                .inputFluid(GTMaterials.Water.getFluid(250))
+                .output(CTNHBlocks.PLANT_OIL_MASS.asStack(2))
+                .processingTime(40)
+                .save(provider);
+
+        // 植物油（压实：1 块 → 500mB 种子油）
+        CompactingRecipeBuilder.builder(CTNHCore.id("create/plant_oil"))
+                .input(CTNHBlocks.PLANT_OIL_MASS.asStack())
+                .resultFluid(GTMaterials.SeedOil.getFluid(500))
+                .processingTime(40)
+                .save(provider);
+
+        // 润滑油（分馏：500mB 种子油 → 250mB 润滑油，加热）
+        new DistillationRecipeBuilder(CTNHCore.id("create/plant_oil_distillation"))
+                .inputFluid(GTMaterials.SeedOil.getFluid(500))
+                .heat(HeatCondition.HEATED)
+                .duration(200)
+                .outputFluid(GTMaterials.Lubricant.getFluid(250))
+                .outputFluid(GTMaterials.Water.getFluid(250))
                 .save(provider);
     }
 
@@ -210,6 +356,14 @@ public class PrimitiveKineticAgeRecipes {
                 .heatRequirement("superheated")
                 .processingTime(200)
                 .save(provider);
+
+        // 橡胶（冶炼炉 1000°C 熔化预处理橡胶粉 → 熔融橡胶 144mB，蓝火加压路线保留）
+        MeltingRecipeBuilder.melting(
+                Ingredient.of(CTNHItems.RUBBER_POWDER.asStack()),
+                GTMaterials.Rubber.getFluid(FluidValues.INGOT),
+                1000,
+                IMeltingRecipe.calcTimeForAmount(1000, FluidValues.INGOT))
+                .save(provider, CTNHCore.id("smeltery/melting/rubber_powder_to_rubber"));
     }
 
     private static void addKineticCraftingRecipes(Consumer<FinishedRecipe> provider) {

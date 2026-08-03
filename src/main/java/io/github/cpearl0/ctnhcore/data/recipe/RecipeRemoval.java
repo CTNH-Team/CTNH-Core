@@ -372,6 +372,12 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("gtceu:fusion_reactor/americium_and_naquadria_to_neutronium_plasma"));
         remove(new RemoveFilter().id("gtceu:shapeless/compressed_clay"));
         remove(new RemoveFilter().id("gtceu:extractor/extract_coke_oven_bricks"));
+        remove(new RemoveFilter().id("gtceu:smelting/coke_oven_brick"));
+        remove(new RemoveFilter().id("gtceu:distillation/distill_seed_oil"));
+        remove(new RemoveFilter().id("gtceu:brewing/lubricant_from_seed_oil_and_talc"));
+        remove(new RemoveFilter().id("gtceu:brewing/lubricant_from_seed_oil_and_soapstone"));
+        remove(new RemoveFilter().id("gtceu:brewing/lubricant_from_seed_oil_and_redstone"));
+        remove(new RemoveFilter().id("gtceu:shaped/compressed_coke_clay"));
         remove(new RemoveFilter().id("gtceu:shaped/casing_coke_bricks"));
         remove(new RemoveFilter().id("gtceu:shapeless/fireclay_dust"));
         remove(new RemoveFilter().id("gtceu:shaped/casing_primitive_bricks"));
