@@ -22,7 +22,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import com.mo_guang.ctpp.data.recipe.builder.create.MechanicalCraftingRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder;
-import com.mo_guang.ctpp.data.recipe.builder.vintage.CentrifugationRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.vintage.CoilingRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.vintage.CurvingRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.vintage.HammeringRecipeBuilder;
@@ -95,15 +94,6 @@ public final class CreateVintageRecipe {
         VibratingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/rubber_leaves_to_sticky_resin"))
                 .input(GTBlocks.RUBBER_LEAVES.asStack())
                 .result(GTItems.STICKY_RESIN.asStack())
-                .save(provider);
-        CentrifugationRecipeBuilder.builder(CTNHCore.id("vintageimprovements/sticky_resin_centrifugation"))
-                .input(GTItems.STICKY_RESIN.asStack())
-                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.RawRubber))
-                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.RawRubber), 0.5)
-                .resultFluid(GTMaterials.Glue.getFluid(50))
-                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.RawRubber), 0.3)
-                .result(GTItems.PLANT_BALL.asStack(), 0.1)
-                .minimalRpm(256)
                 .save(provider);
         CurvingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/bronze_small_fluid_pipe_curving"))
                 .input(TagUtil.createItemTag("plates/bronze", false))

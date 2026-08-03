@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ctnhcore:block/andesite_alloy_slab"
+    },
+    "type=double": {
+      "model": "ctnhcore:block/andesite_alloy"
+    },
+    "type=top": {
+      "model": "ctnhcore:block/andesite_alloy_slab_top"
+    }
+  }
+}

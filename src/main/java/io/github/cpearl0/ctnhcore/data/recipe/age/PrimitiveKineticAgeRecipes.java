@@ -17,7 +17,10 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
+import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -28,7 +31,9 @@ import com.google.gson.JsonObject;
 import com.mo_guang.ctpp.data.recipe.builder.create.*;
 import com.mo_guang.ctpp.data.recipe.builder.diesel.DistillationRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.diesel.HammerRecipeBuilder;
+import com.mo_guang.ctpp.data.recipe.builder.vintage.CentrifugationRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.vintage.PressurizingRecipeBuilder;
+import com.mo_guang.ctpp.data.recipe.builder.vintage.VacuumizingRecipeBuilder;
 import com.mo_guang.ctpp.registry.CTPPItems;
 import com.mo_guang.ctpp.registry.CreateMaterials;
 import com.simibubi.create.AllBlocks;
@@ -37,7 +42,6 @@ import com.simibubi.create.content.processing.recipe.HeatCondition;
 import io.github.lounode.ae2cs.common.init.AECSBlocks;
 import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.library.recipe.FluidValues;
-import slimeknights.tconstruct.library.recipe.alloying.AlloyRecipeBuilder;
 import slimeknights.tconstruct.library.recipe.ingredient.NoContainerIngredient;
 import slimeknights.tconstruct.library.recipe.melting.IMeltingRecipe;
 import slimeknights.tconstruct.library.recipe.melting.MeltingRecipeBuilder;
@@ -72,6 +76,7 @@ public class PrimitiveKineticAgeRecipes {
         addVacuumTubeRecipes(provider);
         addFluidPipeRecipes(provider);
         addCopperCasingRecipes(provider);
+        addCarbonizedLogRecipes(provider);
     }
 
     private static void addWroughtIronRecipes(Consumer<FinishedRecipe> provider) {
@@ -136,6 +141,31 @@ public class PrimitiveKineticAgeRecipes {
                 .result(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy))
                 .result(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy), 0.3)
                 .save(provider);
+
+        // 安山合金台阶（动力锯：1 安山合金块 → 2 台阶）
+        CuttingRecipeBuilder.builder("andesite_alloy_block_to_slab")
+                .input(AllBlocks.ANDESITE_ALLOY_BLOCK.asItem())
+                .result(CTNHBlocks.ANDESITE_ALLOY_SLAB.asStack(2))
+                .save(provider);
+
+        // 安山合金台阶（切石机：1 安山合金块 → 2 台阶）
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(AllBlocks.ANDESITE_ALLOY_BLOCK),
+                RecipeCategory.BUILDING_BLOCKS, CTNHBlocks.ANDESITE_ALLOY_SLAB, 2)
+                .unlockedBy("has_andesite_alloy_block",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(AllBlocks.ANDESITE_ALLOY_BLOCK))
+                .save(provider, CTNHCore.id("stonecutting/andesite_alloy_block_to_slab"));
+
+        // 小安山合金齿轮（1 安山合金板 + 锉刀）
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/small_gear_andesite_alloy"),
+                ChemicalHelper.get(TagPrefix.gearSmall, CreateMaterials.AndesiteAlloy),
+                "P", "f",
+                'P', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy));
+
+        // 安山合金齿轮（1 安山合金台阶 + 锉刀）
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/gear_andesite_alloy"),
+                ChemicalHelper.get(TagPrefix.gear, CreateMaterials.AndesiteAlloy),
+                "S", "f",
+                'S', CTNHBlocks.ANDESITE_ALLOY_SLAB.asStack());
     }
 
     private static void addRoseQuartzRecipes(Consumer<FinishedRecipe> provider) {
@@ -261,28 +291,6 @@ public class PrimitiveKineticAgeRecipes {
     }
 
     private static void addTConstructMeltingRecipes(Consumer<FinishedRecipe> provider) {
-        // 熔融碳素（冶炼炉 1000°C：焦炭 → 熔融碳素 144mB）
-        MeltingRecipeBuilder.melting(
-                Ingredient.of(ChemicalHelper.get(TagPrefix.gem, GTMaterials.Coke)),
-                CTNHMaterials.MOLTEN_CARBON.getFluid(FluidValues.INGOT),
-                1000,
-                IMeltingRecipe.calcTimeForAmount(1000, FluidValues.INGOT))
-                .save(provider, CTNHCore.id("smeltery/melting/coke_to_molten_carbon"));
-
-        // 熔融碳素（冶炼炉 1000°C：焦炭粉 → 熔融碳素 144mB）
-        MeltingRecipeBuilder.melting(
-                Ingredient.of(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Coke)),
-                CTNHMaterials.MOLTEN_CARBON.getFluid(FluidValues.INGOT),
-                1000,
-                IMeltingRecipe.calcTimeForAmount(1000, FluidValues.INGOT))
-                .save(provider, CTNHCore.id("smeltery/melting/coke_dust_to_molten_carbon"));
-
-        // 熔融钢（冶炼炉合金：1 液态铁 + 1 熔融碳素 → 1 熔融钢）
-        AlloyRecipeBuilder.alloy(TinkerFluids.moltenSteel, FluidValues.INGOT)
-                .addInput(TinkerFluids.moltenIron.ingredient(FluidValues.INGOT))
-                .addInput(CTNHMaterials.MOLTEN_CARBON.getFluid(), FluidValues.INGOT)
-                .save(provider, CTNHCore.id("smeltery/alloys/steel_from_iron_and_carbon"));
-
         MeltingRecipeBuilder.melting(
                 Ingredient.of(CTNHItems.REFINED_IRON_INGOT.get()),
                 TinkerFluids.moltenSteel,
@@ -299,10 +307,10 @@ public class PrimitiveKineticAgeRecipes {
                 .processingTime(40)
                 .save(provider);
 
-        // 植物油（压实：1 块 → 500mB 种子油）
+        // 植物油（压实：1 块 → 100mB 种子油）
         CompactingRecipeBuilder.builder(CTNHCore.id("create/plant_oil"))
                 .input(CTNHBlocks.PLANT_OIL_MASS.asStack())
-                .resultFluid(GTMaterials.SeedOil.getFluid(500))
+                .resultFluid(GTMaterials.SeedOil.getFluid(100))
                 .processingTime(40)
                 .save(provider);
 
@@ -352,6 +360,17 @@ public class PrimitiveKineticAgeRecipes {
                 .input(Ingredient.of(ChemicalHelper.get(TagPrefix.dust, GTMaterials.RawRubber)), 3)
                 .output(CTNHItems.RUBBER_POWDER.asStack())
                 .heatRequirement("heated")
+                .save(provider);
+
+        // 黏性树脂离心（Vintage Improvements 离心机）
+        CentrifugationRecipeBuilder.builder(CTNHCore.id("vintageimprovements/sticky_resin_centrifugation"))
+                .input(GTItems.STICKY_RESIN.asStack())
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.RawRubber))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.RawRubber), 0.5)
+                .resultFluid(GTMaterials.Glue.getFluid(50))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.RawRubber), 0.3)
+                .result(GTItems.PLANT_BALL.asStack(), 0.1)
+                .minimalRpm(256)
                 .save(provider);
 
         // 液态橡胶（蓝火加压处理）
@@ -691,6 +710,11 @@ public class PrimitiveKineticAgeRecipes {
     }
 
     private static void addVacuumTubeRecipes(Consumer<FinishedRecipe> provider) {
+        // 真空管（真空腔：1 电子管 → 1 真空管）
+        VacuumizingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/vacuum_tube_from_electron_tube"))
+                .input(AllItems.ELECTRON_TUBE.asStack())
+                .result(GTItems.VACUUM_TUBE.asStack())
+                .save(provider);
         // 真空管（电子管）
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("vacuum_tube_plain_from_electron_tube"))
                 .inputItems(AllItems.ELECTRON_TUBE.asItem())
@@ -784,5 +808,17 @@ public class PrimitiveKineticAgeRecipes {
                 CreateRecipeJsonHelper.array(baseIngredient, CreateRecipeJsonHelper.item(metalIngredient)));
         recipe.add("results", CreateRecipeJsonHelper.array(CreateRecipeJsonHelper.item("create:copper_casing")));
         CreateRecipeJsonHelper.save(provider, CTNHCore.id("create/" + name).toString(), recipe);
+    }
+
+    private static void addCarbonizedLogRecipes(Consumer<FinishedRecipe> provider) {
+        // 碳化原木（熔炉：任意原木 → 1 碳化原木）
+        VanillaRecipeHelper.addSmeltingRecipe(provider, CTNHCore.id("carbonized_log_from_logs"),
+                ItemTags.LOGS, CTNHBlocks.CARBONIZED_LOG.asStack(), 0.1f);
+
+        // 防腐木板（碳化原木 + GT 锯子）
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/carbonized_log_to_treated_wood_plank"),
+                GTBlocks.TREATED_WOOD_PLANK.asStack(),
+                "X", "s",
+                'X', CTNHBlocks.CARBONIZED_LOG.asStack());
     }
 }

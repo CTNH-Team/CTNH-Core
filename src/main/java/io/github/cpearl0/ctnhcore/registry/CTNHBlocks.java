@@ -99,6 +99,30 @@ public class CTNHBlocks {
             "high_strength_concrete", "高级焦炉砖", CTNHCore.id("block/high_grade_coke_oven_bricks"));
     public static final BlockEntry<Block> PLANT_OIL_MASS = createCasingBlock(
             "plant_oil_mass", "植物油质块", CTNHCore.id("block/plant_oil_mass"));
+    public static final BlockEntry<SlabBlock> ANDESITE_ALLOY_SLAB = REGISTRATE
+            .block("andesite_alloy_slab", SlabBlock::new)
+            .cnlang("安山合金台阶")
+            .initialProperties(() -> Blocks.IRON_BLOCK)
+            .blockstate((ctx, prov) -> {
+                var texture = ResourceLocation.parse("create:block/andesite_block");
+                prov.slabBlock(ctx.getEntry(),
+                        prov.models().slab("andesite_alloy_slab", texture, texture, texture),
+                        prov.models().slabTop("andesite_alloy_slab_top", texture, texture, texture),
+                        prov.models().cubeAll("andesite_alloy", texture));
+            })
+            .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+            .item(BlockItem::new)
+            .build()
+            .register();
+    public static final BlockEntry<RotatedPillarBlock> CARBONIZED_LOG = REGISTRATE
+            .block("carbonized_log", RotatedPillarBlock::new)
+            .cnlang("碳化原木")
+            .initialProperties(() -> Blocks.OAK_LOG)
+            .blockstate((ctx, prov) -> prov.logBlock(ctx.getEntry()))
+            .tag(BlockTags.MINEABLE_WITH_AXE)
+            .item(BlockItem::new)
+            .build()
+            .register();
     public static final BlockEntry<Block> ADVANCE_MACHINE_CASING_GRATE = createCasingBlock(
             "advance_machine_casing_grate", "进阶装配线格栅方块", CTNHCore.id("block/advance_machine_casing_grate"));
     public static final BlockEntry<Block> BLAZE_BLAST_FURNACE_CASING = createCasingBlock(

@@ -509,6 +509,11 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("gtceu:shapeless/dust_bronze"));
         remove(new RemoveFilter().id("gtceu:shapeless/potin_dust"));
         remove(new RemoveFilter().id("gtceu:shaped/vacuum_tube"));
+        remove(new RemoveFilter().id("gtceu:assembler/vacuum_tube_plain"));
+        remove(new RemoveFilter().id("gtceu:assembler/vacuum_tube_red_alloy"));
+        remove(new RemoveFilter().id("gtceu:assembler/vacuum_tube_red_alloy_annealed"));
+        remove(new RemoveFilter().id("gtceu:shaped/small_gear_andesite_alloy"));
+        remove(new RemoveFilter().id("gtceu:shaped/gear_andesite_alloy"));
         remove(new RemoveFilter().id("gtceu:shaped/steam_turbine_lv"));
         remove(new RemoveFilter().id("gtceu:shapeless/iron_magnetic_stick"));
         remove(new RemoveFilter().id("gtceu:shaped/steam_turbine_mv"));

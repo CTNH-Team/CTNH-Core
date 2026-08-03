@@ -100,10 +100,10 @@ public class DieselGeneratorRecipes {
     }
 
     private static void itemApplicationRecipes(Consumer<FinishedRecipe> provider) {
-        // steel_casing: treated_wood_planks + wrought_iron_plate -> steel_casing
+        // steel_casing: treated_wood_planks + steel_plate -> steel_casing
         com.mo_guang.ctpp.data.recipe.builder.create.ItemApplicationRecipeBuilder.builder("steel_casing")
                 .input(TREATED_WOOD_PLANKS)
-                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
                 .result(STEEL_CASING)
                 .save(provider);
 

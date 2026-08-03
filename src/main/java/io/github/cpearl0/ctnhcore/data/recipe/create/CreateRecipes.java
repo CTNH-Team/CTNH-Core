@@ -823,12 +823,6 @@ public class CreateRecipes {
                 'C', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel),
                 'D', Items.CLOCK);
         com.mo_guang.ctpp.data.recipe.builder.create.ItemApplicationRecipeBuilder
-                .builder(CreateDieselGenerators.ID + "_steel_casing_application")
-                .input(GTBlocks.TREATED_WOOD_PLANK.asStack())
-                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
-                .output(CTPPBlocks.STEEL_CASING.asStack())
-                .save(provider);
-        com.mo_guang.ctpp.data.recipe.builder.create.ItemApplicationRecipeBuilder
                 .builder(CreateDieselGenerators.ID + "_heavy_machinery_casing_application")
                 .input(CTPPBlocks.STEEL_CASING.asStack())
                 .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
