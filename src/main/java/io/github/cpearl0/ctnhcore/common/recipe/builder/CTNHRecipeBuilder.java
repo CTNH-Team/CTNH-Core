@@ -84,7 +84,7 @@ public class CTNHRecipeBuilder extends GTRecipeBuilder {
     }
 
     public CTNHRecipeBuilder inputEntity(EntityType<?> type, int count, int chance) {
-        return inputEntity(EntityIngredient.of(type, count));
+        return inputEntity(EntityIngredient.of(type, count, chance));
     }
 
     public CTNHRecipeBuilder inputEntity(TagKey<EntityType<?>> tag) {

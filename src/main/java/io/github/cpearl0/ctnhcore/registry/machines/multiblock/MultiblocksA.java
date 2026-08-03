@@ -35,7 +35,6 @@ import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
-import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -1554,7 +1553,7 @@ public class MultiblocksA {
     public final static MultiblockMachineDefinition MEADOW = REGISTRATE.multiblock("meadow", MeadowMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.MEADOW)
-            .recipeModifier(RecipeModifier.NO_MODIFIER)
+            .recipeModifier(MeadowMachine::stressCrossParallel)
             .tooltips(meadowTooltip0.translate(),
                     meadowTooltip1.translate(),
                     meadowTooltip2.translate(),
