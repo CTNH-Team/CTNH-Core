@@ -282,6 +282,12 @@ public class PrimitiveKineticAgeRecipes {
                 .addInput(TinkerFluids.moltenIron.ingredient(FluidValues.INGOT))
                 .addInput(CTNHMaterials.MOLTEN_CARBON.getFluid(), FluidValues.INGOT)
                 .save(provider, CTNHCore.id("smeltery/alloys/steel_from_iron_and_carbon"));
+
+        MeltingRecipeBuilder.melting(
+                Ingredient.of(CTNHItems.REFINED_IRON_INGOT.get()),
+                TinkerFluids.moltenSteel,
+                FluidValues.INGOT * 8)
+                .save(provider, CTNHCore.id("smeltery/melting/refined_iron_ingot_to_steel"));
     }
 
     private static void addPlantOilRecipes(Consumer<FinishedRecipe> provider) {
@@ -367,20 +373,11 @@ public class PrimitiveKineticAgeRecipes {
     }
 
     private static void addKineticCraftingRecipes(Consumer<FinishedRecipe> provider) {
-        // 动力轴（安山合金锭）
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/shaft"), AllBlocks.SHAFT.asStack(4),
-                "A", "A", "A",
-                'A', ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy));
-
         // 动力轴（安山合金锭切割）
-        ItemStack andesiteAlloyIngot = ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy);
-        ItemStack shaft = new ItemStack(AllBlocks.SHAFT.asItem());
-        if (!andesiteAlloyIngot.isEmpty() && !shaft.isEmpty()) {
-            CuttingRecipeBuilder.builder("cutting_shaft_from_andesite_alloy_ingot")
-                    .input(andesiteAlloyIngot)
-                    .result(new ItemStack(shaft.getItem(), 2))
-                    .save(provider);
-        }
+        CuttingRecipeBuilder.builder("cutting_shaft_from_andesite_alloy_ingot")
+                .input(ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy))
+                .result(new ItemStack(AllBlocks.SHAFT.asItem(), 2))
+                .save(provider);
 
         // 机械冲压机
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/mechanical_press"),
@@ -589,34 +586,38 @@ public class PrimitiveKineticAgeRecipes {
 
     private static void addKineticMechanismRecipes(Consumer<FinishedRecipe> provider) {
         // 基础机构（序列组装）
-        ItemStack incompleteBasic = CTPPItems.INCOMPLETE_BASIC_MECHANISM.asStack();
-        ItemStack basicMechanism = CTPPItems.BASIC_MECHANISM.asStack();
-        if (!incompleteBasic.isEmpty() && !basicMechanism.isEmpty()) {
-            SequencedAssemblyRecipeBuilder.builder("basic_mechanism_from_slabs")
-                    .input(ItemTags.WOODEN_SLABS)
-                    .transitional(incompleteBasic)
-                    .result(basicMechanism)
-                    .deploying(ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy))
-                    .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Iron))
-                    .cutting()
-                    .loops(1)
-                    .save(provider);
-        }
+        SequencedAssemblyRecipeBuilder.builder("basic_mechanism_from_slabs")
+                .input(ItemTags.WOODEN_SLABS)
+                .transitional(CTPPItems.INCOMPLETE_BASIC_MECHANISM.asStack())
+                .result(CTPPItems.BASIC_MECHANISM.asStack())
+                .deploying(ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy))
+                .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Iron))
+                .cutting()
+                .loops(1)
+                .save(provider);
 
         // 精密机构（序列组装）
-        ItemStack incompletePrecision = AllItems.INCOMPLETE_PRECISION_MECHANISM.asStack();
-        ItemStack precision = AllItems.PRECISION_MECHANISM.asStack();
-        if (!incompletePrecision.isEmpty() && !precision.isEmpty() && !basicMechanism.isEmpty()) {
-            SequencedAssemblyRecipeBuilder.builder("precision_mechanism_from_basic")
-                    .input(basicMechanism)
-                    .transitional(incompletePrecision)
-                    .result(precision)
-                    .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Brass))
-                    .deploying(AllBlocks.COGWHEEL.asItem())
-                    .deploying(AllBlocks.LARGE_COGWHEEL.asItem())
-                    .loops(1)
-                    .save(provider);
-        }
+        SequencedAssemblyRecipeBuilder.builder("precision_mechanism_from_basic")
+                .input(CTPPItems.BASIC_MECHANISM.asStack())
+                .transitional(AllItems.INCOMPLETE_PRECISION_MECHANISM.asStack())
+                .result(AllItems.PRECISION_MECHANISM.asStack())
+                .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Brass))
+                .deploying(AllBlocks.COGWHEEL.asItem())
+                .deploying(AllBlocks.LARGE_COGWHEEL.asItem())
+                .loops(1)
+                .save(provider);
+
+        // 钢铁构件（序列组装：精密构件 + 钢板 + 红石合金板 + 钢螺丝 + 熔融橡胶）
+        SequencedAssemblyRecipeBuilder.builder("steel_mechanism_from_precision")
+                .input(AllItems.PRECISION_MECHANISM.asStack())
+                .transitional(CTPPItems.INCOMPLETE_STEEL_MECHANISM.asStack())
+                .result(CTPPItems.STEEL_MECHANISM.asStack())
+                .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
+                .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.RedAlloy))
+                .deploying(ChemicalHelper.get(TagPrefix.screw, GTMaterials.Steel))
+                .filling(CTPPItems.INCOMPLETE_STEEL_MECHANISM.asStack(), GTMaterials.Rubber.getFluid(576))
+                .loops(1)
+                .save(provider);
     }
 
     private static void addEarlyMaterialMixingRecipes(Consumer<FinishedRecipe> provider) {
@@ -645,30 +646,27 @@ public class PrimitiveKineticAgeRecipes {
     }
 
     private static void addSteelPrecursorRecipes(Consumer<FinishedRecipe> provider) {
-        ItemStack steelPrecursorDust = ChemicalHelper.get(TagPrefix.dust, UncategorizedMaterials.STEEL_PRECURSOR, 8);
-        if (!steelPrecursorDust.isEmpty()) {
-            // 预制钢粉（锻铁粉与焦炭粉）
-            MixingRecipeBuilder.builder("steel_precursor_from_wrought_and_coke")
-                    .result(new ItemStack(steelPrecursorDust.getItem(), 8))
-                    .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.WroughtIron).getItem(), 8))
-                    .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Coke).getItem(), 3))
-                    .heatRequirement("heated")
-                    .save(provider);
+        // 预制钢粉（锻铁粉与焦炭粉）
+        MixingRecipeBuilder.builder("steel_precursor_from_wrought_and_coke")
+                .result(ChemicalHelper.get(TagPrefix.dust, UncategorizedMaterials.STEEL_PRECURSOR, 8))
+                .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.WroughtIron).getItem(), 8))
+                .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Coke).getItem(), 3))
+                .heatRequirement("heated")
+                .save(provider);
 
-            // 预制钢粉（锻铁粉与木炭粉）
-            MixingRecipeBuilder.builder("steel_precursor_from_wrought_and_charcoal")
-                    .result(new ItemStack(steelPrecursorDust.getItem(), 8))
-                    .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.WroughtIron).getItem(), 8))
-                    .input(TagUtil.createItemTag("dusts/charcoal", false), 6)
-                    .heatRequirement("heated")
-                    .save(provider);
-        }
+        // 预制钢粉（锻铁粉与木炭粉）
+        MixingRecipeBuilder.builder("steel_precursor_from_wrought_and_charcoal")
+                .result(ChemicalHelper.get(TagPrefix.dust, UncategorizedMaterials.STEEL_PRECURSOR, 8))
+                .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.WroughtIron).getItem(), 8))
+                .input(TagUtil.createItemTag("dusts/charcoal", false), 6)
+                .heatRequirement("heated")
+                .save(provider);
     }
 
     private static void addElectronTubeRecipes(Consumer<FinishedRecipe> provider) {
         // 电子管（安山合金板与铁小齿轮）
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/electron_tube"),
-                AllItems.ELECTRON_TUBE.asStack(4),
+                AllItems.ELECTRON_TUBE.asStack(1),
                 " A ", "BCB", " B ",
                 'A', AllItems.POLISHED_ROSE_QUARTZ.asItem(),
                 'B', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy),

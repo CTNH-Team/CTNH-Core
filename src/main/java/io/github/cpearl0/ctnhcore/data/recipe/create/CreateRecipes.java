@@ -504,24 +504,6 @@ public class CreateRecipes {
                     .save(provider);
         }
 
-        // unfinished steel mechanism (create precision -> ctpp:steel_mechanism)
-        ItemStack precision = AllItems.PRECISION_MECHANISM.asStack();
-        ItemStack unfinishedSteel = CTPPItems.INCOMPLETE_STEEL_MECHANISM.asStack();
-        ItemStack steelMech = CTPPItems.STEEL_MECHANISM.asStack();
-        if (!unfinishedSteel.isEmpty() && !steelMech.isEmpty() && !precision.isEmpty()) {
-            com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
-                    .builder("steel_mechanism_from_precision")
-                    .input(precision)
-                    .transitional(unfinishedSteel)
-                    .result(steelMech)
-                    .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
-                    .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.RedAlloy))
-                    .deploying(ChemicalHelper.get(TagPrefix.screw, GTMaterials.Steel))
-                    .filling(unfinishedSteel, GTMaterials.Rubber.getFluid(576))
-                    .loops(1)
-                    .save(provider);
-        }
-
         // ender pearl dust -> ender eye dust
         ItemStack enderPearlDust = ChemicalHelper.get(TagPrefix.dust, GTMaterials.EnderPearl);
         ItemStack enderEyeDust = ChemicalHelper.get(TagPrefix.dust, GTMaterials.EnderEye);
