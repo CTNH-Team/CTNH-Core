@@ -822,6 +822,12 @@ public class PrimitiveKineticAgeRecipes {
                 GTBlocks.TREATED_WOOD_PLANK.asStack(),
                 "X", "s",
                 'X', CTNHBlocks.CARBONIZED_LOG.asStack());
+
+        // 防腐木板（碳化原木 + Create 动力锯）
+        CuttingRecipeBuilder.builder("carbonized_log_to_treated_wood_plank")
+                .input(CTNHBlocks.CARBONIZED_LOG.asItem())
+                .result(GTBlocks.TREATED_WOOD_PLANK.asStack())
+                .save(provider);
     }
 
     private static void addSteelCasingRecipes(Consumer<FinishedRecipe> provider) {
