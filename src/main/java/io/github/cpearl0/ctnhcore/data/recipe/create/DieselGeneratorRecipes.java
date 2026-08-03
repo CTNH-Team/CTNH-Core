@@ -6,7 +6,6 @@ import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
-import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
@@ -34,13 +33,11 @@ public class DieselGeneratorRecipes {
     private static final ItemStack MECHANICAL_BEARING = AllBlocks.MECHANICAL_BEARING.asStack();
     private static final ItemStack STEEL_CASING = CTPPBlocks.STEEL_CASING.asStack();
     private static final ItemStack HEAVY_MACHINERY_CASING = CTPPBlocks.HEAVY_MACHINERY_CASING.asStack();
-    private static final ItemStack TREATED_WOOD_PLANKS = GTBlocks.TREATED_WOOD_PLANK.asStack();
     private static final ItemStack TALLOW = CTNHItems.TALLOW.asStack();
 
     public static void init(Consumer<FinishedRecipe> provider) {
         shapedRecipes(provider);
         mechanicalCraftingRecipes(provider);
-        itemApplicationRecipes(provider);
         mixingRecipes(provider);
         compactingRecipes(provider);
         crushingRecipes(provider);
@@ -96,22 +93,6 @@ public class DieselGeneratorRecipes {
                 .key('Z', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Zinc))
                 .key('S', AllBlocks.SHAFT.asStack())
                 .result(new ItemStack(CDGBlocks.PUMPJACK_CRANK.get()))
-                .save(provider);
-    }
-
-    private static void itemApplicationRecipes(Consumer<FinishedRecipe> provider) {
-        // steel_casing: treated_wood_planks + steel_plate -> steel_casing
-        com.mo_guang.ctpp.data.recipe.builder.create.ItemApplicationRecipeBuilder.builder("steel_casing")
-                .input(TREATED_WOOD_PLANKS)
-                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
-                .result(STEEL_CASING)
-                .save(provider);
-
-        // heavy_machinery_casing: steel_casing + steel_plate -> heavy_machinery_casing
-        com.mo_guang.ctpp.data.recipe.builder.create.ItemApplicationRecipeBuilder.builder("heavy_machinery_casing")
-                .input(STEEL_CASING)
-                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
-                .result(HEAVY_MACHINERY_CASING)
                 .save(provider);
     }
 

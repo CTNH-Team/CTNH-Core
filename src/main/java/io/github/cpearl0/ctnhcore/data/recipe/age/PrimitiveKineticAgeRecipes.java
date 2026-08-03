@@ -34,6 +34,7 @@ import com.mo_guang.ctpp.data.recipe.builder.diesel.HammerRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.vintage.CentrifugationRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.vintage.PressurizingRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.vintage.VacuumizingRecipeBuilder;
+import com.mo_guang.ctpp.registry.CTPPBlocks;
 import com.mo_guang.ctpp.registry.CTPPItems;
 import com.mo_guang.ctpp.registry.CreateMaterials;
 import com.simibubi.create.AllBlocks;
@@ -77,6 +78,7 @@ public class PrimitiveKineticAgeRecipes {
         addFluidPipeRecipes(provider);
         addCopperCasingRecipes(provider);
         addCarbonizedLogRecipes(provider);
+        addSteelCasingRecipes(provider);
     }
 
     private static void addWroughtIronRecipes(Consumer<FinishedRecipe> provider) {
@@ -820,5 +822,21 @@ public class PrimitiveKineticAgeRecipes {
                 GTBlocks.TREATED_WOOD_PLANK.asStack(),
                 "X", "s",
                 'X', CTNHBlocks.CARBONIZED_LOG.asStack());
+    }
+
+    private static void addSteelCasingRecipes(Consumer<FinishedRecipe> provider) {
+        // 钢制机壳（防腐木板 + 钢板 → 钢制机壳）
+        ItemApplicationRecipeBuilder.builder("steel_casing")
+                .input(GTBlocks.TREATED_WOOD_PLANK.asStack())
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
+                .result(CTPPBlocks.STEEL_CASING.asStack())
+                .save(provider);
+
+        // 重型机械外壳（钢制机壳 + 钢板 → 重型机械外壳）
+        ItemApplicationRecipeBuilder.builder("heavy_machinery_casing")
+                .input(CTPPBlocks.STEEL_CASING.asStack())
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
+                .result(CTPPBlocks.HEAVY_MACHINERY_CASING.asStack())
+                .save(provider);
     }
 }
