@@ -371,6 +371,8 @@ public class RecipeRemoval {
                 .id("gtceu:smashing_factory_recipes/smashing_factory_recipes/macerate_cleaning_maintenance_hatch"));
         remove(new RemoveFilter().id("gtceu:fusion_reactor/americium_and_naquadria_to_neutronium_plasma"));
         remove(new RemoveFilter().id("gtceu:shapeless/compressed_clay"));
+        remove(new RemoveFilter().id("gtceu:shapeless/glass_full_dust_flint"));
+        remove(new RemoveFilter().id("gtceu:shapeless/glass_dust_flint"));
         remove(new RemoveFilter().id("gtceu:extractor/extract_coke_oven_bricks"));
         remove(new RemoveFilter().id("gtceu:smelting/coke_oven_brick"));
         remove(new RemoveFilter().id("gtceu:distillation/distill_seed_oil"));

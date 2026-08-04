@@ -43,6 +43,7 @@ import com.simibubi.create.content.processing.recipe.HeatCondition;
 import io.github.lounode.ae2cs.common.init.AECSBlocks;
 import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.library.recipe.FluidValues;
+import slimeknights.tconstruct.library.recipe.casting.ItemCastingRecipeBuilder;
 import slimeknights.tconstruct.library.recipe.ingredient.NoContainerIngredient;
 import slimeknights.tconstruct.library.recipe.melting.IMeltingRecipe;
 import slimeknights.tconstruct.library.recipe.melting.MeltingRecipeBuilder;
@@ -57,6 +58,7 @@ public class PrimitiveKineticAgeRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         addWroughtIronRecipes(provider);
         addMortarRecipes(provider);
+        addGlassRecipes(provider);
         addAndesiteAlloyRecipes(provider);
         addRoseQuartzRecipes(provider);
         addCokeOvenBrickRecipes(provider);
@@ -119,6 +121,34 @@ public class PrimitiveKineticAgeRecipes {
                 ChemicalHelper.get(TagPrefix.dust, GTMaterials.NetherQuartz),
                 "X", "m",
                 'X', Items.QUARTZ);
+    }
+
+    private static void addGlassRecipes(Consumer<FinishedRecipe> provider) {
+        // 玻璃粉（机械动力搅拌：1 石英砂粉 + 1 燧石微粉）
+        MixingRecipeBuilder.builder(CTNHCore.id("create/glass_dust_flint"))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.QuartzSand))
+                .input(ChemicalHelper.get(TagPrefix.dustTiny, GTMaterials.Flint))
+                .output(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Glass))
+                .save(provider);
+
+        // 玻璃粉（机械动力搅拌：8 石英砂粉 + 1 燧石粉 → 8 玻璃粉）
+        MixingRecipeBuilder.builder(CTNHCore.id("create/glass_full_dust_flint"))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.QuartzSand, 8))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Flint))
+                .output(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Glass, 8))
+                .save(provider);
+
+        // 玻璃粉（经典改进加压处理：1 玻璃粉 → 144 mB GTCEu 玻璃）
+        PressurizingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/glass_from_glass_dust"))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Glass))
+                .resultFluid(GTMaterials.Glass.getFluid(144))
+                .processingTime(200)
+                .save(provider);
+
+        // 玻璃（熔铸盆：144 mB GTCEu 玻璃 → 1 原版玻璃）
+        ItemCastingRecipeBuilder.basinRecipe(Items.GLASS)
+                .setFluidAndTime(GTMaterials.Glass.getFluid(144))
+                .save(provider, CTNHCore.id("smeltery/casting/glass_from_gtceu_glass"));
     }
 
     private static void addAndesiteAlloyRecipes(Consumer<FinishedRecipe> provider) {
