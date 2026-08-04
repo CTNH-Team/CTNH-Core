@@ -41,6 +41,7 @@ import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
 import io.github.lounode.ae2cs.common.init.AECSBlocks;
+import slimeknights.mantle.recipe.helper.FluidOutput;
 import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.library.recipe.FluidValues;
 import slimeknights.tconstruct.library.recipe.casting.ItemCastingRecipeBuilder;
@@ -141,9 +142,9 @@ public class PrimitiveKineticAgeRecipes {
         // 玻璃粉（1 玻璃粉 → 144 mB GTCEu 玻璃）
         MeltingRecipeBuilder.melting(
                 Ingredient.of(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Glass)),
-                GTMaterials.Glass.getFluid(FluidValues.INGOT),
-                FluidValues.INGOT,
-                800)
+                FluidOutput.fromFluid(GTMaterials.Glass.getFluid(), FluidValues.INGOT),
+                800,
+                IMeltingRecipe.calcTimeFactor(FluidValues.INGOT))
                 .save(provider, CTNHCore.id("smeltery/melting/glass"));
 
         // 玻璃（熔铸盆：144 mB GTCEu 玻璃 → 1 原版玻璃）
