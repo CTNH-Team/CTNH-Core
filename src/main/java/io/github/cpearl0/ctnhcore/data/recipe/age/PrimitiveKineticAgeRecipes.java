@@ -140,9 +140,9 @@ public class PrimitiveKineticAgeRecipes {
 
         // 玻璃粉（1 玻璃粉 → 144 mB GTCEu 玻璃）
         MeltingRecipeBuilder.melting(
-                        Ingredient.of(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Glass)),
-                        GTMaterials.Glass.getFluid(),
-                        FluidValues.INGOT)
+                Ingredient.of(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Glass)),
+                GTMaterials.Glass.getFluid(),
+                FluidValues.INGOT)
                 .save(provider, CTNHCore.id("smeltery/melting/glass"));
 
         // 玻璃（熔铸盆：144 mB GTCEu 玻璃 → 1 原版玻璃）
