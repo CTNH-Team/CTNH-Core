@@ -216,14 +216,6 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SLOT)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT);
 
-    public static final GTRecipeType OXYGEN_ENRICHER_RECIPES = REGISTRATE
-            .recipeType(CTNHCore.id("oxygen_enricher"), GTRecipeTypes.ELECTRIC)
-            .cnlang("氧气富集器")
-            .setMaxIOSize(0, 0, 1, 0)
-            .setEUIO(IO.IN)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.COOLING);
-
     public static final GTRecipeType SLAUGHTER_HOUSE = REGISTRATE
             .recipeType(CTNHCore.id("slaughter_house"), GTRecipeTypes.ELECTRIC)
             .cnlang("屠宰场")

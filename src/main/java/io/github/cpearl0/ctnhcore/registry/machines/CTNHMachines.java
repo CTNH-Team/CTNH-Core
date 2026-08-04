@@ -9,7 +9,6 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CreativeInputHa
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CreativeLaserHatchPartMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.DigitalMiner;
 import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
-import io.github.cpearl0.ctnhcore.common.machine.simple.OxygenEnricherMachine;
 import io.github.cpearl0.ctnhcore.data.machines.GTNNMachines;
 import io.github.cpearl0.ctnhcore.registry.CTNHCreativeModeTabs;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
@@ -28,7 +27,6 @@ import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.client.renderer.cover.SimpleCoverRenderer;
 import com.gregtechceu.gtceu.common.data.GTCovers;
-import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.models.GTMachineModels;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.*;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
@@ -192,10 +190,6 @@ public class CTNHMachines {
     @CN("§5高级硅岩发电机 I")
     public static Lang blockEvNaquadahReactor;
 
-    @Key("block.ctnhcore.ev_oxygen_enricher")
-    @CN("§5高级氧气富集器§r")
-    public static Lang blockEvOxygenEnricher;
-
     @Key("block.ctnhcore.ev_personal_computer")
     @CN("§5EV§r个人计算机")
     public static Lang blockEvPersonalComputer;
@@ -239,10 +233,6 @@ public class CTNHMachines {
     @Key("block.ctnhcore.hv_energy_output_hatch_4a")
     @CN("4安§6HV§r动力仓")
     public static Lang blockHvEnergyOutputHatch4a;
-
-    @Key("block.ctnhcore.hv_oxygen_enricher")
-    @CN("§6进阶氧气富集器§r")
-    public static Lang blockHvOxygenEnricher;
 
     @Key("block.ctnhcore.hv_personal_computer")
     @CN("§6HV§r个人计算机")
@@ -391,10 +381,6 @@ public class CTNHMachines {
     @Key("block.ctnhcore.mv_energy_output_hatch_4a")
     @CN("4安§bMV§r动力仓")
     public static Lang blockMvEnergyOutputHatch4a;
-
-    @Key("block.ctnhcore.mv_oxygen_enricher")
-    @CN("§b氧气富集器§r")
-    public static Lang blockMvOxygenEnricher;
 
     @Key("block.ctnhcore.mv_personal_computer")
     @CN("§bMV§r个人计算机")
@@ -625,14 +611,6 @@ public class CTNHMachines {
     @EN("Uses §f%d EU/t §7while working, each block takes §f%d§7 ticks")
     public static Lang ctnhMachineDigitalMinerTooltip2;
 
-    @CN("消耗氧气流体以维持密闭空间内的可呼吸环境")
-    @EN("Consumes oxygen fluid to maintain a breathable sealed room")
-    public static Lang ctnhMachineOxygenEnricherTooltip0;
-
-    @CN("可为半径 %s 格的密闭空间供氧")
-    @EN("Supplies oxygen to enclosed spaces within %s blocks")
-    public static Lang ctnhMachineOxygenEnricherTooltip1;
-
     @Key("ctnhcore.recipe_logic.insufficient_cwut")
     @CN("算力不足")
     @EN("Insufficient Computation")
@@ -674,7 +652,6 @@ public class CTNHMachines {
     public static MachineDefinition DRONEHOLDER;
     public static MachineDefinition[] COMPILERMACHINE;
     public static MachineDefinition[] PERSONAL_COMPUTER;
-    public static MachineDefinition[] OXYGEN_ENRICHER;
     public static MachineDefinition[] PARALLEL_HATCH;
     public static MachineDefinition[] ENERGY_OUTPUT_HATCH_4A_LOWER;
     public static MachineDefinition[] ROTOR_HOLDER_EXTEND;
@@ -768,31 +745,6 @@ public class CTNHMachines {
 
         PERSONAL_COMPUTER = registerSimpleComputationMachines("personal_computer",
                 CTNHRecipeTypes.PERSONAL_COMPUTER);
-        OXYGEN_ENRICHER = registerTieredMachines("oxygen_enricher",
-                OxygenEnricherMachine::new,
-                (tier, builder) -> builder
-                        .langValue("%s Oxygen Enricher %s".formatted(VLVH[tier], VLVT[tier]))
-                        .rotationState(RotationState.NON_Y_AXIS)
-                        .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(
-                                com.gregtechceu.gtceu.api.recipe.OverclockingLogic.NON_PERFECT_OVERCLOCK))
-                        .recipeType(CTNHRecipeTypes.OXYGEN_ENRICHER_RECIPES)
-                        .workableTieredHullModel(CTNHCore.id("block/machines/oxygen_enricher"))
-                        .tooltipBuilder((stack, tooltip) -> {
-                            int range = 12 + tier * 4;
-                            tooltip.add(ctnhMachineOxygenEnricherTooltip0.translate());
-                            tooltip.add(ctnhMachineOxygenEnricherTooltip1.translate(range));
-                            tooltip.add(Component.translatable("gtceu.universal.tooltip.voltage_in",
-                                    FormattingUtil.formatNumbers(V[tier]), GTValues.VNF[tier]));
-                            tooltip.add(Component.translatable("gtceu.universal.tooltip.energy_storage_capacity",
-                                    FormattingUtil.formatNumbers(V[tier] * 64L)));
-                            tooltip.add(Component.translatable("gtceu.universal.tooltip.fluid_storage_capacity",
-                                    FormattingUtil.formatNumbers(
-                                            com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.defaultTankSizeFunction
-                                                    .apply(tier))));
-                        })
-                        .register(),
-                MV, HV, EV);
-
         DIGITAL_MINER = registerTieredMachines("digital_miner",
                 DigitalMiner::new,
                 (tier, builder) -> builder

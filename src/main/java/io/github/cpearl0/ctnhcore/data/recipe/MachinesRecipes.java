@@ -206,51 +206,6 @@ public class MachinesRecipes {
                 "PBP",
                 'A', HULL, 'C', ROTOR, 'P', CABLE, 'D', CIRCUIT, 'B', SENSOR);
 
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("mv_oxygen_enricher"))
-                .inputItems(GTMachines.HULL[MV].asStack())
-                .inputItems(ELECTRIC_PUMP_MV.asStack(2))
-                .inputItems(FLUID_REGULATOR_MV.asStack())
-                .inputItems(EMITTER_MV.asStack())
-                .inputItems(SENSOR_MV.asStack())
-                .inputItems(CustomTags.HV_CIRCUITS, 2)
-                .inputFluids(GTMaterials.SolderingAlloy.getFluid(144))
-                .outputItems(CTNHMachines.OXYGEN_ENRICHER[MV].asStack())
-                .duration(200)
-                .EUt(VA[MV])
-                .save(provider);
-
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("hv_oxygen_enricher"))
-                .inputItems(GTMachines.HULL[HV].asStack())
-                .inputItems(ELECTRIC_PUMP_HV.asStack(2))
-                .inputItems(FLUID_REGULATOR_HV.asStack())
-                .inputItems(EMITTER_HV.asStack())
-                .inputItems(SENSOR_HV.asStack())
-                .inputItems(CustomTags.EV_CIRCUITS, 2)
-                .inputFluids(GTMaterials.SolderingAlloy.getFluid(288))
-                .outputItems(CTNHMachines.OXYGEN_ENRICHER[HV].asStack())
-                .duration(200)
-                .EUt(VA[HV])
-                .save(provider);
-
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("ev_oxygen_enricher"))
-                .inputItems(GTMachines.HULL[EV].asStack())
-                .inputItems(ELECTRIC_PUMP_EV.asStack(2))
-                .inputItems(FLUID_REGULATOR_EV.asStack())
-                .inputItems(EMITTER_EV.asStack())
-                .inputItems(SENSOR_EV.asStack())
-                .inputItems(CustomTags.IV_CIRCUITS, 2)
-                .inputFluids(GTMaterials.SolderingAlloy.getFluid(432))
-                .outputItems(CTNHMachines.OXYGEN_ENRICHER[EV].asStack())
-                .duration(200)
-                .EUt(VA[EV])
-                .save(provider);
-
-        CTNHRecipeTypes.OXYGEN_ENRICHER_RECIPES.recipeBuilder(CTNHCore.id("oxygen_enrichment"))
-                .inputFluids(GTMaterials.Oxygen.getFluid(10))
-                .duration(20)
-                .EUt(VA[MV] / 2)
-                .save(provider);
-
         VanillaRecipeHelper.addShapedRecipe(provider,
                 CTNHCore.id("circuit_bus"),
                 CIRCUIT_BUS.asStack(),

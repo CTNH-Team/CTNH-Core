@@ -23,6 +23,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
+import com.ctnh.ctnhastral.registry.CARecipeModifiers;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
 import com.ctnhlang.Prefix;
@@ -97,14 +98,14 @@ public class GTMachineModify {
     }
 
     private static void modifyOxygenGenerators() {
-        appendRecipeModifier(GTMachines.COMBUSTION, CTNHRecipeModifiers::oxygenRequirement);
-        appendRecipeModifier(GTMachines.GAS_TURBINE, CTNHRecipeModifiers::oxygenRequirement);
-        appendRecipeModifier(GTMachines.STEAM_TURBINE, CTNHRecipeModifiers::oxygenRequirement);
-        appendRecipeModifier(LARGE_COMBUSTION_ENGINE, CTNHRecipeModifiers::oxygenRequirement);
-        appendRecipeModifier(EXTREME_COMBUSTION_ENGINE, CTNHRecipeModifiers::oxygenRequirement);
-        appendRecipeModifier(LARGE_GAS_TURBINE, CTNHRecipeModifiers::oxygenRequirement);
-        appendRecipeModifier(LARGE_STEAM_TURBINE, CTNHRecipeModifiers::oxygenRequirement);
-        appendRecipeModifier(MultiblocksA.ULTIMATE_COMBUSTION_ENGINE, CTNHRecipeModifiers::oxygenRequirement);
+        appendRecipeModifier(GTMachines.COMBUSTION, CARecipeModifiers::oxygenRequirement);
+        appendRecipeModifier(GTMachines.GAS_TURBINE, CARecipeModifiers::oxygenRequirement);
+        appendRecipeModifier(GTMachines.STEAM_TURBINE, CARecipeModifiers::oxygenRequirement);
+        appendRecipeModifier(LARGE_COMBUSTION_ENGINE, CARecipeModifiers::oxygenRequirement);
+        appendRecipeModifier(EXTREME_COMBUSTION_ENGINE, CARecipeModifiers::oxygenRequirement);
+        appendRecipeModifier(LARGE_GAS_TURBINE, CARecipeModifiers::oxygenRequirement);
+        appendRecipeModifier(LARGE_STEAM_TURBINE, CARecipeModifiers::oxygenRequirement);
+        appendRecipeModifier(MultiblocksA.ULTIMATE_COMBUSTION_ENGINE, CARecipeModifiers::oxygenRequirement);
     }
 
     private static void appendRecipeModifier(MachineDefinition[] machines, RecipeModifier recipeModifier) {

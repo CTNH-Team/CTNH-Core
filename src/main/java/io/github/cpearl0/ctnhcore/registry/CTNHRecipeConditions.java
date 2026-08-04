@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry;
 
 import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
-import io.github.cpearl0.ctnhcore.common.recipe.OxygenCondition;
 import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
 
 import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
@@ -15,8 +14,6 @@ public class CTNHRecipeConditions {
             .register(
                     "neutron_activator_condition",
                     new RecipeConditionType<>(NeutronActivatorCondition::new, NeutronActivatorCondition.CODEC));
-    public static RecipeConditionType<OxygenCondition> OXYGEN = GTRegistries.RECIPE_CONDITIONS.register(
-            "oxygen_condition", new RecipeConditionType<>(OxygenCondition::new, OxygenCondition.CODEC));
 
     // public static RecipeConditionType<TierCasingCondition> TIER_CASING = GTRegistries.RECIPE_CONDITIONS.register(
     // "tier_casing_condition", new RecipeConditionType<>(TierCasingCondition::new, TierCasingCondition.CODEC));
