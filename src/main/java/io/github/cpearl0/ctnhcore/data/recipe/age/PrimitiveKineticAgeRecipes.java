@@ -66,7 +66,7 @@ public class PrimitiveKineticAgeRecipes {
         addTConstructMachineRecipes(provider);
         addSmelteryControllerRecipe(provider);
         addTConstructSmelteryIORecipes(provider);
-        addTConstructMeltingRecipes(provider);
+        addSteelRecipes(provider);
         addPlantOilRecipes(provider);
         addFirebrickRecipes(provider);
         addRubberRecipes(provider);
@@ -138,12 +138,12 @@ public class PrimitiveKineticAgeRecipes {
                 .output(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Glass, 8))
                 .save(provider);
 
-        // 玻璃粉（经典改进加压处理：1 玻璃粉 → 144 mB GTCEu 玻璃）
-        PressurizingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/glass_from_glass_dust"))
-                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Glass))
-                .resultFluid(GTMaterials.Glass.getFluid(144))
-                .processingTime(200)
-                .save(provider);
+        // 玻璃粉（1 玻璃粉 → 144 mB GTCEu 玻璃）
+        MeltingRecipeBuilder.melting(
+                        Ingredient.of(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Glass)),
+                        GTMaterials.Glass.getFluid(),
+                        FluidValues.INGOT)
+                .save(provider, CTNHCore.id("smeltery/melting/glass"));
 
         // 玻璃（熔铸盆：144 mB GTCEu 玻璃 → 1 原版玻璃）
         ItemCastingRecipeBuilder.basinRecipe(Items.GLASS)
@@ -322,7 +322,7 @@ public class PrimitiveKineticAgeRecipes {
                 'C', AllBlocks.SMART_FLUID_PIPE.asItem());
     }
 
-    private static void addTConstructMeltingRecipes(Consumer<FinishedRecipe> provider) {
+    private static void addSteelRecipes(Consumer<FinishedRecipe> provider) {
         MeltingRecipeBuilder.melting(
                 Ingredient.of(CTNHItems.REFINED_IRON_INGOT.get()),
                 TinkerFluids.moltenSteel,
