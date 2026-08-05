@@ -550,9 +550,9 @@ public class WoodChain {
         addSawPlankRecipe(provider, "aether/golden_oak_log_to_skyroot_planks",
                 "aether:golden_oak_log", "aether:skyroot_planks", 4);
         addShapelessPlankRecipe(provider, CTNHCore.id("wood/golden_oak_log_to_skyroot_planks"),
-                "aether:skyroot_planks", 2, stack("aether:golden_oak_log"));
+                "aether:skyroot_planks", 2, new ItemStack(AetherBlocks.GOLDEN_OAK_LOG.get()));
         addShapelessPlankRecipe(provider, CTNHCore.id("wood/golden_oak_wood_to_skyroot_planks"),
-                "aether:skyroot_planks", 2, stack("aether:golden_oak_wood"));
+                "aether:skyroot_planks", 2, new ItemStack(AetherBlocks.GOLDEN_OAK_WOOD.get()));
     }
 
     private static void addCreateCuttingWoodRecipes(Consumer<FinishedRecipe> provider) {

@@ -51,47 +51,47 @@ public class DieselGeneratorRecipes {
     private static void mixingRecipes(Consumer<FinishedRecipe> provider) {
         // emulsified_bitumen_slurry: bitumen + simple_emulgator -> emulsified_bitumen_slurry
         com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("emulsified_bitumen_slurry")
-                .inputFluid("ctnhcore:bitumen", 800)
-                .inputFluid("ctnhcore:simple_emulgator", 200)
-                .resultFluid("ctnhcore:emulsified_bitumen_slurry", 1000)
+                .inputFluid(BiodieselFertileSoilMaterials.BITUMEN.getFluid(800))
+                .inputFluid(BiodieselFertileSoilMaterials.SIMPLE_EMULGATOR.getFluid(200))
+                .resultFluid(BiodieselFertileSoilMaterials.EMULSIFIED_BITUMEN_SLURRY.getFluid(1000))
                 .save(provider);
 
         // pure_bitumen: emulsified_bitumen + simple_demulsifier -> pure_bitumen
         com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("pure_bitumen")
-                .inputFluid("ctnhcore:emulsified_bitumen", 800)
-                .inputFluid("ctnhcore:simple_demulsifier", 200)
-                .resultFluid("ctnhcore:pure_bitumen", 1000)
+                .inputFluid(BiodieselFertileSoilMaterials.EMULSIFIED_BITUMEN.getFluid(800))
+                .inputFluid(BiodieselFertileSoilMaterials.SIMPLE_DEMULSIFIER.getFluid(200))
+                .resultFluid(BiodieselFertileSoilMaterials.PURE_BITUMEN.getFluid(1000))
                 .save(provider);
 
         // simple_emulgator: soda_ash + tallow + water -> simple_emulgator
         com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("simple_emulgator")
                 .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.SodaAsh).getItem(), 6))
                 .input(TALLOW)
-                .inputFluid("minecraft:water", 1000)
-                .resultFluid("ctnhcore:simple_emulgator", 1000)
+                .inputFluid(GTMaterials.Water.getFluid(1000))
+                .resultFluid(BiodieselFertileSoilMaterials.SIMPLE_EMULGATOR.getFluid(1000))
                 .save(provider);
 
         // simple_demulsifier: tallow + diluted_sulfuric_acid -> simple_demulsifier
         com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("simple_demulsifier")
                 .input(TALLOW)
-                .inputFluid("gtceu:diluted_sulfuric_acid", 1000)
-                .resultFluid("ctnhcore:simple_demulsifier", 1000)
+                .inputFluid(GTMaterials.DilutedSulfuricAcid.getFluid(1000))
+                .resultFluid(BiodieselFertileSoilMaterials.SIMPLE_DEMULSIFIER.getFluid(1000))
                 .save(provider);
 
         // asphalt_block: sand + gravel + pure_bitumen (heated)
         com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("asphalt_block")
                 .input(new ItemStack(Items.SAND))
                 .input(new ItemStack(Items.GRAVEL))
-                .inputFluid("ctnhcore:pure_bitumen", 100)
+                .inputFluid(BiodieselFertileSoilMaterials.PURE_BITUMEN.getFluid(100))
                 .result(CDGBlocks.ASPHALT_BLOCK.asStack(4))
                 .heatRequirement("heated")
                 .save(provider);
 
         // biodiesel: ethanol + seed_oil -> raw_bio_diesel
         com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("biodiesel")
-                .inputFluid("gtceu:ethanol", 100)
-                .inputFluid("gtceu:seed_oil", 100)
-                .resultFluid("ctnhcore:raw_bio_diesel", 200)
+                .inputFluid(GTMaterials.Ethanol.getFluid(100))
+                .inputFluid(GTMaterials.SeedOil.getFluid(100))
+                .resultFluid(BiodieselFertileSoilMaterials.RAW_BIO_DIESEL.getFluid(200))
                 .save(provider);
     }
 

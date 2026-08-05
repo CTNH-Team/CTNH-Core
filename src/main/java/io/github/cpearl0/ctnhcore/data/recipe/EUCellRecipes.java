@@ -12,13 +12,13 @@ import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.GTCraftingComponents;
 
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.registries.ForgeRegistries;
 
+import appeng.api.util.AEColor;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
+import appeng.core.definitions.AEParts;
 import com.moguang.ctnhbio.registry.CBItems;
 import tech.luckyblock.mcmod.ctnhenergy.common.item.DynamoCardItem;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEItems;
@@ -321,8 +321,8 @@ public class EUCellRecipes {
             var recipeType = tier >= LuV ? ASSEMBLY_LINE_RECIPES : BIOELECTRIC_FORGE_RECIPES;
             var euCellBuilder = recipeType.recipeBuilder(CTNHCore.id("eu_cell" + VN[tier].toLowerCase()))
                     .inputItems(CEItems.EU_CELL_HOUSING, 1)
-                    .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:fluix_glass_cable")), 16)
-                    .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ae2:fluix_smart_cable")), 16)
+                    .inputItems(AEParts.GLASS_CABLE.item(AEColor.TRANSPARENT), 16)
+                    .inputItems(AEParts.SMART_CABLE.item(AEColor.TRANSPARENT), 16)
                     .inputItems(DynamoCardItem.getInstanceByTier(tier))
                     .inputItems(CustomTags.CIRCUITS_ARRAY[tier], 4)
                     .inputItems(CustomTags.CIRCUITS_ARRAY[tier + 1], 4)

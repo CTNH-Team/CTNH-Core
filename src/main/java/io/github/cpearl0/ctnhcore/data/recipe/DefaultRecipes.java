@@ -32,8 +32,6 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import appeng.core.definitions.AEItems;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEMultiblock;
@@ -1322,25 +1320,5 @@ public class DefaultRecipes {
 
     private static ResourceLocation gtceuId(String path) {
         return ResourceLocation.fromNamespaceAndPath("gtceu", path);
-    }
-
-    private static ItemStack itemStack(String id) {
-        return itemStack(id, 1);
-    }
-
-    private static ItemStack itemStack(String id, int count) {
-        return new ItemStack(item(id), count);
-    }
-
-    private static Item item(String id) {
-        return java.util.Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse(id)), id);
-    }
-
-    private static FluidStack fluidStack(String id, int amount) {
-        return new FluidStack(fluid(id), amount);
-    }
-
-    private static net.minecraft.world.level.material.Fluid fluid(String id) {
-        return java.util.Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(ResourceLocation.parse(id)), id);
     }
 }

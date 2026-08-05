@@ -32,19 +32,23 @@ import net.minecraftforge.registries.ForgeRegistries;
 import appeng.core.definitions.AEBlocks;
 import com.aetherteam.aether.block.AetherBlocks;
 import com.enderio.base.common.init.EIOBlocks;
+import com.enderio.base.common.init.EIOFluids;
 import com.enderio.base.common.init.EIOItems;
 import com.mo_guang.ctpp.registry.CreateMaterials;
 import com.moguang.ctnhbio.registry.CBItems;
 import com.moguang.ctnhmana.registry.CMMachines;
 import com.moguang.ctnhmana.registry.CMMaterials;
 import com.simibubi.create.AllItems;
+import com.soytutta.mynethersdelight.common.registry.MNDItems;
 import dev.shadowsoffire.hostilenetworks.Hostile;
 import earth.terrarium.adastra.common.registry.ModItems;
+import samebutdifferent.ecologics.registry.ModBlocks;
 import twilightforest.init.TFBlocks;
 import vazkii.botania.common.block.BotaniaBlocks;
 import vazkii.botania.common.block.BotaniaFlowerBlocks;
 import vazkii.botania.common.item.BotaniaItems;
 import wayoftime.bloodmagic.common.block.BloodMagicBlocks;
+import wayoftime.bloodmagic.common.fluid.BloodMagicFluids;
 
 import java.util.HashMap;
 import java.util.List;
@@ -81,7 +85,7 @@ public class GtceuScriptRecipes {
         // 7. seashell: seashell -> 2x calcite_dust. EUt 7, dur 80
         MACERATOR_RECIPES.recipeBuilder(CTNHCore.id("seashell"))
                 .EUt(7).duration(80)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ecologics:seashell")))
+                .inputItems(new ItemStack(ModBlocks.SEASHELL.get()))
                 .outputItems(dust, GTMaterials.Calcite, 2)
                 .save(provider);
 
@@ -873,7 +877,7 @@ public class GtceuScriptRecipes {
         // 35. tnt: 4x powdery_block + sulfuric_acid 250 -> tnt. EUt 24, dur 100
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("tnt"))
                 .EUt(24).duration(100)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("mynethersdelight:powdery_block")), 4)
+                .inputItems(MNDItems.BLOCK_OF_POWDERY_CANNON.get(), 4)
                 .inputFluids(SulfuricAcid.getFluid(250))
                 .outputItems(new ItemStack(Items.TNT))
                 .save(provider);
@@ -1110,7 +1114,7 @@ public class GtceuScriptRecipes {
                 .EUt(8192).duration(100)
                 .notConsumable(GTItems.SHAPE_MOLD_PILL.asStack())
                 .inputFluids(FluidIngredient.of(
-                        ForgeRegistries.FLUIDS.getValue(ResourceLocation.parse("bloodmagic:life_essence_fluid")), 8000))
+                        BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 8000))
                 .outputItems(SCP_500_BASE.asStack())
                 .save(provider);
 
@@ -2021,7 +2025,7 @@ public class GtceuScriptRecipes {
                 .chancedInput(GTItems.PETRI_DISH.asStack(), 2000, -10)
                 .inputItems(new ItemStack(Items.STONE, 4))
                 .inputFluids(FluidIngredient
-                        .of(ForgeRegistries.FLUIDS.getValue(ResourceLocation.parse("enderio:xp_juice")), 1000))
+                        .of(EIOFluids.XP_JUICE.get(), 1000))
                 .outputItems(new ItemStack(Items.SCULK_VEIN, 4))
                 .outputItems(new ItemStack(Items.SCULK, 3))
                 .EUt(480).duration(200)

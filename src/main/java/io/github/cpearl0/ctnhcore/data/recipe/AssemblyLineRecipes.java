@@ -18,15 +18,16 @@ import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.registries.ForgeRegistries;
 
+import com.enderio.base.common.init.EIOBlocks;
+import com.enderio.conduits.common.init.ConduitItems;
 import com.github.elenterius.biomancy.init.ModItems;
 import com.moguang.ctnhbio.data.materials.CommonMaterials;
 import com.moguang.ctnhbio.registry.CBBlocks;
 import com.moguang.ctnhbio.registry.CBMachines;
 import com.moguang.ctnhbio.registry.CBMultiblocks;
+import com.wintercogs.ae2omnicells.common.init.OCItems;
 
 import java.util.function.Consumer;
 
@@ -430,9 +431,8 @@ public class AssemblyLineRecipes {
                 .inputItems(CustomTags.ZPM_CIRCUITS, 4)
                 .inputItems(rotor, RhodiumPlatedPalladium, 4)
                 .inputItems(
-                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("enderio:extraction_speed_upgrade_4")), 4)
-                .inputItems(ForgeRegistries.ITEMS
-                        .getValue(ResourceLocation.parse("ae2omnicells:complex_omni_cell_component_1m")), 4)
+                        ConduitItems.EXTRACTION_SPEED_UPGRADE_4.get(), 4)
+                .inputItems(OCItems.COMPLEX_OMNI_CELL_COMPONENT_1M.get(), 4)
                 .inputItems(STEM_CELLS.asStack(64))
                 .inputItems(STEM_CELLS.asStack(64))
                 .inputItems(STEM_CELLS.asStack(64))
@@ -563,7 +563,7 @@ public class AssemblyLineRecipes {
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("advance_machine_casing_grate"))
                 .inputItems(frameGt, CTNHMaterials.SpecialCompositeSteelM77)
                 .inputItems(rotor, Osmiridium, 4)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("enderio:end_steel_bars")), 4)
+                .inputItems(EIOBlocks.END_STEEL_BARS.asStack(4))
                 .inputItems(ELECTRIC_MOTOR_LuV.asStack(4))
                 .inputFluids(new FluidStack(CTNHMaterials.Cerrobase140.getFluid(), 16000))
                 .outputItems(CTNHBlocks.ADVANCE_MACHINE_CASING_GRATE.asStack(4))

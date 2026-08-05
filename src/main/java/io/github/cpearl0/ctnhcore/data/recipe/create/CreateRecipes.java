@@ -26,9 +26,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import com.Imphuls3.createcafe.core.registry.FluidRegistry;
@@ -48,7 +46,6 @@ import com.simibubi.create.content.processing.recipe.HeatCondition;
 import com.soytutta.mynethersdelight.common.registry.MNDItems;
 import samebutdifferent.ecologics.registry.ModItems;
 
-import java.util.Objects;
 import java.util.function.Consumer;
 
 public class CreateRecipes {
@@ -862,22 +859,5 @@ public class CreateRecipes {
         ResourceLocation rl = ResourceLocation.tryParse(id);
         if (rl == null) return null;
         return ForgeRegistries.ITEMS.getValue(rl);
-    }
-
-    private static ItemLike itemLike(String id) {
-        return Objects.requireNonNull(item(id), id);
-    }
-
-    private static ItemStack itemStack(String id, int count) {
-        return new ItemStack(itemLike(id), count);
-    }
-
-    private static ItemStack itemStack(String id) {
-        return itemStack(id, 1);
-    }
-
-    private static FluidStack fluidStack(String id, int amount) {
-        ResourceLocation rl = ResourceLocation.parse(id);
-        return new FluidStack(Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(rl), id), amount);
     }
 }

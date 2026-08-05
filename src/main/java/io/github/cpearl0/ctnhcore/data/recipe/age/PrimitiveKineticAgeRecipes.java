@@ -103,7 +103,7 @@ public class PrimitiveKineticAgeRecipes {
                 .outputItems(TagPrefix.ingot, GTMaterials.WroughtIron)
                 .save(provider);
 
-        HammerRecipeBuilder.builder("wrought_iron_ingot_from_hot")
+        HammerRecipeBuilder.builder(CTNHCore.id("wrought_iron_ingot_from_hot"))
                 .input(TagPrefix.ingotHot, GTMaterials.WroughtIron)
                 .output(TagPrefix.ingot, GTMaterials.WroughtIron)
                 .save(provider);
@@ -258,7 +258,7 @@ public class PrimitiveKineticAgeRecipes {
                 .save(provider);
 
         // 安山合金台阶（动力锯：1 安山合金块 → 2 台阶）
-        CuttingRecipeBuilder.builder("andesite_alloy_block_to_slab")
+        CuttingRecipeBuilder.builder(CTNHCore.id("andesite_alloy_block_to_slab"))
                 .input(AllBlocks.ANDESITE_ALLOY_BLOCK.asItem())
                 .result(CTNHBlocks.ANDESITE_ALLOY_SLAB.asStack(2))
                 .save(provider);
@@ -307,7 +307,7 @@ public class PrimitiveKineticAgeRecipes {
                 .save(provider);
 
         // 玫瑰石英（动力锯切割）
-        CuttingRecipeBuilder.builder("rose_quartz_block_to_rose_quartz")
+        CuttingRecipeBuilder.builder(CTNHCore.id("rose_quartz_block_to_rose_quartz"))
                 .input(AECSBlocks.PURE_ROSE_QUARTZ_BLOCK.asItem())
                 .result(AllItems.ROSE_QUARTZ.asStack(9))
                 .save(provider);
@@ -348,7 +348,7 @@ public class PrimitiveKineticAgeRecipes {
                 .save(provider);
 
         // 高级焦炉砖（钢框架右键焦炉砖）
-        ItemApplicationRecipeBuilder.builder("high_grade_coke_oven_bricks")
+        ItemApplicationRecipeBuilder.builder(CTNHCore.id("high_grade_coke_oven_bricks"))
                 .input(GTBlocks.CASING_COKE_BRICKS.asStack())
                 .input(ChemicalHelper.get(TagPrefix.frameGt, GTMaterials.Steel))
                 .output(CTNHBlocks.HIGH_GRADE_COKE_OVEN_BRICKS.asStack())
@@ -393,7 +393,7 @@ public class PrimitiveKineticAgeRecipes {
     private static void addSmelteryControllerRecipe(Consumer<FinishedRecipe> provider) {
         // 冶炼炉控制器（动力合成器机械合成：20 焦黑砖 + 1 铜量计 + 3 精密构件 + 1 焦黑熔化炉）
         // 流程：焦黑熔化炉 →(动力合成器) 冶炼炉；熔化炉居中，上方铜量计，左右下精密构件
-        MechanicalCraftingRecipeBuilder.builder("smeltery_controller")
+        MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("smeltery_controller"))
                 .pattern("BBBBB", "BBGBB", "BAMAB", "BBABB", "BBBBB")
                 .key('A', AllItems.PRECISION_MECHANISM.asItem())
                 .key('B', TinkerSmeltery.searedBrick.get())
@@ -498,7 +498,7 @@ public class PrimitiveKineticAgeRecipes {
 
     private static void addRubberRecipes(Consumer<FinishedRecipe> provider) {
         // 预处理橡胶粉（加热混合）
-        MixingRecipeBuilder.builder("createfallen_rubber_powder_from_sulfur")
+        MixingRecipeBuilder.builder(CTNHCore.id("createfallen_rubber_powder_from_sulfur"))
                 .input(Ingredient.of(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Sulfur)))
                 .input(Ingredient.of(ChemicalHelper.get(TagPrefix.dust, GTMaterials.RawRubber)), 3)
                 .output(CTNHItems.RUBBER_POWDER.asStack())
@@ -536,7 +536,7 @@ public class PrimitiveKineticAgeRecipes {
 
     private static void addKineticCraftingRecipes(Consumer<FinishedRecipe> provider) {
         // 动力轴（安山合金锭切割）
-        CuttingRecipeBuilder.builder("cutting_shaft_from_andesite_alloy_ingot")
+        CuttingRecipeBuilder.builder(CTNHCore.id("cutting_shaft_from_andesite_alloy_ingot"))
                 .input(ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy))
                 .result(new ItemStack(AllBlocks.SHAFT.asItem(), 2))
                 .save(provider);
@@ -715,7 +715,7 @@ public class PrimitiveKineticAgeRecipes {
 
     private static void addKineticMechanicalCraftingRecipes(Consumer<FinishedRecipe> provider) {
         // 机械动力风扇（机械合成）
-        MechanicalCraftingRecipeBuilder.builder("encased_fan")
+        MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("encased_fan"))
                 .pattern("ABCBA", "DDEDD", "AFBFA", "AFBFA", "GGHGG")
                 .key('A', AllBlocks.ANDESITE_CASING.asItem())
                 .key('B', AllBlocks.SHAFT.asItem())
@@ -728,7 +728,7 @@ public class PrimitiveKineticAgeRecipes {
                 .output(new ItemStack(AllBlocks.ENCASED_FAN.asItem())).save(provider);
 
         // 粉碎轮（机械合成）
-        MechanicalCraftingRecipeBuilder.builder("crushing_wheel")
+        MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("crushing_wheel"))
                 .pattern(" AAA ", "ABCBA", "ACDCA", "ABCBA", " AAA ")
                 .key('A', ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
                 .key('B', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy))
@@ -737,7 +737,7 @@ public class PrimitiveKineticAgeRecipes {
                 .output(new ItemStack(AllBlocks.CRUSHING_WHEEL.asItem(), 2)).save(provider);
 
         // 大型水车（机械合成）
-        MechanicalCraftingRecipeBuilder.builder("large_water_wheel")
+        MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("large_water_wheel"))
                 .pattern(" AAA ", "ABCBA", "ACDCA", "ABCBA", " AAA ")
                 .key('A', GTBlocks.TREATED_WOOD_PLANK.asItem())
                 .key('B', ChemicalHelper.get(TagPrefix.screw, GTMaterials.Steel))
@@ -748,7 +748,7 @@ public class PrimitiveKineticAgeRecipes {
 
     private static void addKineticMechanismRecipes(Consumer<FinishedRecipe> provider) {
         // 基础机构（序列组装）
-        SequencedAssemblyRecipeBuilder.builder("basic_mechanism_from_slabs")
+        SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("basic_mechanism_from_slabs"))
                 .input(ItemTags.WOODEN_SLABS)
                 .transitional(CTPPItems.INCOMPLETE_BASIC_MECHANISM.asStack())
                 .result(CTPPItems.BASIC_MECHANISM.asStack())
@@ -759,7 +759,7 @@ public class PrimitiveKineticAgeRecipes {
                 .save(provider);
 
         // 精密机构（序列组装）
-        SequencedAssemblyRecipeBuilder.builder("precision_mechanism_from_basic")
+        SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("precision_mechanism_from_basic"))
                 .input(CTPPItems.BASIC_MECHANISM.asStack())
                 .transitional(AllItems.INCOMPLETE_PRECISION_MECHANISM.asStack())
                 .result(AllItems.PRECISION_MECHANISM.asStack())
@@ -770,7 +770,7 @@ public class PrimitiveKineticAgeRecipes {
                 .save(provider);
 
         // 钢铁构件（序列组装：精密构件 + 钢板 + 红石合金板 + 钢螺丝 + 熔融橡胶）
-        SequencedAssemblyRecipeBuilder.builder("steel_mechanism_from_precision")
+        SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("steel_mechanism_from_precision"))
                 .input(AllItems.PRECISION_MECHANISM.asStack())
                 .transitional(CTPPItems.INCOMPLETE_STEEL_MECHANISM.asStack())
                 .result(CTPPItems.STEEL_MECHANISM.asStack())
@@ -784,14 +784,14 @@ public class PrimitiveKineticAgeRecipes {
 
     private static void addEarlyMaterialMixingRecipes(Consumer<FinishedRecipe> provider) {
         // 防腐木板（杂酚油混合）
-        MixingRecipeBuilder.builder("treated_wood_planks_from_creosote")
+        MixingRecipeBuilder.builder(CTNHCore.id("treated_wood_planks_from_creosote"))
                 .result(new ItemStack(GTBlocks.TREATED_WOOD_PLANK.asItem(), 2))
                 .inputFluid(GTMaterials.Creosote.getFluid(250))
                 .input(ItemTags.PLANKS, 2)
                 .save(provider);
 
         // 红合金粉（加热混合）
-        MixingRecipeBuilder.builder("red_alloy_dust")
+        MixingRecipeBuilder.builder(CTNHCore.id("red_alloy_dust"))
                 .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.RedAlloy))
                 .input(new ItemStack(Items.REDSTONE, 4))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Copper))
@@ -799,7 +799,7 @@ public class PrimitiveKineticAgeRecipes {
                 .save(provider);
 
         // 青铜粉（加热混合）
-        MixingRecipeBuilder.builder("bronze_dust_from_copper_tin")
+        MixingRecipeBuilder.builder(CTNHCore.id("bronze_dust_from_copper_tin"))
                 .result(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Bronze).getItem(), 3))
                 .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Copper).getItem(), 3))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Tin))
@@ -809,7 +809,7 @@ public class PrimitiveKineticAgeRecipes {
 
     private static void addSteelPrecursorRecipes(Consumer<FinishedRecipe> provider) {
         // 预制钢粉（锻铁粉与焦炭粉）
-        MixingRecipeBuilder.builder("steel_precursor_from_wrought_and_coke")
+        MixingRecipeBuilder.builder(CTNHCore.id("steel_precursor_from_wrought_and_coke"))
                 .result(ChemicalHelper.get(TagPrefix.dust, UncategorizedMaterials.STEEL_PRECURSOR, 8))
                 .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.WroughtIron).getItem(), 8))
                 .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Coke).getItem(), 3))
@@ -817,7 +817,7 @@ public class PrimitiveKineticAgeRecipes {
                 .save(provider);
 
         // 预制钢粉（锻铁粉与木炭粉）
-        MixingRecipeBuilder.builder("steel_precursor_from_wrought_and_charcoal")
+        MixingRecipeBuilder.builder(CTNHCore.id("steel_precursor_from_wrought_and_charcoal"))
                 .result(ChemicalHelper.get(TagPrefix.dust, UncategorizedMaterials.STEEL_PRECURSOR, 8))
                 .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.WroughtIron).getItem(), 8))
                 .input(TagUtil.createItemTag("dusts/charcoal", false), 6)
@@ -927,21 +927,21 @@ public class PrimitiveKineticAgeRecipes {
 
     private static void addCopperCasingRecipes(Consumer<FinishedRecipe> provider) {
         // 铜机壳（青铜锭与去皮原木）
-        ItemApplicationRecipeBuilder.builder("copper_casing_from_log")
+        ItemApplicationRecipeBuilder.builder(CTNHCore.id("copper_casing_from_log"))
                 .input(TagUtil.createItemTag("stripped_logs"))
                 .input(ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Bronze))
                 .result(AllBlocks.COPPER_CASING.asStack())
                 .save(provider);
 
         // 铜机壳（青铜锭与去皮木）
-        ItemApplicationRecipeBuilder.builder("copper_casing_from_wood")
+        ItemApplicationRecipeBuilder.builder(CTNHCore.id("copper_casing_from_wood"))
                 .input(TagUtil.createItemTag("stripped_wood"))
                 .input(ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Bronze))
                 .result(AllBlocks.COPPER_CASING.asStack())
                 .save(provider);
 
         // 铜机壳（铜板与安山机壳）
-        ItemApplicationRecipeBuilder.builder("copper_casing_from_andesite_casing")
+        ItemApplicationRecipeBuilder.builder(CTNHCore.id("copper_casing_from_andesite_casing"))
                 .input(AllBlocks.ANDESITE_CASING.asStack())
                 .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Copper))
                 .result(AllBlocks.COPPER_CASING.asStack())
@@ -960,7 +960,7 @@ public class PrimitiveKineticAgeRecipes {
                 'X', CTNHBlocks.CARBONIZED_LOG.asStack());
 
         // 防腐木板（碳化原木 + Create 动力锯）
-        CuttingRecipeBuilder.builder("carbonized_log_to_treated_wood_plank")
+        CuttingRecipeBuilder.builder(CTNHCore.id("carbonized_log_to_treated_wood_plank"))
                 .input(CTNHBlocks.CARBONIZED_LOG.asItem())
                 .result(GTBlocks.TREATED_WOOD_PLANK.asStack())
                 .save(provider);
@@ -968,14 +968,14 @@ public class PrimitiveKineticAgeRecipes {
 
     private static void addSteelCasingRecipes(Consumer<FinishedRecipe> provider) {
         // 钢制机壳（防腐木板 + 钢板 → 钢制机壳）
-        ItemApplicationRecipeBuilder.builder("steel_casing")
+        ItemApplicationRecipeBuilder.builder(CTNHCore.id("steel_casing"))
                 .input(GTBlocks.TREATED_WOOD_PLANK.asStack())
                 .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
                 .result(CTPPBlocks.STEEL_CASING.asStack())
                 .save(provider);
 
         // 重型机械外壳（钢制机壳 + 钢板 → 重型机械外壳）
-        ItemApplicationRecipeBuilder.builder("heavy_machinery_casing")
+        ItemApplicationRecipeBuilder.builder(CTNHCore.id("heavy_machinery_casing"))
                 .input(CTPPBlocks.STEEL_CASING.asStack())
                 .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
                 .result(CTPPBlocks.HEAVY_MACHINERY_CASING.asStack())
