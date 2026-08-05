@@ -36,6 +36,7 @@ import com.mo_guang.ctpp.data.recipe.builder.vintage.PressurizingRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.vintage.VacuumizingRecipeBuilder;
 import com.mo_guang.ctpp.registry.CTPPBlocks;
 import com.mo_guang.ctpp.registry.CTPPItems;
+import com.mo_guang.ctpp.registry.CTPPMachines;
 import com.mo_guang.ctpp.registry.CreateMaterials;
 import com.negodya1.vintageimprovements.VintageBlocks;
 import com.simibubi.create.AllBlocks;
@@ -57,6 +58,7 @@ import java.util.function.Consumer;
 
 public class PrimitiveKineticAgeRecipes {
 
+    // 这里存放的是青铜、钢铁时期(ulv)的配方
     public static void init(Consumer<FinishedRecipe> provider) {
         addWroughtIronRecipes(provider);
         addMortarRecipes(provider);
@@ -89,6 +91,7 @@ public class PrimitiveKineticAgeRecipes {
         addCarbonizedLogRecipes(provider);
         addSteelCasingRecipes(provider);
         addCircuitRecipes(provider);
+        addGeneratorCoilRecipes(provider);
     }
 
     private static void addWroughtIronRecipes(Consumer<FinishedRecipe> provider) {
@@ -1030,5 +1033,28 @@ public class PrimitiveKineticAgeRecipes {
                 .pressing()
                 .loops(1)
                 .save(provider);
+    }
+
+    private static void addGeneratorCoilRecipes(Consumer<FinishedRecipe> provider) {
+        // 发电机线圈
+        MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("generator_coil"))
+                .pattern("  A  ", " BCB ", "ACDCA", " BCB ", "  A  ")
+                .key('A', ChemicalHelper.get(TagPrefix.wireFine, GTMaterials.Copper))
+                .key('B', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy))
+                .key('C', GTItems.BASIC_CIRCUIT_BOARD.asStack())
+                .key('D', AllItems.PRECISION_MECHANISM.asItem())
+                .output(CTPPBlocks.GENERATOR_COIL.asStack())
+                .save(provider);
+
+        // 碳刷（自 CTPP 原样迁移）
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("carbon_brushes"),
+                CTPPMachines.CARBON_BRUSHES.asStack(),
+                "ABA",
+                "CDC",
+                "ABA",
+                'A', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy),
+                'B', CTPPItems.STEEL_MECHANISM.asStack(),
+                'C', ChemicalHelper.get(TagPrefix.dust, GTMaterials.Coke),
+                'D', AllBlocks.SHAFT.asStack());
     }
 }

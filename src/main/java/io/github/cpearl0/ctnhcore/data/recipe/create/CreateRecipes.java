@@ -232,15 +232,6 @@ public class CreateRecipes {
             }
         }
 
-        // generator coil - 5x5 pattern from create.js
-        com.mo_guang.ctpp.data.recipe.builder.create.MechanicalCraftingRecipeBuilder.builder("generator_coil")
-                .pattern("  A  ", " BCB ", "ACDCA", " BCB ", "  A  ")
-                .key('A', ChemicalHelper.get(TagPrefix.wireFine, GTMaterials.Copper))
-                .key('B', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy))
-                .key('C', GTItems.BASIC_CIRCUIT_BOARD.asStack())
-                .key('D', AllItems.PRECISION_MECHANISM.asItem())
-                .output(new ItemStack(AllItems.PRECISION_MECHANISM.asItem())).save(provider);
-
         // portal block (from server_scripts create.js)
         ItemStack doubleShadowSteelPlate = ChemicalHelper.get(TagPrefix.plateDouble, CreateMaterials.ShadowSteel);
         if (!doubleShadowSteelPlate.isEmpty()) {
