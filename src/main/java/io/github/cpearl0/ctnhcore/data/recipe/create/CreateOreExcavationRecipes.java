@@ -1,17 +1,18 @@
 package io.github.cpearl0.ctnhcore.data.recipe.create;
 
+import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.world.item.Items;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.tom.createores.Registration;
 
-import java.util.Objects;
 import java.util.function.Consumer;
 
 public class CreateOreExcavationRecipes {
@@ -132,19 +133,11 @@ public class CreateOreExcavationRecipes {
     private static void addVeinFinder(Consumer<FinishedRecipe> provider) {
         VanillaRecipeHelper.addShapedRecipe(provider,
                 ResourceLocation.parse("ctnhcore:createoreexcavation/vein_finder"),
-                itemStack("createoreexcavation:vein_finder"),
+                Registration.VEIN_FINDER_ITEM.asStack(),
                 " AB", " CA", "C  ",
-                'A', item("minecraft:amethyst_shard"),
-                'B', item("gtceu:wrought_iron_gear"),
-                'C', item("minecraft:stick"));
-    }
-
-    private static ItemStack itemStack(String id) {
-        return new ItemStack(item(id));
-    }
-
-    private static Item item(String id) {
-        return Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse(id)), id);
+                'A', Items.AMETHYST_SHARD,
+                'B', ChemicalHelper.get(TagPrefix.gear, GTMaterials.WroughtIron),
+                'C', Items.STICK);
     }
 
     private static void addVein(Consumer<FinishedRecipe> provider, Vein vein) {

@@ -1314,7 +1314,7 @@ public class DefaultRecipes {
                 .duration(100 * 20)
                 .stationResearch(b -> b
                         .researchStack(GTMultiMachines.FLUID_DRILLING_RIG[GTValues.EV].asStack())
-                        .dataStack(itemStack("gtceu:data_data"))
+                        .dataStack(GTItems.TOOL_DATA_ORB.asStack())
                         .EUt(GTValues.VA[GTValues.UHV])
                         .CWUt(64))
                 .save(provider);

@@ -31,7 +31,10 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import com.Imphuls3.createcafe.core.registry.FluidRegistry;
+import com.aetherteam.aether.item.AetherItems;
 import com.google.gson.JsonArray;
+import com.hollingsworth.arsnouveau.setup.registry.BlockRegistry;
 import com.jesz.createdieselgenerators.CDGBlocks;
 import com.jesz.createdieselgenerators.CDGItems;
 import com.jesz.createdieselgenerators.CreateDieselGenerators;
@@ -42,6 +45,8 @@ import com.mo_guang.ctpp.registry.CreateMaterials;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
+import com.soytutta.mynethersdelight.common.registry.MNDItems;
+import samebutdifferent.ecologics.registry.ModItems;
 
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -82,8 +87,6 @@ public class CreateRecipes {
         RecipeRemoval.remove(new RemoveFilter().id("create:pressing/ostrum_ingot"));
         RecipeRemoval.remove(new RemoveFilter().id("create:pressing/steel_ingot"));
         RecipeRemoval.remove(new RemoveFilter().id("create:pressing/calorite_ingot"));
-        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/andesite_alloy_from_block"));
-        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/andesite_alloy_block"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/cart_assembler"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/portable_storage_interface"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/rotation_speed_controller"));
@@ -668,34 +671,34 @@ public class CreateRecipes {
 
     private static void addCafeRecipes(Consumer<FinishedRecipe> provider) {
         com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("createcafe_blueberry_tea")
-                .input(Objects.requireNonNull(item("aether:blue_berry")))
+                .input(AetherItems.BLUE_BERRY.get())
                 .inputFluid(GTMaterials.Milk.getFluid(250))
-                .inputFluid("createcafe:melted_sugar", 250)
-                .resultFluid(fluidStack("createcafe:blueberry_tea", 500))
+                .inputFluid(FluidRegistry.MELTED_SUGAR.get(), 250)
+                .resultFluid(FluidRegistry.BLUEBERRY_TEA.get(), 500)
                 .save(provider);
         com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("createcafe_coconut_tea")
-                .input(Objects.requireNonNull(item("ecologics:coconut_slice")))
+                .input(ModItems.COCONUT_SLICE.get())
                 .inputFluid(GTMaterials.Milk.getFluid(250))
-                .inputFluid("createcafe:melted_sugar", 250)
-                .resultFluid(fluidStack("createcafe:coconut_tea", 500))
+                .inputFluid(FluidRegistry.MELTED_SUGAR.get(), 250)
+                .resultFluid(FluidRegistry.COCONUT_TEA.get(), 500)
                 .save(provider);
         com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("createcafe_coconut_syrup")
-                .input(Objects.requireNonNull(item("ecologics:coconut_slice")))
+                .input(ModItems.COCONUT_SLICE.get())
                 .inputFluid(GTMaterials.Milk.getFluid(250))
-                .inputFluid("createcafe:melted_sugar", 750)
-                .resultFluid(fluidStack("createcafe:coconut_syrup", 1000))
+                .inputFluid(FluidRegistry.MELTED_SUGAR.get(), 750)
+                .resultFluid(FluidRegistry.COCONUT_SYRUP.get(), 1000)
                 .save(provider);
         com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("createcafe_pomegranate_tea")
-                .input(Objects.requireNonNull(item("ars_nouveau:bombegranate_pod")))
+                .input(BlockRegistry.BOMBEGRANTE_POD.asItem())
                 .inputFluid(GTMaterials.Milk.getFluid(250))
-                .inputFluid("createcafe:melted_sugar", 250)
-                .resultFluid(fluidStack("createcafe:pomegranate_tea", 500))
+                .inputFluid(FluidRegistry.MELTED_SUGAR.get(), 250)
+                .resultFluid(FluidRegistry.POMEGRANATE_TEA.get(), 500)
                 .save(provider);
         com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("createcafe_blood_tea")
-                .input(Objects.requireNonNull(item("ctnhcore:snow_steel_ingot")))
+                .input(ChemicalHelper.get(TagPrefix.ingot, CTNHMaterials.SNOW_STEEL))
                 .inputFluid(GTMaterials.Milk.getFluid(250))
-                .inputFluid("createcafe:melted_sugar", 250)
-                .resultFluid(fluidStack("createcafe:blood_tea", 500))
+                .inputFluid(FluidRegistry.MELTED_SUGAR.get(), 250)
+                .resultFluid(FluidRegistry.BLOOD_TEA.get(), 500)
                 .save(provider);
     }
 
@@ -769,7 +772,7 @@ public class CreateRecipes {
         com.mo_guang.ctpp.data.recipe.builder.create.CompactingRecipeBuilder
                 .builder(CTNHCore.id(CreateDieselGenerators.ID + "/petroleum_coke_gem"))
                 .inputFluid(BiodieselFertileSoilMaterials.PETROLEUM_COKE.getFluid(144))
-                .result(itemStack("ctnhcore:petroleum_coke_gem", 1))
+                .result(ChemicalHelper.get(TagPrefix.gem, BiodieselFertileSoilMaterials.PETROLEUM_COKE))
                 .save(provider);
         com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder
                 .builder(CreateDieselGenerators.ID + "_asphalt_block")
@@ -787,30 +790,26 @@ public class CreateRecipes {
         addDieselGeneratorCustomRecipes(provider);
         com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder
                 .builder(CreateDieselGenerators.ID + "_rich_soil_dust")
-                .input(Ingredient
-                        .of(Objects.requireNonNull(item("farmersdelight:rich_soil"), "farmersdelight:rich_soil")))
-                .output(new ItemStack(
-                        Objects.requireNonNull(item("ctnhcore:rich_soil_dust"), "ctnhcore:rich_soil_dust"), 3))
+                .input(Ingredient.of(vectorwing.farmersdelight.common.registry.ModItems.RICH_SOIL.get()))
+                .output(ChemicalHelper.get(TagPrefix.dust, BiodieselFertileSoilMaterials.RICH_SOIL, 3))
                 .save(provider);
         com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder
                 .builder(CreateDieselGenerators.ID + "_rich_soul_soil_dust")
-                .input(Ingredient.of(Objects.requireNonNull(item("mynethersdelight:resurgent_soil"),
-                        "mynethersdelight:resurgent_soil")))
-                .output(new ItemStack(Objects.requireNonNull(item("ctnhcore:rich_soul_soil_dust"),
-                        "ctnhcore:rich_soul_soil_dust"), 3))
+                .input(Ingredient.of(MNDItems.RESURGENT_SOIL.get()))
+                .output(ChemicalHelper.get(TagPrefix.dust, BiodieselFertileSoilMaterials.RICH_SOUL_SOIL, 3))
                 .save(provider);
     }
 
     private static void addPhenolicCircuitSequence(Consumer<FinishedRecipe> provider) {
-        ItemStack phenolicBoard = itemStack("gtceu:phenolic_circuit_board");
+        ItemStack phenolicBoard = GTItems.PHENOLIC_BOARD.asStack();
         com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder.builder(
                 CTNHCore.id("createfallen/good_electronic_circuit_from_phenolic_board"))
                 .input(phenolicBoard)
                 .transitional(phenolicBoard)
-                .result(itemStack("gtceu:good_electronic_circuit"))
+                .result(GTItems.ELECTRONIC_CIRCUIT_MV.asStack())
                 .deploying(ChemicalHelper.get(TagPrefix.wireGtDouble, GTMaterials.Silver, 1))
                 .deploying(ChemicalHelper.get(TagPrefix.wireGtSingle, GTMaterials.Copper, 1))
-                .deploying(itemStack("gtceu:basic_electronic_circuit"))
+                .deploying(GTItems.ELECTRONIC_CIRCUIT_LV.asStack())
                 .deploying(GTItems.DIODE.asStack())
                 .filling(phenolicBoard, GTMaterials.Tin.getFluid(144))
                 .loops(2)
