@@ -521,40 +521,6 @@ public class CreateRecipes {
                     .save(provider);
         }
 
-        // bronze machine casing -> steam engine (many steps)
-        ItemStack bronzeCasing = GTBlocks.BRONZE_HULL.asStack();
-        ItemStack steamEngine = AllBlocks.STEAM_ENGINE.asStack();
-        if (!bronzeCasing.isEmpty() && !steamEngine.isEmpty()) {
-            com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
-                    .builder("bronze_machine_casing_to_steam_engine")
-                    .input(bronzeCasing)
-                    .transitional(bronzeCasing)
-                    .result(steamEngine)
-                    .deploying(ChemicalHelper.get(TagPrefix.rod, GTMaterials.Steel))
-                    .deploying(ChemicalHelper.get(TagPrefix.rodLong, GTMaterials.Steel))
-                    .deploying(CTPPItems.STEEL_MECHANISM.asStack())
-                    .pressing()
-                    .filling(bronzeCasing, GTMaterials.Lubricant.getFluid(250))
-                    .loops(3)
-                    .save(provider);
-        }
-
-        // paper -> resistors
-        ItemStack paper = new ItemStack(Items.PAPER);
-        ItemStack resistor = GTItems.RESISTOR.asStack();
-        if (!paper.isEmpty() && !resistor.isEmpty()) {
-            com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder.builder("paper_to_resistor")
-                    .input(paper)
-                    .transitional(paper)
-                    .result(new ItemStack(resistor.getItem(), 2))
-                    .deploying(ChemicalHelper.get(TagPrefix.wireGtSingle, GTMaterials.Copper))
-                    .deploying(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Coal))
-                    .deploying(GTItems.STICKY_RESIN.asStack())
-                    .pressing()
-                    .loops(1)
-                    .save(provider);
-        }
-
         // small gallium arsenide -> diode
         ItemStack smallGa = ChemicalHelper.get(TagPrefix.dustSmall, GTMaterials.GalliumArsenide);
         ItemStack diode = GTItems.DIODE.asStack();
@@ -602,25 +568,6 @@ public class CreateRecipes {
                     .deploying(ChemicalHelper.get(TagPrefix.rod, GTMaterials.Bronze))
                     .deploying(ChemicalHelper.get(TagPrefix.rod, GTMaterials.Bronze))
                     .loops(2)
-                    .save(provider);
-        }
-
-        // resin circuit board -> basic electronic circuit (custom sequence)
-        ItemStack resinBoard = GTItems.COATED_BOARD.asStack();
-        ItemStack basicCircuit = GTItems.ELECTRONIC_CIRCUIT_LV.asStack();
-        if (!resinBoard.isEmpty() && !basicCircuit.isEmpty()) {
-            com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
-                    .builder("basic_electronic_circuit_from_resin")
-                    .input(resinBoard)
-                    .transitional(resinBoard)
-                    .result(basicCircuit)
-                    .deploying(ChemicalHelper.get(TagPrefix.wireGtQuadruple, GTMaterials.Copper))
-                    .deploying(ChemicalHelper.get(TagPrefix.wireGtDouble, GTMaterials.RedAlloy))
-                    .deploying(vacuumTube)
-                    .deploying(resistor)
-                    .filling(resinBoard, GTMaterials.Rubber.getFluid(288))
-                    .pressing()
-                    .loops(1)
                     .save(provider);
         }
 
@@ -787,7 +734,6 @@ public class CreateRecipes {
                 .input(Ingredient.of(ItemTags.PLANKS))
                 .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Wood), 0.4)
                 .save(provider);
-        rawSequencedResinBoard(provider);
     }
 
     private static void addDieselGeneratorRecipes(Consumer<FinishedRecipe> provider) {
@@ -799,23 +745,6 @@ public class CreateRecipes {
                 'B', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Iron),
                 'C', Items.PISTON,
                 'D', ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Zinc));
-        VanillaRecipeHelper.addShapedRecipe(provider,
-                CreateDieselGenerators.rl("crafting/pumpjack_hole"),
-                new ItemStack(CDGBlocks.PUMPJACK_HOLE.get()),
-                "ABA", "CDC", "EFE",
-                'A', CTPPItems.STEEL_MECHANISM.asStack(),
-                'B', AllBlocks.HOSE_PULLEY.asStack(),
-                'C', AllBlocks.COPPER_CASING.asStack(),
-                'D', CTPPBlocks.STEEL_CASING.asStack(),
-                'E', Items.CHAIN,
-                'F', AllBlocks.FLUID_PIPE.asStack());
-        VanillaRecipeHelper.addShapedRecipe(provider,
-                CreateDieselGenerators.rl("crafting/pumpjack_bearing"),
-                new ItemStack(CDGBlocks.PUMPJACK_BEARING.get()),
-                "   ", "ABA", "ACA",
-                'A', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel),
-                'B', AllBlocks.MECHANICAL_BEARING.asStack(),
-                'C', CTPPBlocks.HEAVY_MACHINERY_CASING.asStack());
         VanillaRecipeHelper.addShapedRecipe(provider,
                 CreateDieselGenerators.rl("crafting/basin_lid"),
                 new ItemStack(CDGBlocks.BASIN_LID.get()),
@@ -910,20 +839,6 @@ public class CreateRecipes {
                 .deploying(GTItems.DIODE.asStack())
                 .filling(phenolicBoard, GTMaterials.Tin.getFluid(144))
                 .loops(2)
-                .save(provider);
-    }
-
-    private static void rawSequencedResinBoard(Consumer<FinishedRecipe> provider) {
-        ItemStack circuitBoardMOne = itemStack("ctnhcore:circuit_board_m_one");
-        com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
-                .builder(CTNHCore.id("createfallen/resin_printed_circuit_board"))
-                .input(itemStack("gtceu:wood_plate"))
-                .transitional(circuitBoardMOne)
-                .result(itemStack("gtceu:resin_printed_circuit_board"))
-                .deploying(itemStack("gtceu:copper_foil"))
-                .filling(circuitBoardMOne, GTMaterials.Glue.getFluid(25))
-                .pressing()
-                .loops(4)
                 .save(provider);
     }
 

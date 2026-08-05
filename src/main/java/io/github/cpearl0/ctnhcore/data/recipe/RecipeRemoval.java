@@ -296,8 +296,14 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("createdieselgenerators:mixing/asphalt_block"));
         remove(new RemoveFilter().id("createdieselgenerators:crafting/asphalt_block"));
         remove(new RemoveFilter().id("createdieselgenerators:mixing/biodiesel"));
-        remove(new RemoveFilter().id("createdieselgenerators:mechanical_crafting/pumpjack_crank"));
         remove(new RemoveFilter().id("createdieselgenerators:compacting/plant_oil"));
+        remove(new RemoveFilter().id("createdieselgenerators:crafting/pumpjack_hole"));
+        remove(new RemoveFilter().id("createdieselgenerators:crafting/pumpjack_bearing"));
+        remove(new RemoveFilter().id("createdieselgenerators:crafting/pumpjack_head"));
+        remove(new RemoveFilter().id("createdieselgenerators:mechanical_crafting/pumpjack_crank"));
+        remove(new RemoveFilter().id("createdieselgenerators:crafting/huge_diesel_engine"));
+        remove(new RemoveFilter().id("createdieselgenerators:crafting/engine_pistone"));
+        remove(new RemoveFilter().id("createdieselgenerators:crafting/diesel_engine"));
     }
 
     public static void createoreexcavationRemovals() {
@@ -510,12 +516,17 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("gtceu:shapeless/dust_brass"));
         remove(new RemoveFilter().id("gtceu:shapeless/dust_bronze"));
         remove(new RemoveFilter().id("gtceu:shapeless/potin_dust"));
+        remove(new RemoveFilter().id("gtceu:shaped/coated_board"));
+        remove(new RemoveFilter().id("gtceu:shapeless/coated_board_1x"));
+        remove(new RemoveFilter().id("gtceu:shaped/resistor_wire_carbon"));
         remove(new RemoveFilter().id("gtceu:shaped/vacuum_tube"));
         remove(new RemoveFilter().id("gtceu:assembler/vacuum_tube_plain"));
         remove(new RemoveFilter().id("gtceu:assembler/vacuum_tube_red_alloy"));
         remove(new RemoveFilter().id("gtceu:assembler/vacuum_tube_red_alloy_annealed"));
         remove(new RemoveFilter().id("gtceu:shaped/small_gear_andesite_alloy"));
         remove(new RemoveFilter().id("gtceu:shaped/gear_andesite_alloy"));
+        remove(new RemoveFilter().id("gtceu:shaped/small_gear_wood"));
+        remove(new RemoveFilter().id("gtceu:shaped/gear_treated_wood"));
         remove(new RemoveFilter().id("gtceu:shaped/steam_turbine_lv"));
         remove(new RemoveFilter().id("gtceu:shapeless/iron_magnetic_stick"));
         remove(new RemoveFilter().id("gtceu:shaped/steam_turbine_mv"));

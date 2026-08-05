@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.data.recipe.age;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.UncategorizedMaterials;
-import io.github.cpearl0.ctnhcore.data.recipe.create.CreateRecipeJsonHelper;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
@@ -27,7 +26,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 
-import com.google.gson.JsonObject;
+import com.jesz.createdieselgenerators.CDGBlocks;
+import com.jesz.createdieselgenerators.CDGItems;
 import com.mo_guang.ctpp.data.recipe.builder.create.*;
 import com.mo_guang.ctpp.data.recipe.builder.diesel.DistillationRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.diesel.HammerRecipeBuilder;
@@ -37,6 +37,7 @@ import com.mo_guang.ctpp.data.recipe.builder.vintage.VacuumizingRecipeBuilder;
 import com.mo_guang.ctpp.registry.CTPPBlocks;
 import com.mo_guang.ctpp.registry.CTPPItems;
 import com.mo_guang.ctpp.registry.CreateMaterials;
+import com.negodya1.vintageimprovements.VintageBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
@@ -64,13 +65,18 @@ public class PrimitiveKineticAgeRecipes {
         addRoseQuartzRecipes(provider);
         addCokeOvenBrickRecipes(provider);
         addSmeltingBrickRecipes(provider);
-        addTConstructMachineRecipes(provider);
+        addSearedMelterRecipes(provider);
         addSmelteryControllerRecipe(provider);
-        addTConstructSmelteryIORecipes(provider);
+        addSmelteryIORecipes(provider);
         addSteelRecipes(provider);
+        addHelveHammerRecipes(provider);
+        addSteamEngineRecipes(provider);
+        addDieselEngineRecipes(provider);
+        addPumpJackRecipes(provider);
         addPlantOilRecipes(provider);
         addFirebrickRecipes(provider);
         addRubberRecipes(provider);
+        addWoodGearRecipes(provider);
         addKineticCraftingRecipes(provider);
         addKineticMechanicalCraftingRecipes(provider);
         addKineticMechanismRecipes(provider);
@@ -82,6 +88,7 @@ public class PrimitiveKineticAgeRecipes {
         addCopperCasingRecipes(provider);
         addCarbonizedLogRecipes(provider);
         addSteelCasingRecipes(provider);
+        addCircuitRecipes(provider);
     }
 
     private static void addWroughtIronRecipes(Consumer<FinishedRecipe> provider) {
@@ -98,7 +105,7 @@ public class PrimitiveKineticAgeRecipes {
                 .output(TagPrefix.ingot, GTMaterials.WroughtIron)
                 .save(provider);
 
-        PressingRecipeBuilder.builder("wrought_iron_ingot_from_hot")
+        PressingRecipeBuilder.builder(CTNHCore.id("wrought_iron_ingot_from_hot"))
                 .input(TagPrefix.ingotHot, GTMaterials.WroughtIron)
                 .output(TagPrefix.ingot, GTMaterials.WroughtIron)
                 .save(provider);
@@ -122,6 +129,77 @@ public class PrimitiveKineticAgeRecipes {
                 ChemicalHelper.get(TagPrefix.dust, GTMaterials.NetherQuartz),
                 "X", "m",
                 'X', Items.QUARTZ);
+    }
+
+    private static void addSteamEngineRecipes(Consumer<FinishedRecipe> provider) {
+        // 机动原版蒸汽引擎
+        SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("bronze_machine_casing_to_steam_engine"))
+                .input(AllBlocks.COPPER_CASING.asStack())
+                .transitional(AllBlocks.COPPER_CASING.asStack())
+                .result(AllBlocks.STEAM_ENGINE.asStack())
+                .deploying(ChemicalHelper.get(TagPrefix.rod, GTMaterials.Steel))
+                .deploying(ChemicalHelper.get(TagPrefix.rod, GTMaterials.Steel))
+                .deploying(CTPPItems.STEEL_MECHANISM.asStack())
+                .deploying(ChemicalHelper.get(TagPrefix.ring, GTMaterials.Rubber))
+                .filling(AllBlocks.COPPER_CASING.asStack(), GTMaterials.Lubricant.getFluid(250))
+                .save(provider);
+    }
+
+    private static void addDieselEngineRecipes(Consumer<FinishedRecipe> provider) {
+        // 引擎活塞
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/engine_piston"),
+                CDGItems.ENGINE_PISTON.asStack(2),
+                "AB ", "BC ", "  D",
+                'A', CTPPItems.STEEL_MECHANISM.asStack(),
+                'B', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Iron),
+                'C', Items.PISTON,
+                'D', ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Zinc));
+        // 柴油引擎
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/diesel_engine"),
+                CDGBlocks.DIESEL_ENGINE.asStack(4),
+                " A ", "BCB", "DED",
+                'A', CTPPItems.STEEL_MECHANISM.asStack(),
+                'B', CDGItems.ENGINE_PISTON,
+                'C', ChemicalHelper.get(TagPrefix.block, GTMaterials.Brass),
+                'D', AllBlocks.FLUID_TANK,
+                'E', CTPPBlocks.STEEL_CASING);
+    }
+
+    private static void addPumpJackRecipes(Consumer<FinishedRecipe> provider) {
+        // 抽油机四件套
+        VanillaRecipeHelper.addShapedRecipe(provider,
+                CTNHCore.id("crafttable/pumpjack_hole"),
+                CDGBlocks.PUMPJACK_HOLE.asStack(),
+                "ABA", "CDC", "EFE",
+                'A', CTPPItems.STEEL_MECHANISM.asStack(),
+                'B', AllBlocks.HOSE_PULLEY.asStack(),
+                'C', AllBlocks.COPPER_CASING.asStack(),
+                'D', CTPPBlocks.STEEL_CASING.asStack(),
+                'E', Items.CHAIN,
+                'F', AllBlocks.FLUID_PIPE.asStack());
+        VanillaRecipeHelper.addShapedRecipe(provider,
+                CTNHCore.id("crafttable/pumpjack_bearing"),
+                CDGBlocks.PUMPJACK_BEARING.asStack(),
+                "   ", "ABA", "ACA",
+                'A', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel),
+                'B', AllBlocks.MECHANICAL_BEARING.asStack(),
+                'C', CTPPBlocks.HEAVY_MACHINERY_CASING.asStack());
+        VanillaRecipeHelper.addShapedRecipe(provider,
+                CTNHCore.id("crafttable/pumpjack_head"),
+                CDGBlocks.PUMPJACK_HEAD.asStack(),
+                "A A", "CBC", "A A",
+                'A', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy),
+                'B', Items.DRIED_KELP,
+                'C', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel));
+        MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("diesel/pumpjack_crank"))
+                .pattern("A A", "S S", "AIA", "ZSZ", "AMA")
+                .key('A', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy))
+                .key('I', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
+                .key('Z', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Zinc))
+                .key('M', CTPPItems.STEEL_MECHANISM.asStack())
+                .key('S', AllBlocks.SHAFT.asStack())
+                .result(CDGBlocks.PUMPJACK_CRANK.asStack())
+                .save(provider);
     }
 
     private static void addGlassRecipes(Consumer<FinishedRecipe> provider) {
@@ -162,14 +240,14 @@ public class PrimitiveKineticAgeRecipes {
                 'B', Items.ANDESITE);
 
         // 安山合金粉（熔融铁与安山岩粉）
-        MixingRecipeBuilder.builder("andesite_alloy_from_iron")
+        MixingRecipeBuilder.builder(CTNHCore.id("andesite_alloy_from_iron"))
                 .result(new ItemStack(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy).getItem(), 2))
                 .inputFluid(GTMaterials.Iron.getFluid(144))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Andesite))
                 .save(provider);
 
         // 安山合金粉（铁粉副产）
-        MixingRecipeBuilder.builder("andesite_alloy_dust_with_secondary")
+        MixingRecipeBuilder.builder(CTNHCore.id("andesite_alloy_dust_with_secondary"))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Andesite))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Iron))
                 .result(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy))
@@ -200,6 +278,20 @@ public class PrimitiveKineticAgeRecipes {
                 ChemicalHelper.get(TagPrefix.gear, CreateMaterials.AndesiteAlloy),
                 "S", "f",
                 'S', CTNHBlocks.ANDESITE_ALLOY_SLAB.asStack());
+    }
+
+    private static void addWoodGearRecipes(Consumer<FinishedRecipe> provider) {
+        // 小木齿轮（木板 + 锉刀）
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/small_gear_wood"),
+                ChemicalHelper.get(TagPrefix.gearSmall, GTMaterials.Wood),
+                "P", "f",
+                'P', ItemTags.PLANKS);
+
+        // 防腐木齿轮（防腐木台阶 + 锉刀）
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/gear_treated_wood"),
+                ChemicalHelper.get(TagPrefix.gear, GTMaterials.TreatedWood),
+                "S", "f",
+                'S', GTBlocks.TREATED_WOOD_SLAB.asStack());
     }
 
     private static void addRoseQuartzRecipes(Consumer<FinishedRecipe> provider) {
@@ -284,7 +376,7 @@ public class PrimitiveKineticAgeRecipes {
                 new ItemStack(TinkerSmeltery.searedBrick.get()), 0.3f);
     }
 
-    private static void addTConstructMachineRecipes(Consumer<FinishedRecipe> provider) {
+    private static void addSearedMelterRecipes(Consumer<FinishedRecipe> provider) {
         // 焦黑熔化炉：5 焦黑砖 + 1 焦黑储罐（燃料表/储量表，空罐）
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/seared_melter"),
                 new ItemStack(TinkerSmeltery.searedMelter.get()),
@@ -308,7 +400,7 @@ public class PrimitiveKineticAgeRecipes {
                 .save(provider);
     }
 
-    private static void addTConstructSmelteryIORecipes(Consumer<FinishedRecipe> provider) {
+    private static void addSmelteryIORecipes(Consumer<FinishedRecipe> provider) {
         // 焦黑排液孔（4 焦黑砖 + 2 机械动力流体管道；原 GTC 铜锭配方已注释停用）
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/seared_drain"),
                 new ItemStack(TinkerSmeltery.searedDrain.get()),
@@ -330,6 +422,20 @@ public class PrimitiveKineticAgeRecipes {
                 TinkerFluids.moltenSteel,
                 FluidValues.INGOT * 8)
                 .save(provider, CTNHCore.id("smeltery/melting/refined_iron_ingot_to_steel"));
+    }
+
+    private static void addHelveHammerRecipes(Consumer<FinishedRecipe> provider) {
+        // 杠杆锤
+        MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/helve_hammer"))
+                .pattern(" A FF", "ABBCD", "AA  E")
+                .key('A', Blocks.IRON_BLOCK.asItem())
+                .key('B', ItemTags.LOGS)
+                .key('C', CTPPItems.STEEL_MECHANISM.asStack())
+                .key('D', AllBlocks.ANDESITE_CASING.asItem())
+                .key('E', AllBlocks.SHAFT.asItem())
+                .key('F', ChemicalHelper.get(TagPrefix.spring, GTMaterials.Iron))
+                .output(VintageBlocks.HELVE.asStack())
+                .save(provider);
     }
 
     private static void addPlantOilRecipes(Consumer<FinishedRecipe> provider) {
@@ -464,20 +570,20 @@ public class PrimitiveKineticAgeRecipes {
                 AllBlocks.ANDESITE_CASING.asStack(),
                 ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy));
 
-        // 小型齿轮
+        // 小型齿轮（传动杆 + 小木齿轮）
         VanillaRecipeHelper.addShapedRecipe(provider, true,
                 CTNHCore.id("crafttable/cogwheel"), AllBlocks.COGWHEEL.asStack(4),
-                " A ", "ABA", " A ",
-                'A', ItemTags.PLANKS,
-                'B', ChemicalHelper.get(TagPrefix.gearSmall, CreateMaterials.AndesiteAlloy));
+                "B", "A",
+                'A', ChemicalHelper.get(TagPrefix.gearSmall, GTMaterials.Wood),
+                'B', AllBlocks.SHAFT.asStack());
 
-        // 大型齿轮
+        // 大型齿轮（传动杆 + 防腐木齿轮）
         VanillaRecipeHelper.addShapedRecipe(provider, true,
                 CTNHCore.id("crafttable/large_cogwheel"),
                 AllBlocks.LARGE_COGWHEEL.asStack(4),
-                " A ", "ABA", " A ",
-                'A', GTBlocks.TREATED_WOOD_PLANK.asStack(),
-                'B', ChemicalHelper.get(TagPrefix.gear, CreateMaterials.AndesiteAlloy));
+                "B", "A",
+                'A', ChemicalHelper.get(TagPrefix.gear, GTMaterials.TreatedWood),
+                'B', AllBlocks.SHAFT.asStack());
 
         // 水车
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/water_wheel"),
@@ -823,25 +929,25 @@ public class PrimitiveKineticAgeRecipes {
 
     private static void addCopperCasingRecipes(Consumer<FinishedRecipe> provider) {
         // 铜机壳（青铜锭与去皮原木）
-        addCopperCasingRecipe(provider, "copper_casing_from_log", CreateRecipeJsonHelper.tag("forge:stripped_logs"),
-                "gtceu:bronze_ingot");
+        ItemApplicationRecipeBuilder.builder("copper_casing_from_log")
+                .input(TagUtil.createItemTag("stripped_logs"))
+                .input(ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Bronze))
+                .result(AllBlocks.COPPER_CASING.asStack())
+                .save(provider);
 
         // 铜机壳（青铜锭与去皮木）
-        addCopperCasingRecipe(provider, "copper_casing_from_wood", CreateRecipeJsonHelper.tag("forge:stripped_wood"),
-                "gtceu:bronze_ingot");
+        ItemApplicationRecipeBuilder.builder("copper_casing_from_wood")
+                .input(TagUtil.createItemTag("stripped_wood"))
+                .input(ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Bronze))
+                .result(AllBlocks.COPPER_CASING.asStack())
+                .save(provider);
 
         // 铜机壳（铜板与安山机壳）
-        addCopperCasingRecipe(provider, "copper_casing_from_andesite_casing",
-                CreateRecipeJsonHelper.item("create:andesite_casing"), "gtceu:copper_plate");
-    }
-
-    private static void addCopperCasingRecipe(Consumer<FinishedRecipe> provider, String name, JsonObject baseIngredient,
-                                              String metalIngredient) {
-        JsonObject recipe = CreateRecipeJsonHelper.recipe("create:item_application");
-        recipe.add("ingredients",
-                CreateRecipeJsonHelper.array(baseIngredient, CreateRecipeJsonHelper.item(metalIngredient)));
-        recipe.add("results", CreateRecipeJsonHelper.array(CreateRecipeJsonHelper.item("create:copper_casing")));
-        CreateRecipeJsonHelper.save(provider, CTNHCore.id("create/" + name).toString(), recipe);
+        ItemApplicationRecipeBuilder.builder("copper_casing_from_andesite_casing")
+                .input(AllBlocks.ANDESITE_CASING.asStack())
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Copper))
+                .result(AllBlocks.COPPER_CASING.asStack())
+                .save(provider);
     }
 
     private static void addCarbonizedLogRecipes(Consumer<FinishedRecipe> provider) {
@@ -875,6 +981,53 @@ public class PrimitiveKineticAgeRecipes {
                 .input(CTPPBlocks.STEEL_CASING.asStack())
                 .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
                 .result(CTPPBlocks.HEAVY_MACHINERY_CASING.asStack())
+                .save(provider);
+    }
+
+    private static void addCircuitRecipes(Consumer<FinishedRecipe> provider) {
+        // 电阻（纸 + 细铜导线 + 煤粉 + 树脂）
+        SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("paper_to_resistor"))
+                .input(Items.PAPER)
+                .transitional(Items.PAPER)
+                .result(GTItems.RESISTOR.asStack(2))
+                .deploying(ChemicalHelper.get(TagPrefix.wireFine, GTMaterials.Copper))
+                .deploying(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Coal))
+                .filling(new ItemStack(Items.PAPER), GTMaterials.Glue.getFluid(500))
+                .loops(1)
+                .save(provider);
+
+        // 覆膜电路基板（木板 + GT 胶水注液）
+        SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("coated_board_from_plank"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Wood))
+                .transitional(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Wood))
+                .filling(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Wood), GTMaterials.Glue.getFluid(100))
+                .result(GTItems.COATED_BOARD.asStack())
+                .loops(2)
+                .save(provider);
+
+        // 覆膜电路印刷基板（木板 + GT 胶水注液）
+        SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("createfallen/resin_printed_circuit_board"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Wood))
+                .transitional(CTNHItems.CIRCUIT_BOARD_M_ONE.asStack())
+                .result(GTItems.BASIC_CIRCUIT_BOARD.asStack())
+                .deploying(ChemicalHelper.get(TagPrefix.foil, GTMaterials.Copper))
+                .filling(CTNHItems.CIRCUIT_BOARD_M_ONE.asStack(), GTMaterials.Glue.getFluid(50))
+                .pressing()
+                .loops(2)
+                .save(provider);
+
+        // lv电路板
+        SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("basic_electronic_circuit_from_resin"))
+                .input(GTItems.COATED_BOARD.asStack())
+                .transitional(GTItems.COATED_BOARD.asStack())
+                .result(GTItems.ELECTRONIC_CIRCUIT_LV.asStack())
+                .deploying(ChemicalHelper.get(TagPrefix.wireGtQuadruple, GTMaterials.Copper))
+                .deploying(ChemicalHelper.get(TagPrefix.wireGtDouble, GTMaterials.RedAlloy))
+                .deploying(GTItems.VACUUM_TUBE.asStack())
+                .deploying(GTItems.RESISTOR.asStack())
+                .filling(GTItems.COATED_BOARD.asStack(), GTMaterials.Rubber.getFluid(288))
+                .pressing()
+                .loops(1)
                 .save(provider);
     }
 }

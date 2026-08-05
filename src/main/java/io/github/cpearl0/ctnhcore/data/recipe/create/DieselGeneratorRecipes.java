@@ -14,12 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 import com.jesz.createdieselgenerators.CDGBlocks;
-import com.jesz.createdieselgenerators.CDGItems;
 import com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder;
-import com.mo_guang.ctpp.registry.CTPPBlocks;
-import com.mo_guang.ctpp.registry.CTPPItems;
-import com.mo_guang.ctpp.registry.CreateMaterials;
-import com.simibubi.create.AllBlocks;
 import com.soytutta.mynethersdelight.common.registry.MNDItems;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
@@ -27,12 +22,6 @@ import java.util.function.Consumer;
 
 public class DieselGeneratorRecipes {
 
-    private static final ItemStack HOSE_PULLEY = new ItemStack(AllBlocks.HOSE_PULLEY.asItem());
-    private static final ItemStack COPPER_CASING = AllBlocks.COPPER_CASING.asStack();
-    private static final ItemStack FLUID_PIPE = AllBlocks.FLUID_PIPE.asStack();
-    private static final ItemStack MECHANICAL_BEARING = AllBlocks.MECHANICAL_BEARING.asStack();
-    private static final ItemStack STEEL_CASING = CTPPBlocks.STEEL_CASING.asStack();
-    private static final ItemStack HEAVY_MACHINERY_CASING = CTPPBlocks.HEAVY_MACHINERY_CASING.asStack();
     private static final ItemStack TALLOW = CTNHItems.TALLOW.asStack();
 
     public static void init(Consumer<FinishedRecipe> provider) {
@@ -44,34 +33,6 @@ public class DieselGeneratorRecipes {
     }
 
     private static void shapedRecipes(Consumer<FinishedRecipe> provider) {
-        // engine_piston
-        VanillaRecipeHelper.addShapedRecipe(provider, "crafttable/diesel_engine_piston",
-                CDGItems.ENGINE_PISTON.asStack(2),
-                "AB ", "BC ", "  D",
-                'A', CTPPItems.STEEL_MECHANISM.asStack(),
-                'B', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Iron),
-                'C', new ItemStack(Items.PISTON),
-                'D', ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Zinc));
-
-        // pumpjack_hole
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/pumpjack_hole"),
-                CDGBlocks.PUMPJACK_HOLE.asStack(),
-                "ABA", "CDC", "EFE",
-                'A', CTPPItems.STEEL_MECHANISM.asStack(),
-                'B', HOSE_PULLEY,
-                'C', COPPER_CASING,
-                'D', STEEL_CASING,
-                'E', new ItemStack(Items.CHAIN),
-                'F', FLUID_PIPE);
-
-        // pumpjack_bearing
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/pumpjack_bearing"),
-                CDGBlocks.PUMPJACK_BEARING.asStack(),
-                "   ", "ABA", "ACA",
-                'A', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel),
-                'B', MECHANICAL_BEARING,
-                'C', HEAVY_MACHINERY_CASING);
-
         // basin_lid
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/basin_lid"),
                 CDGBlocks.BASIN_LID.asStack(),
@@ -85,15 +46,6 @@ public class DieselGeneratorRecipes {
     private static void mechanicalCraftingRecipes(Consumer<FinishedRecipe> provider) {
         // CTNH-specific pumpjack crank ingredients.
         // 原版配方：andesite_alloy_ingot → andesite_alloy_plate、iron_plate → steel_plate、zinc_ingot → zinc_plate
-        com.mo_guang.ctpp.data.recipe.builder.create.MechanicalCraftingRecipeBuilder
-                .builder(CTNHCore.id("diesel/pumpjack_crank"))
-                .pattern("AIA", " S ", "AIA", "ZSZ", "AZA")
-                .key('A', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy))
-                .key('I', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
-                .key('Z', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Zinc))
-                .key('S', AllBlocks.SHAFT.asStack())
-                .result(new ItemStack(CDGBlocks.PUMPJACK_CRANK.get()))
-                .save(provider);
     }
 
     private static void mixingRecipes(Consumer<FinishedRecipe> provider) {

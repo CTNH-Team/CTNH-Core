@@ -20,7 +20,6 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import com.mo_guang.ctpp.data.recipe.builder.create.MechanicalCraftingRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.vintage.CoilingRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.vintage.CurvingRecipeBuilder;
@@ -111,16 +110,6 @@ public final class CreateVintageRecipe {
                 'E', ChemicalHelper.get(TagPrefix.spring, GTMaterials.Iron),
                 'F', Items.QUARTZ,
                 'G', vintageItem("vintageimprovements:laser_item"));
-        MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/helve_hammer"))
-                .pattern(" A FF", "ABBCD", "AA  E")
-                .key('A', Blocks.IRON_BLOCK.asItem())
-                .key('B', ItemTags.LOGS)
-                .key('C', CTPPItems.STEEL_MECHANISM.asStack())
-                .key('D', AllBlocks.ANDESITE_CASING.asItem())
-                .key('E', AllBlocks.SHAFT.asItem())
-                .key('F', ChemicalHelper.get(TagPrefix.spring, GTMaterials.Iron))
-                .output(VintageBlocks.HELVE.asStack())
-                .save(provider);
     }
 
     private static void addVintageImprovementsRecipes(Consumer<FinishedRecipe> provider) {
