@@ -19,6 +19,7 @@ import com.ctnhlang.CN;
 import com.ctnhlang.EN;
 import com.ctnhlang.Prefix;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+import vectorwing.farmersdelight.common.registry.ModItems;
 
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -99,8 +100,7 @@ public class BioChemistryRecipes {
 
         MACERATOR_RECIPES.recipeBuilder(CTNHCore.id("lignin"))
                 .EUt(30)
-                .inputItems(Objects.requireNonNull(
-                        ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("farmersdelight:tree_bark"))))
+                .inputItems(ModItems.TREE_BARK.get())
                 .outputItems(dust, GTMaterials.Wood, 2)
                 .chancedOutput(ChemicalHelper.get(dust, YeastRelatedMaterials.LIGNIN, 2), 7500, 500)
                 .chancedOutput(ChemicalHelper.get(dust, YeastRelatedMaterials.LIGNIN), 5000, 0)

@@ -6,11 +6,10 @@ import net.createmod.catnip.math.Pointing;
 import net.createmod.ponder.api.scene.SceneBuilder;
 import net.createmod.ponder.api.scene.SceneBuildingUtil;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.registries.ForgeRegistries;
+
+import me.khajiitos.jackseconomy.init.ItemBlockReg;
 
 public class MechanicalExporter {
 
@@ -19,9 +18,7 @@ public class MechanicalExporter {
     public static void Common(SceneBuilder builder, SceneBuildingUtil util) {
         Vec3 mainBlockTextVec = util.vector().blockSurface(util.grid().at(2, 1, 2), Direction.WEST);
         Vec3 inputItemsVec = util.vector().blockSurface(util.grid().at(2, 1, 2), Direction.UP);
-        Item goldenExporterManifest = ForgeRegistries.ITEMS.getValue(
-                ResourceLocation.fromNamespaceAndPath("jackseconomy", "golden_exporter_manifest"));
-        ItemStack goldenExporterManifests = new ItemStack(goldenExporterManifest);
+        ItemStack goldenExporterManifests = new ItemStack(ItemBlockReg.GOLDEN_EXPORTER_TICKET_ITEM.get());
 
         CTNHCorePonderSceneBuilder scene = new CTNHCorePonderSceneBuilder(builder);
         scene.title("mechanical_exporter_common", "Mechanical Exporter", "应力出售机");

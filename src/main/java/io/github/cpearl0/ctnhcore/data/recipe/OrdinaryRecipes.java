@@ -25,6 +25,7 @@ import com.moguang.ctnhbio.registry.CBBlocks;
 import com.moguang.ctnhbio.registry.CBItems;
 import com.moguang.ctnhbio.registry.CBMachines;
 import com.wintercogs.ae2omnicells.common.init.OCItems;
+import dev.shadowsoffire.hostilenetworks.Hostile;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEBlocks;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines;
 
@@ -181,7 +182,7 @@ public class OrdinaryRecipes {
                 .save(provider);
 
         CBRecipeBuilder.of(CTNHCore.id("neural_model_accessor"), ASSEMBLER_RECIPES)
-                .inputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("hostilenetworks:sim_chamber")), 1)
+                .inputItems(Hostile.Items.SIM_CHAMBER.get(), 1)
                 .inputItems(OPTICAL_PIPES[0].asStack(64))
                 .inputItems(TOOL_DATA_STICK, 64)
                 .inputItems(HEAVY_PLATE_T3, 16)

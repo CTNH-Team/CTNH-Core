@@ -1,18 +1,18 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
+import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
@@ -22,7 +22,6 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.List;
-import java.util.Objects;
 
 @Setter
 @Getter
@@ -60,11 +59,7 @@ public class NaqReactorMachine extends RecipeElectricMultiblockMachine implement
             int parallelCount = getParallelCount();  // 获取当前并行数
             int fluidConsumption = FLUID_AMOUNT * parallelCount;  // 计算消耗量
 
-            FluidStack nickelPlasmaFluid = new FluidStack(
-                    Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(
-                            ResourceLocation.tryParse("gtceu:nickel_plasma"))),
-                    fluidConsumption  // 动态调整流体消耗量
-            );
+            FluidStack nickelPlasmaFluid = GTMaterials.Nickel.getFluid(FluidStorageKeys.PLASMA, fluidConsumption);  // 动态调整流体消耗量
 
             boolean isFluidSufficient = MachineUtils.inputFluids(this, nickelPlasmaFluid);  // 检查是否有足够流体
 
