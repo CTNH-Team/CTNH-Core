@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe.chain;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.BauxiteProcessingMaterials;
 
 import com.gregtechceu.gtceu.common.data.GTMaterials;
@@ -19,7 +20,7 @@ public class GoldChain {
     public static void init(Consumer<FinishedRecipe> provider) {
         // 从 GoldChain.js 迁移
         // 1. Tier1 gold processing: gold_alloy_dust -> tiny_gold_dust + copper_dust
-        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder("tier1_gold_processing")
+        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("tier1_gold_processing"))
                 .inputItems(dust, GOLD_ALLOY, 4)
                 .outputItems(dustTiny, Gold, 4)
                 .outputItems(dust, Copper, 3)
@@ -27,7 +28,7 @@ public class GoldChain {
                 .save(provider);
 
         // 2. Tier2 gold processing: gold_leach_dust + hydrogen -> water + copper_dust + tiny_gold_dust
-        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("tier2_gold_processing")
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("tier2_gold_processing"))
                 .inputItems(dust, GOLD_LEACH, 4)
                 .inputFluids(Hydrogen.getFluid(1000))
                 .outputFluids(Water.getFluid(1000))
@@ -37,7 +38,7 @@ public class GoldChain {
                 .save(provider);
 
         // 3. Tier3 gold processing: copper_leach_dust -> copper_dust + chancedOutput(lead/iron/gallium/nickel/silver)
-        GTRecipeTypes.SIFTER_RECIPES.recipeBuilder("tier3_gold_processing")
+        GTRecipeTypes.SIFTER_RECIPES.recipeBuilder(CTNHCore.id("tier3_gold_processing"))
                 .inputItems(dust, COPPER_LEACH, 4)
                 .outputItems(dust, Copper, 3)
                 .chancedOutput(dust, Lead, 1500, 500)
@@ -49,28 +50,28 @@ public class GoldChain {
                 .save(provider);
 
         // 4-7. Gold alloy recipes
-        GTRecipeTypes.ALLOY_SMELTER_RECIPES.recipeBuilder("gold_alloy1")
+        GTRecipeTypes.ALLOY_SMELTER_RECIPES.recipeBuilder(CTNHCore.id("gold_alloy1"))
                 .inputItems(dust, PreciousAlloy)
                 .inputItems(dust, Copper, 3)
                 .outputItems(ingot, GOLD_ALLOY, 4)
                 .EUt(30).duration(100)
                 .save(provider);
 
-        GTRecipeTypes.ALLOY_SMELTER_RECIPES.recipeBuilder("gold_alloy2")
+        GTRecipeTypes.ALLOY_SMELTER_RECIPES.recipeBuilder(CTNHCore.id("gold_alloy2"))
                 .inputItems(ingot, PreciousAlloy)
                 .inputItems(dust, Copper, 3)
                 .outputItems(ingot, GOLD_ALLOY, 4)
                 .EUt(30).duration(100)
                 .save(provider);
 
-        GTRecipeTypes.ALLOY_SMELTER_RECIPES.recipeBuilder("gold_alloy3")
+        GTRecipeTypes.ALLOY_SMELTER_RECIPES.recipeBuilder(CTNHCore.id("gold_alloy3"))
                 .inputItems(dust, PreciousAlloy)
                 .inputItems(ingot, Copper, 3)
                 .outputItems(ingot, GOLD_ALLOY, 4)
                 .EUt(30).duration(100)
                 .save(provider);
 
-        GTRecipeTypes.ALLOY_SMELTER_RECIPES.recipeBuilder("gold_alloy4")
+        GTRecipeTypes.ALLOY_SMELTER_RECIPES.recipeBuilder(CTNHCore.id("gold_alloy4"))
                 .inputItems(ingot, PreciousAlloy)
                 .inputItems(ingot, Copper, 3)
                 .outputItems(ingot, GOLD_ALLOY, 4)
@@ -78,7 +79,7 @@ public class GoldChain {
                 .save(provider);
 
         // 8. Gold leach dust
-        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("gold_leach_dust")
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("gold_leach_dust"))
                 .inputItems(ingot, GOLD_ALLOY, 4)
                 .inputFluids(GTMaterials.NitricAcid.getFluid(1000))
                 .outputItems(dust, GOLD_LEACH, 4)
@@ -87,7 +88,7 @@ public class GoldChain {
                 .save(provider);
 
         // 9. Copper leach dust
-        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("copper_leach_dust")
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("copper_leach_dust"))
                 .inputItems(dust, GOLD_LEACH, 4)
                 .inputFluids(GTMaterials.HydrochloricAcid.getFluid(1000))
                 .outputItems(dust, COPPER_LEACH, 4)
@@ -96,7 +97,7 @@ public class GoldChain {
                 .save(provider);
 
         // 10. Chloroauric acid to gold
-        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("chloroauricacid_to_gold")
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("chloroauricacid_to_gold"))
                 .inputFluids(CHLOROAURIC_ACID.getFluid(1000))
                 .notConsumable(dust, BauxiteProcessingMaterials.POTASSIUM_METABI_SULFITE)
                 .outputItems(dust, Gold, 2)
@@ -106,7 +107,7 @@ public class GoldChain {
                 .save(provider);
 
         // 11. Potassium metabisulfite
-        GTRecipeTypes.MIXER_RECIPES.recipeBuilder("potassium_metabi_sulfite_dust")
+        GTRecipeTypes.MIXER_RECIPES.recipeBuilder(CTNHCore.id("potassium_metabi_sulfite_dust"))
                 .circuitMeta(1)
                 .inputItems(dust, Potassium, 2)
                 .inputItems(dust, Sulfur, 2)

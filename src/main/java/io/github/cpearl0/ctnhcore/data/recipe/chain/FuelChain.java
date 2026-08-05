@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe.chain;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
@@ -26,7 +27,7 @@ import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.ROCKET_E
 public class FuelChain {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        GTRecipeTypes.MIXER_RECIPES.recipeBuilder("black_matter")
+        GTRecipeTypes.MIXER_RECIPES.recipeBuilder(CTNHCore.id("black_matter"))
                 .inputItems(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Lead, 3))
                 .inputItems(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Manganese, 5))
                 .inputItems(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Carbon, 12))
@@ -34,7 +35,7 @@ public class FuelChain {
                 .circuitMeta(13)
                 .duration(82).EUt(120).save(provider);
 
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("chemical_plant")
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("chemical_plant"))
                 .inputItems(GTMachines.HULL[GTValues.MV].asStack(4))
                 .inputItems(ChemicalHelper.get(TagPrefix.plate, GTMaterials.AnnealedCopper, 16))
                 .inputItems(ChemicalHelper.get(TagPrefix.pipeLargeFluid, GTMaterials.Polyethylene, 4))
@@ -45,7 +46,7 @@ public class FuelChain {
                 .circuitMeta(19)
                 .duration(120).EUt(120).save(provider);
 
-        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder("rp_1_mixed_fuel")
+        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder(CTNHCore.id("rp_1_mixed_fuel_1"))
                 .addCondition(new PlantCasingCondition(4))
                 .inputFluids(GTMaterials.Oxygen.getFluid(2000))
                 .inputFluids(CTNHMaterials.RP1RocketFuel.getFluid(500))
@@ -53,19 +54,19 @@ public class FuelChain {
                 .circuitMeta(1)
                 .duration(15).EUt(480).save(provider);
 
-        GTRecipeTypes.DISTILLERY_RECIPES.recipeBuilder("rp_1_rocket_fuel")
+        GTRecipeTypes.DISTILLERY_RECIPES.recipeBuilder(CTNHCore.id("rp_1_rocket_fuel"))
                 .inputFluids(CTNHMaterials.Kerosene.getFluid(20))
                 .outputFluids(CTNHMaterials.RP1RocketFuel.getFluid(15))
                 .circuitMeta(23)
                 .duration(5).EUt(120).save(provider);
 
-        GTRecipeTypes.DISTILLERY_RECIPES.recipeBuilder("kerosene")
+        GTRecipeTypes.DISTILLERY_RECIPES.recipeBuilder(CTNHCore.id("kerosene"))
                 .inputFluids(GTMaterials.Diesel.getFluid(250))
                 .outputFluids(CTNHMaterials.Kerosene.getFluid(150))
                 .circuitMeta(23)
                 .duration(16).EUt(120).save(provider);
 
-        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder("dense_hydrazine_mixed_fuel")
+        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder(CTNHCore.id("dense_hydrazine_mixed_fuel_1"))
                 .addCondition(new PlantCasingCondition(5))
                 .inputFluids(GTMaterials.Methanol.getFluid(6000))
                 .inputFluids(CTNHMaterials.Hydrazine.getFluid(4000))
@@ -73,7 +74,7 @@ public class FuelChain {
                 .circuitMeta(2)
                 .duration(30).EUt(480).save(provider);
 
-        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder("hydrazine")
+        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder(CTNHCore.id("hydrazine"))
                 .addCondition(new PlantCasingCondition(2))
                 .inputFluids(GTMaterials.Ammonia.getFluid(1000))
                 .inputFluids(GTMaterials.HydrogenPeroxide.getFluid(1000))
@@ -81,7 +82,7 @@ public class FuelChain {
                 .circuitMeta(2)
                 .duration(10).EUt(480).save(provider);
 
-        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder("hydrogen_peroxide_oxygen")
+        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder(CTNHCore.id("hydrogen_peroxide_oxygen"))
                 .addCondition(new PlantCasingCondition(2))
                 .inputFluids(GTMaterials.Oxygen.getFluid(10000))
                 .inputFluids(CTNHMaterials.EthylAnthraHydroQuinone.getFluid(5000))
@@ -91,7 +92,7 @@ public class FuelChain {
                 .circuitMeta(4)
                 .duration(5).EUt(480).save(provider);
 
-        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder("hydrogen_peroxide_air")
+        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder(CTNHCore.id("hydrogen_peroxide_air"))
                 .addCondition(new PlantCasingCondition(2))
                 .inputFluids(GTMaterials.Air.getFluid(20000))
                 .inputFluids(CTNHMaterials.EthylAnthraHydroQuinone.getFluid(5000))
@@ -101,7 +102,7 @@ public class FuelChain {
                 .circuitMeta(4)
                 .duration(30).EUt(480).save(provider);
 
-        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder("ethyl_anthra_quinone")
+        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder(CTNHCore.id("ethyl_anthra_quinone"))
                 .addCondition(new PlantCasingCondition(3))
                 .inputItems(ChemicalHelper.get(TagPrefix.dust, CTNHMaterials.PhthalicAnhydride, 15))
                 .inputFluids(GTMaterials.Ethylbenzene.getFluid(1000))
@@ -109,14 +110,14 @@ public class FuelChain {
                 .circuitMeta(4)
                 .duration(15).EUt(120).save(provider);
 
-        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("phthalic_anhydride")
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("phthalic_anhydride"))
                 .inputItems(ChemicalHelper.get(TagPrefix.dustSmall, CTNHMaterials.VanadiumPentoxide, 1))
                 .inputFluids(GTMaterials.Naphthalene.getFluid(1000))
                 .inputFluids(GTMaterials.Air.getFluid(1000))
                 .outputItems(ChemicalHelper.get(TagPrefix.dust, CTNHMaterials.PhthalicAnhydride, 15))
                 .duration(40).EUt(1960).save(provider);
 
-        GTRecipeTypes.BLAST_RECIPES.recipeBuilder("vanadium_pentoxide")
+        GTRecipeTypes.BLAST_RECIPES.recipeBuilder(CTNHCore.id("vanadium_pentoxide"))
                 .inputItems(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Vanadium, 2))
                 .inputFluids(GTMaterials.Oxygen.getFluid(5000))
                 .outputItems(ChemicalHelper.get(TagPrefix.dust, CTNHMaterials.VanadiumPentoxide, 7))
@@ -124,14 +125,14 @@ public class FuelChain {
                 .blastFurnaceTemp(2500)
                 .duration(10).EUt(120).save(provider);
 
-        GTRecipeTypes.MIXER_RECIPES.recipeBuilder("orange_metal_catalyst")
+        GTRecipeTypes.MIXER_RECIPES.recipeBuilder(CTNHCore.id("orange_metal_catalyst"))
                 .inputItems(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Vanadium, 1))
                 .inputItems(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Palladium, 1))
                 .outputItems(ChemicalHelper.get(CTNHTagPrefixes.catalyst, CTNHMaterials.OrangeMetal, 1))
                 .circuitMeta(32)
                 .duration(8).EUt(480).save(provider);
 
-        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder("ethyl_anthra_hydro_quinone")
+        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder(CTNHCore.id("ethyl_anthra_hydro_quinone"))
                 .addCondition(new PlantCasingCondition(3))
                 .inputFluids(CTNHMaterials.EthylAnthraQuinone.getFluid(1000))
                 .inputFluids(GTMaterials.Hydrogen.getFluid(2000))
@@ -140,7 +141,7 @@ public class FuelChain {
                 .circuitMeta(4)
                 .duration(40).EUt(120).save(provider);
 
-        GTRecipeTypes.DISTILLATION_RECIPES.recipeBuilder("distill_coal_tar")
+        GTRecipeTypes.DISTILLATION_RECIPES.recipeBuilder(CTNHCore.id("distill_coal_tar_1"))
                 .inputFluids(GTMaterials.CoalTar.getFluid(1000))
                 .outputItems(TagPrefix.dustSmall, GTMaterials.Coke)
                 .outputFluids(GTMaterials.Naphthalene.getFluid(400))
@@ -151,7 +152,7 @@ public class FuelChain {
                 .duration(80).EUt(120)
                 .save(provider);
 
-        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder("methyl_hydrazine")
+        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder(CTNHCore.id("methyl_hydrazine_1"))
                 .addCondition(new PlantCasingCondition(3))
                 .inputItems(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Carbon, 1))
                 .inputFluids(GTMaterials.Hydrogen.getFluid(2000))
@@ -160,7 +161,7 @@ public class FuelChain {
                 .circuitMeta(21)
                 .duration(48).EUt(480).save(provider);
 
-        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder("methylhydrazine_nitrate_rocket_fuel")
+        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder(CTNHCore.id("methylhydrazine_nitrate_rocket_fuel_1"))
                 .addCondition(new PlantCasingCondition(4))
                 .inputFluids(CTNHMaterials.MethylHydrazine.getFluid(2000))
                 .inputFluids(GTMaterials.NitricAcid.getFluid(1000))
@@ -168,53 +169,25 @@ public class FuelChain {
                 .circuitMeta(3)
                 .duration(45).EUt(480).save(provider);
 
-        GTRecipeTypes.DISTILLATION_RECIPES.recipeBuilder("distill_coal_tar")
-                .inputFluids(GTMaterials.CoalTar.getFluid(1000))
-                .outputItems(TagPrefix.dustSmall, GTMaterials.Coke)
-                .outputFluids(GTMaterials.Naphthalene.getFluid(400))
-                .outputFluids(GTMaterials.HydrogenSulfide.getFluid(300))
-                .outputFluids(GTMaterials.Creosote.getFluid(200))
-                .outputFluids(GTMaterials.Phenol.getFluid(100))
-                .outputFluids(CTNHMaterials.Anthracene.getFluid(50))
-                .duration(80).EUt(120)
-                .save(provider);
-
-        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder("methyl_hydrazine")
-                .addCondition(new PlantCasingCondition(3))
-                .inputItems(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Carbon, 1))
-                .inputFluids(GTMaterials.Hydrogen.getFluid(2000))
-                .inputFluids(CTNHMaterials.Hydrazine.getFluid(1000))
-                .outputFluids(CTNHMaterials.MethylHydrazine.getFluid(1000))
-                .circuitMeta(21)
-                .duration(48).EUt(480).save(provider);
-
-        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder("methylhydrazine_nitrate_rocket_fuel")
-                .addCondition(new PlantCasingCondition(4))
-                .inputFluids(CTNHMaterials.MethylHydrazine.getFluid(2000))
-                .inputFluids(GTMaterials.NitricAcid.getFluid(1000))
-                .outputFluids(CTNHMaterials.MethylhydrazineNitrateRocketFuel.getFluid(2000))
-                .circuitMeta(3)
-                .duration(45).EUt(480).save(provider);
-
-        CTNHRecipeTypes.ROCKET_ENGINE_RECIPES.recipeBuilder("rp_1_mixed_fuel")
+        CTNHRecipeTypes.ROCKET_ENGINE_RECIPES.recipeBuilder(CTNHCore.id("rp_1_mixed_fuel_2"))
                 .inputFluids(CTNHMaterials.RP1.getFluid(4))
                 .EUt(-GTValues.V[EV])
                 .duration(3)
                 .save(provider);
 
-        CTNHRecipeTypes.ROCKET_ENGINE_RECIPES.recipeBuilder("dense_hydrazine_mixed_fuel")
+        CTNHRecipeTypes.ROCKET_ENGINE_RECIPES.recipeBuilder(CTNHCore.id("dense_hydrazine_mixed_fuel_2"))
                 .inputFluids(CTNHMaterials.DenseHydrazineMixedFuel.getFluid(2))
                 .EUt(-GTValues.V[EV])
                 .duration(3)
                 .save(provider);
 
-        CTNHRecipeTypes.ROCKET_ENGINE_RECIPES.recipeBuilder("methylhydrazine_nitrate_rocket_fuel")
+        CTNHRecipeTypes.ROCKET_ENGINE_RECIPES.recipeBuilder(CTNHCore.id("methylhydrazine_nitrate_rocket_fuel_3"))
                 .inputFluids(CTNHMaterials.MethylhydrazineNitrateRocketFuel.getFluid(1))
                 .EUt(-GTValues.V[EV])
                 .duration(3)
                 .save(provider);
 
-        CTNHRecipeTypes.ROCKET_ENGINE_RECIPES.recipeBuilder("udmh_rocket_fuel")
+        CTNHRecipeTypes.ROCKET_ENGINE_RECIPES.recipeBuilder(CTNHCore.id("udmh_rocket_fuel"))
                 .inputFluids(CTNHMaterials.UDMHRocketFuel.getFluid(1))
                 .EUt(-GTValues.V[EV])
                 .duration(6)

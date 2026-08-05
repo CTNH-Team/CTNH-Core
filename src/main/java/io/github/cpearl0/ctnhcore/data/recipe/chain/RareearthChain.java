@@ -66,7 +66,7 @@ public class RareearthChain {
                 .save(provider);
 
         // 化学反应：碱式稀土混合物 + 盐酸 -> 稀土氯化物溶液 + 盐
-        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("rare_earth_chloride_solution"))
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("rare_earth_chloride_solution_2"))
                 .inputFluids(RareEarthMaterials.RARE_EARTH_MIXTURE_OH.getFluid(1000))
                 .inputFluids(HydrochloricAcid.getFluid(6000))
                 .outputFluids(BauxiteProcessingMaterials.RARE_EARTH_CHLORIDE_SOLUTION.getFluid(6000))

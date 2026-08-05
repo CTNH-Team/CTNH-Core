@@ -172,7 +172,7 @@ public class BioChemistryRecipes {
                 .outputFluids(YeastRelatedMaterials.PHOSPHATE_BUFFER.getFluid(2000))
                 .save(provider);
 
-        ULTRASONICATION_RECIPES.recipeBuilder(CTNHCore.id("rhizobium"))
+        ULTRASONICATION_RECIPES.recipeBuilder(CTNHCore.id("rhizobium_1"))
                 .inputItems(dust, YeastRelatedMaterials.RHIZOBIUM)
                 .inputFluids(YeastRelatedMaterials.CARBONATE_BUFFER.getFluid(1000))
                 .outputFluids(YeastRelatedMaterials.RHIZOBIUM_EXTRACT.getFluid(1000))
@@ -188,7 +188,7 @@ public class BioChemistryRecipes {
                 .duration(400)
                 .save(provider);
 
-        BIO_REACTOR.recipeBuilder(CTNHCore.id("ammonia"))
+        BIO_REACTOR.recipeBuilder(CTNHCore.id("ammonia_1"))
                 .inputItems(dust, YeastRelatedMaterials.AZOTASE)
                 .inputItems(dustSmall, GTMaterials.Molybdenum)
                 .inputFluids(GTMaterials.Nitrogen.getFluid(10000))
@@ -300,7 +300,7 @@ public class BioChemistryRecipes {
         ItemStack pollutedFluorescenceYeast = ChemicalHelper.get(dust,
                 YeastRelatedMaterials.POLLUTED_FLUORESCENCE_YEAST);
 
-        // SequencedAssemblyRecipeBuilder.builder("polluted_fluorescence_yeast")
+        // SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("polluted_fluorescence_yeast"))
         // .input(fluorescenceYeast)
         // .transitional(fluorescenceYeast)
         // .result(pollutedFluorescenceYeast)

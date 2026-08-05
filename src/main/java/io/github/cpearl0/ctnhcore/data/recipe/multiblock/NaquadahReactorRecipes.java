@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe.multiblock;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
@@ -22,31 +23,31 @@ import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.NAQUADAH
 public class NaquadahReactorRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        CTNHRecipeTypes.NAQUADAH_REACTOR_RECIPES.recipeBuilder("naquadah_reactor_i")
+        CTNHRecipeTypes.NAQUADAH_REACTOR_RECIPES.recipeBuilder(CTNHCore.id("naquadah_reactor_i"))
                 .inputItems(TagPrefix.bolt, GTMaterials.NaquadahEnriched)
                 .outputItems(TagPrefix.bolt, GTMaterials.Naquadah)
                 .duration(26042)
                 .EUt(-GTValues.V[EV])
                 .save(provider);
-        CTNHRecipeTypes.NAQUADAH_REACTOR_RECIPES.recipeBuilder("naquadah_reactor_ii")
+        CTNHRecipeTypes.NAQUADAH_REACTOR_RECIPES.recipeBuilder(CTNHCore.id("naquadah_reactor_ii"))
                 .inputItems(TagPrefix.rod, GTMaterials.NaquadahEnriched)
                 .outputItems(TagPrefix.rod, GTMaterials.Naquadah)
                 .duration(3255)
                 .EUt(-GTValues.V[IV])
                 .save(provider);
-        CTNHRecipeTypes.NAQUADAH_REACTOR_RECIPES.recipeBuilder("naquadah_reactor_iii")
+        CTNHRecipeTypes.NAQUADAH_REACTOR_RECIPES.recipeBuilder(CTNHCore.id("naquadah_reactor_iii"))
                 .inputItems(TagPrefix.rodLong, GTMaterials.NaquadahEnriched)
                 .outputItems(TagPrefix.rodLong, GTMaterials.Naquadah)
                 .duration(1907)
                 .EUt(-GTValues.V[LuV])
                 .save(provider);
-        CTNHRecipeTypes.NAQUADAH_REACTOR_RECIPES.recipeBuilder("naquadah_reactor_iv")
+        CTNHRecipeTypes.NAQUADAH_REACTOR_RECIPES.recipeBuilder(CTNHCore.id("naquadah_reactor_iv"))
                 .inputItems(TagPrefix.bolt, GTMaterials.Naquadria)
                 .outputItems(TagPrefix.bolt, GTMaterials.Naquadah)
                 .duration(1907)
                 .EUt(-131072)
                 .save(provider);
-        CTNHRecipeTypes.NAQUADAH_REACTOR_RECIPES.recipeBuilder("naquadah_reactor_v")
+        CTNHRecipeTypes.NAQUADAH_REACTOR_RECIPES.recipeBuilder(CTNHCore.id("naquadah_reactor_v"))
                 .inputItems(TagPrefix.rod, GTMaterials.Naquadria)
                 .outputItems(TagPrefix.rod, GTMaterials.Naquadah)
                 .duration(1907)

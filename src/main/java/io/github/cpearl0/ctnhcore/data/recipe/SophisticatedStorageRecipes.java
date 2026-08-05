@@ -149,7 +149,7 @@ public class SophisticatedStorageRecipes {
 
     private static void mechanicalCrafting(Consumer<FinishedRecipe> provider) {
         // controller
-        MechanicalCraftingRecipeBuilder.builder("storage_controller")
+        MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("storage_controller"))
                 .pattern("EEAEE", "EFBFE", "ECGDE", "EFBFE", "EEEEE")
                 .key('A', new ItemStack(ModBlocks.STORAGE_LINK_ITEM.get()))
                 .key('B', new ItemStack(ModItems.BASIC_TIER_UPGRADE.get()))

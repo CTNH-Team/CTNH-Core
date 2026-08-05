@@ -137,9 +137,11 @@ public class CreateRecipes {
                 default -> ItemStack.EMPTY;
             };
             if (!ingot.isEmpty() && !dust.isEmpty()) {
-                com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder.builder("crushing_" + i + "_dust")
+                com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder
+                        .builder(CTNHCore.id("crushing_" + i + "_dust"))
                         .input(ingot).output(dust).save(provider);
-                com.mo_guang.ctpp.data.recipe.builder.create.MillingRecipeBuilder.builder("milling_" + i + "_dust")
+                com.mo_guang.ctpp.data.recipe.builder.create.MillingRecipeBuilder
+                        .builder(CTNHCore.id("milling_" + i + "_dust"))
                         .input(ingot).output(dust).save(provider);
             }
         }
@@ -148,9 +150,11 @@ public class CreateRecipes {
         ItemStack aaIngot = ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy);
         ItemStack aaDust = ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy);
         if (!aaIngot.isEmpty() && !aaDust.isEmpty()) {
-            com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder.builder("crushing_andesite_alloy_dust")
+            com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder
+                    .builder(CTNHCore.id("crushing_andesite_alloy_dust"))
                     .input(aaIngot).output(aaDust).save(provider);
-            com.mo_guang.ctpp.data.recipe.builder.create.MillingRecipeBuilder.builder("milling_andesite_alloy_dust")
+            com.mo_guang.ctpp.data.recipe.builder.create.MillingRecipeBuilder
+                    .builder(CTNHCore.id("milling_andesite_alloy_dust"))
                     .input(aaIngot).output(aaDust).save(provider);
         }
 
@@ -158,9 +162,10 @@ public class CreateRecipes {
         ItemStack cokeGem = ChemicalHelper.get(TagPrefix.gem, GTMaterials.Coke);
         ItemStack cokeDust = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Coke);
         if (!cokeGem.isEmpty() && !cokeDust.isEmpty()) {
-            com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder.builder("crushing_coke_dust")
+            com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder
+                    .builder(CTNHCore.id("crushing_coke_dust"))
                     .input(cokeGem).output(cokeDust).save(provider);
-            com.mo_guang.ctpp.data.recipe.builder.create.MillingRecipeBuilder.builder("milling_coke_dust")
+            com.mo_guang.ctpp.data.recipe.builder.create.MillingRecipeBuilder.builder(CTNHCore.id("milling_coke_dust"))
                     .input(cokeGem).output(cokeDust).save(provider);
         }
 
@@ -181,10 +186,10 @@ public class CreateRecipes {
             };
             if (!gtIngot.isEmpty() && !mcIngot.isEmpty()) {
                 com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder
-                        .builder("crushing_gtceu_" + i + "_to_mc").input(gtIngot).output(mcIngot)
+                        .builder(CTNHCore.id("crushing_gtceu_" + i + "_to_mc")).input(gtIngot).output(mcIngot)
                         .save(provider);
                 com.mo_guang.ctpp.data.recipe.builder.create.MillingRecipeBuilder
-                        .builder("milling_gtceu_" + i + "_to_mc").input(gtIngot).output(mcIngot)
+                        .builder(CTNHCore.id("milling_gtceu_" + i + "_to_mc")).input(gtIngot).output(mcIngot)
                         .save(provider);
             }
         }
@@ -227,7 +232,7 @@ public class CreateRecipes {
             };
             if (!plate.isEmpty() && !wire.isEmpty()) {
                 com.mo_guang.ctpp.data.recipe.builder.create.CuttingRecipeBuilder
-                        .builder("cutting_" + p + "_to_single_wire").input(plate)
+                        .builder(CTNHCore.id("cutting_" + p + "_to_single_wire")).input(plate)
                         .result(new ItemStack(wire.getItem(), 2)).save(provider);
             }
         }
@@ -235,7 +240,8 @@ public class CreateRecipes {
         // portal block (from server_scripts create.js)
         ItemStack doubleShadowSteelPlate = ChemicalHelper.get(TagPrefix.plateDouble, CreateMaterials.ShadowSteel);
         if (!doubleShadowSteelPlate.isEmpty()) {
-            com.mo_guang.ctpp.data.recipe.builder.create.MechanicalCraftingRecipeBuilder.builder("javd_portal_block")
+            com.mo_guang.ctpp.data.recipe.builder.create.MechanicalCraftingRecipeBuilder
+                    .builder(CTNHCore.id("javd_portal_block"))
                     .pattern("AAAAA", "ABCBA", "ACDCA", "ABCBA", "AAAAA")
                     .key('A', doubleShadowSteelPlate)
                     .key('B', CustomTags.HV_CIRCUITS)
@@ -249,7 +255,8 @@ public class CreateRecipes {
                 new ItemStack(item("createoreexcavation:drilling_machine"));
         ItemStack martialMoralityEye = MultiblocksA.MARTIAL_MORALITY_EYE.asStack();
         if (!drillingMachine.isEmpty() && !martialMoralityEye.isEmpty()) {
-            com.mo_guang.ctpp.data.recipe.builder.create.MechanicalCraftingRecipeBuilder.builder("martial_morality_eye")
+            com.mo_guang.ctpp.data.recipe.builder.create.MechanicalCraftingRecipeBuilder
+                    .builder(CTNHCore.id("martial_morality_eye"))
                     .pattern("ABCCCBA", "BADCDAB", "BADCDAB", "BAAEAAB", "BADCDAB", "BADCDAB", "ABCCCBA")
                     .key('A', GTMachines.STEAM_ROCK_CRUSHER.left().asStack())
                     .key('B', CTPPBlocks.HEAVY_MACHINERY_CASING.asStack())
@@ -283,19 +290,20 @@ public class CreateRecipes {
                     default -> ItemStack.EMPTY;
                 };
                 if (!maybeIngot.isEmpty()) com.mo_guang.ctpp.data.recipe.builder.create.CompactingRecipeBuilder
-                        .builder("compacting_" + i + "_plate")
+                        .builder(CTNHCore.id("compacting_" + i + "_plate"))
                         .input(maybeIngot).output(plate).save(provider);
             }
         }
 
         // pressing rings
-        com.mo_guang.ctpp.data.recipe.builder.create.CompactingRecipeBuilder.builder("pressing_gold_ring")
+        com.mo_guang.ctpp.data.recipe.builder.create.CompactingRecipeBuilder.builder(CTNHCore.id("pressing_gold_ring"))
                 .input(ChemicalHelper.get(TagPrefix.rod, GTMaterials.Gold))
                 .output(ChemicalHelper.get(TagPrefix.ring, GTMaterials.Gold)).save(provider);
-        com.mo_guang.ctpp.data.recipe.builder.create.CompactingRecipeBuilder.builder("pressing_iron_ring")
+        com.mo_guang.ctpp.data.recipe.builder.create.CompactingRecipeBuilder.builder(CTNHCore.id("pressing_iron_ring"))
                 .input(ChemicalHelper.get(TagPrefix.rod, GTMaterials.Iron))
                 .output(ChemicalHelper.get(TagPrefix.ring, GTMaterials.Iron)).save(provider);
-        com.mo_guang.ctpp.data.recipe.builder.create.CompactingRecipeBuilder.builder("pressing_copper_ring")
+        com.mo_guang.ctpp.data.recipe.builder.create.CompactingRecipeBuilder
+                .builder(CTNHCore.id("pressing_copper_ring"))
                 .input(ChemicalHelper.get(TagPrefix.rod, GTMaterials.Copper))
                 .output(ChemicalHelper.get(TagPrefix.ring, GTMaterials.Copper)).save(provider);
 
@@ -307,7 +315,7 @@ public class CreateRecipes {
         ItemStack potinDust = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Potin);
         addHeatedQuartzGlassMixing(provider);
         if (!copperDust.isEmpty() && !tinDust.isEmpty() && !leadDust.isEmpty() && !potinDust.isEmpty()) {
-            com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("potin_from_dusts")
+            com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder(CTNHCore.id("potin_from_dusts"))
                     .input(new ItemStack(copperDust.getItem(), 6))
                     .input(new ItemStack(tinDust.getItem(), 2))
                     .input(leadDust)
@@ -319,7 +327,8 @@ public class CreateRecipes {
         ItemStack roseChunk = item("biomesoplenty:rose_quartz_chunk") == null ? ItemStack.EMPTY :
                 new ItemStack(item("biomesoplenty:rose_quartz_chunk"));
         if (!roseChunk.isEmpty() && !roseQuartz.isEmpty()) {
-            com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("rose_quartz_from_chunk_and_water")
+            com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder
+                    .builder(CTNHCore.id("rose_quartz_from_chunk_and_water"))
                     .result(roseQuartz)
                     .input(roseChunk)
                     .inputFluid(GTMaterials.Water.getFluid(100))
@@ -327,7 +336,8 @@ public class CreateRecipes {
         }
 
         // concrete fluid result mixing (gtceu:concrete)
-        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("mixing_concrete_from_dusts")
+        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder
+                .builder(CTNHCore.id("mixing_concrete_from_dusts"))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Stone))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.QuartzSand))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Clay))
@@ -338,7 +348,8 @@ public class CreateRecipes {
                 .save(provider);
 
         // stem cells from growth medium fluid + animal excreta
-        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("stem_cells_from_growth_medium")
+        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder
+                .builder(CTNHCore.id("stem_cells_from_growth_medium"))
                 .result(GTItems.STEM_CELLS.asStack())
                 .inputFluid(CTNHMaterials.SimpleGrowthMedium.getFluid(144))
                 .input(CTNHItems.ANIMAL_EXCRETA.asItem())
@@ -348,14 +359,15 @@ public class CreateRecipes {
 
         // item_application: shadow steel casing
         com.mo_guang.ctpp.data.recipe.builder.create.ItemApplicationRecipeBuilder
-                .builder("shadow_steel_casing_item_application")
+                .builder(CTNHCore.id("shadow_steel_casing_item_application"))
                 .input(Items.OBSIDIAN)
                 .input(ChemicalHelper.get(TagPrefix.plate, CreateMaterials.ShadowSteel).getItem())
                 .output(AllBlocks.SHADOW_STEEL_CASING.asStack())
                 .save(provider);
 
         // mixing: chromatic compound
-        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("chromatic_compound_from_lava")
+        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder
+                .builder(CTNHCore.id("chromatic_compound_from_lava"))
                 .result(AllItems.CHROMATIC_COMPOUND.asStack(4))
                 .inputFluid(GTMaterials.Lava.getFluid(500))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Netherite))
@@ -364,7 +376,8 @@ public class CreateRecipes {
                 .save(provider);
 
         // mixing: aqua regia gold nugget extraction
-        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("gold_nuggets_from_aqua_regia")
+        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder
+                .builder(CTNHCore.id("gold_nuggets_from_aqua_regia"))
                 .result(new ItemStack(ChemicalHelper.get(TagPrefix.nugget, GTMaterials.Gold).getItem(), 5))
                 .inputFluid(GTMaterials.AquaRegia.getFluid(500))
                 .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.OCHRUM).getItem(), 2))
@@ -375,7 +388,8 @@ public class CreateRecipes {
         ItemStack asurineSil = ChemicalHelper.get(TagPrefix.dust, GTMaterials.SiliconDioxide);
         ItemStack asurineZn = ChemicalHelper.get(TagPrefix.nugget, GTMaterials.Zinc);
         if (!asurineIn.isEmpty() && !asurineSil.isEmpty()) {
-            com.mo_guang.ctpp.data.recipe.builder.create.SplashingRecipeBuilder.builder("splashing_asurine")
+            com.mo_guang.ctpp.data.recipe.builder.create.SplashingRecipeBuilder
+                    .builder(CTNHCore.id("splashing_asurine"))
                     .input(asurineIn)
                     .result(asurineSil)
                     .result(new ItemStack(asurineZn.getItem(), 4), 0.5)
@@ -386,7 +400,8 @@ public class CreateRecipes {
         ItemStack crimsiteSil = ChemicalHelper.get(TagPrefix.dust, GTMaterials.SiliconDioxide);
         ItemStack crimsiteIron = ChemicalHelper.get(TagPrefix.nugget, GTMaterials.Iron);
         if (!crimsiteIn.isEmpty() && !crimsiteSil.isEmpty()) {
-            com.mo_guang.ctpp.data.recipe.builder.create.SplashingRecipeBuilder.builder("splashing_crimsite")
+            com.mo_guang.ctpp.data.recipe.builder.create.SplashingRecipeBuilder
+                    .builder(CTNHCore.id("splashing_crimsite"))
                     .input(crimsiteIn)
                     .result(crimsiteSil)
                     .result(new ItemStack(crimsiteIron.getItem(), 4), 0.5)
@@ -397,7 +412,7 @@ public class CreateRecipes {
         ItemStack ochrumSil = ChemicalHelper.get(TagPrefix.dust, GTMaterials.SiliconDioxide);
         ItemStack ochrumPrec = ChemicalHelper.get(TagPrefix.nugget, GTMaterials.Gold);
         if (!ochrumIn.isEmpty() && !ochrumSil.isEmpty()) {
-            com.mo_guang.ctpp.data.recipe.builder.create.SplashingRecipeBuilder.builder("splashing_ochrum")
+            com.mo_guang.ctpp.data.recipe.builder.create.SplashingRecipeBuilder.builder(CTNHCore.id("splashing_ochrum"))
                     .input(ochrumIn)
                     .result(ochrumSil)
                     .result(new ItemStack(ochrumPrec.getItem(), 4), 0.5)
@@ -408,7 +423,8 @@ public class CreateRecipes {
         ItemStack veridiumSil = ChemicalHelper.get(TagPrefix.dust, GTMaterials.SiliconDioxide);
         ItemStack veridiumCu = ChemicalHelper.get(TagPrefix.nugget, GTMaterials.Copper);
         if (!veridiumIn.isEmpty() && !veridiumSil.isEmpty()) {
-            com.mo_guang.ctpp.data.recipe.builder.create.SplashingRecipeBuilder.builder("splashing_veridium")
+            com.mo_guang.ctpp.data.recipe.builder.create.SplashingRecipeBuilder
+                    .builder(CTNHCore.id("splashing_veridium"))
                     .input(veridiumIn)
                     .result(veridiumSil)
                     .result(new ItemStack(veridiumCu.getItem(), 4), 0.5)
@@ -421,7 +437,7 @@ public class CreateRecipes {
         ItemStack flintDust = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Flint);
         if (!tuff.isEmpty() && !deepslateDust.isEmpty()) {
             com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder builder = com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder
-                    .builder("crushing_tuff_to_deepslate");
+                    .builder(CTNHCore.id("crushing_tuff_to_deepslate"));
             builder.input(tuff).result(deepslateDust);
             if (!flintDust.isEmpty()) builder.result(flintDust, 0.25);
             builder.save(provider);
@@ -431,7 +447,7 @@ public class CreateRecipes {
         ItemStack deepslateIn = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Deepslate);
         if (!deepslateIn.isEmpty()) {
             com.mo_guang.ctpp.data.recipe.builder.create.SplashingRecipeBuilder splashBuilder = com.mo_guang.ctpp.data.recipe.builder.create.SplashingRecipeBuilder
-                    .builder("splashing_deepslate");
+                    .builder(CTNHCore.id("splashing_deepslate"));
             splashBuilder = splashBuilder.input(deepslateIn);
             ItemStack sd = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Stone);
             if (!sd.isEmpty()) splashBuilder.result(sd);
@@ -463,7 +479,7 @@ public class CreateRecipes {
         ItemStack preciousIn = ChemicalHelper.get(TagPrefix.dust, CTNHMaterials.PreciousAlloy);
         if (!preciousIn.isEmpty()) {
             com.mo_guang.ctpp.data.recipe.builder.create.SplashingRecipeBuilder splash = com.mo_guang.ctpp.data.recipe.builder.create.SplashingRecipeBuilder
-                    .builder("splashing_precious_alloy_gold").input(preciousIn);
+                    .builder(CTNHCore.id("splashing_precious_alloy_gold")).input(preciousIn);
             ItemStack g3 = new ItemStack(ChemicalHelper.get(TagPrefix.nugget, GTMaterials.Gold).getItem(), 3);
             if (!g3.isEmpty()) splash.result(g3, 0.8);
             ItemStack g2 = new ItemStack(ChemicalHelper.get(TagPrefix.nugget, GTMaterials.Gold).getItem(), 2);
@@ -476,7 +492,8 @@ public class CreateRecipes {
         }
 
         // milling with chance: obsidian -> obsidian_dust (0.75)
-        com.mo_guang.ctpp.data.recipe.builder.create.MillingRecipeBuilder.builder("milling_obsidian_chance")
+        com.mo_guang.ctpp.data.recipe.builder.create.MillingRecipeBuilder
+                .builder(CTNHCore.id("milling_obsidian_chance"))
                 .input(Blocks.OBSIDIAN.asItem())
                 .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Obsidian), 0.75)
                 .save(provider);
@@ -486,7 +503,7 @@ public class CreateRecipes {
         ItemStack enderEyeDust = ChemicalHelper.get(TagPrefix.dust, GTMaterials.EnderEye);
         if (!enderPearlDust.isEmpty() && !enderEyeDust.isEmpty()) {
             com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
-                    .builder("ender_pearl_to_eye_dust")
+                    .builder(CTNHCore.id("ender_pearl_to_eye_dust"))
                     .input(enderPearlDust)
                     .transitional(enderPearlDust)
                     .result(enderEyeDust)
@@ -501,7 +518,7 @@ public class CreateRecipes {
         ItemStack diode = GTItems.DIODE.asStack();
         if (!smallGa.isEmpty() && !diode.isEmpty()) {
             com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
-                    .builder("gallium_arsenide_to_diodes")
+                    .builder(CTNHCore.id("gallium_arsenide_to_diodes"))
                     .input(smallGa)
                     .transitional(smallGa)
                     .result(new ItemStack(diode.getItem(), 2))
@@ -518,7 +535,7 @@ public class CreateRecipes {
         ItemStack steelFirebox = GTBlocks.FIREBOX_STEEL.asStack();
         if (!highConcrete.isEmpty() && !sinteringKiln.isEmpty() && !steelFirebox.isEmpty()) {
             com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
-                    .builder("high_strength_concrete_to_sintering_kiln")
+                    .builder(CTNHCore.id("high_strength_concrete_to_sintering_kiln"))
                     .input(steelFirebox)
                     .transitional(highConcrete)
                     .result(sinteringKiln)
@@ -535,7 +552,7 @@ public class CreateRecipes {
         ItemStack bronzeFramed = CTNHBlocks.BRONZE_FRAMED_GLASS.asStack();
         if (!orangeGlass.isEmpty() && !bronzeFramed.isEmpty()) {
             com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
-                    .builder("orange_glass_to_bronze_framed")
+                    .builder(CTNHCore.id("orange_glass_to_bronze_framed"))
                     .input(new ItemStack(Blocks.GLASS.asItem()))
                     .transitional(orangeGlass)
                     .result(bronzeFramed)
@@ -551,7 +568,7 @@ public class CreateRecipes {
         ItemStack industrialSteam = GCYMBlocks.CASING_INDUSTRIAL_STEAM.asStack();
         if (!steamMachineCasing.isEmpty() && !industrialSteam.isEmpty()) {
             com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
-                    .builder("steam_machine_casing_to_industrial")
+                    .builder(CTNHCore.id("steam_machine_casing_to_industrial"))
                     .input(steamMachineCasing)
                     .transitional(steamMachineCasing)
                     .result(industrialSteam)
@@ -568,7 +585,7 @@ public class CreateRecipes {
         ItemStack doubleBlaze = CTPPItems.DOUBLE_BLAZE_CAKE.asStack();
         if (!blazeCake.isEmpty() && !doubleBlaze.isEmpty()) {
             com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
-                    .builder("double_blaze_cake_from_blaze_cake")
+                    .builder(CTNHCore.id("double_blaze_cake_from_blaze_cake"))
                     .input(blazeCake)
                     .transitional(blazeCake)
                     .result(doubleBlaze)
@@ -588,7 +605,7 @@ public class CreateRecipes {
         ItemStack ulvInputBus = GTMachines.ITEM_IMPORT_BUS[GTValues.ULV].asStack();
         if (!ulvInputBus.isEmpty()) {
             com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
-                    .builder("ulv_input_bus_from_wooden_chest")
+                    .builder(CTNHCore.id("ulv_input_bus_from_wooden_chest"))
                     .input(TagUtil.createItemTag("chests/wooden", false))
                     .transitional(ulvInputBus)
                     .result(ulvInputBus)
@@ -602,7 +619,7 @@ public class CreateRecipes {
         ItemStack ulvInputHatch = GTMachines.FLUID_IMPORT_HATCH[GTValues.ULV].asStack();
         if (!ulvInputHatch.isEmpty()) {
             com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
-                    .builder("ulv_input_hatch_from_bronze_drum")
+                    .builder(CTNHCore.id("ulv_input_hatch_from_bronze_drum"))
                     .input(GTMachines.BRONZE_DRUM.asStack())
                     .transitional(ulvInputHatch)
                     .result(ulvInputHatch)
@@ -618,7 +635,7 @@ public class CreateRecipes {
         ItemStack assemblyLineCasing = GTBlocks.CASING_ASSEMBLY_CONTROL.asStack();
         if (!tungstenFrame.isEmpty() && !assemblyLineCasing.isEmpty()) {
             com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
-                    .builder("tungsten_steel_frame_sequence")
+                    .builder(CTNHCore.id("tungsten_steel_frame_sequence"))
                     .input(tungstenFrame)
                     .transitional(tungstenFrame)
                     .result(assemblyLineCasing)
@@ -639,7 +656,7 @@ public class CreateRecipes {
         ItemStack assemblyLineUnit = GTBlocks.CASING_ASSEMBLY_LINE.asStack();
         if (!gearbox.isEmpty() && !assemblyLineUnit.isEmpty()) {
             com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
-                    .builder("tungstensteel_gearbox_sequence")
+                    .builder(CTNHCore.id("tungstensteel_gearbox_sequence"))
                     .input(gearbox)
                     .transitional(gearbox)
                     .result(assemblyLineUnit)
@@ -667,31 +684,34 @@ public class CreateRecipes {
     }
 
     private static void addCafeRecipes(Consumer<FinishedRecipe> provider) {
-        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("createcafe_blueberry_tea")
+        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder
+                .builder(CTNHCore.id("createcafe_blueberry_tea"))
                 .input(AetherItems.BLUE_BERRY.get())
                 .inputFluid(GTMaterials.Milk.getFluid(250))
                 .inputFluid(FluidRegistry.MELTED_SUGAR.get(), 250)
                 .resultFluid(FluidRegistry.BLUEBERRY_TEA.get(), 500)
                 .save(provider);
-        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("createcafe_coconut_tea")
+        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder(CTNHCore.id("createcafe_coconut_tea"))
                 .input(ModItems.COCONUT_SLICE.get())
                 .inputFluid(GTMaterials.Milk.getFluid(250))
                 .inputFluid(FluidRegistry.MELTED_SUGAR.get(), 250)
                 .resultFluid(FluidRegistry.COCONUT_TEA.get(), 500)
                 .save(provider);
-        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("createcafe_coconut_syrup")
+        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder
+                .builder(CTNHCore.id("createcafe_coconut_syrup"))
                 .input(ModItems.COCONUT_SLICE.get())
                 .inputFluid(GTMaterials.Milk.getFluid(250))
                 .inputFluid(FluidRegistry.MELTED_SUGAR.get(), 750)
                 .resultFluid(FluidRegistry.COCONUT_SYRUP.get(), 1000)
                 .save(provider);
-        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("createcafe_pomegranate_tea")
+        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder
+                .builder(CTNHCore.id("createcafe_pomegranate_tea"))
                 .input(BlockRegistry.BOMBEGRANTE_POD.asItem())
                 .inputFluid(GTMaterials.Milk.getFluid(250))
                 .inputFluid(FluidRegistry.MELTED_SUGAR.get(), 250)
                 .resultFluid(FluidRegistry.POMEGRANATE_TEA.get(), 500)
                 .save(provider);
-        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder("createcafe_blood_tea")
+        com.mo_guang.ctpp.data.recipe.builder.create.MixingRecipeBuilder.builder(CTNHCore.id("createcafe_blood_tea"))
                 .input(ChemicalHelper.get(TagPrefix.ingot, CTNHMaterials.SNOW_STEEL))
                 .inputFluid(GTMaterials.Milk.getFluid(250))
                 .inputFluid(FluidRegistry.MELTED_SUGAR.get(), 250)
@@ -701,11 +721,13 @@ public class CreateRecipes {
 
     private static void addCreateFallenRecipes(Consumer<FinishedRecipe> provider) {
         addPhenolicCircuitSequence(provider);
-        com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder.builder("createfallen_logs_to_wood_dust")
+        com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder
+                .builder(CTNHCore.id("createfallen_logs_to_wood_dust"))
                 .input(Ingredient.of(ItemTags.LOGS))
                 .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Wood), 0.8)
                 .save(provider);
-        com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder.builder("createfallen_planks_to_wood_dust")
+        com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder
+                .builder(CTNHCore.id("createfallen_planks_to_wood_dust"))
                 .input(Ingredient.of(ItemTags.PLANKS))
                 .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Wood), 0.4)
                 .save(provider);

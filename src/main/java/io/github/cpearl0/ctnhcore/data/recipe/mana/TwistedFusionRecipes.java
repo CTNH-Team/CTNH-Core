@@ -46,7 +46,7 @@ public class TwistedFusionRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         // 扭曲聚变（第三路输入为 36mB 扭曲聚合基质；其余流体输入/输出相对旧版×2）
-        TWISTED_FUSION.recipeBuilder(CTNHCore.id("twist_power_mana"))
+        TWISTED_FUSION.recipeBuilder(CTNHCore.id("twist_power_mana_1"))
                 .inputFluids(Mana_Radiation_Mixture.getFluid(128))
                 .inputFluids(Super_Plus_Mana.getFluid(64))
                 .inputFluids(Twisted_Aggregate_Matrix.getFluid(36))
@@ -146,14 +146,14 @@ public class TwistedFusionRecipes {
                 .save(provider);
         // 蕴魔处理
 
-        GTRecipeTypes.CHEMICAL_BATH_RECIPES.recipeBuilder("fused_lp_mixed_mana")// 源质提纯恶魔粉
+        GTRecipeTypes.CHEMICAL_BATH_RECIPES.recipeBuilder(CTNHCore.id("fused_lp_mixed_mana"))// 源质提纯恶魔粉
                 .inputItems(ChemicalHelper.get(dust, Fused_Mixed_Mana), 4)
                 .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 16000))
                 .outputItems(ChemicalHelper.get(dust, Fused_Lp_Mixed_Mana), 3)
                 .EUt(1330 / 2)
                 .duration(200)
                 .save(provider);
-        GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("uns")// 不稳定超富集魔力粉
+        GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("uns"))// 不稳定超富集魔力粉
                 .inputItems(ChemicalHelper.get(dust, Plus_Mana))
                 .notConsumable(TERRA_CATALYST)
                 .inputFluids(Mana.getFluid(10000))
@@ -161,14 +161,14 @@ public class TwistedFusionRecipes {
                 .EUt(1000)
                 .duration(10)
                 .save(provider);
-        ElfPlateRecipeBuilder.builder("infused_plus_mana")// 不稳定注魔临界魔力粉
+        ElfPlateRecipeBuilder.builder(CTNHCore.id("infused_plus_mana"))// 不稳定注魔临界魔力粉
                 .input(ChemicalHelper.get(dust, Unstable_Plus_Mana).getItem())
                 .input(asgardRune)
                 .input(runeMana)
                 .output(ChemicalHelper.get(dust, Infused_Plus_Mana).getItem())
                 .mana(50000)
                 .save(provider);
-        GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder("unknown_super_mana")// 混沌态临界魔力粉
+        GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("unknown_super_mana"))// 混沌态临界魔力粉
                 .inputItems(ChemicalHelper.get(dust, Super_Plus_Mana), 2)
                 .inputFluids(Mana.getFluid(1000))
                 .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 1000))
@@ -179,14 +179,14 @@ public class TwistedFusionRecipes {
                 .EUt(9999)
                 .duration(100)
                 .save(provider);
-        NEUTRON_ACTIVATOR_RECIPES.recipeBuilder("twist_power_mana1")// 极端扭曲放射态临界魔力粉
+        NEUTRON_ACTIVATOR_RECIPES.recipeBuilder(CTNHCore.id("twist_power_mana1"))// 极端扭曲放射态临界魔力粉
                 .inputItems(dust, Twist_Mana, 10)
                 .inputFluids(Zenith_essence.getFluid(800))
                 .outputItems(dust, Twist_Power_Mana, 10)
                 .addCondition(new NeutronActivatorCondition(800, 1000))
                 .duration(50) // 4秒
                 .save(provider);
-        ACCELERATOR_UP.recipeBuilder("twist_power_mana2")
+        ACCELERATOR_UP.recipeBuilder(CTNHCore.id("twist_power_mana2"))
                 .addData("type", "nu")
                 .addData("speed", 5000)
                 .inputItems(dust, Twist_Mana, 20)
@@ -195,7 +195,7 @@ public class TwistedFusionRecipes {
                 .EUt(32678)
                 .duration(10)
                 .save(provider);
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("twist_power_mana"))// 极端扭曲放射态临界魔力粉
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("twist_power_mana_2"))// 极端扭曲放射态临界魔力粉
                 .inputItems(dust, Twist_Power_Mana, 32)
                 .inputItems(foil, TungstenCarbide, 16)
                 .inputItems(plateDouble, Naquadah, 2)
@@ -203,7 +203,7 @@ public class TwistedFusionRecipes {
                 .duration(1200)
                 .EUt(14666400 / 1200)
                 .save(provider);
-        GTRecipeTypes.IMPLOSION_RECIPES.recipeBuilder("ultra_mana_dust")// 究极魔力粉
+        GTRecipeTypes.IMPLOSION_RECIPES.recipeBuilder(CTNHCore.id("ultra_mana_dust"))// 究极魔力粉
                 .inputItems(ENCAPSULATED_TWIST_MANA.asItem())
                 .inputItems(INDUSTRIAL_TNT.asItem(), 8)
                 .outputItems(dust, Ultra_Mana, 24)
@@ -211,7 +211,7 @@ public class TwistedFusionRecipes {
                 .EUt(30)
                 .duration(10000)
                 .save(provider);
-        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder("remain_mana")// 魔力残留物粉离心
+        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("remain_mana"))// 魔力残留物粉离心
                 .inputItems(dust, Remain_Mana, 2)
                 .chancedOutput(ChemicalHelper.get(dust, Fused_Mana), (int) 6000f, 1)
                 .chancedOutput(ChemicalHelper.get(dust, Plus_Mana), (int) 3000f, 1)
@@ -221,7 +221,7 @@ public class TwistedFusionRecipes {
                 .duration(100)
                 .save(provider);
         // 增殖符文+类星体符文
-        GREENHOUSE_RECIPES.recipeBuilder("proliferation_rune1")// 增殖符文增殖
+        GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("proliferation_rune1"))// 增殖符文增殖
                 .inputItems(PROLIFERATION_RUNE.asItem())
                 .inputItems(FERTILIZER, 16)
                 .inputItems(RADIOACTIVE_WASTE, 128)
@@ -233,7 +233,7 @@ public class TwistedFusionRecipes {
                 .EUt(24444)
                 .duration(1000)
                 .save(provider);
-        GREENHOUSE_RECIPES.recipeBuilder("proliferation_rune2")// 增殖符文增殖
+        GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("proliferation_rune2"))// 增殖符文增殖
                 .inputItems(BROKEN_RUNE.asStack())
                 .inputItems(overgrowthSeed)
                 .inputItems(FERTILIZER, 64)
@@ -243,7 +243,7 @@ public class TwistedFusionRecipes {
                 .EUt(24444)
                 .duration(1000)
                 .save(provider);
-        ElfPlateRecipeBuilder.builder("twist_reactor_inf")
+        ElfPlateRecipeBuilder.builder(CTNHCore.id("twist_reactor_inf"))
                 .input(TWISTED_FUSION_MK1.getItem())
                 .input(TWISTED_FUSION_MK2.getItem())
                 .input(TWISTED_FUSION_MK3.getItem())
@@ -256,7 +256,7 @@ public class TwistedFusionRecipes {
                 .output(TWISTED_FUSION_MKINFINITY.asStack())
                 .mana(Integer.MAX_VALUE)
                 .save(provider);
-        RuneRitualRecipeBuilder.builder("quasar_rune")// 类星体符文
+        RuneRitualRecipeBuilder.builder(CTNHCore.id("quasar_rune"))// 类星体符文
                 .center(mjoellnir.asItem())
                 .rune2(HORIZEN_RUNE.asItem(), 2, -2, true)
                 .rune2(STARLIGHT_RUNE.asItem(), -3, 3, true)
@@ -295,35 +295,35 @@ public class TwistedFusionRecipes {
                 "AAA",
                 'A', ChemicalHelper.get(rawOreBlock, Fused_Mana).getItem().asItem(),
                 'B', ChemicalHelper.get(block, AlfSteel).getItem().asItem());
-        METEOR_CAPTURER_RECIPES.recipeBuilder("desh")// 戴斯
+        METEOR_CAPTURER_RECIPES.recipeBuilder(CTNHCore.id("desh"))// 戴斯
                 .chancedInput(TIER_1_ROCKET.get().getDefaultInstance(), (int) 5f, 1)
                 .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 1000 * 128))
                 .outputItems(ChemicalHelper.get(ore, Desh), 512)
                 .duration(400)
                 .EUt(2048)
                 .save(provider);
-        METEOR_CAPTURER_RECIPES.recipeBuilder("ostrum")// 紫金
+        METEOR_CAPTURER_RECIPES.recipeBuilder(CTNHCore.id("ostrum"))// 紫金
                 .chancedInput(TIER_2_ROCKET.get().getDefaultInstance(), (int) 5f, 1)
                 .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 1000 * 256))
                 .outputItems(ChemicalHelper.get(ore, Ostrum), 256)
                 .duration(400)
                 .EUt(8196)
                 .save(provider);
-        METEOR_CAPTURER_RECIPES.recipeBuilder("calorite")// 耐热金属
+        METEOR_CAPTURER_RECIPES.recipeBuilder(CTNHCore.id("calorite"))// 耐热金属
                 .chancedInput(TIER_3_ROCKET.get().getDefaultInstance(), (int) 5f, 1)
                 .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 1000 * 512))
                 .outputItems(ChemicalHelper.get(ore, Calorite), 128)
                 .duration(400)
                 .EUt(8196 * 4)
                 .save(provider);
-        METEOR_CAPTURER_RECIPES.recipeBuilder("neutronium")// 中子素
+        METEOR_CAPTURER_RECIPES.recipeBuilder(CTNHCore.id("neutronium"))// 中子素
                 .chancedInput(TIER_4_ROCKET.get().getDefaultInstance(), (int) 5f, 1)
                 .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 1000 * 1024))
                 .outputItems(ChemicalHelper.get(ore, Neutronium), 8)
                 .duration(400)
                 .EUt(528000 * 4)
                 .save(provider);
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("twist")
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("twist"))
                 .inputItems(ChemicalHelper.get(plate, Ultra_Mana), 1)
                 .inputItems(MANA_FUSION_CASING.asItem(), 1)
                 .inputItems(ChemicalHelper.get(plateDouble, AlfSteel), 2)
@@ -332,7 +332,7 @@ public class TwistedFusionRecipes {
                 .duration(400)
                 .EUt(GTValues.VA[LuV])
                 .save(provider);
-        BloodAltarRecipeBuilder.builder("bloodygold_dust_2")// 血铂B
+        BloodAltarRecipeBuilder.builder(CTNHCore.id("bloodygold_dust_2"))// 血铂B
                 .input(ChemicalHelper.get(TagPrefix.dust, PlatinumGroupSludge, 1))
                 .output(ChemicalHelper.get(TagPrefix.dust, HEMOPLATINUM, 1))
                 .circuitMeta(1)

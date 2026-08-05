@@ -399,7 +399,7 @@ public class AlumiumChain {
                 .duration(240)
                 .save(provider);
         // 分离含氯稀土
-        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("rare_earth_chloride_solution"))
+        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("rare_earth_chloride_solution_1"))
                 .inputFluids(FERRIC_REE_CHLORIDE.getFluid(2000))
                 .outputFluids(RARE_EARTH_CHLORIDE_SOLUTION.getFluid(1000))
                 .outputFluids(Iron3Chloride.getFluid(1000))

@@ -161,7 +161,8 @@ public class QuantumOmniRecipes {
     // (ItemLike) QUANTUM_OMNI_COMPONENT_TIERS[i-1][2] : null;
     //
     // // ===== 原始配方 =====
-    // GTRecipeTypes.CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("quantum_omni_cell_component_" + nameSuffix + "_ctnh")
+    // GTRecipeTypes.CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("quantum_omni_cell_component_" + nameSuffix +
+    // "_ctnh")
     // .inputItems(GTItems.CARBON_MESH, 16)
     // .inputItems(TagPrefix.plateDense, GTMaterials.TungstenSteel, 4)
     // .inputItems(getCircuitTagByTier(highTier), 3) // 高等级电路
@@ -176,7 +177,8 @@ public class QuantumOmniRecipes {
     //
     // // ===== 新配方：使用前一级元件替代电路 =====
     // if (i > 0 && previousComponent != null) { // 第一级(1K)没有前一级元件
-    // GTRecipeTypes.CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder("quantum_omni_cell_component_" + nameSuffix + "_alt_ctnh")
+    // GTRecipeTypes.CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("quantum_omni_cell_component_" + nameSuffix +
+    // "_alt_ctnh")
     // .inputItems(GTItems.CARBON_MESH, 16)
     // .inputItems(TagPrefix.plateDense, GTMaterials.TungstenSteel, 4)
     // .inputItems(getCircuitTagByTier(highTier), 1) // 减少到1个高等级电路
@@ -231,7 +233,7 @@ public class QuantumOmniRecipes {
     // String[] cellNames = {"1k", "4k", "16k", "64k", "256k", "1m", "4m", "16m", "64m", "256m"};
     // String cellName = cellNames[i];
     //
-    // GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("quantum_omni_cell_" + cellName + "_ctnh")
+    // GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("quantum_omni_cell_" + cellName + "_ctnh")
     // .inputItems(housing, 1)
     // .inputItems(quantumComponent, 1)
     // .inputItems(complexComponent, 1)

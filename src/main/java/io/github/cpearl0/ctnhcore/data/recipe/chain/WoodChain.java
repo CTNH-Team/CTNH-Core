@@ -33,7 +33,7 @@ public class WoodChain {
         addWoodScriptRecipes(provider);
 
         // 橡木树苗
-        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("oak_sapling"))
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("oak_sapling_1"))
                 .notConsumable(new ItemStack(Items.OAK_SAPLING))
                 .outputItems(new ItemStack(Items.OAK_LOG, 10))
                 .outputItems(new ItemStack(Items.OAK_LEAVES, 8))
@@ -42,7 +42,7 @@ public class WoodChain {
                 .save(provider);
 
         // 云杉树苗
-        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("spruce_sapling"))
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("spruce_sapling_1"))
                 .notConsumable(new ItemStack(Items.SPRUCE_SAPLING))
                 .outputItems(new ItemStack(Items.SPRUCE_LOG, 10))
                 .outputItems(new ItemStack(Items.SPRUCE_LEAVES, 8))
@@ -51,7 +51,7 @@ public class WoodChain {
                 .save(provider);
 
         // 白桦树苗
-        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("birch_sapling"))
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("birch_sapling_1"))
                 .notConsumable(new ItemStack(Items.BIRCH_SAPLING))
                 .outputItems(new ItemStack(Items.BIRCH_LOG, 10))
                 .outputItems(new ItemStack(Items.BIRCH_LEAVES, 8))
@@ -60,7 +60,7 @@ public class WoodChain {
                 .save(provider);
 
         // 丛林树苗
-        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("jungle_sapling"))
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("jungle_sapling_1"))
                 .notConsumable(new ItemStack(Items.JUNGLE_SAPLING))
                 .outputItems(new ItemStack(Items.JUNGLE_LOG, 10))
                 .outputItems(new ItemStack(Items.JUNGLE_LEAVES, 8))
@@ -69,7 +69,7 @@ public class WoodChain {
                 .save(provider);
 
         // 金合欢树苗
-        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("acacia_sapling"))
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("acacia_sapling_1"))
                 .notConsumable(new ItemStack(Items.ACACIA_SAPLING))
                 .outputItems(new ItemStack(Items.ACACIA_LOG, 10))
                 .outputItems(new ItemStack(Items.ACACIA_LEAVES, 8))
@@ -78,7 +78,7 @@ public class WoodChain {
                 .save(provider);
 
         // 深色橡木树苗
-        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("dark_oak_sapling"))
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("dark_oak_sapling_1"))
                 .notConsumable(new ItemStack(Items.DARK_OAK_SAPLING))
                 .outputItems(new ItemStack(Items.DARK_OAK_LOG, 10))
                 .outputItems(new ItemStack(Items.DARK_OAK_LEAVES, 8))
@@ -87,7 +87,7 @@ public class WoodChain {
                 .save(provider);
 
         // 樱花树苗
-        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("cherry_sapling"))
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("cherry_sapling_1"))
                 .notConsumable(new ItemStack(Items.CHERRY_SAPLING))
                 .outputItems(new ItemStack(Items.CHERRY_LOG, 10))
                 .outputItems(new ItemStack(Items.CHERRY_LEAVES, 8))
@@ -408,7 +408,7 @@ public class WoodChain {
                 .save(provider);
 
         // 橡胶树苗
-        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("rubber_sapling"))
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("rubber_sapling_1"))
                 .notConsumable(GTBlocks.RUBBER_SAPLING.asStack())
                 .outputItems(GTBlocks.RUBBER_LOG.asStack(10))
                 .outputItems(GTBlocks.RUBBER_LEAVES.asStack(8))
@@ -516,7 +516,7 @@ public class WoodChain {
                 .save(provider);
 
         // 空心橡木树苗 (暮色森林)
-        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("hollow_oak_sapling"))
+        CTNHRecipeTypes.WOOD_BIONICS.recipeBuilder(CTNHCore.id("hollow_oak_sapling_1"))
                 .notConsumable(new ItemStack(TFBlocks.HOLLOW_OAK_SAPLING.get().asItem()))
                 .outputItems(new ItemStack(TFBlocks.TWILIGHT_OAK_LOG.get().asItem(), 64))
                 .outputItems(new ItemStack(TFBlocks.TWILIGHT_OAK_LEAVES.get().asItem(), 64))
@@ -606,7 +606,7 @@ public class WoodChain {
         ItemStack inputStack = stack(input);
         ItemStack outputStack = stack(output, count);
         if (inputStack.isEmpty() || outputStack.isEmpty()) return;
-        CuttingRecipeBuilder.builder("wood/" + id)
+        CuttingRecipeBuilder.builder(CTNHCore.id("wood/" + id))
                 .input(inputStack)
                 .result(outputStack)
                 .save(provider);

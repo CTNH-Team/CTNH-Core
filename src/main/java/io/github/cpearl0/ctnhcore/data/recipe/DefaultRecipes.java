@@ -214,7 +214,7 @@ public class DefaultRecipes {
                 .save(provider);
 
         // 石墨 + 铀238 -> 铀石墨混合物
-        GTRecipeTypes.MIXER_RECIPES.recipeBuilder("graphite_uranium_mixture")
+        GTRecipeTypes.MIXER_RECIPES.recipeBuilder(CTNHCore.id("graphite_uranium_mixture"))
                 .inputItems(TagPrefix.dust, GTMaterials.Graphite, 3)
                 .inputItems(TagPrefix.dust, GTMaterials.Uranium238)
                 .outputItems(TagPrefix.dust, CTNHMaterials.GraphiteUraniumMixture, 4)
@@ -223,7 +223,7 @@ public class DefaultRecipes {
                 .save(provider);
 
         // 铀石墨混合物 + 碳化钨箔 -> 封装铀
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("encapsulated_uranium")
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("encapsulated_uranium"))
                 .inputItems(TagPrefix.dust, CTNHMaterials.GraphiteUraniumMixture, 4)
                 .inputItems(TagPrefix.foil, GTMaterials.TungstenCarbide, 2)
                 .outputItems(CTNHItems.EncapsulatedUranium)
@@ -232,7 +232,7 @@ public class DefaultRecipes {
                 .save(provider);
 
         // 钍 + 铀235 + 碳 -> 铀碳化钍混合物
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("uranium_carbide_thorium_mixture")
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("uranium_carbide_thorium_mixture"))
                 .inputItems(TagPrefix.dust, GTMaterials.Thorium, 11)
                 .inputItems(TagPrefix.dust, CTNHMaterials.Thorium232)
                 .inputItems(TagPrefix.dust, GTMaterials.Uranium235)
@@ -243,7 +243,7 @@ public class DefaultRecipes {
                 .save(provider);
 
         // 1. 封装钍
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("encapsulated_thorium")
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("encapsulated_thorium"))
                 .inputItems(TagPrefix.dust, CTNHMaterials.UraniumCarbideThoriumMixture, 64)
                 .inputItems(TagPrefix.foil, GTMaterials.TungstenSteel, 4)
                 .outputItems(CTNHItems.EncapsulatedThorium)
@@ -252,7 +252,7 @@ public class DefaultRecipes {
                 .save(provider);
 
         // 2. 钚氧化物铀混合物
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("plutonium_oxide_uranium_mixture")
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("plutonium_oxide_uranium_mixture"))
                 .inputItems(TagPrefix.dust, GTMaterials.Plutonium239, 10)
                 .inputItems(TagPrefix.dust, GTMaterials.Uranium238, 2)
                 .inputItems(TagPrefix.dust, GTMaterials.Carbon, 8)
@@ -263,7 +263,7 @@ public class DefaultRecipes {
                 .save(provider);
 
         // 3. 封装钚
-        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("encapsulated_plutonium")
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("encapsulated_plutonium"))
                 .inputItems(TagPrefix.dust, CTNHMaterials.PlutoniumOxideUraniumMixture, 8)
                 .inputItems(TagPrefix.foil, GTMaterials.HSSS, 4)
                 .outputItems(CTNHItems.EncapsulatedPlutonium)
@@ -272,7 +272,7 @@ public class DefaultRecipes {
                 .save(provider);
 
         // 4. 浓缩铀锭
-        GTRecipeTypes.COMPRESSOR_RECIPES.recipeBuilder("enriched_uranium_ingot")
+        GTRecipeTypes.COMPRESSOR_RECIPES.recipeBuilder(CTNHCore.id("enriched_uranium_ingot"))
                 .inputItems(CTNHItems.EnrichedUraniumNugget.asStack(9))
                 .outputItems(CTNHItems.EnrichedUranium)
                 .EUt(GTValues.VA[GTValues.HV]) // 480 EU/t
@@ -280,7 +280,7 @@ public class DefaultRecipes {
                 .save(provider);
 
         // 5. 浓缩钍锭
-        GTRecipeTypes.COMPRESSOR_RECIPES.recipeBuilder("enriched_thorium_ingot")
+        GTRecipeTypes.COMPRESSOR_RECIPES.recipeBuilder(CTNHCore.id("enriched_thorium_ingot"))
                 .inputItems(CTNHItems.EnrichedThoriumNugget.asStack(9))
                 .outputItems(CTNHItems.EnrichedThorium)
                 .EUt(GTValues.VA[GTValues.MV]) // 120 EU/t
@@ -288,7 +288,7 @@ public class DefaultRecipes {
                 .save(provider);
 
         // 6. 浓缩钚锭
-        GTRecipeTypes.COMPRESSOR_RECIPES.recipeBuilder("enriched_plutonium_ingot")
+        GTRecipeTypes.COMPRESSOR_RECIPES.recipeBuilder(CTNHCore.id("enriched_plutonium_ingot"))
                 .inputItems(CTNHItems.EnrichedPlutoniumNugget.asStack(9))
                 .outputItems(CTNHItems.EnrichedPlutonium)
                 .EUt(GTValues.VA[GTValues.MV]) // 120 EU/t
@@ -1116,7 +1116,7 @@ public class DefaultRecipes {
                 .duration(20 * 200)
                 .save(provider);
 
-        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("naalf"))
+        GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("naalf_1"))
                 .inputItems(TagPrefix.dust, CTNHMaterials.Cryolite, 10)
                 .outputItems(TagPrefix.dust, GTMaterials.Sodium, 3)
                 .outputItems(TagPrefix.dust, GTMaterials.Aluminium)
@@ -1126,7 +1126,7 @@ public class DefaultRecipes {
                 .duration(20 * 40)
                 .save(provider);
 
-        CTNHRecipeTypes.DECAY_POOLS.recipeBuilder(CTNHCore.id("naalf"))
+        CTNHRecipeTypes.DECAY_POOLS.recipeBuilder(CTNHCore.id("naalf_2"))
                 .inputItems(TagPrefix.dust, CTNHMaterials.Cryolite, 1000)
                 .circuitMeta(24)
                 .outputItems(TagPrefix.dust, UncategorizedMaterials.SODIUM22, 50)

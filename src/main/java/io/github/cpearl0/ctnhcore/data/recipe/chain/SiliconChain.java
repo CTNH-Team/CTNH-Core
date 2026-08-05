@@ -40,7 +40,7 @@ public class SiliconChain {
                 .save(provider);
 
         // 钙铁榴石
-        ELECTROLYZER_RECIPES.recipeBuilder("andradite")
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("andradite"))
                 .EUt(60).duration(480)
                 .inputItems(dust, Andradite, 20)
                 .outputItems(dust, Iron, 2)
@@ -50,7 +50,7 @@ public class SiliconChain {
                 .save(provider);
 
         // 铁辉石
-        ELECTROLYZER_RECIPES.recipeBuilder("ferrosilite")
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("ferrosilite"))
                 .EUt(60).duration(120)
                 .inputItems(dust, Ferrosilite, 5)
                 .outputItems(dust, Iron)
@@ -59,7 +59,7 @@ public class SiliconChain {
                 .save(provider);
 
         // 钙辉石
-        ELECTROLYZER_RECIPES.recipeBuilder("wollastonite")
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("wollastonite"))
                 .EUt(60).duration(110)
                 .inputItems(dust, CTNHMaterials.Wollastonite, 5)
                 .outputItems(dust, Calcium)
@@ -68,7 +68,7 @@ public class SiliconChain {
                 .save(provider);
 
         // 黑曜石
-        ELECTROLYZER_RECIPES.recipeBuilder("obsidian")
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("obsidian"))
                 .EUt(60).duration(192)
                 .inputItems(dust, Obsidian, 8)
                 .outputItems(dust, Iron)
@@ -77,7 +77,7 @@ public class SiliconChain {
                 .save(provider);
 
         // 滑石
-        ELECTROLYZER_RECIPES.recipeBuilder("talc")
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("talc"))
                 .EUt(60).duration(378)
                 .inputItems(dust, Talc, 21)
                 .outputItems(dust, Magnesium, 3)
@@ -87,7 +87,7 @@ public class SiliconChain {
                 .save(provider);
 
         // 皂石
-        ELECTROLYZER_RECIPES.recipeBuilder("soapstone")
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("soapstone"))
                 .EUt(60).duration(378)
                 .inputItems(dust, Soapstone, 21)
                 .outputItems(dust, Magnesium, 3)
@@ -97,7 +97,7 @@ public class SiliconChain {
                 .save(provider);
 
         // 膨润土
-        ELECTROLYZER_RECIPES.recipeBuilder("bentonite")
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("bentonite"))
                 .EUt(60).duration(480)
                 .inputItems(dust, Bentonite, 30)
                 .outputItems(dust, Sodium)
@@ -108,7 +108,7 @@ public class SiliconChain {
                 .save(provider);
 
         // 石棉粉
-        ELECTROLYZER_RECIPES.recipeBuilder("asbestos")
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("asbestos"))
                 .EUt(60).duration(252)
                 .inputItems(dust, Asbestos, 18)
                 .outputItems(dust, Magnesium, 3)
@@ -118,7 +118,7 @@ public class SiliconChain {
                 .save(provider);
 
         // 钙铬榴石
-        ELECTROLYZER_RECIPES.recipeBuilder("uvarovite")
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("uvarovite"))
                 .EUt(360).duration(480)
                 .inputItems(dust, Uvarovite, 20)
                 .outputItems(dust, Calcium, 3)
@@ -128,7 +128,7 @@ public class SiliconChain {
                 .save(provider);
 
         // 漂白土
-        ELECTROLYZER_RECIPES.recipeBuilder("fullers_earth")
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("fullers_earth"))
                 .EUt(60).duration(336)
                 .inputItems(dust, FullersEarth, 21)
                 .outputItems(dust, Magnesium)
@@ -140,7 +140,7 @@ public class SiliconChain {
 
         // 二氧化硅处理
         // 碳还原二氧化硅
-        CHEMICAL_RECIPES.recipeBuilder("silicon_dioxide_reduction")
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("silicon_dioxide_reduction"))
                 .EUt(300).duration(200)
                 .inputItems(dust, SiliconDioxide, 3)
                 .inputItems(dust, Carbon, 2)
@@ -149,7 +149,7 @@ public class SiliconChain {
                 .save(provider);
 
         // 二氧化硅氯化
-        CHEMICAL_RECIPES.recipeBuilder("silicon_dioxide_chloride")
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("silicon_dioxide_chloride"))
                 .EUt(30).duration(40)
                 .inputItems(dust, SiliconDioxide, 3)
                 .inputFluids(HydrochloricAcid.getFluid(4000))
@@ -158,7 +158,7 @@ public class SiliconChain {
                 .save(provider);
 
         // 钠还原四氯化硅
-        CHEMICAL_RECIPES.recipeBuilder("silicon_from_sodium")
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("silicon_from_sodium"))
                 .EUt(30).duration(40)
                 .inputItems(dust, Sodium, 4)
                 .inputFluids(NewExplosivesProductionMaterials.SILICON_CHLORIDE.getFluid(1000))
@@ -167,7 +167,7 @@ public class SiliconChain {
                 .save(provider);
 
         // 钾还原四氯化硅
-        CHEMICAL_RECIPES.recipeBuilder("silicon_from_potassium")
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("silicon_from_potassium"))
                 .EUt(30).duration(40)
                 .inputItems(dust, Potassium, 4)
                 .inputFluids(NewExplosivesProductionMaterials.SILICON_CHLORIDE.getFluid(1000))
@@ -176,7 +176,7 @@ public class SiliconChain {
                 .save(provider);
 
         // 钠还原四氟化硅
-        CHEMICAL_RECIPES.recipeBuilder("silicon_from_sodium2")
+        CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("silicon_from_sodium2"))
                 .EUt(30).duration(40)
                 .inputItems(dust, Sodium, 4)
                 .inputFluids(CTNHMaterials.siliconFluoride.getFluid(1000))

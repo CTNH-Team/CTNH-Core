@@ -127,7 +127,7 @@ public class MachinesRecipes {
                 .outputItems(FERTILIZER, 16)
                 .save(provider);
 
-        CTNHRecipeTypes.ARC_REACTOR.recipeBuilder(CTNHCore.id("test"))
+        CTNHRecipeTypes.ARC_REACTOR.recipeBuilder(CTNHCore.id("test_1"))
                 .EUt(8192)
                 .duration(20)
                 .circuitMeta(1)
@@ -153,7 +153,7 @@ public class MachinesRecipes {
                 .EUt(VA[LuV])
                 .save(provider);
 
-        CTNHRecipeTypes.COMPILER_RECIPE.recipeBuilder(CTNHCore.id("test"))
+        CTNHRecipeTypes.COMPILER_RECIPE.recipeBuilder(CTNHCore.id("test_2"))
                 .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
                 .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
                 .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
@@ -226,13 +226,13 @@ public class MachinesRecipes {
                 .cleanroom(CleanroomType.CLEANROOM)
                 .duration(400).EUt(90).save(provider);
 
-        PHOTOVOLTAIC_GENERATOR.recipeBuilder(CTNHCore.id("test"))
+        PHOTOVOLTAIC_GENERATOR.recipeBuilder(CTNHCore.id("test_3"))
                 .duration(20)
                 .EUt(-1)
                 .circuitMeta(1)
                 .save(provider);
 
-        PHOTOVOLTAIC_ASSEMBER.recipeBuilder(CTNHCore.id("test"))
+        PHOTOVOLTAIC_ASSEMBER.recipeBuilder(CTNHCore.id("test_4"))
                 .duration(20)
                 // .EUt(-1)
                 .circuitMeta(1)

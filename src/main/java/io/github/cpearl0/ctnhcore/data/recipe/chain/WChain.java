@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe.chain;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 
 import com.gregtechceu.gtceu.common.data.GTMaterials;
@@ -17,7 +18,7 @@ public class WChain {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         // 钨酸粉脱水 (dehydrator)
-        CTNHRecipeTypes.DEHYDRATOR_RECIPES.recipeBuilder("tungsten_trioxide_dust")
+        CTNHRecipeTypes.DEHYDRATOR_RECIPES.recipeBuilder(CTNHCore.id("tungsten_trioxide_dust"))
                 .inputItems(dust, GTMaterials.get("TungsticAcid"), 7)
                 .outputItems(dust, GTMaterials.get("TungstenTrioxide"), 4)
                 .outputFluids(GTMaterials.Water.getFluid(1000))
@@ -27,7 +28,7 @@ public class WChain {
                 .save(provider);
 
         // 三氧化钨变为钨锭和钨粉 (electric blast furnace)
-        GTRecipeTypes.BLAST_RECIPES.recipeBuilder("tungsten_dust")
+        GTRecipeTypes.BLAST_RECIPES.recipeBuilder(CTNHCore.id("tungsten_dust"))
                 .inputItems(dust, GTMaterials.get("TungstenTrioxide"), 4)
                 .inputFluids(GTMaterials.Hydrogen.getFluid(6000))
                 .outputItems(dust, GTMaterials.get("Tungsten"), 1)
@@ -38,7 +39,7 @@ public class WChain {
                 .blastFurnaceTemp(3500)
                 .save(provider);
 
-        GTRecipeTypes.BLAST_RECIPES.recipeBuilder("tungsten_ingot")
+        GTRecipeTypes.BLAST_RECIPES.recipeBuilder(CTNHCore.id("tungsten_ingot"))
                 .inputItems(dust, GTMaterials.get("TungstenTrioxide"), 8)
                 .inputItems(dust, GTMaterials.Carbon, 3)
                 .outputItems(ingotHot, GTMaterials.get("HotTungstenIngot"), 2)

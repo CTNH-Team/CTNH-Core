@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe.generated;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 
@@ -24,7 +26,7 @@ public class HyperRotorRecipes {
     }
 
     private static void registerSingle(@NotNull Consumer<FinishedRecipe> provider, Material material) {
-        FORMING_PRESS_RECIPES.recipeBuilder("press_" + material.getName() + "_hyper_rotor")
+        FORMING_PRESS_RECIPES.recipeBuilder(CTNHCore.id("press_" + material.getName() + "_hyper_rotor"))
                 .inputItems(TagPrefix.rotor, material, 1)
                 .inputItems(AllBlocks.SHAFT.asItem(), 1)
                 .inputItems(TagPrefix.plateDense, material, 4 * 4)

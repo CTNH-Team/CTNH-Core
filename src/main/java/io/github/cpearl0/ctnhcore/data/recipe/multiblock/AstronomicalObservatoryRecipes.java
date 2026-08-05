@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe.multiblock;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 
@@ -12,7 +13,7 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHWorlds.THE_AETHER;
 public class AstronomicalObservatoryRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        CTNHRecipeTypes.ASTRONOMICAL_OBSERVATORY.recipeBuilder("observe")
+        CTNHRecipeTypes.ASTRONOMICAL_OBSERVATORY.recipeBuilder(CTNHCore.id("observe"))
                 .inputItems(CTNHItems.ASTRONOMY_CIRCUIT_1)
                 .outputItems(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1)
                 .dimension(THE_AETHER)

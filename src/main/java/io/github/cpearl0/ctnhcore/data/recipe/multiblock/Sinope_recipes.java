@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe.multiblock;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.NaquadahMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
@@ -16,7 +17,7 @@ import java.util.function.Consumer;
 public class Sinope_recipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        CTNHRecipeTypes.SINOPE.recipeBuilder("impure_enriched_naquadah_solution1")
+        CTNHRecipeTypes.SINOPE.recipeBuilder(CTNHCore.id("impure_enriched_naquadah_solution1"))
                 .inputFluids(GTMaterials.AcidicNaquadriaSolution.getFluid(3000))
                 .outputFluids(GTMaterials.NaquadriaWaste.getFluid(1000))
                 .outputFluids(GTMaterials.ImpureEnrichedNaquadahSolution.getFluid(1000))
@@ -24,7 +25,7 @@ public class Sinope_recipes {
                 .duration(1000)
                 // .blastFurnaceTemp(1280)
                 .save(provider);
-        CTNHRecipeTypes.SINOPE.recipeBuilder("enriched_naquadah_residue_solution1")
+        CTNHRecipeTypes.SINOPE.recipeBuilder(CTNHCore.id("enriched_naquadah_residue_solution1"))
                 .inputItems(TagPrefix.dust, NaquadahMaterials.GoldTrifluoride, 4)
                 .inputFluids(NaquadahMaterials.XenonHexafluoroEnrichedNaquadate.getFluid(1000))
                 .inputFluids(GTMaterials.FluoroantimonicAcid.getFluid(1000))
@@ -35,25 +36,25 @@ public class Sinope_recipes {
                 .EUt(GTValues.VA[GTValues.LuV])
                 .duration(1200)
                 .save(provider);
-        CTNHRecipeTypes.SINOPE.recipeBuilder("rp_1_mixed_fuel1")
+        CTNHRecipeTypes.SINOPE.recipeBuilder(CTNHCore.id("rp_1_mixed_fuel1"))
                 .inputFluids(GTMaterials.Oxygen.getFluid(2000))
                 .inputFluids(CTNHMaterials.RP1RocketFuel.getFluid(500))
                 .outputFluids(CTNHMaterials.RP1.getFluid(1000))
                 .circuitMeta(1)
                 .duration(300).EUt(GTValues.VA[GTValues.HV]).save(provider);
-        CTNHRecipeTypes.SINOPE.recipeBuilder("dense_hydrazine_mixed_fuel1")
+        CTNHRecipeTypes.SINOPE.recipeBuilder(CTNHCore.id("dense_hydrazine_mixed_fuel1"))
                 .inputFluids(GTMaterials.Methanol.getFluid(6000))
                 .inputFluids(CTNHMaterials.Hydrazine.getFluid(4000))
                 .outputFluids(CTNHMaterials.DenseHydrazineMixedFuel.getFluid(10000))
                 .circuitMeta(2)
                 .duration(600).EUt(GTValues.VA[GTValues.HV]).save(provider);
-        CTNHRecipeTypes.SINOPE.recipeBuilder("hydrazine1")
+        CTNHRecipeTypes.SINOPE.recipeBuilder(CTNHCore.id("hydrazine1"))
                 .inputFluids(GTMaterials.Ammonia.getFluid(1000))
                 .inputFluids(GTMaterials.HydrogenPeroxide.getFluid(1000))
                 .outputFluids(CTNHMaterials.Hydrazine.getFluid(1000))
                 .circuitMeta(2)
                 .duration(200).EUt(GTValues.VA[GTValues.HV]).save(provider);
-        CTNHRecipeTypes.SINOPE.recipeBuilder("hydrogen_peroxide_oxygen1")
+        CTNHRecipeTypes.SINOPE.recipeBuilder(CTNHCore.id("hydrogen_peroxide_oxygen1"))
                 .inputFluids(GTMaterials.Oxygen.getFluid(10000))
                 .inputFluids(CTNHMaterials.EthylAnthraHydroQuinone.getFluid(5000))
                 .inputFluids(CTNHMaterials.Anthracene.getFluid(50))
@@ -61,7 +62,7 @@ public class Sinope_recipes {
                 .outputFluids(CTNHMaterials.EthylAnthraQuinone.getFluid(5000))
                 .circuitMeta(4)
                 .duration(100).EUt(GTValues.VA[GTValues.HV]).save(provider);
-        CTNHRecipeTypes.SINOPE.recipeBuilder("hydrogen_peroxide_air1")
+        CTNHRecipeTypes.SINOPE.recipeBuilder(CTNHCore.id("hydrogen_peroxide_air1"))
                 .inputFluids(GTMaterials.Air.getFluid(20000))
                 .inputFluids(CTNHMaterials.EthylAnthraHydroQuinone.getFluid(5000))
                 .inputFluids(CTNHMaterials.Anthracene.getFluid(50))
@@ -69,26 +70,26 @@ public class Sinope_recipes {
                 .outputFluids(CTNHMaterials.EthylAnthraQuinone.getFluid(5000))
                 .circuitMeta(4)
                 .duration(600).EUt(GTValues.VA[GTValues.HV]).save(provider);
-        CTNHRecipeTypes.SINOPE.recipeBuilder("ethyl_anthra_quinone1")
+        CTNHRecipeTypes.SINOPE.recipeBuilder(CTNHCore.id("ethyl_anthra_quinone1"))
                 .inputItems(ChemicalHelper.get(TagPrefix.dust, CTNHMaterials.PhthalicAnhydride, 15))
                 .inputFluids(GTMaterials.Ethylbenzene.getFluid(1000))
                 .outputFluids(CTNHMaterials.EthylAnthraQuinone.getFluid(1000))
                 .circuitMeta(4)
                 .duration(600).EUt(GTValues.VA[GTValues.MV]).save(provider);
-        CTNHRecipeTypes.SINOPE.recipeBuilder("ethyl_anthra_hydro_quinone1")
+        CTNHRecipeTypes.SINOPE.recipeBuilder(CTNHCore.id("ethyl_anthra_hydro_quinone1"))
                 .inputFluids(CTNHMaterials.EthylAnthraQuinone.getFluid(1000))
                 .inputFluids(GTMaterials.Hydrogen.getFluid(2000))
                 .outputFluids(CTNHMaterials.EthylAnthraHydroQuinone.getFluid(1000))
                 .circuitMeta(4)
                 .duration(800).EUt(GTValues.VA[GTValues.MV]).save(provider);
-        CTNHRecipeTypes.SINOPE.recipeBuilder("methyl_hydrazine1")
+        CTNHRecipeTypes.SINOPE.recipeBuilder(CTNHCore.id("methyl_hydrazine1"))
                 .inputItems(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Carbon, 1))
                 .inputFluids(GTMaterials.Hydrogen.getFluid(2000))
                 .inputFluids(CTNHMaterials.Hydrazine.getFluid(1000))
                 .outputFluids(CTNHMaterials.MethylHydrazine.getFluid(1000))
                 .circuitMeta(21)
                 .duration(1000).EUt(GTValues.VA[GTValues.HV]).save(provider);
-        CTNHRecipeTypes.SINOPE.recipeBuilder("methylhydrazine_nitrate_rocket_fuel1")
+        CTNHRecipeTypes.SINOPE.recipeBuilder(CTNHCore.id("methylhydrazine_nitrate_rocket_fuel1"))
                 .inputFluids(CTNHMaterials.MethylHydrazine.getFluid(2000))
                 .inputFluids(GTMaterials.NitricAcid.getFluid(1000))
                 .outputFluids(CTNHMaterials.MethylhydrazineNitrateRocketFuel.getFluid(2000))

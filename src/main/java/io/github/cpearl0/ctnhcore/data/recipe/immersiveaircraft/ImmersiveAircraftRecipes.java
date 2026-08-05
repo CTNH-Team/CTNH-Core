@@ -186,7 +186,7 @@ public class ImmersiveAircraftRecipes {
     }
 
     private static void addCreateRecipes(Consumer<FinishedRecipe> provider) {
-        SequencedAssemblyRecipeBuilder.builder("immersive_aircraft/engine")
+        SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("immersive_aircraft/engine"))
                 .input(Items.POLISHED_BLACKSTONE_SLAB)
                 .transitional(Items.POLISHED_BLACKSTONE_SLAB)
                 .result(stack(immersive_aircraft.Items.ENGINE.get()))
@@ -197,7 +197,7 @@ public class ImmersiveAircraftRecipes {
                 .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
                 .pressing()
                 .save(provider);
-        SequencedAssemblyRecipeBuilder.builder("immersive_aircraft/hull_reinforcement")
+        SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("immersive_aircraft/hull_reinforcement"))
                 .input(immersive_aircraft.Items.HULL.get())
                 .transitional(immersive_aircraft.Items.HULL.get())
                 .result(stack(immersive_aircraft.Items.HULL_REINFORCEMENT.get(), 3))
@@ -206,7 +206,7 @@ public class ImmersiveAircraftRecipes {
                 .deploying(ChemicalHelper.get(TagPrefix.screw, GTMaterials.Brass))
                 .pressing()
                 .save(provider);
-        SequencedAssemblyRecipeBuilder.builder("immersive_aircraft/eco_engine")
+        SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("immersive_aircraft/eco_engine"))
                 .input(immersive_aircraft.Items.ENGINE.get())
                 .transitional(immersive_aircraft.Items.ENGINE.get())
                 .result(stack(immersive_aircraft.Items.ECO_ENGINE.get()))
@@ -216,7 +216,7 @@ public class ImmersiveAircraftRecipes {
                 .deploying(AllItems.PRECISION_MECHANISM.asStack())
                 .pressing()
                 .save(provider);
-        SequencedAssemblyRecipeBuilder.builder("immersive_aircraft/nether_engine")
+        SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("immersive_aircraft/nether_engine"))
                 .input(immersive_aircraft.Items.ENGINE.get())
                 .transitional(immersive_aircraft.Items.ENGINE.get())
                 .result(stack(immersive_aircraft.Items.NETHER_ENGINE.get()))
@@ -227,7 +227,7 @@ public class ImmersiveAircraftRecipes {
                 .deploying(CTPPItems.STEEL_MECHANISM.asStack())
                 .pressing()
                 .save(provider);
-        SequencedAssemblyRecipeBuilder.builder("immersive_aircraft/rotary_cannon")
+        SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("immersive_aircraft/rotary_cannon"))
                 .input(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Copper))
                 .transitional(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Copper))
                 .result(stack(immersive_aircraft.Items.ROTARY_CANNON.get()))
@@ -238,7 +238,7 @@ public class ImmersiveAircraftRecipes {
                 .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Copper))
                 .pressing()
                 .save(provider);
-        SequencedAssemblyRecipeBuilder.builder("immersive_aircraft/telescope")
+        SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("immersive_aircraft/telescope"))
                 .input(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Iron))
                 .transitional(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Iron))
                 .result(stack(immersive_aircraft.Items.TELESCOPE.get()))
@@ -249,7 +249,7 @@ public class ImmersiveAircraftRecipes {
                 .pressing()
                 .save(provider);
 
-        MechanicalCraftingRecipeBuilder.builder("immersive_aircraft/quadrocopter")
+        MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("immersive_aircraft/quadrocopter"))
                 .pattern("QAQ", "SWS", "SAS", "QEQ")
                 .key('Q', immersive_aircraft.Items.ENHANCED_PROPELLER.get())
                 .key('W', immersive_aircraft.Items.ENGINE.get())
@@ -258,7 +258,7 @@ public class ImmersiveAircraftRecipes {
                 .key('S', immersive_aircraft.Items.INDUSTRIAL_GEARS.get())
                 .result(stack(immersive_aircraft.Items.QUADROCOPTER.get()))
                 .save(provider);
-        MechanicalCraftingRecipeBuilder.builder("immersive_aircraft/airship")
+        MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("immersive_aircraft/airship"))
                 .pattern(" QDQ ", " SWS ", "A E A", "AAAAA")
                 .key('Q', immersive_aircraft.Items.SAIL.get())
                 .key('W', immersive_aircraft.Items.ENGINE.get())
@@ -268,7 +268,7 @@ public class ImmersiveAircraftRecipes {
                 .key('E', AllItems.PRECISION_MECHANISM.asStack())
                 .result(stack(immersive_aircraft.Items.AIRSHIP.get()))
                 .save(provider);
-        MechanicalCraftingRecipeBuilder.builder("immersive_aircraft/cargo_airship")
+        MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("immersive_aircraft/cargo_airship"))
                 .pattern(" WQW ", " DWD ", "SEAES", "SERES")
                 .key('A', immersive_aircraft.Items.AIRSHIP.get())
                 .key('S', Items.CHEST)
@@ -279,7 +279,7 @@ public class ImmersiveAircraftRecipes {
                 .key('R', immersive_aircraft.Items.ECO_ENGINE.get())
                 .result(stack(immersive_aircraft.Items.CARGO_AIRSHIP.get()))
                 .save(provider);
-        MechanicalCraftingRecipeBuilder.builder("immersive_aircraft/warship")
+        MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("immersive_aircraft/warship"))
                 .pattern("ABCBK", "AFEFK", "AGHGK", "JJIJJ", "D   K")
                 .key('A', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
                 .key('B', immersive_aircraft.Items.SAIL.get())
@@ -294,7 +294,7 @@ public class ImmersiveAircraftRecipes {
                 .key('K', immersive_aircraft.Items.PROPELLER.get())
                 .result(stack(immersive_aircraft.Items.WARSHIP.get()))
                 .save(provider);
-        MechanicalCraftingRecipeBuilder.builder("immersive_aircraft/biplane")
+        MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("immersive_aircraft/biplane"))
                 .pattern("AABAA", " DCD ", " DED ", " DFD ", "  G  ")
                 .key('A', immersive_aircraft.Items.HULL_REINFORCEMENT.get())
                 .key('B', immersive_aircraft.Items.PROPELLER.get())

@@ -63,7 +63,7 @@ public class AdAstraRecipes {
                 .outputItems(CTNHItems.HEAVY_INGOT_T4)
                 .inputFluids(CTNHMaterials.Cerrobase140.getFluid(36))
                 .duration(300).EUt(GTValues.VA[GTValues.LuV]).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("space_helmet"))
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("space_helmet_1"))
                 .inputItems(Items.CHAINMAIL_HELMET.getDefaultInstance(), ChemicalHelper.get(plate, Glass))
                 .outputItems(ModItems.SPACE_HELMET)
                 .inputFluids(Glue.getFluid(72))

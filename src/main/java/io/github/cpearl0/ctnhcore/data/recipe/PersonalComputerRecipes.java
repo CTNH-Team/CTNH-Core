@@ -39,7 +39,7 @@ public class PersonalComputerRecipes {
                 .EUt(30)
                 .save(provider);
 
-        // CTNHRecipeTypes.PERSONAL_COMPUTER.recipeBuilder("astronomy_circuit_force")
+        // CTNHRecipeTypes.PERSONAL_COMPUTER.recipeBuilder(CTNHCore.id("astronomy_circuit_force"))
         // .circuitMeta(3)
         // .inputItems(CTNHItems.ASTRONOMY_CIRCUIT_1)
         // .duration(60)

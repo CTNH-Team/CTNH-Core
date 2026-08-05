@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe.chain;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.YeastRelatedMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 
@@ -21,7 +22,7 @@ public class CoalChain {
         ItemStack cokeDustSeq = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Coke);
         ItemStack highQualityFuel = CTNHItems.HIGH_QUALITY_SOLID_FUEL.asStack();
         if (!cokeDustSeq.isEmpty() && !highQualityFuel.isEmpty()) {
-            SequencedAssemblyRecipeBuilder.builder("coke_dust_to_high_quality_fuel")
+            SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("coke_dust_to_high_quality_fuel"))
                     .input(cokeDustSeq)
                     .transitional(cokeDustSeq)
                     .result(highQualityFuel)

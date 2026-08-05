@@ -112,7 +112,7 @@ public class BrineChain {
 
     private static void IodineChain(Consumer<FinishedRecipe> provider) {
         // 硝酸钾配方修改
-        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("potassium_nitrate_synthesis")
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("potassium_nitrate_synthesis"))
                 .inputItems(TagPrefix.dust, GTMaterials.PotassiumCarbonate, 6)
                 .inputFluids(GTMaterials.NitricAcid.getFluid(2000))
                 .outputItems(TagPrefix.dust, Saltpeter, 10)
@@ -123,7 +123,7 @@ public class BrineChain {
                 .save(provider);
 
         // 硝酸钾制氨
-        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("ammonia_from_potassium_nitrate")
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("ammonia_from_potassium_nitrate"))
                 .inputItems(TagPrefix.dust, GTMaterials.Saltpeter, 5)
                 .inputFluids(GTMaterials.Hydrogen.getFluid(8000))
                 .outputFluids(GTMaterials.Ammonia.getFluid(1000))
@@ -134,7 +134,7 @@ public class BrineChain {
                 .save(provider);
 
         // 海水粗提盐水
-        CTNHRecipeTypes.DESALTING.recipeBuilder("seawater_saltwater")
+        CTNHRecipeTypes.DESALTING.recipeBuilder(CTNHCore.id("seawater_saltwater"))
                 .inputFluids(Seawater.getFluid(1000))
                 .chancedOutput(dust, GTMaterials.MagnesiumChloride, 2000, 0)
                 .chancedOutput(dust, GTMaterials.CalciumChloride, 1000, 0)
@@ -146,7 +146,7 @@ public class BrineChain {
                 .save(provider);
 
         // 海水精提溴碘
-        GTRecipeTypes.BLAST_RECIPES.recipeBuilder("iodine_brine")
+        GTRecipeTypes.BLAST_RECIPES.recipeBuilder(CTNHCore.id("iodine_brine"))
                 .inputItems(dust, GTMaterials.Saltpeter, 5)
                 .inputFluids(Seawater.getFluid(2000))
                 .outputItems(dust, Potassium)
@@ -158,7 +158,7 @@ public class BrineChain {
                 .save(provider);
 
         // I? + 0.3 Cl -> I?Cl
-        GTRecipeTypes.MIXER_RECIPES.recipeBuilder("iodine_brine_mixture")
+        GTRecipeTypes.MIXER_RECIPES.recipeBuilder(CTNHCore.id("iodine_brine_mixture"))
                 .inputFluids(IodizedBrine.getFluid(1000))
                 .inputFluids(GTMaterials.Chlorine.getFluid(300))
                 .outputFluids(IodineBrineMixture.getFluid(1300))
@@ -167,7 +167,7 @@ public class BrineChain {
                 .save(provider);
 
         // I?Cl -> Br? + I?
-        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder("brominated_brine")
+        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("brominated_brine"))
                 .inputFluids(IodineBrineMixture.getFluid(1300))
                 .outputFluids(BrominatedBrine.getFluid(1000))
                 .outputFluids(IodineSlurry.getFluid(300))
@@ -176,7 +176,7 @@ public class BrineChain {
                 .save(provider);
 
         // I? -> I
-        CTNHRecipeTypes.DEHYDRATOR_RECIPES.recipeBuilder("iodine")
+        CTNHRecipeTypes.DEHYDRATOR_RECIPES.recipeBuilder(CTNHCore.id("iodine"))
                 .inputFluids(IodineSlurry.getFluid(1200))
                 .outputItems(dust, GTMaterials.Iodine)
                 .EUt(1280)
@@ -187,7 +187,7 @@ public class BrineChain {
     private static void BromineChain(Consumer<FinishedRecipe> provider) {
         // Br? + H2SO4 -> Br?(H2SO4)
 
-        GTRecipeTypes.MIXER_RECIPES.recipeBuilder("acidic_brominated_brine")
+        GTRecipeTypes.MIXER_RECIPES.recipeBuilder(CTNHCore.id("acidic_brominated_brine"))
                 .inputFluids(BrominatedBrine.getFluid(1000))
                 .inputFluids(GTMaterials.SulfuricAcid.getFluid(1000))
                 .outputFluids(AcidicBrominatedBrine.getFluid(1000))
@@ -196,7 +196,7 @@ public class BrineChain {
                 .save(provider);
 
         // Br?(H2SO4) + SO2 + H2O -> H2SO4Br(H2O)Cl2
-        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("bromine_sulfate_solution")
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("bromine_sulfate_solution"))
                 .inputFluids(AcidicBrominatedBrine.getFluid(1000))
                 .inputFluids(GTMaterials.SulfurDioxide.getFluid(1000))
                 .inputFluids(GTMaterials.Water.getFluid(1000))
@@ -208,7 +208,7 @@ public class BrineChain {
                 .save(provider);
 
         // 2H2SO4Br(H2O)Cl2 + H2O -> 3H2SO4Br(H2O)2Cl2
-        GTRecipeTypes.CRACKING_RECIPES.recipeBuilder("overheated_bromine_sulfate_gas")
+        GTRecipeTypes.CRACKING_RECIPES.recipeBuilder(CTNHCore.id("overheated_bromine_sulfate_gas_1"))
                 .inputFluids(BromineSulfateSolution.getFluid(2000))
                 .inputFluids(GTMaterials.Steam.getFluid(1000))
                 .outputFluids(OverheatedBromineSulfateSolution.getFluid(3000))
@@ -217,7 +217,7 @@ public class BrineChain {
                 .save(provider);
 
         // 3H2SO4Br(H2O)2Cl2 -> Br(H2O) + H2O + 2Cl + H2SO4
-        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder("overheated_bromine_sulfate_gas")
+        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("overheated_bromine_sulfate_gas_2"))
                 .inputFluids(OverheatedBromineSulfateSolution.getFluid(3000))
                 .outputFluids(WetBromine.getFluid(1000))
                 .outputFluids(DebrominatedWater.getFluid(1000))
@@ -228,7 +228,7 @@ public class BrineChain {
                 .save(provider);
 
         // Br(H2O) -> Br + H2O (lost)
-        CTNHRecipeTypes.DEHYDRATOR_RECIPES.recipeBuilder("wet_bromine")
+        CTNHRecipeTypes.DEHYDRATOR_RECIPES.recipeBuilder(CTNHCore.id("wet_bromine"))
                 .inputFluids(WetBromine.getFluid(1000))
                 .outputFluids(GTMaterials.Bromine.getFluid(1000))
                 .EUt(360)
@@ -236,7 +236,7 @@ public class BrineChain {
                 .save(provider);
 
         // Salt Water recycle
-        CTNHRecipeTypes.DEHYDRATOR_RECIPES.recipeBuilder("debrominated_water")
+        CTNHRecipeTypes.DEHYDRATOR_RECIPES.recipeBuilder(CTNHCore.id("debrominated_water"))
                 .inputFluids(DebrominatedWater.getFluid(1000))
                 .outputFluids(SaltWater.getFluid(100))
                 .EUt(360)

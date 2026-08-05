@@ -187,7 +187,7 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // 11. space_helmet: glass_plate + 4x space_fabric + glue 72 -> ad_astra:space_helmet. EUt 120, dur 400
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("space_helmet"))
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("space_helmet_2"))
                 .EUt(120).duration(400)
                 .inputItems(plate, Glass)
                 .inputItems(SPACE_FABRIC.asStack(4))
@@ -1247,7 +1247,7 @@ public class GtceuScriptRecipes {
         // ============== Greenhouse Recipes ==============
 
         // Rubber sapling
-        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("rubber_sapling"))
+        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("rubber_sapling_2"))
                 .circuitMeta(1)
                 .notConsumable(GTBlocks.RUBBER_SAPLING.asStack())
                 .inputFluids(Water.getFluid(1000))
@@ -1269,7 +1269,7 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // Oak sapling
-        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("oak_sapling"))
+        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("oak_sapling_2"))
                 .circuitMeta(1)
                 .notConsumable(new ItemStack(Items.OAK_SAPLING))
                 .inputFluids(Water.getFluid(1000))
@@ -1290,7 +1290,7 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // Dark oak sapling
-        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("dark_oak_sapling"))
+        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("dark_oak_sapling_2"))
                 .circuitMeta(1)
                 .notConsumable(new ItemStack(Items.DARK_OAK_SAPLING))
                 .inputFluids(Water.getFluid(1000))
@@ -1311,7 +1311,7 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // Spruce sapling
-        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("spruce_sapling"))
+        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("spruce_sapling_2"))
                 .circuitMeta(1)
                 .notConsumable(new ItemStack(Items.SPRUCE_SAPLING))
                 .inputFluids(Water.getFluid(1000))
@@ -1332,7 +1332,7 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // Birch sapling
-        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("birch_sapling"))
+        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("birch_sapling_2"))
                 .circuitMeta(1)
                 .notConsumable(new ItemStack(Items.BIRCH_SAPLING))
                 .inputFluids(Water.getFluid(1000))
@@ -1353,7 +1353,7 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // Acacia sapling
-        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("acacia_sapling"))
+        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("acacia_sapling_2"))
                 .circuitMeta(1)
                 .notConsumable(new ItemStack(Items.ACACIA_SAPLING))
                 .inputFluids(Water.getFluid(1000))
@@ -1374,7 +1374,7 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // Jungle sapling
-        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("jungle_sapling"))
+        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("jungle_sapling_2"))
                 .circuitMeta(1)
                 .notConsumable(new ItemStack(Items.JUNGLE_SAPLING))
                 .inputFluids(Water.getFluid(1000))
@@ -1437,7 +1437,7 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // Cherry sapling
-        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("cherry_sapling"))
+        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("cherry_sapling_2"))
                 .circuitMeta(1)
                 .notConsumable(new ItemStack(Items.CHERRY_SAPLING))
                 .inputFluids(Water.getFluid(1000))
@@ -1479,7 +1479,7 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // Hollow oak sapling (Twilight Forest)
-        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("hollow_oak_sapling"))
+        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("hollow_oak_sapling_2"))
                 .circuitMeta(1)
                 .notConsumable(
                         TFBlocks.HOLLOW_OAK_SAPLING.get().asItem())
@@ -1759,7 +1759,7 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // Rhizobium special greenhouse
-        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("rhizobium"))
+        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("rhizobium_2"))
                 .circuitMeta(3)
                 .notConsumable(new ItemStack(Items.SPRUCE_SAPLING))
                 .inputItems(GTItems.FERTILIZER.asStack(4))
@@ -1774,7 +1774,7 @@ public class GtceuScriptRecipes {
         // ============== Chemical Plant Recipes ==============
 
         // rp_1_mixed_fuel
-        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder(CTNHCore.id("rp_1_mixed_fuel"))
+        CTNHRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder(CTNHCore.id("rp_1_mixed_fuel_3"))
                 .circuitMeta(1)
                 .inputFluids(RP1RocketFuel.getFluid(500))
                 .inputFluids(RocketFuel.getFluid(500))

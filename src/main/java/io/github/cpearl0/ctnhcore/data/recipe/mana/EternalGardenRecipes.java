@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe.mana;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import vazkii.botania.common.block.BotaniaFlowerBlocks;
@@ -18,7 +20,7 @@ import static net.minecraft.world.item.Items.*;
 public class EternalGardenRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        ETERNAL_GARDEN.recipeBuilder("hydroangeas1")// 水绣球-水
+        ETERNAL_GARDEN.recipeBuilder(CTNHCore.id("hydroangeas1"))// 水绣球-水
                 .inputItems(BotaniaFlowerBlocks.hydroangeas.asItem())
                 .inputFluids(Water.getFluid(1000))
                 .outputFluids(Mana.getFluid(300))
@@ -27,7 +29,7 @@ public class EternalGardenRecipes {
                 .EUt(256)
                 .duration(20)
                 .save(provider);
-        ETERNAL_GARDEN.recipeBuilder("hydroangeas2")// 水绣球-蒸馏水
+        ETERNAL_GARDEN.recipeBuilder(CTNHCore.id("hydroangeas2"))// 水绣球-蒸馏水
                 .inputItems(BotaniaFlowerBlocks.hydroangeas.asItem())
                 .inputFluids(DistilledWater.getFluid(1000))
                 .outputFluids(Mana.getFluid(600))
@@ -36,14 +38,14 @@ public class EternalGardenRecipes {
                 .EUt(12800 / 25)
                 .duration(25)
                 .save(provider);
-        ETERNAL_GARDEN.recipeBuilder("shulk_me_not")// 勿落草
+        ETERNAL_GARDEN.recipeBuilder(CTNHCore.id("shulk_me_not"))// 勿落草
                 .notConsumable(BotaniaFlowerBlocks.shulkMeNot.asItem())
                 .outputFluids(Mana.getFluid(4))
                 .circuitMeta(1)
                 .EUt(256)
                 .duration(1)
                 .save(provider);
-        ETERNAL_GARDEN.recipeBuilder("thermalily1")// 炽玫瑰-极热之炽焰
+        ETERNAL_GARDEN.recipeBuilder(CTNHCore.id("thermalily1"))// 炽玫瑰-极热之炽焰
                 .notConsumable(BotaniaFlowerBlocks.thermalily.asItem())
                 .inputFluids(Pyrotheum.getFluid(1000))
                 .outputFluids(Mana.getFluid(2000))
@@ -52,7 +54,7 @@ public class EternalGardenRecipes {
                 .EUt(256)
                 .duration(50)
                 .save(provider);
-        ETERNAL_GARDEN.recipeBuilder("thermalily2")// 炽玫瑰-烈焰
+        ETERNAL_GARDEN.recipeBuilder(CTNHCore.id("thermalily2"))// 炽玫瑰-烈焰
                 .notConsumable(BotaniaFlowerBlocks.thermalily.asItem())
                 .inputFluids(Blaze.getFluid(1000))
                 .outputFluids(Mana.getFluid(1000))
@@ -61,7 +63,7 @@ public class EternalGardenRecipes {
                 .addData("type", "flame")
                 .duration(50)
                 .save(provider);
-        ETERNAL_GARDEN.recipeBuilder("thermalily3")// 炽玫瑰-岩浆
+        ETERNAL_GARDEN.recipeBuilder(CTNHCore.id("thermalily3"))// 炽玫瑰-岩浆
                 .notConsumable(BotaniaFlowerBlocks.thermalily.asItem())
                 .inputFluids(Lava.getFluid(1000))
                 .outputFluids(Mana.getFluid(500))
@@ -70,7 +72,7 @@ public class EternalGardenRecipes {
                 .addData("type", "flame")
                 .duration(50)
                 .save(provider);
-        ETERNAL_GARDEN.recipeBuilder("wither_aconite1")// 凋零菟葵-量子之星
+        ETERNAL_GARDEN.recipeBuilder(CTNHCore.id("wither_aconite1"))// 凋零菟葵-量子之星
                 .notConsumable(witherAconite.asItem())
                 .inputItems(NETHER_STAR)
                 .outputFluids(Mana.getFluid(100000))
@@ -79,7 +81,7 @@ public class EternalGardenRecipes {
                 .EUt(256)
                 .duration(2000)
                 .save(provider);
-        ETERNAL_GARDEN.recipeBuilder("wither_aconite2")// 凋零菟葵-下界之星
+        ETERNAL_GARDEN.recipeBuilder(CTNHCore.id("wither_aconite2"))// 凋零菟葵-下界之星
                 .notConsumable(witherAconite.asItem())
                 .inputItems(QUANTUM_STAR)
                 .outputFluids(Mana.getFluid(400000))
@@ -88,7 +90,7 @@ public class EternalGardenRecipes {
                 .EUt(256)
                 .duration(2500)
                 .save(provider);
-        ETERNAL_GARDEN.recipeBuilder("reikarlily12")// 雷卡兰-12
+        ETERNAL_GARDEN.recipeBuilder(CTNHCore.id("reikarlily12"))// 雷卡兰-12
                 .notConsumable(reikarlily.asItem())
                 .addData("type", "lighting")
                 .addData("light", true)
@@ -97,7 +99,7 @@ public class EternalGardenRecipes {
                 .EUt(256)
                 .duration(1000)
                 .save(provider);
-        ETERNAL_GARDEN.recipeBuilder("reikarlily24")// 雷卡兰-24
+        ETERNAL_GARDEN.recipeBuilder(CTNHCore.id("reikarlily24"))// 雷卡兰-24
                 .addData("type", "lighting")
                 .addData("light", false)
                 .notConsumable(reikarlily.asItem())

@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe.mana;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.recipe.ingredient.fluid.FluidIngredient;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
@@ -30,7 +32,7 @@ public class MiscManaRecipes {
                 StoredEntityData.of(ResourceLocation.tryParse("minecraft:wither")).serializeNBT());
         tag.put("BlockEntityTag", entityTag);
 
-        HELL_FORGE_RECIPES.recipeBuilder("wither_soul_vial")
+        HELL_FORGE_RECIPES.recipeBuilder(CTNHCore.id("wither_soul_vial"))
                 .addCondition(new HellForgeCondition(450))// 恶魔意志消耗量
                 .inputItems(ChemicalHelper.get(block, GTMaterials.NetherStar))// 下界之星块
                 .inputItems(REAGENT_BLOOD_LIGHT)// 血光试剂

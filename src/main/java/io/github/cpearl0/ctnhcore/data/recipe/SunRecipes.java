@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
@@ -58,7 +59,7 @@ public class SunRecipes {
     }
 
     private static void autoclaveRecipes(Consumer<FinishedRecipe> provider) {
-        AUTOCLAVE_RECIPES.recipeBuilder("sun1")
+        AUTOCLAVE_RECIPES.recipeBuilder(CTNHCore.id("sun1_1"))
                 .inputItems(Items.GLOW_BERRIES, 16)
                 .inputFluids(UUMatter.getFluid(16))
                 .outputItems(dust, Sunnarium, 16)
@@ -66,7 +67,7 @@ public class SunRecipes {
                 .duration(1600)
                 .save(provider);
 
-        AUTOCLAVE_RECIPES.recipeBuilder("sun2")
+        AUTOCLAVE_RECIPES.recipeBuilder(CTNHCore.id("sun2_1"))
                 .inputItems(Items.GLOW_INK_SAC, 64)
                 .inputFluids(UUMatter.getFluid(16))
                 .outputItems(dust, Sunnarium, 16)
@@ -74,7 +75,7 @@ public class SunRecipes {
                 .duration(2000)
                 .save(provider);
 
-        AUTOCLAVE_RECIPES.recipeBuilder("sun4")
+        AUTOCLAVE_RECIPES.recipeBuilder(CTNHCore.id("sun4"))
                 .inputFluids(SUNNARIUM_EXTRACT.getFluid(576))
                 .inputItems(Items.GLOWSTONE_DUST)
                 .outputItems(dust, Sunnarium)
@@ -84,7 +85,7 @@ public class SunRecipes {
     }
 
     private static void mixerRecipes(Consumer<FinishedRecipe> provider) {
-        MIXER_RECIPES.recipeBuilder("sun1")
+        MIXER_RECIPES.recipeBuilder(CTNHCore.id("sun1_2"))
                 .inputItems(dust, Thorium, 4)
                 .inputItems(LIGHT_RELAY, 4)
                 .inputItems(Items.GLOWSTONE_DUST, 4)
@@ -94,7 +95,7 @@ public class SunRecipes {
                 .duration(120)
                 .save(provider);
 
-        MIXER_RECIPES.recipeBuilder("soda_glass")
+        MIXER_RECIPES.recipeBuilder(CTNHCore.id("soda_glass"))
                 .inputItems(dust, SodaAsh, 2)
                 .inputItems(dust, SiliconDioxide, 6)
                 .inputItems(dust, Calcite)
@@ -105,7 +106,7 @@ public class SunRecipes {
     }
 
     private static void pvbRecipes(Consumer<FinishedRecipe> provider) {
-        CTNHRecipeTypes.PVB_RECIPE.recipeBuilder("clgs")
+        CTNHRecipeTypes.PVB_RECIPE.recipeBuilder(CTNHCore.id("clgs"))
                 .inputItems(dust, Selenium, 3)
                 .inputItems(dust, Copper)
                 .inputItems(dust, Gallium)
@@ -117,7 +118,7 @@ public class SunRecipes {
                 .duration(200)
                 .save(provider);
 
-        CTNHRecipeTypes.PVB_RECIPE.recipeBuilder("zzz")
+        CTNHRecipeTypes.PVB_RECIPE.recipeBuilder(CTNHCore.id("zzz"))
                 .inputItems(dust, MolybdenumDisilicide)
                 .inputItems(plateDouble, SODA_DUST)
                 .inputItems(dust, Nickel, 5)
@@ -130,7 +131,7 @@ public class SunRecipes {
                 .duration(400)
                 .save(provider);
 
-        CTNHRecipeTypes.PVB_RECIPE.recipeBuilder("magnetron_sputtering_target_material_plate")
+        CTNHRecipeTypes.PVB_RECIPE.recipeBuilder(CTNHCore.id("magnetron_sputtering_target_material_plate"))
                 .inputItems(dust, Zinc, 11)
                 .inputItems(dust, Aluminium, 11)
                 .inputItems(dust, Sunnarium, 11)
@@ -139,7 +140,7 @@ public class SunRecipes {
                 .duration(400)
                 .save(provider);
 
-        CTNHRecipeTypes.PVB_RECIPE.recipeBuilder("clgs_quick")
+        CTNHRecipeTypes.PVB_RECIPE.recipeBuilder(CTNHCore.id("clgs_quick"))
                 .inputItems(dust, Selenium, 3)
                 .inputItems(dust, Copper)
                 .inputItems(dust, Gallium)
@@ -154,7 +155,7 @@ public class SunRecipes {
     }
 
     private static void chemicalVaporDepositionRecipes(Consumer<FinishedRecipe> provider) {
-        CTNHRecipeTypes.CHEMICAL_VAPOR_DEPOSITION.recipeBuilder("cds")
+        CTNHRecipeTypes.CHEMICAL_VAPOR_DEPOSITION.recipeBuilder(CTNHCore.id("cds"))
                 .inputItems(dust, CADMIUM_SULFIDE)
                 .inputItems(plate, CLGS_BUFFER)
                 .outputItems(plate, CLGS_BUFFER)
@@ -162,7 +163,7 @@ public class SunRecipes {
                 .duration(200)
                 .save(provider);
 
-        CTNHRecipeTypes.CHEMICAL_VAPOR_DEPOSITION.recipeBuilder("nano_c")
+        CTNHRecipeTypes.CHEMICAL_VAPOR_DEPOSITION.recipeBuilder(CTNHCore.id("nano_c"))
                 .inputItems(dust, ActivatedCarbon, 64)
                 .inputItems(CARBON_FIBERS, 64)
                 .inputFluids(Glue.getFluid(1000))
@@ -174,7 +175,7 @@ public class SunRecipes {
     }
 
     private static void assemblerRecipes(Consumer<FinishedRecipe> provider) {
-        ASSEMBLER_RECIPES.recipeBuilder("sunny")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("sunny"))
                 .inputItems(CTNHItems.CLGS_ELECTRODE.asStack())
                 .inputItems(plate, CLGS_BUFFER)
                 .inputItems(plate, MAGNETRON_SPUTTERING_TARGET_MATERIAL)
@@ -186,7 +187,7 @@ public class SunRecipes {
                 .duration(800)
                 .save(provider);
 
-        ASSEMBLER_RECIPES.recipeBuilder("dense_calorite_plate")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("dense_calorite_plate"))
                 .inputItems(plateDense, OPTICAL_HEAT_RESISTANT_FERROCHROME_ALLOY_080)
                 .inputItems(plate, IncoloyMA956, 4)
                 .inputItems(plateDense, Calorite)
@@ -197,7 +198,7 @@ public class SunRecipes {
                 .duration(100)
                 .save(provider);
 
-        ASSEMBLER_RECIPES.recipeBuilder("photon_press_cond_block")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("photon_press_cond_block"))
                 .inputItems(NEUTRON_REFLECTOR)
                 .inputItems(CTNHItems.PlateRadiationProtection.asStack())
                 .inputItems(plateDense, CADMIUM_SULFIDE)
@@ -209,7 +210,7 @@ public class SunRecipes {
                 .duration(200)
                 .save(provider);
 
-        ASSEMBLER_RECIPES.recipeBuilder("pv_coil")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("pv_coil_1"))
                 .inputItems(foil, Sunnarium, 48)
                 .inputItems(wireFine, Electrum, 64)
                 .inputItems(frameGt, OPTICAL_HEAT_RESISTANT_FERROCHROME_ALLOY_080, 6)
@@ -221,7 +222,7 @@ public class SunRecipes {
                 .duration(144)
                 .save(provider);
 
-        ASSEMBLER_RECIPES.recipeBuilder("photovoltaic_drone_prototype")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("photovoltaic_drone_prototype"))
                 .inputItems(frameGt, Sunnarium, 64)
                 .inputItems(screw, Sunnarium, 64)
                 .inputItems(CTNHItems.CLGS.asStack(), 2)
@@ -234,7 +235,7 @@ public class SunRecipes {
                 .duration(600)
                 .save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("stellar_radiation_router_casing")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("stellar_radiation_router_casing"))
                 .inputItems(GCYMBlocks.HEAT_VENT.asStack(4))
                 .inputItems(pipeSmallFluid, NiobiumTitanium, 32)
                 .inputItems(plateDense, HEAT_RESISTANT_FERROCHROME_ALLOY_DS)
@@ -249,7 +250,7 @@ public class SunRecipes {
                 .duration(100)
                 .save(provider);
 
-        ASSEMBLER_RECIPES.recipeBuilder("nq_excite_carbon_carbon_nanofiber_structural_block")
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("nq_excite_carbon_carbon_nanofiber_structural_block"))
                 .inputItems(plateDense, NaquadahAlloy)
                 .inputItems(IV_CIRCUITS)
                 .inputItems(dust, NAMI_C, 16)
@@ -262,14 +263,14 @@ public class SunRecipes {
     }
 
     private static void extractorRecipes(Consumer<FinishedRecipe> provider) {
-        EXTRACTOR_RECIPES.recipeBuilder("sun1")
+        EXTRACTOR_RECIPES.recipeBuilder(CTNHCore.id("sun1_3"))
                 .inputItems(Items.GLOW_BERRIES)
                 .chancedOutput(dust, SUNNARIUM_EXTRACT, 7000, 1000)
                 .EUt(480)
                 .duration(150)
                 .save(provider);
 
-        EXTRACTOR_RECIPES.recipeBuilder("sun2")
+        EXTRACTOR_RECIPES.recipeBuilder(CTNHCore.id("sun2_2"))
                 .inputItems(Items.GLOW_INK_SAC, 4)
                 .chancedOutput(dust, SUNNARIUM_EXTRACT, 6000, 1000)
                 .EUt(480)
@@ -278,7 +279,7 @@ public class SunRecipes {
     }
 
     private static void fusionReactorRecipes(Consumer<FinishedRecipe> provider) {
-        FUSION_RECIPES.recipeBuilder("sun")
+        FUSION_RECIPES.recipeBuilder(CTNHCore.id("sun"))
                 .inputFluids(Glowstone.getFluid(1440))
                 .inputFluids(SUNNARIUM_EXTRACT.getFluid(144))
                 .outputFluids(Sunnarium.getFluid(1440))
@@ -287,7 +288,7 @@ public class SunRecipes {
                 .duration(100)
                 .save(provider);
 
-        FUSION_RECIPES.recipeBuilder("sunnarium_plasma")
+        FUSION_RECIPES.recipeBuilder(CTNHCore.id("sunnarium_plasma"))
                 .inputFluids(Oxygen.getFluid(PLASMA, 1000))
                 .inputFluids(Sunnarium.getFluid(1000))
                 .outputFluids(Sunnarium.getFluid(PLASMA, 1000))
@@ -296,7 +297,7 @@ public class SunRecipes {
                 .duration(100)
                 .save(provider);
 
-        FUSION_RECIPES.recipeBuilder("light")
+        FUSION_RECIPES.recipeBuilder(CTNHCore.id("light"))
                 .inputFluids(Sunnarium.getFluid(PLASMA, 144))
                 .inputFluids(RADIATION_SUNNARIUM_EXTRACT.getFluid(144))
                 .outputFluids(HIKARIUM.getFluid(PLASMA, 288))
@@ -307,7 +308,7 @@ public class SunRecipes {
     }
 
     private static void cultivationRoomRecipes(Consumer<FinishedRecipe> provider) {
-        CTNHRecipeTypes.CULTIVATION_ROOM.recipeBuilder("radiation_sunnarium_extract_plasma")
+        CTNHRecipeTypes.CULTIVATION_ROOM.recipeBuilder(CTNHCore.id("radiation_sunnarium_extract_plasma"))
                 .outputFluids(RADIATION_SUNNARIUM_EXTRACT.getFluid(PLASMA, 1000))
                 .inputFluids(new FluidStack(
                         LIQUID_SUNSHINE, 100))
@@ -319,7 +320,7 @@ public class SunRecipes {
                 .duration(200)
                 .save(provider);
 
-        CTNHRecipeTypes.CULTIVATION_ROOM.recipeBuilder("radiation_sunnarium_extract_plasma2")
+        CTNHRecipeTypes.CULTIVATION_ROOM.recipeBuilder(CTNHCore.id("radiation_sunnarium_extract_plasma2"))
                 .outputFluids(RADIATION_SUNNARIUM_EXTRACT.getFluid(PLASMA, 6000))
                 .inputFluids(new FluidStack(
                         LIQUID_SUNSHINE, 600))
@@ -333,7 +334,7 @@ public class SunRecipes {
     }
 
     private static void plasmaCondenserRecipes(Consumer<FinishedRecipe> provider) {
-        CTNHRecipeTypes.PLASMA_CONDENSER_RECIPES.recipeBuilder("helium_plasma")
+        CTNHRecipeTypes.PLASMA_CONDENSER_RECIPES.recipeBuilder(CTNHCore.id("helium_plasma"))
                 .outputFluids(Helium.getFluid(PLASMA, 4000))
                 .inputFluids(Helium.getFluid(4000))
                 .inputFluids(RADIATION_SUNNARIUM_EXTRACT.getFluid(PLASMA, 1000))
@@ -342,7 +343,7 @@ public class SunRecipes {
                 .duration(100)
                 .save(provider);
 
-        CTNHRecipeTypes.PLASMA_CONDENSER_RECIPES.recipeBuilder("hikarium_plasma")
+        CTNHRecipeTypes.PLASMA_CONDENSER_RECIPES.recipeBuilder(CTNHCore.id("hikarium_plasma"))
                 .notConsumable(Items.GLOWSTONE_DUST)
                 .outputFluids(Helium.getFluid(PLASMA, 4000))
                 .inputFluids(Helium.getFluid(4000))
@@ -354,7 +355,7 @@ public class SunRecipes {
     }
 
     private static void assemblyLineRecipes(Consumer<FinishedRecipe> provider) {
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("combined_vapor_deposition_facility")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("combined_vapor_deposition_facility"))
                 .inputItems(MultiblocksA.CHEMICAL_VAPOR_DEPOSITION_MACHINE.asStack())
                 .inputItems(GTBlocks.HIGH_POWER_CASING.asStack())
                 .inputItems(GTBlocks.SUPERCONDUCTING_COIL.asStack())
@@ -371,7 +372,7 @@ public class SunRecipes {
                 .duration(2000)
                 .save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("lasersorder")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("lasersorder"))
                 .inputItems(GCYMMachines.LARGE_ENGRAVING_LASER.asStack())
                 .inputItems(lens, Diamond)
                 .inputItems(lens, Emerald)
@@ -389,7 +390,7 @@ public class SunRecipes {
                 .duration(800)
                 .save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("photovoltaic_drone_tier1")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("photovoltaic_drone_tier1"))
                 .stationResearch(b -> b
                         .researchStack(CTNHItems.PV_DRONE_RESEARCH_1.asStack())
                         .dataStack(TOOL_DATA_ORB.asStack())
@@ -410,7 +411,7 @@ public class SunRecipes {
                 .duration(400)
                 .save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("photovoltaic_drone_tier2")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("photovoltaic_drone_tier2"))
                 .stationResearch(b -> b
                         .researchStack(CTNHItems.PV_DRONE_RESEARCH_2.asStack())
                         .dataStack(TOOL_DATA_ORB.asStack())
@@ -432,7 +433,7 @@ public class SunRecipes {
                 .duration(400)
                 .save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("space_photovoltai_cbase_station")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("space_photovoltai_cbase_station"))
                 .inputItems(MultiblocksA.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.asStack(64))
                 .inputItems(MultiblocksA.PHOTOVOLTAIC_POWER_STATION_PULSATING.asStack(64))
                 .inputItems(MultiblocksA.PHOTOVOLTAIC_POWER_STATION_VIBRANT.asStack(64))
@@ -448,7 +449,7 @@ public class SunRecipes {
                 .duration(1000)
                 .save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("pvdrone")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("pvdrone"))
                 .stationResearch(b -> b
                         .researchStack(DRONEHOLDER.asStack())
                         .dataStack(TOOL_DATA_ORB.asStack())
@@ -473,7 +474,7 @@ public class SunRecipes {
     }
 
     private static void laserSorterRecipes(Consumer<FinishedRecipe> provider) {
-        CTNHRecipeTypes.LS_RECIPE.recipeBuilder("clgs2")
+        CTNHRecipeTypes.LS_RECIPE.recipeBuilder(CTNHCore.id("clgs2"))
                 .inputItems(CTNHItems.CLGS.asStack(), 2)
                 .notConsumable(lens, Ruby)
                 .outputItems(CTNHItems.MEASUREMENT_PV_CELL.asStack())
@@ -482,7 +483,7 @@ public class SunRecipes {
                 .duration(60000)
                 .save(provider);
 
-        CTNHRecipeTypes.LS_RECIPE.recipeBuilder("research_pvdrone")
+        CTNHRecipeTypes.LS_RECIPE.recipeBuilder(CTNHCore.id("research_pvdrone"))
                 .inputItems(CTNHItems.PV_DRONE_PROTOTYPE.asStack(), 8)
                 .inputItems(CTNHItems.CLGS.asStack(), 64)
                 .inputItems(LuV_CIRCUITS, 64)
@@ -492,7 +493,7 @@ public class SunRecipes {
                 .duration(2000000)
                 .save(provider);
 
-        CTNHRecipeTypes.LS_RECIPE.recipeBuilder("research_pvdone_2")
+        CTNHRecipeTypes.LS_RECIPE.recipeBuilder(CTNHCore.id("research_pvdone_2"))
                 .inputItems(ENERGY_MODULE, 16)
                 .inputItems(CTNHItems.MEASUREMENT_PV_CELL.asStack(), 64)
                 .inputItems(CTNHItems.PV_DRONE_TIER1.asStack(), 32)
@@ -505,7 +506,7 @@ public class SunRecipes {
                 .duration(20000000)
                 .save(provider);
 
-        CTNHRecipeTypes.LS_RECIPE.recipeBuilder("research_pvdone_3")
+        CTNHRecipeTypes.LS_RECIPE.recipeBuilder(CTNHCore.id("research_pvdone_3"))
                 .inputItems(HIGHLY_ADVANCED_SOC_WAFER, 64)
                 .inputItems(CTNHItems.PV_DRONE_TIER2.asStack(), 32)
                 .inputItems(UHV_CIRCUITS, 32)
@@ -519,7 +520,7 @@ public class SunRecipes {
     }
 
     private static void photovoltaicAssemberRecipes(Consumer<FinishedRecipe> provider) {
-        CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER.recipeBuilder("pv_coil")
+        CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER.recipeBuilder(CTNHCore.id("pv_coil_2"))
                 .inputItems(foil, Sunnarium, 32)
                 .inputItems(wireFine, Electrum, 32)
                 .inputItems(frameGt, OPTICAL_HEAT_RESISTANT_FERROCHROME_ALLOY_080, 4)
@@ -530,7 +531,7 @@ public class SunRecipes {
                 .duration(20)
                 .save(provider);
 
-        CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER.recipeBuilder("pv_drone_tier1")
+        CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER.recipeBuilder(CTNHCore.id("pv_drone_tier1"))
                 .notConsumable(CTNHItems.PV_DRONE_RESEARCH_2.asStack())
                 .inputItems(CTNHItems.MEASUREMENT_PV_CELL.asStack(), 2)
                 .inputItems(plateDense, OPTICAL_HEAT_RESISTANT_FERROCHROME_ALLOY_080)
@@ -542,7 +543,7 @@ public class SunRecipes {
                 .duration(400)
                 .save(provider);
 
-        CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER.recipeBuilder("pv_drone_tier2")
+        CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER.recipeBuilder(CTNHCore.id("pv_drone_tier2"))
                 .notConsumable(CTNHItems.PV_DRONE_RESEARCH_3.asStack())
                 .inputItems(CTNHItems.MEASUREMENT_PV_CELL.asStack(), 14)
                 .inputItems(plateDense, OPTICAL_HEAT_RESISTANT_FERROCHROME_ALLOY_080, 7)
@@ -555,7 +556,7 @@ public class SunRecipes {
                 .save(provider);
 
         CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER
-                .recipeBuilder("liquid_sunshine")
+                .recipeBuilder(CTNHCore.id("liquid_sunshine"))
                 .inputItems(Items.GLOWSTONE_DUST, 64)
                 .outputFluids(new FluidStack(
                         LIQUID_SUNSHINE, 10000))
@@ -563,7 +564,7 @@ public class SunRecipes {
                 .duration(1000)
                 .save(provider);
 
-        CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER.recipeBuilder("pv_terminal")
+        CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER.recipeBuilder(CTNHCore.id("pv_terminal"))
                 .inputItems(TERMINAL)
                 .inputItems(dust, Sunnarium)
                 .outputItems(CTNHItems.PV_TERMINAL.asStack())

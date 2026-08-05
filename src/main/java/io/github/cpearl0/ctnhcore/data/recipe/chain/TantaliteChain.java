@@ -98,7 +98,7 @@ public class TantaliteChain {
                 .save(provider);
 
         // 8. Ammonia from ammonium fluoride: ammonium_fluoride -> ammonia + fluorine
-        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("ammonia"))
+        ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("ammonia_2"))
                 .inputFluids(SpecialMaterials.AMMONIUM_FLUORIDE.getFluid(1000))
                 .outputFluids(Ammonia.getFluid(1000))
                 .outputFluids(Fluorine.getFluid(1000))

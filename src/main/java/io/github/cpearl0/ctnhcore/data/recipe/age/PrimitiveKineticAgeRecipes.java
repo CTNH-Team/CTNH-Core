@@ -103,12 +103,12 @@ public class PrimitiveKineticAgeRecipes {
                 .outputItems(TagPrefix.ingot, GTMaterials.WroughtIron)
                 .save(provider);
 
-        HammerRecipeBuilder.builder(CTNHCore.id("wrought_iron_ingot_from_hot"))
+        HammerRecipeBuilder.builder(CTNHCore.id("wrought_iron_ingot_from_hot_1"))
                 .input(TagPrefix.ingotHot, GTMaterials.WroughtIron)
                 .output(TagPrefix.ingot, GTMaterials.WroughtIron)
                 .save(provider);
 
-        PressingRecipeBuilder.builder(CTNHCore.id("wrought_iron_ingot_from_hot"))
+        PressingRecipeBuilder.builder(CTNHCore.id("wrought_iron_ingot_from_hot_2"))
                 .input(TagPrefix.ingotHot, GTMaterials.WroughtIron)
                 .output(TagPrefix.ingot, GTMaterials.WroughtIron)
                 .save(provider);
