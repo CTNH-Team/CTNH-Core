@@ -110,6 +110,8 @@ public class CreateRecipes {
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/fluid_pipe_vertical"));
         RecipeRemoval.remove(new RemoveFilter().id("create:item_application/copper_casing_from_log"));
         RecipeRemoval.remove(new RemoveFilter().id("create:item_application/copper_casing_from_wood"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/curiosities/brown_toolbox"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/curiosities/toolbox_dyeing"));
     }
 
     public static void init(Consumer<FinishedRecipe> provider) {

@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
@@ -28,10 +29,9 @@ import dev.emi.emi.api.stack.EmiStack;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
-
-import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.PRIMITIVE_BLAST_FURNACE;
 
 @EmiEntrypoint
 public class CTNHCoreEmiPlugin implements EmiPlugin {
@@ -75,7 +75,7 @@ public class CTNHCoreEmiPlugin implements EmiPlugin {
             "create:refined_radiance",
             "create:refined_radiance_casing");
 
-    public static List<Supplier<? extends Item>> disabled = new ArrayList<>();
+    public static List<Supplier<? extends ItemLike>> disabled = new ArrayList<>();
 
     @Override
     public void register(EmiRegistry registry) {
@@ -105,11 +105,17 @@ public class CTNHCoreEmiPlugin implements EmiPlugin {
                 AllBlocks.BRASS_ENCASED_COGWHEEL.asStack());
         addEncasingRecipe(registry, "brass_large_cogwheel", AllBlocks.LARGE_COGWHEEL.asStack(),
                 AllBlocks.BRASS_CASING.asStack(), AllBlocks.BRASS_ENCASED_LARGE_COGWHEEL.asStack());
+
+        registry.addEmiStack(EmiStack.of(AllBlocks.ANDESITE_ENCASED_COGWHEEL));
+        registry.addEmiStack(EmiStack.of(AllBlocks.ANDESITE_ENCASED_LARGE_COGWHEEL));
+        registry.addEmiStack(EmiStack.of(AllBlocks.BRASS_ENCASED_COGWHEEL));
+        registry.addEmiStack(EmiStack.of(AllBlocks.BRASS_ENCASED_LARGE_COGWHEEL));
     }
 
     @Override
     public void initialize(EmiInitRegistry registry) {
         EIODisable();
+        CreateDisable();
 
         for (var item : disabled) {
             registry.disableStack(EmiStack.of(item.get()));
@@ -118,24 +124,28 @@ public class CTNHCoreEmiPlugin implements EmiPlugin {
 
     public static void EIODisable() {
         disabled.addAll(List.of(
-                MachineBlocks.FLUID_TANK::asItem,
-                MachineBlocks.PRESSURIZED_FLUID_TANK::asItem,
-                MachineBlocks.STIRLING_GENERATOR::asItem,
-                MachineBlocks.SAG_MILL::asItem,
-                MachineBlocks.ALLOY_SMELTER::asItem,
-                MachineBlocks.PRIMITIVE_ALLOY_SMELTER::asItem,
-                MachineBlocks.STIRLING_GENERATOR::asItem,
-                MachineBlocks.SOUL_ENGINE::asItem,
-                EIOItems.BASIC_CAPACITOR::asItem,
-                EIOItems.DOUBLE_LAYER_CAPACITOR::asItem,
-                EIOItems.OCTADIC_CAPACITOR::asItem,
-                PRIMITIVE_BLAST_FURNACE::getItem));
+                MachineBlocks.FLUID_TANK,
+                MachineBlocks.PRESSURIZED_FLUID_TANK,
+                MachineBlocks.STIRLING_GENERATOR,
+                MachineBlocks.SAG_MILL,
+                MachineBlocks.ALLOY_SMELTER,
+                MachineBlocks.PRIMITIVE_ALLOY_SMELTER,
+                MachineBlocks.STIRLING_GENERATOR,
+                MachineBlocks.SOUL_ENGINE,
+                EIOItems.BASIC_CAPACITOR,
+                EIOItems.DOUBLE_LAYER_CAPACITOR,
+                EIOItems.OCTADIC_CAPACITOR));
+
         for (SolarPanelTier tier : SolarPanelTier.values()) {
-            disabled.add(MachineBlocks.SOLAR_PANELS.get(tier)::asItem);
+            disabled.add(MachineBlocks.SOLAR_PANELS.get(tier));
         }
         for (CapacitorTier tier : CapacitorTier.values()) {
-            disabled.add(MachineBlocks.CAPACITOR_BANKS.get(tier)::asItem);
+            disabled.add(MachineBlocks.CAPACITOR_BANKS.get(tier));
         }
+    }
+
+    public static void CreateDisable() {
+        disabled.addAll(Arrays.stream(AllBlocks.TOOLBOXES.toArray()).toList());
     }
 
     private static void addInformation(EmiRegistry registry, String itemId, String translationKey) {
