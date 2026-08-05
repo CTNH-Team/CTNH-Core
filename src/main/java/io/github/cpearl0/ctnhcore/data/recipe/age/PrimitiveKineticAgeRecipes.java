@@ -850,11 +850,6 @@ public class PrimitiveKineticAgeRecipes {
     }
 
     private static void addVacuumTubeRecipes(Consumer<FinishedRecipe> provider) {
-        // 真空管（真空腔：1 电子管 → 1 真空管）
-        VacuumizingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/vacuum_tube_from_electron_tube"))
-                .input(AllItems.ELECTRON_TUBE.asStack())
-                .result(GTItems.VACUUM_TUBE.asStack())
-                .save(provider);
         // 真空管（电子管）
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("vacuum_tube_plain_from_electron_tube"))
                 .inputItems(AllItems.ELECTRON_TUBE.asItem())
@@ -994,6 +989,12 @@ public class PrimitiveKineticAgeRecipes {
                 .deploying(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Coal))
                 .filling(new ItemStack(Items.PAPER), GTMaterials.Glue.getFluid(500))
                 .loops(1)
+                .save(provider);
+
+        // 真空管（真空腔：1 电子管 → 1 真空管）
+        VacuumizingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/vacuum_tube_from_electron_tube"))
+                .input(AllItems.ELECTRON_TUBE.asStack())
+                .result(GTItems.VACUUM_TUBE.asStack())
                 .save(provider);
 
         // 覆膜电路基板（木板 + GT 胶水注液）

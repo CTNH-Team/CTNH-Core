@@ -490,22 +490,6 @@ public class CreateRecipes {
                 .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Obsidian), 0.75)
                 .save(provider);
 
-        // electron tube
-        ItemStack electronTrans = AllItems.ELECTRON_TUBE.asStack();
-        ItemStack vacuumTube = GTItems.VACUUM_TUBE.asStack();
-        if (!electronTrans.isEmpty() && !vacuumTube.isEmpty()) {
-            com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
-                    .builder("electron_tube_from_vacuum")
-                    .input(vacuumTube)
-                    .transitional(electronTrans)
-                    .result(vacuumTube)
-                    .deploying(new ItemStack(Blocks.GLASS.asItem()))
-                    .deploying(ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Steel))
-                    .deploying(ChemicalHelper.get(TagPrefix.wireGtDouble, GTMaterials.Copper))
-                    .loops(1)
-                    .save(provider);
-        }
-
         // ender pearl dust -> ender eye dust
         ItemStack enderPearlDust = ChemicalHelper.get(TagPrefix.dust, GTMaterials.EnderPearl);
         ItemStack enderEyeDust = ChemicalHelper.get(TagPrefix.dust, GTMaterials.EnderEye);

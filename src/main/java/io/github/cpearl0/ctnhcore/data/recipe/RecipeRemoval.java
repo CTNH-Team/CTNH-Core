@@ -518,7 +518,6 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("gtceu:shapeless/potin_dust"));
         remove(new RemoveFilter().id("gtceu:shaped/coated_board"));
         remove(new RemoveFilter().id("gtceu:shapeless/coated_board_1x"));
-        remove(new RemoveFilter().id("gtceu:shaped/resistor_wire_carbon"));
         remove(new RemoveFilter().id("gtceu:shaped/vacuum_tube"));
         remove(new RemoveFilter().id("gtceu:assembler/vacuum_tube_plain"));
         remove(new RemoveFilter().id("gtceu:assembler/vacuum_tube_red_alloy"));
