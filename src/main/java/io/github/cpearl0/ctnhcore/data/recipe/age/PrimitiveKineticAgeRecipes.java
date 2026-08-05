@@ -1046,15 +1046,15 @@ public class PrimitiveKineticAgeRecipes {
                 .output(CTPPBlocks.GENERATOR_COIL.asStack())
                 .save(provider);
 
-        // 碳刷（自 CTPP 原样迁移）
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("carbon_brushes"),
-                CTPPMachines.CARBON_BRUSHES.asStack(),
-                "ABA",
-                "CDC",
-                "ABA",
-                'A', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy),
-                'B', CTPPItems.STEEL_MECHANISM.asStack(),
-                'C', ChemicalHelper.get(TagPrefix.dust, GTMaterials.Coke),
-                'D', AllBlocks.SHAFT.asStack());
+        //碳刷
+        MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("carbon_brushes"))
+                .pattern("ABCBA", "ADEDA", "ABCBA")
+                .key('A', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy))
+                .key('B', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
+                .key('C',ChemicalHelper.get(TagPrefix.foil, GTMaterials.Copper))
+                .key('D', ChemicalHelper.get(TagPrefix.dust, GTMaterials.Coke))
+                .key('E', AllBlocks.SHAFT.asItem())
+                .output(CTPPMachines.CARBON_BRUSHES.asStack())
+                .save(provider);
     }
 }
