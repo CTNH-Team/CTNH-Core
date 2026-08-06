@@ -3,8 +3,10 @@ package io.github.cpearl0.ctnhcore.data;
 import io.github.cpearl0.ctnhcore.CTNHConfig;
 
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
+import com.gregtechceu.gtceu.api.recipe.ingredient.item.IntCircuitIngredient;
 import com.gregtechceu.gtceu.api.sound.ExistingSoundEntry;
 import com.gregtechceu.gtceu.common.data.GTRecipes;
 import com.gregtechceu.gtceu.common.data.GTSoundEntries;
@@ -33,11 +35,19 @@ public class CreateRecipeTypes {
             if (!GTRecipes.RECIPE_FILTERS.contains(convert(builder.id, builder.recipeType))) {
                 assert MECHANICAL_PRESSOR_RECIPES != null;
                 if (GTUtil.getTierByVoltage(builder.EUt()) <= GTValues.HV) {
-                    var newrecipe = MECHANICAL_PRESSOR_RECIPES.copyFrom(builder)
+                    var newRecipe = MECHANICAL_PRESSOR_RECIPES.copyFrom(builder)
                             .duration(Math.max(
                                     (int) (builder.duration / CTNHConfig.INSTANCE.kinetic.pressorSpeedMultiplier), 1))
                             .buildRuntime();
-                    new CTPPRecipeBuilder(newrecipe, MECHANICAL_PRESSOR_RECIPES)
+                    var items = newRecipe.inputs.get(ItemRecipeCapability.CAP);
+                    if (items == null || items.isEmpty()) return;
+                    for (var ingredient : items) {
+                        if (ingredient instanceof IntCircuitIngredient circuit && circuit.getConfiguration() != 1) {
+                            return;
+                        }
+                    }
+                    items.removeIf(IntCircuitIngredient.class::isInstance);
+                    new CTPPRecipeBuilder(newRecipe, MECHANICAL_PRESSOR_RECIPES)
                             .rpm(CTNHConfig.INSTANCE.kinetic.pressorRpmRequirement)
                             .noEUt()
                             .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt()) * 2, 5))
@@ -121,7 +131,7 @@ public class CreateRecipeTypes {
     public static final GTRecipeType MECHANICAL_PRESSOR_RECIPES = REGISTRATE
             .recipeType("mechanical_pressor_recipes", KINETIC)
             .cnlang("机械辊压")
-            .setMaxIOSize(2, 1, 0, 0)
+            .setMaxIOSize(1, 1, 0, 0)
             .setSlotOverlay(false, false, false, GuiTextures.BENDER_OVERLAY)
             .setSlotOverlay(false, false, true, GuiTextures.INT_CIRCUIT_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_BENDING, LEFT_TO_RIGHT)
