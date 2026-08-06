@@ -1,0 +1,20 @@
+{
+  "fluid": "#forge:creosote",
+  "normal": {
+    "speed": 64.0,
+    "strength": 1024.0,
+    "burn_rate": 0.05
+  },
+  "modular": {
+    "speed": 64.0,
+    "strength": 1536.0,
+    "burn_rate": 0.05
+  },
+  "huge": {
+    "speed": 160.0,
+    "strength": 3072.0,
+    "burn_rate": 0.05
+  },
+  "sound_pitch": 0.6,
+  "burner_multiplier": 0.35
+}

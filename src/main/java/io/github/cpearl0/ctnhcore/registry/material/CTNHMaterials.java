@@ -246,7 +246,6 @@ public class CTNHMaterials {
     public static Material DebrominatedWater;
     public static Material NeutroniumMixture;
     public static Material MARM200Steel;
-    public static Material Seawater;
     public static Material STABALLOY;
     public static Material SNOW_STEEL;
     public static Material Thorium232;

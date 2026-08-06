@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.data.recipe.age;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.UncategorizedMaterials;
+import io.github.cpearl0.ctnhcore.data.recipe.create.CreateRecipeJsonHelper;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
@@ -20,12 +21,17 @@ import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.registries.ForgeRegistries;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.jesz.createdieselgenerators.CDGBlocks;
 import com.jesz.createdieselgenerators.CDGItems;
 import com.mo_guang.ctpp.data.recipe.builder.create.*;
@@ -233,19 +239,38 @@ public class PrimitiveKineticAgeRecipes {
         ItemCastingRecipeBuilder.basinRecipe(Items.GLASS)
                 .setFluidAndTime(GTMaterials.Glass.getFluid(144))
                 .save(provider, CTNHCore.id("smeltery/casting/glass_from_gtceu_glass"));
+
+        // 边框玻璃（熔炉：1 机械动力边框玻璃 → 1 热玻璃）
+        Item framedGlass = ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("create:framed_glass"));
+        if (framedGlass != null) {
+            VanillaRecipeHelper.addSmeltingRecipe(provider, CTNHCore.id("hot_glass_from_framed_glass"),
+                    new ItemStack(framedGlass), CTNHBlocks.HOT_GLASS.asStack(), 0.0f);
+        }
+
+        // 钢化玻璃（鼓风机洗涤：1 热玻璃 → 1 GT 钢化玻璃）
+        JsonObject washing = CreateRecipeJsonHelper.recipe("create:splashing");
+        JsonArray ingredients = new JsonArray();
+        ingredients.add(CreateRecipeJsonHelper.item("ctnhcore:hot_glass"));
+        washing.add("ingredients", ingredients);
+        JsonArray results = new JsonArray();
+        results.add(CreateRecipeJsonHelper
+                .item(ForgeRegistries.ITEMS.getKey(GTBlocks.CASING_TEMPERED_GLASS.get().asItem()).toString()));
+        washing.add("results", results);
+        washing.addProperty("processingTime", 200);
+        CreateRecipeJsonHelper.save(provider, "ctnhcore:splashing/tempered_glass_from_hot_glass", washing);
     }
 
     private static void addAndesiteAlloyRecipes(Consumer<FinishedRecipe> provider) {
         // 安山合金锭（工作台）
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/andesite_alloy_ingot"),
-                ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy, 4),
+                ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy, 8),
                 "ABA", "BAB", "ABA",
                 'A', Items.IRON_INGOT,
                 'B', Items.ANDESITE);
 
         // 安山合金粉（熔融铁与安山岩粉）
         MixingRecipeBuilder.builder(CTNHCore.id("andesite_alloy_from_iron"))
-                .result(new ItemStack(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy).getItem(), 2))
+                .result(new ItemStack(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy).getItem(), 4))
                 .inputFluid(GTMaterials.Iron.getFluid(144))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Andesite))
                 .save(provider);
@@ -254,8 +279,8 @@ public class PrimitiveKineticAgeRecipes {
         MixingRecipeBuilder.builder(CTNHCore.id("andesite_alloy_dust_with_secondary"))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Andesite))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Iron))
-                .result(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy))
-                .result(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy), 0.3)
+                .result(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy, 2))
+                .result(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy, 2), 0.3)
                 .save(provider);
 
         // 安山合金台阶（动力锯：1 安山合金块 → 2 台阶）

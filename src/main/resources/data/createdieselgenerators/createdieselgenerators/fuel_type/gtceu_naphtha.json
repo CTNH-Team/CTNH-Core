@@ -1,0 +1,20 @@
+{
+  "fluid": "#forge:naphtha",
+  "normal": {
+    "speed": 80.0,
+    "strength": 3072.0,
+    "burn_rate": 0.05
+  },
+  "modular": {
+    "speed": 80.0,
+    "strength": 4096.0,
+    "burn_rate": 0.05
+  },
+  "huge": {
+    "speed": 192.0,
+    "strength": 8192.0,
+    "burn_rate": 0.05
+  },
+  "sound_pitch": 0.8,
+  "burner_multiplier": 0.7
+}

@@ -112,6 +112,9 @@ public class CreateRecipes {
         RecipeRemoval.remove(new RemoveFilter().id("create:item_application/copper_casing_from_wood"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/curiosities/brown_toolbox"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/curiosities/toolbox_dyeing"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:smelting/glass_from_framed_glass"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:smelting/glass_from_horizontal_framed_glass"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:smelting/glass_from_vertical_framed_glass"));
     }
 
     public static void init(Consumer<FinishedRecipe> provider) {
