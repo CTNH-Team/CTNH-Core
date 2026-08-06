@@ -1,15 +1,15 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
-import io.github.cpearl0.ctnhcore.data.recipe.age.ExtremeVoltageAgeRecipes;
-import io.github.cpearl0.ctnhcore.data.recipe.age.HighVoltageAgeRecipes;
-import io.github.cpearl0.ctnhcore.data.recipe.age.InsaneVoltageAgeRecipes;
-import io.github.cpearl0.ctnhcore.data.recipe.age.LowVoltageAgeRecipes;
-import io.github.cpearl0.ctnhcore.data.recipe.age.LudicrousVoltageAgeRecipes;
-import io.github.cpearl0.ctnhcore.data.recipe.age.MediumVoltageAgeRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.age.EVRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.age.HVRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.age.IVRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.age.LVRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.age.LuVRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.age.MVAgeRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.age.PrimitiveKineticAgeRecipes;
-import io.github.cpearl0.ctnhcore.data.recipe.age.UltimateVoltageAgeRecipes;
-import io.github.cpearl0.ctnhcore.data.recipe.age.UltraHighVoltageAgeRecipes;
-import io.github.cpearl0.ctnhcore.data.recipe.age.ZeroPointModuleVoltageAgeRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.age.UVAgeRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.age.UHVAgeRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.age.ZPMRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.*;
 import io.github.cpearl0.ctnhcore.data.recipe.cogniassembly.WetwareCircuit;
 import io.github.cpearl0.ctnhcore.data.recipe.create.CafeRecipes;
@@ -117,15 +117,15 @@ public class CTNHCoreRecipeAddition {
         ZirconChain.init(provider);
 
         PrimitiveKineticAgeRecipes.init(provider);
-        LowVoltageAgeRecipes.init(provider);
-        MediumVoltageAgeRecipes.init(provider);
-        HighVoltageAgeRecipes.init(provider);
-        ExtremeVoltageAgeRecipes.init(provider);
-        InsaneVoltageAgeRecipes.init(provider);
-        LudicrousVoltageAgeRecipes.init(provider);
-        ZeroPointModuleVoltageAgeRecipes.init(provider);
-        UltimateVoltageAgeRecipes.init(provider);
-        UltraHighVoltageAgeRecipes.init(provider);
+        LVRecipes.init(provider);
+        MVAgeRecipes.init(provider);
+        HVRecipes.init(provider);
+        EVRecipes.init(provider);
+        IVRecipes.init(provider);
+        LuVRecipes.init(provider);
+        ZPMRecipes.init(provider);
+        UVAgeRecipes.init(provider);
+        UHVAgeRecipes.init(provider);
         CreateRecipes.init(provider);
         DieselGeneratorRecipes.init(provider);
 

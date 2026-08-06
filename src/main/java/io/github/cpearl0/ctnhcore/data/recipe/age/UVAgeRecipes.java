@@ -4,8 +4,8 @@ import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
-public class InsaneVoltageAgeRecipes {
+public class UVAgeRecipes {
 
-    // 这里存放的是强导压(iv)时期的配方
+    // 这里存放的是极限压(uv)时期的配方
     public static void init(Consumer<FinishedRecipe> provider) {}
 }
