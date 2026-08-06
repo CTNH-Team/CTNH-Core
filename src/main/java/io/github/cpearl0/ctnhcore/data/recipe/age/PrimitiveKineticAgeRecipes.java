@@ -318,13 +318,13 @@ public class PrimitiveKineticAgeRecipes {
     private static void addWoodGearRecipes(Consumer<FinishedRecipe> provider) {
         // 小木齿轮（木板 + 锉刀）
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/small_gear_wood"),
-                ChemicalHelper.get(TagPrefix.gearSmall, GTMaterials.Wood),
+                ChemicalHelper.get(TagPrefix.gearSmall, GTMaterials.Wood, 2),
                 "P", "f",
                 'P', ItemTags.PLANKS);
 
         // 防腐木齿轮（防腐木台阶 + 锉刀）
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/gear_treated_wood"),
-                ChemicalHelper.get(TagPrefix.gear, GTMaterials.TreatedWood),
+                ChemicalHelper.get(TagPrefix.gear, GTMaterials.TreatedWood, 2),
                 "S", "f",
                 'S', GTBlocks.TREATED_WOOD_SLAB.asStack());
     }
@@ -607,7 +607,7 @@ public class PrimitiveKineticAgeRecipes {
 
         // 小型齿轮（传动杆 + 小木齿轮）
         VanillaRecipeHelper.addShapedRecipe(provider, true,
-                CTNHCore.id("crafttable/cogwheel"), AllBlocks.COGWHEEL.asStack(4),
+                CTNHCore.id("crafttable/cogwheel"), AllBlocks.COGWHEEL.asStack(),
                 "B", "A",
                 'A', ChemicalHelper.get(TagPrefix.gearSmall, GTMaterials.Wood),
                 'B', AllBlocks.SHAFT.asStack());
@@ -615,7 +615,7 @@ public class PrimitiveKineticAgeRecipes {
         // 大型齿轮（传动杆 + 防腐木齿轮）
         VanillaRecipeHelper.addShapedRecipe(provider, true,
                 CTNHCore.id("crafttable/large_cogwheel"),
-                AllBlocks.LARGE_COGWHEEL.asStack(4),
+                AllBlocks.LARGE_COGWHEEL.asStack(),
                 "B", "A",
                 'A', ChemicalHelper.get(TagPrefix.gear, GTMaterials.TreatedWood),
                 'B', AllBlocks.SHAFT.asStack());
