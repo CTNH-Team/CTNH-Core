@@ -16,7 +16,7 @@ dependencies {
 
     jarJar(project(":modules:GregTech-Modern")){ transitive = false }
 
-    //modImplementation("extra-mods:create_connected-26.1-all")
+    modImplementation("curse.maven:create-connected-947914:8290615")
     jarJar("extra-mods:scg-ctnh:1.1.1")
     jarJar("extra-mods:kallfix_sub-1.0:1.0")
     jarJar("extra-mods:GregTech-Construct-3.11.2.180:3.11.2.180")

@@ -13,6 +13,7 @@ import io.github.cpearl0.ctnhcore.data.recipe.age.ZeroPointModuleVoltageAgeRecip
 import io.github.cpearl0.ctnhcore.data.recipe.chain.*;
 import io.github.cpearl0.ctnhcore.data.recipe.cogniassembly.WetwareCircuit;
 import io.github.cpearl0.ctnhcore.data.recipe.create.CafeRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.create.CreateConnectedRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.create.CreateOreExcavationRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.create.CreateRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.create.DieselGeneratorRecipes;
@@ -128,6 +129,7 @@ public class CTNHCoreRecipeAddition {
         UltraHighVoltageAgeRecipes.init(provider);
         CreateRecipes.init(provider);
         DieselGeneratorRecipes.init(provider);
+        CreateConnectedRecipes.init(provider);
 
         ImmersiveAircraftRecipes.init(provider);
         CreateOreExcavationRecipes.init(provider);

@@ -88,6 +88,7 @@ public class RecipeRemoval {
         botaniaRemovals();
         createdieselgeneratorsRemovals();
         createoreexcavationRemovals();
+        createConnectedRemovals();
         ctnhcoreRemovals();
         deepAetherRemovals();
         delightRemovals();
@@ -310,6 +311,11 @@ public class RecipeRemoval {
         remove(new RemoveFilter().idRegex("createoreexcavation:ore_vein_type(.*)"));
         remove(new RemoveFilter().idRegex("createoreexcavation:drilling\\/(.*)"));
         remove(new RemoveFilter().id("createoreexcavation:vein_finder"));
+    }
+
+    public static void createConnectedRemovals() {
+        // Create Connected 全量配方由 CreateConnectedRecipes 以 tag 化版本重加
+        remove(new RemoveFilter().mod("create_connected"));
     }
 
     public static void ctnhcoreRemovals() {
