@@ -17,7 +17,7 @@ import com.simibubi.create.AllItems;
 
 import java.util.function.Consumer;
 
-public class LowVoltageAgeRecipes {
+public class LVRecipes {
 
     // 这里存放的是低压(lv)时期的配方
     public static void init(Consumer<FinishedRecipe> provider) {
