@@ -237,19 +237,6 @@ public class CreateRecipes {
             }
         }
 
-        // portal block (from server_scripts create.js)
-        ItemStack doubleShadowSteelPlate = ChemicalHelper.get(TagPrefix.plateDouble, CreateMaterials.ShadowSteel);
-        if (!doubleShadowSteelPlate.isEmpty()) {
-            com.mo_guang.ctpp.data.recipe.builder.create.MechanicalCraftingRecipeBuilder
-                    .builder(CTNHCore.id("javd_portal_block"))
-                    .pattern("AAAAA", "ABCBA", "ACDCA", "ABCBA", "AAAAA")
-                    .key('A', doubleShadowSteelPlate)
-                    .key('B', CustomTags.HV_CIRCUITS)
-                    .key('C', ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.BlackSteel))
-                    .key('D', GTBlocks.MACHINE_CASING_HV.asStack())
-                    .output(AllBlocks.ENCASED_FAN.asStack()).save(provider);
-        }
-
         // martial morality eye (7x7 pattern from server_scripts create.js)
         ItemStack drillingMachine = item("createoreexcavation:drilling_machine") == null ? ItemStack.EMPTY :
                 new ItemStack(item("createoreexcavation:drilling_machine"));

@@ -92,6 +92,7 @@ public class PrimitiveKineticAgeRecipes {
         addSteelCasingRecipes(provider);
         addCircuitRecipes(provider);
         addGeneratorCoilRecipes(provider);
+        addRawMagnetiteBlockRecipes(provider);
     }
 
     private static void addWroughtIronRecipes(Consumer<FinishedRecipe> provider) {
@@ -281,6 +282,12 @@ public class PrimitiveKineticAgeRecipes {
                 ChemicalHelper.get(TagPrefix.gear, CreateMaterials.AndesiteAlloy),
                 "S", "f",
                 'S', CTNHBlocks.ANDESITE_ALLOY_SLAB.asStack());
+
+        // 传动杆（1 安山合金锭 + 格雷刀）
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/shaft_from_andesite_alloy"),
+                AllBlocks.SHAFT.asStack(),
+                "A", "k",
+                'A', ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy));
     }
 
     private static void addWoodGearRecipes(Consumer<FinishedRecipe> provider) {
@@ -1056,5 +1063,13 @@ public class PrimitiveKineticAgeRecipes {
                 .key('E', AllBlocks.SHAFT.asItem())
                 .output(CTPPMachines.CARBON_BRUSHES.asStack())
                 .save(provider);
+    }
+
+    private static void addRawMagnetiteBlockRecipes(Consumer<FinishedRecipe> provider) {
+        // 粗磁铁矿块（9 粗磁铁矿 → 1 粗磁铁矿块）
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/raw_magnetite_block"),
+                ChemicalHelper.get(TagPrefix.rawOreBlock, GTMaterials.Magnetite),
+                "AAA", "AAA", "AAA",
+                'A', ChemicalHelper.get(TagPrefix.rawOre, GTMaterials.Magnetite));
     }
 }

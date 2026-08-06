@@ -1,7 +1,15 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import io.github.cpearl0.ctnhcore.data.recipe.age.ExtremeVoltageAgeRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.age.HighVoltageAgeRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.age.InsaneVoltageAgeRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.age.LowVoltageAgeRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.age.LudicrousVoltageAgeRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.age.MediumVoltageAgeRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.age.PrimitiveKineticAgeRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.age.UltimateVoltageAgeRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.age.UltraHighVoltageAgeRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.age.ZeroPointModuleVoltageAgeRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.*;
 import io.github.cpearl0.ctnhcore.data.recipe.cogniassembly.WetwareCircuit;
 import io.github.cpearl0.ctnhcore.data.recipe.create.CafeRecipes;
@@ -110,6 +118,14 @@ public class CTNHCoreRecipeAddition {
 
         PrimitiveKineticAgeRecipes.init(provider);
         LowVoltageAgeRecipes.init(provider);
+        MediumVoltageAgeRecipes.init(provider);
+        HighVoltageAgeRecipes.init(provider);
+        ExtremeVoltageAgeRecipes.init(provider);
+        InsaneVoltageAgeRecipes.init(provider);
+        LudicrousVoltageAgeRecipes.init(provider);
+        ZeroPointModuleVoltageAgeRecipes.init(provider);
+        UltimateVoltageAgeRecipes.init(provider);
+        UltraHighVoltageAgeRecipes.init(provider);
         CreateRecipes.init(provider);
         DieselGeneratorRecipes.init(provider);
 

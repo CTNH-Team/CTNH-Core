@@ -2,9 +2,11 @@ package io.github.cpearl0.ctnhcore.data.recipe.age;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTItems;
+import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
@@ -20,6 +22,8 @@ public class LowVoltageAgeRecipes {
     // 这里存放的是低压(lv)时期的配方
     public static void init(Consumer<FinishedRecipe> provider) {
         addLVCoverRecipes(provider);
+        addPolarizerRecipes(provider);
+        addThermalCentrifugeRecipes(provider);
     }
 
     private static void addLVCoverRecipes(Consumer<FinishedRecipe> provider) {
@@ -85,5 +89,29 @@ public class LowVoltageAgeRecipes {
                 'B', ChemicalHelper.get(TagPrefix.rod, GTMaterials.Brass),
                 'C', GTItems.ELECTRONIC_CIRCUIT_LV.asStack(),
                 'D', ChemicalHelper.get(TagPrefix.wireGtSingle, GTMaterials.Tin));
+    }
+
+    private static void addPolarizerRecipes(Consumer<FinishedRecipe> provider) {
+        // LV磁化机（基础两极磁化机：原版GTM配方，第三排第二列改为基础电子电路）
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/lv_polarizer"),
+                GTMachines.POLARIZER[GTValues.LV].asStack(),
+                "ZSZ", "WMW", "ZCZ",
+                'Z', ChemicalHelper.get(TagPrefix.wireGtDouble, GTMaterials.Tin),
+                'S', ChemicalHelper.get(TagPrefix.rod, GTMaterials.Iron),
+                'M', GTMachines.HULL[GTValues.LV].asStack(),
+                'W', ChemicalHelper.get(TagPrefix.cableGtSingle, GTMaterials.Tin),
+                'C', GTItems.ELECTRONIC_CIRCUIT_LV.asStack());
+    }
+
+    private static void addThermalCentrifugeRecipes(Consumer<FinishedRecipe> provider) {
+        // LV热力离心机（原版GTM配方，铜导线换为白铜导线）
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/lv_thermal_centrifuge"),
+                GTMachines.THERMAL_CENTRIFUGE[GTValues.LV].asStack(),
+                "CEC", "OMO", "WEW",
+                'C', GTItems.ELECTRONIC_CIRCUIT_LV.asStack(),
+                'E', GTItems.ELECTRIC_MOTOR_LV.asStack(),
+                'M', GTMachines.HULL[GTValues.LV].asStack(),
+                'W', ChemicalHelper.get(TagPrefix.cableGtSingle, GTMaterials.Tin),
+                'O', ChemicalHelper.get(TagPrefix.wireGtQuadruple, GTMaterials.Cupronickel));
     }
 }

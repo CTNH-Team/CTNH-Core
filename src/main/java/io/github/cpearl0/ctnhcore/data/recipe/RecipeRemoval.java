@@ -518,6 +518,7 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("gtceu:shapeless/potin_dust"));
         remove(new RemoveFilter().id("gtceu:shaped/coated_board"));
         remove(new RemoveFilter().id("gtceu:shapeless/coated_board_1x"));
+        remove(new RemoveFilter().id("gtceu:shaped/basic_circuit_board"));
         remove(new RemoveFilter().id("gtceu:shaped/vacuum_tube"));
         remove(new RemoveFilter().id("gtceu:assembler/vacuum_tube_plain"));
         remove(new RemoveFilter().id("gtceu:assembler/vacuum_tube_red_alloy"));
@@ -578,6 +579,10 @@ public class RecipeRemoval {
         // 移除 GTCEu 默认 LV 组件工作台配方
         remove(new RemoveFilter().idRegex(
                 "gtceu:shaped/(?:electric_motor_lv_(?:iron|steel)|electric_piston_lv|conveyor_module_lv_.*|electric_pump_lv_.*|robot_arm_lv|fluid_regulator_lv|emitter_lv)"));
+        // 移除 GTCEu 默认 LV 两极磁化机工作台配方，统一改为 CTNH 工作台配方
+        remove(new RemoveFilter().id("gtceu:shaped/lv_polarizer"));
+        // 移除 GTCEu 默认 LV 热力离心机工作台配方，统一改为 CTNH 工作台配方
+        remove(new RemoveFilter().id("gtceu:shaped/lv_thermal_centrifuge"));
     }
 
     public static void hostilenetworksRemovals() {
