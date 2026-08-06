@@ -17,7 +17,7 @@ import com.unrealdinnerbone.javd.JAVDRegistry;
 
 import java.util.function.Consumer;
 
-public class MediumVoltageAgeRecipes {
+public class MVAgeRecipes {
 
     // 这里存放的是中压(mv)时期的配方
     public static void init(Consumer<FinishedRecipe> provider) {
