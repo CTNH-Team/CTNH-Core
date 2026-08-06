@@ -574,6 +574,10 @@ public class RecipeRemoval {
 
         remove(new RemoveFilter().id("gtceu:electrolyzer/zeolite_electrolysis"));
         remove(new RemoveFilter().id("gtceu:centrifuge/decomposition_centrifuging__redstone"));
+
+        // 移除 GTCEu 默认 LV 组件工作台配方
+        remove(new RemoveFilter().idRegex(
+                "gtceu:shaped/(?:electric_motor_lv_(?:iron|steel)|electric_piston_lv|conveyor_module_lv_.*|electric_pump_lv_.*|robot_arm_lv|fluid_regulator_lv|emitter_lv)"));
     }
 
     public static void hostilenetworksRemovals() {

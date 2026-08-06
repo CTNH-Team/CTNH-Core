@@ -1010,7 +1010,7 @@ public class PrimitiveKineticAgeRecipes {
                 .save(provider);
 
         // 覆膜电路印刷基板（木板 + GT 胶水注液）
-        SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("createfallen/resin_printed_circuit_board"))
+        SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("resin_printed_circuit_board"))
                 .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Wood))
                 .transitional(CTNHItems.CIRCUIT_BOARD_M_ONE.asStack())
                 .result(GTItems.BASIC_CIRCUIT_BOARD.asStack())

@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import io.github.cpearl0.ctnhcore.data.recipe.age.LowVoltageAgeRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.age.PrimitiveKineticAgeRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.chain.*;
 import io.github.cpearl0.ctnhcore.data.recipe.cogniassembly.WetwareCircuit;
@@ -108,6 +109,7 @@ public class CTNHCoreRecipeAddition {
         ZirconChain.init(provider);
 
         PrimitiveKineticAgeRecipes.init(provider);
+        LowVoltageAgeRecipes.init(provider);
         CreateRecipes.init(provider);
         DieselGeneratorRecipes.init(provider);
 
