@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.data.recipe.age;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.materials.UncategorizedMaterials;
-import io.github.cpearl0.ctnhcore.data.recipe.create.CreateRecipeJsonHelper;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
@@ -30,8 +29,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.jesz.createdieselgenerators.CDGBlocks;
 import com.jesz.createdieselgenerators.CDGItems;
 import com.mo_guang.ctpp.data.recipe.builder.create.*;
@@ -248,16 +245,10 @@ public class PrimitiveKineticAgeRecipes {
         }
 
         // 钢化玻璃（鼓风机洗涤：1 热玻璃 → 1 GT 钢化玻璃）
-        JsonObject washing = CreateRecipeJsonHelper.recipe("create:splashing");
-        JsonArray ingredients = new JsonArray();
-        ingredients.add(CreateRecipeJsonHelper.item("ctnhcore:hot_glass"));
-        washing.add("ingredients", ingredients);
-        JsonArray results = new JsonArray();
-        results.add(CreateRecipeJsonHelper
-                .item(ForgeRegistries.ITEMS.getKey(GTBlocks.CASING_TEMPERED_GLASS.get().asItem()).toString()));
-        washing.add("results", results);
-        washing.addProperty("processingTime", 200);
-        CreateRecipeJsonHelper.save(provider, "ctnhcore:splashing/tempered_glass_from_hot_glass", washing);
+        SplashingRecipeBuilder.builder(CTNHCore.id("tempered_glass_from_hot_glass"))
+                .input(CTNHBlocks.HOT_GLASS.asStack())
+                .result(GTBlocks.CASING_TEMPERED_GLASS.asStack())
+                .save(provider);
     }
 
     private static void addAndesiteAlloyRecipes(Consumer<FinishedRecipe> provider) {
