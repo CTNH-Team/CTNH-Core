@@ -63,7 +63,7 @@ public class CreateOreExcavationRecipes {
                     new String[] { "minecraft:is_nether" }, null),
             new Vein("ancient_debris", "minecraft:ancient_debris", 256, 8, 9984655, 20, 45,
                     new String[] { "minecraft:is_nether" }, null),
-            new Vein("seawater", "ctnhcore:seawater_bucket", 64, 8, 12345678, 3000, 8000,
+            new Vein("seawater", "ctnhastral:seawater_bucket", 64, 8, 12345678, 3000, 8000,
                     new String[] { "minecraft:is_ocean", "minecraft:is_overworld" }, null)
     };
 
@@ -176,7 +176,7 @@ public class CreateOreExcavationRecipes {
 
     private static void addSeawaterExtraction(Consumer<FinishedRecipe> provider) {
         JsonObject json = CreateRecipeJsonHelper.recipe("createoreexcavation:extracting");
-        json.add("result", CreateRecipeJsonHelper.fluid("ctnhcore:seawater", 1000));
+        json.add("result", CreateRecipeJsonHelper.fluid("ctnhastral:seawater", 1000));
         json.addProperty("vein", "kubejs:seawater_vein");
         json.addProperty("processingTime", 250);
         json.add("fluid", CreateRecipeJsonHelper.fluid("gtceu:lubricant", 50));

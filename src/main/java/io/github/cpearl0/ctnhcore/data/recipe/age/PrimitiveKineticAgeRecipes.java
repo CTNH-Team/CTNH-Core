@@ -20,11 +20,14 @@ import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import com.jesz.createdieselgenerators.CDGBlocks;
 import com.jesz.createdieselgenerators.CDGItems;
@@ -233,19 +236,32 @@ public class PrimitiveKineticAgeRecipes {
         ItemCastingRecipeBuilder.basinRecipe(Items.GLASS)
                 .setFluidAndTime(GTMaterials.Glass.getFluid(144))
                 .save(provider, CTNHCore.id("smeltery/casting/glass_from_gtceu_glass"));
+
+        // 边框玻璃（熔炉：1 机械动力边框玻璃 → 1 热玻璃）
+        Item framedGlass = ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("create:framed_glass"));
+        if (framedGlass != null) {
+            VanillaRecipeHelper.addSmeltingRecipe(provider, CTNHCore.id("hot_glass_from_framed_glass"),
+                    new ItemStack(framedGlass), CTNHBlocks.HOT_GLASS.asStack(), 0.0f);
+        }
+
+        // 钢化玻璃（鼓风机洗涤：1 热玻璃 → 1 GT 钢化玻璃）
+        SplashingRecipeBuilder.builder(CTNHCore.id("tempered_glass_from_hot_glass"))
+                .input(CTNHBlocks.HOT_GLASS.asStack())
+                .result(GTBlocks.CASING_TEMPERED_GLASS.asStack())
+                .save(provider);
     }
 
     private static void addAndesiteAlloyRecipes(Consumer<FinishedRecipe> provider) {
         // 安山合金锭（工作台）
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/andesite_alloy_ingot"),
-                ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy, 4),
+                ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy, 8),
                 "ABA", "BAB", "ABA",
                 'A', Items.IRON_INGOT,
                 'B', Items.ANDESITE);
 
         // 安山合金粉（熔融铁与安山岩粉）
         MixingRecipeBuilder.builder(CTNHCore.id("andesite_alloy_from_iron"))
-                .result(new ItemStack(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy).getItem(), 2))
+                .result(new ItemStack(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy).getItem(), 4))
                 .inputFluid(GTMaterials.Iron.getFluid(144))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Andesite))
                 .save(provider);
@@ -254,8 +270,8 @@ public class PrimitiveKineticAgeRecipes {
         MixingRecipeBuilder.builder(CTNHCore.id("andesite_alloy_dust_with_secondary"))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Andesite))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Iron))
-                .result(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy))
-                .result(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy), 0.3)
+                .result(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy, 2))
+                .result(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy, 2), 0.3)
                 .save(provider);
 
         // 安山合金台阶（动力锯：1 安山合金块 → 2 台阶）
@@ -293,13 +309,13 @@ public class PrimitiveKineticAgeRecipes {
     private static void addWoodGearRecipes(Consumer<FinishedRecipe> provider) {
         // 小木齿轮（木板 + 锉刀）
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/small_gear_wood"),
-                ChemicalHelper.get(TagPrefix.gearSmall, GTMaterials.Wood),
+                ChemicalHelper.get(TagPrefix.gearSmall, GTMaterials.Wood, 2),
                 "P", "f",
                 'P', ItemTags.PLANKS);
 
         // 防腐木齿轮（防腐木台阶 + 锉刀）
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/gear_treated_wood"),
-                ChemicalHelper.get(TagPrefix.gear, GTMaterials.TreatedWood),
+                ChemicalHelper.get(TagPrefix.gear, GTMaterials.TreatedWood, 2),
                 "S", "f",
                 'S', GTBlocks.TREATED_WOOD_SLAB.asStack());
     }
@@ -582,7 +598,7 @@ public class PrimitiveKineticAgeRecipes {
 
         // 小型齿轮（传动杆 + 小木齿轮）
         VanillaRecipeHelper.addShapedRecipe(provider, true,
-                CTNHCore.id("crafttable/cogwheel"), AllBlocks.COGWHEEL.asStack(4),
+                CTNHCore.id("crafttable/cogwheel"), AllBlocks.COGWHEEL.asStack(),
                 "B", "A",
                 'A', ChemicalHelper.get(TagPrefix.gearSmall, GTMaterials.Wood),
                 'B', AllBlocks.SHAFT.asStack());
@@ -590,7 +606,7 @@ public class PrimitiveKineticAgeRecipes {
         // 大型齿轮（传动杆 + 防腐木齿轮）
         VanillaRecipeHelper.addShapedRecipe(provider, true,
                 CTNHCore.id("crafttable/large_cogwheel"),
-                AllBlocks.LARGE_COGWHEEL.asStack(4),
+                AllBlocks.LARGE_COGWHEEL.asStack(),
                 "B", "A",
                 'A', ChemicalHelper.get(TagPrefix.gear, GTMaterials.TreatedWood),
                 'B', AllBlocks.SHAFT.asStack());

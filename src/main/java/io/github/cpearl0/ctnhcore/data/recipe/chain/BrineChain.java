@@ -16,8 +16,8 @@ import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
+import static com.ctnh.ctnhastral.data.CAMaterials.Seawater;
 import static com.gregtechceu.gtceu.api.GTValues.VA;
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.DISABLE_DECOMPOSITION;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
@@ -33,13 +33,6 @@ public class BrineChain {
     public static void init() {
         addFluid(GTMaterials.Bromine);
         addDust(GTMaterials.Iodine);
-        Seawater = REGISTRATE.material(CTNHCore.id("seawater"))
-                .cnlang("海水")
-                .liquid(new FluidBuilder().temperature(288))
-                .color(0x3B7BB0)
-                .flags(DISABLE_DECOMPOSITION)
-                .buildAndRegister()
-                .setFormula("Cl?Br?I?[H2O]", false);
         IodizedBrine = REGISTRATE.material(CTNHCore.id("iodized_brine"))
                 .cnlang("含碘盐水")
                 .fluid().color(0x525246)
