@@ -135,6 +135,7 @@ public class CreateRecipeTypes {
             .setSlotOverlay(false, false, false, GuiTextures.BENDER_OVERLAY)
             .setSlotOverlay(false, false, true, GuiTextures.INT_CIRCUIT_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_BENDING, LEFT_TO_RIGHT)
+            .setMaxTooltips(4)
             .setSound(GTSoundEntries.CUT);
     public static final GTRecipeType MECHANICAL_MIXER_RECIPES = REGISTRATE
             .recipeType("mechanical_mixer_recipes", KINETIC)
