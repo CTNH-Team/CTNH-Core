@@ -35,6 +35,8 @@
     "vintageimprovements.LatheMovingBlockMixin"
   ],
   "client": [
+    "eclipticseasons.BakedQuadRetexturedAndReUVMixin",
+    "eclipticseasons.BakedQuadRetexturedMixin"
   ],
   "mixinextras": {
     "minVersion": "0.5.0"
