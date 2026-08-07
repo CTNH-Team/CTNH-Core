@@ -6,22 +6,17 @@ import net.minecraftforge.client.model.IQuadTransformer;
 
 import com.teamtea.eclipticseasons.client.model.bakequad.BakedQuadRetextured;
 import com.teamtea.eclipticseasons.client.model.bakequad.BakedQuadRetexturedAndReUV;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Collections;
 import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public final class SnowOverlayQuadOffset {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("CTNH-EclipticFix");
-    private static final AtomicInteger OFFSET_LOG_COUNT = new AtomicInteger();
     private static final Set<BakedQuad> OFFSETED_QUADS = Collections
             .synchronizedSet(Collections.newSetFromMap(new IdentityHashMap<>()));
-    public static final float SNOW_OVERLAY_OFFSET = 0.01f;
+    public static final float SNOW_OVERLAY_OFFSET = 0.001f;
 
     private SnowOverlayQuadOffset() {}
 
@@ -51,11 +46,6 @@ public final class SnowOverlayQuadOffset {
         int xNormal = direction.getStepX();
         int yNormal = direction.getStepY();
         int zNormal = direction.getStepZ();
-
-        if (OFFSET_LOG_COUNT.getAndIncrement() < 50) {
-            LOGGER.info("CTNH-EclipticFix offset quad={} direction={} amount={}",
-                    quad.getClass().getSimpleName(), direction, amount);
-        }
 
         for (int i = 0; i < 4; i++) {
             int vertexOffset = i * IQuadTransformer.STRIDE + IQuadTransformer.POSITION;
