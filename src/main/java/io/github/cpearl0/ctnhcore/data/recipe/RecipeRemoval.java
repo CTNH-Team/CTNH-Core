@@ -685,6 +685,12 @@ public class RecipeRemoval {
                 .not(new RemoveFilter().idRegex("(.*):(.*)wolfberry(.*)_planks")));
         // wood.js 中显式删除的 aether 和 twilightforest planks 配方
         remove(new RemoveFilter().id("aether:skyroot_planks"));
+        // tconstruct 木材配方由 fork 运行时动态生成（TiCDynamicRecipeGenerator -> WorldRecipeProvider），
+        // id 为 world/wood/{wood}/planks 斜杠路径，正则 (.*):(.*)_planks 无法匹配，显式删除
+        remove(new RemoveFilter().id("tconstruct:world/wood/skyroot/planks"));
+        remove(new RemoveFilter().id("tconstruct:world/wood/greenheart/planks"));
+        remove(new RemoveFilter().id("tconstruct:world/wood/bloodshroom/planks"));
+        remove(new RemoveFilter().id("tconstruct:world/wood/enderbark/planks"));
     }
 
     public static void vintageimprovementsRemovals() {
