@@ -11,6 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biomes;
 
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
+import com.ctnh.ctnhastral.data.CAMaterials;
 import earth.terrarium.adastra.api.planets.Planet;
 
 import java.util.Set;
@@ -24,7 +25,7 @@ public class CTNHFluidVeins {
     public static BedrockFluidDefinition SEAWATER_VEIN_OVERWORLD = create(CTNHCore.id("seawater_vein_overworld"),
             vein -> {
                 vein.dimensions(Set.of(Level.OVERWORLD))
-                        .fluid(() -> CTNHMaterials.Seawater.getFluid())
+                        .fluid(() -> CAMaterials.Seawater.getFluid())
                         .weight(100)
                         .minimumYield(200)
                         .maximumYield(500)

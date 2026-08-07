@@ -1,0 +1,20 @@
+{
+  "fluid": "#forge:nq_end_gasoline",
+  "normal": {
+    "speed": 160.0,
+    "strength": 12288.0,
+    "burn_rate": 0.05
+  },
+  "modular": {
+    "speed": 160.0,
+    "strength": 16384.0,
+    "burn_rate": 0.05
+  },
+  "huge": {
+    "speed": 288.0,
+    "strength": 32768.0,
+    "burn_rate": 0.05
+  },
+  "sound_pitch": 1.2,
+  "burner_multiplier": 2.0
+}

@@ -17,18 +17,25 @@ import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.registries.ForgeRegistries;
 
+import com.ctnh.ctnhastral.data.CAMaterials;
 import com.jesz.createdieselgenerators.CDGBlocks;
 import com.jesz.createdieselgenerators.CDGItems;
 import com.mo_guang.ctpp.data.recipe.builder.create.*;
+import com.mo_guang.ctpp.data.recipe.builder.diesel.BasinFermentingRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.diesel.DistillationRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.diesel.HammerRecipeBuilder;
 import com.mo_guang.ctpp.data.recipe.builder.vintage.CentrifugationRecipeBuilder;
@@ -43,6 +50,8 @@ import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
 import io.github.lounode.ae2cs.common.init.AECSBlocks;
+import samebutdifferent.ecologics.registry.ModBlocks;
+import samebutdifferent.ecologics.registry.ModItems;
 import slimeknights.mantle.recipe.helper.FluidOutput;
 import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.library.recipe.FluidValues;
@@ -74,6 +83,7 @@ public class PrimitiveKineticAgeRecipes {
         addHelveHammerRecipes(provider);
         addSteamEngineRecipes(provider);
         addDieselEngineRecipes(provider);
+        addEthanolRecipes(provider);
         addPumpJackRecipes(provider);
         addPlantOilRecipes(provider);
         addFirebrickRecipes(provider);
@@ -169,6 +179,18 @@ public class PrimitiveKineticAgeRecipes {
                 'E', CTPPBlocks.STEEL_CASING);
     }
 
+    private static void addEthanolRecipes(Consumer<FinishedRecipe> provider) {
+        // 乙醇（盆地发酵：createdieselgenerators:fermentable + 骨粉 → 200mB GT 乙醇）
+        TagKey<Item> fermentable = TagKey.create(Registries.ITEM,
+                ResourceLocation.fromNamespaceAndPath("createdieselgenerators", "fermentable"));
+        new BasinFermentingRecipeBuilder(CTNHCore.id("diesel/basin_fermenting_gt_ethanol"))
+                .input(fermentable)
+                .input(Items.BONE_MEAL)
+                .duration(400)
+                .outputFluid(GTMaterials.Ethanol.getFluid(200))
+                .save(provider);
+    }
+
     private static void addPumpJackRecipes(Consumer<FinishedRecipe> provider) {
         // 抽油机四件套
         VanillaRecipeHelper.addShapedRecipe(provider,
@@ -233,19 +255,32 @@ public class PrimitiveKineticAgeRecipes {
         ItemCastingRecipeBuilder.basinRecipe(Items.GLASS)
                 .setFluidAndTime(GTMaterials.Glass.getFluid(144))
                 .save(provider, CTNHCore.id("smeltery/casting/glass_from_gtceu_glass"));
+
+        // 边框玻璃（熔炉：1 机械动力边框玻璃 → 1 热玻璃）
+        Item framedGlass = ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("create:framed_glass"));
+        if (framedGlass != null) {
+            VanillaRecipeHelper.addSmeltingRecipe(provider, CTNHCore.id("hot_glass_from_framed_glass"),
+                    new ItemStack(framedGlass), CTNHBlocks.HOT_GLASS.asStack(), 0.0f);
+        }
+
+        // 钢化玻璃（鼓风机洗涤：1 热玻璃 → 50% 概率 GT 钢化玻璃）
+        SplashingRecipeBuilder.builder(CTNHCore.id("tempered_glass_from_hot_glass"))
+                .input(CTNHBlocks.HOT_GLASS.asStack())
+                .result(GTBlocks.CASING_TEMPERED_GLASS.asStack(), 0.5)
+                .save(provider);
     }
 
     private static void addAndesiteAlloyRecipes(Consumer<FinishedRecipe> provider) {
         // 安山合金锭（工作台）
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/andesite_alloy_ingot"),
-                ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy, 4),
+                ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy, 8),
                 "ABA", "BAB", "ABA",
                 'A', Items.IRON_INGOT,
                 'B', Items.ANDESITE);
 
         // 安山合金粉（熔融铁与安山岩粉）
         MixingRecipeBuilder.builder(CTNHCore.id("andesite_alloy_from_iron"))
-                .result(new ItemStack(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy).getItem(), 2))
+                .result(new ItemStack(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy).getItem(), 4))
                 .inputFluid(GTMaterials.Iron.getFluid(144))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Andesite))
                 .save(provider);
@@ -254,8 +289,8 @@ public class PrimitiveKineticAgeRecipes {
         MixingRecipeBuilder.builder(CTNHCore.id("andesite_alloy_dust_with_secondary"))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Andesite))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Iron))
-                .result(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy))
-                .result(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy), 0.3)
+                .result(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy, 2))
+                .result(ChemicalHelper.get(TagPrefix.dust, CreateMaterials.AndesiteAlloy, 2), 0.3)
                 .save(provider);
 
         // 安山合金台阶（动力锯：1 安山合金块 → 2 台阶）
@@ -293,13 +328,13 @@ public class PrimitiveKineticAgeRecipes {
     private static void addWoodGearRecipes(Consumer<FinishedRecipe> provider) {
         // 小木齿轮（木板 + 锉刀）
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/small_gear_wood"),
-                ChemicalHelper.get(TagPrefix.gearSmall, GTMaterials.Wood),
+                ChemicalHelper.get(TagPrefix.gearSmall, GTMaterials.Wood, 2),
                 "P", "f",
                 'P', ItemTags.PLANKS);
 
         // 防腐木齿轮（防腐木台阶 + 锉刀）
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/gear_treated_wood"),
-                ChemicalHelper.get(TagPrefix.gear, GTMaterials.TreatedWood),
+                ChemicalHelper.get(TagPrefix.gear, GTMaterials.TreatedWood, 2),
                 "S", "f",
                 'S', GTBlocks.TREATED_WOOD_SLAB.asStack());
     }
@@ -449,18 +484,34 @@ public class PrimitiveKineticAgeRecipes {
     }
 
     private static void addPlantOilRecipes(Consumer<FinishedRecipe> provider) {
-        // 植物油质块（搅拌机：8 种子 + 水 → 2 块）
+        // 植物油脂块（搅拌机：9 种子 + 水 → 1 块）
         MixingRecipeBuilder.builder(CTNHCore.id("create/plant_oil_mass"))
-                .input(TagUtil.createItemTag("seeds"), 8)
+                .input(TagUtil.createItemTag("seeds"), 9)
                 .inputFluid(GTMaterials.Water.getFluid(250))
-                .output(CTNHBlocks.PLANT_OIL_MASS.asStack(2))
+                .output(CTNHBlocks.PLANT_OIL_MASS.asStack())
                 .processingTime(40)
                 .save(provider);
 
-        // 植物油（压实：1 块 → 100mB 种子油）
+        // 植物油脂块（搅拌机：4 核桃 + 水 → 1 块）
+        MixingRecipeBuilder.builder(CTNHCore.id("create/plant_oil_mass_from_walnut"))
+                .input(ModItems.WALNUT.get(), 4)
+                .inputFluid(GTMaterials.Water.getFluid(250))
+                .output(CTNHBlocks.PLANT_OIL_MASS.asStack())
+                .processingTime(40)
+                .save(provider);
+
+        // 植物油脂块（搅拌机：2 椰子 + 水 → 1 块）
+        MixingRecipeBuilder.builder(CTNHCore.id("create/plant_oil_mass_from_coconut"))
+                .input(ModBlocks.COCONUT.get().asItem(), 2)
+                .inputFluid(GTMaterials.Water.getFluid(250))
+                .output(CTNHBlocks.PLANT_OIL_MASS.asStack())
+                .processingTime(40)
+                .save(provider);
+
+        // 植物油（压实：1 块 → 200mB 种子油）
         CompactingRecipeBuilder.builder(CTNHCore.id("create/plant_oil"))
                 .input(CTNHBlocks.PLANT_OIL_MASS.asStack())
-                .resultFluid(GTMaterials.SeedOil.getFluid(100))
+                .resultFluid(GTMaterials.SeedOil.getFluid(200))
                 .processingTime(40)
                 .save(provider);
 
@@ -471,6 +522,25 @@ public class PrimitiveKineticAgeRecipes {
                 .duration(200)
                 .outputFluid(GTMaterials.Lubricant.getFluid(250))
                 .outputFluid(GTMaterials.Water.getFluid(250))
+                .save(provider);
+
+        // 润滑油（分馏：500mB 杂酚油 → 250mB 润滑油，加热）
+        new DistillationRecipeBuilder(CTNHCore.id("create/creosote_distillation"))
+                .inputFluid(GTMaterials.Creosote.getFluid(500))
+                .heat(HeatCondition.HEATED)
+                .duration(200)
+                .outputFluid(GTMaterials.Lubricant.getFluid(250))
+                .outputFluid(GTMaterials.Water.getFluid(250))
+                .save(provider);
+
+        // 酸液（分馏：100mB 酸液 → 10mB 稀硫酸 + 20mB 稀盐酸 + 70mB 水，加热）
+        new DistillationRecipeBuilder(CTNHCore.id("create/astral_acid_distillation"))
+                .inputFluid(CAMaterials.Acid.getFluid(100))
+                .heat(HeatCondition.HEATED)
+                .duration(200)
+                .outputFluid(GTMaterials.DilutedSulfuricAcid.getFluid(10))
+                .outputFluid(GTMaterials.DilutedHydrochloricAcid.getFluid(20))
+                .outputFluid(GTMaterials.Water.getFluid(70))
                 .save(provider);
     }
 
@@ -582,7 +652,7 @@ public class PrimitiveKineticAgeRecipes {
 
         // 小型齿轮（传动杆 + 小木齿轮）
         VanillaRecipeHelper.addShapedRecipe(provider, true,
-                CTNHCore.id("crafttable/cogwheel"), AllBlocks.COGWHEEL.asStack(4),
+                CTNHCore.id("crafttable/cogwheel"), AllBlocks.COGWHEEL.asStack(),
                 "B", "A",
                 'A', ChemicalHelper.get(TagPrefix.gearSmall, GTMaterials.Wood),
                 'B', AllBlocks.SHAFT.asStack());
@@ -590,7 +660,7 @@ public class PrimitiveKineticAgeRecipes {
         // 大型齿轮（传动杆 + 防腐木齿轮）
         VanillaRecipeHelper.addShapedRecipe(provider, true,
                 CTNHCore.id("crafttable/large_cogwheel"),
-                AllBlocks.LARGE_COGWHEEL.asStack(4),
+                AllBlocks.LARGE_COGWHEEL.asStack(),
                 "B", "A",
                 'A', ChemicalHelper.get(TagPrefix.gear, GTMaterials.TreatedWood),
                 'B', AllBlocks.SHAFT.asStack());
@@ -829,6 +899,14 @@ public class PrimitiveKineticAgeRecipes {
                 .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.WroughtIron).getItem(), 8))
                 .input(TagUtil.createItemTag("dusts/charcoal", false), 6)
                 .heatRequirement("heated")
+                .save(provider);
+
+        // 精炼铁方坯（塑形：8 预制钢粉 → 1 精炼铁方坯，蓝火）
+        CompactingRecipeBuilder.builder(CTNHCore.id("create/refined_iron_ingot_from_steel_precursor"))
+                .input(ChemicalHelper.get(TagPrefix.dust, UncategorizedMaterials.STEEL_PRECURSOR, 8))
+                .result(CTNHItems.REFINED_IRON_INGOT.asStack())
+                .superHeated()
+                .processingTime(200)
                 .save(provider);
     }
 

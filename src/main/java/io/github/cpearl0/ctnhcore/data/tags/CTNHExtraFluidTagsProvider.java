@@ -27,6 +27,8 @@ public class CTNHExtraFluidTagsProvider extends TagsProvider<Fluid> {
         tag(fluidTag("createdieselgenerators", "pumpjack_output"))
                 .addOptional(CTNHCore.id("impure_oil"))
                 .remove(ResourceLocation.fromNamespaceAndPath("createdieselgenerators", "crude_oil"));
+        tag(fluidTag("forge", "ethanol"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("gtceu", "ethanol"));
     }
 
     private static TagKey<Fluid> fluidTag(String namespace, String path) {

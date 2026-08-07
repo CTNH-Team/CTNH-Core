@@ -24,7 +24,10 @@ import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FenceBlock;
@@ -98,7 +101,7 @@ public class CTNHBlocks {
     public static final BlockEntry<Block> HIGH_GRADE_COKE_OVEN_BRICKS = createCasingBlock(
             "high_strength_concrete", "高级焦炉砖", CTNHCore.id("block/high_grade_coke_oven_bricks"));
     public static final BlockEntry<Block> PLANT_OIL_MASS = createCasingBlock(
-            "plant_oil_mass", "植物油质块", CTNHCore.id("block/plant_oil_mass"));
+            "plant_oil_mass", "植物油脂块", CTNHCore.id("block/plant_oil_mass"));
     public static final BlockEntry<SlabBlock> ANDESITE_ALLOY_SLAB = REGISTRATE
             .block("andesite_alloy_slab", SlabBlock::new)
             .cnlang("安山合金台阶")
@@ -304,6 +307,17 @@ public class CTNHBlocks {
             "blue_framed_glass", "蓝色镶边玻璃", CTNHCore.id("block/casings/space_elevator/blue_framed_glass"),
             () -> RenderType::cutoutMipped);
 
+    public static final BlockEntry<Block> HOT_GLASS = REGISTRATE
+            .block("hot_glass", Block::new)
+            .cnlang("热玻璃")
+            .initialProperties(() -> Blocks.GLASS)
+            .addLayer(() -> RenderType::translucent)
+            .blockstate((ctx, prov) -> prov.simpleBlock(ctx.getEntry(),
+                    prov.models().cubeAll("hot_glass", CTNHCore.id("block/hot_glass"))))
+            .item(UnplaceableBlockItem::new)
+            .build()
+            .register();
+
     public static final BlockEntry<RotatedPillarBlock> TEST_CASING = createRotateCasing("test_machine_casing", "t1");
     public static final BlockEntry<RotatedPillarBlock> ATOMS_SPLIT_BLOCKS = createRotateCasing("atoms_split_blocks",
             "atomssplit");
@@ -365,6 +379,18 @@ public class CTNHBlocks {
 
     public static void init() {
         // generateHyperRotorBlocks();
+    }
+
+    public static final class UnplaceableBlockItem extends BlockItem {
+
+        public UnplaceableBlockItem(Block block, Item.Properties properties) {
+            super(block, properties);
+        }
+
+        @Override
+        public InteractionResult useOn(UseOnContext context) {
+            return InteractionResult.FAIL;
+        }
     }
 
     // Utils
