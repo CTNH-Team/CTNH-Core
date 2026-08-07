@@ -1,5 +1,6 @@
 {
   "values": [
+    "ctnhcore:modular_bit_processor",
     "ctnhcore:general_circuit_hv"
   ]
 }

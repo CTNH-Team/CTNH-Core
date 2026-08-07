@@ -724,6 +724,79 @@ public class CTNHItems {
             .onRegister(attach(new TooltipBehavior(
                     list -> list.add(Component.literal("UEV级电路板").withStyle(ChatFormatting.DARK_AQUA)))))
             .register();
+
+    @CN("模块化位处理器")
+    @EN("Modular Bit Processor")
+    public static Lang modularBitProcessorTooltip;
+
+    @CN("HV级电路板")
+    @EN("HV Tier Circuit")
+    public static Lang hvTierCircuitTooltip;
+    @CN("EV级电路板")
+    @EN("EV Tier Circuit")
+    public static Lang evTierCircuitTooltip;
+    @CN("IV级电路板")
+    @EN("IV Tier Circuit")
+    public static Lang ivTierCircuitTooltip;
+    @CN("LuV级电路板")
+    @EN("LuV Tier Circuit")
+    public static Lang luvTierCircuitTooltip;
+
+    public static ItemEntry<Item> SPECIAL_PLASTIC_CIRCUIT_BOARD = REGISTRATE
+            .item("special_plastic_circuit_board", Item::new)
+            .cnlang("特种塑料电路基板")
+            .lang("Special Plastic Circuit Board")
+            .register();
+    public static ItemEntry<Item> SPECIAL_PLASTIC_PRINTED_CIRCUIT_BOARD = REGISTRATE
+            .item("special_plastic_printed_circuit_board", Item::new)
+            .cnlang("特种塑料印刷电路基板")
+            .lang("Special Plastic Printed Circuit Board")
+            .register();
+    public static ItemEntry<ComponentItem> MODULAR_BIT_PROCESSOR = REGISTRATE
+            .item("modular_bit_processor", ComponentItem::create)
+            .cnlang("精密电路")
+            .lang("Modular Bit Processor")
+            .tag(CustomTags.HV_CIRCUITS)
+            .onRegister(attach(new TooltipBehavior(
+                    list -> {
+                        list.add(modularBitProcessorTooltip.translate().withStyle(ChatFormatting.GRAY));
+                        list.add(hvTierCircuitTooltip.translate().withStyle(style -> style.withColor(0x8B4513)));
+                    })))
+            .register();
+    public static ItemEntry<ComponentItem> MODULAR_BIT_PROCESSOR_ASSEMBLY = REGISTRATE
+            .item("modular_bit_processor_assembly", ComponentItem::create)
+            .cnlang("精密电路集群")
+            .lang("Modular Bit Processor Assembly")
+            .tag(CustomTags.EV_CIRCUITS)
+            .onRegister(attach(new TooltipBehavior(
+                    list -> {
+                        list.add(modularBitProcessorTooltip.translate().withStyle(ChatFormatting.GRAY));
+                        list.add(evTierCircuitTooltip.translate().withStyle(style -> style.withColor(0x8B4513)));
+                    })))
+            .register();
+    public static ItemEntry<ComponentItem> MODULAR_BIT_PROCESSOR_COMPUTER = REGISTRATE
+            .item("modular_bit_processor_computer", ComponentItem::create)
+            .cnlang("精密电路计算机")
+            .lang("Modular Bit Processor Supercomputer")
+            .tag(CustomTags.IV_CIRCUITS)
+            .onRegister(attach(new TooltipBehavior(
+                    list -> {
+                        list.add(modularBitProcessorTooltip.translate().withStyle(ChatFormatting.GRAY));
+                        list.add(ivTierCircuitTooltip.translate().withStyle(style -> style.withColor(0x8B4513)));
+                    })))
+            .register();
+    public static ItemEntry<ComponentItem> MODULAR_BIT_PROCESSOR_MAINFRAME = REGISTRATE
+            .item("modular_bit_processor_mainframe", ComponentItem::create)
+            .cnlang("精密电路主机")
+            .lang("Modular Bit Processor Mainframe")
+            .tag(CustomTags.LuV_CIRCUITS)
+            .onRegister(attach(new TooltipBehavior(
+                    list -> {
+                        list.add(modularBitProcessorTooltip.translate().withStyle(ChatFormatting.GRAY));
+                        list.add(luvTierCircuitTooltip.translate().withStyle(style -> style.withColor(0x8B4513)));
+                    })))
+            .register();
+
     public static ItemEntry<Item> BIOLOGICAL_PATCH_TRANSISTOR = REGISTRATE
             .item("biological_patch_transistor", Item::new)
             .cnlang("生物贴片晶体管")
