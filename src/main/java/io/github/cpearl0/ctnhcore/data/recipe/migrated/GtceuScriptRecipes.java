@@ -1929,7 +1929,7 @@ public class GtceuScriptRecipes {
                 .chancedOutput(ChemicalHelper.get(rawOre, Apatite, 64), 1000, 0)
                 .chancedOutput(ChemicalHelper.get(rawOre, Lapis, 64), 1000, 0)
                 .chancedOutput(ChemicalHelper.get(rawOre, TricalciumPhosphate, 64), 1000, 0)
-                .EUt(0).duration(2400)
+                .duration(2400)
                 .save(provider);
 
         // ore_production_2

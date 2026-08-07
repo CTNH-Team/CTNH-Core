@@ -86,6 +86,7 @@ public class PrimitiveKineticAgeRecipes {
         addEthanolRecipes(provider);
         addPumpJackRecipes(provider);
         addPlantOilRecipes(provider);
+        addPetroleumRecipes(provider);
         addFirebrickRecipes(provider);
         addRubberRecipes(provider);
         addWoodGearRecipes(provider);
@@ -541,6 +542,17 @@ public class PrimitiveKineticAgeRecipes {
                 .outputFluid(GTMaterials.DilutedSulfuricAcid.getFluid(10))
                 .outputFluid(GTMaterials.DilutedHydrochloricAcid.getFluid(20))
                 .outputFluid(GTMaterials.Water.getFluid(70))
+                .save(provider);
+    }
+
+    private static void addPetroleumRecipes(Consumer<FinishedRecipe> provider) {
+        // 石油（分馏：60mB GT 石油 → 10mB 柴油 + 2mB 石脑油，加热）
+        new DistillationRecipeBuilder(CTNHCore.id("create/petroleum_distillation"))
+                .inputFluid(GTMaterials.Oil.getFluid(60))
+                .heat(HeatCondition.HEATED)
+                .duration(200)
+                .outputFluid(GTMaterials.Diesel.getFluid(10))
+                .outputFluid(GTMaterials.Naphtha.getFluid(2))
                 .save(provider);
     }
 

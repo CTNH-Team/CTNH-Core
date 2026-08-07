@@ -38,6 +38,7 @@ public class CTNHCoreRecipeAddition {
     public static void init(Consumer<FinishedRecipe> provider) {
         CTNHCraftingComponents.init();
 
+        OreProcessingRecipes.init(provider);
         UnderfloorHeatingSystemRecipes.init(provider);
         AstronomicalObservatoryRecipes.init(provider);
         PersonalComputerRecipes.init(provider);
