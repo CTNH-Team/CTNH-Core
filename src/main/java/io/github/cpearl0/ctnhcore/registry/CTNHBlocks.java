@@ -101,7 +101,7 @@ public class CTNHBlocks {
     public static final BlockEntry<Block> HIGH_GRADE_COKE_OVEN_BRICKS = createCasingBlock(
             "high_strength_concrete", "高级焦炉砖", CTNHCore.id("block/high_grade_coke_oven_bricks"));
     public static final BlockEntry<Block> PLANT_OIL_MASS = createCasingBlock(
-            "plant_oil_mass", "植物油质块", CTNHCore.id("block/plant_oil_mass"));
+            "plant_oil_mass", "植物油脂块", CTNHCore.id("block/plant_oil_mass"));
     public static final BlockEntry<SlabBlock> ANDESITE_ALLOY_SLAB = REGISTRATE
             .block("andesite_alloy_slab", SlabBlock::new)
             .cnlang("安山合金台阶")

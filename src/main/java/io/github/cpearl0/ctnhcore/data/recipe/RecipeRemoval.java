@@ -287,6 +287,7 @@ public class RecipeRemoval {
 
     public static void createdieselgeneratorsRemovals() {
         remove(new RemoveFilter().id("createdieselgenerators:basin_fermenting/fermented_spider_eye"));
+        remove(new RemoveFilter().id("createdieselgenerators:basin_fermenting/fermentable"));
         remove(new RemoveFilter().id("createdieselgenerators:compression_molding/bucket"));
         remove(new RemoveFilter().idRegex("createdieselgenerators:(?:crushing/wood_chip_.*|cutting/wood_chips)"));
         remove(new RemoveFilter().id("createdieselgenerators:distillation/acid"));
