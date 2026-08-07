@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.mixin.eclipticseasons;
 
+import io.github.cpearl0.ctnhcore.client.util.SnowOverlayQuadOffset;
+
 import net.minecraft.client.renderer.block.model.BakedQuad;
 
 import com.teamtea.eclipticseasons.client.model.bakequad.BakedQuadRetexturedAndReUV;

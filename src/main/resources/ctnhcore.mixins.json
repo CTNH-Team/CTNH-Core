@@ -35,8 +35,12 @@
     "vintageimprovements.LatheMovingBlockMixin"
   ],
   "client": [
+    "eclipticseasons.BakedModelWrapperSnowOffsetMixin",
     "eclipticseasons.BakedQuadRetexturedAndReUVMixin",
-    "eclipticseasons.BakedQuadRetexturedMixin"
+    "eclipticseasons.BakedQuadRetexturedMixin",
+    "eclipticseasons.ExtraModelManagerDebugMixin",
+    "eclipticseasons.MulBakeModelMixin",
+    "eclipticseasons.SnowySeasonBakeModelMixin"
   ],
   "mixinextras": {
     "minVersion": "0.5.0"
