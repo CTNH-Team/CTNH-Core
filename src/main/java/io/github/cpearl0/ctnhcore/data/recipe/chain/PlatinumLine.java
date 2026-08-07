@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe.chain;
 
+import com.moguang.ctnhmana.registry.CMItems;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.recipe.PlantCasingCondition;
 import io.github.cpearl0.ctnhcore.data.materials.PlatinumLineMaterials;
@@ -34,15 +35,15 @@ public class PlatinumLine {
         // 从 PlatinumChain.js 迁移的配方
         CMRecipeTypes.MANA_TRANSFORMER_RECIPES.recipeBuilder(CTNHCore.id("crystal_catalyst1"))
                 .inputItems(dust, PlatinumGroupSludge, 42)
-                .notConsumable(CRYSTAL_CATALYST)
-                .outputItems(dust, Palladium, 7)
-                .outputItems(dust, Platinum, 7)
-                .outputItems(dust, Ruthenium, 7)
-                .outputItems(dust, Rhodium, 7)
-                .outputItems(dust, Osmium, 7)
-                .outputItems(dust, Iridium, 7)
+                .notConsumable(CMItems.CRYSH_CATALYST)
+                .outputItems(dust, Palladium, 1)
+                .outputItems(dust, Platinum, 1)
+                .outputItems(dust, Ruthenium, 1)
+                .outputItems(dust, Rhodium, 1)
+                .outputItems(dust, Osmium, 1)
+                .outputItems(dust, Iridium, 1)
                 .EUt(1920)
-                .duration(600)
+                .duration(400)
                 .circuitMeta(1)
                 .save(provider);
         // --- 铂钯催化剂 ---
