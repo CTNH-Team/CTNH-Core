@@ -672,10 +672,10 @@ public class RecipeRemoval {
         // let result2 = e.substring(0, pos + 1) + e.substring(pos + 1, pos2 + 1) + "planks"
         // event.remove({ id: result2 })
         // })
-        // 排除：ars_nouveau / botania / aether:ironwood / aether:golden_oak / magic_vine / avocado / fig / wolfberry
+        // 排除：botania / aether:ironwood / aether:golden_oak / magic_vine / avocado / fig / wolfberry
+        // （ars_nouveau 已由 WoodTypeEntry 纳入统一加工体系，archwood 木板改走 saw，不再排除）
         remove(new RemoveFilter()
                 .idRegex("(.*):(.*)_planks")
-                .not(new RemoveFilter().mod("ars_nouveau"))
                 .not(new RemoveFilter().mod("botania"))
                 .not(new RemoveFilter().id("aether:ironwood_planks"))
                 .not(new RemoveFilter().id("aether:golden_oak_planks"))
