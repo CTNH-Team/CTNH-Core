@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe.mana;
 
+import com.wintercogs.ae2omnicells.common.init.OCItems;
+import earth.terrarium.adastra.common.registry.ModItems;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
 
@@ -10,11 +12,16 @@ import com.gregtechceu.gtceu.api.recipe.ingredient.fluid.FluidIngredient;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
+import io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials;
+import io.github.cpearl0.ctnhcore.registry.CTNHItems;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import com.moguang.ctnhmana.data.recipe.builder.bloodmagic.BloodAltarRecipeBuilder;
 import com.moguang.ctnhmana.data.recipe.builder.botania.ElfPlateRecipeBuilder;
 import com.moguang.ctnhmana.data.recipe.builder.botania.RuneRitualRecipeBuilder;
+import tech.luckyblock.mcmod.ctnhenergy.registry.CEItems;
 import wayoftime.bloodmagic.common.fluid.BloodMagicFluids;
 
 import java.util.function.Consumer;
@@ -29,16 +36,8 @@ import static com.moguang.ctnhmana.registry.CMItems.*;
 import static com.moguang.ctnhmana.registry.CMMaterials.*;
 import static com.moguang.ctnhmana.registry.CMRecipeTypes.*;
 import static com.moguang.ctnhmana.registry.multiblock.Misc.*;
-import static com.wintercogs.ae2omnicells.common.init.OCItems.*;
-import static earth.terrarium.adastra.common.registry.ModItems.*;
-import static io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials.*;
-import static io.github.cpearl0.ctnhcore.registry.CTNHItems.*;
-import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.*;
-import static io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA.COMPRESSED_FUSION_REACTOR;
 import static mythicbotany.register.ModBlocks.mjoellnir;
 import static mythicbotany.register.ModItems.*;
-import static net.minecraft.world.item.Items.*;
-import static tech.luckyblock.mcmod.ctnhenergy.registry.CEItems.*;
 import static vazkii.botania.common.item.BotaniaItems.*;
 import static vazkii.botania.common.item.BotaniaItems.overgrowthSeed;
 
@@ -179,14 +178,14 @@ public class TwistedFusionRecipes {
                 .EUt(9999)
                 .duration(100)
                 .save(provider);
-        NEUTRON_ACTIVATOR_RECIPES.recipeBuilder(CTNHCore.id("twist_power_mana1"))// 极端扭曲放射态临界魔力粉
+        CTNHRecipeTypes.NEUTRON_ACTIVATOR_RECIPES.recipeBuilder(CTNHCore.id("twist_power_mana1"))// 极端扭曲放射态临界魔力粉
                 .inputItems(dust, Twist_Mana, 10)
                 .inputFluids(Zenith_essence.getFluid(800))
                 .outputItems(dust, Twist_Power_Mana, 10)
                 .addCondition(new NeutronActivatorCondition(800, 1000))
                 .duration(50) // 4秒
                 .save(provider);
-        ACCELERATOR_UP.recipeBuilder(CTNHCore.id("twist_power_mana2"))
+        CTNHRecipeTypes.ACCELERATOR_UP.recipeBuilder(CTNHCore.id("twist_power_mana2"))
                 .addData("type", "nu")
                 .addData("speed", 5000)
                 .inputItems(dust, Twist_Mana, 20)
@@ -221,10 +220,10 @@ public class TwistedFusionRecipes {
                 .duration(100)
                 .save(provider);
         // 增殖符文+类星体符文
-        GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("proliferation_rune1"))// 增殖符文增殖
+        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("proliferation_rune1"))// 增殖符文增殖
                 .inputItems(PROLIFERATION_RUNE.asItem())
                 .inputItems(FERTILIZER, 16)
-                .inputItems(RADIOACTIVE_WASTE, 128)
+                .inputItems(CTNHItems.RADIOACTIVE_WASTE, 128)
                 .inputFluids(Water.getFluid(10000))
                 .circuitMeta(3)
                 .outputItems(PROLIFERATION_RUNE.asItem(), 3)
@@ -233,11 +232,11 @@ public class TwistedFusionRecipes {
                 .EUt(24444)
                 .duration(1000)
                 .save(provider);
-        GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("proliferation_rune2"))// 增殖符文增殖
+        CTNHRecipeTypes.GREENHOUSE_RECIPES.recipeBuilder(CTNHCore.id("proliferation_rune2"))// 增殖符文增殖
                 .inputItems(BROKEN_RUNE.asStack())
                 .inputItems(overgrowthSeed)
                 .inputItems(FERTILIZER, 64)
-                .inputItems(RADIOACTIVE_WASTE, 64)
+                .inputItems(CTNHItems.RADIOACTIVE_WASTE, 64)
                 .inputFluids(Water.getFluid(10000))
                 .outputItems(PROLIFERATION_RUNE.asItem(), 3)
                 .EUt(24444)
@@ -247,11 +246,11 @@ public class TwistedFusionRecipes {
                 .input(TWISTED_FUSION_MK1.getItem())
                 .input(TWISTED_FUSION_MK2.getItem())
                 .input(TWISTED_FUSION_MK3.getItem())
-                .input(COMPRESSED_FUSION_REACTOR[LuV].getItem())
-                .input(COMPRESSED_FUSION_REACTOR[ZPM].getItem())
-                .input(COMPRESSED_FUSION_REACTOR[UV].getItem())
+                .input(MultiblocksA.COMPRESSED_FUSION_REACTOR[LuV].getItem())
+                .input(MultiblocksA.COMPRESSED_FUSION_REACTOR[ZPM].getItem())
+                .input(MultiblocksA.COMPRESSED_FUSION_REACTOR[UV].getItem())
                 .input(TERMINAL_TWISTED_COIL.asItem())
-                .input(CRYSTAL_CATALYST.asItem())
+                .input(CTNHItems.CRYSTAL_CATALYST.asItem())
                 .input(QUASAR_RUNE.asItem())
                 .output(TWISTED_FUSION_MKINFINITY.asStack())
                 .mana(Integer.MAX_VALUE)
@@ -262,18 +261,18 @@ public class TwistedFusionRecipes {
                 .rune2(STARLIGHT_RUNE.asItem(), -3, 3, true)
                 .rune2(TWIST_RUNE.asItem(), -4, 4, true)
                 .rune2(PROLIFERATION_RUNE.asItem(), -5, 5, true)
-                .rune(OMNI_CELL_COMPONENT_1M.get().asItem(), 0, 2)
-                .rune(OMNI_CELL_COMPONENT_1M.get().asItem(), 1, 2)
-                .rune(OMNI_CELL_COMPONENT_1M.get().asItem(), -1, 2)
-                .rune(COMPLEX_OMNI_CELL_COMPONENT_1M.get().asItem(), 0, -2)
-                .rune(COMPLEX_OMNI_CELL_COMPONENT_1M.get().asItem(), 1, -2)
-                .rune(COMPLEX_OMNI_CELL_COMPONENT_1M.get().asItem(), -1, -2)
-                .rune(QUANTUM_OMNI_CELL_COMPONENT_1K.get().asItem(), 2, 0)
-                .rune(QUANTUM_OMNI_CELL_COMPONENT_1K.get().asItem(), 2, 1)
-                .rune(QUANTUM_OMNI_CELL_COMPONENT_1K.get().asItem(), 2, -1)
-                .rune(EU_CELL[ZPM].get().asItem(), -2, 0)
-                .rune(EU_CELL[ZPM].get().asItem(), -2, 1)
-                .rune(EU_CELL[ZPM].get().asItem(), -2, -1)
+                .rune(OCItems.OMNI_CELL_COMPONENT_1M.get().asItem(), 0, 2)
+                .rune(OCItems.OMNI_CELL_COMPONENT_1M.get().asItem(), 1, 2)
+                .rune(OCItems.OMNI_CELL_COMPONENT_1M.get().asItem(), -1, 2)
+                .rune(OCItems.COMPLEX_OMNI_CELL_COMPONENT_1M.get().asItem(), 0, -2)
+                .rune(OCItems.COMPLEX_OMNI_CELL_COMPONENT_1M.get().asItem(), 1, -2)
+                .rune(OCItems.COMPLEX_OMNI_CELL_COMPONENT_1M.get().asItem(), -1, -2)
+                .rune(OCItems.QUANTUM_OMNI_CELL_COMPONENT_1K.get().asItem(), 2, 0)
+                .rune(OCItems.QUANTUM_OMNI_CELL_COMPONENT_1K.get().asItem(), 2, 1)
+                .rune(OCItems.QUANTUM_OMNI_CELL_COMPONENT_1K.get().asItem(), 2, -1)
+                .rune(CEItems.EU_CELL[ZPM].get().asItem(), -2, 0)
+                .rune(CEItems.EU_CELL[ZPM].get().asItem(), -2, 1)
+                .rune(CEItems.EU_CELL[ZPM].get().asItem(), -2, -1)
                 .input(midgardRune)
                 .input(niflheimRune)
                 .input(Zenith_essence.getBucket())
@@ -296,28 +295,28 @@ public class TwistedFusionRecipes {
                 'A', ChemicalHelper.get(rawOreBlock, Fused_Mana).getItem().asItem(),
                 'B', ChemicalHelper.get(block, AlfSteel).getItem().asItem());
         METEOR_CAPTURER_RECIPES.recipeBuilder(CTNHCore.id("desh"))// 戴斯
-                .chancedInput(TIER_1_ROCKET.get().getDefaultInstance(), (int) 5f, 1)
+                .chancedInput(ModItems.TIER_1_ROCKET.get().getDefaultInstance(), (int) 5f, 1)
                 .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 1000 * 128))
-                .outputItems(ChemicalHelper.get(ore, Desh), 512)
+                .outputItems(ChemicalHelper.get(ore, AdastraMaterials.Desh), 512)
                 .duration(400)
                 .EUt(2048)
                 .save(provider);
         METEOR_CAPTURER_RECIPES.recipeBuilder(CTNHCore.id("ostrum"))// 紫金
-                .chancedInput(TIER_2_ROCKET.get().getDefaultInstance(), (int) 5f, 1)
+                .chancedInput(ModItems.TIER_2_ROCKET.get().getDefaultInstance(), (int) 5f, 1)
                 .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 1000 * 256))
-                .outputItems(ChemicalHelper.get(ore, Ostrum), 256)
+                .outputItems(ChemicalHelper.get(ore, AdastraMaterials.Ostrum), 256)
                 .duration(400)
                 .EUt(8196)
                 .save(provider);
         METEOR_CAPTURER_RECIPES.recipeBuilder(CTNHCore.id("calorite"))// 耐热金属
-                .chancedInput(TIER_3_ROCKET.get().getDefaultInstance(), (int) 5f, 1)
+                .chancedInput(ModItems.TIER_3_ROCKET.get().getDefaultInstance(), (int) 5f, 1)
                 .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 1000 * 512))
-                .outputItems(ChemicalHelper.get(ore, Calorite), 128)
+                .outputItems(ChemicalHelper.get(ore, AdastraMaterials.Calorite), 128)
                 .duration(400)
                 .EUt(8196 * 4)
                 .save(provider);
         METEOR_CAPTURER_RECIPES.recipeBuilder(CTNHCore.id("neutronium"))// 中子素
-                .chancedInput(TIER_4_ROCKET.get().getDefaultInstance(), (int) 5f, 1)
+                .chancedInput(ModItems.TIER_4_ROCKET.get().getDefaultInstance(), (int) 5f, 1)
                 .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 1000 * 1024))
                 .outputItems(ChemicalHelper.get(ore, Neutronium), 8)
                 .duration(400)

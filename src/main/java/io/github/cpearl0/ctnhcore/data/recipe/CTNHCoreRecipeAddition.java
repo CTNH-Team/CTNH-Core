@@ -19,7 +19,6 @@ import io.github.cpearl0.ctnhcore.data.recipe.create.DieselGeneratorRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.generated.HyperRotorRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.immersiveaircraft.ImmersiveAircraftRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.DigesterRecipes;
-import io.github.cpearl0.ctnhcore.data.recipe.mana.EternalGardenRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.MiscManaRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.mana.TwistedFusionRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.migrated.AE2ScriptRecipe;
@@ -138,7 +137,6 @@ public class CTNHCoreRecipeAddition {
         LuvModifyRecipe.init(provider);
 
         TwistedFusionRecipes.init(provider);
-        EternalGardenRecipes.init(provider);
         MiscManaRecipes.init(provider);
 
         YeastRecipes.init(provider);
