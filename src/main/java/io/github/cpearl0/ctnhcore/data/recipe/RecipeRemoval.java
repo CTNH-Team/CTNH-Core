@@ -112,7 +112,6 @@ public class RecipeRemoval {
         thermalRemovals();
         twilightforestRemovals();
         vintageimprovementsRemovals();
-        woodRemovals();
     }
 
     // ========== 按模组/功能分组的删除方法 ==========
@@ -664,78 +663,6 @@ public class RecipeRemoval {
         // sophisticatedbackpacks/sophisticatedbackpacks.js:
         // event.remove({ output: 'sophisticatedbackpacks:void_upgrade' })
         remove(new RemoveFilter().id("sophisticatedbackpacks:void_upgrade"));
-    }
-
-    public static void woodRemovals() {
-        // wood.js 中对所有 #minecraft:logs 标签中的木材动态生成 planks 配方并删除原 planks 配方：
-        // ...
-        // let result2 = e.substring(0, pos + 1) + e.substring(pos + 1, pos2 + 1) + "planks"
-        // event.remove({ id: result2 })
-        // })
-        // 排除：botania / aether:ironwood / aether:golden_oak / magic_vine / avocado / fig / wolfberry
-        // （ars_nouveau 已由 WoodTypeEntry 纳入统一加工体系，archwood 木板改走 saw，不再排除）
-        remove(new RemoveFilter()
-                .idRegex("(.*):(.*)_planks")
-                .not(new RemoveFilter().mod("botania"))
-                .not(new RemoveFilter().id("aether:ironwood_planks"))
-                .not(new RemoveFilter().id("aether:golden_oak_planks"))
-                .not(new RemoveFilter().idRegex("(.*):(.*)magic_vine(.*)_planks"))
-                .not(new RemoveFilter().idRegex("(.*):(.*)avocado(.*)_planks"))
-                .not(new RemoveFilter().idRegex("(.*):(.*)fig(.*)_planks"))
-                .not(new RemoveFilter().idRegex("(.*):(.*)wolfberry(.*)_planks")));
-        // wood.js 中显式删除的 aether 和 twilightforest planks 配方
-        remove(new RemoveFilter().id("aether:skyroot_planks"));
-        // tconstruct 木材配方由 fork 运行时动态生成（TiCDynamicRecipeGenerator -> WorldRecipeProvider），
-        // id 为 world/wood/{wood}/planks 斜杠路径，正则 (.*):(.*)_planks 无法匹配，显式删除
-        remove(new RemoveFilter().id("tconstruct:world/wood/skyroot/planks"));
-        remove(new RemoveFilter().id("tconstruct:world/wood/greenheart/planks"));
-        remove(new RemoveFilter().id("tconstruct:world/wood/bloodshroom/planks"));
-        remove(new RemoveFilter().id("tconstruct:world/wood/enderbark/planks"));
-
-        // ===== 家具手搓配方删除（recipeName 与 WoodTypeEntries 注册一致；GT 机器替代已由 WoodTypeEntry 生成） =====
-        // 顶层 id：aether / deep_aether / ecologics / biomesoplenty
-        String[] topLevelWoods = {
-                // aether
-                "skyroot",
-                // deep_aether
-                "roseroot", "yagroot", "cruderoot", "conberry", "sunroot",
-                // ecologics
-                "walnut", "coconut",
-                // biomesoplenty
-                "fir", "redwood", "mahogany", "jacaranda", "palm", "willow", "dead", "magic",
-                "umbran", "hellbark", "pine", "maple", "empyreal",
-        };
-        String[] topLevelSuffixes = { "_door", "_trapdoor", "_slab", "_fence", "_fence_gate", "_stairs",
-                "_button", "_pressure_plate", "_sign", "_hanging_sign", "_boat", "_chest_boat" };
-        for (String wood : topLevelWoods) {
-            for (String suffix : topLevelSuffixes) {
-                remove(new RemoveFilter().id("aether:" + wood + suffix));
-                remove(new RemoveFilter().id("deep_aether:" + wood + suffix));
-                remove(new RemoveFilter().id("ecologics:" + wood + suffix));
-                remove(new RemoveFilter().id("biomesoplenty:" + wood + suffix));
-            }
-        }
-        // twilightforest：wood/{wood}_{furniture} + 顶层 {wood}_boat / {wood}_chest_boat
-        String[] tfWoods = { "dark", "canopy", "twilight_oak", "time", "transformation", "mining", "sorting",
-                "twilight_mangrove" };
-        String[] tfSuffixes = { "_door", "_trapdoor", "_slab", "_fence", "_gate", "_stairs", "_button",
-                "_plate", "_sign", "_hanging_sign" };
-        for (String wood : tfWoods) {
-            for (String suffix : tfSuffixes) {
-                remove(new RemoveFilter().id("twilightforest:wood/" + wood + suffix));
-            }
-            remove(new RemoveFilter().id("twilightforest:" + wood + "_boat"));
-            remove(new RemoveFilter().id("twilightforest:" + wood + "_chest_boat"));
-        }
-        // tconstruct：world/wood/{wood}/{name}（fork 运行时动态生成，无 boat）
-        String[] tcWoods = { "skyroot", "greenheart", "bloodshroom", "enderbark" };
-        String[] tcNames = { "door", "trapdoor", "slab", "fence", "fence_gate", "stairs", "button",
-                "pressure_plate", "sign", "hanging_sign" };
-        for (String wood : tcWoods) {
-            for (String name : tcNames) {
-                remove(new RemoveFilter().id("tconstruct:world/wood/" + wood + "/" + name));
-            }
-        }
     }
 
     public static void vintageimprovementsRemovals() {

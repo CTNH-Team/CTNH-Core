@@ -28,6 +28,7 @@ import io.github.cpearl0.ctnhcore.data.recipe.migrated.GtceuScriptRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.EIORecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.omnicells.QuantumOmniRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.multiblock.*;
+import io.github.cpearl0.ctnhcore.data.recipe.wood.WoodMachineRecipes;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 
@@ -37,6 +38,9 @@ public class CTNHCoreRecipeAddition {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         CTNHCraftingComponents.init();
+
+        WoodMachineRecipes.registerMaterialInfo();
+        WoodMachineRecipes.init(provider);
 
         OreProcessingRecipes.init(provider);
         UnderfloorHeatingSystemRecipes.init(provider);

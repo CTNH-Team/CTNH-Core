@@ -1,21 +1,21 @@
-package io.github.cpearl0.ctnhcore.data.recipe;
+package io.github.cpearl0.ctnhcore.data.recipe.wood;
 
-import io.github.cpearl0.ctnhcore.CTNHCore;
-
-import com.gregtechceu.gtceu.data.recipe.WoodTypeEntry;
-import com.gregtechceu.gtceu.data.recipe.event.WoodTypeEntryEvent;
+import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.common.data.GTBlocks;
+import com.gregtechceu.gtceu.common.data.GTItems;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.item.AetherItems;
+import com.hollingsworth.arsnouveau.common.datagen.ItemTagProvider;
 import com.hollingsworth.arsnouveau.setup.registry.BlockRegistry;
 import samebutdifferent.ecologics.registry.ModBlocks;
 import samebutdifferent.ecologics.registry.ModItems;
@@ -28,32 +28,15 @@ import twilightforest.init.TFItems;
 
 import java.util.List;
 
+import static com.gregtechceu.gtceu.common.data.GTMaterials.TreatedWood;
+
 /**
- * 注册包内全部非原版木材到 GTCEu 统一木材加工体系（{@link WoodTypeEntry}）。
- *
- * <p>
- * GTCEu 的 {@link WoodTypeEntryEvent} 每次生成默认木材条目时都会发布（一次启动至少
- * 三次），因此注册过程只执行一次（见 {@link #registered}），后续发布直接跳过。
- *
- * <p>
- * 引用规则：编译依赖模组（aether / deep_aether / twilightforest / ars_nouveau /
- * ecologics / tconstruct）一律使用注册对象静态字段；biomesoplenty 不是编译依赖，
- * 用 {@link ModList#isLoaded} 守卫 + {@link ForgeRegistries} 查询，木板缺失时跳过该条目。
+ * 注册包内全部木材到 GTCEu 统一木材加工体系（{@link WoodTypeEntry}）。
  */
-@Mod.EventBusSubscriber(modid = CTNHCore.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class WoodTypeEntries {
 
-    /**
-     * GTCEu 每次调用 {@code WoodMachineRecipes#getDefaultEntries()} 都会发布事件
-     * （一次启动至少三次），注册一次后跳过后续发布。
-     */
-    private static boolean registered;
-
-    @SubscribeEvent
-    public static void onWoodTypeEntry(WoodTypeEntryEvent event) {
-        if (registered) return;
-        registered = true;
-        List<WoodTypeEntry> entries = event.getEntries();
+    public static void addWoodTypeEntry(List<WoodTypeEntry> entries) {
+        addVanilla(entries);
         addAether(entries);
         addDeepAether(entries);
         addBiomesOPlenty(entries);
@@ -65,6 +48,267 @@ public class WoodTypeEntries {
 
     private static TagKey<Item> itemTag(String id) {
         return TagKey.create(Registries.ITEM, ResourceLocation.parse(id));
+    }
+
+    private static void addVanilla(List<WoodTypeEntry> entries) {
+        final String mcModId = "minecraft";
+        entries.addAll(List.of(
+                new WoodTypeEntry.Builder(mcModId, "oak")
+                        .planks(Items.OAK_PLANKS, "oak_planks")
+                        .log(Items.OAK_LOG).removeCharcoalRecipe()
+                        .strippedLog(Items.STRIPPED_OAK_LOG)
+                        .wood(Items.OAK_WOOD)
+                        .strippedWood(Items.STRIPPED_OAK_WOOD)
+                        .door(Items.OAK_DOOR, "oak_door")
+                        .trapdoor(Items.OAK_TRAPDOOR, "oak_trapdoor")
+                        .slab(Items.OAK_SLAB, "oak_slab")
+                        .fence(Items.OAK_FENCE, "oak_fence")
+                        .fenceGate(Items.OAK_FENCE_GATE, "oak_fence_gate")
+                        .stairs(Items.OAK_STAIRS, "oak_stairs")
+                        .boat(Items.OAK_BOAT, "oak_boat")
+                        .chestBoat(Items.OAK_CHEST_BOAT, "oak_chest_boat")
+                        .sign(Items.OAK_SIGN, "oak_sign")
+                        .hangingSign(Items.OAK_HANGING_SIGN, "oak_hanging_sign")
+                        .button(Items.OAK_BUTTON, "oak_button")
+                        .pressurePlate(Items.OAK_PRESSURE_PLATE, "oak_pressure_plate")
+                        .registerAllMaterialInfo()
+                        .build(),
+                new WoodTypeEntry.Builder(mcModId, "spruce")
+                        .planks(Items.SPRUCE_PLANKS, "spruce_planks")
+                        .log(Items.SPRUCE_LOG).removeCharcoalRecipe()
+                        .strippedLog(Items.STRIPPED_SPRUCE_LOG)
+                        .wood(Items.SPRUCE_WOOD)
+                        .strippedWood(Items.STRIPPED_SPRUCE_WOOD)
+                        .door(Items.SPRUCE_DOOR, "spruce_door")
+                        .trapdoor(Items.SPRUCE_TRAPDOOR, "spruce_trapdoor")
+                        .slab(Items.SPRUCE_SLAB, "spruce_slab")
+                        .fence(Items.SPRUCE_FENCE, "spruce_fence")
+                        .fenceGate(Items.SPRUCE_FENCE_GATE, "spruce_fence_gate")
+                        .stairs(Items.SPRUCE_STAIRS, "spruce_stairs")
+                        .boat(Items.SPRUCE_BOAT, "spruce_boat")
+                        .chestBoat(Items.SPRUCE_CHEST_BOAT, "spruce_chest_boat")
+                        .sign(Items.SPRUCE_SIGN, "spruce_sign")
+                        .hangingSign(Items.SPRUCE_HANGING_SIGN, "spruce_hanging_sign")
+                        .button(Items.SPRUCE_BUTTON, "spruce_button")
+                        .pressurePlate(Items.SPRUCE_PRESSURE_PLATE, "spruce_pressure_plate")
+                        .registerAllMaterialInfo()
+                        .build(),
+                new WoodTypeEntry.Builder(mcModId, "birch")
+                        .planks(Items.BIRCH_PLANKS, "birch_planks")
+                        .log(Items.BIRCH_LOG).removeCharcoalRecipe()
+                        .strippedLog(Items.STRIPPED_BIRCH_LOG)
+                        .wood(Items.BIRCH_WOOD)
+                        .strippedWood(Items.STRIPPED_BIRCH_WOOD)
+                        .door(Items.BIRCH_DOOR, "birch_door")
+                        .trapdoor(Items.BIRCH_TRAPDOOR, "birch_trapdoor")
+                        .slab(Items.BIRCH_SLAB, "birch_slab")
+                        .fence(Items.BIRCH_FENCE, "birch_fence")
+                        .fenceGate(Items.BIRCH_FENCE_GATE, "birch_fence_gate")
+                        .stairs(Items.BIRCH_STAIRS, "birch_stairs")
+                        .boat(Items.BIRCH_BOAT, "birch_boat")
+                        .chestBoat(Items.BIRCH_CHEST_BOAT, "birch_chest_boat")
+                        .sign(Items.BIRCH_SIGN, "birch_sign")
+                        .hangingSign(Items.BIRCH_HANGING_SIGN, "birch_hanging_sign")
+                        .button(Items.BIRCH_BUTTON, "birch_button")
+                        .pressurePlate(Items.BIRCH_PRESSURE_PLATE, "birch_pressure_plate")
+                        .registerAllMaterialInfo()
+                        .build(),
+                new WoodTypeEntry.Builder(mcModId, "jungle")
+                        .planks(Items.JUNGLE_PLANKS, "jungle_planks")
+                        .log(Items.JUNGLE_LOG).removeCharcoalRecipe()
+                        .strippedLog(Items.STRIPPED_JUNGLE_LOG)
+                        .wood(Items.JUNGLE_WOOD)
+                        .strippedWood(Items.STRIPPED_JUNGLE_WOOD)
+                        .door(Items.JUNGLE_DOOR, "jungle_door")
+                        .trapdoor(Items.JUNGLE_TRAPDOOR, "jungle_trapdoor")
+                        .slab(Items.JUNGLE_SLAB, "jungle_slab")
+                        .fence(Items.JUNGLE_FENCE, "jungle_fence")
+                        .fenceGate(Items.JUNGLE_FENCE_GATE, "jungle_fence_gate")
+                        .stairs(Items.JUNGLE_STAIRS, "jungle_stairs")
+                        .boat(Items.JUNGLE_BOAT, "jungle_boat")
+                        .chestBoat(Items.JUNGLE_CHEST_BOAT, "jungle_chest_boat")
+                        .sign(Items.JUNGLE_SIGN, "jungle_sign")
+                        .hangingSign(Items.JUNGLE_HANGING_SIGN, "jungle_hanging_sign")
+                        .button(Items.JUNGLE_BUTTON, "jungle_button")
+                        .pressurePlate(Items.JUNGLE_PRESSURE_PLATE, "jungle_pressure_plate")
+                        .registerAllMaterialInfo()
+                        .build(),
+                new WoodTypeEntry.Builder(mcModId, "acacia")
+                        .planks(Items.ACACIA_PLANKS, "acacia_planks")
+                        .log(Items.ACACIA_LOG).removeCharcoalRecipe()
+                        .strippedLog(Items.STRIPPED_ACACIA_LOG)
+                        .wood(Items.ACACIA_WOOD)
+                        .strippedWood(Items.STRIPPED_ACACIA_WOOD)
+                        .door(Items.ACACIA_DOOR, "acacia_door")
+                        .trapdoor(Items.ACACIA_TRAPDOOR, "acacia_trapdoor")
+                        .slab(Items.ACACIA_SLAB, "acacia_slab")
+                        .fence(Items.ACACIA_FENCE, "acacia_fence")
+                        .fenceGate(Items.ACACIA_FENCE_GATE, "acacia_fence_gate")
+                        .stairs(Items.ACACIA_STAIRS, "acacia_stairs")
+                        .boat(Items.ACACIA_BOAT, "acacia_boat")
+                        .chestBoat(Items.ACACIA_CHEST_BOAT, "acacia_chest_boat")
+                        .sign(Items.ACACIA_SIGN, "acacia_sign")
+                        .hangingSign(Items.ACACIA_HANGING_SIGN, "acacia_hanging_sign")
+                        .button(Items.ACACIA_BUTTON, "acacia_button")
+                        .pressurePlate(Items.ACACIA_PRESSURE_PLATE, "acacia_pressure_plate")
+                        .registerAllMaterialInfo()
+                        .build(),
+                new WoodTypeEntry.Builder(mcModId, "dark_oak")
+                        .planks(Items.DARK_OAK_PLANKS, "dark_oak_planks")
+                        .log(Items.DARK_OAK_LOG).removeCharcoalRecipe()
+                        .strippedLog(Items.STRIPPED_DARK_OAK_LOG)
+                        .wood(Items.DARK_OAK_WOOD)
+                        .strippedWood(Items.STRIPPED_DARK_OAK_WOOD)
+                        .door(Items.DARK_OAK_DOOR, "dark_oak_door")
+                        .trapdoor(Items.DARK_OAK_TRAPDOOR, "dark_oak_trapdoor")
+                        .slab(Items.DARK_OAK_SLAB, "dark_oak_slab")
+                        .fence(Items.DARK_OAK_FENCE, "dark_oak_fence")
+                        .fenceGate(Items.DARK_OAK_FENCE_GATE, "dark_oak_fence_gate")
+                        .stairs(Items.DARK_OAK_STAIRS, "dark_oak_stairs")
+                        .boat(Items.DARK_OAK_BOAT, "dark_oak_boat")
+                        .chestBoat(Items.DARK_OAK_CHEST_BOAT, "dark_oak_chest_boat")
+                        .sign(Items.DARK_OAK_SIGN, "dark_oak_sign")
+                        .hangingSign(Items.DARK_OAK_HANGING_SIGN, "dark_oak_hanging_sign")
+                        .button(Items.DARK_OAK_BUTTON, "dark_oak_button")
+                        .pressurePlate(Items.DARK_OAK_PRESSURE_PLATE, "dark_oak_pressure_plate")
+                        .registerAllMaterialInfo()
+                        .build(),
+                new WoodTypeEntry.Builder(mcModId, "bamboo")
+                        .planks(Items.BAMBOO_PLANKS, "bamboo_planks")
+                        .logTag(ItemTags.BAMBOO_BLOCKS)
+                        .log(Items.BAMBOO_BLOCK).removeCharcoalRecipe()
+                        .strippedLog(Items.STRIPPED_BAMBOO_BLOCK)
+                        .door(Items.BAMBOO_DOOR, "bamboo_door")
+                        .trapdoor(Items.BAMBOO_TRAPDOOR, "bamboo_trapdoor")
+                        .slab(Items.BAMBOO_SLAB, "bamboo_slab")
+                        .fence(Items.BAMBOO_FENCE, "bamboo_fence")
+                        .fenceGate(Items.BAMBOO_FENCE_GATE, "bamboo_fence_gate")
+                        .stairs(Items.BAMBOO_STAIRS, "bamboo_stairs")
+                        .boat(Items.BAMBOO_RAFT, "bamboo_raft")
+                        .chestBoat(Items.BAMBOO_CHEST_RAFT, "bamboo_chest_raft")
+                        .sign(Items.BAMBOO_SIGN, "bamboo_sign")
+                        .hangingSign(Items.BAMBOO_HANGING_SIGN, "bamboo_hanging_sign")
+                        .button(Items.BAMBOO_BUTTON, "bamboo_button")
+                        .pressurePlate(Items.BAMBOO_PRESSURE_PLATE, "bamboo_pressure_plate")
+                        .registerAllMaterialInfo()
+                        .build(),
+                new WoodTypeEntry.Builder(mcModId, "cherry")
+                        .planks(Items.CHERRY_PLANKS, "cherry_planks")
+                        .log(Items.CHERRY_LOG).removeCharcoalRecipe()
+                        .strippedLog(Items.STRIPPED_CHERRY_LOG)
+                        .wood(Items.CHERRY_WOOD)
+                        .strippedWood(Items.STRIPPED_CHERRY_WOOD)
+                        .door(Items.CHERRY_DOOR, "cherry_door")
+                        .trapdoor(Items.CHERRY_TRAPDOOR, "cherry_trapdoor")
+                        .slab(Items.CHERRY_SLAB, "cherry_slab")
+                        .fence(Items.CHERRY_FENCE, "cherry_fence")
+                        .fenceGate(Items.CHERRY_FENCE_GATE, "cherry_fence_gate")
+                        .stairs(Items.CHERRY_STAIRS, "cherry_stairs")
+                        .boat(Items.CHERRY_BOAT, "cherry_boat")
+                        .chestBoat(Items.CHERRY_CHEST_BOAT, "cherry_chest_boat")
+                        .sign(Items.CHERRY_SIGN, "cherry_sign")
+                        .hangingSign(Items.CHERRY_HANGING_SIGN, "cherry_hanging_sign")
+                        .button(Items.CHERRY_BUTTON, "cherry_button")
+                        .pressurePlate(Items.CHERRY_PRESSURE_PLATE, "cherry_pressure_plate")
+                        .registerAllMaterialInfo()
+                        .build(),
+                new WoodTypeEntry.Builder(mcModId, "mangrove")
+                        .planks(Items.MANGROVE_PLANKS, "mangrove_planks")
+                        .log(Items.MANGROVE_LOG).removeCharcoalRecipe()
+                        .strippedLog(Items.STRIPPED_MANGROVE_LOG)
+                        .wood(Items.MANGROVE_WOOD)
+                        .strippedWood(Items.STRIPPED_MANGROVE_WOOD)
+                        .door(Items.MANGROVE_DOOR, "mangrove_door")
+                        .trapdoor(Items.MANGROVE_TRAPDOOR, "mangrove_trapdoor")
+                        .slab(Items.MANGROVE_SLAB, "mangrove_slab")
+                        .fence(Items.MANGROVE_FENCE, "mangrove_fence")
+                        .fenceGate(Items.MANGROVE_FENCE_GATE, "mangrove_fence_gate")
+                        .stairs(Items.MANGROVE_STAIRS, "mangrove_stairs")
+                        .boat(Items.MANGROVE_BOAT, "mangrove_boat")
+                        .chestBoat(Items.MANGROVE_CHEST_BOAT, "mangrove_chest_boat")
+                        .sign(Items.MANGROVE_SIGN, "mangrove_sign")
+                        .hangingSign(Items.MANGROVE_HANGING_SIGN, "mangrove_hanging_sign")
+                        .button(Items.MANGROVE_BUTTON, "mangrove_button")
+                        .pressurePlate(Items.MANGROVE_PRESSURE_PLATE, "mangrove_pressure_plate")
+                        .registerAllMaterialInfo()
+                        .build(),
+                new WoodTypeEntry.Builder(mcModId, "crimson")
+                        .planks(Items.CRIMSON_PLANKS, "crimson_planks")
+                        .logTag(ItemTags.CRIMSON_STEMS)
+                        .log(Items.CRIMSON_STEM).removeCharcoalRecipe()
+                        .strippedLog(Items.STRIPPED_CRIMSON_STEM)
+                        .wood(Items.CRIMSON_HYPHAE)
+                        .strippedWood(Items.STRIPPED_CRIMSON_HYPHAE)
+                        .door(Items.CRIMSON_DOOR, "crimson_door")
+                        .trapdoor(Items.CRIMSON_TRAPDOOR, "crimson_trapdoor")
+                        .slab(Items.CRIMSON_SLAB, "crimson_slab")
+                        .fence(Items.CRIMSON_FENCE, "crimson_fence")
+                        .fenceGate(Items.CRIMSON_FENCE_GATE, "crimson_fence_gate")
+                        .stairs(Items.CRIMSON_STAIRS, "crimson_stairs")
+                        .sign(Items.CRIMSON_SIGN, "crimson_sign")
+                        .hangingSign(Items.CRIMSON_HANGING_SIGN, "crimson_hanging_sign")
+                        .button(Items.CRIMSON_BUTTON, "crimson_button")
+                        .pressurePlate(Items.CRIMSON_PRESSURE_PLATE, "crimson_pressure_plate")
+                        .registerAllMaterialInfo()
+                        .build(),
+                new WoodTypeEntry.Builder(mcModId, "warped")
+                        .planks(Items.WARPED_PLANKS, "warped_planks")
+                        .logTag(ItemTags.WARPED_STEMS)
+                        .log(Items.WARPED_STEM).removeCharcoalRecipe()
+                        .strippedLog(Items.STRIPPED_WARPED_STEM)
+                        .wood(Items.WARPED_HYPHAE)
+                        .strippedWood(Items.STRIPPED_WARPED_HYPHAE)
+                        .door(Items.WARPED_DOOR, "warped_door")
+                        .trapdoor(Items.WARPED_TRAPDOOR, "warped_trapdoor")
+                        .slab(Items.WARPED_SLAB, "warped_slab")
+                        .fence(Items.WARPED_FENCE, "warped_fence")
+                        .fenceGate(Items.WARPED_FENCE_GATE, "warped_fence_gate")
+                        .stairs(Items.WARPED_STAIRS, "warped_stairs")
+                        .sign(Items.WARPED_SIGN, "warped_sign")
+                        .hangingSign(Items.WARPED_HANGING_SIGN, "warped_hanging_sign")
+                        .button(Items.WARPED_BUTTON, "warped_button")
+                        .pressurePlate(Items.WARPED_PRESSURE_PLATE, "warped_pressure_plate")
+                        .registerAllMaterialInfo()
+                        .build(),
+                new WoodTypeEntry.Builder(GTCEu.MOD_ID, "rubber")
+                        .planks(GTBlocks.RUBBER_PLANK.asItem(), null)
+                        .log(GTBlocks.RUBBER_LOG.asItem()).addCharcoalRecipe()
+                        .strippedLog(GTBlocks.STRIPPED_RUBBER_LOG.asItem())
+                        .wood(GTBlocks.RUBBER_WOOD.asItem())
+                        .strippedWood(GTBlocks.STRIPPED_RUBBER_WOOD.asItem())
+                        .door(GTBlocks.RUBBER_DOOR.asItem(), null)
+                        .trapdoor(GTBlocks.RUBBER_TRAPDOOR.asItem(), null)
+                        .slab(GTBlocks.RUBBER_SLAB.asItem(), null).addSlabRecipe()
+                        .fence(GTBlocks.RUBBER_FENCE.asItem(), null)
+                        .fenceGate(GTBlocks.RUBBER_FENCE_GATE.asItem(), null)
+                        .stairs(GTBlocks.RUBBER_STAIRS.asItem(), null).addStairsRecipe()
+                        .boat(GTItems.RUBBER_BOAT.asItem(), null)
+                        .chestBoat(GTItems.RUBBER_CHEST_BOAT.asItem(), null)
+                        .sign(GTBlocks.RUBBER_SIGN.asItem(), null)
+                        .hangingSign(GTBlocks.RUBBER_HANGING_SIGN.asItem(), null)
+                        .button(GTBlocks.RUBBER_BUTTON.asItem(), null)
+                        .pressurePlate(GTBlocks.RUBBER_PRESSURE_PLATE.asItem(), null)
+                        .registerAllTags()
+                        .registerAllMaterialInfo()
+                        .build(),
+                new WoodTypeEntry.Builder(GTCEu.MOD_ID, "treated")
+                        .planks(GTBlocks.TREATED_WOOD_PLANK.asItem(), null)
+                        .door(GTBlocks.TREATED_WOOD_DOOR.asItem(), null)
+                        .trapdoor(GTBlocks.TREATED_WOOD_TRAPDOOR.asItem(), null)
+                        .slab(GTBlocks.TREATED_WOOD_SLAB.asItem(), null).addSlabRecipe()
+                        .fence(GTBlocks.TREATED_WOOD_FENCE.asItem(), null)
+                        .fenceGate(GTBlocks.TREATED_WOOD_FENCE_GATE.asItem(), null)
+                        .stairs(GTBlocks.TREATED_WOOD_STAIRS.asItem(), null).addStairsRecipe()
+                        .boat(GTItems.TREATED_WOOD_BOAT.asItem(), null)
+                        .chestBoat(GTItems.TREATED_WOOD_CHEST_BOAT.asItem(), null)
+                        .sign(GTBlocks.TREATED_WOOD_SIGN.asItem(), null)
+                        .hangingSign(GTBlocks.TREATED_WOOD_HANGING_SIGN.asItem(), null)
+                        .button(GTBlocks.TREATED_WOOD_BUTTON.asItem(), null)
+                        .pressurePlate(GTBlocks.TREATED_WOOD_PRESSURE_PLATE.asItem(), null)
+                        .material(TreatedWood)
+                        .generateLogToPlankRecipe(false)
+                        .registerMaterialInfo(false, true, true, true, true, true, true, true, true, true)
+                        .build()));
     }
 
     // ==================== Aether ====================
@@ -386,7 +630,6 @@ public class WoodTypeEntries {
                 .button(TFBlocks.SORTING_BUTTON.get().asItem(), "wood/sorting_button")
                 .pressurePlate(TFBlocks.SORTING_PLATE.get().asItem(), "wood/sorting_plate")
                 .registerAllMaterialInfo().build());
-        // 暮色红树林与原版红树林同名，用 twilight_mangrove 消歧
         entries.add(new WoodTypeEntry.Builder("twilightforest", "twilight_mangrove")
                 .logTag(itemTag("twilightforest:mangrove_logs"))
                 .log(TFBlocks.MANGROVE_LOG.get().asItem())
@@ -412,38 +655,42 @@ public class WoodTypeEntries {
     // ==================== Ars Nouveau ====================
 
     private static void addArsNouveau(List<WoodTypeEntry> entries) {
-        // 4 色 archwood 共用 archwood_planks 与 forge:logs/archwood 标签，家具保留 ars 原配方
         entries.add(new WoodTypeEntry.Builder("ars_nouveau", "red_archwood")
-                .logTag(itemTag("forge:logs/archwood"))
                 .log(BlockRegistry.BLAZING_LOG.get().asItem())
                 .strippedLog(BlockRegistry.STRIPPED_AWLOG_RED.get().asItem())
                 .wood(BlockRegistry.BLAZING_WOOD.get().asItem())
                 .strippedWood(BlockRegistry.STRIPPED_AWWOOD_RED.get().asItem())
-                .planks(BlockRegistry.ARCHWOOD_PLANK.get().asItem(), "archwood_planks")
-                .registerAllMaterialInfo().build());
+                .build());
         entries.add(new WoodTypeEntry.Builder("ars_nouveau", "blue_archwood")
-                .logTag(itemTag("forge:logs/archwood"))
                 .log(BlockRegistry.CASCADING_LOG.get().asItem())
                 .strippedLog(BlockRegistry.STRIPPED_AWLOG_BLUE.get().asItem())
                 .wood(BlockRegistry.CASCADING_WOOD.get().asItem())
                 .strippedWood(BlockRegistry.STRIPPED_AWWOOD_BLUE.get().asItem())
-                .planks(BlockRegistry.ARCHWOOD_PLANK.get().asItem(), "archwood_planks")
-                .registerAllMaterialInfo().build());
+                .build());
         entries.add(new WoodTypeEntry.Builder("ars_nouveau", "purple_archwood")
-                .logTag(itemTag("forge:logs/archwood"))
                 .log(BlockRegistry.VEXING_LOG.get().asItem())
                 .strippedLog(BlockRegistry.STRIPPED_AWLOG_PURPLE.get().asItem())
                 .wood(BlockRegistry.VEXING_WOOD.get().asItem())
                 .strippedWood(BlockRegistry.STRIPPED_AWWOOD_PURPLE.get().asItem())
-                .planks(BlockRegistry.ARCHWOOD_PLANK.get().asItem(), "archwood_planks")
-                .registerAllMaterialInfo().build());
+                .build());
         entries.add(new WoodTypeEntry.Builder("ars_nouveau", "green_archwood")
-                .logTag(itemTag("forge:logs/archwood"))
                 .log(BlockRegistry.FLOURISHING_LOG.get().asItem())
                 .strippedLog(BlockRegistry.STRIPPED_AWLOG_GREEN.get().asItem())
                 .wood(BlockRegistry.FLOURISHING_WOOD.get().asItem())
                 .strippedWood(BlockRegistry.STRIPPED_AWWOOD_GREEN.get().asItem())
-                .planks(BlockRegistry.ARCHWOOD_PLANK.get().asItem(), "archwood_planks")
+                .build());
+
+        entries.add(new WoodTypeEntry.Builder("ars_nouveau", "archwood")
+                .logTag(ItemTagProvider.ARCHWOOD_LOG_TAG)
+                .planks(BlockRegistry.ARCHWOOD_PLANK.asItem(), "archwood_planks")
+                .door(BlockRegistry.ARCHWOOD_DOOR.get().asItem(), "archwood_door")
+                .trapdoor(BlockRegistry.ARCHWOOD_TRAPDOOR.get().asItem(), "archwood_trapdoor")
+                .slab(BlockRegistry.ARCHWOOD_SLABS.get().asItem(), "archwood_slab")
+                .fence(BlockRegistry.ARCHWOOD_FENCE.get().asItem(), "archwood_fence")
+                .fenceGate(BlockRegistry.ARCHWOOD_FENCE_GATE.get().asItem(), "archwood_fence_gate")
+                .stairs(BlockRegistry.ARCHWOOD_STAIRS.get().asItem(), "archwood_stairs")
+                .button(BlockRegistry.ARCHWOOD_BUTTON.get().asItem(), "archwood_button")
+                .pressurePlate(BlockRegistry.ARCHWOOD_PPlate.get().asItem(), "archwood_pressure_plate")
                 .registerAllMaterialInfo().build());
     }
 
@@ -502,7 +749,6 @@ public class WoodTypeEntries {
     }
 
     private static void addTConstructWood(List<WoodTypeEntry> entries, String woodName, WoodBlockObject woodObject) {
-        // fork 移除木材配方后未重建，recipe-name 全部为 null（无原配方可移除）
         entries.add(new WoodTypeEntry.Builder("tconstruct", woodName)
                 .logTag(woodObject.getLogItemTag())
                 .log(woodObject.getLog().asItem())
