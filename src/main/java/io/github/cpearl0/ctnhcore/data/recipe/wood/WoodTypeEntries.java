@@ -17,6 +17,7 @@ import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.item.AetherItems;
 import com.hollingsworth.arsnouveau.common.datagen.ItemTagProvider;
 import com.hollingsworth.arsnouveau.setup.registry.BlockRegistry;
+import com.soytutta.mynethersdelight.common.registry.MNDBlocks;
 import samebutdifferent.ecologics.registry.ModBlocks;
 import samebutdifferent.ecologics.registry.ModItems;
 import slimeknights.mantle.registration.object.WoodBlockObject;
@@ -43,6 +44,8 @@ public class WoodTypeEntries {
         addTwilightForest(entries);
         addArsNouveau(entries);
         addEcologics(entries);
+        addCataclysm(entries);
+        addMynethersdelight(entries);
         addTConstruct(entries);
     }
 
@@ -736,6 +739,82 @@ public class WoodTypeEntries {
                 .hangingSign(ModItems.COCONUT_HANGING_SIGN.get(), "coconut_hanging_sign")
                 .button(ModBlocks.COCONUT_BUTTON.get().asItem(), "coconut_button")
                 .pressurePlate(ModBlocks.COCONUT_PRESSURE_PLATE.get().asItem(), "coconut_pressure_plate")
+                .registerAllMaterialInfo().build());
+        entries.add(new WoodTypeEntry.Builder("ecologics", "azalea")
+                .logTag(itemTag("ecologics:azalea_logs"))
+                .log(ModBlocks.AZALEA_LOG.get().asItem())
+                .strippedLog(ModBlocks.STRIPPED_AZALEA_LOG.get().asItem())
+                .wood(ModBlocks.AZALEA_WOOD.get().asItem())
+                .strippedWood(ModBlocks.STRIPPED_AZALEA_WOOD.get().asItem())
+                .planks(ModBlocks.AZALEA_PLANKS.get().asItem(), "azalea_planks")
+                .door(ModBlocks.AZALEA_DOOR.get().asItem(), "azalea_door")
+                .trapdoor(ModBlocks.AZALEA_TRAPDOOR.get().asItem(), "azalea_trapdoor")
+                .slab(ModBlocks.AZALEA_SLAB.get().asItem(), "azalea_slab")
+                .fence(ModBlocks.AZALEA_FENCE.get().asItem(), "azalea_fence")
+                .fenceGate(ModBlocks.AZALEA_FENCE_GATE.get().asItem(), "azalea_fence_gate")
+                .stairs(ModBlocks.AZALEA_STAIRS.get().asItem(), "azalea_stairs")
+                .boat(ModItems.AZALEA_BOAT.get(), "azalea_boat")
+                .chestBoat(ModItems.AZALEA_CHEST_BOAT.get(), "azalea_chest_boat")
+                .sign(ModItems.AZALEA_SIGN.get(), "azalea_sign")
+                .hangingSign(ModItems.AZALEA_HANGING_SIGN.get(), "azalea_hanging_sign")
+                .button(ModBlocks.AZALEA_BUTTON.get().asItem(), "azalea_button")
+                .pressurePlate(ModBlocks.AZALEA_PRESSURE_PLATE.get().asItem(), "azalea_pressure_plate")
+                .registerAllMaterialInfo().build());
+        // 盛开的杜鹃：无按钮/压力板，去皮与原版共用
+        entries.add(new WoodTypeEntry.Builder("ecologics", "flowering_azalea")
+                .logTag(itemTag("ecologics:azalea_logs"))
+                .log(ModBlocks.FLOWERING_AZALEA_LOG.get().asItem())
+                .strippedLog(ModBlocks.STRIPPED_AZALEA_LOG.get().asItem())
+                .wood(ModBlocks.FLOWERING_AZALEA_WOOD.get().asItem())
+                .strippedWood(ModBlocks.STRIPPED_AZALEA_WOOD.get().asItem())
+                .planks(ModBlocks.FLOWERING_AZALEA_PLANKS.get().asItem(), "flowering_azalea_planks")
+                .door(ModBlocks.FLOWERING_AZALEA_DOOR.get().asItem(), "flowering_azalea_door")
+                .trapdoor(ModBlocks.FLOWERING_AZALEA_TRAPDOOR.get().asItem(), "flowering_azalea_trapdoor")
+                .slab(ModBlocks.FLOWERING_AZALEA_SLAB.get().asItem(), "flowering_azalea_slab")
+                .fence(ModBlocks.FLOWERING_AZALEA_FENCE.get().asItem(), "flowering_azalea_fence")
+                .fenceGate(ModBlocks.FLOWERING_AZALEA_FENCE_GATE.get().asItem(), "flowering_azalea_fence_gate")
+                .stairs(ModBlocks.FLOWERING_AZALEA_STAIRS.get().asItem(), "flowering_azalea_stairs")
+                .boat(ModItems.FLOWERING_AZALEA_BOAT.get(), "flowering_azalea_boat")
+                .chestBoat(ModItems.FLOWERING_AZALEA_CHEST_BOAT.get(), "flowering_azalea_chest_boat")
+                .sign(ModItems.FLOWERING_AZALEA_SIGN.get(), "flowering_azalea_sign")
+                .hangingSign(ModItems.FLOWERING_AZALEA_HANGING_SIGN.get(), "flowering_azalea_hanging_sign")
+                .registerAllMaterialInfo().build());
+    }
+
+    // ==================== Cataclysm ====================
+
+    private static void addCataclysm(List<WoodTypeEntry> entries) {
+        // 紫菘（chorus）：仅茎/板/台阶/楼梯/栅栏/活板门，无去皮/木/门/钮/牌/船
+        entries.add(new WoodTypeEntry.Builder("cataclysm", "chorus")
+                .logTag(itemTag("cataclysm:chorus_stems"))
+                .log(com.github.L_Ender.cataclysm.init.ModBlocks.CHORUS_STEM.get().asItem())
+                .planks(com.github.L_Ender.cataclysm.init.ModBlocks.CHORUS_PLANKS.get().asItem(), "chorus_planks")
+                .slab(com.github.L_Ender.cataclysm.init.ModBlocks.CHORUS_SLAB.get().asItem(), "chorus_slab")
+                .stairs(com.github.L_Ender.cataclysm.init.ModBlocks.CHORUS_STAIRS.get().asItem(), "chorus_stairs")
+                .fence(com.github.L_Ender.cataclysm.init.ModBlocks.CHORUS_FENCE.get().asItem(), "chorus_fence")
+                .trapdoor(com.github.L_Ender.cataclysm.init.ModBlocks.CHORUS_TRAPDOOR.get().asItem(), "chorus_trapdoor")
+                .registerAllMaterialInfo().build());
+    }
+
+    // ==================== My Nether's Delight ====================
+
+    private static void addMynethersdelight(List<WoodTypeEntry> entries) {
+        // 烟药竹（powdery cannon）：方块作"原木"，配方 id 为 powdery_plank 单数
+        entries.add(new WoodTypeEntry.Builder("mynethersdelight", "powdery")
+                .logTag(itemTag("mynethersdelight:block_of_powdery"))
+                .log(MNDBlocks.BLOCK_OF_POWDERY_CANNON.get().asItem())
+                .strippedLog(MNDBlocks.BLOCK_OF_STRIPPED_POWDERY_CANNON.get().asItem())
+                .planks(MNDBlocks.POWDERY_PLANKS.get().asItem(), "powdery_plank")
+                .door(MNDBlocks.POWDERY_DOOR.get().asItem(), "powdery_door")
+                .trapdoor(MNDBlocks.POWDERY_TRAPDOOR.get().asItem(), "powdery_trapdoor")
+                .slab(MNDBlocks.POWDERY_PLANKS_SLAB.get().asItem(), "powdery_slab")
+                .stairs(MNDBlocks.POWDERY_PLANKS_STAIRS.get().asItem(), "powdery_stairs")
+                .fence(MNDBlocks.POWDERY_FENCE.get().asItem(), "powdery_fence")
+                .fenceGate(MNDBlocks.POWDERY_FENCE_GATE.get().asItem(), "powdery_fence_gate")
+                .button(MNDBlocks.POWDERY_BUTTON.get().asItem(), "powdery_button")
+                .pressurePlate(MNDBlocks.POWDERY_PRESSURE_PLATE.get().asItem(), "powdery_pressure_plate")
+                .sign(MNDBlocks.POWDERY_SIGN.get().asItem(), "powdery_sign")
+                .hangingSign(MNDBlocks.POWDERY_HANGING_SIGN.get().asItem(), "powdery_hanging_sign")
                 .registerAllMaterialInfo().build());
     }
 

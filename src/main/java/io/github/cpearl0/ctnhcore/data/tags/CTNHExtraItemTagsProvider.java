@@ -36,6 +36,19 @@ public class CTNHExtraItemTagsProvider extends TagsProvider<Item> {
         addOptionals(itemTag("forge", "stripped_logs"), List.of("gtceu:stripped_rubber_log"));
         addOptionals(itemTag("curios", "curio"), List.of("tiab:time_in_a_bottle"));
         addOptionals(itemTag("create", "upright_on_belt"), UPRIGHT_ON_BELT);
+
+        // WoodTypeEntry 统一木材加工所需的原木标签（mod 未自带，由 CTNH 补）
+        addOptionals(itemTag("ecologics", "walnut_logs"), List.of(
+                "ecologics:walnut_log", "ecologics:stripped_walnut_log",
+                "ecologics:walnut_wood", "ecologics:stripped_walnut_wood"));
+        addOptionals(itemTag("ecologics", "coconut_logs"), List.of(
+                "ecologics:coconut_log", "ecologics:stripped_coconut_log",
+                "ecologics:coconut_wood", "ecologics:stripped_coconut_wood"));
+        addOptionals(itemTag("ecologics", "azalea_logs"), List.of(
+                "ecologics:azalea_log", "ecologics:stripped_azalea_log",
+                "ecologics:azalea_wood", "ecologics:stripped_azalea_wood",
+                "ecologics:flowering_azalea_log", "ecologics:flowering_azalea_wood"));
+        addOptionals(itemTag("cataclysm", "chorus_stems"), List.of("cataclysm:chorus_stem"));
     }
 
     private void addOptionals(TagKey<Item> tagKey, List<String> ids) {
