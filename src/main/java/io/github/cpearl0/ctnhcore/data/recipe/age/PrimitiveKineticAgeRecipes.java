@@ -621,6 +621,12 @@ public class PrimitiveKineticAgeRecipes {
                 1000,
                 IMeltingRecipe.calcTimeForAmount(1000, FluidValues.INGOT))
                 .save(provider, CTNHCore.id("smeltery/melting/rubber_powder_to_rubber"));
+
+        // 橡胶锭（铸件台浇铸：144 mB 液态橡胶 + 锭模具 → 1 橡胶锭）
+        ItemCastingRecipeBuilder.tableRecipe(ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Rubber).getItem())
+                .setCast(TinkerSmeltery.ingotCast.get(), false)
+                .setFluidAndTime(GTMaterials.Rubber.getFluid(FluidValues.INGOT))
+                .save(provider, CTNHCore.id("smeltery/casting/rubber_ingot"));
     }
 
     private static void addKineticCraftingRecipes(Consumer<FinishedRecipe> provider) {
