@@ -32,19 +32,7 @@ public class PlatinumLine {
     public static void init(Consumer<FinishedRecipe> provider) {
         remove(provider);
         // 从 PlatinumChain.js 迁移的配方
-        CMRecipeTypes.MANA_TRANSFORMER_RECIPES.recipeBuilder(CTNHCore.id("crystal_catalyst1"))
-                .inputItems(dust, PlatinumGroupSludge, 42)
-                .notConsumable(CRYSTAL_CATALYST)
-                .outputItems(dust, Palladium, 7)
-                .outputItems(dust, Platinum, 7)
-                .outputItems(dust, Ruthenium, 7)
-                .outputItems(dust, Rhodium, 7)
-                .outputItems(dust, Osmium, 7)
-                .outputItems(dust, Iridium, 7)
-                .EUt(1920)
-                .duration(600)
-                .circuitMeta(1)
-                .save(provider);
+
         // --- 铂钯催化剂 ---
         GTRecipeTypes.MIXER_RECIPES.recipeBuilder(CTNHCore.id("palladium_on_platinum"))
                 .inputItems(TagPrefix.dust, Platinum)

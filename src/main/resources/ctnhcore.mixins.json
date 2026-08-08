@@ -38,7 +38,6 @@
     "eclipticseasons.BakedModelWrapperSnowOffsetMixin",
     "eclipticseasons.BakedQuadRetexturedAndReUVMixin",
     "eclipticseasons.BakedQuadRetexturedMixin",
-    "eclipticseasons.ExtraModelManagerDebugMixin",
     "eclipticseasons.MulBakeModelMixin",
     "eclipticseasons.SnowySeasonBakeModelMixin"
   ],
