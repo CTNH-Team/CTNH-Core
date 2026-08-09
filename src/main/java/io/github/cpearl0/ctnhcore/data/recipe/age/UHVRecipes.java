@@ -4,7 +4,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
-public class UHVAgeRecipes {
+public class UHVRecipes {
 
     // 这里存放的是极高压(uhv)时期的配方
     public static void init(Consumer<FinishedRecipe> provider) {}

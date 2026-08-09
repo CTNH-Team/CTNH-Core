@@ -63,6 +63,7 @@ public class CreateRecipes {
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/large_water_wheel"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/mechanical_drill"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/mechanical_mixer"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/mechanical_saw"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/rose_quartz"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/electron_tube"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/copper_ingot"));

@@ -178,6 +178,16 @@ public class PrimitiveKineticAgeRecipes {
                 'C', ChemicalHelper.get(TagPrefix.block, GTMaterials.Brass),
                 'D', AllBlocks.FLUID_TANK,
                 'E', CTPPBlocks.STEEL_CASING);
+
+        // 煤气灶（可控燃烧室：原版配方黄铜锭改为锻铁锭）
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/burner"),
+                CDGBlocks.BURNER.asStack(),
+                "FIF", " S ", "ABA",
+                'F', Items.FLINT_AND_STEEL,
+                'I', ChemicalHelper.get(TagPrefix.ingot, GTMaterials.WroughtIron),
+                'S', AllBlocks.SHAFT.asStack(),
+                'A', ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy),
+                'B', AllItems.EMPTY_BLAZE_BURNER.asStack());
     }
 
     private static void addEthanolRecipes(Consumer<FinishedRecipe> provider) {
@@ -699,6 +709,14 @@ public class PrimitiveKineticAgeRecipes {
                 'C', ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy),
                 'D', ChemicalHelper.get(TagPrefix.toolHeadDrill, GTMaterials.Iron));
 
+        // 动力锯（铁圆锯锯片 + 基础构件 + 安山机壳）
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/mechanical_saw"),
+                AllBlocks.MECHANICAL_SAW.asStack(),
+                " A ", " B ", " C ",
+                'A', ChemicalHelper.get(TagPrefix.toolHeadBuzzSaw, GTMaterials.Iron),
+                'B', CTPPItems.BASIC_MECHANISM.asStack(),
+                'C', AllBlocks.ANDESITE_CASING.asStack());
+
         // 机械搅拌器
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/mechanical_mixer_create"),
                 AllBlocks.MECHANICAL_MIXER.asStack(),
@@ -839,6 +857,18 @@ public class PrimitiveKineticAgeRecipes {
                 .key('C', ChemicalHelper.get(TagPrefix.ring, GTMaterials.Gold))
                 .key('D', AllBlocks.WATER_WHEEL.asItem())
                 .output(new ItemStack(AllBlocks.LARGE_WATER_WHEEL.asItem())).save(provider);
+
+        // 动力车床（机械合成：原版配方基础上弹簧改为 GT 铁弹簧）
+        MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/lathe"))
+                .pattern(" PSA ", "sCCBs", "  SA ")
+                .key('B', ChemicalHelper.get(TagPrefix.block, GTMaterials.Iron))
+                .key('S', ChemicalHelper.get(TagPrefix.spring, GTMaterials.Iron))
+                .key('C', AllBlocks.ANDESITE_CASING.asItem())
+                .key('s', AllBlocks.SHAFT.asItem())
+                .key('P', AllItems.PRECISION_MECHANISM.asItem())
+                .key('A', ChemicalHelper.get(TagPrefix.ingot, CreateMaterials.AndesiteAlloy))
+                .output(VintageBlocks.LATHE_ROTATING.asStack())
+                .save(provider);
     }
 
     private static void addKineticMechanismRecipes(Consumer<FinishedRecipe> provider) {
@@ -1112,28 +1142,24 @@ public class PrimitiveKineticAgeRecipes {
                 .loops(2)
                 .save(provider);
 
-        // 覆膜电路印刷基板（木板 + GT 胶水注液）
+        // 覆膜电路印刷基板（覆膜电路基板 + 细铜导线部署 + GT 胶水注液）
         SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("resin_printed_circuit_board"))
-                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Wood))
-                .transitional(CTNHItems.CIRCUIT_BOARD_M_ONE.asStack())
-                .result(GTItems.BASIC_CIRCUIT_BOARD.asStack())
-                .deploying(ChemicalHelper.get(TagPrefix.foil, GTMaterials.Copper))
-                .filling(CTNHItems.CIRCUIT_BOARD_M_ONE.asStack(), GTMaterials.Glue.getFluid(50))
-                .pressing()
-                .loops(2)
-                .save(provider);
-
-        // lv电路板
-        SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("basic_electronic_circuit_from_resin"))
                 .input(GTItems.COATED_BOARD.asStack())
                 .transitional(GTItems.COATED_BOARD.asStack())
+                .result(GTItems.BASIC_CIRCUIT_BOARD.asStack())
+                .deploying(ChemicalHelper.get(TagPrefix.wireFine, GTMaterials.Copper))
+                .filling(GTItems.COATED_BOARD.asStack(), GTMaterials.Glue.getFluid(100))
+                .loops(1)
+                .save(provider);
+
+        // 基础电子电路（覆膜印刷电路基板 + 电阻部署 + 真空管部署 + 橡胶注液）
+        SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("basic_electronic_circuit_from_resin"))
+                .input(GTItems.BASIC_CIRCUIT_BOARD.asStack())
+                .transitional(GTItems.BASIC_CIRCUIT_BOARD.asStack())
                 .result(GTItems.ELECTRONIC_CIRCUIT_LV.asStack())
-                .deploying(ChemicalHelper.get(TagPrefix.wireGtQuadruple, GTMaterials.Copper))
-                .deploying(ChemicalHelper.get(TagPrefix.wireGtDouble, GTMaterials.RedAlloy))
-                .deploying(GTItems.VACUUM_TUBE.asStack())
                 .deploying(GTItems.RESISTOR.asStack())
-                .filling(GTItems.COATED_BOARD.asStack(), GTMaterials.Rubber.getFluid(288))
-                .pressing()
+                .deploying(GTItems.VACUUM_TUBE.asStack())
+                .filling(GTItems.BASIC_CIRCUIT_BOARD.asStack(), GTMaterials.Rubber.getFluid(288))
                 .loops(1)
                 .save(provider);
     }
