@@ -21,6 +21,7 @@ import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -72,5 +73,10 @@ public class ClientProxy extends CommonProxy {
                 SnowOverlayQuadOffset.clearOffsetCache();
             }
         });
+    }
+
+    @SubscribeEvent
+    public void onBakingCompleted(ModelEvent.BakingCompleted event) {
+        SnowOverlayQuadOffset.clearOffsetCache();
     }
 }
