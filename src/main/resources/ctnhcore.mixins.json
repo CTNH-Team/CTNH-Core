@@ -37,8 +37,7 @@
   "client": [
     "eclipticseasons.BakedQuadRetexturedAndReUVMixin",
     "eclipticseasons.BakedQuadRetexturedMixin",
-    "eclipticseasons.MulBakeModelMixin",
-    "eclipticseasons.SnowyBakedModelWrapperOffsetMixin",
+    "eclipticseasons.ExtraModelManagerSnowOffsetMixin",
     "eclipticseasons.SnowySeasonBakeModelMixin"
   ],
   "mixinextras": {

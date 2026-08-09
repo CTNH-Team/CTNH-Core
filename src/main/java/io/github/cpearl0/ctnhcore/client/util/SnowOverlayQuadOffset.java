@@ -7,22 +7,13 @@ import net.minecraftforge.client.model.IQuadTransformer;
 import com.teamtea.eclipticseasons.client.model.bakequad.BakedQuadRetextured;
 import com.teamtea.eclipticseasons.client.model.bakequad.BakedQuadRetexturedAndReUV;
 
-import java.util.Collections;
-import java.util.IdentityHashMap;
 import java.util.List;
-import java.util.Set;
 
 public final class SnowOverlayQuadOffset {
 
-    private static final Set<BakedQuad> OFFSETED_QUADS = Collections
-            .synchronizedSet(Collections.newSetFromMap(new IdentityHashMap<>()));
     public static final float SNOW_OVERLAY_OFFSET = 0.001f;
 
     private SnowOverlayQuadOffset() {}
-
-    public static void clearOffsetCache() {
-        OFFSETED_QUADS.clear();
-    }
 
     public static void offsetAllIfNeeded(List<? extends BakedQuad> quads) {
         for (BakedQuad quad : quads) {
@@ -35,9 +26,6 @@ public final class SnowOverlayQuadOffset {
 
     public static void pushOutAlongFaceNormal(BakedQuad quad, float amount) {
         if (amount == 0.0f) {
-            return;
-        }
-        if (!OFFSETED_QUADS.add(quad)) {
             return;
         }
 
