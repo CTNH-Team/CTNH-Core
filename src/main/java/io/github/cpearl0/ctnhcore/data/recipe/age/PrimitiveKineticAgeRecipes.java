@@ -1133,33 +1133,38 @@ public class PrimitiveKineticAgeRecipes {
                 .result(GTItems.VACUUM_TUBE.asStack())
                 .save(provider);
 
-        // 覆膜电路基板（木板 + GT 胶水注液）
+        // 覆膜电路基板（木台阶 + 铜箔部署 + GT 胶水注液 144mB）
         SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("coated_board_from_plank"))
-                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Wood))
-                .transitional(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Wood))
-                .filling(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Wood), GTMaterials.Glue.getFluid(100))
+                .input(ItemTags.WOODEN_SLABS)
+                .transitional(GTBlocks.TREATED_WOOD_SLAB.asStack())
                 .result(GTItems.COATED_BOARD.asStack())
-                .loops(2)
+                .deploying(ChemicalHelper.get(TagPrefix.foil, GTMaterials.Copper))
+                .filling(GTBlocks.TREATED_WOOD_SLAB.asStack(), GTMaterials.Glue.getFluid(144))
+                .loops(1)
                 .save(provider);
 
-        // 覆膜电路印刷基板（覆膜电路基板 + 细铜导线部署 + GT 胶水注液）
+        // 覆膜电路印刷基板（覆膜电路基板 + 细铜导线 + 细红色合金导线 + GT 胶水注液 288mB）
         SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("resin_printed_circuit_board"))
                 .input(GTItems.COATED_BOARD.asStack())
                 .transitional(GTItems.COATED_BOARD.asStack())
                 .result(GTItems.BASIC_CIRCUIT_BOARD.asStack())
                 .deploying(ChemicalHelper.get(TagPrefix.wireFine, GTMaterials.Copper))
-                .filling(GTItems.COATED_BOARD.asStack(), GTMaterials.Glue.getFluid(100))
+                .deploying(ChemicalHelper.get(TagPrefix.wireFine, GTMaterials.RedAlloy))
+                .filling(GTItems.COATED_BOARD.asStack(), GTMaterials.Glue.getFluid(288))
                 .loops(1)
                 .save(provider);
 
-        // 基础电子电路（覆膜印刷电路基板 + 电阻部署 + 真空管部署 + 橡胶注液）
+        // 基础电子电路（覆膜印刷电路基板 + 铜导线 + 红色合金导线 + 真空管 + 电阻 + 橡胶注液 + 钢板）
         SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("basic_electronic_circuit_from_resin"))
                 .input(GTItems.BASIC_CIRCUIT_BOARD.asStack())
                 .transitional(GTItems.BASIC_CIRCUIT_BOARD.asStack())
                 .result(GTItems.ELECTRONIC_CIRCUIT_LV.asStack())
-                .deploying(GTItems.RESISTOR.asStack())
+                .deploying(ChemicalHelper.get(TagPrefix.wireGtSingle, GTMaterials.Copper))
+                .deploying(ChemicalHelper.get(TagPrefix.wireGtSingle, GTMaterials.RedAlloy))
                 .deploying(GTItems.VACUUM_TUBE.asStack())
+                .deploying(GTItems.RESISTOR.asStack())
                 .filling(GTItems.BASIC_CIRCUIT_BOARD.asStack(), GTMaterials.Rubber.getFluid(288))
+                .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
                 .loops(1)
                 .save(provider);
     }
