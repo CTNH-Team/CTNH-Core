@@ -12,6 +12,7 @@
     "ars_nouveau.GlyphRecipeCategoryMixin",
     "avaritia.AvaritiaSculkCategoryMixin",
     "create.MechanicalCraftingCategoryMixin",
+    "create.RuntimeDataGeneratorMixin",
     "create.SpoutCategoryMixin",
     "dategen.AECSDatagenMixin",
     "dategen.CreateOreExcavationDategenMixin",
