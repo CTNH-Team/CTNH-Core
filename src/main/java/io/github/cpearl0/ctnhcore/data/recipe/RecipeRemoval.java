@@ -584,6 +584,9 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("gtceu:shaped/lv_polarizer"));
         // 移除 GTCEu 默认 LV 热力离心机工作台配方，统一改为 CTNH 工作台配方
         remove(new RemoveFilter().id("gtceu:shaped/lv_thermal_centrifuge"));
+        // 移除 GTCEu 默认 LV/MV 电子电路工作台配方，统一改为 CTNH 序列装配配方
+        remove(new RemoveFilter().id("gtceu:shaped/electronic_circuit_lv"));
+        remove(new RemoveFilter().id("gtceu:shaped/electronic_circuit_mv"));
     }
 
     public static void hostilenetworksRemovals() {
