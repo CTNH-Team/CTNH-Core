@@ -293,6 +293,7 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("createdieselgenerators:distillation/superheated_crude_oil"));
         remove(new RemoveFilter().id("createdieselgenerators:bulk_fermenting/fermentable"));
         remove(new RemoveFilter().id("createdieselgenerators:crafting/engine_piston_from_rods"));
+        remove(new RemoveFilter().id("createdieselgenerators:crafting/burner"));
         remove(new RemoveFilter().id("createdieselgenerators:mixing/asphalt_block"));
         remove(new RemoveFilter().id("createdieselgenerators:crafting/asphalt_block"));
         remove(new RemoveFilter().id("createdieselgenerators:mixing/biodiesel"));
@@ -576,20 +577,20 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("gtceu:electrolyzer/zeolite_electrolysis"));
         remove(new RemoveFilter().id("gtceu:centrifuge/decomposition_centrifuging__redstone"));
 
-        // 移除 GTCEu 默认 LV 组件工作台配方
+        // 移除 GTCEu 默认 LV~IV 电动马达与 LV 组件工作台配方，统一改为 CTNH 工作台配方
         remove(new RemoveFilter().idRegex(
-                "gtceu:shaped/(?:electric_motor_lv_(?:iron|steel)|electric_piston_lv|conveyor_module_lv_.*|electric_pump_lv_.*|robot_arm_lv|fluid_regulator_lv|emitter_lv)"));
+                "gtceu:shaped/(?:electric_motor_(?:lv_(?:iron|steel)|mv|hv|ev|iv)|electric_piston_lv|conveyor_module_lv_.*|electric_pump_lv_.*|robot_arm_lv|fluid_regulator_lv|emitter_lv)"));
         // 移除 GTCEu 默认 LV 两极磁化机工作台配方，统一改为 CTNH 工作台配方
         remove(new RemoveFilter().id("gtceu:shaped/lv_polarizer"));
         // 移除 GTCEu 默认 LV 热力离心机工作台配方，统一改为 CTNH 工作台配方
         remove(new RemoveFilter().id("gtceu:shaped/lv_thermal_centrifuge"));
+        // 移除 GTCEu 默认 LV/MV 电子电路工作台配方，统一改为 CTNH 序列装配配方
+        remove(new RemoveFilter().id("gtceu:shaped/electronic_circuit_lv"));
+        remove(new RemoveFilter().id("gtceu:shaped/electronic_circuit_mv"));
     }
 
     public static void hostilenetworksRemovals() {
-        remove(new RemoveFilter().id("hostilenetworks:sim_chamber"));
-        remove(new RemoveFilter().id("hostilenetworks:loot_fabricator"));
-        remove(new RemoveFilter().id("hostilenetworks:deep_learner"));
-        remove(new RemoveFilter().id("hostilenetworks:framework"));
+        remove(new RemoveFilter().mod("hostilenetworks"));
     }
 
     public static void javdRemovals() {
@@ -669,6 +670,7 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("vintageimprovements:craft/centrifuge"));
         remove(new RemoveFilter().type("vintageimprovements:coiling"));
         remove(new RemoveFilter().id("vintageimprovements:craft/spring_coiling_machine"));
+        remove(new RemoveFilter().id("vintageimprovements:mechanical_crafting/lathe"));
         remove(new RemoveFilter().id("vintageimprovements:craft/vacuum_chamber"));
         remove(new RemoveFilter().id("vintageimprovements:craft/vibrating_table"));
         remove(new RemoveFilter().id("vintageimprovements:craft/curving_press"));

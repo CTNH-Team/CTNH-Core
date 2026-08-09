@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -65,19 +66,19 @@ public class LVRecipes {
         // LV机械臂（黄铜手部零件与电动活塞，锡线缆与LV电路）
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/robot_arm_lv"),
                 GTItems.ROBOT_ARM_LV.asStack(),
-                "ABC", "DBE", "FDC",
+                "ABC", "DEB", "FDC",
                 'A', AllItems.BRASS_HAND.asStack(),
                 'B', ChemicalHelper.get(TagPrefix.rod, GTMaterials.Steel),
                 'C', GTItems.ELECTRIC_MOTOR_LV.asStack(),
                 'D', ChemicalHelper.get(TagPrefix.cableGtSingle, GTMaterials.Tin),
                 'E', GTItems.ELECTRIC_PISTON_LV.asStack(),
-                'F', GTItems.ELECTRONIC_CIRCUIT_LV.asStack());
+                'F', CustomTags.LV_CIRCUITS);
 
         // LV节流泵（无序：LV电动泵 + LV电路 + 锡线缆 + 螺丝刀）
         VanillaRecipeHelper.addShapelessRecipe(provider, CTNHCore.id("crafttable/fluid_regulator_lv"),
                 GTItems.FLUID_REGULATOR_LV.asStack(),
                 GTItems.ELECTRIC_PUMP_LV.asStack(),
-                GTItems.ELECTRONIC_CIRCUIT_LV.asStack(),
+                CustomTags.LV_CIRCUITS,
                 ChemicalHelper.get(TagPrefix.cableGtSingle, GTMaterials.Tin),
                 'd');
 
@@ -87,7 +88,7 @@ public class LVRecipes {
                 " A ", "BCB", "D D",
                 'A', ChemicalHelper.get(TagPrefix.gem, GTMaterials.Quartzite),
                 'B', ChemicalHelper.get(TagPrefix.rod, GTMaterials.Brass),
-                'C', GTItems.ELECTRONIC_CIRCUIT_LV.asStack(),
+                'C', CustomTags.LV_CIRCUITS,
                 'D', ChemicalHelper.get(TagPrefix.wireGtSingle, GTMaterials.Tin));
     }
 
@@ -100,7 +101,7 @@ public class LVRecipes {
                 'S', ChemicalHelper.get(TagPrefix.rod, GTMaterials.Iron),
                 'M', GTMachines.HULL[GTValues.LV].asStack(),
                 'W', ChemicalHelper.get(TagPrefix.cableGtSingle, GTMaterials.Tin),
-                'C', GTItems.ELECTRONIC_CIRCUIT_LV.asStack());
+                'C', CustomTags.LV_CIRCUITS);
     }
 
     private static void addThermalCentrifugeRecipes(Consumer<FinishedRecipe> provider) {
@@ -108,7 +109,7 @@ public class LVRecipes {
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/lv_thermal_centrifuge"),
                 GTMachines.THERMAL_CENTRIFUGE[GTValues.LV].asStack(),
                 "CEC", "OMO", "WEW",
-                'C', GTItems.ELECTRONIC_CIRCUIT_LV.asStack(),
+                'C', CustomTags.LV_CIRCUITS,
                 'E', GTItems.ELECTRIC_MOTOR_LV.asStack(),
                 'M', GTMachines.HULL[GTValues.LV].asStack(),
                 'W', ChemicalHelper.get(TagPrefix.cableGtSingle, GTMaterials.Tin),

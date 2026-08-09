@@ -49,7 +49,7 @@ public class CTNHRecipeBuilder extends GTRecipeBuilder {
         return rpm(rpm, false);
     }
 
-    public CTNHRecipeBuilder tier(int tier) {
+    public CTNHRecipeBuilder mechanicalTier(int tier) {
         addCondition(new MechanicalTierCondition(tier));
         // this.data.putInt("mechanical_tier", tier);
         return this;

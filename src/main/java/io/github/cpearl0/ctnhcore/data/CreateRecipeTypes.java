@@ -50,7 +50,7 @@ public class CreateRecipeTypes {
                     new CTPPRecipeBuilder(newRecipe, MECHANICAL_PRESSOR_RECIPES)
                             .rpm(CTNHConfig.INSTANCE.kinetic.pressorRpmRequirement)
                             .noEUt()
-                            .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt()) * 2, 5))
+                            .mechanicalTier(Math.min(GTUtil.getTierByVoltage(builder.EUt()) * 2, 5))
                             .inputStress(builder.EUt() * CTNHConfig.INSTANCE.kinetic.pressorStressRequirement)
                             .save(provider);
                 }
@@ -67,7 +67,7 @@ public class CreateRecipeTypes {
                     new CTPPRecipeBuilder(newrecipe, MECHANICAL_MIXER_RECIPES)
                             .rpm(CTNHConfig.INSTANCE.kinetic.mixerRpmRequirement)
                             .noEUt()
-                            .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt()) * 2, 5))
+                            .mechanicalTier(Math.min(GTUtil.getTierByVoltage(builder.EUt()) * 2, 5))
                             .inputStress(builder.EUt() * CTNHConfig.INSTANCE.kinetic.mixerStressRequirement)
                             .save(provider);
                 }
@@ -85,7 +85,7 @@ public class CreateRecipeTypes {
                     new CTPPRecipeBuilder(newrecipe, MECHANICAL_CENTRIFUGE_RECIPES)
                             .rpm(CTNHConfig.INSTANCE.kinetic.centrifugeRpmRequirement)
                             .noEUt()
-                            .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt()) * 2, 5))
+                            .mechanicalTier(Math.min(GTUtil.getTierByVoltage(builder.EUt()) * 2, 5))
                             .inputStress(
                                     builder.EUt() * CTNHConfig.INSTANCE.kinetic.centrifugeStressRequirement)
                             .save(provider);
@@ -103,7 +103,7 @@ public class CreateRecipeTypes {
                     new CTPPRecipeBuilder(newrecipe, MECHANICAL_SIFTER_RECIPES)
                             .rpm(CTNHConfig.INSTANCE.kinetic.sifterRpmRequirement)
                             .noEUt()
-                            .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt()) * 2, 5))
+                            .mechanicalTier(Math.min(GTUtil.getTierByVoltage(builder.EUt()) * 2, 5))
                             .inputStress(builder.EUt() * CTNHConfig.INSTANCE.kinetic.sifterStressRequirement)
                             .save(provider);
                 }
@@ -120,7 +120,7 @@ public class CreateRecipeTypes {
                     new CTPPRecipeBuilder(newrecipe, MECHANICAL_LATHE_RECIPES)
                             .rpm(CTNHConfig.INSTANCE.kinetic.latheRpmRequirement)
                             .noEUt()
-                            .tier(Math.min(GTUtil.getTierByVoltage(builder.EUt()) * 2, 5))
+                            .mechanicalTier(Math.min(GTUtil.getTierByVoltage(builder.EUt()) * 2, 5))
                             .inputStress(builder.EUt() * CTNHConfig.INSTANCE.kinetic.latheStressRequirement)
                             .save(provider);
                 }

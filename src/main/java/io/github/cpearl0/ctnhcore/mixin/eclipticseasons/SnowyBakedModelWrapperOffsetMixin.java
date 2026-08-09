@@ -14,6 +14,7 @@ import net.minecraftforge.client.model.data.ModelData;
 import com.teamtea.eclipticseasons.client.model.SnowyBakedModelWrapper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 
 import java.util.List;
 
@@ -27,10 +28,13 @@ public abstract class SnowyBakedModelWrapperOffsetMixin extends BakedModelWrappe
     @Shadow(remap = false)
     public abstract boolean isReplace();
 
+    @Unique
+    private int ctnhcore$offsetMask;
+
     @Override
     public List<BakedQuad> getQuads(BlockState state, Direction direction, RandomSource random) {
         List<BakedQuad> quads = super.getQuads(state, direction, random);
-        if (!isReplace()) {
+        if (!isReplace() && ctnhcore$tryMarkOffset(direction)) {
             SnowOverlayQuadOffset.offsetAllIfNeeded(quads);
         }
         return quads;
@@ -40,9 +44,19 @@ public abstract class SnowyBakedModelWrapperOffsetMixin extends BakedModelWrappe
     public List<BakedQuad> getQuads(BlockState state, Direction direction, RandomSource random,
                                     ModelData modelData, RenderType renderType) {
         List<BakedQuad> quads = super.getQuads(state, direction, random, modelData, renderType);
-        if (!isReplace()) {
+        if (!isReplace() && ctnhcore$tryMarkOffset(direction)) {
             SnowOverlayQuadOffset.offsetAllIfNeeded(quads);
         }
         return quads;
+    }
+
+    @Unique
+    private boolean ctnhcore$tryMarkOffset(Direction direction) {
+        int bit = 1 << (direction == null ? 6 : direction.ordinal());
+        if ((ctnhcore$offsetMask & bit) != 0) {
+            return false;
+        }
+        ctnhcore$offsetMask |= bit;
+        return true;
     }
 }

@@ -29,3 +29,4 @@ src/test/*
 
 # macOS
 .DS_Store
+.mimosa/

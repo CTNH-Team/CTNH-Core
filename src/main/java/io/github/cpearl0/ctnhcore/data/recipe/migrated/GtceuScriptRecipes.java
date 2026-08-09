@@ -40,7 +40,6 @@ import com.moguang.ctnhmana.registry.CMMachines;
 import com.moguang.ctnhmana.registry.CMMaterials;
 import com.simibubi.create.AllItems;
 import com.soytutta.mynethersdelight.common.registry.MNDItems;
-import dev.shadowsoffire.hostilenetworks.Hostile;
 import earth.terrarium.adastra.common.registry.ModItems;
 import samebutdifferent.ecologics.registry.ModBlocks;
 import twilightforest.init.TFBlocks;
@@ -223,18 +222,6 @@ public class GtceuScriptRecipes {
                 .inputItems(HEAVY_PLATE_T1.asStack(4))
                 .inputItems(SPACE_FABRIC.asStack(2))
                 .outputItems(ModItems.SPACE_BOOTS)
-                .save(provider);
-
-        // 15. deep_learner: computer_monitor_cover + 2x double_black_steel_plate + 2x black_steel_plate +
-        // black_steel_gear + #ev -> hostilenetworks:deep_learner. EUt 480, dur 200
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("deep_learner"))
-                .EUt(480).duration(200)
-                .inputItems(GTItems.COVER_SCREEN.asStack())
-                .inputItems(plateDouble, BlackSteel, 2)
-                .inputItems(plate, BlackSteel, 2)
-                .inputItems(gear, BlackSteel)
-                .inputItems(CustomTags.EV_CIRCUITS)
-                .outputItems(Hostile.Items.DEEP_LEARNER.get())
                 .save(provider);
 
         // 16. fuel_refining_factory: 12x large_chemical_reactor + 8x distillation_tower + 8x cracker + 32x
@@ -1216,17 +1203,6 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // ============== Misc Recipes ==============
-
-        // 74. blank_data_model (forming_press): 2x ender_pearl_plate + 2x stainless_steel_plate + 2x fine_platinum_wire
-        // + smooth_stone -> hostilenetworks:blank_data_model. EUt 480, dur 200
-        FORMING_PRESS_RECIPES.recipeBuilder(CTNHCore.id("blank_data_model"))
-                .EUt(480).duration(200)
-                .inputItems(plate, EnderPearl, 2)
-                .inputItems(plate, StainlessSteel, 2)
-                .inputItems(wireFine, Platinum, 2)
-                .inputItems(new ItemStack(Items.SMOOTH_STONE))
-                .outputItems(Hostile.Items.BLANK_DATA_MODEL.get())
-                .save(provider);
 
         // 75. bedrock_drilling_rigs (assembler): 4x tungstencu_diamond_plating_frame + 24x #uv + 4x
         // naquadah_alloy_drill_head + 7x dense_naquadah_alloy_plate + 4x zpm_electric_motor + 4x zpm_conveyor_module +
