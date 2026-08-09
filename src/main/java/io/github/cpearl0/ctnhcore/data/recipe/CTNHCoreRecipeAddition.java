@@ -49,7 +49,6 @@ public class CTNHCoreRecipeAddition {
         AcceleratorRecipes.init(provider);
         // NuclearRecipes.init(provider);
         TurbineRecipes.init(provider);
-        HighPerformanceComputerRecipes.init(provider);
 
         HyperRotorRecipes.registerAll(provider);
         OrdinaryRecipes.init(provider);
@@ -143,6 +142,7 @@ public class CTNHCoreRecipeAddition {
         BioScriptRecipes.init(provider);
         // AvaritiaScriptRecipes.init(provider);
 
+        HNNRecipes.init(provider);
         // 来自kjs
         OtherRecipesFromKJS.init(provider);
     }

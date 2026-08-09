@@ -590,10 +590,7 @@ public class RecipeRemoval {
     }
 
     public static void hostilenetworksRemovals() {
-        remove(new RemoveFilter().id("hostilenetworks:sim_chamber"));
-        remove(new RemoveFilter().id("hostilenetworks:loot_fabricator"));
-        remove(new RemoveFilter().id("hostilenetworks:deep_learner"));
-        remove(new RemoveFilter().id("hostilenetworks:framework"));
+        remove(new RemoveFilter().mod("hostilenetworks"));
     }
 
     public static void javdRemovals() {

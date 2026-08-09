@@ -114,22 +114,6 @@ public class AssemblyLineRecipes {
                 .EUt(VA[LuV]).duration(800)
                 .save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("sim_chamber"))
-                .inputItems(HULL[IV].asStack(), 1)
-                .inputItems(CTNHItems.HEAVY_PLATE_T3, 4)
-                .inputItems(TagPrefix.plateDouble, VanadiumGallium, 4)
-                .inputItems(TagPrefix.plateDouble, NiobiumTitanium, 4)
-                .inputItems(TagPrefix.plateDouble, Tantalum, 4)
-                .inputItems(CustomTags.UV_CIRCUITS, 8)
-                .inputItems(CBBlocks.CONSCIOUSNESS_SENSOR_GLASS.asItem(), 16)
-                .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 144 * 5))
-                .inputFluids(new FluidStack(BlueSteel.getFluid(), 144 * 5))
-                .inputFluids(new FluidStack(Heterogeneous_Compound.getFluid(), 144 * 5))
-                .outputItems(SIM_CHAMBER.get())
-                .stationResearch(b -> b.researchStack(CBBlocks.CONSCIOUSNESS_SENSOR_GLASS.asStack()).CWUt(8))
-                .EUt(VA[LuV]).duration(500)
-                .save(provider);
-
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("hostile_observer"))
                 .inputItems(CTNHItems.HEAVY_PLATE_T3, 16)
                 .inputItems(CTNHItems.HEAVY_PLATE_T3, 16)
