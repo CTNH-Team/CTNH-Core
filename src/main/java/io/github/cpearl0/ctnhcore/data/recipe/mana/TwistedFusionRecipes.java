@@ -1,9 +1,11 @@
 package io.github.cpearl0.ctnhcore.data.recipe.mana;
 
-import com.wintercogs.ae2omnicells.common.init.OCItems;
-import earth.terrarium.adastra.common.registry.ModItems;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.recipe.NeutronActivatorCondition;
+import io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials;
+import io.github.cpearl0.ctnhcore.registry.CTNHItems;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -12,15 +14,13 @@ import com.gregtechceu.gtceu.api.recipe.ingredient.fluid.FluidIngredient;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
-import io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials;
-import io.github.cpearl0.ctnhcore.registry.CTNHItems;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
-import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import com.moguang.ctnhmana.data.recipe.builder.bloodmagic.BloodAltarRecipeBuilder;
 import com.moguang.ctnhmana.data.recipe.builder.botania.ElfPlateRecipeBuilder;
 import com.moguang.ctnhmana.data.recipe.builder.botania.RuneRitualRecipeBuilder;
+import com.wintercogs.ae2omnicells.common.init.OCItems;
+import earth.terrarium.adastra.common.registry.ModItems;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEItems;
 import wayoftime.bloodmagic.common.fluid.BloodMagicFluids;
 

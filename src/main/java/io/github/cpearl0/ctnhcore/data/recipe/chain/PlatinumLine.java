@@ -18,13 +18,10 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraftforge.fluids.FluidStack;
 
-import com.moguang.ctnhmana.registry.CMRecipeTypes;
-
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static io.github.cpearl0.ctnhcore.registry.CTNHItems.CRYSTAL_CATALYST;
 import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 
 public class PlatinumLine {

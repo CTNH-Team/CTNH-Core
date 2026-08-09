@@ -20,6 +20,10 @@ public final class SnowOverlayQuadOffset {
 
     private SnowOverlayQuadOffset() {}
 
+    public static void clearOffsetCache() {
+        OFFSETED_QUADS.clear();
+    }
+
     public static void offsetAllIfNeeded(List<? extends BakedQuad> quads) {
         for (BakedQuad quad : quads) {
             if (quad instanceof BakedQuadRetextured || quad instanceof BakedQuadRetexturedAndReUV) {

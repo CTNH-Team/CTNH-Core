@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore;
 
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHBlockMaps;
 import io.github.cpearl0.ctnhcore.data.recipe.CTNHCoreRecipeAddition;
+import io.github.cpearl0.ctnhcore.data.recipe.wood.WoodMachineRecipes;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 
@@ -74,5 +75,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
     }
 
     @Override
-    public void removeRecipes(Consumer<ResourceLocation> consumer) {}
+    public void removeRecipes(Consumer<ResourceLocation> consumer) {
+        WoodMachineRecipes.hardWoodRecipes();
+    }
 }

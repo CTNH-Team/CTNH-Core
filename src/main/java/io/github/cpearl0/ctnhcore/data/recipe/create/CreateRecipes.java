@@ -115,6 +115,8 @@ public class CreateRecipes {
         RecipeRemoval.remove(new RemoveFilter().id("create:smelting/glass_from_framed_glass"));
         RecipeRemoval.remove(new RemoveFilter().id("create:smelting/glass_from_horizontal_framed_glass"));
         RecipeRemoval.remove(new RemoveFilter().id("create:smelting/glass_from_vertical_framed_glass"));
+        // 移除机械动力原版蒸汽引擎配方，统一使用 CTNH 自定义序列组装（ctnhcore:bronze_machine_casing_to_steam_engine）
+        RecipeRemoval.remove(new RemoveFilter().idRegex("create:.*steam_engine.*"));
     }
 
     public static void init(Consumer<FinishedRecipe> provider) {

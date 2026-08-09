@@ -112,7 +112,6 @@ public class RecipeRemoval {
         thermalRemovals();
         twilightforestRemovals();
         vintageimprovementsRemovals();
-        woodRemovals();
     }
 
     // ========== 按模组/功能分组的删除方法 ==========
@@ -664,27 +663,6 @@ public class RecipeRemoval {
         // sophisticatedbackpacks/sophisticatedbackpacks.js:
         // event.remove({ output: 'sophisticatedbackpacks:void_upgrade' })
         remove(new RemoveFilter().id("sophisticatedbackpacks:void_upgrade"));
-    }
-
-    public static void woodRemovals() {
-        // wood.js 中对所有 #minecraft:logs 标签中的木材动态生成 planks 配方并删除原 planks 配方：
-        // ...
-        // let result2 = e.substring(0, pos + 1) + e.substring(pos + 1, pos2 + 1) + "planks"
-        // event.remove({ id: result2 })
-        // })
-        // 排除：ars_nouveau / botania / aether:ironwood / aether:golden_oak / magic_vine / avocado / fig / wolfberry
-        remove(new RemoveFilter()
-                .idRegex("(.*):(.*)_planks")
-                .not(new RemoveFilter().mod("ars_nouveau"))
-                .not(new RemoveFilter().mod("botania"))
-                .not(new RemoveFilter().id("aether:ironwood_planks"))
-                .not(new RemoveFilter().id("aether:golden_oak_planks"))
-                .not(new RemoveFilter().idRegex("(.*):(.*)magic_vine(.*)_planks"))
-                .not(new RemoveFilter().idRegex("(.*):(.*)avocado(.*)_planks"))
-                .not(new RemoveFilter().idRegex("(.*):(.*)fig(.*)_planks"))
-                .not(new RemoveFilter().idRegex("(.*):(.*)wolfberry(.*)_planks")));
-        // wood.js 中显式删除的 aether 和 twilightforest planks 配方
-        remove(new RemoveFilter().id("aether:skyroot_planks"));
     }
 
     public static void vintageimprovementsRemovals() {
