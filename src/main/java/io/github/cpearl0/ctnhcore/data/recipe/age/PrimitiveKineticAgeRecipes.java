@@ -824,6 +824,16 @@ public class PrimitiveKineticAgeRecipes {
                 'B', Items.SLIME_BALL,
                 'C', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Gold),
                 'D', BotaniaItems.engineerGoggles);
+
+        // 砂带磨床
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/belt_grinder"),
+                VintageBlocks.BELT_GRINDER.asStack(),
+                "AAA", "EDE", "CBC",
+                'A', AllItems.SAND_PAPER,
+                'B', CTPPItems.BASIC_MECHANISM,
+                'C', AllBlocks.ANDESITE_CASING,
+                'D', AllBlocks.BELT,
+                'E', AllBlocks.SHAFT);
     }
 
     private static void addKineticMechanicalCraftingRecipes(Consumer<FinishedRecipe> provider) {
