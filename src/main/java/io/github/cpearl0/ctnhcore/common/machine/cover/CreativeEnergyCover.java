@@ -52,7 +52,7 @@ public class CreativeEnergyCover extends CoverBehavior implements IUICover {
     public CreativeEnergyCover(CoverDefinition definition, ICoverable coverHolder, Direction attachedSide) {
         super(definition, coverHolder, attachedSide);
         this.tier = GTValues.LV;
-        this.amperage = 1;
+        this.amperage = 16;
         this.energyPerTick = GTValues.VEX[tier] * amperage;
     }
 
