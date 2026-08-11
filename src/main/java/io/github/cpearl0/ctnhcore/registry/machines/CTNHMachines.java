@@ -238,6 +238,10 @@ public class CTNHMachines {
     @CN("§6HV§r个人计算机")
     public static Lang blockHvPersonalComputer;
 
+    @Key("block.ctnhcore.high_pressure_alkali_digester")
+    @CN("高压碱煮釜")
+    public static Lang blockHighPressureAlkaliDigester;
+
     @Key("block.ctnhcore.hyper_plasma_turbine")
     @CN("超極等离子涡轮")
     public static Lang blockHyperPlasmaTurbine;
@@ -410,6 +414,10 @@ public class CTNHMachines {
     @CN("§9§lOpV§r个人计算机")
     public static Lang blockOpvPersonalComputer;
 
+    @Key("block.ctnhcore.oxidation_roasting_furnace")
+    @CN("氧化焙烧炉")
+    public static Lang blockOxidationRoastingFurnace;
+
     @Key("block.ctnhcore.photovoltaic_drone_station")
     @CN("光伏无人机道标基站")
     public static Lang blockPhotovoltaicDroneStation;
@@ -434,6 +442,10 @@ public class CTNHMachines {
     @CN("等离子冷凝器")
     public static Lang blockPlasmaCondenser;
 
+    @Key("block.ctnhcore.reduction_precipitation_tank")
+    @CN("还原沉淀槽")
+    public static Lang blockReductionPrecipitationTank;
+
     @Key("block.ctnhcore.seawater_desalting_factory")
     @CN("海水晒盐工厂")
     public static Lang blockSeawaterDesaltingFactory;
@@ -453,6 +465,10 @@ public class CTNHMachines {
     @Key("block.ctnhcore.slaughter_house")
     @CN("屠宰场")
     public static Lang blockSlaughterHouse;
+
+    @Key("block.ctnhcore.solvent_extraction_tower")
+    @CN("溶剂萃取塔")
+    public static Lang blockSolventExtractionTower;
 
     @Key("block.ctnhcore.space_photovoltai_cbase_station")
     @CN("太空光伏基站")
