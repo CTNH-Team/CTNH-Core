@@ -752,10 +752,10 @@ public class CTNHItems {
             .cnlang("特种塑料印刷电路基板")
             .lang("Special Plastic Printed Circuit Board")
             .register();
-    public static ItemEntry<ComponentItem> MODULAR_BIT_PROCESSOR = REGISTRATE
-            .item("modular_bit_processor", ComponentItem::create)
+    public static ItemEntry<ComponentItem> PRECISION_CIRCUIT = REGISTRATE
+            .item("precision_circuit", ComponentItem::create)
             .cnlang("精密电路")
-            .lang("Modular Bit Processor")
+            .lang("Precision Circuit")
             .tag(CustomTags.LV_CIRCUITS)
             .onRegister(attach(new TooltipBehavior(
                     list -> {
@@ -763,10 +763,10 @@ public class CTNHItems {
                         list.add(lvTierCircuitTooltip.translate().withStyle(style -> style.withColor(0x8B4513)));
                     })))
             .register();
-    public static ItemEntry<ComponentItem> MODULAR_BIT_PROCESSOR_ASSEMBLY = REGISTRATE
-            .item("modular_bit_processor_assembly", ComponentItem::create)
+    public static ItemEntry<ComponentItem> PRECISION_CIRCUIT_ASSEMBLY = REGISTRATE
+            .item("precision_circuit_assembly", ComponentItem::create)
             .cnlang("精密电路集群")
-            .lang("Modular Bit Processor Assembly")
+            .lang("Precision Circuit Assembly")
             .tag(CustomTags.MV_CIRCUITS)
             .onRegister(attach(new TooltipBehavior(
                     list -> {
@@ -774,10 +774,10 @@ public class CTNHItems {
                         list.add(mvTierCircuitTooltip.translate().withStyle(style -> style.withColor(0x8B4513)));
                     })))
             .register();
-    public static ItemEntry<ComponentItem> MODULAR_BIT_PROCESSOR_COMPUTER = REGISTRATE
-            .item("modular_bit_processor_computer", ComponentItem::create)
+    public static ItemEntry<ComponentItem> PRECISION_CIRCUIT_COMPUTER = REGISTRATE
+            .item("precision_circuit_computer", ComponentItem::create)
             .cnlang("精密电路计算机")
-            .lang("Modular Bit Processor Supercomputer")
+            .lang("Precision Circuit Computer")
             .tag(CustomTags.HV_CIRCUITS)
             .onRegister(attach(new TooltipBehavior(
                     list -> {
@@ -785,10 +785,10 @@ public class CTNHItems {
                         list.add(hvTierCircuitTooltip.translate().withStyle(style -> style.withColor(0x8B4513)));
                     })))
             .register();
-    public static ItemEntry<ComponentItem> MODULAR_BIT_PROCESSOR_MAINFRAME = REGISTRATE
-            .item("modular_bit_processor_mainframe", ComponentItem::create)
+    public static ItemEntry<ComponentItem> PRECISION_CIRCUIT_MAINFRAME = REGISTRATE
+            .item("precision_circuit_mainframe", ComponentItem::create)
             .cnlang("精密电路主机")
-            .lang("Modular Bit Processor Mainframe")
+            .lang("Precision Circuit Mainframe")
             .tag(CustomTags.EV_CIRCUITS)
             .onRegister(attach(new TooltipBehavior(
                     list -> {

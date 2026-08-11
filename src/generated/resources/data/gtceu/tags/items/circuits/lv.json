@@ -1,6 +1,6 @@
 {
   "values": [
-    "ctnhcore:modular_bit_processor",
+    "ctnhcore:precision_circuit",
     "ctnhcore:general_circuit_lv"
   ]
 }
