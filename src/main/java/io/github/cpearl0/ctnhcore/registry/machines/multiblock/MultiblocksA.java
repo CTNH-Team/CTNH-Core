@@ -7,6 +7,9 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.LargeBottleMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.SlaughterHouseMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.UnderfloorHeatingMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.*;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.rareearth.ProcessControlProfile;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.rareearth.ProcessControlledCoilMultiblockMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.rareearth.ProcessControlledElectricMultiblockMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.ChemicalGeneratorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.NaqReactorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotovoltaicPowerStationMachine;
@@ -200,29 +203,130 @@ public class MultiblocksA {
     public static Lang cokeTowerTooltip1;
 
 
-    @CN("专业结晶")
-    @EN("Professional Crystallization")
-    public static Lang crystallizerTooltip0;
+
+    @CN("§7通过回流与冷量分配建立温度梯度，将蒸气分成目标馏分")
+    @EN("§7Builds a temperature gradient with reflux and cooling allocation to separate the target fractions")
+    public static Lang condensingDiscreteTooltip1;
 
 
-    @CN("结晶器能更加快速的完成晶体配方")
-    @EN("The crystallizer completes crystal recipes more efficiently.")
+    @CN("§b关注参数：§f回流比（×10）§b与§f中段冷量（%）")
+    @EN("§bWatch: §fReflux Ratio (x10) §band §fMiddle Cooling Share (%)")
+    public static Lang condensingDiscreteTooltip2;
+
+
+    @CN("§e操作：§f放入完整配方输入，按控制器显示的目标范围调节")
+    @EN("§eOperation: §fInsert all recipe inputs, then tune to the target ranges shown by the controller")
+    public static Lang condensingDiscreteTooltip3;
+
+
+    @CN("§a双参数达标后自动启动；§c越界时等待且不耗料；§6运行时锁定")
+    @EN("§aStarts when both controls match; §cwaits without consuming inputs when mismatched; §6locks while running")
+    public static Lang condensingDiscreteTooltip4;
+
+
+
+    @CN("§7控制溶液冷却和过饱和度，使晶体在稳定窗口内生长")
+    @EN("§7Controls solution cooling and supersaturation so crystals grow inside a stable process window")
     public static Lang crystallizerTooltip1;
 
 
-    @CN("随着线圈等级上升，工作效率逐级提升")
-    @EN("Efficiency improves as the coil level increases.")
+    @CN("§b关注参数：§f冷却速率（×10 K/min）§b与§f过饱和度（%）")
+    @EN("§bWatch: §fCooling Rate (x10 K/min) §band §fSupersaturation (%)")
     public static Lang crystallizerTooltip2;
 
 
-    @CN("可以运行部分化学气相沉积的配方和部分高压釜的配方")
-    @EN("Can process chemical vapor deposition recipes and some autoclave recipes.")
+    @CN("§e操作：§f放入完整配方输入，按控制器显示的目标范围调节")
+    @EN("§eOperation: §fInsert all recipe inputs, then tune to the target ranges shown by the controller")
     public static Lang crystallizerTooltip3;
 
 
-    @CN("省材料的最佳帮手")
-    @EN("The best assistant for saving materials.")
+    @CN("§a双参数达标后自动启动；§c越界时等待且不耗料；§6运行时锁定")
+    @EN("§aStarts when both controls match; §cwaits without consuming inputs when mismatched; §6locks while running")
     public static Lang crystallizerTooltip4;
+
+
+
+    @CN("§7在压力与碱浓度窗口内分解独居石，避免反应不足或过度腐蚀")
+    @EN("§7Digests monazite inside a pressure and caustic-concentration window to avoid incomplete reaction or excessive corrosion")
+    public static Lang highPressureAlkaliDigesterTooltip1;
+
+
+    @CN("§b关注参数：§f釜压（kPa）§b与§f碱液浓度（%）")
+    @EN("§bWatch: §fVessel Pressure (kPa) §band §fCaustic Concentration (%)")
+    public static Lang highPressureAlkaliDigesterTooltip2;
+
+
+    @CN("§e操作：§f放入完整配方输入，按控制器显示的目标范围调节")
+    @EN("§eOperation: §fInsert all recipe inputs, then tune to the target ranges shown by the controller")
+    public static Lang highPressureAlkaliDigesterTooltip3;
+
+
+    @CN("§a双参数达标后自动启动；§c越界时等待且不耗料；§6运行时锁定")
+    @EN("§aStarts when both controls match; §cwaits without consuming inputs when mismatched; §6locks while running")
+    public static Lang highPressureAlkaliDigesterTooltip4;
+
+
+
+    @CN("§7控制炉内氧化气氛与物料停留时间，完成提铈和稀土盐煅烧")
+    @EN("§7Controls the oxidizing atmosphere and residence time for cerium separation and rare-earth salt calcination")
+    public static Lang oxidationRoastingFurnaceTooltip1;
+
+
+    @CN("§b关注参数：§f过量氧系数（%）§b与§f滚筒转速（rpm）")
+    @EN("§bWatch: §fExcess Oxygen (%) §band §fDrum Speed (rpm)")
+    public static Lang oxidationRoastingFurnaceTooltip2;
+
+
+    @CN("§e操作：§f放入完整配方输入，按控制器显示的目标范围调节")
+    @EN("§eOperation: §fInsert all recipe inputs, then tune to the target ranges shown by the controller")
+    public static Lang oxidationRoastingFurnaceTooltip3;
+
+
+    @CN("§a双参数达标后自动启动；§c越界时等待且不耗料；§6运行时锁定")
+    @EN("§aStarts when both controls match; §cwaits without consuming inputs when mismatched; §6locks while running")
+    public static Lang oxidationRoastingFurnaceTooltip4;
+
+
+
+    @CN("§7利用氧化还原电位和酸碱度选择性沉淀铕、镱等稀土元素")
+    @EN("§7Uses redox potential and acidity to selectively precipitate rare-earth elements such as europium and ytterbium")
+    public static Lang reductionPrecipitationTankTooltip1;
+
+
+    @CN("§b关注参数：§f氧化还原电位（mV）§b与§f槽液 pH（×100）")
+    @EN("§bWatch: §fRedox Potential (mV) §band §fTank pH (x100)")
+    public static Lang reductionPrecipitationTankTooltip2;
+
+
+    @CN("§e操作：§f放入完整配方输入，按控制器显示的目标范围调节")
+    @EN("§eOperation: §fInsert all recipe inputs, then tune to the target ranges shown by the controller")
+    public static Lang reductionPrecipitationTankTooltip3;
+
+
+    @CN("§a双参数达标后自动启动；§c越界时等待且不耗料；§6运行时锁定")
+    @EN("§aStarts when both controls match; §cwaits without consuming inputs when mismatched; §6locks while running")
+    public static Lang reductionPrecipitationTankTooltip4;
+
+
+
+    @CN("§7通过水相酸碱度与有机相比例控制稀土分组和元素选择性")
+    @EN("§7Controls rare-earth grouping and elemental selectivity through aqueous pH and the organic-to-aqueous ratio")
+    public static Lang solventExtractionTowerTooltip1;
+
+
+    @CN("§b关注参数：§f水相 pH（×100）§b与§fO/A 比（×100）")
+    @EN("§bWatch: §fAqueous pH (x100) §band §fO/A Ratio (x100)")
+    public static Lang solventExtractionTowerTooltip2;
+
+
+    @CN("§e操作：§f放入完整配方输入，按控制器显示的目标范围调节")
+    @EN("§eOperation: §fInsert all recipe inputs, then tune to the target ranges shown by the controller")
+    public static Lang solventExtractionTowerTooltip3;
+
+
+    @CN("§a双参数达标后自动启动；§c越界时等待且不耗料；§6运行时锁定")
+    @EN("§aStarts when both controls match; §cwaits without consuming inputs when mismatched; §6locks while running")
+    public static Lang solventExtractionTowerTooltip4;
 
 
     @CN("衰变")
@@ -437,9 +541,25 @@ public class MultiblocksA {
     public static Lang industrialPrimitiveBlastFurnaceTooltip3;
 
 
-    @CN("离子交换")
-    @EN("Ion Exchange")
-    public static Lang ionExchangerTooltip0;
+
+    @CN("§7通过柱流量与洗脱液酸度控制树脂吸附和高纯洗脱")
+    @EN("§7Controls resin adsorption and high-purity elution through column flow and eluent acidity")
+    public static Lang ionExchangerTooltip1;
+
+
+    @CN("§b关注参数：§f柱流量（×10 BV/h）§b与§f洗脱液 pH（×100）")
+    @EN("§bWatch: §fColumn Flow (x10 BV/h) §band §fEluent pH (x100)")
+    public static Lang ionExchangerTooltip2;
+
+
+    @CN("§e操作：§f放入完整配方输入，按控制器显示的目标范围调节")
+    @EN("§eOperation: §fInsert all recipe inputs, then tune to the target ranges shown by the controller")
+    public static Lang ionExchangerTooltip3;
+
+
+    @CN("§a双参数达标后自动启动；§c越界时等待且不耗料；§6运行时锁定")
+    @EN("§aStarts when both controls match; §cwaits without consuming inputs when mismatched; §6locks while running")
+    public static Lang ionExchangerTooltip4;
 
 
     @CN("真是一个大罐子")
@@ -888,9 +1008,25 @@ public class MultiblocksA {
     public static Lang underfloorHeatingSystemTooltip3;
 
 
-    @CN("真空烧结")
-    @EN("Vacuum Sintering")
-    public static Lang vacuumSinteringTowerTooltip0;
+
+    @CN("§7在受控真空和升温程序中完成稀土氟化物烧结与真空蒸馏")
+    @EN("§7Performs rare-earth fluoride sintering and vacuum distillation under controlled vacuum and heating ramps")
+    public static Lang vacuumSinteringTowerTooltip1;
+
+
+    @CN("§b关注参数：§f真空压力（Pa）§b与§f升温速率（K/min）")
+    @EN("§bWatch: §fVacuum Pressure (Pa) §band §fHeating Ramp (K/min)")
+    public static Lang vacuumSinteringTowerTooltip2;
+
+
+    @CN("§e操作：§f放入完整配方输入，按控制器显示的目标范围调节")
+    @EN("§eOperation: §fInsert all recipe inputs, then tune to the target ranges shown by the controller")
+    public static Lang vacuumSinteringTowerTooltip3;
+
+
+    @CN("§a双参数达标后自动启动；§c越界时等待且不耗料；§6运行时锁定")
+    @EN("§aStarts when both controls match; §cwaits without consuming inputs when mismatched; §6locks while running")
+    public static Lang vacuumSinteringTowerTooltip4;
 
 
     @CN("取天材，掘地精")
@@ -2196,9 +2332,13 @@ public class MultiblocksA {
             .workableCasingModel(GTCEu.id("block/casings/cleanroom/plascrete"), GTCEu.id("block/multiblock/fusion_reactor"))
             .register();
 
-    public static final MultiblockMachineDefinition CONDENSING_DISCRETE = REGISTRATE.multiblock("condensing_discrete", CoilWorkableElectricMultiblockMachine::new)
+    public static final MultiblockMachineDefinition CONDENSING_DISCRETE = REGISTRATE.multiblock("condensing_discrete", holder -> new ProcessControlledCoilMultiblockMachine(holder, ProcessControlProfile.CONDENSING_DISCRETE))
             .allowExtendedFacing(false)
             .recipeType(CTNHRecipeTypes.CONDENSING_DISCRETE)
+            .tooltips(condensingDiscreteTooltip1.translate(),
+                    condensingDiscreteTooltip2.translate(),
+                    condensingDiscreteTooltip3.translate(),
+                    condensingDiscreteTooltip4.translate())
             .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
             .appearanceBlock(CASING_ALUMINIUM_FROSTPROOF)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -2224,9 +2364,13 @@ public class MultiblocksA {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_frost_proof"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
 
-    public static final MultiblockMachineDefinition OXIDATION_ROASTING_FURNACE = REGISTRATE.multiblock("oxidation_roasting_furnace", CoilWorkableElectricMultiblockMachine::new)
+    public static final MultiblockMachineDefinition OXIDATION_ROASTING_FURNACE = REGISTRATE.multiblock("oxidation_roasting_furnace", holder -> new ProcessControlledCoilMultiblockMachine(holder, ProcessControlProfile.OXIDATION_ROASTING))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.OXIDATION_ROASTING)
+            .tooltips(oxidationRoastingFurnaceTooltip1.translate(),
+                    oxidationRoastingFurnaceTooltip2.translate(),
+                    oxidationRoastingFurnaceTooltip3.translate(),
+                    oxidationRoastingFurnaceTooltip4.translate())
             .recipeModifiers(GTRecipeModifiers::ebfOverclock, BATCH_MODE)
             .appearanceBlock(CASING_INVAR_HEATPROOF)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -2261,9 +2405,13 @@ public class MultiblocksA {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_heatproof"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
 
-    public static final MultiblockMachineDefinition HIGH_PRESSURE_ALKALI_DIGESTER = REGISTRATE.multiblock("high_pressure_alkali_digester", WorkableElectricMultiblockMachine::new)
+    public static final MultiblockMachineDefinition HIGH_PRESSURE_ALKALI_DIGESTER = REGISTRATE.multiblock("high_pressure_alkali_digester", holder -> new ProcessControlledElectricMultiblockMachine(holder, ProcessControlProfile.HIGH_PRESSURE_ALKALI_DIGESTION))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.HIGH_PRESSURE_ALKALI_DIGESTION)
+            .tooltips(highPressureAlkaliDigesterTooltip1.translate(),
+                    highPressureAlkaliDigesterTooltip2.translate(),
+                    highPressureAlkaliDigesterTooltip3.translate(),
+                    highPressureAlkaliDigesterTooltip4.translate())
             .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
             .appearanceBlock(CASING_TITANIUM_STABLE)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -2292,9 +2440,13 @@ public class MultiblocksA {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"), GTCEu.id("block/multiblock/large_chemical_reactor"))
             .register();
 
-    public static final MultiblockMachineDefinition SOLVENT_EXTRACTION_TOWER = REGISTRATE.multiblock("solvent_extraction_tower", WorkableElectricMultiblockMachine::new)
+    public static final MultiblockMachineDefinition SOLVENT_EXTRACTION_TOWER = REGISTRATE.multiblock("solvent_extraction_tower", holder -> new ProcessControlledElectricMultiblockMachine(holder, ProcessControlProfile.SOLVENT_EXTRACTION))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.SOLVENT_EXTRACTION)
+            .tooltips(solventExtractionTowerTooltip1.translate(),
+                    solventExtractionTowerTooltip2.translate(),
+                    solventExtractionTowerTooltip3.translate(),
+                    solventExtractionTowerTooltip4.translate())
             .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
             .appearanceBlock(CASING_PTFE_INERT)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -2320,9 +2472,13 @@ public class MultiblocksA {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_inert_ptfe"), GTCEu.id("block/multiblock/large_chemical_reactor"))
             .register();
 
-    public static final MultiblockMachineDefinition REDUCTION_PRECIPITATION_TANK = REGISTRATE.multiblock("reduction_precipitation_tank", WorkableElectricMultiblockMachine::new)
+    public static final MultiblockMachineDefinition REDUCTION_PRECIPITATION_TANK = REGISTRATE.multiblock("reduction_precipitation_tank", holder -> new ProcessControlledElectricMultiblockMachine(holder, ProcessControlProfile.REDUCTION_PRECIPITATION))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.REDUCTION_PRECIPITATION)
+            .tooltips(reductionPrecipitationTankTooltip1.translate(),
+                    reductionPrecipitationTankTooltip2.translate(),
+                    reductionPrecipitationTankTooltip3.translate(),
+                    reductionPrecipitationTankTooltip4.translate())
             .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
             .appearanceBlock(CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -2348,10 +2504,13 @@ public class MultiblocksA {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/large_chemical_reactor"))
             .register();
 
-    public static final MultiblockMachineDefinition ION_EXCHANGER = REGISTRATE.multiblock("ion_exchanger", CoilWorkableElectricMultiblockMachine::new)
+    public static final MultiblockMachineDefinition ION_EXCHANGER = REGISTRATE.multiblock("ion_exchanger", holder -> new ProcessControlledCoilMultiblockMachine(holder, ProcessControlProfile.ION_EXCHANGE))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ION_EXCHANGER)
-            .tooltips(ionExchangerTooltip0.translate().withStyle(ChatFormatting.GRAY))
+            .tooltips(ionExchangerTooltip1.translate(),
+                    ionExchangerTooltip2.translate(),
+                    ionExchangerTooltip3.translate(),
+                    ionExchangerTooltip4.translate())
             .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
             .appearanceBlock(CASING_PTFE_INERT)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -2587,10 +2746,13 @@ public class MultiblocksA {
             })
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/fusion_reactor"))
             .register();
-    public static final MultiblockMachineDefinition VACUUM_SINTERING_TOWER = REGISTRATE.multiblock("vacuum_sintering_tower", CoilWorkableElectricMultiblockMachine::new)
+    public static final MultiblockMachineDefinition VACUUM_SINTERING_TOWER = REGISTRATE.multiblock("vacuum_sintering_tower", holder -> new ProcessControlledCoilMultiblockMachine(holder, ProcessControlProfile.VACUUM_SINTERING))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.VACUUM_SINTERING)
-            .tooltips(vacuumSinteringTowerTooltip0.translate().withStyle(ChatFormatting.GRAY))
+            .tooltips(vacuumSinteringTowerTooltip1.translate(),
+                    vacuumSinteringTowerTooltip2.translate(),
+                    vacuumSinteringTowerTooltip3.translate(),
+                    vacuumSinteringTowerTooltip4.translate())
             .recipeModifiers((machine, group, recipe) -> CTNHRecipeModifiers.accurateParallel(machine, group, recipe, 16), GTRecipeModifiers::ebfOverclock)
             .appearanceBlock(CASING_TITANIUM_STABLE)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -2625,11 +2787,10 @@ public class MultiblocksA {
             })
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
-    public static final MultiblockMachineDefinition CRYSTALLIZER = REGISTRATE.multiblock("crystallizer", CoilWorkableElectricMultiblockMachine::new)
+    public static final MultiblockMachineDefinition CRYSTALLIZER = REGISTRATE.multiblock("crystallizer", holder -> new ProcessControlledCoilMultiblockMachine(holder, ProcessControlProfile.CRYSTALLIZATION))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.CRYSTALLIZER)
-            .tooltips(crystallizerTooltip0.translate().withStyle(ChatFormatting.GRAY),
-                    crystallizerTooltip1.translate(),
+            .tooltips(crystallizerTooltip1.translate(),
                     crystallizerTooltip2.translate(),
                     crystallizerTooltip3.translate(),
                     crystallizerTooltip4.translate())
