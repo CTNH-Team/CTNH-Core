@@ -40,7 +40,7 @@ import appeng.api.implementations.blockentities.IWirelessAccessPoint;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
 import com.ctnhlang.Key;
-import com.moguang.ctnhmana.common.multiblock.IndustrialAltarMachine;
+import com.magicbee.ctnhmana.common.multiblock.IndustrialAltarMachine;
 import lombok.Getter;
 import lombok.Setter;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;

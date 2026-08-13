@@ -12,13 +12,13 @@ import net.minecraft.resources.ResourceLocation;
 
 import com.enderio.api.capability.StoredEntityData;
 import com.enderio.base.common.init.EIOItems;
-import com.moguang.ctnhmana.api.recipe.condition.HellForgeCondition;
+import com.magicbee.ctnhmana.api.recipe.condition.HellForgeCondition;
 import wayoftime.bloodmagic.common.fluid.BloodMagicFluids;
 
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.block;
-import static com.moguang.ctnhmana.registry.CMRecipeTypes.HELL_FORGE_RECIPES;
+import static com.magicbee.ctnhmana.registry.CMRecipeTypes.HELL_FORGE_RECIPES;
 import static wayoftime.bloodmagic.common.item.BloodMagicItems.REAGENT_BINDING;
 import static wayoftime.bloodmagic.common.item.BloodMagicItems.REAGENT_BLOOD_LIGHT;
 

@@ -21,7 +21,7 @@ import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
 import com.ctnhlang.Key;
-import com.moguang.ctnhmana.registry.CMMaterials;
+import com.magicbee.ctnhmana.registry.CMMaterials;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import twilightforest.data.tags.BiomeTagGenerator;
 
