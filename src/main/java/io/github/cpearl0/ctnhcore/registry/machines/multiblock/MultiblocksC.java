@@ -11,7 +11,7 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
@@ -51,7 +51,7 @@ public class MultiblocksC {
 
     public static void init() {}
 
-    public static final MultiblockMachineDefinition GREENHOUSE = REGISTRATE.multiblock("greenhouse", WorkableElectricMultiblockMachine::new)
+    public static final MultiblockMachineDefinition GREENHOUSE = REGISTRATE.multiblock("greenhouse", RecipeElectricMultiblockMachine::new)
             .allowExtendedFacing(false)
             .recipeType(CTNHRecipeTypes.GREENHOUSE_RECIPES)
             .recipeModifiers(GTRecipeModifiers.OC_NON_PERFECT, GTRecipeModifiers.BATCH_MODE)
