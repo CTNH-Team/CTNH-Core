@@ -40,7 +40,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
 import com.ctnhlang.Prefix;
-import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.Arrays;
@@ -88,16 +87,9 @@ public class NeutronActivatorMachine extends RecipeMultiblockMachine
         height = 0;
         super.onStructureFormed();
 
-        // Cache the Map access to avoid repeated calls
-        var matchContext = getMultiblockState().getMatchContext();
-        var ioMap = matchContext.getOrCreate("ioMap", Long2ObjectMaps::emptyMap);
-
         // Cache the result of getParts() to prevent repetitive calls
         var parts = getParts();
         for (var part : parts) {
-            IO io = (IO) ioMap.getOrDefault(part.self().getPos().asLong(), IO.BOTH);
-            if (io == IO.NONE) continue;
-
             for (var handlerList : part.getRecipeHandlers()) {
                 traitSubscriptions
                         .add(handlerList.subscribe(neutronEnergySubs::updateSubscription, EURecipeCapability.CAP));

@@ -22,7 +22,6 @@ import net.minecraftforge.fluids.FluidStack;
 
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.HashSet;
@@ -164,13 +163,7 @@ public class LargeNaquadahReactorMachine extends RecipeElectricMultiblockMachine
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
-        var matchContext = getMultiblockState().getMatchContext();
-        var ioMap = matchContext.getOrCreate("ioMap", Long2ObjectMaps::emptyMap);
-        // Cache the result of getParts() to prevent repetitive calls
-        var parts = getParts();
-        for (var part : parts) {
-            var io = ioMap.getOrDefault(part.self().getPos().asLong(), IO.BOTH);
-            if (io == IO.NONE) continue;
+        for (var part : getParts()) {
             if (part instanceof FluidHatchPartMachine fluidHatchPartMachine) {
                 hatchPartMachines.add(fluidHatchPartMachine);
             }

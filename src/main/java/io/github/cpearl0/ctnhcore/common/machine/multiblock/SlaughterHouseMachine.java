@@ -49,7 +49,6 @@ import com.ctnhlang.EN;
 import com.enderio.base.common.init.EIOFluids;
 import com.enderio.machines.common.init.MachineBlocks;
 import com.mojang.authlib.GameProfile;
-import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
@@ -283,13 +282,8 @@ public class SlaughterHouseMachine extends RecipeElectricMultiblockMachine imple
 
     private void attachInputChangeSubscriptions() {
         if (!(getLevel() instanceof ServerLevel)) return;
-        var matchContext = getMultiblockState().getMatchContext();
-        var ioMap = matchContext.getOrCreate("ioMap", Long2ObjectMaps::emptyMap);
 
         for (var part : getParts()) {
-            IO io = (IO) ioMap.getOrDefault(part.self().getPos().asLong(), IO.BOTH);
-            if (io == IO.NONE || io == IO.OUT) continue;
-
             for (var handlerList : part.getRecipeHandlers()) {
                 if (handlerList.getAllHandlers().stream()
                         .noneMatch(handler -> handler.getHandlerIO().support(IO.IN)))
