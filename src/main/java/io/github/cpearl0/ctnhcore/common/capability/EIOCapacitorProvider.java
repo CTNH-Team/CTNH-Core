@@ -12,8 +12,8 @@ import com.enderio.api.capacitor.CapacitorModifier;
 import com.enderio.api.capacitor.ICapacitorData;
 import com.enderio.base.common.init.EIOCapabilities;
 import com.google.common.base.Suppliers;
+import com.magicbee.ctnhmana.registry.CMItems;
 import com.moguang.ctnhbio.registry.CBItems;
-import com.moguang.ctnhmana.registry.CMItems;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

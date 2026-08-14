@@ -23,6 +23,7 @@ import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.misc.ItemStackTransfer;
 import com.lowdragmc.lowdraglib.side.item.IItemTransfer;
+import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.utils.Position;
 
@@ -53,6 +54,7 @@ public class CreativeInputBusPartMachine extends TieredIOPartMachine implements 
 
     @Getter
     @Persisted
+    @DescSynced
     protected final NotifiableItemStackHandler circuitInventory;
 
     private boolean distinct;

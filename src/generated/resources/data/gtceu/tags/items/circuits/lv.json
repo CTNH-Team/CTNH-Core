@@ -1,5 +1,6 @@
 {
   "values": [
+    "ctnhcore:precision_circuit",
     "ctnhcore:general_circuit_lv"
   ]
 }

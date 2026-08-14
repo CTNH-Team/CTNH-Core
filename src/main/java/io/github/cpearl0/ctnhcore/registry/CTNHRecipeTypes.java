@@ -354,6 +354,30 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
+    public static final GTRecipeType OXIDATION_ROASTING = REGISTRATE
+            .recipeType(CTNHCore.id("oxidation_roasting"), GTRecipeTypes.ELECTRIC)
+            .cnlang("氧化焙烧").setEUIO(IO.IN).setMaxIOSize(4, 4, 2, 4)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType HIGH_PRESSURE_ALKALI_DIGESTION = REGISTRATE
+            .recipeType(CTNHCore.id("high_pressure_alkali_digestion"), GTRecipeTypes.ELECTRIC)
+            .cnlang("高压碱煮").setEUIO(IO.IN).setMaxIOSize(4, 4, 4, 4)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType SOLVENT_EXTRACTION = REGISTRATE
+            .recipeType(CTNHCore.id("solvent_extraction"), GTRecipeTypes.ELECTRIC)
+            .cnlang("溶剂萃取").setEUIO(IO.IN).setMaxIOSize(6, 6, 6, 6)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType REDUCTION_PRECIPITATION = REGISTRATE
+            .recipeType(CTNHCore.id("reduction_precipitation"), GTRecipeTypes.ELECTRIC)
+            .cnlang("还原沉淀").setEUIO(IO.IN).setMaxIOSize(6, 6, 6, 6)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType CONDENSING_DISCRETE = REGISTRATE
             .recipeType(CTNHCore.id("condensing_discrete"), GTRecipeTypes.ELECTRIC)
             .cnlang("冷凝离散").setEUIO(IO.IN).setMaxIOSize(6, 6, 6, 6)

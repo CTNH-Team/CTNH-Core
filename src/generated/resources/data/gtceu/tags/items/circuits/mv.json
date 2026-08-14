@@ -1,5 +1,6 @@
 {
   "values": [
+    "ctnhcore:precision_circuit_assembly",
     "ctnhcore:general_circuit_mv"
   ]
 }

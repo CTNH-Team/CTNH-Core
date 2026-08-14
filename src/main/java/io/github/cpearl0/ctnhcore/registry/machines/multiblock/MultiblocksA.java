@@ -7,6 +7,9 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.LargeBottleMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.SlaughterHouseMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.UnderfloorHeatingMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.*;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.rareearth.ProcessControlProfile;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.rareearth.ProcessControlledCoilMultiblockMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.rareearth.ProcessControlledElectricMultiblockMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.ChemicalGeneratorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.NaqReactorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotovoltaicPowerStationMachine;
@@ -200,29 +203,130 @@ public class MultiblocksA {
     public static Lang cokeTowerTooltip1;
 
 
-    @CN("专业结晶")
-    @EN("Professional Crystallization")
-    public static Lang crystallizerTooltip0;
+
+    @CN("§7通过回流与冷量分配建立温度梯度，将蒸气分成目标馏分")
+    @EN("§7Builds a temperature gradient with reflux and cooling allocation to separate the target fractions")
+    public static Lang condensingDiscreteTooltip1;
 
 
-    @CN("结晶器能更加快速的完成晶体配方")
-    @EN("The crystallizer completes crystal recipes more efficiently.")
+    @CN("§b关注参数：§f回流比（×10）§b与§f中段冷量（%）")
+    @EN("§bWatch: §fReflux Ratio (x10) §band §fMiddle Cooling Share (%)")
+    public static Lang condensingDiscreteTooltip2;
+
+
+    @CN("§e操作：§f放入完整配方输入，按控制器显示的目标范围调节")
+    @EN("§eOperation: §fInsert all recipe inputs, then tune to the target ranges shown by the controller")
+    public static Lang condensingDiscreteTooltip3;
+
+
+    @CN("§a双参数达标后自动启动；§c越界时等待且不耗料；§6运行时锁定")
+    @EN("§aStarts when both controls match; §cwaits without consuming inputs when mismatched; §6locks while running")
+    public static Lang condensingDiscreteTooltip4;
+
+
+
+    @CN("§7控制溶液冷却和过饱和度，使晶体在稳定窗口内生长")
+    @EN("§7Controls solution cooling and supersaturation so crystals grow inside a stable process window")
     public static Lang crystallizerTooltip1;
 
 
-    @CN("随着线圈等级上升，工作效率逐级提升")
-    @EN("Efficiency improves as the coil level increases.")
+    @CN("§b关注参数：§f冷却速率（×10 K/min）§b与§f过饱和度（%）")
+    @EN("§bWatch: §fCooling Rate (x10 K/min) §band §fSupersaturation (%)")
     public static Lang crystallizerTooltip2;
 
 
-    @CN("可以运行部分化学气相沉积的配方和部分高压釜的配方")
-    @EN("Can process chemical vapor deposition recipes and some autoclave recipes.")
+    @CN("§e操作：§f放入完整配方输入，按控制器显示的目标范围调节")
+    @EN("§eOperation: §fInsert all recipe inputs, then tune to the target ranges shown by the controller")
     public static Lang crystallizerTooltip3;
 
 
-    @CN("省材料的最佳帮手")
-    @EN("The best assistant for saving materials.")
+    @CN("§a双参数达标后自动启动；§c越界时等待且不耗料；§6运行时锁定")
+    @EN("§aStarts when both controls match; §cwaits without consuming inputs when mismatched; §6locks while running")
     public static Lang crystallizerTooltip4;
+
+
+
+    @CN("§7在压力与碱浓度窗口内分解独居石，避免反应不足或过度腐蚀")
+    @EN("§7Digests monazite inside a pressure and caustic-concentration window to avoid incomplete reaction or excessive corrosion")
+    public static Lang highPressureAlkaliDigesterTooltip1;
+
+
+    @CN("§b关注参数：§f釜压（kPa）§b与§f碱液浓度（%）")
+    @EN("§bWatch: §fVessel Pressure (kPa) §band §fCaustic Concentration (%)")
+    public static Lang highPressureAlkaliDigesterTooltip2;
+
+
+    @CN("§e操作：§f放入完整配方输入，按控制器显示的目标范围调节")
+    @EN("§eOperation: §fInsert all recipe inputs, then tune to the target ranges shown by the controller")
+    public static Lang highPressureAlkaliDigesterTooltip3;
+
+
+    @CN("§a双参数达标后自动启动；§c越界时等待且不耗料；§6运行时锁定")
+    @EN("§aStarts when both controls match; §cwaits without consuming inputs when mismatched; §6locks while running")
+    public static Lang highPressureAlkaliDigesterTooltip4;
+
+
+
+    @CN("§7控制炉内氧化气氛与物料停留时间，完成提铈和稀土盐煅烧")
+    @EN("§7Controls the oxidizing atmosphere and residence time for cerium separation and rare-earth salt calcination")
+    public static Lang oxidationRoastingFurnaceTooltip1;
+
+
+    @CN("§b关注参数：§f过量氧系数（%）§b与§f滚筒转速（rpm）")
+    @EN("§bWatch: §fExcess Oxygen (%) §band §fDrum Speed (rpm)")
+    public static Lang oxidationRoastingFurnaceTooltip2;
+
+
+    @CN("§e操作：§f放入完整配方输入，按控制器显示的目标范围调节")
+    @EN("§eOperation: §fInsert all recipe inputs, then tune to the target ranges shown by the controller")
+    public static Lang oxidationRoastingFurnaceTooltip3;
+
+
+    @CN("§a双参数达标后自动启动；§c越界时等待且不耗料；§6运行时锁定")
+    @EN("§aStarts when both controls match; §cwaits without consuming inputs when mismatched; §6locks while running")
+    public static Lang oxidationRoastingFurnaceTooltip4;
+
+
+
+    @CN("§7利用氧化还原电位和酸碱度选择性沉淀铕、镱等稀土元素")
+    @EN("§7Uses redox potential and acidity to selectively precipitate rare-earth elements such as europium and ytterbium")
+    public static Lang reductionPrecipitationTankTooltip1;
+
+
+    @CN("§b关注参数：§f氧化还原电位（mV）§b与§f槽液 pH（×100）")
+    @EN("§bWatch: §fRedox Potential (mV) §band §fTank pH (x100)")
+    public static Lang reductionPrecipitationTankTooltip2;
+
+
+    @CN("§e操作：§f放入完整配方输入，按控制器显示的目标范围调节")
+    @EN("§eOperation: §fInsert all recipe inputs, then tune to the target ranges shown by the controller")
+    public static Lang reductionPrecipitationTankTooltip3;
+
+
+    @CN("§a双参数达标后自动启动；§c越界时等待且不耗料；§6运行时锁定")
+    @EN("§aStarts when both controls match; §cwaits without consuming inputs when mismatched; §6locks while running")
+    public static Lang reductionPrecipitationTankTooltip4;
+
+
+
+    @CN("§7通过水相酸碱度与有机相比例控制稀土分组和元素选择性")
+    @EN("§7Controls rare-earth grouping and elemental selectivity through aqueous pH and the organic-to-aqueous ratio")
+    public static Lang solventExtractionTowerTooltip1;
+
+
+    @CN("§b关注参数：§f水相 pH（×100）§b与§fO/A 比（×100）")
+    @EN("§bWatch: §fAqueous pH (x100) §band §fO/A Ratio (x100)")
+    public static Lang solventExtractionTowerTooltip2;
+
+
+    @CN("§e操作：§f放入完整配方输入，按控制器显示的目标范围调节")
+    @EN("§eOperation: §fInsert all recipe inputs, then tune to the target ranges shown by the controller")
+    public static Lang solventExtractionTowerTooltip3;
+
+
+    @CN("§a双参数达标后自动启动；§c越界时等待且不耗料；§6运行时锁定")
+    @EN("§aStarts when both controls match; §cwaits without consuming inputs when mismatched; §6locks while running")
+    public static Lang solventExtractionTowerTooltip4;
 
 
     @CN("衰变")
@@ -437,9 +541,25 @@ public class MultiblocksA {
     public static Lang industrialPrimitiveBlastFurnaceTooltip3;
 
 
-    @CN("离子交换")
-    @EN("Ion Exchange")
-    public static Lang ionExchangerTooltip0;
+
+    @CN("§7通过柱流量与洗脱液酸度控制树脂吸附和高纯洗脱")
+    @EN("§7Controls resin adsorption and high-purity elution through column flow and eluent acidity")
+    public static Lang ionExchangerTooltip1;
+
+
+    @CN("§b关注参数：§f柱流量（×10 BV/h）§b与§f洗脱液 pH（×100）")
+    @EN("§bWatch: §fColumn Flow (x10 BV/h) §band §fEluent pH (x100)")
+    public static Lang ionExchangerTooltip2;
+
+
+    @CN("§e操作：§f放入完整配方输入，按控制器显示的目标范围调节")
+    @EN("§eOperation: §fInsert all recipe inputs, then tune to the target ranges shown by the controller")
+    public static Lang ionExchangerTooltip3;
+
+
+    @CN("§a双参数达标后自动启动；§c越界时等待且不耗料；§6运行时锁定")
+    @EN("§aStarts when both controls match; §cwaits without consuming inputs when mismatched; §6locks while running")
+    public static Lang ionExchangerTooltip4;
 
 
     @CN("真是一个大罐子")
@@ -888,9 +1008,25 @@ public class MultiblocksA {
     public static Lang underfloorHeatingSystemTooltip3;
 
 
-    @CN("真空烧结")
-    @EN("Vacuum Sintering")
-    public static Lang vacuumSinteringTowerTooltip0;
+
+    @CN("§7在受控真空和升温程序中完成稀土氟化物烧结与真空蒸馏")
+    @EN("§7Performs rare-earth fluoride sintering and vacuum distillation under controlled vacuum and heating ramps")
+    public static Lang vacuumSinteringTowerTooltip1;
+
+
+    @CN("§b关注参数：§f真空压力（Pa）§b与§f升温速率（K/min）")
+    @EN("§bWatch: §fVacuum Pressure (Pa) §band §fHeating Ramp (K/min)")
+    public static Lang vacuumSinteringTowerTooltip2;
+
+
+    @CN("§e操作：§f放入完整配方输入，按控制器显示的目标范围调节")
+    @EN("§eOperation: §fInsert all recipe inputs, then tune to the target ranges shown by the controller")
+    public static Lang vacuumSinteringTowerTooltip3;
+
+
+    @CN("§a双参数达标后自动启动；§c越界时等待且不耗料；§6运行时锁定")
+    @EN("§aStarts when both controls match; §cwaits without consuming inputs when mismatched; §6locks while running")
+    public static Lang vacuumSinteringTowerTooltip4;
 
 
     @CN("取天材，掘地精")
@@ -2196,61 +2332,205 @@ public class MultiblocksA {
             .workableCasingModel(GTCEu.id("block/casings/cleanroom/plascrete"), GTCEu.id("block/multiblock/fusion_reactor"))
             .register();
 
-    public static final MultiblockMachineDefinition CONDENSING_DISCRETE = REGISTRATE.multiblock("condensing_discrete", CoilWorkableElectricMultiblockMachine::new)
+    public static final MultiblockMachineDefinition CONDENSING_DISCRETE = REGISTRATE.multiblock("condensing_discrete", holder -> new ProcessControlledCoilMultiblockMachine(holder, ProcessControlProfile.CONDENSING_DISCRETE))
             .allowExtendedFacing(false)
             .recipeType(CTNHRecipeTypes.CONDENSING_DISCRETE)
+            .tooltips(condensingDiscreteTooltip1.translate(),
+                    condensingDiscreteTooltip2.translate(),
+                    condensingDiscreteTooltip3.translate(),
+                    condensingDiscreteTooltip4.translate())
             .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
             .appearanceBlock(CASING_ALUMINIUM_FROSTPROOF)
             .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("A###A", "BBCBB", "BBBBB", "#BDB#", "#BDB#", "#BDB#", "#BDB#", "#BDB#", "#BDB#", "#BDB#", "BBBBB", "CCCCC")
-                    .aisle("#BBB#", "BBBBB", "BEAEB", "BF#FB", "BEAEB", "BF#FB", "BEAEB", "BF#FB", "BEAEB", "BF#FB", "BEAEB", "CBBBC")
-                    .aisle("#BBB#", "CCACC", "BAAAB", "D#A#D", "DAAAD", "D#A#D", "DAAAD", "D#A#D", "DAAAD", "D#A#D", "BAAAB", "CBSBC")
-                    .aisle("#BBB#", "BBCBB", "BEAEB", "BF#FB", "BEAEB", "BF#FB", "BEAEB", "BF#FB", "BEAEB", "BF#FB", "BEAEB", "CBBBC")
-                    .aisle("A###A", "BB@BB", "BBBBB", "#BDB#", "#BDB#", "#BDB#", "#BDB#", "#BDB#", "#BDB#", "#BDB#", "BBBBB", "CCCCC")
-                    .where("A", Predicates.frames(GTMaterials.BlueAlloy))
-                    .where("#", Predicates.any())
-                    .where("B", Predicates.blocks(CASING_ALUMINIUM_FROSTPROOF.get()).setMinGlobalLimited(100)
+                    .aisle("###########", "####BBB####", "####AAA####", "####AAA####", "####BBB####", "####AAA####", "####AAA####", "####BBB####", "####AAA####", "####AAA####", "####BBB####", "###########")
+                    .aisle("###########", "###BBBBB###", "###A###A###", "###A###A###", "###B###B###", "###A###A###", "###A###A###", "###B###B###", "###A###A###", "###A###A###", "###BBBBB###", "###########")
+                    .aisle("###########", "##BBBBBBB##", "##A#####A##", "##A#GGG#A##", "##B#####B##", "##A#####A##", "##A#GGG#A##", "##B#####B##", "##A#####A##", "##A#GGG#A##", "##BBBBBBB##", "####EEE####")
+                    .aisle("###########", "##BBBBBBB##", "##A#####A##", "##C#GGG#A##", "##B#####B##", "##A#####A##", "##C#GGG#A##", "##B#####B##", "##A#####A##", "##C#GGG#A##", "##BBBBBBB##", "####ESE####")
+                    .aisle("###########", "##BBBBBBB##", "##A#####A##", "##A#GGG#A##", "##B#####B##", "##A#####A##", "##A#GGG#A##", "##B#####B##", "##A#####A##", "##A#GGG#A##", "##BBBBBBB##", "####EEE####")
+                    .aisle("###########", "###BBBBB###", "###A###A###", "###A###A###", "###B###B###", "###A###A###", "###A###A###", "###B###B###", "###A###A###", "###A###A###", "###BBBBB###", "###########")
+                    .aisle("###########", "####BBB####", "####AAA####", "####ACA####", "####BBB####", "####AAA####", "####ACA####", "####BBB####", "####AAA####", "####ACA####", "####BBB####", "###########")
+                    .aisle("###########", "####AAA####", "####A@A####", "####AAA####", "###########", "###########", "###########", "###########", "###########", "###########", "###########", "###########")
+                    .where("#", Predicates.air())
+                    .where("A", Predicates.blocks(CASING_ALUMINIUM_FROSTPROOF.get()).setMinGlobalLimited(72)
                             .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
-                    .where("C", Predicates.blocks(HEAT_VENT.get()))
-                    .where("D", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
-                    .where("E", Predicates.blocks(CASING_TUNGSTENSTEEL_PIPE.get()))
-                    .where("F", Predicates.frames(GTMaterials.TungstenSteel))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("B", Predicates.blocks(CASING_STAINLESS_CLEAN.get()))
+                    .where("C", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
+                    .where("E", Predicates.blocks(HEAT_VENT.get()))
+                    .where("G", Predicates.blocks(FILTER_CASING.get()))
                     .where("S", abilities(PartAbility.MUFFLER).setExactLimit(1))
-                    .build()
-            )
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_frost_proof"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
 
-    public static final MultiblockMachineDefinition ION_EXCHANGER = REGISTRATE.multiblock("ion_exchanger", CoilWorkableElectricMultiblockMachine::new)
+    public static final MultiblockMachineDefinition OXIDATION_ROASTING_FURNACE = REGISTRATE.multiblock("oxidation_roasting_furnace", holder -> new ProcessControlledCoilMultiblockMachine(holder, ProcessControlProfile.OXIDATION_ROASTING))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.OXIDATION_ROASTING)
+            .tooltips(oxidationRoastingFurnaceTooltip1.translate(),
+                    oxidationRoastingFurnaceTooltip2.translate(),
+                    oxidationRoastingFurnaceTooltip3.translate(),
+                    oxidationRoastingFurnaceTooltip4.translate())
+            .recipeModifiers(GTRecipeModifiers::ebfOverclock, BATCH_MODE)
+            .appearanceBlock(CASING_INVAR_HEATPROOF)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("#######", "##BBB##", "#BBBBB#", "BBBBBBB", "BBBBBBB", "BBBBBBB", "#BBBBD#", "##BBBD#", "#####S#")
+                    .aisle("#######", "##AAA##", "#A###A#", "A#####A", "A#####A", "A#####A", "#A###A#", "##AAA##", "#######")
+                    .aisle("#BBBBB#", "#BAAAB#", "#AEEEA#", "AE###EA", "AE###EA", "AE###EA", "#AEEEA#", "##AAA##", "#######")
+                    .aisle("#######", "##BBB##", "#B###B#", "B#####B", "B#####B", "B#####B", "#B###B#", "##BBB##", "#######")
+                    .aisle("#######", "##AAA##", "#A###A#", "A#####A", "A#####A", "A#####A", "#A###A#", "##AAA##", "#######")
+                    .aisle("#######", "##AAA##", "#AEEEA#", "AE###EA", "AE###EA", "AE###EA", "#AEEEA#", "##AAA##", "#######")
+                    .aisle("#######", "##AAA##", "#A###A#", "A#####A", "A#####A", "A#####A", "#A###A#", "##AAA##", "#######")
+                    .aisle("#######", "##BBB##", "#B###B#", "B#####B", "B#####B", "B#####B", "#B###B#", "##BBB##", "#######")
+                    .aisle("#BBBBB#", "#BAAAB#", "#AEEEA#", "AE###EA", "AE###EA", "AE###EA", "#AEEEA#", "##AAA##", "#######")
+                    .aisle("#######", "##AAA##", "#A###A#", "A#####A", "A#####A", "A#####A", "#A###A#", "##AAA##", "#######")
+                    .aisle("#######", "##BBB##", "#BBBBB#", "BBBBBBB", "BBBBBBB", "BBBBBBB", "#BBBBB#", "##BBB##", "#######")
+                    .aisle("#######", "#######", "#BB@BB#", "#BGGGB#", "#BGGGB#", "#BGGGB#", "#BBBBB#", "#######", "#######")
+                    .where("#", Predicates.air())
+                    .where("A", Predicates.blocks(CASING_INVAR_HEATPROOF.get()).setMinGlobalLimited(80)
+                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("B", Predicates.blocks(CASING_STEEL_SOLID.get()))
+                    .where("D", Predicates.blocks(CASING_STEEL_PIPE.get()))
+                    .where("E", Predicates.heatingCoils())
+                    .where("G", Predicates.blocks(FIREBOX_STEEL.get()))
+                    .where("S", abilities(PartAbility.MUFFLER).setExactLimit(1))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .additionalDisplay((machine, list) -> {
+                if (machine.isFormed() && machine instanceof CoilWorkableElectricMultiblockMachine coilMachine) {
+                    list.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(coilMachine.getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
+                }
+            })
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_heatproof"), GTCEu.id("block/multiblock/implosion_compressor"))
+            .register();
+
+    public static final MultiblockMachineDefinition HIGH_PRESSURE_ALKALI_DIGESTER = REGISTRATE.multiblock("high_pressure_alkali_digester", holder -> new ProcessControlledElectricMultiblockMachine(holder, ProcessControlProfile.HIGH_PRESSURE_ALKALI_DIGESTION))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.HIGH_PRESSURE_ALKALI_DIGESTION)
+            .tooltips(highPressureAlkaliDigesterTooltip1.translate(),
+                    highPressureAlkaliDigesterTooltip2.translate(),
+                    highPressureAlkaliDigesterTooltip3.translate(),
+                    highPressureAlkaliDigesterTooltip4.translate())
+            .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
+            .appearanceBlock(CASING_TITANIUM_STABLE)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("#########", "###BBB###", "##BBBBB##", "#BBBBBBB#", "#BBBBBBB#", "#BBBBBBB#", "##BBBBB##", "###BBB###", "#########")
+                    .aisle("#########", "###AAA###", "##A###A##", "#A#####A#", "#A#####A#", "#A#####A#", "##A###AD#", "###AAA#D#", "#######S#")
+                    .aisle("##BBBBB##", "##BAAAB##", "##A###A##", "#A#####A#", "#A##G##A#", "#A##G##A#", "##A#G#A##", "###AGA###", "####D####")
+                    .aisle("#########", "###BBB###", "##B###B##", "#B#####B#", "#B#####B#", "#B#####B#", "##B###B##", "###BBB###", "####D####")
+                    .aisle("#########", "###AAA###", "##A###A##", "#A#####A#", "#A#####A#", "#A#####A#", "##A###A##", "###AAA###", "####D####")
+                    .aisle("#########", "###AAA###", "##A###A##", "#A#####A#", "#A##G##A#", "#A##G##A#", "##A#G#A##", "###AGA###", "####D####")
+                    .aisle("#########", "###BBB###", "##B###B##", "#B#####B#", "#B#####B#", "#B#####B#", "##B###B##", "###BBB###", "####D####")
+                    .aisle("#########", "###AAA###", "##A###A##", "#A#####A#", "#A#####A#", "#A#####A#", "##A###A##", "###AAA###", "####D####")
+                    .aisle("##BBBBB##", "##BAAAB##", "##A###A##", "#A#####A#", "#A##G##A#", "#A##G##A#", "##A#G#A##", "###AGA###", "####D####")
+                    .aisle("#########", "###BBB###", "##B###B##", "#B#####B#", "#B#####B#", "#B#####B#", "##B###B##", "###BBB###", "#########")
+                    .aisle("#########", "###BBB###", "##BBBBB##", "#BBBBBBB#", "#BBBBBBB#", "#BBBBBBB#", "##BBBBB##", "###BBB###", "#########")
+                    .aisle("#########", "#########", "##BB@BB##", "##BAAAB##", "##BAAAB##", "##BAAAB##", "##BBBBB##", "#########", "#########")
+                    .where("#", Predicates.air())
+                    .where("A", Predicates.blocks(CASING_TITANIUM_STABLE.get()).setMinGlobalLimited(72)
+                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("B", Predicates.blocks(CASING_STAINLESS_CLEAN.get()))
+                    .where("D", Predicates.blocks(CASING_TITANIUM_PIPE.get()))
+                    .where("G", Predicates.blocks(CASING_TITANIUM_GEARBOX.get()))
+                    .where("S", abilities(PartAbility.MUFFLER).setExactLimit(1))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"), GTCEu.id("block/multiblock/large_chemical_reactor"))
+            .register();
+
+    public static final MultiblockMachineDefinition SOLVENT_EXTRACTION_TOWER = REGISTRATE.multiblock("solvent_extraction_tower", holder -> new ProcessControlledElectricMultiblockMachine(holder, ProcessControlProfile.SOLVENT_EXTRACTION))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.SOLVENT_EXTRACTION)
+            .tooltips(solventExtractionTowerTooltip1.translate(),
+                    solventExtractionTowerTooltip2.translate(),
+                    solventExtractionTowerTooltip3.translate(),
+                    solventExtractionTowerTooltip4.translate())
+            .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
+            .appearanceBlock(CASING_PTFE_INERT)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("###########", "##BBB######", "##AAA######", "##AAA######", "##BBB######", "##AAA######", "##AAA######", "##BBB######", "##AAA######", "##AAA######", "##BBB######", "##BBB######", "###########")
+                    .aisle("###########", "#BBBBB##BBB", "#A###A##CBB", "#A###A##CBB", "#B###B##CBB", "#A###A##BBB", "#A###A#####", "#B###B#####", "#A###A#####", "#A###A#####", "#B###B#####", "#BBBBB#####", "###########")
+                    .aisle("###########", "BBBBBBB#BBB", "A#####A#B#B", "A#EEE#A#B#B", "B#####B#B#B", "A#####A#BBB", "A#EEE#A####", "B#####B####", "A#####A####", "A#EEE#A####", "B#####B####", "BBBBBBB####", "###########")
+                    .aisle("###########", "BBBBBBB#BBB", "A#####A#B#B", "C#EEE#DDD#B", "B#####B#B#B", "A#####A#BDB", "C#EEE#A##D#", "B#####B##D#", "A#####A##D#", "C#EEE#DDDD#", "B#####B####", "BBBDBBB####", "###S#######")
+                    .aisle("###########", "BBBBBBB#BBB", "A#####A#B#B", "A#EEE#A#B#B", "B#####B#B#B", "A#####A#BBB", "A#EEE#A####", "B#####B####", "A#####A####", "A#EEE#A####", "B#####B####", "BBBBBBB####", "###########")
+                    .aisle("###########", "#BBBBB##BBB", "#A###A##CBB", "#A###A##CBB", "#B###B##CBB", "#A###A##BBB", "#A###A#####", "#B###B#####", "#A###A#####", "#A###A#####", "#B###B#####", "#BBBBB#####", "###########")
+                    .aisle("###########", "##BBB######", "##AAA######", "##ACA######", "##BBB######", "##AAA######", "##ACA######", "##BBB######", "##AAA######", "##ACA######", "##BBB######", "##BBB######", "###########")
+                    .aisle("###########", "##AAA######", "##A@A######", "##AAA######", "###########", "###########", "###########", "###########", "###########", "###########", "###########", "###########", "###########")
+                    .where("#", Predicates.air())
+                    .where("A", Predicates.blocks(CASING_PTFE_INERT.get()).setMinGlobalLimited(64)
+                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("B", Predicates.blocks(CASING_STAINLESS_CLEAN.get()))
+                    .where("C", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
+                    .where("D", Predicates.blocks(CASING_POLYTETRAFLUOROETHYLENE_PIPE.get()))
+                    .where("E", Predicates.blocks(FILTER_CASING.get()))
+                    .where("S", abilities(PartAbility.MUFFLER).setExactLimit(1))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_inert_ptfe"), GTCEu.id("block/multiblock/large_chemical_reactor"))
+            .register();
+
+    public static final MultiblockMachineDefinition REDUCTION_PRECIPITATION_TANK = REGISTRATE.multiblock("reduction_precipitation_tank", holder -> new ProcessControlledElectricMultiblockMachine(holder, ProcessControlProfile.REDUCTION_PRECIPITATION))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.REDUCTION_PRECIPITATION)
+            .tooltips(reductionPrecipitationTankTooltip1.translate(),
+                    reductionPrecipitationTankTooltip2.translate(),
+                    reductionPrecipitationTankTooltip3.translate(),
+                    reductionPrecipitationTankTooltip4.translate())
+            .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
+            .appearanceBlock(CASING_STAINLESS_CLEAN)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("###########", "###########", "##AAA######", "##AAA######", "##AAA######", "##AAA######", "##AAA######", "###########", "###########")
+                    .aisle("###########", "##BBB######", "#A###A#####", "#A###A#####", "#A###A#####", "#A###A#####", "#A###A#####", "##BBB######", "###########")
+                    .aisle("###########", "#BBBBB###B#", "A#####A##F#", "A#####A##F#", "A#####A##F#", "A#####A##B#", "A#####A####", "#B###B#####", "###########")
+                    .aisle("###########", "#BBBBB##BBB", "A#####A#BFB", "C##G##DDBFB", "A##G##A#BFB", "C##G##A#BBB", "A##G##A##D#", "#B#D#B###D#", "###G#######")
+                    .aisle("###########", "#BBBBB###B#", "A#####A##F#", "A#####A##F#", "A#####A##F#", "A#####A##B#", "A#####A####", "#B###B#####", "###########")
+                    .aisle("###########", "##BBB######", "#A###A#####", "#A###A#####", "#A###A#####", "#A###A#####", "#A###A#####", "##BBB######", "###########")
+                    .aisle("###########", "###########", "##AAA######", "##ACA######", "##AAA######", "##ACA######", "##AAA######", "###########", "###########")
+                    .aisle("###########", "##AAA######", "##A@A######", "##AAA######", "###########", "###########", "###########", "###########", "###########")
+                    .where("#", Predicates.air())
+                    .where("A", Predicates.blocks(CASING_STAINLESS_CLEAN.get()).setMinGlobalLimited(48)
+                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("B", Predicates.blocks(CASING_PTFE_INERT.get()))
+                    .where("C", Predicates.blocks(CASING_TEMPERED_GLASS.get()))
+                    .where("D", Predicates.blocks(CASING_POLYTETRAFLUOROETHYLENE_PIPE.get()))
+                    .where("F", Predicates.blocks(FILTER_CASING.get()))
+                    .where("G", Predicates.blocks(CASING_STAINLESS_STEEL_GEARBOX.get()))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/large_chemical_reactor"))
+            .register();
+
+    public static final MultiblockMachineDefinition ION_EXCHANGER = REGISTRATE.multiblock("ion_exchanger", holder -> new ProcessControlledCoilMultiblockMachine(holder, ProcessControlProfile.ION_EXCHANGE))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ION_EXCHANGER)
-            .tooltips(ionExchangerTooltip0.translate().withStyle(ChatFormatting.GRAY))
+            .tooltips(ionExchangerTooltip1.translate(),
+                    ionExchangerTooltip2.translate(),
+                    ionExchangerTooltip3.translate(),
+                    ionExchangerTooltip4.translate())
             .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
-            .appearanceBlock(CASING_HSSE_STURDY)
+            .appearanceBlock(CASING_PTFE_INERT)
             .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("#AAAAA#", "AABBBAA", "ABBBBBA", "AABBBAA", "#AAAAA#", "#######")
-                    .aisle("ACDCDCA", "A#EFE#A", "B#EGE#B", "A#EFE#A", "AADADAA", "#AAHAA#")
-                    .aisle("ACDCDCA", "B#EFE#B", "B#EGE#B", "B#EFE#B", "AADADAA", "#AAHAA#")
-                    .aisle("ACDCDCA", "A#EFE#A", "B#EGE#B", "A#EFE#A", "AADADAA", "#AAHAA#")
-                    .aisle("#AA@AA#", "AABBBAA", "ABBBBBA", "AABBBAA", "#AAAAA#", "#######")
-                    .where("#", Predicates.any())
-                    .where("A", Predicates.blocks(CASING_HSSE_STURDY.get()).setMinGlobalLimited(60)
+                    .aisle("#################", "#BBB###BBB###BBB#", "#AAA###AAA###AAA#", "#ACA###ACA###ACA#", "#BBB###BBB###BBB#", "#AAA###AAA###AAA#", "#ACA###ACA###ACA#", "#BBB###AAA###BBB#", "#######BBB#######", "#################")
+                    .aisle("#################", "BBBBB#BBBBB#BBBBB", "A###A#A###A#A###A", "A###A#A###A#A###A", "B###B#B###B#B###B", "A###A#A###A#A###A", "A###A#A###A#A###A", "BBBBB#A###A#BBBBB", "######BBBBB######", "#################")
+                    .aisle("#################", "BBDBB#BBDBB#BBDBB", "A###A#A###A#A###A", "A#E#A#A#E#A#A#E#A", "B###B#B###B#B###B", "A###A#A###A#A###A", "A#E#A#A#E#A#A#E#A", "BBDBB#A#D#A#BBDBB", "##D###BBDBB###D##", "##DBBBBBDBBBBBD##")
+                    .aisle("#################", "BBBBB#BBBBB#BBBBB", "A###A#A###A#A###A", "A###A#A###A#A###A", "B###B#B###B#B###B", "A###A#A###A#A###A", "A###A#A###A#A###A", "BBBBB#A###A#BBBBB", "######BBBBB######", "#################")
+                    .aisle("#################", "#BBB###BBB###BBB#", "#AAA###AAA###AAA#", "#ACA###ACA###ACA#", "#BBB###BBB###BBB#", "#AAA###AAA###AAA#", "#ACA###ACA###ACA#", "#BBB###AAA###BBB#", "#######BBB#######", "#################")
+                    .aisle("#################", "#######AAA#######", "#######A@A#######", "#######AAA#######", "#################", "#################", "#################", "#################", "#################", "#################")
+                    .where("#", Predicates.air())
+                    .where("A", Predicates.blocks(CASING_PTFE_INERT.get()).setMinGlobalLimited(96)
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(Predicates.autoAbilities(true, true, false))
-                    )
-                    .where("B", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
-                    .where("C", Predicates.blocks(CASING_PTFE_INERT.get()))
-                    .where("D", Predicates.blocks(CTNHBlocks.CASING_OSMIRIDIUM.get()))
-                    .where("E", Predicates.blocks(CASING_PTFE_INERT.get()))
-                    .where("F", Predicates.frames(GTMaterials.TungstenSteel))
-                    .where("G", Predicates.frames(GTMaterials.BlueAlloy))
-                    .where("H", Predicates.frames(GTMaterials.Tungsten))
+                            .or(Predicates.autoAbilities(true, true, false)))
+                    .where("B", Predicates.blocks(CASING_STAINLESS_CLEAN.get()))
+                    .where("C", Predicates.blocks(CASING_TEMPERED_GLASS.get()))
+                    .where("D", Predicates.blocks(CASING_POLYTETRAFLUOROETHYLENE_PIPE.get()))
+                    .where("E", Predicates.blocks(FILTER_CASING.get()))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build()
-            )
-            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_sturdy_hsse"), GTCEu.id("block/multiblock/implosion_compressor"))
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_inert_ptfe"), GTCEu.id("block/multiblock/large_chemical_reactor"))
             .register();
 
     public static final MultiblockMachineDefinition LARGE_STEEL_FURNACE = REGISTRATE.multiblock("large_steel_furnace", WorkableElectricMultiblockMachine::new)
@@ -2466,80 +2746,83 @@ public class MultiblocksA {
             })
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/fusion_reactor"))
             .register();
-    public static final MultiblockMachineDefinition VACUUM_SINTERING_TOWER = REGISTRATE.multiblock("vacuum_sintering_tower", CoilWorkableElectricMultiblockMachine::new)
+    public static final MultiblockMachineDefinition VACUUM_SINTERING_TOWER = REGISTRATE.multiblock("vacuum_sintering_tower", holder -> new ProcessControlledCoilMultiblockMachine(holder, ProcessControlProfile.VACUUM_SINTERING))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.VACUUM_SINTERING)
-            .tooltips(vacuumSinteringTowerTooltip0.translate().withStyle(ChatFormatting.GRAY))
+            .tooltips(vacuumSinteringTowerTooltip1.translate(),
+                    vacuumSinteringTowerTooltip2.translate(),
+                    vacuumSinteringTowerTooltip3.translate(),
+                    vacuumSinteringTowerTooltip4.translate())
             .recipeModifiers((machine, group, recipe) -> CTNHRecipeModifiers.accurateParallel(machine, group, recipe, 16), GTRecipeModifiers::ebfOverclock)
-            .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
+            .appearanceBlock(CASING_TITANIUM_STABLE)
             .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("AAAAA", "AAAAA", "A###A", "#####", "#####", "#####")
-                    .aisle("AAAAA", "ABBBA", "ABSBA", "#BBB#", "#BBB#", "#####")
-                    .aisle("AAAAA", "CBBBC", "DBEBD", "DB#BD", "DBBBD", "DDDDD")
-                    .aisle("AAAAA", "ABBBA", "ABEBA", "#B#B#", "#BBB#", "##C##")
-                    .aisle("AAAAA", "CBBBC", "DBEBD", "DB#BD", "DBBBD", "DDDDD")
-                    .aisle("AAAAA", "ABBBA", "ABEBA", "#B#B#", "#BBB#", "##C##")
-                    .aisle("AAAAA", "CBBBC", "DBEBD", "DB#BD", "DBBBD", "DDDDD")
-                    .aisle("AAAAA", "ABBBA", "ABEBA", "#B#B#", "#BBB#", "##C##")
-                    .aisle("AAAAA", "CBBBC", "DB@BD", "DBBBD", "DBBBD", "DDDDD")
-                    .aisle("AAAAA", "AA#AA", "A###A", "#####", "#####", "#####")
-                    .where("A", Predicates.blocks(CASING_INVAR_HEATPROOF.get()))
-                    .where("#", Predicates.any())
-                    .where("B", Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()).setMinGlobalLimited(60)
+                    .aisle("###########", "###BBB#####", "##BBBBB####", "#BBBBBBB###", "#BBBBBBB###", "#BBBBBBB###", "##BBBBB####", "###BBB#####", "###########")
+                    .aisle("###########", "###AAA#####", "##A###A####", "#A#####A###", "#A#####A###", "#A#####A###", "##A###A####", "###AAA#####", "###########")
+                    .aisle("##AAAAA##AA", "##AAAAA##GG", "##AEEEA##GG", "#AE###EA#DG", "#AE###EDDD#", "#AE###EA###", "##AEEEA####", "###AAA#####", "###########")
+                    .aisle("###########", "###BBB#####", "##B###B####", "#B#####B#D#", "#B#####B###", "#B#####B###", "##B###B####", "###BBB#####", "###########")
+                    .aisle("###########", "###AAA#####", "##A###A####", "#A#####A#D#", "#A#####A###", "#A#####A###", "##A###A####", "###AAA#####", "###########")
+                    .aisle("#########AA", "###AAA###GG", "##AEEEA##GG", "#AE###EA#DG", "#AE###EDDD#", "#AE###EA###", "##AEEEA####", "###AAA#####", "###########")
+                    .aisle("###########", "###AAA#####", "##A###A####", "#A#####A#D#", "#A#####A###", "#A#####A###", "##A###A####", "###AAA#####", "###########")
+                    .aisle("###########", "###BBB#####", "##B###B####", "#B#####B#D#", "#B#####B###", "#B#####B###", "##B###B####", "###BBB#####", "###########")
+                    .aisle("##AAAAA##AA", "##AAAAA##GG", "##AEEEA##GG", "#AE###EA#DG", "#AE###EDDDS", "#AE###EA###", "##AEEEA####", "###AAA#####", "###########")
+                    .aisle("###########", "###AAA#####", "##A###A####", "#A#####A###", "#A#####A###", "#A#####A###", "##A###A####", "###AAA#####", "###########")
+                    .aisle("###########", "###BBB#####", "##BBBBB####", "#BBBBBBB###", "#BBBBBBB###", "#BBBBBBB###", "##BBBBB####", "###BBB#####", "###########")
+                    .aisle("###########", "###########", "##BB@BB####", "##BAAAB####", "##BACAB####", "##BAAAB####", "##BBBBB####", "###########", "###########")
+                    .where("#", Predicates.air())
+                    .where("A", Predicates.blocks(CASING_TITANIUM_STABLE.get()).setMinGlobalLimited(80)
                             .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .where("C", Predicates.blocks(CASING_TITANIUM_PIPE.get()))
-                    .where("D", Predicates.frames(GTMaterials.TungstenSteel))
+                    .where("B", Predicates.blocks(CASING_INVAR_HEATPROOF.get()))
+                    .where("C", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
+                    .where("D", Predicates.blocks(CASING_TITANIUM_PIPE.get()))
                     .where("E", Predicates.heatingCoils())
+                    .where("G", Predicates.blocks(CASING_STEEL_GEARBOX.get()))
                     .where("S", abilities(PartAbility.MUFFLER).setExactLimit(1))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
-            .additionalDisplay((machine, l) -> {
-                if (machine.isFormed() && machine instanceof CoilWorkableElectricMultiblockMachine cmachine) {
-                    l.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(cmachine.getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
+            .additionalDisplay((machine, list) -> {
+                if (machine.isFormed() && machine instanceof CoilWorkableElectricMultiblockMachine coilMachine) {
+                    list.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(coilMachine.getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
                 }
             })
-            .workableCasingModel(GTCEu.id("block/casings/gcym/high_temperature_smelting_casing"), GTCEu.id("block/multiblock/implosion_compressor"))
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
-    public static final MultiblockMachineDefinition CRYSTALLIZER = REGISTRATE.multiblock("crystallizer", CoilWorkableElectricMultiblockMachine::new)
+    public static final MultiblockMachineDefinition CRYSTALLIZER = REGISTRATE.multiblock("crystallizer", holder -> new ProcessControlledCoilMultiblockMachine(holder, ProcessControlProfile.CRYSTALLIZATION))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.CRYSTALLIZER)
-            .tooltips(crystallizerTooltip0.translate().withStyle(ChatFormatting.GRAY),
-                    crystallizerTooltip1.translate(),
+            .tooltips(crystallizerTooltip1.translate(),
                     crystallizerTooltip2.translate(),
                     crystallizerTooltip3.translate(),
                     crystallizerTooltip4.translate())
             .recipeModifiers((machine, group, recipe) -> CTNHRecipeModifiers.accurateParallel(machine, group, recipe, 16), GTRecipeModifiers::ebfOverclock, BATCH_MODE)
-            .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
+            .appearanceBlock(CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("##AAAAA##", "###BCB###", "###BBB###", "#########", "#########", "#########", "#########", "#########", "#########")
-                    .aisle("#AAAAAAA#", "##AACAA##", "###AAA###", "####D####", "####D####", "####D####", "####D####", "####A####", "#########")
-                    .aisle("AAAAAAAAA", "#ADCCCDA#", "##DAAAD##", "##D###D##", "##D###D##", "##D###D##", "##D#A#D##", "##AAAAA##", "####B####")
-                    .aisle("AAACCCAAA", "BACEEECAB", "BAAAEAAAB", "####F####", "####F####", "####F####", "###AEA###", "##AAAAA##", "###AAA###")
-                    .aisle("AAACCCAAA", "CCCEGECCC", "BAAEGEAAB", "#D#FGF#D#", "#D#FGF#D#", "#D#FGF#D#", "#DAEEEAD#", "#AAACAAA#", "##BASAB##")
-                    .aisle("AAACCCAAA", "BACEEECAB", "BAAAEAAAB", "####F####", "####F####", "####F####", "###AEA###", "##AAAAA##", "###AAA###")
-                    .aisle("AAAAAAAAA", "#ADCCCDA#", "##DAAAD##", "##D###D##", "##D###D##", "##D###D##", "##D#A#D##", "##AAAAA##", "####B####")
-                    .aisle("#AAAAAAA#", "##AACAA##", "###AAA###", "####D####", "####D####", "####D####", "####D####", "####A####", "#########")
-                    .aisle("##AAAAA##", "###B@B###", "###BBB###", "#########", "#########", "#########", "#########", "#########", "#########")
-                    .where("#", Predicates.any())
-                    .where("A", Predicates.blocks(CASING_HSSE_STURDY.get()).setMinGlobalLimited(120)
+                    .aisle("###########", "###########", "##BBB######", "##AAA######", "##AAA######", "##BBB######", "##AAA######", "##AAA######", "##BBB######", "##AAA######", "###########", "###########")
+                    .aisle("###########", "##BBB######", "#B###B#####", "#A###A#####", "#A###A#####", "#B###B#####", "#A###A#####", "#A###A#####", "#B###B#####", "#A###A#####", "##BBB######", "###########")
+                    .aisle("###########", "#BBBBB###B#", "B#EEE#B#BBB", "A#####A#BCB", "A#EEE#A##B#", "B#####B#BBB", "A#EEE#A#BCB", "A#####A##B#", "B#EEE#B#BBB", "A#####A#BCB", "#B###B###B#", "###########")
+                    .aisle("###########", "#BBBBB##BBB", "B#EDE#B#B#B", "A##D##DDBBB", "C#EDE#A#BBB", "B##D##B#B#B", "A#EDE#DDBBB", "C##D##A#BBB", "B#EDE#DDBCB", "A##D##A#BBB", "#B#D#B##BFB", "###S#######")
+                    .aisle("###########", "#BBBBB###B#", "B#EEE#B#BBB", "A#####A#BCB", "A#EEE#A##B#", "B#####B#BBB", "A#EEE#A#BCB", "A#####A##B#", "B#EEE#B#BBB", "A#####A#BCB", "#B###B###B#", "###########")
+                    .aisle("###########", "##BBB######", "#B###B#####", "#A###A#####", "#A###A#####", "#B###B#####", "#A###A#####", "#A###A#####", "#B###B#####", "#A###A#####", "##BBB######", "###########")
+                    .aisle("###########", "###########", "##BBB######", "##AAA######", "##ACA######", "##BBB######", "##AAA######", "##ACA######", "##BBB######", "##AAA######", "###########", "###########")
+                    .aisle("###########", "##AAA######", "##A@A######", "##AAA######", "###########", "###########", "###########", "###########", "###########", "###########", "###########", "###########")
+                    .where("#", Predicates.air())
+                    .where("A", Predicates.blocks(CASING_STAINLESS_CLEAN.get()).setMinGlobalLimited(56)
                             .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
-                    .where("B", Predicates.blocks(HEAT_VENT.get()))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .where("C", Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()))
-                    .where("D", Predicates.frames(GTMaterials.Tungsten))
+                    .where("B", Predicates.blocks(CASING_TITANIUM_STABLE.get()))
+                    .where("C", Predicates.blocks(CASING_TEMPERED_GLASS.get()))
+                    .where("D", Predicates.blocks(CASING_POLYTETRAFLUOROETHYLENE_PIPE.get()))
                     .where("E", Predicates.heatingCoils())
-                    .where("F", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
-                    .where("G", Predicates.blocks(CASING_POLYTETRAFLUOROETHYLENE_PIPE.get()))
+                    .where("F", Predicates.blocks(CASING_STAINLESS_STEEL_GEARBOX.get()))
                     .where("S", abilities(PartAbility.MUFFLER).setExactLimit(1))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
-            .additionalDisplay((machine, l) -> {
-                if (machine.isFormed() && machine instanceof CoilWorkableElectricMultiblockMachine cmachine) {
-                    l.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(cmachine.getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
+            .additionalDisplay((machine, list) -> {
+                if (machine.isFormed() && machine instanceof CoilWorkableElectricMultiblockMachine coilMachine) {
+                    list.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(coilMachine.getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
                 }
             })
-            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_sturdy_hsse"), GTCEu.id("block/multiblock/implosion_compressor"))
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
     public static final MultiblockMachineDefinition SEAWATER_DESALTING_FACTORY = REGISTRATE.multiblock("seawater_desalting_factory", CoilWorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)

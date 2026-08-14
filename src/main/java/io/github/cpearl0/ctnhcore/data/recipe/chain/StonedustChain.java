@@ -12,7 +12,7 @@ import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 
-import com.moguang.ctnhmana.registry.CMRecipeTypes;
+import com.magicbee.ctnhmana.registry.CMRecipeTypes;
 
 import java.util.function.Consumer;
 

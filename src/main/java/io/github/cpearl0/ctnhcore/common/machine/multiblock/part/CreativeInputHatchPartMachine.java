@@ -19,6 +19,7 @@ import com.gregtechceu.gtceu.common.item.IntCircuitBehaviour;
 
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
+import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -44,6 +45,7 @@ public class CreativeInputHatchPartMachine extends TieredIOPartMachine implement
 
     @Getter
     @Persisted
+    @DescSynced
     protected final NotifiableItemStackHandler circuitInventory;
 
     public CreativeInputHatchPartMachine(IMachineBlockEntity holder) {
