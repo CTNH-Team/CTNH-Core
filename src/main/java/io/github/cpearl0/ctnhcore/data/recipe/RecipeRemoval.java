@@ -580,6 +580,11 @@ public class RecipeRemoval {
         // 移除 GTCEu 默认 LV~IV 电动马达与 LV 组件工作台配方，统一改为 CTNH 工作台配方
         remove(new RemoveFilter().idRegex(
                 "gtceu:shaped/(?:electric_motor_(?:lv_(?:iron|steel)|mv|hv|ev|iv)|electric_piston_lv|conveyor_module_lv_.*|electric_pump_lv_.*|robot_arm_lv|fluid_regulator_lv|emitter_lv)"));
+        // 移除 GTCEu 默认 LV 组件组装机配方，统一改为 CTNH 组装机配方（与 CTNH 工作台配方一致）
+        remove(new RemoveFilter().idRegex(
+                "gtceu:assembler/(?:electric_motor_lv_(?:iron|steel)|electric_piston_lv|conveyor_module_lv_.*|electric_pump_lv_.*|robot_arm_lv|fluid_regulator_lv|emitter_lv)"));
+        // 移除 CTPP 基础构件工作台配方，统一改为 CTNH 工作台配方（齿轮改为小齿轮）
+        remove(new RemoveFilter().id("gtceu:basic_mechanism"));
         // 移除 GTCEu 默认 LV 两极磁化机工作台配方，统一改为 CTNH 工作台配方
         remove(new RemoveFilter().id("gtceu:shaped/lv_polarizer"));
         // 移除 GTCEu 默认 LV 热力离心机工作台配方，统一改为 CTNH 工作台配方

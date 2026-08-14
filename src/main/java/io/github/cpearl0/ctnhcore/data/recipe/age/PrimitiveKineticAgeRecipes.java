@@ -14,6 +14,7 @@ import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
+import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
@@ -882,6 +883,20 @@ public class PrimitiveKineticAgeRecipes {
     }
 
     private static void addKineticMechanismRecipes(Consumer<FinishedRecipe> provider) {
+        // 基础构件（工作台：原 CTPP 配方，齿轮改为小齿轮）
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/basic_mechanism"),
+                CTPPItems.BASIC_MECHANISM.asStack(),
+                "ABC",
+                "DEF",
+                "GGG",
+                'A', CustomTags.SAWS,
+                'B', ChemicalHelper.get(TagPrefix.rod, CreateMaterials.AndesiteAlloy),
+                'C', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Gold),
+                'D', ChemicalHelper.get(TagPrefix.plate, CreateMaterials.AndesiteAlloy),
+                'E', ChemicalHelper.get(TagPrefix.gearSmall, CreateMaterials.AndesiteAlloy),
+                'F', ChemicalHelper.get(TagPrefix.rod, GTMaterials.Iron),
+                'G', ItemTags.PLANKS);
+
         // 基础机构（序列组装）
         SequencedAssemblyRecipeBuilder.builder(CTNHCore.id("basic_mechanism_from_slabs"))
                 .input(ItemTags.WOODEN_SLABS)
