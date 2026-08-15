@@ -81,6 +81,7 @@ public class PrimitiveKineticAgeRecipes {
         addSmelteryControllerRecipe(provider);
         addSmelteryIORecipes(provider);
         addSteelRecipes(provider);
+        addPreciousAlloyRecipes(provider);
         addHelveHammerRecipes(provider);
         addSteamEngineRecipes(provider);
         addDieselEngineRecipes(provider);
@@ -479,6 +480,24 @@ public class PrimitiveKineticAgeRecipes {
                 TinkerFluids.moltenSteel,
                 FluidValues.INGOT * 8)
                 .save(provider, CTNHCore.id("smeltery/melting/refined_iron_ingot_to_steel"));
+    }
+
+    private static void addPreciousAlloyRecipes(Consumer<FinishedRecipe> provider) {
+        // 贵金属锭（冶炼炉熔化 → 48mB 熔融金）
+        MeltingRecipeBuilder.melting(
+                Ingredient.of(ChemicalHelper.get(TagPrefix.ingot, CTNHMaterials.PreciousAlloy)),
+                GTMaterials.Gold.getFluid(48),
+                600,
+                IMeltingRecipe.calcTimeForAmount(600, 48))
+                .save(provider, CTNHCore.id("smeltery/melting/precious_alloy_ingot_to_gold"));
+
+        // 贵金属粗矿（冶炼炉熔化 → 72mB 熔融金）
+        MeltingRecipeBuilder.melting(
+                Ingredient.of(ChemicalHelper.get(TagPrefix.rawOre, CTNHMaterials.PreciousAlloy)),
+                GTMaterials.Gold.getFluid(72),
+                600,
+                IMeltingRecipe.calcTimeForAmount(600, 72))
+                .save(provider, CTNHCore.id("smeltery/melting/precious_alloy_raw_ore_to_gold"));
     }
 
     private static void addHelveHammerRecipes(Consumer<FinishedRecipe> provider) {
