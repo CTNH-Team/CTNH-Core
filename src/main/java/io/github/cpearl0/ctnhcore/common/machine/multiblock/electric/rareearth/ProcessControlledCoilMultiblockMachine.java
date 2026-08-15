@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.rareearth;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
@@ -32,6 +33,27 @@ public class ProcessControlledCoilMultiblockMachine extends CoilWorkableElectric
     private int secondaryTarget;
     @DescSynced
     private boolean targetKnown;
+    @Persisted
+    @DescSynced
+    private int settleTicks;
+    @Persisted
+    @DescSynced
+    private int pendingPrimeA;
+    @Persisted
+    @DescSynced
+    private int pendingPrimeB;
+    @Persisted
+    @DescSynced
+    private int runsLeft;
+    @Persisted
+    @DescSynced
+    private long pendingHoldEU;
+    @Persisted
+    @DescSynced
+    private int pendingHoldA;
+    @Persisted
+    @DescSynced
+    private int pendingHoldB;
 
     public ProcessControlledCoilMultiblockMachine(IMachineBlockEntity holder, ProcessControlProfile profile) {
         super(holder);
@@ -96,6 +118,93 @@ public class ProcessControlledCoilMultiblockMachine extends CoilWorkableElectric
     }
 
     @Override
+    public int getSettleTicks() {
+        return settleTicks;
+    }
+
+    @Override
+    public void setSettleTicks(int value) {
+        settleTicks = value;
+    }
+
+    @Override
+    public int getPendingPrimeA() {
+        return pendingPrimeA;
+    }
+
+    @Override
+    public void setPendingPrimeA(int amount) {
+        pendingPrimeA = amount;
+    }
+
+    @Override
+    public int getPendingPrimeB() {
+        return pendingPrimeB;
+    }
+
+    @Override
+    public void setPendingPrimeB(int amount) {
+        pendingPrimeB = amount;
+    }
+
+    @Override
+    public int getRunsLeft() {
+        return runsLeft;
+    }
+
+    @Override
+    public void setRunsLeft(int value) {
+        runsLeft = value;
+    }
+
+    @Override
+    public long getPendingHoldEU() {
+        return pendingHoldEU;
+    }
+
+    @Override
+    public void setPendingHoldEU(long amount) {
+        pendingHoldEU = amount;
+    }
+
+    @Override
+    public int getPendingHoldA() {
+        return pendingHoldA;
+    }
+
+    @Override
+    public void setPendingHoldA(int amount) {
+        pendingHoldA = amount;
+    }
+
+    @Override
+    public int getPendingHoldB() {
+        return pendingHoldB;
+    }
+
+    @Override
+    public void setPendingHoldB(int amount) {
+        pendingHoldB = amount;
+    }
+
+    @Override
+    protected RecipeLogic createRecipeLogic(Object... args) {
+        return new ProcessControlMachine.ProcessControlRecipeLogic(this);
+    }
+
+    @Override
+    public boolean keepSubscribing() {
+        return getSettleTicks() > 0 || getPendingPrimeA() > 0 || getPendingPrimeB() > 0 ||
+                getPendingHoldEU() > 0 || getPendingHoldA() > 0 || getPendingHoldB() > 0;
+    }
+
+    @Override
+    public void afterWorking() {
+        super.afterWorking();
+        ProcessControlMachine.super.consumeRecipeRun();
+    }
+
+    @Override
     public @Nullable Component beforeWorking(@NotNull GTRecipe recipe) {
         var failure = super.beforeWorking(recipe);
         return failure == null ? checkProcessControl(recipe) : failure;
@@ -116,5 +225,8 @@ public class ProcessControlledCoilMultiblockMachine extends CoilWorkableElectric
     public void onStructureInvalid() {
         super.onStructureInvalid();
         targetKnown = false;
+        settleTicks = 0;
+        pendingPrimeA = 0;
+        pendingPrimeB = 0;
     }
 }

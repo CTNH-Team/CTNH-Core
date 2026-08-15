@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.registry;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ScalableReservoirComputingMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.rareearth.ProcessControlProfile;
 import io.github.cpearl0.ctnhcore.data.CreateRecipeTypes;
 import io.github.cpearl0.ctnhcore.data.recipe.BioChemistryRecipes;
 
@@ -23,6 +24,8 @@ import com.lowdragmc.lowdraglib.utils.CycleItemStackHandler;
 import com.lowdragmc.lowdraglib.utils.LocalizationUtils;
 
 import net.minecraft.client.resources.language.I18n;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
 
 import com.ctnhlang.CN;
@@ -359,37 +362,43 @@ public class CTNHRecipeTypes {
             .cnlang("氧化焙烧").setEUIO(IO.IN).setMaxIOSize(4, 4, 2, 4)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.CHEMICAL);
+            .setSound(GTSoundEntries.CHEMICAL)
+            .addDataInfo(data -> processControlDataInfo(data, ProcessControlProfile.OXIDATION_ROASTING));
     public static final GTRecipeType HIGH_PRESSURE_ALKALI_DIGESTION = REGISTRATE
             .recipeType(CTNHCore.id("high_pressure_alkali_digestion"), GTRecipeTypes.ELECTRIC)
             .cnlang("高压碱煮").setEUIO(IO.IN).setMaxIOSize(4, 4, 4, 4)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.CHEMICAL);
+            .setSound(GTSoundEntries.CHEMICAL)
+            .addDataInfo(data -> processControlDataInfo(data, ProcessControlProfile.HIGH_PRESSURE_ALKALI_DIGESTION));
     public static final GTRecipeType SOLVENT_EXTRACTION = REGISTRATE
             .recipeType(CTNHCore.id("solvent_extraction"), GTRecipeTypes.ELECTRIC)
             .cnlang("溶剂萃取").setEUIO(IO.IN).setMaxIOSize(6, 6, 6, 6)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.CHEMICAL);
+            .setSound(GTSoundEntries.CHEMICAL)
+            .addDataInfo(data -> processControlDataInfo(data, ProcessControlProfile.SOLVENT_EXTRACTION));
     public static final GTRecipeType REDUCTION_PRECIPITATION = REGISTRATE
             .recipeType(CTNHCore.id("reduction_precipitation"), GTRecipeTypes.ELECTRIC)
             .cnlang("还原沉淀").setEUIO(IO.IN).setMaxIOSize(6, 6, 6, 6)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.CHEMICAL);
+            .setSound(GTSoundEntries.CHEMICAL)
+            .addDataInfo(data -> processControlDataInfo(data, ProcessControlProfile.REDUCTION_PRECIPITATION));
     public static final GTRecipeType CONDENSING_DISCRETE = REGISTRATE
             .recipeType(CTNHCore.id("condensing_discrete"), GTRecipeTypes.ELECTRIC)
             .cnlang("冷凝离散").setEUIO(IO.IN).setMaxIOSize(6, 6, 6, 6)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.COOLING);
+            .setSound(GTSoundEntries.COOLING)
+            .addDataInfo(data -> processControlDataInfo(data, ProcessControlProfile.CONDENSING_DISCRETE));
     public static final GTRecipeType ION_EXCHANGER = REGISTRATE
             .recipeType(CTNHCore.id("ion_exchanger"), GTRecipeTypes.ELECTRIC)
             .cnlang("离子交换").setEUIO(IO.IN).setMaxIOSize(6, 6, 6, 6)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.COOLING);
+            .setSound(GTSoundEntries.COOLING)
+            .addDataInfo(data -> processControlDataInfo(data, ProcessControlProfile.ION_EXCHANGE));
     // public static final GTRecipeType DECAY_VESSEL = REGISTRATE.recipeType(CTNHCore.id("decay_vessel"),
     // GTRecipeTypes.ELECTRIC)
     // .cnlang("").setMaxIOSize(2, 1, 0, 2)
@@ -450,6 +459,7 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.ELECTROLYZER)
+            .addDataInfo(data -> processControlDataInfo(data, ProcessControlProfile.VACUUM_SINTERING))
             .addDataInfo(data -> LocalizationUtils.format("gtceu.recipe.temperature",
                     FormattingUtil.formatNumbers(data.getInt("ebf_temp"))))
             .addDataInfo(data -> {
@@ -477,6 +487,7 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_CRYSTALLIZATION, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL)
+            .addDataInfo(data -> processControlDataInfo(data, ProcessControlProfile.CRYSTALLIZATION))
             .addDataInfo(data -> LocalizationUtils.format("gtceu.recipe.temperature",
                     FormattingUtil.formatNumbers(data.getInt("ebf_temp"))))
             .addDataInfo(data -> {
@@ -833,6 +844,23 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setMaxTooltips(4)
             .setSound(GTSoundEntries.COOLING);
+
+    private static String processControlDataInfo(CompoundTag data, ProcessControlProfile profile) {
+        if (!data.contains(ProcessControlProfile.PRIMARY_RECIPE_DATA, Tag.TAG_ANY_NUMERIC) ||
+                !data.contains(ProcessControlProfile.SECONDARY_RECIPE_DATA, Tag.TAG_ANY_NUMERIC)) {
+            return "";
+        }
+        var primaryLabel = compactProcessControlLabel(profile.primaryLabel().getString());
+        var secondaryLabel = compactProcessControlLabel(profile.secondaryLabel().getString());
+        var dataInfo = primaryLabel + ": " + data.getInt(ProcessControlProfile.PRIMARY_RECIPE_DATA)
+                + " / " + secondaryLabel + ": " + data.getInt(ProcessControlProfile.SECONDARY_RECIPE_DATA);
+        return dataInfo.replace("%", "%%");
+    }
+
+    private static String compactProcessControlLabel(String label) {
+        var unitSeparator = label.indexOf(" (");
+        return unitSeparator >= 0 ? label.substring(0, unitSeparator) : label;
+    }
 
     public static void init() {
         CreateRecipeTypes.init();

@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe.chain;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.rareearth.ProcessControlProfile;
 import io.github.cpearl0.ctnhcore.data.materials.BauxiteProcessingMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.RareEarthMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
@@ -86,6 +87,8 @@ public class RareearthChain {
                 .inputFluids(RareEarthMaterials.RARE_EARTH_CHLORIDE_BOIL.getFluid(3000))
                 .outputItems(dust, RareEarthMaterials.RARE_EARTH_CRYSTALS, 4)
                 .outputFluids(Water.getFluid(6000))
+                .addData(ProcessControlProfile.PRIMARY_RECIPE_DATA, 25)
+                .addData(ProcessControlProfile.SECONDARY_RECIPE_DATA, 120)
                 .EUt(1920).duration(480).blastFurnaceTemp(4500)
                 .save(provider);
 
