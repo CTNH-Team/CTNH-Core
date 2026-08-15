@@ -30,6 +30,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import com.ctnh.ctnhastral.data.CAMaterials;
@@ -80,6 +81,7 @@ public class PrimitiveKineticAgeRecipes {
         addSearedMelterRecipes(provider);
         addSmelteryControllerRecipe(provider);
         addSmelteryIORecipes(provider);
+        addScorchedTankRecipes(provider);
         addSteelRecipes(provider);
         addPreciousAlloyRecipes(provider);
         addHelveHammerRecipes(provider);
@@ -472,6 +474,22 @@ public class PrimitiveKineticAgeRecipes {
                 "# #", "C C", "# #",
                 '#', TinkerSmeltery.searedBrick.get(),
                 'C', AllBlocks.SMART_FLUID_PIPE.asItem());
+    }
+
+    private static void addScorchedTankRecipes(Consumer<FinishedRecipe> provider) {
+        // 焦黑燃料储罐（8 焦黑砖 + 1 石英；原版配方把玻璃换成石英）
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/scorched_fuel_tank"),
+                new ItemStack(TinkerSmeltery.scorchedTank.get(TankType.FUEL_TANK)),
+                "###", "#B#", "###",
+                '#', TinkerSmeltery.scorchedBrick.get(),
+                'B', Tags.Items.GEMS_QUARTZ);
+
+        // 焦黑燃料量器（4 焦黑砖 + 5 石英；原版配方把玻璃换成石英）
+        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/scorched_fuel_gauge"),
+                new ItemStack(TinkerSmeltery.scorchedTank.get(TankType.FUEL_GAUGE)),
+                "#B#", "BBB", "#B#",
+                '#', TinkerSmeltery.scorchedBrick.get(),
+                'B', Tags.Items.GEMS_QUARTZ);
     }
 
     private static void addSteelRecipes(Consumer<FinishedRecipe> provider) {
