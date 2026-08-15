@@ -72,6 +72,7 @@ public class PrimitiveKineticAgeRecipes {
     // 这里存放的是青铜、钢铁时期(ulv)的配方
     public static void init(Consumer<FinishedRecipe> provider) {
         addWroughtIronRecipes(provider);
+        addNetherrackRecipes(provider);
         addMortarRecipes(provider);
         addGlassRecipes(provider);
         addAndesiteAlloyRecipes(provider);
@@ -134,6 +135,15 @@ public class PrimitiveKineticAgeRecipes {
                 Items.IRON_INGOT.getDefaultInstance(),
                 ChemicalHelper.get(TagPrefix.ingotHot, GTMaterials.WroughtIron),
                 1.4f);
+    }
+
+    private static void addNetherrackRecipes(Consumer<FinishedRecipe> provider) {
+        // 下界岩（机械动力搅拌：4 红石粉 + 250mB 熔岩）
+        MixingRecipeBuilder.builder(CTNHCore.id("create/netherrack_from_redstone_and_lava"))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Redstone, 4))
+                .inputFluid(GTMaterials.Lava.getFluid(250))
+                .output(new ItemStack(Blocks.NETHERRACK))
+                .save(provider);
     }
 
     private static void addMortarRecipes(Consumer<FinishedRecipe> provider) {
