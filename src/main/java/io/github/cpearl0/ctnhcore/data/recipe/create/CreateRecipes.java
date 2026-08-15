@@ -116,6 +116,22 @@ public class CreateRecipes {
         RecipeRemoval.remove(new RemoveFilter().id("create:smelting/glass_from_framed_glass"));
         RecipeRemoval.remove(new RemoveFilter().id("create:smelting/glass_from_horizontal_framed_glass"));
         RecipeRemoval.remove(new RemoveFilter().id("create:smelting/glass_from_vertical_framed_glass"));
+        // 统一到 GT 锌材料：删除机械动力锌锭/锌粒/锌块的全部产出配方
+        RecipeRemoval.remove(new RemoveFilter().id("create:smelting/zinc_ingot_from_crushed"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:smelting/zinc_ingot_from_ore"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:smelting/zinc_ingot_from_raw_ore"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:blasting/zinc_ingot_from_crushed"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:blasting/zinc_ingot_from_ore"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:blasting/zinc_ingot_from_raw_ore"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/zinc_ingot_from_compacting"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/zinc_ingot_from_decompacting"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/zinc_nugget_from_decompacting"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/zinc_block_from_compacting"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crushing/asurine"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crushing/asurine_recycling"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crushing/tuff"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crushing/tuff_recycling"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:splashing/crushed_raw_zinc"));
         // 移除机械动力原版蒸汽引擎配方，统一使用 CTNH 自定义序列组装（ctnhcore:bronze_machine_casing_to_steam_engine）
         RecipeRemoval.remove(new RemoveFilter().idRegex("create:.*steam_engine.*"));
     }

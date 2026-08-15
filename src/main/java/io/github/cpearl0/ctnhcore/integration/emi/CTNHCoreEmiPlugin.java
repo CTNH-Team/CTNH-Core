@@ -17,6 +17,7 @@ import com.enderio.machines.common.blockentity.capacitorbank.CapacitorTier;
 import com.enderio.machines.common.blockentity.solar.SolarPanelTier;
 import com.enderio.machines.common.init.MachineBlocks;
 import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllItems;
 import com.simibubi.create.Create;
 import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiInitRegistry;
@@ -146,6 +147,10 @@ public class CTNHCoreEmiPlugin implements EmiPlugin {
 
     public static void CreateDisable() {
         disabled.addAll(Arrays.stream(AllBlocks.TOOLBOXES.toArray()).toList());
+        // 统一到 GT 锌材料：隐藏机械动力锌锭/锌粒/锌块
+        disabled.add(AllItems.ZINC_INGOT);
+        disabled.add(AllItems.ZINC_NUGGET);
+        disabled.add(AllBlocks.ZINC_BLOCK);
     }
 
     private static void addInformation(EmiRegistry registry, String itemId, String translationKey) {
