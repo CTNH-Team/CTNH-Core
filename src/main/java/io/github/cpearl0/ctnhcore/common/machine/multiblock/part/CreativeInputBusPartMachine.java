@@ -30,6 +30,8 @@ import com.lowdragmc.lowdraglib.utils.Position;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
@@ -125,6 +127,7 @@ public class CreativeInputBusPartMachine extends TieredIOPartMachine implements 
                         new PhantomSlotWidget(inventory, finalIndex, 4 + x * 18, 4 + y * 18) {
 
                             @Override
+                            @OnlyIn(Dist.CLIENT)
                             public void drawInBackground(@NotNull GuiGraphics graphics, int mouseX, int mouseY,
                                                          float partialTicks) {
                                 Position position = getPosition();
@@ -138,7 +141,13 @@ public class CreativeInputBusPartMachine extends TieredIOPartMachine implements 
                                     stack.setCount(1);
                                     drawItemStack(graphics, stack, stackX, stackY, 0xFFFFFFFF, null);
                                     if (mouseOverStock(mouseX, mouseY)) {
-                                        drawSelectionOverlay(graphics, stackX, stackY + 18, 16, 16);
+                                        int color = 0x80FFFFFF;
+                                        graphics.fill(stackX, stackY + 18, stackX + 16, stackY + 18 + 1, color);
+                                        graphics.fill(stackX, stackY + 18 + 16 - 1, stackX + 16, stackY + 18 + 16,
+                                                color);
+                                        graphics.fill(stackX, stackY + 18, stackX + 1, stackY + 18 + 16, color);
+                                        graphics.fill(stackX + 16 - 1, stackY + 18, stackX + 16, stackY + 18 + 16,
+                                                color);
                                     }
                                 }
                             }
@@ -205,13 +214,5 @@ public class CreativeInputBusPartMachine extends TieredIOPartMachine implements 
             }
             super.setStackInSlot(index, stack);
         }
-    }
-
-    private static void drawSelectionOverlay(GuiGraphics graphics, int x, int y, int width, int height) {
-        int color = 0x80FFFFFF;
-        graphics.fill(x, y, x + width, y + 1, color);
-        graphics.fill(x, y + height - 1, x + width, y + height, color);
-        graphics.fill(x, y, x + 1, y + height, color);
-        graphics.fill(x + width - 1, y, x + width, y + height, color);
     }
 }
