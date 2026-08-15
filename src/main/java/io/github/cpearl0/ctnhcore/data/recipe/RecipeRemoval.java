@@ -706,7 +706,6 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id(
                 "vintageimprovements:pressurizing/compat/sulfur_dioxide_from_dust"));
         remove(new RemoveFilter().id("vintageimprovements:craft/sulfur_items_to_block"));
-        remove(new RemoveFilter().id("vintageimprovements:grinder_polishing/rose_quartz"));
         remove(new RemoveFilter().id("vintageimprovements:craft/belt_grinder"));
         remove(new RemoveFilter().id("vintageimprovements:craft/grinder_belt"));
         remove(new RemoveFilter().id("vintageimprovements:craft/tin_rod"));
