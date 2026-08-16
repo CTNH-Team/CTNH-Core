@@ -370,6 +370,7 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("gtceu:assembler/plate_radiation"));
         remove(new RemoveFilter().id("gtceu:electric_blast_furnace/iro2"));
         remove(new RemoveFilter().id("gtceu:shaped/casing_assembly_control"));
+        remove(new RemoveFilter().id("gtceu:shaped/ulv_machine_hull"));
         remove(new RemoveFilter().id("gtceu:shaped/casing_assembly_line"));
         remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_ammonium_chloride"));
         remove(new RemoveFilter().id("gtceu:assembler/mar_casing"));
