@@ -18,6 +18,7 @@ import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.GTMachineModify;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.material.GTMaterialAddon;
+import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundEvents;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.DimensionMarker;
@@ -68,6 +69,7 @@ public class CommonProxy {
         modEventBus.addGenericListener(RecipeConditionType.class, CommonProxy::registerRecipeConditions);
 
         CTNHCreativeModeTabs.init();
+        CTNHSoundEvents.SOUND_EVENTS.register(modEventBus);
         CTNHRegistration.REGISTRATE.registerRegistrate();
         CTNHEnchantments.Enchantments.register(modEventBus);
         CTNHRecipes.init(modEventBus);

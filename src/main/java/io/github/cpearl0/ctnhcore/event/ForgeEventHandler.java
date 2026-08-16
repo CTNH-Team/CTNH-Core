@@ -5,24 +5,33 @@ import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.capability.EIOCapacitorProvider;
 import io.github.cpearl0.ctnhcore.integration.legendary.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
+import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundEvents;
 
 import com.gregtechceu.gtceu.GTCEu;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.FireworkRocketEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -97,6 +106,49 @@ public class ForgeEventHandler {
                 .equals(ResourceLocation.fromNamespaceAndPath("mythicbotany", "alfheim"))) {
             event.setCanceled(true);
         }
+    }
+
+    @SubscribeEvent
+    public static void onSoulTorchEasterEgg(PlayerInteractEvent.RightClickBlock event) {
+        Player player = event.getEntity();
+        if (player.level().isClientSide) {
+            return;
+        }
+        if (!player.isShiftKeyDown()) {
+            return;
+        }
+
+        BlockPos pos = event.getPos();
+        var state = player.level().getBlockState(pos);
+        if (!state.is(Blocks.SOUL_TORCH) && !state.is(Blocks.SOUL_WALL_TORCH)) {
+            return;
+        }
+
+        event.setCanceled(true);
+        Level level = player.level();
+
+        // 生成一颗已激活的烟花火箭（带简单爆炸效果）
+        ItemStack firework = new ItemStack(Items.FIREWORK_ROCKET);
+        CompoundTag fireworks = new CompoundTag();
+        fireworks.putByte("Flight", (byte) 1);
+        CompoundTag explosion = new CompoundTag();
+        explosion.putIntArray("Colors", new int[] { 0xFFFFFF, 0x55FFFF, 0xFF55FF });
+        explosion.putByte("Type", (byte) 1);
+        ListTag explosions = new ListTag();
+        explosions.add(explosion);
+        fireworks.put("Explosions", explosions);
+        firework.getOrCreateTag().put("Fireworks", fireworks);
+
+        FireworkRocketEntity rocket = new FireworkRocketEntity(
+                level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, firework);
+        level.addFreshEntity(rocket);
+
+        // 同时播放 TNT 爆炸音效和《小丑小曲》彩蛋音效
+        level.playSound(null, pos, SoundEvents.GENERIC_EXPLODE, SoundSource.BLOCKS, 1.0F, 1.0F);
+        level.playSound(null, pos, CTNHSoundEvents.EASTER_EGG_CLOWN.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+
+        // 触发后移除灵魂火把
+        level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
     }
 
     @SubscribeEvent

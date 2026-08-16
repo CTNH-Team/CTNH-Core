@@ -1,0 +1,11 @@
+{
+  "easter_egg_clown": {
+    "subtitle": "ctnhcore.subtitle.easter_egg_clown",
+    "sounds": [
+      {
+        "name": "ctnhcore:easter_egg_clown",
+        "stream": true
+      }
+    ]
+  }
+}
