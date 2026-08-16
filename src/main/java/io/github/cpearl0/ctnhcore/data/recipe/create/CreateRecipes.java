@@ -137,6 +137,9 @@ public class CreateRecipes {
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/brass_ingot_from_decompacting"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/brass_nugget_from_decompacting"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/brass_block_from_compacting"));
+        // 统一到 GT 银材料：删除机械动力银矿石/碎银加工链（含 compat 洗矿与银锭冶炼，避开 quicksilver）
+        RecipeRemoval.remove(new RemoveFilter().idRegex(
+                "create:(?:crushing/(?:silver_ore|raw_silver|raw_silver_block)|smelting/(?:ingot_)?silver.*|blasting/(?:ingot_)?silver.*|splashing/.*silver)"));
         // 移除机械动力原版蒸汽引擎配方，统一使用 CTNH 自定义序列组装（ctnhcore:bronze_machine_casing_to_steam_engine）
         RecipeRemoval.remove(new RemoveFilter().idRegex("create:.*steam_engine.*"));
     }
