@@ -199,7 +199,7 @@ public class CreateRecipes {
                     .input(cokeGem).output(cokeDust).save(provider);
         }
 
-        // copper/iron/gold gtceu -> minecraft ingots
+        // copper/iron/gold gtceu ingot -> dust
         String[] vanillaIngots = new String[] { "copper", "iron", "gold" };
         for (String i : vanillaIngots) {
             ItemStack gtIngot = switch (i) {
@@ -208,18 +208,18 @@ public class CreateRecipes {
                 case "gold" -> ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Gold);
                 default -> ItemStack.EMPTY;
             };
-            ItemStack mcIngot = switch (i) {
-                case "copper" -> new ItemStack(Items.COPPER_INGOT);
-                case "iron" -> new ItemStack(Items.IRON_INGOT);
-                case "gold" -> new ItemStack(Items.GOLD_INGOT);
+            ItemStack dust = switch (i) {
+                case "copper" -> ChemicalHelper.get(TagPrefix.dust, GTMaterials.Copper);
+                case "iron" -> ChemicalHelper.get(TagPrefix.dust, GTMaterials.Iron);
+                case "gold" -> ChemicalHelper.get(TagPrefix.dust, GTMaterials.Gold);
                 default -> ItemStack.EMPTY;
             };
-            if (!gtIngot.isEmpty() && !mcIngot.isEmpty()) {
+            if (!gtIngot.isEmpty() && !dust.isEmpty()) {
                 com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder
-                        .builder(CTNHCore.id("crushing_gtceu_" + i + "_to_mc")).input(gtIngot).output(mcIngot)
+                        .builder(CTNHCore.id("crushing_gtceu_" + i + "_to_dust")).input(gtIngot).output(dust)
                         .save(provider);
                 com.mo_guang.ctpp.data.recipe.builder.create.MillingRecipeBuilder
-                        .builder(CTNHCore.id("milling_gtceu_" + i + "_to_mc")).input(gtIngot).output(mcIngot)
+                        .builder(CTNHCore.id("milling_gtceu_" + i + "_to_dust")).input(gtIngot).output(dust)
                         .save(provider);
             }
         }
