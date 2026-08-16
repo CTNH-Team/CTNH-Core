@@ -41,6 +41,9 @@
     "vintageimprovements.LatheMovingBlockMixin"
   ],
   "client": [
+    "creatediesel.DistillationCategoryMixin",
+    "emi.JemiRecipeMixin",
+    "emi.JemiStackSerializerMixin",
     "eclipticseasons.BakedQuadRetexturedAndReUVMixin",
     "eclipticseasons.BakedQuadRetexturedMixin",
     "eclipticseasons.SnowyBakedModelWrapperOffsetMixin",
