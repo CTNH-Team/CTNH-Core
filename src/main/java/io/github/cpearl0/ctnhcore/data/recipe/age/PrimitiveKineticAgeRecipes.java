@@ -706,10 +706,39 @@ public class PrimitiveKineticAgeRecipes {
     }
 
     private static void addCinnabarRecipes(Consumer<FinishedRecipe> provider) {
-        // 朱砂 x2 离心 -> 硫粉 x1（青铜/钢铁时期 ULV）
+        // 朱砂 x2 离心 -> 硫粉 x1 + 汞 x1000mB（青铜/钢铁时期 ULV）
         CentrifugationRecipeBuilder.builder(CTNHCore.id("vintageimprovements/cinnabar_centrifugation"))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Cinnabar, 2))
                 .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Sulfur))
+                .resultFluid(GTMaterials.Mercury.getFluid(1000))
+                .processingTime(200)
+                .minimalRpm(256)
+                .save(provider);
+
+        // 雄黄 As4S4 x2 离心 -> 砷粉 x1 + 硫粉 x1（青铜/钢铁时期 ULV）
+        CentrifugationRecipeBuilder.builder(CTNHCore.id("vintageimprovements/realgar_centrifugation"))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Realgar, 2))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Arsenic))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Sulfur))
+                .processingTime(200)
+                .minimalRpm(256)
+                .save(provider);
+
+        // 黄铁矿 FeS2 x3 离心 -> 铁粉 x1 + 硫粉 x2（青铜/钢铁时期 ULV）
+        CentrifugationRecipeBuilder.builder(CTNHCore.id("vintageimprovements/pyrite_centrifugation"))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Pyrite, 3))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Iron))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Sulfur, 2))
+                .processingTime(200)
+                .minimalRpm(256)
+                .save(provider);
+
+        // 黄铜矿 CuFeS2 x4 离心 -> 铜粉 x1 + 铁粉 x1 + 硫粉 x2（青铜/钢铁时期 ULV）
+        CentrifugationRecipeBuilder.builder(CTNHCore.id("vintageimprovements/chalcopyrite_centrifugation"))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Chalcopyrite, 4))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Copper))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Iron))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Sulfur, 2))
                 .processingTime(200)
                 .minimalRpm(256)
                 .save(provider);
