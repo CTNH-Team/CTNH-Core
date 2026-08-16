@@ -88,7 +88,7 @@ public class CrudeGoldRefiningMaterials {
         COPPER_CHLORIDE = REGISTRATE.material(CTNHCore.id("copper_chloride"))
                 .cnlang("氯化铜")
                 .formula("CuCl2")
-                .dust()
+                .liquid()
                 .color(0x6FA5C9)
                 .buildAndRegister();
         SILVER_CHLORIDE = REGISTRATE.material(CTNHCore.id("silver_chloride"))
