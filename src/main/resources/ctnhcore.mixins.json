@@ -26,6 +26,7 @@
     "emi.EmiReloadManagerMixin",
     "emi.GTRecipeEMICategoryMixin",
     "ftbchunks.HeightUtilsMixin",
+    "ftbessentials.TeleportCommandsMixin",
     "gtceu.GTBlocksMixin",
     "gtceu.ItemMaterialDataMixin",
     "gtceu.orevein.ClientProxyAccessor",
@@ -35,6 +36,7 @@
     "mc.NaturalSpawnerMixin",
     "mc.RecipeManagerApplyMixin",
     "mc.ServerChunkCacheMixin",
+    "mc.ServerChunkCacheAccessor",
     "tmrv.RecipeManagerMixin",
     "vintageimprovements.LatheMovingBlockMixin"
   ],
