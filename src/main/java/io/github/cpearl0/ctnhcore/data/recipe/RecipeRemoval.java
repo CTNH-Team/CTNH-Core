@@ -686,6 +686,9 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("vintageimprovements:pressing/uranium_ingot"));
         remove(new RemoveFilter().id("vintageimprovements:pressing/rose_gold_ingot"));
         remove(new RemoveFilter().id("vintageimprovements:pressing/vanadium_ingot"));
+        // 统一到 GT 钒材料：删除 Vintage Improvements 钒锭产出配方
+        remove(new RemoveFilter().id("vintageimprovements:craft/vanadium_nuggets_to_ingot"));
+        remove(new RemoveFilter().id("vintageimprovements:craft/vanadium_block_to_ingots"));
         remove(new RemoveFilter().id("vintageimprovements:pressing/invar_ingot"));
         remove(new RemoveFilter().id("vintageimprovements:pressing/lead_ingot"));
         remove(new RemoveFilter().id("vintageimprovements:pressing/tin_ingot"));

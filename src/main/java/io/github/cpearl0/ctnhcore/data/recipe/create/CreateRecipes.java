@@ -132,6 +132,11 @@ public class CreateRecipes {
         RecipeRemoval.remove(new RemoveFilter().id("create:crushing/tuff"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crushing/tuff_recycling"));
         RecipeRemoval.remove(new RemoveFilter().id("create:splashing/crushed_raw_zinc"));
+        // 统一到 GT 黄铜材料：删除机械动力黄铜锭/黄铜粒/黄铜块的全部产出配方
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/brass_ingot_from_compacting"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/brass_ingot_from_decompacting"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/brass_nugget_from_decompacting"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/brass_block_from_compacting"));
         // 移除机械动力原版蒸汽引擎配方，统一使用 CTNH 自定义序列组装（ctnhcore:bronze_machine_casing_to_steam_engine）
         RecipeRemoval.remove(new RemoveFilter().idRegex("create:.*steam_engine.*"));
     }
