@@ -94,6 +94,7 @@ public class PrimitiveKineticAgeRecipes {
         addPetroleumRecipes(provider);
         addFirebrickRecipes(provider);
         addRubberRecipes(provider);
+        addCinnabarRecipes(provider);
         addWoodGearRecipes(provider);
         addKineticCraftingRecipes(provider);
         addKineticMechanicalCraftingRecipes(provider);
@@ -702,6 +703,16 @@ public class PrimitiveKineticAgeRecipes {
         ItemCastingRecipeBuilder.basinRecipe(ChemicalHelper.get(TagPrefix.block, GTMaterials.Rubber).getItem())
                 .setFluidAndTime(GTMaterials.Rubber.getFluid(FluidValues.INGOT * 9))
                 .save(provider, CTNHCore.id("smeltery/casting/rubber_block"));
+    }
+
+    private static void addCinnabarRecipes(Consumer<FinishedRecipe> provider) {
+        // 朱砂 x2 离心 -> 硫粉 x1（青铜/钢铁时期 ULV）
+        CentrifugationRecipeBuilder.builder(CTNHCore.id("vintageimprovements/cinnabar_centrifugation"))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Cinnabar, 2))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Sulfur))
+                .processingTime(200)
+                .minimalRpm(256)
+                .save(provider);
     }
 
     private static void addKineticCraftingRecipes(Consumer<FinishedRecipe> provider) {
