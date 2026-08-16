@@ -274,7 +274,7 @@ public class FactoryMachine extends RecipeElectricMultiblockMachine implements I
         double diversity = 1.5 - Math.pow((double) CRUSHING_COUNT / TOTAL_COUNT, 2) -
                 Math.pow((double) MIXER_COUNT / TOTAL_COUNT, 2) - Math.pow((double) LATHE_COUNT / TOTAL_COUNT, 2) -
                 Math.pow((double) BURNER_COUNT / TOTAL_COUNT, 2) - Math.pow((double) PRESSOR_COUNT / TOTAL_COUNT, 2) -
-                Math.pow((double) MIXER_COUNT / TOTAL_COUNT, 2) - Math.pow((double) DEPLOYER_COUNT / TOTAL_COUNT, 2) -
+                Math.pow((double) CENTRIFUGE_COUNT / TOTAL_COUNT, 2) - Math.pow((double) DEPLOYER_COUNT / TOTAL_COUNT, 2) -
                 Math.pow((double) LASER_COUNT / TOTAL_COUNT, 2) - Math.pow((double) BASIN_COUNT / TOTAL_COUNT, 2) -
                 Math.pow((double) SAW_COUNT / TOTAL_COUNT, 2);
         return diversity;
