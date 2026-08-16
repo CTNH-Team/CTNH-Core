@@ -685,6 +685,23 @@ public class PrimitiveKineticAgeRecipes {
                 .setCast(TinkerSmeltery.ingotCast.get(), false)
                 .setFluidAndTime(GTMaterials.Rubber.getFluid(FluidValues.INGOT))
                 .save(provider, CTNHCore.id("smeltery/casting/rubber_ingot"));
+
+        // 橡胶板（铸件台浇铸：144 mB 液态橡胶 + 板模具 → 1 橡胶板）
+        ItemCastingRecipeBuilder.tableRecipe(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Rubber).getItem())
+                .setCast(TinkerSmeltery.plateCast.get(), false)
+                .setFluidAndTime(GTMaterials.Rubber.getFluid(FluidValues.INGOT))
+                .save(provider, CTNHCore.id("smeltery/casting/rubber_plate"));
+
+        // 橡胶杆（铸件台浇铸：144 mB 液态橡胶 + 杆模具 → 1 橡胶杆）
+        ItemCastingRecipeBuilder.tableRecipe(ChemicalHelper.get(TagPrefix.rod, GTMaterials.Rubber).getItem())
+                .setCast(TinkerSmeltery.rodCast.get(), false)
+                .setFluidAndTime(GTMaterials.Rubber.getFluid(FluidValues.INGOT))
+                .save(provider, CTNHCore.id("smeltery/casting/rubber_rod"));
+
+        // 橡胶块（铸件盆浇铸：1296 mB 液态橡胶 → 1 橡胶块）
+        ItemCastingRecipeBuilder.basinRecipe(ChemicalHelper.get(TagPrefix.block, GTMaterials.Rubber).getItem())
+                .setFluidAndTime(GTMaterials.Rubber.getFluid(FluidValues.INGOT * 9))
+                .save(provider, CTNHCore.id("smeltery/casting/rubber_block"));
     }
 
     private static void addKineticCraftingRecipes(Consumer<FinishedRecipe> provider) {
