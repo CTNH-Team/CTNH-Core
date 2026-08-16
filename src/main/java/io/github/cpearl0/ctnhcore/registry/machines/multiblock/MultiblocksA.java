@@ -1016,7 +1016,7 @@ public class MultiblocksA {
     public static Lang sweatShopTooltip1;
 
 
-    @CN("工厂内的有效员工数量受限于工厂大小，初始上限为4，工厂长度每增加4格上限+1")
+    @CN("工厂内的有效员工数量受限于工厂大小，初始上限为4，工厂长度每增加2格上限+1")
     @EN("The effective number of workers in the factory is limited by the factory size. Initial limit: 4 workers; for every 4 blocks added to the factory length, the limit increases by 1.")
     public static Lang sweatShopTooltip2;
 
@@ -1046,7 +1046,7 @@ public class MultiblocksA {
     public static Lang sweatShopTooltip7;
 
 
-    @CN("每5秒机器会消耗(员工数量)份简易营养餐")
+    @CN("每5秒机器会消耗(真实员工数量)份简易营养餐")
     @EN("Every 5 seconds, the machine consumes (number of employees) servings of Simple Worker Meals.")
     public static Lang sweatShopTooltip8;
 
