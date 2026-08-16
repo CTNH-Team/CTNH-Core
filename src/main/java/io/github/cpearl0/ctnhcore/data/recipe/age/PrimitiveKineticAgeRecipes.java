@@ -1019,6 +1019,14 @@ public class PrimitiveKineticAgeRecipes {
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Tin))
                 .heatRequirement("heated")
                 .save(provider);
+
+        // 黄铜粉（加热混合：3 铜粉 + 1 锌粉）
+        MixingRecipeBuilder.builder(CTNHCore.id("brass_dust_from_copper_zinc"))
+                .result(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Brass).getItem(), 3))
+                .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Copper).getItem(), 3))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Zinc))
+                .heatRequirement("heated")
+                .save(provider);
     }
 
     private static void addSteelPrecursorRecipes(Consumer<FinishedRecipe> provider) {
