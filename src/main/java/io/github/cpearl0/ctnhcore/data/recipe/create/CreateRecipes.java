@@ -131,6 +131,7 @@ public class CreateRecipes {
         RecipeRemoval.remove(new RemoveFilter().id("create:crushing/asurine_recycling"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crushing/tuff"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crushing/tuff_recycling"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crushing/obsidian"));
         RecipeRemoval.remove(new RemoveFilter().id("create:splashing/crushed_raw_zinc"));
         // 统一到 GT 黄铜材料：删除机械动力黄铜锭/黄铜粒/黄铜块的全部产出配方
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/brass_ingot_from_compacting"));
