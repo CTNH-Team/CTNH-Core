@@ -628,7 +628,8 @@ public class CreateRecipes {
                     .result(ulvInputBus)
                     .deploying(CTPPItems.STEEL_MECHANISM.asStack())
                     .deploying(GTBlocks.MACHINE_CASING_ULV.asStack())
-                    .deploying(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.WroughtIron))
+                    .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
+                    .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
                     .loops(1)
                     .save(provider);
         }
@@ -642,7 +643,8 @@ public class CreateRecipes {
                     .result(ulvInputHatch)
                     .deploying(CTPPItems.STEEL_MECHANISM.asStack())
                     .deploying(GTBlocks.MACHINE_CASING_ULV.asStack())
-                    .deploying(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.WroughtIron))
+                    .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
+                    .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
                     .loops(1)
                     .save(provider);
         }
