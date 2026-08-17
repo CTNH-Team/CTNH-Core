@@ -281,7 +281,6 @@ public class RecipeRemoval {
         remove(new RemoveFilter().idRegex("botania:apothecary_.*"));
         remove(new RemoveFilter().mod("botania").type("botania:petal_apothecary"));
         remove(new RemoveFilter().mod("botania").type("botania:runic_altar"));
-        remove(new RemoveFilter().mod("botania").type("botania:terra_plate"));
     }
 
     public static void createdieselgeneratorsRemovals() {
