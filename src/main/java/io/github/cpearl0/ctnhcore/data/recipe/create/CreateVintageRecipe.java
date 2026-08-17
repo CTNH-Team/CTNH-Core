@@ -113,6 +113,7 @@ public final class CreateVintageRecipe {
     }
 
     private static void addVintageImprovementsRecipes(Consumer<FinishedRecipe> provider) {
+        addCurvingDoublePlateRecipes(provider);
         CoilingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/iron_spring"))
                 .input(ChemicalHelper.get(TagPrefix.rodLong, GTMaterials.Iron))
                 .result(ChemicalHelper.get(TagPrefix.spring, GTMaterials.Iron))
@@ -413,6 +414,44 @@ public final class CreateVintageRecipe {
         VibratingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/steel_block_to_ingots"))
                 .input(ChemicalHelper.get(TagPrefix.block, GTMaterials.Steel))
                 .result(ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Steel, 9))
+                .save(provider);
+    }
+
+    private static void addCurvingDoublePlateRecipes(Consumer<FinishedRecipe> provider) {
+        CurvingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/brass_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Brass))
+                .head(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Brass))
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Brass))
+                .save(provider);
+        CurvingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/copper_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Copper))
+                .head(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Copper))
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Copper))
+                .save(provider);
+        CurvingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/bronze_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Bronze))
+                .head(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Bronze))
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Bronze))
+                .save(provider);
+        CurvingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/iron_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Iron))
+                .head(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Iron))
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Iron))
+                .save(provider);
+        CurvingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/wrought_iron_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
+                .head(ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.WroughtIron))
+                .save(provider);
+        CurvingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/steel_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
+                .head(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Steel))
+                .save(provider);
+        CurvingRecipeBuilder.builder(CTNHCore.id("vintageimprovements/gold_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Gold))
+                .head(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Gold))
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Gold))
                 .save(provider);
     }
 
