@@ -688,7 +688,75 @@ public class CreateRecipes {
                     .loops(4)
                     .save(provider);
         }
+        addDoublePlateSequences(provider);
         addMigratedKubeJsCreateRecipes(provider);
+    }
+
+    private static void addDoublePlateSequences(Consumer<FinishedRecipe> provider) {
+        // 序列组装：x板 -> 机械手部署同种x板 -> 动力冲压 -> x双层板
+        com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
+                .builder(CTNHCore.id("brass_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Brass))
+                .transitional(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Brass))
+                .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Brass))
+                .pressing()
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Brass))
+                .loops(1)
+                .save(provider);
+        com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
+                .builder(CTNHCore.id("copper_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Copper))
+                .transitional(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Copper))
+                .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Copper))
+                .pressing()
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Copper))
+                .loops(1)
+                .save(provider);
+        com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
+                .builder(CTNHCore.id("bronze_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Bronze))
+                .transitional(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Bronze))
+                .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Bronze))
+                .pressing()
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Bronze))
+                .loops(1)
+                .save(provider);
+        com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
+                .builder(CTNHCore.id("iron_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Iron))
+                .transitional(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Iron))
+                .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Iron))
+                .pressing()
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Iron))
+                .loops(1)
+                .save(provider);
+        com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
+                .builder(CTNHCore.id("wrought_iron_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
+                .transitional(ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
+                .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
+                .pressing()
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.WroughtIron))
+                .loops(1)
+                .save(provider);
+        com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
+                .builder(CTNHCore.id("steel_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
+                .transitional(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
+                .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
+                .pressing()
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Steel))
+                .loops(1)
+                .save(provider);
+        com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
+                .builder(CTNHCore.id("gold_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Gold))
+                .transitional(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Gold))
+                .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Gold))
+                .pressing()
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Gold))
+                .loops(1)
+                .save(provider);
     }
 
     private static void addMigratedKubeJsCreateRecipes(Consumer<FinishedRecipe> provider) {
