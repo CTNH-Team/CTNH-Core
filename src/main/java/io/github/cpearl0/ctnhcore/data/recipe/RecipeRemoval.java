@@ -84,8 +84,6 @@ public class RecipeRemoval {
         biofactoryRemovals();
         biomancyRemovals();
         biomesoplentyRemovals();
-        bloodmagicRemovals();
-        botaniaRemovals();
         createdieselgeneratorsRemovals();
         createoreexcavationRemovals();
         ctnhcoreRemovals();
@@ -261,26 +259,6 @@ public class RecipeRemoval {
 
     public static void biomesoplentyRemovals() {
         remove(new RemoveFilter().id("biomesoplenty:tnt_from_bop_sand"));
-    }
-
-    public static void bloodmagicRemovals() {
-        remove(new RemoveFilter().id("bloodmagic:smelting/ingot_copper"));
-        remove(new RemoveFilter().id("bloodmagic:smelting/blasting_ingot_copper"));
-        remove(new RemoveFilter().id("bloodmagic:smelting/ingot_iron"));
-        remove(new RemoveFilter().id("bloodmagic:smelting/ingot_gold"));
-        remove(new RemoveFilter().id("bloodmagic:smelting/blasting_ingot_gold"));
-        remove(new RemoveFilter().mod("bloodmagic").type("bloodmagic:altar"));
-        remove(new RemoveFilter().mod("bloodmagic").type("bloodmagic:soulforge"));
-    }
-
-    public static void botaniaRemovals() {
-        remove(new RemoveFilter().id("botania:creative_pool"));
-        remove(new RemoveFilter().id("botania:mana_fluxfield"));
-        remove(new RemoveFilter().id("botania:lens_normal"));
-        remove(new RemoveFilter().id("botania:lens_magnet"));
-        remove(new RemoveFilter().idRegex("botania:apothecary_.*"));
-        remove(new RemoveFilter().mod("botania").type("botania:petal_apothecary"));
-        remove(new RemoveFilter().mod("botania").type("botania:runic_altar"));
     }
 
     public static void createdieselgeneratorsRemovals() {
