@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.rareearth.ProcessControlProfile;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 
 import com.gregtechceu.gtceu.api.GTValues;
@@ -37,6 +38,8 @@ public class LuvModifyRecipe {
                 .inputItems(TagPrefix.dust, Copper)
                 .inputFluids(Oxygen, 3000)
                 .outputItems(CBBlocks.CONSCIOUSNESS_SENSOR_GLASS.asItem())
+                .addData(ProcessControlProfile.PRIMARY_RECIPE_DATA, 252)
+                .addData(ProcessControlProfile.SECONDARY_RECIPE_DATA, 42)
                 .blastFurnaceTemp(5400)
                 .EUt(GTValues.V[GTValues.LuV])
                 .save(provider);

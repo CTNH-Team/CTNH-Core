@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe.migrated;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.rareearth.ProcessControlProfile;
 import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.data.materials.NewExplosivesProductionMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.YeastRelatedMaterials;
@@ -2088,6 +2089,8 @@ public class GtceuScriptRecipes {
                 .inputItems(foil, Copper, 32)
                 .inputFluids(Tungsten.getFluid(288))
                 .outputItems(gem, BedrockMaterials.TUNGSTENCU_DIAMOND_PLATING)
+                .addData(ProcessControlProfile.PRIMARY_RECIPE_DATA, 27)
+                .addData(ProcessControlProfile.SECONDARY_RECIPE_DATA, 122)
                 .EUt(491520).duration(1000)
                 .blastFurnaceTemp(10800)
                 .save(provider);

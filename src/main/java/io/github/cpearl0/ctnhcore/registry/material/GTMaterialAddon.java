@@ -53,11 +53,12 @@ public class GTMaterialAddon {
         Rhenium.addFlags(GENERATE_PLATE);
         Calcium.setProperty(PropertyKey.INGOT, new IngotProperty());
         Gadolinium.setProperty(PropertyKey.DUST, new DustProperty());
-        // Terbium.setProperty(PropertyKey.DUST, new DustProperty());
+        CTNHMaterials.addDust(Praseodymium);
+        CTNHMaterials.addDust(Terbium);
         Dysprosium.setProperty(PropertyKey.DUST, new DustProperty());
         Dysprosium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         Holmium.setProperty(PropertyKey.DUST, new DustProperty());
-        // Erbium.setProperty(PropertyKey.DUST, new DustProperty());
+        CTNHMaterials.addDust(Erbium);
         Thulium.setProperty(PropertyKey.DUST, new DustProperty());
         Thulium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         Ytterbium.setProperty(PropertyKey.DUST, new DustProperty());

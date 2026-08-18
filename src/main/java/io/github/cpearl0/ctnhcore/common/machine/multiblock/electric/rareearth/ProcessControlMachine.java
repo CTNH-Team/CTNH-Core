@@ -34,8 +34,8 @@ import java.util.function.Consumer;
 public interface ProcessControlMachine extends IRecipeLogicMachine, IDisplayUIMachine {
 
     int SETTLE_TICKS_PER_TUNE = 60;
-    int RUNS_PER_TUNE = 360;
-    int HOLD_MULTIPLIER = 360;
+    int RUNS_PER_TUNE = 120;
+    int HOLD_MULTIPLIER = 120;
 
     ProcessControlProfile getProcessProfile();
 
@@ -76,6 +76,10 @@ public interface ProcessControlMachine extends IRecipeLogicMachine, IDisplayUIMa
     int getRunsLeft();
 
     void setRunsLeft(int value);
+
+    boolean isMaintenanceDue();
+
+    void setMaintenanceDueValue(boolean value);
 
     long getPendingHoldEU();
 
@@ -228,12 +232,18 @@ public interface ProcessControlMachine extends IRecipeLogicMachine, IDisplayUIMa
             return;
         }
         if (getSettleTicks() <= 0) {
+            if (isMaintenanceDue() && getRunsLeft() <= 0 &&
+                    getPendingHoldEU() <= 0 && getPendingHoldA() <= 0 && getPendingHoldB() <= 0) {
+                setMaintenanceDueValue(false);
+                setRunsLeft(RUNS_PER_TUNE);
+                self().markDirty();
+            }
             getRecipeLogic().updateTickSubscription();
             return;
         }
         setSettleTicks(getSettleTicks() - 1);
         if (getSettleTicks() <= 0) {
-            setRunsLeft(RUNS_PER_TUNE);
+            queueHoldUpkeep();
         }
         self().markDirty();
         getRecipeLogic().updateTickSubscription();
@@ -241,6 +251,7 @@ public interface ProcessControlMachine extends IRecipeLogicMachine, IDisplayUIMa
 
     default void queueHoldUpkeep() {
         var profile = getProcessProfile();
+        setMaintenanceDueValue(true);
         int primary = getPrimarySetting();
         int secondary = getSecondarySetting();
         setPendingHoldEU(getPendingHoldEU() + profile.holdEUt(primary, secondary) * HOLD_MULTIPLIER);
@@ -332,6 +343,36 @@ public interface ProcessControlMachine extends IRecipeLogicMachine, IDisplayUIMa
                 profile.secondary().targetMax(getSecondaryTarget())));
         var holdA = profile.holdFluidA(primary, secondary);
         var holdB = profile.holdFluidB(primary, secondary);
+        var tuningA = profile.primeFluidA();
+        var tuningB = profile.primeFluidB();
+        StringBuilder tuningText = new StringBuilder();
+        if (!tuningA.isEmpty()) {
+            tuningText.append(tuningA.getDisplayName().getString()).append(" ").append(tuningA.getAmount())
+                    .append("mB");
+        }
+        if (!tuningB.isEmpty()) {
+            if (tuningText.length() > 0) {
+                tuningText.append("、");
+            }
+            tuningText.append(tuningB.getDisplayName().getString()).append(" ").append(tuningB.getAmount())
+                    .append("mB");
+        }
+        textList.add(ProcessControlProfile.tuningSupply(Component.literal(tuningText.toString()))
+                .copy().withStyle(ChatFormatting.GRAY));
+        StringBuilder maintenanceText = new StringBuilder();
+        if (!holdA.isEmpty()) {
+            maintenanceText.append(holdA.getDisplayName().getString()).append(" ")
+                    .append(holdA.getAmount() * HOLD_MULTIPLIER).append("mB");
+        }
+        if (!holdB.isEmpty()) {
+            if (maintenanceText.length() > 0) {
+                maintenanceText.append("、");
+            }
+            maintenanceText.append(holdB.getDisplayName().getString()).append(" ")
+                    .append(holdB.getAmount() * HOLD_MULTIPLIER).append("mB");
+        }
+        textList.add(ProcessControlProfile.maintenanceSupply(Component.literal(maintenanceText.toString()))
+                .copy().withStyle(ChatFormatting.GRAY));
         StringBuilder holdExtra = new StringBuilder();
         if (!holdA.isEmpty()) {
             holdExtra.append(ProcessControlProfile.holdFluidPart(

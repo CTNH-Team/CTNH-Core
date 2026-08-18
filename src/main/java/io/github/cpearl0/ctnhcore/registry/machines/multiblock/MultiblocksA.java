@@ -214,13 +214,13 @@ public class MultiblocksA {
     public static Lang condensingDiscreteTooltip2;
 
 
-    @CN("§e维持：§f每 360 次运行结算：回流泵 2×回流×360 EU；冷媒 0.5×冷量%×360 mB 蒸馏水")
-    @EN("§eHold: §fSettled per 360 runs: Pump 2x Reflux x360 EU; Coolant 0.5x Cooling% x360 mB Distilled Water")
+    @CN("§e维持：§f每 120 次运行结算：回流泵 2×回流×120 EU；冷媒 0.5×冷量%×120 mB 润滑油")
+    @EN("§eHold: §fSettled per 120 runs: Pump 2x Reflux x120 EU; Coolant 0.5x Cooling% x120 mB Lubricant")
     public static Lang condensingDiscreteTooltip3;
 
 
-    @CN("§e调参：§f每次调参需稳定 3 秒；完成后获得 360 次运行额度，期间不能开工")
-    @EN("§eRetune: §fEach retune settles for 3 s, then grants a 360-run quota; cannot start while settling")
+    @CN("§e调参：§f每次调参需稳定 3 秒；稳定后需支付维护原料才能获得 120 次运行额度，期间不能开工")
+    @EN("§eRetune: §fEach retune settles for 3 s; maintenance supplies must then be paid to grant a 120-run quota; cannot start while settling")
     public static Lang condensingDiscreteTooltip4;
 
 
@@ -228,8 +228,8 @@ public class MultiblocksA {
     @EN("§aStarts once calibrated and quota remains; §cpauses when quota or supplies run out; §6locked while running")
     public static Lang condensingDiscreteTooltip5;
 
-    @CN("§d调参原料：§f每次调参消耗 500 mB 蒸馏水")
-    @EN("§dTuning Material: §fEach retune consumes 500 mB Distilled Water")
+    @CN("§d调参原料：§f每次调参消耗 500 mB 盐水")
+    @EN("§dTuning Material: §fEach retune consumes 500 mB Salt Water")
     public static Lang condensingDiscreteTooltip6;
 
 
@@ -244,13 +244,13 @@ public class MultiblocksA {
     public static Lang crystallizerTooltip2;
 
 
-    @CN("§e维持：§f每 360 次运行结算：冷媒 冷却÷10×360 mB 水 + 制冷 4×冷却×360 EU；搅拌 2×(过饱和-100)×360 EU")
-    @EN("§eHold: §fSettled per 360 runs: Coolant Cooling/10 x360 mB Water + 4x Cooling x360 EU; Stirring 2x(Supersat-100) x360 EU")
+    @CN("§e维持：§f每 120 次运行结算：冷媒 冷却÷10×120 mB 盐水 + 制冷 4×冷却×120 EU；搅拌 2×(过饱和-100)×120 EU")
+    @EN("§eHold: §fSettled per 120 runs: Coolant Cooling/10 x120 mB Salt Water + 4x Cooling x120 EU; Stirring 2x(Supersat-100) x120 EU")
     public static Lang crystallizerTooltip3;
 
 
-    @CN("§e调参：§f每次调参需稳定 3 秒；完成后获得 360 次运行额度，期间不能开工")
-    @EN("§eRetune: §fEach retune settles for 3 s, then grants a 360-run quota; cannot start while settling")
+    @CN("§e调参：§f每次调参需稳定 3 秒；稳定后需支付维护原料才能获得 120 次运行额度，期间不能开工")
+    @EN("§eRetune: §fEach retune settles for 3 s; maintenance supplies must then be paid to grant a 120-run quota; cannot start while settling")
     public static Lang crystallizerTooltip4;
 
 
@@ -258,8 +258,8 @@ public class MultiblocksA {
     @EN("§aStarts once calibrated and quota remains; §cpauses when quota or supplies run out; §6locked while running")
     public static Lang crystallizerTooltip5;
 
-    @CN("§d调参原料：§f每次调参消耗 1000 mB 蒸馏水")
-    @EN("§dTuning Material: §fEach retune consumes 1000 mB Distilled Water")
+    @CN("§d调参原料：§f每次调参消耗 1000 mB 盐水")
+    @EN("§dTuning Material: §fEach retune consumes 1000 mB Salt Water")
     public static Lang crystallizerTooltip6;
 
 
@@ -274,13 +274,13 @@ public class MultiblocksA {
     public static Lang highPressureAlkaliDigesterTooltip2;
 
 
-    @CN("§e维持：§f每 360 次运行结算：蒸汽 压力÷20×360 EU；NaOH 浓度%÷5×360 mB")
-    @EN("§eHold: §fSettled per 360 runs: Steam Pressure/20 x360 EU; NaOH Conc%/5 x360 mB")
+    @CN("§e维持：§f每 120 次运行结算：蒸汽 压力÷20×120 EU；NaOH 浓度%÷5×120 mB")
+    @EN("§eHold: §fSettled per 120 runs: Steam Pressure/20 x120 EU; NaOH Conc%/5 x120 mB")
     public static Lang highPressureAlkaliDigesterTooltip3;
 
 
-    @CN("§e调参：§f每次调参需稳定 3 秒；完成后获得 360 次运行额度，期间不能开工")
-    @EN("§eRetune: §fEach retune settles for 3 s, then grants a 360-run quota; cannot start while settling")
+    @CN("§e调参：§f每次调参需稳定 3 秒；稳定后需支付维护原料才能获得 120 次运行额度，期间不能开工")
+    @EN("§eRetune: §fEach retune settles for 3 s; maintenance supplies must then be paid to grant a 120-run quota; cannot start while settling")
     public static Lang highPressureAlkaliDigesterTooltip4;
 
 
@@ -288,8 +288,8 @@ public class MultiblocksA {
     @EN("§aStarts once calibrated and quota remains; §cpauses when quota or supplies run out; §6locked while running")
     public static Lang highPressureAlkaliDigesterTooltip5;
 
-    @CN("§d调参原料：§f每次调参消耗 250 mB 氢氧化钠 + 500 mB 蒸馏水")
-    @EN("§dTuning Material: §fEach retune consumes 250 mB Sodium Hydroxide + 500 mB Distilled Water")
+    @CN("§d调参原料：§f每次调参消耗 250 mB 氢氧化钠 + 500 mB 水")
+    @EN("§dTuning Material: §fEach retune consumes 250 mB Sodium Hydroxide + 500 mB Water")
     public static Lang highPressureAlkaliDigesterTooltip6;
 
 
@@ -304,13 +304,13 @@ public class MultiblocksA {
     public static Lang oxidationRoastingFurnaceTooltip2;
 
 
-    @CN("§e维持：§f每 360 次运行结算：氧气 (氧%-90)×360 mB；传动 32×转速×360 EU")
-    @EN("§eHold: §fSettled per 360 runs: Oxygen (O₂%-90) x360 mB; Drive 32x rpm x360 EU")
+    @CN("§e维持：§f每 120 次运行结算：氧气 (氧%-90)×120 mB；传动 32×转速×120 EU")
+    @EN("§eHold: §fSettled per 120 runs: Oxygen (O₂%-90) x120 mB; Drive 32x rpm x120 EU")
     public static Lang oxidationRoastingFurnaceTooltip3;
 
 
-    @CN("§e调参：§f每次调参需稳定 3 秒；完成后获得 360 次运行额度，期间不能开工")
-    @EN("§eRetune: §fEach retune settles for 3 s, then grants a 360-run quota; cannot start while settling")
+    @CN("§e调参：§f每次调参需稳定 3 秒；稳定后需支付维护原料才能获得 120 次运行额度，期间不能开工")
+    @EN("§eRetune: §fEach retune settles for 3 s; maintenance supplies must then be paid to grant a 120-run quota; cannot start while settling")
     public static Lang oxidationRoastingFurnaceTooltip4;
 
 
@@ -334,13 +334,13 @@ public class MultiblocksA {
     public static Lang reductionPrecipitationTankTooltip2;
 
 
-    @CN("§e维持：§f每 360 次运行结算：电解 (200-电位)÷10×360 EU；酸/碱 |pH×100-400|÷20×360 mB；锌粉每轮 (200-电位)÷100 个")
-    @EN("§eHold: §fSettled per 360 runs: Electrolysis (200-mV)/10 x360 EU; Acid/Alkali |pHx100-400|/20 x360 mB; Zinc Dust (200-mV)/100 per batch")
+    @CN("§e维持：§f每 120 次运行结算：电解 (200-电位)÷10×120 EU；酸/碱 |pH×100-400|÷20×120 mB")
+    @EN("§eHold: §fSettled per 120 runs: Electrolysis (200-mV)/10 x120 EU; Acid/Alkali |pHx100-400|/20 x120 mB")
     public static Lang reductionPrecipitationTankTooltip3;
 
 
-    @CN("§e调参：§f每次调参需稳定 3 秒；完成后获得 360 次运行额度，期间不能开工")
-    @EN("§eRetune: §fEach retune settles for 3 s, then grants a 360-run quota; cannot start while settling")
+    @CN("§e调参：§f每次调参需稳定 3 秒；稳定后需支付维护原料才能获得 120 次运行额度，期间不能开工")
+    @EN("§eRetune: §fEach retune settles for 3 s; maintenance supplies must then be paid to grant a 120-run quota; cannot start while settling")
     public static Lang reductionPrecipitationTankTooltip4;
 
 
@@ -348,8 +348,8 @@ public class MultiblocksA {
     @EN("§aStarts once calibrated and quota remains; §cpauses when quota or supplies run out; §6locked while running")
     public static Lang reductionPrecipitationTankTooltip5;
 
-    @CN("§d调参原料：§f每次调参消耗 500 mB 蒸馏水")
-    @EN("§dTuning Material: §fEach retune consumes 500 mB Distilled Water")
+    @CN("§d调参原料：§f每次调参消耗 500 mB 硫酸")
+    @EN("§dTuning Material: §fEach retune consumes 500 mB Sulfuric Acid")
     public static Lang reductionPrecipitationTankTooltip6;
 
 
@@ -364,13 +364,13 @@ public class MultiblocksA {
     public static Lang solventExtractionTowerTooltip2;
 
 
-    @CN("§e维持：§f每 360 次运行结算：酸/碱 |pH×100-450|÷25×360 mB；有机相 O/A×100÷20×360 mB")
-    @EN("§eHold: §fSettled per 360 runs: Acid/Alkali |pHx100-450|/25 x360 mB; Organic Phase O/Ax100/20 x360 mB")
+    @CN("§e维持：§f每 120 次运行结算：酸/碱 |pH×100-450|÷25×120 mB；有机相 O/A×100÷20×120 mB")
+    @EN("§eHold: §fSettled per 120 runs: Acid/Alkali |pHx100-450|/25 x120 mB; Organic Phase O/Ax100/20 x120 mB")
     public static Lang solventExtractionTowerTooltip3;
 
 
-    @CN("§e调参：§f每次调参需稳定 3 秒；完成后获得 360 次运行额度，期间不能开工")
-    @EN("§eRetune: §fEach retune settles for 3 s, then grants a 360-run quota; cannot start while settling")
+    @CN("§e调参：§f每次调参需稳定 3 秒；稳定后需支付维护原料才能获得 120 次运行额度，期间不能开工")
+    @EN("§eRetune: §fEach retune settles for 3 s; maintenance supplies must then be paid to grant a 120-run quota; cannot start while settling")
     public static Lang solventExtractionTowerTooltip4;
 
 
@@ -606,13 +606,13 @@ public class MultiblocksA {
     public static Lang ionExchangerTooltip2;
 
 
-    @CN("§e维持：§f每 360 次运行结算：泵 8×流量×360 EU；盐酸 pH×100÷40×360 mB；每轮再生酸 250 mB")
-    @EN("§eHold: §fSettled per 360 runs: Pump 8x Flow x360 EU; HCl pHx100/40 x360 mB; Resin Regeneration 250 mB per batch")
+    @CN("§e维持：§f每 120 次运行结算：泵 8×流量×120 EU；盐酸 pH×100÷40×120 mB")
+    @EN("§eHold: §fSettled per 120 runs: Pump 8x Flow x120 EU; HCl pHx100/40 x120 mB")
     public static Lang ionExchangerTooltip3;
 
 
-    @CN("§e调参：§f每次调参需稳定 3 秒；完成后获得 360 次运行额度，期间不能开工")
-    @EN("§eRetune: §fEach retune settles for 3 s, then grants a 360-run quota; cannot start while settling")
+    @CN("§e调参：§f每次调参需稳定 3 秒；稳定后需支付维护原料才能获得 120 次运行额度，期间不能开工")
+    @EN("§eRetune: §fEach retune settles for 3 s; maintenance supplies must then be paid to grant a 120-run quota; cannot start while settling")
     public static Lang ionExchangerTooltip4;
 
 
@@ -620,8 +620,8 @@ public class MultiblocksA {
     @EN("§aStarts once calibrated and quota remains; §cpauses when quota or supplies run out; §6locked while running")
     public static Lang ionExchangerTooltip5;
 
-    @CN("§d调参原料：§f每次调参消耗 1000 mB 蒸馏水")
-    @EN("§dTuning Material: §fEach retune consumes 1000 mB Distilled Water")
+    @CN("§d调参原料：§f每次调参消耗 1000 mB 盐酸")
+    @EN("§dTuning Material: §fEach retune consumes 1000 mB Hydrochloric Acid")
     public static Lang ionExchangerTooltip6;
 
 
@@ -1082,13 +1082,13 @@ public class MultiblocksA {
     public static Lang vacuumSinteringTowerTooltip2;
 
 
-    @CN("§e维持：§f每 360 次运行结算：真空泵 8×√(500÷压力)×360 EU；加热 6×升温×360 EU")
-    @EN("§eHold: §fSettled per 360 runs: Pump 8x√(500/Pressure) x360 EU; Heating 6x Ramp x360 EU")
+    @CN("§e维持：§f每 120 次运行结算：真空泵 8×√(500÷压力)×120 EU；加热 6×升温×120 EU；氮气 500×120 mB")
+    @EN("§eHold: §fSettled per 120 runs: Pump 8x√(500/Pressure) x120 EU; Heating 6x Ramp x120 EU; Nitrogen 500 x120 mB")
     public static Lang vacuumSinteringTowerTooltip3;
 
 
-    @CN("§e调参：§f每次调参需稳定 3 秒；完成后获得 360 次运行额度，期间不能开工")
-    @EN("§eRetune: §fEach retune settles for 3 s, then grants a 360-run quota; cannot start while settling")
+    @CN("§e调参：§f每次调参需稳定 3 秒；稳定后需支付维护原料才能获得 120 次运行额度，期间不能开工")
+    @EN("§eRetune: §fEach retune settles for 3 s; maintenance supplies must then be paid to grant a 120-run quota; cannot start while settling")
     public static Lang vacuumSinteringTowerTooltip4;
 
 

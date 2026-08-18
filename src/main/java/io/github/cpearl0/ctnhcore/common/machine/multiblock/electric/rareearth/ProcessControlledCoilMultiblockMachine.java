@@ -47,6 +47,9 @@ public class ProcessControlledCoilMultiblockMachine extends CoilWorkableElectric
     private int runsLeft;
     @Persisted
     @DescSynced
+    private boolean maintenanceDue;
+    @Persisted
+    @DescSynced
     private long pendingHoldEU;
     @Persisted
     @DescSynced
@@ -158,6 +161,16 @@ public class ProcessControlledCoilMultiblockMachine extends CoilWorkableElectric
     }
 
     @Override
+    public boolean isMaintenanceDue() {
+        return maintenanceDue;
+    }
+
+    @Override
+    public void setMaintenanceDueValue(boolean value) {
+        maintenanceDue = value;
+    }
+
+    @Override
     public long getPendingHoldEU() {
         return pendingHoldEU;
     }
@@ -195,7 +208,7 @@ public class ProcessControlledCoilMultiblockMachine extends CoilWorkableElectric
     @Override
     public boolean keepSubscribing() {
         return getSettleTicks() > 0 || getPendingPrimeA() > 0 || getPendingPrimeB() > 0 ||
-                getPendingHoldEU() > 0 || getPendingHoldA() > 0 || getPendingHoldB() > 0;
+                getPendingHoldEU() > 0 || getPendingHoldA() > 0 || getPendingHoldB() > 0 || isMaintenanceDue();
     }
 
     @Override
@@ -228,5 +241,6 @@ public class ProcessControlledCoilMultiblockMachine extends CoilWorkableElectric
         settleTicks = 0;
         pendingPrimeA = 0;
         pendingPrimeB = 0;
+        maintenanceDue = false;
     }
 }

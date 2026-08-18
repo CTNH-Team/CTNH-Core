@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.rareearth.ProcessControlProfile;
 import io.github.cpearl0.ctnhcore.data.item.CrystalItems;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.MarkerMaterials;
@@ -452,6 +453,8 @@ public class AeCrystalScienceRecipes {
                 .inputItems(AECSItems.ENDER_QUARTZ_SEED, 8)
                 .inputFluids(ENDER_STEEL.getFluid(L * 2))
                 .outputItems(AECSItems.PURE_ENDER_QUARTZ, 8)
+                .addData(ProcessControlProfile.PRIMARY_RECIPE_DATA, 27)
+                .addData(ProcessControlProfile.SECONDARY_RECIPE_DATA, 122)
                 .blastFurnaceTemp(5100)
                 .EUt(VA[IV]).duration(300)
                 .save(provider);
@@ -472,6 +475,8 @@ public class AeCrystalScienceRecipes {
                 .inputItems(AECSItems.CERTUS_QUARTZ_SEED, 8)
                 .inputFluids(DistilledWater.getFluid(100))
                 .outputItems(AECSItems.PURE_CERTUS_QUARTZ_CRYSTAL, 8)
+                .addData(ProcessControlProfile.PRIMARY_RECIPE_DATA, 27)
+                .addData(ProcessControlProfile.SECONDARY_RECIPE_DATA, 122)
                 .blastFurnaceTemp(2700)
                 .EUt(VA[IV]).duration(100)
                 .save(provider);
@@ -492,6 +497,8 @@ public class AeCrystalScienceRecipes {
                 .inputItems(AECSItems.NETHER_QUARTZ_SEED, 8)
                 .inputFluids(DistilledWater.getFluid(100))
                 .outputItems(AECSItems.PURE_NETHER_QUARTZ_CRYSTAL, 8)
+                .addData(ProcessControlProfile.PRIMARY_RECIPE_DATA, 27)
+                .addData(ProcessControlProfile.SECONDARY_RECIPE_DATA, 122)
                 .blastFurnaceTemp(5500)
                 .EUt(VA[IV]).duration(100)
                 .save(provider);
@@ -514,6 +521,8 @@ public class AeCrystalScienceRecipes {
                 .inputItems(AECSItems.FLUIX_CRYSTAL_SEED, 8)
                 .inputFluids(Redstone.getFluid(2000))
                 .outputItems(AECSItems.PURE_FLUIX_CRYSTAL, 8)
+                .addData(ProcessControlProfile.PRIMARY_RECIPE_DATA, 27)
+                .addData(ProcessControlProfile.SECONDARY_RECIPE_DATA, 122)
                 .blastFurnaceTemp(5500)
                 .EUt(VA[IV]).duration(150)
                 .save(provider);
@@ -536,6 +545,8 @@ public class AeCrystalScienceRecipes {
                 .inputItems(AECSItems.METEOR_SEED, 8)
                 .inputFluids(Lava.getFluid(2000))
                 .outputItems(AECSItems.PURE_METEOR_CRYSTAL, 8)
+                .addData(ProcessControlProfile.PRIMARY_RECIPE_DATA, 27)
+                .addData(ProcessControlProfile.SECONDARY_RECIPE_DATA, 122)
                 .blastFurnaceTemp(5500)
                 .EUt(VA[IV]).duration(150)
                 .save(provider);
@@ -565,6 +576,8 @@ public class AeCrystalScienceRecipes {
                 .inputItems(AECSItems.RESONATING_SEED, 8)
                 .inputFluids(BlueSteel.getFluid(L * 2))
                 .outputItems(AECSItems.PURE_RESONATING_CRYSTAL, 8)
+                .addData(ProcessControlProfile.PRIMARY_RECIPE_DATA, 27)
+                .addData(ProcessControlProfile.SECONDARY_RECIPE_DATA, 122)
                 .blastFurnaceTemp(5500)
                 .EUt(VA[IV]).duration(300)
                 .save(provider);

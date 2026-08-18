@@ -1,8 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.rareearth;
 
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
-import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import net.minecraft.nbt.Tag;
@@ -78,9 +76,17 @@ public enum ProcessControlProfile {
     @EN("Waiting for priming medium: %s")
     static Lang waitingForPrime;
 
-    @CN("维持结算（每360次）: %s EU%s")
-    @EN("Hold Settlement (per 360 runs): %s EU%s")
+    @CN("维护结算（每120次）: %s EU%s")
+    @EN("Maintenance Settlement (per 120 runs): %s EU%s")
     static Lang holdCostLine;
+
+    @CN("维护原料: %s")
+    @EN("Maintenance Supplies: %s")
+    static Lang maintenanceSupply;
+
+    @CN("调参原料: %s")
+    @EN("Tuning Supplies: %s")
+    static Lang tuningSupply;
 
     @CN("；%s mB %s")
     @EN("; %s mB %s")
@@ -98,8 +104,8 @@ public enum ProcessControlProfile {
     @EN("Run Quota: %s/%s")
     static Lang runQuota;
 
-    @CN("运行额度已耗尽，请重新调参")
-    @EN("Run quota exhausted; re-tune to continue")
+    @CN("运行额度已耗尽，请补充维护原料")
+    @EN("Run quota exhausted; supply maintenance materials")
     static Lang runsExhausted;
 
     @CN("等待维持材料结算: %s")
@@ -321,6 +327,14 @@ public enum ProcessControlProfile {
         return holdCostLine.translate(eu, fluids);
     }
 
+    public static Component maintenanceSupply(Component supplies) {
+        return maintenanceSupply.translate(supplies);
+    }
+
+    public static Component tuningSupply(Component supplies) {
+        return tuningSupply.translate(supplies);
+    }
+
     public static Component holdFluidPart(Component amount, Component name) {
         return holdFluidPart.translate(amount, name);
     }
@@ -364,23 +378,24 @@ public enum ProcessControlProfile {
 
     public FluidStack holdFluidA(int primaryValue, int secondaryValue) {
         return switch (this) {
-            case CONDENSING_DISCRETE -> GTMaterials.DistilledWater.getFluid(secondaryValue / 2);
+            case CONDENSING_DISCRETE -> GTMaterials.Lubricant.getFluid(Math.max(1, secondaryValue / 2));
             case OXIDATION_ROASTING -> GTMaterials.Oxygen.getFluid(Math.max(1, primaryValue - 90));
-            case HIGH_PRESSURE_ALKALI_DIGESTION ->
-                    GTMaterials.SodiumHydroxide.getFluid(Math.max(1, secondaryValue / 5));
+            case HIGH_PRESSURE_ALKALI_DIGESTION -> GTMaterials.SodiumHydroxide
+                    .getFluid(Math.max(1, secondaryValue / 5));
             case SOLVENT_EXTRACTION -> {
                 int amount = Math.abs(primaryValue - 450) / 25;
-                yield amount <= 0 ? FluidStack.EMPTY
-                        : (primaryValue < 450 ? GTMaterials.SulfuricAcid : GTMaterials.SodiumHydroxide).getFluid(amount);
+                yield amount <= 0 ? FluidStack.EMPTY :
+                        (primaryValue < 450 ? GTMaterials.SulfuricAcid : GTMaterials.SodiumHydroxide).getFluid(amount);
             }
             case REDUCTION_PRECIPITATION -> {
                 int amount = Math.abs(secondaryValue - 400) / 20;
-                yield amount <= 0 ? FluidStack.EMPTY
-                        : (secondaryValue < 400 ? GTMaterials.SulfuricAcid : GTMaterials.SodiumHydroxide).getFluid(amount);
+                yield amount <= 0 ? FluidStack.EMPTY :
+                        (secondaryValue < 400 ? GTMaterials.SulfuricAcid : GTMaterials.SodiumHydroxide)
+                                .getFluid(amount);
             }
             case ION_EXCHANGE -> GTMaterials.HydrochloricAcid.getFluid(Math.max(1, secondaryValue / 40));
-            case VACUUM_SINTERING -> FluidStack.EMPTY;
-            case CRYSTALLIZATION -> GTMaterials.DistilledWater.getFluid(Math.max(1, primaryValue / 10));
+            case VACUUM_SINTERING -> GTMaterials.Nitrogen.getFluid(500);
+            case CRYSTALLIZATION -> GTMaterials.SaltWater.getFluid(Math.max(1, primaryValue / 10));
         };
     }
 
@@ -393,39 +408,30 @@ public enum ProcessControlProfile {
 
     public FluidStack primeFluidA() {
         return switch (this) {
-            case CONDENSING_DISCRETE -> GTMaterials.DistilledWater.getFluid(500);
+            case CONDENSING_DISCRETE -> GTMaterials.SaltWater.getFluid(500);
             case OXIDATION_ROASTING -> GTMaterials.Oxygen.getFluid(500);
             case HIGH_PRESSURE_ALKALI_DIGESTION -> GTMaterials.SodiumHydroxide.getFluid(250);
             case SOLVENT_EXTRACTION -> GTMaterials.Benzene.getFluid(1000);
-            case REDUCTION_PRECIPITATION -> GTMaterials.DistilledWater.getFluid(500);
-            case ION_EXCHANGE -> GTMaterials.DistilledWater.getFluid(1000);
+            case REDUCTION_PRECIPITATION -> GTMaterials.SulfuricAcid.getFluid(500);
+            case ION_EXCHANGE -> GTMaterials.HydrochloricAcid.getFluid(1000);
             case VACUUM_SINTERING -> GTMaterials.Nitrogen.getFluid(500);
-            case CRYSTALLIZATION -> GTMaterials.DistilledWater.getFluid(1000);
+            case CRYSTALLIZATION -> GTMaterials.SaltWater.getFluid(1000);
         };
     }
 
     public FluidStack primeFluidB() {
         return switch (this) {
-            case HIGH_PRESSURE_ALKALI_DIGESTION -> GTMaterials.DistilledWater.getFluid(500);
+            case HIGH_PRESSURE_ALKALI_DIGESTION -> GTMaterials.Water.getFluid(500);
             default -> FluidStack.EMPTY;
         };
     }
 
     public ItemStack batchItem(int primaryValue) {
-        return switch (this) {
-            case REDUCTION_PRECIPITATION -> {
-                int count = Math.max(0, (200 - primaryValue) / 100);
-                yield count <= 0 ? ItemStack.EMPTY : ChemicalHelper.get(TagPrefix.dust, GTMaterials.Zinc, count);
-            }
-            default -> ItemStack.EMPTY;
-        };
+        return ItemStack.EMPTY;
     }
 
     public FluidStack batchFluid() {
-        return switch (this) {
-            case ION_EXCHANGE -> GTMaterials.HydrochloricAcid.getFluid(250);
-            default -> FluidStack.EMPTY;
-        };
+        return FluidStack.EMPTY;
     }
 
     private int resolveTarget(GTRecipe recipe, String dataKey, Parameter parameter, int salt) {

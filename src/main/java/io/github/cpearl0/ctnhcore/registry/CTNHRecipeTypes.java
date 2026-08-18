@@ -359,42 +359,42 @@ public class CTNHRecipeTypes {
             .setSound(GTSoundEntries.COOLING);
     public static final GTRecipeType OXIDATION_ROASTING = REGISTRATE
             .recipeType(CTNHCore.id("oxidation_roasting"), GTRecipeTypes.ELECTRIC)
-            .cnlang("氧化焙烧").setEUIO(IO.IN).setMaxIOSize(4, 4, 2, 4)
+            .cnlang("氧化焙烧").setEUIO(IO.IN).setMaxIOSize(2, 2, 2, 2)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL)
             .addDataInfo(data -> processControlDataInfo(data, ProcessControlProfile.OXIDATION_ROASTING));
     public static final GTRecipeType HIGH_PRESSURE_ALKALI_DIGESTION = REGISTRATE
             .recipeType(CTNHCore.id("high_pressure_alkali_digestion"), GTRecipeTypes.ELECTRIC)
-            .cnlang("高压碱煮").setEUIO(IO.IN).setMaxIOSize(4, 4, 4, 4)
+            .cnlang("高压碱煮").setEUIO(IO.IN).setMaxIOSize(2, 2, 2, 2)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL)
             .addDataInfo(data -> processControlDataInfo(data, ProcessControlProfile.HIGH_PRESSURE_ALKALI_DIGESTION));
     public static final GTRecipeType SOLVENT_EXTRACTION = REGISTRATE
             .recipeType(CTNHCore.id("solvent_extraction"), GTRecipeTypes.ELECTRIC)
-            .cnlang("溶剂萃取").setEUIO(IO.IN).setMaxIOSize(6, 6, 6, 6)
+            .cnlang("溶剂萃取").setEUIO(IO.IN).setMaxIOSize(2, 2, 4, 4)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL)
             .addDataInfo(data -> processControlDataInfo(data, ProcessControlProfile.SOLVENT_EXTRACTION));
     public static final GTRecipeType REDUCTION_PRECIPITATION = REGISTRATE
             .recipeType(CTNHCore.id("reduction_precipitation"), GTRecipeTypes.ELECTRIC)
-            .cnlang("还原沉淀").setEUIO(IO.IN).setMaxIOSize(6, 6, 6, 6)
+            .cnlang("还原沉淀").setEUIO(IO.IN).setMaxIOSize(2, 2, 2, 2)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL)
             .addDataInfo(data -> processControlDataInfo(data, ProcessControlProfile.REDUCTION_PRECIPITATION));
     public static final GTRecipeType CONDENSING_DISCRETE = REGISTRATE
             .recipeType(CTNHCore.id("condensing_discrete"), GTRecipeTypes.ELECTRIC)
-            .cnlang("冷凝离散").setEUIO(IO.IN).setMaxIOSize(6, 6, 6, 6)
+            .cnlang("冷凝离散").setEUIO(IO.IN).setMaxIOSize(2, 2, 2, 2)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING)
             .addDataInfo(data -> processControlDataInfo(data, ProcessControlProfile.CONDENSING_DISCRETE));
     public static final GTRecipeType ION_EXCHANGER = REGISTRATE
             .recipeType(CTNHCore.id("ion_exchanger"), GTRecipeTypes.ELECTRIC)
-            .cnlang("离子交换").setEUIO(IO.IN).setMaxIOSize(6, 6, 6, 6)
+            .cnlang("离子交换").setEUIO(IO.IN).setMaxIOSize(2, 2, 3, 3)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING)
@@ -455,7 +455,7 @@ public class CTNHRecipeTypes {
             .recipeType(CTNHCore.id("vacuum_sintering"), GTRecipeTypes.ELECTRIC)
             .cnlang("真空烧结")
             .setEUIO(IO.IN)
-            .setMaxIOSize(6, 6, 6, 6)
+            .setMaxIOSize(6, 2, 3, 4)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.ELECTROLYZER)
@@ -483,7 +483,7 @@ public class CTNHRecipeTypes {
             .recipeType(CTNHCore.id("crystallizer"), GTRecipeTypes.ELECTRIC)
             .cnlang("结晶反应")
             .setEUIO(IO.IN)
-            .setMaxIOSize(6, 6, 6, 6)
+            .setMaxIOSize(3, 3, 3, 3)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_CRYSTALLIZATION, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL)

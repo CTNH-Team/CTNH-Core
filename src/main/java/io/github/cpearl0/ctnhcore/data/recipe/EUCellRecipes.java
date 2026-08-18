@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.rareearth.ProcessControlProfile;
 import io.github.cpearl0.ctnhcore.data.item.CrystalItems;
 import io.github.cpearl0.ctnhcore.data.materials.SpecialMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
@@ -174,6 +175,8 @@ public class EUCellRecipes {
                 .inputItems(dust, NetherStar, 10)
                 .inputFluids(STELLAR_ENERGY.getFluid(288))
                 .chancedOutput(CrystalItems.PURE_CERTUS_ENERGIUM_CRYSTAL.asStack(), 7500, 500)
+                .addData(ProcessControlProfile.PRIMARY_RECIPE_DATA, 27)
+                .addData(ProcessControlProfile.SECONDARY_RECIPE_DATA, 122)
                 .blastFurnaceTemp(3200)
                 .duration(2400).EUt(VA[IV]).save(provider);
         FORGE_HAMMER_RECIPES.recipeBuilder(CTNHCore.id("pure_certus_energy_crystal_forge_hammer"))
@@ -193,6 +196,8 @@ public class EUCellRecipes {
                 .inputItems(dust, NetherStar, 20)
                 .inputFluids(STELLAR_ENERGY.getFluid(288))
                 .chancedOutput(CrystalItems.PURE_CERTUS_LAPOTRON_CRYSTAL.asStack(), 7000, 500)
+                .addData(ProcessControlProfile.PRIMARY_RECIPE_DATA, 27)
+                .addData(ProcessControlProfile.SECONDARY_RECIPE_DATA, 122)
                 .blastFurnaceTemp(5100)
                 .duration(4800).EUt(VA[LuV]).save(provider);
         FORGE_HAMMER_RECIPES.recipeBuilder(CTNHCore.id("pure_certus_lapotron_crystal_forge_hammer"))
@@ -231,6 +236,8 @@ public class EUCellRecipes {
                 .inputItems(dust, NetherStar, 30)
                 .inputFluids(STELLAR_ENERGY.getFluid(576))
                 .chancedOutput(CrystalItems.PURE_CERTUS_RESONANCE_CRYSTAL.asStack(), 6500, 750)
+                .addData(ProcessControlProfile.PRIMARY_RECIPE_DATA, 27)
+                .addData(ProcessControlProfile.SECONDARY_RECIPE_DATA, 122)
                 .blastFurnaceTemp(7200)
                 .duration(9600).EUt(VA[ZPM]).save(provider);
         FORGE_HAMMER_RECIPES.recipeBuilder(CTNHCore.id("pure_certus_resonance_crystal_forge_hammer"))
