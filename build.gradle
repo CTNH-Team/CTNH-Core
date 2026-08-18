@@ -1,1 +1,7 @@
 apply from: "$projectDir/dependencies.gradle"
+
+repositories {
+    maven {
+        url = "https://maven.ftb.dev/releases"
+    }
+}

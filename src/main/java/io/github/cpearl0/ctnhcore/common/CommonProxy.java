@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.common;
 import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.ponder.CTNHCorePonderPlugin;
+import io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalItem;
 import io.github.cpearl0.ctnhcore.common.world.CTNHChunkLoading;
 import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
 import io.github.cpearl0.ctnhcore.data.materials.AeCrystalScienceMaterials;
@@ -17,6 +18,7 @@ import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.GTMachineModify;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.material.GTMaterialAddon;
+import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundEvents;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.DimensionMarker;
@@ -41,10 +43,13 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
+import appeng.api.features.GridLinkables;
 import tech.vixhentx.mcmod.ctnhlib.client.ponder.CTNHPonderLang;
 
 import java.util.List;
 import java.util.Set;
+
+import static io.github.cpearl0.ctnhcore.registry.CTNHItems.ME_ADVANCED_TERMINAL;
 
 @SuppressWarnings("removal")
 public class CommonProxy {
@@ -64,6 +69,7 @@ public class CommonProxy {
         modEventBus.addGenericListener(RecipeConditionType.class, CommonProxy::registerRecipeConditions);
 
         CTNHCreativeModeTabs.init();
+        CTNHSoundEvents.SOUND_EVENTS.register(modEventBus);
         CTNHRegistration.REGISTRATE.registerRegistrate();
         CTNHEnchantments.Enchantments.register(modEventBus);
         CTNHRecipes.init(modEventBus);
@@ -104,6 +110,9 @@ public class CommonProxy {
         event.enqueueWork(() -> GTToolType.KNIFE.itemTags.addAll(List.of(
                 TagKey.create(Registries.ITEM, new ResourceLocation("farmersdelight", "straw_harvesters")),
                 TagKey.create(Registries.ITEM, new ResourceLocation("farmersdelight", "tools/knives")))));
+
+        // Register the ME Advanced Terminal as linkable to a grid via an ME Wireless Access Point
+        GridLinkables.register(ME_ADVANCED_TERMINAL, MEAdvancedTerminalItem.LINKABLE_HANDLER);
     }
 
     @SubscribeEvent

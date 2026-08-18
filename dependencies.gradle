@@ -77,6 +77,7 @@ dependencies {
     modImplementation(ctnh.ftbteams)
     modImplementation(ctnh.ftbchunks)
     modImplementation(ctnh.ftbultimine)
+    modCompileOnly("dev.ftb.mods:ftb-essentials-forge:2001.2.4")
 
     modImplementation(ctnh.patchouli)
     modImplementation(ctnh.botania)

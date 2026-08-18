@@ -84,8 +84,6 @@ public class RecipeRemoval {
         biofactoryRemovals();
         biomancyRemovals();
         biomesoplentyRemovals();
-        bloodmagicRemovals();
-        botaniaRemovals();
         createdieselgeneratorsRemovals();
         createoreexcavationRemovals();
         ctnhcoreRemovals();
@@ -263,27 +261,6 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("biomesoplenty:tnt_from_bop_sand"));
     }
 
-    public static void bloodmagicRemovals() {
-        remove(new RemoveFilter().id("bloodmagic:smelting/ingot_copper"));
-        remove(new RemoveFilter().id("bloodmagic:smelting/blasting_ingot_copper"));
-        remove(new RemoveFilter().id("bloodmagic:smelting/ingot_iron"));
-        remove(new RemoveFilter().id("bloodmagic:smelting/ingot_gold"));
-        remove(new RemoveFilter().id("bloodmagic:smelting/blasting_ingot_gold"));
-        remove(new RemoveFilter().mod("bloodmagic").type("bloodmagic:altar"));
-        remove(new RemoveFilter().mod("bloodmagic").type("bloodmagic:soulforge"));
-    }
-
-    public static void botaniaRemovals() {
-        remove(new RemoveFilter().id("botania:creative_pool"));
-        remove(new RemoveFilter().id("botania:mana_fluxfield"));
-        remove(new RemoveFilter().id("botania:lens_normal"));
-        remove(new RemoveFilter().id("botania:lens_magnet"));
-        remove(new RemoveFilter().idRegex("botania:apothecary_.*"));
-        remove(new RemoveFilter().mod("botania").type("botania:petal_apothecary"));
-        remove(new RemoveFilter().mod("botania").type("botania:runic_altar"));
-        remove(new RemoveFilter().mod("botania").type("botania:terra_plate"));
-    }
-
     public static void createdieselgeneratorsRemovals() {
         remove(new RemoveFilter().id("createdieselgenerators:basin_fermenting/fermented_spider_eye"));
         remove(new RemoveFilter().id("createdieselgenerators:basin_fermenting/fermentable"));
@@ -370,6 +347,7 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("gtceu:assembler/plate_radiation"));
         remove(new RemoveFilter().id("gtceu:electric_blast_furnace/iro2"));
         remove(new RemoveFilter().id("gtceu:shaped/casing_assembly_control"));
+        remove(new RemoveFilter().id("gtceu:shaped/ulv_machine_hull"));
         remove(new RemoveFilter().id("gtceu:shaped/casing_assembly_line"));
         remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_ammonium_chloride"));
         remove(new RemoveFilter().id("gtceu:assembler/mar_casing"));
@@ -391,7 +369,7 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("gtceu:shapeless/fireclay_dust"));
         remove(new RemoveFilter().id("gtceu:shaped/casing_primitive_bricks"));
         remove(new RemoveFilter().idRegex("gtceu:shaped/.*gem.*"));
-        remove(new RemoveFilter().idRegex("gtceu:shaped/.*plate.*"));
+        remove(new RemoveFilter().idRegex("gtceu:shaped/plate_.*"));
         remove(new RemoveFilter().idRegex("gtceu:shapeless/.*(?:chipped|flawed|flawless|exquisite)_gem.*"));
         remove(new RemoveFilter().id("gtceu:large_chemical_reactor/raw_palladium_separation"));
         remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_niobium_oxide"));
@@ -686,6 +664,9 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("vintageimprovements:pressing/uranium_ingot"));
         remove(new RemoveFilter().id("vintageimprovements:pressing/rose_gold_ingot"));
         remove(new RemoveFilter().id("vintageimprovements:pressing/vanadium_ingot"));
+        // 统一到 GT 钒材料：删除 Vintage Improvements 钒锭产出配方
+        remove(new RemoveFilter().id("vintageimprovements:craft/vanadium_nuggets_to_ingot"));
+        remove(new RemoveFilter().id("vintageimprovements:craft/vanadium_block_to_ingots"));
         remove(new RemoveFilter().id("vintageimprovements:pressing/invar_ingot"));
         remove(new RemoveFilter().id("vintageimprovements:pressing/lead_ingot"));
         remove(new RemoveFilter().id("vintageimprovements:pressing/tin_ingot"));

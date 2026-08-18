@@ -165,6 +165,10 @@ public final class CreateVintageRecipe {
                 .input(TagUtil.createItemTag("plates/bronze", false))
                 .result(ChemicalHelper.get(TagPrefix.foil, GTMaterials.Bronze, 3))
                 .save(provider);
+        HammeringRecipeBuilder.builder(CTNHCore.id("vintageimprovements/red_alloy_foil"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.RedAlloy))
+                .result(ChemicalHelper.get(TagPrefix.foil, GTMaterials.RedAlloy, 3))
+                .save(provider);
         TurningRecipeBuilder.builder(CTNHCore.id("vintageimprovements/turning_iron_rod"))
                 .input(new ItemStack(Items.IRON_INGOT))
                 .result(ChemicalHelper.get(TagPrefix.rod, GTMaterials.Iron, 2))

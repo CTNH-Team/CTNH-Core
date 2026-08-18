@@ -4,7 +4,10 @@ import io.github.cpearl0.ctnhcore.CTNHCore;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.DECOMPOSITION_BY_ELECTROLYZING;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.METALLIC;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Chlorine;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Silver;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class CrudeGoldRefiningMaterials {
@@ -88,7 +91,7 @@ public class CrudeGoldRefiningMaterials {
         COPPER_CHLORIDE = REGISTRATE.material(CTNHCore.id("copper_chloride"))
                 .cnlang("氯化铜")
                 .formula("CuCl2")
-                .dust()
+                .liquid()
                 .color(0x6FA5C9)
                 .buildAndRegister();
         SILVER_CHLORIDE = REGISTRATE.material(CTNHCore.id("silver_chloride"))
@@ -96,6 +99,8 @@ public class CrudeGoldRefiningMaterials {
                 .formula("AgCl")
                 .dust()
                 .color(0xD8D8DE)
+                .flags(DECOMPOSITION_BY_ELECTROLYZING)
+                .components(Silver, 1, Chlorine, 1)
                 .buildAndRegister();
     }
 }

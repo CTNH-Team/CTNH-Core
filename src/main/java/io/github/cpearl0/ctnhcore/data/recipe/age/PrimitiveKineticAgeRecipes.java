@@ -94,6 +94,7 @@ public class PrimitiveKineticAgeRecipes {
         addPetroleumRecipes(provider);
         addFirebrickRecipes(provider);
         addRubberRecipes(provider);
+        addCinnabarRecipes(provider);
         addWoodGearRecipes(provider);
         addKineticCraftingRecipes(provider);
         addKineticMechanicalCraftingRecipes(provider);
@@ -685,6 +686,62 @@ public class PrimitiveKineticAgeRecipes {
                 .setCast(TinkerSmeltery.ingotCast.get(), false)
                 .setFluidAndTime(GTMaterials.Rubber.getFluid(FluidValues.INGOT))
                 .save(provider, CTNHCore.id("smeltery/casting/rubber_ingot"));
+
+        // 橡胶板（铸件台浇铸：144 mB 液态橡胶 + 板模具 → 1 橡胶板）
+        ItemCastingRecipeBuilder.tableRecipe(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Rubber).getItem())
+                .setCast(TinkerSmeltery.plateCast.get(), false)
+                .setFluidAndTime(GTMaterials.Rubber.getFluid(FluidValues.INGOT))
+                .save(provider, CTNHCore.id("smeltery/casting/rubber_plate"));
+
+        // 橡胶杆（铸件台浇铸：144 mB 液态橡胶 + 杆模具 → 1 橡胶杆）
+        ItemCastingRecipeBuilder.tableRecipe(ChemicalHelper.get(TagPrefix.rod, GTMaterials.Rubber).getItem())
+                .setCast(TinkerSmeltery.rodCast.get(), false)
+                .setFluidAndTime(GTMaterials.Rubber.getFluid(FluidValues.INGOT))
+                .save(provider, CTNHCore.id("smeltery/casting/rubber_rod"));
+
+        // 橡胶块（铸件盆浇铸：1296 mB 液态橡胶 → 1 橡胶块）
+        ItemCastingRecipeBuilder.basinRecipe(ChemicalHelper.get(TagPrefix.block, GTMaterials.Rubber).getItem())
+                .setFluidAndTime(GTMaterials.Rubber.getFluid(FluidValues.INGOT * 9))
+                .save(provider, CTNHCore.id("smeltery/casting/rubber_block"));
+    }
+
+    private static void addCinnabarRecipes(Consumer<FinishedRecipe> provider) {
+        // 朱砂 x2 离心 -> 硫粉 x1 + 汞 x1000mB（青铜/钢铁时期 ULV）
+        CentrifugationRecipeBuilder.builder(CTNHCore.id("vintageimprovements/cinnabar_centrifugation"))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Cinnabar, 2))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Sulfur))
+                .resultFluid(GTMaterials.Mercury.getFluid(1000))
+                .processingTime(200)
+                .minimalRpm(256)
+                .save(provider);
+
+        // 雄黄 As4S4 x2 离心 -> 砷粉 x1 + 硫粉 x1（青铜/钢铁时期 ULV）
+        CentrifugationRecipeBuilder.builder(CTNHCore.id("vintageimprovements/realgar_centrifugation"))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Realgar, 2))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Arsenic))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Sulfur))
+                .processingTime(200)
+                .minimalRpm(256)
+                .save(provider);
+
+        // 黄铁矿 FeS2 x3 离心 -> 铁粉 x1 + 硫粉 x2（青铜/钢铁时期 ULV）
+        CentrifugationRecipeBuilder.builder(CTNHCore.id("vintageimprovements/pyrite_centrifugation"))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Pyrite, 3))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Iron))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Sulfur, 2))
+                .processingTime(200)
+                .minimalRpm(256)
+                .save(provider);
+
+        // 黄铜矿 CuFeS2 x4 离心 -> 铜粉 x1 + 铁粉 x1 + 硫粉 x2（青铜/钢铁时期 ULV）
+        CentrifugationRecipeBuilder.builder(CTNHCore.id("vintageimprovements/chalcopyrite_centrifugation"))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Chalcopyrite, 4))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Copper))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Iron))
+                .result(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Sulfur, 2))
+                .processingTime(200)
+                .minimalRpm(256)
+                .save(provider);
     }
 
     private static void addKineticCraftingRecipes(Consumer<FinishedRecipe> provider) {
@@ -1000,6 +1057,14 @@ public class PrimitiveKineticAgeRecipes {
                 .result(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Bronze).getItem(), 3))
                 .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Copper).getItem(), 3))
                 .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Tin))
+                .heatRequirement("heated")
+                .save(provider);
+
+        // 黄铜粉（加热混合：3 铜粉 + 1 锌粉）
+        MixingRecipeBuilder.builder(CTNHCore.id("brass_dust_from_copper_zinc"))
+                .result(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Brass).getItem(), 3))
+                .input(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Copper).getItem(), 3))
+                .input(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Zinc))
                 .heatRequirement("heated")
                 .save(provider);
     }

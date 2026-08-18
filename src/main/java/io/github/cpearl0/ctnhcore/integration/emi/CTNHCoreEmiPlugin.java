@@ -151,6 +151,14 @@ public class CTNHCoreEmiPlugin implements EmiPlugin {
         disabled.add(AllItems.ZINC_INGOT);
         disabled.add(AllItems.ZINC_NUGGET);
         disabled.add(AllBlocks.ZINC_BLOCK);
+        // 统一到 GT 黄铜材料：隐藏机械动力黄铜锭/黄铜粒/黄铜块
+        disabled.add(AllItems.BRASS_INGOT);
+        disabled.add(AllItems.BRASS_NUGGET);
+        disabled.add(AllBlocks.BRASS_BLOCK);
+        // 统一到 GT 银材料：隐藏机械动力碎银
+        disabled.add(AllItems.CRUSHED_SILVER);
+        // 统一到 GT 钒材料：隐藏 Vintage Improvements 钒锭
+        disabled.add(() -> resolveItem("vintageimprovements:vanadium_ingot"));
     }
 
     private static void addInformation(EmiRegistry registry, String itemId, String translationKey) {

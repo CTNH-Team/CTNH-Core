@@ -124,9 +124,12 @@ public class OreProcessingRecipes {
                 }
             }
             if (material.hasProperty(PropertyKey.INGOT)) {
+                FluidOutput output = material == CTNHMaterials.PreciousAlloy ?
+                        FluidOutput.fromStack(GTMaterials.Gold.getFluid(144)) :
+                        FluidOutput.fromStack(material.getFluid(144));
                 MeltingRecipeBuilder.melting(
                         Ingredient.of(ChemicalHelper.get(TagPrefix.crushed, material)),
-                        FluidOutput.fromStack(material.getFluid(144)),
+                        output,
                         SMELTERY_TEMPERATURE, 20)
                         .save(provider, CTPP.id("metal_smelting/ctpp/melting/" + material.getName() + "_ingot"));
             }

@@ -131,7 +131,25 @@ public class CreateRecipes {
         RecipeRemoval.remove(new RemoveFilter().id("create:crushing/asurine_recycling"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crushing/tuff"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crushing/tuff_recycling"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crushing/obsidian"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crushing/ochrum_recycling"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crushing/raw_copper_block"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crushing/raw_zinc_block"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crushing/raw_osmium_block"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crushing/raw_platinum"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crushing/raw_tin"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crushing/raw_lead"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crushing/uranium_ore"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crushing/raw_nickel"));
         RecipeRemoval.remove(new RemoveFilter().id("create:splashing/crushed_raw_zinc"));
+        // 统一到 GT 黄铜材料：删除机械动力黄铜锭/黄铜粒/黄铜块的全部产出配方
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/brass_ingot_from_compacting"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/brass_ingot_from_decompacting"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/brass_nugget_from_decompacting"));
+        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/brass_block_from_compacting"));
+        // 统一到 GT 银材料：删除机械动力银矿石/碎银加工链（含 compat 洗矿与银锭冶炼，避开 quicksilver）
+        RecipeRemoval.remove(new RemoveFilter().idRegex(
+                "create:(?:crushing/(?:silver_ore|raw_silver|raw_silver_block)|smelting/(?:ingot_)?silver.*|blasting/(?:ingot_)?silver.*|splashing/.*silver)"));
         // 移除机械动力原版蒸汽引擎配方，统一使用 CTNH 自定义序列组装（ctnhcore:bronze_machine_casing_to_steam_engine）
         RecipeRemoval.remove(new RemoveFilter().idRegex("create:.*steam_engine.*"));
     }
@@ -191,7 +209,7 @@ public class CreateRecipes {
                     .input(cokeGem).output(cokeDust).save(provider);
         }
 
-        // copper/iron/gold gtceu -> minecraft ingots
+        // copper/iron/gold gtceu ingot -> dust
         String[] vanillaIngots = new String[] { "copper", "iron", "gold" };
         for (String i : vanillaIngots) {
             ItemStack gtIngot = switch (i) {
@@ -200,18 +218,18 @@ public class CreateRecipes {
                 case "gold" -> ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Gold);
                 default -> ItemStack.EMPTY;
             };
-            ItemStack mcIngot = switch (i) {
-                case "copper" -> new ItemStack(Items.COPPER_INGOT);
-                case "iron" -> new ItemStack(Items.IRON_INGOT);
-                case "gold" -> new ItemStack(Items.GOLD_INGOT);
+            ItemStack dust = switch (i) {
+                case "copper" -> ChemicalHelper.get(TagPrefix.dust, GTMaterials.Copper);
+                case "iron" -> ChemicalHelper.get(TagPrefix.dust, GTMaterials.Iron);
+                case "gold" -> ChemicalHelper.get(TagPrefix.dust, GTMaterials.Gold);
                 default -> ItemStack.EMPTY;
             };
-            if (!gtIngot.isEmpty() && !mcIngot.isEmpty()) {
+            if (!gtIngot.isEmpty() && !dust.isEmpty()) {
                 com.mo_guang.ctpp.data.recipe.builder.create.CrushingRecipeBuilder
-                        .builder(CTNHCore.id("crushing_gtceu_" + i + "_to_mc")).input(gtIngot).output(mcIngot)
+                        .builder(CTNHCore.id("crushing_gtceu_" + i + "_to_dust")).input(gtIngot).output(dust)
                         .save(provider);
                 com.mo_guang.ctpp.data.recipe.builder.create.MillingRecipeBuilder
-                        .builder(CTNHCore.id("milling_gtceu_" + i + "_to_mc")).input(gtIngot).output(mcIngot)
+                        .builder(CTNHCore.id("milling_gtceu_" + i + "_to_dust")).input(gtIngot).output(dust)
                         .save(provider);
             }
         }
@@ -620,7 +638,8 @@ public class CreateRecipes {
                     .result(ulvInputBus)
                     .deploying(CTPPItems.STEEL_MECHANISM.asStack())
                     .deploying(GTBlocks.MACHINE_CASING_ULV.asStack())
-                    .deploying(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.WroughtIron))
+                    .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
+                    .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
                     .loops(1)
                     .save(provider);
         }
@@ -634,7 +653,8 @@ public class CreateRecipes {
                     .result(ulvInputHatch)
                     .deploying(CTPPItems.STEEL_MECHANISM.asStack())
                     .deploying(GTBlocks.MACHINE_CASING_ULV.asStack())
-                    .deploying(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.WroughtIron))
+                    .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
+                    .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
                     .loops(1)
                     .save(provider);
         }
@@ -678,7 +698,75 @@ public class CreateRecipes {
                     .loops(4)
                     .save(provider);
         }
+        addDoublePlateSequences(provider);
         addMigratedKubeJsCreateRecipes(provider);
+    }
+
+    private static void addDoublePlateSequences(Consumer<FinishedRecipe> provider) {
+        // 序列组装：x板 -> 机械手部署同种x板 -> 动力冲压 -> x双层板
+        com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
+                .builder(CTNHCore.id("brass_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Brass))
+                .transitional(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Brass))
+                .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Brass))
+                .pressing()
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Brass))
+                .loops(1)
+                .save(provider);
+        com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
+                .builder(CTNHCore.id("copper_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Copper))
+                .transitional(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Copper))
+                .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Copper))
+                .pressing()
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Copper))
+                .loops(1)
+                .save(provider);
+        com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
+                .builder(CTNHCore.id("bronze_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Bronze))
+                .transitional(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Bronze))
+                .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Bronze))
+                .pressing()
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Bronze))
+                .loops(1)
+                .save(provider);
+        com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
+                .builder(CTNHCore.id("iron_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Iron))
+                .transitional(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Iron))
+                .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Iron))
+                .pressing()
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Iron))
+                .loops(1)
+                .save(provider);
+        com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
+                .builder(CTNHCore.id("wrought_iron_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
+                .transitional(ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
+                .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.WroughtIron))
+                .pressing()
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.WroughtIron))
+                .loops(1)
+                .save(provider);
+        com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
+                .builder(CTNHCore.id("steel_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
+                .transitional(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
+                .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Steel))
+                .pressing()
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Steel))
+                .loops(1)
+                .save(provider);
+        com.mo_guang.ctpp.data.recipe.builder.create.SequencedAssemblyRecipeBuilder
+                .builder(CTNHCore.id("gold_double_plate"))
+                .input(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Gold))
+                .transitional(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Gold))
+                .deploying(ChemicalHelper.get(TagPrefix.plate, GTMaterials.Gold))
+                .pressing()
+                .result(ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.Gold))
+                .loops(1)
+                .save(provider);
     }
 
     private static void addMigratedKubeJsCreateRecipes(Consumer<FinishedRecipe> provider) {
