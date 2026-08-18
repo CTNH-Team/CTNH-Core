@@ -391,7 +391,7 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("gtceu:shapeless/fireclay_dust"));
         remove(new RemoveFilter().id("gtceu:shaped/casing_primitive_bricks"));
         remove(new RemoveFilter().idRegex("gtceu:shaped/.*gem.*"));
-        remove(new RemoveFilter().idRegex("gtceu:shaped/.*plate.*"));
+        remove(new RemoveFilter().idRegex("gtceu:shaped/plate_.*"));
         remove(new RemoveFilter().idRegex("gtceu:shapeless/.*(?:chipped|flawed|flawless|exquisite)_gem.*"));
         remove(new RemoveFilter().id("gtceu:large_chemical_reactor/raw_palladium_separation"));
         remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_niobium_oxide"));
