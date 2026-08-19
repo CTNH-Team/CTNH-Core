@@ -852,8 +852,8 @@ public class CTNHRecipeTypes {
         }
         var primaryLabel = compactProcessControlLabel(profile.primaryLabel().getString());
         var secondaryLabel = compactProcessControlLabel(profile.secondaryLabel().getString());
-        var dataInfo = primaryLabel + ": " + data.getInt(ProcessControlProfile.PRIMARY_RECIPE_DATA)
-                + " / " + secondaryLabel + ": " + data.getInt(ProcessControlProfile.SECONDARY_RECIPE_DATA);
+        var dataInfo = primaryLabel + ": " + data.getInt(ProcessControlProfile.PRIMARY_RECIPE_DATA) + " / " +
+                secondaryLabel + ": " + data.getInt(ProcessControlProfile.SECONDARY_RECIPE_DATA);
         return dataInfo.replace("%", "%%");
     }
 

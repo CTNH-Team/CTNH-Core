@@ -31,6 +31,7 @@ public class CTNHCoreRecipeAddition {
 
         WoodMachineRecipes.registerMaterialInfo();
         WoodMachineRecipes.init(provider);
+        GtceuAssemblerRecipeFixes.init(provider);
 
         OreProcessingRecipes.init(provider);
         UnderfloorHeatingSystemRecipes.init(provider);

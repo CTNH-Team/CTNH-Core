@@ -343,6 +343,8 @@ public class RecipeRemoval {
     }
 
     public static void gtceuRemovals() {
+        remove(new RemoveFilter().id("gtceu:assembler/stonecutter"));
+        remove(new RemoveFilter().id("gtceu:assembler/grindstone"));
         remove(new RemoveFilter().id("gtceu:assembler/plate_radiation_2"));
         remove(new RemoveFilter().id("gtceu:assembler/plate_radiation"));
         remove(new RemoveFilter().id("gtceu:electric_blast_furnace/iro2"));
