@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.client.util;
 
+import net.minecraft.client.renderer.FaceInfo;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.core.Direction;
 import net.minecraftforge.client.model.IQuadTransformer;
@@ -35,11 +36,14 @@ public final class SnowOverlayQuadOffset {
             return;
         }
 
-        int xNormal = direction.getStepX();
-        int yNormal = direction.getStepY();
-        int zNormal = direction.getStepZ();
+        FaceInfo faceInfo = FaceInfo.fromFacing(direction);
 
         for (int i = 0; i < 4; i++) {
+            FaceInfo.VertexInfo vertexInfo = faceInfo.getVertexInfo(i);
+            int xNormal = Direction.from3DDataValue(vertexInfo.xFace).getStepX();
+            int yNormal = Direction.from3DDataValue(vertexInfo.yFace).getStepY();
+            int zNormal = Direction.from3DDataValue(vertexInfo.zFace).getStepZ();
+
             int vertexOffset = i * IQuadTransformer.STRIDE + IQuadTransformer.POSITION;
             float x = Float.intBitsToFloat(vertices[vertexOffset]);
             float y = Float.intBitsToFloat(vertices[vertexOffset + 1]);
