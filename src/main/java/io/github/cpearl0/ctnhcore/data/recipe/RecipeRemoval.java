@@ -83,6 +83,7 @@ public class RecipeRemoval {
         avaritiaRemovals();
         biofactoryRemovals();
         biomancyRemovals();
+        botaniaRemovals();
         biomesoplentyRemovals();
         createdieselgeneratorsRemovals();
         createoreexcavationRemovals();
@@ -255,6 +256,10 @@ public class RecipeRemoval {
         remove(new RemoveFilter().type("biomancy:bio_brewing"));
         remove(new RemoveFilter().type("biomancy:bio_forging"));
         remove(new RemoveFilter().type("biomancy:digesting"));
+    }
+
+    public static void botaniaRemovals() {
+        remove(new RemoveFilter().id("botania:terra_plate/terrasteel_ingot"));
     }
 
     public static void biomesoplentyRemovals() {
