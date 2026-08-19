@@ -2,6 +2,8 @@ package io.github.cpearl0.ctnhcore.mixin.eclipticseasons;
 
 import io.github.cpearl0.ctnhcore.client.util.SnowOverlayQuadOffset;
 
+import com.gregtechceu.gtceu.api.block.IMachineBlock;
+
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.resources.model.BakedModel;
@@ -34,7 +36,7 @@ public abstract class SnowyBakedModelWrapperOffsetMixin extends BakedModelWrappe
     @Override
     public List<BakedQuad> getQuads(BlockState state, Direction direction, RandomSource random) {
         List<BakedQuad> quads = super.getQuads(state, direction, random);
-        if (!isReplace() && ctnhcore$tryMarkOffset(direction)) {
+        if (!isReplace() && ctnhcore$isMachine(state) && ctnhcore$tryMarkOffset(direction)) {
             SnowOverlayQuadOffset.offsetAllIfNeeded(quads);
         }
         return quads;
@@ -44,10 +46,15 @@ public abstract class SnowyBakedModelWrapperOffsetMixin extends BakedModelWrappe
     public List<BakedQuad> getQuads(BlockState state, Direction direction, RandomSource random,
                                     ModelData modelData, RenderType renderType) {
         List<BakedQuad> quads = super.getQuads(state, direction, random, modelData, renderType);
-        if (!isReplace() && ctnhcore$tryMarkOffset(direction)) {
+        if (!isReplace() && ctnhcore$isMachine(state) && ctnhcore$tryMarkOffset(direction)) {
             SnowOverlayQuadOffset.offsetAllIfNeeded(quads);
         }
         return quads;
+    }
+
+    @Unique
+    private boolean ctnhcore$isMachine(BlockState state) {
+        return state != null && state.getBlock() instanceof IMachineBlock;
     }
 
     @Unique
