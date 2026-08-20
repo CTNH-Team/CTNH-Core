@@ -131,14 +131,15 @@ public class GoldChain {
                 .save(provider);
 
         GTRecipeTypes.SIFTER_RECIPES.recipeBuilder(CTNHCore.id("cyanide_tailings_sifting"))// 筛选氰化尾渣
-                .inputItems(dust, CYANIDE_TAILINGS, 4)
+                .inputItems(dust, CYANIDE_TAILINGS, 1)
                 .outputItems(dust, Copper, 1)
                 .chancedOutput(dust, Lead, 1500, 500)
                 .chancedOutput(dust, Iron, 1200, 400)
                 .chancedOutput(dust, Gallium, 1200, 400)
                 .chancedOutput(dust, Nickel, 1000, 300)
                 .chancedOutput(dust, Silver, 800, 200)
-                .EUt(30).duration(100)
+                .chancedOutput(dustSmall, Platinum, 100, 100)
+                .EUt(30).duration(20)
                 .save(provider);
 
         VanillaRecipeHelper.addSmeltingRecipe(provider, CTNHCore.id("precious_alloy_ingot_smelting"),

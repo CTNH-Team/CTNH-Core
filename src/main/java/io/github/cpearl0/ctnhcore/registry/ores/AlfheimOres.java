@@ -33,7 +33,8 @@ public class AlfheimOres {
     public static Lang gtceuManaFusedVein;
 
     public static GTOreDefinition MANA_FUSED_VEIN = create(CTNHCore.id("mana_fused_vein"),
-            vein -> vein.weight(80)
+            vein -> vein
+                    .weight(80)
                     .clusterSize(UniformInt.of(30, 40))
                     .density(0.25F)
                     .discardChanceOnAirExposure(0)
@@ -45,10 +46,7 @@ public class AlfheimOres {
                                     .layer(l -> l.weight(2).mat(CMMaterials.Fused_Mana).size(2, 4))
                                     .layer(l -> l.weight(1).mat(GTMaterials.Gold).size(1, 1))))
                     .surfaceIndicatorGenerator(indicator -> indicator
-                            .surfaceRock(GTMaterials.Gold)
-                            .placement(ABOVE)
-                            .density(0.4F)
-                            .radius(5)));
+                            .surfaceRock(GTMaterials.Gold)));
 
     public static void init() {}
 }
