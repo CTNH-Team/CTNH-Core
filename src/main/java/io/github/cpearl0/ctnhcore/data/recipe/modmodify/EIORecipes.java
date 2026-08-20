@@ -91,6 +91,14 @@ public class EIORecipes {
                 .duration(50)
                 .save(provider);
 
+        CTNHRecipeBuilder.of("dark_steel_ingot", ALLOY_SMELTER_RECIPES)
+                .inputItems(dust, Obsidian, 1)
+                .inputItems(ingot, Steel, 1)
+                .outputItems(ingot, DarkSteel, 1)
+                .EUt(120)
+                .duration(150)
+                .save(provider);
+
         CTNHRecipeBuilder.of("energetic_alloy", MIXER_RECIPES)
                 .inputItems(dust, Redstone, 1)
                 .inputItems(dust, Glowstone, 1)

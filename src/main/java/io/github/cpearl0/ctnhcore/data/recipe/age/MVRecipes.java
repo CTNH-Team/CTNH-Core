@@ -27,7 +27,6 @@ public class MVRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         addJavdPortalBlockRecipes(provider);
         addMVMotorRecipes(provider);
-        addDarkSteelRecipes(provider);
     }
 
     private static void addJavdPortalBlockRecipes(Consumer<FinishedRecipe> provider) {
@@ -50,16 +49,5 @@ public class MVRecipes {
                 'A', ChemicalHelper.get(TagPrefix.wireGtDouble, GTMaterials.Cupronickel),
                 'B', ChemicalHelper.get(TagPrefix.rod, GTMaterials.SteelMagnetic),
                 'C', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Aluminium));
-    }
-
-    private static void addDarkSteelRecipes(Consumer<FinishedRecipe> provider) {
-        // 玄钢锭（钢锭 + 黑曜石粉，合金炉：0.94aMV ≈ 120EU/t，耗时 7.5s）
-        GTRecipeTypes.ALLOY_SMELTER_RECIPES.recipeBuilder(CTNHCore.id("dark_steel_ingot"))
-                .inputItems(TagPrefix.ingot, GTMaterials.Steel, 1)
-                .inputItems(TagPrefix.dust, GTMaterials.Obsidian, 1)
-                .outputItems(TagPrefix.ingot, EnderIOMaterials.DarkSteel, 1)
-                .EUt(120)
-                .duration(150)
-                .save(provider);
     }
 }
