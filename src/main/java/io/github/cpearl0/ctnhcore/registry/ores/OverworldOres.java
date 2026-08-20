@@ -1,16 +1,19 @@
 package io.github.cpearl0.ctnhcore.registry.ores;
 
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-import com.ctnhlang.Key;
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+
 import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
 import com.gregtechceu.gtceu.api.data.worldgen.WorldGenLayers;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
+
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import static com.gregtechceu.gtceu.api.data.worldgen.generator.indicators.SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE;

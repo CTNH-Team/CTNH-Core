@@ -6,14 +6,14 @@ import io.github.cpearl0.ctnhcore.registry.CTNHWorldgenLayers;
 import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
+import net.minecraft.util.valueproviders.UniformInt;
+
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
 import com.ctnhlang.Key;
 import com.magicbee.ctnhmana.registry.CMMaterials;
-import net.minecraft.util.valueproviders.UniformInt;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
-import static com.gregtechceu.gtceu.api.data.worldgen.generator.indicators.SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE;
 import static com.gregtechceu.gtceu.common.data.GTOres.create;
 import static io.github.cpearl0.ctnhcore.registry.CTNHWorlds.*;
 import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;

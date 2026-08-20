@@ -1,13 +1,15 @@
 package io.github.cpearl0.ctnhcore.registry.ores;
 
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-import com.ctnhlang.Key;
-import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.CTNHWorldgenLayers;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+
+import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
+
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import twilightforest.data.tags.BiomeTagGenerator;
 
@@ -326,8 +328,7 @@ public class TwilightForestOres {
                             .layer(l -> l.weight(2).mat(GTMaterials.Silver))
                             .layer(l -> l.weight(1).mat(GTMaterials.Lead))))
                     .surfaceIndicatorGenerator(indicator -> indicator
-                            .surfaceRock(GTMaterials.Galena))
-    );
+                            .surfaceRock(GTMaterials.Galena)));
 
     @Key("ctnhcore:diamond_vein_tf")
     @CN("暮色森林钻石矿脉")
@@ -351,10 +352,9 @@ public class TwilightForestOres {
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(3).mat(GTMaterials.Graphite).size(2, 4))
                                     .layer(l -> l.weight(2).mat(GTMaterials.Diamond))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Coal)))
-                    ).surfaceIndicatorGenerator(indicator -> indicator
-                            .surfaceRock(GTMaterials.Diamond))
-    );
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Coal))))
+                    .surfaceIndicatorGenerator(indicator -> indicator
+                            .surfaceRock(GTMaterials.Diamond)));
 
     @Key("ctnhcore:apatite_vein_tf")
     @CN("暮色森林磷灰石矿脉")
@@ -379,8 +379,7 @@ public class TwilightForestOres {
                                     .layer(l -> l.weight(1).mat(GTMaterials.Apatite).size(2, 4))
                                     .layer(l -> l.weight(1).mat(GTMaterials.Pyrochlore).size(2, 4))))
                     .surfaceIndicatorGenerator(indicator -> indicator
-                            .surfaceRock(GTMaterials.Apatite))
-    );
+                            .surfaceRock(GTMaterials.Apatite)));
 
     @Key("ctnhcore:salts_vein_tf")
     @CN("暮色森林盐矿脉")
@@ -407,8 +406,7 @@ public class TwilightForestOres {
                                     .layer(l -> l.weight(1).mat(GTMaterials.Lepidolite))
                                     .layer(l -> l.weight(1).mat(GTMaterials.Spodumene))))
                     .surfaceIndicatorGenerator(indicator -> indicator
-                            .surfaceRock(GTMaterials.Salt))
-    );
+                            .surfaceRock(GTMaterials.Salt)));
 
     public static void init() {}
 }

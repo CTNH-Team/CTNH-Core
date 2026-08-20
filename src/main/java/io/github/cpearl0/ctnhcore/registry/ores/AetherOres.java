@@ -1,14 +1,17 @@
 package io.github.cpearl0.ctnhcore.registry.ores;
 
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-import com.ctnhlang.Key;
-import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.CTNHWorldgenLayers;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+
+import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
+
 import net.minecraft.util.valueproviders.UniformInt;
+
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import static com.gregtechceu.gtceu.common.data.GTOres.create;
@@ -197,7 +200,6 @@ public class AetherOres {
                                     .layer(l -> l.weight(1).mat(GTMaterials.Sapphire))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Sapphire)));
-
 
     public static void init() {}
 }
