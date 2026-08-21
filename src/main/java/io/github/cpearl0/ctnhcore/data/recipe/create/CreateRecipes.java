@@ -158,6 +158,7 @@ public class CreateRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         addBrassCasingRecipes(provider);
+        addAssemblerCasingRecipes(provider);
 
         // Crushing/milling for gtceu ingots -> dusts
         String[] ingots = new String[] { "tin", "bronze", "zinc", "brass", "nickel", "lead" };
@@ -719,6 +720,69 @@ public class CreateRecipes {
                 .input(ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Brass))
                 .output(AllBlocks.BRASS_CASING.asStack())
                 .save(provider);
+    }
+
+    /** LV assembler casing recipes (3s = 150t each), mirroring the casing item_application/deployer recipes. */
+    private static void addAssemblerCasingRecipes(Consumer<FinishedRecipe> provider) {
+        // stripped log/wood + andesite alloy -> andesite casing
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("assembler/andesite_casing_from_log"))
+                .inputItems(TagUtil.createItemTag("stripped_logs"))
+                .inputItems(AllItems.ANDESITE_ALLOY.get())
+                .outputItems(AllBlocks.ANDESITE_CASING.asItem())
+                .duration(50).EUt(30).save(provider);
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("assembler/andesite_casing_from_wood"))
+                .inputItems(TagUtil.createItemTag("stripped_wood"))
+                .inputItems(AllItems.ANDESITE_ALLOY.get())
+                .outputItems(AllBlocks.ANDESITE_CASING.asItem())
+                .duration(50).EUt(30).save(provider);
+        // stripped log/wood + brass ingot -> brass casing
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("assembler/brass_casing_from_log"))
+                .inputItems(TagUtil.createItemTag("stripped_logs"))
+                .inputItems(TagPrefix.ingot, GTMaterials.Brass)
+                .outputItems(AllBlocks.BRASS_CASING.asItem())
+                .duration(50).EUt(30).save(provider);
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("assembler/brass_casing_from_wood"))
+                .inputItems(TagUtil.createItemTag("stripped_wood"))
+                .inputItems(TagPrefix.ingot, GTMaterials.Brass)
+                .outputItems(AllBlocks.BRASS_CASING.asItem())
+                .duration(50).EUt(30).save(provider);
+        // stripped log + bronze ingot -> copper casing
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("assembler/copper_casing_from_log"))
+                .inputItems(TagUtil.createItemTag("stripped_logs"))
+                .inputItems(TagPrefix.ingot, GTMaterials.Bronze)
+                .outputItems(AllBlocks.COPPER_CASING.asItem())
+                .duration(50).EUt(30).save(provider);
+        // andesite casing + copper plate -> copper casing
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("assembler/copper_casing_from_andesite_casing"))
+                .inputItems(AllBlocks.ANDESITE_CASING.asItem())
+                .inputItems(TagPrefix.plate, GTMaterials.Copper)
+                .outputItems(AllBlocks.COPPER_CASING.asItem())
+                .duration(50).EUt(30).save(provider);
+        // brass casing + obsidian plate -> railway casing
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("assembler/railway_casing"))
+                .inputItems(AllBlocks.BRASS_CASING.asItem())
+                .inputItems(TagUtil.createItemTag("plates/obsidian"))
+                .outputItems(AllBlocks.RAILWAY_CASING.asItem())
+                .duration(50).EUt(30).save(provider);
+        // treated wood plank + steel plate -> steel casing
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("assembler/steel_casing"))
+                .inputItems(GTBlocks.TREATED_WOOD_PLANK.asItem())
+                .inputItems(TagPrefix.plate, GTMaterials.Steel)
+                .outputItems(CTPPBlocks.STEEL_CASING.asItem())
+                .duration(50).EUt(30).save(provider);
+        // steel casing + steel plate -> heavy machinery casing
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("assembler/heavy_machinery_casing"))
+                .inputItems(CTPPBlocks.STEEL_CASING.asItem())
+                .inputItems(TagPrefix.plate, GTMaterials.Steel)
+                .outputItems(CTPPBlocks.HEAVY_MACHINERY_CASING.asItem())
+                .duration(50).EUt(30).save(provider);
+        // createdieselgenerators heavy machinery casing application (same inputs/output)
+        GTRecipeTypes.ASSEMBLER_RECIPES
+                .recipeBuilder(CTNHCore.id("assembler/createdieselgenerators_heavy_machinery_casing"))
+                .inputItems(CTPPBlocks.STEEL_CASING.asItem())
+                .inputItems(TagPrefix.plate, GTMaterials.Steel)
+                .outputItems(CTPPBlocks.HEAVY_MACHINERY_CASING.asItem())
+                .duration(50).EUt(30).save(provider);
     }
 
     private static void addDoublePlateSequences(Consumer<FinishedRecipe> provider) {
