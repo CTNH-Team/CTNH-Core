@@ -27,6 +27,7 @@ import com.moguang.ctnhbio.registry.CBMachines;
 import com.wintercogs.ae2omnicells.common.init.OCItems;
 import dev.shadowsoffire.hostilenetworks.Hostile;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEBlocks;
+import tech.luckyblock.mcmod.ctnhenergy.registry.CEItems;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEMachines;
 
 import java.util.function.Consumer;
@@ -199,8 +200,7 @@ public class OrdinaryRecipes {
                 .inputItems(CBItems.SYNET_CORE, 1)
                 .inputItems(COVER_SCREEN, 32)
                 .inputFluids(new FluidStack(SolderingAlloy.getFluid(), 1440))
-                .outputItems(ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("pccard:card_programmed_circuit")),
-                        1)
+                .outputItems(CEItems.PROGRAMMED_CIRCUIT_CARD, 1)
                 .EUt(GTValues.VA[GTValues.HV])
                 .duration(200)
                 .save(provider);
