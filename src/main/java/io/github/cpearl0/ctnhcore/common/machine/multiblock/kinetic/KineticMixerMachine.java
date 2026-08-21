@@ -1,14 +1,16 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.phys.Vec3;
+
 import com.mo_guang.ctpp.common.machine.multiblock.KineticWorkableMultiblockMachine;
 import com.mo_guang.ctpp.dynamicPart.rotation.IContraptionMultiblock;
 import com.mo_guang.ctpp.dynamicPart.rotation.SimpleRotatingContraptionEntity;
 import lombok.Getter;
 import lombok.Setter;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.world.phys.Vec3;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.ArrayList;
