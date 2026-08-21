@@ -69,6 +69,10 @@ public class CTNHCoreEmiPlugin implements EmiPlugin {
     @EN("Village stonemasons know this ancient technique - they'll teach you after you become a Hero of the Village")
     public static Lang stoneProcessCatalyst;
 
+    @CN("使用破坏面板挖世界高度上限即可大量获得")
+    @EN("Use an Annihilation Plane at the world height limit to obtain large amounts")
+    public static Lang ae2MeteorBlockTooltip;
+
     private static final List<String> EXTRA_ITEMS = List.of(
             "create:chromatic_compound",
             "create:shadow_steel",
@@ -88,6 +92,8 @@ public class CTNHCoreEmiPlugin implements EmiPlugin {
         }
 
         addInformation(registry, "gtceu:hv_emitter", bloodMagicGregtechHv.key());
+        addInformation(registry, "ae2:sky_stone_block", ae2MeteorBlockTooltip.key());
+        addInformation(registry, "ae2:sky_dust", ae2MeteorBlockTooltip.key());
         addInformation(registry, "ctnhcore:stone_process_catalyst", stoneProcessCatalyst.key());
         addInformation(registry, "ctnhcore:metallurgical_catalyst", metallurgicalCatalyst.key());
         addInformation(registry, "ctnhcore:bauxite_process_catalyst", bauxiteProcessCatalyst.key());
