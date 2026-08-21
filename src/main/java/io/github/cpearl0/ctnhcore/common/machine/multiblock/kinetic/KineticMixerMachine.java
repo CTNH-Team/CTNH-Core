@@ -1,15 +1,17 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.phys.Vec3;
+
 import com.mo_guang.ctpp.common.machine.multiblock.KineticWorkableMultiblockMachine;
 import com.mo_guang.ctpp.dynamicPart.rotation.IContraptionMultiblock;
 import com.mo_guang.ctpp.dynamicPart.rotation.SimpleRotatingContraptionEntity;
 import com.mo_guang.ctpp.util.MathUtil;
 import lombok.Getter;
 import lombok.Setter;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.world.phys.Vec3;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.ArrayList;
@@ -17,13 +19,15 @@ import java.util.List;
 import java.util.Map;
 
 public class KineticMixerMachine extends KineticWorkableMultiblockMachine
-        implements IContraptionMultiblock<SimpleRotatingContraptionEntity> {
+                                 implements IContraptionMultiblock<SimpleRotatingContraptionEntity> {
 
     @Getter
     @Setter
     List<SimpleRotatingContraptionEntity> contraptionEntity = new ArrayList<>();
 
-    public KineticMixerMachine(IMachineBlockEntity holder) {super(holder);}
+    public KineticMixerMachine(IMachineBlockEntity holder) {
+        super(holder);
+    }
 
     @Override
     public void onStructureFormed() {
@@ -60,7 +64,8 @@ public class KineticMixerMachine extends KineticWorkableMultiblockMachine
                 contraptionEntity.forEach(entity -> {
                     var facing = getFrontFacing().getNormal();
                     Vec3 newF = new Vec3(facing.getX(), facing.getY(), facing.getZ());
-                    entity.setRotationSpeedRPM(MathUtil.rotateByVec(newF, 90, new Vec3(-1, 0, 0)), Math.min(speed, 128));
+                    entity.setRotationSpeedRPM(MathUtil.rotateByVec(newF, 90, new Vec3(-1, 0, 0)),
+                            Math.min(speed, 128));
                 });
         }
     }
@@ -83,5 +88,4 @@ public class KineticMixerMachine extends KineticWorkableMultiblockMachine
         updateMachineSpeed();
         updateRotateBlocks(getRecipeLogic().isWorking());
     }
-
 }
