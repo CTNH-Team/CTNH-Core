@@ -1,41 +1,38 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 
-import io.github.cpearl0.ctnhcore.data.CreateRecipeTypes;
-
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.MultiblockShapeInfo;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
-
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
-
-import net.minecraft.ChatFormatting;
-import net.minecraft.core.Direction;
-
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
 import com.mo_guang.ctpp.CTPP;
 import com.mo_guang.ctpp.api.CTPPPartAbility;
+import com.mo_guang.ctpp.api.pattern.FactoryStaticBlockPattern;
 import com.mo_guang.ctpp.common.machine.multiblock.KineticWorkableMultiblockMachine;
 import com.mo_guang.ctpp.registry.CTPPRecipeModifiers;
 import com.mo_guang.ctpp.util.CommonTooltips;
 import com.negodya1.vintageimprovements.VintageBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.KineticMixerMachine;
+import io.github.cpearl0.ctnhcore.data.CreateRecipeTypes;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.Blocks;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STEEL_GEARBOX;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_TEMPERED_GLASS;
 import static com.simibubi.create.content.kinetics.base.HorizontalKineticBlock.HORIZONTAL_FACING;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
-import static net.minecraft.world.level.block.Blocks.GLASS;
 
 public class Mechanical {
 
-    @CN("结构中的车床必须严格依照EMI结构信息页面展示的位置和方向摆放")
-    @EN("The lathe in the structure must be placed exactly as shown in EMI's structure information, including position and orientation")
-    public static Lang mechanicalLatheStructure;
 
     public final static MultiblockMachineDefinition MECHANICAL_PRESSOR = REGISTRATE
             .multiblock("mechanical_pressor", KineticWorkableMultiblockMachine::new)
@@ -65,30 +62,33 @@ public class Mechanical {
                     GTCEu.id("block/multiblock/large_chemical_reactor"))
             .register();
     public final static MultiblockMachineDefinition MECHANICAL_MIXER = REGISTRATE
-            .multiblock("mechanical_mixer", KineticWorkableMultiblockMachine::new)
+            .multiblock("mechanical_mixer", KineticMixerMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CreateRecipeTypes.MECHANICAL_MIXER_RECIPES)
             .appearanceBlock(AllBlocks.RAILWAY_CASING)
             .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate())
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("AAAAA", "BCCCB", "BDDDB", "B###B", "B###B", "BDDDB", "AAAAA")
-                    .aisle("AAAAA", "CEEEC", "DFFFD", "#####", "#####", "DGGGD", "AAAAA")
-                    .aisle("AAAAA", "CEEEC", "DFFFD", "#####", "#####", "DGGGD", "AAAAA")
-                    .aisle("AAAAA", "CEEEC", "DFFFD", "#####", "#####", "DGGGD", "AAAAA")
-                    .aisle("AA@AA", "BCCCB", "BDDDB", "B###B", "B###B", "BDDDB", "AAAAA")
+            .pattern(definition -> FactoryStaticBlockPattern.start()
+                    .aisle("###AAAAA###", "###########", "#####B#####", "#####B#####", "####CCC####", "####CCC####", "####CCC####", "####CCC####", "####CCC####", "####DDD####", "###########")
+                    .aisle("##ADDDDDA##", "####DDD####", "#####B#####", "####DDD####", "###C#E#C###", "###C#E#C###", "###C#E#C###", "###C#E#C###", "###C#E#C###", "###D###D###", "####DDD####")
+                    .aisle("##ADDDDDA##", "###DDDDD###", "#####B#####", "###DDDDD###", "##C##E##C##", "##C#####C##", "##C#####C##", "##C#####C##", "##C##E##C##", "##D#####D##", "###DDDDD###")
+                    .aisle("##ADDDDDA##", "###DDFDD###", "##BBBFBBB##", "##BDDFDDB##", "##CEEHEECGG", "##CE#H#EC#G", "#CCE#H#EC#G", "#CCE#H#EC#G", "CCCEEEEECGG", "##D#####D##", "###DDDDD###")
+                    .aisle("##ADDDDDA##", "###DDDDD###", "#####B#####", "###DDDDD###", "##C##E##C##", "##C#####C##", "##C#####C##", "##C#####C##", "##C##E##C##", "##D#####D##", "###DDDDD###")
+                    .aisle("##ADDDDDA##", "####DDD####", "#####B#####", "####DDD####", "###C#E#C###", "###C#E#C###", "###C#E#C###", "###C#E#C###", "###C#E#C###", "###D###D###", "####DDD####")
+                    .aisle("###AA@AA###", "###########", "#####B#####", "#####B#####", "####CCC####", "####CCC####", "####CCC####", "####CCC####", "####CCC####", "####DDD####", "###########")
                     .where("A", Predicates.blocks(AllBlocks.RAILWAY_CASING.get())
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
                             .or(Predicates.abilities(CTPPPartAbility.INPUT_KINETIC))
                             .or(Predicates.abilities(CTPPPartAbility.MECHANICAL_UPGRADE).setExactLimit(1)))
-                    .where("B", Predicates.blocks(AllBlocks.METAL_GIRDER.get()))
-                    .where("C", Predicates.blocks(GLASS))
-                    .where("D", Predicates.blocks(AllBlocks.BRASS_CASING.get()))
-                    .where("#", Predicates.any())
-                    .where("E", Predicates.blocks(AllBlocks.BLAZE_BURNER.get()))
-                    .where("F", Predicates.blocks(AllBlocks.BASIN.get()))
-                    .where("G", Predicates.blocks(AllBlocks.MECHANICAL_MIXER.get()))
+                    .where("D", Predicates.blocks(AllBlocks.RAILWAY_CASING.get()))
+                    .where("B", Predicates.frames(GTMaterials.Steel))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("E", Predicates.blocks(Blocks.IRON_BLOCK), false)
+                    .where("H", Predicates.blocks(AllBlocks.ANDESITE_ALLOY_BLOCK.get()), false)
+                    .where("F", Predicates.blocks(CASING_STEEL_GEARBOX.get()))
+                    .where("G", Predicates.blocks(AllBlocks.METAL_GIRDER.get()))
+                    .where("#", Predicates.any())
+                    .where("C", Predicates.blocks(CASING_TEMPERED_GLASS.get()))
                     .build())
             .workableCasingModel(CTPP.id("block/create/railway_casing"),
                     GTCEu.id("block/multiblock/large_chemical_reactor"))
@@ -150,6 +150,11 @@ public class Mechanical {
             .workableCasingModel(CTPP.id("block/create/railway_casing"),
                     GTCEu.id("block/multiblock/large_chemical_reactor"))
             .register();
+
+    @CN("结构中的车床必须严格依照EMI结构信息页面展示的位置和方向摆放")
+    @EN("The lathe in the structure must be placed exactly as shown in EMI's structure information, including position and orientation")
+    public static Lang mechanicalLatheStructure;
+
     public final static MultiblockMachineDefinition MECHANICAL_LATHE = REGISTRATE
             .multiblock("mechanical_lathe", KineticWorkableMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
