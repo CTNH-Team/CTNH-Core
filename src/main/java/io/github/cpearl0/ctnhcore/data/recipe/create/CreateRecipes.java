@@ -111,7 +111,6 @@ public class CreateRecipes {
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/fluid_pipe_vertical"));
         RecipeRemoval.remove(new RemoveFilter().id("create:item_application/copper_casing_from_log"));
         RecipeRemoval.remove(new RemoveFilter().id("create:item_application/copper_casing_from_wood"));
-        // 世界交互黄铜机壳改用 Create 原版黄铜锭。
         RecipeRemoval.remove(new RemoveFilter().id("create:item_application/brass_casing_from_log"));
         RecipeRemoval.remove(new RemoveFilter().id("create:item_application/brass_casing_from_wood"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/curiosities/brown_toolbox"));
@@ -711,13 +710,13 @@ public class CreateRecipes {
         com.mo_guang.ctpp.data.recipe.builder.create.ItemApplicationRecipeBuilder
                 .builder(CTNHCore.id("brass_casing_from_log"))
                 .input(TagUtil.createItemTag("stripped_logs"))
-                .input(AllItems.BRASS_INGOT.asStack())
+                .input(ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Brass))
                 .output(AllBlocks.BRASS_CASING.asStack())
                 .save(provider);
         com.mo_guang.ctpp.data.recipe.builder.create.ItemApplicationRecipeBuilder
                 .builder(CTNHCore.id("brass_casing_from_wood"))
                 .input(TagUtil.createItemTag("stripped_wood"))
-                .input(AllItems.BRASS_INGOT.asStack())
+                .input(ChemicalHelper.get(TagPrefix.ingot, GTMaterials.Brass))
                 .output(AllBlocks.BRASS_CASING.asStack())
                 .save(provider);
     }
