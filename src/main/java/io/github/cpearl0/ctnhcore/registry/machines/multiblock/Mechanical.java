@@ -73,24 +73,23 @@ public class Mechanical {
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate())
             .pattern(definition -> FactoryStaticBlockPattern.start()
                     .aisle("###AAAAA###", "###########", "#####B#####", "#####B#####", "####CCC####", "####CCC####",
-                            "####CCC####", "####CCC####", "####CCC####", "####DDD####", "###########")
-                    .aisle("##ADDDDDA##", "####DDD####", "#####B#####", "####DDD####", "###C#E#C###", "###C#E#C###",
-                            "###C#E#C###", "###C#E#C###", "###C#E#C###", "###D###D###", "####DDD####")
-                    .aisle("##ADDDDDA##", "###DDDDD###", "#####B#####", "###DDDDD###", "##C##E##C##", "##C#####C##",
-                            "##C#####C##", "##C#####C##", "##C##E##C##", "##D#####D##", "###DDDDD###")
-                    .aisle("##ADDDDDA##", "###DDFDD###", "##BBBFBBB##", "##BDDFDDB##", "##CEEHEECGG", "##CE#H#EC#G",
-                            "#CCE#H#EC#G", "#CCE#H#EC#G", "CCCEEEEECGG", "##D#####D##", "###DDDDD###")
-                    .aisle("##ADDDDDA##", "###DDDDD###", "#####B#####", "###DDDDD###", "##C##E##C##", "##C#####C##",
-                            "##C#####C##", "##C#####C##", "##C##E##C##", "##D#####D##", "###DDDDD###")
-                    .aisle("##ADDDDDA##", "####DDD####", "#####B#####", "####DDD####", "###C#E#C###", "###C#E#C###",
-                            "###C#E#C###", "###C#E#C###", "###C#E#C###", "###D###D###", "####DDD####")
+                            "####CCC####", "####CCC####", "####CCC####", "####AAA####", "###########")
+                    .aisle("##AAAAAAA##", "####AAA####", "#####B#####", "####AAA####", "###C#E#C###", "###C#E#C###",
+                            "###C#E#C###", "###C#E#C###", "###C#E#C###", "###A###A###", "####AAA####")
+                    .aisle("##AAAAAAA##", "###AAAAA###", "#####B#####", "###AAAAA###", "##C##E##C##", "##C#####C##",
+                            "##C#####C##", "##C#####C##", "##C##E##C##", "##A#####A##", "###AAAAA###")
+                    .aisle("##AAAAAAA##", "###AAFAA###", "##BBBFBBB##", "##BAAFAAB##", "##CEEHEECGG", "##CE#H#EC#G",
+                            "#CCE#H#EC#G", "#CCE#H#EC#G", "CCCEEEEECGG", "##A#####A##", "###AAAAA###")
+                    .aisle("##AAAAAAA##", "###AAAAA###", "#####B#####", "###AAAAA###", "##C##E##C##", "##C#####C##",
+                            "##C#####C##", "##C#####C##", "##C##E##C##", "##A#####A##", "###AAAAA###")
+                    .aisle("##AAAAAAA##", "####AAA####", "#####B#####", "####AAA####", "###C#E#C###", "###C#E#C###",
+                            "###C#E#C###", "###C#E#C###", "###C#E#C###", "###A###A###", "####AAA####")
                     .aisle("###AA@AA###", "###########", "#####B#####", "#####B#####", "####CCC####", "####CCC####",
-                            "####CCC####", "####CCC####", "####CCC####", "####DDD####", "###########")
+                            "####CCC####", "####CCC####", "####CCC####", "####AAA####", "###########")
                     .where("A", Predicates.blocks(AllBlocks.RAILWAY_CASING.get())
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(Predicates.abilities(CTPPPartAbility.INPUT_KINETIC))
+                            .or(Predicates.abilities(CTPPPartAbility.INPUT_KINETIC).setMinGlobalLimited(1))
                             .or(Predicates.abilities(CTPPPartAbility.MECHANICAL_UPGRADE).setExactLimit(1)))
-                    .where("D", Predicates.blocks(AllBlocks.RAILWAY_CASING.get()))
                     .where("B", Predicates.frames(GTMaterials.Steel))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("E", Predicates.blocks(Blocks.IRON_BLOCK), false)
