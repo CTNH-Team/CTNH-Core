@@ -222,6 +222,7 @@ public class GTMaterialAddon {
         Polybenzimidazole.addFlags(GENERATE_FRAME);
         Nichrome.addFlags(GENERATE_GEAR);
         Zeron100.addFlags(GENERATE_GEAR);
+        HastelloyX.addFlags(GENERATE_GEAR);
         Aluminium.addFlags(GENERATE_ROTOR);
         Iridium.addFlags(GENERATE_ROTOR);
         Iridium.addFlags(GENERATE_SMALL_GEAR);

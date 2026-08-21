@@ -306,23 +306,23 @@ public class EIORecipes {
 
     /** Rebuilt EnderIO gear/upgrade recipes using CTNH-Core alloy ingots & nuggets. */
     private static void addEnderGearAndUpgradeRecipes(Consumer<FinishedRecipe> provider) {
-        // dark_bimetal_gear: dark steel (CTNH) around the infinity bimetal gear
+        // dark_bimetal_gear: dark steel (CTNH) around the GT hastelloy gear
         VanillaRecipeHelper.addShapedRecipe(provider,
                 CTNHCore.id("crafttable/dark_bimetal_gear"),
                 new ItemStack(EIOItems.GEAR_DARK_STEEL.asItem()),
                 "NIN", "IGI", "NIN",
                 'N', ChemicalHelper.get(nugget, DarkSteel),
                 'I', ChemicalHelper.get(ingot, DarkSteel),
-                'G', EIOItems.GEAR_IRON.asItem());
+                'G', ChemicalHelper.get(gear, HastelloyX));
 
-        // energized_gear: energetic alloy (CTNH) around the infinity bimetal gear
+        // energized_gear: energetic alloy (CTNH) around the GT aluminium gear
         VanillaRecipeHelper.addShapedRecipe(provider,
                 CTNHCore.id("crafttable/energized_gear"),
                 new ItemStack(EIOItems.GEAR_ENERGIZED.asItem()),
                 "NIN", "IGI", "NIN",
                 'N', ChemicalHelper.get(nugget, EnergeticAlloy),
                 'I', ChemicalHelper.get(ingot, EnergeticAlloy),
-                'G', EIOItems.GEAR_IRON.asItem());
+                'G', ChemicalHelper.get(gear, Aluminium));
 
         // vibrant_gear: vibrant alloy (CTNH) around the energized gear
         VanillaRecipeHelper.addShapedRecipe(provider,
