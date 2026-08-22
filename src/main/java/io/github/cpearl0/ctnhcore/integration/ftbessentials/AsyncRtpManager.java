@@ -5,7 +5,6 @@ import io.github.cpearl0.ctnhcore.mixin.mc.ServerChunkCacheAccessor;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ChunkHolder;
@@ -29,6 +28,9 @@ import net.minecraftforge.event.server.ServerStoppedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
 import com.mojang.datafixers.util.Either;
 import dev.architectury.event.EventResult;
 import dev.ftb.mods.ftbessentials.FTBEssentialsEvents;
@@ -37,10 +39,6 @@ import dev.ftb.mods.ftbessentials.config.FTBEConfig;
 import dev.ftb.mods.ftbessentials.util.DimensionFilter;
 import dev.ftb.mods.ftbessentials.util.FTBEPlayerData;
 import dev.ftb.mods.ftbessentials.util.TeleportPos;
-
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.ArrayList;
@@ -349,7 +347,8 @@ public final class AsyncRtpManager {
         BlockPos groundPos = findLandingSpot(level, candidatePos.getX(), candidatePos.getZ());
         if (groundPos == null) {
             if (search.fallbackActive) {
-                CTNHCore.LOGGER.debug("[RTP] {}: candidate [{}, {}] rejected: no dry landing spot in column, fallback busy",
+                CTNHCore.LOGGER.debug(
+                        "[RTP] {}: candidate [{}, {}] rejected: no dry landing spot in column, fallback busy",
                         search.playerId, candidatePos.getX(), candidatePos.getZ());
                 fillWindow(search);
             } else {
@@ -386,9 +385,8 @@ public final class AsyncRtpManager {
         int maxY = Math.min(level.getMaxBuildHeight() - 1, level.getSeaLevel() + 120);
         for (int y = maxY; y >= minY; y--) {
             BlockState state = level.getBlockState(new BlockPos(x, y, z));
-            if (state.blocksMotion() && !state.is(BlockTags.LEAVES)
-                    && !state.is(TeleportCommands.IGNORE_RTP_BLOCKS)
-                    && hasClearSpaceAbove(level, x, y, z)) {
+            if (state.blocksMotion() && !state.is(BlockTags.LEAVES) && !state.is(TeleportCommands.IGNORE_RTP_BLOCKS) &&
+                    hasClearSpaceAbove(level, x, y, z)) {
                 return new BlockPos(x, y, z);
             }
         }
