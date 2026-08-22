@@ -51,11 +51,9 @@ import java.util.function.Consumer;
 public class CreateRecipes {
 
     public static void createRemovals() {
-        RecipeRemoval.remove(new RemoveFilter().id("create:pressing/copper_ingot"));
-        RecipeRemoval.remove(new RemoveFilter().id("create:pressing/brass_ingot"));
-        RecipeRemoval.remove(new RemoveFilter().id("create:pressing/gold_ingot"));
+        // 以下锭→板/材料互转配方由数据包 ctnh_create_iron_plate 覆盖为 GT 版本，不再在 Core 删除
+        // create:pressing/copper_ingot, brass_ingot, gold_ingot, iron_ingot, create:mixing/brass_ingot
         RecipeRemoval.remove(new RemoveFilter().type("create:automatic_brewing"));
-        RecipeRemoval.remove(new RemoveFilter().id("create:pressing/iron_ingot"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/andesite_alloy_from_zinc"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/andesite_alloy"));
         RecipeRemoval.remove(new RemoveFilter().id("create:pressing/sugar_cane"));
@@ -73,7 +71,7 @@ public class CreateRecipes {
         RecipeRemoval.remove(new RemoveFilter().id("create:mechanical_crafting/crushing_wheel"));
         RecipeRemoval.remove(new RemoveFilter().id("create:milling/charcoal"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/mechanical_bearing"));
-        RecipeRemoval.remove(new RemoveFilter().id("create:mixing/brass_ingot"));
+        // create:mixing/brass_ingot 由数据包覆盖为 GT 版本
         RecipeRemoval.remove(new RemoveFilter().id("create:pressing/juperium_ingot"));
         RecipeRemoval.remove(new RemoveFilter().id("create:pressing/saturlyte_ingot"));
         RecipeRemoval.remove(new RemoveFilter().id("create:pressing/radium_ingot"));
@@ -92,7 +90,7 @@ public class CreateRecipes {
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/goggles"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/shaft"));
         RecipeRemoval.remove(new RemoveFilter().id("create:cutting/andesite_alloy"));
-        RecipeRemoval.remove(new RemoveFilter().id("create:sequenced_assembly/precision_mechanism"));
+        // create:sequenced_assembly/precision_mechanism 由数据包保留并覆盖为 GT 材料
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/encased_fan"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/windmill_bearing"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crafting/kinetics/depot"));
@@ -118,21 +116,14 @@ public class CreateRecipes {
         RecipeRemoval.remove(new RemoveFilter().id("create:smelting/glass_from_framed_glass"));
         RecipeRemoval.remove(new RemoveFilter().id("create:smelting/glass_from_horizontal_framed_glass"));
         RecipeRemoval.remove(new RemoveFilter().id("create:smelting/glass_from_vertical_framed_glass"));
-        // 统一到 GT 锌材料：删除机械动力锌锭/锌粒/锌块的全部产出配方
+        // 统一到 GT 锌材料：删除机械动力锌锭/锌粒/锌块的产出配方（互转/crushing/splashing 由数据包 ctnh_create_iron_plate 覆盖为 GT 版本；冶炼类仍删除）
         RecipeRemoval.remove(new RemoveFilter().id("create:smelting/zinc_ingot_from_crushed"));
         RecipeRemoval.remove(new RemoveFilter().id("create:smelting/zinc_ingot_from_ore"));
         RecipeRemoval.remove(new RemoveFilter().id("create:smelting/zinc_ingot_from_raw_ore"));
         RecipeRemoval.remove(new RemoveFilter().id("create:blasting/zinc_ingot_from_crushed"));
         RecipeRemoval.remove(new RemoveFilter().id("create:blasting/zinc_ingot_from_ore"));
         RecipeRemoval.remove(new RemoveFilter().id("create:blasting/zinc_ingot_from_raw_ore"));
-        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/zinc_ingot_from_compacting"));
-        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/zinc_ingot_from_decompacting"));
-        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/zinc_nugget_from_decompacting"));
-        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/zinc_block_from_compacting"));
-        RecipeRemoval.remove(new RemoveFilter().id("create:crushing/asurine"));
-        RecipeRemoval.remove(new RemoveFilter().id("create:crushing/asurine_recycling"));
-        RecipeRemoval.remove(new RemoveFilter().id("create:crushing/tuff"));
-        RecipeRemoval.remove(new RemoveFilter().id("create:crushing/tuff_recycling"));
+        // 以下由数据包覆盖：zinc_ingot_from_compacting, zinc_ingot_from_decompacting, zinc_nugget_from_decompacting, zinc_block_from_compacting, crushing/asurine, crushing/asurine_recycling, crushing/tuff, crushing/tuff_recycling, splashing/crushed_raw_zinc
         RecipeRemoval.remove(new RemoveFilter().id("create:crushing/obsidian"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crushing/ochrum_recycling"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crushing/raw_copper_block"));
@@ -143,12 +134,8 @@ public class CreateRecipes {
         RecipeRemoval.remove(new RemoveFilter().id("create:crushing/raw_lead"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crushing/uranium_ore"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crushing/raw_nickel"));
-        RecipeRemoval.remove(new RemoveFilter().id("create:splashing/crushed_raw_zinc"));
-        // 统一到 GT 黄铜材料：删除机械动力黄铜锭/黄铜粒/黄铜块的全部产出配方
-        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/brass_ingot_from_compacting"));
-        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/brass_ingot_from_decompacting"));
-        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/brass_nugget_from_decompacting"));
-        RecipeRemoval.remove(new RemoveFilter().id("create:crafting/materials/brass_block_from_compacting"));
+        // create:splashing/crushed_raw_zinc 由数据包覆盖为 GT 版本
+        // 统一到 GT 黄铜材料：删除机械动力黄铜锭/黄铜粒/黄铜块的互转配方（由数据包 ctnh_create_iron_plate 覆盖为 GT 版本）
         // 统一到 GT 银材料：删除机械动力银矿石/碎银加工链（含 compat 洗矿与银锭冶炼，避开 quicksilver）
         RecipeRemoval.remove(new RemoveFilter().idRegex(
                 "create:(?:crushing/(?:silver_ore|raw_silver|raw_silver_block)|smelting/(?:ingot_)?silver.*|blasting/(?:ingot_)?silver.*|splashing/.*silver)"));
