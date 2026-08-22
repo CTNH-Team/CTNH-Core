@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry.ores;
 
-import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
@@ -11,29 +10,16 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
 
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-import com.ctnhlang.Key;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-
 import static com.gregtechceu.gtceu.api.data.worldgen.generator.indicators.SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE;
-import static com.gregtechceu.gtceu.common.data.GTOres.create;
+import static io.github.cpearl0.ctnhcore.registry.CTNHOres.create;
 
 public class OverworldOres {
 
     // ==================== Overworld ====================
 
-    @Key("ctnhcore:nether_quartz_vein_ow")
-    @CN("主世界石英矿脉")
-    @EN("Overworld Quartz Vein")
-    public static Lang ctnhNetherQuartzVeinOverWorld;
-
-    @Key("gtceu.jei.ore_vein.nether_quartz_vein_ow")
-    @CN("主世界石英矿脉")
-    @EN("Overworld Quartz Vein")
-    public static Lang gtceuNetherQuartzVeinOverWorld;
-
-    public static GTOreDefinition NETHER_QUARTZ_VEIN_OW = create(CTNHCore.id("nether_quartz_vein_ow"),
+    public static GTOreDefinition NETHER_QUARTZ_VEIN_OW = create("nether_quartz_vein_ow",
+            "Overworld Quartz Vein",
+            "主世界石英矿脉",
             vein -> vein
                     .weight(80)
                     .clusterSize(UniformInt.of(30, 40))
@@ -52,17 +38,9 @@ public class OverworldOres {
                             .density(0.4F)
                             .radius(5)));
 
-    @Key("ctnhcore:zinc_vein_ow")
-    @CN("主世界锌矿脉")
-    @EN("Overworld Zinc Vein")
-    public static Lang ctnhZincVeinOverWorld;
-
-    @Key("gtceu.jei.ore_vein.zinc_vein_ow")
-    @CN("主世界锌矿脉")
-    @EN("Overworld Zinc Vein")
-    public static Lang gtceuZincVeinOverWorld;
-
-    public static GTOreDefinition ZINC_VEIN_OW = create(CTNHCore.id("zinc_vein_ow"),
+    public static GTOreDefinition ZINC_VEIN_OW = create("zinc_vein_ow",
+            "Overworld Zinc Vein",
+            "主世界锌矿脉",
             vein -> vein
                     .weight(60)
                     .clusterSize(40)
@@ -82,17 +60,9 @@ public class OverworldOres {
                             .density(0.4F)
                             .radius(5)));
 
-    @Key("ctnhcore:precious_alloy_vein_ow")
-    @CN("主世界贵金属矿脉")
-    @EN("Overworld Precious Alloy Vein")
-    public static Lang ctnhPreciousAlloyVeinOverWorld;
-
-    @Key("gtceu.jei.ore_vein.precious_alloy_vein_ow")
-    @CN("主世界贵金属矿脉")
-    @EN("Overworld Precious Alloy Vein")
-    public static Lang gtceuPreciousAlloyVeinOverWorld;
-
-    public static GTOreDefinition PRECIOUS_ALLOY_VEIN_OW = create(CTNHCore.id("precious_alloy_vein_ow"),
+    public static GTOreDefinition PRECIOUS_ALLOY_VEIN_OW = create("precious_alloy_vein_ow",
+            "Overworld Precious Alloy Vein",
+            "主世界贵金属矿脉",
             vein -> vein
                     .weight(30)
                     .clusterSize(UniformInt.of(30, 40))
@@ -113,17 +83,9 @@ public class OverworldOres {
                             .density(0.4F)
                             .radius(5)));
 
-    @Key("ctnhcore:kaolinite_vein_ow")
-    @CN("主世界高岭石矿脉")
-    @EN("Overworld Kaolinite Vein")
-    public static Lang ctnhKaoliniteVeinOverWorld;
-
-    @Key("gtceu.jei.ore_vein.kaolinite_vein_ow")
-    @CN("主世界高岭石矿脉")
-    @EN("Overworld Kaolinite Vein")
-    public static Lang gtceuKaoliniteVeinOverWorld;
-
-    public static final GTOreDefinition KAOLINITE_VEIN_OW = create(CTNHCore.id("kaolinite_vein_ow"),
+    public static final GTOreDefinition KAOLINITE_VEIN_OW = create("kaolinite_vein_ow",
+            "Overworld Kaolinite Vein",
+            "主世界高岭石矿脉",
             vein -> vein
                     .weight(60)
                     .clusterSize(UniformInt.of(25, 30))
@@ -138,17 +100,9 @@ public class OverworldOres {
                                     .layer(l -> l.weight(1).block(() -> Blocks.CLAY).size(2, 4))
                                     .layer(l -> l.weight(1).mat(GTMaterials.Gypsum).size(2, 4)))));
 
-    @Key("ctnhcore:apatite_vein_ow")
-    @CN("主世界磷灰石矿脉")
-    @EN("Overworld Apatite Vein")
-    public static Lang ctnhApatiteVeinOverWorld;
-
-    @Key("gtceu.jei.ore_vein.apatite_vein_ow")
-    @CN("主世界磷灰石矿脉")
-    @EN("Overworld Apatite Vein")
-    public static Lang gtceuApatiteVeinOverWorld;
-
-    public static final GTOreDefinition APATITE_VEIN_OW = create(CTNHCore.id("apatite_vein_ow"),
+    public static final GTOreDefinition APATITE_VEIN_OW = create("apatite_vein_ow",
+            "Overworld Apatite Vein",
+            "主世界磷灰石矿脉",
             vein -> vein
                     .weight(40)
                     .clusterSize(UniformInt.of(30, 40))
@@ -164,17 +118,9 @@ public class OverworldOres {
                             .surfaceRock(GTMaterials.Apatite)
                             .placement(ABOVE)));
 
-    @Key("ctnhcore:cassiterite_vein_ow")
-    @CN("主世界锡石矿脉")
-    @EN("Overworld Cassiterite Vein")
-    public static Lang ctnhCassiteriteVeinOverWorld;
-
-    @Key("gtceu.jei.ore_vein.cassiterite_vein_ow")
-    @CN("主世界锡石矿脉")
-    @EN("Overworld Cassiterite Vein")
-    public static Lang gtceuCassiteriteVeinOverWorld;
-
-    public static final GTOreDefinition CASSITERITE_VEIN_OW = create(CTNHCore.id("cassiterite_vein_ow"),
+    public static final GTOreDefinition CASSITERITE_VEIN_OW = create("cassiterite_vein_ow",
+            "Overworld Cassiterite Vein",
+            "主世界锡石矿脉",
             vein -> vein
                     .weight(80)
                     .clusterSize(UniformInt.of(40, 50))
@@ -189,17 +135,9 @@ public class OverworldOres {
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Cassiterite)));
 
-    @Key("ctnhcore:coal_vein_ow")
-    @CN("主世界煤炭矿脉")
-    @EN("Overworld Coal Vein")
-    public static Lang ctnhCoalVeinOverWorld;
-
-    @Key("gtceu.jei.ore_vein.coal_vein_ow")
-    @CN("主世界煤炭矿脉")
-    @EN("Overworld Coal Vein")
-    public static Lang gtceuCoalVeinOverWorld;
-
-    public static final GTOreDefinition COAL_VEIN_OW = create(CTNHCore.id("coal_vein_ow"),
+    public static final GTOreDefinition COAL_VEIN_OW = create("coal_vein_ow",
+            "Overworld Coal Vein",
+            "主世界煤炭矿脉",
             vein -> vein
                     .weight(80)
                     .clusterSize(UniformInt.of(40, 50))
@@ -213,17 +151,9 @@ public class OverworldOres {
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Coal)));
 
-    @Key("ctnhcore:copper_tin_vein_ow")
-    @CN("主世界铜锡矿脉")
-    @EN("Overworld Copper Tin Vein")
-    public static Lang ctnhCopperTinVeinOverWorld;
-
-    @Key("gtceu.jei.ore_vein.copper_tin_vein_ow")
-    @CN("主世界铜锡矿脉")
-    @EN("Overworld Copper Tin Vein")
-    public static Lang gtceuCopperTinVeinOverWorld;
-
-    public static final GTOreDefinition COPPER_TIN_VEIN_OW = create(CTNHCore.id("copper_tin_vein_ow"),
+    public static final GTOreDefinition COPPER_TIN_VEIN_OW = create("copper_tin_vein_ow",
+            "Overworld Copper Tin Vein",
+            "主世界铜锡矿脉",
             vein -> vein
                     .weight(50)
                     .clusterSize(UniformInt.of(40, 50))
@@ -239,17 +169,9 @@ public class OverworldOres {
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Chalcopyrite)));
 
-    @Key("ctnhcore:iron_vein_ow")
-    @CN("主世界铁矿脉")
-    @EN("Overworld Iron Vein")
-    public static Lang ctnhIronVeinOverWorld;
-
-    @Key("gtceu.jei.ore_vein.iron_vein_ow")
-    @CN("主世界铁矿脉")
-    @EN("Overworld Iron Vein")
-    public static Lang gtceuIronVeinOverWorld;
-
-    public static final GTOreDefinition IRON_VEIN_OW = create(CTNHCore.id("iron_vein_ow"),
+    public static final GTOreDefinition IRON_VEIN_OW = create("iron_vein_ow",
+            "Overworld Iron Vein",
+            "主世界铁矿脉",
             vein -> vein
                     .weight(120)
                     .clusterSize(UniformInt.of(40, 52))
@@ -264,17 +186,9 @@ public class OverworldOres {
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Hematite)));
 
-    @Key("ctnhcore:magnetite_vein_ow")
-    @CN("主世界磁铁矿脉")
-    @EN("Overworld Magnetite Vein")
-    public static Lang ctnhMagnetiteVeinOverWorld;
-
-    @Key("gtceu.jei.ore_vein.magnetite_vein_ow")
-    @CN("主世界磁铁矿脉")
-    @EN("Overworld Magnetite Vein")
-    public static Lang gtceuMagnetiteVeinOverWorld;
-
-    public static final GTOreDefinition MAGNETITE_VEIN_OW = create(CTNHCore.id("magnetite_vein_ow"),
+    public static final GTOreDefinition MAGNETITE_VEIN_OW = create("magnetite_vein_ow",
+            "Overworld Magnetite Vein",
+            "主世界磁铁矿脉",
             vein -> vein
                     .weight(80)
                     .clusterSize(UniformInt.of(40, 50))
@@ -289,17 +203,9 @@ public class OverworldOres {
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Magnetite)));
 
-    @Key("ctnhcore:salts_vein_ow")
-    @CN("主世界盐矿脉")
-    @EN("Overworld Salts Vein")
-    public static Lang ctnhSaltsVeinOverWorld;
-
-    @Key("gtceu.jei.ore_vein.salts_vein_ow")
-    @CN("主世界盐矿脉")
-    @EN("Overworld Salts Vein")
-    public static Lang gtceuSaltsVeinOverWorld;
-
-    public static final GTOreDefinition SALTS_VEIN_OW = create(CTNHCore.id("salts_vein_ow"),
+    public static final GTOreDefinition SALTS_VEIN_OW = create("salts_vein_ow",
+            "Overworld Salts Vein",
+            "主世界盐矿脉",
             vein -> vein
                     .weight(50)
                     .clusterSize(UniformInt.of(30, 40))
@@ -316,17 +222,9 @@ public class OverworldOres {
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Salt)));
 
-    @Key("ctnhcore:oilsands_vein_ow")
-    @CN("主世界油砂矿脉")
-    @EN("Overworld Oilsands Vein")
-    public static Lang ctnhOilsandsVeinOverWorld;
-
-    @Key("gtceu.jei.ore_vein.oilsands_vein_ow")
-    @CN("主世界油砂矿脉")
-    @EN("Overworld Oilsands Vein")
-    public static Lang gtceuOilsandsVeinOverWorld;
-
-    public static final GTOreDefinition OILSANDS_VEIN_OW = create(CTNHCore.id("oilsands_vein_ow"),
+    public static final GTOreDefinition OILSANDS_VEIN_OW = create("oilsands_vein_ow",
+            "Overworld Oilsands Vein",
+            "主世界油砂矿脉",
             vein -> vein
                     .weight(40)
                     .clusterSize(UniformInt.of(25, 30))
@@ -340,17 +238,9 @@ public class OverworldOres {
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Oilsands)));
 
-    @Key("ctnhcore:copper_vein_ow")
-    @CN("主世界铜矿脉")
-    @EN("Overworld Copper Vein")
-    public static Lang ctnhCopperVeinOverWorld;
-
-    @Key("gtceu.jei.ore_vein.copper_vein_ow")
-    @CN("主世界铜矿脉")
-    @EN("Overworld Copper Vein")
-    public static Lang gtceuCopperVeinOverWorld;
-
-    public static final GTOreDefinition COPPER_VEIN_OW = create(CTNHCore.id("copper_vein_ow"),
+    public static final GTOreDefinition COPPER_VEIN_OW = create("copper_vein_ow",
+            "Overworld Copper Vein",
+            "主世界铜矿脉",
             vein -> vein
                     .weight(80)
                     .clusterSize(UniformInt.of(40, 50))
@@ -366,17 +256,9 @@ public class OverworldOres {
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Copper)));
 
-    @Key("ctnhcore:diamond_vein_ow")
-    @CN("主世界钻石矿脉")
-    @EN("Overworld Diamond Vein")
-    public static Lang ctnhDiamondVeinOverWorld;
-
-    @Key("gtceu.jei.ore_vein.diamond_vein_ow")
-    @CN("主世界钻石矿脉")
-    @EN("Overworld Diamond Vein")
-    public static Lang gtceuDiamondVeinOverWorld;
-
-    public static final GTOreDefinition DIAMOND_VEIN_OW = create(CTNHCore.id("diamond_vein_ow"),
+    public static final GTOreDefinition DIAMOND_VEIN_OW = create("diamond_vein_ow",
+            "Overworld Diamond Vein",
+            "主世界钻石矿脉",
             vein -> vein
                     .weight(40)
                     .clusterSize(UniformInt.of(30, 40))
@@ -395,17 +277,9 @@ public class OverworldOres {
                             .placement(ABOVE)
                             .radius(2)));
 
-    @Key("ctnhcore:lapis_vein_ow")
-    @CN("主世界青金石矿脉")
-    @EN("Overworld Lapis Vein")
-    public static Lang ctnhLapisVeinOverWorld;
-
-    @Key("gtceu.jei.ore_vein.lapis_vein_ow")
-    @CN("主世界青金石矿脉")
-    @EN("Overworld Lapis Vein")
-    public static Lang gtceuLapisVeinOverWorld;
-
-    public static final GTOreDefinition LAPIS_VEIN_OW = create(CTNHCore.id("lapis_vein_ow"),
+    public static final GTOreDefinition LAPIS_VEIN_OW = create("lapis_vein_ow",
+            "Overworld Lapis Vein",
+            "主世界青金石矿脉",
             vein -> vein
                     .weight(40)
                     .clusterSize(UniformInt.of(40, 50))
@@ -423,17 +297,9 @@ public class OverworldOres {
                             .placement(ABOVE)
                             .radius(3)));
 
-    @Key("ctnhcore:manganese_vein_ow")
-    @CN("主世界锰矿脉")
-    @EN("Overworld Manganese Vein")
-    public static Lang ctnhManganeseVeinOverWorld;
-
-    @Key("gtceu.jei.ore_vein.manganese_vein_ow")
-    @CN("主世界锰矿脉")
-    @EN("Overworld Manganese Vein")
-    public static Lang gtceuManganeseVeinOverWorld;
-
-    public static final GTOreDefinition MANGANESE_VEIN_OW = create(CTNHCore.id("manganese_vein_ow"),
+    public static final GTOreDefinition MANGANESE_VEIN_OW = create("manganese_vein_ow",
+            "Overworld Manganese Vein",
+            "主世界锰矿脉",
             vein -> vein
                     .weight(20)
                     .clusterSize(UniformInt.of(50, 60))
@@ -450,17 +316,9 @@ public class OverworldOres {
                             .density(0.15f)
                             .radius(3)));
 
-    @Key("ctnhcore:olivine_vein_ow")
-    @CN("主世界橄榄石矿脉")
-    @EN("Overworld Olivine Vein")
-    public static Lang ctnhOlivineVeinOverWorld;
-
-    @Key("gtceu.jei.ore_vein.olivine_vein_ow")
-    @CN("主世界橄榄石矿脉")
-    @EN("Overworld Olivine Vein")
-    public static Lang gtceuOlivineVeinOverWorld;
-
-    public static final GTOreDefinition OLIVINE_VEIN_OW = create(CTNHCore.id("olivine_vein_ow"),
+    public static final GTOreDefinition OLIVINE_VEIN_OW = create("olivine_vein_ow",
+            "Overworld Olivine Vein",
+            "主世界橄榄石矿脉",
             vein -> vein
                     .weight(20)
                     .clusterSize(UniformInt.of(30, 40))
@@ -477,17 +335,9 @@ public class OverworldOres {
                             .density(0.15f)
                             .radius(3)));
 
-    @Key("ctnhcore:redstone_vein_ow")
-    @CN("主世界红石矿脉")
-    @EN("Overworld Redstone Vein")
-    public static Lang ctnhRedstoneVeinOverWorld;
-
-    @Key("gtceu.jei.ore_vein.redstone_vein_ow")
-    @CN("主世界红石矿脉")
-    @EN("Overworld Redstone Vein")
-    public static Lang gtceuRedstoneVeinOverWorld;
-
-    public static final GTOreDefinition REDSTONE_VEIN_OW = create(CTNHCore.id("redstone_vein_ow"),
+    public static final GTOreDefinition REDSTONE_VEIN_OW = create("redstone_vein_ow",
+            "Overworld Redstone Vein",
+            "主世界红石矿脉",
             vein -> vein
                     .weight(60)
                     .clusterSize(UniformInt.of(30, 40))
@@ -503,17 +353,9 @@ public class OverworldOres {
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Redstone)));
 
-    @Key("ctnhcore:sapphire_vein_ow")
-    @CN("主世界蓝宝石矿脉")
-    @EN("Overworld Sapphire Vein")
-    public static Lang ctnhSapphireVeinOverWorld;
-
-    @Key("gtceu.jei.ore_vein.sapphire_vein_ow")
-    @CN("主世界蓝宝石矿脉")
-    @EN("Overworld Sapphire Vein")
-    public static Lang gtceuSapphireVeinOverWorld;
-
-    public static final GTOreDefinition SAPPHIRE_VEIN_OW = create(CTNHCore.id("sapphire_vein_ow"),
+    public static final GTOreDefinition SAPPHIRE_VEIN_OW = create("sapphire_vein_ow",
+            "Overworld Sapphire Vein",
+            "主世界蓝宝石矿脉",
             vein -> vein
                     .weight(60)
                     .clusterSize(UniformInt.of(25, 30))

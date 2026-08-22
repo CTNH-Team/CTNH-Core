@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry.ores;
 
-import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.CTNHWorldgenLayers;
 
 import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
@@ -8,13 +7,9 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import net.minecraft.util.valueproviders.UniformInt;
 
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-import com.ctnhlang.Key;
 import com.magicbee.ctnhmana.registry.CMMaterials;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
-import static com.gregtechceu.gtceu.common.data.GTOres.create;
+import static io.github.cpearl0.ctnhcore.registry.CTNHOres.create;
 import static io.github.cpearl0.ctnhcore.registry.CTNHWorlds.*;
 import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 
@@ -22,17 +17,9 @@ public class AlfheimOres {
 
     // ==================== Alfheim ====================
 
-    @Key("ctnhcore:mana_fused_vein")
-    @CN("蕴魔矿脉")
-    @EN("Mana-Fused Vein")
-    public static Lang ctnhManaFusedVein;
-
-    @Key("gtceu.jei.ore_vein.mana_fused_vein")
-    @CN("蕴魔矿脉")
-    @EN("Mana-Fused Vein")
-    public static Lang gtceuManaFusedVein;
-
-    public static GTOreDefinition MANA_FUSED_VEIN = create(CTNHCore.id("mana_fused_vein"),
+    public static GTOreDefinition MANA_FUSED_VEIN = create("mana_fused_vein",
+            "Mana-Fused Vein",
+            "蕴魔矿脉",
             vein -> vein
                     .weight(80)
                     .clusterSize(UniformInt.of(30, 40))

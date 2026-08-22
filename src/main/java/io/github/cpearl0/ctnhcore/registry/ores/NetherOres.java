@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry.ores;
 
-import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
@@ -11,29 +10,16 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
 
-import com.ctnhlang.CN;
-import com.ctnhlang.EN;
-import com.ctnhlang.Key;
-import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
-
 import static com.gregtechceu.gtceu.api.data.worldgen.generator.indicators.SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE;
-import static com.gregtechceu.gtceu.common.data.GTOres.create;
+import static io.github.cpearl0.ctnhcore.registry.CTNHOres.create;
 
 public class NetherOres {
 
     // ==================== Nether ====================
 
-    @Key("ctnhcore:nickel_vein_nt")
-    @CN("下界镍矿脉")
-    @EN("Nether Nickel Vein")
-    public static Lang ctnhNickelVein;
-
-    @Key("gtceu.jei.ore_vein.nickel_vein_nt")
-    @CN("下界镍矿脉")
-    @EN("Nether Nickel Vein")
-    public static Lang gtceuNickelVein;
-
-    public static GTOreDefinition NICKEL_VEIN_NT = create(CTNHCore.id("nickel_vein_nt"),
+    public static GTOreDefinition NICKEL_VEIN_NT = create("nickel_vein_nt",
+            "Nether Nickel Vein",
+            "下界镍矿脉",
             vein -> vein
                     .weight(40)
                     .clusterSize(UniformInt.of(30, 50))
@@ -51,17 +37,9 @@ public class NetherOres {
                             .surfaceRock(GTMaterials.Nickel)
                             .placement(ABOVE)));
 
-    @Key("ctnhcore:monazite_vein_nt")
-    @CN("下界独居石矿脉")
-    @EN("Nether Monazite Vein")
-    public static Lang ctnhMonaziteVein;
-
-    @Key("gtceu.jei.ore_vein.monazite_vein_nt")
-    @CN("下界独居石矿脉")
-    @EN("Nether Monazite Vein")
-    public static Lang gtceuMonaziteVein;
-
-    public static final GTOreDefinition MONAZITE_VEIN_NT = create(CTNHCore.id("monazite_vein_nt"),
+    public static final GTOreDefinition MONAZITE_VEIN_NT = create("monazite_vein_nt",
+            "Nether Monazite Vein",
+            "下界独居石矿脉",
             vein -> vein
                     .clusterSize(UniformInt.of(25, 30))
                     .density(0.25f)
@@ -78,17 +56,9 @@ public class NetherOres {
                             .surfaceRock(GTMaterials.Bastnasite)
                             .placement(ABOVE)));
 
-    @Key("ctnhcore:redstone_vein_nt")
-    @CN("下界红石矿脉")
-    @EN("Nether Redstone Vein")
-    public static Lang ctnhRedstoneVein;
-
-    @Key("gtceu.jei.ore_vein.redstone_vein_nt")
-    @CN("下界红石矿脉")
-    @EN("Nether Redstone Vein")
-    public static Lang gtceuRedstoneVein;
-
-    public static final GTOreDefinition REDSTONE_VEIN_NT = create(CTNHCore.id("redstone_vein_nt"),
+    public static final GTOreDefinition REDSTONE_VEIN_NT = create("redstone_vein_nt",
+            "Nether Redstone Vein",
+            "下界红石矿脉",
             vein -> vein
                     .clusterSize(UniformInt.of(30, 40))
                     .density(0.2f)
@@ -105,17 +75,9 @@ public class NetherOres {
                             .surfaceRock(GTMaterials.Redstone)
                             .placement(ABOVE)));
 
-    @Key("ctnhcore:beryllium_vein_nt")
-    @CN("下界铍矿脉")
-    @EN("Nether Beryllium Vein")
-    public static Lang ctnhBerylliumVein;
-
-    @Key("gtceu.jei.ore_vein.beryllium_vein_nt")
-    @CN("下界铍矿脉")
-    @EN("Nether Beryllium Vein")
-    public static Lang gtceuBerylliumVein;
-
-    public static final GTOreDefinition BERYLLIUM_VEIN_NT = create(CTNHCore.id("beryllium_vein_nt"),
+    public static final GTOreDefinition BERYLLIUM_VEIN_NT = create("beryllium_vein_nt",
+            "Nether Beryllium Vein",
+            "下界铍矿脉",
             vein -> vein
                     .clusterSize(UniformInt.of(50, 60))
                     .density(0.75f)
@@ -132,17 +94,9 @@ public class NetherOres {
                             .surfaceRock(GTMaterials.Beryllium)
                             .placement(ABOVE)));
 
-    @Key("ctnhcore:molybdenum_vein_nt")
-    @CN("下界钼矿脉")
-    @EN("Nether Molybdenum Vein")
-    public static Lang ctnhMolybdenumVein;
-
-    @Key("gtceu.jei.ore_vein.molybdenum_vein_nt")
-    @CN("下界钼矿脉")
-    @EN("Nether Molybdenum Vein")
-    public static Lang gtceuMolybdenumVein;
-
-    public static final GTOreDefinition MOLYBDENUM_VEIN_NT = create(CTNHCore.id("molybdenum_vein_nt"),
+    public static final GTOreDefinition MOLYBDENUM_VEIN_NT = create("molybdenum_vein_nt",
+            "Nether Molybdenum Vein",
+            "下界钼矿脉",
             vein -> vein
                     .clusterSize(UniformInt.of(25, 30))
                     .density(0.25f)
@@ -159,17 +113,9 @@ public class NetherOres {
                             .surfaceRock(GTMaterials.Wulfenite)
                             .placement(ABOVE)));
 
-    @Key("ctnhcore:tetrahedrite_vein_nt")
-    @CN("下界黝铜矿脉")
-    @EN("Nether Tetrahedrite Vein")
-    public static Lang ctnhTetrahedriteVein;
-
-    @Key("gtceu.jei.ore_vein.tetrahedrite_vein_nt")
-    @CN("下界黝铜矿脉")
-    @EN("Nether Tetrahedrite Vein")
-    public static Lang gtceuTetrahedriteVein;
-
-    public static final GTOreDefinition TETRAHEDRITE_VEIN_NT = create(CTNHCore.id("tetrahedrite_vein_nt"),
+    public static final GTOreDefinition TETRAHEDRITE_VEIN_NT = create("tetrahedrite_vein_nt",
+            "Nether Tetrahedrite Vein",
+            "下界黝铜矿脉",
             vein -> vein
                     .clusterSize(UniformInt.of(40, 50))
                     .density(1.0f)
@@ -186,17 +132,9 @@ public class NetherOres {
                             .surfaceRock(GTMaterials.Tetrahedrite)
                             .placement(ABOVE)));
 
-    @Key("ctnhcore:banded_iron_vein_nt")
-    @CN("下界带状铁矿脉")
-    @EN("Nether Banded Iron Vein")
-    public static Lang ctnhBandedIronVein;
-
-    @Key("gtceu.jei.ore_vein.banded_iron_vein_nt")
-    @CN("下界带状铁矿脉")
-    @EN("Nether Banded Iron Vein")
-    public static Lang gtceuBandedIronVein;
-
-    public static final GTOreDefinition BANDED_IRON_VEIN_NT = create(CTNHCore.id("banded_iron_vein_nt"),
+    public static final GTOreDefinition BANDED_IRON_VEIN_NT = create("banded_iron_vein_nt",
+            "Nether Banded Iron Vein",
+            "下界带状铁矿脉",
             vein -> vein
                     .clusterSize(UniformInt.of(40, 50))
                     .density(1.0f)
@@ -213,17 +151,9 @@ public class NetherOres {
                             .surfaceRock(GTMaterials.Hematite)
                             .placement(ABOVE)));
 
-    @Key("ctnhcore:topaz_vein_nt")
-    @CN("下界黄玉矿脉")
-    @EN("Nether Topaz Vein")
-    public static Lang ctnhTopazVein;
-
-    @Key("gtceu.jei.ore_vein.topaz_vein_nt")
-    @CN("下界黄玉矿脉")
-    @EN("Nether Topaz Vein")
-    public static Lang gtceuTopazVein;
-
-    public static final GTOreDefinition TOPAZ_VEIN_NT = create(CTNHCore.id("topaz_vein_nt"),
+    public static final GTOreDefinition TOPAZ_VEIN_NT = create("topaz_vein_nt",
+            "Nether Topaz Vein",
+            "下界黄玉矿脉",
             vein -> vein
                     .clusterSize(UniformInt.of(25, 30))
                     .density(0.25f)
@@ -239,17 +169,9 @@ public class NetherOres {
                             .surfaceRock(GTMaterials.Topaz)
                             .placement(ABOVE)));
 
-    @Key("ctnhcore:sulfur_vein_nt")
-    @CN("下界硫矿脉")
-    @EN("Nether Sulfur Vein")
-    public static Lang ctnhSulfurVein;
-
-    @Key("gtceu.jei.ore_vein.sulfur_vein_nt")
-    @CN("下界硫矿脉")
-    @EN("Nether Sulfur Vein")
-    public static Lang gtceuSulfurVein;
-
-    public static final GTOreDefinition SULFUR_VEIN_NT = create(CTNHCore.id("sulfur_vein_nt"),
+    public static final GTOreDefinition SULFUR_VEIN_NT = create("sulfur_vein_nt",
+            "Nether Sulfur Vein",
+            "下界硫矿脉",
             vein -> vein
                     .clusterSize(UniformInt.of(30, 40))
                     .density(0.2f)
@@ -266,17 +188,9 @@ public class NetherOres {
                             .surfaceRock(GTMaterials.Sulfur)
                             .placement(ABOVE)));
 
-    @Key("ctnhcore:saltpeter_vein_nt")
-    @CN("下界硝石矿脉")
-    @EN("Nether Saltpeter Vein")
-    public static Lang ctnhSaltpeterVein;
-
-    @Key("gtceu.jei.ore_vein.saltpeter_vein_nt")
-    @CN("下界硝石矿脉")
-    @EN("Nether Saltpeter Vein")
-    public static Lang gtceuSaltpeterVein;
-
-    public static final GTOreDefinition SALTPETER_VEIN_NT = create(CTNHCore.id("saltpeter_vein_nt"),
+    public static final GTOreDefinition SALTPETER_VEIN_NT = create("saltpeter_vein_nt",
+            "Nether Saltpeter Vein",
+            "下界硝石矿脉",
             vein -> vein
                     .clusterSize(UniformInt.of(30, 40))
                     .density(0.25f)
@@ -292,17 +206,9 @@ public class NetherOres {
                             .surfaceRock(GTMaterials.Saltpeter)
                             .placement(ABOVE)));
 
-    @Key("ctnhcore:manganese_vein_nt")
-    @CN("下界锰矿脉")
-    @EN("Nether Manganese Vein")
-    public static Lang ctnhManganeseVein;
-
-    @Key("gtceu.jei.ore_vein.manganese_vein_nt")
-    @CN("下界锰矿脉")
-    @EN("Nether Manganese Vein")
-    public static Lang gtceuManganeseVein;
-
-    public static final GTOreDefinition MANGANESE_VEIN_NT = create(CTNHCore.id("manganese_vein_nt"),
+    public static final GTOreDefinition MANGANESE_VEIN_NT = create("manganese_vein_nt",
+            "Nether Manganese Vein",
+            "下界锰矿脉",
             vein -> vein
                     .clusterSize(UniformInt.of(50, 70))
                     .density(0.75f)
@@ -318,17 +224,9 @@ public class NetherOres {
                             .surfaceRock(GTMaterials.Pyrolusite)
                             .placement(ABOVE)));
 
-    @Key("ctnhcore:certus_quartz_nt")
-    @CN("下界赛特斯石英")
-    @EN("Nether Certus Quartz")
-    public static Lang ctnhCertusQuartz;
-
-    @Key("gtceu.jei.ore_vein.certus_quartz_nt")
-    @CN("下界赛特斯石英")
-    @EN("Nether Certus Quartz")
-    public static Lang gtceuCertusQuartz;
-
-    public static final GTOreDefinition CERTUS_QUARTZ_VEIN_NT = create(CTNHCore.id("certus_quartz_nt"),
+    public static final GTOreDefinition CERTUS_QUARTZ_VEIN_NT = create("certus_quartz_nt",
+            "Nether Certus Quartz",
+            "下界赛特斯石英",
             vein -> vein
                     .clusterSize(UniformInt.of(25, 30))
                     .density(0.25f)
@@ -345,17 +243,9 @@ public class NetherOres {
                             .surfaceRock(GTMaterials.CertusQuartz)
                             .placement(ABOVE)));
 
-    @Key("ctnhcore:ancient_debris_vein_nt")
-    @CN("下界远古残骸矿脉")
-    @EN("Nether Ancient Debris Vein")
-    public static Lang ctnhAncientDebrisVein;
-
-    @Key("gtceu.jei.ore_vein.ancient_debris_vein_nt")
-    @CN("下界远古残骸矿脉")
-    @EN("Nether Ancient Debris Vein")
-    public static Lang gtceuAncientDebrisVein;
-
-    public static GTOreDefinition ANCIENT_DEBRIS_VEIN_NT = create(CTNHCore.id("ancient_debris_vein_nt"),
+    public static GTOreDefinition ANCIENT_DEBRIS_VEIN_NT = create("ancient_debris_vein_nt",
+            "Nether Ancient Debris Vein",
+            "下界远古残骸矿脉",
             vein -> vein
                     .weight(10)
                     .clusterSize(35)
@@ -375,17 +265,9 @@ public class NetherOres {
                             .density(0.4F)
                             .radius(5)));
 
-    @Key("ctnhcore:bauxite_vein_nt")
-    @CN("下界铝土矿脉")
-    @EN("Nether Bauxite Vein")
-    public static Lang ctnhBauxiteVeinNether;
-
-    @Key("gtceu.jei.ore_vein.bauxite_vein_nt")
-    @CN("下界铝土矿脉")
-    @EN("Nether Bauxite Vein")
-    public static Lang gtceuBauxiteVeinNether;
-
-    public static final GTOreDefinition BAUXITE_VEIN_NT = create(CTNHCore.id("bauxite_vein_nt"),
+    public static final GTOreDefinition BAUXITE_VEIN_NT = create("bauxite_vein_nt",
+            "Nether Bauxite Vein",
+            "下界铝土矿脉",
             vein -> vein
                     .clusterSize(UniformInt.of(30, 40))
                     .density(0.25f)

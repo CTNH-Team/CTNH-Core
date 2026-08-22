@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.common;
 
+import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.ponder.CTNHCorePonderPlugin;
@@ -152,6 +153,8 @@ public class CommonProxy {
 
         if (event.includeClient()) {
             CTNHPonderLang.init(new CTNHCorePonderPlugin());
+            GTRegistries.ORE_VEINS.unfreeze();
+            CTNHOres.init();
         }
     }
 }
