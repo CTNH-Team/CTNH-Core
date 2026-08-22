@@ -527,12 +527,12 @@ public final class AsyncRtpManager {
         CTNHCore.LOGGER.debug("[RTP] {}: FINISHED at [{}, {}, {}] after {} attempts (took {}s), teleporting",
                 search.playerId, groundPos.getX(), groundPos.getY(), groundPos.getZ(), attempt + 1, tookSec);
 
+        TeleportPos foundPos = new TeleportPos(level.dimension(), groundPos.above());
         player.sendSystemMessage(rtpFound.translate(
                 attempt + 1,
                 tookSec,
-                groundPos.getX(),
-                groundPos.getZ()));
-        TeleportPos foundPos = new TeleportPos(level.dimension(), groundPos.above());
+                foundPos.getPos().getX(),
+                foundPos.getPos().getZ()));
         search.playerData.rtpTeleporter.teleport(player, ignored -> foundPos).runCommand(player);
     }
 
