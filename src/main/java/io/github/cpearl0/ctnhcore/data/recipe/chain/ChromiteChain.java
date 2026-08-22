@@ -29,12 +29,12 @@ public class ChromiteChain {
         // 2. Sodium chromate from sodium carbonate: chromite_dust + oxygen + sodium_carbonate_solution ->
         // magnetite_dust + carbon_dioxide + sodium_chromate_solution
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("sodium_chromate_from_sodium_carbonate"))
-                .inputItems(dust, Chromite, 14)
-                .inputFluids(Oxygen.getFluid(7000))
-                .inputFluids(BiodieselFertileSoilMaterials.SODIUM_CARBONATE_SOLUTION.getFluid(2000))
+                .inputItems(dust, Chromite, 21)
+                .inputFluids(Oxygen.getFluid(10000))
+                .inputFluids(BiodieselFertileSoilMaterials.SODIUM_CARBONATE_SOLUTION.getFluid(6000))
                 .outputItems(dust, Magnetite, 7)
-                .outputFluids(CarbonDioxide.getFluid(2000))
-                .outputFluids(BiodieselFertileSoilMaterials.SODIUM_CHROMATE_SOLUTION.getFluid(2000))
+                .outputFluids(CarbonDioxide.getFluid(6000))
+                .outputFluids(BiodieselFertileSoilMaterials.SODIUM_CHROMATE_SOLUTION.getFluid(6000))
                 .EUt(120).duration(120)
                 .save(provider);
 
