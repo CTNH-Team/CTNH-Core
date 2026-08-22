@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.common;
 
-import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.ponder.CTNHCorePonderPlugin;
@@ -30,6 +29,7 @@ import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.category.GTRecipeCategory;
 import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
+import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.unification.material.MaterialRegistryManager;
 
 import net.minecraft.core.registries.Registries;

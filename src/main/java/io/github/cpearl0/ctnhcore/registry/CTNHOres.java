@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry;
 
-import com.gregtechceu.gtceu.GTCEu;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.ores.AdAstraOres;
 import io.github.cpearl0.ctnhcore.registry.ores.AetherOres;
@@ -10,6 +9,7 @@ import io.github.cpearl0.ctnhcore.registry.ores.NetherOres;
 import io.github.cpearl0.ctnhcore.registry.ores.OverworldOres;
 import io.github.cpearl0.ctnhcore.registry.ores.TwilightForestOres;
 
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
 import com.gregtechceu.gtceu.common.data.GTOres;
 
@@ -21,7 +21,7 @@ public class CTNHOres {
 
     public static GTOreDefinition create(String name, String en, String cn, Consumer<GTOreDefinition> config) {
         ResourceLocation id = CTNHCore.id(name);
-        if(GTCEu.isDataGen()) {
+        if (GTCEu.isDataGen()) {
             CTNHRegistration.REGISTRATE.genLang(GTOres.getTranslationKey(id), en, cn);
             return null;
         }
