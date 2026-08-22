@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.integration.ftbessentials;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.mixin.mc.ServerChunkCacheAccessor;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -8,16 +9,20 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ChunkHolder;
+import net.minecraft.server.level.DistanceManager;
 import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.level.TicketType;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.Unit;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.ChunkStatus;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.server.ServerStoppedEvent;
@@ -42,8 +47,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 @Mod.EventBusSubscriber(modid = CTNHCore.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class AsyncRtpManager {
@@ -51,9 +54,10 @@ public final class AsyncRtpManager {
     /**
      * How many candidate chunks a single search keeps generating at the same time.
      * More candidates in flight = shorter wall-clock time per search, at the cost of
-     * more concurrent FULL chunk generations. Bounded by the global cap below.
+     * more concurrent FULL chunk generations (which all run on the server thread).
+     * Bounded by the global cap below.
      */
-    private static final int WINDOW_SIZE = 3;
+    private static final int WINDOW_SIZE = 2;
 
     /**
      * Global cap on concurrent FULL chunk requests across all searches. This keeps the
@@ -63,8 +67,18 @@ public final class AsyncRtpManager {
      */
     private static final int MAX_GLOBAL_IN_FLIGHT = 4;
 
-    /** Resample guard so the sampler can never spin forever on rejected points. */
-    private static final int MAX_RESAMPLE = 32;
+    /**
+     * Fallback neighbour chunks are generated with at most this many in flight at a time.
+     * A 3x3 fallback scan would otherwise fire 8 FULL generations in one tick and stall
+     * the server thread; the remaining neighbours are dispatched one by one as they finish.
+     */
+    private static final int FALLBACK_CONCURRENCY = 2;
+
+    /**
+     * Resample guard so the sampler can never spin forever on rejected points
+     * (already-tried chunks, world-border rejects, RTP_EVENT vetoes).
+     */
+    private static final int MAX_RESAMPLE = 128;
 
     private static final Map<UUID, Search> SEARCHES = new HashMap<>();
 
@@ -75,17 +89,15 @@ public final class AsyncRtpManager {
     private static int globalInFlight;
 
     /**
-     * Worker threads that block inside {@link ServerChunkCache#getChunk} until a remote chunk
-     * is FULL. The private {@code getChunkFutureMainThread} path (with create=true) creates a
-     * holder without any ticket, so the freshly generated chunk can be unloaded again before the
-     * future completes - observed in practice as 100% ChunkLoadingFailure. The public
-     * {@code getChunk} call uses the vanilla ticket/loading path and reliably returns a FULL chunk.
+     * Ticket level used to keep a candidate chunk alive (fully generated, but not ticking)
+     * while the search inspects it. Without a ticket, a holder created for a remote chunk
+     * can be unloaded again before the FULL future completes (observed as 100%
+     * ChunkLoadingFailure via the private getChunkFutureMainThread path).
      */
-    private static final ExecutorService CHUNK_LOADERS = Executors.newFixedThreadPool(4, runnable -> {
-        Thread thread = new Thread(runnable, "CTNH-RTP-ChunkLoader");
-        thread.setDaemon(true);
-        return thread;
-    });
+    private static final int CHUNK_TICKET_LEVEL = 33;
+
+    /** Custom ticket type so the search does not interfere with vanilla/forge chunk tickets. */
+    private static final TicketType<Unit> RTP_TICKET = TicketType.create("ctnhcore:rtp", (left, right) -> 0);
 
     private AsyncRtpManager() {}
 
@@ -168,7 +180,7 @@ public final class AsyncRtpManager {
             globalInFlight++;
             ChunkPos chunkPos = new ChunkPos(candidate.pos);
             search.attemptedChunks.add(ChunkPos.asLong(chunkPos.x, chunkPos.z));
-            requestChunk(level, chunkPos).whenComplete((result, error) -> search.server.execute(() -> {
+            requestChunk(search, level, chunkPos).whenComplete((result, error) -> search.server.execute(() -> {
                 globalInFlight--;
                 releaseGlobalSlots();
                 onCandidateComplete(search, candidate, result, error);
@@ -212,28 +224,63 @@ public final class AsyncRtpManager {
     }
 
     /**
-     * Loads/generates the chunk on a worker thread via {@link ServerChunkCache#getChunk}, which
-     * blocks the calling thread until the chunk reaches FULL (vanilla's standard syntax, used by
-     * e.g. player teleports). Work happens off the server thread, so the main thread never stalls;
-     * the caller re-enters the server thread via {@code server.execute} once the future completes.
+     * Generates a remote chunk to FULL entirely on the server thread.
+     * <p>
+     * A load ticket ({@link TicketType#PLUGIN}, level {@link #CHUNK_TICKET_LEVEL}) is placed
+     * first so the holder stays alive while it generates; without one, the holder created by
+     * the private {@code getChunkFutureMainThread} path can be unloaded again before the FULL
+     * future completes (observed as 100% ChunkLoadingFailure). The future is then requested on
+     * the next tick - {@link MinecraftServer#execute} drains its queue once per tick, so the
+     * double submit runs one tick later, by which time the ticket has taken effect.
+     * All chunk generation runs on the server thread; nothing here blocks it.
      */
-    private static CompletableFuture<Either<ChunkAccess, ChunkHolder.ChunkLoadingFailure>> requestChunk(ServerLevel level,
+    private static CompletableFuture<Either<ChunkAccess, ChunkHolder.ChunkLoadingFailure>> requestChunk(
+                                                                                                        Search search,
+                                                                                                        ServerLevel level,
                                                                                                         ChunkPos chunkPos) {
-        return CompletableFuture.supplyAsync(() -> {
+        ServerChunkCache cache = (ServerChunkCache) level.getChunkSource();
+        DistanceManager distanceManager = ((ServerChunkCacheAccessor) (Object) cache).getDistanceManager();
+        distanceManager.addTicket(RTP_TICKET, chunkPos, CHUNK_TICKET_LEVEL, Unit.INSTANCE);
+        search.tickets.add(chunkPos);
+
+        CompletableFuture<Either<ChunkAccess, ChunkHolder.ChunkLoadingFailure>> result = new CompletableFuture<>();
+        MinecraftServer server = level.getServer();
+        server.execute(() -> server.execute(() -> {
             try {
-                ChunkAccess chunk = ((ServerChunkCache) level.getChunkSource())
-                        .getChunk(chunkPos.x, chunkPos.z, ChunkStatus.FULL, true);
-                return Either.<ChunkAccess, ChunkHolder.ChunkLoadingFailure>left(chunk);
+                ((ServerChunkCacheAccessor) (Object) cache).ctnhcore$getChunkFutureMainThread(
+                        chunkPos.x, chunkPos.z, ChunkStatus.FULL, true)
+                        .whenComplete((either, error) -> {
+                            releaseChunkTicket(search, level, chunkPos);
+                            if (error != null) {
+                                result.completeExceptionally(error);
+                            } else {
+                                result.complete(either);
+                            }
+                        });
             } catch (Throwable t) {
-                CTNHCore.LOGGER.error("[RTP] chunk ({}, {}) load failed", chunkPos.x, chunkPos.z, t);
-                return Either.right(new ChunkHolder.ChunkLoadingFailure() {
-                    @Override
-                    public String toString() {
-                        return "getChunk threw " + t;
-                    }
-                });
+                releaseChunkTicket(search, level, chunkPos);
+                result.completeExceptionally(t);
             }
-        }, CHUNK_LOADERS);
+        }));
+        return result;
+    }
+
+    private static void releaseChunkTicket(Search search, ServerLevel level, ChunkPos chunkPos) {
+        search.tickets.remove(chunkPos);
+        ServerChunkCache cache = (ServerChunkCache) level.getChunkSource();
+        DistanceManager distanceManager = ((ServerChunkCacheAccessor) (Object) cache).getDistanceManager();
+        distanceManager.removeTicket(RTP_TICKET, chunkPos, CHUNK_TICKET_LEVEL, Unit.INSTANCE);
+    }
+
+    /** Releases every still-open load ticket of a search (finish/fail/cancel path). */
+    private static void releaseAllTickets(Search search) {
+        ServerLevel level = search.server.getLevel(search.dimension);
+        if (level != null) {
+            for (ChunkPos pos : new ArrayList<>(search.tickets)) {
+                releaseChunkTicket(search, level, pos);
+            }
+        }
+        search.tickets.clear();
     }
 
     private static void onCandidateComplete(Search search, Candidate candidate,
@@ -252,7 +299,8 @@ public final class AsyncRtpManager {
 
         if (error != null || result == null || result.left().isEmpty()) {
             CTNHCore.LOGGER.info("[RTP] {}: candidate [{}, {}] rejected: chunk not delivered (error={}, empty={})",
-                    search.playerId, candidate.pos.getX(), candidate.pos.getZ(), error != null, result == null || result.left().isEmpty());
+                    search.playerId, candidate.pos.getX(), candidate.pos.getZ(), error != null,
+                    result == null || result.left().isEmpty());
             fillWindow(search);
             return;
         }
@@ -264,27 +312,67 @@ public final class AsyncRtpManager {
             fillWindow(search);
             return;
         }
-
-        BlockPos heightmapPos = level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, candidatePos);
-        if (heightmapPos.getY() <= 0) {
-            CTNHCore.LOGGER.info("[RTP] {}: candidate [{}, {}] rejected: heightmap {} <= 0",
-                    search.playerId, candidatePos.getX(), candidatePos.getZ(), heightmapPos.getY());
-            fillWindow(search);
-        } else if (heightmapPos.getY() < level.getMaxBuildHeight()) {
-            CTNHCore.LOGGER.info("[RTP] {}: candidate [{}, {}] accepted, ground y={}",
-                    search.playerId, candidatePos.getX(), candidatePos.getZ(), heightmapPos.getY());
-            finish(search, player, level, heightmapPos, candidate.attempt);
-        } else if (search.fallbackActive) {
-            CTNHCore.LOGGER.info("[RTP] {}: candidate [{}, {}] heightmap {} >= max {}, fallback busy, skipping",
-                    search.playerId, candidatePos.getX(), candidatePos.getZ(), heightmapPos.getY(), level.getMaxBuildHeight());
-            // Another in-window candidate already owns the fallback scan; keep the
-            // neighbour-chunk load bounded by not starting a second one.
-            fillWindow(search);
+        // The MOTION_BLOCKING_NO_LEAVES heightmap is not reliable on this pack's worlds
+        // (observed: reported ground y=63 while the block there was air, so ocean positions
+        // sailed through). Scan the actual column instead: first block from the top that is
+        // solid, dry (non-water), not leaves, with 3 water-free blocks above for the player.
+        BlockPos groundPos = findLandingSpot(level, candidatePos.getX(), candidatePos.getZ());
+        if (groundPos == null) {
+            if (search.fallbackActive) {
+                CTNHCore.LOGGER.info("[RTP] {}: candidate [{}, {}] rejected: no dry landing spot in column, fallback busy",
+                        search.playerId, candidatePos.getX(), candidatePos.getZ());
+                fillWindow(search);
+            } else {
+                CTNHCore.LOGGER.info("[RTP] {}: candidate [{}, {}] rejected: no dry landing spot, starting fallback",
+                        search.playerId, candidatePos.getX(), candidatePos.getZ());
+                // Another in-window candidate may own the fallback scan already; keep the
+                // neighbour-chunk load bounded by not starting a second one.
+                requestFallbackArea(search, candidate);
+            }
         } else {
-            CTNHCore.LOGGER.info("[RTP] {}: candidate [{}, {}] heightmap {} >= max {}, starting fallback scan",
-                    search.playerId, candidatePos.getX(), candidatePos.getZ(), heightmapPos.getY(), level.getMaxBuildHeight());
-            requestFallbackArea(search, candidate);
+            CTNHCore.LOGGER.info("[RTP] {}: candidate [{}, {}] accepted, ground y={}, block {}, above=[{}, {}, {}]",
+                    search.playerId, candidatePos.getX(), candidatePos.getZ(), groundPos.getY(),
+                    level.getBlockState(groundPos),
+                    level.getBlockState(groundPos.above()),
+                    level.getBlockState(groundPos.above(2)),
+                    level.getBlockState(groundPos.above(3)));
+            finish(search, player, level, groundPos, candidate.attempt);
         }
+    }
+
+    /**
+     * Scans one column top-down for a breathing landing spot: a solid, non-leaf block with
+     * 3 collision-free blocks above it (player hitbox + head). Collision-free means the
+     * blocks must not block motion; water blocks motion, so this also rejects water without
+     * relying on fluid tags or the (unreliable, on this pack) world heightmap.
+     * <p>
+     * The scan is confined to the surface band around sea level (seaLevel-2 .. seaLevel+120):
+     * without this, the top-down scan keeps drilling through terrain and can end up inside an
+     * underground cave (observed: a deepslate cave wall at y=-10 accepted as "land").
+     * Returns the ground block position, or null if the column has no such spot.
+     */
+    private static BlockPos findLandingSpot(ServerLevel level, int x, int z) {
+        int minY = level.getSeaLevel() - 2;
+        int maxY = Math.min(level.getMaxBuildHeight() - 1, level.getSeaLevel() + 120);
+        for (int y = maxY; y >= minY; y--) {
+            BlockState state = level.getBlockState(new BlockPos(x, y, z));
+            if (state.blocksMotion() && !state.is(BlockTags.LEAVES)
+                    && !state.is(TeleportCommands.IGNORE_RTP_BLOCKS)
+                    && hasClearSpaceAbove(level, x, y, z)) {
+                return new BlockPos(x, y, z);
+            }
+        }
+        return null;
+    }
+
+    private static boolean hasClearSpaceAbove(ServerLevel level, int x, int y, int z) {
+        for (int i = 1; i <= 3; i++) {
+            BlockState above = level.getBlockState(new BlockPos(x, y + i, z));
+            if (above.blocksMotion() || above.getFluidState().is(FluidTags.WATER)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -309,32 +397,50 @@ public final class AsyncRtpManager {
             return;
         }
 
-        int[] pending = {8};
+        List<ChunkPos> neighbors = new ArrayList<>(8);
         for (int dx = -1; dx <= 1; dx++) {
             for (int dz = -1; dz <= 1; dz++) {
                 if (dx == 0 && dz == 0) {
                     continue;
                 }
-                int[] neighbor = {chunkX + dx, chunkZ + dz};
-                ChunkPos neighborPos = new ChunkPos(neighbor[0], neighbor[1]);
-                requestChunk(level, neighborPos).whenComplete((result, error) -> search.server.execute(() -> {
-                    if (SEARCHES.get(search.playerId) != search) {
-                        return; // finish/cancel happened while this neighbor was generating
-                    }
-                    pending[0]--;
-                    boolean ok = error == null && result != null && result.left().isPresent() &&
-                            scanChunk(search, level, candidate, neighbor[0], neighbor[1]);
-                    if (ok) {
-                        return; // scanChunk finished the search
-                    }
-                    if (pending[0] == 0) {
-                        search.fallbackActive = false;
-                        if (SEARCHES.get(search.playerId) == search) {
-                            fillWindow(search);
-                        }
-                    }
-                }));
+                neighbors.add(new ChunkPos(chunkX + dx, chunkZ + dz));
             }
+        }
+        int[] next = { 0 };    // next neighbour index to dispatch
+        int[] pending = { 8 }; // neighbours not yet scanned (or failed/chunk-empty)
+        int[] running = { 0 }; // neighbours currently loading
+        dispatchFallbackNeighbor(search, level, candidate, neighbors, next, pending, running);
+    }
+
+    /**
+     * Dispatches fallback neighbours with at most {@link #FALLBACK_CONCURRENCY} FULL
+     * generations in flight, so the fallback scan cannot stall the server thread.
+     */
+    private static void dispatchFallbackNeighbor(Search search, ServerLevel level, Candidate candidate,
+                                                 List<ChunkPos> neighbors, int[] next, int[] pending, int[] running) {
+        while (running[0] < FALLBACK_CONCURRENCY && next[0] < neighbors.size()) {
+            ChunkPos neighborPos = neighbors.get(next[0]++);
+            running[0]++;
+            requestChunk(search, level, neighborPos).whenComplete((result, error) -> search.server.execute(() -> {
+                if (SEARCHES.get(search.playerId) != search) {
+                    return; // finish/cancel happened while this neighbor was generating
+                }
+                running[0]--;
+                pending[0]--;
+                boolean ok = error == null && result != null && result.left().isPresent() &&
+                        scanChunk(search, level, candidate, neighborPos.x, neighborPos.z);
+                if (ok) {
+                    return; // scanChunk finished the search
+                }
+                if (pending[0] == 0) {
+                    search.fallbackActive = false;
+                    if (SEARCHES.get(search.playerId) == search) {
+                        fillWindow(search);
+                    }
+                } else {
+                    dispatchFallbackNeighbor(search, level, candidate, neighbors, next, pending, running);
+                }
+            }));
         }
     }
 
@@ -353,7 +459,8 @@ public final class AsyncRtpManager {
             for (int dz = 0; dz < 16; dz++) {
                 BlockPos pos = new BlockPos(baseX + dx, seaLevel, baseZ + dz);
                 BlockState state = level.getBlockState(pos);
-                if (state.blocksMotion() && !state.is(TeleportCommands.IGNORE_RTP_BLOCKS) &&
+                if (state.blocksMotion() && state.getFluidState().isEmpty() &&
+                        !state.is(TeleportCommands.IGNORE_RTP_BLOCKS) &&
                         level.isEmptyBlock(pos.above()) && level.isEmptyBlock(pos.above(2)) &&
                         level.isEmptyBlock(pos.above(3))) {
                     CTNHCore.LOGGER.info("[RTP] {}: fallback found spot [{}, {}, {}] in chunk ({}, {})",
@@ -387,6 +494,7 @@ public final class AsyncRtpManager {
             return;
         }
         WAITING.remove(search);
+        releaseAllTickets(search);
         CTNHCore.LOGGER.info("[RTP] {}: FINISHED at [{}, {}, {}] after {} attempts, teleporting",
                 search.playerId, groundPos.getX(), groundPos.getY(), groundPos.getZ(), attempt + 1);
 
@@ -405,6 +513,7 @@ public final class AsyncRtpManager {
             return;
         }
         WAITING.remove(search);
+        releaseAllTickets(search);
         CTNHCore.LOGGER.info("[RTP] {}: search failed after {} attempts ({} chunks attempted)",
                 search.playerId, search.nextAttempt, search.attemptedChunks.size());
         ServerPlayer player = search.server.getPlayerList().getPlayer(search.playerId);
@@ -429,12 +538,17 @@ public final class AsyncRtpManager {
     }
 
     private static void cancel(Search search) {
-        SEARCHES.remove(search.playerId, search);
+        if (SEARCHES.remove(search.playerId, search)) {
+            releaseAllTickets(search);
+        }
         WAITING.remove(search);
     }
 
     private static void cancel(UUID playerId) {
-        SEARCHES.remove(playerId);
+        Search removed = SEARCHES.remove(playerId);
+        if (removed != null) {
+            releaseAllTickets(removed);
+        }
         WAITING.removeIf(search -> search.playerId.equals(playerId));
     }
 
@@ -460,7 +574,6 @@ public final class AsyncRtpManager {
         SEARCHES.clear();
         WAITING.clear();
         globalInFlight = 0;
-        CHUNK_LOADERS.shutdownNow();
     }
 
     private static final class Search {
@@ -476,6 +589,9 @@ public final class AsyncRtpManager {
 
         /** Chunks this search already requested (implicitly: already failed ones), keyed by ChunkPos.asLong(). */
         private final Set<Long> attemptedChunks = new HashSet<>();
+
+        /** Still-open load tickets ({@link #CHUNK_TICKET_LEVEL}); released on completion or cancel. */
+        private final List<ChunkPos> tickets = new ArrayList<>();
 
         private int nextAttempt;
         private int inFlight;
