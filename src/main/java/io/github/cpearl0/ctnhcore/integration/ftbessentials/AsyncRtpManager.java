@@ -211,12 +211,12 @@ public final class AsyncRtpManager {
             EventResult eventResult = FTBEssentialsEvents.RTP_EVENT.invoker()
                     .teleport(level, player, candidatePos, search.nextAttempt);
             if (eventResult.isFalse()) {
-                CTNHCore.LOGGER.info("[RTP] {}: sample [{}, {}] vetoed by RTP_EVENT",
+                CTNHCore.LOGGER.debug("[RTP] {}: sample [{}, {}] vetoed by RTP_EVENT",
                         search.playerId, x, z);
                 continue;
             }
 
-            CTNHCore.LOGGER.info("[RTP] {}: sample [{}, {}] (chunk ({}, {})) -> requesting FULL",
+            CTNHCore.LOGGER.debug("[RTP] {}: sample [{}, {}] (chunk ({}, {})) -> requesting FULL",
                     search.playerId, x, z, x >> 4, z >> 4);
             return new Candidate(candidatePos, search.nextAttempt);
         }
@@ -298,7 +298,7 @@ public final class AsyncRtpManager {
         search.inFlight--;
 
         if (error != null || result == null || result.left().isEmpty()) {
-            CTNHCore.LOGGER.info("[RTP] {}: candidate [{}, {}] rejected: chunk not delivered (error={}, empty={})",
+            CTNHCore.LOGGER.debug("[RTP] {}: candidate [{}, {}] rejected: chunk not delivered (error={}, empty={})",
                     search.playerId, candidate.pos.getX(), candidate.pos.getZ(), error != null,
                     result == null || result.left().isEmpty());
             fillWindow(search);
@@ -307,7 +307,7 @@ public final class AsyncRtpManager {
 
         BlockPos candidatePos = candidate.pos;
         if (level.getBiome(candidatePos).is(TeleportCommands.IGNORE_RTP_BIOMES)) {
-            CTNHCore.LOGGER.info("[RTP] {}: candidate [{}, {}] rejected: biome {} in ignore tag",
+            CTNHCore.LOGGER.debug("[RTP] {}: candidate [{}, {}] rejected: biome {} in ignore tag",
                     search.playerId, candidatePos.getX(), candidatePos.getZ(), level.getBiome(candidatePos));
             fillWindow(search);
             return;
@@ -319,18 +319,18 @@ public final class AsyncRtpManager {
         BlockPos groundPos = findLandingSpot(level, candidatePos.getX(), candidatePos.getZ());
         if (groundPos == null) {
             if (search.fallbackActive) {
-                CTNHCore.LOGGER.info("[RTP] {}: candidate [{}, {}] rejected: no dry landing spot in column, fallback busy",
+                CTNHCore.LOGGER.debug("[RTP] {}: candidate [{}, {}] rejected: no dry landing spot in column, fallback busy",
                         search.playerId, candidatePos.getX(), candidatePos.getZ());
                 fillWindow(search);
             } else {
-                CTNHCore.LOGGER.info("[RTP] {}: candidate [{}, {}] rejected: no dry landing spot, starting fallback",
+                CTNHCore.LOGGER.debug("[RTP] {}: candidate [{}, {}] rejected: no dry landing spot, starting fallback",
                         search.playerId, candidatePos.getX(), candidatePos.getZ());
                 // Another in-window candidate may own the fallback scan already; keep the
                 // neighbour-chunk load bounded by not starting a second one.
                 requestFallbackArea(search, candidate);
             }
         } else {
-            CTNHCore.LOGGER.info("[RTP] {}: candidate [{}, {}] accepted, ground y={}, block {}, above=[{}, {}, {}]",
+            CTNHCore.LOGGER.debug("[RTP] {}: candidate [{}, {}] accepted, ground y={}, block {}, above=[{}, {}, {}]",
                     search.playerId, candidatePos.getX(), candidatePos.getZ(), groundPos.getY(),
                     level.getBlockState(groundPos),
                     level.getBlockState(groundPos.above()),
@@ -463,14 +463,14 @@ public final class AsyncRtpManager {
                         !state.is(TeleportCommands.IGNORE_RTP_BLOCKS) &&
                         level.isEmptyBlock(pos.above()) && level.isEmptyBlock(pos.above(2)) &&
                         level.isEmptyBlock(pos.above(3))) {
-                    CTNHCore.LOGGER.info("[RTP] {}: fallback found spot [{}, {}, {}] in chunk ({}, {})",
+                    CTNHCore.LOGGER.debug("[RTP] {}: fallback found spot [{}, {}, {}] in chunk ({}, {})",
                             search.playerId, pos.getX(), pos.getY(), pos.getZ(), chunkX, chunkZ);
                     finish(search, player, level, pos.immutable(), candidate.attempt);
                     return true;
                 }
             }
         }
-        CTNHCore.LOGGER.info("[RTP] {}: fallback chunk ({}, {}) scanned, no spot",
+        CTNHCore.LOGGER.debug("[RTP] {}: fallback chunk ({}, {}) scanned, no spot",
                 search.playerId, chunkX, chunkZ);
         return false;
     }
@@ -495,13 +495,15 @@ public final class AsyncRtpManager {
         }
         WAITING.remove(search);
         releaseAllTickets(search);
-        CTNHCore.LOGGER.info("[RTP] {}: FINISHED at [{}, {}, {}] after {} attempts, teleporting",
-                search.playerId, groundPos.getX(), groundPos.getY(), groundPos.getZ(), attempt + 1);
+        long tookSec = Math.round((System.currentTimeMillis() - search.startMillis) / 1000.0D);
+        CTNHCore.LOGGER.debug("[RTP] {}: FINISHED at [{}, {}, {}] after {} attempts (took {}s), teleporting",
+                search.playerId, groundPos.getX(), groundPos.getY(), groundPos.getZ(), attempt + 1, tookSec);
 
         player.sendSystemMessage(Component.literal(String.format(
-                "Found good location after %d %s @ [x %d, z %d]",
+                "Found good location after %d %s (took %ds) @ [x %d, z %d]",
                 attempt + 1,
                 attempt == 0 ? "attempt" : "attempts",
+                tookSec,
                 groundPos.getX(),
                 groundPos.getZ())));
         TeleportPos foundPos = new TeleportPos(level.dimension(), groundPos.above());
@@ -514,8 +516,9 @@ public final class AsyncRtpManager {
         }
         WAITING.remove(search);
         releaseAllTickets(search);
-        CTNHCore.LOGGER.info("[RTP] {}: search failed after {} attempts ({} chunks attempted)",
-                search.playerId, search.nextAttempt, search.attemptedChunks.size());
+        long tookSec = Math.round((System.currentTimeMillis() - search.startMillis) / 1000.0D);
+        CTNHCore.LOGGER.debug("[RTP] {}: search failed after {} attempts ({} chunks attempted, took {}s)",
+                search.playerId, search.nextAttempt, search.attemptedChunks.size(), tookSec);
         ServerPlayer player = search.server.getPlayerList().getPlayer(search.playerId);
         if (player != null) {
             player.sendSystemMessage(Component.literal("Could not find a valid location to teleport to!")
@@ -597,6 +600,9 @@ public final class AsyncRtpManager {
         private int inFlight;
         private boolean fallbackActive;
 
+        /** Tick when this search was started, used to report time-to-teleport. */
+        private final long startMillis;
+
         private Search(UUID playerId, MinecraftServer server, ResourceKey<Level> dimension,
                        FTBEPlayerData playerData, int maxTries) {
             this.playerId = playerId;
@@ -605,6 +611,7 @@ public final class AsyncRtpManager {
             this.playerData = playerData;
             this.maxTries = maxTries;
             this.windowSize = Math.min(WINDOW_SIZE, maxTries);
+            this.startMillis = System.currentTimeMillis();
         }
     }
 
