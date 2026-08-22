@@ -78,7 +78,7 @@ public class EnderIOMaterials {
                 .ingot()
                 .liquid()
                 .color(0x6C5A34).iconSet(DULL)
-                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR)
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_RING)
                 .buildAndRegister();
         CopperAlloy = REGISTRATE.material(CTNHCore.id("copper_alloy"))
                 .cnlang("铜合金")

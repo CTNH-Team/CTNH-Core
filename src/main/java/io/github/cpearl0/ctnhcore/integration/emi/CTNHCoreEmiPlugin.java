@@ -139,6 +139,7 @@ public class CTNHCoreEmiPlugin implements EmiPlugin {
                 MachineBlocks.PRIMITIVE_ALLOY_SMELTER,
                 MachineBlocks.STIRLING_GENERATOR,
                 MachineBlocks.SOUL_ENGINE,
+                MachineBlocks.SLICE_AND_SPLICE,
                 EIOItems.BASIC_CAPACITOR,
                 EIOItems.DOUBLE_LAYER_CAPACITOR,
                 EIOItems.OCTADIC_CAPACITOR));

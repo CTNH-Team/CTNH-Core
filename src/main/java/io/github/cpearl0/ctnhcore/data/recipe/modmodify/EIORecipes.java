@@ -1,18 +1,25 @@
 package io.github.cpearl0.ctnhcore.data.recipe.modmodify;
 
+import appeng.core.definitions.AEBlocks;
+import com.enderio.base.common.init.EIOBlocks;
+import com.enderio.base.common.init.EIOItems;
+import com.enderio.conduits.common.init.ConduitItems;
+import com.enderio.machines.common.init.MachineBlocks;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
+import com.gregtechceu.gtceu.api.data.tag.TagUtil;
+import com.gregtechceu.gtceu.common.data.GTBlocks;
+import com.gregtechceu.gtceu.common.data.GTRecipeCategories;
+import com.gregtechceu.gtceu.data.recipe.CustomTags;
+import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
+import com.mo_guang.ctpp.registry.CreateMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.recipe.builder.CTNHRecipeBuilder;
 import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval;
 import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval.RemoveFilter;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
-
-import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
-import com.gregtechceu.gtceu.api.data.tag.TagUtil;
-import com.gregtechceu.gtceu.common.data.GTBlocks;
-import com.gregtechceu.gtceu.common.data.GTRecipeCategories;
-import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
-
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
@@ -23,15 +30,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems;
-
-import appeng.core.definitions.AEBlocks;
-import com.enderio.base.common.init.EIOBlocks;
-import com.enderio.base.common.init.EIOItems;
-import com.enderio.conduits.common.init.ConduitItems;
-import com.enderio.machines.common.init.MachineBlocks;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.mo_guang.ctpp.registry.CreateMaterials;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
@@ -258,10 +256,10 @@ public class EIORecipes {
                 CTNHCore.id("crafttable/crafter"),
                 new ItemStack(MachineBlocks.CRAFTER.get()),
                 "SSS", "ICI", "GUG",
-                'S', TagUtil.createItemTag("silicon"),
+                'S', ChemicalHelper.get(ingot, Silicon),
                 'C', EIOBlocks.VOID_CHASSIS.asItem(),
                 'I', TagUtil.createItemTag("ingots/iron"),
-                'G', TagUtil.createItemTag("gears/iron"),
+                'G', ChemicalHelper.get(gear, Iron),
                 'U', ModItems.CRAFTING_UPGRADE.get());
 
         // 5. empty_soul_vial: fused_quartz → ae2:quartz_glass
@@ -280,23 +278,18 @@ public class EIORecipes {
                 'B', EIOItems.CONDUIT_BINDER.asItem(),
                 'G', AEBlocks.QUARTZ_GLASS.asItem());
 
-        // 7. pressurized_fluid_tank: fused_quartz → ae2:quartz_glass
-        VanillaRecipeHelper.addShapedRecipe(provider,
-                CTNHCore.id("crafttable/pressurized_fluid_tank"),
-                new ItemStack(MachineBlocks.PRESSURIZED_FLUID_TANK.get()),
-                "IBI", "BGB", "IBI",
-                'I', TagUtil.createItemTag("ingots/dark_steel"),
-                'B', EIOBlocks.DARK_STEEL_BARS.asItem(),
-                'G', AEBlocks.QUARTZ_GLASS.asItem());
-
-        // 8. EnderIO gears/upgrades rebuilt with CTNH-Core alloy ingots & nuggets
+        // 8. EnderIO upgrades rebuilt with CTNH-Core ingredients
         addEnderGearAndUpgradeRecipes(provider);
-        // 9. soul_chain uses GT quartz dust
+        // 9. machines using EnderIO energized gears now use GT energetic alloy gears
+        addEnergizedGearMachineRecipes(provider);
+        // 10. soul_chain uses GT quartz dust
         addSoulChainRecipe(provider);
-        // 10. ender_resonator slicing uses CTNH-Core vibrant alloy ingot
-        addEnderResonatorRecipe(provider);
-        // 11. enderios uses GT ender pearl dust
+        // 11. slice-and-splice recipes migrated to GT assembler
+        addSliceAndSpliceRecipes(provider);
+        // 12. enderios uses GT ender pearl dust
         addEnderiosRecipe(provider);
+        // 13. xp_obelisk uses GT soularium ingot
+        addXpObeliskRecipe(provider);
 
         addFusedQuartzAlloyRecipes(provider);
         addFusedQuartzCollisionRecipes(provider);
@@ -304,34 +297,15 @@ public class EIORecipes {
         addFusedQuartzCraftingRecipes(provider);
     }
 
-    /** Rebuilt EnderIO gear/upgrade recipes using CTNH-Core alloy ingots & nuggets. */
+    /** Rebuilt EnderIO upgrade recipes using CTNH-Core ingredients. */
     private static void addEnderGearAndUpgradeRecipes(Consumer<FinishedRecipe> provider) {
-        // dark_bimetal_gear: dark steel (CTNH) around the GT hastelloy gear
+        // stone_gear upgrade: treated wood gear (CTNH) around cobblestone
         VanillaRecipeHelper.addShapedRecipe(provider,
-                CTNHCore.id("crafttable/dark_bimetal_gear"),
-                new ItemStack(EIOItems.GEAR_DARK_STEEL.asItem()),
-                "NIN", "IGI", "NIN",
-                'N', ChemicalHelper.get(nugget, DarkSteel),
-                'I', ChemicalHelper.get(ingot, DarkSteel),
-                'G', ChemicalHelper.get(gear, HastelloyX));
-
-        // energized_gear: energetic alloy (CTNH) around the GT aluminium gear
-        VanillaRecipeHelper.addShapedRecipe(provider,
-                CTNHCore.id("crafttable/energized_gear"),
-                new ItemStack(EIOItems.GEAR_ENERGIZED.asItem()),
-                "NIN", "IGI", "NIN",
-                'N', ChemicalHelper.get(nugget, EnergeticAlloy),
-                'I', ChemicalHelper.get(ingot, EnergeticAlloy),
-                'G', ChemicalHelper.get(gear, Aluminium));
-
-        // vibrant_gear: vibrant alloy (CTNH) around the energized gear
-        VanillaRecipeHelper.addShapedRecipe(provider,
-                CTNHCore.id("crafttable/vibrant_gear"),
-                new ItemStack(EIOItems.GEAR_VIBRANT.asItem()),
-                "NIN", "IGI", "NIN",
-                'N', ChemicalHelper.get(nugget, VibrantAlloy),
-                'I', ChemicalHelper.get(ingot, VibrantAlloy),
-                'G', EIOItems.GEAR_ENERGIZED.asItem());
+                CTNHCore.id("crafttable/stone_gear_upgrade"),
+                new ItemStack(EIOItems.GEAR_STONE.asItem()),
+                " I ", "IGI", " I ",
+                'G', ChemicalHelper.get(gear, TreatedWood),
+                'I', TagUtil.createItemTag("cobblestone"));
 
         // ender_fluid_conduit_upgrade: vibrant alloy (CTNH) around the pressurized fluid conduit
         VanillaRecipeHelper.addShapedRecipe(provider,
@@ -343,32 +317,81 @@ public class EIORecipes {
                 'I', ChemicalHelper.get(ingot, VibrantAlloy));
     }
 
+    /** Rebuilt machines that consumed EnderIO energized gears, now using GT energetic alloy gears. */
+    private static void addEnergizedGearMachineRecipes(Consumer<FinishedRecipe> provider) {
+        // soul_binder: forge:gears/energized → GT energetic alloy gear
+        VanillaRecipeHelper.addShapedRecipe(provider,
+                CTNHCore.id("crafttable/soul_binder"),
+                new ItemStack(MachineBlocks.SOUL_BINDER.get()),
+                "IVI", "GCG", "IZI",
+                'I', TagUtil.createItemTag("ingots/soularium"),
+                'V', EIOItems.EMPTY_SOUL_VIAL.get(),
+                'G', ChemicalHelper.get(gear, EnergeticAlloy),
+                'C', EIOBlocks.ENSOULED_CHASSIS.asItem(),
+                'Z', EIOItems.Z_LOGIC_CONTROLLER.asItem());
+    }
+
     /** Rebuilt soul_chain recipe using GT quartz dust. */
     private static void addSoulChainRecipe(Consumer<FinishedRecipe> provider) {
         VanillaRecipeHelper.addShapedRecipe(provider,
                 CTNHCore.id("crafttable/soul_chain"),
                 new ItemStack(EIOBlocks.SOUL_CHAIN.asItem(), 2),
-                " N ", "QIQ", " N ",
-                'N', TagUtil.createItemTag("nuggets/soularium"),
-                'I', TagUtil.createItemTag("ingots/soularium"),
-                'Q', ChemicalHelper.get(dust, Quartzite));
+                " R ", "QRQ", " R ",
+                'R', ChemicalHelper.get(ring, Soularium),
+                'Q', ChemicalHelper.get(dust, NetherQuartz));
     }
 
-    /** Rebuilt enderio:slicing/ender_resonator recipe using CTNH-Core vibrant alloy ingot. */
-    private static void addEnderResonatorRecipe(Consumer<FinishedRecipe> provider) {
-        JsonObject recipe = new JsonObject();
-        recipe.addProperty("type", "enderio:slicing");
-        recipe.addProperty("energy", 20000);
-        JsonArray inputs = new JsonArray();
-        inputs.add(tagIngredient("forge:ingots/soularium"));
-        inputs.add(itemIngredient("enderio:enderman_head"));
-        inputs.add(tagIngredient("forge:ingots/soularium"));
-        inputs.add(tagIngredient("forge:silicon"));
-        inputs.add(itemIngredient("ctnhcore:vibrant_alloy_ingot"));
-        inputs.add(tagIngredient("forge:silicon"));
-        recipe.add("inputs", inputs);
-        recipe.add("output", itemIngredient("enderio:ender_resonator"));
-        provider.accept(new JsonFinishedRecipe(CTNHCore.id("enderio/slicing/ender_resonator"), recipe));
+    /** Rebuilt slice-and-splice recipes as GT assembler recipes using GT materials. */
+    private static void addSliceAndSpliceRecipes(Consumer<FinishedRecipe> provider) {
+        CTNHRecipeBuilder.of("ender_resonator", ASSEMBLER_RECIPES)
+                .inputItems(ingot, Soularium, 2)
+                .inputItems(EIOBlocks.ENDERMAN_HEAD.asItem())
+                .inputItems(ingot, Silicon, 2)
+                .inputItems(ingot, VibrantAlloy)
+                .outputItems(EIOItems.ENDER_RESONATOR.asItem())
+                .EUt(120)
+                .duration(100)
+                .save(provider);
+
+        CTNHRecipeBuilder.of("guardian_diode", ASSEMBLER_RECIPES)
+                .inputItems(ingot, EnergeticAlloy, 2)
+                .inputItems(TagUtil.createItemTag("dusts/prismarine"))
+                .inputItems(TagUtil.createItemTag("gems/prismarine"), 2)
+                .inputItems(CustomTags.CAPACITORS)
+                .outputItems(EIOItems.GUARDIAN_DIODE.asItem())
+                .EUt(120)
+                .duration(100)
+                .save(provider);
+
+        CTNHRecipeBuilder.of("skeletal_contractor", ASSEMBLER_RECIPES)
+                .inputItems(ingot, Soularium, 2)
+                .inputItems(Items.SKELETON_SKULL)
+                .inputItems(Items.ROTTEN_FLESH, 2)
+                .inputItems(CustomTags.CAPACITORS)
+                .outputItems(EIOItems.SKELETAL_CONTRACTOR.asItem())
+                .EUt(120)
+                .duration(100)
+                .save(provider);
+
+        CTNHRecipeBuilder.of("z_logic_controller", ASSEMBLER_RECIPES)
+                .inputItems(ingot, Soularium, 2)
+                .inputItems(Items.ZOMBIE_HEAD)
+                .inputItems(ingot, Silicon, 2)
+                .inputItems(Items.REDSTONE)
+                .outputItems(EIOItems.Z_LOGIC_CONTROLLER.asItem())
+                .EUt(120)
+                .duration(100)
+                .save(provider);
+
+        CTNHRecipeBuilder.of("zombie_electrode", ASSEMBLER_RECIPES)
+                .inputItems(ingot, EnergeticAlloy, 2)
+                .inputItems(Items.ZOMBIE_HEAD)
+                .inputItems(ingot, Silicon, 2)
+                .inputItems(CustomTags.CAPACITORS)
+                .outputItems(EIOItems.ZOMBIE_ELECTRODE.asItem())
+                .EUt(120)
+                .duration(100)
+                .save(provider);
     }
 
     /** Rebuilt enderios recipe using GT ender pearl dust. */
@@ -380,6 +403,17 @@ public class EIORecipes {
                 new ItemStack(Items.MILK_BUCKET),
                 new ItemStack(Items.WHEAT),
                 ChemicalHelper.get(dust, EnderPearl));
+    }
+
+    /** Rebuilt xp_obelisk recipe using GT soularium ingot. */
+    private static void addXpObeliskRecipe(Consumer<FinishedRecipe> provider) {
+        VanillaRecipeHelper.addShapedRecipe(provider,
+                CTNHCore.id("crafttable/xp_obelisk"),
+                new ItemStack(MachineBlocks.XP_OBELISK.get()),
+                " R ", " I ", "ICI",
+                'R', EIOItems.EXPERIENCE_ROD.asItem(),
+                'I', ChemicalHelper.get(ingot, Soularium),
+                'C', EIOBlocks.ENSOULED_CHASSIS.asItem());
     }
 
     private static void addFusedQuartzAlloyRecipes(Consumer<FinishedRecipe> provider) {
@@ -543,6 +577,7 @@ public class EIORecipes {
         RecipeRemoval.remove(new RemoveFilter().id("enderio:stick"));
         RecipeRemoval.remove(new RemoveFilter().id("enderio:wood_gear"));
         RecipeRemoval.remove(new RemoveFilter().id("enderio:wood_gear_corner"));
+        RecipeRemoval.remove(new RemoveFilter().id("enderio:stone_gear_upgrade"));
         RecipeRemoval.remove(new RemoveFilter().id("enderio:void_chassis"));
         RecipeRemoval.remove(new RemoveFilter().id("enderio:creative_power"));
         RecipeRemoval.remove(new RemoveFilter().type("enderio:alloy_smelting"));
@@ -567,8 +602,11 @@ public class EIORecipes {
         RecipeRemoval.remove(new RemoveFilter().id("enderio:vibrant_gear"));
         RecipeRemoval.remove(new RemoveFilter().id("enderio:ender_fluid_conduit_upgrade"));
         RecipeRemoval.remove(new RemoveFilter().id("enderio:soul_chain"));
-        RecipeRemoval.remove(new RemoveFilter().id("enderio:slicing/ender_resonator"));
+        RecipeRemoval.remove(new RemoveFilter().id("enderio:slice_and_splice"));
+        RecipeRemoval.remove(new RemoveFilter().id("enderio:soul_binder"));
+        RecipeRemoval.remove(new RemoveFilter().type("enderio:slicing"));
         RecipeRemoval.remove(new RemoveFilter().id("enderio:enderios"));
+        RecipeRemoval.remove(new RemoveFilter().id("enderio:xp_obelisk"));
 
         for (String recipe : new String[] {
                 "enderio:empty_soul_vial",
