@@ -34,7 +34,6 @@ public class CTNHExtraItemTagsProvider extends TagsProvider<Item> {
     protected void addTags(HolderLookup.Provider provider) {
         addOptionals(itemTag("forge", "fermentable"), FERMENTABLE);
         addOptionals(itemTag("forge", "stripped_logs"), List.of("gtceu:stripped_rubber_log"));
-        addOptionals(itemTag("curios", "curio"), List.of("tiab:time_in_a_bottle"));
         addOptionals(itemTag("create", "upright_on_belt"), UPRIGHT_ON_BELT);
 
         // WoodTypeEntry 统一木材加工所需的原木标签（mod 未自带，由 CTNH 补）
