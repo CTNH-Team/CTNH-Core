@@ -60,8 +60,8 @@ public final class AsyncRtpManager {
     public static Lang rtpLooking;
 
     @Key("ctnhcore.rtp.found")
-    @EN("Found good location after %s %s (took %ss) @ [x %d, z %d]")
-    @CN("已找到合适的传送点，尝试 %s 次，耗时 %s 秒 @ [x %d, z %d]")
+    @EN("Found good location after %d attempts (took %d s) @ [x %d, z %d]")
+    @CN("已找到合适的传送点，尝试 %d 次，耗时 %d 秒 @ [x %d, z %d]")
     public static Lang rtpFound;
 
     @Key("ctnhcore.rtp.dimension_not_allowed")
@@ -529,7 +529,6 @@ public final class AsyncRtpManager {
 
         player.sendSystemMessage(rtpFound.translate(
                 attempt + 1,
-                attempt == 0 ? "attempt" : "attempts",
                 tookSec,
                 groundPos.getX(),
                 groundPos.getZ()));
