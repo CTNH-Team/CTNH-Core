@@ -1,0 +1,22 @@
+{
+  "fluid": [
+    "gtceu:sulfuric_heavy_fuel"
+  ],
+  "normal": {
+    "speed": 88.0,
+    "strength": 5120.0,
+    "burn_rate": 0.05
+  },
+  "modular": {
+    "speed": 88.0,
+    "strength": 6912.0,
+    "burn_rate": 0.05
+  },
+  "huge": {
+    "speed": 208.0,
+    "strength": 13312.0,
+    "burn_rate": 0.05
+  },
+  "sound_pitch": 0.9,
+  "burner_multiplier": 0.4
+}

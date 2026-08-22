@@ -575,15 +575,6 @@ public class PrimitiveKineticAgeRecipes {
                 .processingTime(40)
                 .save(provider);
 
-        // 润滑油（分馏：500mB 种子油 → 250mB 润滑油，加热）
-        new DistillationRecipeBuilder(CTNHCore.id("create/plant_oil_distillation"))
-                .inputFluid(GTMaterials.SeedOil.getFluid(500))
-                .heat(HeatCondition.HEATED)
-                .duration(200)
-                .outputFluid(GTMaterials.Lubricant.getFluid(250))
-                .outputFluid(GTMaterials.Water.getFluid(250))
-                .save(provider);
-
         // 润滑油（分馏：500mB 杂酚油 → 250mB 润滑油，加热）
         new DistillationRecipeBuilder(CTNHCore.id("create/creosote_distillation"))
                 .inputFluid(GTMaterials.Creosote.getFluid(500))
@@ -605,13 +596,13 @@ public class PrimitiveKineticAgeRecipes {
     }
 
     private static void addPetroleumRecipes(Consumer<FinishedRecipe> provider) {
-        // 石油（分馏：60mB GT 石油 → 10mB 柴油 + 2mB 石脑油，加热）
+        // 石油（分馏：60mB GT 石油 → 10mB 含硫重燃油 + 25mB 含硫轻燃油，加热）
         new DistillationRecipeBuilder(CTNHCore.id("create/petroleum_distillation"))
                 .inputFluid(GTMaterials.Oil.getFluid(60))
                 .heat(HeatCondition.HEATED)
                 .duration(200)
-                .outputFluid(GTMaterials.Diesel.getFluid(10))
-                .outputFluid(GTMaterials.Naphtha.getFluid(2))
+                .outputFluid(GTMaterials.SulfuricHeavyFuel.getFluid(10))
+                .outputFluid(GTMaterials.SulfuricLightFuel.getFluid(25))
                 .save(provider);
     }
 

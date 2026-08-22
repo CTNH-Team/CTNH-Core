@@ -604,30 +604,7 @@ public class GtceuScriptRecipes {
                 .outputFluids(Krypton.getFluid(5000))
                 .save(provider);
 
-        // 13. impure_oil: impure_oil 100 -> sulfuric_heavy_fuel 50 + sulfuric_naphtha 30 + bitumen 60 + small
-        // oil_refined_residues dust. EUt 60, dur 100
-        DISTILLATION_RECIPES.recipeBuilder(CTNHCore.id("impure_oil"))
-                .EUt(60).duration(100)
-                .inputFluids(ImpureOil.getFluid(100))
-                .outputFluids(SulfuricHeavyFuel.getFluid(50))
-                .outputFluids(SulfuricNaphtha.getFluid(30))
-                .outputFluids(BiodieselFertileSoilMaterials.BITUMEN.getFluid(60))
-                .outputItems(dustSmall, BiodieselFertileSoilMaterials.OIL_REFINED_RESIDUES)
-                .save(provider);
-
         // ============== Centrifuge Recipes ==============
-
-        // 15. oil_refined_residues: oil_refined_residues_dust -> stone_dust + small_oxidized_residues_dust. Chanced:
-        // magnetite 1500/100, garnierite 1500/100, pyrite 1500/100. EUt 30, dur 20
-        CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("oil_refined_residues"))
-                .EUt(30).duration(20)
-                .inputItems(dust, BiodieselFertileSoilMaterials.OIL_REFINED_RESIDUES)
-                .outputItems(dust, Stone)
-                .outputItems(dustSmall, StonePowderMaterials.OXIDIZED_RESIDUES)
-                .chancedOutput(dust, Magnetite, 1500, 100)
-                .chancedOutput(dust, Garnierite, 1500, 100)
-                .chancedOutput(dust, Pyrite, 1500, 100)
-                .save(provider);
 
         // 16. dried_salt: dried_salt_dust -> stone_dust + 2x tiny_salt_dust + 2x tiny_rock_salt_dust. EUt 30, dur 20
         CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("dried_salt"))

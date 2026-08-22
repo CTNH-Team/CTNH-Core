@@ -367,7 +367,6 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("gtceu:shapeless/glass_dust_flint"));
         remove(new RemoveFilter().id("gtceu:extractor/extract_coke_oven_bricks"));
         remove(new RemoveFilter().id("gtceu:smelting/coke_oven_brick"));
-        remove(new RemoveFilter().id("gtceu:distillation/distill_seed_oil"));
         remove(new RemoveFilter().id("gtceu:brewing/lubricant_from_seed_oil_and_talc"));
         remove(new RemoveFilter().id("gtceu:brewing/lubricant_from_seed_oil_and_soapstone"));
         remove(new RemoveFilter().id("gtceu:brewing/lubricant_from_seed_oil_and_redstone"));

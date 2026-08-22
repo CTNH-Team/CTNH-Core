@@ -1,0 +1,6 @@
+{
+  "fluid": "gtceu:sulfuric_light_fuel",
+  "burnTime": 6,
+  "superHeat": false,
+  "amountConsumedPerTick": 1
+}
