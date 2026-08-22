@@ -608,7 +608,8 @@ public class RecipeRemoval {
 
     public static void miscRemovals() {
         remove(new RemoveFilter().type("twilightforest:uncrafting_table"));
-        // createdieselgenerators:hammering 全部 4 个配方（iron/copper/gold/brass sheet）由数据包 ctnh_create_iron_plate 覆盖为 GT 板，不再删除
+        // createdieselgenerators:hammering 全部 4 个配方（iron/copper/gold/brass sheet）由数据包 ctnh_create_iron_plate 覆盖为 GT
+        // 板，不再删除
         remove(new RemoveFilter().idRegex("thermal:.*constantan.*"));
     }
 

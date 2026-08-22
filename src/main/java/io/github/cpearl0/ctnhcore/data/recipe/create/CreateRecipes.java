@@ -123,7 +123,9 @@ public class CreateRecipes {
         RecipeRemoval.remove(new RemoveFilter().id("create:blasting/zinc_ingot_from_crushed"));
         RecipeRemoval.remove(new RemoveFilter().id("create:blasting/zinc_ingot_from_ore"));
         RecipeRemoval.remove(new RemoveFilter().id("create:blasting/zinc_ingot_from_raw_ore"));
-        // 以下由数据包覆盖：zinc_ingot_from_compacting, zinc_ingot_from_decompacting, zinc_nugget_from_decompacting, zinc_block_from_compacting, crushing/asurine, crushing/asurine_recycling, crushing/tuff, crushing/tuff_recycling, splashing/crushed_raw_zinc
+        // 以下由数据包覆盖：zinc_ingot_from_compacting, zinc_ingot_from_decompacting, zinc_nugget_from_decompacting,
+        // zinc_block_from_compacting, crushing/asurine, crushing/asurine_recycling, crushing/tuff,
+        // crushing/tuff_recycling, splashing/crushed_raw_zinc
         RecipeRemoval.remove(new RemoveFilter().id("create:crushing/obsidian"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crushing/ochrum_recycling"));
         RecipeRemoval.remove(new RemoveFilter().id("create:crushing/raw_copper_block"));
