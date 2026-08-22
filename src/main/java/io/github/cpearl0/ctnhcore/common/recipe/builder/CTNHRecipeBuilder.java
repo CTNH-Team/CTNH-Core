@@ -23,7 +23,9 @@ public class CTNHRecipeBuilder extends GTRecipeBuilder {
     }
 
     public static CTNHRecipeBuilder of(ResourceLocation id, GTRecipeType recipeType) {
-        return new CTNHRecipeBuilder(id, recipeType);
+        var builder = new CTNHRecipeBuilder(id, recipeType);
+        builder.onSave = recipeType.recipeBuilder(id).onSave;
+        return builder;
     }
 
     public static CTNHRecipeBuilder of(String path, GTRecipeType recipeType) {
