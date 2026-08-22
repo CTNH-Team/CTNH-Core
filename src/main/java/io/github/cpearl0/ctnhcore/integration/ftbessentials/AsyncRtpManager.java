@@ -38,6 +38,11 @@ import dev.ftb.mods.ftbessentials.util.DimensionFilter;
 import dev.ftb.mods.ftbessentials.util.FTBEPlayerData;
 import dev.ftb.mods.ftbessentials.util.TeleportPos;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import com.ctnhlang.Key;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -50,6 +55,31 @@ import java.util.concurrent.CompletableFuture;
 
 @Mod.EventBusSubscriber(modid = CTNHCore.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class AsyncRtpManager {
+
+    @Key("ctnhcore.rtp.looking")
+    @EN("Looking for random location...")
+    @CN("正在寻找随机传送点...")
+    public static Lang rtpLooking;
+
+    @Key("ctnhcore.rtp.found")
+    @EN("Found good location after %s %s (took %ss) @ [x %d, z %d]")
+    @CN("已找到合适的传送点，尝试 %s 次，耗时 %s 秒 @ [x %d, z %d]")
+    public static Lang rtpFound;
+
+    @Key("ctnhcore.rtp.dimension_not_allowed")
+    @EN("You may not use /rtp in this dimension!")
+    @CN("你不能在当前维度使用 /rtp！")
+    public static Lang rtpDimensionNotAllowed;
+
+    @Key("ctnhcore.rtp.already_looking")
+    @EN("Already looking for a random location!")
+    @CN("正在寻找随机传送点中，请稍候！")
+    public static Lang rtpAlreadyLooking;
+
+    @Key("ctnhcore.rtp.failed")
+    @EN("Could not find a valid location to teleport to!")
+    @CN("未能找到可传送的有效位置！")
+    public static Lang rtpFailed;
 
     /**
      * How many candidate chunks a single search keeps generating at the same time.
@@ -108,7 +138,7 @@ public final class AsyncRtpManager {
                 return blacklistResult.runCommand(player);
             }
             if (!DimensionFilter.isRtpDimensionOK(player.level().dimension())) {
-                player.sendSystemMessage(Component.literal("You may not use /rtp in this dimension!")
+                player.sendSystemMessage(rtpDimensionNotAllowed.translate()
                         .withStyle(ChatFormatting.RED));
                 return 0;
             }
@@ -116,7 +146,7 @@ public final class AsyncRtpManager {
 
         UUID playerId = player.getUUID();
         if (SEARCHES.containsKey(playerId)) {
-            player.sendSystemMessage(Component.literal("Already looking for a random location!")
+            player.sendSystemMessage(rtpAlreadyLooking.translate()
                     .withStyle(ChatFormatting.YELLOW));
             return 0;
         }
@@ -139,7 +169,7 @@ public final class AsyncRtpManager {
                     data,
                     FTBEConfig.RTP_MAX_TRIES.get());
             SEARCHES.put(playerId, search);
-            player.sendSystemMessage(Component.literal("Looking for random location..."));
+            player.sendSystemMessage(rtpLooking.translate());
             fillWindow(search);
             return 1;
         }).orElse(0);
@@ -499,13 +529,12 @@ public final class AsyncRtpManager {
         CTNHCore.LOGGER.debug("[RTP] {}: FINISHED at [{}, {}, {}] after {} attempts (took {}s), teleporting",
                 search.playerId, groundPos.getX(), groundPos.getY(), groundPos.getZ(), attempt + 1, tookSec);
 
-        player.sendSystemMessage(Component.literal(String.format(
-                "Found good location after %d %s (took %ds) @ [x %d, z %d]",
+        player.sendSystemMessage(rtpFound.translate(
                 attempt + 1,
                 attempt == 0 ? "attempt" : "attempts",
                 tookSec,
                 groundPos.getX(),
-                groundPos.getZ())));
+                groundPos.getZ()));
         TeleportPos foundPos = new TeleportPos(level.dimension(), groundPos.above());
         search.playerData.rtpTeleporter.teleport(player, ignored -> foundPos).runCommand(player);
     }
@@ -521,7 +550,7 @@ public final class AsyncRtpManager {
                 search.playerId, search.nextAttempt, search.attemptedChunks.size(), tookSec);
         ServerPlayer player = search.server.getPlayerList().getPlayer(search.playerId);
         if (player != null) {
-            player.sendSystemMessage(Component.literal("Could not find a valid location to teleport to!")
+            player.sendSystemMessage(rtpFailed.translate()
                     .withStyle(ChatFormatting.RED));
         }
     }
