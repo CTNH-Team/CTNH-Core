@@ -169,7 +169,6 @@ public class GeyanChain {
         // 电弧炉 - 放射性材料分离
         BLAST_RECIPES.recipeBuilder(CTNHCore.id("radioactive_material_separation"))
                 .inputFluids(BedrockMaterials.BEDROCK_GAS.getFluid(1000))
-                .circuitMeta(0)
                 .outputItems(dust, BedrockMaterials.RADIOACTIVE_METALS_MIX)
                 .outputFluids(BedrockMaterials.BEDROCK_GAS_RE.getFluid(1000))
                 .duration(500).EUt(1966080)
@@ -284,7 +283,6 @@ public class GeyanChain {
 
         // 衰变罐 - 辐射锭衰变 1
         CTNHRecipeTypes.DECAY_POOLS.recipeBuilder(CTNHCore.id("decay_radiation_ingot_1"))
-                .circuitMeta(0)
                 .inputItems(ingot, BedrockMaterials.RADIOACTIVE_METAL_INGOT)
                 .outputFluids(BedrockMaterials.LOW_LEVEL_RADIOACTIVE_DUST.getFluid(1000),
                         BedrockMaterials.HIGH_LEVEL_RADIOACTIVE_DUST.getFluid(1000))
@@ -364,7 +362,6 @@ public class GeyanChain {
 
         // 化学反应器 - 磷酸 1
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("phosphoric_acid_1"))
-                .circuitMeta(0)
                 .inputItems(dust, PhosphorusPentoxide, 14)
                 .inputFluids(Water.getFluid(6000))
                 .outputFluids(PhosphoricAcid.getFluid(4000))
@@ -421,7 +418,6 @@ public class GeyanChain {
 
         // 大型化学反应器 - 膦酸酯
         LARGE_CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("phosphonate_ester"))
-                .circuitMeta(0)
                 .inputFluids(BedrockMaterials._1_CHLORO_2_ETHYLHEXANE.getFluid(1000),
                         BedrockMaterials.DI_2_ETHYLHEXYL_PHOSPHITE.getFluid(1000))
                 .outputFluids(BedrockMaterials.PHOSPHONATE.getFluid(1000))

@@ -48,7 +48,6 @@ public class BioChemistryRecipes {
                 .inputItems(BIO_CHAFF)
                 .inputFluids(GTMaterials.Water.getFluid(1000))
                 .outputFluids(GTMaterials.Biomass.getFluid(1000))
-                .circuitMeta(0)
                 .duration(200)
                 .save(provider);
 
@@ -67,7 +66,6 @@ public class BioChemistryRecipes {
                 .inputItems(CTNHItems.ANIMAL_EXCRETA)
                 .inputFluids(GTMaterials.Water.getFluid(1000))
                 .outputFluids(GTMaterials.Biomass.getFluid(1000))
-                .circuitMeta(0)
                 .duration(200)
                 .save(provider);
 
@@ -138,7 +136,6 @@ public class BioChemistryRecipes {
                 .inputFluids(GTMaterials.Water.getFluid(2000))
                 .outputItems(dust, YeastRelatedMaterials.SODIUM_DIHYDROGEN_PHOSPHATE, 4)
                 .outputItems(dust, GTMaterials.SodiumBicarbonate, 12)
-                .circuitMeta(0)
                 .EUt(30)
                 .duration(100)
                 .save(provider);
@@ -154,7 +151,6 @@ public class BioChemistryRecipes {
                 .save(provider);
 
         MIXER_RECIPES.recipeBuilder(CTNHCore.id("carbonate_buffer"))
-                .circuitMeta(0)
                 .EUt(30)
                 .duration(120)
                 .inputItems(dust, GTMaterials.SodaAsh, 6)
@@ -280,7 +276,6 @@ public class BioChemistryRecipes {
                 .addData("special", "food")
                 .EUt(30)
                 .inputItems(food)
-                .circuitMeta(0)
                 .duration(100)
                 .inputFluids(GTMaterials.Water.getFluid(100))
                 .outputFluids(GTMaterials.Biomass.getFluid(100))
@@ -289,7 +284,6 @@ public class BioChemistryRecipes {
                 .addData("special", "food")
                 .EUt(120)
                 .inputItems(food)
-                .circuitMeta(0)
                 .duration(100)
                 .inputFluids(GTMaterials.Water.getFluid(75))
                 .outputFluids(GTMaterials.Biomass.getFluid(75))

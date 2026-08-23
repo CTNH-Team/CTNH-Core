@@ -30,7 +30,6 @@ public class PersonalComputerRecipes {
             }
         }
         CTNHRecipeTypes.PERSONAL_COMPUTER.recipeBuilder(CTNHCore.id("program_rocket_1"))
-                .circuitMeta(0)
                 .inputItems(CTNHItems.PROGRAM_EMPTY)
                 .notConsumable(CTNHItems.PROGRAM_ROCKET_CORE_1)
                 .notConsumable(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1)

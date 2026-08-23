@@ -323,7 +323,6 @@ public class AlumiumChain {
                 .inputItems(dust, SodiumHydroxide, 3)
                 .inputFluids(Water.getFluid(1000))
                 .outputFluids(SODIUM_HYDROXIDE_SOLUTION.getFluid(1000))
-                .circuitMeta(0)
                 .EUt(VA[GTValues.MV])
                 .duration(200)
                 .save(provider);
