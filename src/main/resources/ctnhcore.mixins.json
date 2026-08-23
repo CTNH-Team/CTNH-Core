@@ -10,6 +10,7 @@
     "apotheosis.EarthsBoonEnchantMixin",
     "apotheosis.SocketHelperMixin",
     "ars_nouveau.GlyphRecipeCategoryMixin",
+    "ars_nouveau.TerminalSyncManagerMixin",
     "avaritia.AvaritiaSculkCategoryMixin",
     "create.MechanicalCraftingCategoryMixin",
     "create.RuntimeDataGeneratorMixin",
