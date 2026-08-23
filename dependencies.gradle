@@ -95,6 +95,9 @@ dependencies {
     annotationProcessor(ctnh.libx)
     modImplementation(ctnh.libx)
 
+    // Moonlight (mixin target: AddTableModifier)
+    modCompileOnly(ctnh.moonlight)
+
     // Apotheosis
     modImplementation(ctnh.apotheosis)
     modImplementation(ctnh.attributelib)

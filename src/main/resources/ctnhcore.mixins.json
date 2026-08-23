@@ -32,6 +32,7 @@
     "gtceu.orevein.ClientProxyAccessor",
     "javd.PortalBlockMixin",
     "legendarysurvival.AltitudeModifierMixin",
+    "moonlight.AddTableModifierMixin",
     "mc.MonsterMixin",
     "mc.NaturalSpawnerMixin",
     "mc.RecipeManagerApplyMixin",
