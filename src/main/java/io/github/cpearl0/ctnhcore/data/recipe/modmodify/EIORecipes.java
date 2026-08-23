@@ -1,25 +1,19 @@
 package io.github.cpearl0.ctnhcore.data.recipe.modmodify;
 
-import appeng.core.definitions.AEBlocks;
-import com.enderio.base.common.init.EIOBlocks;
-import com.enderio.base.common.init.EIOItems;
-import com.enderio.conduits.common.init.ConduitItems;
-import com.enderio.machines.common.init.MachineBlocks;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
-import com.gregtechceu.gtceu.api.data.tag.TagUtil;
-import com.gregtechceu.gtceu.common.data.GTBlocks;
-import com.gregtechceu.gtceu.common.data.GTRecipeCategories;
-import com.gregtechceu.gtceu.data.recipe.CustomTags;
-import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
-import com.mo_guang.ctpp.registry.CreateMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.recipe.builder.CTNHRecipeBuilder;
 import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval;
 import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval.RemoveFilter;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
+
+import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
+import com.gregtechceu.gtceu.api.data.tag.TagUtil;
+import com.gregtechceu.gtceu.common.data.GTBlocks;
+import com.gregtechceu.gtceu.common.data.GTRecipeCategories;
+import com.gregtechceu.gtceu.data.recipe.CustomTags;
+import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
+
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
@@ -30,6 +24,15 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems;
+
+import appeng.core.definitions.AEBlocks;
+import com.enderio.base.common.init.EIOBlocks;
+import com.enderio.base.common.init.EIOItems;
+import com.enderio.conduits.common.init.ConduitItems;
+import com.enderio.machines.common.init.MachineBlocks;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.mo_guang.ctpp.registry.CreateMaterials;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
