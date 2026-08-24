@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry.ores;
 
 import io.github.cpearl0.ctnhcore.common.worldgen.StrataVeinGenerator;
-import io.github.cpearl0.ctnhcore.mixin.gtceu.orevein.GTOreDefinitionAccessor;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
@@ -437,7 +436,7 @@ public class OverworldOres {
     private static void strataVeinGenerator(GTOreDefinition vein, Consumer<StrataVeinGenerator> config) {
         var generator = new StrataVeinGenerator(vein);
         config.accept(generator);
-        ((GTOreDefinitionAccessor) vein).setVeinGenerator(generator.build());
+        vein.veinGenerator(generator.build());
     }
 
     public static void init() {}

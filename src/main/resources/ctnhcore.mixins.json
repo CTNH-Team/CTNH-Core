@@ -31,7 +31,6 @@
     "gtceu.GTBlocksMixin",
     "gtceu.ItemMaterialDataMixin",
     "gtceu.orevein.ClientProxyAccessor",
-    "gtceu.orevein.GTOreDefinitionAccessor",
     "javd.PortalBlockMixin",
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MonsterMixin",
