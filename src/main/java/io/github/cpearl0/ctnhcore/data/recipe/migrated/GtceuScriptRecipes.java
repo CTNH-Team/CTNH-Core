@@ -207,9 +207,10 @@ public class GtceuScriptRecipes {
                 .outputItems(ModItems.SPACE_SUIT)
                 .save(provider);
 
-        // 13. space_pants: 5x heavy_plate_t1 + 3x space_fabric -> ad_astra:space_pants. EUt 120, dur 400
+        // 13. space_pants: 5x heavy_plate_t1 + 3x space_fabric -> ad_astra:space_pants. circuit 2. EUt 120, dur 400
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("space_pants"))
                 .EUt(120).duration(400)
+                .circuitMeta(2)
                 .inputItems(HEAVY_PLATE_T1.asStack(5))
                 .inputItems(SPACE_FABRIC.asStack(3))
                 .outputItems(ModItems.SPACE_PANTS)
@@ -1094,11 +1095,12 @@ public class GtceuScriptRecipes {
 
         // ============== Desalting Recipes ==============
 
-        // 65. salt1: seawater 1000 -> 2x salt_dust + chanced small_rock_salt 4000/500. EUt 120, dur 400.
+        // 65. salt1: circuit 3, seawater 1000 -> 2x salt_dust + chanced small_rock_salt 4000/500. EUt 120, dur 400.
         // blastFurnaceTemp(1600)
         CTNHRecipeTypes.DESALTING.recipeBuilder(CTNHCore.id("salt1"))
                 .EUt(120).duration(400)
                 .blastFurnaceTemp(1600)
+                .circuitMeta(3)
                 .inputFluids(Seawater.getFluid(1000))
                 .outputItems(dust, Salt, 2)
                 .chancedOutput(dustSmall, RockSalt, 4000, 500)

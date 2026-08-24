@@ -44,6 +44,7 @@ public class BioChemistryRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         DIGESTING.recipeBuilder(CTNHCore.id("bio_chaff_digestion"))
+                .circuitMeta(2)
                 .EUt(30)
                 .inputItems(BIO_CHAFF)
                 .inputFluids(GTMaterials.Water.getFluid(1000))
@@ -62,6 +63,7 @@ public class BioChemistryRecipes {
                 .save(provider);
 
         DIGESTING.recipeBuilder(CTNHCore.id("animal_excreta_digestion"))
+                .circuitMeta(2)
                 .EUt(30)
                 .inputItems(CTNHItems.ANIMAL_EXCRETA)
                 .inputFluids(GTMaterials.Water.getFluid(1000))
@@ -132,6 +134,7 @@ public class BioChemistryRecipes {
                 .save(provider);
 
         CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("sodium_dihydrogen_phosphate_dust"))
+                .circuitMeta(2)
                 .inputItems(dust, CTNHMaterials.TrisodiumPhosphate, 4)
                 .inputFluids(GTMaterials.Water.getFluid(2000))
                 .outputItems(dust, YeastRelatedMaterials.SODIUM_DIHYDROGEN_PHOSPHATE, 4)
