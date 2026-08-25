@@ -59,7 +59,6 @@ public class EfficiencyGeneratorMachine extends SimpleGeneratorMachine {
         if (parallels <= 0) return RecipeModifier.DEFAULT_FAILURE;
 
         recipe.multiplyAllContents(parallels);
-        recipe.multiplyEUt(parallels);
         recipe.parallels *= parallels;
         recipe.multiplyDuration((double) generator.efficiency / 100);
         return null;

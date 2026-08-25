@@ -92,7 +92,7 @@ public class MegaTurbineMachine extends RecipeElectricMultiblockMachine implemen
         // get the amount of parallel required to match the desired output voltage
         int maxParallel = (int) (turbineMaxVoltage / EUt);
         int actualParallel = ParallelLogic.getParallelAmountFast(group, recipe, maxParallel);
-        double eutMultiplier = turbineMachine.productionBoost() * actualParallel;
+        double eutMultiplier = turbineMachine.productionBoost();
 
         recipe.multiplyAllContents(actualParallel);
         recipe.multiplyEUt(eutMultiplier);

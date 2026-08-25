@@ -182,7 +182,6 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine {
         final long actualEUt = EUt * actualParallel;
 
         recipe.multiplyAllContents(actualParallel);
-        recipe.multiplyEUt(actualParallel);
         recipe.parallels *= actualParallel;
         recipe.multiplyDuration(euMultiplier);
         if (actualEUt > DEFAULT_EU_OUTPUT) {

@@ -119,7 +119,6 @@ public class NaqReactorMachine extends RecipeElectricMultiblockMachine implement
 
             recipe.multiplyAllContents(parallelCount);
             recipe.parallels *= parallelCount;
-            recipe.multiplyEUt(parallelCount);
             return null;
         }
         return null;

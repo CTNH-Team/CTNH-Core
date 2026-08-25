@@ -96,7 +96,7 @@ public class CryotheumFreezer extends RecipeElectricMultiblockMachine implements
             int parallel = ParallelLogic.getParallelAmount(group, recipe,
                     (int) (2 * Math.pow(2, cmachine.parallel_muti)));
             if (parallel == 0) return null;
-            recipe.multiplyEUt(1 / cmachine.energy_muti * parallel);
+            recipe.multiplyEUt(1 / cmachine.energy_muti);
             recipe.multiplyAllContents(parallel);
             recipe.multiplyDuration(1 / cmachine.speed_up);
             recipe.parallels *= parallel;

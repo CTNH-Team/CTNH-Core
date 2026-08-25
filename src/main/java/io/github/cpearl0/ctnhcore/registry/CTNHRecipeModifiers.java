@@ -108,7 +108,7 @@ public class CTNHRecipeModifiers {
             if (parallels == 1 && speedMultiplier == 1.0 && energyConsumeMultiplier == 1.0)
                 return null;
             recipe.multiplyAllContents(parallels);
-            recipe.multiplyEUt(parallels * energyConsumeMultiplier);
+            recipe.multiplyEUt(energyConsumeMultiplier);
             recipe.multiplyDuration(speedMultiplier);
             recipe.parallels *= parallels;
             return null;

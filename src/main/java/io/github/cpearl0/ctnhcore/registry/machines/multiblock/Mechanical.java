@@ -46,7 +46,8 @@ public class Mechanical {
             .recipeType(CreateRecipeTypes.MECHANICAL_PRESSOR_RECIPES)
             .appearanceBlock(AllBlocks.RAILWAY_CASING)
             .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
-            .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate())
+            .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate(),
+                    CommonTooltips.INPUT_SPEED.translate())
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "BCCCB", "B###B", "BBBBB", "B###B", "BCCCB", "AAAAA")
                     .aisle("AAAAA", "CDDDC", "#####", "B###B", "#####", "CEEEC", "AAAAA")
@@ -73,7 +74,8 @@ public class Mechanical {
             .recipeType(CreateRecipeTypes.MECHANICAL_MIXER_RECIPES)
             .appearanceBlock(AllBlocks.RAILWAY_CASING)
             .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
-            .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate())
+            .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate(),
+                    CommonTooltips.INPUT_SPEED.translate())
             .pattern(definition -> FactoryStaticBlockPattern.start()
                     .aisle("###AAAAA###", "###########", "#####B#####", "#####B#####", "####CCC####", "####CCC####",
                             "####CCC####", "####CCC####", "####CCC####", "####AAA####", "###########")
@@ -111,7 +113,8 @@ public class Mechanical {
             .recipeType(CreateRecipeTypes.MECHANICAL_CENTRIFUGE_RECIPES)
             .appearanceBlock(AllBlocks.RAILWAY_CASING)
             .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
-            .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate())
+            .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate(),
+                    CommonTooltips.INPUT_SPEED.translate())
             .pattern(definition -> FactoryStaticBlockPattern.start()
                     .aisle("#############", "#############", "#####AAA#####", "#####AAA#####", "#####AAA#####",
                             "#############")
@@ -162,7 +165,8 @@ public class Mechanical {
             .recipeType(CreateRecipeTypes.MECHANICAL_SIFTER_RECIPES)
             .appearanceBlock(AllBlocks.RAILWAY_CASING)
             .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
-            .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate())
+            .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate(),
+                    CommonTooltips.INPUT_SPEED.translate())
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "BCCCB", "B###B", "AAAAA", "B###B", "BCCCB", "AAAAA")
                     .aisle("AAAAA", "CDDDC", "#EEE#", "ADDDA", "#####", "CFFFC", "AAAAA")
@@ -195,7 +199,8 @@ public class Mechanical {
             .recipeType(CreateRecipeTypes.MECHANICAL_LATHE_RECIPES)
             .appearanceBlock(AllBlocks.RAILWAY_CASING)
             .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
-            .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate())
+            .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate(),
+                    CommonTooltips.INPUT_SPEED.translate())
             .tooltips(mechanicalLatheStructure.translate().withStyle(ChatFormatting.DARK_RED))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAAA", "AAAAAAAB", "AAACCCCB", "BBBBBBBB", "B######B", "BDDDDDDB", "AAAAAAAA")

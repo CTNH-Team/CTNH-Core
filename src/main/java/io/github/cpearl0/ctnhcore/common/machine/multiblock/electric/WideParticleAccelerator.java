@@ -351,7 +351,6 @@ public class WideParticleAccelerator extends RecipeElectricMultiblockMachine
 
             recipe.parallels = parallel;
             recipe.multiplyAllContents(parallel);
-            recipe.multiplyEUt(parallel);
             recipe.multiplyDuration(Math.max(0.1, muti));
             return null;
         }

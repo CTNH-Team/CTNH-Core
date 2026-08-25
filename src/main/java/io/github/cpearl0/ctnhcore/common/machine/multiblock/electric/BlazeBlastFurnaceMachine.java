@@ -89,7 +89,7 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
         int parallel = ParallelLogic.getParallelAmount(group, recipe, 8);
         if (parallel == 0)
             return CTNHCommonTooltips.gtceuRecipeModifierDefaultFail.translate();
-        recipe.multiplyEUt(0.5 * parallel);
+        recipe.multiplyEUt(0.5);
         recipe.multiplyAllContents(parallel);
         recipe.parallels *= parallel;
         return null;
