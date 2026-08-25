@@ -1,12 +1,16 @@
 package io.github.cpearl0.ctnhcore.registry.ores;
 
+import io.github.cpearl0.ctnhcore.registry.CTNHTags;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
+import com.gregtechceu.gtceu.api.data.worldgen.BiomeWeightModifier;
 import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
 import com.gregtechceu.gtceu.api.data.worldgen.WorldGenLayers;
+import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
@@ -158,12 +162,16 @@ public class OverworldOres {
             "Overworld Coal Vein",
             "主世界煤炭矿脉",
             vein -> vein
-                    .weight(80)
+                    .weight(60)
                     .clusterSize(UniformInt.of(40, 50))
                     .density(0.3f)
                     .layer(WorldGenLayers.STONE)
                     .heightRangeUniform(10, 140)
                     .biomes(BiomeTags.IS_OVERWORLD)
+                    .biomeWeightModifier(new BiomeWeightModifier(
+                            () -> GTRegistries.builtinRegistry().lookupOrThrow(Registries.BIOME)
+                                    .getOrThrow(CTNHTags.HAS_OILSAND),
+                            60))
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(1).mat(GTMaterials.Coal).size(2, 4)))
@@ -180,7 +188,7 @@ public class OverworldOres {
             vein -> vein
                     .weight(50)
                     .clusterSize(UniformInt.of(60, 80))
-                    .density(0.6f)
+                    .density(1.0f)
                     .layer(WorldGenLayers.STONE)
                     .heightRangeUniform(-10, 160)
                     .biomes(BiomeTags.IS_OVERWORLD)
@@ -210,9 +218,8 @@ public class OverworldOres {
                     .discardChanceOnAirExposure(0.5f)
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Iron))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Hematite).size(2, 4)))
-                            .withLayerAxis(Direction.Axis.Y))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Iron).size(2, 4))
+                                    .layer(l -> l.weight(2).mat(GTMaterials.Hematite).size(2, 4))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Hematite)
                             .placement(ABOVE)
@@ -232,8 +239,7 @@ public class OverworldOres {
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.Magnetite).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.VanadiumMagnetite)))
-                            .withLayerAxis(Direction.Axis.Y))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.VanadiumMagnetite).size(2, 4))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Magnetite)
                             .placement(ABOVE)
@@ -250,12 +256,16 @@ public class OverworldOres {
                     .layer(WorldGenLayers.STONE)
                     .heightRangeUniform(30, 70)
                     .biomes(BiomeTags.IS_OVERWORLD)
+                    .biomeWeightModifier(new BiomeWeightModifier(
+                            () -> GTRegistries.builtinRegistry().lookupOrThrow(Registries.BIOME)
+                                    .getOrThrow(BiomeTags.IS_OCEAN),
+                            -50))
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.RockSalt).size(2, 4))
                                     .layer(l -> l.weight(2).mat(GTMaterials.Salt).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Lepidolite))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Spodumene)))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Lepidolite).size(2, 4))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Spodumene).size(2, 4)))
                             .withLayerAxis(Direction.Axis.Y))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Salt)
@@ -267,12 +277,12 @@ public class OverworldOres {
             "Overworld Oilsands Vein",
             "主世界油砂矿脉",
             vein -> vein
-                    .weight(40)
+                    .weight(60)
                     .clusterSize(UniformInt.of(25, 30))
                     .density(0.3f)
                     .layer(WorldGenLayers.STONE)
                     .heightRangeUniform(30, 80)
-                    .biomes(BiomeTags.IS_OVERWORLD)
+                    .biomes(CTNHTags.HAS_OILSAND)
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(1).mat(GTMaterials.Oilsands).size(2, 4)))
@@ -283,12 +293,34 @@ public class OverworldOres {
                             .density(0.4f)
                             .radius(5)));
 
+    public static final GTOreDefinition COMBUSTIBLE_ICE_VEIN_OW = create("combustible_ice_vein_ow",
+            "Overworld Combustible Ice Vein",
+            "主世界可燃冰矿脉",
+            vein -> vein
+                    .weight(40)
+                    .clusterSize(UniformInt.of(30, 40))
+                    .density(0.3f)
+                    .layer(WorldGenLayers.STONE)
+                    .heightRangeUniform(0, 30)
+                    .biomes(BiomeTags.IS_OCEAN)
+                    .layeredVeinGenerator(generator -> generator
+                            .buildLayerPattern(pattern -> pattern
+                                    .layer(l -> l.weight(2).mat(CTNHMaterials.CombustibleIce).size(2, 4))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Graphite).size(2, 4))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Coal).size(2, 4)))
+                            .withLayerAxis(Direction.Axis.Y))
+                    .surfaceIndicatorGenerator(indicator -> indicator
+                            .surfaceRock(CTNHMaterials.CombustibleIce)
+                            .placement(ABOVE)
+                            .density(0.4f)
+                            .radius(5)));
+
     public static final GTOreDefinition COPPER_VEIN_OW = create("copper_vein_ow",
             "Overworld Copper Vein",
             "主世界铜矿脉",
             vein -> vein
-                    .weight(80)
-                    .clusterSize(UniformInt.of(60, 68))
+                    .weight(60)
+                    .clusterSize(UniformInt.of(40, 50))
                     .density(0.6f)
                     .layer(WorldGenLayers.DEEPSLATE)
                     .heightRangeUniform(-40, 10)
@@ -361,8 +393,7 @@ public class OverworldOres {
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.Pyrolusite).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Tantalite)))
-                            .withLayerAxis(Direction.Axis.Y))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Tantalite).size(2, 4))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Pyrolusite)
                             .density(0.4f)

@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import org.jetbrains.annotations.Nullable;
@@ -39,6 +40,11 @@ public class CTNHBiomeTagsProvider extends BiomeTagsProvider {
                 .addOptional(new ResourceLocation("ad_astra:martian_wastelands"))
                 .addOptional(new ResourceLocation("ad_astra:mercury_deltas"))
                 .addOptional(new ResourceLocation("ad_astra:venus_wastelands"));
+
+        tag(CTNHTags.HAS_OILSAND)
+                .add(Biomes.DESERT)
+                .add(Biomes.SWAMP)
+                .add(Biomes.MANGROVE_SWAMP);
 
         // tag(CTNHTags.TWILIGHT_TIER1)
         // .add(TFBiomes.DARK_FOREST)

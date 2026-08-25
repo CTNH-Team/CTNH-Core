@@ -23,4 +23,7 @@ public class CTNHTags {
 
     public static final TagKey<Biome> HAS_ASTRAL_METEORITES = TagKey.create(Registries.BIOME,
             CTNHCore.id("astral_meteorites"));
+
+    public static final TagKey<Biome> HAS_OILSAND = TagKey.create(Registries.BIOME,
+            CTNHCore.id("oilsand"));
 }
