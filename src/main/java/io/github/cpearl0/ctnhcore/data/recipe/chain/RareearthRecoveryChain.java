@@ -32,6 +32,7 @@ public class RareearthRecoveryChain {
                 .outputItems(dust, SodiumHydroxide, 34)
                 .outputFluids(Hydrogen.getFluid(34000))
                 .outputFluids(Chlorine.getFluid(34000))
+                .circuitMeta(1)
                 .EUt(1920)
                 .duration(1200)
                 .save(provider);
