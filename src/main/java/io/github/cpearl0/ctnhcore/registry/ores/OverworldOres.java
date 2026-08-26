@@ -27,7 +27,7 @@ public class OverworldOres {
             "主世界石英矿脉",
             vein -> vein
                     .weight(80)
-                    .clusterSize(UniformInt.of(45, 60))
+                    .clusterSize(UniformInt.of(50, 60))
                     .density(1.0F)
                     .discardChanceOnAirExposure(0)
                     .layer(WorldGenLayers.STONE)
@@ -50,7 +50,7 @@ public class OverworldOres {
             "主世界锌矿脉",
             vein -> vein
                     .weight(60)
-                    .clusterSize(UniformInt.of(55, 70))
+                    .clusterSize(UniformInt.of(60, 70))
                     .density(1.0F)
                     .discardChanceOnAirExposure(0)
                     .layer(WorldGenLayers.STONE)
@@ -74,7 +74,7 @@ public class OverworldOres {
             "主世界贵金属矿脉",
             vein -> vein
                     .weight(30)
-                    .clusterSize(UniformInt.of(45, 60))
+                    .clusterSize(UniformInt.of(50, 60))
                     .density(1.0f)
                     .discardChanceOnAirExposure(0)
                     .layer(WorldGenLayers.STONE)
@@ -99,7 +99,7 @@ public class OverworldOres {
             "主世界高岭石矿脉",
             vein -> vein
                     .weight(60)
-                    .clusterSize(UniformInt.of(25, 30))
+                    .clusterSize(UniformInt.of(30, 40))
                     .density(0.4f)
                     .layer(WorldGenLayers.STONE)
                     .biomes(BiomeTags.IS_OVERWORLD)
@@ -122,7 +122,7 @@ public class OverworldOres {
             "主世界磷灰石矿脉",
             vein -> vein
                     .weight(40)
-                    .clusterSize(UniformInt.of(90, 110))
+                    .clusterSize(UniformInt.of(50, 60))
                     .density(0.6f)
                     .layer(WorldGenLayers.STONE)
                     .heightRangeUniform(10, 80)
@@ -251,7 +251,7 @@ public class OverworldOres {
             "主世界盐矿脉",
             vein -> vein
                     .weight(50)
-                    .clusterSize(UniformInt.of(30, 40))
+                    .clusterSize(UniformInt.of(30, 50))
                     .density(0.3f)
                     .layer(WorldGenLayers.STONE)
                     .heightRangeUniform(30, 70)
@@ -278,7 +278,7 @@ public class OverworldOres {
             "主世界油砂矿脉",
             vein -> vein
                     .weight(60)
-                    .clusterSize(UniformInt.of(25, 30))
+                    .clusterSize(UniformInt.of(30, 50))
                     .density(0.3f)
                     .layer(WorldGenLayers.STONE)
                     .heightRangeUniform(30, 80)
@@ -298,7 +298,7 @@ public class OverworldOres {
             "主世界可燃冰矿脉",
             vein -> vein
                     .weight(40)
-                    .clusterSize(UniformInt.of(30, 40))
+                    .clusterSize(UniformInt.of(30, 50))
                     .density(0.3f)
                     .layer(WorldGenLayers.STONE)
                     .heightRangeUniform(0, 30)
@@ -328,8 +328,8 @@ public class OverworldOres {
                     .discardChanceOnAirExposure(0.5f)
                     .classicVeinGenerator(generator -> generator
                             .primary(layer -> layer.mat(GTMaterials.Chalcopyrite))
-                            .secondary(layer -> layer.mat(GTMaterials.Copper))
-                            .between(layer -> layer.mat(GTMaterials.Pyrite))
+                            .secondary(layer -> layer.mat(GTMaterials.Copper).size(8))
+                            .between(layer -> layer.mat(GTMaterials.Pyrite).size(12))
                             .sporadic(layer -> layer.mat(GTMaterials.Pyrite))
                             .yRadius(12))
                     .surfaceIndicatorGenerator(indicator -> indicator
@@ -343,7 +343,7 @@ public class OverworldOres {
             "主世界钻石矿脉",
             vein -> vein
                     .weight(40)
-                    .clusterSize(UniformInt.of(50, 60))
+                    .clusterSize(UniformInt.of(40, 50))
                     .density(0.6f)
                     .layer(WorldGenLayers.DEEPSLATE)
                     .heightRangeUniform(-60, -30)
@@ -404,15 +404,15 @@ public class OverworldOres {
             "主世界橄榄石矿脉",
             vein -> vein
                     .weight(20)
-                    .clusterSize(UniformInt.of(44, 52))
+                    .clusterSize(UniformInt.of(40, 50))
                     .density(0.3f)
                     .layer(WorldGenLayers.DEEPSLATE)
                     .heightRangeUniform(-20, 10)
                     .biomes(BiomeTags.IS_OVERWORLD)
                     .classicVeinGenerator(generator -> generator
                             .primary(layer -> layer.mat(GTMaterials.Olivine))
-                            .secondary(layer -> layer.mat(GTMaterials.Magnesite))
-                            .between(layer -> layer.mat(GTMaterials.Olivine))
+                            .secondary(layer -> layer.mat(GTMaterials.Magnesite).size(8))
+                            .between(layer -> layer.mat(GTMaterials.Olivine).size(12))
                             .sporadic(layer -> layer.mat(GTMaterials.Magnesite))
                             .yRadius(8))
                     .surfaceIndicatorGenerator(indicator -> indicator
@@ -425,7 +425,7 @@ public class OverworldOres {
             "主世界红石矿脉",
             vein -> vein
                     .weight(60)
-                    .clusterSize(UniformInt.of(50, 65))
+                    .clusterSize(UniformInt.of(50, 60))
                     .density(1.0f)
                     .layer(WorldGenLayers.DEEPSLATE)
                     .heightRangeUniform(-60, -10)
@@ -448,7 +448,7 @@ public class OverworldOres {
             "主世界蓝宝石矿脉",
             vein -> vein
                     .weight(60)
-                    .clusterSize(UniformInt.of(30, 36))
+                    .clusterSize(UniformInt.of(30, 40))
                     .density(0.3f)
                     .layer(WorldGenLayers.DEEPSLATE)
                     .heightRangeUniform(-40, 0)

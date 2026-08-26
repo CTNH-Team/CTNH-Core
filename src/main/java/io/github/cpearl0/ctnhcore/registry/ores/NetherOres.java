@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
 import com.gregtechceu.gtceu.api.data.worldgen.WorldGenLayers;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
+import net.minecraft.core.Direction;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
@@ -21,9 +22,9 @@ public class NetherOres {
             "Nether Nickel Vein",
             "下界镍矿脉",
             vein -> vein
-                    .weight(40)
+                    .weight(80)
                     .clusterSize(UniformInt.of(30, 50))
-                    .density(0.25F)
+                    .density(0.3f)
                     .discardChanceOnAirExposure(0)
                     .layer(WorldGenLayers.NETHERRACK)
                     .biomes(BiomeTags.IS_NETHER)
@@ -32,7 +33,7 @@ public class NetherOres {
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.Nickel).size(2, 4))
                                     .layer(l -> l.weight(2).mat(GTMaterials.Pentlandite).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Cobaltite))))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Cobaltite).size(2, 4))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Nickel)
                             .placement(ABOVE)));
@@ -41,17 +42,16 @@ public class NetherOres {
             "Nether Monazite Vein",
             "下界独居石矿脉",
             vein -> vein
-                    .clusterSize(UniformInt.of(25, 30))
-                    .density(0.25f)
-                    .weight(30)
+                    .clusterSize(UniformInt.of(30, 40))
+                    .density(0.3f)
+                    .weight(60)
                     .layer(WorldGenLayers.NETHERRACK)
                     .heightRangeUniform(20, 40)
                     .biomes(BiomeTags.IS_NETHER)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Monazite).size(2, 4))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Bastnasite).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Neodymium))))
+                    .dikeVeinGenerator(generator -> generator
+                            .withBlock(GTMaterials.Monazite, 2, 20, 40)
+                            .withBlock(GTMaterials.Bastnasite, 2, 20, 40)
+                            .withBlock(GTMaterials.Neodymium, 1, 20, 40))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Bastnasite)
                             .placement(ABOVE)));
@@ -60,17 +60,19 @@ public class NetherOres {
             "Nether Redstone Vein",
             "下界红石矿脉",
             vein -> vein
-                    .clusterSize(UniformInt.of(30, 40))
-                    .density(0.2f)
-                    .weight(50)
+                    .clusterSize(UniformInt.of(60, 80))
+                    .density(1.0f)
+                    .weight(80)
                     .layer(WorldGenLayers.NETHERRACK)
                     .heightRangeUniform(10, 40)
                     .biomes(BiomeTags.IS_NETHER)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Redstone).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Ruby))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Cinnabar))))
+                    .veinedVeinGenerator(generator -> generator
+                            .oreBlock(GTMaterials.Redstone, 2)
+                            .oreBlock(GTMaterials.Ruby, 1)
+                            .oreBlock(GTMaterials.Cinnabar, 1)
+                            .minRichness(0.6f)
+                            .maxRichness(1.0f)
+                            .maxRichnessThreshold(1.0f))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Redstone)
                             .placement(ABOVE)));
@@ -79,190 +81,220 @@ public class NetherOres {
             "Nether Beryllium Vein",
             "下界铍矿脉",
             vein -> vein
-                    .clusterSize(UniformInt.of(50, 60))
-                    .density(0.75f)
-                    .weight(30)
+                    .clusterSize(UniformInt.of(30, 40))
+                    .density(0.6f)
+                    .weight(40)
                     .layer(WorldGenLayers.NETHERRACK)
-                    .heightRangeUniform(10, 30)
+                    .heightRangeUniform(10, 40)
                     .biomes(BiomeTags.IS_NETHER)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Beryllium).size(2, 4))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Emerald).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Thorium))))
+                    .dikeVeinGenerator(generator -> generator
+                            .withBlock(GTMaterials.Beryllium, 1, 10, 40)
+                            .withBlock(GTMaterials.Emerald, 1, 10, 40)
+                            .withBlock(GTMaterials.Thorium, 2, 10, 20))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Beryllium)
-                            .placement(ABOVE)));
+                            .placement(ABOVE)
+                            .density(0.4f)
+                            .radius(5)));
 
     public static final GTOreDefinition MOLYBDENUM_VEIN_NT = create("molybdenum_vein_nt",
             "Nether Molybdenum Vein",
             "下界钼矿脉",
             vein -> vein
-                    .clusterSize(UniformInt.of(25, 30))
-                    .density(0.25f)
-                    .weight(20)
+                    .clusterSize(UniformInt.of(50, 60))
+                    .density(1.0f)
+                    .weight(40)
                     .layer(WorldGenLayers.NETHERRACK)
                     .heightRangeUniform(20, 50)
                     .biomes(BiomeTags.IS_NETHER)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Wulfenite).size(2, 4))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Molybdenite).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Powellite))))
+                    .veinedVeinGenerator(generator -> generator
+                            .oreBlock(GTMaterials.Wulfenite, 2)
+                            .oreBlock(GTMaterials.Molybdenite, 2)
+                            .oreBlock(GTMaterials.Powellite, 1)
+                            .minRichness(0.6f)
+                            .maxRichness(1.0f)
+                            .maxRichnessThreshold(1.0f))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Wulfenite)
-                            .placement(ABOVE)));
+                            .placement(ABOVE)
+                            .density(0.4f)
+                            .radius(5)));
 
     public static final GTOreDefinition TETRAHEDRITE_VEIN_NT = create("tetrahedrite_vein_nt",
             "Nether Tetrahedrite Vein",
             "下界黝铜矿脉",
             vein -> vein
-                    .clusterSize(UniformInt.of(40, 50))
+                    .clusterSize(UniformInt.of(80, 100))
                     .density(1.0f)
-                    .weight(50)
+                    .weight(80)
                     .layer(WorldGenLayers.NETHERRACK)
                     .heightRangeUniform(80, 120)
                     .biomes(BiomeTags.IS_NETHER)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Tetrahedrite).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Chalcopyrite).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Stibnite).size(2, 4))))
+                    .veinedVeinGenerator(generator -> generator
+                            .oreBlock(GTMaterials.Tetrahedrite, 1)
+                            .oreBlock(GTMaterials.Chalcopyrite, 1)
+                            .oreBlock(GTMaterials.Stibnite, 1)
+                            .minRichness(0.6f)
+                            .maxRichness(1.0f)
+                            .maxRichnessThreshold(1.0f))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Tetrahedrite)
-                            .placement(ABOVE)));
+                            .placement(ABOVE)
+                            .density(0.4f)
+                            .radius(5)));
 
     public static final GTOreDefinition BANDED_IRON_VEIN_NT = create("banded_iron_vein_nt",
             "Nether Banded Iron Vein",
             "下界带状铁矿脉",
             vein -> vein
-                    .clusterSize(UniformInt.of(40, 50))
+                    .clusterSize(UniformInt.of(80, 100))
                     .density(1.0f)
-                    .weight(30)
+                    .weight(60)
                     .layer(WorldGenLayers.NETHERRACK)
                     .heightRangeUniform(20, 40)
                     .biomes(BiomeTags.IS_NETHER)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Iron))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Hematite).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Gold))))
+                    .veinedVeinGenerator(generator -> generator
+                            .oreBlock(GTMaterials.Hematite, 2)
+                            .oreBlock(GTMaterials.Iron, 1)
+                            .oreBlock(GTMaterials.Gold, 1)
+                            .minRichness(0.6f)
+                            .maxRichness(1.0f)
+                            .maxRichnessThreshold(1.0f))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Hematite)
-                            .placement(ABOVE)));
+                            .placement(ABOVE)
+                            .density(0.4f)
+                            .radius(5)));
 
     public static final GTOreDefinition TOPAZ_VEIN_NT = create("topaz_vein_nt",
             "Nether Topaz Vein",
             "下界黄玉矿脉",
             vein -> vein
-                    .clusterSize(UniformInt.of(25, 30))
-                    .density(0.25f)
-                    .weight(50)
+                    .clusterSize(UniformInt.of(50, 60))
+                    .density(1.0f)
+                    .weight(80)
                     .layer(WorldGenLayers.NETHERRACK)
                     .heightRangeUniform(80, 120)
                     .biomes(BiomeTags.IS_NETHER)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Topaz).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Chalcopyrite))))
+                    .veinedVeinGenerator(generator -> generator
+                            .oreBlock(GTMaterials.Topaz, 2)
+                            .oreBlock(GTMaterials.Chalcopyrite, 1)
+                            .minRichness(0.6f)
+                            .maxRichness(1.0f)
+                            .maxRichnessThreshold(1.0f))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Topaz)
-                            .placement(ABOVE)));
+                            .placement(ABOVE)
+                            .density(0.4f)
+                            .radius(5)));
 
     public static final GTOreDefinition SULFUR_VEIN_NT = create("sulfur_vein_nt",
             "Nether Sulfur Vein",
             "下界硫矿脉",
             vein -> vein
                     .clusterSize(UniformInt.of(30, 40))
-                    .density(0.2f)
-                    .weight(50)
+                    .density(0.3f)
+                    .weight(80)
                     .layer(WorldGenLayers.NETHERRACK)
                     .heightRangeUniform(20, 60)
                     .biomes(BiomeTags.IS_NETHER)
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.Sulfur).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Pyrite))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Sphalerite))))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Pyrite).size(2, 4))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Sphalerite).size(2, 4)))
+                            .withLayerAxis(Direction.Axis.Y))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Sulfur)
-                            .placement(ABOVE)));
+                            .placement(ABOVE)
+                            .density(0.4f)
+                            .radius(5)));
 
     public static final GTOreDefinition SALTPETER_VEIN_NT = create("saltpeter_vein_nt",
             "Nether Saltpeter Vein",
             "下界硝石矿脉",
             vein -> vein
                     .clusterSize(UniformInt.of(30, 40))
-                    .density(0.25f)
-                    .weight(50)
+                    .density(0.3f)
+                    .weight(80)
                     .layer(WorldGenLayers.NETHERRACK)
                     .heightRangeUniform(80, 120)
                     .biomes(BiomeTags.IS_NETHER)
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.Saltpeter).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Electrotine))))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Electrotine).size(2, 4)))
+                            .withLayerAxis(Direction.Axis.Y))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Saltpeter)
-                            .placement(ABOVE)));
+                            .placement(ABOVE)
+                            .density(0.4f)
+                            .radius(5)));
 
     public static final GTOreDefinition MANGANESE_VEIN_NT = create("manganese_vein_nt",
             "Nether Manganese Vein",
             "下界锰矿脉",
             vein -> vein
-                    .clusterSize(UniformInt.of(50, 70))
-                    .density(0.75f)
-                    .weight(30)
+                    .clusterSize(UniformInt.of(50, 60))
+                    .density(0.6f)
+                    .weight(60)
                     .layer(WorldGenLayers.NETHERRACK)
                     .heightRangeUniform(20, 30)
                     .biomes(BiomeTags.IS_NETHER)
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.Pyrolusite).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Tantalite))))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Tantalite).size(2, 4))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Pyrolusite)
-                            .placement(ABOVE)));
+                            .placement(ABOVE)
+                            .density(0.4f)
+                            .radius(5)));
 
     public static final GTOreDefinition CERTUS_QUARTZ_VEIN_NT = create("certus_quartz_nt",
             "Nether Certus Quartz",
             "下界赛特斯石英",
             vein -> vein
-                    .clusterSize(UniformInt.of(25, 30))
-                    .density(0.25f)
-                    .weight(40)
+                    .clusterSize(UniformInt.of(30, 40))
+                    .density(0.6f)
+                    .weight(80)
                     .layer(WorldGenLayers.NETHERRACK)
                     .heightRangeUniform(80, 120)
                     .biomes(BiomeTags.IS_NETHER)
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.CertusQuartz).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Quartzite))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Barite))))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Quartzite).size(2, 4))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Barite).size(2, 4)))
+                            .withLayerAxis(Direction.Axis.Y))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.CertusQuartz)
-                            .placement(ABOVE)));
+                            .placement(ABOVE)
+                            .density(0.4f)
+                            .radius(5)));
 
     public static GTOreDefinition ANCIENT_DEBRIS_VEIN_NT = create("ancient_debris_vein_nt",
             "Nether Ancient Debris Vein",
             "下界远古残骸矿脉",
             vein -> vein
-                    .weight(10)
-                    .clusterSize(35)
-                    .density(0.4F)
+                    .weight(20)
+                    .clusterSize(70)
+                    .density(1.0f)
                     .discardChanceOnAirExposure(0)
                     .layer(WorldGenLayers.NETHERRACK)
                     .biomes(BiomeTags.IS_NETHER)
                     .heightRangeUniform(5, 20)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(2).mat(CTNHMaterials.PreciousAlloy).size(2, 4))
-                                    .layer(l -> l.weight(1).block(() -> Blocks.ANCIENT_DEBRIS))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.NetherQuartz))))
+                    .veinedVeinGenerator(generator -> generator
+                            .oreBlock(CTNHMaterials.PreciousAlloy, 2)
+                            .oreBlock(GTMaterials.NetherQuartz, 1)
+                            .oreBlock(Blocks.ANCIENT_DEBRIS.defaultBlockState(), 1)
+                            .minRichness(0.6f)
+                            .maxRichness(1.0f)
+                            .maxRichnessThreshold(1.0f))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(CTNHMaterials.PreciousAlloy)
                             .placement(ABOVE)
-                            .density(0.4F)
+                            .density(0.4f)
                             .radius(5)));
 
     public static final GTOreDefinition BAUXITE_VEIN_NT = create("bauxite_vein_nt",
@@ -270,18 +302,20 @@ public class NetherOres {
             "下界铝土矿脉",
             vein -> vein
                     .clusterSize(UniformInt.of(30, 40))
-                    .density(0.25f)
-                    .weight(30)
+                    .density(0.3f)
+                    .weight(60)
                     .layer(WorldGenLayers.NETHERRACK)
                     .heightRangeUniform(20, 60)
                     .biomes(BiomeTags.IS_NETHER)
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.Bauxite).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(CTNHMaterials.Alumina))))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.Alumina).size(2, 4))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Bauxite)
-                            .placement(ABOVE)));
+                            .placement(ABOVE)
+                            .density(0.4f)
+                            .radius(5)));
 
     public static void init() {}
 }
