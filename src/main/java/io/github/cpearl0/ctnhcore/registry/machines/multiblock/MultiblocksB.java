@@ -18,6 +18,8 @@ import io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.RotationState;
+import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
@@ -32,8 +34,6 @@ import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
@@ -753,12 +753,12 @@ public class MultiblocksB {
                     .aisle("##EEE##", "##B#B##", "##C#C##", "##C#C##", "##C#C##", "##C#C##", "##C#C##", "##D#D##", "##D#D##", "##DED##", "##E#E##", "##F#F##", "##F#F##", "##DDD##")
                     .aisle("###B###", "###C###", "###C###", "###C###", "###C###", "###C###", "###D###", "###D###", "###D###", "###D###", "###E###", "###F###", "###F###", "###D###")
                     .where("#", Predicates.any())
-                    .where("B", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(ResourceLocation.parse("gtceu:polyethylene_block"))))
+                    .where("B", Predicates.blocks(ChemicalHelper.getBlock(TagPrefix.block, GTMaterials.Polyethylene)))
                     .where("C", Predicates.blocks(CASING_TEMPERED_GLASS.get()))
                     .where("D", Predicates.blocks(CASING_STEEL_PIPE.get()))
                     .where("E", Predicates.blocks(CASING_STEEL_GEARBOX.get()))
                     .where("F", Predicates.blocks(MACHINE_CASING_MV.get()))
-                    .where("G", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(ResourceLocation.parse("gtceu:polyethylene_block"))))
+                    .where("G", Predicates.blocks(ChemicalHelper.getBlock(TagPrefix.block, GTMaterials.Polyethylene)))
                     .where("H", (Predicates.any()))
                     .where("I", (abilities(PartAbility.OUTPUT_ENERGY)))
                     .where("J", Predicates.blocks(PISTON))

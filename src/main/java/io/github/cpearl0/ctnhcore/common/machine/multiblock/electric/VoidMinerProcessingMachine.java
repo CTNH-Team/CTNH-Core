@@ -1,9 +1,12 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.NaqReactorMachine;
+import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
+import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
@@ -23,9 +26,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import com.ctnh.ctnhastral.data.CAMaterials;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
 import lombok.Getter;
@@ -106,11 +109,7 @@ public class VoidMinerProcessingMachine extends RecipeElectricMultiblockMachine 
         if (fluidCycle == 1) {  // 偶数次使用 Pyrotheum
             int currentFluidAmount = nextPyrotheumAmount;  // 使用更新后的流体量
 
-            // 创建 Pyrotheum 流体
-            FluidStack pyrotheumFluid = new FluidStack(
-                    Objects.requireNonNull(
-                            ForgeRegistries.FLUIDS.getValue(ResourceLocation.tryParse("ctnhcore:pyrotheum"))),
-                    currentFluidAmount);
+            var pyrotheumFluid = CTNHMaterials.Pyrotheum.getFluid(currentFluidAmount);
 
             // 检查输入仓是否有足够流体
             boolean isFluidSufficient = MachineUtils.inputFluids(this, pyrotheumFluid);
@@ -131,11 +130,7 @@ public class VoidMinerProcessingMachine extends RecipeElectricMultiblockMachine 
         } else if (fluidCycle == 2) {  // 奇数次使用 Cryotheum
             int currentFluidAmount = nextCryotheumAmount;  // 使用更新后的流体量
 
-            // 创建 Cryotheum 流体
-            FluidStack cryotheumFluid = new FluidStack(
-                    Objects.requireNonNull(
-                            ForgeRegistries.FLUIDS.getValue(ResourceLocation.tryParse("ctnhcore:cryotheum"))),
-                    currentFluidAmount);
+            var cryotheumFluid = CTNHMaterials.Cryotheum.getFluid(currentFluidAmount);
 
             // 检查输入仓是否有足够流体
             boolean isFluidSufficient = MachineUtils.inputFluids(this, cryotheumFluid);
@@ -268,20 +263,14 @@ public class VoidMinerProcessingMachine extends RecipeElectricMultiblockMachine 
     // 获取黑名单中的物品（返回黑名单列表）
     private static Set<Item> getBlacklistedItems() {
         Set<Item> blacklist = new HashSet<>();
-
-        // 黑名单物品添加
-        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_space_neutronium")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_infinity")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_infinity_catalyst")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_starmetal")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("ctnhcore:raw_jasper")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("ctnhcore:raw_flowing_amber_gold")));
-        blacklist.add(
-                ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("ctnhcore:raw_special_composite_steel_m77")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("ctnhcore:raw_hidden_alloy")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_iridium")));
-        blacklist.add(ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse("gtceu:raw_osmium")));
-
+        blacklist.add(ChemicalHelper.get(TagPrefix.rawOre, CTNHMaterials.Jasper).getItem());
+        blacklist.add(ChemicalHelper.get(TagPrefix.rawOre, CTNHMaterials.FlowingAmberGold).getItem());
+        blacklist.add(ChemicalHelper.get(TagPrefix.rawOre, CTNHMaterials.SpecialCompositeSteelM77).getItem());
+        blacklist.add(ChemicalHelper.get(TagPrefix.rawOre, CTNHMaterials.HiddenAlloy).getItem());
+        blacklist.add(ChemicalHelper.get(TagPrefix.rawOre, GTMaterials.Iridium).getItem());
+        blacklist.add(ChemicalHelper.get(TagPrefix.rawOre, GTMaterials.Osmium).getItem());
+        blacklist.add(ChemicalHelper.get(TagPrefix.rawOre, CTNHMaterials.Infinity).getItem());
+        blacklist.add(ChemicalHelper.get(TagPrefix.rawOre, CAMaterials.Starmetal).getItem());
         return blacklist;
     }
 }
