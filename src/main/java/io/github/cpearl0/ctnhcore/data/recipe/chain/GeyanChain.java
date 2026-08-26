@@ -6,6 +6,7 @@ import io.github.cpearl0.ctnhcore.data.materials.*;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTItems;
@@ -618,6 +619,15 @@ public class GeyanChain {
                 .inputItems(dust, Saltpeter)
                 .outputFluids(BedrockMaterials.ADAMANTITE.getFluid(144))
                 .blastFurnaceTemp(10800).EUt(491520).duration(100)
+                .save(provider);
+
+        // 搅拌机 - 中子素-基岩合金（基岩粉 + 超能硅岩粉）
+        MIXER_RECIPES.recipeBuilder(CTNHCore.id("bedrock_neutronium"))
+                .inputItems(dust, BedrockMaterials.BEDROCK_DUST)
+                .inputItems(dust, Naquadria)
+                .outputItems(dust, BedrockMaterials.BEDROCK_NEUTRONIUM, 2)
+                .EUt(GTValues.VA[GTValues.ZPM])
+                .duration(200)
                 .save(provider);
     }
 }
