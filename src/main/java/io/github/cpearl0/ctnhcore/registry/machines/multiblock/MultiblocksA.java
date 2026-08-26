@@ -205,183 +205,159 @@ public class MultiblocksA {
 
 
 
-    @CN("§7通过回流与冷量分配在塔内建立温度梯度，把混合蒸气按沸点切成目标馏分，负责稀土蒸馏产物的分凝与溶剂回收；回流比决定分离精度，中段冷量决定梯度位置。")
-    @EN("§7Builds a temperature gradient with reflux and cooling allocation to split mixed vapours into boiling-point fractions for distillate recovery; reflux ratio sets separation quality, middle cooling share positions the gradient.")
+    @CN("通过回流和冷却，将混合蒸气按沸点分离。")
+    @EN("Separates mixed vapours by boiling point using reflux and cooling.")
     public static Lang condensingDiscreteTooltip1;
 
 
-    @CN("§b参数范围：§f回流比（×10）5～50（±8）；中段冷量 20～80%（±10）")
-    @EN("§bRange: §fReflux Ratio (x10) 5-50 (±8); Middle Cooling Share 20-80% (±10)")
+    @CN("参数范围：回流比 5～50；中段冷量 20～80%。")
+    @EN("Parameter range: Reflux Ratio 5-50; Middle Cooling Share 20-80%.")
     public static Lang condensingDiscreteTooltip2;
 
 
-    @CN("§e维持：§f每 120 次运行结算：回流泵 2×回流×120 EU；冷媒 0.5×冷量%×120 mB 润滑油")
-    @EN("§eHold: §fSettled per 120 runs: Pump 2x Reflux x120 EU; Coolant 0.5x Cooling% x120 mB Lubricant")
+    @CN("校准后自动运行；材料不足或额度用尽时暂停。")
+    @EN("Runs automatically after calibration; pauses when materials or quota run out.")
     public static Lang condensingDiscreteTooltip3;
 
 
-    @CN("§e调参：§f每次调参需稳定 3 秒；稳定后需支付维护原料才能获得 120 次运行额度，期间不能开工")
-    @EN("§eRetune: §fEach retune settles for 3 s; maintenance supplies must then be paid to grant a 120-run quota; cannot start while settling")
+    @CN("调参原料：500 mB 盐水。")
+    @EN("Retuning Material: 500 mB Salt Water.")
     public static Lang condensingDiscreteTooltip4;
 
 
-    @CN("§a达标且额度充足自动启动；§c额度用尽或材料不足会暂停；§6运行时锁定")
-    @EN("§aStarts once calibrated and quota remains; §cpauses when quota or supplies run out; §6locked while running")
+    @CN("维护材料见机器 GUI 界面。")
+    @EN("Maintenance material: See the machine GUI.")
     public static Lang condensingDiscreteTooltip5;
 
-    @CN("§d调参原料：§f每次调参消耗 500 mB 盐水")
-    @EN("§dTuning Material: §fEach retune consumes 500 mB Salt Water")
-    public static Lang condensingDiscreteTooltip6;
 
 
-
-    @CN("§7控制冷却与过饱和度，让碳酸盐、草酸盐等稀土沉淀在稳定窗口内结晶，母液可回收循环；冷却过快会爆发细晶，过饱和度不足则不析出。")
-    @EN("§7Crystallises rare-earth carbonate and oxalate precipitates inside a stable cooling/supersaturation window, with recyclable mother liquor; cooling too fast bursts into fines, too little supersaturation yields nothing.")
+    @CN("控制冷却和过饱和度，使稀土沉淀结晶。")
+    @EN("Controls cooling and supersaturation to crystallise rare-earth precipitates.")
     public static Lang crystallizerTooltip1;
 
 
-    @CN("§b参数范围：§f冷却速率（×10 K/min）5～50（±9）；过饱和度 105～140%（±8）")
-    @EN("§bRange: §fCooling Rate (x10 K/min) 5-50 (±9); Supersaturation 105-140% (±8)")
+    @CN("参数范围：冷却速率 5～50；过饱和度 105～140%。")
+    @EN("Parameter range: Cooling Rate 5-50; Supersaturation 105-140%.")
     public static Lang crystallizerTooltip2;
 
 
-    @CN("§e维持：§f每 120 次运行结算：冷媒 冷却÷10×120 mB 盐水 + 制冷 4×冷却×120 EU；搅拌 2×(过饱和-100)×120 EU")
-    @EN("§eHold: §fSettled per 120 runs: Coolant Cooling/10 x120 mB Salt Water + 4x Cooling x120 EU; Stirring 2x(Supersat-100) x120 EU")
+    @CN("校准后自动运行；材料不足或额度用尽时暂停。")
+    @EN("Runs automatically after calibration; pauses when materials or quota run out.")
     public static Lang crystallizerTooltip3;
 
 
-    @CN("§e调参：§f每次调参需稳定 3 秒；稳定后需支付维护原料才能获得 120 次运行额度，期间不能开工")
-    @EN("§eRetune: §fEach retune settles for 3 s; maintenance supplies must then be paid to grant a 120-run quota; cannot start while settling")
+    @CN("调参原料：1000 mB 盐水。")
+    @EN("Retuning Material: 1000 mB Salt Water.")
     public static Lang crystallizerTooltip4;
 
 
-    @CN("§a达标且额度充足自动启动；§c额度用尽或材料不足会暂停；§6运行时锁定")
-    @EN("§aStarts once calibrated and quota remains; §cpauses when quota or supplies run out; §6locked while running")
+    @CN("维护材料见机器 GUI 界面。")
+    @EN("Maintenance material: See the machine GUI.")
     public static Lang crystallizerTooltip5;
 
-    @CN("§d调参原料：§f每次调参消耗 1000 mB 盐水")
-    @EN("§dTuning Material: §fEach retune consumes 1000 mB Salt Water")
-    public static Lang crystallizerTooltip6;
 
 
-
-    @CN("§7用 NaOH 在高压下碱煮独居石，把难溶磷酸稀土转化为氢氧化物，供酸浸槽溶解成氯化稀土；釜压决定反应温度与分解速度，碱液浓度决定分解程度。")
-    @EN("§7Digests monazite with caustic soda under high pressure, converting insoluble phosphate ores into hydroxides for acid leaching; vessel pressure sets reaction temperature, caustic strength sets conversion.")
+    @CN("在高压下使用氢氧化钠处理稀土矿物。")
+    @EN("Uses sodium hydroxide under high pressure to process rare-earth minerals.")
     public static Lang highPressureAlkaliDigesterTooltip1;
 
 
-    @CN("§b参数范围：§f釜压 1200～2400 kPa（±250）；碱液浓度 20～50%（±6）")
-    @EN("§bRange: §fPressure 1200-2400 kPa (±250); Caustic 20-50% (±6)")
+    @CN("参数范围：釜压 1200～2400 kPa；碱液浓度 20～50%。")
+    @EN("Parameter range: Pressure 1200-2400 kPa; Caustic 20-50%.")
     public static Lang highPressureAlkaliDigesterTooltip2;
 
 
-    @CN("§e维持：§f每 120 次运行结算：蒸汽 压力÷20×120 EU；NaOH 浓度%÷5×120 mB")
-    @EN("§eHold: §fSettled per 120 runs: Steam Pressure/20 x120 EU; NaOH Conc%/5 x120 mB")
+    @CN("校准后自动运行；材料不足或额度用尽时暂停。")
+    @EN("Runs automatically after calibration; pauses when materials or quota run out.")
     public static Lang highPressureAlkaliDigesterTooltip3;
 
 
-    @CN("§e调参：§f每次调参需稳定 3 秒；稳定后需支付维护原料才能获得 120 次运行额度，期间不能开工")
-    @EN("§eRetune: §fEach retune settles for 3 s; maintenance supplies must then be paid to grant a 120-run quota; cannot start while settling")
+    @CN("调参原料：250 mB 氢氧化钠 + 500 mB 水。")
+    @EN("Retuning Material: 250 mB Sodium Hydroxide + 500 mB Water.")
     public static Lang highPressureAlkaliDigesterTooltip4;
 
 
-    @CN("§a达标且额度充足自动启动；§c额度用尽或材料不足会暂停；§6运行时锁定")
-    @EN("§aStarts once calibrated and quota remains; §cpauses when quota or supplies run out; §6locked while running")
+    @CN("维护材料见机器 GUI 界面。")
+    @EN("Maintenance material: See the machine GUI.")
     public static Lang highPressureAlkaliDigesterTooltip5;
 
-    @CN("§d调参原料：§f每次调参消耗 250 mB 氢氧化钠 + 500 mB 水")
-    @EN("§dTuning Material: §fEach retune consumes 250 mB Sodium Hydroxide + 500 mB Water")
-    public static Lang highPressureAlkaliDigesterTooltip6;
 
 
-
-    @CN("§7在受控氧化气氛中焙烧矿石与稀土盐：氟碳镧铈矿焙烧提铈，碳酸盐、草酸盐煅烧成稀土氧化物；过量氧系数决定氧化程度，滚筒转速控制翻动与停留时间。")
-    @EN("§7Roasts ores and rare-earth salts in a controlled oxidising atmosphere: cerium separation from bastnasite, carbonate and oxalate calcination to oxides; excess oxygen sets oxidation, drum speed sets agitation and residence.")
+    @CN("在受控氧化气氛中焙烧稀土矿石和稀土盐。")
+    @EN("Roasts rare-earth ores and salts in a controlled oxidising atmosphere.")
     public static Lang oxidationRoastingFurnaceTooltip1;
 
 
-    @CN("§b参数范围：§f过量氧系数 95～125%（±6）；滚筒转速 2～12 rpm（±3）")
-    @EN("§bRange: §fExcess Oxygen 95-125% (±6); Drum Speed 2-12 rpm (±3)")
+    @CN("参数范围：过量氧系数 95～125%；滚筒转速 2～12 rpm。")
+    @EN("Parameter range: Excess Oxygen 95-125%; Drum Speed 2-12 rpm.")
     public static Lang oxidationRoastingFurnaceTooltip2;
 
 
-    @CN("§e维持：§f每 120 次运行结算：氧气 (氧%-90)×120 mB；传动 32×转速×120 EU")
-    @EN("§eHold: §fSettled per 120 runs: Oxygen (O₂%-90) x120 mB; Drive 32x rpm x120 EU")
+    @CN("校准后自动运行；材料不足或额度用尽时暂停。")
+    @EN("Runs automatically after calibration; pauses when materials or quota run out.")
     public static Lang oxidationRoastingFurnaceTooltip3;
 
 
-    @CN("§e调参：§f每次调参需稳定 3 秒；稳定后需支付维护原料才能获得 120 次运行额度，期间不能开工")
-    @EN("§eRetune: §fEach retune settles for 3 s; maintenance supplies must then be paid to grant a 120-run quota; cannot start while settling")
+    @CN("调参原料：500 mB 氧气。")
+    @EN("Retuning Material: 500 mB Oxygen.")
     public static Lang oxidationRoastingFurnaceTooltip4;
 
 
-    @CN("§a达标且额度充足自动启动；§c额度用尽或材料不足会暂停；§6运行时锁定")
-    @EN("§aStarts once calibrated and quota remains; §cpauses when quota or supplies run out; §6locked while running")
+    @CN("维护材料见机器 GUI 界面。")
+    @EN("Maintenance material: See the machine GUI.")
     public static Lang oxidationRoastingFurnaceTooltip5;
 
-    @CN("§d调参原料：§f每次调参消耗 500 mB 氧气")
-    @EN("§dTuning Material: §fEach retune consumes 500 mB Oxygen")
-    public static Lang oxidationRoastingFurnaceTooltip6;
 
 
-
-    @CN("§7利用铕、镱等稀土的可变价特性，把目标元素还原成低价后选择性沉淀，与其余稀土分离；氧化还原电位越负还原越强，槽液 pH 决定沉淀能否生成。")
-    @EN("§7Uses variable valence to reduce and selectively precipitate rare earths such as europium and ytterbium; more negative potential means stronger reduction, tank pH decides whether the precipitate forms.")
+    @CN("利用氧化还原反应和 pH 控制，选择性沉淀稀土元素。")
+    @EN("Uses redox reactions and pH control to selectively precipitate rare-earth elements.")
     public static Lang reductionPrecipitationTankTooltip1;
 
 
-    @CN("§b参数范围：§f氧化还原电位 -700～200 mV（±120）；槽液 pH（×100）100～700（±60）")
-    @EN("§bRange: §fPotential -700-200 mV (±120); Tank pH (x100) 100-700 (±60)")
+    @CN("参数范围：氧化还原电位 -700～200 mV；槽液 pH 1.00～7.00。")
+    @EN("Parameter range: Redox Potential -700-200 mV; Tank pH 1.00-7.00.")
     public static Lang reductionPrecipitationTankTooltip2;
 
 
-    @CN("§e维持：§f每 120 次运行结算：电解 (200-电位)÷10×120 EU；酸/碱 |pH×100-400|÷20×120 mB")
-    @EN("§eHold: §fSettled per 120 runs: Electrolysis (200-mV)/10 x120 EU; Acid/Alkali |pHx100-400|/20 x120 mB")
+    @CN("校准后自动运行；材料不足或额度用尽时暂停。")
+    @EN("Runs automatically after calibration; pauses when materials or quota run out.")
     public static Lang reductionPrecipitationTankTooltip3;
 
 
-    @CN("§e调参：§f每次调参需稳定 3 秒；稳定后需支付维护原料才能获得 120 次运行额度，期间不能开工")
-    @EN("§eRetune: §fEach retune settles for 3 s; maintenance supplies must then be paid to grant a 120-run quota; cannot start while settling")
+    @CN("调参原料：500 mB 硫酸。")
+    @EN("Retuning Material: 500 mB Sulfuric Acid.")
     public static Lang reductionPrecipitationTankTooltip4;
 
 
-    @CN("§a达标且额度充足自动启动；§c额度用尽或材料不足会暂停；§6运行时锁定")
-    @EN("§aStarts once calibrated and quota remains; §cpauses when quota or supplies run out; §6locked while running")
+    @CN("维护材料见机器 GUI 界面。")
+    @EN("Maintenance material: See the machine GUI.")
     public static Lang reductionPrecipitationTankTooltip5;
 
-    @CN("§d调参原料：§f每次调参消耗 500 mB 硫酸")
-    @EN("§dTuning Material: §fEach retune consumes 500 mB Sulfuric Acid")
-    public static Lang reductionPrecipitationTankTooltip6;
 
 
-
-    @CN("§7利用稀土在水相与有机相间的分配差异完成轻、中、重分组和单元素分离；水相 pH 决定各元素进入有机相的能力，O/A 比决定萃取容量，换元素需重新校准。")
-    @EN("§7Uses aqueous-organic partitioning to group light, middle and heavy rare earths and separate single elements; aqueous pH sets uptake, O/A ratio sets capacity - recalibrate when switching elements.")
+    @CN("利用水相和有机相的分配差异分离稀土元素。")
+    @EN("Separates rare-earth elements using the distribution difference between aqueous and organic phases.")
     public static Lang solventExtractionTowerTooltip1;
 
 
-    @CN("§b参数范围：§f水相 pH（×100）200～700（±60）；O/A 比（×100）50～200（±30）")
-    @EN("§bRange: §fAqueous pH (x100) 200-700 (±60); O/A Ratio (x100) 50-200 (±30)")
+    @CN("参数范围：水相 pH 2.00～7.00；O/A 比 0.50～2.00。")
+    @EN("Parameter range: Aqueous pH 2.00-7.00; O/A Ratio 0.50-2.00.")
     public static Lang solventExtractionTowerTooltip2;
 
 
-    @CN("§e维持：§f每 120 次运行结算：酸/碱 |pH×100-450|÷25×120 mB；有机相 O/A×100÷20×120 mB")
-    @EN("§eHold: §fSettled per 120 runs: Acid/Alkali |pHx100-450|/25 x120 mB; Organic Phase O/Ax100/20 x120 mB")
+    @CN("校准后自动运行；材料不足或额度用尽时暂停。")
+    @EN("Runs automatically after calibration; pauses when materials or quota run out.")
     public static Lang solventExtractionTowerTooltip3;
 
 
-    @CN("§e调参：§f每次调参需稳定 3 秒；稳定后需支付维护原料才能获得 120 次运行额度，期间不能开工")
-    @EN("§eRetune: §fEach retune settles for 3 s; maintenance supplies must then be paid to grant a 120-run quota; cannot start while settling")
+    @CN("调参原料：1000 mB 苯。")
+    @EN("Retuning Material: 1000 mB Benzene.")
     public static Lang solventExtractionTowerTooltip4;
 
 
-    @CN("§a达标且额度充足自动启动；§c额度用尽或材料不足会暂停；§6运行时锁定")
-    @EN("§aStarts once calibrated and quota remains; §cpauses when quota or supplies run out; §6locked while running")
+    @CN("维护材料见机器 GUI 界面。")
+    @EN("Maintenance material: See the machine GUI.")
     public static Lang solventExtractionTowerTooltip5;
-
-    @CN("§d调参原料：§f每次调参消耗 1000 mB 苯（有机相）")
-    @EN("§dTuning Material: §fEach retune consumes 1000 mB Benzene (Organic Phase)")
-    public static Lang solventExtractionTowerTooltip6;
 
 
     @CN("衰变")
@@ -597,33 +573,29 @@ public class MultiblocksA {
 
 
 
-    @CN("§7萃取之后的最终高纯精制：树脂先吸附目标离子，再用洗脱液分段洗出，分离相邻元素并去除微量杂质；柱流量决定交换效率，洗脱液 pH 决定洗脱顺序。")
-    @EN("§7Final high-purity refining after extraction: the resin adsorbs target ions, then the eluent strips them in fractions to separate neighbours and remove trace impurities; flow sets exchange efficiency, pH sets elution order.")
+    @CN("使用离子交换树脂分离稀土元素并去除杂质。")
+    @EN("Uses ion-exchange resin to separate rare-earth elements and remove impurities.")
     public static Lang ionExchangerTooltip1;
 
 
-    @CN("§b参数范围：§f柱流量（×10 BV/h）5～40（±7）；洗脱液 pH（×100）50～400（±50）")
-    @EN("§bRange: §fColumn Flow (x10 BV/h) 5-40 (±7); Eluent pH (x100) 50-400 (±50)")
+    @CN("参数范围：柱流量 5～40 BV/h；洗脱液 pH 0.50～4.00。")
+    @EN("Parameter range: Column Flow 5-40 BV/h; Eluent pH 0.50-4.00.")
     public static Lang ionExchangerTooltip2;
 
 
-    @CN("§e维持：§f每 120 次运行结算：泵 8×流量×120 EU；盐酸 pH×100÷40×120 mB")
-    @EN("§eHold: §fSettled per 120 runs: Pump 8x Flow x120 EU; HCl pHx100/40 x120 mB")
+    @CN("校准后自动运行；材料不足或额度用尽时暂停。")
+    @EN("Runs automatically after calibration; pauses when materials or quota run out.")
     public static Lang ionExchangerTooltip3;
 
 
-    @CN("§e调参：§f每次调参需稳定 3 秒；稳定后需支付维护原料才能获得 120 次运行额度，期间不能开工")
-    @EN("§eRetune: §fEach retune settles for 3 s; maintenance supplies must then be paid to grant a 120-run quota; cannot start while settling")
+    @CN("调参原料：1000 mB 盐酸。")
+    @EN("Retuning Material: 1000 mB Hydrochloric Acid.")
     public static Lang ionExchangerTooltip4;
 
 
-    @CN("§a达标且额度充足自动启动；§c额度用尽或材料不足会暂停；§6运行时锁定")
-    @EN("§aStarts once calibrated and quota remains; §cpauses when quota or supplies run out; §6locked while running")
+    @CN("维护材料见机器 GUI 界面。")
+    @EN("Maintenance material: See the machine GUI.")
     public static Lang ionExchangerTooltip5;
-
-    @CN("§d调参原料：§f每次调参消耗 1000 mB 盐酸")
-    @EN("§dTuning Material: §fEach retune consumes 1000 mB Hydrochloric Acid")
-    public static Lang ionExchangerTooltip6;
 
 
     @CN("真是一个大罐子")
@@ -1073,33 +1045,29 @@ public class MultiblocksA {
 
 
 
-    @CN("§7在真空与受控升温下烧结稀土氟化物，并真空蒸馏 Sm、Eu、Tm、Yb 等易挥发稀土；真空越高蒸发脱气越彻底，升温速率决定烧结均匀性。")
-    @EN("§7Sinters rare-earth fluorides under vacuum and controlled heating ramps, and vacuum-distils volatile Sm, Eu, Tm and Yb; deeper vacuum improves degassing, ramp rate sets sintering uniformity.")
+    @CN("在真空和受控升温条件下烧结、蒸馏稀土材料。")
+    @EN("Sinters and distils rare-earth materials under vacuum and controlled heating.")
     public static Lang vacuumSinteringTowerTooltip1;
 
 
-    @CN("§b参数范围：§f真空压力 5～500 Pa（±90）；升温速率 5～80 K/min（±12）")
-    @EN("§bRange: §fVacuum Pressure 5-500 Pa (±90); Heating Ramp 5-80 K/min (±12)")
+    @CN("参数范围：真空压力 5～500 Pa；升温速率 5～80 K/min。")
+    @EN("Parameter range: Vacuum Pressure 5-500 Pa; Heating Rate 5-80 K/min.")
     public static Lang vacuumSinteringTowerTooltip2;
 
 
-    @CN("§e维持：§f每 120 次运行结算：真空泵 8×√(500÷压力)×120 EU；加热 6×升温×120 EU；氮气 500×120 mB")
-    @EN("§eHold: §fSettled per 120 runs: Pump 8x√(500/Pressure) x120 EU; Heating 6x Ramp x120 EU; Nitrogen 500 x120 mB")
+    @CN("校准后自动运行；材料不足或额度用尽时暂停。")
+    @EN("Runs automatically after calibration; pauses when materials or quota run out.")
     public static Lang vacuumSinteringTowerTooltip3;
 
 
-    @CN("§e调参：§f每次调参需稳定 3 秒；稳定后需支付维护原料才能获得 120 次运行额度，期间不能开工")
-    @EN("§eRetune: §fEach retune settles for 3 s; maintenance supplies must then be paid to grant a 120-run quota; cannot start while settling")
+    @CN("调参原料：500 mB 氮气。")
+    @EN("Retuning Material: 500 mB Nitrogen.")
     public static Lang vacuumSinteringTowerTooltip4;
 
 
-    @CN("§a达标且额度充足自动启动；§c额度用尽或材料不足会暂停；§6运行时锁定")
-    @EN("§aStarts once calibrated and quota remains; §cpauses when quota or supplies run out; §6locked while running")
+    @CN("维护材料见机器 GUI 界面。")
+    @EN("Maintenance material: See the machine GUI.")
     public static Lang vacuumSinteringTowerTooltip5;
-
-    @CN("§d调参原料：§f每次调参消耗 500 mB 氮气")
-    @EN("§dTuning Material: §fEach retune consumes 500 mB Nitrogen")
-    public static Lang vacuumSinteringTowerTooltip6;
 
 
     @CN("取天材，掘地精")
@@ -2412,8 +2380,7 @@ public class MultiblocksA {
                     condensingDiscreteTooltip2.translate(),
                     condensingDiscreteTooltip3.translate(),
                     condensingDiscreteTooltip4.translate(),
-                    condensingDiscreteTooltip5.translate(),
-                    condensingDiscreteTooltip6.translate())
+                    condensingDiscreteTooltip5.translate())
             .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
             .appearanceBlock(CASING_ALUMINIUM_FROSTPROOF)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -2446,8 +2413,7 @@ public class MultiblocksA {
                     oxidationRoastingFurnaceTooltip2.translate(),
                     oxidationRoastingFurnaceTooltip3.translate(),
                     oxidationRoastingFurnaceTooltip4.translate(),
-                    oxidationRoastingFurnaceTooltip5.translate(),
-                    oxidationRoastingFurnaceTooltip6.translate())
+                    oxidationRoastingFurnaceTooltip5.translate())
             .recipeModifiers(GTRecipeModifiers::ebfOverclock, BATCH_MODE)
             .appearanceBlock(CASING_INVAR_HEATPROOF)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -2489,8 +2455,7 @@ public class MultiblocksA {
                     highPressureAlkaliDigesterTooltip2.translate(),
                     highPressureAlkaliDigesterTooltip3.translate(),
                     highPressureAlkaliDigesterTooltip4.translate(),
-                    highPressureAlkaliDigesterTooltip5.translate(),
-                    highPressureAlkaliDigesterTooltip6.translate())
+                    highPressureAlkaliDigesterTooltip5.translate())
             .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
             .appearanceBlock(CASING_TITANIUM_STABLE)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -2526,8 +2491,7 @@ public class MultiblocksA {
                     solventExtractionTowerTooltip2.translate(),
                     solventExtractionTowerTooltip3.translate(),
                     solventExtractionTowerTooltip4.translate(),
-                    solventExtractionTowerTooltip5.translate(),
-                    solventExtractionTowerTooltip6.translate())
+                    solventExtractionTowerTooltip5.translate())
             .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
             .appearanceBlock(CASING_PTFE_INERT)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -2560,8 +2524,7 @@ public class MultiblocksA {
                     reductionPrecipitationTankTooltip2.translate(),
                     reductionPrecipitationTankTooltip3.translate(),
                     reductionPrecipitationTankTooltip4.translate(),
-                    reductionPrecipitationTankTooltip5.translate(),
-                    reductionPrecipitationTankTooltip6.translate())
+                    reductionPrecipitationTankTooltip5.translate())
             .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
             .appearanceBlock(CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -2594,8 +2557,7 @@ public class MultiblocksA {
                     ionExchangerTooltip2.translate(),
                     ionExchangerTooltip3.translate(),
                     ionExchangerTooltip4.translate(),
-                    ionExchangerTooltip5.translate(),
-                    ionExchangerTooltip6.translate())
+                    ionExchangerTooltip5.translate())
             .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
             .appearanceBlock(GCYMBlocks.CASING_CORROSION_PROOF)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -2838,8 +2800,7 @@ public class MultiblocksA {
                     vacuumSinteringTowerTooltip2.translate(),
                     vacuumSinteringTowerTooltip3.translate(),
                     vacuumSinteringTowerTooltip4.translate(),
-                    vacuumSinteringTowerTooltip5.translate(),
-                    vacuumSinteringTowerTooltip6.translate())
+                    vacuumSinteringTowerTooltip5.translate())
             .recipeModifiers((machine, group, recipe) -> CTNHRecipeModifiers.accurateParallel(machine, group, recipe, 16), GTRecipeModifiers::ebfOverclock)
             .appearanceBlock(CASING_TITANIUM_STABLE)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -2881,8 +2842,7 @@ public class MultiblocksA {
                     crystallizerTooltip2.translate(),
                     crystallizerTooltip3.translate(),
                     crystallizerTooltip4.translate(),
-                    crystallizerTooltip5.translate(),
-                    crystallizerTooltip6.translate())
+                    crystallizerTooltip5.translate())
             .recipeModifiers((machine, group, recipe) -> CTNHRecipeModifiers.accurateParallel(machine, group, recipe, 16), GTRecipeModifiers::ebfOverclock, BATCH_MODE)
             .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
             .pattern(definition -> FactoryBlockPattern.start()
