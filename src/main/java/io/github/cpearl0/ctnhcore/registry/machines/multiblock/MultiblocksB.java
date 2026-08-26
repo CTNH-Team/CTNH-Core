@@ -309,7 +309,7 @@ public class MultiblocksB {
     public static Lang nanoGeneratorTooltip1;
 
 
-    @CN("每有1并行数，总体发电量提升4%\n实际运行时间为配方时间*sqrt(并行数)")
+    @CN("每有1并行数，总体发电量提升2%\n实际运行时间为配方时间*sqrt(并行数)")
     @EN("For each parallel process, total power generation increases by 4%\nActual operation time is recipe time * sqrt(parallel count)")
     public static Lang nanoGeneratorTooltip2;
 

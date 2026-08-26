@@ -159,7 +159,7 @@ public class NanoscaleTriboelectricGenerator extends RecipeElectricMultiblockMac
 
             recipe.multiplyAllContents(maxParallel);
             recipe.multiplyDuration(Math.sqrt(maxParallel));
-            recipe.multiplyEUt((1 + maxParallel * 0.04) * efficiency);
+            recipe.multiplyEUt((1 + maxParallel * 0.02) * efficiency);
             recipe.parallels *= maxParallel;
             return null;
         }
