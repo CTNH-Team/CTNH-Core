@@ -6,6 +6,8 @@ import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
+import net.minecraft.util.valueproviders.UniformInt;
+
 import twilightforest.data.tags.BiomeTagGenerator;
 
 import static io.github.cpearl0.ctnhcore.registry.CTNHOres.create;
@@ -20,18 +22,17 @@ public class TwilightForestOres {
             "暮色森林冰晶石矿脉",
             vein -> vein
                     .weight(70)
-                    .clusterSize(40)
-                    .density(0.25F)
+                    .clusterSize(UniformInt.of(60, 70))
+                    .density(0.3f)
                     .discardChanceOnAirExposure(0)
                     .layer(CTNHWorldgenLayers.TWILIGHT)
                     .dimensions(TWILIGHT_FOREST)
                     .heightRangeUniform(-30, 0)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(3).mat(CTNHMaterials.Cryolite).size(2, 4))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Mica))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Silver))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Lead))))
+                    .dikeVeinGenerator(generator -> generator
+                            .withBlock(CTNHMaterials.Cryolite, 3, -30, 0)
+                            .withBlock(GTMaterials.Mica, 2, -25, -5)
+                            .withBlock(GTMaterials.Silver, 1, -20, -10)
+                            .withBlock(GTMaterials.Lead, 1, -15, 0))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(CTNHMaterials.Cryolite)));
 
@@ -40,18 +41,16 @@ public class TwilightForestOres {
             "暮色森林钢叶矿脉",
             vein -> vein
                     .weight(20)
-                    .clusterSize(40)
-                    .density(0.35F)
+                    .clusterSize(UniformInt.of(40, 50))
+                    .density(0.4f)
                     .discardChanceOnAirExposure(0)
                     .layer(CTNHWorldgenLayers.TWILIGHT)
                     .dimensions(TWILIGHT_FOREST)
                     .biomes(BiomeTagGenerator.VALID_NAGA_COURTYARD_BIOMES)
                     .heightRangeUniform(-30, 20)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    // .layer(l -> l.weight(2).mat(CTNHMaterials.SteelLeaf).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Apatite).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Pyrochlore).size(2, 4))))
+                    .dikeVeinGenerator(generator -> generator
+                            .withBlock(GTMaterials.Apatite, 1, -30, 20)
+                            .withBlock(GTMaterials.Pyrochlore, 1, -25, 15))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Apatite)));
 
@@ -60,8 +59,8 @@ public class TwilightForestOres {
             "暮色森林巫师之骨矿脉",
             vein -> vein
                     .weight(20)
-                    .clusterSize(45)
-                    .density(0.35F)
+                    .clusterSize(UniformInt.of(40, 50))
+                    .density(0.4f)
                     .discardChanceOnAirExposure(0)
                     .layer(CTNHWorldgenLayers.TWILIGHT)
                     .dimensions(TWILIGHT_FOREST)
@@ -71,8 +70,7 @@ public class TwilightForestOres {
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.Apatite).size(2, 4))
                                     .layer(l -> l.weight(2).mat(GTMaterials.Coal).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Graphite))))
-                    // .layer(l -> l.weight(1).mat(CTNHMaterials.SpiritAsh).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Graphite).size(2, 4))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Apatite)));
 
@@ -80,19 +78,20 @@ public class TwilightForestOres {
             "Twilight Forest Toxic Swamp Amber Vein",
             "暮色森林毒沼琥珀矿脉",
             vein -> vein.weight(50)
-                    .clusterSize(35)
-                    .density(0.45F)
+                    .clusterSize(70)
+                    .density(1.0f)
                     .discardChanceOnAirExposure(0)
                     .layer(CTNHWorldgenLayers.TWILIGHT)
                     .dimensions(TWILIGHT_FOREST)
                     .biomes(BiomeTagGenerator.VALID_LABYRINTH_BIOMES)
                     .heightRangeUniform(-30, 20)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(3).mat(GTMaterials.Cinnabar).size(2, 4))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Galena))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Saltpeter))))
-                    // .layer(l -> l.weight(1).mat(CTNHMaterials.ToxicSwampAmber).size(1, 1))
+                    .veinedVeinGenerator(generator -> generator
+                            .oreBlock(GTMaterials.Cinnabar, 3)
+                            .oreBlock(GTMaterials.Galena, 2)
+                            .oreBlock(GTMaterials.Saltpeter, 1)
+                            .minRichness(0.6f)
+                            .maxRichness(1.0f)
+                            .maxRichnessThreshold(1.0f))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Cinnabar)));
 
@@ -101,19 +100,17 @@ public class TwilightForestOres {
             "暮色森林幻铁矿脉",
             vein -> vein
                     .weight(50)
-                    .clusterSize(25)
-                    .density(0.45F)
+                    .clusterSize(UniformInt.of(20, 30))
+                    .density(0.5f)
                     .discardChanceOnAirExposure(0)
                     .layer(CTNHWorldgenLayers.TWILIGHT)
                     .dimensions(TWILIGHT_FOREST)
                     .biomes(BiomeTagGenerator.VALID_KNIGHT_STRONGHOLD_BIOMES)
                     .heightRangeUniform(-30, 20)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Pyrite).size(2, 4))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.VanadiumMagnetite).size(2, 4))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Tantalite).size(2, 4))))
-                    // .layer(l -> l.weight(1).mat(CTNHMaterials.IllusionIron).size(1, 1))
+                    .dikeVeinGenerator(generator -> generator
+                            .withBlock(GTMaterials.Pyrite, 2, -30, 20)
+                            .withBlock(GTMaterials.VanadiumMagnetite, 2, -25, 15)
+                            .withBlock(GTMaterials.Tantalite, 2, -20, 10))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.VanadiumMagnetite)));
 
@@ -122,8 +119,8 @@ public class TwilightForestOres {
             "暮色森林极寒冰核矿脉",
             vein -> vein
                     .weight(50)
-                    .clusterSize(25)
-                    .density(0.45F)
+                    .clusterSize(UniformInt.of(20, 30))
+                    .density(0.5f)
                     .discardChanceOnAirExposure(0)
                     .layer(CTNHWorldgenLayers.TWILIGHT)
                     .dimensions(TWILIGHT_FOREST)
@@ -132,8 +129,7 @@ public class TwilightForestOres {
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.Electrotine).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Lapis))))
-                    // .layer(l -> l.weight(1).mat(CTNHMaterials.PolarIceCore).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Lapis).size(2, 4))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Lapis)));
 
@@ -142,19 +138,20 @@ public class TwilightForestOres {
             "暮色森林龙焰矿脉",
             vein -> vein
                     .weight(50)
-                    .clusterSize(35)
-                    .density(0.55F)
+                    .clusterSize(70)
+                    .density(1.0f)
                     .discardChanceOnAirExposure(0)
                     .layer(CTNHWorldgenLayers.TWILIGHT)
                     .dimensions(TWILIGHT_FOREST)
                     .biomes(BiomeTagGenerator.VALID_HYDRA_LAIR_BIOMES)
                     .heightRangeUniform(-30, 20)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Hematite).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Ruby))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Pyrochlore))))
-                    // .layer(l -> l.weight(1).mat(CTNHMaterials.Dragonflame).size(1, 1))
+                    .veinedVeinGenerator(generator -> generator
+                            .oreBlock(GTMaterials.Hematite, 2)
+                            .oreBlock(GTMaterials.Ruby, 1)
+                            .oreBlock(GTMaterials.Pyrochlore, 1)
+                            .minRichness(0.6f)
+                            .maxRichness(1.0f)
+                            .maxRichnessThreshold(1.0f))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Ruby)));
 
@@ -163,19 +160,20 @@ public class TwilightForestOres {
             "暮色森林幽影矿脉",
             vein -> vein
                     .weight(50)
-                    .clusterSize(45)
-                    .density(0.25F)
+                    .clusterSize(90)
+                    .density(1.0f)
                     .discardChanceOnAirExposure(0)
                     .layer(CTNHWorldgenLayers.TWILIGHT)
                     .dimensions(TWILIGHT_FOREST)
                     .biomes(BiomeTagGenerator.VALID_DARK_TOWER_BIOMES)
                     .heightRangeUniform(-30, 20)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(3).mat(GTMaterials.Stibnite).size(2, 4))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Antimony))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Silver))))
-                    // .layer(l -> l.weight(1).mat(CTNHMaterials.EclipseShadow).size(1, 1))
+                    .veinedVeinGenerator(generator -> generator
+                            .oreBlock(GTMaterials.Stibnite, 3)
+                            .oreBlock(GTMaterials.Antimony, 2)
+                            .oreBlock(GTMaterials.Silver, 1)
+                            .minRichness(0.6f)
+                            .maxRichness(1.0f)
+                            .maxRichnessThreshold(1.0f))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Stibnite)));
 
@@ -184,8 +182,8 @@ public class TwilightForestOres {
             "暮色森林雷纹矿脉",
             vein -> vein
                     .weight(50)
-                    .clusterSize(65)
-                    .density(0.65F)
+                    .clusterSize(UniformInt.of(60, 70))
+                    .density(0.6f)
                     .discardChanceOnAirExposure(0)
                     .layer(CTNHWorldgenLayers.TWILIGHT)
                     .dimensions(TWILIGHT_FOREST)
@@ -195,8 +193,6 @@ public class TwilightForestOres {
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.Gold).size(2, 4))
                                     .layer(l -> l.weight(2).mat(GTMaterials.Diamond).size(2, 4))))
-                    // .layer(l -> l.weight(1).mat(CTNHMaterials.EclipseShadow).size(1, 1))
-                    // .layer(l -> l.weight(1).mat(CTNHMaterials.LightningPattern).size(1, 1))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Diamond)));
 
@@ -205,18 +201,20 @@ public class TwilightForestOres {
             "暮色森林红砷镍矿脉",
             vein -> vein
                     .weight(20)
-                    .clusterSize(40)
-                    .density(0.25F)
+                    .clusterSize(80)
+                    .density(1.0f)
                     .discardChanceOnAirExposure(0)
                     .layer(CTNHWorldgenLayers.TWILIGHT)
                     .dimensions(TWILIGHT_FOREST)
                     .heightRangeUniform(-30, 0)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(3).mat(CTNHMaterials.Nickeline).size(2, 4))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.ArsenicTrioxide))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Pentlandite))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Realgar))))
+                    .veinedVeinGenerator(generator -> generator
+                            .oreBlock(CTNHMaterials.Nickeline, 3)
+                            .oreBlock(GTMaterials.ArsenicTrioxide, 2)
+                            .oreBlock(GTMaterials.Pentlandite, 2)
+                            .oreBlock(GTMaterials.Realgar, 1)
+                            .minRichness(0.6f)
+                            .maxRichness(1.0f)
+                            .maxRichnessThreshold(1.0f))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(CTNHMaterials.Nickeline)));
 
@@ -226,14 +224,14 @@ public class TwilightForestOres {
             vein -> vein
                     .clusterSize(30)
                     .weight(40)
+                    .density(0.3f)
                     .layer(CTNHWorldgenLayers.TWILIGHT)
-                    .density(0.25f)
                     .dimensions(TWILIGHT_FOREST)
                     .heightRangeUniform(-30, 0).discardChanceOnAirExposure(0f)
                     .layeredVeinGenerator(generator -> generator.buildLayerPattern(pattern -> pattern
                             .layer(l -> l.weight(3).mat(GTMaterials.Galena).size(2, 4))
-                            .layer(l -> l.weight(2).mat(GTMaterials.Silver))
-                            .layer(l -> l.weight(1).mat(GTMaterials.Lead))))
+                            .layer(l -> l.weight(2).mat(GTMaterials.Silver).size(2, 4))
+                            .layer(l -> l.weight(1).mat(GTMaterials.Lead).size(2, 4))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Galena)));
 
@@ -241,17 +239,16 @@ public class TwilightForestOres {
             "Twilight Forest Diamond Vein",
             "暮色森林钻石矿脉",
             vein -> vein
-                    .clusterSize(30)
+                    .clusterSize(UniformInt.of(40, 50))
                     .weight(40)
+                    .density(0.3f)
                     .layer(CTNHWorldgenLayers.TWILIGHT)
-                    .density(0.25f)
                     .dimensions(TWILIGHT_FOREST)
                     .heightRangeUniform(-30, 0).discardChanceOnAirExposure(0f)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(3).mat(GTMaterials.Graphite).size(2, 4))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Diamond))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Coal))))
+                    .dikeVeinGenerator(generator -> generator
+                            .withBlock(GTMaterials.Graphite, 3, -30, 0)
+                            .withBlock(GTMaterials.Diamond, 2, -30, -10)
+                            .withBlock(GTMaterials.Coal, 1, -15, 0))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Diamond)));
 
@@ -259,16 +256,15 @@ public class TwilightForestOres {
             "Twilight Forest Apatite Vein",
             "暮色森林磷灰石矿脉",
             vein -> vein
-                    .clusterSize(30)
+                    .clusterSize(UniformInt.of(40, 50))
                     .weight(40)
+                    .density(0.3f)
                     .layer(CTNHWorldgenLayers.TWILIGHT)
-                    .density(0.25f)
                     .dimensions(TWILIGHT_FOREST)
                     .heightRangeUniform(-30, 0).discardChanceOnAirExposure(0f)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Apatite).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Pyrochlore).size(2, 4))))
+                    .dikeVeinGenerator(generator -> generator
+                            .withBlock(GTMaterials.Apatite, 1, -30, 0)
+                            .withBlock(GTMaterials.Pyrochlore, 1, -25, -5))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Apatite)));
 
@@ -278,16 +274,16 @@ public class TwilightForestOres {
             vein -> vein
                     .clusterSize(30)
                     .weight(50)
+                    .density(0.3f)
                     .layer(CTNHWorldgenLayers.TWILIGHT)
-                    .density(0.2f)
                     .dimensions(TWILIGHT_FOREST)
                     .heightRangeUniform(-30, 0).discardChanceOnAirExposure(0f)
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.RockSalt).size(2, 4))
                                     .layer(l -> l.weight(2).mat(GTMaterials.Salt).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Lepidolite))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Spodumene))))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Lepidolite).size(2, 4))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Spodumene).size(2, 4))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Salt)));
 

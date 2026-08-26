@@ -29,8 +29,8 @@ public class AetherOres {
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(3).mat(CTNHMaterials.Zanite).size(2, 4))
-                                    .layer(l -> l.weight(2).mat(CTNHMaterials.Ambrosium))
-                                    .layer(l -> l.weight(1).mat(CTNHMaterials.Skyjade))))
+                                    .layer(l -> l.weight(2).mat(CTNHMaterials.Ambrosium).size(2, 4))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.Skyjade).size(2, 4))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(CTNHMaterials.Zanite)));
 
@@ -39,7 +39,7 @@ public class AetherOres {
             "天境黄玉矿脉",
             vein -> vein
                     .weight(50)
-                    .clusterSize(UniformInt.of(25, 30))
+                    .clusterSize(UniformInt.of(30, 40))
                     .density(0.5f)
                     .layer(CTNHWorldgenLayers.AETHER)
                     .dimensions(THE_AETHER)
@@ -47,7 +47,7 @@ public class AetherOres {
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.Topaz).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Chalcopyrite))))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Chalcopyrite).size(2, 4))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Topaz)));
 
@@ -63,9 +63,9 @@ public class AetherOres {
                     .heightRangeUniform(0, 100)
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Beryllium))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Beryllium).size(2, 4))
                                     .layer(l -> l.weight(2).mat(GTMaterials.Emerald).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Thorium))))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Thorium).size(2, 4))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Emerald)));
 
@@ -73,9 +73,9 @@ public class AetherOres {
             "Aether Olivine Vein",
             "天境橄榄石矿脉",
             vein -> vein
-                    .weight(20)
+                    .weight(40)
                     .clusterSize(UniformInt.of(30, 40))
-                    .density(0.25f)
+                    .density(0.3f)
                     .layer(CTNHWorldgenLayers.AETHER)
                     .heightRangeUniform(-20, 10)
                     .dimensions(THE_AETHER)
@@ -92,7 +92,7 @@ public class AetherOres {
             vein -> vein
                     .weight(40)
                     .clusterSize(UniformInt.of(30, 40))
-                    .density(0.25f)
+                    .density(0.3f)
                     .layer(CTNHWorldgenLayers.AETHER)
                     .heightRangeUniform(-60, -30)
                     .dimensions(THE_AETHER)
@@ -100,7 +100,7 @@ public class AetherOres {
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.Graphite).size(2, 4))
                                     .layer(l -> l.weight(2).mat(GTMaterials.Diamond).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Coal))))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Coal).size(2, 4))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Diamond)));
 
@@ -110,15 +110,15 @@ public class AetherOres {
             vein -> vein
                     .weight(60)
                     .clusterSize(UniformInt.of(30, 40))
-                    .density(0.2f)
+                    .density(0.3f)
                     .layer(CTNHWorldgenLayers.AETHER)
                     .heightRangeUniform(-60, -10)
                     .dimensions(THE_AETHER)
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.Redstone).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Ruby))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Cinnabar))))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Ruby).size(2, 4))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Cinnabar).size(2, 4))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Redstone)));
 
@@ -127,15 +127,15 @@ public class AetherOres {
             "天境蓝宝石矿脉",
             vein -> vein
                     .weight(60)
-                    .clusterSize(UniformInt.of(25, 30))
-                    .density(0.25f)
+                    .clusterSize(UniformInt.of(30, 40))
+                    .density(0.3f)
                     .layer(CTNHWorldgenLayers.AETHER)
                     .heightRangeUniform(-40, 0)
                     .dimensions(THE_AETHER)
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.Electrotine).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Sapphire))))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Sapphire).size(2, 4))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Sapphire)));
 

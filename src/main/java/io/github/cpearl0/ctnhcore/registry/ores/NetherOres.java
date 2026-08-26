@@ -60,7 +60,7 @@ public class NetherOres {
             "Nether Redstone Vein",
             "下界红石矿脉",
             vein -> vein
-                    .clusterSize(UniformInt.of(60, 80))
+                    .clusterSize(80)
                     .density(1.0f)
                     .weight(80)
                     .layer(WorldGenLayers.NETHERRACK)
@@ -101,7 +101,7 @@ public class NetherOres {
             "Nether Molybdenum Vein",
             "下界钼矿脉",
             vein -> vein
-                    .clusterSize(UniformInt.of(50, 60))
+                    .clusterSize(60)
                     .density(1.0f)
                     .weight(40)
                     .layer(WorldGenLayers.NETHERRACK)
@@ -124,7 +124,7 @@ public class NetherOres {
             "Nether Tetrahedrite Vein",
             "下界黝铜矿脉",
             vein -> vein
-                    .clusterSize(UniformInt.of(80, 100))
+                    .clusterSize(100)
                     .density(1.0f)
                     .weight(80)
                     .layer(WorldGenLayers.NETHERRACK)
@@ -147,7 +147,7 @@ public class NetherOres {
             "Nether Banded Iron Vein",
             "下界带状铁矿脉",
             vein -> vein
-                    .clusterSize(UniformInt.of(80, 100))
+                    .clusterSize(100)
                     .density(1.0f)
                     .weight(60)
                     .layer(WorldGenLayers.NETHERRACK)
@@ -170,7 +170,7 @@ public class NetherOres {
             "Nether Topaz Vein",
             "下界黄玉矿脉",
             vein -> vein
-                    .clusterSize(UniformInt.of(50, 60))
+                    .clusterSize(60)
                     .density(1.0f)
                     .weight(80)
                     .layer(WorldGenLayers.NETHERRACK)
