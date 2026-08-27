@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.item.*;
 import io.github.cpearl0.ctnhcore.common.item.debug.ReloadItem;
 import io.github.cpearl0.ctnhcore.data.item.CrystalItems;
@@ -11,6 +12,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.FoodStats;
 import com.gregtechceu.gtceu.api.item.component.IInteractionItem;
+import com.gregtechceu.gtceu.common.data.models.GTModels;
 import com.gregtechceu.gtceu.common.item.CoverPlaceBehavior;
 import com.gregtechceu.gtceu.common.item.TooltipBehavior;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
@@ -619,6 +621,36 @@ public class CTNHItems {
             .onRegister(attach(new TooltipBehavior(list -> {
                 list.add(advancedRamChipTooltip.translate().withStyle(ChatFormatting.YELLOW));
             })))
+            .register();
+    public static ItemEntry<Item> BSC_CHIP = REGISTRATE
+            .item("bsc_chip", Item::new)
+            .cnlang("BSC芯片")
+            .lang("BSC Chip")
+            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov, CTNHCore.id("item/chips/bsc_chip")))
+            .register();
+    public static ItemEntry<Item> BSC_WAFER = REGISTRATE
+            .item("bsc_wafer", Item::new)
+            .cnlang("BSC晶圆")
+            .lang("BSC Wafer")
+            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov, CTNHCore.id("item/chips/bsc_wafer")))
+            .register();
+    public static ItemEntry<Item> BSC_WAFER_MASKED = REGISTRATE
+            .item("bsc_wafer_masked", Item::new)
+            .cnlang("BSC掩模晶圆")
+            .lang("Masked BSC Wafer")
+            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov, CTNHCore.id("item/chips/bsc_wafer_masked")))
+            .register();
+    public static ItemEntry<Item> LPIC_WAFER_MASKED = REGISTRATE
+            .item("lpic_wafer_masked", Item::new)
+            .cnlang("LPIC掩模晶圆")
+            .lang("Masked LPIC Wafer")
+            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov, CTNHCore.id("item/chips/lpic_wafer_masked")))
+            .register();
+    public static ItemEntry<Item> RAM_WAFER_MASKED = REGISTRATE
+            .item("ram_wafer_masked", Item::new)
+            .cnlang("RAM掩模晶圆")
+            .lang("Masked RAM Wafer")
+            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov, CTNHCore.id("item/chips/ram_wafer_masked")))
             .register();
     public static ItemEntry<ComponentItem> PRIMARY_STEW = REGISTRATE
             .item("primary_stew", ComponentItem::create)
