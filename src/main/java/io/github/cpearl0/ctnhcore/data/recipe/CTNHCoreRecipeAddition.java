@@ -18,7 +18,6 @@ import io.github.cpearl0.ctnhcore.data.recipe.migrated.GtceuScriptRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.EIORecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.modmodify.omnicells.QuantumOmniRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.multiblock.*;
-import io.github.cpearl0.ctnhcore.data.recipe.WaferRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.wood.WoodMachineRecipes;
 
 import net.minecraft.data.recipes.FinishedRecipe;

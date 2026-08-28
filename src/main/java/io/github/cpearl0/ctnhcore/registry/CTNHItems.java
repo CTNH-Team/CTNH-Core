@@ -639,25 +639,29 @@ public class CTNHItems {
             .item("bsc_wafer_rubber_masked", Item::new)
             .cnlang("橡胶掩膜的BSC晶圆")
             .lang("Rubber-masked BSC Wafer")
-            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov, CTNHCore.id("item/chips/bsc_wafer_rubber_masked")))
+            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov,
+                    CTNHCore.id("item/chips/bsc_wafer_rubber_masked")))
             .register();
     public static ItemEntry<Item> LPIC_WAFER_MASKED = REGISTRATE
             .item("lpic_wafer_rubber_masked", Item::new)
             .cnlang("橡胶掩膜的LPIC晶圆")
             .lang("Rubber-masked LPIC Wafer")
-            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov, CTNHCore.id("item/chips/lpic_wafer_rubber_masked")))
+            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov,
+                    CTNHCore.id("item/chips/lpic_wafer_rubber_masked")))
             .register();
     public static ItemEntry<Item> RAM_WAFER_MASKED = REGISTRATE
             .item("ram_wafer_rubber_masked", Item::new)
             .cnlang("橡胶掩膜的RAM晶圆")
             .lang("Rubber-masked RAM Wafer")
-            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov, CTNHCore.id("item/chips/ram_wafer_rubber_masked")))
+            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov,
+                    CTNHCore.id("item/chips/ram_wafer_rubber_masked")))
             .register();
     public static ItemEntry<Item> SSOC_WAFER_RUBBER_MASKED = REGISTRATE
             .item("ssoc_wafer_rubber_masked", Item::new)
             .cnlang("橡胶掩膜的简易SoC晶圆")
             .lang("Rubber-masked Simple SoC Wafer")
-            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov, CTNHCore.id("item/chips/ssoc_wafer_rubber_masked")))
+            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov,
+                    CTNHCore.id("item/chips/ssoc_wafer_rubber_masked")))
             .register();
     public static ItemEntry<Item> RUBBER_MASKED_SILICON_WAFER = REGISTRATE
             .item("rubber_masked_silicon_wafer", Item::new)

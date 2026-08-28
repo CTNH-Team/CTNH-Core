@@ -1,10 +1,12 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.registry.CTNHItems;
+
 import com.gregtechceu.gtceu.api.data.chemical.material.MarkerMaterials.Color;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.registry.CTNHItems;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
