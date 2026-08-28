@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "ctnhcore:item/chips/lpic_wafer_masked"
+    "layer0": "ctnhcore:item/chips/lpic_wafer_rubber_masked"
   }
 }
