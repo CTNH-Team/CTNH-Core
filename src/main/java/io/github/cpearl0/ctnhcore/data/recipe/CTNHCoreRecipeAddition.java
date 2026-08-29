@@ -53,6 +53,7 @@ public class CTNHCoreRecipeAddition {
 
         HyperRotorRecipes.registerAll(provider);
         OrdinaryRecipes.init(provider);
+        WaferRecipes.init(provider);
         AssemblyLineRecipes.init(provider);
 
         // 兼容 mod 配方

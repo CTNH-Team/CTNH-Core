@@ -559,6 +559,33 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("gtceu:electric_blast_furnace/naq_ingot"));
 
         remove(new RemoveFilter().id("gtceu:electrolyzer/zeolite_electrolysis"));
+        // 移除硅晶圆直接激光蚀刻成 RAM/LPIC 晶圆的配方
+        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ram_silicon"));
+        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_lpic_silicon"));
+        // 不同晶圆材料的蚀刻变体一并移除
+        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ram_phosphorus"));
+        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ram_naquadah"));
+        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ram_neutronium"));
+        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_lpic_phosphorus"));
+        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_lpic_naquadah"));
+        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_lpic_neutronium"));
+        // 简易SOC（SSOC）蚀刻配方一并移除
+        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ssoc_silicon"));
+        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ssoc_phosphorus"));
+        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ssoc_naquadah"));
+        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ssoc_neutronium"));
+        // 移除微处理器系列旧配方（LV~IV 段），改为 HV 段新配方
+        remove(new RemoveFilter().id("gtceu:circuit_assembler/microprocessor_lv"));
+        remove(new RemoveFilter().id("gtceu:circuit_assembler/processor_mv"));
+        remove(new RemoveFilter().id("gtceu:circuit_assembler/processor_assembly_hv"));
+        remove(new RemoveFilter().id("gtceu:circuit_assembler/workstation_ev"));
+        remove(new RemoveFilter().id("gtceu:circuit_assembler/mainframe_iv"));
+        // 焊锡（soldering_alloy）焊料变体一并移除
+        remove(new RemoveFilter().id("gtceu:circuit_assembler/microprocessor_lv_soldering_alloy"));
+        remove(new RemoveFilter().id("gtceu:circuit_assembler/processor_mv_soldering_alloy"));
+        remove(new RemoveFilter().id("gtceu:circuit_assembler/processor_assembly_hv_soldering_alloy"));
+        remove(new RemoveFilter().id("gtceu:circuit_assembler/workstation_ev_soldering_alloy"));
+        remove(new RemoveFilter().id("gtceu:circuit_assembler/mainframe_iv_soldering_alloy"));
         remove(new RemoveFilter().id("gtceu:centrifuge/decomposition_centrifuging__redstone"));
 
         // 移除 GTCEu 默认 LV~IV 电动马达与 LV 组件工作台配方，统一改为 CTNH 工作台配方

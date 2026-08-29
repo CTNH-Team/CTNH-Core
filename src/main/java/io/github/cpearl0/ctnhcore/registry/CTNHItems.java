@@ -6,6 +6,7 @@ import io.github.cpearl0.ctnhcore.common.item.debug.ReloadItem;
 import io.github.cpearl0.ctnhcore.data.item.CrystalItems;
 import io.github.cpearl0.ctnhcore.data.materials.ChemicalItems;
 
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.ItemMaterialInfo;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
@@ -635,22 +636,38 @@ public class CTNHItems {
             .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov, CTNHCore.id("item/chips/bsc_wafer")))
             .register();
     public static ItemEntry<Item> BSC_WAFER_MASKED = REGISTRATE
-            .item("bsc_wafer_masked", Item::new)
-            .cnlang("BSC掩模晶圆")
-            .lang("Masked BSC Wafer")
-            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov, CTNHCore.id("item/chips/bsc_wafer_masked")))
+            .item("bsc_wafer_rubber_masked", Item::new)
+            .cnlang("橡胶掩膜的BSC晶圆")
+            .lang("Rubber-masked BSC Wafer")
+            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov,
+                    CTNHCore.id("item/chips/bsc_wafer_rubber_masked")))
             .register();
     public static ItemEntry<Item> LPIC_WAFER_MASKED = REGISTRATE
-            .item("lpic_wafer_masked", Item::new)
-            .cnlang("LPIC掩模晶圆")
-            .lang("Masked LPIC Wafer")
-            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov, CTNHCore.id("item/chips/lpic_wafer_masked")))
+            .item("lpic_wafer_rubber_masked", Item::new)
+            .cnlang("橡胶掩膜的LPIC晶圆")
+            .lang("Rubber-masked LPIC Wafer")
+            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov,
+                    CTNHCore.id("item/chips/lpic_wafer_rubber_masked")))
             .register();
     public static ItemEntry<Item> RAM_WAFER_MASKED = REGISTRATE
-            .item("ram_wafer_masked", Item::new)
-            .cnlang("RAM掩模晶圆")
-            .lang("Masked RAM Wafer")
-            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov, CTNHCore.id("item/chips/ram_wafer_masked")))
+            .item("ram_wafer_rubber_masked", Item::new)
+            .cnlang("橡胶掩膜的RAM晶圆")
+            .lang("Rubber-masked RAM Wafer")
+            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov,
+                    CTNHCore.id("item/chips/ram_wafer_rubber_masked")))
+            .register();
+    public static ItemEntry<Item> SSOC_WAFER_RUBBER_MASKED = REGISTRATE
+            .item("ssoc_wafer_rubber_masked", Item::new)
+            .cnlang("橡胶掩膜的简易SoC晶圆")
+            .lang("Rubber-masked Simple SoC Wafer")
+            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov,
+                    CTNHCore.id("item/chips/ssoc_wafer_rubber_masked")))
+            .register();
+    public static ItemEntry<Item> RUBBER_MASKED_SILICON_WAFER = REGISTRATE
+            .item("rubber_masked_silicon_wafer", Item::new)
+            .cnlang("橡胶掩膜的硅晶圆")
+            .lang("Rubber-masked Silicon Wafer")
+            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov, GTCEu.id("item/naquadah_wafer")))
             .register();
     public static ItemEntry<ComponentItem> PRIMARY_STEW = REGISTRATE
             .item("primary_stew", ComponentItem::create)
