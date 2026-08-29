@@ -427,7 +427,7 @@ public class AsynBlockPattern extends BlockPattern {
             if (context.fluid) {
                 context.meStorage.extract(AEFluidKey.of(context.fluidState.getType()), 1000, Actionable.MODULATE,
                         IActionSource.ofMachine(context.settings.getAccessPoint()));
-            } else {
+            } else if (context.foundItemStack != null && !context.foundItemStack.isEmpty()) {
                 context.meStorage.extract(AEItemKey.of(context.foundItemStack), 1, Actionable.MODULATE,
                         IActionSource.ofMachine(context.settings.getAccessPoint()));
             }
@@ -538,7 +538,7 @@ public class AsynBlockPattern extends BlockPattern {
                         context.meStorage = inventory;
                         return true;
                     }
-                } else {
+                } else if (candidate.itemStack != null && !candidate.itemStack.isEmpty()) {
                     long amount = inventory.extract(AEItemKey.of(candidate.itemStack), 1, Actionable.SIMULATE,
                             IActionSource.ofMachine(context.settings.getAccessPoint()));
                     if (amount >= 1) {
