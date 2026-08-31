@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static io.github.cpearl0.ctnhcore.data.materials.CrudeGoldRefiningMaterials.*;
+import static io.github.cpearl0.ctnhcore.data.materials.GoldChainMaterials.*;
 import static io.github.cpearl0.ctnhcore.data.materials.PlatinumLineMaterials.FerricSulfate;
 import static io.github.cpearl0.ctnhcore.data.materials.PlatinumLineMaterials.FerrousSulfate;
 import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.PreciousAlloy;

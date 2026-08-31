@@ -10,7 +10,7 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.Chlorine;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Silver;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
-public class CrudeGoldRefiningMaterials {
+public class GoldChainMaterials {
 
     public static Material GOLD_ALLOY;
     public static Material SODIUM_HEXAFLUOROALUMINATE;

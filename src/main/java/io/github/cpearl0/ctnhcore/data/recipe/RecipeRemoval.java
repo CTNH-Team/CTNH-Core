@@ -556,24 +556,24 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("gtceu:research_station/1x_gtceu_wetware_processor_computer"));
         remove(new RemoveFilter().id("gtceu:assembler/assembly_line_casing"));
         remove(new RemoveFilter().id("gtceu:assembler/assembly_control_casing"));
+        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_borax"));
         remove(new RemoveFilter().id("gtceu:electric_blast_furnace/naq_ingot"));
 
         remove(new RemoveFilter().id("gtceu:electrolyzer/zeolite_electrolysis"));
-        // 移除硅晶圆直接激光蚀刻成 RAM/LPIC 晶圆的配方
-        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ram_silicon"));
-        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_lpic_silicon"));
+        // 移除硅晶圆直接激光蚀刻成 RAM/LPIC/SSoC 晶圆的配方
+        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ram_*"));
+        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_lpic_*"));
+        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ssoc_*"));
         // 不同晶圆材料的蚀刻变体一并移除
-        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ram_phosphorus"));
-        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ram_naquadah"));
-        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ram_neutronium"));
-        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_lpic_phosphorus"));
-        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_lpic_naquadah"));
-        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_lpic_neutronium"));
-        // 简易SOC（SSOC）蚀刻配方一并移除
-        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ssoc_silicon"));
-        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ssoc_phosphorus"));
-        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ssoc_naquadah"));
-        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ssoc_neutronium"));
+        // remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ram_phosphorus"));
+        // remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ram_naquadah"));
+        // remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ram_neutronium"));
+        // remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_lpic_phosphorus"));
+        // remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_lpic_naquadah"));
+        // remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_lpic_neutronium"));
+        // remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ssoc_phosphorus"));
+        // remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ssoc_naquadah"));
+        // remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ssoc_neutronium"));
         // 移除微处理器系列旧配方（LV~IV 段），改为 HV 段新配方
         remove(new RemoveFilter().id("gtceu:circuit_assembler/microprocessor_lv"));
         remove(new RemoveFilter().id("gtceu:circuit_assembler/processor_mv"));
