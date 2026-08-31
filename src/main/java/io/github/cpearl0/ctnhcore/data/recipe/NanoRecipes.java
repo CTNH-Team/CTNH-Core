@@ -30,7 +30,7 @@ public class NanoRecipes {
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/nanogenetor"),
                 MultiblocksB.NANOGENERATOR.asStack(),
                 "BAB", "ACA", "BAB",
-                'A', CustomTags.MV_CIRCUITS,
+                'A', CustomTags.EV_CIRCUITS,
                 'B', CTPPBlocks.STEEL_CASING.asStack(),
                 'C', GTBlocks.MACHINE_CASING_MV.asStack());
 
@@ -38,56 +38,56 @@ public class NanoRecipes {
         CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder(CTNHCore.id("stone2"))
                 .inputItems(Items.STONE)
                 .outputItems(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Stone), 2)
-                .EUt(-2)
-                .duration(5)
+                .EUt(-1)
+                .duration(4)
                 .save(provider);
 
         // Nano generator: netherrack -> netherrack_dust
         CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder(CTNHCore.id("netherrack"))
                 .inputItems(Items.NETHERRACK)
                 .outputItems(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Netherrack), 2)
-                .EUt(-3)
-                .duration(10)
+                .EUt(-2)
+                .duration(5)
                 .save(provider);
 
         // Nano generator: moon_cobblestone -> moon_stone_dust
         CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder(CTNHCore.id("moon_cobblestone"))
                 .inputItems(ModBlocks.MOON_COBBLESTONE.get().asItem())
                 .outputItems(ChemicalHelper.get(TagPrefix.dust, Moonstone), 3)
-                .EUt(-6)
-                .duration(10)
+                .EUt(-4)
+                .duration(5)
                 .save(provider);
 
         // Nano generator: venus_stone -> venus_stone_dust
         CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder(CTNHCore.id("venus_stone"))
                 .inputItems(ModBlocks.VENUS_STONE.get().asItem())
                 .outputItems(ChemicalHelper.get(TagPrefix.dust, Venusstone), 3)
-                .EUt(-16)
-                .duration(20)
+                .EUt(-8)
+                .duration(10)
                 .save(provider);
 
         // Nano generator: mars_stone -> mars_stone_dust
         CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder(CTNHCore.id("mars_stone"))
                 .inputItems(ModBlocks.MARS_STONE.get().asItem())
                 .outputItems(ChemicalHelper.get(TagPrefix.dust, Marsstone), 2)
-                .EUt(-8)
-                .duration(15)
+                .EUt(-16)
+                .duration(8)
                 .save(provider);
 
         // Nano generator: mercury_stone -> mercury_stone_dust
         CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder(CTNHCore.id("mercury_stone"))
                 .inputItems(ModBlocks.MERCURY_STONE.get().asItem())
                 .outputItems(ChemicalHelper.get(TagPrefix.dust, Mercurystone), 2)
-                .EUt(-16)
-                .duration(20)
+                .EUt(-24)
+                .duration(10)
                 .save(provider);
 
         // Nano generator: glacio_stone -> glacio_stone_dust
         CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder(CTNHCore.id("glacio_stone"))
                 .inputItems(ModBlocks.GLACIO_STONE.get().asItem())
                 .outputItems(ChemicalHelper.get(TagPrefix.dust, Glaciostone), 2)
-                .EUt(-30)
-                .duration(20)
+                .EUt(-32)
+                .duration(10)
                 .save(provider);
     }
 }

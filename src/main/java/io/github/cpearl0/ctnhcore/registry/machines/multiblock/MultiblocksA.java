@@ -42,6 +42,7 @@ import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.primitive.PrimitiveWorkableMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
+import com.gregtechceu.gtceu.utils.GTUtil;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -850,8 +851,8 @@ public class MultiblocksA {
     public static Lang photovoltaicPowerStationEnergeticTooltip0;
 
 
-    @CN("§e基础产能功率：§r512 EU/t")
-    @EN("§eBase Output:§r 512 EU/t")
+    @CN("§e基础产能功率：§r2048 EU/t")
+    @EN("§eBase Output:§r 1024 EU/t")
     public static Lang photovoltaicPowerStationEnergeticTooltip1;
 
 
@@ -865,8 +866,8 @@ public class MultiblocksA {
     public static Lang photovoltaicPowerStationPulsatingTooltip0;
 
 
-    @CN("§e基础产能功率：§r2048 EU/t")
-    @EN("§eBase Output:§r 2048 EU/t")
+    @CN("§e基础产能功率：§r8192 EU/t")
+    @EN("§eBase Output:§r 4096 EU/t")
     public static Lang photovoltaicPowerStationPulsatingTooltip1;
 
 
@@ -880,14 +881,69 @@ public class MultiblocksA {
     public static Lang photovoltaicPowerStationVibrantTooltip0;
 
 
-    @CN("§e基础产能功率：§r8192 EU/t")
-    @EN("§eBase Output:§r 8192 EU/t")
+    @CN("§e基础产能功率：§r65536 EU/t")
+    @EN("§eBase Output:§r 65536 EU/t")
     public static Lang photovoltaicPowerStationVibrantTooltip1;
 
 
     @CN("只在白天工作，不同维度会对太阳能发电的效率产生影响，基础产能功率为在主世界正午的功率")
     @EN("Operates only during daytime. Efficiency varies across dimensions. Base output reflects noon in the Overworld")
     public static Lang photovoltaicPowerStationVibrantTooltip2;
+
+
+    @CN("§c发电时光伏面板会逐渐损坏，损坏度越高产能越低，最低降至 50%；损坏速度随光照强度与维度倍率提升，夜晚与被遮挡时不损坏")
+    @EN("§cPanels degrade while generating. Higher damage means lower output, down to 50%. Degradation scales with sunlight and dimension multiplier; no damage at night or while shadowed")
+    public static Lang photovoltaicPowerStationTooltipDamage;
+
+
+    @CN("§a手持修复材料右键控制器或光伏方块即可修复，每次消耗 1 个：阳光化合物粉修复 5%，萤石粉修复 1%；损坏度低于 0.5% 时无法修复")
+    @EN("§aRight-click the controller or a photovoltaic block with repair material, consuming 1 per click: Sunnarium Dust repairs 5%, Glowstone Dust repairs 1%. Cannot repair below 0.5% damage")
+    public static Lang photovoltaicPowerStationTooltipRepair;
+
+
+    @CN("§a手持阳光化合物粉右键控制器或光伏方块即可修复，每次消耗 1 个修复 5%；§c该等级无法使用萤石粉修复§a；损坏度低于 0.5% 时无法修复")
+    @EN("§aRight-click the controller or a photovoltaic block with Sunnarium Dust, consuming 1 per click to repair 5%. §cGlowstone Dust does not work on this tier§a. Cannot repair below 0.5% damage")
+    public static Lang photovoltaicPowerStationTooltipRepairSunnariumOnly;
+
+
+    @CN("§e损坏速度：§r%s%%")
+    @EN("§eDegradation Rate:§r %s%%")
+    public static Lang photovoltaicPowerStationTooltipDamageRate;
+
+
+    @CN("§7按住 §eCTRL §7查看各维度倍率")
+    @EN("§7Hold §eCTRL §7to view dimension multipliers")
+    public static Lang photovoltaicPowerStationTooltipCtrlHint;
+
+
+    @CN("§b维度倍率：")
+    @EN("§bDimension Multipliers:")
+    public static Lang photovoltaicPowerStationTooltipDimensionHeader;
+
+
+    @CN("§7  主世界 / 暮色森林 / 阿尔夫海姆：§f×1")
+    @EN("§7  Overworld / Twilight Forest / Alfheim: §f×1")
+    public static Lang photovoltaicPowerStationTooltipDimensionOverworld;
+
+
+    @CN("§7  以太 / 月球 / 金星（含轨道）：§f×2")
+    @EN("§7  Aether / Moon / Venus (incl. orbit): §f×2")
+    public static Lang photovoltaicPowerStationTooltipDimensionAether;
+
+
+    @CN("§7  水星 / 火星（含轨道）：§f×8")
+    @EN("§7  Mercury / Mars (incl. orbit): §f×8")
+    public static Lang photovoltaicPowerStationTooltipDimensionMercury;
+
+
+    @CN("§7  冰原（含轨道）：§f×16")
+    @EN("§7  Glacio (incl. orbit): §f×16")
+    public static Lang photovoltaicPowerStationTooltipDimensionGlacio;
+
+
+    @CN("§c  其他维度：无法发电")
+    @EN("§c  Other dimensions: cannot generate")
+    public static Lang photovoltaicPowerStationTooltipDimensionNone;
 
 
     @CN("氤氲之气，凝为霜露")
@@ -1387,11 +1443,11 @@ public class MultiblocksA {
             .register();
 
     public static final MultiblockMachineDefinition PHOTOVOLTAIC_POWER_STATION_ENERGETIC =
-            registerPhotovoltaicPowerStation("energetic", 1, CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK);
+            registerPhotovoltaicPowerStation("energetic", 2, 1.0f, true, CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK);
     public static final MultiblockMachineDefinition PHOTOVOLTAIC_POWER_STATION_PULSATING =
-            registerPhotovoltaicPowerStation("pulsating", 4, CTNHBlocks.PULSATING_PHOTOVOLTAIC_BLOCK);
+            registerPhotovoltaicPowerStation("pulsating", 8, 0.75f, true, CTNHBlocks.PULSATING_PHOTOVOLTAIC_BLOCK);
     public static final MultiblockMachineDefinition PHOTOVOLTAIC_POWER_STATION_VIBRANT =
-            registerPhotovoltaicPowerStation("vibrant", 16, CTNHBlocks.VIBRANT_PHOTOVOLTAIC_BLOCK);
+            registerPhotovoltaicPowerStation("vibrant", 64, 0.25f, false, CTNHBlocks.VIBRANT_PHOTOVOLTAIC_BLOCK);
 
     private static Lang photovoltaicPowerStationTooltip(String tier, int index) {
         return switch (tier) {
@@ -1417,12 +1473,33 @@ public class MultiblocksA {
         };
     }
 
-    public static MultiblockMachineDefinition registerPhotovoltaicPowerStation(String tier, int basicRate, BlockEntry<?> photovoltaicBlock) {
-        return REGISTRATE.multiblock("photovoltaic_power_station_" + tier, holder -> new PhotovoltaicPowerStationMachine(holder, basicRate))
+    public static MultiblockMachineDefinition registerPhotovoltaicPowerStation(String tier, int basicRate,
+                                                                              float damageRate,
+                                                                              boolean allowGlowstoneRepair,
+                                                                              BlockEntry<?> photovoltaicBlock) {
+        return REGISTRATE.multiblock("photovoltaic_power_station_" + tier,
+                holder -> new PhotovoltaicPowerStationMachine(holder, basicRate, damageRate, allowGlowstoneRepair))
                 .rotationState(RotationState.NON_Y_AXIS)
                 .tooltips(photovoltaicPowerStationTooltip(tier, 0).translate().withStyle(ChatFormatting.GRAY),
                         photovoltaicPowerStationTooltip(tier, 1).translate(),
-                        photovoltaicPowerStationTooltip(tier, 2).translate())
+                        photovoltaicPowerStationTooltip(tier, 2).translate(),
+                        photovoltaicPowerStationTooltipDamage.translate(),
+                        photovoltaicPowerStationTooltipDamageRate
+                                .translate(String.format("%.0f", damageRate * 100f)),
+                        allowGlowstoneRepair ? photovoltaicPowerStationTooltipRepair.translate() :
+                                photovoltaicPowerStationTooltipRepairSunnariumOnly.translate())
+                .tooltipBuilder((stack, components) -> {
+                    if (!GTUtil.isCtrlDown()) {
+                        components.add(photovoltaicPowerStationTooltipCtrlHint.translate());
+                        return;
+                    }
+                    components.add(photovoltaicPowerStationTooltipDimensionHeader.translate());
+                    components.add(photovoltaicPowerStationTooltipDimensionOverworld.translate());
+                    components.add(photovoltaicPowerStationTooltipDimensionAether.translate());
+                    components.add(photovoltaicPowerStationTooltipDimensionMercury.translate());
+                    components.add(photovoltaicPowerStationTooltipDimensionGlacio.translate());
+                    components.add(photovoltaicPowerStationTooltipDimensionNone.translate());
+                })
                 .appearanceBlock(CTNHBlocks.CASING_REFLECT_LIGHT)
                 .allowExtendedFacing(false)
                 .allowFlip(false)
@@ -1456,9 +1533,9 @@ public class MultiblocksA {
                 .register();
     }
 
-    public static final MultiblockMachineDefinition WIND_POWER_ARRAY = WindPowerArrayRegister.register("wind_power_array",1,CASING_STEEL_SOLID, GTMaterials.Steel,"machine_casing_solid_steel");
-    public static final MultiblockMachineDefinition ADVANCED_WIND_POWER_ARRAY = WindPowerArrayRegister.register("advanced_wind_power_array",2,CASING_STAINLESS_CLEAN,GTMaterials.StainlessSteel,"machine_casing_clean_stainless_steel");
-    public static final MultiblockMachineDefinition SUPER_WIND_POWER_ARRAY = WindPowerArrayRegister.register("super_wind_power_array",3,CASING_TUNGSTENSTEEL_ROBUST, TungstenSteel,"machine_casing_robust_tungstensteel");
+    public static final MultiblockMachineDefinition WIND_POWER_ARRAY = WindPowerArrayRegister.register("wind_power_array",1,CASING_STEEL_SOLID, GTMaterials.Steel,"machine_casing_solid_steel",0.1f);
+    public static final MultiblockMachineDefinition ADVANCED_WIND_POWER_ARRAY = WindPowerArrayRegister.register("advanced_wind_power_array",2,CASING_STAINLESS_CLEAN,GTMaterials.StainlessSteel,"machine_casing_clean_stainless_steel",0.5f);
+    public static final MultiblockMachineDefinition SUPER_WIND_POWER_ARRAY = WindPowerArrayRegister.register("super_wind_power_array",3,CASING_TUNGSTENSTEEL_ROBUST, TungstenSteel,"machine_casing_robust_tungstensteel",1.0f);
 
     public static final MultiblockMachineDefinition SLAUGHTER_HOUSE = REGISTRATE.multiblock("slaughter_house", SlaughterHouseMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)

@@ -37,9 +37,7 @@ public class NanoscaleTriboelectricGenerator extends RecipeElectricMultiblockMac
     @Persisted
     public final NotifiableItemStackHandler machineStorage;
     @Persisted
-    public int parallel = 2048;
-    @Persisted
-    public double effencicy = 1.0;
+    public int parallel = 32;
     @Persisted
     public boolean is_consume = false;
 
@@ -126,40 +124,41 @@ public class NanoscaleTriboelectricGenerator extends RecipeElectricMultiblockMac
     public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
         if (machine instanceof NanoscaleTriboelectricGenerator zmachine) {
 
-            // 定义材料效率配置（材料 -> {效率, 消耗概率分母}）
-            Map<Item, double[]> materialEfficiencyMap = Map.of(
+            // 定义材料并行配置（材料 -> {并行上限, 消耗概率分母}）
+            Map<Item, double[]> materialParallelMap = Map.of(
                     GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, GTMaterials.Rubber).get(),
-                    new double[] { 1.0, 512 },
+                    new double[] { 64, 256 },
                     GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, GTMaterials.Polyethylene).get(),
-                    new double[] { 1.6, 1024 },
+                    new double[] { 96, 512 },
                     GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, GTMaterials.SiliconeRubber).get(),
-                    new double[] { 2.4, 4096 },
+                    new double[] { 192, 2048 },
                     GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, GTMaterials.Polytetrafluoroethylene).get(),
-                    new double[] { 3.2, 65536 },
+                    new double[] { 384, 65536 },
                     GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, GTMaterials.StyreneButadieneRubber).get(),
-                    new double[] { 4.6, 131070 },
+                    new double[] { 768, 131070 },
                     GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, GTMaterials.Polybenzimidazole).get(),
-                    new double[] { 5.0, 1048576 });
+                    new double[] {1024, 262140 });
 
-            // 默认效率 0.8
-            double efficiency = 0.8;
-            int maxParallel = eutgetParallelAmount(zmachine, recipe, 1024);
+            // 无材料时使用机器基础并行
+            int parallelLimit = zmachine.parallel;
             Item storageItem = zmachine.getMachineStorageItem().getItem();
+            double[] config = materialParallelMap.get(storageItem);
 
-            // 检查材料是否在配置中，并更新效率
-            if (materialEfficiencyMap.containsKey(storageItem)) {
-                double[] config = materialEfficiencyMap.get(storageItem);
-                efficiency = config[0];
-                if (Math.random() < (double) maxParallel / config[1]) {
-                    zmachine.is_consume = true;
-                }
+            // 材料替代基础并行上限，并按并行数决定消耗概率
+            if (config != null) {
+                parallelLimit = (int) config[0];
             }
 
+            int maxParallel = eutgetParallelAmount(zmachine, recipe, parallelLimit);
             if (maxParallel <= 0) return RecipeModifier.DEFAULT_FAILURE;
+
+            if (config != null && Math.random() < (double) maxParallel / config[1]) {
+                zmachine.is_consume = true;
+            }
 
             recipe.multiplyAllContents(maxParallel);
             recipe.multiplyDuration(Math.sqrt(maxParallel));
-            recipe.multiplyEUt((1 + maxParallel * 0.02) * efficiency);
+            recipe.multiplyEUt(1 + maxParallel * 0.02);
             recipe.parallels *= maxParallel;
             return null;
         }
