@@ -16,6 +16,7 @@ import com.enderio.base.common.init.EIOItems;
 import com.enderio.machines.common.blockentity.capacitorbank.CapacitorTier;
 import com.enderio.machines.common.blockentity.solar.SolarPanelTier;
 import com.enderio.machines.common.init.MachineBlocks;
+import com.mo_guang.ctpp.registry.CTPPMachines;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.Create;
@@ -123,6 +124,7 @@ public class CTNHCoreEmiPlugin implements EmiPlugin {
     public void initialize(EmiInitRegistry registry) {
         EIODisable();
         CreateDisable();
+        CTPPDisable();
 
         for (var item : disabled) {
             registry.disableStack(EmiStack.of(item.get()));
@@ -166,6 +168,14 @@ public class CTNHCoreEmiPlugin implements EmiPlugin {
         disabled.add(AllItems.CRUSHED_SILVER);
         // 统一到 GT 钒材料：隐藏 Vintage Improvements 钒锭
         disabled.add(() -> resolveItem("vintageimprovements:vanadium_ingot"));
+    }
+
+    public static void CTPPDisable() {
+        // 可放置发射器的机器物品是拿不到的中间产物：放置和掉落都走原版 GT 发射器组件，
+        // 所以它们既不进创造物品栏（CTPPMachines 注册时用 null 页签），也不该出现在 EMI 里
+        for (var definition : CTPPMachines.PLACEABLE_EMITTER) {
+            if (definition != null) disabled.add(definition::getItem);
+        }
     }
 
     private static void addInformation(EmiRegistry registry, String itemId, String translationKey) {
