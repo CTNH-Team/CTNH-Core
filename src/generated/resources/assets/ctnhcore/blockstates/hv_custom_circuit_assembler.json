@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "ctnhcore:block/machine/hv_custom_circuit_assembler",
+      "x": 90
+    },
+    "facing=east": {
+      "model": "ctnhcore:block/machine/hv_custom_circuit_assembler",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "ctnhcore:block/machine/hv_custom_circuit_assembler"
+    },
+    "facing=south": {
+      "model": "ctnhcore:block/machine/hv_custom_circuit_assembler",
+      "y": 180
+    },
+    "facing=up": {
+      "gtceu:z": 180,
+      "model": "ctnhcore:block/machine/hv_custom_circuit_assembler",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "ctnhcore:block/machine/hv_custom_circuit_assembler",
+      "y": 270
+    }
+  }
+}

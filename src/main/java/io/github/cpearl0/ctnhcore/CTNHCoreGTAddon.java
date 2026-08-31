@@ -29,6 +29,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         CTNHBlocks.init();
         CTNHBlockEntities.init();
         CTNHBlockMaps.initBlocks();
+        CTNHCircuitItems.init();
     }
 
     @Override

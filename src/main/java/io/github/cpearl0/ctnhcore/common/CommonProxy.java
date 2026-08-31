@@ -14,6 +14,7 @@ import io.github.cpearl0.ctnhcore.data.worldgen.CTNHBiomeModifiers;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import io.github.cpearl0.ctnhcore.registry.jade.CTNHJadePlugin;
+import io.github.cpearl0.ctnhcore.registry.machines.CTNHCircuitMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.machines.GTMachineModify;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
@@ -84,6 +85,7 @@ public class CommonProxy {
 
     public static void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         CTNHMachines.init();
+        CTNHCircuitMachines.init();
         CTNHMultiblockMachines.init();
         GTMachineModify.init();
     }
