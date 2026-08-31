@@ -19,16 +19,19 @@ import com.unrealdinnerbone.javd.JAVDRegistry;
 
 import java.util.function.Consumer;
 
+import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+import static com.gregtechceu.gtceu.common.data.GTItems.*;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLER_RECIPES;
+import static com.mo_guang.ctpp.registry.CTPPBlocks.VOLTAGE_TERMINALS;
+
 public class MVRecipes {
 
     // 这里存放的是中压(mv)时期的配方
     public static void init(Consumer<FinishedRecipe> provider) {
-        addJavdPortalBlockRecipes(provider);
-        addMVMotorRecipes(provider);
-    }
-
-    private static void addJavdPortalBlockRecipes(Consumer<FinishedRecipe> provider) {
-        // 传送门方块（机械合成：暗影钢与黑钢双层板，MV机壳）
+        addVoltageTerminalRecipe(provider);
+        // 传送门方块（动力合成：暗影钢与黑钢双层板，MV机壳）
         MechanicalCraftingRecipeBuilder.builder(CTNHCore.id("javd_portal_block"))
                 .pattern("AAAAA", "ABCBA", "ACDCA", "ABCBA", "AAAAA")
                 .key('A', ChemicalHelper.get(TagPrefix.plateDouble, CreateMaterials.ShadowSteel))
@@ -37,9 +40,6 @@ public class MVRecipes {
                 .key('D', GTBlocks.MACHINE_CASING_MV.asStack())
                 .output(new ItemStack(JAVDRegistry.PORTAL_BLOCK_ITEM.get()))
                 .save(provider);
-    }
-
-    private static void addMVMotorRecipes(Consumer<FinishedRecipe> provider) {
         // MV电动马达（铜镍导线环绕磁化钢杆，铝板底座）
         VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/electric_motor_mv"),
                 GTItems.ELECTRIC_MOTOR_MV.asStack(),
@@ -47,5 +47,71 @@ public class MVRecipes {
                 'A', ChemicalHelper.get(TagPrefix.wireGtDouble, GTMaterials.Cupronickel),
                 'B', ChemicalHelper.get(TagPrefix.rod, GTMaterials.SteelMagnetic),
                 'C', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Aluminium));
+    }
+
+    public static void addVoltageTerminalRecipe(Consumer<FinishedRecipe> provider) {
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("voltage_terminal_ulv")).duration(100).EUt(VA[MV])
+                .inputItems(plate, Iron)
+                .inputItems(VOLTAGE_COIL_ULV)
+                .circuitMeta(1)
+                .outputItems(VOLTAGE_TERMINALS[ULV])
+                .save(provider);
+
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("voltage_terminal_lv")).duration(100).EUt(VA[MV])
+                .inputItems(plate, Iron)
+                .inputItems(VOLTAGE_COIL_LV)
+                .circuitMeta(1)
+                .outputItems(VOLTAGE_TERMINALS[LV])
+                .save(provider);
+
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("voltage_terminal_mv")).duration(100).EUt(VA[MV])
+                .inputItems(plate, Steel)
+                .inputItems(VOLTAGE_COIL_MV)
+                .circuitMeta(1)
+                .outputItems(VOLTAGE_TERMINALS[MV])
+                .addMaterialInfo(true)
+                .save(provider);
+
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("voltage_terminal_hv")).duration(100).EUt(VA[HV])
+                .inputItems(plate, Steel)
+                .inputItems(VOLTAGE_COIL_HV)
+                .circuitMeta(1)
+                .outputItems(VOLTAGE_TERMINALS[HV])
+                .save(provider);
+
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("voltage_terminal_ev")).duration(100).EUt(VA[EV])
+                .inputItems(plate, Neodymium)
+                .inputItems(VOLTAGE_COIL_EV)
+                .circuitMeta(1)
+                .outputItems(VOLTAGE_TERMINALS[EV])
+                .save(provider);
+
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("voltage_terminal_iv")).duration(100).EUt(VA[IV])
+                .inputItems(plate, Neodymium)
+                .inputItems(VOLTAGE_COIL_IV)
+                .circuitMeta(1)
+                .outputItems(VOLTAGE_TERMINALS[IV])
+                .save(provider);
+
+        // ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("voltage_terminal_luv")).duration(100).EUt(VA[LuV])
+        // .inputItems(plate, Samarium)
+        // .inputItems(VOLTAGE_COIL_LuV)
+        // .circuitMeta(1)
+        // .outputItems(VOLTAGE_TERMINALS[LuV])
+        // .save(provider);
+        //
+        // ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("voltage_terminal_zpm")).duration(100).EUt(VA[ZPM])
+        // .inputItems(plate, Samarium)
+        // .inputItems(VOLTAGE_COIL_ZPM)
+        // .circuitMeta(1)
+        // .outputItems(VOLTAGE_TERMINALS[ZPM])
+        // .save(provider);
+        //
+        // ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("voltage_terminal_uv")).duration(100).EUt(VA[UV])
+        // .inputItems(plate, Samarium)
+        // .inputItems(VOLTAGE_COIL_UV)
+        // .circuitMeta(1)
+        // .outputItems(VOLTAGE_TERMINALS[UV])
+        // .save(provider);
     }
 }
