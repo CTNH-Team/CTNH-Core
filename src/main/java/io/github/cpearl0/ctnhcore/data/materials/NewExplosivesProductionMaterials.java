@@ -372,8 +372,11 @@ public class NewExplosivesProductionMaterials {
 
         BORIC_ACID = REGISTRATE.material(CTNHCore.id("boric_acid"))
                 .cnlang("硼酸")
+                .dust()
                 .liquid()
                 .color(0x8FBC8F)
+                .components(Hydrogen, 3, Boron, 1, Oxygen, 3)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
 
         DIMETHYLFORMAMIDE = REGISTRATE.material(CTNHCore.id("dimethylformamide"))

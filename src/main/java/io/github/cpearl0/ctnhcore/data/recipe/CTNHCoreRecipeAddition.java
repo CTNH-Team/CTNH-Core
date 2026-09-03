@@ -96,6 +96,7 @@ public class CTNHCoreRecipeAddition {
         FuelRefiningChain.init(provider);
         GeyanChain.init(provider);
         GoldChain.init(provider);
+        BoronChain.init(provider);
         GraphiteChain.init(provider);
         IodineChain.init(provider);
         NaquadahLine.init(provider);

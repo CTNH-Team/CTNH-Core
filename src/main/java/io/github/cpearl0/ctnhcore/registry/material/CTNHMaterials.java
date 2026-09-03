@@ -963,7 +963,8 @@ public class CTNHMaterials {
         NaquadahMaterials.init();
         BrineChain.init();
         EnderIOMaterials.init();
-        CrudeGoldRefiningMaterials.init();
+        GoldChainMaterials.init();
+        BoronChainMaterials.init();
         AviationFabricMaterials.init();
         BauxiteProcessingMaterials.init();
         AeCrystalScienceMaterials.init();

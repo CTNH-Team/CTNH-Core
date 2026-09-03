@@ -687,7 +687,7 @@ public class GtceuScriptRecipes {
                     .inputFluids(CreateMaterials.OCHRUM_SLURRY.getFluid(3000))
                     .outputFluids(DilutedHydrochloricAcid.getFluid(2000))
                     .outputItems(dustSmall, Silicon, 2)
-                    .outputFluids(CrudeGoldRefiningMaterials.CHLOROAURIC_ACID.getFluid(500))
+                    .outputFluids(GoldChainMaterials.CHLOROAURIC_ACID.getFluid(500))
                     .chancedOutput(dust, Silver, 1000, 500)
                     .save(provider);
         }

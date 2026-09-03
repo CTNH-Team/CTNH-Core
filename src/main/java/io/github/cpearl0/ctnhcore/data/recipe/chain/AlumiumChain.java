@@ -13,7 +13,7 @@ import static com.gregtechceu.gtceu.api.GTValues.VA;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.cpearl0.ctnhcore.data.materials.BauxiteProcessingMaterials.*;
-import static io.github.cpearl0.ctnhcore.data.materials.CrudeGoldRefiningMaterials.SODIUM_HEXAFLUOROALUMINATE;
+import static io.github.cpearl0.ctnhcore.data.materials.GoldChainMaterials.SODIUM_HEXAFLUOROALUMINATE;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.BAUXITE_PROCESS_CATALYST;
 import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.Alumina;
 import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.Cryolite;
