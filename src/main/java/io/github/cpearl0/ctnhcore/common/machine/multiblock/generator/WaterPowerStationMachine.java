@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
+import com.gregtechceu.gtceu.common.machine.trait.multiblock.CoilMachineTrait;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
@@ -25,7 +26,7 @@ public class WaterPowerStationMachine extends CoilWorkableElectricMultiblockMach
 
     public WaterPowerStationMachine(IMachineBlockEntity holder) {
         super(holder);
-        efficiency = 1 + 0.1 * getCoilTier();
+        efficiency = 1 + 0.1 * getTrait(CoilMachineTrait.class).getCoilTier();
     }
 
     public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, @NotNull GTRecipe recipe) {

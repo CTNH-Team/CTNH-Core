@@ -41,6 +41,7 @@ import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.primitive.PrimitiveWorkableMachine;
+import com.gregtechceu.gtceu.common.machine.trait.multiblock.CoilMachineTrait;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import net.minecraft.ChatFormatting;
@@ -1486,7 +1487,7 @@ public class MultiblocksA {
                     .build())
             .additionalDisplay((controller, components) -> {
                 if (controller.isFormed() && controller instanceof CoilWorkableElectricMultiblockMachine machine) {
-                    components.add(Component.translatable("gtceu.multiblock.pyrolyse_oven.speed", machine.getCoilTier() == 0 ? 75 : 50 * (machine.getCoilTier() + 15)));
+                    components.add(Component.translatable("gtceu.multiblock.pyrolyse_oven.speed", machine.getTrait(CoilMachineTrait.class).getCoilTier() == 0 ? 75 : 50 * (machine.getTrait(CoilMachineTrait.class).getCoilTier() + 15)));
                 }
             })
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/machines/fluid_heater"))
@@ -1972,7 +1973,7 @@ public class MultiblocksA {
             .additionalDisplay((controller, components) -> {
                 if (controller instanceof CoilWorkableElectricMultiblockMachine coilMachine && controller.isFormed()) {
                     components.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature",
-                            Component.translatable(FormattingUtil.formatNumbers(coilMachine.getCoilType().getCoilTemperature() +
+                            Component.translatable(FormattingUtil.formatNumbers(coilMachine.getTrait(CoilMachineTrait.class).getCoilType().getCoilTemperature() +
                                             100L * Math.max(0, coilMachine.getTier() - MV)) + "K")
                                     .withStyle(ChatFormatting.RED)));
                 }
@@ -2014,7 +2015,7 @@ public class MultiblocksA {
             .additionalDisplay((controller, components) -> {
                 if (controller instanceof CoilWorkableElectricMultiblockMachine coilMachine && controller.isFormed()) {
                     components.add(Component.translatable("gtceu.multiblock.cracking_unit.energy",
-                            100 - 10 * coilMachine.getCoilTier()));
+                            100 - 10 * coilMachine.getTrait(CoilMachineTrait.class).getCoilTier()));
                 }
             })
             .register();
@@ -2442,7 +2443,7 @@ public class MultiblocksA {
                     .build())
             .additionalDisplay((machine, list) -> {
                 if (machine.isFormed() && machine instanceof CoilWorkableElectricMultiblockMachine coilMachine) {
-                    list.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(coilMachine.getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
+                    list.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(coilMachine.getTrait(CoilMachineTrait.class).getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
                 }
             })
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_heatproof"), GTCEu.id("block/multiblock/implosion_compressor"))
@@ -2788,7 +2789,7 @@ public class MultiblocksA {
                     .build())
             .additionalDisplay((machine, l) -> {
                 if (machine.isFormed() && machine instanceof CoilWorkableElectricMultiblockMachine cmachine) {
-                    l.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(cmachine.getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
+                    l.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(cmachine.getTrait(CoilMachineTrait.class).getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
                 }
             })
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/fusion_reactor"))
@@ -2830,7 +2831,7 @@ public class MultiblocksA {
                     .build())
             .additionalDisplay((machine, list) -> {
                 if (machine.isFormed() && machine instanceof CoilWorkableElectricMultiblockMachine coilMachine) {
-                    list.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(coilMachine.getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
+                    list.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(coilMachine.getTrait(CoilMachineTrait.class).getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
                 }
             })
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"), GTCEu.id("block/multiblock/implosion_compressor"))
@@ -2868,7 +2869,7 @@ public class MultiblocksA {
                     .build())
             .additionalDisplay((machine, list) -> {
                 if (machine.isFormed() && machine instanceof CoilWorkableElectricMultiblockMachine coilMachine) {
-                    list.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(coilMachine.getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
+                    list.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(coilMachine.getTrait(CoilMachineTrait.class).getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
                 }
             })
             .workableCasingModel(GTCEu.id("block/casings/gcym/high_temperature_smelting_casing"), GTCEu.id("block/multiblock/implosion_compressor"))
@@ -2900,7 +2901,7 @@ public class MultiblocksA {
                     .build())
             .additionalDisplay((machine, l) -> {
                 if (machine.isFormed() && machine instanceof CoilWorkableElectricMultiblockMachine cmachine) {
-                    l.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(cmachine.getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
+                    l.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component.literal(cmachine.getTrait(CoilMachineTrait.class).getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
                 }
             })
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"))
