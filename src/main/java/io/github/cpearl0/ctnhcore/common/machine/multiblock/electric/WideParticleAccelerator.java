@@ -150,13 +150,24 @@ public class WideParticleAccelerator extends RecipeElectricMultiblockMachine
         }
     }
 
+    @Override
+    public void onStructureInvalid() {
+        super.onStructureInvalid();
+        updateTempSubscription();
+    }
+
     protected void updateTempSubscription() {
-        if (max_energy > store_energy && isFormed) {
+        if (max_energy > store_energy && isStructureOperational()) {
             EnergySubs = subscribeServerTick(EnergySubs, this::Energy_Adjust);
         } else if (EnergySubs != null) {
             EnergySubs.unsubscribe();
             EnergySubs = null;
         }
+    }
+
+    @Override
+    protected void onStructureRevalidationChanged(boolean pending) {
+        updateTempSubscription();
     }
 
     protected void Speed_Down() {
@@ -169,6 +180,7 @@ public class WideParticleAccelerator extends RecipeElectricMultiblockMachine
     }
 
     protected void Energy_Adjust() {
+        if (!isStructureOperational()) return;
         var consume = (long) ((proton_speed + electric_speed + nu_speed) * 10);
         if (getRecipeLogic().getStatus() != RecipeLogic.Status.WORKING) {
             // 不工作时，正常消耗和加速

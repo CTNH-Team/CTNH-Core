@@ -47,7 +47,7 @@ public class BioMachine extends RecipeElectricMultiblockMachine {
     @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
-        if (isFormed) {
+        if (isStructureOperational()) {
             if (machineTemperature >= 36 && machineTemperature <= 38) {
                 efficiency = 1.2;
             } else {

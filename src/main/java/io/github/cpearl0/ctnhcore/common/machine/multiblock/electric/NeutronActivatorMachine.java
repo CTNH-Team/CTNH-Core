@@ -27,6 +27,7 @@ import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.widget.*;
+import com.lowdragmc.lowdraglib.syncdata.ISubscription;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
@@ -42,6 +43,7 @@ import com.ctnhlang.EN;
 import com.ctnhlang.Prefix;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -63,14 +65,15 @@ public class NeutronActivatorMachine extends RecipeMultiblockMachine
     @Persisted
     private boolean isWorking = false;
     private ConditionalSubscriptionHandler neutronEnergySubs = new ConditionalSubscriptionHandler(this,
-            this::neutronEnergyUpdate, () -> isFormed);
+            this::neutronEnergyUpdate, this::isStructureOperational);
     private ConditionalSubscriptionHandler moderateSubs = new ConditionalSubscriptionHandler(this, this::moderateUpdate,
-            () -> eV > 0);
+            () -> !isStructureRevalidationPending() && eV > 0);
     private ConditionalSubscriptionHandler absorptionSubs = new ConditionalSubscriptionHandler(this,
-            this::absorptionUpdate, () -> eV > 0);
+            this::absorptionUpdate, () -> isStructureOperational() && eV > 0);
     private HashSet<NeutronSensorMachine> sensorMachines = null;
     private HashSet<ItemBusPartMachine> busMachines = null;
     private HashSet<NeutronAcceleratorMachine> acceleratorMachines = null;
+    private final List<ISubscription> structureSubscriptions = new ArrayList<>();
 
     public NeutronActivatorMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
@@ -87,26 +90,29 @@ public class NeutronActivatorMachine extends RecipeMultiblockMachine
         height = 0;
         super.onStructureFormed();
 
+        clearStructureSubscriptions();
+        sensorMachines = new HashSet<>();
+        busMachines = new HashSet<>();
+        acceleratorMachines = new HashSet<>();
+
         // Cache the result of getParts() to prevent repetitive calls
         var parts = getParts();
         for (var part : parts) {
             for (var handlerList : part.getRecipeHandlers()) {
-                traitSubscriptions
+                structureSubscriptions
                         .add(handlerList.subscribe(neutronEnergySubs::updateSubscription, EURecipeCapability.CAP));
-                traitSubscriptions.add(handlerList.subscribe(moderateSubs::updateSubscription, EURecipeCapability.CAP));
-                traitSubscriptions
+                structureSubscriptions
+                        .add(handlerList.subscribe(moderateSubs::updateSubscription, EURecipeCapability.CAP));
+                structureSubscriptions
                         .add(handlerList.subscribe(absorptionSubs::updateSubscription, ItemRecipeCapability.CAP));
             }
             if (part instanceof ItemBusPartMachine itemBusPartMachine) {
-                busMachines = (busMachines != null) ? busMachines : new HashSet<>();
                 busMachines.add(itemBusPartMachine);
             }
             if (part instanceof NeutronSensorMachine neutronSensorMachine) {
-                sensorMachines = sensorMachines != null ? sensorMachines : new HashSet<>();
                 sensorMachines.add(neutronSensorMachine);
             }
             if (part instanceof NeutronAcceleratorMachine neutronAcceleratorMachine) {
-                acceleratorMachines = acceleratorMachines != null ? acceleratorMachines : new HashSet<>();
                 acceleratorMachines.add(neutronAcceleratorMachine);
             }
         }
@@ -126,15 +132,58 @@ public class NeutronActivatorMachine extends RecipeMultiblockMachine
     }
 
     @Override
+    public void onUnload() {
+        clearStructureSubscriptions();
+        super.onUnload();
+    }
+
+    @Override
     public void onStructureInvalid() {
         super.onStructureInvalid();
+        clearStructureSubscriptions();
+        isWorking = false;
         height = 0;
         sensorMachines = null;
         busMachines = null;
         acceleratorMachines = null;
+        updateIndependentSubscriptions();
+    }
+
+    @Override
+    public void onPartUnload() {
+        super.onPartUnload();
+        clearStructureSubscriptions();
+        isWorking = false;
+        sensorMachines = null;
+        busMachines = null;
+        acceleratorMachines = null;
+        updateIndependentSubscriptions();
+    }
+
+    @Override
+    protected void onStructureRevalidationChanged(boolean pending) {
+        if (pending) {
+            isWorking = false;
+        }
+        updateIndependentSubscriptions();
+    }
+
+    private void updateIndependentSubscriptions() {
+        neutronEnergySubs.updateSubscription();
+        moderateSubs.updateSubscription();
+        absorptionSubs.updateSubscription();
+    }
+
+    private void clearStructureSubscriptions() {
+        structureSubscriptions.forEach(ISubscription::unsubscribe);
+        structureSubscriptions.clear();
     }
 
     private void neutronEnergyUpdate() {
+        if (!isStructureOperational()) {
+            neutronEnergySubs.updateSubscription();
+            return;
+        }
         if (acceleratorMachines == null) return;
         var anyWorking = false;
         for (var accelerator : acceleratorMachines) {
@@ -153,6 +202,10 @@ public class NeutronActivatorMachine extends RecipeMultiblockMachine
     }
 
     private void moderateUpdate() {
+        if (isStructureRevalidationPending()) {
+            moderateSubs.updateSubscription();
+            return;
+        }
         if (!isWorking && getOffsetTimer() % 20 == 0L) {
             this.eV = Math.max((eV - 72 * K), 0);
         }
@@ -162,6 +215,10 @@ public class NeutronActivatorMachine extends RecipeMultiblockMachine
     }
 
     private void absorptionUpdate() {
+        if (!isStructureOperational()) {
+            absorptionSubs.updateSubscription();
+            return;
+        }
         if (busMachines == null || eV <= 0) return;
         var hasSlower = false;
         for (var bus : busMachines) {

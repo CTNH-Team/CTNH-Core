@@ -21,6 +21,7 @@ import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
+import com.lowdragmc.lowdraglib.syncdata.ISubscription;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
 import net.minecraft.nbt.CompoundTag;
@@ -91,6 +92,7 @@ public class SlaughterHouseMachine extends RecipeElectricMultiblockMachine imple
     private int lootCacheTotalExperience = 0;
     private int lootCacheDuration = 0;
     private int lootCacheRepeatTimes = 1;
+    private final List<ISubscription> structureSubscriptions = new ArrayList<>();
 
     private final LinkedHashMap<String, LivingEntity> entityCache = new LinkedHashMap<>(ENTITY_CACHE_LIMIT, 0.75f,
             true) {
@@ -128,6 +130,7 @@ public class SlaughterHouseMachine extends RecipeElectricMultiblockMachine imple
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
+        clearStructureSubscriptions();
         if (getLevel() instanceof ServerLevel serverLevel) {
             getFakePlayer(serverLevel);
         }
@@ -139,6 +142,7 @@ public class SlaughterHouseMachine extends RecipeElectricMultiblockMachine imple
     @Override
     public void onStructureInvalid() {
         super.onStructureInvalid();
+        clearStructureSubscriptions();
         mobList.clear();
         markMobListDirty();
         clearLootCache();
@@ -148,11 +152,19 @@ public class SlaughterHouseMachine extends RecipeElectricMultiblockMachine imple
 
     @Override
     public void onUnload() {
+        clearStructureSubscriptions();
         super.onUnload();
         entityCache.clear();
         lootTableCache.clear();
         clearLootCache();
         mobList.clear();
+    }
+
+    @Override
+    public void onPartUnload() {
+        clearStructureSubscriptions();
+        super.onPartUnload();
+        markMobListDirty();
     }
 
     protected NotifiableItemStackHandler createMachineStorage(byte value) {
@@ -288,9 +300,14 @@ public class SlaughterHouseMachine extends RecipeElectricMultiblockMachine imple
                 if (handlerList.getAllHandlers().stream()
                         .noneMatch(handler -> handler.getHandlerIO().support(IO.IN)))
                     continue;
-                traitSubscriptions.add(handlerList.subscribe(this::markMobListDirty, ItemRecipeCapability.CAP));
+                structureSubscriptions.add(handlerList.subscribe(this::markMobListDirty, ItemRecipeCapability.CAP));
             }
         }
+    }
+
+    private void clearStructureSubscriptions() {
+        structureSubscriptions.forEach(ISubscription::unsubscribe);
+        structureSubscriptions.clear();
     }
 
     private LivingEntity getOrCreateCachedEntity(ServerLevel level, String mobId) {

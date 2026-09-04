@@ -46,7 +46,7 @@ public class KineticCentrifugeMachine extends KineticWorkableMultiblockMachine
     @Override
     public void updateMachineSpeed() {
         super.updateMachineSpeed();
-        if (!contraptionEntity.isEmpty() && isFormed) {
+        if (!contraptionEntity.isEmpty() && isStructureOperational()) {
             for (int i = 0; i < contraptionEntity.size(); i++) {
                 SimpleRotatingContraptionEntity entity = contraptionEntity.get(i);
                 if (i == 0) {
@@ -61,7 +61,7 @@ public class KineticCentrifugeMachine extends KineticWorkableMultiblockMachine
     @Override
     public void updateRotateBlocks(boolean active) {
         super.updateRotateBlocks(active);
-        if (active) {
+        if (active && isStructureOperational()) {
             if (contraptionEntity != null)
                 for (int i = 0; i < contraptionEntity.size(); i++) {
                     SimpleRotatingContraptionEntity entity = contraptionEntity.get(i);

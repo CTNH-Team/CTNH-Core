@@ -8,7 +8,6 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IMachineLife;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDistinctPart;
-import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.TieredIOPartMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
@@ -21,10 +20,10 @@ import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 
 import lombok.Getter;
-import org.jetbrains.annotations.MustBeInvokedByOverriders;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -64,11 +63,11 @@ public class CircuitBusPartMachine extends TieredIOPartMachine implements IDisti
         getInventory().setDistinct(isDistinct);
     }
 
-    @MustBeInvokedByOverriders
     @Override
-    public void removedFromController(IMultiController controller) {
-        super.removedFromController(controller);
-        isLocked = false;
+    public void onControllerBindingRetired(BlockPos controllerPos, long instanceId) {
+        if (!isFormed()) {
+            isLocked = false;
+        }
     }
 
     @Override

@@ -95,6 +95,7 @@ public class Superconducting_Penning_Trap extends RecipeElectricMultiblockMachin
     public void onStructureInvalid() {
         super.onStructureInvalid();
         this.energyContainer = EnergyContainerList.EMPTY;
+        updateTickSubscription();
     }
 
     @Override
@@ -115,12 +116,17 @@ public class Superconducting_Penning_Trap extends RecipeElectricMultiblockMachin
     }
 
     protected void updateTickSubscription() {
-        if (isFormed) {
+        if (isStructureOperational()) {
             tickSubs = subscribeServerTick(tickSubs, this::tick);
         } else if (tickSubs != null) {
             tickSubs.unsubscribe();
             tickSubs = null;
         }
+    }
+
+    @Override
+    protected void onStructureRevalidationChanged(boolean pending) {
+        updateTickSubscription();
     }
 
     public boolean danger() {
@@ -164,6 +170,7 @@ public class Superconducting_Penning_Trap extends RecipeElectricMultiblockMachin
     }
 
     public void tick() {
+        if (!isStructureOperational()) return;
         if (isWorkingEnabled()) consumeEnergy();
         var level = getLevel();
         var pos = MachineUtils.getOffset(this, 0, 20, 6);

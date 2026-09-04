@@ -163,6 +163,7 @@ public class LargeNaquadahReactorMachine extends RecipeElectricMultiblockMachine
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
+        hatchPartMachines.clear();
         for (var part : getParts()) {
             if (part instanceof FluidHatchPartMachine fluidHatchPartMachine) {
                 hatchPartMachines.add(fluidHatchPartMachine);

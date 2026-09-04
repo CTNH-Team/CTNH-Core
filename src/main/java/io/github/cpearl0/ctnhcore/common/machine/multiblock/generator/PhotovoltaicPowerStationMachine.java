@@ -131,6 +131,8 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
             tickSubs.unsubscribe();
             tickSubs = null;
         }
+        lastOutputEnergy = 0;
+        lastStatus = Status.INVALID;
         energyContainer = null;
     }
 
@@ -169,7 +171,7 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
     protected TickableSubscription tickSubs;
 
     protected void updateTickSubscription() {
-        if (isFormed) {
+        if (isStructureOperational()) {
             tickSubs = subscribeServerTick(tickSubs, this::tick);
         } else if (tickSubs != null) {
             tickSubs.unsubscribe();
@@ -177,7 +179,17 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
         }
     }
 
+    @Override
+    protected void onStructureRevalidationChanged(boolean pending) {
+        if (pending) {
+            lastOutputEnergy = 0;
+            lastStatus = Status.INVALID;
+        }
+        updateTickSubscription();
+    }
+
     public void tick() {
+        if (!isStructureOperational()) return;
         var level = getLevel();
         assert level != null;
         if (getPowerState() != Status.VALID) return;

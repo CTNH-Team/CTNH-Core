@@ -33,6 +33,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import com.mo_guang.ctpp.common.blockentity.IKineticBlockEntityExtension;
 import com.mo_guang.ctpp.common.blockentity.KineticMachineBlockEntity;
 import com.mo_guang.ctpp.common.machine.IKineticMachine;
+import com.mo_guang.ctpp.common.machine.multiblock.IMultiblockKineticOwner;
 import com.mo_guang.ctpp.common.machine.multiblock.part.KineticPartMachine;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import it.unimi.dsi.fastutil.longs.LongSet;
@@ -44,7 +45,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class KineticElectricMultiblockMachine extends RecipeMultiblockMachine implements IFancyUIMachine,
-                                              IDisplayUIMachine, ITieredMachine, IOverclockMachine {
+                                              IDisplayUIMachine, ITieredMachine, IOverclockMachine,
+                                              IMultiblockKineticOwner {
 
     public KineticElectricMultiblockMachine(IMachineBlockEntity holder) {
         super(holder, new Object[0]);
@@ -67,17 +69,13 @@ public class KineticElectricMultiblockMachine extends RecipeMultiblockMachine im
     @Override
     public void onStructureInvalid() {
         super.onStructureInvalid();
-        if (this.rotateBlocks != null && getLevel() != null) {
-            for (Long pos : this.rotateBlocks) {
-                BlockEntity blockEntity = getLevel().getBlockEntity(BlockPos.of(pos));
-                if (blockEntity instanceof KineticBlockEntity kineticBlockEntity &&
-                        kineticBlockEntity instanceof IKineticBlockEntityExtension extension) {
-                    extension.setCTNHVisualSpeed(0);
-                    extension.setCTNHInMultiblock(false);
-                }
-            }
-        }
+        releaseRotateBlocks(this.rotateBlocks, null);
+        this.rotateBlocks = null;
         this.energyContainer = null;
+        this.maxTorque = 0.0F;
+        this.speed = 0.0F;
+        this.Ktier = 0;
+        this.inputPartsMax.clear();
         this.tier = 0;
     }
 
@@ -86,15 +84,10 @@ public class KineticElectricMultiblockMachine extends RecipeMultiblockMachine im
         super.onStructureFormed();
         this.energyContainer = getEnergyContainer();
         getKineticContainer();
-        this.rotateBlocks = (LongSet) this.getMultiblockState().getMatchContext().getOrDefault("roBlocks",
+        LongSet newRotateBlocks = (LongSet) this.getMultiblockState().getMatchContext().getOrDefault("roBlocks",
                 LongSets.emptySet());
-        for (Long pos : this.rotateBlocks) {
-            BlockEntity blockEntity = getLevel().getBlockEntity(BlockPos.of(pos));
-            if (blockEntity instanceof KineticBlockEntity kineticBlockEntity &&
-                    kineticBlockEntity instanceof IKineticBlockEntityExtension extension) {
-                extension.setCTNHInMultiblock(true);
-            }
-        }
+        releaseRotateBlocks(this.rotateBlocks, newRotateBlocks);
+        this.rotateBlocks = newRotateBlocks;
         this.updateActiveBlocks(this.recipeLogic.isWorking());
 
         this.tier = getTier();
@@ -114,12 +107,22 @@ public class KineticElectricMultiblockMachine extends RecipeMultiblockMachine im
         this.tier = 0;
     }
 
+    @Override
+    protected void onStructureRevalidationChanged(boolean pending) {
+        super.onStructureRevalidationChanged(pending);
+        if (pending) {
+            // Retain exact ownership across chunk unloads, while withdrawing this controller's visual request.
+            updateRotateBlocks(false);
+        }
+    }
+
     //////////////////////////////////////
     // ********** ACTIVE ***********//
     //////////////////////////////////////
     public void updateActiveBlocks(boolean active) {
-        super.updateActiveBlocks(active);
-        this.updateRotateBlocks(active);
+        boolean operationalActive = active && isStructureOperational();
+        super.updateActiveBlocks(operationalActive);
+        this.updateRotateBlocks(operationalActive);
     }
 
     public void updateRotateBlocks(boolean active) {
@@ -129,6 +132,7 @@ public class KineticElectricMultiblockMachine extends RecipeMultiblockMachine im
             while (a.hasNext()) {
                 Long pos = a.next();
                 BlockPos blockPos = BlockPos.of(pos);
+                if (!Objects.requireNonNull(this.getLevel()).isLoaded(blockPos)) continue;
                 BlockEntity blockEntity = ((Level) Objects.requireNonNull(this.getLevel())).getBlockEntity(blockPos);
                 this.updateRotateBlock(active, blockEntity);
             }
@@ -139,8 +143,19 @@ public class KineticElectricMultiblockMachine extends RecipeMultiblockMachine im
         if (blockEntity instanceof KineticBlockEntity kineticBlockEntity &&
                 kineticBlockEntity instanceof IKineticBlockEntityExtension extension &&
                 !(kineticBlockEntity instanceof KineticMachineBlockEntity)) {
-            extension.setCTNHVisualSpeed(active ? this.speed - 1 : 0);
+            extension.ctpp$claimMultiblockOwner(getPos(), getStructureInstanceId(),
+                    active ? this.speed - 1 : 0.0F);
         }
+    }
+
+    @Override
+    public boolean ownsKineticVisual(BlockPos pos) {
+        return rotateBlocks != null && rotateBlocks.contains(pos.asLong());
+    }
+
+    @Override
+    public float getKineticVisualSpeed(BlockPos pos) {
+        return ownsKineticVisual(pos) && isStructureOperational() && recipeLogic.isWorking() ? speed - 1 : 0.0F;
     }
 
     //////////////////////////////////////
@@ -206,6 +221,10 @@ public class KineticElectricMultiblockMachine extends RecipeMultiblockMachine im
     // ****** RECIPE LOGIC *******//
     //////////////////////////////////////
     public void getKineticContainer() {
+        this.maxTorque = 0.0F;
+        this.speed = 0.0F;
+        this.Ktier = 0;
+        this.inputPartsMax.clear();
         // 只限输入不能输出
         for (IMultiPart part : this.getParts()) {
             if (part instanceof KineticPartMachine kineticPart) {
@@ -221,6 +240,20 @@ public class KineticElectricMultiblockMachine extends RecipeMultiblockMachine im
                         this.inputPartsMax.add(kineticPart.getKineticHolder().getBlockPos());
                     }
                 }
+            }
+        }
+    }
+
+    private void releaseRotateBlocks(LongSet oldRotateBlocks, LongSet retainedRotateBlocks) {
+        if (oldRotateBlocks == null || getLevel() == null) return;
+        for (long pos : oldRotateBlocks) {
+            if (retainedRotateBlocks != null && retainedRotateBlocks.contains(pos)) continue;
+            BlockPos blockPos = BlockPos.of(pos);
+            if (!getLevel().isLoaded(blockPos)) continue;
+            BlockEntity blockEntity = getLevel().getBlockEntity(blockPos);
+            if (blockEntity instanceof KineticBlockEntity kineticBlockEntity &&
+                    kineticBlockEntity instanceof IKineticBlockEntityExtension extension) {
+                extension.ctpp$releaseMultiblockOwner(getPos(), getStructureInstanceId());
             }
         }
     }

@@ -90,12 +90,20 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
     protected TickableSubscription tickSubs;
 
     protected void updateTickSubscription() {
-        if (isFormed && isWorkingEnabled) {
+        if (isStructureOperational() && isWorkingEnabled) {
             tickSubs = subscribeServerTick(tickSubs, this::tick);
         } else if (tickSubs != null) {
             tickSubs.unsubscribe();
             tickSubs = null;
         }
+    }
+
+    @Override
+    protected void onStructureRevalidationChanged(boolean pending) {
+        if (pending) {
+            isActive = false;
+        }
+        updateTickSubscription();
     }
 
     @Override
@@ -268,7 +276,7 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
 
     @SuppressWarnings("DataFlowIssue")
     public void tick() {
-        if (!isWorkingEnabled || !netHandler.ensureNetInfo()) return;
+        if (!isStructureOperational() || !isWorkingEnabled || !netHandler.ensureNetInfo()) return;
         long time = getLevel().getGameTime();
         if (time % 20 == 0) {
             isActive = !needFluid || netHandler.checkAndConsume(fluidAmount);
@@ -281,7 +289,7 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
 
     @Override
     public void addDisplayText(List<Component> textList) {
-        if (isFormed && getLevel() instanceof ServerLevel) {
+        if (isStructureOperational() && getLevel() instanceof ServerLevel) {
             MultiblockDisplayText.builder(textList, isFormed())
                     .setWorkingStatus(isWorkingEnabled, isActive)
                     .addWorkingStatusLine()

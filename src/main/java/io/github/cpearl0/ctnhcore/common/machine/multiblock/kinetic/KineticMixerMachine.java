@@ -46,7 +46,7 @@ public class KineticMixerMachine extends KineticWorkableMultiblockMachine
     @Override
     public void updateMachineSpeed() {
         super.updateMachineSpeed();
-        if (!contraptionEntity.isEmpty() && isFormed) {
+        if (!contraptionEntity.isEmpty() && isStructureOperational()) {
             contraptionEntity.forEach(entity -> {
                 entity.setRotationSpeedRPM(new Vec3(0, 1, 0), Math.min(speed, 128));
             });
@@ -56,7 +56,7 @@ public class KineticMixerMachine extends KineticWorkableMultiblockMachine
     @Override
     public void updateRotateBlocks(boolean active) {
         super.updateRotateBlocks(active);
-        if (active) {
+        if (active && isStructureOperational()) {
             if (contraptionEntity != null)
                 contraptionEntity.forEach(entity -> {
                     entity.setRotationSpeedRPM(new Vec3(0, 1, 0), Math.min(speed, 128));
