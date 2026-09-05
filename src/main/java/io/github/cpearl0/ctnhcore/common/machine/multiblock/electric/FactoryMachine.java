@@ -71,7 +71,7 @@ public class FactoryMachine extends RecipeElectricMultiblockMachine implements I
 
     public FactoryMachine(IMachineBlockEntity holder) {
         super(holder);
-        this.machineStorage = createMachineStorage((byte) 64);
+        this.machineStorage = attachTrait(createMachineStorage((byte) 64));
     }
 
     protected NotifiableItemStackHandler createMachineStorage(byte value) {

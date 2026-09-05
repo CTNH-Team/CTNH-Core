@@ -73,7 +73,7 @@ public class CreativeLaserHatchPartMachine extends TieredIOPartMachine implement
         super(holder, GTValues.MAX, IO.IN);
         this.voltage = GTValues.VEX[setTier];
         this.maxEnergy = voltage * 64L * amps;
-        this.buffer = NotifiableLaserContainer.receiverContainer(this, this.maxEnergy, voltage, amps);
+        this.buffer = attachTrait(NotifiableLaserContainer.receiverContainer(this, this.maxEnergy, voltage, amps));
     }
 
     @Override

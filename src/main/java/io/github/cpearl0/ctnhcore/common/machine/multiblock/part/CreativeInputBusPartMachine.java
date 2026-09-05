@@ -3,7 +3,6 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.part;
 import io.github.cpearl0.ctnhcore.api.machine.multiblock.UnlimitedItemStackTransfer;
 
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.blockentity.IPaintable;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
@@ -46,7 +45,7 @@ import static com.lowdragmc.lowdraglib.gui.util.DrawerHelper.drawItemStack;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class CreativeInputBusPartMachine extends TieredIOPartMachine implements IDistinctPart, IPaintable {
+public class CreativeInputBusPartMachine extends TieredIOPartMachine implements IDistinctPart {
 
     private final int ITEM_SIZE = 5;
 
@@ -64,9 +63,9 @@ public class CreativeInputBusPartMachine extends TieredIOPartMachine implements 
     public CreativeInputBusPartMachine(IMachineBlockEntity holder,
                                        Function<Integer, ItemStackTransfer> transferFactory) {
         super(holder, GTValues.MAX, IO.IN);
-        this.inventory = new InfinityItemStackHandler(this, getInventorySize(), io, io,
-                UnlimitedItemStackTransfer::new);
-        this.circuitInventory = createCircuitItemHandler();
+        this.inventory = attachTrait(new InfinityItemStackHandler(this, getInventorySize(), io, io,
+                UnlimitedItemStackTransfer::new));
+        this.circuitInventory = attachTrait(createCircuitItemHandler());
     }
 
     public CreativeInputBusPartMachine(IMachineBlockEntity holder) {

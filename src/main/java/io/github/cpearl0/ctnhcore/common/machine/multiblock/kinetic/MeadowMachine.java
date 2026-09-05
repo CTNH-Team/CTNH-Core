@@ -24,11 +24,11 @@ import java.util.List;
 
 public class MeadowMachine extends KineticWorkableMultiblockMachine {
 
-    public NotifiableEntityContainer entityContainer;
+    public final NotifiableEntityContainer entityContainer;
 
     public MeadowMachine(IMachineBlockEntity holder) {
         super(holder);
-        entityContainer = new NotifiableEntityContainer(this, getAABB(), IO.IN);
+        entityContainer = attachTrait(new NotifiableEntityContainer(this, getAABB(), IO.IN));
     }
 
     public AABB getAABB() {

@@ -11,6 +11,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
+import com.gregtechceu.gtceu.common.machine.trait.multiblock.CoilMachineTrait;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
@@ -35,8 +36,7 @@ public class PlasmaAlloyBlast extends CoilWorkableElectricMultiblockMachine {
     public void onStructureFormed() {
         super.onStructureFormed();
         var tier = getTier();
-        var coil_tier = getCoilTier();
-        var coil_type = getCoilType().getCoilTemperature();
+        var coil_type = getTraitOrThrow(CoilMachineTrait.class).getCoilType().getCoilTemperature();
         islasor = 0;
         machine_level = coil_type / 1800;
         for (IMultiPart part : getParts()) {
@@ -74,8 +74,9 @@ public class PlasmaAlloyBlast extends CoilWorkableElectricMultiblockMachine {
                 speed = 2.0;
             }
             total_speed = speed;
-            if (pmachine.getCoilType().getCoilTemperature() > 10000) {
-                total_speed += ((double) (pmachine.getCoilType().getCoilTemperature() - 10000) / 1800);
+            var coilTemperature = pmachine.getTraitOrThrow(CoilMachineTrait.class).getCoilType().getCoilTemperature();
+            if (coilTemperature > 10000) {
+                total_speed += ((double) (coilTemperature - 10000) / 1800);
             }
             if (MachineUtils.inputFluids(pmachine, CTNHMaterials.COMPRESSED_ADAMANTITE.getFluid(PLASMA, 100))) {
                 total_speed *= 5;

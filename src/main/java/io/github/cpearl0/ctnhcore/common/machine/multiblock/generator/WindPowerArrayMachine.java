@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
-import io.github.cpearl0.ctnhcore.common.machine.trait.providable_net.IProviableNetHandlerMachine;
-import io.github.cpearl0.ctnhcore.common.machine.trait.providable_net.ProvidableNetHandler;
+import io.github.cpearl0.ctnhcore.common.machine.trait.providable_net.ProvidableNetTrait;
 import io.github.cpearl0.ctnhcore.utils.MathUtils;
 
 import com.gregtechceu.gtceu.api.GTValues;
@@ -54,8 +53,8 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 
-public class WindPowerArrayMachine extends MultiblockControllerMachine implements IProviableNetHandlerMachine,
-                                   IFancyUIMachine, IDisplayUIMachine, IWorkable {
+public class WindPowerArrayMachine extends MultiblockControllerMachine implements IFancyUIMachine, IDisplayUIMachine,
+                                   IWorkable {
 
     @CN("网络将在%d秒后重建")
     @EN("Network will rebuild in %d second(s)")
@@ -81,6 +80,8 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
         super(holder);
         this.bbasic_rate = GTValues.V[tier];
         this.fluidAmount = tier;
+        this.netHandler = attachTrait(new ProvidableNetTrait(this, this::getNeighbourNetTraits, this::canProvide,
+                this::getStorage, this::checkAndConsume));
     }
 
     ////////////////////
@@ -116,8 +117,6 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
             tickSubs.unsubscribe();
             tickSubs = null;
         }
-        if (getLevel() instanceof ServerLevel)
-            quitNet();
     }
 
     @Override
@@ -133,8 +132,6 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
             fluidParts = null;
         }
         energyContainer = null;
-        if (getLevel() instanceof ServerLevel)
-            quitNet();
     }
 
     @Override
@@ -146,7 +143,6 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
         updateEfficiencyPara();
 
         if (getLevel() instanceof ServerLevel serverLevel) {
-            joinNet();
             serverLevel.getServer().tell(new TickTask(0, this::updateTickSubscription));
         }
     }
@@ -189,13 +185,12 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
     /// ////////////////////////////////
     //////// 风电网络 ////////
     //////// ///////////////////////
-    @Override
     @SuppressWarnings("DataFlowIssue")
-    public List<IProviableNetHandlerMachine> getNeighbor() {
+    private List<ProvidableNetTrait> getNeighbourNetTraits() {
         // BBB
         // BBB
         // B@B
-        List<IProviableNetHandlerMachine> ret = new ArrayList<>();
+        List<ProvidableNetTrait> ret = new ArrayList<>();
         BlockPos center = getPos().relative(getFrontFacing().getOpposite());
         for (Direction direction : Direction.values()) {
             int ibegin = 2, iend = 4;
@@ -209,41 +204,31 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
                     BlockPos targetPos = targetCenter.relative(neighbourFacing);
                     if (getLevel().getBlockState(targetPos).getBlock() instanceof MetaMachineBlock machineBlock &&
                             machineBlock.getMachine(getLevel(), targetPos) instanceof WindPowerArrayMachine target &&
-                            target.isFormed() && target.getFrontFacing() == neighbourFacing)
-                        ret.add(target);
+                            target.isFormed() && target.getFrontFacing() == neighbourFacing) {
+                        var trait = target.getTrait(ProvidableNetTrait.class);
+                        if (trait != null) ret.add(trait);
+                    }
                 }
             }
         }
         return ret;
     }
 
-    @Getter
     @Nonnull
-    ProvidableNetHandler<WindPowerArrayMachine> netHandler = new ProvidableNetHandler<WindPowerArrayMachine>(this) {};
+    private final ProvidableNetTrait netHandler;
 
-    @Override
-    public boolean canProvide() {
+    private boolean canProvide() {
         return fluidParts != null && !fluidParts.isEmpty();
     }
 
-    @Override
-    public int getStorage() {
+    private int getStorage() {
         assert canProvide();
         return fluidParts != null ? getFluidStorageBrute(fluidMaterial.getFluid(), fluidParts) : 0;
     }
 
-    @Override
-    public int checkAndConsume(int amount) {
+    private int checkAndConsume(int amount) {
         assert canProvide();
         return fluidParts != null ? inputFluidBrute(fluidMaterial.getFluid(amount), fluidParts) : amount;
-    }
-
-    void joinNet() {
-        netHandler.join();
-    }
-
-    void quitNet() {
-        netHandler.invalidate();
     }
 
     /// ///////////////////////////////

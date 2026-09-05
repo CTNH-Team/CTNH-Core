@@ -46,7 +46,7 @@ public class CircuitBusPartMachine extends TieredIOPartMachine implements IDisti
 
     public CircuitBusPartMachine(IMachineBlockEntity holder) {
         super(holder, GTValues.HV, IO.IN);
-        inventory = new CircuitItemHandler(this);
+        inventory = attachTrait(new CircuitItemHandler(this));
     }
 
     @Override

@@ -36,9 +36,9 @@ public class CatalystHatchPartMachine extends TieredIOPartMachine {
     }
 
     @Persisted
-    public NotifiableItemStackHandler inventory = createInventory();
+    public NotifiableItemStackHandler inventory = attachTrait(createInventory());
     @Persisted
-    public NotifiableItemStackHandler buffer = new NotifiableItemStackHandler(this, 16, IO.NONE, IO.BOTH);
+    public NotifiableItemStackHandler buffer = attachTrait(new NotifiableItemStackHandler(this, 16, IO.NONE, IO.BOTH));
 
     private ISubscription bufferSubs = null;
     private ISubscription inventorySubs = null;

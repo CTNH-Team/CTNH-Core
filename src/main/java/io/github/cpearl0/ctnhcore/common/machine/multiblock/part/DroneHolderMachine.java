@@ -35,7 +35,7 @@ public class DroneHolderMachine extends MultiblockPartMachine implements IMachin
 
     public DroneHolderMachine(IMachineBlockEntity holder) {
         super(holder);
-        heldItems = new DroneHolderMachine.DroneHolderHandler(this);
+        heldItems = attachTrait(new DroneHolderMachine.DroneHolderHandler(this));
     }
 
     @Override

@@ -4,14 +4,11 @@ import com.gregtechceu.gtceu.api.fluids.PropertyFluidFilter;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.MultiblockTankMachine;
-
-import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
-import com.lowdragmc.lowdraglib.syncdata.annotation.RequireRerender;
+import com.gregtechceu.gtceu.common.machine.trait.multiblock.MultiblockFluidRendererTrait;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 
-import lombok.Getter;
 import org.jetbrains.annotations.Nullable;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
@@ -28,12 +25,9 @@ public class LargeBottleMachine extends MultiblockTankMachine {
     public LargeBottleMachine(IMachineBlockEntity holder, int capacity, @Nullable PropertyFluidFilter filter,
                               Object... args) {
         super(holder, capacity, filter, args);
+        attachTrait(new MultiblockFluidRendererTrait(this, this::saveOffsets));
     }
 
-    @Getter
-    @DescSynced
-    @RequireRerender
-    private final Set<BlockPos> fluidBlockOffsets = new HashSet<>();
     public final List<BlockPos> SideBlockOffsets = List.of(
             getOffset(0, 1, 1),
             getOffset(1, 1, 1),
@@ -116,13 +110,8 @@ public class LargeBottleMachine extends MultiblockTankMachine {
             getOffset(-1, 4, 7),
             getOffset(-2, 4, 7));
 
-    @Override
-    public void onStructureFormed() {
-        super.onStructureFormed();
-        saveOffsets();
-    }
-
-    protected void saveOffsets() {
+    private Set<BlockPos> saveOffsets() {
+        var offsets = new HashSet<BlockPos>();
         Direction up = RelativeDirection.UP.getRelative(getFrontFacing(), getUpwardsFacing(), isFlipped());
         Direction back = getFrontFacing().getOpposite();
         Direction clockWise;
@@ -144,9 +133,10 @@ public class LargeBottleMachine extends MultiblockTankMachine {
 
         for (int i = 0; i < 5; i++) {
             center = center.relative(back);
-            fluidBlockOffsets.add(center.subtract(pos));
-            fluidBlockOffsets.add(center.relative(clockWise).subtract(pos));
-            fluidBlockOffsets.add(center.relative(counterClockWise).subtract(pos));
+            offsets.add(center.subtract(pos));
+            offsets.add(center.relative(clockWise).subtract(pos));
+            offsets.add(center.relative(counterClockWise).subtract(pos));
         }
+        return offsets;
     }
 }

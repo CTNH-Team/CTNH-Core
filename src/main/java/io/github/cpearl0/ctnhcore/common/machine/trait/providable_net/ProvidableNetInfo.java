@@ -13,7 +13,7 @@ import java.util.List;
 import javax.annotation.Nonnull;
 
 @Getter
-public class ProvidableNetInfo<MachineType extends IProviableNetHandlerMachine> {
+public class ProvidableNetInfo {
 
     int netSize = 1;
     int storage = 0;
@@ -22,9 +22,9 @@ public class ProvidableNetInfo<MachineType extends IProviableNetHandlerMachine> 
     long deadTime = -1;
     @Nonnull
     Level level;
-    ProvidableNetInfo<MachineType> father = this;
-    ProviderInfo<MachineType> chainHead;
-    ProviderInfo<MachineType> chainTail;
+    ProvidableNetInfo father = this;
+    ProviderInfo chainHead;
+    ProviderInfo chainTail;
 
     public ProvidableNetInfo(@NotNull Level level) {
         this.level = level;
@@ -34,7 +34,7 @@ public class ProvidableNetInfo<MachineType extends IProviableNetHandlerMachine> 
     // 扫一遍provider,更新storage
     public void preTick() {
         storage = 0;
-        ProviderInfo<MachineType> provider = chainHead;
+        ProviderInfo provider = chainHead;
         while (provider != null) {
             storage += provider.self.getStorage();
             provider = provider.next;
@@ -45,10 +45,10 @@ public class ProvidableNetInfo<MachineType extends IProviableNetHandlerMachine> 
     // 对provider进行消耗
     public void postTick() {
         int toConsume = storageCache - storage;
-        ProviderInfo<MachineType> provider = chainHead;
-        List<ProviderInfo<MachineType>> failedList = new ArrayList<>();
+        ProviderInfo provider = chainHead;
+        List<ProviderInfo> failedList = new ArrayList<>();
         while (provider != null && toConsume > 0) {
-            var ret = provider.self.checkAndConsume(toConsume);
+            var ret = provider.self.consume(toConsume);
             assert ret >= 0;
             if (ret == toConsume) failedList.add(provider);
             toConsume = ret;
@@ -63,7 +63,7 @@ public class ProvidableNetInfo<MachineType extends IProviableNetHandlerMachine> 
         }
     }
 
-    void merge(ProvidableNetInfo<MachineType> other) {
+    void merge(ProvidableNetInfo other) {
         var netA = this.getFather();
         var netB = other.getFather();
         if (netA == netB) return;
@@ -78,7 +78,7 @@ public class ProvidableNetInfo<MachineType extends IProviableNetHandlerMachine> 
         return chainHead == null ? (byte) 0 : (byte) 1;
     }
 
-    private void mergeInner(ProvidableNetInfo<MachineType> smaller, ProvidableNetInfo<MachineType> bigger) {
+    private void mergeInner(ProvidableNetInfo smaller, ProvidableNetInfo bigger) {
         smaller.father = bigger;
         bigger.netSize += smaller.netSize;
 
@@ -94,7 +94,7 @@ public class ProvidableNetInfo<MachineType extends IProviableNetHandlerMachine> 
         }
     }
 
-    ProvidableNetInfo<MachineType> getFather() {
+    ProvidableNetInfo getFather() {
         if (father == this) return this;
         ProvidableNetEventHandler.nets.remove(this);
         return father = father.getFather();

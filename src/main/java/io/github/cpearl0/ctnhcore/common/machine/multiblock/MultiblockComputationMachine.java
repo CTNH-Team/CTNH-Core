@@ -18,7 +18,7 @@ public class MultiblockComputationMachine extends RecipeElectricMultiblockMachin
 
     public MultiblockComputationMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
-        computationContainer = new NetworkedComputationContainer(this, IO.IN);
+        computationContainer = attachTrait(new NetworkedComputationContainer(this, IO.IN));
     }
 
     public int getCurrentCWUt() {

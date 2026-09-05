@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry.machines.multiblock;
 
-import io.github.cpearl0.ctnhcore.api.machine.feature.ICoilMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.multithread.CNCAlloySmelter;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
@@ -19,6 +18,7 @@ import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.client.renderer.machine.impl.GrowingPlantRender;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
+import com.gregtechceu.gtceu.common.machine.trait.multiblock.CoilMachineTrait;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import net.minecraft.ChatFormatting;
@@ -141,8 +141,8 @@ public class MultiblocksC {
                     .where("F", Predicates.blocks(GTBlocks.FUSION_GLASS.get()))
                     .build())
             .additionalDisplay((controller, components) -> {
-                if (controller instanceof ICoilMachine coilMachine
-                        && controller instanceof ITieredMachine tieredMachine
+                var coilMachine = controller.self().getTrait(CoilMachineTrait.class);
+                if (coilMachine != null && controller instanceof ITieredMachine tieredMachine
                         && controller.isFormed()
                 ) {
                     components.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature",

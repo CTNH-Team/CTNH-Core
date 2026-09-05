@@ -12,6 +12,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.transfer.fluid.IFluidHandlerModifiable;
+import com.gregtechceu.gtceu.common.machine.trait.multiblock.CoilMachineTrait;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -80,7 +81,8 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
 
         if (isFormed()) {
             textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature",
-                    Component.literal(getCoilType().getCoilTemperature() + "K").withStyle(ChatFormatting.RED)));
+                    Component.literal(getTraitOrThrow(CoilMachineTrait.class).getCoilType().getCoilTemperature() + "K")
+                            .withStyle(ChatFormatting.RED)));
             textList.add(blazeBlastFurnaceInfoPyrotheum.translate(current));
         }
     }

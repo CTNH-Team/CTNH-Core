@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblo
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachine;
+import com.gregtechceu.gtceu.common.machine.trait.multiblock.CoilMachineTrait;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
@@ -58,7 +59,9 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
         super.addDisplayText(textList);
         textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component
                 .translatable(FormattingUtil.formatNumbers(
-                        getCoilType().getCoilTemperature() + 100L * Math.max(0, getTier() - GTValues.MV)) + "K")
+                        getTraitOrThrow(CoilMachineTrait.class).getCoilType().getCoilTemperature() +
+                                100L * Math.max(0, getTier() - GTValues.MV)) +
+                        "K")
                 .setStyle(Style.EMPTY.withColor(ChatFormatting.RED))));
         textList.add(textList.size(),
                 growing_temperature.translate(String.format("%.1f", Machine_Temperature))

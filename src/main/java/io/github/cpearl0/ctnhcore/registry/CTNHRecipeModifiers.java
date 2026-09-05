@@ -1,6 +1,5 @@
 package io.github.cpearl0.ctnhcore.registry;
 
-import io.github.cpearl0.ctnhcore.api.machine.feature.ICoilMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ChemicalPlantMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
 
@@ -16,6 +15,7 @@ import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
+import com.gregtechceu.gtceu.common.machine.trait.multiblock.CoilMachineTrait;
 
 import net.minecraft.Util;
 import net.minecraft.network.chat.Component;
@@ -56,7 +56,8 @@ public class CTNHRecipeModifiers {
 
     public static @NotNull Component ebfOverclock(@NotNull MetaMachine machine, RecipeHandlerGroup group,
                                                   @NotNull GTRecipe recipe) {
-        if (!(machine instanceof ICoilMachine coilMachine) ||
+        var coilMachine = machine.getTrait(CoilMachineTrait.class);
+        if (coilMachine == null ||
                 !(machine instanceof WorkableElectricMultiblockMachine workableElectricMultiblockMachine)) {
             return RecipeModifier.nullWrongType(CoilWorkableElectricMultiblockMachine.class, machine);
         }
@@ -84,7 +85,7 @@ public class CTNHRecipeModifiers {
     public static final RecipeModifier COIL_PARALLEL = (machine, group, recipe) -> CTNHRecipeModifiers.accurateParallel(
             machine, group, recipe,
             Math.min(2147483647, (int) Math.pow(2,
-                    ((double) ((CoilWorkableElectricMultiblockMachine) machine).getCoilType().getCoilTemperature() /
+                    ((double) machine.getTraitOrThrow(CoilMachineTrait.class).getCoilType().getCoilTemperature() /
                             900))));
 
     public static final Function<OverclockingLogic, RecipeModifier> MT_ELECTRIC_OVERCLOCK = Util
@@ -118,7 +119,9 @@ public class CTNHRecipeModifiers {
 
     public static Component superEbfOverclock(MetaMachine machine, RecipeHandlerGroup group, @NotNull GTRecipe recipe) {
         if (machine instanceof CoilWorkableElectricMultiblockMachine coilMachine) {
-            final var blastFurnaceTemperature = coilMachine.getCoilType().getCoilTemperature() +
+            var coilTrait = machine.getTrait(CoilMachineTrait.class);
+            if (coilTrait == null) return RecipeModifier.nullWrongType(CoilMachineTrait.class, machine);
+            final var blastFurnaceTemperature = coilTrait.getCoilType().getCoilTemperature() +
                     100 * Math.max(0, coilMachine.getTier() - GTValues.MV);
             var recipeTemp = recipe.data.getInt("ebf_temp");
             if (!recipe.data.contains("ebf_temp") || recipe.data.getInt("ebf_temp") > blastFurnaceTemperature) {

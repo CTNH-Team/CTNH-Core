@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
+import com.gregtechceu.gtceu.common.machine.trait.multiblock.CoilMachineTrait;
 
 import net.minecraft.network.chat.Component;
 
@@ -45,8 +46,7 @@ public class SinopeChemical extends CoilWorkableElectricMultiblockMachine implem
     public void onStructureFormed() {
         super.onStructureFormed();
         var tier = getTier();
-        var coil_tier = getCoilTier();
-        var coil_type = getCoilType().getCoilTemperature();
+        var coil_type = getTraitOrThrow(CoilMachineTrait.class).getCoilType().getCoilTemperature();
         machine_tier = coil_type / 1800;
         var blockpos = MachineUtils.getOffset(this, 0, 2, 2);
         var coreblock = Objects.requireNonNull(getLevel()).getBlockState(blockpos).getBlock();

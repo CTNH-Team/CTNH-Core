@@ -45,7 +45,7 @@ public class NanoscaleTriboelectricGenerator extends RecipeElectricMultiblockMac
 
     public NanoscaleTriboelectricGenerator(IMachineBlockEntity holder) {
         super(holder);
-        this.machineStorage = createMachineStorage((byte) 64);
+        this.machineStorage = attachTrait(createMachineStorage((byte) 64));
     }
 
     protected NotifiableItemStackHandler createMachineStorage(byte value) {
