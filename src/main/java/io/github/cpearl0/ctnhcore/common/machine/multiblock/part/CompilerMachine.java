@@ -49,7 +49,7 @@ public class CompilerMachine extends TieredIOPartMachine implements IDistinctPar
 
     public CompilerMachine(IMachineBlockEntity holder, int tier) {
         super(holder, tier, IO.IN);
-        inventory = new NotifiableItemStackHandler(this, 1, IO.IN);
+        inventory = attachTrait(new NotifiableItemStackHandler(this, 1, IO.IN));
     }
 
     public void set_id(int id) {

@@ -30,7 +30,7 @@ public final class HighPerformanceComputerMachine extends TieredEnergyMachine
         /* HV为1，超过HV每级翻倍 */
         CWUtToProduce = (tier >= GTValues.HV ? 1 << (tier - GTValues.HV) : 0);
         energyToDrain = (long) GTValues.VA[tier] * maxInputOutputAmperage;
-        var computationPort = new DirectComputationPortTrait(this, true, this, null);
+        var computationPort = attachTrait(new DirectComputationPortTrait(this, true, this, null));
         computationPort.setCapabilityValidator(side -> side == null || side == getFrontFacing());
     }
 

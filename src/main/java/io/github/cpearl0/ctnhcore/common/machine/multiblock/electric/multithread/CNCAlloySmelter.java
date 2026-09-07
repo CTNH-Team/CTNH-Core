@@ -1,31 +1,13 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.multithread;
 
-import io.github.cpearl0.ctnhcore.api.machine.feature.ICoilMachine;
-
-import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
-import com.gregtechceu.gtceu.common.block.CoilBlock;
+import com.gregtechceu.gtceu.common.machine.trait.multiblock.CoilMachineTrait;
 
-public class CNCAlloySmelter extends RecipeElectricMultiblockMachine implements ICoilMachine {
+public class CNCAlloySmelter extends RecipeElectricMultiblockMachine {
 
     public CNCAlloySmelter(IMachineBlockEntity holder) {
         super(holder);
-    }
-
-    private ICoilType coilType = CoilBlock.CoilType.CUPRONICKEL;
-
-    @Override
-    public ICoilType getCoilType() {
-        return coilType;
-    }
-
-    @Override
-    public void onStructureFormed() {
-        super.onStructureFormed();
-        var type = getMultiblockState().getMatchContext().get("CoilType");
-        if (type instanceof ICoilType coil) {
-            this.coilType = coil;
-        }
+        attachTrait(new CoilMachineTrait(this));
     }
 }

@@ -1,12 +1,12 @@
 package io.github.cpearl0.ctnhcore.common.machine.trait.providable_net;
 
-class ProviderInfo<MachineType extends IProviableNetHandlerMachine> {
+class ProviderInfo {
 
-    MachineType self;
-    ProviderInfo<MachineType> next = null;
-    ProviderInfo<MachineType> prev = null;
+    ProvidableNetTrait self;
+    ProviderInfo next = null;
+    ProviderInfo prev = null;
 
-    ProviderInfo(MachineType self) {
+    ProviderInfo(ProvidableNetTrait self) {
         this.self = self;
     }
 
@@ -18,7 +18,7 @@ class ProviderInfo<MachineType extends IProviableNetHandlerMachine> {
         return next != null;
     }
 
-    void removeFromNet(ProvidableNetInfo<MachineType> netInfo) {
+    void removeFromNet(ProvidableNetInfo netInfo) {
         if (this == netInfo.chainHead) netInfo.chainHead = next;
         if (this == netInfo.chainTail) netInfo.chainTail = prev;
         if (next != null)
@@ -30,7 +30,7 @@ class ProviderInfo<MachineType extends IProviableNetHandlerMachine> {
         this.prev = null;
     }
 
-    void insertIn(ProviderInfo<MachineType> node) {
+    void insertIn(ProviderInfo node) {
         this.next = node;
         this.prev = node.prev;
 
@@ -38,7 +38,7 @@ class ProviderInfo<MachineType extends IProviableNetHandlerMachine> {
         node.prev = this;
     }
 
-    void appendIn(ProviderInfo<MachineType> node) {
+    void appendIn(ProviderInfo node) {
         this.prev = node;
         node.next = this;
     }

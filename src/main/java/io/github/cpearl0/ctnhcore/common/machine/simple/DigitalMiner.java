@@ -17,6 +17,7 @@ import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.machine.WorkableTieredMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IDataInfoProvider;
 import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
+import com.gregtechceu.gtceu.api.machine.trait.AutoOutputTrait;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.machine.trait.WorkLogic;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
@@ -31,21 +32,16 @@ import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.lowdragmc.lowdraglib.gui.texture.TextTexture;
 import com.lowdragmc.lowdraglib.gui.util.ClickData;
 import com.lowdragmc.lowdraglib.gui.widget.*;
-import com.lowdragmc.lowdraglib.side.item.ItemTransferHelper;
 import com.lowdragmc.lowdraglib.syncdata.ISubscription;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.server.TickTask;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.BlockHitResult;
 
 import com.ctnhlang.CN;
@@ -103,14 +99,13 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
 
     private long energyPerTick;
     @Nullable
-    protected TickableSubscription autoOutputSubs;
-    @Nullable
     protected TickableSubscription batterySubs;
     @Nullable
-    protected ISubscription exportItemSubs, energySubs;
+    protected ISubscription energySubs;
     @Persisted
-    protected final NotifiableItemStackHandler exportItems = new NotifiableItemStackHandler(this, 27, IO.OUT, IO.OUT,
-            slots -> new LargeStackItemHandler(slots, ItemBusPartMachine.getSlotMultiplier(getTier())));
+    protected final NotifiableItemStackHandler exportItems = attachTrait(
+            new NotifiableItemStackHandler(this, 27, IO.OUT, IO.OUT,
+                    slots -> new LargeStackItemHandler(slots, ItemBusPartMachine.getSlotMultiplier(getTier()))));
     @Persisted
     protected final CustomItemStackHandler filterInventory;
     @Getter
@@ -146,6 +141,9 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
         this.energyPerTick = GTValues.VEX[tier - 1];
         this.filterInventory = createFilterItemHandler();
         this.chargerInventory = createChargerItemHandler(args);
+        var autoOutput = AutoOutputTrait.ofItems(this, exportItems);
+        autoOutput.setAutoOutputItems(true);
+        attachPersistentTrait("auto_output", autoOutput);
         this.fortuneLevel = 1;
         this.silkLevel = 0;
         this.minHeight = 0;
@@ -200,21 +198,11 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
     }
 
     @Override
-    public void onNeighborChanged(Block block, BlockPos fromPos, boolean isMoving) {
-        super.onNeighborChanged(block, fromPos, isMoving);
-        updateAutoOutputSubscription();
-    }
-
-    @Override
     public void onLoad() {
         super.onLoad();
         if (!isRemote()) {
             filterChange();
-            if (getLevel() instanceof ServerLevel serverLevel) {
-                serverLevel.getServer().tell(new TickTask(0, this::updateAutoOutputSubscription));
-            }
             updateBatterySubscription();
-            exportItemSubs = exportItems.addChangedListener(this::updateAutoOutputSubscription);
             energySubs = energyContainer.addChangedListener(this::updateBatterySubscription);
             chargerInventory.setOnContentsChanged(this::updateBatterySubscription);
         }
@@ -230,11 +218,6 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
             batterySubs.unsubscribe();
             batterySubs = null;
         }
-        if (exportItemSubs != null) {
-            exportItemSubs.unsubscribe();
-            exportItemSubs = null;
-        }
-
         if (energySubs != null) {
             energySubs.unsubscribe();
             energySubs = null;
@@ -254,24 +237,6 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
         if (!energyContainer.dischargeOrRechargeEnergyContainers(chargerInventory, 0, false)) {
             updateBatterySubscription();
         }
-    }
-
-    protected void updateAutoOutputSubscription() {
-        var outputFacingItems = getFrontFacing();
-        if (!exportItems.isEmpty() && ItemTransferHelper.getItemTransfer(getLevel(),
-                getPos().relative(outputFacingItems), outputFacingItems.getOpposite()) != null) {
-            autoOutputSubs = subscribeServerTick(autoOutputSubs, this::autoOutput);
-        } else if (autoOutputSubs != null) {
-            autoOutputSubs.unsubscribe();
-            autoOutputSubs = null;
-        }
-    }
-
-    protected void autoOutput() {
-        if (getOffsetTimer() % 5 == 0) {
-            exportItems.exportToNearby(getFrontFacing());
-        }
-        updateAutoOutputSubscription();
     }
 
     @Override

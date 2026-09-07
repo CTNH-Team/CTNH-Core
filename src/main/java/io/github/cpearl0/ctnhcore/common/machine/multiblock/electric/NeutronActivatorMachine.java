@@ -91,10 +91,11 @@ public class NeutronActivatorMachine extends RecipeMultiblockMachine
         var parts = getParts();
         for (var part : parts) {
             for (var handlerList : part.getRecipeHandlers()) {
-                traitSubscriptions
+                getRecipeLogic().getTraitSubscriptions()
                         .add(handlerList.subscribe(neutronEnergySubs::updateSubscription, EURecipeCapability.CAP));
-                traitSubscriptions.add(handlerList.subscribe(moderateSubs::updateSubscription, EURecipeCapability.CAP));
-                traitSubscriptions
+                getRecipeLogic().getTraitSubscriptions()
+                        .add(handlerList.subscribe(moderateSubs::updateSubscription, EURecipeCapability.CAP));
+                getRecipeLogic().getTraitSubscriptions()
                         .add(handlerList.subscribe(absorptionSubs::updateSubscription, ItemRecipeCapability.CAP));
             }
             if (part instanceof ItemBusPartMachine itemBusPartMachine) {

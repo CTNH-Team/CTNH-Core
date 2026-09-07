@@ -60,7 +60,7 @@ public class CreativeEnergyHatchPartMachine extends TieredIOPartMachine implemen
 
     public CreativeEnergyHatchPartMachine(IMachineBlockEntity holder) {
         super(holder, GTValues.MAX, IO.IN);
-        this.energyContainer = createEnergyContainer();
+        this.energyContainer = attachTrait(createEnergyContainer());
     }
 
     //////////////////////////////////////

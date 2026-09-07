@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.part;
 
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.blockentity.IPaintable;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
@@ -33,7 +32,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class CreativeInputHatchPartMachine extends TieredIOPartMachine implements IDistinctPart, IPaintable {
+public class CreativeInputHatchPartMachine extends TieredIOPartMachine implements IDistinctPart {
 
     private final int SLOT_COUNT = 25;
 
@@ -51,9 +50,9 @@ public class CreativeInputHatchPartMachine extends TieredIOPartMachine implement
     public CreativeInputHatchPartMachine(IMachineBlockEntity holder) {
         super(holder, GTValues.MAX, IO.IN);
         this.slots = SLOT_COUNT;
-        this.tank = new InfinityFluidTank(this, SLOT_COUNT, Integer.MAX_VALUE, IO.IN);
-        this.circuitInventory = new NotifiableItemStackHandler(this, 1, IO.IN, IO.NONE)
-                .setFilter(IntCircuitBehaviour::isIntegratedCircuit).shouldSearchContent(false);
+        this.tank = attachTrait(new InfinityFluidTank(this, SLOT_COUNT, Integer.MAX_VALUE, IO.IN));
+        this.circuitInventory = attachTrait(new NotifiableItemStackHandler(this, 1, IO.IN, IO.NONE)
+                .setFilter(IntCircuitBehaviour::isIntegratedCircuit).shouldSearchContent(false));
     }
 
     //////////////////////////////////////
