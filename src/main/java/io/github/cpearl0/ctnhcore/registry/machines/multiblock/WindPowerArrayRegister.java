@@ -42,16 +42,16 @@ public class WindPowerArrayRegister {
     @EN("§f- Basic Production: §e%d EU/t  §7(on earth)")
     public static Lang windArrayTooltip2;
 
-    @CN("§f- 天气风力增益: §e雨天x1.5,雷雨x2")
+    @CN("§f- 天气风力增益: §e雨天x2,雷雨x4")
     @EN("§f- Weather Boost: §eRainy x2, Thunder x4")
     public static Lang windArrayTooltip3;
 
-    @CN("§f- 高度增益: §e Clamp(Y-64, 0, 256-64) / (256-64),在256格高度取到最大2.0倍率")
+    @CN("§f- 高度增益: §e Clamp(Y-64, 0, 256-64) / (256-64)")
     @EN("§f- Altitude Boost: §eClamp(Y-64, 0, 256-64) / (256-64)")
     public static Lang windArrayTooltip4;
 
-    @CN("§f- 网络增益: §e 大小≤10：0.2×网络大小，超出部分 +0.2×log2(网路大小-10)")
-    @EN("§f- Network Boost: §e ≤10: 0.2×size, excess +0.2×log2(size-10)")
+    @CN("§f- 网络增益: §e 0.3*[log2(网络大小)]")
+    @EN("§f- Network Boost: §e 0.3*[log2(NetSize)]")
     public static Lang windArrayTooltip5;
 
     @CN("§f增益乘算得到发电效率")
@@ -69,13 +69,11 @@ public class WindPowerArrayRegister {
     @CN("§f所有结构对齐且间距<=1的风力发电机阵列会组成风力网络")
     @EN("§fAligned structure within a distance of <= 1 form a Wind Network.")
     public static Lang windArrayTooltip9;
-    @CN("独风力难支使得该风力机器基础效率仅为%.2f")
-    @EN("A standalone turbine struggles to sustain output, so this wind machine's base efficiency is only %.2f")
-    public static Lang windArrayWaringTooltip;
 
     public static MultiblockMachineDefinition register(String name, int tier, BlockEntry<Block> casing, Material frame,
-                                                       String renderCasing,float baseEfficiency) {
-        return REGISTRATE.multiblock(name, holder -> new WindPowerArrayMachine(holder, tier,baseEfficiency))
+                                                       String renderCasing, String cnName) {
+        return REGISTRATE.multiblock(name, holder -> new WindPowerArrayMachine(holder, tier))
+                .cnLangValue(cnName)
                 .rotationState(RotationState.NON_Y_AXIS)
                 .appearanceBlock(casing)
                 .pattern(definition -> FactoryBlockPattern.start()
@@ -104,8 +102,7 @@ public class WindPowerArrayRegister {
                         windArrayTooltip8.translate(),
                         windArrayTooltip9.translate(),
                         windArrayTooltip10.translate(),
-                        windArrayTooltip11.translate(),
-                        windArrayWaringTooltip.translate(baseEfficiency))
+                        windArrayTooltip11.translate())
                 .register();
     }
 }
