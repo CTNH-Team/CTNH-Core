@@ -1502,9 +1502,9 @@ public class MultiblocksA {
                 .register();
     }
 
-    public static final MultiblockMachineDefinition WIND_POWER_ARRAY = WindPowerArrayRegister.register("wind_power_array",1,CASING_STEEL_SOLID, GTMaterials.Steel,"machine_casing_solid_steel",0.1f);
-    public static final MultiblockMachineDefinition ADVANCED_WIND_POWER_ARRAY = WindPowerArrayRegister.register("advanced_wind_power_array",2,CASING_STAINLESS_CLEAN,GTMaterials.StainlessSteel,"machine_casing_clean_stainless_steel",0.5f);
-    public static final MultiblockMachineDefinition SUPER_WIND_POWER_ARRAY = WindPowerArrayRegister.register("super_wind_power_array",3,CASING_TUNGSTENSTEEL_ROBUST, TungstenSteel,"machine_casing_robust_tungstensteel",1.0f);
+    public static final MultiblockMachineDefinition WIND_POWER_ARRAY = WindPowerArrayRegister.register("wind_power_array",1,CASING_STEEL_SOLID, GTMaterials.Steel,"machine_casing_solid_steel","初级风力发电机",0.1f);
+    public static final MultiblockMachineDefinition ADVANCED_WIND_POWER_ARRAY = WindPowerArrayRegister.register("advanced_wind_power_array",2,CASING_STAINLESS_CLEAN,GTMaterials.StainlessSteel,"machine_casing_clean_stainless_steel","强化风力发电机",0.25f);
+    public static final MultiblockMachineDefinition SUPER_WIND_POWER_ARRAY = WindPowerArrayRegister.register("super_wind_power_array",3,CASING_TUNGSTENSTEEL_ROBUST, TungstenSteel,"machine_casing_robust_tungstensteel","高级强化风力发电机",0.75f);
 
     public static final MultiblockMachineDefinition SLAUGHTER_HOUSE = REGISTRATE.multiblock("slaughter_house", SlaughterHouseMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
@@ -2302,7 +2302,8 @@ public class MultiblocksA {
             "ultimate_combustion_engine", ZPM,
             CASING_NAQUADAH_BLOCK, CASING_NAQUADAH_GEARBOX, CASING_ULTIMATE_ENGINE_INTAKE,
             CTNHCore.id("block/casings/nq_casing"),
-            GTCEu.id("block/multiblock/generator/extreme_combustion_engine"));
+            GTCEu.id("block/multiblock/generator/extreme_combustion_engine"),
+            "无尽内燃引擎");
 
     public static final MultiblockMachineDefinition CHEMICAL_VAPOR_DEPOSITION_MACHINE = REGISTRATE.multiblock("chemical_vapor_deposition_machine", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
