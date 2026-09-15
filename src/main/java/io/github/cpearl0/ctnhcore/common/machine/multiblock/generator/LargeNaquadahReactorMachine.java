@@ -1,8 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
-import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -61,9 +59,6 @@ public class LargeNaquadahReactorMachine extends RecipeElectricMultiblockMachine
     private Fluid lockFluid = null;
 
     public static Component modifyRecipe(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
-        if (recipe.recipeType != CTNHRecipeTypes.LARGE_NAQUADAH_REACTOR_RECIPES) {
-            return CTNHCommonTooltips.recipeModifierUnsupportedRecipeType.translate();
-        }
         if (machine instanceof LargeNaquadahReactorMachine lmachine) {
             lmachine.checkHatch(lmachine, recipe.duration);
             if (!lmachine.hasAir) {
