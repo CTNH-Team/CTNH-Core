@@ -53,9 +53,9 @@ public class PhotovoltaicStationRecipes {
                 "BCB",
                 "DED",
                 'A', ChemicalHelper.get(TagPrefix.plate, EnderIOMaterials.VibrantAlloy),
-                'B', GTItems.ELECTRIC_MOTOR_HV.asStack(),
+                'B', GTItems.ELECTRIC_MOTOR_EV.asStack(),
                 'C', CTNHBlocks.CASING_REFLECT_LIGHT.asStack(),
                 'D', GTItems.SMD_CAPACITOR.asStack(),
-                'E', CustomTags.HV_CIRCUITS);
+                'E', CustomTags.IV_CIRCUITS);
     }
 }

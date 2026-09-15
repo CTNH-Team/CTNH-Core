@@ -304,18 +304,18 @@ public class MultiblocksB {
     public static Lang nanoGeneratorTooltip0;
 
 
-    @CN("最大并行数:2048")
-    @EN("Maximum parallel count: 2048")
+    @CN("基础并行数:32")
+    @EN("Base parallel count: 32")
     public static Lang nanoGeneratorTooltip1;
 
 
     @CN("每有1并行数，总体发电量提升2%\n实际运行时间为配方时间*sqrt(并行数)")
-    @EN("For each parallel process, total power generation increases by 4%\nActual operation time is recipe time * sqrt(parallel count)")
+    @EN("For each parallel process, total power generation increases by 2%\nActual operation time is recipe time * sqrt(parallel count)")
     public static Lang nanoGeneratorTooltip2;
 
 
-    @CN("在控制器内放入特定材料可提升倍率，但也有概率消耗\n无材料：0.8倍率\n橡胶片：1.0倍率,并行数/512几率消耗\n聚乙烯片：1.6倍率，并行数/1024几率消耗\n硅橡胶片：2.4倍率，并行数/4096几率消耗\n聚四氟乙烯片：3.2倍率，并行数/65535几率消耗\n丁苯橡胶片：4.6倍率，并行数/131070几率消耗\n聚苯并咪唑片：5倍率，并行数/1048576几率消耗")
-    @EN("Inserting specific materials into the controller increases the multiplier, but each material may also be consumed\nNo material: 0.8x multiplier\nRubber Sheet: 1.0x multiplier, consumption chance = parallel count / 512\nPolyethylene Sheet: 1.6x multiplier, consumption chance = parallel count / 1024\nSilicone Rubber Sheet: 2.4x multiplier, consumption chance = parallel count / 4096\nPTFE Sheet: 3.2x multiplier, consumption chance = parallel count / 65535\nStyrene-Butadiene Rubber Sheet: 4.6x multiplier, consumption chance = parallel count / 131070\nPolybenzimidazole Sheet: 5x multiplier, consumption chance = parallel count / 1048576")
+    @CN("在控制器内放入特定材料可替代基础并行数，但也有概率消耗\n无材料：32并行\n橡胶片：64并行，并行数/256几率消耗\n聚乙烯片：96并行，并行数/512几率消耗\n硅橡胶片：192并行，并行数/2048几率消耗\n聚四氟乙烯片：384并行，并行数/65536几率消耗\n丁苯橡胶片：768并行，并行数/131070几率消耗\n聚苯并咪唑片：1024并行，并行数/262140几率消耗")
+    @EN("Inserting specific materials into the controller replaces the base parallel count, but each material may also be consumed\nNo material: 32 parallel\nRubber Sheet: 64 parallel, consumption chance = parallel count / 256\nPolyethylene Sheet: 96 parallel, consumption chance = parallel count / 512\nSilicone Rubber Sheet: 192 parallel, consumption chance = parallel count / 2048\nPTFE Sheet: 384 parallel, consumption chance = parallel count / 65536\nStyrene-Butadiene Rubber Sheet: 768 parallel, consumption chance = parallel count / 131070\nPolybenzimidazole Sheet: 1024 parallel, consumption chance = parallel count / 262140")
     public static Lang nanoGeneratorTooltip3;
 
 

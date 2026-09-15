@@ -72,14 +72,15 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
     private EnergyContainerList energyContainer;
     private List<FluidHatchPartMachine> fluidParts;
 
-    long basicRate;
+    private final long basicRate;
+    private final float baseEfficiency;
     final int fluidAmount;
-    public long bbasic_rate = 1;
 
-    public WindPowerArrayMachine(IMachineBlockEntity holder, int tier) {
+    public WindPowerArrayMachine(IMachineBlockEntity holder, int tier,float baseEfficiency) {
         super(holder);
-        this.bbasic_rate = GTValues.V[tier];
+        this.basicRate = GTValues.V[tier];
         this.fluidAmount = tier;
+        this.baseEfficiency=baseEfficiency;
         this.netHandler = attachTrait(new ProvidableNetTrait(this, this::getNeighbourNetTraits, this::canProvide,
                 this::getStorage, this::checkAndConsume));
     }
@@ -137,7 +138,6 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
-        updateBasicRate();
         updateEnergyContainer();
         updateFluidParts();
         updateEfficiencyPara();
@@ -165,22 +165,6 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
                 .collect(Collectors.toList());
     }
 
-    public static HashMap<String, Integer> dimentionRate = new HashMap<>();
-    static {
-        dimentionRate.put("minecraft:overworld", 1);
-        dimentionRate.put("minecraft:nether", 2);
-        dimentionRate.put("aether:the_aether", 2);
-        dimentionRate.put("minecraft:the_end", 4);
-        dimentionRate.put("ad_astra:mars", 0);
-        dimentionRate.put("ad_astra:venus", 16);
-        dimentionRate.put("ad_astra:mercury", 0);
-    }
-
-    public void updateBasicRate() {
-        assert getLevel() != null;
-        var dimension = getLevel().dimension().location().toString();
-        basicRate = bbasic_rate * (long) dimentionRate.getOrDefault(dimension, 0);
-    }
 
     /// ////////////////////////////////
     //////// 风电网络 ////////
@@ -239,12 +223,14 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
 
     private float getEfficiency() {
         assert getLevel() != null;
-        int weather_boost = 1;
+        float weather_boost = 1;
         if (getLevel().isRaining())
-            weather_boost = 2;
+            weather_boost = 1.5f;
         if (getLevel().isThundering())
-            weather_boost = 4;
-        return (1 + 0.3f * MathUtils.fastLog2(netHandler.getNetSize())) * weather_boost * altitude_boost;
+            weather_boost = 2;
+        float size = netHandler.getNetSize();
+        return (baseEfficiency + (size < 10f ? 0.2F * size : 2.0F + 0.2F * MathUtils.fastLog2((long) (size - 10f)))) * weather_boost * altitude_boost;
+
     }
 
     private void updateEfficiencyPara() {

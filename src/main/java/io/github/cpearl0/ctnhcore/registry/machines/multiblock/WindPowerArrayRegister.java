@@ -71,8 +71,8 @@ public class WindPowerArrayRegister {
     public static Lang windArrayTooltip9;
 
     public static MultiblockMachineDefinition register(String name, int tier, BlockEntry<Block> casing, Material frame,
-                                                       String renderCasing, String cnName) {
-        return REGISTRATE.multiblock(name, holder -> new WindPowerArrayMachine(holder, tier))
+                                                       String renderCasing, String cnName,float baseEfficiency) {
+        return REGISTRATE.multiblock(name, holder -> new WindPowerArrayMachine(holder, tier,baseEfficiency))
                 .cnLangValue(cnName)
                 .rotationState(RotationState.NON_Y_AXIS)
                 .appearanceBlock(casing)
