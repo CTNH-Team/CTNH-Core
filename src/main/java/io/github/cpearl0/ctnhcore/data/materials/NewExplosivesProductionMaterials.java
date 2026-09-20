@@ -67,7 +67,6 @@ public class NewExplosivesProductionMaterials {
     public static Material ANCIENT_DEBRIS;
     public static Material ANCIENT_DEBRIS_LEACH;
     public static Material HYDROBROMIC_ACID;
-    public static Material BORON_OXIDE;
     public static Material FLINAK;
     public static Material SILICON_CHLORIDE;
     public static Material BARIUM_HYDROXIDE;
@@ -443,13 +442,6 @@ public class NewExplosivesProductionMaterials {
                 .liquid()
                 .color(0xD1593E)
                 .components(Hydrogen, 1, Bromine, 1)
-                .buildAndRegister();
-
-        BORON_OXIDE = REGISTRATE.material(CTNHCore.id("boron_oxide"))
-                .cnlang("氧化硼")
-                .dust()
-                .color(0x87CFED)
-                .components(Boron, 2, Oxygen, 3)
                 .buildAndRegister();
 
         FLINAK = REGISTRATE.material(CTNHCore.id("flinak"))
