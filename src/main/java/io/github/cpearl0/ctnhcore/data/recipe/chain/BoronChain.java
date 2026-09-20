@@ -9,15 +9,15 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Boron;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Borax;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Boron;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.CarbonDioxide;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Chlorine;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Hematite;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.HydrochloricAcid;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Iron3Chloride;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Magnesite;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Magnesia;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Magnesite;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Magnesium;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.MagnesiumChloride;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Olivine;
@@ -26,11 +26,11 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.SaltWater;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.SiliconDioxide;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.SodiumHydroxide;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Water;
-import static io.github.cpearl0.ctnhcore.data.materials.BoronChainMaterials.LEACHED_BORAX_SOLUTION;
 import static io.github.cpearl0.ctnhcore.data.materials.BoronChainMaterials.BORON_TRIOXIDE;
+import static io.github.cpearl0.ctnhcore.data.materials.BoronChainMaterials.IRON_HYDROXIDE;
+import static io.github.cpearl0.ctnhcore.data.materials.BoronChainMaterials.LEACHED_BORAX_SOLUTION;
 import static io.github.cpearl0.ctnhcore.data.materials.BoronChainMaterials.LEACHED_OLIVINE_SOLUTION;
 import static io.github.cpearl0.ctnhcore.data.materials.BoronChainMaterials.MAGNESIUM_HYDROXIDE;
-import static io.github.cpearl0.ctnhcore.data.materials.BoronChainMaterials.IRON_HYDROXIDE;
 import static io.github.cpearl0.ctnhcore.data.materials.NewExplosivesProductionMaterials.BORIC_ACID;
 
 public class BoronChain {
