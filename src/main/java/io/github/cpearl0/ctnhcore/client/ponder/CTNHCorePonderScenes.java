@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.client.ponder;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.client.ponder.Electric.ChemicalPlant;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.GregTechMultiblocks;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.NeutronActivator;
 import io.github.cpearl0.ctnhcore.client.ponder.Kinetic.*;
@@ -41,6 +42,9 @@ public final class CTNHCorePonderScenes {
 
         helper.forComponents(GTNNMultiblocks.NEUTRON_ACTIVATOR.getId())
                 .addStoryBoard("neutron_activator/common", NeutronActivator::Common, CTNHCorePonderTags.CTNHPonder);
+
+        helper.forComponents(GTNNMultiblocks.CHEMICAL_PLANT.getId())
+                .addStoryBoard("chemical_plant/common", ChemicalPlant::Common, CTNHCorePonderTags.CTNHPonder);
 
         helper.forComponents(ResourceLocation.fromNamespaceAndPath("jackseconomy", "mechanical_exporter"))
                 .addStoryBoard("mechanicalexporter/common", MechanicalExporter::Common, CTNHCorePonderTags.CTNHPonder);

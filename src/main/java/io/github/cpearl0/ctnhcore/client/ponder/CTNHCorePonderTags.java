@@ -47,6 +47,7 @@ public final class CTNHCorePonderTags {
                 .add(GTMultiMachines.COKE_OVEN.getId())
                 .add(GTMultiMachines.ASSEMBLY_LINE.getId())
                 .add(GTNNMultiblocks.NEUTRON_ACTIVATOR.getId())
+                .add(GTNNMultiblocks.CHEMICAL_PLANT.getId())
                 .add(MultiblocksA.MEADOW.getId());
 
         CTNHCore.LOGGER.info("Ponder tags initialized");
