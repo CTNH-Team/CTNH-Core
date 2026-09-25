@@ -4,9 +4,11 @@ import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.GregTechMultiblocks;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.NeutronActivator;
 import io.github.cpearl0.ctnhcore.client.ponder.Kinetic.*;
+import io.github.cpearl0.ctnhcore.client.ponder.Misc.Drum;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 
+import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
@@ -19,6 +21,17 @@ public final class CTNHCorePonderScenes {
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> helper) {
         helper.forComponents(MultiblocksA.MEADOW.getId())
                 .addStoryBoard("meadow/common", Meadow::Common, CTNHCorePonderTags.CTNHPonder);;
+        helper.forComponents(
+                GTMachines.WOODEN_DRUM.getId(),
+                GTMachines.BRONZE_DRUM.getId(),
+                GTMachines.STEEL_DRUM.getId(),
+                GTMachines.ALUMINIUM_DRUM.getId(),
+                GTMachines.STAINLESS_STEEL_DRUM.getId(),
+                GTMachines.GOLD_DRUM.getId(),
+                GTMachines.TITANIUM_DRUM.getId(),
+                GTMachines.TUNGSTENSTEEL_DRUM.getId())
+                .addStoryBoard("drum/common", Drum::Common, CTNHCorePonderTags.CTNHPonder);
+
         helper.forComponents(GTMultiMachines.COKE_OVEN.getId())
                 .addStoryBoard("coke_oven/common", GregTechMultiblocks::CokeOven, CTNHCorePonderTags.CTNHPonder);
 
