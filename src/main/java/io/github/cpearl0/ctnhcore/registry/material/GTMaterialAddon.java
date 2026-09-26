@@ -200,13 +200,13 @@ public class GTMaterialAddon {
 
         Neutronium.setProperty(
                 PropertyKey.BLAST,
-                new BlastProperty(9000, BlastProperty.GasTier.HIGHEST, 491250, 144 * 20, -1, -1));
+                new BlastProperty(9000, BlastProperty.GasTier.HIGHEST, 491250, 1, 144 * 20, -1, -1));
         Neutronium.setMaterialARGB(0xf4f4f4);
         Neutronium.setMaterialIconSet(CTNHMaterials.MaterialIcons.Neutron);
         NaquadahEnriched.addFlags(GENERATE_BOLT_SCREW);
         Europium.addFlags(GENERATE_BOLT_SCREW);
         WroughtIron.setProperty(PropertyKey.BLAST,
-                new BlastProperty(2150, BlastProperty.GasTier.HIGH, GTValues.VA[GTValues.MV], 250, -1, -1));
+                new BlastProperty(2150, BlastProperty.GasTier.HIGH, GTValues.VA[GTValues.LV], 1, 250, -1, -1));
         WroughtIron.addFlags(DISABLE_EBF_BLAST);
         Brass.addFlags(GENERATE_DENSE);
         Aluminium.addFlags(GENERATE_DENSE);

@@ -9,6 +9,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
+import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.ingotHot;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
@@ -63,7 +64,7 @@ public class TiChain {
                 .inputItems(dust, Magnesium, 10)
                 .outputItems(ChemicalHelper.get(ingotHot, Titanium, 5))
                 .outputItems(dust, MagnesiumChloride, 30)
-                .EUt(480)
+                .EUt(VA[HV],4)
                 .duration(150)
                 .blastFurnaceTemp(2200)
                 .save(provider);
