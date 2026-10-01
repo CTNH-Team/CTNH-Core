@@ -6,9 +6,11 @@ import io.github.cpearl0.ctnhcore.client.ponder.Electric.GregTechMultiblocks;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.NeutronActivator;
 import io.github.cpearl0.ctnhcore.client.ponder.Kinetic.*;
 import io.github.cpearl0.ctnhcore.client.ponder.Misc.Drum;
+import io.github.cpearl0.ctnhcore.client.ponder.example.ChemicalReactorUi;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 
@@ -35,6 +37,10 @@ public final class CTNHCorePonderScenes {
 
         helper.forComponents(GTMultiMachines.COKE_OVEN.getId())
                 .addStoryBoard("coke_oven/common", GregTechMultiblocks::CokeOven, CTNHCorePonderTags.CTNHPonder);
+
+        helper.forComponents(GTMachines.CHEMICAL_REACTOR[GTValues.LV].getId())
+                .addStoryBoard("chemical_reactor_ui/common", ChemicalReactorUi::Common,
+                        CTNHCorePonderTags.CTNHPonder);
 
         helper.forComponents(GTMultiMachines.ASSEMBLY_LINE.getId())
                 .addStoryBoard("assembly_line/common", GregTechMultiblocks::AssemblyLine,
