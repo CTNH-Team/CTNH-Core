@@ -102,7 +102,6 @@ public class ChemicalReactorUi {
         // 第六段：只给一个配方 id，入料、进度条、成品全自动。
         scene.showUI(LV_CHEMICAL_REACTOR_UI).at(util.vector().topOf(machinePos)).forMachine(machinePos)
                 .recipe("gtceu:chemical_reactor/sodium_bisulfate_from_salt", 10)
-                .outlineProgress(20)
                 .show(160);
         scene.showText(80, "One recipe id does the rest: the panel fills the inputs, sets the circuit it needs, runs while the bar moves, then drops the product in.",
                 "只给一个配方 id 就够了：面板自己入料、自己把电路设成配方要的那一档，进度条走着的时候机器就是工作状态，走完成品出来。")
