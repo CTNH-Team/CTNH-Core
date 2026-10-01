@@ -21,10 +21,12 @@ import tech.vixhentx.mcmod.ctnhlib.client.ponder.ui.MachineUI;
 /**
  * LV 化学反应釜的完整示例：把机器真实的界面画进思索，并按它的真实槽位序号往里写物品、灌流体。
  *
- * <p>八段依次演示：界面本体、物品写入、流体写入、覆盖板、工作/待机模型、按配方 id 自动填充与进度条、
+ * <p>
+ * 八段依次演示：界面本体、物品写入、流体写入、覆盖板、工作/待机模型、按配方 id 自动填充与进度条、
  * 自动输出口朝向、原版整套界面加配置器开关红框。
  *
- * <p>storyboard：3x3 地板 + (1,1,1) 的 {@code gtceu:lv_chemical_reactor}（facing=north）。
+ * <p>
+ * storyboard：3x3 地板 + (1,1,1) 的 {@code gtceu:lv_chemical_reactor}（facing=north）。
  */
 public class ChemicalReactorUi {
 
@@ -65,7 +67,8 @@ public class ChemicalReactorUi {
                 .withItem(new ItemStack(Items.GLASS, 64), 20)
                 .outlineSlot(1, 20)
                 .show(160);
-        scene.showText(80, "64 grass blocks go into slot 1 and 64 glass into slot 2; the panel shows the machine's real inventory.",
+        scene.showText(80,
+                "64 grass blocks go into slot 1 and 64 glass into slot 2; the panel shows the machine's real inventory.",
                 "64 个草方块进 1 号槽位、64 个玻璃进 2 号槽位，面板显示的就是机器真实库存。")
                 .attachKeyFrame();
         scene.idle(180);
@@ -103,13 +106,15 @@ public class ChemicalReactorUi {
         scene.showUI(LV_CHEMICAL_REACTOR_UI).at(util.vector().topOf(machinePos)).forMachine(machinePos)
                 .recipe("gtceu:chemical_reactor/sodium_bisulfate_from_salt", 10)
                 .show(160);
-        scene.showText(80, "One recipe id does the rest: the panel fills the inputs, sets the circuit it needs, runs while the bar moves, then drops the product in.",
+        scene.showText(80,
+                "One recipe id does the rest: the panel fills the inputs, sets the circuit it needs, runs while the bar moves, then drops the product in.",
                 "只给一个配方 id 就够了：面板自己入料、自己把电路设成配方要的那一档，进度条走着的时候机器就是工作状态，走完成品出来。")
                 .attachKeyFrame();
         scene.idle(180);
 
         // 第七段：自动输出口。
-        scene.showText(70, "Auto-output sides are machine state as well: items leave through the west side, fluids through the south side.",
+        scene.showText(70,
+                "Auto-output sides are machine state as well: items leave through the west side, fluids through the south side.",
                 "自动输出口也是机器状态：物品走西面、流体走南面。")
                 .pointAt(util.vector().centerOf(machinePos))
                 .attachKeyFrame();
@@ -128,7 +133,8 @@ public class ChemicalReactorUi {
                 .outlineAutoOutput(20)
                 .outlineCircuitButton(20)
                 .show(160);
-        scene.showText(80, "showFullUI() draws GT's whole UI, and each switch in that configurator column can be boxed on its own.",
+        scene.showText(80,
+                "showFullUI() draws GT's whole UI, and each switch in that configurator column can be boxed on its own.",
                 "showFullUI() 会把原版 GT 的整套界面画出来，那一列配置器里的开关也能逐个套红框。")
                 .attachKeyFrame();
         scene.idle(180);

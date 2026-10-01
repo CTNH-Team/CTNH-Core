@@ -38,7 +38,6 @@ public final class CTNHCorePonderScenes {
         helper.forComponents(GTMultiMachines.COKE_OVEN.getId())
                 .addStoryBoard("coke_oven/common", GregTechMultiblocks::CokeOven, CTNHCorePonderTags.CTNHPonder);
 
-
         helper.forComponents(GTMachines.CHEMICAL_REACTOR[GTValues.LV].getId())
                 .addStoryBoard("chemical_reactor_ui/common", ChemicalReactorUi::Common,
                         CTNHCorePonderTags.CTNHPonder);
