@@ -5,7 +5,9 @@ import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.Mechanical;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.common.data.GTItems;
+import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 
 import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;
@@ -48,7 +50,8 @@ public final class CTNHCorePonderTags {
                 .add(GTMultiMachines.ASSEMBLY_LINE.getId())
                 .add(GTNNMultiblocks.NEUTRON_ACTIVATOR.getId())
                 .add(GTNNMultiblocks.CHEMICAL_PLANT.getId())
-                .add(MultiblocksA.MEADOW.getId());
+                .add(MultiblocksA.MEADOW.getId())
+                .add(GTMachines.ITEM_IMPORT_BUS[GTValues.LV].getId());
 
         CTNHCore.LOGGER.info("Ponder tags initialized");
     }
