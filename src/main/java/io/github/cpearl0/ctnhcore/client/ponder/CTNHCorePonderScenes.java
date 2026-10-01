@@ -3,10 +3,10 @@ package io.github.cpearl0.ctnhcore.client.ponder;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.ChemicalPlant;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.GregTechMultiblocks;
-import io.github.cpearl0.ctnhcore.client.ponder.Electric.InputBusUi;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.NeutronActivator;
 import io.github.cpearl0.ctnhcore.client.ponder.Kinetic.*;
 import io.github.cpearl0.ctnhcore.client.ponder.Misc.Drum;
+import io.github.cpearl0.ctnhcore.client.ponder.example.ChemicalReactorUi;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 
@@ -38,8 +38,10 @@ public final class CTNHCorePonderScenes {
         helper.forComponents(GTMultiMachines.COKE_OVEN.getId())
                 .addStoryBoard("coke_oven/common", GregTechMultiblocks::CokeOven, CTNHCorePonderTags.CTNHPonder);
 
-        helper.forComponents(GTMachines.ITEM_IMPORT_BUS[GTValues.LV].getId())
-                .addStoryBoard("input_bus_ui/common", InputBusUi::Common, CTNHCorePonderTags.CTNHPonder);
+
+        helper.forComponents(GTMachines.CHEMICAL_REACTOR[GTValues.LV].getId())
+                .addStoryBoard("chemical_reactor_ui/common", ChemicalReactorUi::Common,
+                        CTNHCorePonderTags.CTNHPonder);
 
         helper.forComponents(GTMultiMachines.ASSEMBLY_LINE.getId())
                 .addStoryBoard("assembly_line/common", GregTechMultiblocks::AssemblyLine,

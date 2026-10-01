@@ -1,0 +1,17 @@
+{
+  "_comment": "LV 化学反应釜界面思索的 storyboard：单台 gtceu:lv_chemical_reactor + 3x3 电力时代地板。",
+  "_derived_from": "GTMachines.CHEMICAL_REACTOR[GTValues.LV].getId()（场景锚点）；方块本体的 rotationState 决定 facing 写法。",
+  "output": "modules/CTNH-Core/src/main/resources/assets/ctnhcore/ponder/chemical_reactor_ui/common.nbt",
+  "age": "electric",
+  "structure": [
+    {
+      "pos": [1, 1, 1],
+      "block": "gtceu:lv_chemical_reactor",
+      "controller": true,
+      "controller_props": false,
+      "props": {
+        "facing": "north"
+      }
+    }
+  ]
+}
