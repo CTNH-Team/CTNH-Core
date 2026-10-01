@@ -30,7 +30,7 @@ public class DimensionFlightHandler {
         if (event.phase != TickEvent.Phase.END) return;
         if (!(event.player instanceof ServerPlayer player)) return;
 
-        boolean inTargetDim = player.level().dimension().equals(TARGET_DIM);
+        boolean shouldFly = player.level().dimension().equals(TARGET_DIM) && player.gameMode.isSurvival();
 
         var attr = player.getAttribute(
                 ALObjects.Attributes.CREATIVE_FLIGHT.get());
@@ -42,7 +42,7 @@ public class DimensionFlightHandler {
                 1.0D,
                 AttributeModifier.Operation.ADDITION);
 
-        if (inTargetDim) {
+        if (shouldFly) {
             if (!attr.hasModifier(modifier)) {
                 attr.addPermanentModifier(modifier);
             }
