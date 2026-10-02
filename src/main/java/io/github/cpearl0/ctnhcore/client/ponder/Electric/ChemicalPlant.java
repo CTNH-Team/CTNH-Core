@@ -31,6 +31,7 @@ import java.util.List;
  * pattern 里只有符号 {@code V} 声明了 abilities，而 {@code V} 仅出现在 y=1 的底部一圈
  * （23 格，含主方块位），仓室因此只能装在这一圈。
  */
+@Deprecated
 public class ChemicalPlant {
 
     // ------------------------------------------------------------------ 结构分组
