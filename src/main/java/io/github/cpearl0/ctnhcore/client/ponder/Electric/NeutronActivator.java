@@ -99,8 +99,7 @@ public class NeutronActivator {
         // 动能靠传感器控制：两个输入框写的是配方区间，最大取配方最大值，
         // 最小比配方最小值再高 5 MeV，让加速器在动能跌破配方下界之前就先停。
         BlockPos sensorPos = util.grid().at(1, 1, 2);
-        scene.showUI(SENSOR_UI).at(util.vector().topOf(sensorPos))
-                .forMachine(sensorPos)
+        scene.showUI(SENSOR_UI).at(util.vector().topOf(sensorPos)).machinePos(sensorPos)
                 .show(240);
         scene.showText(150,
                 "The naquadria activation recipe runs on 1050 to 1100 MeV: the maximum goes to 1100000 and the minimum to 1055000 - recipe minimum plus 5 MeV - both in KeV.",
@@ -125,8 +124,7 @@ public class NeutronActivator {
         BlockPos fluidInputPos = util.grid().at(3, 6, 1);
         scene.world().setBlock(fluidInputPos, GTMachines.FLUID_IMPORT_HATCH[GTValues.LV].defaultBlockState()
                 .setValue(BlockStateProperties.FACING, Direction.NORTH), true);
-        scene.showUI(FLUID_INPUT_HATCH_UI).at(util.vector().topOf(fluidInputPos))
-                .forMachine(fluidInputPos)
+        scene.showUI(FLUID_INPUT_HATCH_UI).at(util.vector().topOf(fluidInputPos)).machinePos(fluidInputPos)
                 .tank(0)
                 .withFluid(NaquadahMaterials.AcidicNaquadriaCaesiumfluoride.getFluid(9000), 20)
                 .outlineTank(0, 20)
@@ -143,8 +141,7 @@ public class NeutronActivator {
         scene.world().setBlock(outputHatchPos, GTMachines.DUAL_EXPORT_HATCH[GTValues.LV].defaultBlockState()
                 .setValue(BlockStateProperties.FACING, Direction.NORTH), true);
         scene.overlay().showOutline(PonderPalette.GREEN, "output", util.select().position(outputHatchPos), 250);
-        scene.showUI(DUAL_OUTPUT_HATCH_UI).at(util.vector().topOf(outputHatchPos))
-                .forMachine(outputHatchPos)
+        scene.showUI(DUAL_OUTPUT_HATCH_UI).at(util.vector().topOf(outputHatchPos)).machinePos(outputHatchPos)
                 .slot(0)
                 .withItem(new ItemStack(ChemicalHelper.get(TagPrefix.dust, GTMaterials.NaquadriaSulfate).getItem(), 3),
                         20)

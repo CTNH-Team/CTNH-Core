@@ -53,14 +53,14 @@ public class ChemicalReactorUi {
         scene.idle(10);
 
         // 第一段：界面本体。
-        scene.showUI(LV_CHEMICAL_REACTOR_UI).at(util.vector().topOf(machinePos)).forMachine(machinePos).show(140);
+        scene.showUI(LV_CHEMICAL_REACTOR_UI).at(util.vector().topOf(machinePos)).machinePos(machinePos).show(140);
         scene.showText(80, "The panel is the machine's own UI, without the player inventory.",
                 "面板就是这台机器自己的界面，不含玩家背包。")
                 .attachKeyFrame();
         scene.idle(150);
 
         // 第二段：往 1、2 号槽位写物品，序号就是实机 UI 的槽位序号。
-        scene.showUI(LV_CHEMICAL_REACTOR_UI).at(util.vector().topOf(machinePos)).forMachine(machinePos)
+        scene.showUI(LV_CHEMICAL_REACTOR_UI).at(util.vector().topOf(machinePos)).machinePos(machinePos)
                 .slot(1)
                 .withItem(new ItemStack(Items.GRASS_BLOCK, 64), 20)
                 .slot(2)
@@ -74,7 +74,7 @@ public class ChemicalReactorUi {
         scene.idle(180);
 
         // 第三段：往 0 号储罐灌流体。
-        scene.showUI(LV_CHEMICAL_REACTOR_UI).at(util.vector().topOf(machinePos)).forMachine(machinePos)
+        scene.showUI(LV_CHEMICAL_REACTOR_UI).at(util.vector().topOf(machinePos)).machinePos(machinePos)
                 .tank(0)
                 .withFluid(new FluidStack(Fluids.WATER, 1000), 20)
                 .show(160);
@@ -103,7 +103,7 @@ public class ChemicalReactorUi {
         scene.idle(30);
 
         // 第六段：只给一个配方 id，入料、进度条、成品全自动。
-        scene.showUI(LV_CHEMICAL_REACTOR_UI).at(util.vector().topOf(machinePos)).forMachine(machinePos)
+        scene.showUI(LV_CHEMICAL_REACTOR_UI).at(util.vector().topOf(machinePos)).machinePos(machinePos)
                 .recipe("gtceu:chemical_reactor/sodium_bisulfate_from_salt", 10)
                 .show(160);
         scene.showText(80,
@@ -128,7 +128,7 @@ public class ChemicalReactorUi {
         scene.idle(30);
 
         // 第八段：原版整套界面，配置器那一列的开关逐个套红框。
-        scene.showUI(FULL_CHEMICAL_REACTOR_UI).at(util.vector().topOf(machinePos)).forMachine(machinePos)
+        scene.showUI(FULL_CHEMICAL_REACTOR_UI).at(util.vector().topOf(machinePos)).machinePos(machinePos)
                 .outlinePowerToggle(20)
                 .outlineAutoOutput(20)
                 .outlineCircuitButton(20)

@@ -55,6 +55,7 @@ public final class CTNHCorePonderScenes {
         helper.forComponents(ResourceLocation.fromNamespaceAndPath("jackseconomy", "mechanical_exporter"))
                 .addStoryBoard("mechanicalexporter/common", MechanicalExporter::Common, CTNHCorePonderTags.CTNHPonder);
 
+
         CTNHCore.LOGGER.info("Ponder scenes initialized");
     }
 }
