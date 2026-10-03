@@ -21,6 +21,8 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerLevel;
 
+import com.ctnh.ctnhastral.common.environment.PlanetEnvironmentService;
+import com.ctnh.ctnhastral.common.environment.Temperature;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
 import com.ctnhlang.Prefix;
@@ -29,8 +31,6 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import java.util.List;
-
-import static sfiomn.legendarysurvivaloverhaul.api.temperature.TemperatureUtil.getWorldTemperature;
 
 @Prefix("fermenting_tank_machine")
 public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine {
@@ -110,8 +110,9 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
     }
 
     protected void updateCurrentTemperature() {
-        if (getOffsetTimer() % 10 == 0) {
-            Machine_Temperature = (int) getWorldTemperature(getLevel(), getPos());
+        if (getOffsetTimer() % 10 == 0 && getLevel() instanceof ServerLevel level) {
+            Machine_Temperature = PlanetEnvironmentService.getEnvironment(level, getPos()).get(Temperature.TYPE)
+                    .celsius();
         }
     }
 }

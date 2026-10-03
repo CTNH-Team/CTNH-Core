@@ -13,6 +13,8 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerLevel;
 
+import com.ctnh.ctnhastral.common.environment.PlanetEnvironmentService;
+import com.ctnh.ctnhastral.common.environment.Temperature;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
 import com.ctnhlang.Prefix;
@@ -20,8 +22,6 @@ import org.jetbrains.annotations.Nullable;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.List;
-
-import static sfiomn.legendarysurvivaloverhaul.api.temperature.TemperatureUtil.getWorldTemperature;
 
 @Prefix("bio_machine")
 public class BioMachine extends RecipeElectricMultiblockMachine {
@@ -88,8 +88,9 @@ public class BioMachine extends RecipeElectricMultiblockMachine {
     }
 
     protected void updateCurrentTemperature() {
-        if (getOffsetTimer() % 10 == 0) {
-            machineTemperature = (int) getWorldTemperature(getLevel(), getPos());
+        if (getOffsetTimer() % 10 == 0 && getLevel() instanceof ServerLevel level) {
+            machineTemperature = PlanetEnvironmentService.getEnvironment(level, getPos()).get(Temperature.TYPE)
+                    .celsius();
         }
     }
 }

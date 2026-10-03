@@ -8,6 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -23,6 +24,18 @@ import java.util.Arrays;
 @Prefix("tooltip")
 @Mod.EventBusSubscriber(modid = CTNHCore.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class ForgeClientEventHandler {
+
+    @SubscribeEvent
+    public static void onRenderOverlay(RenderGuiOverlayEvent.Pre event) {
+        ResourceLocation id = event.getOverlay().id();
+        if (id.getNamespace().equals("legendarysurvivaloverhaul") &&
+                switch (id.getPath()) {
+                    case "temperature", "temperature_overlay", "cold_hunger", "wetness" -> true;
+                    default -> false;
+                }) {
+            event.setCanceled(true);
+        }
+    }
 
     @CN({
             "虚空维度具有如下特性：",

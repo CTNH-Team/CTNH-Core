@@ -16,7 +16,7 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.Photovolta
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.IndustrialPrimitiveBlastFurnaceMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.MeadowMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
-import io.github.cpearl0.ctnhcore.integration.legendary.UnderfloorHeatingSystemTempModifier;
+import io.github.cpearl0.ctnhcore.common.machine.trait.UnderfloorHeatingTrait;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
@@ -50,8 +50,6 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WeatheringCopper;
-import net.minecraft.world.level.levelgen.structure.BoundingBox;
-import net.minecraft.world.phys.AABB;
 
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
@@ -1279,48 +1277,15 @@ public class MultiblocksA {
             .workableCasingModel(Create.asResource("block/copper/copper_shingles"),
                     GTCEu.id("block/multiblock/multiblock_tank"))
             .beforeWorking((machine, recipe) -> {
-                var efficiency = ((UnderfloorHeatingMachine) machine).getEfficiency();
-                machine.self().getHolder().self().getPersistentData().putDouble("efficiency", efficiency);
+                machine.self().getTraitOrThrow(UnderfloorHeatingTrait.class).refreshEfficiency();
                 return null;
             })
             .recipeModifier((machine, group, recipe) -> {
-                if (machine instanceof UnderfloorHeatingMachine underfloorHeatingMachine) {
-                    recipe.multiplyInputs(underfloorHeatingMachine.rate / 100);
-                }
+                recipe.inputs.multiply(machine.getTraitOrThrow(UnderfloorHeatingTrait.class).getRate() / 100.0);
                 return null;
             })
-            .onWorking(machine -> {
-                if (machine instanceof UnderfloorHeatingMachine) {
-                    var pos = machine.self().getPos();
-                    var facing = machine.self().getFrontFacing();
-                    double efficiency = machine.self().getHolder().self().getPersistentData().getDouble("efficiency");
-                    if (machine.self().getOffsetTimer() % 20 == 0) {
-                        efficiency = ((UnderfloorHeatingMachine) machine).getEfficiency();
-                        machine.self().getHolder().self().getPersistentData().putDouble("efficiency", efficiency);
-                    }
-                    AABB range = switch (facing) {
-                        case NORTH -> AABB.of(BoundingBox.fromCorners(pos.offset(-39, 0, -32), pos.offset(40, 16, 47)));
-                        case SOUTH -> AABB.of(BoundingBox.fromCorners(pos.offset(-40, 0, -47), pos.offset(39, 16, 32)));
-                        case WEST -> AABB.of(BoundingBox.fromCorners(pos.offset(-32, 0, -40), pos.offset(47, 16, 39)));
-                        case EAST -> AABB.of(BoundingBox.fromCorners(pos.offset(-47, 0, -39), pos.offset(32, 16, 40)));
-                        default -> throw new IllegalStateException("Unexpected value: " + facing);
-                    };
-                    UnderfloorHeatingSystemTempModifier.UNDERFLOOR_HEATING_SYSTEM_RANGE.put(range, efficiency * ((UnderfloorHeatingMachine) machine).rate / 100);
-                }
-                return true;
-            })
-            .afterWorking(machine -> {
-                var pos = machine.self().getPos();
-                var facing = machine.self().getFrontFacing();
-                AABB range = switch (facing) {
-                    case NORTH -> AABB.of(BoundingBox.fromCorners(pos.offset(-39, 0, -32), pos.offset(40, 16, 47)));
-                    case SOUTH -> AABB.of(BoundingBox.fromCorners(pos.offset(-40, 0, -47), pos.offset(39, 16, 32)));
-                    case WEST -> AABB.of(BoundingBox.fromCorners(pos.offset(-32, 0, -40), pos.offset(47, 16, 39)));
-                    case EAST -> AABB.of(BoundingBox.fromCorners(pos.offset(-47, 0, -39), pos.offset(32, 16, 40)));
-                    default -> throw new IllegalStateException("Unexpected value: " + facing);
-                };
-                UnderfloorHeatingSystemTempModifier.UNDERFLOOR_HEATING_SYSTEM_RANGE.remove(range);
-            })
+            .onWorking(machine -> machine.self().getTraitOrThrow(UnderfloorHeatingTrait.class).emitHeat())
+            .afterWorking(machine -> machine.self().getTraitOrThrow(UnderfloorHeatingTrait.class).stopHeating())
             .register();
 
 
