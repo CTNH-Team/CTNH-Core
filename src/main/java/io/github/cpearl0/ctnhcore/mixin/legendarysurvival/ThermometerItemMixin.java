@@ -1,6 +1,12 @@
 package io.github.cpearl0.ctnhcore.mixin.legendarysurvival;
 
+import io.github.cpearl0.ctnhcore.integration.legendary.ThermometerEnvironmentIntegration;
+
+import com.lowdragmc.lowdraglib.gui.factory.HeldItemUIFactory;
+import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
+
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -19,9 +25,9 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.List;
 
-/** 为 LSO 温度计使用 Core 的名称翻译键，避免跨命名空间的语言覆盖顺序影响显示。 */
+/** 为 LSO 温度计提供 Core 的名称翻译键和环境检测物品面板。 */
 @Mixin(ThermometerItem.class)
-public abstract class ThermometerItemMixin extends Item {
+public abstract class ThermometerItemMixin extends Item implements HeldItemUIFactory.IHeldItemUIHolder {
 
     @Unique
     @Key("item.ctnhcore.environment_detector")
@@ -36,6 +42,11 @@ public abstract class ThermometerItemMixin extends Item {
     @Override
     public String getDescriptionId() {
         return ctnhcore$environmentDetectorName.key();
+    }
+
+    @Override
+    public ModularUI createUI(Player player, HeldItemUIFactory.HeldItemHolder holder) {
+        return ThermometerEnvironmentIntegration.createUI(player, holder);
     }
 
     /** 使用说明由 Core 的物品提示事件提供，移除原有体温/饰品 HUD 说明。 */
