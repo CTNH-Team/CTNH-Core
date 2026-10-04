@@ -32,11 +32,9 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import com.ctnh.ctnhastral.common.environment.Atmosphere;
-import com.ctnh.ctnhastral.common.environment.Corrosion;
 import com.ctnh.ctnhastral.common.environment.PlanetEnvironmentService;
-import com.ctnh.ctnhastral.common.environment.Radiation;
-import com.ctnh.ctnhastral.common.environment.Temperature;
 import com.ctnh.ctnhastral.data.CAMedicalConditions;
+import com.ctnh.ctnhastral.registry.CAEnvironments;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
 import com.ctnhlang.Key;
@@ -264,7 +262,7 @@ public final class ThermometerEnvironmentIntegration {
         if (!(player.level() instanceof ServerLevel level)) return;
         var pos = player.blockPosition();
         var environment = PlanetEnvironmentService.getEnvironment(level, pos);
-        Atmosphere atmosphere = environment.get(Atmosphere.TYPE);
+        Atmosphere atmosphere = environment.get(CAEnvironments.ATMOSPHERE);
         data.location = List.of(
                 location.translate(value(level.dimension().location().toString(), TEXT_COLOR))
                         .withStyle(style -> style.withColor(MUTED_COLOR)),
@@ -272,11 +270,12 @@ public final class ThermometerEnvironmentIntegration {
                         value(Integer.toString(pos.getY()), TEXT_COLOR),
                         value(Integer.toString(pos.getZ()), TEXT_COLOR))
                         .withStyle(style -> style.withColor(MUTED_COLOR)));
-        data.temperature = quantity(String.format(Locale.ROOT, "%.1f", environment.get(Temperature.TYPE).celsius()),
+        data.temperature = quantity(
+                String.format(Locale.ROOT, "%.1f", environment.get(CAEnvironments.TEMPERATURE).celsius()),
                 "°C", TEMPERATURE_COLOR);
         data.pressure = quantity(number(atmosphere.pressure()), "atm", PRESSURE_COLOR);
-        data.radiation = quantity(number(environment.get(Radiation.TYPE).rate()), "rad/s", RADIATION_COLOR);
-        data.corrosion = quantity(number(environment.get(Corrosion.TYPE).rate()), "mm/a", CORROSION_COLOR);
+        data.radiation = quantity(number(environment.get(CAEnvironments.RADIATION).rate()), "rad/s", RADIATION_COLOR);
+        data.corrosion = quantity(number(environment.get(CAEnvironments.CORROSION).rate()), "mm/a", CORROSION_COLOR);
 
         data.coldProgress = 0.0;
         data.heatProgress = 0.0;

@@ -13,10 +13,10 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
 
-import com.ctnh.ctnhastral.common.environment.EnvironmentArea;
-import com.ctnh.ctnhastral.common.environment.EnvironmentDelta;
+import com.ctnh.ctnhastral.common.environment.Environment;
 import com.ctnh.ctnhastral.common.environment.EnvironmentEmission;
-import com.ctnh.ctnhastral.common.environment.Temperature;
+import com.ctnh.ctnhastral.common.environment.PlanetEnvironmentService;
+import com.ctnh.ctnhastral.registry.CAEnvironments;
 import lombok.Getter;
 
 /** 地暖功率、效率与排放生命周期的唯一所有者。 */
@@ -65,13 +65,15 @@ public class UnderfloorHeatingTrait extends MachineTrait implements IMultiblockM
             case EAST -> AABB.of(BoundingBox.fromCorners(pos.offset(-47, 0, -39), pos.offset(32, 16, 40)));
             default -> throw new IllegalStateException("Invalid floor heating orientation");
         };
-        new EnvironmentEmission(pos, new EnvironmentArea.Box(bounds),
-                EnvironmentDelta.of(Temperature.TYPE, (float) (30.0 * efficiency * rate / 100.0))).emit(level, 2);
+        PlanetEnvironmentService.emit(level,
+                new EnvironmentEmission(pos, new EnvironmentEmission.Box(bounds),
+                        Environment.Delta.of(CAEnvironments.TEMPERATURE, (float) (30.0 * efficiency * rate / 100.0))),
+                2);
         return true;
     }
 
     public void stopHeating() {
-        if (machine.getLevel() instanceof ServerLevel level) EnvironmentEmission.cease(level, machine.getPos());
+        if (machine.getLevel() instanceof ServerLevel level) PlanetEnvironmentService.cease(level, machine.getPos());
     }
 
     @Override

@@ -6,8 +6,9 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
-import com.ctnh.ctnhastral.common.environment.BlockTemperature;
-import com.ctnh.ctnhastral.common.environment.TemperatureClimate;
+import com.ctnh.ctnhastral.common.environment.NaturalTemperature;
+import com.ctnh.ctnhastral.common.environment.Temperature;
+import com.ctnh.ctnhastral.registry.CAEnvironments;
 import com.teamtea.eclipticseasons.api.EclipticSeasonsApi;
 import com.teamtea.eclipticseasons.api.constant.solar.SolarTerm;
 import com.teamtea.eclipticseasons.api.util.EclipticUtil;
@@ -25,29 +26,29 @@ public final class EnvironmentTemperatureIntegration {
     private EnvironmentTemperatureIntegration() {}
 
     public static void init() {
-        TemperatureClimate.register(Level.OVERWORLD, EnvironmentTemperatureIntegration::overworldClimate);
-        BlockTemperature.register(BlockRegistry.HEATER.get(),
+        CAEnvironments.registerClimateSource(Level.OVERWORLD, EnvironmentTemperatureIntegration::overworldClimate);
+        CAEnvironments.registerBlockTemperature(BlockRegistry.HEATER.get(),
                 state -> state.getValue(BlockStateProperties.LIT) ? 15.0F : 0.0F);
-        BlockTemperature.register(BlockRegistry.COOLER.get(),
+        CAEnvironments.registerBlockTemperature(BlockRegistry.COOLER.get(),
                 state -> state.getValue(BlockStateProperties.LIT) ? -15.0F : 0.0F);
-        BlockTemperature.register(BlockRegistry.SUN_FERN_CROP.get(),
+        CAEnvironments.registerBlockTemperature(BlockRegistry.SUN_FERN_CROP.get(),
                 state -> state.getValue(BlockStateProperties.AGE_3) == 3 ? 1.5F : 0.0F);
-        BlockTemperature.register(BlockRegistry.SUN_FERN_GOLD.get(),
+        CAEnvironments.registerBlockTemperature(BlockRegistry.SUN_FERN_GOLD.get(),
                 state -> state.getValue(BlockStateProperties.AGE_3) == 3 ? 1.5F : 0.0F);
-        BlockTemperature.register(BlockRegistry.ICE_FERN_CROP.get(),
+        CAEnvironments.registerBlockTemperature(BlockRegistry.ICE_FERN_CROP.get(),
                 state -> state.getValue(BlockStateProperties.AGE_3) == 3 ? -1.5F : 0.0F);
-        BlockTemperature.register(BlockRegistry.ICE_FERN_GOLD.get(),
+        CAEnvironments.registerBlockTemperature(BlockRegistry.ICE_FERN_GOLD.get(),
                 state -> state.getValue(BlockStateProperties.AGE_3) == 3 ? -1.5F : 0.0F);
     }
 
-    private static TemperatureClimate overworldClimate(ServerLevel level, BlockPos pos) {
-        var vanilla = TemperatureClimate.vanilla(level, pos);
+    private static Temperature.Climate overworldClimate(ServerLevel level, BlockPos pos) {
+        var vanilla = NaturalTemperature.vanillaClimate(level, pos);
         var seasons = EclipticSeasonsApi.getInstance();
         var precipitation = seasons.hasLocalWeather(level) ? seasons.getCurrentPrecipitationAt(level, pos) :
                 vanilla.precipitation();
         SolarTerm term = seasons.getSolarTerm(level);
         if (!seasons.isSeasonEnabled(level) || term == SolarTerm.NONE) {
-            return new TemperatureClimate(0.0F, 12000, precipitation);
+            return new Temperature.Climate(0.0F, 12000, precipitation);
         }
         double day = Math.floorMod(level.getDayTime(), 24000L) / 24000.0;
         float progress = Mth.clamp((float) ((EclipticUtil.getTimeInSolarTerm(level) + day) /
@@ -57,6 +58,6 @@ public final class EnvironmentTemperatureIntegration {
         int to = progress < 0.5F ? current : (current + 1) % 24;
         float blend = progress < 0.5F ? progress + 0.5F : progress - 0.5F;
         float offset = Mth.lerp(blend, SEASON_OFFSETS[from], SEASON_OFFSETS[to]);
-        return new TemperatureClimate(offset, term.getDayTime(), precipitation);
+        return new Temperature.Climate(offset, term.getDayTime(), precipitation);
     }
 }

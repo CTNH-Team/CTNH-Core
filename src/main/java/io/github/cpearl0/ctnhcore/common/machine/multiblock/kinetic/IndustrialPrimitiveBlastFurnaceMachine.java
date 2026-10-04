@@ -17,7 +17,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 
 import com.ctnh.ctnhastral.common.environment.PlanetEnvironmentService;
-import com.ctnh.ctnhastral.common.environment.Temperature;
+import com.ctnh.ctnhastral.registry.CAEnvironments;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
 import lombok.Getter;
@@ -98,7 +98,8 @@ public class IndustrialPrimitiveBlastFurnaceMachine extends NoEnergyMachine {
 
     protected void updateCurrentTemperature() {
         if (!(getLevel() instanceof ServerLevel level)) return;
-        basicTemperature = (int) PlanetEnvironmentService.getEnvironment(level, getPos()).get(Temperature.TYPE)
+        basicTemperature = (int) PlanetEnvironmentService.getEnvironment(level, getPos())
+                .get(CAEnvironments.TEMPERATURE)
                 .kelvin();
         if (recipeLogic.isWorking()) {
             if (getOffsetTimer() % 10 == 0) {

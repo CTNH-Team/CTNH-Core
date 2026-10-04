@@ -22,7 +22,7 @@ import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerLevel;
 
 import com.ctnh.ctnhastral.common.environment.PlanetEnvironmentService;
-import com.ctnh.ctnhastral.common.environment.Temperature;
+import com.ctnh.ctnhastral.registry.CAEnvironments;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
 import com.ctnhlang.Prefix;
@@ -111,7 +111,8 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
 
     protected void updateCurrentTemperature() {
         if (getOffsetTimer() % 10 == 0 && getLevel() instanceof ServerLevel level) {
-            Machine_Temperature = PlanetEnvironmentService.getEnvironment(level, getPos()).get(Temperature.TYPE)
+            Machine_Temperature = PlanetEnvironmentService.getEnvironment(level, getPos())
+                    .get(CAEnvironments.TEMPERATURE)
                     .celsius();
         }
     }

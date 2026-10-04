@@ -14,7 +14,7 @@ import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerLevel;
 
 import com.ctnh.ctnhastral.common.environment.PlanetEnvironmentService;
-import com.ctnh.ctnhastral.common.environment.Temperature;
+import com.ctnh.ctnhastral.registry.CAEnvironments;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
 import com.ctnhlang.Prefix;
@@ -89,7 +89,8 @@ public class BioMachine extends RecipeElectricMultiblockMachine {
 
     protected void updateCurrentTemperature() {
         if (getOffsetTimer() % 10 == 0 && getLevel() instanceof ServerLevel level) {
-            machineTemperature = PlanetEnvironmentService.getEnvironment(level, getPos()).get(Temperature.TYPE)
+            machineTemperature = PlanetEnvironmentService.getEnvironment(level, getPos())
+                    .get(CAEnvironments.TEMPERATURE)
                     .celsius();
         }
     }

@@ -8,7 +8,7 @@ import net.minecraftforge.fml.DistExecutor;
 
 import com.ctnh.ctnhastral.client.ClientEnvironmentTemperature;
 import com.ctnh.ctnhastral.common.environment.PlanetEnvironmentService;
-import com.ctnh.ctnhastral.common.environment.Temperature;
+import com.ctnh.ctnhastral.registry.CAEnvironments;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -31,7 +31,7 @@ public abstract class TemperatureItemCapabilityMixin {
     private void ctnh$serverReading(Level level, Entity entity, long tick, CallbackInfo ci) {
         var pos = WorldUtil.getSidedBlockPos(level, entity);
         float temperature = level instanceof ServerLevel serverLevel ?
-                PlanetEnvironmentService.getEnvironment(serverLevel, pos).get(Temperature.TYPE).celsius() :
+                PlanetEnvironmentService.getEnvironment(serverLevel, pos).get(CAEnvironments.TEMPERATURE).celsius() :
                 DistExecutor.unsafeCallWhenOn(Dist.CLIENT,
                         () -> () -> ClientEnvironmentTemperature.celsius(level, pos));
         if (Float.isFinite(temperature)) {
