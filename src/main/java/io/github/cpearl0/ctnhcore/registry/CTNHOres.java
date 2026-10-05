@@ -5,6 +5,7 @@ import io.github.cpearl0.ctnhcore.registry.ores.AdAstraOres;
 import io.github.cpearl0.ctnhcore.registry.ores.AetherOres;
 import io.github.cpearl0.ctnhcore.registry.ores.AlfheimOres;
 import io.github.cpearl0.ctnhcore.registry.ores.EndOres;
+import io.github.cpearl0.ctnhcore.registry.ores.MoonOres;
 import io.github.cpearl0.ctnhcore.registry.ores.NetherOres;
 import io.github.cpearl0.ctnhcore.registry.ores.OverworldOres;
 import io.github.cpearl0.ctnhcore.registry.ores.TwilightForestOres;
@@ -35,6 +36,7 @@ public class CTNHOres {
         TwilightForestOres.init();
         AetherOres.init();
         AlfheimOres.init();
+        MoonOres.init();
         AdAstraOres.init();
     }
 }

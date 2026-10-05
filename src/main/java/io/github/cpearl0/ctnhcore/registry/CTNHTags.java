@@ -12,6 +12,8 @@ import net.minecraft.world.level.block.Block;
 public class CTNHTags {
 
     public static TagKey<Block> AD_ASTRA_STONES = TagUtil.createBlockTag("ad_astra_stones");
+    public static final TagKey<Block> MOON_ORE_REPLACEABLES = TagKey.create(Registries.BLOCK,
+            CTNHCore.id("moon_ore_replaceables"));
     public static TagKey<Block> AETHER_STONES = TagUtil.createBlockTag("aether_stones");
     public static TagKey<Block> ALFHEIM_STONES = TagUtil.createBlockTag("alfheim_stones");
     // public static TagKey<Item> TIER5_RUNES = TagUtil.createItemTag("zenith_runes");

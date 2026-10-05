@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import io.github.cpearl0.ctnhcore.registry.ores.MoonOres;
+
+import com.gregtechceu.gtceu.api.data.chemical.material.ItemMaterialData;
 import com.gregtechceu.gtceu.api.data.worldgen.IWorldGenLayer;
 import com.gregtechceu.gtceu.api.data.worldgen.WorldGeneratorUtils;
 
@@ -18,7 +21,9 @@ import static io.github.cpearl0.ctnhcore.registry.CTNHWorlds.*;
 
 public enum CTNHWorldgenLayers implements IWorldGenLayer, StringRepresentable {
 
-    ADASTRA("ad_astra", new TagMatchTest(CTNHTags.AD_ASTRA_STONES), Set.of(MOON, MARS, MERCURY, VENUS, GLACIO)),
+    MOON("ctnh_moon", new TagMatchTest(CTNHTags.MOON_ORE_REPLACEABLES), Set.of(CTNHWorlds.MOON)),
+
+    ADASTRA("ad_astra", new TagMatchTest(CTNHTags.AD_ASTRA_STONES), Set.of(MARS, MERCURY, VENUS, GLACIO)),
 
     TWILIGHT("twilight_forest", new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), Set.of(TWILIGHT_FOREST)),
 
@@ -26,7 +31,10 @@ public enum CTNHWorldgenLayers implements IWorldGenLayer, StringRepresentable {
 
     ALFHEIM("alfheim", new TagMatchTest(CTNHTags.ALFHEIM_STONES), Set.of(CTNHWorlds.ALFHEIM));
 
-    public static void init() {}
+    public static void init() {
+        // GT resolves material layers through the host state's ore prefix after testing the replacement tag.
+        ItemMaterialData.ORES_INVERSE.putAll(MoonOres.oreHosts());
+    }
 
     CTNHWorldgenLayers(String name, RuleTest target, Set<ResourceLocation> levels) {
         this.name = name;

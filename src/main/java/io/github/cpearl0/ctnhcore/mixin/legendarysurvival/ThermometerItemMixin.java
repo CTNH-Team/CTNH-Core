@@ -1,6 +1,6 @@
 package io.github.cpearl0.ctnhcore.mixin.legendarysurvival;
 
-import io.github.cpearl0.ctnhcore.integration.legendary.ThermometerEnvironmentIntegration;
+import io.github.cpearl0.ctnhcore.common.gui.EnvironmentDetectorUI;
 
 import com.lowdragmc.lowdraglib.gui.factory.HeldItemUIFactory;
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
@@ -46,7 +46,7 @@ public abstract class ThermometerItemMixin extends Item implements HeldItemUIFac
 
     @Override
     public ModularUI createUI(Player player, HeldItemUIFactory.HeldItemHolder holder) {
-        return ThermometerEnvironmentIntegration.createUI(player, holder);
+        return EnvironmentDetectorUI.createUI(player, holder);
     }
 
     /** 使用说明由 Core 的物品提示事件提供，移除原有体温/饰品 HUD 说明。 */
