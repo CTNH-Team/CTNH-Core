@@ -124,7 +124,7 @@ public class OverworldOres {
             vein -> vein
                     .weight(80)
                     .clusterSize(UniformInt.of(40, 50))
-                    .density(1.0f)
+                    .density(0.25f)
                     .layer(WorldGenLayers.STONE)
                     .heightRangeUniform(10, 80)
                     .biomes(BiomeTags.IS_OVERWORLD)
@@ -157,7 +157,7 @@ public class OverworldOres {
             vein -> vein
                     .weight(50)
                     .clusterSize(UniformInt.of(40, 50))
-                    .density(1.0f)
+                    .density(0.25f)
                     .layer(WorldGenLayers.STONE)
                     .heightRangeUniform(-10, 160)
                     .biomes(BiomeTags.IS_OVERWORLD)
@@ -175,7 +175,7 @@ public class OverworldOres {
             vein -> vein
                     .weight(120)
                     .clusterSize(UniformInt.of(40, 52))
-                    .density(1.0f)
+                    .density(0.25f)
                     .layer(WorldGenLayers.STONE)
                     .heightRangeUniform(-10, 60)
                     .biomes(BiomeTags.IS_OVERWORLD)
@@ -244,7 +244,7 @@ public class OverworldOres {
             vein -> vein
                     .weight(80)
                     .clusterSize(UniformInt.of(40, 50))
-                    .density(1.0f)
+                    .density(0.25f)
                     .layer(WorldGenLayers.DEEPSLATE)
                     .heightRangeUniform(-40, 10)
                     .biomes(BiomeTags.IS_OVERWORLD)
@@ -283,7 +283,7 @@ public class OverworldOres {
             vein -> vein
                     .weight(40)
                     .clusterSize(UniformInt.of(40, 50))
-                    .density(0.75f)
+                    .density(0.35f)
                     .layer(WorldGenLayers.DEEPSLATE)
                     .heightRangeUniform(-60, 10)
                     .biomes(BiomeTags.IS_OVERWORLD)
@@ -302,8 +302,8 @@ public class OverworldOres {
             "主世界锰矿脉",
             vein -> vein
                     .weight(20)
-                    .clusterSize(UniformInt.of(50, 60))
-                    .density(0.75f)
+                    .clusterSize(UniformInt.of(40, 50))
+                    .density(0.35f)
                     .layer(WorldGenLayers.DEEPSLATE)
                     .heightRangeUniform(-30, 0)
                     .biomes(BiomeTags.IS_OVERWORLD)
