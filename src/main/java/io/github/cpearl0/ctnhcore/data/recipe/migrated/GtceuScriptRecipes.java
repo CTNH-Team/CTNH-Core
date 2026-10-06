@@ -56,6 +56,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 import static com.ctnh.ctnhastral.data.CAMaterials.*;
+import static com.ctnh.ctnhastral.registry.worldgen.MoonBlocks.MOON_STONE;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
@@ -1924,7 +1925,7 @@ public class GtceuScriptRecipes {
 
         // ore_production_3
         CTNHRecipeTypes.MARTIAL_MORALITY_EYE.recipeBuilder(CTNHCore.id("ore_production_3"))
-                .inputItems(ModItems.MOON_STONE.get(), 64)
+                .inputItems(MOON_STONE.asStack(64))
                 .chancedInput(ChemicalHelper.get(block, GalliumArsenide, 4), 5500, -100)
                 .inputFluids(RocketFuel.getFluid(4000))
                 .outputFluids(NitricAcid.getFluid(1000))

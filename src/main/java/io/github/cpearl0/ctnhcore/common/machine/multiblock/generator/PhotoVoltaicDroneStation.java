@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
 import io.github.cpearl0.ctnhcore.common.item.IDroneItem;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.DroneHolderMachine;
+import io.github.cpearl0.ctnhcore.registry.CTNHWorlds;
 
 import com.gregtechceu.gtceu.api.capability.IParallelHatch;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
@@ -130,7 +131,7 @@ public class PhotoVoltaicDroneStation extends RecipeElectricMultiblockMachine {
             rate *= 0.5;
         } else if (dimension == AetherDimensions.AETHER_LEVEL) {
             rate *= 1;
-        } else if (dimension == Planet.MOON || dimension == Planet.MOON_ORBIT) {
+        } else if (dimension.location().equals(CTNHWorlds.MOON) || dimension == Planet.MOON_ORBIT) {
             rate *= 2;
         } else if (dimension == Planet.VENUS || dimension == Planet.VENUS_ORBIT) {
             rate *= 4;

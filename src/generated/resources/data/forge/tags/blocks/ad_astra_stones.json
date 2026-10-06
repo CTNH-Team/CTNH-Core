@@ -1,10 +1,6 @@
 {
   "values": [
     {
-      "id": "ad_astra:moon_stone",
-      "required": false
-    },
-    {
       "id": "ad_astra:mars_stone",
       "required": false
     },

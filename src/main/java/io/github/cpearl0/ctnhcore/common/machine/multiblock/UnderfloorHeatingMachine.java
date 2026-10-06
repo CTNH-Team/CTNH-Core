@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock;
 
+import io.github.cpearl0.ctnhcore.common.machine.trait.UnderfloorHeatingTrait;
+
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDisplayUIMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.RecipeMultiblockMachine;
@@ -8,11 +10,9 @@ import com.lowdragmc.lowdraglib.gui.util.ClickData;
 import com.lowdragmc.lowdraglib.gui.widget.ComponentPanelWidget;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.Style;
-import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
@@ -22,8 +22,6 @@ import com.ctnhlang.CN;
 import com.ctnhlang.EN;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.foundation.block.CopperBlockSet;
-import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.List;
@@ -50,14 +48,9 @@ public class UnderfloorHeatingMachine extends RecipeMultiblockMachine implements
     @EN("Steam consumption rate: %d")
     public static Lang underfloorHeatingSystemInfoSteamConsumption;
 
-    @Getter
-    public int rate = 100;
-    public double steam_consumption_default = 8;
-
-    public static final String RATE = "rate";
-
     public UnderfloorHeatingMachine(IMachineBlockEntity holder) {
         super(holder);
+        attachPersistentTrait("heating", new UnderfloorHeatingTrait(this));
     }
 
     public double getEfficiency() {
@@ -107,14 +100,17 @@ public class UnderfloorHeatingMachine extends RecipeMultiblockMachine implements
                             .get().getName());
                     return b1 || b;
                 }).count();
-        return (copper_shingles + exposed_copper_shingles * 0.8 + weathered_copper_shingles * 0.75 +
+        int total = copper_shingles + exposed_copper_shingles + weathered_copper_shingles + oxidized_copper_shingles;
+        return total == 0 ? 0.0 : (copper_shingles + exposed_copper_shingles * 0.8 + weathered_copper_shingles * 0.75 +
                 oxidized_copper_shingles * 0.6) /
-                (copper_shingles + exposed_copper_shingles + weathered_copper_shingles + oxidized_copper_shingles);
+                total;
     }
 
     public void addDisplayText(List<Component> textList) {
         IDisplayUIMachine.super.addDisplayText(textList);
         if (isFormed()) {
+            var heating = getTraitOrThrow(UnderfloorHeatingTrait.class);
+            int rate = heating.getRate();
             if (!isWorkingEnabled()) {
                 textList.add(Component.translatable("gtceu.multiblock.work_paused"));
 
@@ -135,7 +131,7 @@ public class UnderfloorHeatingMachine extends RecipeMultiblockMachine implements
                         .setStyle(Style.EMPTY.withColor(ChatFormatting.RED)));
             }
             textList.add(underfloorHeatingSystemInfoSteamConsumption.translate(
-                    String.format("%.1f", steam_consumption_default * rate / 100)));
+                    String.format("%.1f", 8.0 * rate / 100)));
             var rateText = underfloorHeatingSystemInfoRate.translate(
                     ChatFormatting.AQUA.toString() + rate + "%")
                     .withStyle(Style.EMPTY.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
@@ -148,33 +144,16 @@ public class UnderfloorHeatingMachine extends RecipeMultiblockMachine implements
             buttonText.append(" ");
             buttonText.append(ComponentPanelWidget.withButton(Component.literal("[+]"), "add"));
             textList.add(buttonText);
-            var efficiency = self().holder.self().getPersistentData().getDouble("efficiency");
-            if (efficiency == 0) {
-                efficiency = getEfficiency();
-            }
             textList.add(underfloorHeatingSystemInfoEfficiency.translate(
-                    String.format("%.1f", efficiency * 100)));
+                    String.format("%.1f", heating.getEfficiency() * 100)));
         }
     }
 
     public void handleDisplayClick(String componentData, ClickData clickData) {
         if (!clickData.isRemote) {
             int result = componentData.equals("add") ? 5 : -5;
-            this.rate = Mth.clamp(rate + result, 25, 100);
+            var heating = getTraitOrThrow(UnderfloorHeatingTrait.class);
+            heating.setRate(heating.getRate() + result);
         }
-    }
-
-    @Override
-    public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {
-        super.saveCustomPersistedData(tag, forDrop);
-        if (!forDrop) {
-            tag.putInt(RATE, rate);
-        }
-    }
-
-    @Override
-    public void loadCustomPersistedData(@NotNull CompoundTag tag) {
-        super.loadCustomPersistedData(tag);
-        rate = tag.contains(RATE) ? tag.getInt(RATE) : 100;
     }
 }

@@ -32,7 +32,10 @@
     "gtceu.ItemMaterialDataMixin",
     "gtceu.orevein.ClientProxyAccessor",
     "javd.PortalBlockMixin",
-    "legendarysurvival.AltitudeModifierMixin",
+    "legendarysurvival.ModCapabilitiesMixin",
+    "legendarysurvival.TemperatureCommandMixin",
+    "legendarysurvival.TemperatureItemCapabilityMixin",
+    "legendarysurvival.ThermometerItemMixin",
     "mc.MonsterMixin",
     "mc.NaturalSpawnerMixin",
     "mc.ServerChunkCacheMixin",
@@ -41,6 +44,7 @@
     "vintageimprovements.LatheMovingBlockMixin"
   ],
   "client": [
+    "legendarysurvival.ClientTemperatureEffectsMixin",
     "creatediesel.DistillationCategoryMixin",
     "emi.JemiRecipeMixin",
     "emi.JemiStackSerializerMixin",

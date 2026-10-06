@@ -16,12 +16,13 @@ import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 
+import com.ctnh.ctnhastral.common.environment.PlanetEnvironmentService;
+import com.ctnh.ctnhastral.registry.CAEnvironments;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import sfiomn.legendarysurvivaloverhaul.api.temperature.TemperatureUtil;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.List;
@@ -96,7 +97,10 @@ public class IndustrialPrimitiveBlastFurnaceMachine extends NoEnergyMachine {
     }
 
     protected void updateCurrentTemperature() {
-        basicTemperature = (int) TemperatureUtil.getWorldTemperature(getLevel(), getPos()) + 273;
+        if (!(getLevel() instanceof ServerLevel level)) return;
+        basicTemperature = (int) PlanetEnvironmentService.getEnvironment(level, getPos())
+                .get(CAEnvironments.TEMPERATURE)
+                .kelvin();
         if (recipeLogic.isWorking()) {
             if (getOffsetTimer() % 10 == 0) {
                 if (currentTemperature < getMaxTemperature()) {

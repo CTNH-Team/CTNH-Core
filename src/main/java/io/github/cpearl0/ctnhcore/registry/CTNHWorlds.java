@@ -2,11 +2,13 @@ package io.github.cpearl0.ctnhcore.registry;
 
 import net.minecraft.resources.ResourceLocation;
 
+import com.ctnh.ctnhastral.data.worldgen.WorldgenKeys;
+
 public class CTNHWorlds {
 
     public static final ResourceLocation TWILIGHT_FOREST = ResourceLocation.tryBuild("twilightforest",
             "twilight_forest");
-    public static final ResourceLocation MOON = ResourceLocation.tryBuild("ad_astra", "moon");
+    public static final ResourceLocation MOON = WorldgenKeys.Dimensions.MOON.location();
     public static final ResourceLocation VENUS = ResourceLocation.tryBuild("ad_astra", "venus");
     public static final ResourceLocation MARS = ResourceLocation.tryBuild("ad_astra", "mars");
     public static final ResourceLocation MERCURY = ResourceLocation.tryBuild("ad_astra", "mercury");
