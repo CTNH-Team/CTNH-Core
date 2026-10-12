@@ -1,8 +1,9 @@
 package io.github.cpearl0.ctnhcore.client.ponder;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.client.ponder.Electric.AssemblyLine;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.ChemicalPlant;
-import io.github.cpearl0.ctnhcore.client.ponder.Electric.GregTechMultiblocks;
+import io.github.cpearl0.ctnhcore.client.ponder.Electric.CokeOven;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.NeutronActivator;
 import io.github.cpearl0.ctnhcore.client.ponder.Kinetic.*;
 import io.github.cpearl0.ctnhcore.client.ponder.Misc.Drum;
@@ -36,14 +37,15 @@ public final class CTNHCorePonderScenes {
                 .addStoryBoard("drum/common", Drum::Common, CTNHCorePonderTags.CTNHPonder);
 
         helper.forComponents(GTMultiMachines.COKE_OVEN.getId())
-                .addStoryBoard("coke_oven/common", GregTechMultiblocks::CokeOven, CTNHCorePonderTags.CTNHPonder);
+                .addStoryBoard("coke_oven/common", CokeOven::Common, CTNHCorePonderTags.CTNHPonder);
 
         helper.forComponents(GTMachines.CHEMICAL_REACTOR[GTValues.LV].getId())
                 .addStoryBoard("chemical_reactor_ui/common", ChemicalReactorUi::Common,
                         CTNHCorePonderTags.CTNHPonder);
 
         helper.forComponents(GTMultiMachines.ASSEMBLY_LINE.getId())
-                .addStoryBoard("assembly_line/common", GregTechMultiblocks::AssemblyLine,
+                .addStoryBoard("assembly_line/common", AssemblyLine::Basics, CTNHCorePonderTags.CTNHPonder)
+                .addStoryBoard("assembly_line/ae_automation", AssemblyLine::AeAutomation,
                         CTNHCorePonderTags.CTNHPonder);
 
         helper.forComponents(GTNNMultiblocks.NEUTRON_ACTIVATOR.getId())
@@ -54,7 +56,6 @@ public final class CTNHCorePonderScenes {
 
         helper.forComponents(ResourceLocation.fromNamespaceAndPath("jackseconomy", "mechanical_exporter"))
                 .addStoryBoard("mechanicalexporter/common", MechanicalExporter::Common, CTNHCorePonderTags.CTNHPonder);
-
 
         CTNHCore.LOGGER.info("Ponder scenes initialized");
     }

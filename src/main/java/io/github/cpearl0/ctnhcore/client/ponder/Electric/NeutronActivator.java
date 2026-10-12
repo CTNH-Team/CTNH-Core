@@ -76,7 +76,7 @@ public class NeutronActivator {
         scene.overlay().showControls(util.vector().blockSurface(util.grid().at(1, 1, 2), Direction.UP),
                 Pointing.LEFT, 40)
                 .rightClick()
-                .withItem(GregTechMultiblocks.item("gtceu", "machine_controller_cover"))
+                .withItem(GTItems.COVER_MACHINE_CONTROLLER.asStack())
                 .whileSneaking();
         scene.world().showSection(util.select().fromTo(0, 1, 1, 0, 1, 2), Direction.DOWN);
         scene.world().setBlock(util.grid().at(1, 1, 1), GTNNMachines.NEUTRON_ACCELERATOR[GTValues.LuV]
