@@ -13,6 +13,8 @@ dependencies {
     jarJar(project(":modules:CTNH-Astral")){ transitive = false }
     implementation(project(":modules:Create-Enough-Items")){ transitive = false }
     jarJar(project(":modules:Create-Enough-Items")){ transitive = false }
+    implementation(project(":modules:Tea-Art-CTNH")){ transitive = false }
+    jarJar(project(":modules:Tea-Art-CTNH")){ transitive = false }
 
     jarJar(project(":modules:GregTech-Modern")){ transitive = false }
 
