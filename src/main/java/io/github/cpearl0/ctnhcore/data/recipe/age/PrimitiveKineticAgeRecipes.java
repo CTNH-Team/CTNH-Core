@@ -405,7 +405,9 @@ public class PrimitiveKineticAgeRecipes {
                 GTItems.WOODEN_FORM_BRICK.asStack());
 
         // 焦炉砖（烧制压缩焦黏土）
-        VanillaRecipeHelper.addSmeltingRecipe(provider, CTNHCore.id("brick_preform_to_seared_brick"),
+        // 注意：这条和下面 addSmeltingBrickRecipes 的焦黑砖是两种不同的产物，id 必须分开，
+        // 否则 Forge 的 provider 会以 "Duplicate recipe ignored with ID" 丢掉后注册的那条
+        VanillaRecipeHelper.addSmeltingRecipe(provider, CTNHCore.id("compressed_coke_clay_to_coke_oven_brick"),
                 Ingredient.of(GTItems.COMPRESSED_COKE_CLAY.asStack()),
                 new ItemStack(GTItems.COKE_OVEN_BRICK), 0.3f);
 
@@ -437,7 +439,7 @@ public class PrimitiveKineticAgeRecipes {
 
         // 砖胚（砖泥 + 木制砖模具，无序合成）
         VanillaRecipeHelper.addShapelessRecipe(provider, CTNHCore.id("crafttable/brick_preform_from_mold"),
-                GTItems.COMPRESSED_COKE_CLAY.asStack(),
+                CTNHItems.BRICK_PREFORM.asStack(),
                 CTNHItems.BRICK_MUD.asStack(),
                 GTItems.WOODEN_FORM_BRICK.asStack());
 
