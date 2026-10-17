@@ -16,7 +16,6 @@ public class StonePowderMaterials {
     public static Material DIRTY_HEXAFLUOROSILICIC_ACID;
     public static Material DILUTE_HEXAFLUOROSILICIC_ACID;
     public static Material STONE_RESIDUE;
-    public static Material DEGASSED_MOON_STONE;
     public static Material MOON_ANORTHOSITE;
     public static Material FLUOROSILICIC_ACID;
     public static Material UNCOMMON_RESIDUES;
@@ -57,16 +56,6 @@ public class StonePowderMaterials {
                 .cnlang("石头残渣")
                 .dust()
                 .color(0xA1A19E)
-                .buildAndRegister();
-
-        // GT generates the LV mineral separation recipe; gas-bearing Moonstone remains a separate material.
-        // Keep Moonstone's ROUGH texture and neutral greys, darkened equally for the processed state.
-        DEGASSED_MOON_STONE = REGISTRATE.material(CTNHCore.id("degassed_moon_stone"))
-                .cnlang("脱气月石")
-                .dust()
-                .color(0x9B9B9B).secondaryColor(0x656565).iconSet(ROUGH)
-                .components(SiliconDioxide, 20, Alumina, 8, Quicklime, 4, Magnesia, 3, Ilmenite, 1)
-                .flags(DECOMPOSITION_BY_CENTRIFUGING)
                 .buildAndRegister();
 
         // Simplify anorthite-rich lunar rock into oxide groups for GT's generated mineral separation.

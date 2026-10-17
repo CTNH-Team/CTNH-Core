@@ -61,7 +61,6 @@ import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static io.github.cpearl0.ctnhcore.data.materials.AviationFabricMaterials.*;
-import static io.github.cpearl0.ctnhcore.data.materials.StonePowderMaterials.DEGASSED_MOON_STONE;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.*;
 import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
@@ -703,11 +702,17 @@ public class GtceuScriptRecipes {
                 .outputItems(dust, PlatinumSludgeResidue)
                 .save(provider);
 
-        // 19. Moonstone degassing: retain the solid minerals and recover helium-3 at HV.
+        // 19. moon_dust: 36x moon_stone_dust -> chanced outputs + helium_3 3600. EUt 480, dur 500
         CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("moon_dust"))
-                .EUt(GTValues.VA[GTValues.HV]).duration(500)
+                .EUt(480).duration(500)
                 .inputItems(dust, Moonstone, 36)
-                .outputItems(dust, DEGASSED_MOON_STONE, 36)
+                .chancedOutput(dust, SiliconDioxide, 32, 5000, 1000)
+                .chancedOutput(dust, RareEarth, 24, 3000, 1000)
+                .chancedOutput(dust, Olivine, 16, 2000, 1000)
+                .chancedOutput(dust, Manganese, 16, 1000, 1000)
+                .chancedOutput(dust, Scheelite, 12, 800, 1000)
+                // 铂金矿粉是 CTNH 在 PlatinumLineMaterials 里注册的材质，没有 gtceu:platinum_ore_dust
+                .chancedOutput(dust, PlatinumLineMaterials.PlatinumOre, 8, 400, 1000)
                 .outputFluids(Helium3.getFluid(3600))
                 .save(provider);
 
