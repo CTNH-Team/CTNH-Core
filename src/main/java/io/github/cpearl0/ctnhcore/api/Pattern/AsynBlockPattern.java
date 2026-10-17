@@ -293,28 +293,34 @@ public class AsynBlockPattern extends BlockPattern {
 
         // 检查层级限制
         for (SimplePredicate limit : predicate.limited) {
-            if (limit.minLayerCount > 0 && context.settings.isPlaceHatch(limit.candidates.get())) {
+            // candidates 是 @Nullable 的 Supplier，get() 也可能返回 null；没有候选名单时
+            // 算不出要放什么方块，跳过该谓词，不要拿它去裸解引用。
+            BlockInfo[] candidates = limit.candidates != null ? limit.candidates.get() : null;
+            if (candidates == null) continue;
+            if (limit.minLayerCount > 0 && context.settings.isPlaceHatch(candidates)) {
                 if (!cacheLayer.containsKey(limit)) {
                     cacheLayer.put(limit, 1);
-                    return limit.candidates.get();
+                    return candidates;
                 } else if (cacheLayer.get(limit) < limit.minLayerCount &&
                         (limit.maxLayerCount == -1 || cacheLayer.get(limit) < limit.maxLayerCount)) {
                             cacheLayer.put(limit, cacheLayer.get(limit) + 1);
-                            return limit.candidates.get();
+                            return candidates;
                         }
             }
         }
 
         // 检查全局限制
         for (SimplePredicate limit : predicate.limited) {
-            if (limit.minCount > 0 && context.settings.isPlaceHatch(limit.candidates.get())) {
+            BlockInfo[] candidates = limit.candidates != null ? limit.candidates.get() : null;
+            if (candidates == null) continue;
+            if (limit.minCount > 0 && context.settings.isPlaceHatch(candidates)) {
                 if (!cacheGlobal.containsKey(limit)) {
                     cacheGlobal.put(limit, 1);
-                    return limit.candidates.get();
+                    return candidates;
                 } else if (cacheGlobal.get(limit) < limit.minCount &&
                         (limit.maxCount == -1 || cacheGlobal.get(limit) < limit.maxCount)) {
                             cacheGlobal.put(limit, cacheGlobal.get(limit) + 1);
-                            return limit.candidates.get();
+                            return candidates;
                         }
             }
         }
@@ -329,7 +335,9 @@ public class AsynBlockPattern extends BlockPattern {
 
         // 无限制谓词处理
         for (SimplePredicate limit : predicate.limited) {
-            if (!context.settings.isPlaceHatch(limit.candidates.get())) continue;
+            BlockInfo[] candidates = limit.candidates != null ? limit.candidates.get() : null;
+            if (candidates == null) continue;
+            if (!context.settings.isPlaceHatch(candidates)) continue;
 
             if (limit.maxLayerCount != -1 &&
                     cacheLayer.getOrDefault(limit, Integer.MAX_VALUE) == limit.maxLayerCount)
@@ -351,20 +359,17 @@ public class AsynBlockPattern extends BlockPattern {
                 cacheGlobal.put(limit, 1);
             }
 
-            if (limit.candidates != null) {
-                infos.addAll(Arrays.asList(limit.candidates.get()));
-            }
+            infos.addAll(Arrays.asList(candidates));
         }
 
         // 通用谓词
         for (SimplePredicate common : predicate.common) {
-            if (common.candidates != null && predicate.common.size() > 1 &&
-                    !context.settings.isPlaceHatch(common.candidates.get())) {
+            BlockInfo[] candidates = common.candidates != null ? common.candidates.get() : null;
+            if (candidates == null) continue;
+            if (predicate.common.size() > 1 && !context.settings.isPlaceHatch(candidates)) {
                 continue;
             }
-            if (common.candidates != null) {
-                infos.addAll(Arrays.asList(common.candidates.get()));
-            }
+            infos.addAll(Arrays.asList(candidates));
         }
 
         return infos.isEmpty() ? null : infos.toArray(new BlockInfo[0]);
@@ -390,15 +395,14 @@ public class AsynBlockPattern extends BlockPattern {
 
         // 检查是否能存放旧线圈
         Pair<IItemHandler, Integer> holderResult = foundHolderSlot(context.player, context.coilItemStack);
-        if (holderResult.getFirst() != null && holderResult.getSecond() < 0) {
+        // 没有物品栏或没有空位时必须放弃这个位置：先拆方块会让旧线圈凭空消失
+        if (holderResult.getFirst() == null || holderResult.getSecond() < 0) {
             return false;
         }
 
         // 替换线圈
         context.world.removeBlock(pos, true);
-        if (holderResult.getFirst() != null) {
-            holderResult.getFirst().insertItem(holderResult.getSecond(), context.coilItemStack, false);
-        }
+        holderResult.getFirst().insertItem(holderResult.getSecond(), context.coilItemStack, false);
         return true;
     }
 
@@ -408,7 +412,12 @@ public class AsynBlockPattern extends BlockPattern {
             return !context.inFluid &&
                     context.world.setBlock(pos, context.fluidState.createLegacyBlock(), UPDATE_CLIENTS);
         } else {
-            BlockItem itemBlock = (BlockItem) context.foundItemStack.getItem();
+            // 只有 BlockItem 才支持 place()；物品来源（尤其 AE 存储）可能给出非 BlockItem，
+            // 这里必须先判类型再转，否则就是 ClassCastException。
+            if (context.foundItemStack == null ||
+                    !(context.foundItemStack.getItem() instanceof BlockItem itemBlock)) {
+                return false;
+            }
             Direction frontFacing = context.blockFacing != null ? context.blockFacing :
                     context.controller.self().getFrontFacing();
 
@@ -538,16 +547,17 @@ public class AsynBlockPattern extends BlockPattern {
                         context.meStorage = inventory;
                         return true;
                     }
-                } else if (candidate.itemStack != null && !candidate.itemStack.isEmpty()) {
-                    long amount = inventory.extract(AEItemKey.of(candidate.itemStack), 1, Actionable.SIMULATE,
-                            IActionSource.ofMachine(context.settings.getAccessPoint()));
-                    if (amount >= 1) {
-                        context.foundItemStack = candidate.itemStack.copy();
-                        context.blockFacing = candidate.facing;
-                        context.meStorage = inventory;
-                        return true;
-                    }
-                }
+                } else if (candidate.itemStack != null && !candidate.itemStack.isEmpty() &&
+                        candidate.itemStack.getItem() instanceof BlockItem) {
+                            long amount = inventory.extract(AEItemKey.of(candidate.itemStack), 1, Actionable.SIMULATE,
+                                    IActionSource.ofMachine(context.settings.getAccessPoint()));
+                            if (amount >= 1) {
+                                context.foundItemStack = candidate.itemStack.copy();
+                                context.blockFacing = candidate.facing;
+                                context.meStorage = inventory;
+                                return true;
+                            }
+                        }
             }
         }
         return false;
@@ -557,6 +567,10 @@ public class AsynBlockPattern extends BlockPattern {
         IItemHandler handler;
         int foundSlot = -1;
         handler = player.getCapability(ForgeCapabilities.ITEM_HANDLER).orElse(null);
+        if (handler == null) {
+            // 拿不到物品栏能力（伪造玩家等）就没有可放旧线圈的位置，交给调用方放弃该位置
+            return new Pair<>(null, -1);
+        }
         for (int i = 0; i < handler.getSlots(); i++) {
             @NotNull
             ItemStack stack = handler.getStackInSlot(i);
