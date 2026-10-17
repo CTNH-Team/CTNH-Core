@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.api.Pattern;
 
 import io.github.cpearl0.ctnhcore.CTNHConfig;
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalBehavior;
 import io.github.cpearl0.ctnhcore.utils.OrientedItem;
 
@@ -119,16 +120,21 @@ public class AsynBlockPattern extends BlockPattern {
 
         int num = setting.getUseAEStorage() == 0 ? BLOCKS_PER_TICK : BLOCKS_PER_TICK_WITH_AE;
         // 每tick处理一定数量的方块
+        BlockPos failingPos = null;
         try {
             for (int i = 0; i < num && !buildQueue.isEmpty(); i++) {
                 BuildTask task = buildQueue.poll();
                 if (task != null) {
+                    failingPos = task.pos;
                     task.execute();
                 }
             }
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
+            // 本方法由 ServerTickEvent 调用，抛出去就是炸服。单个方块放不下只该放弃这次建造。
+            buildQueue.clear();
             completed = true;
-            throw new RuntimeException(e);
+            CTNHCore.LOGGER.error("Auto-build failed at {}, aborting this build", failingPos, e);
+            return;
         }
 
         if (buildQueue.isEmpty()) {

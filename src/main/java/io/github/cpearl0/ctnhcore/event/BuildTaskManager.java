@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.event;
 
 // BuildTaskManager.java
 
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.Pattern.AsynBlockPattern;
 
 import net.minecraft.world.entity.player.Player;
@@ -54,7 +55,13 @@ public class BuildTaskManager {
             if (task.isCompleted()) {
                 it.remove();
             } else {
-                task.tick();
+                try {
+                    task.tick();
+                } catch (RuntimeException e) {
+                    // 兜底：单个建造任务的意外异常不该把整个服务端 tick 打挂。
+                    it.remove();
+                    CTNHCore.LOGGER.error("Auto-build task of {} failed, dropped it", entry.getKey(), e);
+                }
             }
         }
     }
