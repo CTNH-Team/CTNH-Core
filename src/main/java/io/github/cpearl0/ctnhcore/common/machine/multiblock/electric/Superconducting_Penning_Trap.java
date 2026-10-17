@@ -229,9 +229,11 @@ public class Superconducting_Penning_Trap extends RecipeElectricMultiblockMachin
     public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {
         super.saveCustomPersistedData(tag, forDrop);
         if (!forDrop) {
-            tag.putDouble(AL, anti_electron);
-            tag.putDouble(AP, anti_proton);
-            tag.putDouble(AN, anti_nu);
+            // 存量字段是 int，读写必须同类型：写入 DoubleTag 后 getInt 只会返回 0，
+            // 区块卸载重载/存档重进就会把玩家攒的反物质清零。
+            tag.putInt(AL, anti_electron);
+            tag.putInt(AP, anti_proton);
+            tag.putInt(AN, anti_nu);
         }
     }
 
