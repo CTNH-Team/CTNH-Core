@@ -16,6 +16,8 @@ import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.RegistryObject;
 
 import appeng.core.definitions.AEItems;
@@ -23,6 +25,7 @@ import com.enderio.base.common.init.EIOItems;
 import com.wintercogs.ae2omnicells.common.init.OCItems;
 import io.github.lounode.ae2cs.common.init.AECSItems;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
@@ -124,6 +127,9 @@ public class QuantumOmniRecipes {
                 .EUt(VA[GTValues.IV])
                 .duration(200)
                 .save(provider);
+
+        // 4K~256M 的元件与成品细胞，此前被删除后一直没有补回
+        addQuantumCellChain(provider);
     }
 
     private static final RegistryObject<?>[] QUANTUM_OMNI_COMPONENTS = {
@@ -245,6 +251,107 @@ public class QuantumOmniRecipes {
     // .duration(40)
     // .save(provider);
     // }
+    // 量子全知细胞升级链的等级后缀，与下面的电压表一一对应
+    private static final String[] QUANTUM_CELL_TIERS = { "4k", "16k", "64k", "256k", "1m", "4m", "16m", "64m",
+            "256m" };
+
+    // 成品细胞所在电压等级：沿用删改前的旧表，4K 在 EV，之后每两档升一级，256M 到 UV
+    private static final int[] QUANTUM_CELL_VOLTAGE_TIERS = { EV, IV, IV, LuV, LuV, ZPM, ZPM, UV, UV };
+
+    /**
+     * 补回 4K~256M 的量子全知元件与成品细胞。
+     *
+     * <p>
+     * ae2omnicells 原本用 AE 工作台按“上一级元件”逐级升级，CTNH 把 1K 改成了 GT 装配流程，其余等级却只做了
+     * 删除（见 {@link #omniRemovals()}）没有补回，导致 4K 以上的量子全知细胞在全包里没有获取途径。 这里沿用
+     * 1K 的模板：元件在电路装配机里用“高一级电路 3 个 + 本级电路 2 个”制造，成品细胞再在外壳里组装。
+     */
+    private static void addQuantumCellChain(Consumer<FinishedRecipe> provider) {
+        List<RegistryObject<Item>> quantumComponents = List.of(
+                OCItems.QUANTUM_OMNI_CELL_COMPONENT_4K,
+                OCItems.QUANTUM_OMNI_CELL_COMPONENT_16K,
+                OCItems.QUANTUM_OMNI_CELL_COMPONENT_64K,
+                OCItems.QUANTUM_OMNI_CELL_COMPONENT_256K,
+                OCItems.QUANTUM_OMNI_CELL_COMPONENT_1M,
+                OCItems.QUANTUM_OMNI_CELL_COMPONENT_4M,
+                OCItems.QUANTUM_OMNI_CELL_COMPONENT_16M,
+                OCItems.QUANTUM_OMNI_CELL_COMPONENT_64M,
+                OCItems.QUANTUM_OMNI_CELL_COMPONENT_256M);
+        List<RegistryObject<Item>> complexComponents = List.of(
+                OCItems.COMPLEX_OMNI_CELL_COMPONENT_4K,
+                OCItems.COMPLEX_OMNI_CELL_COMPONENT_16K,
+                OCItems.COMPLEX_OMNI_CELL_COMPONENT_64K,
+                OCItems.COMPLEX_OMNI_CELL_COMPONENT_256K,
+                OCItems.COMPLEX_OMNI_CELL_COMPONENT_1M,
+                OCItems.COMPLEX_OMNI_CELL_COMPONENT_4M,
+                OCItems.COMPLEX_OMNI_CELL_COMPONENT_16M,
+                OCItems.COMPLEX_OMNI_CELL_COMPONENT_64M,
+                OCItems.COMPLEX_OMNI_CELL_COMPONENT_256M);
+        List<RegistryObject<Item>> omniComponents = List.of(
+                OCItems.OMNI_CELL_COMPONENT_4K,
+                OCItems.OMNI_CELL_COMPONENT_16K,
+                OCItems.OMNI_CELL_COMPONENT_64K,
+                OCItems.OMNI_CELL_COMPONENT_256K,
+                OCItems.OMNI_CELL_COMPONENT_1M,
+                OCItems.OMNI_CELL_COMPONENT_4M,
+                OCItems.OMNI_CELL_COMPONENT_16M,
+                OCItems.OMNI_CELL_COMPONENT_64M,
+                OCItems.OMNI_CELL_COMPONENT_256M);
+        List<RegistryObject<? extends Item>> cells = List.of(
+                OCItems.QUANTUM_OMNI_CELL_4K,
+                OCItems.QUANTUM_OMNI_CELL_16K,
+                OCItems.QUANTUM_OMNI_CELL_64K,
+                OCItems.QUANTUM_OMNI_CELL_256K,
+                OCItems.QUANTUM_OMNI_CELL_1M,
+                OCItems.QUANTUM_OMNI_CELL_4M,
+                OCItems.QUANTUM_OMNI_CELL_16M,
+                OCItems.QUANTUM_OMNI_CELL_64M,
+                OCItems.QUANTUM_OMNI_CELL_256M);
+
+        for (int i = 0; i < QUANTUM_CELL_TIERS.length; i++) {
+            String tier = QUANTUM_CELL_TIERS[i];
+            int voltageTier = QUANTUM_CELL_VOLTAGE_TIERS[i];
+
+            GTRecipeTypes.CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("quantum_omni_cell_component_" + tier))
+                    .inputItems(GTItems.CARBON_MESH, 16)
+                    .inputItems(TagPrefix.plateDense, GTMaterials.TungstenSteel, 4)
+                    .inputItems(circuitTag(voltageTier + 1), 3)
+                    .inputItems(circuitTag(voltageTier), 2)
+                    .inputItems(OCItems.MULTIDIMENSIONAL_EXPANSION_PROCESSOR)
+                    .inputFluids(EnderIOMaterials.PulsatingAlloy.getFluid(144))
+                    .outputItems(quantumComponents.get(i))
+                    .cleanroom(CleanroomType.CLEANROOM)
+                    .EUt(VA[voltageTier + 1])
+                    .duration(200)
+                    .save(provider);
+
+            GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("quantum_omni_cell_" + tier))
+                    .inputItems(OCItems.QUANTUM_OMNI_CELL_HOUSING, 1)
+                    .inputItems(quantumComponents.get(i), 1)
+                    .inputItems(complexComponents.get(i), 1)
+                    .inputItems(omniComponents.get(i), 1)
+                    .inputFluids(EnderIOMaterials.PulsatingAlloy.getFluid(144))
+                    .outputItems(cells.get(i).get())
+                    .cleanroom(CleanroomType.CLEANROOM)
+                    .EUt(VA[voltageTier])
+                    .duration(40)
+                    .save(provider);
+        }
+    }
+
+    /** 按电压等级取对应的电路标签，供元件配方复用。 */
+    private static TagKey<Item> circuitTag(int voltageTier) {
+        return switch (voltageTier) {
+            case EV -> CustomTags.EV_CIRCUITS;
+            case IV -> CustomTags.IV_CIRCUITS;
+            case LuV -> CustomTags.LuV_CIRCUITS;
+            case ZPM -> CustomTags.ZPM_CIRCUITS;
+            case UV -> CustomTags.UV_CIRCUITS;
+            case UHV -> CustomTags.UHV_CIRCUITS;
+            default -> throw new IllegalArgumentException("unsupported circuit tier " + voltageTier);
+        };
+    }
+
     public static void omniRemovals() {
         RecipeRemoval.remove(new RemoveFilter().id("ae2omnicells:charged_ender_ingot"));
         String[] standardTiers = { "1k", "4k", "16k", "64k", "256k", "1m", "4m", "16m", "64m" };
