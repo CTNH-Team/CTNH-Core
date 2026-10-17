@@ -354,6 +354,13 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("gtceu:basic_mechanism"));
         // 移除 GTCEu 默认 LV 热力离心机工作台配方，改为 CTNH 工作台配方
         remove(new RemoveFilter().id("gtceu:shaped/lv_thermal_centrifuge"));
+
+        // 移除 GTCEu 原始硅岩溶液离心分离，改走 CTNH 的化学工厂硅岩线
+        // GT 配方 id 会带上配方类型路径（recipeType.registryName.getPath() + "/" + id）
+        remove(new RemoveFilter().id("gtceu:centrifuge/impure_enriched_naquadah_solution_separation"));
+        remove(new RemoveFilter().id("gtceu:centrifuge/acidic_enriched_naquadah_separation"));
+        remove(new RemoveFilter().id("gtceu:centrifuge/impure_naquadria_solution_separation"));
+        remove(new RemoveFilter().id("gtceu:centrifuge/acidic_naquadria_separation"));
     }
 
     public static void hostilenetworksRemovals() {
