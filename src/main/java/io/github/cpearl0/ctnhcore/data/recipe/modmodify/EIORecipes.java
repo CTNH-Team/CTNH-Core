@@ -14,10 +14,8 @@ import com.gregtechceu.gtceu.common.data.GTRecipeCategories;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -70,8 +68,9 @@ public class EIORecipes {
 
         CTNHRecipeBuilder.of("soularium_ingot", ALLOY_SMELTER_RECIPES)
                 .inputItems(ingot, Gold, 1)
-                .inputItems(Ingredient.of(
-                        new TagKey<>(Registries.ITEM, ResourceLocation.tryBuild("minecraft", "soul_fire_base_blocks"))))
+                // 原版的 soul_fire_base_blocks 是方块标签（灵魂沙/灵魂土），Registries.ITEM 下的同名标签为空，
+                // 用空 Ingredient 会让这条配方永远匹配不到输入；这里直接指向标签里的两个方块物品
+                .inputItems(Ingredient.of(Items.SOUL_SAND, Items.SOUL_SOIL))
                 .outputItems(ingot, Soularium, 1)
                 .EUt(120)
                 .duration(60)
