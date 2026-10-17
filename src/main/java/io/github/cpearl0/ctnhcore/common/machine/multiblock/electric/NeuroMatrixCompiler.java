@@ -261,7 +261,7 @@ public class NeuroMatrixCompiler extends RecipeElectricMultiblockMachine impleme
     public void afterWorking() {
         turn = 0;
         super.afterWorking();
-        for (int i = 0; i <= 4; i++) {
+        for (int i = 0; i < states.size(); i++) {
             states.set(i, 0);
         }
         if (eff >= 0.9 && eff <= 1.1) {
@@ -317,10 +317,11 @@ public class NeuroMatrixCompiler extends RecipeElectricMultiblockMachine impleme
             part6 = (CompilerMachine) m6;
             part6.set_id(6);
         }
-        for (int i = 0; i <= 4; i++) {
+        // 片区 1-5 是编译舱，片区 6 是研究数据集舱，共 6 项；少建一项会让下面的
+        // states.set(5, 2) 直接越界成服务端崩溃。
+        for (int i = 0; i < 6; i++) {
             states.add(0);
             error_message.add(-1);
-
         }
         if (part2.getTier() != tiers) {
             onStructureInvalid();
@@ -384,7 +385,7 @@ public class NeuroMatrixCompiler extends RecipeElectricMultiblockMachine impleme
 
     public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
         if (machine instanceof NeuroMatrixCompiler nmachine) {
-            for (int i = 0; i <= 4; i++) {
+            for (int i = 0; i < nmachine.states.size(); i++) {
                 nmachine.states.set(i, 4);
             }
             var itemsX = recipe.getOutputContents(ItemRecipeCapability.CAP).stream()
