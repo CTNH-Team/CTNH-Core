@@ -118,7 +118,7 @@ public class SunRecipes {
                 .duration(200)
                 .save(provider);
 
-        CTNHRecipeTypes.PVB_RECIPE.recipeBuilder(CTNHCore.id("zzz"))
+        CTNHRecipeTypes.PVB_RECIPE.recipeBuilder(CTNHCore.id("clgs_electrode"))
                 .inputItems(dust, MolybdenumDisilicide)
                 .inputItems(plateDouble, SODA_DUST)
                 .inputItems(dust, Nickel, 5)
@@ -515,7 +515,8 @@ public class SunRecipes {
                 .outputItems(CTNHItems.PV_DRONE_RESEARCH_3.asStack())
                 .EUt(128)
                 .addData("cwut", 12)
-                .duration(2000000000)
+                // 研究链每级 ×10：2M(1 型) -> 20M(2 型) -> 200M(3 型)，原先多写了一个 0
+                .duration(200000000)
                 .save(provider);
     }
 
