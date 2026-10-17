@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.client.ponder.example;
 import io.github.cpearl0.ctnhcore.client.ponder.CTNHCorePonderSceneBuilder;
 
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 
@@ -138,6 +139,29 @@ public class ChemicalReactorUi {
                 "showFullUI() 会把原版 GT 的整套界面画出来，那一列配置器里的开关也能逐个套红框。")
                 .attachKeyFrame();
         scene.idle(180);
+
+        // 第九段：九宫格工具覆盖层，手持扳手对准的那一面浮出 3x3 格子，框住的是正在看的这一面；
+        // 工具图标浮在面外，标出要拿的那把工具。
+        scene.showToolGrid(machinePos, Direction.NORTH)
+                .outline(4)
+                .show(140);
+        scene.showText(80,
+                "Holding a wrench targets one face: the 3x3 grid is the rotation control, and the boxed centre cell is the face you are looking at.",
+                "手持扳手时对着的那一面会浮出九宫格：每格点下去就是把正面转到那个方向，框住的中心格就是正在看的这一面。")
+                .pointAt(util.vector().centerOf(machinePos))
+                .attachKeyFrame();
+        scene.idle(160);
+
+        // 第十段：换成软锤就不铺格子了——整面只有一个启停图标，点一下就开机或停机。
+        scene.showToolGrid(machinePos, Direction.NORTH)
+                .tool(GTToolType.SOFT_MALLET)
+                .show(140);
+        scene.showText(80,
+                "Swap the wrench for a soft mallet and the grid gives way to a single start/pause icon: one click toggles the machine.",
+                "换成软锤就不铺格子了：整面只有一个启停图标，点一下就是开机或停机。")
+                .attachKeyFrame();
+        scene.idle(160);
+
         scene.markAsFinished();
     }
 }
