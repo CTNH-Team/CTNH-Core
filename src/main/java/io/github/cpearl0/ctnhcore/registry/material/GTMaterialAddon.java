@@ -51,7 +51,6 @@ public class GTMaterialAddon {
         Dubnium.addFlags(GENERATE_FINE_WIRE);
         Rhenium.setProperty(PropertyKey.INGOT, new IngotProperty());
         Rhenium.addFlags(GENERATE_PLATE);
-        Calcium.setProperty(PropertyKey.INGOT, new IngotProperty());
         Gadolinium.setProperty(PropertyKey.DUST, new DustProperty());
         CTNHMaterials.addDust(Praseodymium);
         CTNHMaterials.addDust(Terbium);

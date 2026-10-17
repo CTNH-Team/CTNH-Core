@@ -29,8 +29,7 @@ public class AdAstraOres {
                     .dimensions(MOON)
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(3).mat(GTMaterials.Bornite).size(2, 4))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Cooperite).size(1, 1))
+                                    .layer(l -> l.weight(3).mat(GTMaterials.Cooperite).size(2, 4))
                                     .layer(l -> l.weight(2).mat(PlatinumLineMaterials.PlatinumOre).size(1, 1))
                                     .layer(l -> l.weight(1).mat(PlatinumLineMaterials.PalladiumOre).size(1, 1))))
                     .surfaceIndicatorGenerator(indicator -> indicator
