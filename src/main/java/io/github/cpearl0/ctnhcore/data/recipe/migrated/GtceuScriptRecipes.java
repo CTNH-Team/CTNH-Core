@@ -705,6 +705,13 @@ public class GtceuScriptRecipes {
         CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("moon_dust"))
                 .EUt(480).duration(500)
                 .inputItems(dust, Moonstone, 36)
+                .chancedOutput(dust, SiliconDioxide, 32, 5000, 1000)
+                .chancedOutput(dust, RareEarth, 24, 3000, 1000)
+                .chancedOutput(dust, Olivine, 16, 2000, 1000)
+                .chancedOutput(dust, Manganese, 16, 1000, 1000)
+                .chancedOutput(dust, Scheelite, 12, 800, 1000)
+                // 铂金矿粉是 CTNH 在 PlatinumLineMaterials 里注册的材质，没有 gtceu:platinum_ore_dust
+                .chancedOutput(dust, PlatinumLineMaterials.PlatinumOre, 8, 400, 1000)
                 .outputFluids(Helium3.getFluid(3600))
                 .save(provider);
 
@@ -712,6 +719,12 @@ public class GtceuScriptRecipes {
         CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("mars_dust"))
                 .EUt(1920).duration(500)
                 .inputItems(dust, Marsstone, 36)
+                .chancedOutput(dust, Hematite, 24, 5000, 1000)
+                .chancedOutput(dust, Magnesium, 12, 3000, 1000)
+                .chancedOutput(dust, Alumina, 12, 2000, 1000)
+                .chancedOutput(dust, Ruby, 12, 1000, 1000)
+                .chancedOutput(dust, Diamond, 8, 800, 1000)
+                .chancedOutput(dust, IridiumMetalResidue, 4, 400, 1000)
                 .outputFluids(Bacteria.getFluid(3600))
                 .save(provider);
 
@@ -719,6 +732,11 @@ public class GtceuScriptRecipes {
         CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("venus_dust"))
                 .EUt(6144).duration(500)
                 .inputItems(dust, Venusstone, 36)
+                .chancedOutput(dust, Carbon, 64, 5000, 1000)
+                .chancedOutput(dust, PlatinumGroupSludge, 32, 2000, 1000)
+                .chancedOutput(dust, ChromiumTrioxide, 32, 1000, 1000)
+                .chancedOutput(dust, Tungsten, 32, 800, 1000)
+                .chancedOutput(dust, ArcaneCrystal, 32, 400, 1000)
                 .outputFluids(SulfuricAcid.getFluid(3600))
                 .save(provider);
 
@@ -726,6 +744,13 @@ public class GtceuScriptRecipes {
         CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("mercury_dust"))
                 .EUt(21453).duration(500)
                 .inputItems(dust, Mercurystone, 36)
+                .chancedOutput(dust, Carbon, 64, 5000, 1000)
+                // 氧化硅岩混合物是 CTNH 的材质，原脚本写成 gtceu: 前缀查不到
+                .chancedOutput(dust, NaquadahMaterials.NaquadahOxideMixture, 36, 3000, 1000)
+                .chancedOutput(dust, Zircon, 36, 2000, 1000)
+                .chancedOutput(dustSmall, Plutonium239, 32, 1000, 100)
+                .chancedOutput(dustSmall, Uranium235, 24, 800, 100)
+                .chancedOutput(dustTiny, Naquadah, 8, 100, 500)
                 .outputFluids(Mercury.getFluid(3600))
                 .save(provider);
 
@@ -733,6 +758,12 @@ public class GtceuScriptRecipes {
         CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("glacio_dust"))
                 .EUt(122330).duration(500)
                 .inputItems(dust, Glaciostone, 36)
+                .chancedOutput(dust, Ilmenite, 64, 5000, 1000)
+                .chancedOutput(dust, NaquadahMaterials.NaquadriaOxideMixture, 48, 2000, 1000)
+                .chancedOutput(dust, Uranium235, 32, 1000, 100)
+                .chancedOutput(dust, Plutonium241, 16, 1000, 100)
+                .chancedOutput(dust, Iridium, 4, 1000, 100)
+                .chancedOutput(dust, Neutronium, 200, 100)
                 .outputFluids(Radon.getFluid(3600))
                 .save(provider);
 
