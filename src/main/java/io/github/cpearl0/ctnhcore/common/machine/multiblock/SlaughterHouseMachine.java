@@ -373,6 +373,9 @@ public class SlaughterHouseMachine extends RecipeElectricMultiblockMachine imple
 
             var lootTableId = ResourceLocation.tryBuild(mobId.getNamespace(), "entities/" + mobId.getPath());
             var lootTable = getOrCacheLootTable(server, lootTableId);
+            // 1.20.1 的 LootDataResolver#getLootTable 在表缺失时返回 LootTable.EMPTY（不是 null），
+            // 拿不到真实表就按「无掉落」处理，避免用 EMPTY 的 paramSet 去建 LootParams。
+            if (lootTable == null || lootTable == LootTable.EMPTY) continue;
             var lootParams = new LootParams.Builder(level)
                     .withParameter(LootContextParams.LAST_DAMAGE_PLAYER, fakePlayer)
                     .withParameter(LootContextParams.TOOL, hostWeapon)
@@ -455,7 +458,13 @@ public class SlaughterHouseMachine extends RecipeElectricMultiblockMachine imple
     @Override
     public void addDisplayText(@NotNull List<Component> textList) {
         super.addDisplayText(textList);
-        var mobName = mobList.stream().map(mob -> EntityType.byString(mob).get().getDescription().getString()).toList();
+        // mobList 来自刷怪笼 NBT，可能残留无法解析的 id；解析失败时回退显示原始字符串，
+        // 不能对 Optional 直接 get()，否则打开面板就抛 NoSuchElementException。
+        var mobName = mobList.stream()
+                .map(mob -> EntityType.byString(mob)
+                        .map(type -> type.getDescription().getString())
+                        .orElse(mob))
+                .toList();
         textList.add(textList.size(),
                 slaughterHouseInfoMobcount.translate(mobList.size(), mobName));
     }
