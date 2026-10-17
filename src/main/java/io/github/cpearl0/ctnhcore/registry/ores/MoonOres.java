@@ -18,7 +18,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import static com.gregtechceu.gtceu.api.data.worldgen.generator.indicators.SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE;
 import static io.github.cpearl0.ctnhcore.registry.CTNHOres.create;
 import static io.github.cpearl0.ctnhcore.registry.CTNHWorlds.MOON;
 
@@ -52,10 +51,7 @@ public final class MoonOres {
                                         .layer(l -> l.weight(3).mat(GTMaterials.Bornite).size(2, 4))
                                         .layer(l -> l.weight(2).mat(GTMaterials.Cooperite).size(1, 1))
                                         .layer(l -> l.weight(2).mat(PlatinumLineMaterials.PlatinumOre).size(1, 1))
-                                        .layer(l -> l.weight(1).mat(PlatinumLineMaterials.PalladiumOre).size(1, 1))))
-                        .surfaceIndicatorGenerator(indicator -> indicator
-                                .surfaceRock(PlatinumLineMaterials.PlatinumOre)
-                                .placement(ABOVE).density(0.4F).radius(5)));
+                                        .layer(l -> l.weight(1).mat(PlatinumLineMaterials.PalladiumOre).size(1, 1)))));
 
         create("phosphate_vein", "Phosphate Vein", "磷酸盐矿脉",
                 vein -> vein.clusterSize(30)
@@ -67,10 +63,7 @@ public final class MoonOres {
                                 .buildLayerPattern(pattern -> pattern
                                         .layer(l -> l.weight(3).mat(GTMaterials.Apatite).size(2, 4))
                                         .layer(l -> l.weight(2).mat(GTMaterials.TricalciumPhosphate).size(1, 3))
-                                        .layer(l -> l.weight(2).mat(CTNHMaterials.TrisodiumPhosphate).size(1, 2))))
-                        .surfaceIndicatorGenerator(indicator -> indicator
-                                .surfaceRock(CTNHMaterials.TrisodiumPhosphate)
-                                .placement(ABOVE).density(0.4F).radius(5)));
+                                        .layer(l -> l.weight(2).mat(CTNHMaterials.TrisodiumPhosphate).size(1, 2)))));
 
         create("bauxite_vein", "Moon Bauxite Vein", "月球铝土矿脉",
                 vein -> vein.clusterSize(36)
@@ -82,10 +75,7 @@ public final class MoonOres {
                                 .buildLayerPattern(pattern -> pattern
                                         .layer(l -> l.weight(2).mat(GTMaterials.Bauxite).size(1, 4))
                                         .layer(l -> l.weight(1).mat(GTMaterials.Ilmenite).size(1, 2))
-                                        .layer(l -> l.weight(1).mat(CTNHMaterials.Alumina).size(1, 1))))
-                        .surfaceIndicatorGenerator(indicator -> indicator
-                                .surfaceRock(GTMaterials.Bauxite)
-                                .placement(ABOVE).density(0.4F).radius(5)));
+                                        .layer(l -> l.weight(1).mat(CTNHMaterials.Alumina).size(1, 1)))));
 
         create("ilmenite_vein", "Ilmenite Vein", "钛铁矿脉",
                 vein -> vein.clusterSize(24)
@@ -99,10 +89,7 @@ public final class MoonOres {
                                         .layer(l -> l.weight(3).mat(GTMaterials.Ilmenite).size(1, 4))
                                         .layer(l -> l.weight(2).mat(GTMaterials.Chromite).size(1, 4))
                                         .layer(l -> l.weight(2).mat(GTMaterials.Uvarovite).size(1, 2))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Perlite).size(1, 1))))
-                        .surfaceIndicatorGenerator(indicator -> indicator
-                                .surfaceRock(GTMaterials.Ilmenite)
-                                .placement(ABOVE).density(0.4F).radius(5)));
+                                        .layer(l -> l.weight(1).mat(GTMaterials.Perlite).size(1, 1)))));
 
         create("desh_vein_ad", "Moon Desh Vein", "月球戴斯矿脉",
                 vein -> vein.clusterSize(24)
@@ -113,10 +100,7 @@ public final class MoonOres {
                         .layeredVeinGenerator(generator -> generator
                                 .buildLayerPattern(pattern -> pattern
                                         .layer(l -> l.weight(3).mat(AdastraMaterials.Desh).size(2, 3))
-                                        .layer(l -> l.weight(1).mat(CTNHMaterials.ArcaneCrystal).size(1, 2))))
-                        .surfaceIndicatorGenerator(indicator -> indicator
-                                .surfaceRock(AdastraMaterials.Desh)
-                                .placement(ABOVE).density(0.4F).radius(5)));
+                                        .layer(l -> l.weight(1).mat(CTNHMaterials.ArcaneCrystal).size(1, 2)))));
 
         create("monazite_vein_moon", "Moon Monazite Vein", "月球独居石矿脉",
                 vein -> vein.clusterSize(24)
@@ -128,10 +112,7 @@ public final class MoonOres {
                                 .buildLayerPattern(pattern -> pattern
                                         .layer(l -> l.weight(3).mat(GTMaterials.Bastnasite).size(2, 4))
                                         .layer(l -> l.weight(1).mat(GTMaterials.Monazite).size(1, 1))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Neodymium).size(1, 1))))
-                        .surfaceIndicatorGenerator(indicator -> indicator
-                                .surfaceRock(GTMaterials.Monazite)
-                                .placement(ABOVE).density(0.4F).radius(5)));
+                                        .layer(l -> l.weight(1).mat(GTMaterials.Neodymium).size(1, 1)))));
 
         create("quartzite_vein_moon", "Moon Quartzite Vein", "月球石英岩矿脉",
                 vein -> vein.clusterSize(24)
@@ -143,10 +124,7 @@ public final class MoonOres {
                                 .buildLayerPattern(pattern -> pattern
                                         .layer(l -> l.weight(3).mat(GTMaterials.Quartzite).size(2, 4))
                                         .layer(l -> l.weight(3).mat(GTMaterials.Barite).size(2, 4))
-                                        .layer(l -> l.weight(3).mat(GTMaterials.CertusQuartz).size(2, 4))))
-                        .surfaceIndicatorGenerator(indicator -> indicator
-                                .surfaceRock(GTMaterials.Quartzite)
-                                .placement(ABOVE).density(0.4F).radius(5)));
+                                        .layer(l -> l.weight(3).mat(GTMaterials.CertusQuartz).size(2, 4)))));
 
         create("molybdenum_vein_moon", "Moon Molybdenite Vein", "月球辉钼矿脉",
                 vein -> vein.clusterSize(25)
@@ -159,10 +137,7 @@ public final class MoonOres {
                                         .layer(l -> l.weight(3).mat(GTMaterials.Wulfenite).size(2, 4))
                                         .layer(l -> l.weight(2).mat(GTMaterials.Molybdenite).size(1, 1))
                                         .layer(l -> l.weight(1).mat(GTMaterials.Molybdenum).size(1, 1))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Powellite).size(1, 1))))
-                        .surfaceIndicatorGenerator(indicator -> indicator
-                                .surfaceRock(GTMaterials.Molybdenite)
-                                .placement(ABOVE).density(0.4F).radius(5)));
+                                        .layer(l -> l.weight(1).mat(GTMaterials.Powellite).size(1, 1)))));
 
         create("galena_vein_moon", "Moon Galena Vein", "月球方铅矿脉",
                 vein -> vein.clusterSize(30)
@@ -174,10 +149,7 @@ public final class MoonOres {
                                 .buildLayerPattern(pattern -> pattern
                                         .layer(l -> l.weight(3).mat(GTMaterials.Galena).size(2, 4))
                                         .layer(l -> l.weight(2).mat(GTMaterials.Silver).size(1, 1))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Lead).size(1, 1))))
-                        .surfaceIndicatorGenerator(indicator -> indicator
-                                .surfaceRock(GTMaterials.Galena)
-                                .placement(ABOVE).density(0.4F).radius(5)));
+                                        .layer(l -> l.weight(1).mat(GTMaterials.Lead).size(1, 1)))));
 
         create("copper_vein_moon", "Moon Copper Vein", "月球铜矿脉",
                 vein -> vein.clusterSize(36)
@@ -190,10 +162,7 @@ public final class MoonOres {
                                         .layer(l -> l.weight(2).mat(GTMaterials.Chalcopyrite).size(2, 3))
                                         .layer(l -> l.weight(1).mat(GTMaterials.Iron).size(1, 2))
                                         .layer(l -> l.weight(1).mat(GTMaterials.Pyrite).size(1, 2))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Copper).size(1, 2))))
-                        .surfaceIndicatorGenerator(indicator -> indicator
-                                .surfaceRock(GTMaterials.Chalcopyrite)
-                                .placement(ABOVE).density(0.4F).radius(5)));
+                                        .layer(l -> l.weight(1).mat(GTMaterials.Copper).size(1, 2)))));
 
         create("cassiterite_vein_moon", "Moon Cassiterite Vein", "月球锡石矿脉",
                 vein -> vein.clusterSize(36)
@@ -204,9 +173,6 @@ public final class MoonOres {
                         .layeredVeinGenerator(generator -> generator
                                 .buildLayerPattern(pattern -> pattern
                                         .layer(l -> l.weight(3).mat(GTMaterials.Tin).size(2, 3))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Cassiterite).size(1, 2))))
-                        .surfaceIndicatorGenerator(indicator -> indicator
-                                .surfaceRock(GTMaterials.Cassiterite)
-                                .placement(ABOVE).density(0.4F).radius(5)));
+                                        .layer(l -> l.weight(1).mat(GTMaterials.Cassiterite).size(1, 2)))));
     }
 }

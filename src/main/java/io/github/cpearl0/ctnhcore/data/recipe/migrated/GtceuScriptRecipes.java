@@ -61,6 +61,7 @@ import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static io.github.cpearl0.ctnhcore.data.materials.AviationFabricMaterials.*;
+import static io.github.cpearl0.ctnhcore.data.materials.StonePowderMaterials.DEGASSED_MOON_STONE;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHItems.*;
 import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
@@ -702,10 +703,11 @@ public class GtceuScriptRecipes {
                 .outputItems(dust, PlatinumSludgeResidue)
                 .save(provider);
 
-        // 19. moon_dust: 36x moon_stone_dust -> chanced outputs + helium_3 3600. EUt 480, dur 500
+        // 19. Moonstone degassing: retain the solid minerals and recover helium-3 at HV.
         CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("moon_dust"))
-                .EUt(480).duration(500)
+                .EUt(GTValues.VA[GTValues.HV]).duration(500)
                 .inputItems(dust, Moonstone, 36)
+                .outputItems(dust, DEGASSED_MOON_STONE, 36)
                 .outputFluids(Helium3.getFluid(3600))
                 .save(provider);
 

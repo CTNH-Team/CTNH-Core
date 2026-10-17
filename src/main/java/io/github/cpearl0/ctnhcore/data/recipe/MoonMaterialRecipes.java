@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import io.github.cpearl0.ctnhcore.data.materials.StonePowderMaterials;
+
 import com.gregtechceu.gtceu.api.data.chemical.material.ItemMaterialData;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.ItemMaterialInfo;
@@ -20,7 +22,7 @@ import static com.ctnh.ctnhastral.registry.worldgen.MoonBlocks.*;
 import static com.gregtechceu.gtceu.api.GTValues.M;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
-/** Bind existing lunar blocks to GT's stone families and material recycling, without per-block recipes. */
+/** Lunar stone families and material recycling. */
 public class MoonMaterialRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
@@ -40,10 +42,10 @@ public class MoonMaterialRecipes {
                         .material(Moonstone).registerAllMaterialInfo().build(),
                 new StoneTypeEntry.Builder("ctnhastral", "ctnhastral_moon_anorthosite")
                         .stone(MOON_ANORTHOSITE.asItem()).crackedStone(MOON_BROKEN_ANORTHOSITE.asItem())
-                        .material(Stone).registerAllMaterialInfo().build(),
+                        .material(StonePowderMaterials.MOON_ANORTHOSITE).registerAllMaterialInfo().build(),
                 new StoneTypeEntry.Builder("ctnhastral", "ctnhastral_moon_broken_anorthosite")
                         .stone(MOON_BROKEN_ANORTHOSITE.asItem()).smeltStone(MOON_ANORTHOSITE.asItem())
-                        .material(Stone).registerAllMaterialInfo().build(),
+                        .material(StonePowderMaterials.MOON_ANORTHOSITE).registerAllMaterialInfo().build(),
                 new StoneTypeEntry.Builder("ctnhastral", "ctnhastral_silicon_crust")
                         .stone(SILICON_CRUST.asItem()).crackedStone(SILICON_GRAVEL.asItem())
                         .material(SiliconDioxide).registerAllMaterialInfo().build())) {
@@ -52,7 +54,7 @@ public class MoonMaterialRecipes {
         }
 
         material(MOON_SAND, Moonstone, M);
-        material(SILICON_BRECCIA, Stone, M);
+        material(SILICON_BRECCIA, Moonstone, M);
         for (var block : List.of(MOONLIGHT_SAND, SILICON_GRAVEL, SILICON_CRYSTAL)) {
             material(block, SiliconDioxide, M);
         }
@@ -66,6 +68,8 @@ public class MoonMaterialRecipes {
         ItemMaterialData.registerMaterialInfo(LUMINOUS_MOON_SAND, new ItemMaterialInfo(
                 new MaterialStack(SiliconDioxide, M), new MaterialStack(Glowstone, M)));
         ItemMaterialData.registerMaterialInfo(MOONLIGHT_CRYSTAL, new ItemMaterialInfo(
+                new MaterialStack(SiliconDioxide, 4 * M), new MaterialStack(Glowstone, 4 * M)));
+        ItemMaterialData.registerMaterialInfo(LAYERED_MOONLIGHT_CRYSTAL, new ItemMaterialInfo(
                 new MaterialStack(SiliconDioxide, 4 * M), new MaterialStack(Glowstone, 4 * M)));
 
         // Use the same Ice material as vanilla ice. Its dust already has GT extraction/heating recipes.

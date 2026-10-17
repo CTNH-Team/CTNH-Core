@@ -44,6 +44,7 @@
     "vintageimprovements.LatheMovingBlockMixin"
   ],
   "client": [
+    "ftbchunks.ColorMapLoaderMixin",
     "legendarysurvival.ClientTemperatureEffectsMixin",
     "creatediesel.DistillationCategoryMixin",
     "emi.JemiRecipeMixin",

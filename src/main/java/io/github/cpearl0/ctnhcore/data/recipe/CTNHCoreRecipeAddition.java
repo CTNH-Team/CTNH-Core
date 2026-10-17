@@ -35,6 +35,7 @@ public class CTNHCoreRecipeAddition {
 
         OreProcessingRecipes.init(provider);
         MoonMaterialRecipes.init(provider);
+        MoonBrineChain.init(provider);
         UnderfloorHeatingSystemRecipes.init(provider);
         AstronomicalObservatoryRecipes.init(provider);
         PersonalComputerRecipes.init(provider);
