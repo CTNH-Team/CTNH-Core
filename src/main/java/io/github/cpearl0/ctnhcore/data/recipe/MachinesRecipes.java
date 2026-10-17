@@ -44,7 +44,6 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.machines.GTResearchMachines.OBJECT_HOLDER;
 import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.*;
 import static com.gregtechceu.gtceu.data.recipe.misc.MetaTileEntityLoader.registerMachineRecipe;
-import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR;
 import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.*;
 import static twilightforest.init.TFItems.STEELEAF_INGOT;
@@ -139,19 +138,22 @@ public class MachinesRecipes {
                 .outputItems(FERTILIZER, 16)
                 .save(provider);
 
-        CTNHRecipeTypes.ARC_REACTOR.recipeBuilder(CTNHCore.id("test_1"))
+        // 电弧反应堆的基准运行配方：本身没有输入输出，电弧强度在 afterWorking 里结算
+        CTNHRecipeTypes.ARC_REACTOR.recipeBuilder(CTNHCore.id("arc_reactor_arc_generation"))
                 .EUt(8192)
                 .duration(20)
                 .circuitMeta(1)
                 .save(provider);
 
-        CTNHRecipeTypes.VOID_MINER.recipeBuilder(CTNHCore.id("void"))
+        // 虚空采矿机的基准运行配方：矿物产出由 onWorking 的温度/流体逻辑结算，这里只承载 EU 与时长
+        CTNHRecipeTypes.VOID_MINER.recipeBuilder(CTNHCore.id("void_miner_base_operation"))
                 .EUt(32678 * 64)
                 .duration(20 * 100)
                 .circuitMeta(1)
                 .save(provider);
 
-        CTNHRecipeTypes.PVDRONE.recipeBuilder(CTNHCore.id("blank"))
+        // 光伏无人机的基准运行配方：扫描结果由机器逻辑写入，这里只承载基础运行参数
+        CTNHRecipeTypes.PVDRONE.recipeBuilder(CTNHCore.id("pv_drone_baseline"))
                 .duration(100)
                 .circuitMeta(1)
                 .save(provider);
@@ -238,17 +240,11 @@ public class MachinesRecipes {
                 .cleanroom(CleanroomType.CLEANROOM)
                 .duration(400).EUt(90).save(provider);
 
-        PHOTOVOLTAIC_GENERATOR.recipeBuilder(CTNHCore.id("test_3"))
+        // 光伏发电机的基准发电配方：EUt 会被 recipeModifier 按光照与温度重算，这里的 -1 只是占位
+        PHOTOVOLTAIC_GENERATOR.recipeBuilder(CTNHCore.id("photovoltaic_generator_sunlight"))
                 .duration(20)
                 .EUt(-1)
                 .circuitMeta(1)
-                .save(provider);
-
-        PHOTOVOLTAIC_ASSEMBER.recipeBuilder(CTNHCore.id("test_4"))
-                .duration(20)
-                // .EUt(-1)
-                .circuitMeta(1)
-                .addData("input", 32678)
                 .save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("drone_holder"))
