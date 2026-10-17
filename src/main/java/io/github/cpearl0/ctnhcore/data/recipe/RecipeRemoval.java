@@ -337,6 +337,7 @@ public class RecipeRemoval {
     }
 
     public static void gtceuRemovals() {
+        // 移除 GTCEu 原始 ULV 机器外壳配方，替代品是 MachinesRecipes 里的 ctnhcore:shaped/crafttable/ulv_machine_hull
         remove(new RemoveFilter().id("gtceu:shaped/ulv_machine_hull"));
         remove(new RemoveFilter().id("gtceu:shaped/small_gear_andesite_alloy"));
         remove(new RemoveFilter().id("gtceu:shaped/gear_andesite_alloy"));

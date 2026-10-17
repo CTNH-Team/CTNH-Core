@@ -24,7 +24,6 @@ import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluids;
@@ -67,9 +66,10 @@ public class MachinesRecipes {
                 CTNHBlocks.CASING_NAQUADAH_BLOCK.asStack(), 'P',
                 new MaterialEntry(TagPrefix.pipeNormalFluid, GTMaterials.NaquadahAlloy));
 
-        // 覆写 ULV 机器外壳：原版橡木木板改为木板 tag
-        VanillaRecipeHelper.addShapedRecipe(provider, false,
-                ResourceLocation.fromNamespaceAndPath("gtceu", "shaped/ulv_machine_hull"),
+        // 覆写 ULV 机器外壳：原版橡木木板改为木板 tag。
+        // VanillaRecipeHelper 自己会给 id 补 "shaped/" 前缀，所以这里只能传不带前缀的路径；
+        // 也不能沿用 gtceu 命名空间，否则会和 RecipeRemoval.gtceuRemovals() 删掉的原始 id 撞在一起。
+        VanillaRecipeHelper.addShapedRecipe(provider, false, CTNHCore.id("crafttable/ulv_machine_hull"),
                 GTMachines.HULL[ULV].asStack(),
                 "PLP", "CHC",
                 'P', ItemTags.PLANKS,
