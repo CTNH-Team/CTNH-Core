@@ -135,7 +135,8 @@ public class DigitalMinerLogic extends WorkLogic {
         super(machine);
         this.miner = (IDigitalMiner) machine;
         this.silk = silk;
-        this.speed = speed;
+        // speed 在 serverTick 里被当作取模除数，0 会直接抛 ArithmeticException，这里兜底
+        this.speed = Math.max(1, speed);
         this.currentRadius = maximumRadius;
         this.maximumRadius = maximumRadius;
         this.isDone = false;
