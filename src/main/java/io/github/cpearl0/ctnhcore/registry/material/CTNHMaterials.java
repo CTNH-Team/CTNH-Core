@@ -63,7 +63,14 @@ public class CTNHMaterials {
 
     public static void addOre(Material... materials) {
         materials[0].setProperty(PropertyKey.ORE, new OreProperty());
-        if (materials.length == 2 && materials[1] != null) {
+        if (materials.length == 2) {
+            if (materials[1] == null) {
+                // 伴生矿的静态字段此刻还没被赋值，说明 init() 的调用顺序错了；直接报错而不是静默丢掉直熔/伴生/分离产物
+                CTNHCore.LOGGER.error(
+                        "addOre({}) passed a null companion material, check the init order of the material classes",
+                        materials[0].getName());
+                return;
+            }
             var oreProperty = materials[0].getProperty(PropertyKey.ORE);
             oreProperty.setDirectSmeltResult(materials[1]);
             oreProperty.setOreByProducts(materials[1]);
@@ -961,10 +968,12 @@ public class CTNHMaterials {
                 .secondaryColor(0x33342c).iconSet(MaterialIconSet.RADIOACTIVE).appendFlags(GTMaterials.EXT_METAL)
                 .element(CTNHElements.Th232).buildAndRegister();
 
+        // NaquadahMaterials 必须先于 AdastraMaterials：后者的 addOre 直接把这里的
+        // EnrichedNaquadahOxideMixture / NaquadriaOxideMixture 当伴生矿传入，字段在 init() 里才赋值
+        NaquadahMaterials.init();
         AdastraMaterials.init();
         SecondMaterials.init();
         PlatinumLineMaterials.init();
-        NaquadahMaterials.init();
         BrineChain.init();
         EnderIOMaterials.init();
         GoldChainMaterials.init();
