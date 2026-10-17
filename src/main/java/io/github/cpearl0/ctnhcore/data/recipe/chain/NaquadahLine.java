@@ -24,17 +24,8 @@ import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
 public class NaquadahLine {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        removeOriginalRecipes(provider);
+        // 原始 GTCEu 的四条溶液离心配方由 RecipeRemoval.gtceuRemovals() 按 id 删除，不能靠塞空配方冒充删除
         registerSiliconProcess(provider);
-    }
-
-    /* ==== 配方移除组 ==== */
-    public static void removeOriginalRecipes(Consumer<FinishedRecipe> provider) {
-        // 离心机配方移除
-        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("remove_impure_enriched_naquadah")).save(provider);
-        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("remove_acidic_enriched_naquadah")).save(provider);
-        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("remove_impure_naquadria")).save(provider);
-        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("remove_acidic_naquadria")).save(provider);
     }
 
     /* ==== 硅岩处理配方组 ==== */
