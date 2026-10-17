@@ -50,6 +50,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 @Mod.EventBusSubscriber(modid = CTNHCore.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class AsyncRtpManager {
@@ -107,6 +109,12 @@ public final class AsyncRtpManager {
      * (already-tried chunks, world-border rejects, RTP_EVENT vetoes).
      */
     private static final int MAX_RESAMPLE = 128;
+
+    /**
+     * Upper bound on one FULL chunk request. A future that never completes would otherwise hold
+     * a {@link #MAX_GLOBAL_IN_FLIGHT} slot forever and stall /rtp for every player.
+     */
+    private static final long CHUNK_TIMEOUT_SECONDS = 30L;
 
     private static final Map<UUID, Search> SEARCHES = new HashMap<>();
 
@@ -257,9 +265,13 @@ public final class AsyncRtpManager {
      * A load ticket ({@link TicketType#PLUGIN}, level {@link #CHUNK_TICKET_LEVEL}) is placed
      * first so the holder stays alive while it generates; without one, the holder created by
      * the private {@code getChunkFutureMainThread} path can be unloaded again before the FULL
-     * future completes (observed as 100% ChunkLoadingFailure). The future is then requested on
-     * the next tick - {@link MinecraftServer#execute} drains its queue once per tick, so the
-     * double submit runs one tick later, by which time the ticket has taken effect.
+     * future completes (observed as 100% ChunkLoadingFailure). A ticket takes effect immediately,
+     * so the future is requested in the same tick.
+     * <p>
+     * The chunk future usually completes on a chunk I/O thread, therefore the ticket release is
+     * bounced back to the server thread: {@code search.tickets} and the distance manager are
+     * server-thread-only state. A request that never completes is capped by
+     * {@link #CHUNK_TIMEOUT_SECONDS} so it cannot hold a global in-flight slot forever.
      * All chunk generation runs on the server thread; nothing here blocks it.
      */
     private static CompletableFuture<Either<ChunkAccess, ChunkHolder.ChunkLoadingFailure>> requestChunk(
@@ -273,23 +285,30 @@ public final class AsyncRtpManager {
 
         CompletableFuture<Either<ChunkAccess, ChunkHolder.ChunkLoadingFailure>> result = new CompletableFuture<>();
         MinecraftServer server = level.getServer();
-        server.execute(() -> server.execute(() -> {
+        server.execute(() -> {
             try {
                 ((ServerChunkCacheAccessor) (Object) cache).ctnhcore$getChunkFutureMainThread(
                         chunkPos.x, chunkPos.z, ChunkStatus.FULL, true)
-                        .whenComplete((either, error) -> {
+                        .orTimeout(CHUNK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                        .whenComplete((either, error) -> server.execute(() -> {
                             releaseChunkTicket(search, level, chunkPos);
                             if (error != null) {
+                                if (error instanceof TimeoutException ||
+                                        error.getCause() instanceof TimeoutException) {
+                                    CTNHCore.LOGGER.warn(
+                                            "[RTP] Chunk ({}, {}) did not finish loading within {}s, dropping this candidate",
+                                            chunkPos.x, chunkPos.z, CHUNK_TIMEOUT_SECONDS);
+                                }
                                 result.completeExceptionally(error);
                             } else {
                                 result.complete(either);
                             }
-                        });
+                        }));
             } catch (Throwable t) {
                 releaseChunkTicket(search, level, chunkPos);
                 result.completeExceptionally(t);
             }
-        }));
+        });
         return result;
     }
 

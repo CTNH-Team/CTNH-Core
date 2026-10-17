@@ -178,8 +178,9 @@ public class DigitalMiner extends WorkableTieredMachine implements IDigitalMiner
 
     @Override
     protected WorkLogic createWorkLogic(Object... args) {
+        // 40 / 2^tier 在 tier >= 6 时会取整成 0，而 speed 是 serverTick 里的取模除数，至少保留 1
         return new DigitalMinerLogic(this, getRange(getTier()), 0, 256, 0, null,
-                1, (int) (40 / Math.pow(2, getTier())));
+                1, Math.max(1, (int) (40 / Math.pow(2, getTier()))));
     }
 
     @Override
