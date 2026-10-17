@@ -71,10 +71,15 @@ public class WetWareLineMaterials {
                 .buildAndRegister();
         BIO_FLEXIBLE = REGISTRATE.material(CTNHCore.id("bio_flexible"))
                 .cnlang("生物柔性材质")
+                .dust()
+                .ingot()
                 .color(0x8AFF70)
                 // .components(POLYPYRROLE, 1, BLUE_TITANIUM_ALLOY, 1)
+                // GENERATE_FINE_WIRE 需要 INGOT 属性，并要求 FOIL / PLATE 标记链
                 .flags(
                         NO_SMELTING,
+                        GENERATE_PLATE,
+                        GENERATE_FOIL,
                         GENERATE_FINE_WIRE)
                 // .cableProperties(32768, 8, 1)
                 .buildAndRegister();
