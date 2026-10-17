@@ -117,6 +117,26 @@ public class CTNHConfig {
     @EN("Mechanical Pressor stress consumption")
     public static Lang configOptionPressorStressRequirement;
 
+    @Key("config.ctnhcore.option.rtp")
+    @CN("随机传送")
+    @EN("Random Teleport")
+    public static Lang configOptionRtp;
+
+    @Key("config.ctnhcore.option.rtpFallbackConcurrency")
+    @CN("随机传送：兜底扫描并发上限")
+    @EN("Random Teleport fallback scan concurrency")
+    public static Lang configOptionRtpFallbackConcurrency;
+
+    @Key("config.ctnhcore.option.rtpMaxGlobalInFlight")
+    @CN("随机传送：全局并发上限")
+    @EN("Random Teleport global concurrency cap")
+    public static Lang configOptionRtpMaxGlobalInFlight;
+
+    @Key("config.ctnhcore.option.rtpWindowSize")
+    @CN("随机传送：单个搜索并发上限")
+    @EN("Random Teleport per-search concurrency")
+    public static Lang configOptionRtpWindowSize;
+
     @Key("config.ctnhcore.option.sifterRpmRequirement")
     @CN("机械筛选厂最低转速需求")
     @EN("Mechanical Sifter minimum RPM")
@@ -196,12 +216,40 @@ public class CTNHConfig {
     @Configurable
     @Configurable.Comment("Mechanical Machine's Buffer")
     public Kinetic kinetic = new Kinetic();
+    @Configurable
+    @Configurable.Comment("Random Teleport (/rtp)")
+    public Rtp rtp = new Rtp();
 
     public static class FTBPlugin {
 
         @Configurable
         @Configurable.Comment({ "Enable FTBUltimine on GregTech Ores", "Default: false" })
         public boolean enableFTBUltimineOnGTOres = false;
+    }
+
+    public static class Rtp {
+
+        // 字段名即 lang 键名（config.ctnhcore.option.<字段名>），加 rtp 前缀避免与其它组重名
+        @Configurable
+        @Configurable.Comment({
+                "How many candidate chunks a single /rtp search keeps generating at the same time",
+                "Higher shortens the wait but piles more chunk generation into the same server tick",
+                "Default: 2" })
+        @Configurable.Range(min = 1, max = 8)
+        public int rtpWindowSize = 2;
+        @Configurable
+        @Configurable.Comment({
+                "Global cap on concurrent chunk requests across every player using /rtp",
+                "Raise it only if the server can absorb that much chunk generation",
+                "Default: 4" })
+        @Configurable.Range(min = 1, max = 32)
+        public int rtpMaxGlobalInFlight = 4;
+        @Configurable
+        @Configurable.Comment({
+                "How many fallback neighbour chunks the 3x3 scan generates at once",
+                "Default: 2" })
+        @Configurable.Range(min = 1, max = 8)
+        public int rtpFallbackConcurrency = 2;
     }
 
     public static class Kinetic {
