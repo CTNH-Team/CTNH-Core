@@ -1077,6 +1077,8 @@
   "ctnhcore.ponder.tag.ctnhponder.description": "CTNHCore机器思索",
   "ctnhcore.ponder.tag.mechanical_multiblock": "机械多方块机器",
   "ctnhcore.ponder.tag.mechanical_multiblock.description": "CTNH机械多方块机器思索",
+  "ctnhcore.ponder.tag.misc": "杂项",
+  "ctnhcore.ponder.tag.misc.description": "杂项思索：游戏技巧",
   "ctnhcore.ponder.wrench_usage.header": "扳手的用法",
   "ctnhcore.ponder.wrench_usage.text_1": "使用扳手右键四个角会将自动输出口调整到机器后方",
   "ctnhcore.ponder.wrench_usage.text_2": "当使用扳手右键上方时，会将自动输出口调整到机器上方",

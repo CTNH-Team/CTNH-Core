@@ -1025,6 +1025,8 @@
   "ctnhcore.ponder.tag.ctnhponder.description": "CTNH Electric Machine Ponders",
   "ctnhcore.ponder.tag.mechanical_multiblock": "Mechanical Multiblock",
   "ctnhcore.ponder.tag.mechanical_multiblock.description": "Ponders on CTNH mechanical multiblock machines",
+  "ctnhcore.ponder.tag.misc": "Miscellaneous",
+  "ctnhcore.ponder.tag.misc.description": "Ponders on odds and ends: game tips and tricks",
   "ctnhcore.ponder.wrench_usage.header": "Using a Wrench",
   "ctnhcore.ponder.wrench_usage.text_1": "Right-clicking any of the four corners with a wrench moves the auto-output side to the back of the machine.",
   "ctnhcore.ponder.wrench_usage.text_2": "Right-clicking the upper cell with a wrench moves the auto-output side to the top of the machine.",

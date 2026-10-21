@@ -47,7 +47,9 @@
     "eclipticseasons.BakedQuadRetexturedAndReUVMixin",
     "eclipticseasons.BakedQuadRetexturedMixin",
     "eclipticseasons.SnowyBakedModelWrapperOffsetMixin",
-    "eclipticseasons.SnowySeasonBakeModelMixin"
+    "eclipticseasons.SnowySeasonBakeModelMixin",
+    "ponder.PonderUIPreviousScreenMixin",
+    "ponder.PonderUISpeederMixin"
   ],
   "mixinextras": {
     "minVersion": "0.5.0"
