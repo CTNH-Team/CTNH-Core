@@ -140,14 +140,12 @@ public class ChemicalReactorUi {
                 .attachKeyFrame();
         scene.idle(180);
 
-        // 第九段：九宫格工具覆盖层，手持扳手对准的那一面浮出 3x3 格子，框住的是正在看的这一面；
-        // 工具图标浮在面外，标出要拿的那把工具。
+        // 第九段：手持扳手对准的那一面浮出九宫格，亮着的是正对这一面的中心格。
         scene.showToolGrid(machinePos, Direction.NORTH)
-                .outline(4)
                 .show(140);
         scene.showText(80,
-                "Holding a wrench targets one face: the 3x3 grid is the rotation control, and the boxed centre cell is the face you are looking at.",
-                "手持扳手时对着的那一面会浮出九宫格：每格点下去就是把正面转到那个方向，框住的中心格就是正在看的这一面。")
+                "Holding a wrench targets one face: the 3x3 grid is the rotation control, and the lit centre cell is the face you are looking at.",
+                "手持扳手时对着的那一面会浮出九宫格：每格点下去就是把正面转到那个方向，亮着的中心格就是正在看的这一面。")
                 .pointAt(util.vector().centerOf(machinePos))
                 .attachKeyFrame();
         scene.idle(160);

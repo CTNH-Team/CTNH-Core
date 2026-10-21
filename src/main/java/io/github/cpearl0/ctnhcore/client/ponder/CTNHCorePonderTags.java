@@ -5,7 +5,11 @@ import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.Mechanical;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 
+import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import com.gregtechceu.gtceu.common.data.GTItems;
+import com.gregtechceu.gtceu.common.data.GTMachines;
+import com.gregtechceu.gtceu.common.data.GTMaterialItems;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 
 import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;
@@ -20,6 +24,7 @@ public final class CTNHCorePonderTags {
     public static final ResourceLocation MechanicalMultiblock = ResourceLocation.tryBuild(CTNHCore.MODID,
             "mechanical_multiblock");
     public static final ResourceLocation CTNHPonder = ResourceLocation.tryBuild(CTNHCore.MODID, "ctnhponder");
+    public static final ResourceLocation Misc = ResourceLocation.tryBuild(CTNHCore.MODID, "misc");
 
     public static void register(PonderTagRegistrationHelper<ResourceLocation> helper) {
         CTNHPonderTagHelper.registerTag(REGISTRATE, helper, MechanicalMultiblock,
@@ -36,12 +41,23 @@ public final class CTNHCorePonderTags {
                 .item(GTItems.COVER_WIRELESS_TRANSMITTER.asItem(), true, false)
                 .register();
 
+        CTNHPonderTagHelper.registerTag(REGISTRATE, helper, Misc,
+                "Miscellaneous", "杂项",
+                "Ponders on odds and ends: game tips and tricks", "杂项思索：游戏技巧")
+                .addToIndex()
+                .item(GTMaterialItems.TOOL_ITEMS.get(GTMaterials.Iron, GTToolType.WRENCH), true, false)
+                .register();
+
         helper.addToTag(MechanicalMultiblock)
                 .add(Mechanical.MECHANICAL_PRESSOR.getId())
                 .add(Mechanical.MECHANICAL_MIXER.getId())
                 .add(Mechanical.MECHANICAL_CENTRIFUGE.getId())
                 .add(Mechanical.MECHANICAL_SIFTER.getId())
                 .add(Mechanical.MECHANICAL_LATHE.getId());
+
+        helper.addToTag(Misc)
+                .add(GTMachines.STEEL_DRUM.getId())
+                .add(GTMaterialItems.TOOL_ITEMS.get(GTMaterials.Iron, GTToolType.WRENCH).getId());
 
         helper.addToTag(CTNHPonder)
                 .add(GTMultiMachines.COKE_OVEN.getId())

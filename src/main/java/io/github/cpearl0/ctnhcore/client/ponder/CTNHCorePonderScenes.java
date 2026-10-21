@@ -7,12 +7,16 @@ import io.github.cpearl0.ctnhcore.client.ponder.Electric.CokeOven;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.NeutronActivator;
 import io.github.cpearl0.ctnhcore.client.ponder.Kinetic.*;
 import io.github.cpearl0.ctnhcore.client.ponder.Misc.Drum;
+import io.github.cpearl0.ctnhcore.client.ponder.Misc.WrenchUsage;
 import io.github.cpearl0.ctnhcore.client.ponder.example.ChemicalReactorUi;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.GTNNMultiblocks;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import com.gregtechceu.gtceu.common.data.GTMachines;
+import com.gregtechceu.gtceu.common.data.GTMaterialItems;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
@@ -34,7 +38,7 @@ public final class CTNHCorePonderScenes {
                 GTMachines.GOLD_DRUM.getId(),
                 GTMachines.TITANIUM_DRUM.getId(),
                 GTMachines.TUNGSTENSTEEL_DRUM.getId())
-                .addStoryBoard("drum/common", Drum::Common, CTNHCorePonderTags.CTNHPonder);
+                .addStoryBoard("drum/common", Drum::Common, CTNHCorePonderTags.Misc);
 
         helper.forComponents(GTMultiMachines.COKE_OVEN.getId())
                 .addStoryBoard("coke_oven/common", CokeOven::Common, CTNHCorePonderTags.CTNHPonder);
@@ -53,6 +57,9 @@ public final class CTNHCorePonderScenes {
 
         helper.forComponents(GTNNMultiblocks.CHEMICAL_PLANT.getId())
                 .addStoryBoard("chemical_plant/common", ChemicalPlant::Common, CTNHCorePonderTags.CTNHPonder);
+
+        helper.forComponents(GTMaterialItems.TOOL_ITEMS.get(GTMaterials.Iron, GTToolType.WRENCH).getId())
+                .addStoryBoard("wrench/common", WrenchUsage::Common, CTNHCorePonderTags.Misc);
 
         helper.forComponents(ResourceLocation.fromNamespaceAndPath("jackseconomy", "mechanical_exporter"))
                 .addStoryBoard("mechanicalexporter/common", MechanicalExporter::Common, CTNHCorePonderTags.CTNHPonder);
