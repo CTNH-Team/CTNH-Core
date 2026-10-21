@@ -731,31 +731,77 @@ public class CTNHItems {
             .cnlang("保温装置")
             .lang("Temperature Keeping Device")
             .register();
-    public static ItemEntry<Item> ECHO_CIRCUIT_BOARD = REGISTRATE
-            .item("echo_circuit_board", Item::new)
+
+    @CN("增生之板")
+    @EN("Proliferative plate")
+    public static Lang echoCircuitBoardTooltip;
+
+    public static ItemEntry<ComponentItem> ECHO_CIRCUIT_BOARD = REGISTRATE
+            .item("echo_circuit_board", ComponentItem::create)
             .cnlang("回响电路板")
             .lang("Echo Circuit Board")
+            .onRegister(attach(new TooltipBehavior(
+                    list -> {
+                        list.add(echoCircuitBoardTooltip.translate().withStyle(ChatFormatting.GRAY));
+                    })))
             .register();
-    public static ItemEntry<Item> ECHO_PRINTED_CIRCUIT_BOARD = REGISTRATE
-            .item("echo_printed_circuit_board", Item::new)
+    public static ItemEntry<ComponentItem> ECHO_PRINTED_CIRCUIT_BOARD = REGISTRATE
+            .item("echo_printed_circuit_board", ComponentItem::create)
             .cnlang("回响印制电路板")
             .lang("Echo Printed Circuit Board")
+            .onRegister(attach(new TooltipBehavior(
+                    list -> {
+                        list.add(echoCircuitBoardTooltip.translate().withStyle(ChatFormatting.GRAY));
+                    })))
             .register();
+
+    @CN("你听到了吗？")
+    @EN("Do you hear that?")
+    public static Lang echoProcessorTooltip;
+    @CN("它在嗡嗡响...")
+    @EN("It’s humming...")
+    public static Lang echoProcessorAssemblyTooltip;
+    @CN("回响在蔓延...")
+    @EN("Echoes are spreading...")
+    public static Lang echoProcessorComputerTooltip;
+    @CN("尖啸，震耳欲聋")
+    @EN("Shrike, Deafening")
+    public static Lang echoProcessorMainframeTooltip;
+
+    @CN("ZPM级电路板")
+    @EN("ZPM Tier Circuit")
+    public static Lang zpmTierCircuitTooltip;
+    @CN("UV级电路板")
+    @EN("UV Tier Circuit")
+    public static Lang uvTierCircuitTooltip;
+    @CN("UHV级电路板")
+    @EN("UHV Tier Circuit")
+    public static Lang uhvTierCircuitTooltip;
+    @CN("UEV级电路板")
+    @EN("UEV Tier Circuit")
+    public static Lang uevTierCircuitTooltip;
+
     public static ItemEntry<ComponentItem> ECHO_PROCESSOR = REGISTRATE
             .item("echo_processor", ComponentItem::create)
             .cnlang("回响处理器")
             .lang("Echo Processor")
             .tag(CustomTags.ZPM_CIRCUITS)
             .onRegister(attach(new TooltipBehavior(
-                    list -> list.add(Component.literal("ZPM级电路板").withStyle(ChatFormatting.DARK_AQUA)))))
+                    list -> {
+                        list.add(echoProcessorTooltip.translate().withStyle(ChatFormatting.GRAY));
+                        list.add(zpmTierCircuitTooltip.translate().withStyle(ChatFormatting.DARK_AQUA));
+                    })))
             .register();
     public static ItemEntry<ComponentItem> ECHO_PROCESSOR_ASSEMBLY = REGISTRATE
             .item("echo_processor_assembly", ComponentItem::create)
-            .cnlang("回响处理器装配")
+            .cnlang("回响处理器集群")
             .lang("Echo Processor Assembly")
             .tag(CustomTags.UV_CIRCUITS)
             .onRegister(attach(new TooltipBehavior(
-                    list -> list.add(Component.literal("UV级电路板").withStyle(ChatFormatting.DARK_AQUA)))))
+                    list -> {
+                        list.add(echoProcessorAssemblyTooltip.translate().withStyle(ChatFormatting.GRAY));
+                        list.add(uvTierCircuitTooltip.translate().withStyle(ChatFormatting.DARK_AQUA));
+                    })))
             .register();
     public static ItemEntry<ComponentItem> ECHO_PROCESSOR_COMPUTER = REGISTRATE
             .item("echo_processor_computer", ComponentItem::create)
@@ -763,7 +809,10 @@ public class CTNHItems {
             .lang("Echo Processor Computer")
             .tag(CustomTags.UHV_CIRCUITS)
             .onRegister(attach(new TooltipBehavior(
-                    list -> list.add(Component.literal("UHV级电路板").withStyle(ChatFormatting.DARK_AQUA)))))
+                    list -> {
+                        list.add(echoProcessorComputerTooltip.translate().withStyle(ChatFormatting.GRAY));
+                        list.add(uhvTierCircuitTooltip.translate().withStyle(ChatFormatting.DARK_AQUA));
+                    })))
             .register();
     public static ItemEntry<ComponentItem> ECHO_PROCESSOR_MAINFRAME = REGISTRATE
             .item("echo_processor_mainframe", ComponentItem::create)
@@ -771,7 +820,10 @@ public class CTNHItems {
             .lang("Echo Processor Mainframe")
             .tag(CustomTags.UEV_CIRCUITS)
             .onRegister(attach(new TooltipBehavior(
-                    list -> list.add(Component.literal("UEV级电路板").withStyle(ChatFormatting.DARK_AQUA)))))
+                    list -> {
+                        list.add(echoProcessorMainframeTooltip.translate().withStyle(ChatFormatting.GRAY));
+                        list.add(uevTierCircuitTooltip.translate().withStyle(ChatFormatting.DARK_AQUA));
+                    })))
             .register();
 
     @CN("模块化位处理器")
