@@ -49,7 +49,7 @@ public class TwilightForestOres {
                     .heightRangeUniform(-30, 20)
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
-                                    // .layer(l -> l.weight(2).mat(CTNHMaterials.SteelLeaf).size(2, 4))
+                                    .layer(l -> l.weight(2).mat(CTNHMaterials.SteelLeaf).size(2, 4))
                                     .layer(l -> l.weight(1).mat(GTMaterials.Apatite).size(2, 4))
                                     .layer(l -> l.weight(1).mat(GTMaterials.Pyrochlore).size(2, 4))))
                     .surfaceIndicatorGenerator(indicator -> indicator
@@ -71,8 +71,8 @@ public class TwilightForestOres {
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.Apatite).size(2, 4))
                                     .layer(l -> l.weight(2).mat(GTMaterials.Coal).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Graphite))))
-                    // .layer(l -> l.weight(1).mat(CTNHMaterials.SpiritAsh).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Graphite))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.SpiritAsh).size(1, 1))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Apatite)));
 
@@ -91,8 +91,8 @@ public class TwilightForestOres {
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(3).mat(GTMaterials.Cinnabar).size(2, 4))
                                     .layer(l -> l.weight(2).mat(GTMaterials.Galena))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Saltpeter))))
-                    // .layer(l -> l.weight(1).mat(CTNHMaterials.ToxicSwampAmber).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Saltpeter))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.ToxicSwampAmber).size(1, 1))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Cinnabar)));
 
@@ -112,8 +112,8 @@ public class TwilightForestOres {
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.Pyrite).size(2, 4))
                                     .layer(l -> l.weight(2).mat(GTMaterials.VanadiumMagnetite).size(2, 4))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Tantalite).size(2, 4))))
-                    // .layer(l -> l.weight(1).mat(CTNHMaterials.IllusionIron).size(1, 1))
+                                    .layer(l -> l.weight(2).mat(GTMaterials.Tantalite).size(2, 4))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.IllusionIron).size(1, 1))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.VanadiumMagnetite)));
 
@@ -132,8 +132,8 @@ public class TwilightForestOres {
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.Electrotine).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Lapis))))
-                    // .layer(l -> l.weight(1).mat(CTNHMaterials.PolarIceCore).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Lapis))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.PolarIceCore).size(1, 1))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Lapis)));
 
@@ -153,8 +153,8 @@ public class TwilightForestOres {
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.Hematite).size(2, 4))
                                     .layer(l -> l.weight(1).mat(GTMaterials.Ruby))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Pyrochlore))))
-                    // .layer(l -> l.weight(1).mat(CTNHMaterials.Dragonflame).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Pyrochlore))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.Dragonflame).size(1, 1))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Ruby)));
 
@@ -174,8 +174,8 @@ public class TwilightForestOres {
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(3).mat(GTMaterials.Stibnite).size(2, 4))
                                     .layer(l -> l.weight(2).mat(GTMaterials.Antimony))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Silver))))
-                    // .layer(l -> l.weight(1).mat(CTNHMaterials.EclipseShadow).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Silver))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.EclipseShadow).size(1, 1))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Stibnite)));
 
@@ -194,9 +194,8 @@ public class TwilightForestOres {
                     .layeredVeinGenerator(generator -> generator
                             .buildLayerPattern(pattern -> pattern
                                     .layer(l -> l.weight(2).mat(GTMaterials.Gold).size(2, 4))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Diamond).size(2, 4))))
-                    // .layer(l -> l.weight(1).mat(CTNHMaterials.EclipseShadow).size(1, 1))
-                    // .layer(l -> l.weight(1).mat(CTNHMaterials.LightningPattern).size(1, 1))
+                                    .layer(l -> l.weight(2).mat(GTMaterials.Diamond).size(2, 4))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.LightningPattern).size(1, 1))))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Diamond)));
 

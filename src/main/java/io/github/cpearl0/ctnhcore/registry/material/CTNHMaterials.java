@@ -263,7 +263,6 @@ public class CTNHMaterials {
                 .cnlang("神圣石")
                 .dust()
                 .color(0xababab).secondaryColor(0x757575).iconSet(ROUGH)
-                .flags(DECOMPOSITION_BY_CENTRIFUGING)
                 .buildAndRegister();
 
         Zanite = REGISTRATE.material(CTNHCore.id("zanite"))
@@ -827,7 +826,7 @@ public class CTNHMaterials {
                 .buildAndRegister();
         MeteoricTroilite = REGISTRATE.material(CTNHCore.id("meteoric_troilite"))
                 .cnlang("陨硫铁镍")
-                .ore()
+                .dust().ore()
                 .color(0x696969).secondaryColor(0x2F4F4F)
                 .iconSet(METALLIC)
                 .flags(DECOMPOSITION_BY_ELECTROLYZING)
@@ -853,7 +852,7 @@ public class CTNHMaterials {
                 .buildAndRegister();
         Cerite = REGISTRATE.material(CTNHCore.id("cerite"))
                 .cnlang("铈硅石")
-                .ore()
+                .dust().ore()
                 .color(0xE6D8AD).secondaryColor(0xC9B37E)
                 .iconSet(ROUGH)
                 .flags(DECOMPOSITION_BY_CENTRIFUGING)
@@ -871,7 +870,7 @@ public class CTNHMaterials {
                 .buildAndRegister();
         GadoliniteSm = REGISTRATE.material(CTNHCore.id("gadolinite_sm"))
                 .cnlang("钐硅铍钇")
-                .ore()
+                .dust().ore()
                 .color(0x2F4F4F).secondaryColor(0x1E3D3D)
                 .iconSet(DULL)
                 .components(Samarium, 1, Iron, 1, Beryllium, 1, Silicon, 2, Oxygen, 8)
@@ -879,7 +878,7 @@ public class CTNHMaterials {
                 .buildAndRegister();
         Sperrylite = REGISTRATE.material(CTNHCore.id("sperrylite"))
                 .cnlang("砷铂")
-                .ore()
+                .dust().ore()
                 .color(0x8B8B83).secondaryColor(0x696969)
                 .iconSet(SHINY)
                 .components(Platinum, 1, Arsenic, 2)
@@ -887,7 +886,7 @@ public class CTNHMaterials {
                 .buildAndRegister();
         Wolframite = REGISTRATE.material(CTNHCore.id("wolframite"))
                 .cnlang("黑钨")
-                .ore()
+                .dust().ore()
                 .color(0x4B3A26).secondaryColor(0x2F1B0C)
                 .iconSet(DULL)
                 .components(Iron, 1, Manganese, 1, Tungsten, 1, Oxygen, 4)
@@ -896,7 +895,7 @@ public class CTNHMaterials {
                 .buildAndRegister();
         Germanite = REGISTRATE.material(CTNHCore.id("germanite"))
                 .cnlang("锗镓")
-                .ore()
+                .dust().ore()
                 .color(0x708090).secondaryColor(0x2F4F4F)
                 .iconSet(METALLIC)
                 .components(Copper, 3, Germanium, 1, Gallium, 1, Sulfur, 4)
@@ -904,7 +903,7 @@ public class CTNHMaterials {
                 .buildAndRegister();
         Bismuthinite = REGISTRATE.material(CTNHCore.id("bismuthinite"))
                 .cnlang("辉铋")
-                .ore()
+                .dust().ore()
                 .color(0x9C9C9C).secondaryColor(0x7A7A7A)
                 .iconSet(METALLIC)
                 .components(Bismuth, 2, Sulfur, 3)
@@ -912,7 +911,7 @@ public class CTNHMaterials {
                 .buildAndRegister();
         Yttrofluorite = REGISTRATE.material(CTNHCore.id("yttrofluorite"))
                 .cnlang("钇萤石")
-                .ore()
+                .dust().ore()
                 .color(0x77DD77).secondaryColor(0x50C878)
                 .iconSet(OPAL)
                 .components(Calcium, 1, Yttrium, 1, Fluorine, 4)
@@ -920,7 +919,7 @@ public class CTNHMaterials {
                 .buildAndRegister();
         Tarkianite = REGISTRATE.material(CTNHCore.id("tarkianite"))
                 .cnlang("铼钼")
-                .ore()
+                .dust().ore()
                 .color(0x4682B4).secondaryColor(0x1E90FF)
                 .iconSet(SHINY)
                 .components(Rhenium, 1, Molybdenum, 1, Sulfur, 4)
@@ -929,7 +928,7 @@ public class CTNHMaterials {
                 .buildAndRegister();
         Crocoite = REGISTRATE.material(CTNHCore.id("crocoite"))
                 .cnlang("红铬铅")
-                .ore()
+                .dust().ore()
                 .color(0xD22B2B).secondaryColor(0x8B0000)
                 .iconSet(RUBY)
                 .components(Lead, 1, Chromium, 1, Oxygen, 4)
@@ -937,7 +936,7 @@ public class CTNHMaterials {
                 .buildAndRegister();
         Smithsonite = REGISTRATE.material(CTNHCore.id("smithsonite"))
                 .cnlang("菱锌")
-                .ore()
+                .dust().ore()
                 .color(0x7FFFD4).secondaryColor(0x66CDAA)
                 .iconSet(OPAL)
                 .components(Zinc, 1, Carbon, 1, Oxygen, 3)
@@ -945,7 +944,7 @@ public class CTNHMaterials {
                 .buildAndRegister();
         Roquesite = REGISTRATE.material(CTNHCore.id("roquesite"))
                 .cnlang("铜铟")
-                .ore()
+                .dust().ore()
                 .color(0x9370DB).secondaryColor(0x8A2BE2)
                 .iconSet(SHINY)
                 .components(Copper, 1, Indium, 1, Sulfur, 2)
@@ -953,7 +952,7 @@ public class CTNHMaterials {
                 .buildAndRegister();
         Rheniite = REGISTRATE.material(CTNHCore.id("rheniite"))
                 .cnlang("辉铼")
-                .ore()
+                .dust().ore()
                 .color(0xA9A9A9).secondaryColor(0x808080)
                 .iconSet(METALLIC)
                 .components(Rhenium, 1, Sulfur, 2)
