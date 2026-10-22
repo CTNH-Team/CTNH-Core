@@ -162,7 +162,8 @@ public class SpacePhotovoltaicBaseStation extends RecipeElectricMultiblockMachin
                 var input = recipe.data.getInt("input");
                 var duration = 1.0;
                 var true_eut = pmachine.muti * pmachine.heat * 131072 + EUt;
-                var parallel = Math.max((true_eut / input), 0.01); // 真实并行
+                // 真实并行。配方漏写 input 时 getInt 返回 0，浮点除零得 Infinity，(int) 收窄成 Integer.MAX_VALUE，并行基数与时长倍率会一起失真
+                var parallel = input > 0 ? Math.max(true_eut / input, 0.01) : 1.0;
                 if (parallel < 1) {
                     duration = 1 / (parallel * parallel);
                     parallel = 1;
