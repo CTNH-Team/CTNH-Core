@@ -54,14 +54,6 @@ import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.CREATIVE
 @Suffix("tooltip")
 public class CTNHItems {
 
-    @CN("更好的随机存取存储器")
-    @EN("Advanced Random Access Memory")
-    public static Lang advancedRamChipTooltip;
-
-    @CN("更好的内存原料")
-    @EN("Enhanced RAM Wafer")
-    public static Lang advancedRamWaferTooltip;
-
     @Key("ctnh.item.dyson_tier1")
     @CN("集成性光伏无人机蜂群")
     @EN("Integrated Photovoltaic Drone Swarm")
@@ -605,11 +597,21 @@ public class CTNHItems {
             .properties(properties -> properties.rarity(Rarity.RARE))
             .register();
 
+    @CN("更好的内存原料")
+    @EN("Enhanced Raw Memory")
+    public static Lang advancedRamWaferTooltip;
+
+    @CN("更好的随机存取存储器")
+    @EN("Enhanced Random Access Memory")
+    public static Lang advancedRamChipTooltip;
+
     public static ItemEntry<ComponentItem> ADVANCED_RAM_WAFER = REGISTRATE
             .item("advanced_ram_wafer", ComponentItem::create)
             .cnlang("进阶RAM晶圆")
             .lang("Advanced Ram Wafer")
             .properties(p -> new Item.Properties().rarity(Rarity.UNCOMMON))
+            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov,
+                    CTNHCore.id("item/chips/advanced_ram_wafer")))
             .onRegister(attach(new TooltipBehavior(list -> {
                 list.add(advancedRamWaferTooltip.translate().withStyle(ChatFormatting.YELLOW));
             })))
@@ -619,56 +621,103 @@ public class CTNHItems {
             .cnlang("进阶RAM芯片")
             .lang("Advanced Ram Chip")
             .properties(p -> new Item.Properties().rarity(Rarity.UNCOMMON))
+            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov,
+                    CTNHCore.id("item/chips/advanced_ram_chip")))
             .onRegister(attach(new TooltipBehavior(list -> {
                 list.add(advancedRamChipTooltip.translate().withStyle(ChatFormatting.YELLOW));
             })))
             .register();
-    public static ItemEntry<Item> BSC_CHIP = REGISTRATE
-            .item("bsc_chip", Item::new)
+
+    @CN("位片处理器原料")
+    @EN("Raw Bit Slice Coprocessor")
+    public static Lang bscWaferTooltip;
+
+    @CN("位片协处理器")
+    @EN("Bit Slice Coprocessor")
+    public static Lang bscChipTooltip;
+
+    public static ItemEntry<ComponentItem> BSC_WAFER = REGISTRATE
+            .item("bsc_wafer", ComponentItem::create)
+            .cnlang("BSC晶圆")
+            .lang("BSC Waferr")
+            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov,
+                    CTNHCore.id("item/chips/bsc_wafer")))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(bscWaferTooltip.translate().withStyle(ChatFormatting.GRAY));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> BSC_CHIP = REGISTRATE
+            .item("bsc_chip", ComponentItem::create)
             .cnlang("BSC芯片")
             .lang("BSC Chip")
-            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov, CTNHCore.id("item/chips/bsc_chip")))
+            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov,
+                    CTNHCore.id("item/chips/bsc_chip")))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(bscChipTooltip.translate().withStyle(ChatFormatting.GRAY));
+            })))
             .register();
-    public static ItemEntry<Item> BSC_WAFER = REGISTRATE
-            .item("bsc_wafer", Item::new)
-            .cnlang("BSC晶圆")
-            .lang("BSC Wafer")
-            .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov, CTNHCore.id("item/chips/bsc_wafer")))
-            .register();
-    public static ItemEntry<Item> BSC_WAFER_MASKED = REGISTRATE
-            .item("bsc_wafer_rubber_masked", Item::new)
+    
+    public static ItemEntry<ComponentItem> BSC_WAFER_MASKED = REGISTRATE
+            .item("bsc_wafer_rubber_masked", ComponentItem::create)
             .cnlang("橡胶掩膜的BSC晶圆")
             .lang("Rubber-masked BSC Wafer")
             .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov,
                     CTNHCore.id("item/chips/bsc_wafer_rubber_masked")))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(bscWaferTooltip.translate().withStyle(ChatFormatting.GRAY));
+            })))
             .register();
-    public static ItemEntry<Item> LPIC_WAFER_MASKED = REGISTRATE
-            .item("lpic_wafer_rubber_masked", Item::new)
+
+    @CN("低功率集成电路原料")
+    @EN("Raw Low Power Circuit")
+    public static Lang lpicWaferTooltip;
+
+    @CN("内存原料")
+    @EN("Raw Memory")
+    public static Lang ramWaferTooltip;
+
+    @CN("简易电路原料")
+    @EN("Raw Simple Circuit")
+    public static Lang ssocWaferTooltip;
+
+    public static ItemEntry<ComponentItem> LPIC_WAFER_MASKED = REGISTRATE
+            .item("lpic_wafer_rubber_masked", ComponentItem::create)
             .cnlang("橡胶掩膜的LPIC晶圆")
             .lang("Rubber-masked LPIC Wafer")
             .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov,
                     CTNHCore.id("item/chips/lpic_wafer_rubber_masked")))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(lpicWaferTooltip.translate().withStyle(ChatFormatting.GRAY));
+            })))
             .register();
-    public static ItemEntry<Item> RAM_WAFER_MASKED = REGISTRATE
-            .item("ram_wafer_rubber_masked", Item::new)
+    public static ItemEntry<ComponentItem> RAM_WAFER_MASKED = REGISTRATE
+            .item("ram_wafer_rubber_masked", ComponentItem::create)
             .cnlang("橡胶掩膜的RAM晶圆")
             .lang("Rubber-masked RAM Wafer")
             .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov,
                     CTNHCore.id("item/chips/ram_wafer_rubber_masked")))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(ramWaferTooltip.translate().withStyle(ChatFormatting.GRAY));
+            })))
             .register();
-    public static ItemEntry<Item> SSOC_WAFER_RUBBER_MASKED = REGISTRATE
-            .item("ssoc_wafer_rubber_masked", Item::new)
+    public static ItemEntry<ComponentItem> SSOC_WAFER_RUBBER_MASKED = REGISTRATE
+            .item("ssoc_wafer_rubber_masked", ComponentItem::create)
             .cnlang("橡胶掩膜的简易SoC晶圆")
             .lang("Rubber-masked Simple SoC Wafer")
             .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov,
                     CTNHCore.id("item/chips/ssoc_wafer_rubber_masked")))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(ssocWaferTooltip.translate().withStyle(ChatFormatting.GRAY));
+            })))
             .register();
-    public static ItemEntry<Item> RUBBER_MASKED_SILICON_WAFER = REGISTRATE
-            .item("rubber_masked_silicon_wafer", Item::new)
+
+    public static ItemEntry<ComponentItem> RUBBER_MASKED_SILICON_WAFER = REGISTRATE
+            .item("rubber_masked_silicon_wafer", ComponentItem::create)
             .cnlang("橡胶掩膜的硅晶圆")
             .lang("Rubber-masked Silicon Wafer")
             .model((ctx, prov) -> GTModels.createTextureModel(ctx, prov, GTCEu.id("item/naquadah_wafer")))
             .register();
+
     public static ItemEntry<ComponentItem> PRIMARY_STEW = REGISTRATE
             .item("primary_stew", ComponentItem::create)
             .cnlang("初级煲")
@@ -738,7 +787,7 @@ public class CTNHItems {
 
     public static ItemEntry<ComponentItem> ECHO_CIRCUIT_BOARD = REGISTRATE
             .item("echo_circuit_board", ComponentItem::create)
-            .cnlang("回响电路板")
+            .cnlang("回响电路基板")
             .lang("Echo Circuit Board")
             .onRegister(attach(new TooltipBehavior(
                     list -> {
@@ -747,7 +796,7 @@ public class CTNHItems {
             .register();
     public static ItemEntry<ComponentItem> ECHO_PRINTED_CIRCUIT_BOARD = REGISTRATE
             .item("echo_printed_circuit_board", ComponentItem::create)
-            .cnlang("回响印制电路板")
+            .cnlang("回响印刷电路基板")
             .lang("Echo Printed Circuit Board")
             .onRegister(attach(new TooltipBehavior(
                     list -> {
@@ -826,9 +875,35 @@ public class CTNHItems {
                     })))
             .register();
 
+    @CN("特化型基板")
+    @EN("A Special Board")
+    public static Lang specialPlasticCircuitBoardTooltip;
+    @CN("特种电路基板")
+    @EN("A Special Circuit Board")
+    public static Lang specialPlasticPrintedCircuitBoardTooltip;
+
+    public static ItemEntry<ComponentItem> SPECIAL_PLASTIC_CIRCUIT_BOARD = REGISTRATE
+            .item("special_plastic_circuit_board", ComponentItem::create)
+            .cnlang("特种塑料电路基板")
+            .lang("Special Plastic Circuit Board")
+            .onRegister(attach(new TooltipBehavior(
+                    list -> {
+                        list.add(specialPlasticCircuitBoardTooltip.translate().withStyle(ChatFormatting.GRAY));
+                    })))
+            .register();
+    public static ItemEntry<ComponentItem> SPECIAL_PLASTIC_PRINTED_CIRCUIT_BOARD = REGISTRATE
+            .item("special_plastic_printed_circuit_board", ComponentItem::create)
+            .cnlang("特种塑料印刷电路基板")
+            .lang("Special Plastic Printed Circuit Board")
+            .onRegister(attach(new TooltipBehavior(
+                    list -> {
+                        list.add(specialPlasticPrintedCircuitBoardTooltip.translate().withStyle(ChatFormatting.GRAY));
+                    })))
+            .register();
+
     @CN("模块化位处理器")
     @EN("Modular Bit Processor")
-    public static Lang modularBitProcessorTooltip;
+    public static Lang precisionCircuitTooltip;
 
     @CN("LV级电路板")
     @EN("LV Tier Circuit")
@@ -843,16 +918,6 @@ public class CTNHItems {
     @EN("EV Tier Circuit")
     public static Lang evTierCircuitTooltip;
 
-    public static ItemEntry<Item> SPECIAL_PLASTIC_CIRCUIT_BOARD = REGISTRATE
-            .item("special_plastic_circuit_board", Item::new)
-            .cnlang("特种塑料电路基板")
-            .lang("Special Plastic Circuit Board")
-            .register();
-    public static ItemEntry<Item> SPECIAL_PLASTIC_PRINTED_CIRCUIT_BOARD = REGISTRATE
-            .item("special_plastic_printed_circuit_board", Item::new)
-            .cnlang("特种塑料印刷电路基板")
-            .lang("Special Plastic Printed Circuit Board")
-            .register();
     public static ItemEntry<ComponentItem> PRECISION_CIRCUIT = REGISTRATE
             .item("precision_circuit", ComponentItem::create)
             .cnlang("精密电路")
@@ -860,7 +925,7 @@ public class CTNHItems {
             .tag(CustomTags.LV_CIRCUITS)
             .onRegister(attach(new TooltipBehavior(
                     list -> {
-                        list.add(modularBitProcessorTooltip.translate().withStyle(ChatFormatting.GRAY));
+                        list.add(precisionCircuitTooltip.translate().withStyle(ChatFormatting.GRAY));
                         list.add(lvTierCircuitTooltip.translate().withStyle(style -> style.withColor(0x8B4513)));
                     })))
             .register();
@@ -871,7 +936,7 @@ public class CTNHItems {
             .tag(CustomTags.MV_CIRCUITS)
             .onRegister(attach(new TooltipBehavior(
                     list -> {
-                        list.add(modularBitProcessorTooltip.translate().withStyle(ChatFormatting.GRAY));
+                        list.add(precisionCircuitTooltip.translate().withStyle(ChatFormatting.GRAY));
                         list.add(mvTierCircuitTooltip.translate().withStyle(style -> style.withColor(0x8B4513)));
                     })))
             .register();
@@ -882,7 +947,7 @@ public class CTNHItems {
             .tag(CustomTags.HV_CIRCUITS)
             .onRegister(attach(new TooltipBehavior(
                     list -> {
-                        list.add(modularBitProcessorTooltip.translate().withStyle(ChatFormatting.GRAY));
+                        list.add(precisionCircuitTooltip.translate().withStyle(ChatFormatting.GRAY));
                         list.add(hvTierCircuitTooltip.translate().withStyle(style -> style.withColor(0x8B4513)));
                     })))
             .register();
@@ -893,7 +958,7 @@ public class CTNHItems {
             .tag(CustomTags.EV_CIRCUITS)
             .onRegister(attach(new TooltipBehavior(
                     list -> {
-                        list.add(modularBitProcessorTooltip.translate().withStyle(ChatFormatting.GRAY));
+                        list.add(precisionCircuitTooltip.translate().withStyle(ChatFormatting.GRAY));
                         list.add(evTierCircuitTooltip.translate().withStyle(style -> style.withColor(0x8B4513)));
                     })))
             .register();
