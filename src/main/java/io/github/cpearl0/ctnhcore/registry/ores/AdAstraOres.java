@@ -16,95 +16,6 @@ import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.*;
 
 public class AdAstraOres {
 
-    // ==================== Moon ====================
-
-    public static GTOreDefinition SHELDONITE_VEIN_MOON = create("sheldonite_vein_moon",
-            "Moon Sheldonite Vein",
-            "月球谢尔顿矿脉",
-            vein -> vein.clusterSize(40)
-                    .density(0.3F)
-                    .weight(40)
-                    .layer(CTNHWorldgenLayers.ADASTRA)
-                    .heightRangeUniform(5, 50)
-                    .dimensions(MOON)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(3).mat(GTMaterials.Bornite).size(2, 4))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Cooperite).size(1, 1))
-                                    .layer(l -> l.weight(2).mat(PlatinumLineMaterials.PlatinumOre).size(1, 1))
-                                    .layer(l -> l.weight(1).mat(PlatinumLineMaterials.PalladiumOre).size(1, 1))))
-                    .surfaceIndicatorGenerator(indicator -> indicator
-                            .surfaceRock(PlatinumLineMaterials.PlatinumOre)
-                            .placement(ABOVE)
-                            .density(0.4F)
-                            .radius(5)));
-
-    public static GTOreDefinition PHOSPHATE_VEIN = create("phosphate_vein",
-            "Phosphate Vein",
-            "磷酸盐矿脉",
-            vein -> vein.weight(40)
-                    .clusterSize(30)
-                    .density(0.30F)
-                    .discardChanceOnAirExposure(0)
-                    .layer(CTNHWorldgenLayers.ADASTRA)
-                    .dimensions(MOON)
-                    .heightRangeUniform(-20, 50)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(3).mat(GTMaterials.Apatite).size(2, 4))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.TricalciumPhosphate).size(1, 3))
-                                    .layer(l -> l.weight(2).mat(CTNHMaterials.TrisodiumPhosphate).size(1, 2))))
-                    .surfaceIndicatorGenerator(indicator -> indicator
-                            .surfaceRock(CTNHMaterials.TrisodiumPhosphate)
-                            .placement(ABOVE)
-                            .density(0.4F)
-                            .radius(5)));
-
-    public static final GTOreDefinition BAUXITE_VEIN = create("bauxite_vein",
-            "Moon Bauxite Vein",
-            "月球铝土矿脉",
-            vein -> {
-                vein.clusterSize(36).weight(80).layer(CTNHWorldgenLayers.ADASTRA).density(0.3f).dimensions(MOON)
-                        .heightRangeUniform(10, 80).discardChanceOnAirExposure(0f)
-                        .layeredVeinGenerator(generator -> {
-                            generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(2).mat(GTMaterials.Bauxite).size(1, 4))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Ilmenite).size(1, 2))
-                                        .layer(l -> l.weight(1).mat(CTNHMaterials.Alumina).size(1, 1));
-                            });
-                        });
-            });
-
-    public static final GTOreDefinition ILMENITE_VEIN = create("ilmenite_vein",
-            "Ilmenite Vein",
-            "钛铁矿脉",
-            vein -> {
-                vein.clusterSize(24).weight(16).layer(CTNHWorldgenLayers.ADASTRA).density(0.2f).dimensions(MOON)
-                        .heightRangeUniform(-70, 10).discardChanceOnAirExposure(0f)
-                        .layeredVeinGenerator(generator -> {
-                            generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(3).mat(GTMaterials.Ilmenite).size(1, 4))
-                                        .layer(l -> l.weight(2).mat(GTMaterials.Chromite).size(1, 4))
-                                        .layer(l -> l.weight(2).mat(GTMaterials.Uvarovite).size(1, 2))
-                                        .layer(l -> l.weight(1).mat(GTMaterials.Perlite).size(1, 1));
-                            });
-                        });
-            });
-
-    public static final GTOreDefinition DESH_VEIN_AD = create("desh_vein_ad",
-            "Moon Desh Vein",
-            "月球戴斯矿脉",
-            vein -> {
-                vein.clusterSize(24).weight(30).layer(CTNHWorldgenLayers.ADASTRA).density(0.3f).dimensions(MOON)
-                        .heightRangeUniform(5, 40).discardChanceOnAirExposure(0f)
-                        .layeredVeinGenerator(generator -> {
-                            generator.buildLayerPattern(pattern -> {
-                                pattern.layer(l -> l.weight(3).mat(AdastraMaterials.Desh).size(2, 3))
-                                        .layer(l -> l.weight(1).mat(ArcaneCrystal).size(1, 2));
-                            });
-                        });
-            });
-
     // ==================== Mars ====================
 
     public static final GTOreDefinition OSTRUM_VEIN_AD = create("ostrum_vein_ad",
@@ -517,7 +428,7 @@ public class AdAstraOres {
             "月球独居石矿脉",
             vein -> {
                 vein.clusterSize(24).weight(30).layer(CTNHWorldgenLayers.ADASTRA).density(0.2f)
-                        .dimensions(MOON, VENUS, GLACIO).heightRangeUniform(20, 40)
+                        .dimensions(VENUS, GLACIO).heightRangeUniform(20, 40)
                         .discardChanceOnAirExposure(0f).layeredVeinGenerator(generator -> {
                             generator.buildLayerPattern(pattern -> {
                                 pattern.layer(l -> l.weight(3).mat(GTMaterials.Bastnasite).size(2, 4))
@@ -532,7 +443,7 @@ public class AdAstraOres {
             "石英岩矿脉",
             vein -> {
                 vein.clusterSize(24).weight(20).layer(CTNHWorldgenLayers.ADASTRA).density(0.3f)
-                        .dimensions(MOON, MARS, VENUS).heightRangeUniform(30, 80)
+                        .dimensions(MARS, VENUS).heightRangeUniform(30, 80)
                         .discardChanceOnAirExposure(0f).layeredVeinGenerator(generator -> {
                             generator.buildLayerPattern(pattern -> {
                                 pattern.layer(l -> l.weight(3).mat(GTMaterials.Quartzite).size(2, 4))
@@ -547,7 +458,7 @@ public class AdAstraOres {
             "太空辉钼矿脉",
             vein -> {
                 vein.clusterSize(25).weight(5).layer(CTNHWorldgenLayers.ADASTRA).density(0.25f)
-                        .dimensions(MOON, MERCURY).heightRangeUniform(20, 50).discardChanceOnAirExposure(0f)
+                        .dimensions(MERCURY).heightRangeUniform(20, 50).discardChanceOnAirExposure(0f)
                         .layeredVeinGenerator(generator -> {
                             generator.buildLayerPattern(pattern -> {
                                 pattern.layer(l -> l.weight(3).mat(GTMaterials.Wulfenite).size(2, 4))
@@ -563,7 +474,7 @@ public class AdAstraOres {
             "太空方铅矿脉",
             vein -> {
                 vein.clusterSize(30).weight(40).layer(CTNHWorldgenLayers.ADASTRA).density(0.25f)
-                        .dimensions(MOON, MARS, VENUS, GLACIO).heightRangeUniform(-15, 45)
+                        .dimensions(MARS, VENUS, GLACIO).heightRangeUniform(-15, 45)
                         .discardChanceOnAirExposure(0f).layeredVeinGenerator(generator -> {
                             generator.buildLayerPattern(pattern -> {
                                 pattern.layer(l -> l.weight(3).mat(GTMaterials.Galena).size(2, 4))
@@ -578,7 +489,7 @@ public class AdAstraOres {
             "太空铜矿脉",
             vein -> {
                 vein.clusterSize(36).weight(80).layer(CTNHWorldgenLayers.ADASTRA).density(0.3f)
-                        .dimensions(MOON, MERCURY).heightRangeUniform(-40, 15).discardChanceOnAirExposure(0f)
+                        .dimensions(MERCURY).heightRangeUniform(-40, 15).discardChanceOnAirExposure(0f)
                         .layeredVeinGenerator(generator -> {
                             generator.buildLayerPattern(pattern -> {
                                 pattern.layer(l -> l.weight(2).mat(GTMaterials.Chalcopyrite).size(2, 3))
@@ -594,7 +505,7 @@ public class AdAstraOres {
             "太空锡石矿脉",
             vein -> {
                 vein.clusterSize(36).weight(50).layer(CTNHWorldgenLayers.ADASTRA).density(0.4f)
-                        .dimensions(MOON, VENUS).heightRangeUniform(10, 80).discardChanceOnAirExposure(0f)
+                        .dimensions(VENUS).heightRangeUniform(10, 80).discardChanceOnAirExposure(0f)
                         .layeredVeinGenerator(generator -> {
                             generator.buildLayerPattern(pattern -> {
                                 pattern.layer(l -> l.weight(3).mat(GTMaterials.Tin).size(2, 3))

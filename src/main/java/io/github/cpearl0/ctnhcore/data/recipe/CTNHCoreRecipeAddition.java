@@ -34,6 +34,8 @@ public class CTNHCoreRecipeAddition {
         GtceuAssemblerRecipeFixes.init(provider);
 
         OreProcessingRecipes.init(provider);
+        MoonMaterialRecipes.init(provider);
+        MoonBrineChain.init(provider);
         UnderfloorHeatingSystemRecipes.init(provider);
         AstronomicalObservatoryRecipes.init(provider);
         PersonalComputerRecipes.init(provider);

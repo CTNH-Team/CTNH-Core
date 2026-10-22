@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.api.data.DimensionMarker;
 
 import net.minecraft.resources.ResourceLocation;
 
+import com.ctnh.ctnhastral.registry.worldgen.MoonBlocks;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
@@ -44,8 +45,8 @@ public class CTNHDimensionMarkers {
     @EN("Twilight Forest")
     public static Lang dimensionTwilightforestTwilightForest;
 
-    public static final DimensionMarker MOON = createAndRegister(ResourceLocation.tryParse("ad_astra:moon"),
-            1, ResourceLocation.tryParse("ad_astra:moon_stone"), dimensionAdAstraMoon.key());
+    public static final DimensionMarker MOON = createAndRegister(CTNHWorlds.MOON,
+            1, () -> MoonBlocks.MOON_STONE.get(), dimensionAdAstraMoon.key());
     public static final DimensionMarker MARS = createAndRegister(ResourceLocation.tryParse("ad_astra:mars"),
             2, ResourceLocation.tryParse("ad_astra:mars_stone"), dimensionAdAstraMars.key());
     public static final DimensionMarker VENUS = createAndRegister(ResourceLocation.tryParse("ad_astra:venus"),

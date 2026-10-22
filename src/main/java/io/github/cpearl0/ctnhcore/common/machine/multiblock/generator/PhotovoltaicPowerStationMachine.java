@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
+import io.github.cpearl0.ctnhcore.registry.CTNHWorlds;
+
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.IEnergyContainer;
 import com.gregtechceu.gtceu.api.capability.IWorkable;
@@ -146,7 +148,7 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
             rate_mul = 1;
         } else if (dimension == AetherDimensions.AETHER_LEVEL) {
             rate_mul = 2;
-        } else if (dimension == Planet.MOON || dimension == Planet.MOON_ORBIT) {
+        } else if (dimension.location().equals(CTNHWorlds.MOON) || dimension == Planet.MOON_ORBIT) {
             rate_mul = 3;
         } else if (dimension == Planet.VENUS || dimension == Planet.VENUS_ORBIT) {
             rate_mul = 3;

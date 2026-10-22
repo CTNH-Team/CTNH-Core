@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.tags;
 
 import io.github.cpearl0.ctnhcore.registry.CTNHTags;
+import io.github.cpearl0.ctnhcore.registry.ores.MoonOres;
 
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
@@ -17,7 +18,10 @@ import java.util.Objects;
 public class StoneTags {
 
     public static void init(RegistrateTagsProvider<Block> provider) {
-        create(provider, CTNHTags.AD_ASTRA_STONES, ModBlocks.MOON_STONE.get(), ModBlocks.MARS_STONE.get(),
+        var moonHosts = provider.addTag(CTNHTags.MOON_ORE_REPLACEABLES);
+        MoonOres.oreHosts().keySet()
+                .forEach(state -> moonHosts.add(state.get().getBlock().builtInRegistryHolder().key()));
+        create(provider, CTNHTags.AD_ASTRA_STONES, ModBlocks.MARS_STONE.get(),
                 ModBlocks.MERCURY_STONE.get(),
                 ModBlocks.VENUS_STONE.get(), ModBlocks.GLACIO_STONE.get(), Blocks.BLACKSTONE, Blocks.BASALT,
                 Blocks.DEEPSLATE, Blocks.SOUL_SOIL);

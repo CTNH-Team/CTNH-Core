@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotoVoltaicDroneStation;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import io.github.cpearl0.ctnhcore.registry.CTNHWorlds;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -117,7 +118,7 @@ public class SpacePhotovoltaicBaseStation extends RecipeElectricMultiblockMachin
             rate *= 0.5;
         } else if (dimension == AetherDimensions.AETHER_LEVEL) {
             rate *= 1;
-        } else if (dimension == Planet.MOON || dimension == Planet.MOON_ORBIT) {
+        } else if (dimension.location().equals(CTNHWorlds.MOON) || dimension == Planet.MOON_ORBIT) {
             rate *= 2;
         } else if (dimension == Planet.VENUS || dimension == Planet.VENUS_ORBIT) {
             rate *= 4;

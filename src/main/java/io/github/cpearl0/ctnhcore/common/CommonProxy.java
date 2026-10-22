@@ -11,6 +11,7 @@ import io.github.cpearl0.ctnhcore.data.materials.AeOmniMaterials;
 import io.github.cpearl0.ctnhcore.data.recipe.RecipeRemoval;
 import io.github.cpearl0.ctnhcore.data.tags.*;
 import io.github.cpearl0.ctnhcore.data.worldgen.CTNHBiomeModifiers;
+import io.github.cpearl0.ctnhcore.integration.legendary.EnvironmentTemperatureIntegration;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import io.github.cpearl0.ctnhcore.registry.jade.CTNHJadePlugin;
@@ -74,7 +75,6 @@ public class CommonProxy {
         CTNHRegistration.REGISTRATE.registerRegistrate();
         CTNHEnchantments.Enchantments.register(modEventBus);
         CTNHRecipes.init(modEventBus);
-        CTNHTemperatureModifierRegister.init();
         CTNHCoreDatagen.init();
         CTNHConfig.init();
         CTNHDamageTypes.init();
@@ -106,6 +106,7 @@ public class CommonProxy {
 
     @SubscribeEvent
     public void commonSetup(FMLCommonSetupEvent event) {
+        event.enqueueWork(EnvironmentTemperatureIntegration::init);
         // Clean up stale Forge persistent chunk tickets for ctnhcore on load
         event.enqueueWork(CTNHChunkLoading::registerValidationCallback);
         event.enqueueWork(() -> GTToolType.KNIFE.itemTags.addAll(List.of(

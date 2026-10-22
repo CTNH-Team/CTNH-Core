@@ -14,6 +14,7 @@ import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.Items;
 
+import com.ctnh.ctnhastral.registry.worldgen.MoonBlocks;
 import com.mo_guang.ctpp.registry.CTPPBlocks;
 import earth.terrarium.adastra.common.registry.ModBlocks;
 
@@ -23,7 +24,7 @@ import static com.ctnh.ctnhastral.data.CAMaterials.*;
 
 public class NanoRecipes {
 
-    // ad_astra planet stone blocks: ModBlocks (RegistryEntry<Block>, use .get().asItem())
+    // Moon stone belongs to Astral; other planet stone blocks still come from Ad Astra.
     // gtceu stone dust materials: CAMaterials (CTNH-Astral module)
 
     public static void init(Consumer<FinishedRecipe> provider) {
@@ -52,7 +53,7 @@ public class NanoRecipes {
 
         // Nano generator: moon_cobblestone -> moon_stone_dust
         CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder(CTNHCore.id("moon_cobblestone"))
-                .inputItems(ModBlocks.MOON_COBBLESTONE.get().asItem())
+                .inputItems(MoonBlocks.MOON_COBBLESTONE.asItem())
                 .outputItems(ChemicalHelper.get(TagPrefix.dust, Moonstone), 3)
                 .EUt(-6)
                 .duration(10)

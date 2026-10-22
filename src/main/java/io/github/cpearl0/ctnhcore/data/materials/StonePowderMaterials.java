@@ -4,15 +4,19 @@ import io.github.cpearl0.ctnhcore.CTNHCore;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.DISABLE_DECOMPOSITION;
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.ROUGH;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
+import static io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials.Alumina;
 
 public class StonePowderMaterials {
 
     public static Material DIRTY_HEXAFLUOROSILICIC_ACID;
     public static Material DILUTE_HEXAFLUOROSILICIC_ACID;
     public static Material STONE_RESIDUE;
+    public static Material MOON_ANORTHOSITE;
     public static Material FLUOROSILICIC_ACID;
     public static Material UNCOMMON_RESIDUES;
     public static Material DIOXYGENDIFLUORIDE;
@@ -52,6 +56,15 @@ public class StonePowderMaterials {
                 .cnlang("石头残渣")
                 .dust()
                 .color(0xA1A19E)
+                .buildAndRegister();
+
+        // Simplify anorthite-rich lunar rock into oxide groups for GT's generated mineral separation.
+        MOON_ANORTHOSITE = REGISTRATE.material(CTNHCore.id("moon_anorthosite"))
+                .cnlang("月球斜长岩")
+                .dust()
+                .color(0xC9CDD3).secondaryColor(0x9298A2).iconSet(ROUGH)
+                .components(SiliconDioxide, 2, Alumina, 1, Quicklime, 1)
+                .flags(DECOMPOSITION_BY_CENTRIFUGING)
                 .buildAndRegister();
 
         FLUOROSILICIC_ACID = REGISTRATE.material(CTNHCore.id("fluorosilicic_acid"))

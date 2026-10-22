@@ -11,6 +11,7 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.ItemMaterialInfo;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
+import com.gregtechceu.gtceu.api.item.component.ElectricStats;
 import com.gregtechceu.gtceu.api.item.component.FoodStats;
 import com.gregtechceu.gtceu.api.item.component.IInteractionItem;
 import com.gregtechceu.gtceu.common.data.models.GTModels;
@@ -33,6 +34,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import com.ctnhlang.CN;
@@ -45,6 +47,7 @@ import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import static com.gregtechceu.gtceu.common.data.GTItems.attach;
 import static com.gregtechceu.gtceu.common.data.GTItems.materialInfo;
+import static com.gregtechceu.gtceu.common.data.GTItems.modelPredicate;
 import static com.gregtechceu.gtceu.common.data.GTMachines.CREATIVE_TOOLTIPS;
 import static io.github.cpearl0.ctnhcore.data.materials.BedrockMaterials.ADAMANTITE;
 import static io.github.cpearl0.ctnhcore.data.materials.BedrockMaterials.SAMARIUM_DYSPROSIUM_TERBIUM_PERMANENT_MAGNET_ALLOY_MAGNETIC;
@@ -221,6 +224,22 @@ public class CTNHItems {
             .cnlang("完善的一阶航天数据芯片")
             .lang("Great Astronomy Circuit I")
             .register();
+    public static ItemEntry<ComponentItem> BATTERY_IV_MOON_SOLID_STATE = REGISTRATE
+            .item("iv_moon_solid_state_battery", ComponentItem::create)
+            .cnlang("IV月海固态电池").lang("IV Moon Solid State Battery")
+            .model((ctx, prov) -> {
+                var model = prov.generated(ctx, GTCEu.id("item/iv_vanadium_battery/1"));
+                for (int i = 0; i < 8; i++) {
+                    model.override().predicate(GTCEu.id("battery"), i / 100f)
+                            .model(new ModelFile.UncheckedModelFile(GTCEu.id("item/iv_vanadium_battery/" + i)))
+                            .end();
+                }
+            })
+            .onRegister(modelPredicate(GTCEu.id("battery"), ElectricStats::getStoredPredicate))
+            .onRegister(attach(ElectricStats.createRechargeableBattery(81_920_000L, GTValues.IV)))
+            .tag(CustomTags.IV_BATTERIES)
+            .register();
+
     public static ItemEntry<ComponentItem> SIMPLE_NUTRITIOUS_MEAL = REGISTRATE
             .item("simple_nutritious_meal", ComponentItem::create)
             .cnlang("简易营养餐")

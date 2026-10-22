@@ -24,6 +24,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
+import com.ctnh.ctnhastral.common.recipe.OxygenCondition;
 import com.ctnh.ctnhastral.registry.CARecipeModifiers;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
@@ -94,20 +95,19 @@ public class GTMachineModify {
                         }));
         modifyGTAssembly();
         modifyCleanroom();
-        modifyOxygenGenerators();
+        modifyGeneratorEnvironments();
 
         PRIMITIVE_BLAST_FURNACE.setRecipeTypes(new GTRecipeType[] { GTRecipeTypes.DUMMY_RECIPES });
     }
 
-    private static void modifyOxygenGenerators() {
-        appendRecipeModifier(GTMachines.COMBUSTION, CARecipeModifiers::oxygenRequirement);
-        appendRecipeModifier(GTMachines.GAS_TURBINE, CARecipeModifiers::oxygenRequirement);
-        appendRecipeModifier(GTMachines.STEAM_TURBINE, CARecipeModifiers::oxygenRequirement);
-        appendRecipeModifier(LARGE_COMBUSTION_ENGINE, CARecipeModifiers::oxygenRequirement);
-        appendRecipeModifier(EXTREME_COMBUSTION_ENGINE, CARecipeModifiers::oxygenRequirement);
-        appendRecipeModifier(LARGE_GAS_TURBINE, CARecipeModifiers::oxygenRequirement);
-        appendRecipeModifier(LARGE_STEAM_TURBINE, CARecipeModifiers::oxygenRequirement);
-        appendRecipeModifier(MultiblocksA.ULTIMATE_COMBUSTION_ENGINE, CARecipeModifiers::oxygenRequirement);
+    private static void modifyGeneratorEnvironments() {
+        RecipeModifier environmentModifier = CARecipeModifiers.environmentRequirements(OxygenCondition::new);
+        appendRecipeModifier(GTMachines.COMBUSTION, environmentModifier);
+        appendRecipeModifier(GTMachines.GAS_TURBINE, environmentModifier);
+        appendRecipeModifier(LARGE_COMBUSTION_ENGINE, environmentModifier);
+        appendRecipeModifier(EXTREME_COMBUSTION_ENGINE, environmentModifier);
+        appendRecipeModifier(LARGE_GAS_TURBINE, environmentModifier);
+        appendRecipeModifier(MultiblocksA.ULTIMATE_COMBUSTION_ENGINE, environmentModifier);
     }
 
     private static void appendRecipeModifier(MachineDefinition[] machines, RecipeModifier recipeModifier) {

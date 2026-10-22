@@ -23,6 +23,7 @@ public class GTMaterialAddon {
     }
 
     public static void init() {
+        Graphite.addFlags(GENERATE_PLATE);
         Duranium.addFlags(GENERATE_FRAME);
         Naquadria.addFlags(GENERATE_FRAME);
         NaquadahEnriched.addFlags(GENERATE_FRAME);

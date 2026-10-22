@@ -18,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import com.ctnh.ctnhastral.registry.worldgen.MoonBlocks;
 import earth.terrarium.adastra.common.registry.ModItems;
 
 import java.util.function.Consumer;
@@ -269,37 +270,36 @@ public class AdAstraRecipes {
     private static void stoneRelatedRecipes(Consumer<FinishedRecipe> provider) {
         output = provider;
 
-        smelt(ModItems.MOON_STONE, ModItems.MOON_COBBLESTONE);
         smelt(ModItems.MARS_STONE, ModItems.MARS_COBBLESTONE);
         smelt(ModItems.VENUS_STONE, ModItems.VENUS_COBBLESTONE);
         smelt(ModItems.MERCURY_STONE, ModItems.MERCURY_COBBLESTONE);
         smelt(ModItems.GLACIO_STONE, ModItems.GLACIO_COBBLESTONE);
 
-        shaped(ModItems.MOON_STONE_STAIRS, 4, ModItems.MOON_STONE, "#  ", "## ", "###");
+        shaped(ModItems.MOON_STONE_STAIRS, 4, MoonBlocks.MOON_STONE::asItem, "#  ", "## ", "###");
         shaped(ModItems.MARS_STONE_STAIRS, 4, ModItems.MARS_STONE, "#  ", "## ", "###");
         shaped(ModItems.VENUS_STONE_STAIRS, 4, ModItems.VENUS_STONE, "#  ", "## ", "###");
         shaped(ModItems.MERCURY_STONE_STAIRS, 4, ModItems.MERCURY_STONE, "#  ", "## ", "###");
         shaped(ModItems.GLACIO_STONE_STAIRS, 4, ModItems.GLACIO_STONE, "#  ", "## ", "###");
 
-        shaped(ModItems.MOON_STONE_SLAB, 6, ModItems.MOON_STONE, "###");
+        shaped(ModItems.MOON_STONE_SLAB, 6, MoonBlocks.MOON_STONE::asItem, "###");
         shaped(ModItems.MARS_STONE_SLAB, 6, ModItems.MARS_STONE, "###");
         shaped(ModItems.VENUS_STONE_SLAB, 6, ModItems.VENUS_STONE, "###");
         shaped(ModItems.MERCURY_STONE_SLAB, 6, ModItems.MERCURY_STONE, "###");
         shaped(ModItems.GLACIO_STONE_SLAB, 6, ModItems.GLACIO_STONE, "###");
 
-        shaped(ModItems.MOON_COBBLESTONE_STAIRS, 4, ModItems.MOON_COBBLESTONE, "#  ", "## ", "###");
+        shaped(ModItems.MOON_COBBLESTONE_STAIRS, 4, MoonBlocks.MOON_COBBLESTONE::asItem, "#  ", "## ", "###");
         shaped(ModItems.MARS_COBBLESTONE_STAIRS, 4, ModItems.MARS_COBBLESTONE, "#  ", "## ", "###");
         shaped(ModItems.VENUS_COBBLESTONE_STAIRS, 4, ModItems.VENUS_COBBLESTONE, "#  ", "## ", "###");
         shaped(ModItems.MERCURY_COBBLESTONE_STAIRS, 4, ModItems.MERCURY_COBBLESTONE, "#  ", "## ", "###");
         shaped(ModItems.GLACIO_COBBLESTONE_STAIRS, 4, ModItems.GLACIO_COBBLESTONE, "#  ", "## ", "###");
 
-        shaped(ModItems.MOON_COBBLESTONE_SLAB, 6, ModItems.MOON_COBBLESTONE, "###");
+        shaped(ModItems.MOON_COBBLESTONE_SLAB, 6, MoonBlocks.MOON_COBBLESTONE::asItem, "###");
         shaped(ModItems.MARS_COBBLESTONE_SLAB, 6, ModItems.MARS_COBBLESTONE, "###");
         shaped(ModItems.VENUS_COBBLESTONE_SLAB, 6, ModItems.VENUS_COBBLESTONE, "###");
         shaped(ModItems.MERCURY_COBBLESTONE_SLAB, 6, ModItems.MERCURY_COBBLESTONE, "###");
         shaped(ModItems.GLACIO_COBBLESTONE_SLAB, 6, ModItems.GLACIO_COBBLESTONE, "###");
 
-        shaped(ModItems.MOON_STONE_BRICKS, 4, ModItems.MOON_STONE, "##", "##");
+        shaped(ModItems.MOON_STONE_BRICKS, 4, MoonBlocks.MOON_STONE::asItem, "##", "##");
         shaped(ModItems.MARS_STONE_BRICKS, 4, ModItems.MARS_STONE, "##", "##");
         shaped(ModItems.VENUS_STONE_BRICKS, 4, ModItems.VENUS_STONE, "##", "##");
         shaped(ModItems.MERCURY_STONE_BRICKS, 4, ModItems.MERCURY_STONE, "##", "##");
@@ -341,7 +341,7 @@ public class AdAstraRecipes {
         shaped(ModItems.CHISELED_MERCURY_STONE_SLAB, 6, ModItems.CHISELED_MERCURY_STONE_BRICKS, "###");
         shaped(ModItems.CHISELED_GLACIO_STONE_SLAB, 6, ModItems.CHISELED_GLACIO_STONE_BRICKS, "###");
 
-        shaped(ModItems.POLISHED_MOON_STONE, 4, ModItems.MOON_COBBLESTONE, "##", "##");
+        shaped(ModItems.POLISHED_MOON_STONE, 4, MoonBlocks.MOON_COBBLESTONE::asItem, "##", "##");
         shaped(ModItems.POLISHED_MARS_STONE, 4, ModItems.MARS_COBBLESTONE, "##", "##");
         shaped(ModItems.POLISHED_VENUS_STONE, 4, ModItems.VENUS_COBBLESTONE, "##", "##");
         shaped(ModItems.POLISHED_MERCURY_STONE, 4, ModItems.MERCURY_COBBLESTONE, "##", "##");
@@ -359,7 +359,7 @@ public class AdAstraRecipes {
         shaped(ModItems.POLISHED_MERCURY_STONE_SLAB, 6, ModItems.POLISHED_MERCURY_STONE, "###");
         shaped(ModItems.POLISHED_GLACIO_STONE_SLAB, 6, ModItems.POLISHED_GLACIO_STONE, "###");
 
-        shaped(ModItems.MOON_PILLAR, 2, ModItems.MOON_STONE, "#", "#");
+        shaped(ModItems.MOON_PILLAR, 2, MoonBlocks.MOON_STONE::asItem, "#", "#");
         shaped(ModItems.MARS_PILLAR, 2, ModItems.MARS_STONE, "#", "#");
         shaped(ModItems.VENUS_PILLAR, 2, ModItems.VENUS_STONE, "#", "#");
         shaped(ModItems.MERCURY_PILLAR, 2, ModItems.MERCURY_STONE, "#", "#");

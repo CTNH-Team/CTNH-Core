@@ -3,7 +3,6 @@ package io.github.cpearl0.ctnhcore.event;
 import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.capability.EIOCapacitorProvider;
-import io.github.cpearl0.ctnhcore.integration.legendary.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundEvents;
 
@@ -50,13 +49,6 @@ import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = CTNHCore.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeEventHandler {
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void tickBus(TickEvent.ServerTickEvent event) {
-        if (event.getServer().getTickCount() % 40 == 0) {
-            UnderfloorHeatingSystemTempModifier.UNDERFLOOR_HEATING_SYSTEM_RANGE.clear();
-        }
-    }
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void postLevelTickBus(TickEvent.LevelTickEvent event) {

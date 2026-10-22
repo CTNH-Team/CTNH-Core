@@ -991,6 +991,7 @@ public class CTNHMaterials {
         NiobiumTantalumJointProcessingMaterials.init();
         PitchblendeRefiningMaterials.init();
         RareEarthMaterials.init();
+        MoonBrineMaterials.init();
         StonePowderMaterials.init();
         YeastRelatedMaterials.init();
         ZrHfSeparationMaterials.init();
