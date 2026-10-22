@@ -656,7 +656,7 @@ public class CTNHItems {
                 list.add(bscChipTooltip.translate().withStyle(ChatFormatting.GRAY));
             })))
             .register();
-    
+
     public static ItemEntry<ComponentItem> BSC_WAFER_MASKED = REGISTRATE
             .item("bsc_wafer_rubber_masked", ComponentItem::create)
             .cnlang("橡胶掩膜的BSC晶圆")
