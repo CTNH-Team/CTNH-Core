@@ -1,3 +1,4 @@
+/*Todo:CTNH-Astral
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
 import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
@@ -207,3 +208,5 @@ public class SpacePhotovoltaicBaseStation extends RecipeElectricMultiblockMachin
         return false;
     }
 }
+
+ */

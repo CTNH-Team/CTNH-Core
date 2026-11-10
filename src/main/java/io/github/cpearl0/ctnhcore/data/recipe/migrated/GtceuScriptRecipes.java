@@ -41,7 +41,6 @@ import com.mo_guang.ctpp.registry.CreateMaterials;
 import com.moguang.ctnhbio.registry.CBItems;
 import com.simibubi.create.AllItems;
 import com.soytutta.mynethersdelight.common.registry.MNDItems;
-import earth.terrarium.adastra.common.registry.ModItems;
 import samebutdifferent.ecologics.registry.ModBlocks;
 import twilightforest.init.TFBlocks;
 import vazkii.botania.common.block.BotaniaBlocks;
@@ -186,6 +185,7 @@ public class GtceuScriptRecipes {
                 .outputItems(CTNHMachines.ENERGY_OUTPUT_HATCH_4A_LOWER[GTValues.HV].asStack())
                 .save(provider);
 
+        /*Todo:CTNH-Astral
         // 11. space_helmet: glass_plate + 4x space_fabric + glue 72 -> ad_astra:space_helmet. EUt 120, dur 400
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("space_helmet_2"))
                 .EUt(120).duration(400)
@@ -224,6 +224,8 @@ public class GtceuScriptRecipes {
                 .inputItems(SPACE_FABRIC.asStack(2))
                 .outputItems(ModItems.SPACE_BOOTS)
                 .save(provider);
+
+         */
 
         // 16. fuel_refining_factory: 12x large_chemical_reactor + 8x distillation_tower + 8x cracker + 32x
         // nichrome_coil_block + 7x dense_steel_plate + 7x dense_stainless_steel_plate + 64x black_steel_frame + 32x #iv
@@ -1868,6 +1870,7 @@ public class GtceuScriptRecipes {
                 .EUt(6144).duration(200)
                 .save(provider);
 
+        /*Todo:CTNH-Astral
         // venus_air1
         CTNHRecipeTypes.DIMENSIONAL_GAS_COLLECTION.recipeBuilder(CTNHCore.id("venus_air1"))
                 .notConsumable(ModItems.RAW_CALORITE.get())
@@ -1883,6 +1886,8 @@ public class GtceuScriptRecipes {
                 .outputFluids(ExtraterrestrialAtmosphereMaterials.LIQUID_VENUS_AIR.getFluid(500000))
                 .EUt(490123).duration(200)
                 .save(provider);
+
+         */
 
         // ============== Martial Morality Eye Recipes ==============
 
@@ -1954,6 +1959,7 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // ore_production_3
+        /*Todo:CTNH-Astral
         CTNHRecipeTypes.MARTIAL_MORALITY_EYE.recipeBuilder(CTNHCore.id("ore_production_3"))
                 .inputItems(ModItems.MOON_STONE.get(), 64)
                 .chancedInput(ChemicalHelper.get(block, GalliumArsenide, 4), 5500, -100)
@@ -1990,6 +1996,8 @@ public class GtceuScriptRecipes {
                 .chancedOutput(ChemicalHelper.get(rawOre, Tetrahedrite, 64), 1000, 50)
                 .EUt(480).duration(4800)
                 .save(provider);
+
+         */
 
         // ============== Cultivation Room Recipes ==============
 

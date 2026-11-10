@@ -185,7 +185,7 @@ public class SunRecipes {
                 .EUt(32768)
                 .duration(800)
                 .save(provider);
-
+        /*Todo:CTNH-Astral
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("dense_calorite_plate"))
                 .inputItems(plateDense, OPTICAL_HEAT_RESISTANT_FERROCHROME_ALLOY_080)
                 .inputItems(plate, IncoloyMA956, 4)
@@ -196,6 +196,8 @@ public class SunRecipes {
                 .EUt(522848)
                 .duration(100)
                 .save(provider);
+
+         */
 
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("photon_press_cond_block"))
                 .inputItems(NEUTRON_REFLECTOR)
@@ -409,7 +411,7 @@ public class SunRecipes {
                 .EUt(130712)
                 .duration(400)
                 .save(provider);
-
+        /*Todo:CTNH-Astral
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("photovoltaic_drone_tier2"))
                 .stationResearch(b -> b
                         .researchStack(CTNHItems.PV_DRONE_RESEARCH_2.asStack())
@@ -470,6 +472,7 @@ public class SunRecipes {
                 .EUt(130712)
                 .duration(1000)
                 .save(provider);
+        */
     }
 
     private static void laserSorterRecipes(Consumer<FinishedRecipe> provider) {
@@ -563,7 +566,7 @@ public class SunRecipes {
                 .addData("input", 500000)
                 .duration(1000)
                 .save(provider);
-
+        /*Todo:CTNH-Astral
         CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER.recipeBuilder(CTNHCore.id("pv_terminal"))
                 .inputItems(TERMINAL)
                 .inputItems(dust, Sunnarium)
@@ -571,5 +574,7 @@ public class SunRecipes {
                 .addData("input", 10)
                 .duration(1)
                 .save(provider);
+
+         */
     }
 }

@@ -39,7 +39,8 @@ public class CTNHCoreRecipeAddition {
         PersonalComputerRecipes.init(provider);
         SlaughterHouseRecipes.init(provider);
 
-        PhotovoltaicStationRecipes.init(provider);
+        //Todo:CTNH-Astral
+        //PhotovoltaicStationRecipes.init(provider);
         ChemConsumerRecipes.init(provider);
         WaterPowerStationRecipes.init(provider);
         ArcGeneratorRecipes.init(provider);

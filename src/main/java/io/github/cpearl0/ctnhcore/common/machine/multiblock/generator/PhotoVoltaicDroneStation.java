@@ -1,3 +1,4 @@
+/*Todo:CTNH-Astral
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
 import io.github.cpearl0.ctnhcore.common.item.IDroneItem;
@@ -209,3 +210,4 @@ public class PhotoVoltaicDroneStation extends RecipeElectricMultiblockMachine {
         super.addDisplayText(textList);
     }
 }
+ */

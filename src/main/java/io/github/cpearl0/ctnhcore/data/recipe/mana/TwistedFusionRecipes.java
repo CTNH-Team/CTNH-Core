@@ -19,7 +19,6 @@ import com.magicbee.ctnhmana.data.recipe.builder.bloodmagic.BloodAltarRecipeBuil
 import com.magicbee.ctnhmana.data.recipe.builder.botania.ElfPlateRecipeBuilder;
 import com.magicbee.ctnhmana.data.recipe.builder.botania.RuneRitualRecipeBuilder;
 import com.wintercogs.ae2omnicells.common.init.OCItems;
-import earth.terrarium.adastra.common.registry.ModItems;
 import tech.luckyblock.mcmod.ctnhenergy.registry.CEItems;
 import wayoftime.bloodmagic.common.fluid.BloodMagicFluids;
 
@@ -316,7 +315,6 @@ public class TwistedFusionRecipes {
                 .duration(400)
                 .EUt(8196 * 4)
                 .save(provider);
-         */
         METEOR_CAPTURER_RECIPES.recipeBuilder(CTNHCore.id("neutronium"))// 中子素
                 .chancedInput(ModItems.TIER_4_ROCKET.get().getDefaultInstance(), (int) 5f, 1)
                 .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 1000 * 1024))
@@ -324,6 +322,7 @@ public class TwistedFusionRecipes {
                 .duration(400)
                 .EUt(528000 * 4)
                 .save(provider);
+         */
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("twist"))
                 .inputItems(ChemicalHelper.get(plate, Ultra_Mana), 1)
                 .inputItems(MANA_FUSION_CASING.asItem(), 1)

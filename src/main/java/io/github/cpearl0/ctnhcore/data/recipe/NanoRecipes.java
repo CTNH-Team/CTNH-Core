@@ -15,7 +15,6 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.Items;
 
 import com.mo_guang.ctpp.registry.CTPPBlocks;
-import earth.terrarium.adastra.common.registry.ModBlocks;
 
 import java.util.function.Consumer;
 
@@ -50,6 +49,7 @@ public class NanoRecipes {
                 .duration(10)
                 .save(provider);
 
+        /*Todo:CTNH-Astral
         // Nano generator: moon_cobblestone -> moon_stone_dust
         CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder(CTNHCore.id("moon_cobblestone"))
                 .inputItems(ModBlocks.MOON_COBBLESTONE.get().asItem())
@@ -89,5 +89,6 @@ public class NanoRecipes {
                 .EUt(-30)
                 .duration(20)
                 .save(provider);
+         */
     }
 }

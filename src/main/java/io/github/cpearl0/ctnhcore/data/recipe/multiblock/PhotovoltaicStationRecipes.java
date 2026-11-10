@@ -1,3 +1,4 @@
+/*Todo:CTNH-Astral
 package io.github.cpearl0.ctnhcore.data.recipe.multiblock;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
@@ -59,3 +60,5 @@ public class PhotovoltaicStationRecipes {
                 'E', CustomTags.HV_CIRCUITS);
     }
 }
+
+ */

@@ -1,3 +1,4 @@
+/*Todo:CTNH-Astral
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
 import com.gregtechceu.gtceu.api.GTValues;
@@ -315,3 +316,4 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
         return new ModularUI(198, 208, this, entityPlayer).widget(new FancyMachineUIWidget(this, 198, 208));
     }
 }
+ */
