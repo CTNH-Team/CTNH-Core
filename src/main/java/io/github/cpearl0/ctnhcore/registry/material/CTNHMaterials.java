@@ -971,7 +971,6 @@ public class CTNHMaterials {
         // NaquadahMaterials 必须先于 AdastraMaterials：后者的 addOre 直接把这里的
         // EnrichedNaquadahOxideMixture / NaquadriaOxideMixture 当伴生矿传入，字段在 init() 里才赋值
         NaquadahMaterials.init();
-        AdastraMaterials.init();
         SecondMaterials.init();
         PlatinumLineMaterials.init();
         BrineChain.init();

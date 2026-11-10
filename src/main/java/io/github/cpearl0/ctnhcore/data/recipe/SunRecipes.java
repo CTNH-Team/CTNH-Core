@@ -31,7 +31,6 @@ import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.data.recipe.CustomTags.*;
-import static io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials.*;
 import static io.github.cpearl0.ctnhcore.data.materials.GoldChainMaterials.SODIUM_HEXAFLUOROALUMINATE;
 import static io.github.cpearl0.ctnhcore.data.materials.UncategorizedMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.*;

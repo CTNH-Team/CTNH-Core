@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.AviationFabricMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.UncategorizedMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
@@ -28,7 +27,6 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluids;
 
-import com.ctnh.ctnhastral.data.CATagPrefixes;
 import com.simibubi.create.AllBlocks;
 
 import java.util.function.Consumer;
@@ -158,6 +156,7 @@ public class MachinesRecipes {
                 .circuitMeta(1)
                 .save(provider);
 
+        /*Todo:CTNH-Astral
         CTNHRecipeTypes.PVDRONE.recipeBuilder(CTNHCore.id("meteorite_capture"))
                 .duration(1000)
                 .circuitMeta(2)
@@ -166,6 +165,8 @@ public class MachinesRecipes {
                 .outputItems(CATagPrefixes.oreMarsStone, AdastraMaterials.Ostrum)
                 .EUt(VA[LuV])
                 .save(provider);
+
+         */
 
         CTNHRecipeTypes.COMPILER_RECIPE.recipeBuilder(CTNHCore.id("test_2"))
                 .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
