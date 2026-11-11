@@ -32,6 +32,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import appeng.core.definitions.AEBlocks;
 import com.aetherteam.aether.block.AetherBlocks;
+import com.ctnh.ctnhastral.registry.worldgen.MoonBlocks;
 import com.enderio.base.common.init.EIOBlocks;
 import com.enderio.base.common.init.EIOFluids;
 import com.enderio.base.common.init.EIOItems;
@@ -510,11 +511,11 @@ public class GtceuScriptRecipes {
                 .outputFluids(ExtraterrestrialAtmosphereMaterials.AETHER_AIR.getFluid(10000))
                 .save(provider);
 
-        // 4. venus_air: circuit 7, dimension ad_astra:venus -> venus_air 10000. EUt 1024, dur 200
+        // 4. venus_air: circuit 7, dimension ctnhastral:venus -> venus_air 10000. EUt 1024, dur 200
         GAS_COLLECTOR_RECIPES.recipeBuilder(CTNHCore.id("venus_air"))
                 .EUt(1024).duration(200)
                 .circuitMeta(7)
-                .dimension(ResourceLocation.parse("ad_astra:venus"))
+                .dimension(ResourceLocation.parse("ctnhastral:venus"))
                 .outputFluids(ExtraterrestrialAtmosphereMaterials.VENUS_AIR.getFluid(10000))
                 .save(provider);
 
@@ -1959,9 +1960,8 @@ public class GtceuScriptRecipes {
                 .save(provider);
 
         // ore_production_3
-        /*Todo:CTNH-Astral
         CTNHRecipeTypes.MARTIAL_MORALITY_EYE.recipeBuilder(CTNHCore.id("ore_production_3"))
-                .inputItems(ModItems.MOON_STONE.get(), 64)
+                .inputItems(MoonBlocks.MOON_STONE.get().asItem(), 64)
                 .chancedInput(ChemicalHelper.get(block, GalliumArsenide, 4), 5500, -100)
                 .inputFluids(RocketFuel.getFluid(4000))
                 .outputFluids(NitricAcid.getFluid(1000))
@@ -1996,8 +1996,6 @@ public class GtceuScriptRecipes {
                 .chancedOutput(ChemicalHelper.get(rawOre, Tetrahedrite, 64), 1000, 50)
                 .EUt(480).duration(4800)
                 .save(provider);
-
-         */
 
         // ============== Cultivation Room Recipes ==============
 

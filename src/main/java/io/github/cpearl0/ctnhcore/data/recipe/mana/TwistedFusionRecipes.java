@@ -292,7 +292,7 @@ public class TwistedFusionRecipes {
                 "AAA",
                 'A', ChemicalHelper.get(rawOreBlock, Fused_Mana).getItem().asItem(),
                 'B', ChemicalHelper.get(block, AlfSteel).getItem().asItem());
-        /*Todo:CTNH-Astral
+        /*Todo:CTNH-Astral Ad坠星
         METEOR_CAPTURER_RECIPES.recipeBuilder(CTNHCore.id("desh"))// 戴斯
                 .chancedInput(ModItems.TIER_1_ROCKET.get().getDefaultInstance(), (int) 5f, 1)
                 .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 1000 * 128))

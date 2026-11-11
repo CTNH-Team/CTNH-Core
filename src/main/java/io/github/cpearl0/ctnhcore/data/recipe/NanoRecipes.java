@@ -14,6 +14,8 @@ import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.Items;
 
+import com.ctnh.ctnhastral.registry.worldgen.MarsBlocks;
+import com.ctnh.ctnhastral.registry.worldgen.MoonBlocks;
 import com.mo_guang.ctpp.registry.CTPPBlocks;
 
 import java.util.function.Consumer;
@@ -22,7 +24,7 @@ import static com.ctnh.ctnhastral.data.CAMaterials.*;
 
 public class NanoRecipes {
 
-    // ad_astra planet stone blocks: ModBlocks (RegistryEntry<Block>, use .get().asItem())
+    // planet stone blocks: MoonBlocks / MarsBlocks (CTNH-Astral module, use .get().asItem())
     // gtceu stone dust materials: CAMaterials (CTNH-Astral module)
 
     public static void init(Consumer<FinishedRecipe> provider) {
@@ -49,29 +51,29 @@ public class NanoRecipes {
                 .duration(10)
                 .save(provider);
 
-        /*Todo:CTNH-Astral
         // Nano generator: moon_cobblestone -> moon_stone_dust
         CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder(CTNHCore.id("moon_cobblestone"))
-                .inputItems(ModBlocks.MOON_COBBLESTONE.get().asItem())
+                .inputItems(MoonBlocks.MOON_COBBLESTONE.get().asItem())
                 .outputItems(ChemicalHelper.get(TagPrefix.dust, Moonstone), 3)
                 .EUt(-6)
                 .duration(10)
                 .save(provider);
 
+        // Nano generator: mars_stone -> mars_stone_dust
+        CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder(CTNHCore.id("mars_stone"))
+                .inputItems(MarsBlocks.MARS_STONE.get().asItem())
+                .outputItems(ChemicalHelper.get(TagPrefix.dust, Marsstone), 2)
+                .EUt(-8)
+                .duration(15)
+                .save(provider);
+
+        /*Todo:CTNH-Astral
         // Nano generator: venus_stone -> venus_stone_dust
         CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder(CTNHCore.id("venus_stone"))
                 .inputItems(ModBlocks.VENUS_STONE.get().asItem())
                 .outputItems(ChemicalHelper.get(TagPrefix.dust, Venusstone), 3)
                 .EUt(-16)
                 .duration(20)
-                .save(provider);
-
-        // Nano generator: mars_stone -> mars_stone_dust
-        CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder(CTNHCore.id("mars_stone"))
-                .inputItems(ModBlocks.MARS_STONE.get().asItem())
-                .outputItems(ChemicalHelper.get(TagPrefix.dust, Marsstone), 2)
-                .EUt(-8)
-                .duration(15)
                 .save(provider);
 
         // Nano generator: mercury_stone -> mercury_stone_dust

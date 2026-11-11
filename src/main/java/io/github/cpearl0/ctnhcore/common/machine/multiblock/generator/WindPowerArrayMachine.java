@@ -171,9 +171,9 @@ public class WindPowerArrayMachine extends MultiblockControllerMachine implement
         dimentionRate.put("minecraft:nether", 2);
         dimentionRate.put("aether:the_aether", 2);
         dimentionRate.put("minecraft:the_end", 4);
-        dimentionRate.put("ad_astra:mars", 0);
-        dimentionRate.put("ad_astra:venus", 16);
-        dimentionRate.put("ad_astra:mercury", 0);
+        dimentionRate.put("ctnhastral:mars", 0);
+        dimentionRate.put("ctnhastral:venus", 16);
+        // dimentionRate.put("ctnhastral:mercury", 0);
     }
 
     public void updateBasicRate() {
