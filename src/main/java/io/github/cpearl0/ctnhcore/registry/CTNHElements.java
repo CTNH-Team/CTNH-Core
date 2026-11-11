@@ -29,6 +29,5 @@ public class CTNHElements {
     public static final Element SpNt = GTElements.createAndRegister(167, 233, -1, null, "Space Neutronium", "SpNt",
             false);
     public static final Element IF2 = GTElements.createAndRegister(168, 316, -1, null, "Infinity", "∞", false);
-    // TODO: Desh / Ostrum / Calorite 三个元素随 AdastraMaterials 一并移除，替代元素待设计。
     public static final Element Th232 = GTElements.createAndRegister(90, 142, -1, null, "Thorium-232", "Th-232", true);
 }
