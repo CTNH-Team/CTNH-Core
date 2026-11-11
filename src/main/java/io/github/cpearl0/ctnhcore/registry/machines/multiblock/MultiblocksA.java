@@ -12,7 +12,7 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.rareearth.P
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.rareearth.ProcessControlledElectricMultiblockMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.ChemicalGeneratorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.NaqReactorMachine;
-//import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotovoltaicPowerStationMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotovoltaicPowerStationMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.IndustrialPrimitiveBlastFurnaceMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.MeadowMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
@@ -1355,7 +1355,6 @@ public class MultiblocksA {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
                     GTCEu.id("block/multiblock/assembly_line"))
             .register();
-    /*Todo:CTNH-Astral
     public static final MultiblockMachineDefinition PHOTOVOLTAIC_POWER_STATION_ENERGETIC =
             registerPhotovoltaicPowerStation("energetic", 1, CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK,
                     "充能光伏发电站");
@@ -1365,8 +1364,6 @@ public class MultiblocksA {
     public static final MultiblockMachineDefinition PHOTOVOLTAIC_POWER_STATION_VIBRANT =
             registerPhotovoltaicPowerStation("vibrant", 16, CTNHBlocks.VIBRANT_PHOTOVOLTAIC_BLOCK,
                     "振动光伏发电站");
-
-     */
 
     private static Lang photovoltaicPowerStationTooltip(String tier, int index) {
         return switch (tier) {
@@ -1391,7 +1388,6 @@ public class MultiblocksA {
             default -> throw new IllegalArgumentException("Unsupported photovoltaic power station tier: " + tier);
         };
     }
-    /*Todo:CTNH-Astral
     public static MultiblockMachineDefinition registerPhotovoltaicPowerStation(String tier, int basicRate,
                                                                                 BlockEntry<?> photovoltaicBlock,
                                                                                 String cnName) {
@@ -1433,8 +1429,6 @@ public class MultiblocksA {
                         GTCEu.id("block/multiblock/generator/large_steam_turbine"))
                 .register();
     }
-
-     */
 
     public static final MultiblockMachineDefinition WIND_POWER_ARRAY = WindPowerArrayRegister.register("wind_power_array",1,CASING_STEEL_SOLID, GTMaterials.Steel,"machine_casing_solid_steel", "风力发电阵列");
     public static final MultiblockMachineDefinition ADVANCED_WIND_POWER_ARRAY = WindPowerArrayRegister.register("advanced_wind_power_array",2,CASING_STAINLESS_CLEAN,GTMaterials.StainlessSteel,"machine_casing_clean_stainless_steel", "进阶风力发电阵列");

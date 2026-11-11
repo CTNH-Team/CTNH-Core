@@ -25,6 +25,7 @@ import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
 
 import com.simibubi.create.AllBlocks;
@@ -156,17 +157,13 @@ public class MachinesRecipes {
                 .circuitMeta(1)
                 .save(provider);
 
-        /*Todo:CTNH-Astral
+        // TODO: 原输出为 Desh / Calorite / Ostrum 三种行星矿石，材料随 AdastraMaterials 移除，暂以屏障占位待替代材料设计
         CTNHRecipeTypes.PVDRONE.recipeBuilder(CTNHCore.id("meteorite_capture"))
                 .duration(1000)
                 .circuitMeta(2)
-                .outputItems(CATagPrefixes.oreMoonStone, AdastraMaterials.Desh)
-                .outputItems(CATagPrefixes.oreVenusStone, AdastraMaterials.Calorite)
-                .outputItems(CATagPrefixes.oreMarsStone, AdastraMaterials.Ostrum)
+                .outputItems(Blocks.BARRIER.asItem())
                 .EUt(VA[LuV])
                 .save(provider);
-
-         */
 
         CTNHRecipeTypes.COMPILER_RECIPE.recipeBuilder(CTNHCore.id("test_2"))
                 .inputItems(dust, CTNHMaterials.SteelLeaf, 1)

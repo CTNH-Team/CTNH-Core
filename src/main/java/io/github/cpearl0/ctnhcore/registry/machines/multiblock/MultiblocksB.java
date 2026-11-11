@@ -7,7 +7,7 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.*;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.Arc_Generator;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.Arc_Reactor;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.NanoscaleTriboelectricGenerator;
-//import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotoVoltaicDroneStation;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotoVoltaicDroneStation;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
@@ -1518,7 +1518,6 @@ public class MultiblocksB {
 
             .workableCasingModel(GTCEu.id("block/casings/hpca/high_power_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
-    /*Todo:CTNH-Astral
     public final static MultiblockMachineDefinition SPACEPHOTOVOLTAICBASESTATION = REGISTRATE.multiblock("space_photovoltai_cbase_station", SpacePhotovoltaicBaseStation::new)
             .cnLangValue("太空光伏基站")
             .allowExtendedFacing(false)
@@ -1586,9 +1585,7 @@ public class MultiblocksB {
             .appearanceBlock(NQ_EXCITE_CARBON_CARBON_NANOFIBER_STRUCTURAL_BLOCK)
             .workableCasingModel(CTNHCore.id("block/nq_excite_carbon_carbon_nanofiber_structural_block"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
-    */
     public final static MultiblockMachineDefinition HYPER_PLASMA_TURBINE = HyperPlasmaTurbineRegister.register();
-    /*Todo:CTNH-Astral
     public final static MultiblockMachineDefinition PHOTOVOLTAIC_DRONE_STATION = REGISTRATE.multiblock("photovoltaic_drone_station", PhotoVoltaicDroneStation::new)
             .cnLangValue("光伏无人机道标基站")
             .allowExtendedFacing(false)
@@ -1648,7 +1645,6 @@ public class MultiblocksB {
 
             .workableCasingModel(GTCEu.id("block/casings/hpca/high_power_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
-    */
     public static final MultiblockMachineDefinition GAS_CENTRIFUGE = REGISTRATE.multiblock("gas_centrifuge", RecipeElectricMultiblockMachine::new)
             .cnLangValue("气体离心机")
             .rotationState(RotationState.NON_Y_AXIS)

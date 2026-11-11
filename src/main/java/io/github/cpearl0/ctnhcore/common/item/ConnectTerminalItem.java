@@ -1,4 +1,3 @@
-/*Todo:CTNH-Astral
 package io.github.cpearl0.ctnhcore.common.item;
 
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.SpacePhotovoltaicBaseStation;
@@ -122,5 +121,3 @@ public class ConnectTerminalItem extends ComponentItem {
         super.appendHoverText(stack, level, tooltipComponents, isAdvanced); // 调用父类方法以处理原版提示信息
     }
 }
-
- */

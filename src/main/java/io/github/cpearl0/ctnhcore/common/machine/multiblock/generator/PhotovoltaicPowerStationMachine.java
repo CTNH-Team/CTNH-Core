@@ -1,4 +1,3 @@
-/*Todo:CTNH-Astral
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
 import com.gregtechceu.gtceu.api.GTValues;
@@ -19,6 +18,8 @@ import com.gregtechceu.gtceu.api.misc.EnergyContainerList;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
+import io.github.cpearl0.ctnhcore.utils.CTNHCelestialPower;
+
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.widget.*;
 
@@ -29,10 +30,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
-import com.aetherteam.aether.data.resources.registries.AetherDimensions;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import earth.terrarium.adastra.api.planets.Planet;
 import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
@@ -139,25 +138,7 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
     public void onStructureFormed() {
         super.onStructureFormed();
         updateEnergyContainer();
-        // 计算发电效率
-        var dimension = getLevel().dimension();
-        var str = dimension.location().toString();
-        if (dimension == Level.OVERWORLD || str.equals("twilightforest:twilight_forest") ||
-                str.equals("mythicbotany:alfheim")) {
-            rate_mul = 1;
-        } else if (dimension == AetherDimensions.AETHER_LEVEL) {
-            rate_mul = 2;
-        } else if (dimension == Planet.MOON || dimension == Planet.MOON_ORBIT) {
-            rate_mul = 3;
-        } else if (dimension == Planet.VENUS || dimension == Planet.VENUS_ORBIT) {
-            rate_mul = 3;
-        } else if (dimension == Planet.MERCURY || dimension == Planet.MERCURY_ORBIT) {
-            rate_mul = 5;
-        } else if (dimension == Planet.MARS || dimension == Planet.MARS_ORBIT) {
-            rate_mul = 5;
-        } else if (dimension == Planet.GLACIO || dimension == Planet.GLACIO_ORBIT) {
-            rate_mul = 7;
-        }
+        rate_mul = CTNHCelestialPower.photovoltaicRate(getLevel());
         if (getLevel() instanceof ServerLevel serverLevel && rate_mul > 0) {
             serverLevel.getServer().tell(new TickTask(0, this::updateTickSubscription));
         }
@@ -316,4 +297,3 @@ public class PhotovoltaicPowerStationMachine extends MultiblockControllerMachine
         return new ModularUI(198, 208, this, entityPlayer).widget(new FancyMachineUIWidget(this, 198, 208));
     }
 }
- */

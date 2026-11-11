@@ -14,6 +14,7 @@ import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.world.item.Items;
 
 import com.magicbee.ctnhmana.data.recipe.builder.bloodmagic.BloodAltarRecipeBuilder;
 import com.magicbee.ctnhmana.data.recipe.builder.botania.ElfPlateRecipeBuilder;
@@ -292,37 +293,36 @@ public class TwistedFusionRecipes {
                 "AAA",
                 'A', ChemicalHelper.get(rawOreBlock, Fused_Mana).getItem().asItem(),
                 'B', ChemicalHelper.get(block, AlfSteel).getItem().asItem());
-        /*Todo:CTNH-Astral Ad坠星
-        METEOR_CAPTURER_RECIPES.recipeBuilder(CTNHCore.id("desh"))// 戴斯
-                .chancedInput(ModItems.TIER_1_ROCKET.get().getDefaultInstance(), (int) 5f, 1)
+        // TODO: 火箭等级物品与 Desh / Ostrum / Calorite 均随 ad_astra 移除，暂以屏障占位待替代材料与火箭体系设计
+        METEOR_CAPTURER_RECIPES.recipeBuilder(CTNHCore.id("desh"))
+                .chancedInput(Items.BARRIER.getDefaultInstance(), (int) 5f, 1)
                 .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 1000 * 128))
-                .outputItems(ChemicalHelper.get(ore, AdastraMaterials.Desh), 512)
+                .outputItems(Items.BARRIER, 512)
                 .duration(400)
                 .EUt(2048)
                 .save(provider);
 
-        METEOR_CAPTURER_RECIPES.recipeBuilder(CTNHCore.id("ostrum"))// 紫金
-                .chancedInput(ModItems.TIER_2_ROCKET.get().getDefaultInstance(), (int) 5f, 1)
+        METEOR_CAPTURER_RECIPES.recipeBuilder(CTNHCore.id("ostrum"))
+                .chancedInput(Items.BARRIER.getDefaultInstance(), (int) 5f, 1)
                 .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 1000 * 256))
-                .outputItems(ChemicalHelper.get(ore, AdastraMaterials.Ostrum), 256)
+                .outputItems(Items.BARRIER, 256)
                 .duration(400)
                 .EUt(8196)
                 .save(provider);
-        METEOR_CAPTURER_RECIPES.recipeBuilder(CTNHCore.id("calorite"))// 耐热金属
-                .chancedInput(ModItems.TIER_3_ROCKET.get().getDefaultInstance(), (int) 5f, 1)
+        METEOR_CAPTURER_RECIPES.recipeBuilder(CTNHCore.id("calorite"))
+                .chancedInput(Items.BARRIER.getDefaultInstance(), (int) 5f, 1)
                 .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 1000 * 512))
-                .outputItems(ChemicalHelper.get(ore, AdastraMaterials.Calorite), 128)
+                .outputItems(Items.BARRIER, 128)
                 .duration(400)
                 .EUt(8196 * 4)
                 .save(provider);
         METEOR_CAPTURER_RECIPES.recipeBuilder(CTNHCore.id("neutronium"))// 中子素
-                .chancedInput(ModItems.TIER_4_ROCKET.get().getDefaultInstance(), (int) 5f, 1)
+                .chancedInput(Items.BARRIER.getDefaultInstance(), (int) 5f, 1)
                 .inputFluids(FluidIngredient.of(BloodMagicFluids.LIFE_ESSENCE_FLUID.get(), 1000 * 1024))
                 .outputItems(ChemicalHelper.get(ore, Neutronium), 8)
                 .duration(400)
                 .EUt(528000 * 4)
                 .save(provider);
-         */
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("twist"))
                 .inputItems(ChemicalHelper.get(plate, Ultra_Mana), 1)
                 .inputItems(MANA_FUSION_CASING.asItem(), 1)

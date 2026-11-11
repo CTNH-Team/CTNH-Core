@@ -327,14 +327,11 @@ public class CTNHItems {
             .cnlang("共振结构化光伏无人机")
             .lang("pv_drone_tier2")
             .register();
-    /*Todo:CTNH-Astral
     public static ItemEntry<ConnectTerminalItem> PV_TERMINAL = REGISTRATE
             .item("pv_terminal", holder -> new ConnectTerminalItem(holder))
             .cnlang("光伏绑定终端")
             .lang("pv_terminal")
             .register();
-
-     */
     public static ItemEntry<MultiblockHelper> multiblockHelper = REGISTRATE
             .item("mutiblock_helper", holder -> new MultiblockHelper(holder))
             .lang("mutiblock_helper")
