@@ -67,30 +67,31 @@ public class NanoRecipes {
                 .duration(15)
                 .save(provider);
 
-        /*Todo:CTNH-Astral
-        // Nano generator: venus_stone -> venus_stone_dust
-        CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder(CTNHCore.id("venus_stone"))
-                .inputItems(ModBlocks.VENUS_STONE.get().asItem())
-                .outputItems(ChemicalHelper.get(TagPrefix.dust, Venusstone), 3)
-                .EUt(-16)
-                .duration(20)
-                .save(provider);
-
-        // Nano generator: mercury_stone -> mercury_stone_dust
-        CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder(CTNHCore.id("mercury_stone"))
-                .inputItems(ModBlocks.MERCURY_STONE.get().asItem())
-                .outputItems(ChemicalHelper.get(TagPrefix.dust, Mercurystone), 2)
-                .EUt(-16)
-                .duration(20)
-                .save(provider);
-
-        // Nano generator: glacio_stone -> glacio_stone_dust
-        CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder(CTNHCore.id("glacio_stone"))
-                .inputItems(ModBlocks.GLACIO_STONE.get().asItem())
-                .outputItems(ChemicalHelper.get(TagPrefix.dust, Glaciostone), 2)
-                .EUt(-30)
-                .duration(20)
-                .save(provider);
+        /*
+         * Todo:CTNH-Astral
+         * // Nano generator: venus_stone -> venus_stone_dust
+         * CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder(CTNHCore.id("venus_stone"))
+         * .inputItems(ModBlocks.VENUS_STONE.get().asItem())
+         * .outputItems(ChemicalHelper.get(TagPrefix.dust, Venusstone), 3)
+         * .EUt(-16)
+         * .duration(20)
+         * .save(provider);
+         * 
+         * // Nano generator: mercury_stone -> mercury_stone_dust
+         * CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder(CTNHCore.id("mercury_stone"))
+         * .inputItems(ModBlocks.MERCURY_STONE.get().asItem())
+         * .outputItems(ChemicalHelper.get(TagPrefix.dust, Mercurystone), 2)
+         * .EUt(-16)
+         * .duration(20)
+         * .save(provider);
+         * 
+         * // Nano generator: glacio_stone -> glacio_stone_dust
+         * CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder(CTNHCore.id("glacio_stone"))
+         * .inputItems(ModBlocks.GLACIO_STONE.get().asItem())
+         * .outputItems(ChemicalHelper.get(TagPrefix.dust, Glaciostone), 2)
+         * .EUt(-30)
+         * .duration(20)
+         * .save(provider);
          */
     }
 }

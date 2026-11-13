@@ -4,7 +4,6 @@ import io.github.cpearl0.ctnhcore.registry.CTNHTags;
 
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import com.aetherteam.aether.block.AetherBlocks;

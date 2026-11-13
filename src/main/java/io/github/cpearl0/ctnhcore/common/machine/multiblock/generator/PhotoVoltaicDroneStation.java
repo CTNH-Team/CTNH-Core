@@ -1,8 +1,8 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
 import io.github.cpearl0.ctnhcore.common.item.IDroneItem;
-import io.github.cpearl0.ctnhcore.utils.CTNHCelestialPower;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.DroneHolderMachine;
+import io.github.cpearl0.ctnhcore.utils.CTNHCelestialPower;
 
 import com.gregtechceu.gtceu.api.capability.IParallelHatch;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
@@ -15,7 +15,6 @@ import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.Level;
 
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;

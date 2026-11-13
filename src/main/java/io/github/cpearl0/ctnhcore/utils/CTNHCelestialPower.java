@@ -1,11 +1,10 @@
 package io.github.cpearl0.ctnhcore.utils;
 
-import com.ctnh.ctnhastral.common.universe.CACelestialBodies;
-import com.ctnh.ctnhastral.common.universe.CelestialBody;
-
 import net.minecraft.world.level.Level;
 
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
+import com.ctnh.ctnhastral.common.universe.CACelestialBodies;
+import com.ctnh.ctnhastral.common.universe.CelestialBody;
 
 /**
  * 光伏设备的维度倍率表。行星倍率由天体光照强度按倒数平方推出，地球为基准 1，光照越弱倍率越高。
