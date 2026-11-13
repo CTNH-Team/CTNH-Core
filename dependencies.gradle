@@ -61,10 +61,12 @@ dependencies {
     modImplementation(ctnh.arsnouveau)
 
     // ad
+    /*
     modImplementation(ctnh.resourcefullib)
     modImplementation(ctnh.resourcefulconfig)
     modImplementation(ctnh.botarium)
     modImplementation(ctnh.adastra)
+     */
 
     modImplementation(ctnh.aeroblender)
     modImplementation(ctnh.terrablender)

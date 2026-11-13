@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotoVoltaicDroneStation;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import io.github.cpearl0.ctnhcore.utils.CTNHCelestialPower;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -17,12 +18,9 @@ import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.Level;
 
-import com.aetherteam.aether.data.resources.registries.AetherDimensions;
 import com.ctnhlang.CN;
 import com.ctnhlang.EN;
-import earth.terrarium.adastra.api.planets.Planet;
 import org.jetbrains.annotations.NotNull;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
@@ -102,34 +100,8 @@ public class SpacePhotovoltaicBaseStation extends RecipeElectricMultiblockMachin
     }
 
     public double dimension_check() {
-        var level = getLevel();
-        var dimension = level.dimension();
-        orbit = false;
-        double rate = 1;
-        if (dimension == Planet.MOON_ORBIT || dimension == Planet.VENUS_ORBIT || dimension == Planet.MERCURY_ORBIT ||
-                dimension == Planet.MARS_ORBIT || dimension == Planet.GLACIO_ORBIT) {
-            orbit = true;
-            rate *= 4;
-        }
-
-        if (dimension == Level.OVERWORLD || dimension.location().getPath().equals("twilightforest:twilight_forest") ||
-                dimension.location().getPath().equals("mythicbotany:alfheim")) {
-            rate *= 0.5;
-        } else if (dimension == AetherDimensions.AETHER_LEVEL) {
-            rate *= 1;
-        } else if (dimension == Planet.MOON || dimension == Planet.MOON_ORBIT) {
-            rate *= 2;
-        } else if (dimension == Planet.VENUS || dimension == Planet.VENUS_ORBIT) {
-            rate *= 4;
-        } else if (dimension == Planet.MERCURY || dimension == Planet.MERCURY_ORBIT) {
-            rate *= 8;
-        } else if (dimension == Planet.MARS || dimension == Planet.MARS_ORBIT) {
-            rate *= 16;
-        } else if (dimension == Planet.GLACIO || dimension == Planet.GLACIO_ORBIT) {
-            rate *= 32;
-        }
-
-        return rate;
+        orbit = CTNHCelestialPower.isOrbit(getLevel());
+        return CTNHCelestialPower.solarMultiplier(getLevel());
     }
 
     @CN("该配方需要在空间站维度运行")

@@ -59,7 +59,6 @@ public class RecipeRemoval {
         SophisticatedStorageRecipes.sophisticatedStorageRemovals();
 
         // ===== 本类删除（按模组/功能分组） =====
-        adAstraRemovals();
         adExtendraRemovals();
         ae2Removals();
         ae2additionsRemovals();
@@ -103,13 +102,6 @@ public class RecipeRemoval {
     }
 
     // ========== 按模组/功能分组的删除方法 ==========
-
-    public static void adAstraRemovals() {
-        remove(new RemoveFilter().idRegex("ad_astra:(.*)"));
-        remove(new RemoveFilter().id("ad_astra:desh_fluid_pipe"));
-        remove(new RemoveFilter().id("ad_astra:ostrum_fluid_pipe"));
-        remove(new RemoveFilter().id("ad_astra:fluid_pipe_duct"));
-    }
 
     public static void adExtendraRemovals() {
         remove(new RemoveFilter().mod("ad_extendra").type("ad_extendra:smelting"));

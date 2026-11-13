@@ -16,7 +16,7 @@ public class AstronomyCircuitItem extends Item {
 
     public static final ResourceLocation[][] DIMENSIONS = new ResourceLocation[][] {
             { CTNHWorlds.THE_AETHER },
-            { CTNHWorlds.THE_AETHER, ResourceLocation.tryParse("ad_astra:moon") },
+            { CTNHWorlds.THE_AETHER, ResourceLocation.tryParse("ctnhastral:moon") },
     };
 
     private final int tier;

@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
 
 import com.gregtechceu.gtceu.api.data.worldgen.bedrockfluid.BedrockFluidDefinition;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
@@ -12,7 +11,6 @@ import net.minecraft.world.level.biome.Biomes;
 
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
 import com.ctnh.ctnhastral.data.CAMaterials;
-import earth.terrarium.adastra.api.planets.Planet;
 
 import java.util.Set;
 
@@ -80,123 +78,4 @@ public class CTNHFluidVeins {
                 .depletedYield(50)
                 .register();
     });
-    public static BedrockFluidDefinition MYSTERY_VEIN_MARS = create(CTNHCore.id("mars_mystery_fluid_vein"), vein -> {
-        vein.dimensions(Set.of(Planet.MARS))
-                .fluid(() -> CTNHMaterials.MysteryFluid.getFluid())
-                .weight(100)
-                .minimumYield(120)
-                .maximumYield(600)
-                .depletionAmount(2)
-                .depletionChance(1)
-                .depletedYield(50)
-                .register();
-    });
-    public static BedrockFluidDefinition WATER_VEIN_MARS = create(CTNHCore.id("mars_distilled_water_vein"), vein -> {
-        vein.dimensions(Set.of(Planet.MARS))
-                .fluid(() -> GTMaterials.DistilledWater.getFluid())
-                .weight(800)
-                .minimumYield(120)
-                .maximumYield(600)
-                .depletionAmount(2)
-                .depletionChance(1)
-                .depletedYield(50)
-                .register();
-    });
-    public static BedrockFluidDefinition HYDROCHLORIC_ACID_VEIN_MARS = create(
-            CTNHCore.id("mars_hydrochloric_acid_vein"), vein -> {
-                vein.dimensions(Set.of(Planet.MARS))
-                        .fluid(() -> GTMaterials.HydrochloricAcid.getFluid())
-                        .weight(200)
-                        .minimumYield(100)
-                        .maximumYield(500)
-                        .depletionAmount(2)
-                        .depletionChance(1)
-                        .depletedYield(50)
-                        .register();
-            });
-    public static BedrockFluidDefinition IRON_LIQUID_VEIN_MERCURY = create(CTNHCore.id("mercury_iron_liquid_vein"),
-            vein -> {
-                vein.dimensions(Set.of(Planet.MERCURY))
-                        .fluid(() -> GTMaterials.Iron.getFluid())
-                        .weight(300)
-                        .minimumYield(200)
-                        .maximumYield(800)
-                        .depletionAmount(2)
-                        .depletionChance(1)
-                        .depletedYield(100)
-                        .register();
-            });
-    public static BedrockFluidDefinition NICKEL_LIQUID_VEIN_MERCURY = create(CTNHCore.id("mercury_nickel_liquid_vein"),
-            vein -> {
-                vein.dimensions(Set.of(Planet.MERCURY))
-                        .fluid(() -> GTMaterials.Nickel.getFluid())
-                        .weight(200)
-                        .minimumYield(200)
-                        .maximumYield(800)
-                        .depletionAmount(2)
-                        .depletionChance(1)
-                        .depletedYield(100)
-                        .register();
-            });
-    public static BedrockFluidDefinition SULFUR_LIQUID_VEIN_MERCURY = create(CTNHCore.id("mercury_sulfur_liquid_vein"),
-            vein -> {
-                vein.dimensions(Set.of(Planet.MERCURY))
-                        .fluid(() -> GTMaterials.Sulfur.getFluid())
-                        .weight(300)
-                        .minimumYield(200)
-                        .maximumYield(800)
-                        .depletionAmount(2)
-                        .depletionChance(1)
-                        .depletedYield(100)
-                        .register();
-            });
-    // Moon brine and helium-3 extraction are intentionally moving to bespoke moon worldgen
-    // blocks/machines in CTNH-Astral, so the old bedrock fluid veins stay disabled here.
-    public static BedrockFluidDefinition SULFURIC_ACID_VEIN_VENUS = create(CTNHCore.id("venus_sulfuric_acid_vein"),
-            vein -> {
-                vein.dimensions(Set.of(Planet.VENUS))
-                        .fluid(() -> GTMaterials.SulfuricAcid.getFluid())
-                        .weight(300)
-                        .minimumYield(150)
-                        .maximumYield(500)
-                        .depletionAmount(2)
-                        .depletionChance(1)
-                        .depletedYield(50)
-                        .register();
-            });
-    public static BedrockFluidDefinition LEAD_LIQUID_VEIN_VENUS = create(CTNHCore.id("venus_lead_liquid_vein"),
-            vein -> {
-                vein.dimensions(Set.of(Planet.VENUS))
-                        .fluid(() -> GTMaterials.Lead.getFluid())
-                        .weight(100)
-                        .minimumYield(150)
-                        .maximumYield(500)
-                        .depletionAmount(2)
-                        .depletionChance(1)
-                        .depletedYield(50)
-                        .register();
-            });
-    public static BedrockFluidDefinition CRYOTHEUM_VEIN_GLACIO = create(CTNHCore.id("glacio_cryotheum_vein"), vein -> {
-        vein.dimensions(Set.of(Planet.GLACIO))
-                .fluid(() -> CTNHMaterials.Cryotheum.getFluid())
-                .weight(80)
-                .minimumYield(150)
-                .maximumYield(500)
-                .depletionAmount(2)
-                .depletionChance(1)
-                .depletedYield(50)
-                .register();
-    });
-    public static BedrockFluidDefinition DISTILLED_WATER_VEIN_GLACIO = create(
-            CTNHCore.id("glacio_distilled_water_vein"), vein -> {
-                vein.dimensions(Set.of(Planet.GLACIO))
-                        .fluid(() -> GTMaterials.DistilledWater.getFluid())
-                        .weight(800)
-                        .minimumYield(200)
-                        .maximumYield(800)
-                        .depletionAmount(2)
-                        .depletionChance(1)
-                        .depletedYield(100)
-                        .register();
-            });
 }

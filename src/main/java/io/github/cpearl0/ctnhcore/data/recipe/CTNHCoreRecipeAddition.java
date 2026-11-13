@@ -82,7 +82,6 @@ public class CTNHCoreRecipeAddition {
         PlatinumLine.init(provider);
         BrineChain.init(provider);
         FuelChain.init(provider);
-        AdAstraRecipes.init(provider);
         NaquadahLine.init(provider);
         CementChain.init(provider);
 

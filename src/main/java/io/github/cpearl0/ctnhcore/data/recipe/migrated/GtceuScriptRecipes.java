@@ -32,6 +32,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import appeng.core.definitions.AEBlocks;
 import com.aetherteam.aether.block.AetherBlocks;
+import com.ctnh.ctnhastral.registry.worldgen.MoonBlocks;
 import com.enderio.base.common.init.EIOBlocks;
 import com.enderio.base.common.init.EIOFluids;
 import com.enderio.base.common.init.EIOItems;
@@ -41,7 +42,6 @@ import com.mo_guang.ctpp.registry.CreateMaterials;
 import com.moguang.ctnhbio.registry.CBItems;
 import com.simibubi.create.AllItems;
 import com.soytutta.mynethersdelight.common.registry.MNDItems;
-import earth.terrarium.adastra.common.registry.ModItems;
 import samebutdifferent.ecologics.registry.ModBlocks;
 import twilightforest.init.TFBlocks;
 import vazkii.botania.common.block.BotaniaBlocks;
@@ -186,44 +186,49 @@ public class GtceuScriptRecipes {
                 .outputItems(CTNHMachines.ENERGY_OUTPUT_HATCH_4A_LOWER[GTValues.HV].asStack())
                 .save(provider);
 
-        // 11. space_helmet: glass_plate + 4x space_fabric + glue 72 -> ad_astra:space_helmet. EUt 120, dur 400
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("space_helmet_2"))
-                .EUt(120).duration(400)
-                .inputItems(plate, Glass)
-                .inputItems(SPACE_FABRIC.asStack(4))
-                .inputFluids(Glue.getFluid(72))
-                .outputItems(ModItems.SPACE_HELMET)
-                .save(provider);
-
-        // 12. space_suit: ad_astra:oxygen_gear + 2x ad_astra:gas_tank + 4x heavy_plate_t1 + 2x stainless_steel_screw +
-        // 4x space_fabric -> ad_astra:space_suit. EUt 120, dur 400
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("space_suit"))
-                .EUt(120).duration(400)
-                .inputItems(ModItems.OXYGEN_GEAR.get())
-                .inputItems(ModItems.GAS_TANK.get(), 2)
-                .inputItems(HEAVY_PLATE_T1.asStack(4))
-                .inputItems(screw, StainlessSteel, 2)
-                .inputItems(SPACE_FABRIC.asStack(4))
-                .outputItems(ModItems.SPACE_SUIT)
-                .save(provider);
-
-        // 13. space_pants: 5x heavy_plate_t1 + 3x space_fabric -> ad_astra:space_pants. circuit 2. EUt 120, dur 400
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("space_pants"))
-                .EUt(120).duration(400)
-                .circuitMeta(2)
-                .inputItems(HEAVY_PLATE_T1.asStack(5))
-                .inputItems(SPACE_FABRIC.asStack(3))
-                .outputItems(ModItems.SPACE_PANTS)
-                .save(provider);
-
-        // 14. space_boots: 4x heavy_plate_t1 + 2x space_fabric -> ad_astra:space_boots. circuit 1. EUt 120, dur 400
-        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("space_boots"))
-                .EUt(120).duration(400)
-                .circuitMeta(1)
-                .inputItems(HEAVY_PLATE_T1.asStack(4))
-                .inputItems(SPACE_FABRIC.asStack(2))
-                .outputItems(ModItems.SPACE_BOOTS)
-                .save(provider);
+        /*
+         * Todo:CTNH-Astral
+         * // 11. space_helmet: glass_plate + 4x space_fabric + glue 72 -> ad_astra:space_helmet. EUt 120, dur 400
+         * ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("space_helmet_2"))
+         * .EUt(120).duration(400)
+         * .inputItems(plate, Glass)
+         * .inputItems(SPACE_FABRIC.asStack(4))
+         * .inputFluids(Glue.getFluid(72))
+         * .outputItems(ModItems.SPACE_HELMET)
+         * .save(provider);
+         * 
+         * // 12. space_suit: ad_astra:oxygen_gear + 2x ad_astra:gas_tank + 4x heavy_plate_t1 + 2x stainless_steel_screw
+         * +
+         * // 4x space_fabric -> ad_astra:space_suit. EUt 120, dur 400
+         * ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("space_suit"))
+         * .EUt(120).duration(400)
+         * .inputItems(ModItems.OXYGEN_GEAR.get())
+         * .inputItems(ModItems.GAS_TANK.get(), 2)
+         * .inputItems(HEAVY_PLATE_T1.asStack(4))
+         * .inputItems(screw, StainlessSteel, 2)
+         * .inputItems(SPACE_FABRIC.asStack(4))
+         * .outputItems(ModItems.SPACE_SUIT)
+         * .save(provider);
+         * 
+         * // 13. space_pants: 5x heavy_plate_t1 + 3x space_fabric -> ad_astra:space_pants. circuit 2. EUt 120, dur 400
+         * ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("space_pants"))
+         * .EUt(120).duration(400)
+         * .circuitMeta(2)
+         * .inputItems(HEAVY_PLATE_T1.asStack(5))
+         * .inputItems(SPACE_FABRIC.asStack(3))
+         * .outputItems(ModItems.SPACE_PANTS)
+         * .save(provider);
+         * 
+         * // 14. space_boots: 4x heavy_plate_t1 + 2x space_fabric -> ad_astra:space_boots. circuit 1. EUt 120, dur 400
+         * ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("space_boots"))
+         * .EUt(120).duration(400)
+         * .circuitMeta(1)
+         * .inputItems(HEAVY_PLATE_T1.asStack(4))
+         * .inputItems(SPACE_FABRIC.asStack(2))
+         * .outputItems(ModItems.SPACE_BOOTS)
+         * .save(provider);
+         * 
+         */
 
         // 16. fuel_refining_factory: 12x large_chemical_reactor + 8x distillation_tower + 8x cracker + 32x
         // nichrome_coil_block + 7x dense_steel_plate + 7x dense_stainless_steel_plate + 64x black_steel_frame + 32x #iv
@@ -508,11 +513,11 @@ public class GtceuScriptRecipes {
                 .outputFluids(ExtraterrestrialAtmosphereMaterials.AETHER_AIR.getFluid(10000))
                 .save(provider);
 
-        // 4. venus_air: circuit 7, dimension ad_astra:venus -> venus_air 10000. EUt 1024, dur 200
+        // 4. venus_air: circuit 7, dimension ctnhastral:venus -> venus_air 10000. EUt 1024, dur 200
         GAS_COLLECTOR_RECIPES.recipeBuilder(CTNHCore.id("venus_air"))
                 .EUt(1024).duration(200)
                 .circuitMeta(7)
-                .dimension(ResourceLocation.parse("ad_astra:venus"))
+                .dimension(ResourceLocation.parse("ctnhastral:venus"))
                 .outputFluids(ExtraterrestrialAtmosphereMaterials.VENUS_AIR.getFluid(10000))
                 .save(provider);
 
@@ -1868,21 +1873,25 @@ public class GtceuScriptRecipes {
                 .EUt(6144).duration(200)
                 .save(provider);
 
-        // venus_air1
-        CTNHRecipeTypes.DIMENSIONAL_GAS_COLLECTION.recipeBuilder(CTNHCore.id("venus_air1"))
-                .notConsumable(ModItems.RAW_CALORITE.get())
-                .circuitMeta(1)
-                .outputFluids(ExtraterrestrialAtmosphereMaterials.VENUS_AIR.getFluid(500000))
-                .EUt(122330).duration(200)
-                .save(provider);
-
-        // venus_air2
-        CTNHRecipeTypes.DIMENSIONAL_GAS_COLLECTION.recipeBuilder(CTNHCore.id("venus_air2"))
-                .notConsumable(ModItems.RAW_CALORITE.get())
-                .notConsumable(GTMultiMachines.VACUUM_FREEZER.asStack())
-                .outputFluids(ExtraterrestrialAtmosphereMaterials.LIQUID_VENUS_AIR.getFluid(500000))
-                .EUt(490123).duration(200)
-                .save(provider);
+        /*
+         * Todo:CTNH-Astral
+         * // venus_air1
+         * CTNHRecipeTypes.DIMENSIONAL_GAS_COLLECTION.recipeBuilder(CTNHCore.id("venus_air1"))
+         * .notConsumable(ModItems.RAW_CALORITE.get())
+         * .circuitMeta(1)
+         * .outputFluids(ExtraterrestrialAtmosphereMaterials.VENUS_AIR.getFluid(500000))
+         * .EUt(122330).duration(200)
+         * .save(provider);
+         * 
+         * // venus_air2
+         * CTNHRecipeTypes.DIMENSIONAL_GAS_COLLECTION.recipeBuilder(CTNHCore.id("venus_air2"))
+         * .notConsumable(ModItems.RAW_CALORITE.get())
+         * .notConsumable(GTMultiMachines.VACUUM_FREEZER.asStack())
+         * .outputFluids(ExtraterrestrialAtmosphereMaterials.LIQUID_VENUS_AIR.getFluid(500000))
+         * .EUt(490123).duration(200)
+         * .save(provider);
+         * 
+         */
 
         // ============== Martial Morality Eye Recipes ==============
 
@@ -1955,7 +1964,7 @@ public class GtceuScriptRecipes {
 
         // ore_production_3
         CTNHRecipeTypes.MARTIAL_MORALITY_EYE.recipeBuilder(CTNHCore.id("ore_production_3"))
-                .inputItems(ModItems.MOON_STONE.get(), 64)
+                .inputItems(MoonBlocks.MOON_STONE.get().asItem(), 64)
                 .chancedInput(ChemicalHelper.get(block, GalliumArsenide, 4), 5500, -100)
                 .inputFluids(RocketFuel.getFluid(4000))
                 .outputFluids(NitricAcid.getFluid(1000))
