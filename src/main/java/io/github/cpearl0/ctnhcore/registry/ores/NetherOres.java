@@ -85,11 +85,10 @@ public class NetherOres {
                     .layer(WorldGenLayers.NETHERRACK)
                     .heightRangeUniform(10, 30)
                     .biomes(BiomeTags.IS_NETHER)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Beryllium).size(2, 4))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Emerald).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Thorium))))
+                    .dikeVeinGenerator(generator -> generator
+                            .withBlock(GTMaterials.Beryllium, 2, 10, 30)
+                            .withBlock(GTMaterials.Emerald, 2, 10, 30)
+                            .withBlock(GTMaterials.Thorium, 1, 10, 30))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Beryllium)
                             .placement(ABOVE)));
@@ -123,11 +122,16 @@ public class NetherOres {
                     .layer(WorldGenLayers.NETHERRACK)
                     .heightRangeUniform(80, 120)
                     .biomes(BiomeTags.IS_NETHER)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Tetrahedrite).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Chalcopyrite).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Stibnite).size(2, 4))))
+                    .veinedVeinGenerator(generator -> generator
+                            .oreBlock(GTMaterials.Tetrahedrite, 1)
+                            .oreBlock(GTMaterials.Chalcopyrite, 1)
+                            .oreBlock(GTMaterials.Stibnite, 1)
+                            .veininessThreshold(0.01f)
+                            .minRichness(0.7f)
+                            .maxRichness(1.0f)
+                            .maxRichnessThreshold(0.175f)
+                            .edgeRoundoffBegin(3)
+                            .maxEdgeRoundoff(0.1f))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Tetrahedrite)
                             .placement(ABOVE)));
@@ -142,11 +146,16 @@ public class NetherOres {
                     .layer(WorldGenLayers.NETHERRACK)
                     .heightRangeUniform(20, 40)
                     .biomes(BiomeTags.IS_NETHER)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Iron))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Hematite).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Gold))))
+                    .veinedVeinGenerator(generator -> generator
+                            .oreBlock(GTMaterials.Iron, 1)
+                            .oreBlock(GTMaterials.Hematite, 2)
+                            .oreBlock(GTMaterials.Gold, 1)
+                            .veininessThreshold(0.01f)
+                            .minRichness(0.7f)
+                            .maxRichness(1.0f)
+                            .maxRichnessThreshold(0.175f)
+                            .edgeRoundoffBegin(3)
+                            .maxEdgeRoundoff(0.1f))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Hematite)
                             .placement(ABOVE)));
@@ -216,10 +225,9 @@ public class NetherOres {
                     .layer(WorldGenLayers.NETHERRACK)
                     .heightRangeUniform(20, 30)
                     .biomes(BiomeTags.IS_NETHER)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Pyrolusite).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Tantalite))))
+                    .dikeVeinGenerator(generator -> generator
+                            .withBlock(GTMaterials.Pyrolusite, 2, 20, 30)
+                            .withBlock(GTMaterials.Tantalite, 1, 20, 30))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Pyrolusite)
                             .placement(ABOVE)));

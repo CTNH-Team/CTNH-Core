@@ -131,10 +131,15 @@ public class OverworldOres {
                     .layer(WorldGenLayers.STONE)
                     .heightRangeUniform(10, 80)
                     .biomes(BiomeTags.IS_OVERWORLD)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Tin))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Cassiterite).size(2, 4))))
+                    .veinedVeinGenerator(generator -> generator
+                            .oreBlock(GTMaterials.Tin, 1)
+                            .oreBlock(GTMaterials.Cassiterite, 2)
+                            .veininessThreshold(0.01f)
+                            .minRichness(0.7f)
+                            .maxRichness(1.0f)
+                            .maxRichnessThreshold(0.175f)
+                            .edgeRoundoffBegin(3)
+                            .maxEdgeRoundoff(0.1f))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Cassiterite)));
 
@@ -166,11 +171,16 @@ public class OverworldOres {
                     .layer(WorldGenLayers.STONE)
                     .heightRangeUniform(-10, 160)
                     .biomes(BiomeTags.IS_OVERWORLD)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Chalcopyrite).size(2, 4))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Cassiterite).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Realgar))))
+                    .veinedVeinGenerator(generator -> generator
+                            .oreBlock(GTMaterials.Chalcopyrite, 2)
+                            .oreBlock(GTMaterials.Cassiterite, 2)
+                            .oreBlock(GTMaterials.Realgar, 1)
+                            .veininessThreshold(0.01f)
+                            .minRichness(0.7f)
+                            .maxRichness(1.0f)
+                            .maxRichnessThreshold(0.175f)
+                            .edgeRoundoffBegin(3)
+                            .maxEdgeRoundoff(0.1f))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Chalcopyrite)));
 
@@ -185,10 +195,15 @@ public class OverworldOres {
                     .layer(WorldGenLayers.STONE)
                     .heightRangeUniform(-10, 60)
                     .biomes(BiomeTags.IS_OVERWORLD)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Iron))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Hematite).size(2, 4))))
+                    .veinedVeinGenerator(generator -> generator
+                            .oreBlock(GTMaterials.Iron, 1)
+                            .oreBlock(GTMaterials.Hematite, 2)
+                            .veininessThreshold(0.01f)
+                            .minRichness(0.7f)
+                            .maxRichness(1.0f)
+                            .maxRichnessThreshold(0.175f)
+                            .edgeRoundoffBegin(3)
+                            .maxEdgeRoundoff(0.1f))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Hematite)));
 
@@ -258,11 +273,16 @@ public class OverworldOres {
                     .layer(WorldGenLayers.DEEPSLATE)
                     .heightRangeUniform(-40, 10)
                     .biomes(BiomeTags.IS_OVERWORLD)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Copper))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Chalcopyrite).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Pyrite))))
+                    .veinedVeinGenerator(generator -> generator
+                            .oreBlock(GTMaterials.Copper, 1)
+                            .oreBlock(GTMaterials.Chalcopyrite, 2)
+                            .oreBlock(GTMaterials.Pyrite, 1)
+                            .veininessThreshold(0.01f)
+                            .minRichness(0.7f)
+                            .maxRichness(1.0f)
+                            .maxRichnessThreshold(0.175f)
+                            .edgeRoundoffBegin(3)
+                            .maxEdgeRoundoff(0.1f))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Copper)));
 
@@ -277,11 +297,11 @@ public class OverworldOres {
                     .layer(WorldGenLayers.DEEPSLATE)
                     .heightRangeUniform(-60, -30)
                     .biomes(BiomeTags.IS_OVERWORLD)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(7).mat(GTMaterials.Graphite).size(2, 4))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Diamond))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Coal))))
+                    .classicVeinGenerator(generator -> generator
+                            .primary(b -> b.mat(GTMaterials.Graphite).size(4))
+                            .secondary(b -> b.mat(GTMaterials.Graphite).size(3))
+                            .between(b -> b.mat(GTMaterials.Diamond).size(3))
+                            .sporadic(b -> b.mat(GTMaterials.Coal)))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Diamond)
                             .density(0.1f)
@@ -299,10 +319,9 @@ public class OverworldOres {
                     .layer(WorldGenLayers.DEEPSLATE)
                     .heightRangeUniform(-60, 10)
                     .biomes(BiomeTags.IS_OVERWORLD)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Lapis).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Calcite))))
+                    .dikeVeinGenerator(generator -> generator
+                            .withBlock(GTMaterials.Lapis, 2, -60, 10)
+                            .withBlock(GTMaterials.Calcite, 1, -60, 10))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Lapis)
                             .density(0.15f)
@@ -320,10 +339,9 @@ public class OverworldOres {
                     .layer(WorldGenLayers.DEEPSLATE)
                     .heightRangeUniform(-30, 0)
                     .biomes(BiomeTags.IS_OVERWORLD)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Pyrolusite).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Tantalite))))
+                    .dikeVeinGenerator(generator -> generator
+                            .withBlock(GTMaterials.Pyrolusite, 2, -30, 0)
+                            .withBlock(GTMaterials.Tantalite, 1, -30, 0))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Pyrolusite)
                             .density(0.15f)

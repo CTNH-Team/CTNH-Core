@@ -25,11 +25,10 @@ public class EndOres {
                     .layer(WorldGenLayers.ENDSTONE)
                     .heightRangeUniform(0, 100)
                     .biomes(BiomeTags.IS_END)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Scheelite).size(2, 4))
-                                    .layer(l -> l.weight(2).mat(GTMaterials.Tungstate).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Lithium))))
+                    .dikeVeinGenerator(generator -> generator
+                            .withBlock(GTMaterials.Scheelite, 2, 0, 100)
+                            .withBlock(GTMaterials.Tungstate, 2, 0, 100)
+                            .withBlock(GTMaterials.Lithium, 1, 0, 100))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Scheelite)
                             .placement(ABOVE)));
@@ -82,10 +81,11 @@ public class EndOres {
                     .layer(WorldGenLayers.ENDSTONE)
                     .heightRangeUniform(0, 100)
                     .biomes(BiomeTags.IS_END)
-                    .layeredVeinGenerator(generator -> generator
-                            .buildLayerPattern(pattern -> pattern
-                                    .layer(l -> l.weight(5).mat(GTMaterials.Pitchblende).size(2, 4))
-                                    .layer(l -> l.weight(1).mat(GTMaterials.Uraninite))))
+                    .cuboidVeinGenerator(generator -> generator
+                            .top(b -> b.mat(GTMaterials.Pitchblende).size(2))
+                            .middle(b -> b.mat(GTMaterials.Pitchblende).size(3))
+                            .bottom(b -> b.mat(GTMaterials.Pitchblende).size(2))
+                            .spread(b -> b.mat(GTMaterials.Uraninite)))
                     .surfaceIndicatorGenerator(indicator -> indicator
                             .surfaceRock(GTMaterials.Pitchblende)
                             .placement(ABOVE)));
