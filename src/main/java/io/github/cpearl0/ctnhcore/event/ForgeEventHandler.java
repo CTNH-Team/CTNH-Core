@@ -59,9 +59,14 @@ public class ForgeEventHandler {
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
-    public static void postLevelTickBus(TickEvent.LevelTickEvent event) {
-        ProvidableNetEventHandler.onPostTick(event);
-        ProvidableNetEventHandler.onPreTick(event);
+    public static void levelTickBus(TickEvent.LevelTickEvent event) {
+        // 同一游戏刻里 START / END 各触发一次（每个 Level 各一份实例），必须按 phase 分流：
+        // 不判断 phase 会让每个可提供方网络每 tick 跑两遍，而且 post 会先于 pre 执行。
+        if (event.phase == TickEvent.Phase.START) {
+            ProvidableNetEventHandler.onPreTick(event);
+        } else if (event.phase == TickEvent.Phase.END) {
+            ProvidableNetEventHandler.onPostTick(event);
+        }
     }
 
     @SubscribeEvent
