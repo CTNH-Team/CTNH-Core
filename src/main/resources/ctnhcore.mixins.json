@@ -48,6 +48,7 @@
     "eclipticseasons.BakedQuadRetexturedMixin",
     "eclipticseasons.SnowyBakedModelWrapperOffsetMixin",
     "eclipticseasons.SnowySeasonBakeModelMixin",
+    "modernfix.SimpleItemModelViewMixin",
     "ponder.PonderUIPreviousScreenMixin",
     "ponder.PonderUISpeederMixin"
   ],
