@@ -528,7 +528,7 @@ public class SunRecipes {
                 .inputItems(VOLTAGE_COIL_IV)
                 .inputFluids(VanadiumGallium.getFluid(576))
                 .outputItems(CTNHBlocks.PV_COIL.asStack())
-                .addData("input", 130712)
+                .addData("input", 131072)
                 .duration(20)
                 .save(provider);
 
@@ -540,7 +540,7 @@ public class SunRecipes {
                 .inputItems(CRYSTAL_SYSTEM_ON_CHIP.asStack(8))
                 .inputFluids(Cryotheum.getFluid(8000))
                 .outputItems(CTNHItems.PV_DRONE_TIER1.asStack())
-                .addData("input", 261424)
+                .addData("input", 262144)
                 .duration(400)
                 .save(provider);
 
@@ -552,7 +552,7 @@ public class SunRecipes {
                 .inputItems(HIGHLY_ADVANCED_SOC_WAFER, 14)
                 .inputFluids(Cryotheum.getFluid(28000))
                 .outputItems(CTNHItems.PV_DRONE_TIER2.asStack(), 7)
-                .addData("input", 2091392)
+                .addData("input", 2097152)
                 .duration(400)
                 .save(provider);
 

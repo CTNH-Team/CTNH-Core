@@ -155,6 +155,8 @@ public class NeuroMatrixCompiler extends RecipeElectricMultiblockMachine impleme
         }
         answer += RawEquation.get(3);
         var fake_answer = (long) (answer + noise * Math.random());
+        // true_answer 会因 range 缺失或过小而为 0，此处除法随之得 NaN 或 Infinity 并写进 NBT
+        if (true_answer == 0) return 0.0;
         return ((double) fake_answer / true_answer);
     }
 
@@ -167,6 +169,7 @@ public class NeuroMatrixCompiler extends RecipeElectricMultiblockMachine impleme
         }
         answer += RawEquation.get(3);
         var fake_answer = (long) (answer + noise * Math.random());
+        if (true_answer == 0) return 0.0;
         return ((double) answer / true_answer);
     }
 
