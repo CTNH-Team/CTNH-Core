@@ -14,6 +14,7 @@ import com.gregtechceu.gtceu.common.data.machines.GCYMMachines;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -31,7 +32,6 @@ import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.data.recipe.CustomTags.*;
-import static io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials.*;
 import static io.github.cpearl0.ctnhcore.data.materials.GoldChainMaterials.SODIUM_HEXAFLUOROALUMINATE;
 import static io.github.cpearl0.ctnhcore.data.materials.UncategorizedMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.machines.CTNHMachines.*;
@@ -186,11 +186,11 @@ public class SunRecipes {
                 .EUt(32768)
                 .duration(800)
                 .save(provider);
-
         ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("dense_calorite_plate"))
                 .inputItems(plateDense, OPTICAL_HEAT_RESISTANT_FERROCHROME_ALLOY_080)
                 .inputItems(plate, IncoloyMA956, 4)
-                .inputItems(plateDense, Calorite)
+                // TODO: 原为 Calorite 致密板，该材料随 AdastraMaterials 移除，先用屏障占位待替代材料设计
+                .inputItems(Blocks.BARRIER.asItem())
                 .inputItems(dust, SUNNARIUM_EXTRACT, 4)
                 .inputItems(plateDense, NAQUADAH_HEAT_RESISTANT_FERROCHROME_ALLOY_792)
                 .outputItems(CTNHItems.THERMOTOLERANT_DISH.asStack())
@@ -410,7 +410,6 @@ public class SunRecipes {
                 .EUt(130712)
                 .duration(400)
                 .save(provider);
-
         ASSEMBLY_LINE_RECIPES.recipeBuilder(CTNHCore.id("photovoltaic_drone_tier2"))
                 .stationResearch(b -> b
                         .researchStack(CTNHItems.PV_DRONE_RESEARCH_2.asStack())
@@ -420,7 +419,8 @@ public class SunRecipes {
                 .inputItems(ENERGY_MODULE)
                 .inputItems(CTNHItems.MEASUREMENT_PV_CELL.asStack())
                 .inputItems(UV_CIRCUITS, 2)
-                .inputItems(plateDense, Calorite)
+                // TODO: 原为 Calorite 致密板，该材料随 AdastraMaterials 移除，先用屏障占位待替代材料设计
+                .inputItems(Blocks.BARRIER.asItem())
                 .inputItems(plateDense, OPTICAL_HEAT_RESISTANT_FERROCHROME_ALLOY_080)
                 .inputItems(frameGt, Sunnarium, 64)
                 .inputItems(frameGt, Sunnarium, 64)
@@ -564,7 +564,6 @@ public class SunRecipes {
                 .addData("input", 500000)
                 .duration(1000)
                 .save(provider);
-
         CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER.recipeBuilder(CTNHCore.id("pv_terminal"))
                 .inputItems(TERMINAL)
                 .inputItems(dust, Sunnarium)

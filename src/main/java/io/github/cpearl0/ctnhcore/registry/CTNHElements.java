@@ -29,8 +29,5 @@ public class CTNHElements {
     public static final Element SpNt = GTElements.createAndRegister(167, 233, -1, null, "Space Neutronium", "SpNt",
             false);
     public static final Element IF2 = GTElements.createAndRegister(168, 316, -1, null, "Infinity", "∞", false);
-    public static final Element Ds = GTElements.createAndRegister(150, 144, -1, null, "Desh", "Ds", false);
-    public static final Element Ot = GTElements.createAndRegister(151, 156, -1, null, "Ostrum", "Os", false);
-    public static final Element Ct = GTElements.createAndRegister(152, 162, -1, null, "Calorite", "Ct", false);
     public static final Element Th232 = GTElements.createAndRegister(90, 142, -1, null, "Thorium-232", "Th-232", true);
 }

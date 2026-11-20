@@ -60,7 +60,6 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.negodya1.vintageimprovements.VintageBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
-import earth.terrarium.adastra.common.registry.ModItems;
 import me.khajiitos.jackseconomy.init.ItemBlockReg;
 import vazkii.botania.common.block.BotaniaBlocks;
 import vazkii.botania.common.item.BotaniaItems;
@@ -334,8 +333,6 @@ public class CrafttableScriptRecipe {
         shaped(provider, "mechanical_lathe", Mechanical.MECHANICAL_LATHE.asStack(), "AAA", "BCB", "DDD", 'A',
                 CTPPItems.STEEL_MECHANISM.asStack(), 'B', AllBlocks.RAILWAY_CASING.asStack(), 'C',
                 VintageBlocks.LATHE_ROTATING.get(), 'D', AllItems.BELT_CONNECTOR.asItem());
-        shaped(provider, "iron_plating", stack(ModItems.IRON_PLATING.get(), 64), "AAA", "A A", "AAA", 'A',
-                tag("forge:plates/iron"));
         shapeless(provider, "dungeon_brick1", stack(BloodMagicBlocks.DUNGEON_BRICK_1.get()),
                 BloodMagicBlocks.DUNGEON_BRICK_ASSORTED.get());
 

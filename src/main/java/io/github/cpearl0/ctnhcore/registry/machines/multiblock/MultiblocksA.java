@@ -1355,7 +1355,6 @@ public class MultiblocksA {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
                     GTCEu.id("block/multiblock/assembly_line"))
             .register();
-
     public static final MultiblockMachineDefinition PHOTOVOLTAIC_POWER_STATION_ENERGETIC =
             registerPhotovoltaicPowerStation("energetic", 1, CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK,
                     "充能光伏发电站");
@@ -1389,7 +1388,6 @@ public class MultiblocksA {
             default -> throw new IllegalArgumentException("Unsupported photovoltaic power station tier: " + tier);
         };
     }
-
     public static MultiblockMachineDefinition registerPhotovoltaicPowerStation(String tier, int basicRate,
                                                                                 BlockEntry<?> photovoltaicBlock,
                                                                                 String cnName) {

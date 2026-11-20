@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.data.materials.AdastraMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.AviationFabricMaterials;
 import io.github.cpearl0.ctnhcore.data.materials.UncategorizedMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
@@ -26,9 +25,9 @@ import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
 
-import com.ctnh.ctnhastral.data.CATagPrefixes;
 import com.simibubi.create.AllBlocks;
 
 import java.util.function.Consumer;
@@ -158,12 +157,11 @@ public class MachinesRecipes {
                 .circuitMeta(1)
                 .save(provider);
 
+        // TODO: 原输出为 Desh / Calorite / Ostrum 三种行星矿石，材料随 AdastraMaterials 移除，暂以屏障占位待替代材料设计
         CTNHRecipeTypes.PVDRONE.recipeBuilder(CTNHCore.id("meteorite_capture"))
                 .duration(1000)
                 .circuitMeta(2)
-                .outputItems(CATagPrefixes.oreMoonStone, AdastraMaterials.Desh)
-                .outputItems(CATagPrefixes.oreVenusStone, AdastraMaterials.Calorite)
-                .outputItems(CATagPrefixes.oreMarsStone, AdastraMaterials.Ostrum)
+                .outputItems(Blocks.BARRIER.asItem())
                 .EUt(VA[LuV])
                 .save(provider);
 
