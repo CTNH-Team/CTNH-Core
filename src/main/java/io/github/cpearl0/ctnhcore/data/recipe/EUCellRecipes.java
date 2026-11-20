@@ -307,7 +307,7 @@ public class EUCellRecipes {
                     .inputFluids(STELLAR_ENERGY.getFluid(144))
                     .outputFluidsRanged(new FluidStack(STELLAR_ENERGY.getFluid(), 100),
                             UniformInt.of(144, 144 * (tier + 1)))
-                    .EUt(1920 * LV)
+                    .EUt(VA[tier])
                     .duration(2000)
                     .save(provider);
 
