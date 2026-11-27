@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.client.ponder;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.AssemblyLine;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.ChemicalPlant;
+import io.github.cpearl0.ctnhcore.client.ponder.Electric.Cleanroom;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.CokeOven;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.ComputationNetwork;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.NeutronActivator;
@@ -44,6 +45,10 @@ public final class CTNHCorePonderScenes {
 
         helper.forComponents(GTMultiMachines.COKE_OVEN.getId())
                 .addStoryBoard("coke_oven/common", CokeOven::Common, CTNHCorePonderTags.CTNHPonder);
+
+        helper.forComponents(GTMultiMachines.CLEANROOM.getId())
+                .addStoryBoard("cleanroom/building", Cleanroom::building, CTNHCorePonderTags.CTNHPonder)
+                .addStoryBoard("cleanroom/operation", Cleanroom::operation, CTNHCorePonderTags.CTNHPonder);
 
         helper.forComponents(GTMachines.CHEMICAL_REACTOR[GTValues.LV].getId())
                 .addStoryBoard("chemical_reactor_ui/common", ChemicalReactorUi::Common,

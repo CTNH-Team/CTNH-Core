@@ -61,6 +61,7 @@ public final class CTNHCorePonderTags {
 
         helper.addToTag(CTNHPonder)
                 .add(GTMultiMachines.COKE_OVEN.getId())
+                .add(GTMultiMachines.CLEANROOM.getId())
                 .add(GTMultiMachines.ASSEMBLY_LINE.getId())
                 .add(GTNNMultiblocks.NEUTRON_ACTIVATOR.getId())
                 .add(GTNNMultiblocks.CHEMICAL_PLANT.getId())
