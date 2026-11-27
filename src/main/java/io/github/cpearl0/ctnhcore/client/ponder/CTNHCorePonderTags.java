@@ -11,6 +11,7 @@ import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterialItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
+import com.gregtechceu.gtceu.common.data.machines.GTResearchMachines;
 
 import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;
 import net.minecraft.resources.ResourceLocation;
@@ -63,6 +64,8 @@ public final class CTNHCorePonderTags {
                 .add(GTMultiMachines.COKE_OVEN.getId())
                 .add(GTMultiMachines.CLEANROOM.getId())
                 .add(GTMultiMachines.ASSEMBLY_LINE.getId())
+                .add(GTResearchMachines.HIGH_PERFORMANCE_COMPUTING_ARRAY.getId())
+                .add(GTResearchMachines.NETWORK_SWITCH.getId())
                 .add(GTNNMultiblocks.NEUTRON_ACTIVATOR.getId())
                 .add(GTNNMultiblocks.CHEMICAL_PLANT.getId())
                 .add(MultiblocksA.MEADOW.getId());
