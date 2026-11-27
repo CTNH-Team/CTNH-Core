@@ -4,6 +4,7 @@ import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.AssemblyLine;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.ChemicalPlant;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.CokeOven;
+import io.github.cpearl0.ctnhcore.client.ponder.Electric.ComputationNetwork;
 import io.github.cpearl0.ctnhcore.client.ponder.Electric.NeutronActivator;
 import io.github.cpearl0.ctnhcore.client.ponder.Kinetic.*;
 import io.github.cpearl0.ctnhcore.client.ponder.Misc.Drum;
@@ -18,6 +19,7 @@ import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterialItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
+import com.gregtechceu.gtceu.common.data.machines.GTResearchMachines;
 
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.minecraft.resources.ResourceLocation;
@@ -45,6 +47,19 @@ public final class CTNHCorePonderScenes {
 
         helper.forComponents(GTMachines.CHEMICAL_REACTOR[GTValues.LV].getId())
                 .addStoryBoard("chemical_reactor_ui/common", ChemicalReactorUi::Common,
+                        CTNHCorePonderTags.CTNHPonder);
+
+        helper.forComponents(GTResearchMachines.HIGH_PERFORMANCE_COMPUTING_ARRAY.getId())
+                .addStoryBoard("computation/hpca_building", ComputationNetwork::hpcaBasics,
+                        CTNHCorePonderTags.CTNHPonder)
+                .addStoryBoard("computation/computation_optical_fiber", ComputationNetwork::opticalFiber,
+                        CTNHCorePonderTags.CTNHPonder);
+        helper.forComponents(GTResearchMachines.NETWORK_SWITCH.getId())
+                .addStoryBoard("computation/computation_network_switch", ComputationNetwork::switchBasics,
+                        CTNHCorePonderTags.CTNHPonder);
+        helper.forComponents(GTResearchMachines.HIGH_PERFORMANCE_COMPUTING_ARRAY.getId(),
+                GTResearchMachines.NETWORK_SWITCH.getId())
+                .addStoryBoard("computation/computation_network_bridge", ComputationNetwork::bridge,
                         CTNHCorePonderTags.CTNHPonder);
 
         helper.forComponents(GTMultiMachines.ASSEMBLY_LINE.getId())
