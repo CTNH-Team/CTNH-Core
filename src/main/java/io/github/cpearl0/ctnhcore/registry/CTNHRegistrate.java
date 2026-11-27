@@ -17,6 +17,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import com.google.common.collect.Lists;
 import lombok.Getter;
 import tech.vixhentx.mcmod.ctnhlib.registrate.CNRegistrate;
+import tech.vixhentx.mcmod.ctnhlib.registrate.CTNHCopyright;
 import tech.vixhentx.mcmod.ctnhlib.registrate.builders.CTNHMachineBuilder;
 
 import java.util.List;
@@ -27,7 +28,7 @@ import java.util.function.Supplier;
 public final class CTNHRegistrate extends CNRegistrate {
 
     CTNHRegistrate() {
-        super(CTNHCore.MODID);
+        super(CTNHCore.MODID, new CTNHCopyright(""));
     }
 
     public static CTNHRegistrate create() {
